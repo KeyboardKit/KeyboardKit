@@ -95,9 +95,11 @@ Note that the library no longer sets up English services by default, so make sur
 * `KeyboardCharacterProvider` has been removed. Use `String` extensions directly instead.
 * `KeyboardColor` has been made internal.
 * `KeyboardColorReader` has been removed. Use `Color` extensions directly instead.
+* `KeyboardHostingController` has been made internal.
 * `KeyboardSettingsUrlProvider` has been removed. Use `URL.keyboardSettings` directly instead.
 * `LocaleDirectionAnalyzer` has been removed.
 * `LocaleNameProvider` has been removed.
+* `NextKeyboardController` has been made internal.
 * `QuotationAnalyzer` has been removed. Use `String` extensions directly instead. 
 * `SentenceAnalyzer` has been removed. Use `String` extensions directly instead. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.

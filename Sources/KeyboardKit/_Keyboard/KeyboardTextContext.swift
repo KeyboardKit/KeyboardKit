@@ -19,6 +19,10 @@ import Foundation
 
  You can get this information directly from the proxy or the
  keyboard context, but this class makes that text observable.
+ 
+ These properties are not added to ``KeyboardContext`` since
+ it would cause any views that use that context to re-render
+ whenever the text changes.
  */
 public class KeyboardTextContext: ObservableObject {
 

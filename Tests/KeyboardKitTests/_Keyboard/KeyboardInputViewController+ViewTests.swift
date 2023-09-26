@@ -7,10 +7,10 @@
 //
 
 #if os(iOS) || os(tvOS)
-import KeyboardKit
 import SwiftUI
 import UIKit
 import XCTest
+@testable import KeyboardKit
 
 class KeyboardInputViewController_ViewTests: XCTestCase {
 

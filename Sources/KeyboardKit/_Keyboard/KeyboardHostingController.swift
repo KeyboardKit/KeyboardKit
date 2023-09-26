@@ -10,8 +10,6 @@
 import SwiftUI
 
 /**
- [DEPRECATED] This will be made internal in KeyboardKit 8.0.
- 
  This controller can be used to add any `SwiftUI`-based view
  to a `KeyboardInputViewController`.
  
@@ -20,7 +18,7 @@ import SwiftUI
  with `add(to:)` or use the input controller's `setup(with:)`
  with any custom view.
  */
-public class KeyboardHostingController<Content: View>: UIHostingController<Content> {
+class KeyboardHostingController<Content: View>: UIHostingController<Content> {
     
     /**
      Add the hosting controller to a keyboard extension then

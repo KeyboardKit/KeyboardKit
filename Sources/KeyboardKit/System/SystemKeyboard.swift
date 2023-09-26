@@ -24,7 +24,7 @@ import SwiftUI
  The `buttonContent` and `buttonView` parameters can be used
  to customize the content or the entire view of any keyboard
  button. These functions are called for each layout item and
- the standard view.
+ are provided with the item and its standard view.
  
  To use the standard content and item views, just return the
  provided ones with `{ $1 }`, or `{ item, view in view }` if

@@ -8,5 +8,10 @@
 
 import Foundation
 
-/// This namespace contains various keyboard-related types.
+/**
+ This namespace contains essential keyboard-related types.
+ 
+ The namespace doesn't contain protocols or open classes, or
+ types that are meant to be top-level ones.
+ */
 public struct Keyboard {}

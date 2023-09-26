@@ -7,9 +7,9 @@
 //
 
 #if os(iOS) || os(tvOS)
-import KeyboardKit
 import SwiftUI
 import XCTest
+@testable import KeyboardKit
 
 class KeyboardHostingControllerTests: XCTestCase {
 

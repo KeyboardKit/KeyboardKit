@@ -10,8 +10,6 @@
 import UIKit
 
 /**
- [DEPRECATED] - This will become internal in KeyboardKit 8.0.
- 
  This class is used as global state for next keyboard button
  views, since they need an input view controller to function.
 
@@ -19,7 +17,7 @@ import UIKit
  automatically setting itself to the shared instance when it
  is loaded in `viewDidLoad`.
  */
-public final class NextKeyboardController {
+final class NextKeyboardController {
 
     private init() {}
 

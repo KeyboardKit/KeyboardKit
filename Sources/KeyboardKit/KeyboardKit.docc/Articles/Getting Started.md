@@ -37,9 +37,9 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives your controller access to additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable state like ``KeyboardInputViewController/keyboardContext``, services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
 
-The default ``KeyboardInputViewController`` behavior is to setup an English ``SystemKeyboard``. It will then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. 
+The default ``KeyboardInputViewController`` behavior is to setup a standard ``SystemKeyboard``, then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. 
 
-To set up KeyboardKit with a custom view, you can override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call `.setup(with:)` to customize the `SystemKeyboard` or use a custom view:
+To set up KeyboardKit with a custom view, you can override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call `.setup(with:)` to customize the ``SystemKeyboard`` or use a custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -51,7 +51,9 @@ class KeyboardViewController: KeyboardInputViewController {
                 MyCustomToolbar()
                 SystemKeyboard(
                     controller: controller,
-                    autocompleteToolbar: .none
+                    autocompleteToolbar: .none,
+                    buttonContent: { $1 },
+                    buttonView: { $1 }
                 )
             }
         }
@@ -59,7 +61,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-Here, we use a completely custom view that requires a controller reference:
+The setup function's view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view:
 
 ```swift
 struct CustomKeyboard: View {
@@ -82,9 +84,9 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-The view builder provides an unowned controller reference to avoid reference cycles and memory leaks.
+Read more about how to customize the system keyboard in <doc:Understanding-System-Keyboards>.
 
-> Important: It's important to never use `controller: self` and to mark `controller` properties as `unowned`, otherwise the strong controller reference will cause a memory leak. 
+> Important: Never use `controller: self` and to mark `controller` properties as `unowned`, otherwise the strong controller reference will cause a memory leak. 
 
 
 

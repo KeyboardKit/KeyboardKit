@@ -16,10 +16,10 @@ import UIKit
  keyboard switcher menu when pressed.
 
  Note that you must provide a `UIInputViewController` in the
- initializer or set ``NextKeyboardController/shared`` before
- you create an instance of this view. When using KeyboardKit,
- ``KeyboardInputViewController`` becomes the shared instance
- in its `viewDidLoad`.
+ initializer or set the `NextKeyboardController.shared` to a
+ controller before you create an instance of this view. When
+ using KeyboardKit, the ``KeyboardInputViewController`` will
+ automatically register itself as the shared instance.
  */
 public struct NextKeyboardButton<Content: View>: View {
 

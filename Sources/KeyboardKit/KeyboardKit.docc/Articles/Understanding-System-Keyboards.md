@@ -2,21 +2,19 @@
 
 This article describes the KeyboardKit system keyboard.
 
-Since Apple just provides a very limited API to custom keyboard extensions, you have to implement most functionality from scratch, including the keyboard view itself.
+As you may have noticed, Apple provides a very limited API to custom keyboard extensions. You have to implement much functionality from scratch, including the keyboard view itself.
 
-KeyboardKit therefore has a ``SystemKeyboard`` that can be used to create alphabetic, numeric, symbolic and unicode-based keyboards that mimic the native iOS keyboard. 
+KeyboardKit therefore has a ``SystemKeyboard`` that can be used to create alphabetic, numeric and symbolic keyboards that mimic the native iOS keyboard. It can be customized and styled to great extent, and automatically adjusts to the observable state you pass in. 
 
-System keyboards can be customized and styled to great extent, using styles and themes, and automatically adjusts to the observable state you pass in. 
-
-[KeyboardKit Pro][Pro] unlocks powerful system keyboard and theme previews when you register a valid license key. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks powerful system keyboard previews when you register a valid license key, and will also make it support emoji keyboards. Information about Pro features can be found at the end of this article.
 
 
 
 ## How to set up a system keyboard
 
-KeyboardKit will by default use a standard ``SystemKeyboard`` if you don't provide a custom view. So, if you just want to use such a standard keyboard, you don't have to do anything.
+KeyboardKit will by default use a standard ``SystemKeyboard``. If you just want to use this view, you don't have to do anything.
 
-If you want to customize the system keyboard, or wrap it in another view like a `VStack`, you just have to override the ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any of the `setup(with:)` functions with a custom view.
+If you however want to customize the system keyboard, wrap it in another view like a `VStack` or use a custom view, you must override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any of the `setup(with:)` functions with a custom view.
 
 ```swift
 class KeyboardController: KeyboardInputViewController {
@@ -38,18 +36,16 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-The setup view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view.
+The setup function's view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view.
 
 
 ## How to customize a system keyboard
 
-A ``SystemKeyboard`` can be customized and styled to great extent.
+A ``SystemKeyboard`` can be customized and styled to great extent. For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and observable state to it to modify its behavior. 
 
-For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and observable state to it to modify its behavior. 
+The `buttonContent` and `buttonView` parameters can be used to customize the content or the entire view of any keyboard button. These functions are called for each layout item and are provided with the item and its standard view.
 
-The `buttonContent` and `buttonView` parameters can be used to customize the content or the entire view of any keyboard button. These functions are called for each layout item and the standard view.
-
-To use the standard content and item views, just return the provided ones with `{ $1 }`, or `{ item, view in view }` if you prefer more expressive code:
+To use the standard views, just return the provided ones with `{ $1 }`, or `{ item, view in view }` for more expressive code:
 
 ```swift
 SystemKeyboard(
@@ -83,15 +79,27 @@ SystemKeyboard(
 
 In the code above, the backspace content is replaced with a trashbin and the entire spacebar is replaced by transparent text that takes up as much space as needed.
 
-The system keyboard will place an ``AutocompleteToolbar`` topmost, if you explicitly tell it not to. It will also overlay an emoji keyboard over the keyboard, whenever the keyboard context's ``KeyboardContext/keyboardType`` is set to `.emojis`.
-
-Since the keyboard layout depends on the available keyboard width, you must pass in a `width`, if you don't want to use the current controller's width.
+The system keyboard will place an ``AutocompleteToolbar`` topmost, if you explicitly tell it not to. Since the keyboard layout depends on the available keyboard width, you must pass in a `width`, if you don't want to use the current controller's width.
 
 You can take a look at the source code of the various views in the library for inspiration.
 
 
 
 ## 👑 Pro features
+
+KeyboardKit Pro unlocks powerful preview and emoji capabilities when you register a valid license key.
+
+
+### Emojis
+
+KeyboardKit Pro will make ``SystemKeyboard`` use an **Emojis.Keyboard** view (read more in <doc:Understanding-Emojis>) as the standard emoji keyboard. 
+
+This means that by just registering a valid license key, your keyboard will automatically show an emoji keyboard when the ``KeyboardContext``.``KeyboardContext/keyboardType`` changes to ``Keyboard/KeyboardType/emojis``.
+
+You can still provide a custom emoji keyboard if you want to use a custom one. 
+
+
+### Preview
 
 KeyboardKit Pro unlocks powerful tools to preview system keyboards and themes:
 
