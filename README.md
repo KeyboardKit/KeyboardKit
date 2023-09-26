@@ -104,7 +104,7 @@ To set up KeyboardKit with a custom view, you can override `viewWillSetupKeyboar
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
-    func viewWillSetupKeyboard() {
+    override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setup { controller in
             VStack(spacing: 0) {
