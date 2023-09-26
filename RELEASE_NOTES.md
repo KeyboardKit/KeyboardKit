@@ -82,7 +82,7 @@ Note that the library no longer sets up English services by default, so make sur
 * `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `BaseCalloutActionProvider` has been removed.
-* `CasingAnalyzer` has been made removed. Use `String` extensions directly instead.
+* `CasingAnalyzer` has been removed. Use `String` extensions directly instead.
 * `DisabledCalloutActionProvider` has been removed.
 * `EmojiKeyboardItem` has been removed.
 * `EmojiProvider` has been removed.
@@ -92,17 +92,18 @@ Note that the library no longer sets up English services by default, so make sur
 * `FeatureToggle` has been removed.
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
-* `KeyboardCharacterProvider` has been made removed. Use `String` extensions directly instead.
+* `KeyboardCharacterProvider` has been removed. Use `String` extensions directly instead.
 * `KeyboardColor` has been made internal.
-* `KeyboardColorReader` has been made removed. Use `Color` extensions directly instead.
+* `KeyboardColorReader` has been removed. Use `Color` extensions directly instead.
 * `KeyboardSettingsUrlProvider` has been removed. Use `URL.keyboardSettings` directly instead.
 * `LocaleDirectionAnalyzer` has been removed.
 * `LocaleNameProvider` has been removed.
-* `QuotationAnalyzer` has been made removed. Use `String` extensions directly instead. 
-* `SentenceAnalyzer` has been made removed. Use `String` extensions directly instead. 
+* `QuotationAnalyzer` has been removed. Use `String` extensions directly instead. 
+* `SentenceAnalyzer` has been removed. Use `String` extensions directly instead. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` no longer has a `buttonContent` initializer.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.
+* `WordAnalyzer` has been removed. Use `String` extensions directly instead. 

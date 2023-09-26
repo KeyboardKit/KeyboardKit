@@ -1,5 +1,5 @@
 //
-//  String+Sentence.swift
+//  String+Sentences.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.

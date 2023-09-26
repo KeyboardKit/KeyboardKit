@@ -1,5 +1,5 @@
 //
-//  String+SentenceTests.swift
+//  String+SentencesTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
@@ -11,7 +11,7 @@ import KeyboardKit
 import MockingKit
 import XCTest
 
-class String_SentenceTests: XCTestCase {
+class String_SentencesTests: XCTestCase {
 
     func testIsLastSentenceEnded() {
         XCTAssertFalse("some text".isLastSentenceEnded)

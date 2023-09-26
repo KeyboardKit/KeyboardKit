@@ -13,18 +13,18 @@ KeyboardKit extends **String** with a bunch of extensions:
 ### Casing
 
 ```swift
-"a".isLowercasedWithUppercaseVariant   // True
-"A".isLowercasedWithUppercaseVariant   // False
-"1".isLowercasedWithUppercaseVariant   // False
-"a".isUppercasedWithLowercaseVariant   // False
-"A".isUppercasedWithLowercaseVariant   // True
-"1".isUppercasedWithLowercaseVariant   // False
+"a".isLowercasedWithUppercaseVariant  // True
+"A".isLowercasedWithUppercaseVariant  // False
+"1".isLowercasedWithUppercaseVariant  // False
+"a".isUppercasedWithLowercaseVariant  // False
+"A".isUppercasedWithLowercaseVariant  // True
+"1".isUppercasedWithLowercaseVariant  // False
 ```
 
 ### Character mapping
 
 ```swift
-"abc".chars     // ["a", "b", "c"]
+"abc".chars  // ["a", "b", "c"]
 ```
 
 ### Characters
@@ -50,20 +50,18 @@ String.zeroWidthSpace    // "\u{200B}"
 ```swift
 let loc = KeyboardLocale.english.locale
 
-"Hello, world".hasUnclosedQuotation(for: loc)             // False
-"“Hello, world".hasUnclosedQuotation(for: loc)            // True
-"“Hello, world”".hasUnclosedQuotation(for: loc)           // False
+"Hello, world".hasUnclosedQuotation(for: loc)              // False
+"“Hello, world".hasUnclosedQuotation(for: loc)             // True
+"“Hello, world”".hasUnclosedQuotation(for: loc)            // False
 
-"Hello, world".hasUnclosedAlternateQuotation(for: loc)    // False
-"'Hello, world".hasUnclosedAlternateQuotation(for: loc)   // True
-"\"Hello, world’".hasUnclosedAlternateQuotation(for: loc) // False
+"Hello, world".hasUnclosedAlternateQuotation(for: loc)     // False
+"'Hello, world".hasUnclosedAlternateQuotation(for: loc)    // True
+"\"Hello, world’".hasUnclosedAlternateQuotation(for: loc)  // False
 ```
 
-### Quotation
+### Sentences
 
 ```swift
-let loc = KeyboardLocale.english.locale
-
 "Hello, world".hasSentenceDelimiterSuffix    // False
 "Hello, world.".hasSentenceDelimiterSuffix   // True
 "Hello, world. ".hasSentenceDelimiterSuffix  // False
@@ -74,4 +72,25 @@ let loc = KeyboardLocale.english.locale
 
 "Hello, world".lastSentence                  // "Hello, world"
 "Hello, world. I am".lastSentence            // "I am"
+```
+
+
+### Words
+
+```swift
+"Hello, world".hasWordDelimiterSuffix    // False
+"Hello, world,".hasWordDelimiterSuffix   // True
+"Hello, world, ".hasWordDelimiterSuffix  // True
+
+"Hello, world".wordFragmentAtStart       // "Hello"
+"Hello, world".wordFragmentAtEnd         // "world"
+"Hello, world.".wordFragmentAtEnd        // ""
+
+"Hello, world".word(at: 0)               // "Hello"
+"Hello, world".word(at: 5)               // "Hello"
+"Hello, world".word(at: 8)               // "world"
+"Hello, world.".word(at: 20)             // nil
+
+"Hello, world".wordFragment(before: 3)   // "Hel"
+"Hello, world".wordFragment(after: 3)    // "lo"
 ```

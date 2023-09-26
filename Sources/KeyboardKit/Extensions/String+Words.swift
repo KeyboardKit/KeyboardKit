@@ -1,5 +1,5 @@
 //
-//  WordAnalyzer.swift
+//  String+Words.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
@@ -7,57 +7,6 @@
 //
 
 import Foundation
-
-/**
- This protocol can be implemented by any type that should be
- able to analyze word information for strings.
-
- Implementing the protocol extends types with functions that
- use public `String` extensions with the same names.
- 
- While you can use this protocol, the main reason to have it
- is to expose these extensions to DocC.
- */
-public protocol WordAnalyzer {}
-
-public extension WordAnalyzer {
-
-    /**
-     Check whether or not the last character in the provided
-     string is a word delimiter.
-     */
-    func hasWordDelimiterSuffix(in string: String) -> Bool {
-        string.hasWordDelimiterSuffix
-    }
-
-    /// Get the word or fragment at the start of the string.
-    func wordFragmentAtStart(in string: String) -> String {
-        string.wordFragmentAtStart
-    }
-
-    /// Get the word or fragment at the end of the string.
-    func wordFragmentAtEnd(in string: String) -> String {
-        string.wordFragmentAtEnd
-    }
-
-    /// Get the word at a certain index in the string.
-    func word(at index: Int, in string: String) -> String? {
-        string.word(at: index)
-    }
-
-    /// Get the word fragment before a certain string index.
-    func wordFragment(before index: Int, in string: String) -> String {
-        string.wordFragment(before: index)
-    }
-
-    /// Get the word fragment after a certain string index.
-    func wordFragment(after index: Int, in string: String) -> String {
-        string.wordFragment(after: index)
-    }
-}
-
-
-// MARK: - String
 
 public extension String {
 

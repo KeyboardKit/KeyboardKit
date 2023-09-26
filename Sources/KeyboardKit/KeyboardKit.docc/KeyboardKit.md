@@ -229,14 +229,6 @@ KeyboardKit is available under the MIT license.
 - ``SystemKeyboard``
 - ``SystemKeyboardItem``
 
-### Text
-
-- ``CasingAnalyzer``
-- ``KeyboardCharacterProvider``
-- ``QuotationAnalyzer``
-- ``SentenceAnalyzer``
-- ``WordAnalyzer``
-
 ### Toolbar
 
 - ``ToggleToolbar``

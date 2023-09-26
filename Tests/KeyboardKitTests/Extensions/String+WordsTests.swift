@@ -1,5 +1,5 @@
 //
-//  WordAnalyzerTests.swift
+//  String+WordsTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
@@ -11,19 +11,9 @@ import KeyboardKit
 import MockingKit
 import XCTest
 
-class WordAnalyzerTests: XCTestCase {
-
-    class Analyzer: WordAnalyzer {}
-
-    var analyzer: Analyzer!
-
-    override func setUp() {
-        analyzer = Analyzer()
-    }
-
+class String_WordsTests: XCTestCase {
 
     func testWordFragmentAtStart(in text: String, expected: String) {
-        XCTAssertEqual(analyzer.wordFragmentAtStart(in: text), expected)
         XCTAssertEqual(text.wordFragmentAtStart, expected)
     }
 
@@ -35,7 +25,6 @@ class WordAnalyzerTests: XCTestCase {
 
 
     func testWordFragmentAtEnd(in text: String, expected: String) {
-        XCTAssertEqual(analyzer.wordFragmentAtEnd(in: text), expected)
         XCTAssertEqual(text.wordFragmentAtEnd, expected)
     }
 
@@ -47,7 +36,6 @@ class WordAnalyzerTests: XCTestCase {
 
 
     func testWord(at index: Int, in text: String, expected: String?) {
-        XCTAssertEqual(analyzer.word(at: index, in: text), expected)
         XCTAssertEqual(text.word(at: index), expected)
     }
 
@@ -60,7 +48,6 @@ class WordAnalyzerTests: XCTestCase {
 
 
     func testWordFragment(before index: Int, in text: String, expected: String?) {
-        XCTAssertEqual(analyzer.wordFragment(before: index, in: text), expected)
         XCTAssertEqual(text.wordFragment(before: index), expected)
     }
 
@@ -72,7 +59,6 @@ class WordAnalyzerTests: XCTestCase {
 
 
     func testWordFragment(after index: Int, in text: String, expected: String?) {
-        XCTAssertEqual(analyzer.wordFragment(after: index, in: text), expected)
         XCTAssertEqual(text.wordFragment(after: index), expected)
     }
 
