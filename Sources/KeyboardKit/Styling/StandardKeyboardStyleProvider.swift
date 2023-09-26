@@ -203,7 +203,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
         if buttonImage(for: action) != nil { return 20 }
         if let override = buttonFontSizeActionOverride(for: action) { return override }
         let text = buttonText(for: action) ?? ""
-        if action.isInputAction && text.isLowercased { return 26 }
+        if action.isInputAction && text.isLowercasedWithUppercaseVariant { return 26 }
         if action.isSystemAction || action.isPrimaryAction { return 16 }
         return 23
     }
@@ -243,7 +243,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
         if isGregorianAlpha { return .regular }
         switch action {
         case .backspace: return .regular
-        case .character(let char): return char.isLowercased ? .light : nil
+        case .character(let char): return char.isLowercasedWithUppercaseVariant ? .light : nil
         default: return buttonImage(for: action) != nil ? .light : nil
         }
     }

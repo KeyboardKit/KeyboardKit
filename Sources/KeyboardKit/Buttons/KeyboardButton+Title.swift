@@ -47,7 +47,7 @@ public extension KeyboardButton {
 private extension KeyboardButton.Title {
     
     var useNegativeOffset: Bool {
-        isInputAction && text.isLowercased
+        isInputAction && text.isLowercasedWithUppercaseVariant
     }
 }
 

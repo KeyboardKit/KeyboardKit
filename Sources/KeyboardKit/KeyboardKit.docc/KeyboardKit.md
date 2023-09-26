@@ -131,6 +131,10 @@ KeyboardKit is available under the MIT license.
 - ``Emoji``
 - ``FrequentEmojiProvider``
 
+### Extensions
+
+- <doc:Understanding-Extensions>
+
 ### External
 
 - <doc:Understanding-External-Keyboards>

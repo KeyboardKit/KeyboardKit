@@ -82,6 +82,7 @@ Note that the library no longer sets up English services by default, so make sur
 * `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
 * `BaseCalloutActionProvider` has been removed.
+* `CasingAnalyzer` has been made removed. Use `String` extensions directly instead.
 * `DisabledCalloutActionProvider` has been removed.
 * `EmojiKeyboardItem` has been removed.
 * `EmojiProvider` has been removed.
@@ -92,8 +93,8 @@ Note that the library no longer sets up English services by default, so make sur
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
 * `KeyboardColor` has been made internal.
-* `KeyboardColorReader` has been made removed. Use `Color` extensions instead.
-* `KeyboardSettingsUrlProvider` has been removed. Use `URL.keyboardSettings` instead.
+* `KeyboardColorReader` has been made removed. Use `Color` extensions directly instead.
+* `KeyboardSettingsUrlProvider` has been removed. Use `URL.keyboardSettings` directly instead.
 * `LocaleDirectionAnalyzer` has been removed.
 * `LocaleNameProvider` has been removed. 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
