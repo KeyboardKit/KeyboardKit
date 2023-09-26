@@ -13,24 +13,12 @@ import UIKit
  This demo-specific callout action provider adds a couple of
  dummy callouts when typing.
  */
-class DemoCalloutActionProvider: CalloutActionProvider {
+class DemoCalloutActionProvider: BaseCalloutActionProvider {
     
-    init() {}
-    
-    func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        switch action {
-        case .character(let char):
-            return calloutActionString(for: char).map { KeyboardAction.character("\($0)") }
-        default: return []
-        }
-    }
-
-    func calloutActionString(for char: String) -> String {
+    override func calloutActionString(for char: String) -> String {
         switch char {
-        case "a": return "aàáâäæãåā"
-        case "c": return "cçćč"
-        case "e": return "eèéêëēėę"
-        default: return ""
+        case "k": return String("keyboard".reversed())
+        default: return super.calloutActionString(for: char)
         }
     }
 }

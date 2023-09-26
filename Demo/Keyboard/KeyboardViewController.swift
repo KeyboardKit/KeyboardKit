@@ -43,15 +43,15 @@ class KeyboardViewController: KeyboardInputViewController {
         
         /// 💡 Setup a demo-specific action handler.
         ///
-        /// The demo action handler has code for tapping and
+        /// The demo handler has custom code for tapping and
         /// long pressing image actions.
         keyboardActionHandler = DemoActionHandler(
             inputViewController: self)
         
         /// 💡 Setup a demo-specific layout provider.
         ///
-        /// The demo layout provider will add a "next locale"
-        /// menu button if needed, and a rocket emoji button.
+        /// The demo provider adds a "next locale" button if
+        /// needed, as well as a rocket emoji button.
         keyboardLayoutProvider = DemoLayoutProvider()
         
         /// 💡 Setup a fake autocomplete provider.
@@ -62,9 +62,11 @@ class KeyboardViewController: KeyboardInputViewController {
         
         /// 💡 Setup a demo-specific callout action provider.
         ///
-        /// This demo provider returns callout actions for a
-        /// few keys (a, c and e).
-        calloutActionProvider = DemoCalloutActionProvider()
+        /// The demo provider adds "keyboard" callout action
+        /// buttons to the "k" key.
+        calloutActionProvider = StandardCalloutActionProvider(
+            keyboardContext: keyboardContext,
+            baseProvider: DemoCalloutActionProvider())
         
         /// 💡 Setup a demo-specific style provider.
         ///
