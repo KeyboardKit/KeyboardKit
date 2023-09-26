@@ -13,25 +13,25 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
-This version removes all previously deprecated functions and aims to make the library cleaner and more discoverable.
+This version removes all previously deprecated functions and aims to make the library more discoverable.
 
-One big change is that many types are moved into new namespaces, which will help reduce the surface area of the library.
+Many types are moved into new namespaces, which will help reduce the surface area of the library. 
 
-Renamed and moved types have temporary migration typealiases to help you migrate from KeyboardKit 7. These typealiases will be removed in 8.1.
+Renamed and moved types have temporary typealiases to help you migrate from KeyboardKit 7. Just follow the deprecation warnings after upgrading and you should be fine. These typealiases will be removed in 8.1.
 
-Renamed and moved types are not included in these release notes. Just follow the deprecation warnings after upgrading and you should be fine. 
-
-Some nice-to-have utilities have also been removed, if they bloated the library while providing little value. If you need them, grab them from an earlier version.
-
-Note that the library no longer sets up English services by default, so make sure that you are aware of that before upgrading. You must either implement these services yourself, or get them by upgrading to KeyboardKit Pro.
+Some nice-to-have utilities that bloated the library while providing little value have been removed. If you need them, just grab them from an earlier version.
 
 ### 🚨 Important changes
 
-* `StandardCalloutActionProvider` doesn't provide English callout actions by default anymore.
+* Make sure to inherit the new `ProKeyboardActionHandler` if you use a custom action handler together with KeyboardKit Pro.
+* The communicated keyboard font changes will not be performed in this major version. 
+
+* `StandardKeyboardActionHandler` no longer registers the most recently used emojis, since this has moved to KeyboardKit Pro. 
+* `ProKeyboardActionHandler` is a new action handler that registers the most recently used emojis.
 
 ### ✨ New Features
 
-* `InputSetBasedKeyboardLayoutProvider` is a new layout provider that replaces the English and static ones.
+* `InputSetBasedKeyboardLayoutProvider` is a new provider that replaces the English and static ones.
 * `KeyboardAction.emoji` can now be created with a string as well.
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
@@ -50,7 +50,6 @@ Note that the library no longer sets up English services by default, so make sur
 * `Gestures` is a new namespace for gesture-related functionality.
 * `KeyboardPreviews` is a new namespace for preview-related functionality.
 * `Proxy` is a new namespace for proxy-related functionality.
-* `KeyboardSettings` is a new namespace for settings-related functionality.
 
 ### 💡 Adjustments
 
@@ -81,12 +80,11 @@ Note that the library no longer sets up English services by default, so make sur
 
 * `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
-* `BaseCalloutActionProvider` has been removed.
 * `CasingAnalyzer` has been removed. Use `String` extensions directly instead.
 * `DisabledCalloutActionProvider` has been removed.
 * `EmojiKeyboardItem` has been removed.
 * `EmojiProvider` has been removed.
-* `EnglishCalloutActionProvider` has been removed.
+* `EnglishCalloutActionProvider` has been moved to KeyboardKit Pro.
 * `EnglishKeyboardLayoutProvider` has been removed.
 * `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
 * `FeatureToggle` has been removed.

@@ -19,6 +19,11 @@ import UIKit
 
  Note that the ``keyboardController`` reference is `weak` to
  avoid a retain cycle.
+ 
+ > Important: If you have a custom action handler, make sure
+ to inherit **ProKeyboardActionHandler** when switching over
+ to KeyboardKit Pro. Otherwise, your keyboard won't register
+ the most recently user emojis.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 

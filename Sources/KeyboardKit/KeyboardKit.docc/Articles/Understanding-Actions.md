@@ -6,6 +6,9 @@ In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific a
 
 KeyboardKit will bind a ``StandardKeyboardActionHandler`` to ``KeyboardInputViewController/keyboardActionHandler`` when the keyboard is loaded. You can replace it with a custom implementation at any time.
 
+[KeyboardKit Pro][Pro] unlocks a pro action handler when you register a valid license key. Information about Pro features can be found at the end of this article.
+
+
 
 ## Keyboard actions
 
@@ -25,6 +28,7 @@ The ``KeyboardAction`` enum contains a bunch of actions, for instance:
 * ``KeyboardAction/space`` - inserts a space.
 
 The descriptions below are the standard behaviors when actions are handled with a StandardKeyboardActionHandler.
+
 
 
 ## How to handle keyboard actions
@@ -51,9 +55,11 @@ Text("Button")
 ``SystemKeyboard`` automatically applies this modifier to all buttons.
 
 
+
 ## How to customize the action behavior
 
 You can customize the action behavior by replacing ``KeyboardInputViewController/keyboardActionHandler`` with a custom ``KeyboardActionHandler``. This is needed for actions that don't have a default system behavior, like ``KeyboardAction/image``.
+
 
 
 ## How to create a custom action handler
@@ -110,3 +116,15 @@ class KeyboardViewController: KeyboardInputViewController {
 ```
 
 This will make KeyboardKit use your custom implementation instead of the standard one.
+
+
+
+## 👑 Pro features
+
+[KeyboardKit Pro][Pro] unlocks an **Emojis.MostRecentProvider** when you register a valid license key. It will also replace the ``StandardKeyboardActionHandler`` with a **ProKeyboardActionHandler** that automatically registers emojis as you use them.
+
+> Important: If you have a custom action handler, make sure to inherit ProKeyboardActionHandler instead of StandardKeyboardActionHandler when you switch over to KeyboardKit Pro, otherwise your keyboard won't register the most recently used emojis.
+
+
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
