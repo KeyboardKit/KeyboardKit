@@ -10,7 +10,7 @@ Since native type extensions don't show up in DocC, this article will list some 
 
 KeyboardKit extends **String** with a bunch of extensions:
 
-### String casing
+### Casing
 
 ```swift
 "a".isLowercasedWithUppercaseVariant   // True
@@ -21,13 +21,13 @@ KeyboardKit extends **String** with a bunch of extensions:
 "1".isUppercasedWithLowercaseVariant   // False
 ```
 
-### String character mapping
+### Character mapping
 
 ```swift
 "abc".chars     // ["a", "b", "c"]
 ```
 
-### String characters
+### Characters
 
 ```swift
 String.carriageReturn    // "\r"
@@ -43,4 +43,18 @@ String.zeroWidthSpace    // "\u{200B}"
 "a".isWordDelimiter      // False
 ",".isWordDelimiter      // True
 ".".isWordDelimiter      // True
+```
+
+### Quotation
+
+```swift
+let loc = KeyboardLocale.english.locale
+
+"Hello, world".hasUnclosedQuotation(for: loc)             // False
+"“Hello, world".hasUnclosedQuotation(for: loc)            // True
+"“Hello, world”".hasUnclosedQuotation(for: loc)           // False
+
+"Hello, world".hasUnclosedAlternateQuotation(for: loc)    // False
+"'Hello, world".hasUnclosedAlternateQuotation(for: loc)   // True
+"\"Hello, world’".hasUnclosedAlternateQuotation(for: loc) // False
 ```

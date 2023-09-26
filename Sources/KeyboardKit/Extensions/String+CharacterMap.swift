@@ -1,5 +1,5 @@
 //
-//  String+Chars.swift
+//  String+CharacterMap.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
