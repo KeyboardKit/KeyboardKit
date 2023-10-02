@@ -152,7 +152,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func setup<Content: View>(
         with view: @autoclosure @escaping () -> Content
     ) {
-        setup(withRootView: KeyboardRootView(view))
+        setup(withRootView: Keyboard.RootView(view))
     }
 
     /**
@@ -164,7 +164,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func setup<Content: View>(
         with view: @escaping () -> Content
     ) {
-        setup(withRootView: KeyboardRootView(view))
+        setup(withRootView: Keyboard.RootView(view))
     }
 
     /**
@@ -176,7 +176,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func setup<Content: View>(
         with view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {
-        setup(withRootView: KeyboardRootView { [unowned self] in
+        setup(withRootView: Keyboard.RootView { [unowned self] in
             view(self)
         })
     }
