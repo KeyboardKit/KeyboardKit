@@ -64,7 +64,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// The default haptic feedback is `.minimal`, which
         /// only has haptic feedback for long press on space.
-        keyboardFeedbackSettings.enableHapticFeedback()
+        feedbackConfiguration.enableHapticFeedback()
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()

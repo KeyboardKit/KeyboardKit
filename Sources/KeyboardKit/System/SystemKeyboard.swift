@@ -182,9 +182,9 @@ public struct SystemKeyboard<
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
         self.init(
-            layout: controller.keyboardLayoutProvider.keyboardLayout(for: controller.keyboardContext),
+            layout: controller.layoutProvider.keyboardLayout(for: controller.keyboardContext),
             actionHandler: controller.keyboardActionHandler,
-            styleProvider: controller.keyboardStyleProvider,
+            styleProvider: controller.styleProvider,
             autocompleteContext: controller.autocompleteContext,
             autocompleteToolbar: autocompleteToolbar,
             autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in

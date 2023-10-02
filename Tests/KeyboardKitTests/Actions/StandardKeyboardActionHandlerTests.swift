@@ -18,7 +18,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     private var handler: TestClass!
     var controller: MockKeyboardInputViewController!
-    var spaceDragHandler: MockDragGestureHandler!
+    var spaceDragHandler: MockSpaceDragGestureHandler!
     var textDocumentProxy: MockTextDocumentProxy!
 
     var audioEngine: MockAudioFeedbackEngine!
@@ -29,20 +29,15 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
 
     override func setUp() {
         controller = MockKeyboardInputViewController()
-        spaceDragHandler = MockDragGestureHandler()
+        spaceDragHandler = MockSpaceDragGestureHandler(action: { _ in })
         textDocumentProxy = MockTextDocumentProxy()
         textDocumentProxy.documentContextBeforeInput = ""
 
         controller.keyboardContext.locale = KeyboardLocale.swedish.locale
         controller.keyboardContext.textDocumentProxy = textDocumentProxy
+        controller.keyboardServices.spaceDragGestureHandler = spaceDragHandler
         
-        handler = TestClass(
-            keyboardController: controller,
-            keyboardContext: controller.keyboardContext,
-            keyboardBehavior: controller.keyboardBehavior,
-            feedbackConfiguration: controller.feedbackConfiguration,
-            autocompleteContext: controller.autocompleteContext,
-            spaceDragGestureHandler: spaceDragHandler)
+        handler = TestClass(controller: controller)
         
         audioEngine = MockAudioFeedbackEngine()
         hapticEngine = MockHapticFeedbackEngine()
@@ -133,7 +128,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func testAudioFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.feedbackConfiguration.audioConfiguration
+        let config = handler.state.feedbackConfiguration.audioConfiguration
         validateAudioFeedback(for: .longPress, on: .space, expected: nil)
         validateAudioFeedback(for: .press, on: .backspace, expected: config.delete)
         validateAudioFeedback(for: .press, on: .character("a"), expected: config.input)
@@ -150,7 +145,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func testHapticFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.feedbackConfiguration.hapticConfiguration
+        let config = handler.state.feedbackConfiguration.hapticConfiguration
         let char = KeyboardAction.character("a")
         validateHapticFeedback(for: .longPress, on: .space, expected: config.longPressOnSpace)
         validateHapticFeedback(for: .doubleTap, on: char, expected: config.doubleTap)
@@ -166,7 +161,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         let autocompleteSuggestions = [Autocomplete.Suggestion(text: "", isAutocorrect: true, isUnknown: false)]
 
         textDocumentProxy.documentContextBeforeInput = "abc"
-        handler.autocompleteContext.suggestions = autocompleteSuggestions
+        handler.state.autocompleteContext.suggestions = autocompleteSuggestions
 
         handler.tryApplyAutocompleteSuggestion(before: .press, on: .space)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
@@ -174,11 +169,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         handler.tryApplyAutocompleteSuggestion(before: .release, on: .backspace)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
 
-        handler.autocompleteContext.suggestions = []
+        handler.state.autocompleteContext.suggestions = []
         handler.tryApplyAutocompleteSuggestion(before: .release, on: .space)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
 
-        handler.autocompleteContext.suggestions = autocompleteSuggestions
+        handler.state.autocompleteContext.suggestions = autocompleteSuggestions
         handler.tryApplyAutocompleteSuggestion(before: .release, on: .space)
         XCTAssertTrue(textDocumentProxy.hasCalled(ref))
     }

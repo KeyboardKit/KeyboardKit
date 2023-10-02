@@ -46,25 +46,25 @@ class KeyboardViewController: KeyboardInputViewController {
         /// The demo handler has custom code for tapping and
         /// long pressing image actions.
         keyboardActionHandler = DemoActionHandler(
-            inputViewController: self)
+            controller: self)
         
         /// 💡 Setup a demo-specific layout provider.
         ///
         /// The demo provider adds a "next locale" button if
         /// needed, as well as a rocket emoji button.
-        keyboardLayoutProvider = DemoLayoutProvider()
+        keyboardServices.layoutProvider = DemoLayoutProvider()
         
         /// 💡 Setup a fake autocomplete provider.
         ///
         /// This fake provider will provide fake suggestions.
         /// Try the Pro demo for real suggestions.
-        autocompleteProvider = FakeAutocompleteProvider()
+        keyboardServices.autocompleteProvider = FakeAutocompleteProvider()
         
         /// 💡 Setup a demo-specific callout action provider.
         ///
         /// The demo provider adds "keyboard" callout action
         /// buttons to the "k" key.
-        calloutActionProvider = StandardCalloutActionProvider(
+        keyboardServices.calloutActionProvider = StandardCalloutActionProvider(
             keyboardContext: keyboardContext,
             baseProvider: DemoCalloutActionProvider())
         
@@ -72,7 +72,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// The demo provider has some commented out changes
         /// that you can enable to see the effect.
-        keyboardStyleProvider = DemoStyleProvider(
+        keyboardServices.styleProvider = DemoStyleProvider(
             keyboardContext: keyboardContext)
         
         /// 💡 Change the space long press behavior.

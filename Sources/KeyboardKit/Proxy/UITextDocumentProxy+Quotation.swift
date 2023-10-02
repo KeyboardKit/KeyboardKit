@@ -18,7 +18,9 @@ public extension UITextDocumentProxy {
      Check whether or not the last trailing quotation before
      the input cursor is an alt. quotation begin delimiter.
      */
-    func hasUnclosedAlternateQuotationBeforeInput(for locale: Locale) -> Bool {
+    func hasUnclosedAlternateQuotationBeforeInput(
+        for locale: Locale
+    ) -> Bool {
         documentContextBeforeInput?.hasUnclosedAlternateQuotation(for: locale) ?? false
     }
 
@@ -26,7 +28,9 @@ public extension UITextDocumentProxy {
      Check whether or not the last trailing quotation before
      the input cursor is a quotation begin delimiter.
      */
-    func hasUnclosedQuotationBeforeInput(for locale: Locale) -> Bool {
+    func hasUnclosedQuotationBeforeInput(
+        for locale: Locale
+    ) -> Bool {
         documentContextBeforeInput?.hasUnclosedQuotation(for: locale) ?? false
     }
 
@@ -34,7 +38,10 @@ public extension UITextDocumentProxy {
      Check if a certain text that is about to be inserted to
      the proxy should be replaced with something else.
      */
-    func preferredQuotationReplacement(whenInserting text: String, for locale: Locale) -> String? {
+    func preferredQuotationReplacement(
+        whenInserting text: String,
+        for locale: Locale
+    ) -> String? {
         documentContextBeforeInput?.preferredQuotationReplacement(whenAppending: text, for: locale)
     }
 }

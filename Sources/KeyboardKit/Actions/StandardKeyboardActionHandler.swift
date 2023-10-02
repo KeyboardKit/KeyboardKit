@@ -6,8 +6,7 @@
 //  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
-import UIKit
+import Foundation
 
 /**
  This standard keyboard action handler is used by default by
@@ -20,108 +19,51 @@ import UIKit
  Note that the ``keyboardController`` reference is `weak` to
  avoid a retain cycle.
  
- > Important: If you have a custom action handler, make sure
- to inherit **ProKeyboardActionHandler** when switching over
- to KeyboardKit Pro. Otherwise, your keyboard won't register
- the most recently user emojis.
+ > Important: Make sure you inherit ProKeyboardActionHandler
+ instead of this when using a custom action handler with Pro,
+ otherwise the keyboard will not register most recent emojis.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
 
     // MARK: - Initialization
-
-    /**
-     Create a standard keyboard action handler, using a view
-     controller to setup all dependencies.
-
-     - Parameters:
-       - inputViewController: The view controller to use.
-       - spaceDragGestureHandler: A custom space drag gesture handler to use, if any.
-       - spaceDragSensitivity: The space drag sensitivity to use, by default ``Gestures/SpaceDragSensitivity/medium``.
-     */
-    public init(
-        inputViewController ivc: KeyboardInputViewController,
-        spaceDragGestureHandler: DragGestureHandler? = nil,
-        spaceDragSensitivity: Gestures.SpaceDragSensitivity = .medium
-    ) {
-        weak var controller = ivc
-        self.keyboardController = controller
-        self.autocompleteContext = ivc.autocompleteContext
-        self.keyboardBehavior = ivc.keyboardBehavior
-        self.keyboardContext = ivc.keyboardContext
-        self.feedbackConfiguration = ivc.feedbackConfiguration
-        self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
-            keyboardController: ivc,
-            keyboardContext: ivc.keyboardContext,
-            spaceDragSensitivity: spaceDragSensitivity
-        )
-    }
-
+    
     /**
      Create a standard keyboard action handler.
+     
+     The initializer will use the same state and services as
+     the provided controller.
 
      - Parameters:
-       - keyboardController: The keyboard controller to use.
-       - keyboardContext: The keyboard context to use.
-       - keyboardBehavior: The keyboard behavior to use.
-       - feedbackConfiguration: The keyboard feedback settings to use.
-       - autocompleteContext: The autocomplete context to use.
-       - spaceDragGestureHandler: A custom space drag gesture handler, if any.
-       - spaceDragSensitivity: The space drag sensitivity to use, by default ``Gestures/SpaceDragSensitivity/medium``.
+       - controller: The keyboard controller to use.
      */
     public init(
-        keyboardController: KeyboardController,
-        keyboardContext: KeyboardContext,
-        keyboardBehavior: KeyboardBehavior,
-        feedbackConfiguration: FeedbackConfiguration,
-        autocompleteContext: AutocompleteContext,
-        spaceDragGestureHandler: DragGestureHandler? = nil,
-        spaceDragSensitivity: Gestures.SpaceDragSensitivity = .medium
+        controller: KeyboardController
     ) {
-        weak var controller = keyboardController
-        self.keyboardController = controller
-        self.autocompleteContext = autocompleteContext
-        self.keyboardBehavior = keyboardBehavior
-        self.keyboardContext = keyboardContext
-        self.feedbackConfiguration = feedbackConfiguration
-        self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
-            keyboardController: keyboardController,
-            keyboardContext: keyboardContext,
-            spaceDragSensitivity: spaceDragSensitivity
-        )
+        weak var weakController = controller
+        self.keyboardController = weakController
+        self.services = controller.keyboardServices
+        self.state = controller.keyboardState
     }
-
-    static func dragGestureHandler(
-        keyboardController: KeyboardController,
-        keyboardContext: KeyboardContext,
-        spaceDragSensitivity: Gestures.SpaceDragSensitivity
-    ) -> SpaceCursorDragGestureHandler {
-        weak var controller = keyboardController
-        weak var context = keyboardContext
-        return .init(
-            sensitivity: spaceDragSensitivity,
-            action: {
-                let offset = context?.textDocumentProxy.spaceDragOffset(for: $0)
-                controller?.adjustTextPosition(byCharacterOffset: offset ?? $0)
-            }
-        )
-    }
+    
 
 
     // MARK: - Properties
 
+    /// The controller to which this handler applies.
     public weak var keyboardController: KeyboardController?
-
-    public let autocompleteContext: AutocompleteContext
-    public let feedbackConfiguration: FeedbackConfiguration
-    public let keyboardBehavior: KeyboardBehavior
-    public let keyboardContext: KeyboardContext
-    public let spaceDragGestureHandler: DragGestureHandler
-
-    public var textDocumentProxy: UITextDocumentProxy { keyboardContext.textDocumentProxy }
+    
+    /// The controller services that are used by the handler.
+    public let services: Keyboard.KeyboardServices
+    
+    /// The controller state that is used by the handler.
+    public let state: Keyboard.KeyboardState
+    
 
     private var isSpaceDragGestureActive = false
+    
     private var spaceDragActivationLocation: CGPoint?
+    
 
 
     // MARK: - KeyboardActionHandler
@@ -288,7 +230,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
         // Apply proxy-based replacements, if any
         if case let .character(char) = action,
-           let replacement = textDocumentProxy.preferredQuotationReplacement(
+           let replacement = keyboardContext.preferredQuotationReplacement(
             whenInserting: char,
             for: keyboardContext.locale) {
             return .character(replacement)
@@ -318,11 +260,11 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func tryApplyAutocompleteSuggestion(before gesture: Gesture, on action: KeyboardAction) {
         if isSpaceCursorDrag(action) { return }
-        if textDocumentProxy.isCursorAtNewWord { return }
+        if keyboardContext.isCursorAtNewWord { return }
         guard gesture == .release else { return }
         guard action.shouldApplyAutocorrectSuggestion else { return }
         guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocorrect }) else { return }
-        textDocumentProxy.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
+        keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
 
     /**
@@ -341,7 +283,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      */
     open func tryEndSentence(after gesture: Gesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
-        textDocumentProxy.endSentence()
+        keyboardContext.endSentence()
     }
 
     /**
@@ -365,7 +307,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func tryReinsertAutocompleteRemovedSpace(after gesture: Gesture, on action: KeyboardAction) {
         guard gesture == .release else { return }
         guard action.shouldReinsertAutocompleteInsertedSpace else { return }
-        textDocumentProxy.tryReinsertAutocompleteRemovedSpace()
+        keyboardContext.tryReinsertAutocompleteRemovedSpace()
     }
 
     /**
@@ -375,7 +317,30 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func tryRemoveAutocompleteInsertedSpace(before gesture: Gesture, on action: KeyboardAction) {
         guard gesture == .release else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
-        textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
+        keyboardContext.tryRemoveAutocompleteInsertedSpace()
+    }
+}
+
+private extension StandardKeyboardActionHandler {
+    
+    var autocompleteContext: AutocompleteContext {
+        state.autocompleteContext
+    }
+    
+    var keyboardBehavior: KeyboardBehavior {
+        services.keyboardBehavior
+    }
+    
+    var keyboardContext: KeyboardContext {
+        state.keyboardContext
+    }
+    
+    var feedbackConfiguration: FeedbackConfiguration {
+        state.feedbackConfiguration
+    }
+    
+    var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler {
+        services.spaceDragGestureHandler
     }
 }
 
@@ -383,7 +348,7 @@ private extension StandardKeyboardActionHandler {
 
     func isSpaceCursorDrag(_ action: KeyboardAction) -> Bool {
         guard action == .space else { return false }
-        guard let handler = spaceDragGestureHandler as? SpaceCursorDragGestureHandler else { return false }
+        let handler = spaceDragGestureHandler
         return handler.currentDragTextPositionOffset != 0
     }
 
@@ -418,4 +383,3 @@ private extension StandardKeyboardActionHandler {
         }
     }
 }
-#endif

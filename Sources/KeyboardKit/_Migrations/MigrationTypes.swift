@@ -139,6 +139,9 @@ public typealias ScrollViewGestureButton = Gestures.ScrollViewGestureButton
 @available(*, deprecated, renamed: "Gestures.SpaceDragSensitivity")
 public typealias SpaceDragSensitivity = Gestures.SpaceDragSensitivity
 
+@available(*, deprecated, renamed: "Gestures.SpaceDragGestureHandler")
+public typealias SpaceCursorDragGestureHandler = Gestures.SpaceDragGestureHandler
+
 @available(*, deprecated, renamed: "Gestures.SpaceLongPressBehavior")
 public typealias SpaceLongPressBehavior = Gestures.SpaceLongPressBehavior
 
@@ -178,7 +181,7 @@ public extension StandardKeyboardActionHandler {
     
     @available(*, deprecated, renamed: "feedbackConfiguration")
     var keyboardFeedbackSettings: FeedbackConfiguration {
-        feedbackConfiguration
+        state.feedbackConfiguration
     }
 }
 

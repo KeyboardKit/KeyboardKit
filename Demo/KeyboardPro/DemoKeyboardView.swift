@@ -23,8 +23,10 @@ struct DemoKeyboardView: View {
     var body: some View {
         SystemKeyboard(
             controller: controller,
-            buttonContent: { $1 },
-            buttonView: { $1 }
+            buttonContent: { $0.view },
+            buttonView: { $0.view },
+            emojiKeyboard: { _ in Color.red },
+            toolbar: { $0.view }
         )
     }
 }

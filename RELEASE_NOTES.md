@@ -42,7 +42,9 @@ Some nice-to-have utilities that bloated the library while providing little valu
 * `KeyboardInputViewController` has a new `keyboardState` property.
 * `KeyboardInputViewController` has a new `keyboardServices` property.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
+* `SpaceDragGestureHandler` properties are now mutable.
 * `SystemKeyboard` has new initializers that make it MUCH easier to customize its views.
+* `StandardKeyboardActionHandler` now builds for all platforms.
 * `View.keyboardButton` is a new view extension that applies both a button style and gestures.
 * `View.keyboardCalloutContainer` is a new view extension that applies both input and action modifiers to the view. 
 * `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view.
@@ -101,6 +103,8 @@ Some nice-to-have utilities that bloated the library while providing little valu
 * `QuotationAnalyzer` has been removed (use `String` extensions). 
 * `SentenceAnalyzer` has been removed (use `String` extensions). 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
+* `StandardKeyboardActionHandler` has a single initializer, the rest have been removed.
+* `StandardKeyboardActionHandler` has replaced all properties with `state` and `services`.
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` is much easier to configure, but requires explicit view builders.
 * `SystemKeyboardItem` can no longer be initialized outside the library.

@@ -152,7 +152,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Gestures>
 - ``Gestures``
 - ``DragGestureHandler``
-- ``SpaceCursorDragGestureHandler``
 
 ### Images
 

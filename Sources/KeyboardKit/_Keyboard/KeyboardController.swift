@@ -21,6 +21,13 @@ import Foundation
  should only specify operations and not state.
  */
 public protocol KeyboardController: AnyObject {
+    
+    /// The controller's keyboard-specific services
+    var keyboardServices: Keyboard.KeyboardServices{ get }
+    
+    /// The controller's keyboard-specific state
+    var keyboardState: Keyboard.KeyboardState { get }
+    
 
     /// Adjust the text input cursor position.
     func adjustTextPosition(byCharacterOffset: Int)

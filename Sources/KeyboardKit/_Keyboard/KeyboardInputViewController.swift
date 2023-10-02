@@ -240,7 +240,19 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Keyboard Properties
     
     /// The default set of observable keyboard services.
-    public lazy var keyboardServices = Keyboard.KeyboardServices()
+    public lazy var keyboardServices: Keyboard.KeyboardServices = {
+        let services = Keyboard.KeyboardServices(
+            state: keyboardState,
+            onContextAffectingServicesChanged: { [weak self] in
+                self?.refreshServiceBasedProperties()
+            }
+        )
+        services.spaceDragGestureHandler.action = { [weak self] in
+            let offset = self?.keyboardContext.spaceDragOffset(for: $0)
+            self?.adjustTextPosition(byCharacterOffset: offset ?? $0)
+        }
+        return services
+    }()
     
     /// The default set of observable keyboard state.
     public lazy var keyboardState: Keyboard.KeyboardState = {
@@ -254,64 +266,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Services
 
     /**
-     The autocomplete provider that is used to provide users
-     with autocomplete suggestions.
-     */
-    public lazy var autocompleteProvider: AutocompleteProvider = .disabled
-
-    /**
-     The callout action provider that is used to provide the
-     keyboard with secondary callout actions.
-     */
-    public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
-        keyboardContext: keyboardContext
-    ) {
-        didSet { refreshServiceBasedProperties() }
-    }
-
-    /**
-     The dictation service that is used to perform dictation
-     operation between the keyboard and the main app.
-     */
-    public lazy var dictationService: KeyboardDictationService = .disabled(
-        context: dictationContext
-    )
-
-    /**
      The action handler that will be used by the keyboard to
      handle keyboard actions.
      */
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
-        inputViewController: self
+        controller: self
     ) {
         didSet { refreshServiceBasedProperties() }
     }
-
-    /**
-     The style provider that is used to customize the design
-     of the keyboard, such as its colors, fonts etc.
-     */
-    public lazy var keyboardStyleProvider: KeyboardStyleProvider = StandardKeyboardStyleProvider(
-        keyboardContext: keyboardContext)
-
-    /**
-     The behavior that is used to determine how the keyboard
-     should behave when certain things happen.
-     
-     > Important: Whenever you replace the standard behavior
-     with a custom one, do so before using any services that
-     depend on it, or recreate those services if they should
-     use the new behavior.
-     */
-    public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
-        keyboardContext: keyboardContext)
-
-    /**
-     This keyboard layout provider that is used to setup the
-     complete set of keys and their layout.
-     */
-    public lazy var keyboardLayoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
-
 
 
     // MARK: - Text And Selection Change

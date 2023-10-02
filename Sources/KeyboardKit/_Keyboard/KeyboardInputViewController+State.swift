@@ -6,6 +6,7 @@
 //  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 public extension KeyboardInputViewController {
     
     /// The ``keyboardState`` autocomplete context.
@@ -26,3 +27,4 @@ public extension KeyboardInputViewController {
     /// The ``keyboardState`` keyboard text context.
     var keyboardTextContext: KeyboardTextContext { keyboardState.keyboardTextContext }
 }
+#endif
