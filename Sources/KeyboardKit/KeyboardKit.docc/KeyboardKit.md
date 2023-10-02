@@ -69,11 +69,11 @@ KeyboardKit is available under the MIT license.
 ### Essentials
 
 - <doc:Essentials>
+- ``KeyboardInputViewController``
 - ``Keyboard``
 - ``KeyboardBehavior``
 - ``KeyboardContext``
 - ``KeyboardController``
-- ``KeyboardInputViewController``
 - ``KeyboardTextContext``
 - ``StandardKeyboardBehavior``
 

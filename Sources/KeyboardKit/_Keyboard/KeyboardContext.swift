@@ -334,8 +334,8 @@ extension KeyboardContext {
         if screenSize != controller.screenSize {
             screenSize = controller.screenSize
         }
-        if mainTextDocumentProxy === controller.mainTextDocumentProxy {} else {
-            mainTextDocumentProxy = controller.mainTextDocumentProxy
+        if mainTextDocumentProxy === controller.originalTextDocumentProxy {} else {
+            mainTextDocumentProxy = controller.originalTextDocumentProxy
         }
         if textDocumentProxy === controller.textDocumentProxy {} else {
             textDocumentProxy = controller.textDocumentProxy

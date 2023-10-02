@@ -15,16 +15,21 @@ import UIKit
  This class extends `UIInputViewController` with KeyboardKit
  specific functionality.
 
- When you use KeyboardKit, simply inherit this class instead
- of `UIInputViewController` to extend your controller with a
- set of additional lifecycle functions, properties, services
- etc. such as ``viewWillSetupKeyboard()``, ``keyboardContext``
- and ``keyboardActionHandler``.
+ When you use KeyboardKit in a keyboard extension, just make
+ your `KeyboardController` inherit this class instead of the
+ standard `UIInputViewController`.
+ 
+ This will add a lot of additional features and capabilities
+ to the controller, like new lifecycle functions, properties,
+ services, etc. For instance, ``viewWillSetupKeyboard()`` is
+ called when the keyboard view should be created or rendered,
+ ``keyboardContext`` has observable keyboard states, and the
+ ``keyboardActionHandler`` can be used to handle action.
 
- Your controller can then override any functions and replace
- any services to customize the behavior of the keyboard. You
- can also access any observable state as environment objects,
- since they are injected into the view hiearchy.
+ Your controller can then override any functions, change any
+ state, and replace any service to customize the behavior of
+ the keyboard. It will also inject observable state into the
+ view hierarchy, as environment objects,
 
  For instance, you can access ``keyboardContext`` like this:
 
@@ -195,14 +200,19 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - Properties
-
+    
+    @available(*, deprecated, renamed: "originalTextDocumentProxy", message: "This will be removed in KeyboardKit 8.1.")
+    open var mainTextDocumentProxy: UITextDocumentProxy {
+        originalTextDocumentProxy
+    }
+    
     /**
      The original text document proxy.
 
      This stays the same even when ``textInputProxy`` is set
      to make ``textDocumentProxy`` return a custom instance.
      */
-    open var mainTextDocumentProxy: UITextDocumentProxy {
+    open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
     }
 
@@ -213,7 +223,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      the ``mainTextDocumentProxy``.
      */
     open override var textDocumentProxy: UITextDocumentProxy {
-        textInputProxy ?? mainTextDocumentProxy
+        textInputProxy ?? originalTextDocumentProxy
     }
 
     /**

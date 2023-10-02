@@ -99,6 +99,7 @@ Some nice-to-have utilities that bloated the library while providing little valu
 * `KeyboardColor` has been made internal.
 * `KeyboardColorReader` has been removed. Use `Color` extensions directly instead.
 * `KeyboardHostingController` has been made internal.
+* `KeyboardInputViewController` `mainTextDocumentProxy` has been renamed to `originalTextDocumentProxy`.
 * `KeyboardSettingsUrlProvider` has been removed. Use `URL.keyboardSettings` directly instead.
 * `LocaleDirectionAnalyzer` has been removed.
 * `LocaleNameProvider` has been removed.
