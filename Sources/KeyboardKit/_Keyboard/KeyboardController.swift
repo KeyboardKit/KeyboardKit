@@ -23,10 +23,10 @@ import Foundation
 public protocol KeyboardController: AnyObject {
     
     /// The controller's keyboard-specific services
-    var keyboardServices: Keyboard.KeyboardServices{ get }
+    var services: Keyboard.KeyboardServices{ get }
     
     /// The controller's keyboard-specific state
-    var keyboardState: Keyboard.KeyboardState { get }
+    var state: Keyboard.KeyboardState { get }
     
 
     /// Adjust the text input cursor position.

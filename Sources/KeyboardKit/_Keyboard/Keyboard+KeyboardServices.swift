@@ -13,11 +13,17 @@ public extension Keyboard {
     /**
      This type is used to retain keyboard service instances.
      
-     This lets us decouple an input controller from any view
-     that requires many service properties from it.
+     This lets us decouple the primary input controller from
+     any views that require many properties from it. You can
+     configure or replace the services instances at any time.
      
      Instead of passing the entire controller instance, pass
-     in ``KeyboardInputViewController/keyboardServices``.
+     in ``KeyboardInputViewController/services``.
+     
+     > Important: Only use the class as a transfer mechanism.
+     Never store instance of it, but copy any properties you
+     need and/or pass it on. Storing instances can lead to a
+     reference cycle and memory leaks.
      */
     class KeyboardServices {
         
@@ -48,81 +54,40 @@ public extension Keyboard {
         private let onContextAffectingServicesChanged: () -> Void
         
         
-        /**
-         The autocomplete provider to use.
-         
-         This is used to provide autocomplete suggestions as
-         the text document proxy text is changed.
-         
-         This uses a `.disabled` instance until you register
-         a custom one or activate KeyboardKit Pro.
-         */
+        /// The action handler to use.
+        public lazy var actionHandler: KeyboardActionHandler = .preview {
+            didSet { onContextAffectingServicesChanged() }
+        }
+        
+        /// The autocomplete provider to use.
         public lazy var autocompleteProvider: AutocompleteProvider = .disabled
         
-        /**
-         The callout action provider to use.
-         
-         This is used to provide secondary actions when keys
-         that have secondary actions are long pressed.
-         */
+        /// The callout action provider to use.
         public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
             keyboardContext: state.keyboardContext
         ) {
             didSet { onContextAffectingServicesChanged() }
         }
         
-        /**
-         The dictation service to use.
-         
-         This is used to perform dictation within a keyboard
-         extension, which will open the main app.
-         
-         This uses a `.disabled` instance until you register
-         a custom one or activate KeyboardKit Pro.
-         */
+        /// The dictation service to use.
         public lazy var dictationService: KeyboardDictationService = .disabled(
             context: state.dictationContext
         )
         
-        /**
-         The keyboard behavior to use.
-         
-         This is used to determine how a keyboard behaves in
-         certain situations.
-         
-         > Important: When you replace the standard behavior
-         with a custom one, do so before using services that
-         depend on it. Otherwise, you must manually recreate
-         those services when changing this behavior.
-         */
+        /// The keyboard behavior to use.
         public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
             keyboardContext: state.keyboardContext)
         
-        /**
-         The keyboard layout provider to use.
-         
-         This is used to provide a keyboard layout that will
-         be loaded into the keyboard.
-         */
+        /// The keyboard layout provider to use.
         public lazy var layoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
         
-        /**
-         The space cursor drag gesture handler to use.
-         
-         This is used to handle drag gestures on a space key
-         in the keyboard view.
-         */
+        /// The space drag gesture handler to use.
         public lazy var spaceDragGestureHandler = Gestures.SpaceDragGestureHandler(
             sensitivity: .medium,
             action: { _ in }
         )
         
-        /**
-         The keyboard style provider to use.
-         
-         This is used to provide various keyboard styles for
-         the keyboard.
-         */
+        /// The keyboard style provider to use.
         public lazy var styleProvider: KeyboardStyleProvider = StandardKeyboardStyleProvider(
             keyboardContext: state.keyboardContext)
     }

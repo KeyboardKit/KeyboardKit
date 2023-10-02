@@ -14,8 +14,7 @@ import Foundation
  current keyboard should give to the user.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/keyboardState``
- when the keyboard is created.
+ and binds it to ``KeyboardInputViewController/state``.
  */
 public class FeedbackConfiguration: ObservableObject {
     

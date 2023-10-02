@@ -78,7 +78,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        keyboardContext.syncAfterLayout(with: self)
+        state.keyboardContext.syncAfterLayout(with: self)
     }
 
     open override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -96,10 +96,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func viewWillHandleDictationResult() {
         Task {
             do {
-                try await dictationService.handleDictationResultInKeyboard()
+                try await services.dictationService.handleDictationResultInKeyboard()
             } catch {
                 await MainActor.run {
-                    dictationContext.lastError = error
+                    state.dictationContext.lastError = error
                 }
             }
         }
@@ -142,8 +142,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     open func viewWillSyncWithContext() {
         guard isContextSyncEnabled else { return }
-        keyboardContext.sync(with: self)
-        keyboardTextContext.sync(with: self)
+        state.keyboardContext.sync(with: self)
+        state.keyboardTextContext.sync(with: self)
     }
 
 
@@ -240,40 +240,27 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Keyboard Properties
     
     /// The default set of observable keyboard services.
-    public lazy var keyboardServices: Keyboard.KeyboardServices = {
+    public lazy var services: Keyboard.KeyboardServices = {
         let services = Keyboard.KeyboardServices(
-            state: keyboardState,
+            state: state,
             onContextAffectingServicesChanged: { [weak self] in
                 self?.refreshServiceBasedProperties()
             }
         )
         services.spaceDragGestureHandler.action = { [weak self] in
-            let offset = self?.keyboardContext.spaceDragOffset(for: $0)
+            let offset = self?.state.keyboardContext.spaceDragOffset(for: $0)
             self?.adjustTextPosition(byCharacterOffset: offset ?? $0)
         }
         return services
     }()
     
     /// The default set of observable keyboard state.
-    public lazy var keyboardState: Keyboard.KeyboardState = {
+    public lazy var state: Keyboard.KeyboardState = {
         let state = Keyboard.KeyboardState()
         state.keyboardContext.sync(with: self)
         return state
     }()
 
-
-
-    // MARK: - Services
-
-    /**
-     The action handler that will be used by the keyboard to
-     handle keyboard actions.
-     */
-    public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
-        controller: self
-    ) {
-        didSet { refreshServiceBasedProperties() }
-    }
 
 
     // MARK: - Text And Selection Change
@@ -290,8 +277,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
-        if keyboardContext.textDocumentProxy === textDocumentProxy { return }
-        keyboardContext.textDocumentProxy = textDocumentProxy
+        if state.keyboardContext.textDocumentProxy === textDocumentProxy { return }
+        state.keyboardContext.textDocumentProxy = textDocumentProxy
     }
 
     open override func textDidChange(_ textInput: UITextInput?) {
@@ -309,7 +296,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     open func deleteBackward() {
-        textDocumentProxy.deleteBackward(range: keyboardBehavior.backspaceRange)
+        textDocumentProxy.deleteBackward(range: services.keyboardBehavior.backspaceRange)
     }
 
     open func deleteBackward(times: Int) {
@@ -320,16 +307,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         textDocumentProxy.insertText(text)
     }
 
-    open func selectNextKeyboard() {
-        keyboardContext.selectNextLocale()
-    }
+    open func selectNextKeyboard() {}
 
     open func selectNextLocale() {
-        keyboardContext.selectNextLocale()
+        state.keyboardContext.selectNextLocale()
     }
 
     open func setKeyboardType(_ type: Keyboard.KeyboardType) {
-        keyboardContext.keyboardType = type
+        state.keyboardContext.keyboardType = type
     }
 
     open func openUrl(_ url: URL?) {
@@ -363,7 +348,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     open func performTextContextSync() {
         guard isContextSyncEnabled else { return }
-        keyboardTextContext.sync(with: self)
+        state.keyboardTextContext.sync(with: self)
     }
 
 
@@ -389,7 +374,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     open func insertAutocompleteSuggestion(_ suggestion: Autocomplete.Suggestion) {
         textDocumentProxy.insertAutocompleteSuggestion(suggestion)
-        keyboardActionHandler.handle(.release, on: .character(""))
+        services.actionHandler.handle(.release, on: .character(""))
     }
 
     /**
@@ -400,7 +385,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      ``AutocompleteContext/isEnabled`` is `true`.
      */
     open var isAutocompleteEnabled: Bool {
-        autocompleteContext.isEnabled && !textDocumentProxy.isReadingFullDocumentContext
+        state.autocompleteContext.isEnabled && !textDocumentProxy.isReadingFullDocumentContext
     }
 
     /**
@@ -416,7 +401,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         guard let text = autocompleteText else { return resetAutocomplete() }
         Task {
             do {
-                let suggestions = try await autocompleteProvider.autocompleteSuggestions(for: text)
+                let suggestions = try await services.autocompleteProvider
+                    .autocompleteSuggestions(for: text)
                 updateAutocompleteContext(with: suggestions)
             } catch {
                 updateAutocompleteContext(with: error)
@@ -432,7 +418,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      the ``autocompleteContext``.
      */
     open func resetAutocomplete() {
-        autocompleteContext.reset()
+        state.autocompleteContext.reset()
     }
 
 
@@ -449,8 +435,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     public var dictationConfig: Dictation.KeyboardConfiguration {
         .init(
-            appGroupId: dictationContext.appGroupId ?? "",
-            appDeepLink: dictationContext.appDeepLink ?? ""
+            appGroupId: state.dictationContext.appGroupId ?? "",
+            appDeepLink: state.dictationContext.appDeepLink ?? ""
         )
     }
 
@@ -464,10 +450,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public func performDictation() {
         Task {
             do {
-                try await dictationService.startDictationFromKeyboard(with: dictationConfig)
+                try await services.dictationService.startDictationFromKeyboard(with: dictationConfig)
             } catch {
                 await MainActor.run {
-                    dictationContext.lastError = error
+                    state.dictationContext.lastError = error
                 }
             }
         }
@@ -493,11 +479,11 @@ private extension KeyboardInputViewController {
 
     func refreshCalloutContext() {
         let isPhone = UIDevice.current.userInterfaceIdiom == .phone
-        calloutContext.actionContext.actionProvider = calloutActionProvider
-        calloutContext.actionContext.tapAction = { [weak self] action in
-            self?.keyboardActionHandler.handle(.release, on: action)
+        state.calloutContext.actionContext.actionProvider = services.calloutActionProvider
+        state.calloutContext.actionContext.tapAction = { [weak self] action in
+            self?.services.actionHandler.handle(.release, on: action)
         }
-        calloutContext.inputContext.isEnabled = isPhone
+        state.calloutContext.inputContext.isEnabled = isPhone
     }
 
     /**
@@ -511,31 +497,31 @@ private extension KeyboardInputViewController {
      Setup locale observation to handle locale-based changes.
      */
     func setupLocaleObservation() {
-        keyboardContext.$locale.sink { [weak self] in
+        state.keyboardContext.$locale.sink { [weak self] in
             guard let self = self else { return }
             let locale = $0
             self.primaryLanguage = locale.identifier
-            self.autocompleteProvider.locale = locale
+            self.services.autocompleteProvider.locale = locale
         }.store(in: &cancellables)
     }
 
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
-        let shouldSwitch = keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
+        let shouldSwitch = services.keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
-        setKeyboardType(keyboardContext.preferredKeyboardType)
+        setKeyboardType(state.keyboardContext.preferredKeyboardType)
     }
 
     /// Update the autocomplete context with an error.
     func updateAutocompleteContext(with error: Error) {
         DispatchQueue.main.async { [weak self] in
-            self?.autocompleteContext.lastError = error
+            self?.state.autocompleteContext.lastError = error
         }
     }
     
     /// Update the autocomplete context with new suggestions.
     func updateAutocompleteContext(with result: [Autocomplete.Suggestion]) {
         DispatchQueue.main.async { [weak self] in
-            self?.autocompleteContext.suggestions = result
+            self?.state.autocompleteContext.suggestions = result
         }
     }
 }
@@ -543,12 +529,7 @@ private extension KeyboardInputViewController {
 public extension View {
     
     func withEnvironment(from controller: KeyboardInputViewController) -> some View {
-        self.environmentObject(controller.autocompleteContext)
-            .environmentObject(controller.calloutContext)
-            .environmentObject(controller.dictationContext)
-            .environmentObject(controller.feedbackConfiguration)
-            .environmentObject(controller.keyboardContext)
-            .environmentObject(controller.keyboardTextContext)
+        self.withEnvironment(from: controller.state)
     }
 }
 #endif

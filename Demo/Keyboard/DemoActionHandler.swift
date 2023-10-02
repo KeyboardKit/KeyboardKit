@@ -56,14 +56,14 @@ class DemoActionHandler: StandardKeyboardActionHandler {
     
     func copyImage(named imageName: String) {
         guard let image = UIImage(named: imageName) else { return }
-        guard state.keyboardContext.hasFullAccess else { return alert("You must enable full access to copy images.") }
+        guard keyboardContext.hasFullAccess else { return alert("You must enable full access to copy images.") }
         guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
         alert("Copied to pasteboard!")
     }
     
     func saveImage(named imageName: String) {
         guard let image = UIImage(named: imageName) else { return }
-        guard state.keyboardContext.hasFullAccess else { return alert("You must enable full access to save images.") }
+        guard keyboardContext.hasFullAccess else { return alert("You must enable full access to save images.") }
         image.saveToPhotos(completion: handleImageDidSave)
         alert("Saved to photos!")
     }

@@ -181,7 +181,7 @@ public extension StandardKeyboardActionHandler {
     
     @available(*, deprecated, renamed: "feedbackConfiguration")
     var keyboardFeedbackSettings: FeedbackConfiguration {
-        state.feedbackConfiguration
+        feedbackConfiguration
     }
 }
 

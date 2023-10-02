@@ -14,8 +14,14 @@ struct KeyboardView: View {
 
     var body: some View {
         VStack {
-            SystemKeyboard(controller: controller)
-            Text("Locale: \(controller.keyboardContext.locale.identifier)")
+            SystemKeyboard(
+                controller: controller,
+                buttonContent: { $0.view },
+                buttonView: { $0.view },
+                emojiKeyboard: { _ in Color.red },
+                toolbar: { $0.view }
+            )
+            Text("Locale: \(controller.state.keyboardContext.locale.identifier)")
         }
         .padding()
     }

@@ -32,48 +32,48 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// Without KeyboardKit Pro, changing locale will by
         /// default only affects localized texts.
-        keyboardContext.setLocale(.english)
+        state.keyboardContext.setLocale(.english)
 
         /// 💡 Add more locales to the keyboard.
         ///
         /// The demo layout provider will add a "next locale"
         /// menu button if you have more than one locale.
-        keyboardContext.localePresentationLocale = .current
+        state.keyboardContext.localePresentationLocale = .current
         // keyboardContext.locales = KeyboardLocale.allCases.map { $0.locale }
         
         /// 💡 Setup a demo-specific action handler.
         ///
         /// The demo handler has custom code for tapping and
         /// long pressing image actions.
-        keyboardActionHandler = DemoActionHandler(
+        services.actionHandler = DemoActionHandler(
             controller: self)
         
         /// 💡 Setup a demo-specific layout provider.
         ///
         /// The demo provider adds a "next locale" button if
         /// needed, as well as a rocket emoji button.
-        keyboardServices.layoutProvider = DemoLayoutProvider()
+        services.layoutProvider = DemoLayoutProvider()
         
         /// 💡 Setup a fake autocomplete provider.
         ///
         /// This fake provider will provide fake suggestions.
         /// Try the Pro demo for real suggestions.
-        keyboardServices.autocompleteProvider = FakeAutocompleteProvider()
+        services.autocompleteProvider = FakeAutocompleteProvider()
         
         /// 💡 Setup a demo-specific callout action provider.
         ///
         /// The demo provider adds "keyboard" callout action
         /// buttons to the "k" key.
-        keyboardServices.calloutActionProvider = StandardCalloutActionProvider(
-            keyboardContext: keyboardContext,
+        services.calloutActionProvider = StandardCalloutActionProvider(
+            keyboardContext: state.keyboardContext,
             baseProvider: DemoCalloutActionProvider())
         
         /// 💡 Setup a demo-specific style provider.
         ///
         /// The demo provider has some commented out changes
         /// that you can enable to see the effect.
-        keyboardServices.styleProvider = DemoStyleProvider(
-            keyboardContext: keyboardContext)
+        services.styleProvider = DemoStyleProvider(
+            keyboardContext: state.keyboardContext)
         
         /// 💡 Change the space long press behavior.
         ///
@@ -85,13 +85,13 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// Since dictation is not available by default, the
         /// dictation button is removed if we don't set this.
-        keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
+        state.keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
         
         /// 💡 Enable haptic feedback.
         ///
         /// The default haptic feedback is `.minimal`, which
         /// only has haptic feedback for long press on space.
-        feedbackConfiguration.enableHapticFeedback()
+        state.feedbackConfiguration.enableHapticFeedback()
         // keyboardFeedbackSettings.audioConfiguration.input = .custom(id: 1329)
         
         /// 💡 Call super to perform the base initialization.

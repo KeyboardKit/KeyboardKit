@@ -4,9 +4,9 @@ This article describes the KeyboardKit callout engine.
 
 Callouts are an important part of the typing experience, where input callouts show the currently pressed key and action callouts present secondary keyboard actions.
 
-In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to an ``Callouts/ActionCallout``, which in turn will update views like ``Callouts/ActionCallout``.
+In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to an ``CalloutContext``, which in turn will update views like ``Callouts/ActionCallout``.
 
-KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputViewController/calloutActionProvider`` when the keyboard is loaded. It has a base set of actions, but you can inject localized providers into it or replace it with a custom implementation at any time.
+KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputViewController/services`` when the keyboard is loaded. It has a base set of actions, but you can inject localized providers into it or replace it with a custom implementation at any time.
 
 [KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit **ProCalloutActionProvider** for more features. Information about Pro features can be found at the end of this article.
 

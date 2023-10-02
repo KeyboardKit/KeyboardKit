@@ -49,4 +49,4 @@ This will make the view behave like a keyboard button, and update the provided c
 
 ## Drag gesture handlers
 
-KeyboardKit has a ``DragGestureHandler`` protocol that can be used to handle drag gestures. For instance, a ``SpaceDragGestureHandler`` is used to handle drag gestures on the space key.
+KeyboardKit has a ``DragGestureHandler`` protocol that can be used to handle drag gestures. For instance, a ``Gestures/SpaceDragGestureHandler`` is used to handle drag gestures on the space key.

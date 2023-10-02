@@ -30,8 +30,7 @@ import SwiftUI
  instead call ``setup(with:)`` with your app-specific config.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/keyboardState``
- when the keyboard is created.
+ and binds it to ``KeyboardInputViewController/state``.
  */
 public class DictationContext: ObservableObject {
 

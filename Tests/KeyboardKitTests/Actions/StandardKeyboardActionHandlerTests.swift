@@ -33,9 +33,9 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         textDocumentProxy = MockTextDocumentProxy()
         textDocumentProxy.documentContextBeforeInput = ""
 
-        controller.keyboardContext.locale = KeyboardLocale.swedish.locale
-        controller.keyboardContext.textDocumentProxy = textDocumentProxy
-        controller.keyboardServices.spaceDragGestureHandler = spaceDragHandler
+        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
+        controller.state.keyboardContext.textDocumentProxy = textDocumentProxy
+        controller.services.spaceDragGestureHandler = spaceDragHandler
         
         handler = TestClass(controller: controller)
         
@@ -89,10 +89,10 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertNil(result)
         result = handler.replacementAction(for: .release, on: .character("A"))
         XCTAssertNil(result)
-        controller.keyboardContext.locale = KeyboardLocale.swedish.locale
+        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNotNil(result)
-        controller.keyboardContext.locale = KeyboardLocale.english.locale
+        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNil(result)
     }
@@ -128,7 +128,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func testAudioFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.state.feedbackConfiguration.audioConfiguration
+        let config = handler.feedbackConfiguration.audioConfiguration
         validateAudioFeedback(for: .longPress, on: .space, expected: nil)
         validateAudioFeedback(for: .press, on: .backspace, expected: config.delete)
         validateAudioFeedback(for: .press, on: .character("a"), expected: config.input)
@@ -145,7 +145,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func testHapticFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.state.feedbackConfiguration.hapticConfiguration
+        let config = handler.feedbackConfiguration.hapticConfiguration
         let char = KeyboardAction.character("a")
         validateHapticFeedback(for: .longPress, on: .space, expected: config.longPressOnSpace)
         validateHapticFeedback(for: .doubleTap, on: char, expected: config.doubleTap)
@@ -161,7 +161,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         let autocompleteSuggestions = [Autocomplete.Suggestion(text: "", isAutocorrect: true, isUnknown: false)]
 
         textDocumentProxy.documentContextBeforeInput = "abc"
-        handler.state.autocompleteContext.suggestions = autocompleteSuggestions
+        handler.autocompleteContext.suggestions = autocompleteSuggestions
 
         handler.tryApplyAutocompleteSuggestion(before: .press, on: .space)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
@@ -169,11 +169,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         handler.tryApplyAutocompleteSuggestion(before: .release, on: .backspace)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
 
-        handler.state.autocompleteContext.suggestions = []
+        handler.autocompleteContext.suggestions = []
         handler.tryApplyAutocompleteSuggestion(before: .release, on: .space)
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
 
-        handler.state.autocompleteContext.suggestions = autocompleteSuggestions
+        handler.autocompleteContext.suggestions = autocompleteSuggestions
         handler.tryApplyAutocompleteSuggestion(before: .release, on: .space)
         XCTAssertTrue(textDocumentProxy.hasCalled(ref))
     }
@@ -195,10 +195,10 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertFalse(result)
         result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
         XCTAssertFalse(result)
-        controller.keyboardContext.locale = KeyboardLocale.swedish.locale
+        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
         result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertTrue(result)
-        controller.keyboardContext.locale = KeyboardLocale.english.locale
+        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
         result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertFalse(result)
     }

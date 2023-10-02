@@ -18,7 +18,10 @@ import Foundation
  elsewhere. However, having this makes it easy to change the
  actual behavior.
  
- `NOTE` This class handles `shift` a bit different, since it
+ KeyboardKit automatically creates an instance of this class
+ and binds it to ``KeyboardInputViewController/services``.
+ 
+ > Note: This class handles `shift` a bit different since it
  must handle double taps to switch to caps lock. Due to this,
  it must not switch to the preferred keyboard, but must also
  always try to do so. This behavior is tested to ensure that

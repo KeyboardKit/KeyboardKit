@@ -11,8 +11,11 @@ import CoreGraphics
 public extension Gestures {
     
     /**
-     This drag gesture handler handles the space key cursor move
-     drag gesture.
+     This drag gesture handler handles the space key gesture
+     that moves the input cursor.
+     
+     KeyboardKit automatically creates an instance and binds
+     it to ``KeyboardInputViewController/services``.
      */
     class SpaceDragGestureHandler: DragGestureHandler {
         
@@ -20,9 +23,9 @@ public extension Gestures {
          Create a gesture handler instance.
          
          - Parameters:
-         - sensitivity: The drag sensitivity, by default `.medium`.
-         - verticalThreshold: The vertical threshold in points, by default `50`.
-         - action: The action to perform when the offset changes.
+           - sensitivity: The drag sensitivity, by default `.medium`.
+           - verticalThreshold: The vertical threshold in points, by default `50`.
+           - action: The action to perform when the offset changes.
          */
         public init(
             sensitivity: Gestures.SpaceDragSensitivity = .medium,

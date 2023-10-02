@@ -36,6 +36,9 @@ import CoreGraphics
 
  All buttons will be affected if you only return a new style.
  Sometimes that is what you want, but most often perhaps not.
+ 
+ KeyboardKit automatically creates an instance of this class
+ and binds it to ``KeyboardInputViewController/services``.
  */
 open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 

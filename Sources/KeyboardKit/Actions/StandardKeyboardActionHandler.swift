@@ -19,6 +19,9 @@ import Foundation
  Note that the ``keyboardController`` reference is `weak` to
  avoid a retain cycle.
  
+ KeyboardKit automatically creates an instance of this class
+ and binds it to ``KeyboardInputViewController/services``.
+ 
  > Important: Make sure you inherit ProKeyboardActionHandler
  instead of this when using a custom action handler with Pro,
  otherwise the keyboard will not register most recent emojis.
@@ -41,9 +44,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         controller: KeyboardController
     ) {
         weak var weakController = controller
+        let services = controller.services
+        let state = controller.state
+        
         self.keyboardController = weakController
-        self.services = controller.keyboardServices
-        self.state = controller.keyboardState
+        self.autocompleteContext = state.autocompleteContext
+        self.keyboardBehavior = services.keyboardBehavior
+        self.keyboardContext = state.keyboardContext
+        self.feedbackConfiguration = state.feedbackConfiguration
+        self.spaceDragGestureHandler = services.spaceDragGestureHandler
     }
     
 
@@ -53,11 +62,21 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     /// The controller to which this handler applies.
     public weak var keyboardController: KeyboardController?
     
-    /// The controller services that are used by the handler.
-    public let services: Keyboard.KeyboardServices
     
-    /// The controller state that is used by the handler.
-    public let state: Keyboard.KeyboardState
+    /// The autocomplete context to use.
+    public var autocompleteContext: AutocompleteContext
+    
+    /// The keyboard behavior to use.
+    public var keyboardBehavior: KeyboardBehavior
+    
+    /// The keyboard context to use.
+    public var keyboardContext: KeyboardContext
+    
+    /// The feedback configuration to use.
+    public var feedbackConfiguration: FeedbackConfiguration
+    
+    /// The space drag gesture handler to use.
+    public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
     
 
     private var isSpaceDragGestureActive = false
@@ -318,29 +337,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard gesture == .release else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
         keyboardContext.tryRemoveAutocompleteInsertedSpace()
-    }
-}
-
-private extension StandardKeyboardActionHandler {
-    
-    var autocompleteContext: AutocompleteContext {
-        state.autocompleteContext
-    }
-    
-    var keyboardBehavior: KeyboardBehavior {
-        services.keyboardBehavior
-    }
-    
-    var keyboardContext: KeyboardContext {
-        state.keyboardContext
-    }
-    
-    var feedbackConfiguration: FeedbackConfiguration {
-        state.feedbackConfiguration
-    }
-    
-    var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler {
-        services.spaceDragGestureHandler
     }
 }
 

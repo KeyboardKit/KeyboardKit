@@ -14,8 +14,7 @@ import SwiftUI
  for both input and action callouts.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/keyboardState``
- when the keyboard is created.
+ and binds it to ``KeyboardInputViewController/state``.
  */
 public class CalloutContext: ObservableObject {
 

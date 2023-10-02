@@ -18,6 +18,9 @@ import Foundation
  The standard configuration is to use a base provider and no
  localized providers. KeyboardKit Pro will inject a provider
  for each locale in your license when you register a license.
+ 
+ KeyboardKit automatically creates an instance of this class
+ and binds it to ``KeyboardInputViewController/services``.
  */
 open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     

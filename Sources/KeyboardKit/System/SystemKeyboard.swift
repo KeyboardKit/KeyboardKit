@@ -182,16 +182,16 @@ public struct SystemKeyboard<
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
         self.init(
-            layout: controller.layoutProvider.keyboardLayout(for: controller.keyboardContext),
-            actionHandler: controller.keyboardActionHandler,
-            styleProvider: controller.styleProvider,
-            autocompleteContext: controller.autocompleteContext,
+            layout: controller.services.layoutProvider.keyboardLayout(for: controller.state.keyboardContext),
+            actionHandler: controller.services.actionHandler,
+            styleProvider: controller.services.styleProvider,
+            autocompleteContext: controller.state.autocompleteContext,
             autocompleteToolbar: autocompleteToolbar,
             autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in
                 controller?.insertAutocompleteSuggestion(suggestion)
             },
-            keyboardContext: controller.keyboardContext,
-            calloutContext: controller.calloutContext,
+            keyboardContext: controller.state.keyboardContext,
+            calloutContext: controller.state.calloutContext,
             width: width ?? controller.view.frame.width,
             renderBackground: renderBackground,
             buttonContent: buttonContent,
@@ -416,7 +416,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
 
         var controller: KeyboardInputViewController = {
             let controller = KeyboardInputViewController.preview
-            controller.autocompleteContext.suggestions = [
+            controller.state.autocompleteContext.suggestions = [
                 .init(text: "Foo"),
                 .init(text: "Bar", isAutocorrect: true),
                 .init(text: "Baz")
@@ -427,7 +427,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
         
         func customEmojiKeyboard(_ color: Color) -> some View {
             Button {
-                controller.keyboardContext.keyboardType = .alphabetic(.lowercased)
+                controller.state.keyboardContext.keyboardType = .alphabetic(.lowercased)
             } label: {
                 color
             }

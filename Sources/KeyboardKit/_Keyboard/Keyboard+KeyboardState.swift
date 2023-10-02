@@ -6,73 +6,57 @@
 //  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 public extension Keyboard {
 
     /**
      This type is used to retain keyboard state instances.
      
-     This lets us decouple an input controller from any view
-     that requires many state properties from it.
+     This lets us decouple the primary input controller from
+     any views that require many properties from it. You can
+     configure the state instances at any time.
      
      Instead of passing the entire controller instance, pass
-     in ``KeyboardInputViewController/keyboardState``.
+     in ``KeyboardInputViewController/state``.
      
-     You can configure the state properties at any time. The
-     ``KeyboardInputViewController`` will for instance setup
-     the ``calloutContext`` to use its services.
+     > Important: Only use the class as a transfer mechanism.
+     Never store instance of it, but copy any properties you
+     need and/or pass it on. Storing instances can lead to a
+     reference cycle and memory leaks.
      */
     class KeyboardState {
         
-        /**
-         An observable autocomplete context.
-         
-         This can be used as the overall state of a keyboard
-         autocomplete feature.
-         */
+        /// The observable autocomplete context to use.
         public lazy var autocompleteContext = AutocompleteContext()
         
-        /**
-         An observable callout context.
-         
-         This can be used as the overall state of a keyboard
-         with input and callout actions.
-         */
+        /// The observable callout context to use.
         public lazy var calloutContext = CalloutContext(
             actionContext: .disabled,
             inputContext: .disabled)
         
-        /**
-         An observable dictation context.
-
-         This can be used as the overall state of a keyboard
-         dictation feature.
-         */
+        /// The observable dictation context to use.
         public lazy var dictationContext = DictationContext()
         
-        /**
-         An observable feedback context.
-
-         This can be used as the overall configuration for a
-         keyboard extension's feedback behavior.
-         */
+        /// The observable feedback context to use.
         public lazy var feedbackConfiguration = FeedbackConfiguration()
         
-        /**
-         An observable keyboard context.
-
-         This can be used as the overall state of a keyboard
-         and defines things like locale, device, etc.
-         */
+        /// The observable keyboard context to use.
         public lazy var keyboardContext = KeyboardContext()
         
-        /**
-         An observable keyboard text context.
-
-         This can be used to observe the ``textDocumentProxy``
-         of a keyboard controller.
-         */
+        /// The observable keyboard text context to use.
         public lazy var keyboardTextContext = KeyboardTextContext()
+    }
+}
+
+public extension View {
+    
+    func withEnvironment(from state: Keyboard.KeyboardState) -> some View {
+        self.environmentObject(state.autocompleteContext)
+            .environmentObject(state.calloutContext)
+            .environmentObject(state.dictationContext)
+            .environmentObject(state.feedbackConfiguration)
+            .environmentObject(state.keyboardContext)
+            .environmentObject(state.keyboardTextContext)
     }
 }

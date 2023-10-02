@@ -94,9 +94,7 @@ Read more about how to customize the system keyboard in <doc:Understanding-Syste
 
 ``KeyboardInputViewController`` will by default be configured with a bunch of service instances and observable state.
 
-For instance, ``KeyboardInputViewController/keyboardActionHandler`` is set to a ``StandardKeyboardActionHandler``, ``KeyboardInputViewController/calloutActionProvider`` to a ``StandardCalloutActionProvider``, etc. 
-
-The controller also has a ``KeyboardInputViewController/keyboardState`` property that keeps all observable state properties that are used by the library. There are also handy shorthands to the nested properties, like ``KeyboardInputViewController/keyboardContext``.
+For instance, ``KeyboardInputViewController/services`` property has services that are configured for the controller, and ``KeyboardInputViewController/state`` has observable state.
 
 The various services can then be passed into any views that need them, and any observable state accessed as environment objects:
 
