@@ -12,7 +12,7 @@ import XCTest
 class FeedbackSettingsTests: XCTestCase {
     
     func testFeedbackSettingsUsesStandardConfigurationsByDefault() {
-        let settings = KeyboardFeedbackSettings()
+        let settings = FeedbackConfiguration()
         XCTAssertEqual(settings.audioConfiguration, .enabled)
         XCTAssertEqual(settings.hapticConfiguration, .minimal)
     }
@@ -20,7 +20,10 @@ class FeedbackSettingsTests: XCTestCase {
     func testFeedbackSettingsCanUseCustomConfigurations() {
         let audio = AudioFeedback.Configuration(input: .delete, delete: .input, system: .system)
         let haptic = HapticFeedback.Configuration(press: .error, release: .error, doubleTap: .warning, longPress: .success, longPressOnSpace: .lightImpact, repeat: .error)
-        let settings = KeyboardFeedbackSettings(audioConfiguration: audio, hapticConfiguration: haptic)
+        let settings = FeedbackConfiguration(
+            audioConfiguration: audio,
+            hapticConfiguration: haptic
+        )
         XCTAssertNotEqual(settings.audioConfiguration, .enabled)
         XCTAssertNotEqual(settings.hapticConfiguration, .minimal)
         XCTAssertEqual(settings.audioConfiguration, audio)

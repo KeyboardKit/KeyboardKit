@@ -102,7 +102,7 @@ Make sure to that the App Group is registered for both the app and the keyboard,
 
 ### Step 5. Configure dictation in the keyboard
 
-To configure your keyboard with an app-specific dictation configuration, just call ``DictationContext/setup(with:)`` on the ``KeyboardInputViewController/dictationContext``.
+To configure your keyboard with an app-specific dictation configuration, just call ``DictationContext/setup(with:)`` on the main ``KeyboardInputViewController/dictationContext``.
 
 You can now start dictation with a ``KeyboardAction/dictation`` action or call ``KeyboardDictationService/startDictationFromKeyboard(with:)``. If everything is correctly configured, your keyboard will then open your app and start dictation.
 

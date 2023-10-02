@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedbackSettings.swift
+//  FeedbackConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -13,17 +13,11 @@ import Foundation
  This class can be used to specify what kind of feedback the
  current keyboard should give to the user.
  
- KeyboardKit will create an observable setting instance when
- the keyboard extension is started, then apply this instance
- to ``KeyboardInputViewController/keyboardFeedbackSettings``.
- This instance will then be used by default to determine how
- audio and haptic feedback behaves for the keyboard.
- 
- You may notice that the enabled and disabled configurations
- look a bit odd, where the disabled defaults are `.standard`.
- This is since 
+ KeyboardKit automatically creates an instance of this class
+ and binds it to ``KeyboardInputViewController/keyboardState``
+ when the keyboard is created.
  */
-public class KeyboardFeedbackSettings: ObservableObject {
+public class FeedbackConfiguration: ObservableObject {
     
     /**
      Create a keyboard feedback settings instance.
@@ -75,13 +69,13 @@ public class KeyboardFeedbackSettings: ObservableObject {
     public var hapticConfiguration: HapticFeedback.Configuration
 }
 
-public extension KeyboardFeedbackSettings {
+public extension FeedbackConfiguration {
     
     /// This specifies a standard feedback configuration.
-    static let standard = KeyboardFeedbackSettings()
+    static let standard = FeedbackConfiguration()
 }
 
-public extension KeyboardFeedbackSettings {
+public extension FeedbackConfiguration {
 
     /// Get or set whether or not audio feedback is enabled.
     var isAudioFeedbackEnabled: Bool {

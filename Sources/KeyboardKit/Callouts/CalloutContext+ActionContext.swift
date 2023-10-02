@@ -13,6 +13,8 @@ public extension CalloutContext {
     
     /**
      This type can be used as action callout state.
+     
+     The tap action and action provider can be changed later.
      */
     class ActionContext: ObservableObject {
         
@@ -20,15 +22,15 @@ public extension CalloutContext {
          Create a new action callout context instance.
          
          - Parameters:
-           - actionHandler: The action handler to use.
            - actionProvider: The action provider to use, if any.
+           - tapAction: The action to perform when tapping an action.
          */
         public init(
-            actionHandler: KeyboardActionHandler,
-            actionProvider: CalloutActionProvider?
+            actionProvider: CalloutActionProvider?,
+            tapAction: @escaping (KeyboardAction) -> Void
         ) {
-            self.actionHandler = actionHandler
             self.actionProvider = actionProvider
+            self.tapAction = tapAction
         }
         
         
@@ -37,10 +39,10 @@ public extension CalloutContext {
         
         
         /// The action handler to use when tapping buttons.
-        public let actionHandler: KeyboardActionHandler
+        public var tapAction: (KeyboardAction) -> Void
         
         /// The action provider to use for resolving actions.
-        public let actionProvider: CalloutActionProvider?
+        public var actionProvider: CalloutActionProvider?
         
         
         /// The currently active actions.
@@ -94,7 +96,7 @@ public extension CalloutContext.ActionContext {
     /// Handle the currently selected action, if any.
     func handleSelectedAction() {
         guard let action = selectedAction else { return }
-        actionHandler.handle(.release, on: action)
+        tapAction(action)
     }
     
     /// Reset the context. This will dismiss the callout.
@@ -148,8 +150,8 @@ public extension CalloutContext.ActionContext {
     /// This context can be used to disable action callouts.
     static var disabled: CalloutContext.ActionContext {
         .init(
-            actionHandler: .preview,
-            actionProvider: nil
+            actionProvider: nil,
+            tapAction: { _ in }
         )
     }
 }

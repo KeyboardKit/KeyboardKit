@@ -113,8 +113,8 @@ class KeyboardInputViewControllerTests: XCTestCase {
             XCTAssertFalse(vc.keyboardContext.hasFullAccess)
             XCTAssertEqual(vc.keyboardContext.keyboardType, .alphabetic(.lowercased))
             XCTAssertFalse(vc.keyboardContext.needsInputModeSwitchKey)
-            XCTAssertEqual(vc.keyboardFeedbackSettings.audioConfiguration, .enabled)
-            XCTAssertEqual(vc.keyboardFeedbackSettings.hapticConfiguration, .minimal)
+            XCTAssertEqual(vc.feedbackConfiguration.audioConfiguration, .enabled)
+            XCTAssertEqual(vc.feedbackConfiguration.hapticConfiguration, .minimal)
         }
     }
 
@@ -135,14 +135,14 @@ class KeyboardInputViewControllerTests: XCTestCase {
         let vc = TestClass()
         vc.keyboardActionHandler = .preview
         let actionContext = vc.calloutContext.actionContext
-        XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
+        XCTAssertTrue(actionContext.actionProvider === vc.calloutActionProvider)
     }
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsForCalloutActionProvider() {
         let vc = TestClass()
         vc.calloutActionProvider = StandardCalloutActionProvider(keyboardContext: .preview)
         let actionContext = vc.calloutContext.actionContext
-        XCTAssertTrue(actionContext.actionHandler === vc.keyboardActionHandler)
+        XCTAssertTrue(actionContext.actionProvider === vc.calloutActionProvider)
     }
 
 

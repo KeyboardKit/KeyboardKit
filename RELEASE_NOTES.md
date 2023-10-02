@@ -15,21 +15,22 @@ These release notes will only contain the current version. Just check out an old
 
 This version removes all previously deprecated functions and aims to make the library more discoverable.
 
-Many types are moved into new namespaces, which will help reduce the surface area of the library. 
-
-Renamed and moved types have temporary typealiases to help you migrate from KeyboardKit 7. Just follow the deprecation warnings after upgrading and you should be fine. These typealiases will be removed in 8.1.
+This version also moves a lot of types into namespaces and grouping types, which will also make the surface area smaller. 
 
 Some nice-to-have utilities that bloated the library while providing little value have been removed. If you need them, just grab them from an earlier version.
 
-### 🚨 Important changes
+### 🚨 Important information
 
-* Make sure to inherit the new `ProKeyboardActionHandler` if you use a custom action handler together with KeyboardKit Pro.
-* The communicated keyboard font changes will not be performed in this major version. 
- 
-* `ProKeyboardActionHandler` is a new action handler that registers the most recently used emojis.
-* `StandardKeyboardActionHandler` no longer registers the most recently used emojis, since this has moved to KeyboardKit Pro.
+* Renamed and moved types have temporary typealiases to help you migrate from KeyboardKit 7. 
+* Just follow the deprecation warnings after upgrading. These typealiases will be removed in 8.1.
+* If you use a custom action handler with Pro, make sure to inherit the new `ProKeyboardActionHandler`. 
+  
+* `KeyboardInputViewController` moves state properties into a new `keyboardState` property.
+* `KeyboardInputViewController` moves services properties into a new `keyboardServices` property.
+* `ProKeyboardActionHandler` is a new keyboard action handler with Pro-specific action handling.
+* `StandardKeyboardActionHandler` no longer registers the most recently used emojis. This has moved to Pro.
 * `SystemKeyboard` provides MUCH easier customizations, but must be provided with explicit view builders.
-* `SystemKeyboard` no longer has an emoji keyboard by default, since it has been moved to KeyboardKit Pro.
+* `SystemKeyboard` no longer adds an emoji keyboard, since this component has been moved to Pro.
 * `SystemKeyboard` no longer hides or configures the autocomplete toolbar. Do this in the new `toolbar` view builder.
 
 ### ✨ New Features
@@ -38,78 +39,71 @@ Some nice-to-have utilities that bloated the library while providing little valu
 * `KeyboardAction.emoji` can now be created with a string as well.
 * `KeyboardButton` now supports providing interactable `edgeInsets`.
 * `KeyboardButton` now supports providing an external `isPressed` state.
+* `KeyboardInputViewController` has a new `keyboardState` property.
+* `KeyboardInputViewController` has a new `keyboardServices` property.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
-* `SystemKeyboard` has new initializers with view builders that make it much easier to customize button content, button views, emoji keyboard and toolbar.
-* `View.keyboardButton` is a new view extension that applies both a style and gestures.
-* `View.keyboardCalloutContainer` is a new view extension that applies both input and action callout container modifiers to the view. 
+* `SystemKeyboard` has new initializers that make it MUCH easier to customize its views.
+* `View.keyboardButton` is a new view extension that applies both a button style and gestures.
+* `View.keyboardCalloutContainer` is a new view extension that applies both input and action modifiers to the view. 
 * `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view.
-
-### 📦 New Namespaces
-
-* `Autocomplete` is a new namespace for autocomplete-related functionality.
-* `Callouts` is a new namespace for callout-related functionality.
-* `Dictation` is a new namespace for dictation-related functionality.
-* `Emojis` is a new namespace for emoji-related functionality.
-* `Gestures` is a new namespace for gesture-related functionality.
-* `KeyboardPreviews` is a new namespace for preview-related functionality.
-* `Proxy` is a new namespace for proxy-related functionality.
 
 ### 💡 Adjustments
 
-* Many types and functions have been moved into namespaces or renamed.
-* These types and functions have temporary mappings to help you migrate.
 * Renamed types and functions are not included in these release notes.  
 
-* `AutocompleteProvider` is now async instead of using completions.
+* `AutocompleteProvider` is now async.
 * `InputSet` has been converted to a struct.
-* `SystemKeyboard` no longer has an emoji keyboard by default, since it has been moved to KeyboardKit Pro.
-* `SystemKeyboard` no longer hides or configures the autocomplete toolbar. Do this in the new `toolbar` view builder.
-* `View+KeyboardButton` now has support for custom, intrinsic edge insets.
-* `View+KeyboardButton` now applies a locale context menu to `nextLocale` buttons.
+* `View+KeyboardButton` now supports custom intrinsic edge insets.
+* `View+KeyboardButton` now applies a locale menu to `nextLocale` buttons.
 
 ### 👑 Pro Adjustments
 
-* `Emojis` has types that have been added from the base library.
-* `FullDocumentContextReader` has been removed (just use the proxy extensions).
+* `EmojiCategory` has been added from the base library.
+* `EmojiKeyboard` has been added from the base library.
+* `FeedbackToggle` init parameter is renamed to `configuration`.
+* `FullDocumentContextReader` has been removed (use the proxy extensions).
 * `ProCalloutActionProvider` has new utility functions to return actions.
-* `ProKeyboardActionHandler` is a new handler that does pro things.
-* `RemoteAutocompleteProvider.AutocompleteError.noData` has been removed.
+* `ProKeyboardActionHandler` is a new action handler that does pro things.
 * `SystemKeyboardButtonPreview` is a new system button preview. 
     
 ### 💥 Breaking changes 
 
-* All deprecated code has been removed or fixed.
-* All types that exposed to DocC have been removed. 
-* Many emoji types have been moved to KeyboardKit Pro.
-* English input sets have been moved to KeyboardKit Pro.
+* All deprecated code has been removed.
+* DocC exposing types have been removed. 
+* Many emoji types have been moved to Pro.
+* English input sets have been moved to Pro.
 
 * `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` is now initialized with a suggestion.
-* `CasingAnalyzer` has been removed. Use `String` extensions directly instead.
+* `CalloutContext.ActionContext` no longer uses an action handler.
+* `CasingAnalyzer` has been removed (use `String` extensions).
 * `DisabledCalloutActionProvider` has been removed.
 * `EmojiKeyboardItem` has been removed.
 * `EmojiProvider` has been removed.
-* `EnglishCalloutActionProvider` has been moved to KeyboardKit Pro.
+* `EnglishCalloutActionProvider` has been moved to Pro.
 * `EnglishKeyboardLayoutProvider` has been removed.
-* `ExternalKeyboardContext` has been moved to KeyboardKit Pro.
+* `ExternalKeyboardContext` has been moved to Pro.
 * `FeatureToggle` has been removed.
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
-* `KeyboardCharacterProvider` has been removed. Use `String` extensions directly instead.
+* `KeyboardCharacterProvider` has been removed (use `String` extensions).
 * `KeyboardColor` has been made internal.
-* `KeyboardColorReader` has been removed. Use `Color` extensions directly instead.
+* `KeyboardColorReader` has been removed (use `Color` extensions).
+* `KeyboardContext` no longer has a controller init. Just call `sync(with:)` after creating it.
 * `KeyboardHostingController` has been made internal.
 * `KeyboardInputViewController` `mainTextDocumentProxy` has been renamed to `originalTextDocumentProxy`.
-* `KeyboardSettingsUrlProvider` has been removed. Use `URL.keyboardSettings` directly instead.
-* `LocaleDirectionAnalyzer` has been removed.
-* `LocaleNameProvider` has been removed.
+* `KeyboardInputViewController` state properties can now only be set via `keyboardState`.
+* `KeyboardInputViewController` services properties can now only be set via `keyboardServices`.
+* `KeyboardSettingsUrlProvider` has been removed (use `URL.keyboardSettings`).
+* `LocaleDirectionAnalyzer` has been removed (use `Locale` extensions).
+* `LocaleNameProvider` has been removed (use `Locale` extensions).
 * `NextKeyboardController` has been made internal.
-* `QuotationAnalyzer` has been removed. Use `String` extensions directly instead. 
-* `SentenceAnalyzer` has been removed. Use `String` extensions directly instead. 
+* `QuotationAnalyzer` has been removed (use `String` extensions). 
+* `SentenceAnalyzer` has been removed (use `String` extensions). 
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` is much easier to configure, but requires explicit view builders.
 * `SystemKeyboardItem` can no longer be initialized outside the library.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
 * `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.
-* `WordAnalyzer` has been removed. Use `String` extensions directly instead. 
+* `WordAnalyzer` has been removed (use `String` extensions). 

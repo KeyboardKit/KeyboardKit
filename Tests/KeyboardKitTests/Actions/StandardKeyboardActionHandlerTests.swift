@@ -40,7 +40,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
             keyboardController: controller,
             keyboardContext: controller.keyboardContext,
             keyboardBehavior: controller.keyboardBehavior,
-            keyboardFeedbackSettings: controller.keyboardFeedbackSettings,
+            feedbackConfiguration: controller.feedbackConfiguration,
             autocompleteContext: controller.autocompleteContext,
             spaceDragGestureHandler: spaceDragHandler)
         
@@ -133,7 +133,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func testAudioFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.keyboardFeedbackSettings.audioConfiguration
+        let config = handler.feedbackConfiguration.audioConfiguration
         validateAudioFeedback(for: .longPress, on: .space, expected: nil)
         validateAudioFeedback(for: .press, on: .backspace, expected: config.delete)
         validateAudioFeedback(for: .press, on: .character("a"), expected: config.input)
@@ -150,7 +150,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
     
     func testHapticFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.keyboardFeedbackSettings.hapticConfiguration
+        let config = handler.feedbackConfiguration.hapticConfiguration
         let char = KeyboardAction.character("a")
         validateHapticFeedback(for: .longPress, on: .space, expected: config.longPressOnSpace)
         validateHapticFeedback(for: .doubleTap, on: char, expected: config.doubleTap)

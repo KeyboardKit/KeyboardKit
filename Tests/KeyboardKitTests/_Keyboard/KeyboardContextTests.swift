@@ -81,7 +81,8 @@ class KeyboardContextTests: XCTestCase {
     #if os(iOS) || os(tvOS)
     func testInitializerCanSyncWithController() {
         let controller = KeyboardInputViewController()
-        context = KeyboardContext(controller: controller)
+        context = KeyboardContext()
+        context.sync(with: controller)
         assert(context, isSyncedWith: controller)
     }
 
@@ -152,7 +153,7 @@ class KeyboardContextTests: XCTestCase {
     #if os(iOS) || os(tvOS)
     func testSyncingContextWithControllerUpdatesSomeProperties() {
         let controller = KeyboardInputViewController()
-        let context = KeyboardContext(controller: controller)
+        let context = KeyboardContext()
         context.sync(with: controller)
         assert(context, isSyncedWith: controller)
     }

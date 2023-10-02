@@ -11,14 +11,11 @@ import SwiftUI
 
 /**
  This observable context can be used to handle callout state
- for a keyboard.
-
- The class wraps contexts for both action and input callouts,
- so that we only have to pass around a single instance.
-
+ for both input and action callouts.
+ 
  KeyboardKit automatically creates an instance of this class
- and binds the created instance to the keyboard controller's
- ``KeyboardInputViewController/calloutContext``.
+ and binds it to ``KeyboardInputViewController/keyboardState``
+ when the keyboard is created.
  */
 public class CalloutContext: ObservableObject {
 

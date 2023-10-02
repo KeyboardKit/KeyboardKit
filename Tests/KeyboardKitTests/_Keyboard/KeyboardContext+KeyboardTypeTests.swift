@@ -18,7 +18,8 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
 
     override func setUp() {
         proxy = MockTextDocumentProxy()
-        context = KeyboardContext(controller: MockKeyboardInputViewController())
+        context = KeyboardContext()
+        context.sync(with: MockKeyboardInputViewController())
         context.textDocumentProxy = proxy
         context.keyboardType = .alphabetic(.lowercased)
     }

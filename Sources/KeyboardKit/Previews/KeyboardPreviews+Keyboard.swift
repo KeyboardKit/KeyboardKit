@@ -30,7 +30,9 @@ public extension KeyboardContext {
     
     static var preview: KeyboardContext {
         #if os(iOS) || os(tvOS)
-        KeyboardContext(controller: KeyboardInputViewController.preview)
+        let context = KeyboardContext()
+        context.sync(with: .preview)
+        return context
         #else
         KeyboardContext()
         #endif

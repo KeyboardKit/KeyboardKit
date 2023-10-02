@@ -191,12 +191,14 @@ struct Callouts_ActionCallout_Previews: PreviewProvider {
     static let keyboardContext = KeyboardContext.preview
 
     static let actionContext1 = Callouts.ActionCallout.Context(
-        actionHandler: actionHandler,
-        actionProvider: actionProvider)
+        actionProvider: actionProvider,
+        tapAction: { _ in }
+    )
 
     static let actionContext2 = Callouts.ActionCallout.Context(
-        actionHandler: actionHandler,
-        actionProvider: actionProvider)
+        actionProvider: actionProvider,
+        tapAction: { _ in }
+    )
 
     static func previewGroup<ButtonView: View>(
         view: ButtonView,

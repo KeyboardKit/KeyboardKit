@@ -26,7 +26,8 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     override func setUp() {
         timer = Gestures.RepeatTimer.shared
         proxy = MockTextDocumentProxy()
-        keyboardContext = KeyboardContext(controller: MockKeyboardInputViewController())
+        keyboardContext = KeyboardContext()
+        keyboardContext.sync(with: MockKeyboardInputViewController())
         keyboardContext.textDocumentProxy = proxy
         behavior = StandardKeyboardBehavior(keyboardContext: keyboardContext)
     }

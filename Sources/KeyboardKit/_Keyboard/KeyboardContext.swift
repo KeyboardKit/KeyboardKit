@@ -18,38 +18,24 @@ import UIKit
  This class provides keyboard extensions with contextual and
  observable information about the keyboard extension itself.
 
- You can use ``locale`` to get and set the raw locale of the
- keyboard or use the various `setLocale(...)` functions that
- support using both `Locale` and ``KeyboardLocale``. You can
- use ``locales`` to set all the available locales, then call
- ``selectNextLocale()`` to select the next available locale.
+ This class will continuously sync with the input controller
+ to provide updated information. It is also extensively used
+ within the library, to make keyboard-related decisions.
 
+ You can use ``locale`` to get and set the raw locale of the
+ keyboard or use the properties and functions that allows us
+ to use a ``KeyboardLocale``. You can use ``locales`` to set
+ all locales, then call ``selectNextLocale()`` to select the
+ next available locale.
+ 
  KeyboardKit automatically creates an instance of this class
- and binds the created instance to the keyboard controller's
- ``KeyboardInputViewController/keyboardContext``.
+ and binds it to ``KeyboardInputViewController/keyboardState``
+ when the keyboard is created.
  */
 public class KeyboardContext: ObservableObject {
 
-    /// Create a standard context instance.
+    /// Create a context instance.
     public init() {}
-
-    #if os(iOS) || os(tvOS)
-    /**
-     Create a context instance that is initially synced with
-     the provided `controller`.
-
-     - Parameters:
-       - controller: The controller with which the context should sync, if any.
-     */
-    convenience public init(
-        controller: KeyboardInputViewController?
-    ) {
-        self.init()
-        guard let controller = controller else { return }
-        self.sync(with: controller)
-    }
-    #endif
-
 
     /**
      A manually set autocapitalization type, which overrides
@@ -294,14 +280,17 @@ public extension KeyboardContext {
 // MARK: - iOS/tvOS syncing
 
 #if os(iOS) || os(tvOS)
-extension KeyboardContext {
-
+public extension KeyboardContext {
+    
     /// Sync the context with the provided input controller.
     func sync(with controller: KeyboardInputViewController) {
         DispatchQueue.main.async {
             self.syncAfterAsync(with: controller)
         }
     }
+}
+
+extension KeyboardContext {
 
     /**
      Perform this after an async delay, to make sure that we

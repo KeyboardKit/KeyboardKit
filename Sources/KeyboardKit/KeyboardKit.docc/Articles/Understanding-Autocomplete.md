@@ -44,7 +44,7 @@ You can customize the autocomplete behavior by replacing ``KeyboardInputViewCont
 
 For instance, ``KeyboardInputViewController/autocompleteText`` determines which text to pass into the provider. It uses ``KeyboardInputViewController/textDocumentProxy`` by default, but you can override it to customize which text to use.
 
-If you want to temporarily or permanently disable autocomplete, set the ``KeyboardInputViewController/autocompleteContext`` ``AutocompleteContext/isEnabled`` property to `false`.
+If you want to temporarily or permanently disable autocomplete, set ``KeyboardInputViewController/autocompleteContext``.``AutocompleteContext/isEnabled`` to `false`.
 
 
 

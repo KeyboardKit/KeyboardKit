@@ -49,7 +49,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.autocompleteContext = ivc.autocompleteContext
         self.keyboardBehavior = ivc.keyboardBehavior
         self.keyboardContext = ivc.keyboardContext
-        self.keyboardFeedbackSettings = ivc.keyboardFeedbackSettings
+        self.feedbackConfiguration = ivc.feedbackConfiguration
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: ivc,
             keyboardContext: ivc.keyboardContext,
@@ -64,7 +64,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
        - keyboardController: The keyboard controller to use.
        - keyboardContext: The keyboard context to use.
        - keyboardBehavior: The keyboard behavior to use.
-       - keyboardFeedbackSettings: The keyboard feedback settings to use.
+       - feedbackConfiguration: The keyboard feedback settings to use.
        - autocompleteContext: The autocomplete context to use.
        - spaceDragGestureHandler: A custom space drag gesture handler, if any.
        - spaceDragSensitivity: The space drag sensitivity to use, by default ``Gestures/SpaceDragSensitivity/medium``.
@@ -73,7 +73,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardController: KeyboardController,
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
-        keyboardFeedbackSettings: KeyboardFeedbackSettings,
+        feedbackConfiguration: FeedbackConfiguration,
         autocompleteContext: AutocompleteContext,
         spaceDragGestureHandler: DragGestureHandler? = nil,
         spaceDragSensitivity: Gestures.SpaceDragSensitivity = .medium
@@ -83,7 +83,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.autocompleteContext = autocompleteContext
         self.keyboardBehavior = keyboardBehavior
         self.keyboardContext = keyboardContext
-        self.keyboardFeedbackSettings = keyboardFeedbackSettings
+        self.feedbackConfiguration = feedbackConfiguration
         self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
             keyboardController: keyboardController,
             keyboardContext: keyboardContext,
@@ -113,9 +113,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public weak var keyboardController: KeyboardController?
 
     public let autocompleteContext: AutocompleteContext
+    public let feedbackConfiguration: FeedbackConfiguration
     public let keyboardBehavior: KeyboardBehavior
     public let keyboardContext: KeyboardContext
-    public let keyboardFeedbackSettings: KeyboardFeedbackSettings
     public let spaceDragGestureHandler: DragGestureHandler
 
     public var textDocumentProxy: UITextDocumentProxy { keyboardContext.textDocumentProxy }
@@ -219,7 +219,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         for gesture: Gesture,
         on action: KeyboardAction
     ) -> AudioFeedback? {
-        let config = keyboardFeedbackSettings.audioConfiguration
+        let config = feedbackConfiguration.audioConfiguration
         let custom = config.actions.first { $0.action == action }
         if let custom = custom { return custom.feedback }
         if action == .space && gesture == .longPress { return nil }
@@ -236,7 +236,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         for gesture: Gesture,
         on action: KeyboardAction
     ) -> HapticFeedback? {
-        let config = keyboardFeedbackSettings.hapticConfiguration
+        let config = feedbackConfiguration.hapticConfiguration
         let custom = config.actions.first { $0.action == action && $0.gesture == gesture }
         if let custom = custom { return custom.feedback }
         if action == .space && gesture == .longPress { return config.longPressOnSpace }

@@ -13,8 +13,8 @@ import Combine
  of autocomplete suggestions.
 
  KeyboardKit automatically creates an instance of this class
- and binds the created instance to the keyboard controller's
- ``KeyboardInputViewController/autocompleteContext``.
+ and binds it to ``KeyboardInputViewController/keyboardState``
+ when the keyboard is created.
  */
 public class AutocompleteContext: ObservableObject {
     

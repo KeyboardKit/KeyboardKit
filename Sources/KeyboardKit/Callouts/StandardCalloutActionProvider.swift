@@ -72,12 +72,12 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     
     
     
-    @available(*, deprecated, renamed: "calloutActionProvider(for:)", message: "This will be removed in KeyboardKit 8.1.")
+    @available(*, deprecated, renamed: "calloutActionProvider(for:)")
     open func provider(for context: KeyboardContext) -> CalloutActionProvider? {
         provider(for: context.locale)
     }
     
-    @available(*, deprecated, renamed: "calloutActionProvider(for:)", message: "This will be removed in KeyboardKit 8.1.")
+    @available(*, deprecated, renamed: "calloutActionProvider(for:)")
     open func provider(for locale: Locale) -> CalloutActionProvider? {
         localizedProviders.value(for: locale)
     }

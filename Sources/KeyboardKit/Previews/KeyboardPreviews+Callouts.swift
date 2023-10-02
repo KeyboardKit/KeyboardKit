@@ -1,5 +1,5 @@
 //
-//  CalloutContext+Preview.swift
+//  KeyboardPreviews+Callouts.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-01.
@@ -10,7 +10,6 @@ import Foundation
 
 public extension CalloutContext {
 
-    /// This context can be used in SwiftUI previews.
     static var preview = CalloutContext(
         actionContext: .preview,
         inputContext: .preview
@@ -19,16 +18,14 @@ public extension CalloutContext {
 
 public extension CalloutContext.ActionContext {
 
-    /// This context can be used in SwiftUI previews.
     static var preview = CalloutContext.ActionContext(
-        actionHandler: .preview,
-        actionProvider: .preview
+        actionProvider: .preview,
+        tapAction: { _ in }
     )
 }
 
 public extension CalloutContext.InputContext {
     
-    /// This context can be used in SwiftUI previews.
     static var preview = CalloutContext.InputContext(
         isEnabled: true
     )
@@ -36,11 +33,9 @@ public extension CalloutContext.InputContext {
 
 public extension CalloutActionProvider where Self == PreviewCalloutActionProvider {
     
-    /// This provider can be used in SwiftUI previews.
     static var preview: CalloutActionProvider { PreviewCalloutActionProvider() }
 }
 
-/// This provider can be used in SwiftUI previews.
 public class PreviewCalloutActionProvider: CalloutActionProvider {
     
     public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {

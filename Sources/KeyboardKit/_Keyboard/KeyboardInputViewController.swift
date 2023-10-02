@@ -6,6 +6,11 @@
 //  Copyright © 2018-2023 Daniel Saidi. All rights reserved.
 //
 
+public extension Keyboard {
+
+    
+}
+
 #if os(iOS) || os(tvOS)
 import Combine
 import SwiftUI
@@ -54,6 +59,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func viewDidLoad() {
         super.viewDidLoad()
+        refreshServiceBasedProperties()
         setupInitialWidth()
         setupLocaleObservation()
         viewWillRegisterSharedController()
@@ -200,11 +206,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Properties
     
-    @available(*, deprecated, renamed: "originalTextDocumentProxy", message: "This will be removed in KeyboardKit 8.1.")
-    open var mainTextDocumentProxy: UITextDocumentProxy {
-        originalTextDocumentProxy
-    }
-    
     /**
      The original text document proxy.
 
@@ -236,61 +237,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
 
-    // MARK: - Observables
-
-    /**
-     The default, observable autocomplete context.
-
-     This context is used as global autocomplete state, e.g.
-     for the currently displayed suggestions.
-     */
-    public lazy var autocompleteContext = AutocompleteContext()
-
-    /**
-     The default, observable callout context.
-
-     This is used as global callout state, e.g. for callouts
-     that show the currently typed character.
-     */
-    public lazy var calloutContext = CalloutContext(
-        actionContext: .init(
-            actionHandler: keyboardActionHandler,
-            actionProvider: calloutActionProvider),
-        inputContext: .init(
-            isEnabled: UIDevice.current.userInterfaceIdiom == .phone)
-    )
-
-    /**
-     The default, observable dictation context.
-
-     This is used as global dictation state and will be used
-     to communicate between an app and its keyboard.
-     */
-    public lazy var dictationContext = DictationContext()
-
-    /**
-     The default, observable keyboard context.
-
-     This is used as global state for the keyboard's overall
-     state and configuration like locale, device, screen etc.
-     */
-    public lazy var keyboardContext = KeyboardContext(controller: self)
-
-    /**
-     The default, observable feedback settings.
-
-     This property is used as a global configuration for the
-     keyboard's feedback, e.g. audio and haptic feedback.
-     */
-    public lazy var keyboardFeedbackSettings = KeyboardFeedbackSettings()
-
-    /**
-     The default, observable keyboard text context.
-
-     This is used as global state to let you observe text in
-     the ``textDocumentProxy``.
-     */
-    public lazy var keyboardTextContext = KeyboardTextContext()
+    // MARK: - Keyboard Properties
+    
+    /// The default set of observable keyboard services.
+    public lazy var keyboardServices = Keyboard.KeyboardServices()
+    
+    /// The default set of observable keyboard state.
+    public lazy var keyboardState: Keyboard.KeyboardState = {
+        let state = Keyboard.KeyboardState()
+        state.keyboardContext.sync(with: self)
+        return state
+    }()
 
 
 
@@ -309,7 +266,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
         keyboardContext: keyboardContext
     ) {
-        didSet { refreshProperties() }
+        didSet { refreshServiceBasedProperties() }
     }
 
     /**
@@ -327,7 +284,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public lazy var keyboardActionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
         inputViewController: self
     ) {
-        didSet { refreshProperties() }
+        didSet { refreshServiceBasedProperties() }
     }
 
     /**
@@ -553,6 +510,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             }
         }
     }
+    
+
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, renamed: "originalTextDocumentProxy")
+    open var mainTextDocumentProxy: UITextDocumentProxy {
+        originalTextDocumentProxy
+    }
 }
 
 
@@ -560,15 +525,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 private extension KeyboardInputViewController {
 
-    func refreshProperties() {
-        refreshCalloutActionContext()
+    func refreshServiceBasedProperties() {
+        refreshCalloutContext()
     }
 
-    func refreshCalloutActionContext() {
-        calloutContext.actionContext = .init(
-            actionHandler: keyboardActionHandler,
-            actionProvider: calloutActionProvider
-        )
+    func refreshCalloutContext() {
+        let isPhone = UIDevice.current.userInterfaceIdiom == .phone
+        calloutContext.actionContext.actionProvider = calloutActionProvider
+        calloutContext.actionContext.tapAction = { [weak self] action in
+            self?.keyboardActionHandler.handle(.release, on: action)
+        }
+        calloutContext.inputContext.isEnabled = isPhone
     }
 
     /**
@@ -617,8 +584,8 @@ public extension View {
         self.environmentObject(controller.autocompleteContext)
             .environmentObject(controller.calloutContext)
             .environmentObject(controller.dictationContext)
+            .environmentObject(controller.feedbackConfiguration)
             .environmentObject(controller.keyboardContext)
-            .environmentObject(controller.keyboardFeedbackSettings)
             .environmentObject(controller.keyboardTextContext)
     }
 }

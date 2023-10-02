@@ -13,16 +13,16 @@ import Foundation
  This class provides keyboard extensions with contextual and
  observable information about the text in the document proxy.
 
- KeyboardKit automatically creates an instance of this class
- and binds the created instance to the keyboard controller's
- ``KeyboardInputViewController/keyboardTextContext``.
-
  You can get this information directly from the proxy or the
  keyboard context, but this class makes that text observable.
  
  These properties are not added to ``KeyboardContext`` since
  it would cause any views that use that context to re-render
  whenever the text changes.
+ 
+ KeyboardKit automatically creates an instance of this class
+ and binds it to ``KeyboardInputViewController/keyboardState``
+ when the keyboard is created. 
  */
 public class KeyboardTextContext: ObservableObject {
 
