@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-@available(iOS 16, *)
+@available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
 class Locale_FlagTests: XCTestCase {
 
     func testFlags() {

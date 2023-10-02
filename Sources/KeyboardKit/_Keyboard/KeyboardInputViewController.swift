@@ -198,7 +198,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     var cancellables = Set<AnyCancellable>()
 
 
-
     // MARK: - Properties
     
     @available(*, deprecated, renamed: "originalTextDocumentProxy", message: "This will be removed in KeyboardKit 8.1.")

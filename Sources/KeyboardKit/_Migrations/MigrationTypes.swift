@@ -55,8 +55,10 @@ public typealias DictationConfiguration = Dictation.Configuration
 @available(*, deprecated, renamed: "InputSetBasedKeyboardLayoutProvider", message: "This will be removed in KeyboardKit 8.1.")
 public typealias EnglishKeyboardLayoutProvider = InputSetBasedKeyboardLayoutProvider
 
+#if os(iOS) || os(macOS) || os(watchOS)
 @available(*, deprecated, renamed: "Gestures.GestureButton", message: "This will be removed in KeyboardKit 8.1.")
 public typealias GestureButton = Gestures.GestureButton
+#endif
 
 @available(*, deprecated, renamed: "Gestures.Defaults", message: "This will be removed in KeyboardKit 8.1.")
 public typealias GestureButtonDefaults = Gestures.Defaults
@@ -82,14 +84,16 @@ public typealias InputSetRows = InputSet.Rows
 @available(*, deprecated, renamed: "Gestures.KeyboardGesture", message: "This will be removed in KeyboardKit 8.1.")
 public typealias KeyboardGesture = Gestures.KeyboardGesture
 
+#if os(iOS) || os(tvOS)
 @available(*, deprecated, renamed: "KeyboardStateContext", message: "This will be removed in KeyboardKit 8.1.")
 public typealias KeyboardEnabledContext = KeyboardStateContext
 
-@available(*, deprecated, renamed: "KeyboardStateLabel", message: "This will be removed in KeyboardKit 8.1.")
-public typealias KeyboardEnabledLabel = KeyboardStateLabel
-
 @available(*, deprecated, renamed: "KeyboardStateInspector", message: "This will be removed in KeyboardKit 8.1.")
 public typealias KeyboardEnabledStateInspector = KeyboardStateInspector
+#endif
+
+@available(*, deprecated, renamed: "KeyboardStateLabel", message: "This will be removed in KeyboardKit 8.1.")
+public typealias KeyboardEnabledLabel = KeyboardStateLabel
 
 @available(*, deprecated, renamed: "KeyboardLayout.Configuration", message: "This will be removed in KeyboardKit 8.1.")
 public typealias KeyboardLayoutConfiguration = KeyboardLayout.Configuration
@@ -124,8 +128,10 @@ public typealias NumericInputSet = InputSet
 @available(*, deprecated, renamed: "Gestures.RepeatTimer", message: "This will be removed in KeyboardKit 8.1.")
 public typealias RepeatGestureTimer = Gestures.RepeatTimer
 
+#if os(iOS) || os(macOS) || os(watchOS)
 @available(*, deprecated, renamed: "Gestures.ScrollViewGestureButton", message: "This will be removed in KeyboardKit 8.1.")
 public typealias ScrollViewGestureButton = Gestures.ScrollViewGestureButton
+#endif
 
 @available(*, deprecated, renamed: "Gestures.SpaceDragSensitivity", message: "This will be removed in KeyboardKit 8.1.")
 public typealias SpaceDragSensitivity = Gestures.SpaceDragSensitivity

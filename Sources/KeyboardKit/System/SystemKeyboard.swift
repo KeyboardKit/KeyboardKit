@@ -426,8 +426,10 @@ struct SystemKeyboard_Previews: PreviewProvider {
         }()
         
         func customEmojiKeyboard(_ color: Color) -> some View {
-            color.onTapGesture {
+            Button {
                 controller.keyboardContext.keyboardType = .alphabetic(.lowercased)
+            } label: {
+                color
             }
         }
 

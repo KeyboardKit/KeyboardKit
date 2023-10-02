@@ -79,7 +79,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     // MARK: - Properties
 
     func testTextDocumentProxyReturnsTheOriginalProxyIfNoInputProxyIsDefined() {
-        XCTAssertTrue(vc.textDocumentProxy === vc.mainTextDocumentProxy)
+        XCTAssertTrue(vc.textDocumentProxy === vc.originalTextDocumentProxy)
     }
 
     func testTextDocumentProxyReturnsTheInputProxyIfOneIsSet() {
