@@ -154,9 +154,11 @@ The App Store app uses [KeyboardKit Pro][Pro] to provide support for 60+ locales
 
 This project has a demo app that lets you try out KeyboardKit and KeyboardKit Pro.
 
-* The main app shows how to display keyboard state, link to system settings, etc.
+The main app shows how to display keyboard state, link to system settings, etc.
+
+The demo app has three keyboards: 
+
 * `Keyboard` uses KeyboardKit and a `SystemKeyboard` with a standard, English locale.
-* `KeyboardCustom` uses KeyboardKit and a `SystemKeyboard` with custom keys, layouts and styles.
 * `KeyboardPro` uses KeyboardKit Pro and a `SystemKeyboard` with all locales, autocomplete, etc.
 * `KeyboardTextInput` uses KeyboardKit and lets you test text input within the keyboard extension.
 

@@ -10,18 +10,17 @@ import KeyboardKitPro
 import SwiftUI
 
 /**
- This controller registers a Keyboard Pro license that has a
- large set of locales and pro features, like autocomplete.
+ This keyboard demonstrates how to setup Keyboard Pro with a
+ license that unlocks locales and features like autocomplete.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
  access to features like haptic feedback.
 
- `IMPORTANT!` You may have noticed how the demo project only
- links KeyboardKit Pro to the app target, while it links the
- KeyboardKit base library to every target that uses it. This
- is because KeyboardKit Pro is a binary framework, which has
- to be linked in this way.
+ `IMPORTANT!` The demo project only links KeyboardKit Pro to
+ the app target, while the base lib is linked to all targets
+ that use it. KeyboardKit Pro is a binary framework, and has
+ to be linked this way.
  */
 class KeyboardViewController: KeyboardInputViewController {
 
@@ -72,9 +71,10 @@ class KeyboardViewController: KeyboardInputViewController {
 
     /**
      This function is called whenever the keyboard should be
-     created or updated. Here, we call `setupPro` with a Pro
-     license key, and use a ``DemoKeyboardView`` as the main
-     keyboard view.
+     created or updated.
+     
+     Here, we register a KeyboardKit Pro license key and use
+     a ``DemoKeyboardView`` as the main keyboard view.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()        
@@ -89,8 +89,8 @@ class KeyboardViewController: KeyboardInputViewController {
     }
 
     /**
-     This function is used to configure the keyboard after a
-     license is registered, but before the view is created.
+     This is called by `viewWillSetupKeyboard`, to configure
+     the keyboard with the registered license.
      */
     func setup(with license: License) {
         setupDictation(with: license)

@@ -15,8 +15,7 @@ import SwiftUI
 
  The text fields use a custom `focused` modifier that can be
  used to also automatically show a "done" button when a text
- field receives input. As you can see, the text input fields
- use separate text and focus bindings.
+ field receives input.
  */
 struct DemoKeyboardView: View {
 

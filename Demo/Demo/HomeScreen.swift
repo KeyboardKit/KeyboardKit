@@ -14,24 +14,6 @@ import SwiftUI
 
  This screen has a text field, an appearance toggle and list
  items that show various keyboard-specific states.
-
- This app has many keyboards, where `Keyboard` shows you how
- to setup a standard, English keyboard with some adjustments.
-
- `KeyboardCustom` uses a custom input set, layout, and style.
-
- `KeyboardTextInput` shows how to setup a keyboard with text
- fields and text views, to enable text input in the keyboard.
-
- `KeyboardUnicode` shows how to setup a keyboard that uses a
- unicode-based input set for its input keys.
-
- `KeyboardPro` is a KeyboardKit Pro-powered keyboard that is
- using KeyboardKit Pro instead of KeyboardKit. It will setup
- all supported locales, dictation etc., as well as dictation,
- (although that feature is not fully working, since it needs
- a properly signed app). Take a look at this pro keyboard to
- see how to set up KeyboardKit Pro.
  */
 struct HomeScreen: View {
 

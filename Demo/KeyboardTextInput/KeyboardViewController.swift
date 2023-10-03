@@ -21,17 +21,17 @@ class KeyboardViewController: KeyboardInputViewController {
 
     /**
      This function is called whenever the keyboard should be
-     created or updated. Here, we setup a `DemoKeyboardView`
-     as the main keyboard view.
+     created or updated.
+     
+     Here we setup a `DemoKeyboardView` as the keyboard view.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
 
         /// 💡 Make the demo use a ``DemoKeyboardView``.
         ///
-        /// Note that we use a view builder-based `setup` to
-        /// get an `unowned` controller reference that helps
-        /// us avoid memory leaks caused by injecting `self`.
+        /// We get an `unowned` controller reference that we
+        /// pass into the view to help us avoid memory leaks.
         setup(with: DemoKeyboardView.init)
     }
 }

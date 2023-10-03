@@ -10,11 +10,8 @@ import KeyboardKit
 import SwiftUI
 
 /**
- This keyboard demonstrates how to create a keyboard that is
- using a `SystemKeyboard` to mimic a native English keyboard.
-
- The keyboard shows you how to can change locale, style, etc.
- in the code below.
+ This keyboard demonstrates how to setup KeyboardKit and how
+ to customize the standard configuration.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
@@ -106,7 +103,10 @@ class KeyboardViewController: KeyboardInputViewController {
 
     /**
      This function is called whenever the keyboard should be
-     created or updated. Here, we setup a system keyboard.
+     created or updated.
+     
+     Here, we setup a custom system keyboard...although here
+     we actually just use the standard view.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
