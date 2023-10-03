@@ -10,25 +10,35 @@ import KeyboardKit
 import SwiftUI
 
 /**
- This demo-specific style provider inherits the standard one
- and can be used to customize the demo keyboard style.
+ This demo-specific provider inherits the standard one, then
+ makes the rocket button black and its font larger.
+ 
+ There's a bunch of disabled code that you can enable to see
+ how the style of the keyboard changes.
  */
 class DemoStyleProvider: StandardKeyboardStyleProvider {
+    
+    override func buttonFontSize(
+        for action: KeyboardAction
+    ) -> CGFloat {
+        let standard = super.buttonFontSize(for: action)
+        return action.isRocket ? 1.8 * standard : standard
+    }
+    
+    override func buttonStyle(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> KeyboardStyle.Button {
+        var standard = super.buttonStyle(for: action, isPressed: isPressed)
+        if action.isRocket {
+            standard.backgroundColor = isPressed ? .teal : .indigo
+        }
+        return standard
+    }
     
     // override func buttonImage(for action: KeyboardAction) -> Image? {
     //     if action == .keyboardType(.emojis) { return nil }
     //     return super.buttonImage(for: action)
-    // }
-
-    // override func buttonStyle(
-    //     for action: KeyboardAction,
-    //     isPressed: Bool
-    // ) -> KeyboardStyle.Button {
-    //     var style = super.buttonStyle(for: action, isPressed: isPressed)
-    //     style.cornerRadius = 10
-    //     style.backgroundColor = .blue
-    //     style.foregroundColor = .yellow
-    //     return style
     // }
 
     // override func buttonText(for action: KeyboardAction) -> String? {
@@ -50,4 +60,14 @@ class DemoStyleProvider: StandardKeyboardStyleProvider {
     //     style.callout.textColor = .yellow
     //     return style
     // }
+}
+
+private extension KeyboardAction {
+    
+    var isRocket: Bool {
+        switch self {
+        case .character(let char): return char == "🚀"
+        default: return false
+        }
+    }
 }

@@ -13,8 +13,8 @@ import SwiftUI
  This keyboard demonstrates how to create a keyboard that is
  using a `SystemKeyboard` to mimic a native English keyboard.
 
- This keyboard also uses a couple of custom services to show
- you how you can change locale, style, autocomplete, etc.
+ The keyboard shows you how to can change locale, style, etc.
+ in the code below.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
@@ -37,25 +37,21 @@ class KeyboardViewController: KeyboardInputViewController {
         /// 💡 Add more locales to the keyboard.
         ///
         /// The demo layout provider will add a "next locale"
-        /// menu button if you have more than one locale.
+        /// button if you have more than one locale.
         state.keyboardContext.localePresentationLocale = .current
-        // keyboardContext.locales = KeyboardLocale.allCases.map { $0.locale }
+        state.keyboardContext.locales = [] // KeyboardLocale.all.locales
         
         /// 💡 Setup a demo-specific action handler.
         ///
         /// The demo handler has custom code for tapping and
         /// long pressing image actions.
-        // services.actionHandler = DemoActionHandler(
-        //     controller: self,
-        //     services: services,
-        //     state: state
-        // )
-        
-        /// 💡 Setup a demo-specific layout provider.
-        ///
-        /// The demo provider adds a "next locale" button if
-        /// needed, as well as a rocket emoji button.
-        services.layoutProvider = DemoLayoutProvider()
+        services.actionHandler = DemoActionHandler(
+            controller: self,
+            keyboardContext: state.keyboardContext,
+            keyboardBehavior: services.keyboardBehavior,
+            autocompleteContext: state.autocompleteContext,
+            feedbackConfiguration: state.feedbackConfiguration,
+            spaceDragGestureHandler: services.spaceDragGestureHandler)
         
         /// 💡 Setup a fake autocomplete provider.
         ///
@@ -71,31 +67,38 @@ class KeyboardViewController: KeyboardInputViewController {
             keyboardContext: state.keyboardContext,
             baseProvider: DemoCalloutActionProvider())
         
+        /// 💡 Setup a demo-specific layout provider.
+        ///
+        /// The demo provider adds a "next locale" button if
+        /// needed, as well as a rocket emoji button.
+        services.layoutProvider = DemoLayoutProvider()
+        
         /// 💡 Setup a demo-specific style provider.
         ///
-        /// The demo provider has some commented out changes
-        /// that you can enable to see the effect.
+        /// The demo provider styles the rocket emoji button
+        /// and has some commented out code that you can try.
         services.styleProvider = DemoStyleProvider(
             keyboardContext: state.keyboardContext)
         
-        /// 💡 Change the space long press behavior.
+        /// 💡 Configure the space long press behavior.
         ///
         /// The locale context menu will only open up if the
         /// keyboard has multiple locales.
-        // keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
+        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
+        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
         /// 💡 Setup a custom dictation key replacement.
         ///
         /// Since dictation is not available by default, the
         /// dictation button is removed if we don't set this.
-        state.keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
+        state.keyboardContext.keyboardDictationReplacement = .character("$")
         
         /// 💡 Enable haptic feedback.
         ///
         /// The default haptic feedback is `.minimal`, which
         /// only has haptic feedback for long press on space.
         state.feedbackConfiguration.enableHapticFeedback()
-        // keyboardFeedbackSettings.audioConfiguration.input = .custom(id: 1329)
+        // state.feedbackConfiguration.audioConfiguration.input = .custom(id: 1329)
         
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()

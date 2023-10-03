@@ -32,7 +32,7 @@ class KeyboardViewController: KeyboardInputViewController {
      The demo persists the current locale when its destroyed.
      */
     deinit {
-        persistedLocaleId = keyboardContext.locale.identifier
+        persistedLocaleId = state.keyboardContext.locale.identifier
     }
 
     /**
@@ -45,7 +45,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// Since dictation is not available by default, the
         /// dictation button is removed if we don't set this.
-        keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
+        state.keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
 
         /// 💡 Change the space button long press behavior.
         ///
@@ -58,13 +58,13 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// This will for instance be used within the locale
         /// context menu.
-        keyboardContext.localePresentationLocale = KeyboardLocale.english_us.locale
+        state.keyboardContext.localePresentationLocale = KeyboardLocale.english_us.locale
         
         /// 💡 Enable haptic feedback.
         ///
         /// The default haptic feedback is `.minimal`, which
         /// only has haptic feedback for long press on space.
-        feedbackConfiguration.enableHapticFeedback()
+        state.feedbackConfiguration.enableHapticFeedback()
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
@@ -107,14 +107,14 @@ class KeyboardViewController: KeyboardInputViewController {
      the dictated text to be available to the keyboard.
      */
     func setupDictation(with license: License) {
-        dictationContext.setup(with: .app)
+        state.dictationContext.setup(with: .app)
     }
 
     /**
      This function sets up an demo-specific keyboard layout.
      */
     func setupLayout(with license: License) {
-        keyboardLayoutProvider = DemoLayoutProvider(
+        services.layoutProvider = DemoLayoutProvider(
             localizedProviders: license.localizedKeyboardLayoutProviders
         )
     }
@@ -125,17 +125,18 @@ class KeyboardViewController: KeyboardInputViewController {
     func setupLocale(with license: License) {
         let english = KeyboardLocale.english.locale
         let locale = persistedLocale ?? english
-        keyboardContext.locale = locale
-        keyboardContext.localePresentationLocale = keyboardContext.locales.first ?? english
+        let presentation = state.keyboardContext.locales.first ?? english
+        state.keyboardContext.locale = locale
+        state.keyboardContext.localePresentationLocale = presentation
     }
 
     /**
      Setup a theme from the KeyboardKit Pro theme engine.
      */
     func setupTheme(with license: License) {
-        keyboardStyleProvider = (try? ThemeBasedKeyboardStyleProvider(
+        services.styleProvider = (try? ThemeBasedKeyboardStyleProvider(
             theme: .standard,
-            keyboardContext: keyboardContext)) ?? keyboardStyleProvider
+            keyboardContext: state.keyboardContext)) ?? services.styleProvider
     }
 
 

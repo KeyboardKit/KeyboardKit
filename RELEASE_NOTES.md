@@ -43,6 +43,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * `KeyboardAction.emoji` can now be created with a string as well.
 * `KeyboardButton` now supports `edgeInsets` and an `isPressed` binding.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
+* `KeyboardLocale` has new, convenient `all` and `locales` collection extensions.
 * `SpaceDragGestureHandler` properties are now mutable to allow for customizations.
 * `SystemKeyboard` has new initializers that make it MUCH easier to customize views.
 * `StandardKeyboardActionHandler` now builds for all platforms, including macOS and watchOS.

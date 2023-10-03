@@ -10,7 +10,7 @@ import KeyboardKit
 
 /**
  This demo-specific provider inherits the standard one, then
- adds a locale and a rocket button next to the space key.
+ adds rocket and locale (if needed) keys after the space key.
  */
 class DemoLayoutProvider: StandardKeyboardLayoutProvider {
 
