@@ -170,7 +170,6 @@ private extension Gestures.KeyboardButtonGestures {
     }
 
     func handleLongPress(in geo: GeometryProxy) {
-        shouldApplyReleaseAction = shouldApplyReleaseAction && action != .space
         tryBeginActionCallout(in: geo)
         longPressAction?()
     }

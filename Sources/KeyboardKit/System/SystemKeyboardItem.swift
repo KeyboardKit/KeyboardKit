@@ -62,6 +62,8 @@ public struct SystemKeyboardItem<Content: View>: View {
     
     public var body: some View {
         content
+            .opacity(contentOpacity)
+            .animation(.default, value: keyboardContext.isSpaceDragGestureActive)
             .keyboardLayoutItemSize(
                 for: item,
                 rowWidth: keyboardWidth,
@@ -75,6 +77,10 @@ public struct SystemKeyboardItem<Content: View>: View {
                 edgeInsets: item.edgeInsets,
                 isPressed: $isPressed
             )
+    }
+    
+    private var contentOpacity: Double {
+        keyboardContext.isSpaceDragGestureActive ? 0 : 1
     }
     
     private var buttonStyle: KeyboardStyle.Button {

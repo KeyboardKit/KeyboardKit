@@ -82,8 +82,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
     
 
-    private var isSpaceDragGestureActive = false
-    
     private var spaceDragActivationLocation: CGPoint?
     
 
@@ -128,9 +126,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         replaced: Bool
     ) {
         if !replaced && tryHandleReplacementAction(before: gesture, on: action) { return }
+        let gestureAction = self.action(for: gesture, on: action)
         triggerFeedback(for: gesture, on: action)
         tryUpdateSpaceDragState(for: gesture, on: action)
-        guard let gestureAction = self.action(for: gesture, on: action) else { return }
+        guard let gestureAction else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         tryApplyAutocorrectSuggestion(before: gesture, on: action)
         gestureAction(keyboardController)
@@ -223,7 +222,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         for gesture: Gesture,
         on action: KeyboardAction
     ) -> KeyboardAction.GestureAction? {
-        action.standardAction(for: gesture)
+        let standard = action.standardAction(for: gesture)
+        if action != .space && gesture != .release { return standard }
+        let isSpaceDragActive = keyboardContext.isSpaceDragGestureActive
+        return isSpaceDragActive ? nil : standard
     }
 
     /**
@@ -417,7 +419,7 @@ private extension StandardKeyboardActionHandler {
     ) {
         guard action == .space else { return }
         guard keyboardContext.spaceLongPressBehavior == .moveInputCursor else { return }
-        guard isSpaceDragGestureActive else { return }
+        guard keyboardContext.isSpaceDragGestureActive else { return }
         let activationLocation = spaceDragActivationLocation ?? currentLocation
         spaceDragActivationLocation = activationLocation
         spaceDragGestureHandler.handleDragGesture(
@@ -433,11 +435,20 @@ private extension StandardKeyboardActionHandler {
         guard action == .space else { return }
         switch gesture {
         case .press:
-            isSpaceDragGestureActive = false
+            setSpaceDragActive(false)
             spaceDragActivationLocation = nil
         case .longPress:
-            isSpaceDragGestureActive = true
-        default: return
+            setSpaceDragActive(true)
+        case .release:
+            setSpaceDragActive(false)
+        default: break
         }
+    }
+    
+    func setSpaceDragActive(_ isActive: Bool) {
+        keyboardContext.setIsSpaceDragGestureActive(
+            isActive,
+            animated: true
+        )
     }
 }

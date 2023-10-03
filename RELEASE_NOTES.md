@@ -59,11 +59,12 @@ If you need any removed functionality, just grab them from an earlier version of
 * Renamed types and functions are not included in these release notes.  
 
 * `AutocompleteProvider` is now async.
-* `InputSet` has been converted to a struct.
+* `Gesture.KeyboardButtonGestures` no longer stops release on space.
+* `InputSet` has been converted to a struct and all sub types removed.
 * `KeyboardAction` no longer specifies a default action for `.nextKeyboard`.
-* `KeyboardActionHandler` is now used to handle autocomplete suggestions.
-* `KeyboardController` requires a lot less functionality now. 
+* `KeyboardController` has a lot less now, since the controller isn't used as much.  
 * `KeyboardInputViewController` is no longer used to insert autocomplete suggestions.
+* `SystemKeyboard` now fades out the button content when space cursor movement is active.
 
 ### 👑 Pro Adjustments
 

@@ -65,6 +65,21 @@ public class KeyboardContext: ObservableObject {
     /// Whether or not the keyboard is in floating mode.
     @Published
     public var isKeyboardFloating = false
+    
+    /// Whether or not a space drag gesture is active.
+    @Published
+    public var isSpaceDragGestureActive = false
+    
+    func setIsSpaceDragGestureActive(
+        _ value: Bool,
+        animated: Bool
+    ) {
+        if animated {
+            withAnimation { isSpaceDragGestureActive = value }
+        } else {
+            isSpaceDragGestureActive = value
+        }
+    }
 
     /// An optional dictation replacement action.
     @Published
