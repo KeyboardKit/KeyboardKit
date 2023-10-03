@@ -31,7 +31,7 @@ Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a pro
 
 KeyboardKit will automatically handle actions whever the user interacts with the keyboard, or when certain system events happen. You can intercept these actions by creating a custom action handler.
 
-You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or ``KeyboardActionHandler/handle(_:on:)`` to trigger an action with an optional gesture:
+You can trigger actions programmatically by calling `handle(_:)` or `handle(_:on:)` to trigger an action with an optional gesture:
 
 ```swift
 func doStuff(with actionHandler: KeyboardActionHandler) {
@@ -41,7 +41,7 @@ func doStuff(with actionHandler: KeyboardActionHandler) {
 }
 ```
 
-Keyboard actions can also be triggered by action-specific gestures, e.g. by using a ``KeyboardButton/Button`` view or by applying a `keyboardButton` view modifier to any view:
+Keyboard actions can also be triggered by a ``KeyboardButton/Button`` or by applying `.keyboardButton(...)` to any view:
 
 ```swift
 Text("Button")
@@ -49,6 +49,23 @@ Text("Button")
 ```
 
 ``SystemKeyboard`` will automatically apply this modifier to all its buttons, which makes them support gestures for press, release, long press, repeat press, drag, etc.
+
+
+
+## How to handle autocomplete suggestions
+
+A ``KeyboardActionHandler`` can also handle ``Autocomplete/Suggestion`` items, since it must be able to do so when handling various actions and gestures.
+
+You can handle suggestions programmatically by calling `handle(_:)`:
+
+```swift
+func doStuff(with actionHandler: KeyboardActionHandler) {
+    let suggestion = Autocomlete.Suggestion(text: "Hello")
+    actionHandler.handle(suggestion)
+}
+```
+
+This will by default insert the provided suggestion into the text document proxy and reset the autocomplete state. You can customize this behavior by creating a custom action handler.
 
 
 

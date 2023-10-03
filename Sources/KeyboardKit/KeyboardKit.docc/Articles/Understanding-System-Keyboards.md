@@ -41,13 +41,13 @@ The setup function's view builder provides an `unowned` controller reference to 
 
 A ``SystemKeyboard`` can be customized and styled to great extent. For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and state to modify its behavior. 
 
-The `buttonContent` and `buttonView` parameters can be used to customize the content or the entire view of any button.
+The **buttonContent** and **buttonView** parameters can be used to customize the content or the entire view of any button.
 
-The `emojiKeyboard` parameter defines the view that will be used for the ``Keyboard/KeyboardType/emojis`` keyboard type. An `EmptyView` is used as the default view, but KeyboardKit Pro unlocks an **EmojiKeyboard** that will be used by default.
+The **emojiKeyboard** parameter defines the view that will be used for the ``Keyboard/KeyboardType/emojis`` keyboard type. An `EmptyView` is used by default, but KeyboardKit Pro unlocks an **EmojiKeyboard** that can be used instead.
 
-The `toolbar` parameter defines the view that will be added above the keyboard. An ``AutocompleteToolbar`` will be used as the default view.
+The **toolbar** parameter defines a view that will be added above the keyboard. An ``AutocompleteToolbar`` will be used by default.
 
-To use the standard views for all these views, you can just return `{ $0.view }`, or `{ params in params.view }` if you prefer more expressive code:
+To use the standard views, just return `{ $0.view }`, or `{ params in params.view }` if you prefer more expressive code:
 
 ```swift
 SystemKeyboard(
@@ -85,11 +85,13 @@ SystemKeyboard(
 )
 ```
 
-In the code above, the backspace content is replaced with a trashbin and the entire spacebar is replaced by transparent text that takes up as much space as needed.
+In the code above, the backspace button content is replaced with a trashbin icon and the spacebar is replaced by transparent text.
 
 The system keyboard will place an ``AutocompleteToolbar`` topmost, if you explicitly tell it not to. Since the keyboard layout depends on the available keyboard width, you must pass in a `width`, if you don't want to use the current controller's width.
 
 You can take a look at the source code of the various views in the library for inspiration.
+
+> Important: When customizing the toolbar, keep in mind that it's a good idea to have around 50 points padding above the keyboard, since input and action callouts may otherwise be cut off. This padding must increase if you style the callouts to be bigger. 
 
 
 

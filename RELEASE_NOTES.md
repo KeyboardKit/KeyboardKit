@@ -41,6 +41,7 @@ If you need any removed functionality, just grab them from an earlier version of
 
 * `InputSetBasedKeyboardLayoutProvider` is a new base provider.
 * `KeyboardAction.emoji` can now be created with a string as well.
+* `KeyboardActionHandler` can now handle autocomplete suggestions.
 * `KeyboardButton` now supports `edgeInsets` and an `isPressed` binding.
 * `KeyboardContext` has new proxy properties that mirrors the controller.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
@@ -59,6 +60,8 @@ If you need any removed functionality, just grab them from an earlier version of
 
 * `AutocompleteProvider` is now async.
 * `InputSet` has been converted to a struct.
+* `KeyboardActionHandler` is now used to handle autocomplete suggestions.
+* `KeyboardInputViewController` is no longer used to insert autocomplete suggestions.
 
 ### 👑 Pro Adjustments
 
@@ -78,7 +81,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * English input sets have been moved to Pro.
 * Changes with migration deprecations are not listed here.
 
-* `AudioFeedback.Engine` is no longer open to inheritance. 
+* `AudioFeedback.Engine` is no longer open to inheritance.
 * `Autocomplete.ToolbarItemSubtitle` init takes a suggestion.
 * `CalloutContext.ActionContext` no longer uses an action handler.
 * `CasingAnalyzer` has been removed (use `String` extensions).

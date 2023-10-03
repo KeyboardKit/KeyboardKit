@@ -23,6 +23,7 @@ public extension KeyboardPreviews {
         
         public func canHandle(_ gesture: Gesture, on action: KeyboardAction) -> Bool { false }
         public func handle(_ action: KeyboardAction) {}
+        public func handle(_ suggestion: Autocomplete.Suggestion) {}
         public func handle(_ gesture: Gesture, on action: KeyboardAction) {}
         public func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}
         public func triggerFeedback(for gesture: Gesture, on action: KeyboardAction) {}

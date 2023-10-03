@@ -30,19 +30,13 @@ KeyboardKit automatically creates an instance of this class and binds it to ``Ke
 
 ## How to perform autocomplete
 
-KeyboardKit will call ``KeyboardController/performAutocomplete()`` when the text changes. This will update the ``KeyboardInputViewController/state`` context with suggestions from the main ``KeyboardInputViewController/services`` provider. You can use these suggestions in any way you like.
+KeyboardKit will call ``KeyboardController/performAutocomplete()`` when the text changes. This will update the ``KeyboardInputViewController/state`` context with suggestions from the main ``KeyboardInputViewController/services`` provider. 
+
+You can use these suggestions in any way you like. Views like the ``AutocompleteToolbar`` will automatically update to present the latest suggestions, and will handle any tapped suggestion with the main ``KeyboardActionHandler``.
+
+You are of course not restricted to use an ``AutocompleteToolbar``. You can use and present these suggestions in any way you want.
 
 If you need to reset autocomplete state, you can call the controller's ``KeyboardController/resetAutocomplete()`` or the context's ``AutocompleteContext/reset()`` functions. You can also set the context's ``AutocompleteContext/isEnabled`` to false to disable autocomplete altogether.
-
-
-
-## How to present autocomplete suggestions
-
-You can use an ``AutocompleteToolbar`` to present autocomplete suggestions just like a native keyboard does. The toolbar supports custom styling and custom view and separator builders, and is highly configurable.
-
-You are of course not restricted to use an ``AutocompleteToolbar``. You can use and present these suggestions in any way you want. 
-
-> Important: Just keep in mind that it's a good idea to have around **50** points padding above the keyboard, since input and action callouts may otherwise be cut off. This padding must increase if you style the callouts to be bigger. 
 
 
 

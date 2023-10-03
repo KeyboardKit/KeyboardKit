@@ -90,10 +90,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
     // MARK: - KeyboardActionHandler
 
-    /**
-     Whether or not the handler can handle a certain gesture
-     on a certain action.
-     */
+    /// Whether or not the handler handles an action gesture.
     open func canHandle(
         _ gesture: Gesture,
         on action: KeyboardAction
@@ -101,18 +98,22 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         self.action(for: gesture, on: action) != nil
     }
 
-    /**
-     Handle a keyboard action using its standard action.
-     */
-    public func handle(
+    /// Handle a certain action using its standard action.
+    open func handle(
         _ action: KeyboardAction
     ) {
         action.standardAction?(keyboardController)
     }
+    
+    /// Handle a certain autocomplete suggestion.
+    open func handle(
+        _ suggestion: Autocomplete.Suggestion
+    ) {
+        keyboardContext.insertAutocompleteSuggestion(suggestion)
+        handle(.release, on: .character(""))
+    }
 
-    /**
-     Handle a certain keyboard action gesture.
-     */
+    /// Handle a certain action gesture.
     open func handle(
         _ gesture: Gesture,
         on action: KeyboardAction
@@ -120,12 +121,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         handle(gesture, on: action, replaced: false)
     }
 
-    /**
-     Handle a certain keyboard action gesture.
-
-     This function is used to handle a case where the action
-     can be triggered as a replacement of another operation.
-     */
+    /// Handle a certain action gesture, with replace logic.
     open func handle(
         _ gesture: Gesture,
         on action: KeyboardAction,
@@ -144,9 +140,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardController?.performAutocomplete()
     }
 
-    /**
-     Handle a drag gesture on a certain keyboard action.
-     */
+    /// Handle a drag gesture on a certain action.
     open func handleDrag(
         on action: KeyboardAction,
         from startLocation: CGPoint,
@@ -159,9 +153,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         )
     }
     
-    /**
-     Trigger feedback for a certain keyboard action gesture.
-     */
+    /// Trigger feedback for a certain action gesture.
     open func triggerFeedback(
         for gesture: Gesture,
         on action: KeyboardAction
@@ -175,9 +167,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Feedback
 
-    /**
-     The audio feedback to use for a certain action gesture.
-     */
+    /// The feedback to use for a certain action gesture.
     open func audioFeedback(
         for gesture: Gesture,
         on action: KeyboardAction
@@ -192,9 +182,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         return nil
     }
     
-    /**
-     The haptic feedback to use for a certain action gesture.
-     */
+    /// The feedback to use for a certain action gesture.
     open func hapticFeedback(
         for gesture: Gesture,
         on action: KeyboardAction
@@ -212,17 +200,13 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
     }
     
-    /**
-     Trigger feedback for a certain keyboard action gesture.
-     */
+    /// Trigger feedback for a certain action gesture.
     open func triggerAudioFeedback(for gesture: Gesture, on action: KeyboardAction) {
         let feedback = audioFeedback(for: gesture, on: action)
         feedback?.trigger()
     }
     
-    /**
-     Trigger feedback for a certain keyboard action gesture.
-     */
+    /// Trigger feedback for a certain action gesture.
     open func triggerHapticFeedback(for gesture: Gesture, on action: KeyboardAction) {
         let feedback = hapticFeedback(for: gesture, on: action)
         feedback?.trigger()

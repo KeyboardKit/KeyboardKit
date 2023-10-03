@@ -304,18 +304,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     /**
-     Insert an autocomplete suggestion into the document.
-
-     By default, this call the `insertAutocompleteSuggestion`
-     in the text document proxy, and then triggers a release
-     in the keyboard action handler.
-     */
-    open func insertAutocompleteSuggestion(_ suggestion: Autocomplete.Suggestion) {
-        textDocumentProxy.insertAutocompleteSuggestion(suggestion)
-        services.actionHandler.handle(.release, on: .character(""))
-    }
-
-    /**
      Whether or not autocomple is enabled.
 
      By default, autocomplete is enabled as long as the text
@@ -381,6 +369,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     @available(*, deprecated, renamed: "originalTextDocumentProxy")
     open var mainTextDocumentProxy: UITextDocumentProxy {
         originalTextDocumentProxy
+    }
+    
+    @available(*, deprecated, message: "This is no longer used. Use the action handler's handle(_:) instead.")
+    open func insertAutocompleteSuggestion(_ suggestion: Autocomplete.Suggestion) {
+        services.actionHandler.handle(suggestion)
     }
 }
 

@@ -34,42 +34,36 @@ public protocol KeyboardActionHandler: AnyObject {
     /// This typealias resolves to a keyboard gesture
     typealias Gesture = Gestures.KeyboardGesture
     
-    /**
-     Whether or not the handler can handle a certain gesture
-     on a certain action.
-     */
+    /// Whether or not the handler handles an action gesture.
     func canHandle(
         _ gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
     
-    /**
-     Handle a keyboard action using its standard action.
-     */
+    /// Handle a certain action using its standard action.
     func handle(
         _ action: KeyboardAction
     )
+    
+    /// Handle a certain autocomplete suggestion.
+    func handle(
+        _ suggestion: Autocomplete.Suggestion
+    )
 
-    /**
-     Handle a certain keyboard action gesture.
-     */
+    /// Handle a certain action gesture.
     func handle(
         _ gesture: Gesture,
         on action: KeyboardAction
     )
     
-    /**
-     Handle a drag gesture on a certain keyboard action.
-     */
+    /// Handle a drag gesture on a certain action.
     func handleDrag(
         on action: KeyboardAction,
         from startLocation: CGPoint,
         to currentLocation: CGPoint
     )
     
-    /**
-     Trigger feedback for a certain keyboard action gesture.
-     */
+    /// Trigger feedback for a certain action gesture.
     func triggerFeedback(
         for gesture: Gesture,
         on action: KeyboardAction

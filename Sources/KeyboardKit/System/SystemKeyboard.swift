@@ -112,14 +112,14 @@ public struct SystemKeyboard<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
+        weak var actionHandler = controller.services.actionHandler
         self.init(
             layout: controller.services.layoutProvider.keyboardLayout(for: controller.state.keyboardContext),
             actionHandler: controller.services.actionHandler,
             styleProvider: controller.services.styleProvider,
             autocompleteContext: controller.state.autocompleteContext,
             autocompleteToolbar: autocompleteToolbar,
-            autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak controller] suggestion in
-                controller?.insertAutocompleteSuggestion(suggestion)
+            autocompleteToolbarAction: autocompleteToolbarAction ?? { [weak actionHandler] in actionHandler?.handle($0)
             },
             keyboardContext: controller.state.keyboardContext,
             calloutContext: controller.state.calloutContext,

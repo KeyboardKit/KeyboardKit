@@ -118,8 +118,11 @@ For instance, here we replace the default keyboard action handler with a custom 
 ```swift
 class CustomActionHandler: StandardActionHandler {
 
-    open override func canHandle(_ gesture: KeyboardGesture, on action: KeyboardAction) -> Bool {
-        false   // Wow, what a useless action handler! 
+    open override func handle(
+        _ gesture: KeyboardGesture, 
+        on action: KeyboardAction
+    ) {
+        // Wow, what a useless action handler! 
     }
 }
 
