@@ -6,7 +6,7 @@ A flexible keyboard layout is an important part of a software keyboard, where ma
 
 In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important concepts to create a flexible keyboard layout, where the input set specifies the input keys of the keyboard and the keyboard layout specifies the full set of keys.
 
-KeyboardKit will bind a ``StandardKeyboardLayoutProvider`` to ``KeyboardInputViewController/keyboardLayoutProvider`` when the keyboard is loaded. It has a QWERTY layout by default, but you can inject localized providers into it or replace it with a custom implementation at any time.
+KeyboardKit will bind a ``StandardKeyboardLayoutProvider`` to ``KeyboardInputViewController/services`` when the keyboard is loaded. It has a QWERTY layout by default, but you can inject localized providers into it or modify it, or replace it, at any time.
 
 [KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit **ProKeyboardLayoutProvider** for more features. Information about Pro features can be found at the end of this article.
 
@@ -40,9 +40,9 @@ You can customize the keyboard layout by adding localized providers to the defau
 
 ## How to create a custom callout action provider
 
-You can create a custom ``KeyboardLayoutProvider`` by either inheriting the ``StandardKeyboardLayoutProvider`` base class and customize the parts you want, or implement the ``KeyboardLayoutProvider`` protocol from scratch.
+You can create a custom ``KeyboardLayoutProvider`` by inheriting ``StandardKeyboardLayoutProvider`` and customize what want, or implement the ``KeyboardLayoutProvider`` protocol from scratch.
 
-There are also some base classes to make it easy to implement a custom provider. ``BaseKeyboardLayoutProvider`` provides base functionality, ``InputSetBasedKeyboardLayoutProvider`` lets you use input sets, and ``iPadKeyboardLayoutProvider`` & ``iPhoneKeyboardLayoutProvider`` provides a baseline for each platform. 
+There are also other base classes, such as ``BaseKeyboardLayoutProvider``, ``InputSetBasedKeyboardLayoutProvider``, ``iPadKeyboardLayoutProvider`` and ``iPhoneKeyboardLayoutProvider``. 
 
 For instance, here's a custom provider that inherits ``StandardKeyboardLayoutProvider`` and injects a tab key into the layout:
 
@@ -64,13 +64,13 @@ class CustomKeyboardLayoutProvider: StandardKeyboardLayoutProvider {
 }
 ```
 
-To use this provider instead of the standard one, just set ``KeyboardInputViewController/keyboardLayoutProvider`` to this custom provider:
+To use this provider instead of the standard one, just set the ``KeyboardInputViewController/services`` provider to this custom provider:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardLayoutProvider = CustomKeyboardLayoutProvider()
+services.keyboardLayoutProvider = CustomKeyboardLayoutProvider()
         super.viewDidLoad()
     }
 }
@@ -82,7 +82,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional ``InputSet``s and localized ``InputSet``s and ``KeyboardLayoutProvider``s for all ``KeyboardLocale``s in your license when you register a valid license key, then injects all providers into ``StandardCalloutActionProvider``.
+[KeyboardKit Pro][Pro] unlocks additional ``InputSet``s, as well as localized ``InputSet``s and ``KeyboardLayoutProvider``s for all localess in your license when you register a valid license key, then injects all providers into the ``StandardCalloutActionProvider``.
 
 You can access all locale-specific input sets that your license unlocks like this:
 
@@ -128,7 +128,7 @@ private extension KeyboardLayout {
 
 To use a custom provider with KeyboardKit Pro, make sure to register it *after* registering your license key, otherwise it will be overwritten by the license registration process.
 
-For instance, this is how you would register the custom provider that we created earlier, using the localized providers that the license unlocks:
+For instance, this is how you would register the custom provider that we created earlier, using the localized providers from your license:
 
 ```swift
 open func setupKeyboardKit() {
@@ -138,7 +138,7 @@ open func setupKeyboardKit() {
 }
 
 func setupCustomServices(with license: License) {
-    keyboardLayoutProvider = CustomKeyboardLayoutProvider()
+    services.keyboardLayoutProvider = CustomKeyboardLayoutProvider()
 }
 ```
 

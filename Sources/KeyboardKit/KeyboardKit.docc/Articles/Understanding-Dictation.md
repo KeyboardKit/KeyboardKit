@@ -2,11 +2,11 @@
 
 This article describes the KeyboardKit dictation engine.
 
-Dictation can be used to enter text by speaking, instead of using the microphone. 
+Dictation can be used to enter text by speaking into the microphone, instead of typing. It's however hard to implement, since keyboard extensions don't have access to the microphone. 
 
-A ``DictationService`` can be used to perform dictation where microphone access is available, while a ``KeyboardDictationService`` can be used to perform dictation in a keyboard, where microphone access is *not* available.
+A ``DictationService`` can perform dictation where microphone access is available, while a ``KeyboardDictationService`` can perform dictation in a keyboard, where microphone access is *not* available.
 
-KeyboardKit doesn't have a standard service as it has for other services. Instead, it binds a disabled service to ``KeyboardInputViewController/dictationService`` until you replace it.
+KeyboardKit doesn't have a standard service as it has for other services. Instead, it binds a disabled service to ``KeyboardInputViewController/services`` until you replace it with a custom service or activate KeyboardKit Pro.
 
 [KeyboardKit Pro][Pro] unlocks and registers a standard dictation service when you register a valid license key. Information about Pro features can be found at the end of this article.
 
@@ -18,7 +18,15 @@ KeyboardKit has a ``Dictation`` namespace that contains dictation-related types.
 
 For instance, a ``Dictation/KeyboardConfiguration`` can be used to configure a ``KeyboardDictationService`` for both a keyboard and its main app. There are also various status and error enums.
 
-The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+
+
+
+## Dictation context
+
+KeyboardKit has an observable ``DictationContext`` class that is used to handle dictation state, such as the currently dictated text.
+
+KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then updates it when dictation is performed.
 
 
 
@@ -44,9 +52,7 @@ Keyboard dictation should open the app and make it start dictation, write the di
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional dictation services when you register a valid license key, plus tools that make dictation effortless.
-
-This means that KeyboardKit Pro lets you setup keyboard dictation with just a few steps:
+[KeyboardKit Pro][Pro] unlocks additional dictation services when you register a valid license key, plus tools that let you setup dictation with just a few simple steps:
 
 
 ### Step 1. Set up required permissions
@@ -102,7 +108,7 @@ Make sure to that the App Group is registered for both the app and the keyboard,
 
 ### Step 5. Configure dictation in the keyboard
 
-To configure your keyboard with an app-specific dictation configuration, just call ``DictationContext/setup(with:)`` on the main ``KeyboardInputViewController/dictationContext``.
+To configure your keyboard with an app-specific dictation configuration, just call ``DictationContext/setup(with:)`` with the ``KeyboardInputViewController/state`` context.
 
 You can now start dictation with a ``KeyboardAction/dictation`` action or call ``KeyboardDictationService/startDictationFromKeyboard(with:)``. If everything is correctly configured, your keyboard will then open your app and start dictation.
 
@@ -159,7 +165,7 @@ The app will now automatically start dictation if it's opened with the deep link
 
 You can customize the standard DictationScreen with a custom style or use a completely custom overlay.
 
-> Important: If you are using a DocumentGroup-based app, you may have noticed that the `.keyboardDictation` view modifier only works if a document is open. To make dictation always work in a DocumentGroup-based, you can instead check if the context's `isDictationStartedByKeyboard` is `true` when the app starts, and if so present a sheet or a modal and add `keyboardDictationOnAppear` on its root view.  
+> Important: In DocumentGroup-based apps, the .keyboardDictation modifier only works if a document is open. To make dictation always work in a DocumentGroup-based, you can instead check if the context's isDictationStartedByKeyboard is true when the app starts. If so, present a sheet or a modal and add .keyboardDictationOnAppear to its root view.  
 
 
 ### 7. Create a speech recognizer

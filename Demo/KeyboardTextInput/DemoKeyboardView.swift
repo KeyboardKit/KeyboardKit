@@ -50,7 +50,7 @@ struct DemoKeyboardView: View {
                 autocompleteToolbar: .none,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
-                emojiKeyboard: { _ in Color.red },
+                emojiKeyboard: { $0.view },
                 toolbar: { $0.view }
             )
         }.buttonStyle(.plain)

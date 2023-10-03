@@ -2,17 +2,21 @@
 
 This article describes the KeyboardKit device utilities.
 
-These utilities aim to help you use multi-platform device information to customize your keyboards.
+KeyboardKit has platform-agnostic device functionality that aims to help you use device information to customize your keyboards.
 
 
 
 ## Device type
 
-KeyboardKit has a ``DeviceType`` enum, with platform-agnostic device types.
+KeyboardKit has a ``DeviceType`` enum with platform-agnostic device types. You can use ``DeviceType/current`` to get the current device type.
 
-You can use ``DeviceType/current`` to get the current device type.
+```swift
+var isPad: Bool {
+    DeviceType.current == .pad
+} 
+```
 
-Just like with screen size, you should be careful with using the device information, but keyboards sometime need it. 
+Although you should be careful with using device-specific information, some keyboard features need this information. 
 
 
 
@@ -26,17 +30,21 @@ func isLargePad(_ size: CGSize) -> Bool {
 } 
 ```
 
-Although you should be careful with using the screen size, since apps can run in split screen and keyboards can be floating, keyboards sometime need to be able to detect the exact kind of device you're on.
+You should be careful with using screen size information, since apps can run in split screen and keyboards can be floating. However, some keyboard features need this information.
 
 
 
 ## Interface orientation
 
-KeyboardKit has an ``InterfaceOrientation`` enum, with platform-agnostic types.
+KeyboardKit has an ``InterfaceOrientation`` enum with platform-agnostic types. You can use ``InterfaceOrientation/current`` to get the current interface orientation.
 
-You can then use ``InterfaceOrientation/current`` to get the current interface orientation.
+```swift
+var isPortrait: Bool {
+    InterfaceOrientation.current.portrait
+} 
+```
 
-Just like with screen size and device type, you should be careful with using the interface orientations, but keyboards sometime need it.
+Just like with screen size and device type, you should be careful with using the interface orientations. However, some keyboard features need this information.
 
 
 

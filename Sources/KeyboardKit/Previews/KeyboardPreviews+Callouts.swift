@@ -31,22 +31,27 @@ public extension CalloutContext.InputContext {
     )
 }
 
-public extension CalloutActionProvider where Self == PreviewCalloutActionProvider {
+public extension CalloutActionProvider where Self == KeyboardPreviews.PreviewCalloutActionProvider {
     
-    static var preview: CalloutActionProvider { PreviewCalloutActionProvider() }
+    static var preview: CalloutActionProvider {
+        KeyboardPreviews.PreviewCalloutActionProvider()
+    }
 }
 
-public class PreviewCalloutActionProvider: CalloutActionProvider {
+public extension KeyboardPreviews {
     
-    public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        switch action {
-        case .character(let char):
-            switch char {
-            case "a": return "aàáâäæãåā".chars.map { KeyboardAction.character($0) }
-            default: return []
+    class PreviewCalloutActionProvider: CalloutActionProvider {
+        
+        public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
+            switch action {
+            case .character(let char):
+                switch char {
+                case "a": return "aàáâäæãåā".chars.map { KeyboardAction.character($0) }
+                default: return []
+                }
+            default: break
             }
-        default: break
+            return []
         }
-        return []
     }
 }

@@ -4,9 +4,7 @@ This article describes the KeyboardKit color engine.
 
 While you can use any native `Color` you like in your custom keyboards, having access to keyboard-specific colors simplifies creating custom keyboards that look more native.
 
-KeyboardKit provides a bunch of keyboard-specific `Color` extensions, such as standard colors for buttons, backgrounds, etc. 
-
-Some of these colors come with some built-in logic to help work around system limitations, so make sure to read this article carefully.
+KeyboardKit provides a bunch of keyboard-specific `Color` extensions, such as standard colors for buttons, backgrounds, etc. Some of these colors come with some built-in logic to help work around system limitations, so make sure to read this article carefully.
 
 
 

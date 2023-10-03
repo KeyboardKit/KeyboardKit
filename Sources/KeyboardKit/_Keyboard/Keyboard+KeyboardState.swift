@@ -53,7 +53,9 @@ public extension Keyboard {
 public extension Keyboard.KeyboardState {
     
     func setup(for controller: KeyboardInputViewController) {
+        let isPhone = UIDevice.current.userInterfaceIdiom == .phone
         keyboardContext.sync(with: controller)
+        calloutContext.inputContext.isEnabled = isPhone
     }
 }
 #endif

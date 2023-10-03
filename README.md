@@ -92,14 +92,17 @@ After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardV
 ```swift
 import KeyboardKit
 
-class KeyboardController: KeyboardInputViewController {}
+class KeyboardController: KeyboardInputViewController {
+
+    ...
+}
 ```
 
-This gives your controller access to additional functionality, such as new lifecycle functions like `viewWillSetupKeyboard()`, observable state like `keyboardContext`, services like `keyboardActionHandler` and much more.
+This gives your controller access to new lifecycle functions, observable state, services, and much more.
 
-The default ``KeyboardInputViewController`` behavior is to setup a standard `SystemKeyboard`, then call `viewWillSetupKeyboard()` when the keyboard view should be created or updated. 
+KeyboardKit will by default use a standard ``SystemKeyboard``. If you just want to use this standard view, you don’t have to do anything.
 
-To set up KeyboardKit with a custom view, you can override `viewWillSetupKeyboard()` and call `.setup(with:)` to customize the `SystemKeyboard` or use a completely custom view:
+To customize the keyboard view, you can override `viewWillSetupKeyboard()` and call any of the `setup` functions with a custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -107,15 +110,13 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setup { controller in
-            VStack(spacing: 0) {
-                MyCustomToolbar()
-                SystemKeyboard(
-                    controller: controller,
-                    autocompleteToolbar: .none,
-                    buttonContent: { $1 },
-                    buttonView: { $1 }
-                )
-            }
+            SystemKeyboard(
+                controller: controller,
+                buttonContent: { $0.view },
+                buttonView: { $0.view },
+                emojiKeyboard: { $0.view },
+                toolbar: { _ in MyCustomToolbar() }
+            )
         }
     }
 }

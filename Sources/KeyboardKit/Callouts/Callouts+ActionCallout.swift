@@ -186,7 +186,7 @@ struct Callouts_ActionCallout_Previews: PreviewProvider {
 
     static let actionHandler = KeyboardPreviews.PreviewKeyboardActionHandler()
 
-    static let actionProvider = PreviewCalloutActionProvider()
+    static let actionProvider = KeyboardPreviews.PreviewCalloutActionProvider()
 
     static let keyboardContext = KeyboardContext.preview
 

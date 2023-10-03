@@ -2,11 +2,11 @@
 
 This article describes the KeyboardKit action engine.
 
-In KeyboardKit, the ``KeyboardAction`` enum defines a set of keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``, which can be used to handle actions, trigger feedback, etc.
+In KeyboardKit, the ``KeyboardAction`` enum defines keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``, which can be used to handle actions, trigger feedback, etc.
 
-KeyboardKit will bind a ``StandardKeyboardActionHandler`` to ``KeyboardInputViewController/keyboardActionHandler`` when the keyboard is loaded. You can replace it with a custom implementation at any time.
+KeyboardKit will bind a ``StandardKeyboardActionHandler`` to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this action handler at any time.
 
-[KeyboardKit Pro][Pro] unlocks a pro action handler when you register a valid license key. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks a pro action handler that automatically register the most recently used emojis, when you register a valid license key. Information about Pro features can be found at the end of this article.
 
 
 
@@ -17,25 +17,21 @@ The ``KeyboardAction`` enum contains a bunch of actions, for instance:
 * ``KeyboardAction/character(_:)`` - inserts a text character.
 * ``KeyboardAction/backspace`` - deletes backwards.
 * ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard.
-* ``KeyboardAction/emoji(_:)-swift.enum.case`` - inserts an emoji.
 * ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type.
-* ``KeyboardAction/moveCursorBackward`` - moves the input cursor back.
-* ``KeyboardAction/moveCursorForward`` - moves the input cursor forward.
 * ``KeyboardAction/nextKeyboard`` - triggers the system keyboard switcher.
 * ``KeyboardAction/nextLocale`` - triggers the locale switcher action.
-* ``KeyboardAction/primary(_:)`` - represents a primary button, e.g. `return`, `go`, `search`, etc.
-* ``KeyboardAction/shift(currentCasing:)`` - changes the shift casing.
-* ``KeyboardAction/space`` - inserts a space.
 
-The descriptions below are the standard behaviors when actions are handled with a StandardKeyboardActionHandler.
+See the ``KeyboardAction`` documentation for a list of all available action types.
 
 
 
 ## How to handle keyboard actions
 
-Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions. 
+Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions.
 
-You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or call ``KeyboardActionHandler/handle(_:on:)`` to handle a certain gesture on a certain action, e.g. press and release on an input character:
+KeyboardKit will automatically handle actions whever the user interacts with the keyboard, or when certain system events happen. You can intercept these actions by creating a custom action handler.
+
+You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)`` or ``KeyboardActionHandler/handle(_:on:)`` to trigger an action with an optional gesture:
 
 ```swift
 func doStuff(with actionHandler: KeyboardActionHandler) {
@@ -52,19 +48,15 @@ Text("Button")
     .keyboardButton(...)
 ```
 
-``SystemKeyboard`` automatically applies this modifier to all buttons.
-
-
-
-## How to customize the action behavior
-
-You can customize the action behavior by replacing ``KeyboardInputViewController/keyboardActionHandler`` with a custom ``KeyboardActionHandler``. This is needed for actions that don't have a default system behavior, like ``KeyboardAction/image``.
+``SystemKeyboard`` will automatically apply this modifier to all its buttons, which makes them support gestures for press, release, long press, repeat press, drag, etc.
 
 
 
 ## How to create a custom action handler
 
-You can create a custom ``KeyboardActionHandler`` by either inheriting the ``StandardKeyboardActionHandler`` base class and customize the parts you want, or implement the ``KeyboardActionHandler`` protocol from scratch. 
+You must create a custom action handler to handle actions that don't have a default behavior, like ``KeyboardAction/image``, or customize the standard behavior of certain actions or gestures.
+
+You can either inherit ``StandardKeyboardActionHandler`` and customize what you want, or implement the ``KeyboardActionHandler`` protocol from scratch. 
 
 For instance, here's a custom handler that inherits ``StandardKeyboardActionHandler`` and extends it with the image capabilities:
 
@@ -103,13 +95,13 @@ class CustomActionHandler: StandardKeyboardActionHandler {
 }
 ```
 
-To use this handler instead of the standard one, just set ``KeyboardInputViewController/keyboardActionHandler`` to this custom handler:
+To use this handler instead of the standard one, just set the ``KeyboardInputViewController/services`` action handler to this custom handler:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardActionHandler = CustomActionHandler(inputViewController: self)
+        services.actionHandler = CustomActionHandler(inputViewController: self)
         super.viewDidLoad()
     }
 }
@@ -121,7 +113,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks an **Emojis.MostRecentProvider** when you register a valid license key. It will also replace the ``StandardKeyboardActionHandler`` with a **ProKeyboardActionHandler** that automatically registers emojis as you use them.
+[KeyboardKit Pro][Pro] replaces ``StandardKeyboardActionHandler`` with a **ProKeyboardActionHandler** that automatically registers emojis as you use them. This will automatically populate the "most recent" emojis category.
 
 > Important: If you have a custom action handler, make sure to inherit ProKeyboardActionHandler instead of StandardKeyboardActionHandler when you switch over to KeyboardKit Pro, otherwise your keyboard won't register the most recently used emojis.
 

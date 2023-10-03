@@ -12,9 +12,9 @@ KeyboardKit therefore has a ``SystemKeyboard`` that can be used to create alphab
 
 ## How to set up a system keyboard
 
-KeyboardKit will by default use a standard ``SystemKeyboard``. If you just want to use this view, you don't have to do anything.
+KeyboardKit will by default use a standard ``SystemKeyboard``. If you just want to use this standard view, you don't have to do anything.
 
-If you however want to customize the system keyboard, wrap it in another view like a `VStack` or use a custom view, you must override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any of the `setup(with:)` functions with a custom view.
+If you however want to customize the system keyboard, you must override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any of the **setup** functions with a custom view.
 
 ```swift
 class KeyboardController: KeyboardInputViewController {
@@ -22,15 +22,13 @@ class KeyboardController: KeyboardInputViewController {
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setup { controller in
-            VStack(spacing: 0) {
-                MyCustomToolbar()
-                SystemKeyboard(
-                    controller: controller,
-                    autocompleteToolbar: .none,
-                    buttonContent: { $1 },
-                    buttonView: { $1 }
-                )
-            }
+            SystemKeyboard(
+                controller: controller,
+                buttonContent: { $0.view },
+                buttonView: { $0.view },
+                emojiKeyboard: { $0.view },
+                toolbar: { _ in MyCustomToolbar() }
+            )
         }
     }
 }
@@ -41,11 +39,11 @@ The setup function's view builder provides an `unowned` controller reference to 
 
 ## How to customize a system keyboard
 
-A ``SystemKeyboard`` can be customized and styled to great extent. For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and observable state to it to modify its behavior. 
+A ``SystemKeyboard`` can be customized and styled to great extent. For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and state to modify its behavior. 
 
 The `buttonContent` and `buttonView` parameters can be used to customize the content or the entire view of any button.
 
-The `emojiKeyboard` parameter defines the view that will be used for the ``Keyboard/KeyboardType/emojis`` keyboard type. An `EmptyView` is used as the default view, but KeyboardKit Pro unlocks an **EmojiKeyboard** that you can use.
+The `emojiKeyboard` parameter defines the view that will be used for the ``Keyboard/KeyboardType/emojis`` keyboard type. An `EmptyView` is used as the default view, but KeyboardKit Pro unlocks an **EmojiKeyboard** that will be used by default.
 
 The `toolbar` parameter defines the view that will be added above the keyboard. An ``AutocompleteToolbar`` will be used as the default view.
 
@@ -61,7 +59,7 @@ SystemKeyboard(
 )
 ```
 
-The various view builders provide even more parameters than just the default view. For instance, the button content and button view builders get the full layout item as well.
+The various view builders provide more parameters than just the default view. For instance, the button content and button view builders get the full layout item as well.
 
 To customize or replace the standard content and item views for any item, just provide custom builders like this:
 
@@ -82,8 +80,8 @@ SystemKeyboard(
         default: params.view
         }
     },
-    emojiKeyboard: { _ in Color.red },
-    toolbar: { _ in Color.yellow }
+    emojiKeyboard: { $0.view },
+    toolbar: { $0.view }
 )
 ```
 
@@ -102,11 +100,11 @@ KeyboardKit Pro unlocks powerful preview and emoji capabilities when you registe
 
 ### Emojis
 
-KeyboardKit Pro will make ``SystemKeyboard`` use an **Emojis.Keyboard** view (read more in <doc:Understanding-Emojis>) as the standard emoji keyboard. 
+KeyboardKit Pro will make ``SystemKeyboard`` use an **Emojis.Keyboard** view (read more in <doc:Understanding-Emojis>) as the standard emoji keyboard.
 
 This means that by just registering a valid license key, your keyboard will automatically show an emoji keyboard when the ``KeyboardContext``.``KeyboardContext/keyboardType`` changes to ``Keyboard/KeyboardType/emojis``.
 
-You can still provide a custom emoji keyboard if you want to use a custom one. 
+You can still provide a custom emoji keyboard if you want to use a custom one. If not, just remove the **emojiKeyboard** parameter when upgrading to KeyboardKit Pro.
 
 
 ### Preview

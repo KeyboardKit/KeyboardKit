@@ -10,11 +10,9 @@ KeyboardKit provides you with an ``Emoji`` type that has unicode and emoji infor
 
 ## Emojis namespace
 
-KeyboardKit has an ``Emojis`` namespace that contains emoji-related types and views, except protocols and contexts and the ``Emoji`` type that is such a central part of this library.
+KeyboardKit has an ``Emojis`` namespace that contains emoji-related types and views. KeyboardKit Pro adds pro emoji features to this namespace when you register a valid license key.
 
-KeyboardKit Pro adds all pro emoji features to this namespace when you register a valid license key.
-
-The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
 
 
 
@@ -50,7 +48,7 @@ To localize emojis for a locale, add translations to the correct `Localizable.st
 /* [😃] */ "Emoji.SmilingFaceWithOpenMouth" = "Smiling Face with Open Mouth";
 ```
 
-Emoji localization is a major undertaking and therefore a community effort.
+Emoji localization is a major undertaking and will therefore have to be a community effort.
 
 
 
@@ -125,7 +123,7 @@ Emoji("👍").skinToneVariantActions  // The above variants as keyboard actions
 
 Skin tones will also be used as secondary callout actions, which means that long pressing an emoji with skintones in an emoji keyboard will show an action callout. 
 
-> Note: Skin tone support for emojis with two skin tone components are currently not supported, such as two persons kissing.
+> Note: Skin tone support for emojis with multiple skin tone components are currently not supported, such as two persons kissing.
 
 
 ### Emoji Versions
@@ -163,7 +161,7 @@ This can be used to filter out unavailable emojis from the various categories, w
 
 ### Most recent emojis
 
-[KeyboardKit Pro][Pro] unlocks an **Emojis.MostRecentProvider** when you register a valid license key. It will also replace the ``StandardKeyboardActionHandler`` with a **ProKeyboardActionHandler** that automatically registers emojis as you use them.
+[KeyboardKit Pro][Pro] unlocks an **Emojis.MostRecentProvider** and will also replace the ``StandardKeyboardActionHandler`` with a **ProKeyboardActionHandler** that uses this provider to automatically register emojis as you use them.
 
 > Important: If you have a custom action handler, make sure to inherit ProKeyboardActionHandler instead of StandardKeyboardActionHandler when you switch over to KeyboardKit Pro, otherwise your keyboard won't register the most recently used emojis.
 

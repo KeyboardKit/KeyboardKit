@@ -6,11 +6,6 @@
 //  Copyright © 2018-2023 Daniel Saidi. All rights reserved.
 //
 
-public extension Keyboard {
-
-    
-}
-
 #if os(iOS) || os(tvOS)
 import Combine
 import SwiftUI
@@ -59,7 +54,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        refreshServiceBasedProperties()
         setupInitialWidth()
         setupLocaleObservation()
         viewWillRegisterSharedController()
@@ -460,40 +454,16 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 }
 
-
-// MARK: - Internal Functions
-
-extension KeyboardInputViewController {
-    
-    func refreshServiceBasedProperties() {
-        refreshCalloutContext()
-    }
-}
-
-
 // MARK: - Private Functions
 
 private extension KeyboardInputViewController {
 
-    func refreshCalloutContext() {
-        let isPhone = UIDevice.current.userInterfaceIdiom == .phone
-        state.calloutContext.actionContext.actionProvider = services.calloutActionProvider
-        state.calloutContext.actionContext.tapAction = { [weak self] action in
-            self?.services.actionHandler.handle(.release, on: action)
-        }
-        state.calloutContext.inputContext.isEnabled = isPhone
-    }
-
-    /**
-     Set up an initial width to avoid broken SwiftUI layouts.
-     */
+    /// Set up an initial width to avoid SwiftUI layout bugs.
     func setupInitialWidth() {
         view.frame.size.width = UIScreen.main.bounds.width
     }
 
-    /**
-     Setup locale observation to handle locale-based changes.
-     */
+    /// Setup locale observation to handle locale changes.
     func setupLocaleObservation() {
         state.keyboardContext.$locale.sink { [weak self] in
             guard let self = self else { return }

@@ -2,11 +2,9 @@
 
 This article describes the KeyboardKit gesture engine.
 
-Native iOS keyboard applies a bunch of gestures to its keys. For instance, input keys can be pressed and released, while some actions trigger on press and some on release. 
+Native iOS keyboards apply a bunch of gestures to their keys. For instance, input keys can be pressed and released, space can be long pressed to move the cursor, backspace can be long pressed to keep deleting, shift can be double tapped to enable caps lock, etc.
 
-Furthermore, the space bar can be long pressed to either move the input cursor or show a secondary menu, the backspace can be long pressed to repeat the delete operation, shift can be double tapped to enable caps lock, etc.
-
-So, keyboard gestures can be quite complicated. However, KeyboardKit handles most for you with the ``KeyboardActionHandler`` concept. It also comes with keyboard-specific gestures and view modifiers that you can easily apply to your views.
+Keyboard gestures can be quite complicated, but KeyboardKit handles most for you with the ``KeyboardActionHandler`` concept. It also comes with keyboard-specific gestures and view modifiers that you can easily apply to your views.
 
 
 
@@ -16,7 +14,7 @@ KeyboardKit has a ``Gestures`` namespace that contains gesture-related types.
 
 For instance, a ``Gestures/GestureButton`` can be used to apply many gestures to a single button, a ``Gestures/RepeatTimer`` can be used to repeat an actio, and there are also some types to configure space gestures.
 
-The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
 
 
 

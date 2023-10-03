@@ -2,11 +2,11 @@
 
 This article describes the KeyboardKit autocomplete engine.
 
-Autocomplete is an important part of the typing experience, and will show suggestions as the user types and moves the input cursor.
+Autocomplete is an important part of the typing experience, where autocomplete suggestions are shown as the current text changes.
 
 In KeyboardKit, an ``AutocompleteProvider`` can be used to provide suggestions to an ``AutocompleteContext``, which in turn can update views like an ``AutocompleteToolbar`` automatically through state observation.
 
-KeyboardKit doesn't have a standard provider as it has for other services. Instead, it binds a disabled provider to ``KeyboardInputViewController/services`` until you replace it or register a KeyboardKit Pro license key.
+KeyboardKit doesn't have a standard provider as it has for other services. Instead, it binds a disabled provider to ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
 [KeyboardKit Pro][Pro] unlocks and registers a local autocomplete provider when you register a valid license key. More information about Pro features can be found at the end of this article.
 
@@ -16,7 +16,15 @@ KeyboardKit doesn't have a standard provider as it has for other services. Inste
 
 KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types.
 
-The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+
+
+
+## Autocomplete context
+
+KeyboardKit has an observable ``AutocompleteContext`` class that provides autocomplete state, such as the suggestions to present.
+
+KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then updates it when autocomplete is performed.
 
 
 
@@ -32,7 +40,7 @@ If you need to reset autocomplete state, you can call the controller's ``Keyboar
 
 You can use an ``AutocompleteToolbar`` to present autocomplete suggestions just like a native keyboard does. The toolbar supports custom styling and custom view and separator builders, and is highly configurable.
 
-You are however not bound to use such a toolbar, and can of course use the suggestions in any way you want. 
+You are of course not restricted to use an ``AutocompleteToolbar``. You can use and present these suggestions in any way you want. 
 
 > Important: Just keep in mind that it's a good idea to have around **50** points padding above the keyboard, since input and action callouts may otherwise be cut off. This padding must increase if you style the callouts to be bigger. 
 
@@ -40,17 +48,17 @@ You are however not bound to use such a toolbar, and can of course use the sugge
 
 ## How to customize the autocomplete behavior
 
-You can customize the autocomplete behavior by replacing the ``KeyboardInputViewController/services`` provider with a custom ``AutocompleteProvider`` or by overriding the various ``KeyboardInputViewController`` functions.  
+You can customize the autocomplete behavior by replacing the ``KeyboardInputViewController/services`` provider with a custom ``AutocompleteProvider`` or by overriding the various ``KeyboardInputViewController`` functions.
 
-For instance, ``KeyboardInputViewController/autocompleteText`` determines which text to pass into the provider. It uses ``KeyboardInputViewController/textDocumentProxy`` by default, but you can override it to customize which text to use.
+For instance, the ``KeyboardInputViewController/autocompleteText`` property determines which text to pass into the provider. It uses ``KeyboardInputViewController/textDocumentProxy`` by default, but you can override it to customize which text to use.
 
-If you want to temporarily or permanently disable autocomplete, set the ``KeyboardInputViewController/state`` context's ``AutocompleteContext/isEnabled`` to `false`.
+If you want to temporarily or permanently disable autocomplete, just can also set the context's ``AutocompleteContext/isEnabled`` to `false`.
 
 
 
 ## How to create a custom autocomplete provider
 
-You can create a custom ``AutocompleteProvider`` that uses any 3rd party services, SDKs or APIs.
+You can replace the ``KeyboardInputViewController/services`` autocomplete provider with a custom provider, for instance if you want to integrate with a custom SDK or 3rd party provider.
 
 For instance, here's a custom provider that just adds a suffix to the provided text's current word:
 

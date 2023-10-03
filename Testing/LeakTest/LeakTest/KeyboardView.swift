@@ -18,7 +18,7 @@ struct KeyboardView: View {
                 controller: controller,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
-                emojiKeyboard: { _ in Color.red },
+                emojiKeyboard: { $0.view },
                 toolbar: { $0.view }
             )
             Text("Locale: \(controller.state.keyboardContext.locale.identifier)")

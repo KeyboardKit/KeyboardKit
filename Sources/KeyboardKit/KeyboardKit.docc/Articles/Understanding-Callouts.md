@@ -6,7 +6,7 @@ Callouts are an important part of the typing experience, where input callouts sh
 
 In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to an ``CalloutContext``, which in turn will update views like ``Callouts/ActionCallout``.
 
-KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputViewController/services`` when the keyboard is loaded. It has a base set of actions, but you can inject localized providers into it or replace it with a custom implementation at any time.
+KeyboardKit will bind a ``StandardCalloutActionProvider`` instance to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this provider at any time.
 
 [KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit **ProCalloutActionProvider** for more features. Information about Pro features can be found at the end of this article.
 
@@ -16,9 +16,17 @@ KeyboardKit will bind a ``StandardCalloutActionProvider`` to ``KeyboardInputView
 
 KeyboardKit has a ``Callouts`` namespace that contains callout-related types.
 
-For instance, a ``Callouts/InputCallout`` shows the currently pressed key while a ``Callouts/ActionCallout`` shows secondary actions when long pressing a key. These callouts are automatically used if you use a ``SystemKeyboard``.
+For instance, ``Callouts/InputCallout`` shows the currently pressed key while ``Callouts/ActionCallout`` shows secondary actions when long pressing a key. These callouts are automatically used if you use a ``SystemKeyboard``.
 
-The namespace doesn't contain protocols or open classes, or types that are meant to be top-level ones. It's meant to be a container for types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+
+
+
+## Callout context
+
+KeyboardKit has an observable ``CalloutContext`` class that provides state for input and action callouts, such as the pressed key or the currently presented secondary actions.
+
+KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then updates it when keys are pressed.
 
 
 
@@ -33,7 +41,7 @@ MyKeyboard()
     .keyboardCalloutContainer(...)
 ```
 
-This view extension will bind a ``CalloutContext`` and its input and action contexts to the view, then apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as these contexts change. 
+This will bind a ``CalloutContext`` to the view, then apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as these contexts change. 
 
 The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically apply this extension and update the callout contexts as you interact with the keyboard.
 
@@ -49,11 +57,9 @@ You can customize the callout actions by adding localized providers to the defau
 
 ## How to create a custom callout action provider
 
-You can create a custom ``CalloutActionProvider`` by either inheriting the ``StandardCalloutActionProvider`` base class and customize the parts you want, or implement the ``CalloutActionProvider`` protocol from scratch.
+You can create a custom ``CalloutActionProvider`` by inheriting ``StandardCalloutActionProvider`` and customize what you want, or implement the ``CalloutActionProvider`` protocol from scratch.
 
-There is also a base class to make it easy to implement a custom provider. ``BaseCalloutActionProvider`` provides base functionality that you can extend.
-
-For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the secondary actions for the `$` key:
+For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the actions for **$**:
 
 ```swift
 class CustomCalloutActionProvider: StandardCalloutActionProvider {
@@ -72,13 +78,13 @@ class CustomCalloutActionProvider: StandardCalloutActionProvider {
 }
 ```
 
-To use this provider instead of the standard one, just set ``KeyboardInputViewController/calloutActionProvider`` to this custom provider:
+To use this provider instead of the standard one, just set the ``KeyboardInputViewController/services`` provider to this custom provider:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        calloutActionProvider = CustomCalloutActionProvider()
+        services.calloutActionProvider = CustomCalloutActionProvider()
         super.viewDidLoad()
     }
 }
@@ -130,7 +136,7 @@ open func setupKeyboardKit() {
 }
 
 func setupCustomServices(with license: License) {
-    calloutActionProvider = CustomCalloutActionProvider(
+    services.calloutActionProvider = CustomCalloutActionProvider(
         keyboardContext: keyboardContext,
         localizedProviders: license.localizedCalloutActionProviders
     )

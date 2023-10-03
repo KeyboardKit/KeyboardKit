@@ -16,81 +16,12 @@ import SwiftUI
  if you don't provide a custom view. So, if you just want to
  use such a standard keyboard, you don't have to do anything.
  
- If you want to customize the system keyboard, or wrap it in
- another view like a `VStack`, you just have to override the
+ If you want to customize the system keyboard, just override
  ``KeyboardInputViewController/viewWillSetupKeyboard()`` and
  call any of the `setup(with:)` functions with a custom view.
  
- The `buttonContent` and `buttonView` parameters can be used
- to customize the content or the entire view of any button.
- 
- The `emojiKeyboard` parameter defines the view that will be
- used for the ``Keyboard/KeyboardType/emojis`` keyboard type.
- An `EmptyView` is used as the default view, but KeyboardKit
- Pro unlocks an **EmojiKeyboard** that you can use.
- 
- The `toolbar` parameter defines the view that will be added
- above the keyboard. An ``AutocompleteToolbar`` will be used
- as the default view.
- 
- To use the standard views for all these views, you can just
- return `{ $0.view }`, or `{ params in params.view }` if you
- prefer more expressive code:
- 
- ```swift
- SystemKeyboard(
-     controller: controller,
-     buttonContent: { params in params.view },
-     buttonView: { $0.view },
-     emojiKeyboard: { $0.view },
-     toolbar: { $0.view }
- )
- ```
- 
- The various view builders provide even more parameters than
- just the default view. For instance, the button content and
- button view builders get the full layout item as well.
- 
- To customize or replace the standard content and item views
- for any item, just provide custom builders like this:
- 
- ```swift
- SystemKeyboard(
-     controller: controller,
-     buttonContent: { params in
-         switch params.item.action {
-         case .backspace: Image(systemName: "trash")
-         default: params.view
-         }
-     },
-     buttonView: { params in
-         switch params.item.action {
-         case .space: Text("This is true, empty space")
-             .opacity(0)
-             .frame(maxWidth: .infinity)
-         default: params.view
-         }
-     },
-     emojiKeyboard: { _ in Color.red },
-     toolbar: { _ in Color.yellow }
- )
- ```
- 
- In the code above, the backspace content is replaced with a
- trashbin and the entire spacebar is replaced by transparent
- text that takes up as much space as needed.
- 
- This view will place an ``AutocompleteToolbar`` topmost, if
- we explicitly tell it not to. It will also overlay an emoji
- keyboard over the keyboard, whenever the keyboard context's
- ``KeyboardContext/keyboardType`` is set to `.emojis`.
-
- Since the keyboard layout depends on the available keyboard
- width, you must pass in a `width`, if you don't want to use
- the current controller's width.
- 
- You can take a look at the source code of the various views
- in the library for inspiration.
+ For more information on how to customize this view, as well
+ as code examples, see <doc:Understanding-System-Keyboards>.
  */
 public struct SystemKeyboard<
     ButtonContent: View,

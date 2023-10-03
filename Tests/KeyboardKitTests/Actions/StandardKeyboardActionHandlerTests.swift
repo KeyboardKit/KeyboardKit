@@ -39,8 +39,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         
         handler = TestClass(
             controller: controller,
-            services: controller.services,
-            state: controller.state
+            keyboardContext: controller.state.keyboardContext,
+            keyboardBehavior: controller.services.keyboardBehavior,
+            autocompleteContext: controller.state.autocompleteContext,
+            feedbackConfiguration: controller.state.feedbackConfiguration,
+            spaceDragGestureHandler: controller.services.spaceDragGestureHandler
         )
         
         audioEngine = MockAudioFeedbackEngine()

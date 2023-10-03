@@ -2,9 +2,9 @@
 
 This article describes the KeyboardKit feedback engine.
 
-In KeyboardKit, keyboards can trigger audio and haptic feedback as the user interacts with the keyboard, for instance when typing, deleting backwards, long pressing space, etc. 
+Feedback is an important part of the typing experience, where the keyboard can play audio and trigger haptic feedback to indicate that the user has tapped a key or performed an action.
 
-Feedback can be triggered with a ``KeyboardActionHandler``, or by triggering the ``AudioFeedback`` and ``HapticFeedback`` feedback types directly.
+In KeyboardKit, feedback can be triggered with a ``KeyboardActionHandler``, or by triggering the ``AudioFeedback`` and ``HapticFeedback`` feedback types directly.
 
 
 
@@ -47,9 +47,10 @@ class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        keyboardFeedbackSettings.audioConfiguration = .disabled
-        keyboardFeedbackSettings.audioConfiguration.input = .custom(id: 1329)
-        keyboardFeedbackSettings.hapticConfiguration = .enabled
+        let config = state.feedbackConfiguration 
+        config.audioConfiguration = .disabled
+        config.audioConfiguration.input = .custom(id: 1329)
+        config.hapticConfiguration = .enabled
     }
 }
 ```

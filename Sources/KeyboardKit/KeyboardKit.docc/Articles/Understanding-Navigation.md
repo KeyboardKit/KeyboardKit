@@ -2,26 +2,26 @@
 
 This article describes the KeyboardKit navigation engine.
 
-You may sometime have to open an url from the keyboard, or to navigate from the keyboard to the main app, and vice versa.
+Keyboards sometimes have to open urls, trigger deeplinks or navigate from the keyboard to the main app. This is however hard, since keyboard extensions can't use **UIApplication.main**.
 
-KeyboardKit has a ``KeyboardUrlOpener`` that can be used to open URLs from the keyboard extension, without `UIApplication`.
+KeyboardKit therefore has a ``KeyboardUrlOpener`` that can open any URLs from a keyboard extension, without using **UIApplication**.
 
-[KeyboardKit Pro][Pro] unlocks a `PreviousAppNavigator` that can be used to navigate back to the previous app, e.g. after dictation. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks a **PreviousAppNavigator** that can be used to navigate back to the previously opened app, e.g. after dictation. Information about Pro features can be found at the end of this article.
 
 
 
 ## How to open URLs from the keyboard extension
 
-The ``KeyboardUrlOpener`` class can be used to open URLs from a keyboard without having to use `UIApplication`.
+The ``KeyboardUrlOpener`` class can be used to open any URL from a keyboard without having to use **UIApplication**.
 
-The class has a ``KeyboardUrlOpener/shared`` instance that can be used from anywhere.
+The class has a ``KeyboardUrlOpener/shared`` instance that can be used from anywhere:
 
 ```swift
 let url = URL(string: "https://keyboardkit.com")
 try? KeyboardUrlOpener.shared.open(url)
 ```
 
-This is used by the Pro dictation engine, to navigate from the keyboard to the main app to start dictation.
+This is for instance used by the KeyboardKit Pro dictation engine, to navigate from the keyboard to the main app to start dictation.
 
 
 

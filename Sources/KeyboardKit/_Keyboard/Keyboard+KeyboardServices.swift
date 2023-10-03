@@ -35,14 +35,12 @@ public extension Keyboard {
          */
         public init(state: KeyboardState) {
             self.state = state
+            setupCalloutContextForServices()
         }
         
         
         /// The state to base the services on.
         private let state: KeyboardState
-        
-        /// A function to call to update contexts with new services, by default none.
-        private var onContextAffectingServicesChanged: () -> Void = {}
         
         
         /// The action handler to use.
@@ -52,7 +50,10 @@ public extension Keyboard {
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
             feedbackConfiguration: state.feedbackConfiguration,
-            spaceDragGestureHandler: spaceDragGestureHandler)
+            spaceDragGestureHandler: spaceDragGestureHandler
+        ) {
+            didSet { setupCalloutContextForServices() }
+        }
         
         /// The autocomplete provider to use.
         public lazy var autocompleteProvider: AutocompleteProvider = .disabled
@@ -61,7 +62,7 @@ public extension Keyboard {
         public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
             keyboardContext: state.keyboardContext
         ) {
-            didSet { onContextAffectingServicesChanged() }
+            didSet { setupCalloutContextForServices() }
         }
         
         /// The dictation service to use.
@@ -101,13 +102,6 @@ public extension Keyboard.KeyboardServices {
         (actionHandler as? StandardKeyboardActionHandler)?.keyboardController = weakController
     }
     
-    func setupContextAffectingServicesChanged(for controller: KeyboardInputViewController) {
-        weak var weakController = controller
-        onContextAffectingServicesChanged = {
-            weakController?.refreshServiceBasedProperties()
-        }
-    }
-    
     func setupSpaceGesture(for controller: KeyboardInputViewController) {
         weak var weakController = controller
         spaceDragGestureHandler.action = { [weak self] in
@@ -117,3 +111,14 @@ public extension Keyboard.KeyboardServices {
     }
 }
 #endif
+
+private extension Keyboard.KeyboardServices {
+    
+    func setupCalloutContextForServices() {
+        let context = state.calloutContext.actionContext
+        context.actionProvider = calloutActionProvider
+        context.tapAction = { [weak self] action in
+            self?.actionHandler.handle(.release, on: action)
+        }
+    }
+}

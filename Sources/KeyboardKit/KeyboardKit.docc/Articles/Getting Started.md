@@ -35,11 +35,11 @@ import KeyboardKit
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives your controller access to additional functionality, such as new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable state like ``KeyboardInputViewController/keyboardContext``, services like ``KeyboardInputViewController/keyboardActionHandler`` and much more.
+This gives your controller access to new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, ``KeyboardInputViewController/services``, and much more.
 
-The default ``KeyboardInputViewController`` behavior is to setup a standard ``SystemKeyboard``, then call ``KeyboardInputViewController/viewWillSetupKeyboard()`` when the keyboard view should be created or updated. 
+KeyboardKit will by default use a standard ``SystemKeyboard``. If you just want to use this standard view, you don’t have to do anything.
 
-To set up KeyboardKit with a custom view, you can override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call `.setup(with:)` to customize the ``SystemKeyboard`` or use a custom view:
+To customize the keyboard view, you can override **viewWillSetupKeyboard()** and call any of the **setup** functions with a custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -47,21 +47,19 @@ class KeyboardViewController: KeyboardInputViewController {
     func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setup { controller in
-            VStack(spacing: 0) {
-                MyCustomToolbar()
-                SystemKeyboard(
-                    controller: controller,
-                    autocompleteToolbar: .none,
-                    buttonContent: { $1 },
-                    buttonView: { $1 }
-                )
-            }
+            SystemKeyboard(
+                controller: controller,
+                buttonContent: { $0.view },
+                buttonView: { $0.view },
+                emojiKeyboard: { $0.view },
+                toolbar: { _ in MyCustomToolbar() }
+            )
         }
     }
 }
 ```
 
-The setup function's view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view:
+The setup function's view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it **unowned**, for instance when passing it into another view:
 
 ```swift
 struct CustomKeyboard: View {
@@ -70,16 +68,6 @@ struct CustomKeyboard: View {
 
     var body: some View {
         ... 
-    }
-}
-
-class KeyboardViewController: KeyboardInputViewController {
-
-    func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()
-        setup { controller in
-            CustomKeyboard(controller: controller)
-        }
     }
 }
 ```
@@ -92,11 +80,9 @@ Read more about how to customize the system keyboard in <doc:Understanding-Syste
 
 ## How to use the standard keyboard configuration
 
-``KeyboardInputViewController`` will by default be configured with a bunch of service instances and observable state.
+``KeyboardInputViewController`` will by default be configured with a bunch of ``KeyboardInputViewController/services`` and observable ``KeyboardInputViewController/state``.
 
-For instance, ``KeyboardInputViewController/services`` property has services that are configured for the controller, and ``KeyboardInputViewController/state`` has observable state.
-
-The various services can then be passed into any views that need them, and any observable state accessed as environment objects:
+The various services can be passed into any types that need them, and KeyboardKit will inject all observable state properties into the view hierarchy as environment objects:
 
 ```swift
 struct CustomKeyboard: View {
@@ -119,7 +105,7 @@ struct CustomKeyboard: View {
 }
 ```
 
-Environment objects are convenient, but the views in the library use init parameters to clearly communicate their dependencies.
+Environment objects are very convenient, but KeyboardKit uses init parameters to clearly communicate the dependencies of each type.
 
 
 
@@ -140,13 +126,13 @@ class CustomActionHandler: StandardActionHandler {
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardActionHandler = CustomActionHandler(inputViewController: self)
+        services.actionHandler = CustomActionHandler(inputViewController: self)
         super.viewDidLoad()
     }
 }
 ```
 
-Since service instances are lazy, you should customize them as early as possible to make sure that all parts of the keyboard use the correct service type. 
+Since service instances are lazy, you should customize them as early as possible to make sure that all parts of the keyboard that will use them will use the correct type. 
 
 
 

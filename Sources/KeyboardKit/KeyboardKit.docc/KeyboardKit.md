@@ -66,9 +66,34 @@ KeyboardKit is available under the MIT license.
 
 - <doc:Getting-Started>
 
+### Articles
+- <doc:Essentials>
+- <doc:Understanding-Actions>
+- <doc:Understanding-Autocomplete>
+- <doc:Understanding-Buttons>
+- <doc:Understanding-Callouts>
+- <doc:Understanding-Colors>
+- <doc:Understanding-Device-Utilities>
+- <doc:Understanding-Dictation>
+- <doc:Understanding-Emojis>
+- <doc:Understanding-Extensions>
+- <doc:Understanding-External-Keyboards>
+- <doc:Understanding-Feedback>
+- <doc:Understanding-Gestures>
+- <doc:Understanding-Images>
+- <doc:Understanding-Layout>
+- <doc:Understanding-Localization>
+- <doc:Understanding-Navigation>
+- <doc:Understanding-Previews>
+- <doc:Understanding-Proxy-Utilities>
+- <doc:Understanding-Routing>
+- <doc:Understanding-Settings>
+- <doc:Understanding-State>
+- <doc:Understanding-Styling>
+- <doc:Understanding-System-Keyboards>
+
 ### Essentials
 
-- <doc:Essentials>
 - ``KeyboardInputViewController``
 - ``Keyboard``
 - ``KeyboardBehavior``
@@ -79,14 +104,12 @@ KeyboardKit is available under the MIT license.
 
 ### Actions
 
-- <doc:Understanding-Actions>
 - ``KeyboardAction``
 - ``KeyboardActionHandler``
 - ``StandardKeyboardActionHandler``
 
 ### Autocomplete
 
-- <doc:Understanding-Autocomplete>
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
@@ -94,32 +117,24 @@ KeyboardKit is available under the MIT license.
 
 ### Buttons
 
-- <doc:Understanding-Buttons>
 - ``KeyboardButton``
 - ``NextKeyboardButton``
 
 ### Callouts
 
-- <doc:Understanding-Callouts>
 - ``Callouts``
 - ``CalloutContext``
 - ``CalloutActionProvider``
 - ``StandardCalloutActionProvider``
-- ``BaseKeyboardLayoutProvider``
-
-### Colors
-
-- <doc:Understanding-Colors>
+- ``BaseCalloutActionProvider``
 
 ### Device
 
-- <doc:Understanding-Device-Utilities>
 - ``DeviceType``
 - ``InterfaceOrientation``
 
 ### Dictation
 
-- <doc:Understanding-Dictation>
 - ``Dictation``
 - ``DictationContext``
 - ``DictationService``
@@ -127,39 +142,23 @@ KeyboardKit is available under the MIT license.
 
 ### Emojis
 
-- <doc:Understanding-Emojis>
 - ``Emojis``
 - ``Emoji``
 - ``FrequentEmojiProvider``
 
-### Extensions
-
-- <doc:Understanding-Extensions>
-
-### External
-
-- <doc:Understanding-External-Keyboards>
-
 ### Feedback
 
-- <doc:Understanding-Feedback>
 - ``AudioFeedback``
 - ``HapticFeedback``
-- ``KeyboardFeedbackSettings``
+- ``FeedbackConfiguration``
 
 ### Gestures
 
-- <doc:Understanding-Gestures>
 - ``Gestures``
 - ``DragGestureHandler``
 
-### Images
-
-- <doc:Understanding-Images>
-
 ### Layout
 
-- <doc:Understanding-Layout>
 - ``InputSet``
 - ``KeyboardLayout``
 - ``KeyboardLayoutProvider``
@@ -174,7 +173,6 @@ KeyboardKit is available under the MIT license.
 
 ### Localization
 
-- <doc:Understanding-Localization>
 - ``KKL10n``
 - ``KeyboardLocale``
 - ``LocaleContextMenu``
@@ -183,33 +181,28 @@ KeyboardKit is available under the MIT license.
 
 ### Navigation
 
-- <doc:Understanding-Navigation>
 - ``KeyboardUrlOpener``
 
 ### Previews
 
-- <doc:Understanding-Previews>
 - ``KeyboardPreviews``
 
 ### Proxy
 
-- <doc:Understanding-Proxy-Utilities>
+- ``Proxy``
 - ``TextInputProxy``
 
 ### Routing
 
-- <doc:Understanding-Routing>
 - ``KeyboardInputComponent``
 - ``KeyboardInputView``
 
 ### Settings
 
-- <doc:Understanding-Settings>
 - ``KeyboardSettingsLink``
 
 ### State
 
-- <doc:Understanding-State>
 - ``KeyboardStateContext``
 - ``KeyboardStateInspector``
 - ``KeyboardStateLabel``
@@ -217,7 +210,7 @@ KeyboardKit is available under the MIT license.
 
 ### Styling
 
-- <doc:Understanding-Styling>
+- ``Styling``
 - ``KeyboardFont``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
@@ -226,7 +219,6 @@ KeyboardKit is available under the MIT license.
 
 ### System Keyboard
 
-- <doc:Understanding-System-Keyboards>
 - ``SystemKeyboard``
 - ``SystemKeyboardItem``
 

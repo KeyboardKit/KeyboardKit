@@ -28,13 +28,13 @@ KeyboardKit supports 61 keyboard-specific ``KeyboardLocale``s:
 
 🇺🇿 <br />
 
-Each keyboard locale refers to a native `Locale` and has additional keyboard-specific information, as well as localized assets and strings that can be translated with the ``KKL10n`` enum.
+Each keyboard locale refers to a native Locale and has additional keyboard-specific information, as well as localized assets and strings that can be translated with the ``KKL10n`` enum.
 
 
 
 ## Locale extensions
 
-KeyboardKit extends the native `Locale` type with more functionality.
+KeyboardKit extends the native Locale with more functionality.
 
 ### Direction info
 
@@ -89,21 +89,21 @@ KeyboardKit also provide convenient Locale collection sorted extensions.
 
 ## How to get the current keyboard locale 
 
-You can get the current keyboard locale via ``KeyboardInputViewController/keyboardContext``.``KeyboardContext/locale`` and all the currently available locales via ``KeyboardInputViewController/keyboardContext``.``KeyboardContext/locales``.
+You can get the current locale and all available locales from a ``KeyboardContext`` with the two ``KeyboardContext/locale`` and ``KeyboardContext/locales`` properties.
 
-Note that these properties return raw `Locale` values, since a keyboard extension is not limited to the ``KeyboardLocale`` model. You can use the optional ``KeyboardContext/keyboardLocale`` if you want the keyboard-specific locale.
+Note that these properties return raw Locale values, since a keyboard extension is not limited to the ``KeyboardLocale`` model. The context also has ``KeyboardLocale``-specific functions, but they return optional locales.
 
 
 
 ## How to change keyboard locale 
 
-You can change the keyboard locale by setting ``KeyboardInputViewController/keyboardContext``.``KeyboardContext/locale`` to a new locale, or use the convenience functions that support both `Locale` and ``KeyboardLocale``. 
+You can change the keyboard locale for a ``KeyboardContext`` by setting ``KeyboardContext/locale`` to a new locale, or use the convenience functions that support both Locale and ``KeyboardLocale``.
 
-Setting the locale will update the controller's `primaryLanguage`, which controls things like spellchecking and text direction. It will also set the display name in the system keyboard switcher.
+If the context's ``KeyboardContext/locales`` has multiple values, you can switch locale using ``KeyboardContext/selectNextLocale()`` or a ``LocaleContextMenu``.
+
+Setting the locale will update the controller's **primaryLanguage**, which controls things like spellchecking and text direction. It will also set the display name in the system keyboard switcher.
 
 > Note: The `primaryLanguage` property always returns `nil`, even after being set.
-
-You can set the available locales for a keyboard extension by setting ``KeyboardInputViewController/keyboardContext``.``KeyboardContext/locales`` to the locales you want to use. This makes it possible to switch locale using ``KeyboardContext/selectNextLocale()`` or a ``LocaleContextMenu``.
 
 
 
@@ -180,11 +180,11 @@ Emojis can be localized as well, but that is a massive undertaking. Have a look 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional localization capabilities.
+[KeyboardKit Pro][Pro] unlocks additional localization capabilities when you register a valid license key.
 
 KeyboardKit Pro unlocks localized ``InputSet``s, ``KeyboardLayoutProvider``s and ``CalloutActionProvider``s for each ``KeyboardLocale`` that the license contains.
 
-This means that KeyboardKit Pro can create a fully localized ``SystemKeyboard`` by just registering a license key.
+This means that KeyboardKit Pro can create fully localized ``SystemKeyboard`` for all supported locales.
 
 
 
