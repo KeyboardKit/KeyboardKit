@@ -76,6 +76,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * DocC exposing types have been removed. 
 * Many emoji types have been moved to Pro.
 * English input sets have been moved to Pro.
+* Changes with migration deprecations are not listed here.
 
 * `AudioFeedback.Engine` is no longer open to inheritance. 
 * `Autocomplete.ToolbarItemSubtitle` init takes a suggestion.
@@ -102,11 +103,10 @@ If you need any removed functionality, just grab them from an earlier version of
 * `LocaleNameProvider` has been removed (use `Locale` extensions).
 * `NextKeyboardController` has been made internal.
 * `QuotationAnalyzer` has been removed (use `String` extensions). 
-* `SentenceAnalyzer` has been removed (use `String` extensions). 
+* `SentenceAnalyzer` has been removed (use `String` extensions).
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` is now requires explicit view builders (as mentioned earlier).
 * `SystemKeyboardItem` can no longer be initialized outside the library.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
-* `View.systemKeyboardButtonStyle(...)` has been renamed to `.keyboardButtonStyle(...)`.
 * `WordAnalyzer` has been removed (use `String` extensions). 

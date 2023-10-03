@@ -136,7 +136,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tryUpdateSpaceDragState(for: gesture, on: action)
         guard let gestureAction = self.action(for: gesture, on: action) else { return }
         tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
-        tryApplyAutocompleteSuggestion(before: gesture, on: action)
+        tryApplyAutocorrectSuggestion(before: gesture, on: action)
         gestureAction(keyboardController)
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
@@ -274,17 +274,30 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
         return false
     }
+    
+    @available(*, deprecated, renamed: "tryApplyAutocompleteSuggestion")
+    open func tryApplyAutocompleteSuggestion(
+        before gesture: Gesture,
+        on action: KeyboardAction
+    ) {
+        tryApplyAutocorrectSuggestion(before: gesture, on: action)
+    }
 
     /**
      Try to apply an `isAutocomplete` autocomplete suggesion
      before the `gesture` has been performed on the `action`.
      */
-    open func tryApplyAutocompleteSuggestion(before gesture: Gesture, on action: KeyboardAction) {
+    open func tryApplyAutocorrectSuggestion(
+        before gesture: Gesture,
+        on action: KeyboardAction
+    ) {
         if isSpaceCursorDrag(action) { return }
         if keyboardContext.isCursorAtNewWord { return }
         guard gesture == .release else { return }
         guard action.shouldApplyAutocorrectSuggestion else { return }
-        guard let suggestion = (autocompleteContext.suggestions.first { $0.isAutocorrect }) else { return }
+        let suggestions = autocompleteContext.suggestions
+        let autocorrect = suggestions.first { $0.isAutocorrect }
+        guard let suggestion = autocorrect else { return }
         keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
 
