@@ -239,25 +239,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Keyboard Properties
     
-    /// The default set of observable keyboard services.
+    /// The default set of keyboard-specific services.
     public lazy var services: Keyboard.KeyboardServices = {
-        let services = Keyboard.KeyboardServices(
-            state: state,
-            onContextAffectingServicesChanged: { [weak self] in
-                self?.refreshServiceBasedProperties()
-            }
-        )
-        services.spaceDragGestureHandler.action = { [weak self] in
-            let offset = self?.state.keyboardContext.spaceDragOffset(for: $0)
-            self?.adjustTextPosition(byCharacterOffset: offset ?? $0)
-        }
+        let services = Keyboard.KeyboardServices(state: state)
+        services.setup(for: self)
         return services
     }()
     
-    /// The default set of observable keyboard state.
+    /// The default set of keyboard-specific state.
     public lazy var state: Keyboard.KeyboardState = {
         let state = Keyboard.KeyboardState()
-        state.keyboardContext.sync(with: self)
+        state.setup(for: self)
         return state
     }()
 
@@ -469,13 +461,19 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 }
 
 
-// MARK: - Private Functions
+// MARK: - Internal Functions
 
-private extension KeyboardInputViewController {
-
+extension KeyboardInputViewController {
+    
     func refreshServiceBasedProperties() {
         refreshCalloutContext()
     }
+}
+
+
+// MARK: - Private Functions
+
+private extension KeyboardInputViewController {
 
     func refreshCalloutContext() {
         let isPhone = UIDevice.current.userInterfaceIdiom == .phone

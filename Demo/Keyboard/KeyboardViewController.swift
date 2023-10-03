@@ -45,8 +45,11 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// The demo handler has custom code for tapping and
         /// long pressing image actions.
-        services.actionHandler = DemoActionHandler(
-            controller: self)
+        // services.actionHandler = DemoActionHandler(
+        //     controller: self,
+        //     services: services,
+        //     state: state
+        // )
         
         /// 💡 Setup a demo-specific layout provider.
         ///

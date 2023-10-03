@@ -27,34 +27,37 @@ import Foundation
  otherwise the keyboard will not register most recent emojis.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
-
-
+    
+    
     // MARK: - Initialization
     
     /**
      Create a standard keyboard action handler.
-     
-     The initializer will use the same state and services as
-     the provided controller.
 
      - Parameters:
-       - controller: The keyboard controller to use.
+       - controller: The keyboard controller to use, if any.
+       - keyboardContext: The keyboard context to use.
+       - keyboardBehavior: The keyboard behavior to use.
+       - autocompleteContext: The autocomplete context to use.
+       - feedbackConfiguration: The feedback configuration to use.
+       - spaceDragGestureHandler: The space gesture handler to use.
      */
     public init(
-        controller: KeyboardController
+        controller: KeyboardController?,
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior,
+        autocompleteContext: AutocompleteContext,
+        feedbackConfiguration: FeedbackConfiguration,
+        spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
     ) {
         weak var weakController = controller
-        let services = controller.services
-        let state = controller.state
-        
         self.keyboardController = weakController
-        self.autocompleteContext = state.autocompleteContext
-        self.keyboardBehavior = services.keyboardBehavior
-        self.keyboardContext = state.keyboardContext
-        self.feedbackConfiguration = state.feedbackConfiguration
-        self.spaceDragGestureHandler = services.spaceDragGestureHandler
+        self.keyboardContext = keyboardContext
+        self.keyboardBehavior = keyboardBehavior
+        self.autocompleteContext = autocompleteContext
+        self.feedbackConfiguration = feedbackConfiguration
+        self.spaceDragGestureHandler = spaceDragGestureHandler
     }
-    
 
 
     // MARK: - Properties
@@ -337,6 +340,69 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         guard gesture == .release else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }
         keyboardContext.tryRemoveAutocompleteInsertedSpace()
+    }
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use the controller initializer instead")
+    public init(
+        inputViewController ivc: KeyboardInputViewController,
+        spaceDragGestureHandler: Gestures.SpaceDragGestureHandler? = nil,
+        spaceDragSensitivity: Gestures.SpaceDragSensitivity = .medium
+    ) {
+        weak var controller = ivc
+        self.keyboardController = controller
+        self.autocompleteContext = ivc.state.autocompleteContext
+        self.keyboardBehavior = ivc.services.keyboardBehavior
+        self.keyboardContext = ivc.state.keyboardContext
+        self.feedbackConfiguration = ivc.state.feedbackConfiguration
+        self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
+            keyboardController: ivc,
+            keyboardContext: ivc.state.keyboardContext,
+            spaceDragSensitivity: spaceDragSensitivity
+        )
+    }
+    
+    @available(*, deprecated, message: "Use the controller initializer instead")
+    public init(
+        keyboardController: KeyboardController,
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior,
+        feedbackConfiguration: FeedbackConfiguration,
+        autocompleteContext: AutocompleteContext,
+        spaceDragGestureHandler: Gestures.SpaceDragGestureHandler? = nil,
+        spaceDragSensitivity: Gestures.SpaceDragSensitivity = .medium,
+        controller: KeyboardController
+   ) {
+        weak var controller = keyboardController
+        self.keyboardController = controller
+        self.autocompleteContext = autocompleteContext
+        self.keyboardBehavior = keyboardBehavior
+        self.keyboardContext = keyboardContext
+        self.feedbackConfiguration = feedbackConfiguration
+        self.spaceDragGestureHandler = spaceDragGestureHandler ?? Self.dragGestureHandler(
+            keyboardController: keyboardController,
+            keyboardContext: keyboardContext,
+            spaceDragSensitivity: spaceDragSensitivity
+        )
+    }
+
+    @available(*, deprecated, message: "Use the controller initializer instead")
+    static func dragGestureHandler(
+        keyboardController: KeyboardController,
+        keyboardContext: KeyboardContext,
+        spaceDragSensitivity: Gestures.SpaceDragSensitivity
+    ) -> Gestures.SpaceDragGestureHandler {
+        weak var controller = keyboardController
+        weak var context = keyboardContext
+        return .init(
+            sensitivity: spaceDragSensitivity,
+            action: {
+                let offset = context?.textDocumentProxy.spaceDragOffset(for: $0)
+                controller?.adjustTextPosition(byCharacterOffset: offset ?? $0)
+            }
+        )
     }
 }
 

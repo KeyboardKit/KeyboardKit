@@ -30,20 +30,11 @@ public extension Keyboard {
         /**
          Create an instance for the provided keyboard state.
          
-         The action block will be called when a service that
-         is used within any context is changed. The function
-         should then update the context accordingly.
-         
          - Parameters:
            - state: The state to base the services on.
-           - onContextAffectingServicesChanged: A function to call to update contexts with new services, by default none.
          */
-        public init(
-            state: KeyboardState,
-            onContextAffectingServicesChanged: @escaping () -> Void = {}
-        ) {
+        public init(state: KeyboardState) {
             self.state = state
-            self.onContextAffectingServicesChanged = onContextAffectingServicesChanged
         }
         
         
@@ -51,18 +42,22 @@ public extension Keyboard {
         private let state: KeyboardState
         
         /// A function to call to update contexts with new services, by default none.
-        private let onContextAffectingServicesChanged: () -> Void
+        private var onContextAffectingServicesChanged: () -> Void = {}
         
         
         /// The action handler to use.
-        public lazy var actionHandler: KeyboardActionHandler = .preview {
-            didSet { onContextAffectingServicesChanged() }
-        }
+        public lazy var actionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
+            controller: nil,
+            keyboardContext: state.keyboardContext,
+            keyboardBehavior: keyboardBehavior,
+            autocompleteContext: state.autocompleteContext,
+            feedbackConfiguration: state.feedbackConfiguration,
+            spaceDragGestureHandler: spaceDragGestureHandler)
         
         /// The autocomplete provider to use.
         public lazy var autocompleteProvider: AutocompleteProvider = .disabled
         
-        /// The callout action provider to use.
+        /// The callout action provider to use, by default a standard one.
         public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
             keyboardContext: state.keyboardContext
         ) {
@@ -92,3 +87,33 @@ public extension Keyboard {
             keyboardContext: state.keyboardContext)
     }
 }
+
+#if os(iOS) || os(tvOS)
+public extension Keyboard.KeyboardServices {
+    
+    func setup(for controller: KeyboardInputViewController) {
+        setupActionHandler(for: controller)
+        setupSpaceGesture(for: controller)
+    }
+    
+    func setupActionHandler(for controller: KeyboardInputViewController) {
+        weak var weakController = controller
+        (actionHandler as? StandardKeyboardActionHandler)?.keyboardController = weakController
+    }
+    
+    func setupContextAffectingServicesChanged(for controller: KeyboardInputViewController) {
+        weak var weakController = controller
+        onContextAffectingServicesChanged = {
+            weakController?.refreshServiceBasedProperties()
+        }
+    }
+    
+    func setupSpaceGesture(for controller: KeyboardInputViewController) {
+        weak var weakController = controller
+        spaceDragGestureHandler.action = { [weak self] in
+            let offset = self?.state.keyboardContext.spaceDragOffset(for: $0)
+            weakController?.adjustTextPosition(byCharacterOffset: offset ?? $0)
+        }
+    }
+}
+#endif

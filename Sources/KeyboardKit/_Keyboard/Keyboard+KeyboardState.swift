@@ -49,6 +49,15 @@ public extension Keyboard {
     }
 }
 
+#if os(iOS) || os(tvOS)
+public extension Keyboard.KeyboardState {
+    
+    func setup(for controller: KeyboardInputViewController) {
+        keyboardContext.sync(with: controller)
+    }
+}
+#endif
+
 public extension View {
     
     func withEnvironment(from state: Keyboard.KeyboardState) -> some View {

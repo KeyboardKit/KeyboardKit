@@ -12,11 +12,11 @@ import Foundation
  This enum contains audio feedback types that maps to system
  audio feedback values.
  
- Each feedback type has a unique system sound ``id`` that is
- used when the sound is played with ``AudioFeedback/Engine``.
- 
  You can call ``trigger()`` on any feedback type, to play it
  with the ``AudioFeedback/Engine/shared`` audio engine.
+ 
+ Every feedback type has a unique id that refers to a system
+ sound that will be played when the feedback is played. 
 */
 public enum AudioFeedback: Codable, Equatable, Identifiable {
     
@@ -40,7 +40,7 @@ public enum AudioFeedback: Codable, Equatable, Identifiable {
 
 public extension AudioFeedback {
     
-    /// The unique feedback identifier.
+    /// The unique system sound identifier.
     var id: UInt32 {
         switch self {
         case .input: return 1104

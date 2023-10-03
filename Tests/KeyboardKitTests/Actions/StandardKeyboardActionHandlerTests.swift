@@ -37,7 +37,11 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         controller.state.keyboardContext.textDocumentProxy = textDocumentProxy
         controller.services.spaceDragGestureHandler = spaceDragHandler
         
-        handler = TestClass(controller: controller)
+        handler = TestClass(
+            controller: controller,
+            services: controller.services,
+            state: controller.state
+        )
         
         audioEngine = MockAudioFeedbackEngine()
         hapticEngine = MockHapticFeedbackEngine()
