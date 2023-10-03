@@ -98,7 +98,6 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .emoji(Emoji("")),
             .moveCursorBackward,
             .moveCursorForward,
-            .nextKeyboard,
             .nextLocale,
             .primary(.done),
             .primary(.go),

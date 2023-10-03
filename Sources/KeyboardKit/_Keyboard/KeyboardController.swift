@@ -21,16 +21,9 @@ import Foundation
  should only specify operations and not state.
  */
 public protocol KeyboardController: AnyObject {
-    
-    /// The controller's keyboard-specific services
-    var services: Keyboard.KeyboardServices{ get }
-    
-    /// The controller's keyboard-specific state
-    var state: Keyboard.KeyboardState { get }
-    
 
     /// Adjust the text input cursor position.
-    func adjustTextPosition(byCharacterOffset: Int)
+    func adjustTextPosition(by characterOffset: Int)
 
     /// Delete backwards.
     func deleteBackward()
@@ -49,12 +42,6 @@ public protocol KeyboardController: AnyObject {
 
     /// Perform a keyboard-initiated dictation operation.
     func performDictation()
-
-    /// Reset the current autocomplete state.
-    func resetAutocomplete()
-
-    /// Select the next keyboard, if any.
-    func selectNextKeyboard()
 
     /// Select the next locale, if any.
     func selectNextLocale()

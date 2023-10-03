@@ -86,10 +86,9 @@ public extension KeyboardAction {
         case .dictation: return { $0?.performDictation() }
         case .dismissKeyboard: return { $0?.dismissKeyboard() }
         case .emoji(let emoji): return { $0?.insertText(emoji.char) }
-        case .moveCursorBackward: return { $0?.adjustTextPosition(byCharacterOffset: -1) }
-        case .moveCursorForward: return { $0?.adjustTextPosition(byCharacterOffset: 1) }
+        case .moveCursorBackward: return { $0?.adjustTextPosition(by: -1) }
+        case .moveCursorForward: return { $0?.adjustTextPosition(by: 1) }
         case .nextLocale: return { $0?.selectNextLocale() }
-        case .nextKeyboard: return { $0?.selectNextKeyboard() }
         case .primary: return { $0?.insertText(.newline) }
         case .shift(let currentState): return {
             switch currentState {

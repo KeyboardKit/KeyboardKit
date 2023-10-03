@@ -396,7 +396,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             sensitivity: spaceDragSensitivity,
             action: {
                 let offset = context?.textDocumentProxy.spaceDragOffset(for: $0)
-                controller?.adjustTextPosition(byCharacterOffset: offset ?? $0)
+                controller?.adjustTextPosition(by: offset ?? $0)
             }
         )
     }

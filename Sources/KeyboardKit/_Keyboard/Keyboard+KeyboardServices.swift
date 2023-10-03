@@ -106,7 +106,7 @@ public extension Keyboard.KeyboardServices {
         weak var weakController = controller
         spaceDragGestureHandler.action = { [weak self] in
             let offset = self?.state.keyboardContext.spaceDragOffset(for: $0)
-            weakController?.adjustTextPosition(byCharacterOffset: offset ?? $0)
+            weakController?.adjustTextPosition(by: offset ?? $0)
         }
     }
 }

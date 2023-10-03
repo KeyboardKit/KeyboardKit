@@ -60,7 +60,9 @@ If you need any removed functionality, just grab them from an earlier version of
 
 * `AutocompleteProvider` is now async.
 * `InputSet` has been converted to a struct.
+* `KeyboardAction` no longer specifies a default action for `.nextKeyboard`.
 * `KeyboardActionHandler` is now used to handle autocomplete suggestions.
+* `KeyboardController` requires a lot less functionality now. 
 * `KeyboardInputViewController` is no longer used to insert autocomplete suggestions.
 
 ### 👑 Pro Adjustments

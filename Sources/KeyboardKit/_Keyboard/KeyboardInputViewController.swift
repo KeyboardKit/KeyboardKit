@@ -227,8 +227,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - KeyboardController
-
-    open func adjustTextPosition(byCharacterOffset offset: Int) {
+    
+    open func adjustTextPosition(by offset: Int) {
         textDocumentProxy.adjustTextPosition(byCharacterOffset: offset)
     }
 
@@ -242,10 +242,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open func insertText(_ text: String) {
         textDocumentProxy.insertText(text)
-    }
-    
-    open func selectNextKeyboard() {
-        // This is never called like this for iOS keyboards.
     }
 
     open func selectNextLocale() {
@@ -292,36 +288,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Autocomplete
 
-    /**
-     The text that is provided to the ``autocompleteProvider``
-     when ``performAutocomplete()`` is called.
-
-     By default, the text document proxy's current word will
-     be used. You can override this property to change that.
-     */
+    /// The text to use when performing autocomplete.
     open var autocompleteText: String? {
         textDocumentProxy.currentWord
     }
 
-    /**
-     Whether or not autocomple is enabled.
-
-     By default, autocomplete is enabled as long as the text
-     document proxy isn't reading full document context, and
-     ``AutocompleteContext/isEnabled`` is `true`.
-     */
+    /// Whether or not autocomple is enabled.
     open var isAutocompleteEnabled: Bool {
         state.autocompleteContext.isEnabled && !textDocumentProxy.isReadingFullDocumentContext
     }
 
-    /**
-     Perform an autocomplete operation.
-
-     You can override this function to extend or replace the
-     default logic. By default, it uses the `currentWord` of
-     the ``textDocumentProxy`` to perform autocomplete using
-     the current ``autocompleteProvider``.
-     */
+    /// Perform an autocomplete operation.
     open func performAutocomplete() {
         guard isAutocompleteEnabled else { return }
         guard let text = autocompleteText else { return resetAutocomplete() }
@@ -336,13 +313,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         }
     }
 
-    /**
-     Reset the current autocomplete state.
-
-     You can override this function to extend or replace the
-     default logic. By default, it resets the suggestions in
-     the ``autocompleteContext``.
-     */
+    /// Reset the current autocomplete state.
     open func resetAutocomplete() {
         state.autocompleteContext.reset()
     }
@@ -350,9 +321,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Dictation
 
-    /**
-     Perform a keyboard-initiated dictation operation.
-     */
+    /// Perform a keyboard-initiated dictation operation.
     public func performDictation() {
         Task {
             do {
@@ -365,6 +334,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     
 
     // MARK: - Deprecated
+    
+    @available(*, deprecated, renamed: "adjustTextPosition(by:)")
+    open func adjustTextPosition(byCharacterOffset offset: Int) {
+        adjustTextPosition(by: offset)
+    }
     
     @available(*, deprecated, renamed: "originalTextDocumentProxy")
     open var mainTextDocumentProxy: UITextDocumentProxy {
