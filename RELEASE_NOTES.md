@@ -42,6 +42,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * `InputSetBasedKeyboardLayoutProvider` is a new base provider.
 * `KeyboardAction.emoji` can now be created with a string as well.
 * `KeyboardButton` now supports `edgeInsets` and an `isPressed` binding.
+* `KeyboardContext` has new proxy properties that mirrors the controller.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
 * `KeyboardLocale` has new, convenient `all` and `locales` collection extensions.
 * `SpaceDragGestureHandler` properties are now mutable to allow for customizations.
@@ -49,8 +50,8 @@ If you need any removed functionality, just grab them from an earlier version of
 * `StandardKeyboardActionHandler` now builds for all platforms, including macOS and watchOS.
 * `View.keyboardButton` supports custom edge insets and applies a menu to nextLocale buttons.
 * `View.keyboardButton` is a new view extension that applies both a button style and gestures.
-* `View.keyboardCalloutContainer` is a new view extension that applies both input and action callout modifiers. 
-* `View.keyboardLayoutItemSize` is a new view extension that applies a layout-specific size and insets to the view.
+* `View.keyboardCalloutContainer` is a new extension that applies input and action callout modifiers. 
+* `View.keyboardLayoutItemSize` is a new extension that applies layout-specific size and insets to a view.
 
 ### 💡 Adjustments
 
@@ -93,6 +94,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * `KeyboardColor` has been made internal.
 * `KeyboardColorReader` has been removed (use `Color` extensions).
 * `KeyboardContext` no longer has a controller initializer (use `sync(with:)` after creating it).
+* `KeyboardContext` `.textDocumentProxy` can no longer be set. Instead, set `originalTextDocumentProxy`.
 * `KeyboardHostingController` has been made internal.
 * `KeyboardSettingsUrlProvider` has been removed (use `URL.keyboardSettings`).
 * `KeyboardTextContext` was not used by the library and has been removed to avoid unnecessary complexity.

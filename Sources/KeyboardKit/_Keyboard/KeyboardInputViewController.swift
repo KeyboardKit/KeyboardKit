@@ -167,32 +167,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Properties
     
-    /**
-     The original text document proxy.
-
-     This stays the same even when ``textInputProxy`` is set
-     to make ``textDocumentProxy`` return a custom instance.
-     */
+    /// The original text document proxy.
     open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
     }
 
-    /**
-     The text document proxy to use.
-     
-     This either returns the ``textInputProxy`` if set, else
-     the ``mainTextDocumentProxy``.
-     */
+    /// The text document proxy that is currently active.
     open override var textDocumentProxy: UITextDocumentProxy {
         textInputProxy ?? originalTextDocumentProxy
     }
 
-    /**
-     A custom text input proxy, to which text can be routed.
-
-     Setting this property make ``textDocumentProxy`` return
-     this proxy instead of the ``mainTextDocumentProxy`` one.
-     */
+    /// A custom text proxy to which text can be routed.
     public var textInputProxy: TextInputProxy? {
         didSet { viewWillSyncWithContext() }
     }
@@ -230,8 +215,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
-        if state.keyboardContext.textDocumentProxy === textDocumentProxy { return }
-        state.keyboardContext.textDocumentProxy = textDocumentProxy
+        state.keyboardContext.syncTextDocumentProxy(with: self)
+        state.keyboardContext.syncTextInputProxy(with: self)
     }
 
     open override func textDidChange(_ textInput: UITextInput?) {

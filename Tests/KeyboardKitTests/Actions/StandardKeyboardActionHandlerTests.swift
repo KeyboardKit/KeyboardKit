@@ -34,7 +34,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         textDocumentProxy.documentContextBeforeInput = ""
 
         controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
-        controller.state.keyboardContext.textDocumentProxy = textDocumentProxy
+        controller.state.keyboardContext.originalTextDocumentProxy = textDocumentProxy
         controller.services.spaceDragGestureHandler = spaceDragHandler
         
         handler = TestClass(

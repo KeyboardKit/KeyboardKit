@@ -26,7 +26,7 @@ class KeyboardContextTests: XCTestCase {
         proxy = MockTextDocumentProxy()
         traits = MockTraitCollection()
         context.traitCollection = traits
-        context.textDocumentProxy = proxy
+        context.originalTextDocumentProxy = proxy
         #endif
     }
 

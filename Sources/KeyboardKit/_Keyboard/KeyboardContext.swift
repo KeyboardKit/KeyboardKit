@@ -33,9 +33,11 @@ import UIKit
  */
 public class KeyboardContext: ObservableObject {
 
-    /// Create a context instance.
     public init() {}
 
+    
+    // MARK: - Published Properties
+    
     /// Set this to override the ``autocapitalizationType``.
     @Published
     public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
@@ -103,16 +105,27 @@ public class KeyboardContext: ObservableObject {
     /// The space long press behavior to use.
     @Published
     public var spaceLongPressBehavior = Gestures.SpaceLongPressBehavior.moveInputCursor
-
-
+    
+    
     #if os(iOS) || os(tvOS)
-    /// The main text document proxy.
+    
+    // MARK: - iOS/tvOS proxy properties
+    
+    /// The original text document proxy.
     @Published
-    public var mainTextDocumentProxy: UITextDocumentProxy = .preview
+    public var originalTextDocumentProxy: UITextDocumentProxy = .preview
 
     /// The text document proxy that is currently active.
+    public var textDocumentProxy: UITextDocumentProxy {
+        textInputProxy ?? originalTextDocumentProxy
+    }
+    
+    /// A custom text proxy to which text can be routed.
     @Published
-    public var textDocumentProxy: UITextDocumentProxy = .preview
+    public var textInputProxy: TextInputProxy? = nil
+    
+    
+    // MARK: - iOS/tvOS properties
 
     /// The text input mode of the input controller.
     @Published
@@ -122,6 +135,14 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var traitCollection = UITraitCollection()
     #endif
+    
+    
+    // MARK: - Deprecations
+    
+    @available(*, deprecated, renamed: "originalTextDocumentProxy")
+    open var mainTextDocumentProxy: UITextDocumentProxy {
+        originalTextDocumentProxy
+    }
 }
 
 
@@ -253,6 +274,18 @@ public extension KeyboardContext {
             self.syncAfterAsync(with: controller)
         }
     }
+    
+    /// Sync the ``originalTextDocumentProxy``.
+    func syncTextDocumentProxy(with controller: KeyboardInputViewController) {
+        if originalTextDocumentProxy === controller.originalTextDocumentProxy { return }
+        originalTextDocumentProxy = controller.originalTextDocumentProxy
+    }
+    
+    /// Sync the ``textInputProxy``.
+    func syncTextInputProxy(with controller: KeyboardInputViewController) {
+        if textInputProxy === controller.textInputProxy { return }
+        textInputProxy = controller.textInputProxy
+    }
 }
 
 extension KeyboardContext {
@@ -262,6 +295,9 @@ extension KeyboardContext {
      have the latest information.
      */
     func syncAfterAsync(with controller: KeyboardInputViewController) {
+        syncTextDocumentProxy(with: controller)
+        syncTextInputProxy(with: controller)
+        
         if hasDictationKey != controller.hasDictationKey {
             hasDictationKey = controller.hasDictationKey
         }
@@ -287,12 +323,6 @@ extension KeyboardContext {
 
         if screenSize != controller.screenSize {
             screenSize = controller.screenSize
-        }
-        if mainTextDocumentProxy === controller.originalTextDocumentProxy {} else {
-            mainTextDocumentProxy = controller.originalTextDocumentProxy
-        }
-        if textDocumentProxy === controller.textDocumentProxy {} else {
-            textDocumentProxy = controller.textDocumentProxy
         }
         if textInputMode != controller.textInputMode {
             textInputMode = controller.textInputMode

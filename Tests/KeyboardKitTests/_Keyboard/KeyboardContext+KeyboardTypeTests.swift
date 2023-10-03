@@ -20,7 +20,7 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
         proxy = MockTextDocumentProxy()
         context = KeyboardContext()
         context.sync(with: MockKeyboardInputViewController())
-        context.textDocumentProxy = proxy
+        context.originalTextDocumentProxy = proxy
         context.keyboardType = .alphabetic(.lowercased)
     }
 

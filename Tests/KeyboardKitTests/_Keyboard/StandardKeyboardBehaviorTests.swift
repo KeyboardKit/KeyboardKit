@@ -28,7 +28,7 @@ class StandardKeyboardBehaviorTests: XCTestCase {
         proxy = MockTextDocumentProxy()
         keyboardContext = KeyboardContext()
         keyboardContext.sync(with: MockKeyboardInputViewController())
-        keyboardContext.textDocumentProxy = proxy
+        keyboardContext.originalTextDocumentProxy = proxy
         behavior = StandardKeyboardBehavior(keyboardContext: keyboardContext)
     }
 
