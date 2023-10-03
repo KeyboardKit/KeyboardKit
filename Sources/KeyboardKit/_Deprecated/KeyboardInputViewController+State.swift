@@ -31,8 +31,5 @@ public extension KeyboardInputViewController {
     
     @available(*, deprecated, renamed: "state.keyboardContext")
     var keyboardContext: KeyboardContext { state.keyboardContext }
-    
-    @available(*, deprecated, renamed: "state.keyboardTextContext")
-    var keyboardTextContext: KeyboardTextContext { state.keyboardTextContext }
 }
 #endif

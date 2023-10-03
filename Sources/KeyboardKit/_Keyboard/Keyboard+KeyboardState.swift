@@ -47,9 +47,6 @@ public extension Keyboard {
         
         /// The keyboard context to use.
         public lazy var keyboardContext = KeyboardContext()
-        
-        /// The keyboard text context to use.
-        public lazy var keyboardTextContext = KeyboardTextContext()
     }
 }
 
@@ -72,6 +69,5 @@ public extension View {
             .environmentObject(state.dictationContext)
             .environmentObject(state.feedbackConfiguration)
             .environmentObject(state.keyboardContext)
-            .environmentObject(state.keyboardTextContext)
     }
 }

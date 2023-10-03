@@ -95,6 +95,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * `KeyboardContext` no longer has a controller initializer (use `sync(with:)` after creating it).
 * `KeyboardHostingController` has been made internal.
 * `KeyboardSettingsUrlProvider` has been removed (use `URL.keyboardSettings`).
+* `KeyboardTextContext` was not used by the library and has been removed to avoid unnecessary complexity.
 * `LocaleDirectionAnalyzer` has been removed (use `Locale` extensions).
 * `LocaleNameProvider` has been removed (use `Locale` extensions).
 * `NextKeyboardController` has been made internal.

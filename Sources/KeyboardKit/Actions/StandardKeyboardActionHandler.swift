@@ -142,7 +142,6 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
         keyboardController?.performAutocomplete()
-        keyboardController?.performTextContextSync()
     }
 
     /**

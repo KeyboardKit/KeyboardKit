@@ -105,7 +105,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
      */
     open func viewWillSyncWithContext() {
         performKeyboardContextSync()
-        performTextContextSync()
     }
 
 
@@ -238,7 +237,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
         performAutocomplete()
-        performTextContextSync()
         tryChangeToPreferredKeyboardTypeAfterTextDidChange()
     }
 
@@ -298,23 +296,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      Perform a text context sync.
 
-     This is performed anytime the text is changed to ensure
-     that ``keyboardTextContext`` is synced.
+     This is performed to ensure that ``keyboardContext`` is
+     synced. It aborts if ``isContextSyncEnabled`` is `false`.
      */
     open func performKeyboardContextSync() {
         guard isContextSyncEnabled else { return }
         state.keyboardContext.sync(with: self)
-    }
-
-    /**
-     Perform a text context sync.
-
-     This is performed anytime the text is changed to ensure
-     that ``keyboardTextContext`` is synced.
-     */
-    open func performTextContextSync() {
-        guard isContextSyncEnabled else { return }
-        state.keyboardTextContext.sync(with: self)
     }
 
 

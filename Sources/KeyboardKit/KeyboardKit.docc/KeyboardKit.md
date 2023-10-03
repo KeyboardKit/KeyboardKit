@@ -99,7 +99,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardBehavior``
 - ``KeyboardContext``
 - ``KeyboardController``
-- ``KeyboardTextContext``
 - ``StandardKeyboardBehavior``
 
 ### Actions

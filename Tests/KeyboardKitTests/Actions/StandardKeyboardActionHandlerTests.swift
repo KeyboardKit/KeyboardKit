@@ -66,7 +66,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertTrue(handler.hasCalled(\.tryEndSentenceRef))
         XCTAssertTrue(handler.hasCalled(\.tryChangeKeyboardTypeRef))
         XCTAssertTrue(controller.hasCalled(\.performAutocompleteRef))
-        XCTAssertTrue(controller.hasCalled(\.performTextContextSyncRef))
     }
 
     func testHandlingDragGestureOnActionDoesNotDoAnythingOnNonSpaceActions() {

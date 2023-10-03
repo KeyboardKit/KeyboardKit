@@ -32,14 +32,6 @@ KeyboardKit automatically creates an instance of this class and binds it to ``Ke
 
 
 
-## Keyboard text context
-
-KeyboardKit also has an observable ``KeyboardTextContext`` that provides observable text properties. The reason for having this separate type is to avoid re-rendering the keyboard whenever the text changes.
-
-KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then syncs it with the proxy whenever needed.
-
-
-
 ## Keyboard behavior
 
 KeyboardKit has a ``KeyboardBehavior`` protocol that can be used to determine certain keyboard behaviors. It's used by e.g. the ``StandardKeyboardActionHandler`` to make some decisions.
