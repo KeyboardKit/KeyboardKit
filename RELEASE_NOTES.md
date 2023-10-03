@@ -49,6 +49,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * `SpaceDragGestureHandler` properties are now mutable to allow for customizations.
 * `SystemKeyboard` has new initializers that make it MUCH easier to customize views.
 * `StandardKeyboardActionHandler` now builds for all platforms, including macOS and watchOS.
+* `StandardKeyboardStyleProvider` now adjusts button styles if a space cursor drag is active.
 * `View.keyboardButton` supports custom edge insets and applies a menu to nextLocale buttons.
 * `View.keyboardButton` is a new view extension that applies both a button style and gestures.
 * `View.keyboardCalloutContainer` is a new extension that applies input and action callout modifiers. 

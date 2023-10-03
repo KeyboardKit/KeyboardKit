@@ -171,9 +171,18 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     /// The background color to use for a certain action.
     open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
-        let fullOpacity = keyboardContext.hasDarkColorScheme || isPressed
-        return action.buttonBackgroundColor(for: keyboardContext, isPressed: isPressed)
-            .opacity(fullOpacity ? 1 : 0.95)
+        let context = keyboardContext
+        let color = action.buttonBackgroundColor(for: context, isPressed: isPressed)
+        let opacity = buttonBackgroundOpacity(for: action, isPressed: isPressed)
+        return color.opacity(opacity)
+    }
+    
+    /// The background opacity to use for a certain action.
+    open func buttonBackgroundOpacity(for action: KeyboardAction, isPressed: Bool) -> Double {
+        let context = keyboardContext
+        if context.isSpaceDragGestureActive { return 0.5 }
+        if context.hasDarkColorScheme || isPressed { return 1 }
+        return 0.95
     }
 
     /// The border style to use for a certain action.
@@ -255,6 +264,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     
     /// The shadow style to use for a certain action.
     open func buttonShadowStyle(for action: KeyboardAction) -> KeyboardStyle.ButtonShadow {
+        if keyboardContext.isSpaceDragGestureActive { return .noShadow }
         switch action {
         case .characterMargin: return .noShadow
         case .emoji: return .noShadow
