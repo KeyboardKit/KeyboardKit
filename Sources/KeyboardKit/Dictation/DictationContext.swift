@@ -49,7 +49,7 @@ public class DictationContext: ObservableObject {
     }
 
     /**
-     Create a context for an app and keyboard dictation.
+     Create a context for an app and in-keyboard dictation.
      */
     public init(config: Dictation.KeyboardConfiguration) {
         setup(with: config)

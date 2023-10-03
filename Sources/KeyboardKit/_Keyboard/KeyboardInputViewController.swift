@@ -15,37 +15,14 @@ import UIKit
  This class extends `UIInputViewController` with KeyboardKit
  specific functionality.
 
- When you use KeyboardKit in a keyboard extension, just make
- your `KeyboardController` inherit this class instead of the
- standard `UIInputViewController`.
- 
- This will add a lot of additional features and capabilities
- to the controller, like new lifecycle functions, properties,
- services, etc. For instance, ``viewWillSetupKeyboard()`` is
- called when the keyboard view should be created or rendered,
- ``keyboardContext`` has observable keyboard states, and the
- ``keyboardActionHandler`` can be used to handle action.
+ Let your `KeyboardController` inherit this class instead of
+ `UIInputViewController` to get new lifecycle functions like
+ ``viewWillSetupKeyboard()``, observable ``state``, standard
+ ``services``, and much more.
 
- Your controller can then override any functions, change any
- state, and replace any service to customize the behavior of
- the keyboard. It will also inject observable state into the
- view hierarchy, as environment objects,
-
- For instance, you can access ``keyboardContext`` like this:
-
- ```swift
- struct MyView: View {
-
-     @EnvironmentObject
-     private var keyboardContext: KeyboardContext
-
-     ...
- }
- ```
-
- You may notice that KeyboardKit uses initializer parameters
- instead of environment objects. It's intentional, to better
- communicate the dependencies of each view.
+ The controller can override any function, modify or replace
+ any state or service property, and injects its ``state`` as
+ environment objects into the view hierarchy.
  */
 open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
@@ -92,13 +69,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             do {
                 try await services.dictationService.handleDictationResultInKeyboard()
             } catch {
-                await MainActor.run {
-                    state.dictationContext.lastError = error
-                }
+                await updateLastDictationError(error)
             }
         }
     }
-    
+
     /**
      This function is called when the controller is about to
      register itself as the shared controller.
@@ -110,10 +85,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /**
      This function is called whenever the keyboard view must
-     be created or updated.
-
-     This will by default set up a ``SystemKeyboard`` as the
-     main view, but you can override it to use a custom view.
+     be setup. It will by default setup a ``SystemKeyboard``.
      */
     open func viewWillSetupKeyboard() {
         setup { controller in
@@ -130,14 +102,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /**
      This function is called whenever the controller must be
      synced with its ``keyboardContext``.
-
-     This will by default sync with keyboard contexts if the
-     ``isContextSyncEnabled`` property is set to `true`.
      */
     open func viewWillSyncWithContext() {
-        guard isContextSyncEnabled else { return }
-        state.keyboardContext.sync(with: self)
-        state.keyboardTextContext.sync(with: self)
+        performKeyboardContextSync()
+        performTextContextSync()
     }
 
 
@@ -292,8 +260,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func insertText(_ text: String) {
         textDocumentProxy.insertText(text)
     }
-
-    open func selectNextKeyboard() {}
+    
+    open func selectNextKeyboard() {
+        // This is never called like this for iOS keyboards.
+    }
 
     open func selectNextLocale() {
         state.keyboardContext.selectNextLocale()
@@ -324,13 +294,23 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open var isContextSyncEnabled: Bool {
         !textDocumentProxy.isReadingFullDocumentContext
     }
+    
+    /**
+     Perform a text context sync.
+
+     This is performed anytime the text is changed to ensure
+     that ``keyboardTextContext`` is synced.
+     */
+    open func performKeyboardContextSync() {
+        guard isContextSyncEnabled else { return }
+        state.keyboardContext.sync(with: self)
+    }
 
     /**
      Perform a text context sync.
 
      This is performed anytime the text is changed to ensure
-     that ``keyboardTextContext`` is synced with the current
-     text document context content.
+     that ``keyboardTextContext`` is synced.
      */
     open func performTextContextSync() {
         guard isContextSyncEnabled else { return }
@@ -411,36 +391,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Dictation
 
     /**
-     The configuration to use when performing dictation from
-     the keyboard extension.
-
-     By default, this uses the `appGroupId` and `appDeepLink`
-     properties from ``dictationContext``, so make sure that
-     you call ``DictationContext/setup(with:)`` before using
-     the dictation features in your keyboard extension.
-     */
-    public var dictationConfig: Dictation.KeyboardConfiguration {
-        .init(
-            appGroupId: state.dictationContext.appGroupId ?? "",
-            appDeepLink: state.dictationContext.appDeepLink ?? ""
-        )
-    }
-
-    /**
      Perform a keyboard-initiated dictation operation.
-
-     > Important: ``DictationContext/appDeepLink`` must have
-     been set before this is called. The link must open your
-     app and start dictation. See the docs for more info.
      */
     public func performDictation() {
         Task {
             do {
-                try await services.dictationService.startDictationFromKeyboard(with: dictationConfig)
+                try await services.dictationService.startDictationFromKeyboard(with: state.dictationConfig)
             } catch {
-                await MainActor.run {
-                    state.dictationContext.lastError = error
-                }
+                await updateLastDictationError(error)
             }
         }
     }
@@ -490,6 +448,12 @@ private extension KeyboardInputViewController {
     func updateAutocompleteContext(with result: [Autocomplete.Suggestion]) {
         DispatchQueue.main.async { [weak self] in
             self?.state.autocompleteContext.suggestions = result
+        }
+    }
+    
+    func updateLastDictationError(_ error: Error) async {
+        await MainActor.run {
+            state.dictationContext.lastError = error
         }
     }
 }

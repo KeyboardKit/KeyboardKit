@@ -27,24 +27,28 @@ public extension Keyboard {
      */
     class KeyboardState {
         
-        /// The observable autocomplete context to use.
+        /// The autocomplete context to use.
         public lazy var autocompleteContext = AutocompleteContext()
         
-        /// The observable callout context to use.
+        /// The callout context to use.
         public lazy var calloutContext = CalloutContext(
             actionContext: .disabled,
             inputContext: .disabled)
         
-        /// The observable dictation context to use.
+        /// The dictation configuration to use.
+        public lazy var dictationConfig = Dictation.KeyboardConfiguration(
+            context: dictationContext)
+        
+        /// The dictation context to use.
         public lazy var dictationContext = DictationContext()
         
-        /// The observable feedback context to use.
+        /// The feedback context to use.
         public lazy var feedbackConfiguration = FeedbackConfiguration()
         
-        /// The observable keyboard context to use.
+        /// The keyboard context to use.
         public lazy var keyboardContext = KeyboardContext()
         
-        /// The observable keyboard text context to use.
+        /// The keyboard text context to use.
         public lazy var keyboardTextContext = KeyboardTextContext()
     }
 }

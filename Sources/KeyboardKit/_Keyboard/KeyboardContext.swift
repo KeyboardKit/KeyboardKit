@@ -36,15 +36,7 @@ public class KeyboardContext: ObservableObject {
     /// Create a context instance.
     public init() {}
 
-    /**
-     A manually set autocapitalization type, which overrides
-     the ``autocapitalizationType`` value when it's set.
-     
-     This context is currently not that clear about which of
-     its properties that are synced with the proxy each time
-     the text changes. If it's not needed, because the proxy
-     properties stay the same, we could remove this.
-     */
+    /// Set this to override the ``autocapitalizationType``.
     @Published
     public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
 
@@ -64,12 +56,7 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
-    /**
-     Whether or not autocapitalization is enabled.
-     
-     This property can be used to disable autocapitalization
-     without affecting the ``autocapitalizationType``.
-     */
+    /// Whether or not autocapitalization is enabled.
     @Published
     public var isAutoCapitalizationEnabled = true
 
@@ -77,10 +64,7 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var isKeyboardFloating = false
 
-    /**
-     An optional dictation replacement action, which will be
-     used by some ``KeyboardLayoutProvider`` implementations.
-     */
+    /// An optional dictation replacement action.
     @Published
     public var keyboardDictationReplacement: KeyboardAction?
 
@@ -88,42 +72,23 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var keyboardType = Keyboard.KeyboardType.alphabetic(.lowercased)
 
-    /**
-     The locale that is currently being used.
-
-     This uses `Locale` instead of ``KeyboardLocale``, since
-     keyboards can use locales that are not in that enum.
-     */
+    /// The locale that is currently being used.
     @Published
     public var locale = Locale.current
 
-    /**
-     The locales that are currently enabled for the keyboard.
-     */
+    /// The locales that are currently available.
     @Published
     public var locales: [Locale] = [.current]
 
-    /**
-     An custom locale to use when displaying other locales.
-
-     If no locale is specified, the ``locale`` will be used.
-     */
+    /// The locale to use when displaying other locales.
     @Published
     public var localePresentationLocale: Locale?
 
-    /**
-     Whether or not the keyboard should (must) have a switch
-     key for selecting the next keyboard.
-     */
+    /// Whether or not to add an input mode switch key.
     @Published
     public var needsInputModeSwitchKey = false
 
-    /**
-     Whether or not the context prefers autocomplete.
-
-     The property is set every time the proxy syncs with the
-     controller. You can ignore it if you want.
-     */
+    /// Whether or not the context prefers autocomplete.
     @Published
     public var prefersAutocomplete = true
 

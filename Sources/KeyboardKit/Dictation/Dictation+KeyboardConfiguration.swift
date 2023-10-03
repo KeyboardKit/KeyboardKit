@@ -34,6 +34,19 @@ public extension Dictation {
             self.appDeepLink = appDeepLink
         }
         
+        /**
+         Create a keyboard dictation configuration.
+         
+         - Parameters:
+           - context: The context to base the configuration on.
+         */
+        public init(
+            context: DictationContext
+        ) {
+            self.appGroupId = context.appGroupId ?? ""
+            self.appDeepLink = context.appDeepLink ?? ""
+        }
+        
         /// The app group to use to sync data.
         public let appGroupId: String
         

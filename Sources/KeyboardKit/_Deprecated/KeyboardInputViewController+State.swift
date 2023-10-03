@@ -15,6 +15,14 @@ public extension KeyboardInputViewController {
     @available(*, deprecated, renamed: "state.calloutContext")
     var calloutContext: CalloutContext { state.calloutContext }
     
+    @available(*, deprecated, renamed: "state.dictationConfig")
+    var dictationConfig: Dictation.KeyboardConfiguration {
+        .init(
+            appGroupId: state.dictationContext.appGroupId ?? "",
+            appDeepLink: state.dictationContext.appDeepLink ?? ""
+        )
+    }
+    
     @available(*, deprecated, renamed: "state.dictationContext")
     var dictationContext: DictationContext { state.dictationContext }
     
