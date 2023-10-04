@@ -26,6 +26,20 @@ public extension KeyboardPreviews {
 }
 #endif
 
+public extension Keyboard.KeyboardServices {
+    
+    static var preview: Keyboard.KeyboardServices {
+        KeyboardInputViewController.preview.services
+    }
+}
+
+public extension Keyboard.KeyboardState {
+    
+    static var preview: Keyboard.KeyboardState {
+        KeyboardInputViewController.preview.state
+    }
+}
+
 public extension KeyboardContext {
     
     static var preview: KeyboardContext {

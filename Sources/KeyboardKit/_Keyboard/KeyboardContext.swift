@@ -319,23 +319,23 @@ extension KeyboardContext {
         if hasFullAccess != controller.hasFullAccess {
             hasFullAccess = controller.hasFullAccess
         }
-        if needsInputModeSwitchKey != controller.needsInputModeSwitchKey {
-            needsInputModeSwitchKey = controller.needsInputModeSwitchKey
-        }
-        if primaryLanguage != controller.primaryLanguage {
-            primaryLanguage = controller.primaryLanguage
-        }
         if interfaceOrientation != controller.orientation {
             interfaceOrientation = controller.orientation
         }
-
+        if needsInputModeSwitchKey != controller.needsInputModeSwitchKey {
+            needsInputModeSwitchKey = controller.needsInputModeSwitchKey
+        }
+        
         let keyboardPrefersAutocomplete = textDocumentProxy.keyboardType?.prefersAutocomplete ?? true
         let returnKeyPrefersAutocomplete = textDocumentProxy.returnKeyType?.prefersAutocomplete ?? true
         let newPrefersAutocomplete = keyboardType.prefersAutocomplete && keyboardPrefersAutocomplete && returnKeyPrefersAutocomplete
         if prefersAutocomplete != newPrefersAutocomplete {
             prefersAutocomplete = newPrefersAutocomplete
         }
-
+        
+        if primaryLanguage != controller.primaryLanguage {
+            primaryLanguage = controller.primaryLanguage
+        }
         if screenSize != controller.screenSize {
             screenSize = controller.screenSize
         }

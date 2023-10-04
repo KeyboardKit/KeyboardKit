@@ -90,7 +90,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func viewWillSetupKeyboard() {
         setup { controller in
             SystemKeyboard(
-                controller: controller,
+                state: controller.state,
+                services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },

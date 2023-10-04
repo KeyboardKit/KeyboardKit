@@ -118,7 +118,8 @@ class KeyboardViewController: KeyboardInputViewController {
         /// or customize the standard view.
         setup { controller in
             SystemKeyboard(
-                controller: controller,
+                state: controller.state,
+                services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },

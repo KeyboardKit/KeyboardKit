@@ -33,9 +33,9 @@ If you need any removed functionality, just grab them from an earlier version of
 * `ProKeyboardActionHandler` is a new keyboard action handler with Pro-specific action handling.
 * `StandardKeyboardActionHandler` no longer registers most recent emojis. This has moved to Pro.
 * `SystemKeyboard` provides MUCH easier customization, but must be given explicit view builders.
-* `SystemKeyboard` no longer adds an emoji keyboard, since this component has been moved to Pro.
-* `SystemKeyboard` no longer hides or configures the autocomplete toolbar. You can do this in the new `toolbar` view builder.
-* `SystemKeyboard` provides you with the standard view in the view builders. Just return `$0.view` to use this standard view. 
+* `SystemKeyboard` provides you with a standard view in the view builder. Return $0.view or another view.
+* `SystemKeyboard` no longer adds an emoji keyboard, since this component has been moved to KeyboardKit Pro.
+* `SystemKeyboard` no longer hides or configures the autocomplete toolbar. You can do this in the new `toolbar` view builder. 
 
 ### ✨ New Features
 
@@ -65,6 +65,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * `KeyboardAction` no longer specifies a default action for `.nextKeyboard`.
 * `KeyboardController` has a lot less now, since the controller isn't used as much.  
 * `KeyboardInputViewController` is no longer used to insert autocomplete suggestions.
+* `SystemKeyboard` no longer requires you to pass in a width, it resolves it by itself.
 * `SystemKeyboard` now fades out the button content when space cursor movement is active.
 
 ### 👑 Pro Adjustments
