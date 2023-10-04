@@ -13,11 +13,11 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
-This version removes all previously deprecated functions and aims to make the library more discoverable.
+Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit library.
 
-This version also moves many types into namespaces and parent types, which will make the library easier to overview. 
+KeyboardKit 8.0 is all about cleaning up and polishing the library to make it more approachable, better structured and easier to use.
 
-Some nice-to-have utilities that bloated the library while providing little value have been removed, such as types that only served to exposed functionality to DocC.
+This version removes all previously deprecated code and moves many types into namespaces and parent types, to make the library easier to overview. Some nice-to-have utilities that provided little value have been removed, such as types that only served to exposed functionality to DocC. Overall, this has reduced
 
 If you need any removed functionality, just grab them from an earlier version of KeyboardKit.
 
@@ -33,9 +33,10 @@ If you need any removed functionality, just grab them from an earlier version of
 * `ProKeyboardActionHandler` is a new keyboard action handler with Pro-specific action handling.
 * `StandardKeyboardActionHandler` no longer registers most recent emojis. This has moved to Pro.
 * `SystemKeyboard` provides MUCH easier customization, but must be given explicit view builders.
+* `SystemKeyboard` now hides the `emoji` keyboard key, if the `emojiKeyboard` returns an `EmptyView`. 
 * `SystemKeyboard` provides you with a standard view in the view builder. Return $0.view or another view.
 * `SystemKeyboard` no longer adds an emoji keyboard, since this component has been moved to KeyboardKit Pro.
-* `SystemKeyboard` no longer hides or configures the autocomplete toolbar. You can do this in the new `toolbar` view builder. 
+* `SystemKeyboard` no longer auto-hides the autocomplete toolbar. You can do this in the `toolbar` view builder.
 
 ### ✨ New Features
 
@@ -60,6 +61,7 @@ If you need any removed functionality, just grab them from an earlier version of
 * Renamed types and functions are not included in these release notes.  
 
 * `AutocompleteProvider` is now async.
+* `EmojiKeyboard` use the standard style for the context as default.
 * `Gesture.KeyboardButtonGestures` no longer stops release on space.
 * `InputSet` has been converted to a struct and all sub types removed.
 * `KeyboardAction` no longer specifies a default action for `.nextKeyboard`.
@@ -72,6 +74,7 @@ If you need any removed functionality, just grab them from an earlier version of
 
 * `EmojiCategory` has been added from the base library.
 * `EmojiKeyboard` has been added from the base library.
+* `EmojiKeyboard` has a new state/services-based initializer.
 * `FeedbackToggle` init parameter is renamed to `configuration`.
 * `FullDocumentContextReader` has been removed (use proxy extensions).
 * `ProCalloutActionProvider` has new utility functions to return actions.

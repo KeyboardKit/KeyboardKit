@@ -45,8 +45,8 @@ struct DemoKeyboardView: View {
                 .padding(3)
 
             SystemKeyboard(
-                controller: controller,
-                autocompleteToolbar: .none,
+                state: controller.state,
+                services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },

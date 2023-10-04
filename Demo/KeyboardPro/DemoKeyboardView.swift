@@ -22,10 +22,14 @@ struct DemoKeyboardView: View {
 
     var body: some View {
         SystemKeyboard(
-            controller: controller,
+            state: controller.state,
+            services: controller.services,
             buttonContent: { $0.view },
             buttonView: { $0.view },
-            emojiKeyboard: { $0.view },
+            emojiKeyboard: { _ in EmojiKeyboard(
+                state: controller.state,
+                services: controller.services)
+            },
             toolbar: { $0.view }
         )
     }

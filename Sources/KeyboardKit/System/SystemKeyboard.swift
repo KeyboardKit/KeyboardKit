@@ -66,7 +66,7 @@ public struct SystemKeyboard<
     }
     
     /**
-     Create a system keyboard based on explicit properties.
+     Create a system keyboard based on raw properties.
      
      - Parameters:
        - layout: The layout to use.
@@ -94,6 +94,11 @@ public struct SystemKeyboard<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
+        if EmojiKeyboard.self == EmptyView.self {
+            let action = KeyboardAction.keyboardType(.emojis)
+            layout.itemRows.remove(action)
+        }
+        
         self.layout = layout
         self.layoutConfig = .standard(for: keyboardContext)
         self.actionHandler = actionHandler
@@ -377,6 +382,7 @@ private extension SystemKeyboard {
         ))
     }
 }
+
 
 #if os(iOS) || os(tvOS)
 /**

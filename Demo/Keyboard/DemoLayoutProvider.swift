@@ -10,7 +10,7 @@ import KeyboardKit
 
 /**
  This demo-specific provider inherits the standard one, then
- adds rocket and locale (if needed) keys after the space key.
+ adds a rocket and a locale key around the space key.
  */
 class DemoLayoutProvider: StandardKeyboardLayoutProvider {
 
@@ -32,6 +32,6 @@ private extension KeyboardLayout {
     
     func tryInsertRocketButton() {
         guard let button = tryCreateBottomRowItem(for:  .character("🚀")) else { return }
-        itemRows.insert(button, after: .space, atRow: bottomRowIndex)
+        itemRows.insert(button, before: .space, atRow: bottomRowIndex)
     }
 }

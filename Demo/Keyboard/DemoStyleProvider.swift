@@ -11,7 +11,7 @@ import SwiftUI
 
 /**
  This demo-specific provider inherits the standard one, then
- makes the rocket button black and its font larger.
+ makes the rocket button font larger.
  
  There's a bunch of disabled code that you can enable to see
  how the style of the keyboard changes.
@@ -29,11 +29,10 @@ class DemoStyleProvider: StandardKeyboardStyleProvider {
         for action: KeyboardAction,
         isPressed: Bool
     ) -> KeyboardStyle.Button {
-        var standard = super.buttonStyle(for: action, isPressed: isPressed)
         if action.isRocket {
-            standard.backgroundColor = isPressed ? .teal : .indigo
+            return super.buttonStyle(for: .backspace, isPressed: isPressed)
         }
-        return standard
+        return super.buttonStyle(for: action, isPressed: isPressed)
     }
     
     // override func buttonImage(for action: KeyboardAction) -> Image? {
