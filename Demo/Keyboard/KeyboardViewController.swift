@@ -24,19 +24,6 @@ class KeyboardViewController: KeyboardInputViewController {
      we make demo-specific service configurations.
      */
     override func viewDidLoad() {
-
-        /// 💡 Setup a custom keyboard locale.
-        ///
-        /// Without KeyboardKit Pro, changing locale will by
-        /// default only affects localized texts.
-        state.keyboardContext.setLocale(.english)
-
-        /// 💡 Add more locales to the keyboard.
-        ///
-        /// The demo layout provider will add a "next locale"
-        /// button if you have more than one locale.
-        state.keyboardContext.localePresentationLocale = .current
-        state.keyboardContext.locales = [] // KeyboardLocale.all.locales
         
         /// 💡 Setup a demo-specific action handler.
         ///
@@ -77,25 +64,39 @@ class KeyboardViewController: KeyboardInputViewController {
         services.styleProvider = DemoStyleProvider(
             keyboardContext: state.keyboardContext)
         
-        /// 💡 Configure the space long press behavior.
-        ///
-        /// The locale context menu will only open up if the
-        /// keyboard has multiple locales.
-        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
-        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
+        /// 💡 Setup a custom keyboard locale.
+        ///
+        /// Without KeyboardKit Pro, changing locale will by
+        /// default only affects localized texts.
+        state.keyboardContext.setLocale(.english)
+
+        /// 💡 Add more locales to the keyboard.
+        ///
+        /// The demo layout provider will add a "next locale"
+        /// button if you have more than one locale.
+        state.keyboardContext.localePresentationLocale = .current
+        state.keyboardContext.locales = [] // KeyboardLocale.all.locales
+        
         /// 💡 Setup a custom dictation key replacement.
         ///
         /// Since dictation is not available by default, the
         /// dictation button is removed if we don't set this.
         state.keyboardContext.keyboardDictationReplacement = .character("$")
         
-        /// 💡 Enable haptic feedback.
+        /// 💡 Configure the space long press behavior.
+        ///
+        /// The locale context menu will only open up if the
+        /// keyboard has multiple locales.
+        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
+        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
+        
+        /// 💡 Setup audio and haptic feedback.
         ///
         /// The default haptic feedback is `.minimal`, which
         /// only has haptic feedback for long press on space.
+        state.feedbackConfiguration.audioConfiguration.delete = .custom(id: 1329)
         state.feedbackConfiguration.enableHapticFeedback()
-        // state.feedbackConfiguration.audioConfiguration.input = .custom(id: 1329)
         
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
@@ -104,18 +105,14 @@ class KeyboardViewController: KeyboardInputViewController {
     /**
      This function is called whenever the keyboard should be
      created or updated.
-     
-     Here, we setup a custom system keyboard...although here
-     we actually just use the standard view.
      */
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
 
-        /// 💡 Make the demo use a ``SystemKeyboard``.
+        /// 💡 Make the demo use a standard ``SystemKeyboard``.
         ///
         /// This is not needed if you want to use a standard
-        /// system keyboard, but this is how you can replace
-        /// or customize the standard view.
+        /// view, but this is how you can setup a custom one.
         setup { controller in
             SystemKeyboard(
                 state: controller.state,

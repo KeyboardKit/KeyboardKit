@@ -111,36 +111,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Setup
 
-    /**
-     Setup KeyboardKit with a custom SwiftUI view.
-
-     Make sure to use the controller-based setup function if
-     your view needs to refer to the controller.
-     */
+    /// Setup KeyboardKit with a custom keyboard view.
     open func setup<Content: View>(
         with view: @autoclosure @escaping () -> Content
     ) {
         setup(withRootView: Keyboard.RootView(view))
     }
-
-    /**
-     Setup KeyboardKit with a custom SwiftUI view.
-
-     Make sure to use the controller-based setup function if
-     your view needs to refer to the controller.
-     */
-    open func setup<Content: View>(
-        with view: @escaping () -> Content
-    ) {
-        setup(withRootView: Keyboard.RootView(view))
-    }
-
-    /**
-     Setup KeyboardKit with a controller-based SwiftUI view.
-     
-     This function uses an `unowned` controller reference to
-     avoid memory leaks when referring to the controller.
-     */
+    
+    /// Setup KeyboardKit with a custom keyboard view.
     open func setup<Content: View>(
         with view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {
@@ -149,9 +127,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         })
     }
 
-    /**
-     This internal function is shared by all setup functions.
-     */
+    /// Setup KeyboardKit with a custom root view.
     func setup<Content: View>(withRootView view: Content) {
         self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
@@ -349,6 +325,13 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     @available(*, deprecated, message: "This is no longer used. Use the action handler's handle(_:) instead.")
     open func insertAutocompleteSuggestion(_ suggestion: Autocomplete.Suggestion) {
         services.actionHandler.handle(suggestion)
+    }
+    
+    @available(*, deprecated, message: "Use the controller-based setup function")
+    open func setup<Content: View>(
+        with view: @escaping () -> Content
+    ) {
+        setup(withRootView: Keyboard.RootView(view))
     }
 }
 

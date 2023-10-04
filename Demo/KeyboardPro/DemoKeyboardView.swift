@@ -15,20 +15,21 @@ import SwiftUI
  */
 struct DemoKeyboardView: View {
 
-    unowned var controller: KeyboardInputViewController
+    var state: Keyboard.KeyboardState
+    var services: Keyboard.KeyboardServices
 
     @EnvironmentObject
     private var keyboardContext: KeyboardContext
 
     var body: some View {
         SystemKeyboard(
-            state: controller.state,
-            services: controller.services,
+            state: state,
+            services: services,
             buttonContent: { $0.view },
             buttonView: { $0.view },
             emojiKeyboard: { _ in EmojiKeyboard(
-                state: controller.state,
-                services: controller.services)
+                state: state,
+                services: services)
             },
             toolbar: { $0.view }
         )

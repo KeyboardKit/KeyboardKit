@@ -16,6 +16,11 @@ import SwiftUI
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
  access to features like haptic feedback.
+
+ 💡 The project only links KeyboardKit Pro to the app target,
+ while the base library is linked to all targets that use it.
+ Since KeyboardKit Pro is a binary library, this is how it's
+ supposed to be linked, since extensions can still locate it.
  */
 class KeyboardViewController: KeyboardInputViewController {
 
@@ -31,7 +36,9 @@ class KeyboardViewController: KeyboardInputViewController {
         /// 💡 Make the demo use a ``DemoKeyboardView``.
         ///
         /// We get an `unowned` controller reference that we
-        /// pass into the view to help us avoid memory leaks.
-        setup(with: DemoKeyboardView.init)
+        /// can use to help us avoid memory leaks.
+        setup { controller in
+            DemoKeyboardView(controller: controller)
+        }
     }
 }

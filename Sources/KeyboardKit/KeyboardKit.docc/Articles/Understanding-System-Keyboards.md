@@ -23,7 +23,8 @@ class KeyboardController: KeyboardInputViewController {
         super.viewWillSetupKeyboard()
         setup { controller in
             SystemKeyboard(
-                controller: controller,
+                state: controller.state,
+                services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },
@@ -34,7 +35,7 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-The setup function's view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view.
+The setup view builder provides an **unowned** controller reference to help avoiding memory leaks. Use it to access its state and services, and avoid passing it around. If you do, make sure to keep any additional references to it unowned.
 
 
 ## How to customize a system keyboard

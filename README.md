@@ -111,7 +111,8 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewWillSetupKeyboard()
         setup { controller in
             SystemKeyboard(
-                controller: controller,
+                state: controller.state,
+                services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },
@@ -122,7 +123,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-The setup view builder provides an `unowned` controller reference to avoid reference cycles and memory leaks. Make sure to keep any additional references to it `unowned`, for instance when passing it into another view. 
+The setup view builder provides an `unowned` controller reference to help avoiding memory leaks. Use it to access its state and services, and avoid passing it around. If you do, make sure to keep any additional references to it **unowned**.
 
 For more information, please see the [online documentation][Documentation] and [getting-started guide][Getting-Started].
 
@@ -132,8 +133,6 @@ For more information, please see the [online documentation][Documentation] and [
 
 The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library and understand how they all connect to each other.
 
-The online documentation is currently iOS-specific. To generate documentation for the other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
-
 
 
 ## KeyboardKit Pro
@@ -142,27 +141,23 @@ The online documentation is currently iOS-specific. To generate documentation fo
 
 
 
-## App Store Application
+## KeyboardKit App
 
-If you want to try out KeyboardKit without having to write any code, there is a [KeyboardKit app][app-store] in the App Store, that lets you try out KeyboardKit and many of its features.
-
-The App Store app uses [KeyboardKit Pro][Pro] to provide support for 60+ locales, autocomplete, dictation, emoji skintones etc. 
+If you want to try out KeyboardKit without having to write any code, there is a [KeyboardKit app][app-store] that lets you try out KeyboardKit and many of its features.
 
 
 
 ## Demo Application
 
-This project has a demo app that lets you try out KeyboardKit and KeyboardKit Pro.
-
-The main app shows how to display keyboard state, link to system settings, etc.
+This project has a demo app that shows how to display keyboard state, link to system settings, etc.
 
 The demo app has three keyboards: 
 
-* `Keyboard` uses KeyboardKit and a `SystemKeyboard` with a standard, English locale.
-* `KeyboardPro` uses KeyboardKit Pro and a `SystemKeyboard` with all locales, autocomplete, etc.
-* `KeyboardTextInput` uses KeyboardKit and lets you test text input within the keyboard extension.
+* `Keyboard` uses KeyboardKit and a standard `SystemKeyboard`.
+* `KeyboardPro` uses KeyboardKit Pro and a `SystemKeyboard` with 60+ locales, autocomplete, etc.
+* `KeyboardTextInput` uses KeyboardKit Pro and lets you test using text input within the keyboard.
 
-Just open and run the demo app in the `Demo` folder, then enable the keyboards you want to try under System Settings. Note that you need to enable full access to try some features, like audio and haptic feedback.
+Just open and run the demo app in the `Demo` folder, then enable the keyboards you want under System Settings. Note that you need to enable full access for some features, like haptic feedback.
 
 
 
