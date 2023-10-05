@@ -124,9 +124,6 @@ public extension KeyboardLayout.Item {
 @available(*, deprecated, renamed: "KeyboardLayoutRowItem")
 public typealias KeyboardRowItem = KeyboardLayoutRowItem
 
-@available(*, deprecated, renamed: "Emojis.MostRecentProvider")
-public typealias MostFrequentEmojiProvider = Emojis.MostRecentProvider
-
 @available(*, deprecated, renamed: "InputSet")
 public typealias NumericInputSet = InputSet
 

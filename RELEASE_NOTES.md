@@ -97,8 +97,9 @@ If you run intoany breaking changes, please refer to the breaking changes sectio
 
 ### 👑 Pro Adjustments
 
-* `EmojiCategory` has been converted to a Pro feature.
-* `EmojiKeyboard` has been converted to a Pro feature.
+* Many emoji types have become Pro features.
+* Many routing types have become Pro features.
+
 * `EmojiKeyboard` has a new state/services initializer.
 * `EmojiKeyboard` has menu icons that look more native.
 * `ExternalKeyboardContext` class is now a Pro features.
@@ -124,6 +125,7 @@ If you run intoany breaking changes, please refer to the breaking changes sectio
 * All deprecated code has been removed.
 * DocC exposing types have been removed. 
 * Many emoji types have been moved to Pro.
+* Many routing types have been moved to Pro.
 * English input sets have been moved to Pro.
 * Changes with migration deprecations are not listed here.
 
@@ -134,9 +136,9 @@ If you run intoany breaking changes, please refer to the breaking changes sectio
 * `DisabledCalloutActionProvider` has been removed.
 * `EmojiKeyboardItem` has been removed.
 * `EmojiProvider` has been removed.
-* `EnglishCalloutActionProvider` has been moved to Pro.
+* `EnglishCalloutActionProvider` is now a Pro feature.
 * `EnglishKeyboardLayoutProvider` has been removed.
-* `ExternalKeyboardContext` has been moved to Pro.
+* `ExternalKeyboardContext` is now a Pro feature.
 * `FeatureToggle` has been removed.
 * `HapticFeedback.Engine` is no longer open to inheritance.
 * `KeyboardAction.emojiCategory` has been removed.
@@ -149,7 +151,7 @@ If you run intoany breaking changes, please refer to the breaking changes sectio
 * `KeyboardSettingsUrlProvider` has been removed (use `URL.keyboardSettings`).
 * `KeyboardStyle.EmojiKeyboard` has different parameters for the new menu design.
 * `KeyboardTextContext` was not used and has been removed to avoid complexity.
-* `Routing` text input components have been moved to Pro.
+* `Routing` text input components are now Pro features.
 * `KeyboardTextField` was not used and has been removed to avoid complexity.
 * `LocaleDirectionAnalyzer` has been removed (use `Locale` extensions).
 * `LocaleNameProvider` has been removed (use `Locale` extensions).
@@ -159,6 +161,7 @@ If you run intoany breaking changes, please refer to the breaking changes sectio
 * `StandardCalloutActionProvider.standardProvider` has been removed.
 * `StaticKeyboardLayoutProvider` has been removed.
 * `SystemKeyboard` now requires explicit view builders.
-* `SystemKeyboardItem` can no longer be initialized outside the library.
+* `SystemKeyboardItem` can no longer be initialized outside the library. 
+* `ToggleToolbar` is now a Pro feature.
 * `View.keyboardButtonStyle(...)` no longer has an `isPressed` parameter.
-* `WordAnalyzer` has been removed (use `String` extensions). 
+* `WordAnalyzer` has been removed (use `String` extensions).

@@ -4,7 +4,7 @@ This article describes the KeyboardKit text routing engine.
 
 iOS keyboard extensions use the native **UITextDocumentProxy** to integrate with the currently active application. However, if you have a text field *in* your keyboard, you need to find a way to route the text to that text field instead of the active application.  
 
-KeyboardKit adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textDocumentProxy`` that can be replaced with a custom proxy, and there are protocols that help you implement auto-routing in an easy way.
+KeyboardKit adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to route text from the original text document proxy to any other text field.
 
 [KeyboardKit Pro][Pro] unlocks even more capabilities, such as a text field and a text view that automatically register and resign as the main text document proxy. Information about Pro features can be found at the end of this article.
 
@@ -30,14 +30,6 @@ You can always access the original text document proxy with ``KeyboardInputViewC
 
 
 
-## Auto-routing keyboard input components
-
-To implement automatic text routing, you can let any UIKit **UIResponder & UITextInput** implement the ``KeyboardInputComponent`` protocol, then call the functions it provides to make it register and unregister as the main text document proxy.
-
-You can also let any SwiftUI view implement the ``KeyboardInputView`` protocol to apply a focused state, together with a done button that appears when the text field has focus.
-
-
-
 ## 👑 Pro features
 
 KeyboardKit Pro unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus:
@@ -46,6 +38,10 @@ KeyboardKit Pro unlocks text input components that automatically register and un
 * **KeyboardTextView** wraps a **UITextView** and can be used for multi-line text inputs.
 
 Both views also support SwiftUI **FocusState** and have a **focused** view modifier that lets you provide a custom done button that slides in when the view is focused.
+
+You can also let any **UIResponder & UITextInput** implement the **KeyboardInputComponent** protocol, then call its functions to make it register and unregister as the main text document proxy.
+
+You can also let any SwiftUI view implement the **KeyboardInputView** protocol to apply a focused state, together with a done button that appears when the text field has focus.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

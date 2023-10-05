@@ -24,8 +24,6 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     var audioEngine: MockAudioFeedbackEngine!
     var hapticEngine: MockHapticFeedbackEngine!
     
-    var originalEmojiProvider: FrequentEmojiProvider!
-    
 
     override func setUp() {
         controller = MockKeyboardInputViewController()
