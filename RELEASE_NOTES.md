@@ -91,6 +91,7 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `KeyboardInputViewController` is no longer used to insert suggestions.
 * `SystemKeyboard` no longer needs you to provide it with an explicit width.
 * `SystemKeyboard` now guides you to use the controller-based setup function.
+* `KeyboardInputViewController` `textDidChange` performs operations after a delay. 
 
 ### 👑 Pro Adjustments
 
@@ -107,6 +108,8 @@ If you run into breaking changes, please refer to the breaking changes section b
 ### 🐛 Bug fixes
 
 * `SystemKeyboard` now uses images for `.space` from the style provider.
+* `textDidChange` performs autocomplete after an async delay, to let the proxy update.
+* `textDidChange` applies autocapitalization after an async delay, to let the proxy update.
     
 ### 💥 Breaking changes 
 

@@ -195,9 +195,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         state.keyboardContext.syncTextDocumentProxy(with: self)
         state.keyboardContext.syncTextInputProxy(with: self)
     }
-
+    
     open override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
+        DispatchQueue.main.async { [weak self] in
+            self?.textDidChangeAsync(textInput)
+        }
+    }
+    
+    /// This function will be called with an async delay, to
+    /// give the text document proxy time to update itself.
+    open func textDidChangeAsync(_ textInput: UITextInput?) {
         performAutocomplete()
         tryChangeToPreferredKeyboardTypeAfterTextDidChange()
     }
