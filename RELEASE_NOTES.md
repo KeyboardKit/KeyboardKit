@@ -25,7 +25,9 @@ To make things even easier, the `SystemKeyboard` no longer needs an explicit wid
 
 All in all, these updates simplify future scaling of the library and has already enabled a new feature that fades out the system keyboard button labels while moving the input cursor with the space key. The next minor update will also support floating keyboards on iPad.
 
-Many emoji features, including the emoji keyboard and category information, are now Pro features. The system keyboard will automatically remove the emoji key if an emoji keyboard isn't provided.
+There are many quality of life improvements. Accessibility has been drastically improved when typing on the keyboard, and the emoji keyboard has been redesigned to look a lot more like the native keyboard.
+
+And speaking of emojis, many emoji features, including the emoji keyboard and category information, are now Pro features. The system keyboard will automatically remove the emoji key if an emoji keyboard isn't provided.
 
 Finally, the documentation has gotten a big overview, and will now provide you with a lot more information, more code examples, etc. Please reach out if you find any inconsistencies in the documentation, since much has changed in this version.
 
@@ -56,6 +58,7 @@ If you run into breaking changes, please refer to the breaking changes section b
 ### ✨ New Features
 
 * `InputSetBasedKeyboardLayoutProvider` is a new provider.
+* `KeyboardAction` now has a `standardAccessibilityLabel`.
 * `KeyboardAction.emoji` can now be created with a string.
 * `KeyboardActionHandler` now handles autocomplete suggestions.
 * `KeyboardButton` now has `edgeInsets` and an `isPressed` binding.
@@ -69,6 +72,7 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `StandardKeyboardActionHandler` can now be created on all supported platforms.
 * `StandardKeyboardStyleProvider` now adjusts styles when a space drag is active.
 * `View.keyboardButton` supports custom insets and applies a menu to `nextLocale`.
+* `View.keyboardButton` applies accessibility labels for actions that define them.
 * `View.keyboardButton` is a new extension that applies both a style and gestures.
 * `View.keyboardCalloutContainer` is a new extension that will apply both callouts. 
 * `View.keyboardLayoutItemSize` is a new extension that applies a layout item size.

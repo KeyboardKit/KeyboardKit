@@ -232,3 +232,47 @@ public extension KeyboardAction {
         }
     }
 }
+
+
+// MARK: - Accessibility
+
+public extension KeyboardAction {
+    
+    /**
+     The standard accessibility label for the action.
+     
+     This should be localized or at least use KKL10n to make
+     it easier to localize it in the future.
+     */
+    var standardAccessibilityLabel: String? {
+        switch self {
+        case .backspace: return "Backspace"
+        case .character(let char): return char
+        case .characterMargin: return nil
+        case .command: return "Command"
+        case .control: return "Control"
+        case .custom(let name): return name
+        case .dictation: return "Dictation"
+        case .dismissKeyboard: return "Dismiss Keyboard"
+        case .emoji(let emoji): return "Emoji - \(emoji)"
+        case .escape: return "Escape"
+        case .function: return "Function"
+        case .image(let desc, _, _): return desc
+        case .keyboardType(let keyboardType): return "Keyboard Type - \(keyboardType.id)"
+        case .moveCursorBackward: return "Move Cursor Backward"
+        case .moveCursorForward: return "Move Cursor Forward"
+        case .nextKeyboard: return "Next Keyboard"
+        case .nextLocale: return "Next Locale"
+        case .none: return nil
+        case .option: return "Option"
+        case .primary(let returnKeyType): return returnKeyType.id
+        case .settings: return "Settings"
+        case .shift: return "Shift"
+        case .space: return KKL10n.space.text
+        case .systemImage(let desc, _, _): return desc
+        case .systemSettings: return "System Settings"
+        case .tab: return "Tab"
+        case .url(let url, _): return "Open \(url?.absoluteString ?? "invalid url")"
+        }
+    }
+}

@@ -55,6 +55,20 @@ public extension View {
                 context: keyboardContext,
                 actionHandler: actionHandler
             )
+            .keyboardButtonAccessibility(for: action)
+    }
+    
+    @ViewBuilder
+    func keyboardButtonAccessibility(
+        for action: KeyboardAction
+    ) -> some View {
+        if let label = action.standardAccessibilityLabel {
+            self.accessibilityElement()
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(label)
+        } else {
+            self.accessibilityHidden(true)
+        }
     }
 }
 

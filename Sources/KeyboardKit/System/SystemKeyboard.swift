@@ -403,38 +403,39 @@ struct SystemKeyboard_Previews: PreviewProvider {
             return controller
         }()
         
-        func customEmojiKeyboard(_ color: Color) -> some View {
+        var emojiKeyboard: some View {
             Button {
                 controller.state.keyboardContext.keyboardType = .alphabetic(.lowercased)
             } label: {
-                color
+                Color.red
+                    .overlay(Text("Not implemented"))
             }
+        }
+        
+        var keyboard: some View {
+            SystemKeyboard(
+                state: controller.state,
+                services: controller.services,
+                buttonContent: { $0.view },
+                buttonView: { $0.view },
+                emojiKeyboard: { $0.view },
+                toolbar: { $0.view }
+            )
         }
 
         var body: some View {
             VStack(spacing: 10) {
                 Group {
-                    SystemKeyboard(
-                        state: .preview,
-                        services: .preview,
-                        buttonContent: { $0.view },
-                        buttonView: { $0.view },
-                        emojiKeyboard: { $0.view },
-                        toolbar: { $0.view }
-                    )
+                    ZStack {
+                        keyboard.offset(x: -200)
+                        keyboard.offset(x: 200)
+                    }
+                    
+                    keyboard.frame(width: 250)
                     
                     SystemKeyboard(
-                        state: .preview,
-                        services: .preview,
-                        buttonContent: { $0.view },
-                        buttonView: { $0.view },
-                        emojiKeyboard: { $0.view },
-                        toolbar: { $0.view }
-                    ).frame(width: 250)
-                    
-                    SystemKeyboard(
-                        state: .preview,
-                        services: .preview,
+                        state: controller.state,
+                        services: controller.services,
                         buttonContent: { param in
                             switch param.item.action {
                             case .backspace:
@@ -452,7 +453,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                             }
                         },
                         emojiKeyboard: { _ in
-                            customEmojiKeyboard(.yellow)
+                            emojiKeyboard
                         },
                         toolbar: { $0.view }
                     )
