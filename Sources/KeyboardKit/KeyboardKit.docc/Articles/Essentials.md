@@ -1,6 +1,6 @@
 # Essentials
 
-This article describes some essential types in KeyboardKit.
+This article describes some KeyboardKit essentials.
 
 KeyboardKit separates its functionality into groups, where the `_Keyboard` group (prefixed with underscore to be listed first) contains essential types.
 

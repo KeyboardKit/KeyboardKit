@@ -9,9 +9,11 @@
 import Foundation
 import SwiftUI
 
-/// This file contains TEMPORARY typealiases, that are meant
-/// to help developers upgrade from 7.x. These types will be
-/// removed in KeyboardKit 8.1.
+/*
+ This file contains TEMPORARY typealiases, that are meant to
+ help developers upgrade from 7.x. The types will be removed
+ in KeyboardKit 8.1.
+ */
 
 @available(*, deprecated, renamed: "Autocomplete.DisabledProvider")
 public typealias DisabledAutocompleteProvider = Autocomplete.DisabledProvider

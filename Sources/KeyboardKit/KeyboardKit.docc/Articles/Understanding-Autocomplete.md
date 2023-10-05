@@ -36,7 +36,7 @@ You can use these suggestions in any way you like. Views like the ``Autocomplete
 
 You are of course not restricted to use an ``AutocompleteToolbar``. You can use and present these suggestions in any way you want.
 
-If you need to reset autocomplete state, you can call the controller's ``KeyboardController/resetAutocomplete()`` or the context's ``AutocompleteContext/reset()`` functions. You can also set the context's ``AutocompleteContext/isEnabled`` to false to disable autocomplete altogether.
+If you need to reset autocomplete state, you can call the context's ``AutocompleteContext/reset()`` functions. You can also set the context's ``AutocompleteContext/isEnabled`` to false to disable autocomplete altogether.
 
 
 

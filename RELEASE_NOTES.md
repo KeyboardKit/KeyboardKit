@@ -13,34 +13,34 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
-Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit library.
+Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit SDK.
 
-KeyboardKit 8.0 is all about cleaning up and polishing the library to make it more approachable, better structured and easier to use.
+KeyboardKit 8.0 is all about cleaning up and polishing the SDK to make it more approachable, better structured and easier to use.
 
-This version removes all previously deprecated code, reorganizes types into namespaces for a streamlined library, and removes low-value utilities, such as types that only helped exposing functionality to DocC. This has helped reducing the codebase by about 25%.
+This version removes all previously deprecated code, reorganizes types into namespaces, and removes low-value utilities, including types solely used for DocC exposure. This has reduced the codebase by about 25%.
 
-Some central types, including `SystemKeyboard`, are much easier to use. You can for instance pass in state and services directly into the system keyboard, reducing memory leak risks by eliminating the need to pass around a controller. However, the controller’s setup function still offers an unowned reference for safetly accessing state and services.
+Central types like `SystemKeyboard` are now easier to use. Passing state and services instead of a controller reduces the riskfor memory leaks. However, the setup function still provides an unowned controller reference to safetly access its state and services.
 
-To make things even easier, the `SystemKeyboard` no longer needs an explicit width. It will now take up as much space as it can horizontally, and as much as it needs vertically. It also makes it a lot easier to provide a custom toolbar and emoji keyboard.
+The `SystemKeyboard` no longer needs you to provide a width. It will take up as much space as it can horizontally, and as much as it needs vertically. It also makes it a lot easier to provide a custom toolbar and emoji keyboard.
 
-All in all, these updates simplify future scaling of the library and has already enabled a new feature that fades out the system keyboard button labels while moving the input cursor with the space key. The next minor update will also support floating keyboards on iPad.
+These updates will simplify scaling the library and has helped enabling a new feature that fades the keyboard button labels while moving the cursor with the space key. The next update will support floating keyboards on iPad.
 
-There are many quality of life improvements. Accessibility has been drastically improved when typing on the keyboard, and the emoji keyboard has been redesigned to look a lot more like the native keyboard.
+There are many quality of life improvements and bug fixes. Accessibility has been drastically improved for Voice Over and the emoji keyboard has been redesigned to look a lot more like the native keyboard.
 
-And speaking of emojis, many emoji features, including the emoji keyboard and category information, are now Pro features. The system keyboard will automatically remove the emoji key if an emoji keyboard isn't provided.
+Most emoji features, including the emoji keyboard and category information, are now Pro features. The `SystemKeyboard` automatically removes the emoji key if no emoji keyboard is provided.
 
-Finally, the documentation has gotten a big overview, and will now provide you with a lot more information, more code examples, etc. Please reach out if you find any inconsistencies in the documentation, since much has changed in this version.
+The documentation has been extensively updated to provide more information and code examples. Please report any inconsistencies found, as many changes have been made in this version.
+
+I truly hope that you will love this major update to KeyboardKit. 
 
 
 ### 💡 Migrating from KeyboardKit 7
 
-Before you upgrade to KeyboardKit 8.0, it may be a good idea to upgrade to the last 7.x version, since it contains now removed deprecations and types.
+Consider upgrading to the last 7.x version of KeyboardKit before moving to 8.0, as it has types and deprecations that are removed in this version.
 
-KeyboardKit 8.0 includes temporary deprecations to assist migration from KeyboardKit 7. Follow the deprecation warnings for a proper code migration. 
+KeyboardKit 8.0 includes temporary deprecations to assist migration from KeyboardKit 7. These temporary deprecations will be removed in 8.1.
 
-These temporary deprecations will be removed in 8.1, so make sure that you always upgrade to 8.0 before upgrading to a later version.
-
-If you run into breaking changes, please refer to the breaking changes section below.
+If you run intoany breaking changes, please refer to the breaking changes section below.
 
 
 ### 🚨 Important information
@@ -100,12 +100,17 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `EmojiCategory` has been converted to a Pro feature.
 * `EmojiKeyboard` has been converted to a Pro feature.
 * `EmojiKeyboard` has a new state/services initializer.
-* `EmojiKeyboard` has a menu that looks more native now.
+* `EmojiKeyboard` has menu icons that look more native.
+* `ExternalKeyboardContext` class is now a Pro features.
 * `FeedbackToggle` parameter is renamed to configuration.
 * `FullDocumentContextReader` has been removed (use proxy).
-* `LocalAutocompleteProvider` now autocorrects "i" in English.
-* `ProKeyboardActionHandler` is a new Pro keybard action handler.
-* `SystemKeyboardButtonPreview` is a new system keyboard button preview. 
+* `KeyboardTextField` & `KeyboardTextView` are now Pro features.
+* `LocalAutocompleteProvider` autocorrects `i` to `I` in English.
+* `ProKeyboardActionHandler` is a new Pro keyboard action handler.
+* `ProCalloutActionProvider` is a new Pro callout action provider.
+* `RemoteAutocompleteProvider` is now available to all license tiers.
+* `SystemKeyboardButtonPreview` is a new system keyboard button preview.
+* `KeyboardInputViewController` has a license config action for both setups.
 
 ### 🐛 Bug fixes
 
@@ -144,6 +149,8 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `KeyboardSettingsUrlProvider` has been removed (use `URL.keyboardSettings`).
 * `KeyboardStyle.EmojiKeyboard` has different parameters for the new menu design.
 * `KeyboardTextContext` was not used and has been removed to avoid complexity.
+* `Routing` text input components have been moved to Pro.
+* `KeyboardTextField` was not used and has been removed to avoid complexity.
 * `LocaleDirectionAnalyzer` has been removed (use `Locale` extensions).
 * `LocaleNameProvider` has been removed (use `Locale` extensions).
 * `NextKeyboardController` has been made internal.

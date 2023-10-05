@@ -1,19 +1,21 @@
 # ``KeyboardKit``
 
-KeyboardKit helps you build custom keyboards with Swift and SwiftUI.
+KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift and SwiftUI.
 
 
 ## Overview
 
 ![KeyboardKit logo](Logo.png)
 
-KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift and SwiftUI. It extends Apple's native keyboard APIs and provides you with more functionality. 
+KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift and SwiftUI. 
 
-KeyboardKit lets you create keyboards that mimic the native iOS keyboards in a few lines of code. These keyboards can be customized to change input keys, layout, design, behavior etc.
+KeyboardKit extends Apple's native keyboard APIs and provides you with more functionality.
 
-KeyboardKit also lets you use completely custom views together with the features that the library provides. Most of the library can be used on all major Apple platforms.
+KeyboardKit lets you create keyboards that mimic native iOS keyboards in a few lines of code. 
 
-KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`, although some features are unavailable on some platforms.
+These keyboards can be customized to change input keys, layout, design, behavior etc. You can also use completely custom views.
+
+KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`.
 
 
 
@@ -41,11 +43,13 @@ KeyboardKit is localized in **60+** keyboard-specific locales:
 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 <br />
 🇺🇿 <br />
 
+Read more about localization in <doc:Understanding-Localization>.
+
 
 
 ## About this documentation
 
-The online documentation is currently iOS-specific. To generate documentation for other platforms, open the package in Xcode, select a simulator then run `Product/Build Documentation`.
+The online documentation is currently iOS-specific.
 
 
 
@@ -65,9 +69,10 @@ KeyboardKit is available under the MIT license.
 ### Getting Started
 
 - <doc:Getting-Started>
+- <doc:Essentials>
 
 ### Articles
-- <doc:Essentials>
+
 - <doc:Understanding-Actions>
 - <doc:Understanding-Autocomplete>
 - <doc:Understanding-Buttons>

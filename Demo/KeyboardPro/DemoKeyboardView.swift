@@ -10,8 +10,14 @@ import KeyboardKitPro
 import SwiftUI
 
 /**
- This view sets up a `SystemKeyboard` as a keyboard view. It
- is just to show you how you can use custom views.
+ This view uses a `SystemKeyboard` as the keyboard view.
+ 
+ The setup function will actually register a `SystemKeyboard`
+ by default if you don't provide a view when calling `setup`.
+ 
+ This custom view is just here to show you how you can setup
+ a custom view. Play around with the body content to see how
+ the keyboard extension changes.
  */
 struct DemoKeyboardView: View {
 

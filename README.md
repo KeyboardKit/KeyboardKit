@@ -18,15 +18,17 @@
 
 ## About KeyboardKit
 
-KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift and SwiftUI. It extends Apple's native keyboard APIs and provides you with more functionality.
+KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift and SwiftUI. 
 
-KeyboardKit lets you create keyboards that mimic the native iOS keyboards in a few lines of code. These keyboards can be customized to change input keys, layout, design, behavior etc.
+KeyboardKit extends Apple's native keyboard APIs and provides you with more functionality.
+
+KeyboardKit lets you create keyboards that mimic native iOS keyboards in a few lines of code. 
 
 <p align="center">
     <img src ="Resources/Demo.gif" width="300" />
 </p>
 
-KeyboardKit also lets you use completely custom views together with the features that the library provides. Most of the library can be used on all major Apple platforms.
+These keyboards can be customized to change input keys, layout, design, behavior etc. You can also use completely custom views.
 
 KeyboardKit supports `iOS 14`, `macOS 11`, `tvOS 14` and `watchOS 7`, although some features are unavailable on some platforms.
 
@@ -56,30 +58,38 @@ KeyboardKit is localized in [60+ keyboard-specific locales][Localization]:
 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 <br />
 🇺🇿 <br />
 
-KeyboardKit comes with localized input sets, layouts and callouts for U.S. English.
+KeyboardKit comes with basic input sets, layouts and secondary callout actions.
 
 
 
 ## Features
 
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
+
+* ⌨️ [Essentials][Essentials] - KeyboardKit comes with a bunch of essential functionality and types.
  
-* 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, emojis, actions, etc.
-* 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and present suggestions as the user types.
-* 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary action callouts.
-* 🎤 [Dictation][Dictation] - (BETA) KeyboardKit can perform dictation from the keyboard extension.
-* 😊 [Emojis][Emojis] - KeyboardKit defines emojis and emoji categories, as well as emoji keyboards.
-* ⌨️ [External Keyboards][External] - KeyboardKit lets you detect whether or not an external keyboard is connected.
-* 👋 [Feedback][Feedback] - KeyboardKit keyboards can give and haptic feedback feedback as the user types.
-* 👆 [Gestures][Gestures] - KeyboardKit has keyboard-specific gestures that you can use in your own keyboards.
-* ⌨️ [Keyboard][Keyboard] - KeyboardKit supports different keyboard types, provides observable keyboard state, etc.
-* 🔣 [Layout][Layout] - KeyboardKit supports creating keyboard layouts for various devices, locales etc.
-* 🌐 [Localization][Localization]- KeyboardKit supports LTR and RTL locales with localized content and assets.
-* 👁 [Previews][Previews] - KeyboardKit has utilites that help previewing keyboard views and components in SwiftUI.
-* ➡️ [Proxy Extensions][Proxy] - KeyboardKit extends `UITextDocumentProxy` and makes it do a lot more.
-* 🚏 [Routing][Routing] - KeyboardKit lets you route text to other destinations than the main app.
-* ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to an app's keyboard settings.
-* 🎨 [Styling][Styling] - KeyboardKit has a style engine that lets you style your keyboards to great extent.
+* 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, actions, etc.
+* 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and autocorrect.
+* 🔤 [Buttons][Buttons] - KeyboardKit can style any view as a keyboard button.
+* 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary callouts.
+* 🌈 [Colors][Colors] - KeyboardKit defines a bunch of keyboard-related colors.
+* 📱 [Device][Device] - KeyboardKit has a bunch of device-specific utilities.
+* 🎤 [Dictation][Dictation] - (BETA) KeyboardKit can perform dictation from the keyboard.
+* 😊 [Emojis][Emojis] - KeyboardKit defines an emoji type with a lot of nite information.
+* ⌨️ [External Keyboards][External] - KeyboardKit can detect if an external keyboard is connected.
+* 🔉 [Feedback][Feedback] - KeyboardKit can trigger audio and haptic feedback.
+* 👆 [Gestures][Gestures] - KeyboardKit has rich, keyboard-specific gestures.
+* 🖼️ [Images][Images] - KeyboardKit defines a bunch of keyboard-related images.
+* 🔣 [Layout][Layout] - KeyboardKit lets you define dynamic keyboard layouts.
+* 🌐 [Localization][Localization] - KeyboardKit supports LTR and RTL locales.
+* 🗺️ [Navigation][Navigation] - KeyboardKit lets you open urls and other apps.
+* 👁 [Previews][Previews] - KeyboardKit lets you preview views and components in SwiftUI.
+* ➡️ [Proxy Extensions][Proxy] - KeyboardKit makes `UITextDocumentProxy` do a LOT more.
+* 🚏 [Routing][Routing] - KeyboardKit lets you route text to text inputs within the keyboard.
+* ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to keyboard settings.
+* 🩺 [State][State] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
+* 🎨 [Styling][Styling] - KeyboardKit lets you style and customize your keyboards to great extent.
+* 🍏 [System][System] - KeyboardKit lets you create keyboards that mimic the native iOS keyboards.
 
 
 
@@ -100,9 +110,9 @@ class KeyboardController: KeyboardInputViewController {
 
 This gives your controller access to new lifecycle functions, observable state, services, and much more.
 
-KeyboardKit will by default use a standard ``SystemKeyboard``. If you just want to use this standard view, you don’t have to do anything.
+KeyboardKit will by default use a standard ``SystemKeyboard``. If you just want to use this standard view, you don’t have to do anything more.
 
-To customize the keyboard view, you can override `viewWillSetupKeyboard()` and call any of the `setup` functions with a custom view:
+To customize or replace the standard view, you can override `viewWillSetupKeyboard()` and call any of the `setup` functions with a custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -123,7 +133,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-The setup view builder provides an `unowned` controller reference to help avoiding memory leaks. Use it to access its state and services, and avoid passing it around. If you do, make sure to keep any additional references to it **unowned**.
+The setup view builder provides an `unowned` controller reference to help avoiding memory leaks. Use it to access its state and services, and avoid passing it around.
 
 For more information, please see the [online documentation][Documentation] and [getting-started guide][Getting-Started].
 
@@ -131,19 +141,21 @@ For more information, please see the [online documentation][Documentation] and [
 
 ## Documentation
 
-The [online documentation][Documentation] has articles, code examples etc. that let you overview the various parts of the library and understand how they all connect to each other.
+The [online documentation][Documentation] has articles, code examples etc.
 
 
 
 ## KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] extends KeyboardKit with pro features, such as localized keyboards and services, autocomplete, dictation, emoji skintones, additional views etc. It lets you create fully localized keyboards with a single line of code.
+[KeyboardKit Pro][Pro] extends KeyboardKit with a lot of Pro features, such as localized keyboards and services, autocomplete, dictation, pro emoji features (keyboards, categories, versions, skintones, etc). 
+
+KeyboardKit Pro lets you create fully localized keyboards with a single line of code.
 
 
 
 ## KeyboardKit App
 
-If you want to try out KeyboardKit without having to write any code, there is a [KeyboardKit app][app-store] that lets you try out KeyboardKit and many of its features.
+If you want to try out KeyboardKit Pro without having to write any code, there is a [KeyboardKit app][app-store] in the App Store.
 
 
 
@@ -157,11 +169,13 @@ The demo app has three keyboards:
 * `KeyboardPro` uses KeyboardKit Pro and a `SystemKeyboard` with 60+ locales, autocomplete, etc.
 * `KeyboardTextInput` uses KeyboardKit Pro and lets you test using text input within the keyboard.
 
-Just open and run the demo app in the `Demo` folder, then enable the keyboards you want under System Settings. Note that you need to enable full access for some features, like haptic feedback.
+Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. 
+
+Note that you need to enable full access for some features, like haptic feedback.
 
 
 
-## Support
+## Support this project
 
 KeyboardKit is open-source and completely free, but you can sponsor this project on [GitHub Sponsors][Sponsors], upgrade to [KeyboardKit Pro][Pro] or [get in touch][Email] for freelance work, paid support etc.
 
@@ -196,21 +210,28 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 
-[Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions
-[Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete
-[Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts
-[Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation
-[Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis
-[External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards
-[Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback
-[Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures
-[Keyboard]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
-[Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout
-[Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization
-[Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews
-[Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/proxy-extensions
-[Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/routing
-[Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings
-[Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling
+[Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
+[Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete
+[Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-buttons
+[Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-callouts
+[Colors]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-colors
+[Device]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-device-utilities
+[Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-dictation
+[Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-emojis
+[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-essentials
+[External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-external-keyboards
+[Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-feedback
+[Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-gestures
+[Images]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-images
+[Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-layout
+[Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-localization
+[Navigation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-navigation
+[Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-previews
+[Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-proxy-utilities
+[Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-routing
+[Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-settings
+[State]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-state
+[Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-styling
+[System]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-system-keyboards
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE

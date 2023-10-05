@@ -1,6 +1,6 @@
 # Getting Started
 
-This article discusses how get started with KeyboardKit.
+This article describes how to get started with KeyboardKit.
 
 You can use KeyboardKit in many different ways:
 
