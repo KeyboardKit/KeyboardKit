@@ -74,16 +74,20 @@ struct Image_Previews: PreviewProvider {
     
     static var images: [Image] = [
         .keyboard,
+        .keyboardAudioFeedbackEnabled,
+        .keyboardAudioFeedbackDisabled,
         .keyboardBackspace,
+        .keyboardBackspaceRtl,
         .keyboardCommand,
         .keyboardControl,
-        .keyboardDictation,
         .keyboardDictation,
         .keyboardDismiss,
         .keyboardEmail,
         .keyboardEmoji,
         .keyboardEmojiSymbol,
         .keyboardGlobe,
+        .keyboardHapticFeedbackEnabled,
+        .keyboardHapticFeedbackDisabled,
         .keyboardImages,
         .keyboardLeft,
         .keyboardNewline,
@@ -97,21 +101,27 @@ struct Image_Previews: PreviewProvider {
         .keyboardShiftUppercased,
         .keyboardTab,
         .keyboardUndo,
-        .keyboardZeroWidthSpace]
+        .keyboardZeroWidthSpace
+    ]
     
     static func listItem(for image: Image) -> some View {
         image
-            .frame(width: 100, height: 60)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .padding(5)
             .background(Color.primary.colorInvert())
     }
     
     static var previews: some View {
         let images = Self.images.map { (UUID(), $0)}
-        VStack {
-            ForEach(images, id: \.0) { img in
-                HStack {
-                    listItem(for: img.1)
-                    listItem(for: img.1).colorScheme(.dark)
+        ScrollView(.horizontal) {
+            HStack(spacing: 0) {
+                ForEach(images, id: \.0) { img in
+                    VStack(spacing: 0) {
+                        listItem(for: img.1)
+                        listItem(for: img.1).colorScheme(.dark)
+                    }
+                    .frame(height: 70)
                 }
             }
         }.previewLayout(.sizeThatFits)
