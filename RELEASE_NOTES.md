@@ -107,6 +107,7 @@ If you run into breaking changes, please refer to the breaking changes section b
 
 ### 🐛 Bug fixes
 
+* `KeyboardAction.backspace` didn't properly trigger autocapitalization.
 * `SystemKeyboard` now uses images for `.space` from the style provider.
 * `textDidChange` performs autocomplete after an async delay, to let the proxy update.
 * `textDidChange` applies autocapitalization after an async delay, to let the proxy update.

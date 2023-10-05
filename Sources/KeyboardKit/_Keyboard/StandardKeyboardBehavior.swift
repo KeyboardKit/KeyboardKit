@@ -144,9 +144,13 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     ) -> Bool {
         // if action.isAlternateQuotationDelimiter(for: context) { return true }
         switch action {
+        case .backspace: return isPreferredKeyboardDifferent
         case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType
         case .shift: return true
-        default: return gesture == .release && keyboardContext.keyboardType != keyboardContext.preferredKeyboardType
+        default:
+            let isRelease = gesture == .release
+            let isDifferent = isPreferredKeyboardDifferent
+            return isRelease && isDifferent
         }
     }
     
@@ -155,11 +159,17 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
      after the text document proxy text did change.
      */
     public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
-        keyboardContext.keyboardType != keyboardContext.preferredKeyboardType
+        isPreferredKeyboardDifferent
     }
 }
 
 private extension StandardKeyboardBehavior {
+    
+    var isPreferredKeyboardDifferent: Bool {
+        let current = keyboardContext.keyboardType
+        let preferred = keyboardContext.preferredKeyboardType
+        return current != preferred
+    }
     
     var isDoubleShiftTap: Bool {
         guard keyboardContext.keyboardType.isAlphabetic else { return false }
