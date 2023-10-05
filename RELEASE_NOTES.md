@@ -103,6 +103,10 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `LocalAutocompleteProvider` now autocorrects "i" in English.
 * `ProKeyboardActionHandler` is a new Pro keybard action handler.
 * `SystemKeyboardButtonPreview` is a new system keyboard button preview. 
+
+### 🐛 Bug fixes
+
+* `SystemKeyboard` now uses images for `.space` from the style provider.
     
 ### 💥 Breaking changes 
 

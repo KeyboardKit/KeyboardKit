@@ -56,15 +56,19 @@ private extension KeyboardButton.Content {
 
     @ViewBuilder
     var bodyContent: some View {
-        if action == .space {
-            spaceView
-        } else if let image = styleProvider.buttonImage(for: action) {
+        if let image = styleProvider.buttonImage(for: action) {
             image.scaleEffect(styleProvider.buttonImageScaleFactor(for: action))
+        } else if action == .space {
+            spaceView
         } else if let text = styleProvider.buttonText(for: action) {
             textView(for: action, text: text)
         } else {
             Text("")
         }
+    }
+    
+    var spaceImage: Image? {
+        styleProvider.buttonImage(for: .space)
     }
     
     var spaceView: some View {
