@@ -62,6 +62,7 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `KeyboardContext` has proxy properties that mirror the controller.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
 * `KeyboardLocale` has new, convenient collection extensions to get locales.
+* `KeyboardStyle.EmojiKeyboard` has a lot more configuration parameters now.
 * `SpaceDragGestureHandler` properties are now mutable to allow customizations.
 * `SystemKeyboard` has new view builders to make it MUCH easier to customize it.
 * `SystemKeyboard` now fades out the buttons when a space cursor drag is active.
@@ -92,10 +93,12 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `EmojiCategory` has been converted to a Pro feature.
 * `EmojiKeyboard` has been converted to a Pro feature.
 * `EmojiKeyboard` has a new state/services initializer.
+* `EmojiKeyboard` has a menu that looks more native now.
 * `FeedbackToggle` parameter is renamed to configuration.
 * `FullDocumentContextReader` has been removed (use proxy).
-* `ProKeyboardActionHandler` is a new action handler for Pro.
-* `SystemKeyboardButtonPreview` is a new system button preview. 
+* `LocalAutocompleteProvider` now autocorrects "i" in English.
+* `ProKeyboardActionHandler` is a new Pro keybard action handler.
+* `SystemKeyboardButtonPreview` is a new system keyboard button preview. 
     
 ### 💥 Breaking changes 
 
@@ -125,6 +128,7 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `KeyboardContext` `textDocumentProxy` is read-only, but `originalTextDocumentProxy` can be set.
 * `KeyboardHostingController` has been made internal.
 * `KeyboardSettingsUrlProvider` has been removed (use `URL.keyboardSettings`).
+* `KeyboardStyle.EmojiKeyboard` has different parameters for the new menu design.
 * `KeyboardTextContext` was not used and has been removed to avoid complexity.
 * `LocaleDirectionAnalyzer` has been removed (use `Locale` extensions).
 * `LocaleNameProvider` has been removed (use `Locale` extensions).

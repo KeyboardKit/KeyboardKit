@@ -10,35 +10,35 @@ import SwiftUI
 
 public extension Image {
     
-    static var keyboard: Image { .symbol("keyboard") }
+    static var keyboard = symbol("keyboard")
     static var keyboardAudioFeedbackEnabled = symbol("speaker.fill")
     static var keyboardAudioFeedbackDisabled = symbol("speaker")
-    static var keyboardBackspace: Image { .symbol("delete.left") }
-    static var keyboardBackspaceRtl: Image { .symbol("delete.right") }
-    static var keyboardCommand: Image { .symbol("command") }
-    static var keyboardControl: Image { .symbol("control") }
-    static var keyboardDictation: Image { .symbol("mic") }
-    static var keyboardDismiss: Image { .symbol("keyboard.chevron.compact.down") }
-    static var keyboardEmail: Image { .symbol("envelope") }
-    static var keyboardEmoji: Image { .asset("keyboardEmoji") }
-    static var keyboardEmojiSymbol: Image { .symbol("face.smiling") }
-    static var keyboardGlobe: Image { .symbol("globe") }
+    static var keyboardBackspace = symbol("delete.left")
+    static var keyboardBackspaceRtl = symbol("delete.right")
+    static var keyboardCommand = symbol("command")
+    static var keyboardControl = symbol("control")
+    static var keyboardDictation = symbol("mic")
+    static var keyboardDismiss = symbol("keyboard.chevron.compact.down")
+    static var keyboardEmail = symbol("envelope")
+    static var keyboardEmoji = asset("keyboardEmoji")
+    static var keyboardEmojiSymbol = symbol("face.smiling")
+    static var keyboardGlobe = symbol("globe")
     static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
     static var keyboardHapticFeedbackDisabled = symbol("hand.tap")
-    static var keyboardImages: Image { .symbol("photo") }
-    static var keyboardLeft: Image { .symbol("arrow.left") }
-    static var keyboardNewline: Image { .symbol("arrow.turn.down.left") }
-    static var keyboardNewlineRtl: Image { .symbol("arrow.turn.down.right") }
-    static var keyboardOption: Image { .symbol("option") }
-    static var keyboardRedo: Image { .symbol("arrow.uturn.right") }
-    static var keyboardRight: Image { .symbol("arrow.right") }
-    static var keyboardSettings: Image { .symbol("gearshape") }
-    static var keyboardShiftCapslocked: Image { .symbol("capslock.fill") }
-    static var keyboardShiftLowercased: Image { .symbol("shift") }
-    static var keyboardShiftUppercased: Image { .symbol("shift.fill") }
-    static var keyboardTab: Image { .symbol("arrow.right.to.line") }
-    static var keyboardUndo: Image { .symbol("arrow.uturn.left") }
-    static var keyboardZeroWidthSpace: Image { .symbol("circle.dotted") }
+    static var keyboardImages = symbol("photo")
+    static var keyboardLeft = symbol("arrow.left")
+    static var keyboardNewline = symbol("arrow.turn.down.left")
+    static var keyboardNewlineRtl = symbol("arrow.turn.down.right")
+    static var keyboardOption = symbol("option")
+    static var keyboardRedo = symbol("arrow.uturn.right")
+    static var keyboardRight = symbol("arrow.right")
+    static var keyboardSettings = symbol("gearshape")
+    static var keyboardShiftCapslocked = symbol("capslock.fill")
+    static var keyboardShiftLowercased = symbol("shift")
+    static var keyboardShiftUppercased = symbol("shift.fill")
+    static var keyboardTab = symbol("arrow.right.to.line")
+    static var keyboardUndo = symbol("arrow.uturn.left")
+    static var keyboardZeroWidthSpace = symbol("circle.dotted")
     
     static func keyboardBackspace(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardBackspace : .keyboardBackspaceRtl
@@ -62,7 +62,7 @@ public extension Image {
 extension Image {
 
     static func asset(_ name: String) -> Image {
-        Image("keyboardEmoji", bundle: .keyboardKit)
+        Image(name, bundle: .keyboardKit)
     }
 
     static func symbol(_ name: String) -> Image {

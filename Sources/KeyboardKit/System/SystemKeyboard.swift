@@ -365,7 +365,6 @@ private extension SystemKeyboard {
             style: KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext),
             view: EmptyView()
         ))
-        .padding(.top)
         .opacity(shouldShowEmojiKeyboard ? 1 : 0)
     }
     
