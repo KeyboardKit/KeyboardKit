@@ -16,6 +16,12 @@ public extension KeyboardStyle {
     /**
      This style defines the style of a keyboard button.
      
+     The style can define things like a background color and
+     style, foreground color, button shape etc.
+     
+     The background style is more flexible than a background
+     color. You can use either or both.
+     
      This type has no `standard` style, since a button style
      depends on many factors.
      */
@@ -25,6 +31,7 @@ public extension KeyboardStyle {
          Create a keyboard button style.
          
          - Parameters:
+           - background: The background style to apply to the button, by default `nil`.
            - backgroundColor: The background color to apply to the button, by default `nil`.
            - foregroundColor: The border color to apply to the button, by default `nil`.
            - font: The font to apply to the button, by default `nil`.
@@ -34,6 +41,7 @@ public extension KeyboardStyle {
            - pressedOverlayColor: The color to overlay the background color when pressed, by default `nil`.
          */
         public init(
+            background: KeyboardStyle.Background? = nil,
             backgroundColor: Color? = nil,
             foregroundColor: Color? = nil,
             font: KeyboardFont? = nil,
@@ -42,6 +50,7 @@ public extension KeyboardStyle {
             shadow: ShadowStyle? = nil,
             pressedOverlayColor: Color? = nil
         ) {
+            self.background = background
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
             self.font = font
@@ -55,6 +64,9 @@ public extension KeyboardStyle {
         
         public typealias BorderStyle = KeyboardStyle.ButtonBorder
         public typealias ShadowStyle = KeyboardStyle.ButtonShadow
+        
+        /// The background style to apply to the button.
+        public var background: KeyboardStyle.Background?
         
         /// The background color to apply to the button.
         public var backgroundColor: Color?

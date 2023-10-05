@@ -83,6 +83,28 @@ Most styles have a **.standard** style that you can use as a template. The stand
 
 
 
+## Keyboard button styles
+
+Most view that support styling let you pass in a style in their initializer. For instance, here we apply a custom autocomplete toolbar style that makes the item title font bold:
+
+```swift
+var style = KeyboardStyle.AutocompleteToolbar.standard
+style.item.titleFont = .body.weight(.bold)
+
+let bar = AutocompleteToolbar(
+    suggestions: [],
+    style: style
+)
+```
+
+The ``KeyboardStyle/Button`` is different from most other styles, since it can style any view to look like a keyboard button, using the `.keyboardButtonStyle(...)` view modifier. 
+
+The ``KeyboardStyle/Button`` style also doesn't have a **.standard** style, since the style of a keyboard button depends on so many factors, such as button type, device type, keyboard appearance, color scheme, etc.
+
+You can use a ``KeyboardStyleProvider`` to create dynamic button styles. Views like the ``SystemKeyboard`` use a style provider to get a button style for each keyboard button, based on the button action, current device, etc. 
+
+
+
 ## Style providers
 
 A ``KeyboardStyleProvider`` can return dynamic styles for different parts of the keyboard. Unlike static styles, style providers can vary styles depending on the ``KeyboardContext``, ``KeyboardAction`` etc.
