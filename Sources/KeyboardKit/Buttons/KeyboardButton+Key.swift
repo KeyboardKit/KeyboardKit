@@ -40,10 +40,11 @@ public extension KeyboardButton {
         public var body: some View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .strokeBorder(borderColor, lineWidth: borderLineWidth)
+                .background(style.background?.backgroundView)
                 .background(backgroundColor)
                 .overlay(isPressed ? style.pressedOverlayColor : .clear)
                 .cornerRadius(cornerRadius)
-                .overlay(Shadow(style: style))
+                .overlay(KeyboardButton.Shadow(style: style))
         }
     }
 }
@@ -60,11 +61,12 @@ public extension KeyboardButton.Key {
 }
 
 struct KeyboardButton_Body_Previews: PreviewProvider {
-
+    
     static var previews: some View {
         VStack {
             KeyboardButton.Key(style: .preview1)
             KeyboardButton.Key(style: .preview2)
+            KeyboardButton.Key(style: .previewImage)
         }
         .padding()
         .background(Color.gray)

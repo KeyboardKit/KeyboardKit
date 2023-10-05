@@ -33,7 +33,8 @@ public extension KeyboardStyle {
          - Parameters:
            - backgroundColor: A background color to apply, by default `nil`.
            - backgroundGradient: A background gradient color set, by default `nil`.
-           - imageData: Optional image data that can be used to create a background image, by default `nil`.
+           - imageData: Optional image data for a background image, by default `nil`.
+           - imageContentMode: The background image content mode, by default `.fill`.
            - overlayColor: An overlay color to apply, by default `nil`.
            - overlayGradient: An overlay gradient color set, by default `nil`.
          */
@@ -41,14 +42,30 @@ public extension KeyboardStyle {
             backgroundColor: Color? = nil,
             backgroundGradient: [Color]? = nil,
             imageData: Data? = nil,
+            imageContentMode: ImageContentMode = .fill,
             overlayColor: Color? = nil,
             overlayGradient: [Color]? = nil
         ) {
             self.backgroundColor = backgroundColor
             self.backgroundGradient = backgroundGradient
             self.imageData = imageData
+            self.imageContentMode = imageContentMode
             self.overlayColor = overlayColor
             self.overlayGradient = overlayGradient
+        }
+        
+        
+        /// This enum contains codable mode representations.
+        public enum ImageContentMode: String, Codable {
+            case stretch, fill, fit
+            
+            var nativeMode: ContentMode? {
+                switch self {
+                case .stretch: return nil
+                case .fill: return .fill
+                case .fit: return .fit
+                }
+            }
         }
         
         /// A background color to apply.
@@ -57,8 +74,11 @@ public extension KeyboardStyle {
         /// A background gradient color set.
         public var backgroundGradient: [Color]?
         
-        /// Optional image data that can be used to create a background image.
+        /// Optional image data for a background image.
         public var imageData: Data?
+        
+        /// An optional image content mode.
+        public var imageContentMode: ImageContentMode
         
         /// An overlay color to apply.
         public var overlayColor: Color?
@@ -102,11 +122,25 @@ public extension KeyboardStyle.Background {
             }
             image(from: imageData)?
                 .resizable()
-                .aspectRatio(contentMode: .fill)
+                .optionalAspectRatio(with: imageContentMode)
             if let overlayGradient {
                 LinearGradient(colors: overlayGradient, startPoint: .top, endPoint: .bottom)
             }
             overlayColor
+        }
+    }
+}
+
+private extension View {
+    
+    @ViewBuilder
+    func optionalAspectRatio(
+        with mode: KeyboardStyle.Background.ImageContentMode
+    ) -> some View {
+        if let mode = mode.nativeMode {
+            self.aspectRatio(contentMode: mode)
+        } else {
+            self
         }
     }
 }
@@ -124,5 +158,20 @@ private extension KeyboardStyle.Background {
         #else
         return Image(systemImage: "exclamationmark.triangle")
         #endif
+    }
+}
+
+struct KeyboardStyle_Background_Previews: PreviewProvider {
+    
+    static var previews: some View {
+        VStack {
+            KeyboardButton.Key(style: .preview1)
+            KeyboardButton.Key(style: .preview2)
+            KeyboardButton.Key(style: .previewImage)
+        }
+        .padding()
+        .background(Color.gray)
+        .cornerRadius(10)
+        .environment(\.sizeCategory, .extraExtraLarge)
     }
 }

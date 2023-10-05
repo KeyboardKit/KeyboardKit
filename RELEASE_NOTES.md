@@ -65,6 +65,7 @@ If you run into breaking changes, please refer to the breaking changes section b
 * `KeyboardContext` has proxy properties that mirror the controller.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
 * `KeyboardLocale` has new, convenient collection extensions to get locales.
+* `KeyboardStyle.Background` now supports specifying the image content mode.
 * `KeyboardStyle.Button` now supports background color AND background style.
 * `KeyboardStyle.EmojiKeyboard` has a lot more configuration parameters now.
 * `SpaceDragGestureHandler` properties are now mutable to allow customizations.

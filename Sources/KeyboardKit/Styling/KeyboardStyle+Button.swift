@@ -285,6 +285,18 @@ extension KeyboardStyle.Button {
         border: .previewStyle2,
         shadow: .previewStyle2
     )
+    
+    static let previewImage: KeyboardStyle.Button = {
+        var style = KeyboardStyle.Button.preview1
+        let image = UIImage(systemName: "face.smiling")
+        if let data = image?.pngData() {
+            style.background = .image(data)
+            style.backgroundColor = .green
+        } else {
+            style.backgroundColor = .red
+        }
+        return style
+    }()
 }
 
 extension KeyboardStyle.ButtonBorder {
