@@ -4,7 +4,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
-    <img src="https://img.shields.io/badge/swift-5.6-orange.svg" alt="Swift 5.6" />
+    <img src="https://img.shields.io/badge/swift-5.7-orange.svg" alt="Swift 5.6" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
     <a href="https://twitter.com/getkeyboardkit">
         <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" />
@@ -73,8 +73,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 🌈 [Colors][Colors] - KeyboardKit defines a bunch of keyboard-related colors.
 * 📱 [Device][Device] - KeyboardKit has a bunch of device-specific utilities.
 * 🎤 [Dictation][Dictation] - (BETA) KeyboardKit can perform dictation from the keyboard.
-* 😊 [Emojis][Emojis] - KeyboardKit defines an emoji type with a lot of nite information.
-* ⌨️ [External Keyboards][External] - KeyboardKit can detect if an external keyboard is connected.
+* 😀 [Emojis][Emojis] - KeyboardKit defines an emoji type with a lot of nite information.
 * 🔉 [Feedback][Feedback] - KeyboardKit can trigger audio and haptic feedback.
 * 👆 [Gestures][Gestures] - KeyboardKit has rich, keyboard-specific gestures.
 * 🖼️ [Images][Images] - KeyboardKit defines a bunch of keyboard-related images.
@@ -83,27 +82,25 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 🗺️ [Navigation][Navigation] - KeyboardKit lets you open urls and other apps.
 * 👁 [Previews][Previews] - KeyboardKit lets you preview views and components in SwiftUI.
 * ➡️ [Proxy Extensions][Proxy] - KeyboardKit makes `UITextDocumentProxy` do a LOT more.
-* 🚏 [Routing][Routing] - KeyboardKit lets you route text to text inputs within the keyboard.
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to keyboard settings.
 * 🩺 [State][State] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - KeyboardKit lets you style and customize your keyboards to great extent.
 * 🍏 [System][System] - KeyboardKit lets you create keyboards that mimic the native iOS keyboards.
 
+[KeyboardKit Pro][Pro] extends these features with many pro features, such as fully localized keyboards, autocomplete, emoji keyboards, dictation, etc.
+
 
 
 ## Getting Started
 
-The online documentation has a [getting-started guide][Getting-Started] that helps you get started.
+The online documentation has a [getting-started guide][Getting-Started] that helps you get started with KeyboardKit.
 
 After installing KeyboardKit, just `import KeyboardKit` and make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
 
-class KeyboardController: KeyboardInputViewController {
-
-    ...
-}
+class KeyboardController: KeyboardInputViewController {}
 ```
 
 This gives your controller access to new lifecycle functions, observable state, services, and much more.
@@ -151,15 +148,9 @@ KeyboardKit Pro lets you create fully localized keyboards with a single line of 
 
 
 
-## KeyboardKit App
+## Demo App
 
-If you want to try out KeyboardKit Pro without having to write any code, there is a [KeyboardKit app][app-store] in the App Store.
-
-
-
-## Demo Application
-
-This project has a demo app that shows how to display keyboard state, link to system settings, etc.
+The KeyboardKit repository has a demo app that shows how to display keyboard state, link to system settings, etc.
 
 The demo app has three keyboards: 
 
@@ -167,9 +158,13 @@ The demo app has three keyboards:
 * `KeyboardPro` uses KeyboardKit Pro and a `SystemKeyboard` with 60+ locales, autocomplete, etc.
 * `KeyboardTextInput` uses KeyboardKit Pro and lets you test using text input within the keyboard.
 
-Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. 
+Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. Note that you need to enable full access for some features, like haptic feedback.
 
-Note that you need to enable full access for some features, like haptic feedback.
+
+
+## KeyboardKit App
+
+If you want to try KeyboardKit Pro without having to write any code or build the demo app from Xcode, there is a [KeyboardKit app][app-store] in the App Store.
 
 
 
@@ -203,7 +198,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
-[Gumroad]: https://danielsaidi.gumroad.com
+[Gumroad]: https://kankoda.gumroad.com
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started

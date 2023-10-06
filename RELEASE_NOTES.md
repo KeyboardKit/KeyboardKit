@@ -15,32 +15,26 @@ These release notes will only contain the current version. Just check out an old
 
 Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit SDK.
 
-KeyboardKit 8.0 is all about cleaning up and polishing the SDK to make it more approachable, better structured and easier to use.
+KeyboardKit 8.0 is all about cleaning up the library to make it more approachable, better structured and easier to use. It removes all previously deprecated code, reorganizes types into namespaces, and removes low-value utilities, including types solely used for DocC exposure.
 
-This version removes all previously deprecated code, reorganizes types into namespaces, and removes low-value utilities, including types solely used for DocC exposure. This has reduced the codebase by about 25%.
+Central types like `SystemKeyboard` are now easier to use. Passing state and services instead of a controller reduces the risk for memory leaks. It also no longer needs you to provide a width, but will take up as much space as it needs. It also makes it a easier to provide customize its views.
 
-Central types like `SystemKeyboard` are now easier to use. Passing state and services instead of a controller reduces the riskfor memory leaks. However, the setup function still provides an unowned controller reference to safetly access its state and services.
+These updates will simplify scaling the library and has helped enabling new features like fading the keyboard buttons while moving the cursor with space. There are many quality of life and bug fixes. Accessibility has been drastically improved for Voice Over and the emoji keyboard has been redesigned.
 
-The `SystemKeyboard` no longer needs you to provide a width. It will take up as much space as it can horizontally, and as much as it needs vertically. It also makes it a lot easier to provide a custom toolbar and emoji keyboard.
+Most emoji features, including the emoji keyboard and emoji category information, are now Pro features. The `SystemKeyboard` automatically removes the emoji key if no custom emoji keyboard is provided in the view builder.
 
-These updates will simplify scaling the library and has helped enabling a new feature that fades the keyboard button labels while moving the cursor with the space key. The next update will support floating keyboards on iPad.
+The documentation has been extensively updated to provide more information and code examples. Please report any inconsistencies found, as much is rewritten.
 
-There are many quality of life improvements and bug fixes. Accessibility has been drastically improved for Voice Over and the emoji keyboard has been redesigned to look a lot more like the native keyboard.
-
-Most emoji features, including the emoji keyboard and category information, are now Pro features. The `SystemKeyboard` automatically removes the emoji key if no emoji keyboard is provided.
-
-The documentation has been extensively updated to provide more information and code examples. Please report any inconsistencies found, as many changes have been made in this version.
-
-I truly hope that you will love this major update to KeyboardKit. 
+I hope that you will love this major update to KeyboardKit. 
 
 
 ### 💡 Migrating from KeyboardKit 7
 
+KeyboardKit 8.0 includes TEMPORARY deprecations to assist migration from KeyboardKit 7. They will be removed in 8.1. Just follow the deprecations to migrate your 7.x code to 8.0.
+
 Consider upgrading to the last 7.x version of KeyboardKit before moving to 8.0, as it has types and deprecations that are removed in this version.
 
-KeyboardKit 8.0 includes temporary deprecations to assist migration from KeyboardKit 7. These temporary deprecations will be removed in 8.1.
-
-If you run intoany breaking changes, please refer to the breaking changes section below.
+See the breaking changes section below if you run into any breaking changes. Reach out if you run into problems that are not mentioned here.
 
 
 ### 🚨 Important information
