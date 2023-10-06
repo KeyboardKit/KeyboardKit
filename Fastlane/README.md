@@ -39,10 +39,10 @@ Run SwiftLint
 
 Run unit tests
 
-### ios ensure_release_ready
+### ios version_test
 
 ```sh
-[bundle exec] fastlane ios ensure_release_ready
+[bundle exec] fastlane ios version_test
 ```
 
 Ensure that the repo is valid for release
