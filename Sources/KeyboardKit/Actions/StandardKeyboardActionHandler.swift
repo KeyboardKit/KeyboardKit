@@ -343,6 +343,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Deprecated
     
+    #if os(iOS) || os(tvOS)
     @available(*, deprecated, message: "Use the controller initializer instead")
     public init(
         inputViewController ivc: KeyboardInputViewController,
@@ -402,6 +403,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             }
         )
     }
+    #endif
 }
 
 private extension StandardKeyboardActionHandler {

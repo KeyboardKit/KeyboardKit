@@ -29,14 +29,22 @@ public extension KeyboardPreviews {
 public extension Keyboard.KeyboardServices {
     
     static var preview: Keyboard.KeyboardServices {
+        #if os(iOS) || os(tvOS)
         KeyboardInputViewController.preview.services
+        #else
+        Keyboard.KeyboardServices(state: .preview)
+        #endif
     }
 }
 
 public extension Keyboard.KeyboardState {
     
     static var preview: Keyboard.KeyboardState {
+        #if os(iOS) || os(tvOS)
         KeyboardInputViewController.preview.state
+        #else
+        Keyboard.KeyboardState()
+        #endif
     }
 }
 

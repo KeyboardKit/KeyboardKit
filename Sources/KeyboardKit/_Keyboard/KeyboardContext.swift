@@ -137,7 +137,7 @@ public class KeyboardContext: ObservableObject {
     
     /// A custom text proxy to which text can be routed.
     @Published
-    public var textInputProxy: TextInputProxy? = nil
+    public var textInputProxy: TextInputProxy?
     
     
     // MARK: - iOS/tvOS properties
@@ -154,10 +154,12 @@ public class KeyboardContext: ObservableObject {
     
     // MARK: - Deprecations
     
+    #if os(iOS) || os(tvOS)
     @available(*, deprecated, renamed: "originalTextDocumentProxy")
     open var mainTextDocumentProxy: UITextDocumentProxy {
         originalTextDocumentProxy
     }
+    #endif
 }
 
 

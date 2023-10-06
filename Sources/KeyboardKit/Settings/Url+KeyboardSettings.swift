@@ -31,7 +31,7 @@ public extension URL {
      but this name was selected to reduce the risk of naming
      conflicts with other URL extensions.
      */
-    static var keyboardSettings : URL? {
+    static var keyboardSettings: URL? {
         #if os(iOS) || os(tvOS)
         URL(string: UIApplication.openSettingsURLString)
         #else

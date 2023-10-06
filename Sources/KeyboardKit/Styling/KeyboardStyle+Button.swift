@@ -288,13 +288,14 @@ extension KeyboardStyle.Button {
     
     static let previewImage: KeyboardStyle.Button = {
         var style = KeyboardStyle.Button.preview1
+        style.backgroundColor = .red
+        #if canImport(UIKit)
         let image = UIImage(systemName: "face.smiling")
         if let data = image?.pngData() {
             style.background = .image(data)
             style.backgroundColor = .green
-        } else {
-            style.backgroundColor = .red
         }
+        #endif
         return style
     }()
 }

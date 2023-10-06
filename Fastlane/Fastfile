@@ -38,7 +38,6 @@ platform :ios do
 
   desc "Ensure that the repo is valid for release"
   lane :version_test do |options|
-    ensure_git_status_clean
     ensure_git_branch(branch: options[:branch])
     lint
     test
@@ -50,6 +49,7 @@ platform :ios do
 
   desc "Create a new version"
   lane :version do |options|
+    ensure_git_status_clean
     version_test(branch: main_branch)
 
     bump_type = options[:type]
