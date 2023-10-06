@@ -5,44 +5,8 @@ default_platform :ios
 platform :ios do
 
   library_name = "KeyboardKit"
-  pod_name = "KeyboardKit"
   main_branch = "master"
   build_folder_docs = ".build/docs"
-
-
-  # Documentation ==============
-
-  desc "Generate documentation"
-  lane :documentation do
-      docc_web
-  end
-
-
-  # Lint =======================
-
-  desc "Run SwiftLint"
-  lane :lint do
-    swiftlint(strict: true)
-  end
-
-
-  # Test ===================
-
-  desc "Run unit tests"
-  lane :test do
-    sh("swift test")
-  end
-
-
-  # Validate ===================
-
-  desc "Ensure that the repo is valid for release"
-  lane :version_test do |options|
-    ensure_git_branch(branch: options[:branch])
-    lint
-    test
-    documentation
-  end
 
 
   # Version ================
@@ -50,11 +14,12 @@ platform :ios do
   desc "Create a new version"
   lane :version do |options|
     ensure_git_status_clean
-    version_test(branch: main_branch)
+    ensure_git_branch(branch: main_branch)
+    version_build
 
     bump_type = options[:type]
     version = version_bump_podspec(
-      path: pod_name + '.podspec',
+      path: 'Version',
       bump_type: bump_type)
 
     git_commit(path: "*", message: "Bump to #{version}")
@@ -62,6 +27,13 @@ platform :ios do
     push_git_tags()
     push_to_git_remote()
     pod_push()
+  end
+  
+  desc "Build a new version"
+  lane :version_build
+    swiftlint(strict: true)
+    sh("swift test")
+    docc
   end
 
 
@@ -74,6 +46,10 @@ platform :ios do
     docc_platform(destination: 'OS X', name: 'osx')
     docc_platform(destination: 'tvOS', name: 'tvos')
     docc_platform(destination: 'watchOS', name: 'watchos')
+    docc_web_platform(name: 'ios')
+    docc_web_platform(name: 'osx')
+    docc_web_platform(name: 'tvos')
+    docc_web_platform(name: 'watchos')
   end
 
   desc "Build documentation for a single platform"
@@ -96,15 +72,6 @@ platform :ios do
     sh('find ~/Library/Developer/Xcode/DerivedData \
       -name "' + library_name + '.doccarchive" \
       -exec rm -Rf {} \; || true')
-  end
-
-  desc "Build static documentation websites for all platforms"
-  lane :docc_web do
-    docc
-    docc_web_platform(name: 'ios')
-    docc_web_platform(name: 'osx')
-    docc_web_platform(name: 'tvos')
-    docc_web_platform(name: 'watchos')
   end
 
   desc "Build static documentation website for a single platform"
