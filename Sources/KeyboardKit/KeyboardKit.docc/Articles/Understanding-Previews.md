@@ -104,7 +104,7 @@ SystemKeyboardButtonPreview(...)        // A system button preview.
 SystemKeyboardButtonThemePreview(...)   // A system button preview for a theme.
 ```
 
-These previews only render lightweight buttons. See <doc:Understanding-System-Keyboards> for more information.
+These previews only render lightweight buttons. See <doc:Essentials> for more information.
 
 > Note: These previews are *not* in the **KeyboardPreviews** namespace, since they are meant to be used in apps as well. They are however mentioned here, since it may be the most obvious place to look.
 

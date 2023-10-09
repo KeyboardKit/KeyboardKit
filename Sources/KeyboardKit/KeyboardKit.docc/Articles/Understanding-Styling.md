@@ -289,7 +289,7 @@ To preview many themes at once, you can use this more lightweight preview:
 SystemKeyboardButtonThemePreview(...)   // A system button preview for a theme.
 ```
 
-This preview only renders lightweight buttons. See <doc:Understanding-System-Keyboards> for more information.
+This preview only renders lightweight buttons. See <doc:Essentials> for more information.
 
 
 ### License Requirements

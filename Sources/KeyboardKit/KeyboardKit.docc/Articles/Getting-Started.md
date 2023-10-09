@@ -62,7 +62,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
 The setup view builder provides an **unowned** controller reference to help avoiding memory leaks. Use it to access its state and services, and avoid passing it around. If you do, make sure to keep any additional references to it unowned.
 
-Read more about how to customize the system keyboard in <doc:Understanding-System-Keyboards>. 
+Read more about how to customize the system keyboard in <doc:Essentials>. 
 
 
 

@@ -85,7 +85,6 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * ⚙️ [Settings][Settings] - KeyboardKit has tools for accessing and linking to keyboard settings.
 * 🩺 [State][State] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - KeyboardKit lets you style and customize your keyboards to great extent.
-* 🍏 [System][System] - KeyboardKit lets you create keyboards that mimic the native iOS keyboards.
 
 [KeyboardKit Pro][Pro] extends these features with many pro features, such as fully localized keyboards, autocomplete, emoji keyboards, dictation, etc.
 
@@ -225,6 +224,5 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-settings
 [State]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-state
 [Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-styling
-[System]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-system-keyboards
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE

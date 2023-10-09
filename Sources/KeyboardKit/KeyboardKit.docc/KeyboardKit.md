@@ -93,7 +93,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Settings>
 - <doc:Understanding-State>
 - <doc:Understanding-Styling>
-- <doc:Understanding-System-Keyboards>
 
 ### Essentials
 
@@ -103,6 +102,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``StandardKeyboardBehavior``
+- ``SystemKeyboard``
+- ``SystemKeyboardItem``
 
 ### Actions
 
@@ -212,8 +213,3 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardStyleProvider``
 
 - ``StandardKeyboardStyleProvider``
-
-### System Keyboard
-
-- ``SystemKeyboard``
-- ``SystemKeyboardItem``

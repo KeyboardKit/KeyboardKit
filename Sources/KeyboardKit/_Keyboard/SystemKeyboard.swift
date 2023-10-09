@@ -21,7 +21,7 @@ import SwiftUI
  call any of the `setup(with:)` functions with a custom view.
  
  For more information on how to customize this view, as well
- as code examples, see <doc:Understanding-System-Keyboards>.
+ as code examples, see <doc:Essentials>.
  */
 public struct SystemKeyboard<
     ButtonContent: View,
