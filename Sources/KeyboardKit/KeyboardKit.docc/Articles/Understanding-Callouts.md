@@ -4,7 +4,7 @@ This article describes the KeyboardKit callout engine.
 
 Callouts are an important part of the typing experience, where input callouts show the currently pressed key and action callouts present secondary keyboard actions.
 
-In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to an ``CalloutContext``, which in turn will update views like ``Callouts/ActionCallout``.
+In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to a ``CalloutContext``, which in turn will update views like ``Callouts/ActionCallout``.
 
 KeyboardKit will bind a ``StandardCalloutActionProvider`` instance to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this provider at any time.
 

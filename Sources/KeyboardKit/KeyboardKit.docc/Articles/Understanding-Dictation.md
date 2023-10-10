@@ -36,7 +36,7 @@ KeyboardKit automatically creates an instance of this class and binds it to ``Ke
 
 You can use a ``DictationService`` to perform dictation where microphone access is available, such as in an app.
 
-Since dictation may stop at any time, for instance by silence, the service must describe how to access the result. For instance, the StandardDictationService in KeyboardKit Pro will continously update a ``DictationContext`` to let you observe the dictated text.
+Since dictation may stop at any time, for instance by silence, the service must describe how to access the result. For instance, the **ProDictationService** in KeyboardKit Pro will continously update a ``DictationContext`` to let you observe the dictated text.
 
 A dictation service can call ``DictationService/requestDictationAuthorization()`` to ask the user for the required permissions before starting a dictation operation. You can call this function manually as well, to avoid interrupting the first dictation operation with alerts.
 
@@ -55,6 +55,9 @@ Keyboard dictation should open the app and make it start dictation, write the di
 ## 👑 Pro features
 
 [KeyboardKit Pro][Pro] unlocks additional dictation services when you register a valid license key, plus tools that let you setup dictation with just a few simple steps.
+
+* **ProDictationService** - Can perform dictation within an app.
+* **ProKeyboardDictationService** - Can perform dictation from a keyboard.
 
 KeyboardKit Pro will also add a bunch of dictation-related views to the ``Dictation`` namespace, such as **Dictation.BarVisualizer**, **Dictation.Screen**, etc.
 

@@ -82,7 +82,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional ``InputSet``s, as well as localized ``InputSet``s and ``KeyboardLayoutProvider``s for all localess in your license when you register a valid license key, then injects all providers into the ``StandardCalloutActionProvider``.
+[KeyboardKit Pro][Pro] unlocks additional ``InputSet``s, as well as localized ``InputSet``s and ``KeyboardLayoutProvider``s for all locales in your license when you register a valid license key, then injects all providers into the ``StandardCalloutActionProvider``.
 
 You can access all locale-specific input sets that your license unlocks like this:
 

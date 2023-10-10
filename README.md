@@ -65,7 +65,6 @@ KeyboardKit comes with basic input sets, layouts and secondary callout actions.
 KeyboardKit comes packed features to help you build amazing and powerful keyboards:
 
 * ⌨️ [Essentials][Essentials] - KeyboardKit comes with a bunch of essential functionality and types.
- 
 * 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, actions, etc.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and autocorrect.
 * 🔤 [Buttons][Buttons] - KeyboardKit can style any view as a keyboard button.
@@ -78,7 +77,7 @@ KeyboardKit comes packed features to help you build amazing and powerful keyboar
 * 👆 [Gestures][Gestures] - KeyboardKit has rich, keyboard-specific gestures.
 * 🖼️ [Images][Images] - KeyboardKit defines a bunch of keyboard-related images.
 * 🔣 [Layout][Layout] - KeyboardKit lets you define dynamic keyboard layouts.
-* 🌐 [Localization][Localization] - KeyboardKit supports LTR and RTL locales.
+* 🌐 [Localization][Localization] - KeyboardKit supports 60+ locales.
 * 🗺️ [Navigation][Navigation] - KeyboardKit lets you open urls and other apps.
 * 👁 [Previews][Previews] - KeyboardKit lets you preview views and components in SwiftUI.
 * ➡️ [Proxy Extensions][Proxy] - KeyboardKit makes `UITextDocumentProxy` do a LOT more.
@@ -202,6 +201,8 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 
+[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
+
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete
 [Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-buttons
@@ -210,7 +211,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Device]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-device-utilities
 [Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-dictation
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-emojis
-[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-essentials
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-external-keyboards
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-feedback
 [Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-gestures
