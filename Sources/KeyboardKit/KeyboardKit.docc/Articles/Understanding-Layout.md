@@ -8,7 +8,7 @@ In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important concepts to 
 
 KeyboardKit will bind a ``StandardKeyboardLayoutProvider`` to ``KeyboardInputViewController/services`` when the keyboard is loaded. It has a QWERTY layout by default, but you can inject localized providers into it or modify it, or replace it, at any time.
 
-[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit **ProKeyboardLayoutProvider** for more features. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers localized input sets and layout providers. Information about Pro features can be found at the end of this article.
 
 
 
@@ -82,7 +82,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional ``InputSet``s, as well as localized ``InputSet``s and ``KeyboardLayoutProvider``s for all locales in your license when you register a valid license key, then injects all providers into the ``StandardCalloutActionProvider``.
+[KeyboardKit Pro][Pro] unlocks a localized ``InputSet`` and ``KeyboardLayoutProvider`` for each locale in your license and injects them into the ``StandardKeyboardLayoutProvider``.
 
 You can access all locale-specific input sets that your license unlocks like this:
 
@@ -145,4 +145,5 @@ func setupCustomServices(with license: License) {
 You can add a custom initializer to your custom provider if you need additional setup, then just call `super.init` to setup the rest.
 
 
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro   
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro

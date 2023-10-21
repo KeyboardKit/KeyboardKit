@@ -6,7 +6,7 @@ Interactive SwiftUI previews are a great way to work on your project in Xcode wi
 
 KeyboardKit has preview-configured service and state instances, that can be used in your interactive previews. This makes it easy to set up and preview your keyboard-specific functionality directly in Xcode.
 
-[KeyboardKit Pro][Pro] unlocks powerful system keyboard and theme previews when you register a valid license key. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks powerful system keyboard and theme previews. Information about Pro features can be found at the end of this article.
 
 
 

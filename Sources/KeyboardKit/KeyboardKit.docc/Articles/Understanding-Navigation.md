@@ -6,7 +6,7 @@ Keyboards sometimes have to open urls, trigger deeplinks or navigate from the ke
 
 KeyboardKit therefore has a ``KeyboardUrlOpener`` that can open any URLs from a keyboard extension, without using **UIApplication**.
 
-[KeyboardKit Pro][Pro] unlocks a **PreviousAppNavigator** that can be used to navigate back to the previously opened app, e.g. after dictation. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks a **PreviousAppNavigator** that can navigate back to the previously opened app, e.g. after dictation. Information about Pro features can be found at the end of this article.
 
 
 

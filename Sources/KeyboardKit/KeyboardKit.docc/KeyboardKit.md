@@ -89,10 +89,10 @@ KeyboardKit is available under the MIT license.
 - <doc:Understanding-Navigation>
 - <doc:Understanding-Previews>
 - <doc:Understanding-Proxy-Utilities>
-- <doc:Understanding-Routing>
 - <doc:Understanding-Settings>
 - <doc:Understanding-State>
 - <doc:Understanding-Styling>
+- <doc:Understanding-Text-Routing>
 
 ### Essentials
 

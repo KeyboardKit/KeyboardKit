@@ -75,36 +75,16 @@ Since **UITextDocumentProxy** extensions are not included in the generated docum
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional text document proxy capabilities when you register a valid license.
-
-The Silver and Gold licenses provide ways to read the full document context from the text document proxy, instead of the limited text amount you can read by default.
+[KeyboardKit Pro][Pro] unlocks additional text document proxy capabilities, such as the ability to read the full document content instead of the limited text amount you get access to by default.
 
 
 ### How to read the full document context
 
-As you may have noticed, the proxy's **documentContextBeforeInput** and **documentContextAfterInput** properties don't return all text before and after the input cursor. Any new paragraph may at any time stop the proxy from reading more content.
+As you may have noticed, the `UITextDocumentProxy`'s  **documentContextBeforeInput** and **documentContextAfterInput** don't return *all* text before and after the input cursor. Any new paragraph may at any time stop the proxy from reading more content.
 
 This makes it hard to perform more complex operations, such as proof-reading a document, provide AI-based functionality, etc.
 
-KeyboardKit Pro therefore unlocks additional **UITextDocumentProxy** extensions to let you read all text from the text document proxy:
-
-- fullDocumentContext(_:)
-- fullDocumentContextBeforeInput(_:)
-- fullDocumentContextAfterInput(_:)
-
-These async functions tries to read the full document text by moving the input cursor back and forward to get access to more text. It's not a fail-safe operation, but has been tweaked to provide as accurate results as possible to as many device types as possible.
-
-Calling these functions will cause the keyboard extension to navigate through the entire text mass by moving the input cursor around in the text document, after which it will return the cursor to its original position.
-
-
-### How to configure the full document read operation
-
-If you need to configure the read operation, you can pass in a custom **Proxy.FullDocumentConfiguration** that lets you tweak factors like sleep time and how many times to try to read more content at the detected end.
-
-
-### How to use async functions in SwiftUI
-
-Since the full document context functions are `async`, you need to wrap them in a task when calling them from SwiftUI, for instance:
+KeyboardKit Pro therefore unlocks additional proxy extensions that let you read all text from the text document proxy. Just use the `fullDocumentContext` alternatives instead of `documentContext` to read all the available text:
 
 ```swift
 struct KeyboardView: View {
@@ -129,6 +109,12 @@ struct KeyboardView: View {
     }
 }
 ```
+
+These functions read the full document by moving the input cursor to get access to more text. It's not a fail-safe operation, but has been tweaked to provide as accurate results as possible to as many device types as possible.
+
+If you need to configure the read operation, you can pass in a custom **Proxy.FullDocumentConfiguration** that lets you tweak factors like sleep time and how many times to try to read more content at the detected end.
+
+Since the full document context functions are `async`, you need to wrap them in a task when calling them from SwiftUI, for instance.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

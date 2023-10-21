@@ -8,7 +8,7 @@ In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary act
 
 KeyboardKit will bind a ``StandardCalloutActionProvider`` instance to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this provider at any time.
 
-[KeyboardKit Pro][Pro] unlocks and registers localized providers for all keyboard locales when you register a valid license key. It also lets you inherit **ProCalloutActionProvider** for more features. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers localized action providers. Information about Pro features can be found at the end of this article.
 
 
 
@@ -96,7 +96,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks localized ``CalloutActionProvider``s for all ``KeyboardLocale``s in your license and automatically injects them into the ``StandardCalloutActionProvider`` when you register a valid license key.
+[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for each locale in your license and injects them into the ``StandardCalloutActionProvider``.
 
 You can access all providers that your license unlocks like this:
 
@@ -110,7 +110,7 @@ and locale-specific providers like this:
 let provider = try ProCalloutActionProvider.Swedish()
 ```
 
-The `ProCalloutActionProvider` base class provides more convenience functions for specifying actions. You can inherit it, or any of the available localized versions, to customize the base behavior:
+The **ProCalloutActionProvider** base class provides more convenience functions for specifying actions. You can inherit it, or any of the available localized versions, to customize the base behavior:
 
 ```swift
 class CustomCalloutActionProvider: ProCalloutActionProvider.Swedish {

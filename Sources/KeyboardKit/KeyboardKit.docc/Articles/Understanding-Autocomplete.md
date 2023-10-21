@@ -8,7 +8,7 @@ In KeyboardKit, an ``AutocompleteProvider`` can be used to provide suggestions t
 
 KeyboardKit doesn't have a standard provider as it has for other services. Instead, it binds a disabled provider to ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
-[KeyboardKit Pro][Pro] unlocks and registers a local autocomplete provider when you register a valid license key. More information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks and registers local autocomplete. More information about Pro features can be found at the end of this article.
 
 
 
@@ -133,7 +133,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and binds a **LocalAutocompleteProvider** instance to ``KeyboardInputViewController/services`` when you register a valid license key.
+[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and binds a **LocalAutocompleteProvider** instance to ``KeyboardInputViewController/services``.
 
 ### LocalAutocompleteProvider
 

@@ -8,7 +8,7 @@ KeyboardKit therefore provides a bunch of essential types and functionality to s
 
 KeyboardKit also has a ``SystemKeyboard`` component that can be used to create keyboards that mimic the native iOS keyboard. It can be customized and styled to great extent.
 
-[KeyboardKit Pro][Pro] adds an **EmojiKeyboard** to the system keyboard and unlocks powerful system keyboard previews when you register a valid license key. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks pro features for the system keyboard. Information about Pro features can be found at the end of this article.
 
 
 
@@ -132,7 +132,7 @@ In the code above, the backspace button content is replaced with a trashbin icon
 
 ## 👑 Pro features
 
-KeyboardKit Pro unlocks powerful preview and emoji capabilities when you register a valid license key.
+KeyboardKit Pro unlocks powerful preview and emoji capabilities for the system keyboard.
 
 
 ### Emojis

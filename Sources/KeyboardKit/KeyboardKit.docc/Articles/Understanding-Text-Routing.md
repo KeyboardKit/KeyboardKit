@@ -1,4 +1,4 @@
-# Understanding Routing
+# Understanding Text Routing
 
 This article describes the KeyboardKit text routing engine.
 

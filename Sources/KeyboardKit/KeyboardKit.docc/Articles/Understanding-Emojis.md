@@ -4,13 +4,13 @@ This article describes the KeyboardKit emoji engine.
 
 KeyboardKit provides you with an ``Emoji`` type that has unicode and emoji information, an emoji localization engine, etc.
 
-[KeyboardKit Pro][Pro] unlocks an emoji keyboard, as well as emoji categories, keyboards, skintones, version information, etc., when you register a valid license key. Information about these Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks an emoji keyboard, as well as emoji categories, keyboards, skintones, version information, etc. Information about Pro features can be found at the end of this article.
 
 
 
 ## Emojis namespace
 
-KeyboardKit has an ``Emojis`` namespace that contains emoji-related types and views. KeyboardKit Pro adds pro emoji features to this namespace when you register a valid license key.
+KeyboardKit has an ``Emojis`` namespace that contains emoji-related types and views. KeyboardKit Pro adds more features to this namespace.
 
 The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
 
@@ -38,7 +38,6 @@ Emojis can be localized with the localization files found in the `Sources/Resour
 let emoji = Emoji("😀")
 emoji.localizedName(for: .english) // Grinning Face
 emoji.localizedName(for: .swedish) // Leende Ansikte
-emoji.localizedName(for: .spanish) // Grinning Face
 ```
 
 To localize emojis for a locale, add translations to the correct `Localizable.strings` file on this format:
@@ -73,7 +72,7 @@ These extensions make it easier to handle text and inputs, and are used to power
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks emoji categories, keyboards, skintones, version information, etc., when you register a valid license key.
+[KeyboardKit Pro][Pro] unlocks an emoji keyboard, categories, keyboards, skintones, version info, etc.
 
 
 ### Emoji Keyboard

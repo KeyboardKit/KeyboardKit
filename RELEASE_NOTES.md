@@ -100,12 +100,14 @@ See the breaking changes section below if you run into any breaking changes. Rea
 * `FeedbackToggle` parameter is renamed to configuration.
 * `FullDocumentContextReader` has been removed (use proxy).
 * `KeyboardTextField` & `KeyboardTextView` are now Pro features.
+* `License.register` is now `async`.
 * `LocalAutocompleteProvider` autocorrects `i` to `I` in English.
 * `ProKeyboardActionHandler` is a new Pro keyboard action handler.
 * `ProCalloutActionProvider` is a new Pro callout action provider.
 * `RemoteAutocompleteProvider` is now available to all license tiers.
 * `SystemKeyboardButtonPreview` is a new system keyboard button preview.
 * `KeyboardInputViewController` has a license config action for both setups.
+* `KeyboardInputViewController` no longer returns the resolved rlicense.
 
 ### 🐛 Bug fixes
 

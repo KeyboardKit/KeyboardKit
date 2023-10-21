@@ -8,7 +8,7 @@ KeyboardKit uses ``KeyboardStyle`` types to style its views. For instance, a ``K
 
 KeyboardKit will bind a ``StandardKeyboardStyleProvider`` instance to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this provider at any time. 
 
-[KeyboardKit Pro][Pro] unlocks a powerful theme engine and a bunch of themes when you register a valid license key. More information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks a powerful theme engine and a bunch of themes. More information about Pro features can be found at the end of this article.
 
 
 
