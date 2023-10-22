@@ -144,6 +144,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Properties
     
+    /// The error that was thrown when pro was setup.
+    open var proSetupError: Error?
+    
     /// The original text document proxy.
     open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
