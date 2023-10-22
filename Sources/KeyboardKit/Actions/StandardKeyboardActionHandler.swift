@@ -22,9 +22,9 @@ import Foundation
  KeyboardKit automatically creates an instance of this class
  and binds it to ``KeyboardInputViewController/services``.
  
- > Important: Make sure you inherit ProKeyboardActionHandler
- instead of this when using a custom action handler with Pro,
- otherwise the keyboard will not register most recent emojis.
+ > Important: Make sure to inherit `ProKeyboardActionHandler`
+ instead of this class when using Pro, otherwise it will not
+ register the most recent emojis.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     

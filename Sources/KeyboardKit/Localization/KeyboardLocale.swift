@@ -20,6 +20,13 @@ public enum KeyboardLocale: String,
                             Codable,
                             Identifiable {
     
+    /// Try to map a fuzzy name to a keyboard locale.
+    public init?(fuzzyName: String) {
+        let match = Self.allCases.first { fuzzyName.matches($0) }
+        guard let match = match else { return nil }
+        self = match
+    }
+    
     case english = "en"
     
     case albanian = "sq"
@@ -109,7 +116,78 @@ public extension KeyboardLocale {
     
     /// The raw locale identifier.
     var localeIdentifier: String { id }
+    
+    /// The raw locale name, as defined within the library.
+    var rawName: String {
+        switch self {
+        case .albanian: return "albanian"
+        case .arabic: return "arabic"
+        case .armenian: return "armenian"
+        case .belarusian: return "belarusian"
+        case .bulgarian: return "bulgarian"
+        case .catalan: return "catalan"
+        case .cherokee: return "cherokee"
+        case .croatian: return "croatian"
+        case .czech: return "czech"
+        case .danish: return "danish"
 
+        case .dutch: return "dutch"
+        case .dutch_belgium: return "dutch_belgium"
+        case .english: return "english"
+        case .english_gb: return "english_gb"
+        case .english_us: return "english_us"
+        case .estonian: return "estonian"
+        case .faroese: return "faroese"
+        case .filipino: return "filipino"
+        case .finnish: return "finnish"
+        case .french: return "french"
+
+        case .french_belgium: return "french_belgium"
+        case .french_switzerland: return "french_switzerland"
+        case .georgian: return "georgian"
+        case .german: return "german"
+        case .german_austria: return "german_austria"
+        case .german_switzerland: return "german_switzerland"
+        case .greek: return "greek"
+        case .hawaiian: return "hawaiian"
+        case .hebrew: return "hebrew"
+        case .hungarian: return "hungarian"
+
+        case .icelandic: return "icelandic"
+        case .indonesian: return "indonesian"
+        case .irish: return "irish"
+        case .italian: return "italian"
+        case .kazakh: return "kazakh"
+        case .kurdish_sorani: return "kurdish_sorani"
+        case .kurdish_sorani_arabic: return "kurdish_sorani_arabic"
+        case .kurdish_sorani_pc: return "kurdish_sorani_pc"
+        case .latvian: return "latvian"
+        case .lithuanian: return "lithuanian"
+        case .macedonian: return "macedonian"
+
+        case .malay: return "malay"
+        case .maltese: return "maltese"
+        case .mongolian: return "mongolian"
+        case .norwegian: return "norwegian"
+        case .persian: return "persian"
+        case .polish: return "polish"
+        case .portuguese: return "portuguese"
+        case .portuguese_brazil: return "portuguese_brazil"
+        case .romanian: return "romanian"
+        case .russian: return "russian"
+
+        case .serbian: return "serbian"
+        case .serbian_latin: return "serbian_latin"
+        case .slovenian: return "slovenian"
+        case .slovak: return "slovak"
+        case .spanish: return "spanish"
+        case .swedish: return "swedish"
+        case .swahili: return "swahili"
+        case .turkish: return "turkish"
+        case .ukrainian: return "ukrainian"
+        case .uzbek: return "uzbek"
+        }
+    }
 
     /// The corresponding flag emoji for the locale.
     var flag: String {
@@ -259,5 +337,27 @@ private extension KeyboardLocale {
 
     func sortName(in locale: Locale) -> String {
         locale.localizedName(in: locale).lowercased()
+    }
+}
+
+private extension String {
+    
+    func formattedForLocaleMatch() -> String {
+        self.replacingOccurrences(of: "(", with: "")
+            .replacingOccurrences(of: ")", with: "")
+            .replacingOccurrences(of: "_", with: "")
+            .replacingOccurrences(of: " ", with: "")
+            .lowercased()
+    }
+    
+    func matches(_ locale: KeyboardLocale) -> Bool {
+        let value = self.formattedForLocaleMatch()
+        let rawName = locale.rawName.formattedForLocaleMatch()
+        let id = locale.localeIdentifier.formattedForLocaleMatch()
+        return value.matches(rawName) || value.matches(id)
+    }
+    
+    func matches(_ string: String) -> Bool {
+        caseInsensitiveCompare(string) == .orderedSame
     }
 }

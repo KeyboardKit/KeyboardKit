@@ -20,10 +20,8 @@ public extension Keyboard {
      Instead of passing the entire controller instance, pass
      in ``KeyboardInputViewController/state``.
      
-     > Important: Only use the class as a transfer mechanism.
-     Never store instance of it, but copy any properties you
-     need and/or pass it on. Storing instances can lead to a
-     reference cycle and memory leaks.
+     > Important: Only use the class as a transfer mechanism,
+     to simplify passing all services used by a keyboard.
      */
     class KeyboardState {
         
