@@ -38,7 +38,9 @@ class KeyboardHostingController<Content: View>: UIHostingController<Content> {
 
     deinit {
         removeFromParent()
-        if view.superview != nil {
+        guard let view = view else { return }
+        DispatchQueue.main.async {
+            if view.superview == nil { return }
             view.removeFromSuperview()
         }
     }
