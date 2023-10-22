@@ -38,7 +38,9 @@ class KeyboardHostingController<Content: View>: UIHostingController<Content> {
 
     deinit {
         removeFromParent()
-        view.removeFromSuperview()
+        if view.superview != nil {
+            view.removeFromSuperview()
+        }
     }
     
     public override func viewWillLayoutSubviews() {
