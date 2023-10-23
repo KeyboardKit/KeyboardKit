@@ -96,6 +96,10 @@ See the breaking changes section below if you run into any breaking changes. Rea
 
 * `EmojiKeyboard` has a new state/services initializer.
 * `EmojiKeyboard` has menu icons that look more native.
+* `Emojis.Version` has a new `current` version.
+* `Emojis.Version` has a new `currentUnavailableEmojis` array.
+* `Emojis.Version` has a new `currentUnavailableEmojisDictionary` lookup table.
+* `Emojis.Version` fixes a bug for `.v15` iOS availability.
 * `ExternalKeyboardContext` class is now a Pro features.
 * `FeedbackToggle` parameter is renamed to configuration.
 * `FullDocumentContextReader` has been removed (use proxy).
