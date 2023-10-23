@@ -15,7 +15,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
-        try? setupPro(
+        setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             view: KeyboardView(
                 id: id,
