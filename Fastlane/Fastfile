@@ -30,7 +30,7 @@ platform :ios do
   end
   
   desc "Build a new version"
-  lane :version_build
+  lane :version_build do
     swiftlint(strict: true)
     sh("swift test")
     docc
