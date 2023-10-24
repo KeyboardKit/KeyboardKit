@@ -10,6 +10,9 @@ import SwiftUI
 
 public extension Image {
     
+    static var keyboardEmoji = asset("keyboardEmoji")
+    static var keyboardKit = asset("keyboardKitIcon")
+    
     static var keyboard = symbol("keyboard")
     static var keyboardAudioFeedbackEnabled = symbol("speaker.fill")
     static var keyboardAudioFeedbackDisabled = symbol("speaker")
@@ -20,7 +23,6 @@ public extension Image {
     static var keyboardDictation = symbol("mic")
     static var keyboardDismiss = symbol("keyboard.chevron.compact.down")
     static var keyboardEmail = symbol("envelope")
-    static var keyboardEmoji = asset("keyboardEmoji")
     static var keyboardEmojiSymbol = symbol("face.smiling")
     static var keyboardGlobe = symbol("globe")
     static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
@@ -73,35 +75,9 @@ extension Image {
 struct Image_Previews: PreviewProvider {
     
     static var images: [Image] = [
-        .keyboard,
-        .keyboardAudioFeedbackEnabled,
-        .keyboardAudioFeedbackDisabled,
-        .keyboardBackspace,
-        .keyboardBackspaceRtl,
-        .keyboardCommand,
-        .keyboardControl,
-        .keyboardDictation,
-        .keyboardDismiss,
-        .keyboardEmail,
         .keyboardEmoji,
-        .keyboardEmojiSymbol,
-        .keyboardGlobe,
-        .keyboardHapticFeedbackEnabled,
-        .keyboardHapticFeedbackDisabled,
-        .keyboardImages,
-        .keyboardLeft,
-        .keyboardNewline,
-        .keyboardNewlineRtl,
-        .keyboardOption,
-        .keyboardRedo,
-        .keyboardRight,
-        .keyboardSettings,
-        .keyboardShiftCapslocked,
-        .keyboardShiftLowercased,
-        .keyboardShiftUppercased,
-        .keyboardTab,
-        .keyboardUndo,
-        .keyboardZeroWidthSpace
+        .keyboardKit,
+        .keyboardUndo
     ]
     
     static func listItem(for image: Image) -> some View {
