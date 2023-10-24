@@ -32,5 +32,6 @@ xcuserdata/
 # https://docs.fastlane.tools/best-practices/source-control/#source-control
 fastlane/report.xml
 fastlane/Preview.html
+fastlane/README.md
 fastlane/screenshots
 fastlane/test_output

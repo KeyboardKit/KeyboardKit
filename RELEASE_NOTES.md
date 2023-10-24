@@ -15,41 +15,46 @@ These release notes will only contain the current version. Just check out an old
 
 Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit SDK.
 
-KeyboardKit 8.0 is all about cleaning up the library to make it more approachable, better structured and easier to use. It removes all previously deprecated code, reorganizes types into namespaces, and removes low-value utilities, including types solely used for DocC exposure.
 
-Central types like `SystemKeyboard` are now easier to use. Passing state and services instead of a controller reduces the risk for memory leaks. It also no longer needs you to provide a width, but will take up as much space as it needs. It also makes it a easier to provide customize its views.
+## 📣 Major Changes
 
-These updates will simplify scaling the library and has helped enabling new features like fading the keyboard buttons while moving the cursor with space. There are many quality of life and bug fixes. Accessibility has been drastically improved for Voice Over and the emoji keyboard has been redesigned.
+KeyboardKit 8.0 is all about cleaning up the library to make it better structured and easier to use. It removes previously deprecated code, moves types into namespaces, and removes low-value utilities, including types solely used for DocC exposure.
 
-Most emoji features, including the emoji keyboard and emoji category information, are now Pro features. The `SystemKeyboard` automatically removes the emoji key if no custom emoji keyboard is provided in the view builder.
+Central types like `SystemKeyboard` are easier to use. Passing state and services instead of a controller reduces the risk for memory leaks. It also no longer needs a width, but will take up as much space as it needs.
 
-The documentation has been extensively updated to provide more information and code examples. Please report any inconsistencies found, as much is rewritten.
+These updates has helped enabling new features, like fading the keyboard buttons while moving the cursor with space and other quality of life improvements and fixes. Accessibility has been drastically improved and the emoji keyboard redesigned.
+
+Most emoji features are now Pro features, including the emoji keyboard. The `SystemKeyboard` automatically removes the emoji key if no keyboard is available.
+
+The documentation (can be downloaded from the list of files below) has been extensively updated to provide more information and code examples. Please report any inconsistencies found, as many changes have been made.
 
 I hope that you will love this major update to KeyboardKit. 
 
 
-### 💡 Migrating from KeyboardKit 7
+## 🛟 KeyboardKit 8 Migration Help
 
-KeyboardKit 8.0 includes TEMPORARY deprecations to assist migration from KeyboardKit 7. They will be removed in 8.1. Just follow the deprecations to migrate your 7.x code to 8.0.
+If you're a KeyboardKit 7 user, the best way to migrate to KeyboardKit 8 is to first upgrade to the last available 7.9 version. This version contains deprecations that helps you prepare for some of the changes in KeyboardKit 8.
 
-Consider upgrading to the last 7.x version of KeyboardKit before moving to 8.0, as it has types and deprecations that are removed in this version.
+As you then upgrade to KeyboardKit 8, the 8.0 release has many TEMPORARY deprecations to assist migration from KeyboardKit 7. These temporary deprecations will be removed in 8.1.
 
-See the breaking changes section below if you run into any breaking changes. Reach out if you run into problems that are not mentioned here.
+You may run into some breaking changes, since there are some type changes that can't be handled by these deprecations. I have tried to keep these to a minimum, but see the breaking changes section below if you run into any problems.
 
 
-### 🚨 Important information
+## 🚨 Important Information
 
-* Inherit `ProKeyboardActionHandler` when using a custom action handler with Pro. 
-  
+Here's a list of some things that may be important to know
+
 * `KeyboardInputViewController` has moved state properties into a `state` property.
-* `KeyboardInputViewController` has moved services properties into a `services` property.
-* `StandardKeyboardActionHandler` no longer remembers tapped emojis. This has moved to Pro.
+* `KeyboardInputViewController` has moved service properties into a `services` property.
+* `ProKeyboardActionHandler` is a new action handler for pro keyboards. You can inherit it.
+* `StandardKeyboardActionHandler` no longer remembers tapped emojis. This is done with the pro handler.
 * `SystemKeyboard` provides MUCH easier customization, but requires explicit view builders.
 * `SystemKeyboard` now hides the `emoji` keyboard key if `emojiKeyboard` is an `EmptyView`. 
 * `SystemKeyboard` no longer has an emoji keyboard by deafult, since it's now a Pro feature.
 * `SystemKeyboard` no longer auto-hides the toolbar. You can do this in the `toolbar` builder.
 
-### ✨ New Features
+
+## ✨ New Features
 
 * `InputSetBasedKeyboardLayoutProvider` is a new provider.
 * `KeyboardAction` now has a `standardAccessibilityLabel`.
@@ -57,8 +62,11 @@ See the breaking changes section below if you run into any breaking changes. Rea
 * `KeyboardActionHandler` now handles autocomplete suggestions.
 * `KeyboardButton` now has `edgeInsets` and an `isPressed` binding.
 * `KeyboardContext` has proxy properties that mirror the controller.
+* `KeyboardInputViewController` has a new `setupProError` property.
 * `KeyboardLayout.Item` has a new `width(forRowWidth:inputWidth:)` function.
+* `KeyboardLocale` has new initializer that supports fuzzy name initialization.
 * `KeyboardLocale` has new, convenient collection extensions to get locales.
+* `KeyboardStyle.Background` now supports specifying images in more ways.
 * `KeyboardStyle.Background` now supports specifying the image content mode.
 * `KeyboardStyle.Button` now supports background color AND background style.
 * `KeyboardStyle.EmojiKeyboard` has a lot more configuration parameters now.
@@ -73,13 +81,12 @@ See the breaking changes section below if you run into any breaking changes. Rea
 * `View.keyboardCalloutContainer` is a new extension that will apply both callouts. 
 * `View.keyboardLayoutItemSize` is a new extension that applies a layout item size.
 
-### 💡 Adjustments
+
+## 💡 Adjustments
 
 * Renamed types and functions are not included in these release notes.  
-
 * `AutocompleteProvider` is now async.
 * `EmojiKeyboard` uses the standard context style as default.
-* `FeedbackConfiguration` has been rewritten to be easier to use.
 * `Gesture.KeyboardButtonGestures` no longer blocks space releases.
 * `InputSet` has been converted to a struct. All subsets are removed.
 * `ProKeyboardActionHandler` is a new, Pro-supporting action handler.
@@ -90,39 +97,40 @@ See the breaking changes section below if you run into any breaking changes. Rea
 * `SystemKeyboard` now guides you to use the controller-based setup function.
 * `KeyboardInputViewController` `textDidChange` performs operations after a delay. 
 
-### 👑 Pro Adjustments
+
+## 👑 Pro Adjustments
 
 * Many emoji types have become Pro features.
 * Many routing types have become Pro features.
-
+* The pro setup error view has been redesigned.
+* The pro setup error view now overlays your view.
 * `EmojiKeyboard` has a new state/services initializer.
 * `EmojiKeyboard` has menu icons that look more native.
-* `Emojis.Version` has a new `current` version.
-* `Emojis.Version` has a new `currentUnavailableEmojis` array.
-* `Emojis.Version` has a new `currentUnavailableEmojisDictionary` lookup table.
-* `Emojis.Version` fixes a bug for `.v15` iOS availability.
-* `ExternalKeyboardContext` class is now a Pro features. 
+* `Emojis.Categories` auto-filters out unavailable emojis.
+* `Emojis.Version` has more version-based capabilities.
+* `ExternalKeyboardContext` class is now a Pro features.
 * `FeedbackToggle` parameter is renamed to configuration.
 * `FullDocumentContextReader` has been removed (use proxy).
 * `KeyboardTextField` & `KeyboardTextView` are now Pro features.
-* `License.register` is now `async`.
 * `LocalAutocompleteProvider` autocorrects `i` to `I` in English.
 * `ProKeyboardActionHandler` is a new Pro keyboard action handler.
 * `ProCalloutActionProvider` is a new Pro callout action provider.
 * `RemoteAutocompleteProvider` is now available to all license tiers.
 * `SystemKeyboardButtonPreview` is a new system keyboard button preview.
 * `KeyboardInputViewController` has a license config action for both setups.
-* `KeyboardInputViewController` no longer returns the resolved rlicense.
 
-### 🐛 Bug fixes
 
-* `FeedbackConfiguration` is fixed to correctly disable audio feedback.
+## 🐛 Bug fixes
+
+* `Emojis.Version` fixes an iOS availability bug for Unicode v15.
+* `FeedbackConfiguration` used an incorrect disabled audio config by default.
 * `KeyboardAction.backspace` didn't properly trigger autocapitalization.
 * `SystemKeyboard` now uses images for `.space` from the style provider.
 * `textDidChange` performs autocomplete after an async delay, to let the proxy update.
 * `textDidChange` applies autocapitalization after an async delay, to let the proxy update.
     
-### 💥 Breaking changes 
+
+## 💥 Breaking changes 
 
 * All deprecated code has been removed.
 * DocC exposing types have been removed. 
@@ -130,7 +138,6 @@ See the breaking changes section below if you run into any breaking changes. Rea
 * Many routing types have been moved to Pro.
 * English input sets have been moved to Pro.
 * Changes with migration deprecations are not listed here.
-
 * `AudioFeedback.Engine` is no longer open to inheritance.
 * `Autocomplete.ToolbarItemSubtitle` init takes a suggestion.
 * `CalloutContext.ActionContext` no longer uses an action handler.
