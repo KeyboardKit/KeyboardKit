@@ -101,11 +101,32 @@ public extension KeyboardStyle.Background {
     static func color(_ color: Color) -> Self {
         .init(backgroundColor: color)
     }
-
+    
     /// Create a background style with a single image.
-    static func image(_ data: Data) -> Self {
-        .init(imageData: data)
+    static func image(_ data: Data, contentMode: ImageContentMode = .fill) -> Self {
+        .init(
+            imageData: data,
+            imageContentMode: contentMode
+        )
     }
+    
+    #if os(iOS) || os(tvOS) || os(watchOS)
+    /// Create a background style with a single image.
+    static func image(_ image: UIImage?, contentMode: ImageContentMode = .fill) -> Self {
+        .init(
+            imageData: image?.pngData() ?? Data(),
+            imageContentMode: contentMode
+        )
+    }
+    
+    /// Create a background style with a single image.
+    static func image(systemName: String, contentMode: ImageContentMode = .fill) -> Self {
+        .image(
+            UIImage(systemName: "face.smiling"),
+            contentMode: contentMode
+        )
+    }
+    #endif
 
     /// Create a background style with a vertical gradient.
     static func verticalGradient(_ colors: [Color]) -> Self {
