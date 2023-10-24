@@ -63,7 +63,7 @@ class KeyboardViewController: KeyboardInputViewController {
         /// The default haptic feedback is `.minimal`, which
         /// only has haptic feedback for long press on space.
         state.feedbackConfiguration.audioConfiguration.delete = .custom(id: 1329)
-        state.feedbackConfiguration.enableHapticFeedback()
+        state.feedbackConfiguration.isHapticFeedbackEnabled = true
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
@@ -83,7 +83,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// We get an `unowned` controller reference that we
         /// can use to help us avoid memory leaks.
-        try? setupPro(
+        setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             licenseConfiguration: setup   // Specified below
         ) { controller in
