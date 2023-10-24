@@ -57,6 +57,66 @@ public typealias DictationConfiguration = Dictation.Configuration
 @available(*, deprecated, renamed: "InputSetBasedKeyboardLayoutProvider")
 public typealias EnglishKeyboardLayoutProvider = InputSetBasedKeyboardLayoutProvider
 
+public extension FeedbackConfiguration {
+    
+    @available(*, deprecated, message: "The enabled and disabled configurations no longer have any effect. Just use the standard initializer.")
+    convenience init(
+        audioConfiguration: AudioFeedback.Configuration = .enabled,
+        hapticConfiguration: HapticFeedback.Configuration = .minimal,
+        enabledAudioConfiguration: AudioFeedback.Configuration = .enabled,
+        enabledHapticConfiguration: HapticFeedback.Configuration = .enabled,
+        disabledAudioConfiguration: AudioFeedback.Configuration = .disabled,
+        disabledHapticConfiguration: HapticFeedback.Configuration = .minimal
+    ) {
+        self.init(
+            audio: audioConfiguration,
+            haptic: hapticConfiguration
+        )
+    }
+    
+    @available(*, renamed: "audio")
+    var audioConfiguration: AudioFeedback.Configuration {
+        get { audio }
+        set { audio = newValue }
+    }
+    
+    @available(*, renamed: "haptic")
+    var hapticConfiguration: HapticFeedback.Configuration {
+        get { haptic }
+        set { haptic = newValue }
+    }
+    
+    @available(*, deprecated, renamed: "isAudioFeedbackEnabled")
+    func disableAudioFeedback() {
+        isAudioFeedbackEnabled = false
+    }
+
+    @available(*, deprecated, renamed: "isHapticFeedbackEnabled")
+    func disableHapticFeedback() {
+        isHapticFeedbackEnabled = false
+    }
+
+    @available(*, deprecated, renamed: "isAudioFeedbackEnabled")
+    func enableAudioFeedback() {
+        isAudioFeedbackEnabled = true
+    }
+
+    @available(*, deprecated, renamed: "isHapticFeedbackEnabled")
+    func enableHapticFeedback() {
+        isHapticFeedbackEnabled = true
+    }
+    
+    @available(*, deprecated, renamed: "toggleIsAudioFeedbackEnabled")
+    func toggleAudioFeedback() {
+        isAudioFeedbackEnabled.toggle()
+    }
+
+    @available(*, deprecated, renamed: "toggleIsHapticFeedbackEnabled")
+    func toggleHapticFeedback() {
+        isHapticFeedbackEnabled.toggle()
+    }
+}
+
 #if os(iOS) || os(macOS) || os(watchOS)
 @available(*, deprecated, renamed: "Gestures.GestureButton")
 public typealias GestureButton = Gestures.GestureButton

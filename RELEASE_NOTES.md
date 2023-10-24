@@ -79,6 +79,7 @@ See the breaking changes section below if you run into any breaking changes. Rea
 
 * `AutocompleteProvider` is now async.
 * `EmojiKeyboard` uses the standard context style as default.
+* `FeedbackConfiguration` has been rewritten to be easier to use.
 * `Gesture.KeyboardButtonGestures` no longer blocks space releases.
 * `InputSet` has been converted to a struct. All subsets are removed.
 * `ProKeyboardActionHandler` is a new, Pro-supporting action handler.
@@ -100,7 +101,7 @@ See the breaking changes section below if you run into any breaking changes. Rea
 * `Emojis.Version` has a new `currentUnavailableEmojis` array.
 * `Emojis.Version` has a new `currentUnavailableEmojisDictionary` lookup table.
 * `Emojis.Version` fixes a bug for `.v15` iOS availability.
-* `ExternalKeyboardContext` class is now a Pro features.
+* `ExternalKeyboardContext` class is now a Pro features. 
 * `FeedbackToggle` parameter is renamed to configuration.
 * `FullDocumentContextReader` has been removed (use proxy).
 * `KeyboardTextField` & `KeyboardTextView` are now Pro features.
@@ -115,6 +116,7 @@ See the breaking changes section below if you run into any breaking changes. Rea
 
 ### 🐛 Bug fixes
 
+* `FeedbackConfiguration` is fixed to correctly disable audio feedback.
 * `KeyboardAction.backspace` didn't properly trigger autocapitalization.
 * `SystemKeyboard` now uses images for `.space` from the style provider.
 * `textDidChange` performs autocomplete after an async delay, to let the proxy update.
