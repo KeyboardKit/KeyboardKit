@@ -18,7 +18,7 @@ KeyboardKit has a ``Proxy`` namespace that contains proxy-related types.
 
 For now, this namespace will only contain types when it's part of the KeyboardKit Pro build.
 
-The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
 
 
 

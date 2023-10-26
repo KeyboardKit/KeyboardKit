@@ -12,7 +12,7 @@ KeyboardKit provides you with an ``Emoji`` type that has unicode and emoji infor
 
 KeyboardKit has an ``Emojis`` namespace that contains emoji-related types and views. KeyboardKit Pro adds more features to this namespace.
 
-The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
 
 
 

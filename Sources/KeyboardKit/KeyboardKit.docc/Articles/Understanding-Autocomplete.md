@@ -16,7 +16,7 @@ KeyboardKit doesn't have a standard provider as it has for other services. Inste
 
 KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types.
 
-The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
 
 
 

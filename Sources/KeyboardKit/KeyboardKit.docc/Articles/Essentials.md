@@ -1,14 +1,14 @@
 # Essentials
 
-This article describes some KeyboardKit essentials.
+This article describes essential parts of the KeyboardKit library.
 
-As you may have noticed, Apple provides a very limited API to custom keyboard extensions. You have to implement much functionality from scratch, including the keyboard view itself.
+Apple's native keyboard APIs are very limited. You have to implement much from scratch, including the keyboard view itself.
 
-KeyboardKit therefore provides a bunch of essential types and functionality to simplify building custom keyboards. It also extends the text document proxy to make it much more capable and lets you use SwiftUI instead of UIKit.
+KeyboardKit therefore provides a bunch of essential functionality, extends the text document proxy to make it much more capable, and lets you use SwiftUI instead of UIKit.
 
-KeyboardKit also has a ``SystemKeyboard`` component that can be used to create keyboards that mimic the native iOS keyboard. It can be customized and styled to great extent.
+KeyboardKit also has a ``SystemKeyboard`` that mimics the native iOS keyboard. It can be customized and styled to great extent.
 
-[KeyboardKit Pro][Pro] unlocks pro features for the system keyboard. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks a lot of essential pro features. Information about Pro features can be found at the end of this article.
 
 
 
@@ -16,7 +16,7 @@ KeyboardKit also has a ``SystemKeyboard`` component that can be used to create k
 
 KeyboardKit has a ``Keyboard`` namespace with essential types, like ``Keyboard/AutocapitalizationType``, ``Keyboard/Case``, ``Keyboard/ReturnKeyType``, and much more.
 
-The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
 
 
 
@@ -30,9 +30,9 @@ KeyboardKit also has an abstract ``KeyboardController`` protocol that aims to ma
 
 ## Keyboard context
 
-KeyboardKit has an observable ``KeyboardContext`` class that provides information about the keyboard, a reference to the current ``KeyboardContext/textDocumentProxy``, the current ``KeyboardContext/keyboardType``, etc.
+KeyboardKit has an observable ``KeyboardContext`` class that provides information about the keyboard, a reference to the current ``KeyboardContext/textDocumentProxy``, and lets you get and set the current ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc.
 
-You can use the context to affect the keyboard. For instance, setting the ``KeyboardContext/locale`` will cause a ``SystemKeyboard`` to render in that locale, provided that it's supported by the keyboard.
+You can use the context to affect the keyboard. For instance, setting the ``KeyboardContext/locale`` will automatically update the ``SystemKeyboard``.
 
 KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then syncs it with the controller whenever needed.
 
@@ -78,13 +78,16 @@ The setup view builder provides an **unowned** controller reference to help avoi
 
 ### How to customize a system keyboard
 
-A ``SystemKeyboard`` can be customized and styled to great extent. For instance, you can pass in custom keyboard layouts to it, and provide it with custom services and state to modify its behavior. 
+A ``SystemKeyboard`` can be customized to great extent. You can for instance pass in custom services and state to modify its behavior.
 
-The **buttonContent** and **buttonView** parameters can be used to customize the content or the entire view of any button.
+Modifying the various views is equally easy:
 
-The **emojiKeyboard** parameter defines the view that will be used for the ``Keyboard/KeyboardType/emojis`` keyboard type. An `EmptyView` is used by default, but KeyboardKit Pro unlocks an **EmojiKeyboard** that can be used instead.
+* The **buttonContent** parameter can be used to customize the content view of a button.
+* The **buttonView** parameter can be used to customize the entire view of a button.
+* The **emojiKeyboard** parameter can be used to customize the **.emojis** keyboard view.
+* The **toolbar** parameter can be used to customize the toolbar that is added above the keyboard.
 
-The **toolbar** parameter defines a view that will be added above the keyboard. An ``AutocompleteToolbar`` will be used by default.
+The **emojiKeyboard** will by default use an empty placeholder, which will remove the emoji button from the keyboard. KeyboardKit Pro unlocks an **EmojiKeyboard** and uses it by default.
 
 To use the standard views, just return `{ $0.view }`, or `{ params in params.view }` if you prefer more expressive code:
 
@@ -94,7 +97,7 @@ SystemKeyboard(
     buttonContent: { $0.view },
     buttonView: { $0.view },
     emojiKeyboard: { $0.view },
-    toolbar: { params in params.view }
+    toolbar: { $0.view }
 )
 ```
 

@@ -18,7 +18,7 @@ KeyboardKit has a ``Callouts`` namespace that contains callout-related types.
 
 For instance, ``Callouts/InputCallout`` shows the currently pressed key while ``Callouts/ActionCallout`` shows secondary actions when long pressing a key. These callouts are automatically used if you use a ``SystemKeyboard``.
 
-The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
 
 
 

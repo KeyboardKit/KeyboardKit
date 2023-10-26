@@ -20,7 +20,7 @@ For instance, a ``Dictation/KeyboardConfiguration`` can be used to configure a `
 
 KeyboardKit Pro will also add a bunch of dictation-related views here, such as **Dictation.BarVisualizer**, **Dictation.Screen**, etc.
 
-The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
 
 
 

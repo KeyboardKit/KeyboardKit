@@ -48,7 +48,7 @@ Have a look at <doc:Understanding-Colors> and <doc:Understanding-Images> for mor
 
 KeyboardKit has a ``Styling`` namespace that contains styling-related types.
 
-The namespace doesn't contain protocols, open classes or types that are meant to be top-level ones. It's meant to contain types used by top-level types, to make the library easier to overview.
+The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
 
 
 
