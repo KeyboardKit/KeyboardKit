@@ -131,7 +131,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     func setup<Content: View>(withRootView view: Content) {
         self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = view.withEnvironment(from: self)
+        let view = view.withEnvironment(fromController: self)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
@@ -394,8 +394,10 @@ private extension KeyboardInputViewController {
 
 public extension View {
     
-    func withEnvironment(from controller: KeyboardInputViewController) -> some View {
-        self.withEnvironment(from: controller.state)
+    func withEnvironment(
+        fromController controller: KeyboardInputViewController
+    ) -> some View {
+        self.withEnvironment(fromState: controller.state)
     }
 }
 #endif

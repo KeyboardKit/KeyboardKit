@@ -61,7 +61,7 @@ public extension Keyboard.KeyboardState {
 
 public extension View {
     
-    func withEnvironment(from state: Keyboard.KeyboardState) -> some View {
+    func withEnvironment(fromState state: Keyboard.KeyboardState) -> some View {
         self.environmentObject(state.autocompleteContext)
             .environmentObject(state.calloutContext)
             .environmentObject(state.dictationContext)

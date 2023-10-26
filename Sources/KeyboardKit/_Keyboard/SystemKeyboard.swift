@@ -174,28 +174,40 @@ public struct SystemKeyboard<
         )
     }
     #endif
+    
+    /// The standard button content view type.
+    public typealias StandardButtonContent = KeyboardButton.Content
+    
+    /// The standard button view type.
+    public typealias StandardButtonView = SystemKeyboardItem<ButtonContent>
+    
+    /// The standard emoji keyboard view type.
+    public typealias StandardEmojiKeyboard = EmptyView
+    
+    /// The standard toolbar view type.
+    public typealias StandardToolbarView = AutocompleteToolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
 
     
     /// This typealias defines button content builder params.
     public typealias ButtonContentParams = (
         item: KeyboardLayout.Item,
-        view: KeyboardButton.Content)
+        view: StandardButtonContent)
     
     /// This typealias defines button view builder params.
     public typealias ButtonViewParams = (
         item: KeyboardLayout.Item,
-        view: SystemKeyboardItem<ButtonContent>)
+        view: StandardButtonView)
     
     /// This typealias defines emoji keyboard builder params.
     public typealias EmojiKeyboardParams = (
         style: KeyboardStyle.EmojiKeyboard,
-        view: EmptyView)
+        view: StandardEmojiKeyboard)
     
     /// This typealias defines toolbar builder params.
     public typealias ToolbarParams = (
         autocompleteAction: (Autocomplete.Suggestion) -> Void,
         style: KeyboardStyle.AutocompleteToolbar,
-        view: AutocompleteToolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>)
+        view: StandardToolbarView)
 
     
     /// This typealias defines a button content builder.
@@ -221,15 +233,6 @@ public struct SystemKeyboard<
     private let buttonViewBuilder: ButtonViewBuilder
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
-    
-    public enum AutocompleteToolbarMode {
-
-        /// Show the autocomplete toolbar if the keyboard context prefers it.
-        case automatic
-
-        /// Never show the autocomplete toolbar.
-        case none
-    }
 
     public typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
     

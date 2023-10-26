@@ -27,9 +27,18 @@ public extension KeyboardInputViewController {
     var dictationContext: DictationContext { state.dictationContext }
     
     @available(*, deprecated, renamed: "state.feedbackConfiguration")
-    var feedbackConfiguration: FeedbackConfiguration { state.feedbackConfiguration }
+    var feedbackConfiguration: FeedbackConfiguration {
+        get { state.feedbackConfiguration }
+        set { state.feedbackConfiguration = newValue }
+    }
     
     @available(*, deprecated, renamed: "state.keyboardContext")
     var keyboardContext: KeyboardContext { state.keyboardContext }
+    
+    @available(*, deprecated, renamed: "feedbackConfiguration")
+    var keyboardFeedbackSettings: FeedbackConfiguration {
+        get { feedbackConfiguration }
+        set { feedbackConfiguration = newValue }
+    }
 }
 #endif

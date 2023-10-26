@@ -15,6 +15,9 @@ import SwiftUI
  in KeyboardKit 8.1.
  */
 
+@available(*, deprecated, renamed: "Dictation.ServiceError")
+public typealias DictationServiceError = Dictation.ServiceError
+
 @available(*, deprecated, renamed: "Autocomplete.DisabledProvider")
 public typealias DisabledAutocompleteProvider = Autocomplete.DisabledProvider
 
@@ -53,6 +56,9 @@ public typealias DictationAuthorizationStatus = Dictation.AuthorizationStatus
 
 @available(*, deprecated, renamed: "Dictation.Configuration")
 public typealias DictationConfiguration = Dictation.Configuration
+
+@available(*, deprecated, renamed: "Dictation.KeyboardConfiguration")
+public typealias KeyboardDictationConfiguration = Dictation.KeyboardConfiguration
 
 @available(*, deprecated, renamed: "InputSetBasedKeyboardLayoutProvider")
 public typealias EnglishKeyboardLayoutProvider = InputSetBasedKeyboardLayoutProvider
