@@ -295,13 +295,17 @@ public extension KeyboardContext {
     /// Sync the ``originalTextDocumentProxy``.
     func syncTextDocumentProxy(with controller: KeyboardInputViewController) {
         if originalTextDocumentProxy === controller.originalTextDocumentProxy { return }
-        originalTextDocumentProxy = controller.originalTextDocumentProxy
+        DispatchQueue.main.async {
+            self.originalTextDocumentProxy = controller.originalTextDocumentProxy
+        }
     }
     
     /// Sync the ``textInputProxy``.
     func syncTextInputProxy(with controller: KeyboardInputViewController) {
         if textInputProxy === controller.textInputProxy { return }
-        textInputProxy = controller.textInputProxy
+        DispatchQueue.main.async {
+            self.textInputProxy = controller.textInputProxy
+        }
     }
 }
 
