@@ -86,27 +86,9 @@ You can take a look at the source code of the various views in the library for i
 
 ## 👑 Pro features
 
-KeyboardKit Pro unlocks powerful tools to preview system keyboards and keyboard themes:
+KeyboardKit Pro unlocks powerful system keyboard previews.
 
-```swift
-SystemKeyboardPreview(...)              // A live system keyboard preview.
-SystemKeyboardPreviewHeader(...)        // A live system keyboard preview header.
-SystemKeyboardThemePreview(...)         // A live theme preview.
-SystemKeyboardThemePreviewHeader(...)   // A live theme preview header.
-```
-
-Since these views render system keyboards with full interation, they are quite performance demanding. 
-
-To preview many styles or themes at once, you can use these more lightweight previews:
-
-```swift
-SystemKeyboardButtonPreview(...)        // A system button preview.
-SystemKeyboardButtonThemePreview(...)   // A system button preview for a theme.
-```
-
-These previews only render lightweight buttons. See <doc:Essentials> for more information.
-
-> Note: These previews are *not* in the **KeyboardPreviews** namespace, since they are meant to be used in apps as well. They are however mentioned here, since it may be the most obvious place to look.
+See <doc:Essentials> for more information.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

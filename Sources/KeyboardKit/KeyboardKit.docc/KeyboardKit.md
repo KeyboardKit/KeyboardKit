@@ -9,7 +9,7 @@ KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift an
 
 KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift and SwiftUI. It extends Apple's native keyboard APIs and provides you with more functionality.
 
-KeyboardKit lets you create keyboards that mimic native iOS keyboards in a few lines of code. These keyboards can be customized to change input keys, layout, design, behavior etc. You can also use completely custom views.
+KeyboardKit lets you create keyboards that mimic native iOS keyboards in a few lines of code.
 
 
 
@@ -158,8 +158,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayoutProviderProxy``
 - ``KeyboardLayoutRowItem``
 
-- ``StandardKeyboardLayoutProvider``
 - ``BaseKeyboardLayoutProvider``
+- ``StandardKeyboardLayoutProvider``
 - ``InputSetBasedKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``

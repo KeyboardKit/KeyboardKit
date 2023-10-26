@@ -144,27 +144,42 @@ This means that by just registering a valid license key, your keyboard will auto
 You can still provide a custom emoji keyboard if you want to use a custom one. If not, just remove the **emojiKeyboard** parameter when upgrading to KeyboardKit Pro.
 
 
-### Preview
+### System Keyboard Preview
 
-KeyboardKit Pro unlocks powerful tools to preview system keyboards and themes:
+KeyboardKit Pro unlocks a **SystemKeyboardPreview** that can be used to preview different configurations and themes, e.g. in your main app's settings screen.
 
-```swift
-SystemKeyboardPreview(...)              // A live system keyboard preview.
-SystemKeyboardPreviewHeader(...)        // A live system keyboard preview header.
-SystemKeyboardThemePreview(...)         // A live theme preview.
-SystemKeyboardThemePreviewHeader(...)   // A live theme preview header.
-```
-
-Since these views render system keyboards with full interation, they are quite performance demanding. 
-
-To preview many styles or themes at once, you can use these more lightweight previews:
+It's a regular view that you can place anywhere:
 
 ```swift
-SystemKeyboardButtonPreview(...)        // A system button preview.
-SystemKeyboardButtonThemePreview(...)   // A system button preview for a theme.
+struct MyView: View {
+
+    var body: some View {
+        SystemKeyboardPreview(theme: try? .candyShop)
+    }
+}
 ```
 
-These previews only render lightweight buttons.
+You can use **.asScreenHeader(withScreenContent:)** to convert it to a screen header that pins to the top of the screen and places the provided content below itself.
+
+```swift
+struct MyView: View {
+
+    var body: some View {
+        SystemKeyboardPreview(theme: try? .candyShop)
+            .asScreenHeader {
+                List {
+                    ForEach((1...100), id: \.self) {
+                        Text("\($0)")
+                    }
+                }
+            }
+    }
+}
+```
+
+Since this view renders with full interation, you shouldn't use many previews on the same screen, as this will reduce performance.
+
+To preview many styles or themes at once, you can the more lightweight **SystemKeyboardButtonPreview** which renders more lightweight button previews.
 
 
 

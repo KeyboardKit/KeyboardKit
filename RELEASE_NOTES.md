@@ -83,8 +83,7 @@ Here's a list of some things that may be important to know
 
 
 ## 💡 Adjustments
-
-* Renamed types and functions are not included in these release notes.  
+  
 * `AutocompleteProvider` is now async.
 * `EmojiKeyboard` uses the standard context style as default.
 * `Gesture.KeyboardButtonGestures` no longer blocks space releases.
@@ -104,11 +103,12 @@ Here's a list of some things that may be important to know
 * Many routing types have become Pro features.
 * The pro setup error view has been redesigned.
 * The pro setup error view now overlays your view.
+
 * `EmojiKeyboard` has a new state/services initializer.
 * `EmojiKeyboard` has menu icons that look more native.
-* `Emojis.Categories` auto-filters out unavailable emojis.
-* `Emojis.Version` has more version-based capabilities.
-* `ExternalKeyboardContext` class is now a Pro features.
+* `Emojis.Categories` filters out all unavailable emojis.
+* `Emojis.Version` has more ways to handle emoji versions.
+* `ExternalKeyboardContext` class is now a Pro feature.
 * `FeedbackToggle` parameter is renamed to configuration.
 * `FullDocumentContextReader` has been removed (use proxy).
 * `KeyboardTextField` & `KeyboardTextView` are now Pro features.
@@ -116,6 +116,7 @@ Here's a list of some things that may be important to know
 * `ProKeyboardActionHandler` is a new Pro keyboard action handler.
 * `ProCalloutActionProvider` is a new Pro callout action provider.
 * `RemoteAutocompleteProvider` is now available to all license tiers.
+* `SystemKeyboardPreview` replaces all other system keyboard previews.
 * `SystemKeyboardButtonPreview` is a new system keyboard button preview.
 * `KeyboardInputViewController` has a license config action for both setups.
 
@@ -137,7 +138,8 @@ Here's a list of some things that may be important to know
 * Many emoji types have been moved to Pro.
 * Many routing types have been moved to Pro.
 * English input sets have been moved to Pro.
-* Changes with migration deprecations are not listed here.
+* Migration deprecations are not listed here.
+
 * `AudioFeedback.Engine` is no longer open to inheritance.
 * `Autocomplete.ToolbarItemSubtitle` init takes a suggestion.
 * `CalloutContext.ActionContext` no longer uses an action handler.
