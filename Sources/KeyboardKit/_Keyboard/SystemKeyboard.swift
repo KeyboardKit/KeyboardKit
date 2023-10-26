@@ -94,9 +94,8 @@ public struct SystemKeyboard<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
-        if EmojiKeyboard.self == EmptyView.self {
-            let action = KeyboardAction.keyboardType(.emojis)
-            layout.itemRows.remove(action)
+        if !Emojis.KeyboardWrapper.isPro {
+            layout.itemRows.remove(.keyboardType(.emojis))
         }
         self.layout = layout
         self.layoutConfig = .standard(for: keyboardContext)
@@ -208,7 +207,7 @@ public struct SystemKeyboard<
         view: StandardEmojiKeyboard)
     
     /// The standard emoji keyboard view type.
-    public typealias StandardEmojiKeyboard = EmptyView
+    public typealias StandardEmojiKeyboard = Emojis.KeyboardWrapper
     
 
     /// This typealias defines a toolbar builder.
@@ -367,7 +366,12 @@ private extension SystemKeyboard {
     func emojiKeyboard() -> some View {
         emojiKeyboardBuilder((
             style: KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext),
-            view: EmptyView()
+            view: Emojis.KeyboardWrapper(
+                actionHandler: actionHandler,
+                keyboardContext: keyboardContext,
+                calloutContext: calloutContext,
+                styleProvider: styleProvider
+            )
         ))
         .opacity(shouldShowEmojiKeyboard ? 1 : 0)
     }
