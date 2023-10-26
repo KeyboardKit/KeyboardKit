@@ -25,8 +25,7 @@ public extension SystemKeyboard {
     where ButtonContent == StandardButtonContent,
     ButtonView == StandardButtonView,
     EmojiKeyboard == StandardEmojiKeyboard,
-    Toolbar == StandardToolbarView
-    {
+    Toolbar == StandardToolbarView {
         self.init(
             state: controller.state,
             services: controller.services,
