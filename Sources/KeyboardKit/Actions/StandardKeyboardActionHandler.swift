@@ -35,6 +35,25 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
      Create a standard keyboard action handler.
 
      - Parameters:
+       - controller: The keyboard input controller to use.
+     */
+    public convenience init(
+        controller: KeyboardInputViewController
+    ) {
+        self.init(
+            controller: controller,
+            keyboardContext: controller.state.keyboardContext,
+            keyboardBehavior: controller.services.keyboardBehavior,
+            autocompleteContext: controller.state.autocompleteContext,
+            feedbackConfiguration: controller.state.feedbackConfiguration,
+            spaceDragGestureHandler: controller.services.spaceDragGestureHandler
+        )
+    }
+    
+    /**
+     Create a standard keyboard action handler.
+
+     - Parameters:
        - controller: The keyboard controller to use, if any.
        - keyboardContext: The keyboard context to use.
        - keyboardBehavior: The keyboard behavior to use.
