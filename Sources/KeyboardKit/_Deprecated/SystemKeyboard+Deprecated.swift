@@ -36,5 +36,24 @@ public extension SystemKeyboard {
             toolbar: { $0.view }
         )
     }
+    
+    @available(*, deprecated, message: "Use the toolbar-based controller to customize the toolbar instead. WARNING! This will produce incorrect results here.")
+    init(
+        controller: KeyboardInputViewController,
+        autocompleteToolbar: SystemKeyboard.AutocompleteToolbarMode,
+        buttonContent: @escaping (KeyboardLayout.Item) -> ButtonContent
+    )
+    where ButtonView == StandardButtonView,
+    EmojiKeyboard == StandardEmojiKeyboard,
+    Toolbar == StandardToolbarView {
+        self.init(
+            state: controller.state,
+            services: controller.services,
+            buttonContent: { buttonContent($0.item) },
+            buttonView: { $0.view },
+            emojiKeyboard: { $0.view },
+            toolbar: { $0.view }
+        )
+    }
 }
 #endif
