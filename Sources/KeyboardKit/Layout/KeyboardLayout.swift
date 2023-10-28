@@ -10,7 +10,7 @@ import CoreGraphics
 import SwiftUI
 
 /**
- Keyboard layouts define the full set of keyboard keys, most
+ A keyboard layout defines the keys and spaces on a keyboard,
  often including keys around the input rows and a bottom row.
  
  A keyboard layout also specify sizes, insets and properties

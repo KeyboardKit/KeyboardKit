@@ -21,7 +21,7 @@ public extension InputSet.Row {
     
     /**
      Create an input row from a string, where each character
-     is mapped to an ``InputSet.Item``.
+     is mapped to an ``InputSet/Item``.
      */
     init(chars: String) {
         self.init(chars: chars.chars)
@@ -29,7 +29,7 @@ public extension InputSet.Row {
     
     /**
      Create an input row from an array, where each character
-     is mapped to an ``InputSet.Item``.
+     is mapped to an ``InputSet/Item``.
      */
     init(chars: [String]) {
         self = chars.map { InputSet.Item($0) }
@@ -37,7 +37,7 @@ public extension InputSet.Row {
 
     /**
      Create an input row from a lowercased and an uppercased
-     string, where each char is mapped to an ``InputSet.Item``.
+     string, where each char is mapped to an ``InputSet/Item``.
 
      Both arrays must contain the same amount of characters.
      */
@@ -51,7 +51,7 @@ public extension InputSet.Row {
 
     /**
      Create an input row from a lowercased and an uppercased
-     array, where each char is mapped to an ``InputSet.Item``.
+     array, where each char is mapped to an ``InputSet/Item``.
 
      Both arrays must contain the same amount of characters.
      */
@@ -68,7 +68,7 @@ public extension InputSet.Row {
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet.Item``.
+     where each character is mapped to an ``InputSet/Item``.
      */
     init(
         phone: String,
@@ -80,7 +80,7 @@ public extension InputSet.Row {
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet.Item``.
+     where each character is mapped to an ``InputSet/Item``.
      */
     init(
         phone: [String],
@@ -92,7 +92,7 @@ public extension InputSet.Row {
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet.Item``.
+     where each character is mapped to an ``InputSet/Item``.
      */
     init(
         phoneLowercased: String,
@@ -108,7 +108,7 @@ public extension InputSet.Row {
 
     /**
      Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet.Item``.
+     where each character is mapped to an ``InputSet/Item``.
      */
     init(
         phoneLowercased: [String],

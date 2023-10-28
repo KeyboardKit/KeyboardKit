@@ -16,9 +16,9 @@ import Foundation
  standard QWERTY keyboards. This is a layout that is used by
  many native keyboards, e.g. English.
  
- If any of the provided input sets has a different amount of
- items than the default input sets, you must create a custom
- layout provider if you want to adjust the layout.
+ You can inherit and customize this class to change any part
+ of the provided layout. You can also replace the iPhone and
+ iPad specific providers.
  */
 open class InputSetBasedKeyboardLayoutProvider: BaseKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
 

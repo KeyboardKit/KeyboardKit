@@ -1,4 +1,4 @@
-# [BETA] Understanding Dictation
+# Understanding Dictation [BETA]
 
 This article describes the KeyboardKit dictation engine.
 

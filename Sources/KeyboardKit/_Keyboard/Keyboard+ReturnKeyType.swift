@@ -143,10 +143,10 @@ extension UIReturnKeyType {}
 public extension UIReturnKeyType {
 
     /**
-     The corresponding ``KeyboardReturnKeyType``.
+     The corresponding ``Keyboard/ReturnKeyType``.
 
      Return types that have no matching primary type will be
-     mapped to ``KeyboardReturnKeyType/custom(title:)``.
+     mapped to ``Keyboard/ReturnKeyType/custom(title:)``.
      */
     var keyboardReturnKeyType: Keyboard.ReturnKeyType {
         switch self {
