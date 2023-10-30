@@ -13,7 +13,7 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0
 
-Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit SDK.
+Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit SDK!
 
 
 ## 📣 Major Changes
@@ -24,11 +24,11 @@ Central types like `SystemKeyboard` are easier to use. Passing state and service
 
 These updates has helped enabling new features, like fading the keyboard buttons while moving the cursor with space and other quality of life improvements and fixes. Accessibility has been drastically improved and the emoji keyboard redesigned.
 
-Most emoji features are now Pro features, including the emoji keyboard. The `SystemKeyboard` automatically removes the emoji key if no keyboard is available.
+Most emoji features are now Pro features, including the emoji keyboard. The `SystemKeyboard` automatically removes the emoji key if no emoji keyboard is available.
 
-The documentation (can be downloaded from the list of files below) has been extensively updated to provide more information and code examples. Please report any inconsistencies found, as many changes have been made.
+The documentation has been extensively updated to provide more information and code examples. Please report any inconsistencies found, as many changes have been made.
 
-I hope that you will love this major update to KeyboardKit. 
+I hope that you will love this major update to KeyboardKit!
 
 
 ## 🛟 KeyboardKit 8 Migration Help

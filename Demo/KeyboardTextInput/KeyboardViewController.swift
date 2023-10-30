@@ -37,8 +37,10 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// We get an `unowned` controller reference that we
         /// can use to help us avoid memory leaks.
-        setup { controller in
-            DemoKeyboardView(controller: controller)
+        setupPro(
+            withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098"
+        ) {
+            DemoKeyboardView(controller: $0)
         }
     }
 }
