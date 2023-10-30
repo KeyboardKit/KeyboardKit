@@ -46,7 +46,6 @@ Here's a list of some things that may be important to know
 
 * `KeyboardInputViewController` has moved state properties into a `state` property.
 * `KeyboardInputViewController` has moved service properties into a `services` property.
-* `ProKeyboardActionHandler` is a new action handler for pro keyboards. You can inherit it.
 * `StandardKeyboardActionHandler` no longer remembers tapped emojis. This is done with the pro handler.
 * `SystemKeyboard` provides MUCH easier customization, but requires explicit view builders.
 * `SystemKeyboard` now hides the `emoji` keyboard key if `emojiKeyboard` is an `EmptyView`. 
@@ -74,6 +73,9 @@ Here's a list of some things that may be important to know
 * `SystemKeyboard` has new view builders to make it MUCH easier to customize it.
 * `SystemKeyboard` now fades out the buttons when a space cursor drag is active.
 * `StandardKeyboardActionHandler` can now be created on all supported platforms.
+* `StandardKeyboardActionHandler` has a new `emojiRegistration` property.
+* `StandardKeyboardActionHandler` has a new `tryRegisterEmoji(after:on:)`.
+* `StandardKeyboardActionHandler` has a new `tryPerformAutocomplete(after:on:)`.
 * `StandardKeyboardStyleProvider` now adjusts styles when a space drag is active.
 * `View.keyboardButton` supports custom insets and applies a menu to `nextLocale`.
 * `View.keyboardButton` applies accessibility labels for actions that define them.
@@ -88,7 +90,6 @@ Here's a list of some things that may be important to know
 * `EmojiKeyboard` uses the standard context style as default.
 * `Gesture.KeyboardButtonGestures` no longer blocks space releases.
 * `InputSet` has been converted to a struct. All subsets are removed.
-* `ProKeyboardActionHandler` is a new, Pro-supporting action handler.
 * `KeyboardAction` no longer defines a default `.nextKeyboard` action.
 * `KeyboardController` has fewer functions, since it's not used as much.  
 * `KeyboardInputViewController` is no longer used to insert suggestions.
@@ -113,7 +114,6 @@ Here's a list of some things that may be important to know
 * `FullDocumentContextReader` has been removed (use proxy).
 * `KeyboardTextField` & `KeyboardTextView` are now Pro features.
 * `LocalAutocompleteProvider` autocorrects `i` to `I` in English.
-* `ProKeyboardActionHandler` is a new Pro keyboard action handler.
 * `ProCalloutActionProvider` is a new Pro callout action provider.
 * `RemoteAutocompleteProvider` is now available to all license tiers.
 * `SystemKeyboardPreview` replaces all other system keyboard previews.

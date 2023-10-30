@@ -130,9 +130,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] replaces ``StandardKeyboardActionHandler`` with a **ProKeyboardActionHandler** that automatically registers emojis as you use them. This will automatically populate the "most recent" emojis category.
-
-> Important: If you have a custom action handler, make sure to inherit ProKeyboardActionHandler instead of StandardKeyboardActionHandler when you switch over to KeyboardKit Pro, otherwise your keyboard won't register the most recently used emojis.
+[KeyboardKit Pro][Pro] injects a ``StandardKeyboardActionHandler/emojiRegistrationAction`` into the ``StandardKeyboardActionHandler``, that automatically registers emojis as you use them. This will automatically update the "most recent" emojis category in the emoji keyboard.
 
 
 

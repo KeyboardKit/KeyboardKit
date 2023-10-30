@@ -21,10 +21,6 @@ import Foundation
  
  KeyboardKit automatically creates an instance of this class
  and binds it to ``KeyboardInputViewController/services``.
- 
- > Important: Make sure to inherit `ProKeyboardActionHandler`
- instead of this class when using Pro, otherwise it will not
- register the most recent emojis.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
@@ -102,6 +98,10 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
     
 
+    /// The action to use to register emojis, if any.
+    public var emojiRegistrationAction: ((Emoji) -> Void)?
+    
+    
     private var spaceDragActivationLocation: CGPoint?
     
 
@@ -156,7 +156,8 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         tryEndSentence(after: gesture, on: action)
         tryChangeKeyboardType(after: gesture, on: action)
-        keyboardController?.performAutocomplete()
+        tryPerformAutocomplete(after: gesture, on: action)
+        tryRegisterEmoji(after: gesture, on: action)
     }
 
     /// Handle a drag gesture on a certain action.
@@ -324,6 +325,35 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     open func tryEndSentence(after gesture: Gesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
         keyboardContext.endSentence()
+    }
+    
+    /**
+     Try to perform autocomplete, after a `gesture` has been
+     performed on the provided `action`.
+     */
+    open func tryPerformAutocomplete(
+        after gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) {
+        keyboardController?.performAutocomplete()
+    }
+    
+    /**
+     Try to register a certain emoji after the `gesture` has
+     been performed on the provided `action`.
+     
+     The class will by default use ``emojiRegistrationAction``
+     so just set it to any action to perform a registration.
+     */
+    open func tryRegisterEmoji(
+        after gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) {
+        guard gesture == .release else { return }
+        switch action {
+        case .emoji(let emoji): emojiRegistrationAction?(emoji)
+        default: return
+        }
     }
 
     /**

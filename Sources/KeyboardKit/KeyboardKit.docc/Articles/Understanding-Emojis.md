@@ -160,10 +160,9 @@ This can be used to filter out unavailable emojis from the various categories, w
 
 ### Most recent emojis
 
-[KeyboardKit Pro][Pro] unlocks an **Emojis.MostRecentProvider** and will also replace the ``StandardKeyboardActionHandler`` with a **ProKeyboardActionHandler** that uses this provider to automatically registers emojis as you use them.
+[KeyboardKit Pro][Pro] unlocks an **Emojis.MostRecentProvider** that can be used to register and get the most recently used emojis, e.g. in an emoji keyboard.
 
-> Important: If you have a custom action handler, make sure to inherit ProKeyboardActionHandler instead of StandardKeyboardActionHandler when you switch over to KeyboardKit Pro, otherwise your keyboard won't register the most recently used emojis.
-
+KeyboardKit Pro also registers a ``StandardKeyboardActionHandler/emojiRegistrationAction`` into the ``StandardKeyboardActionHandler``, that automatically registers emojis as you use them. This will automatically update the "most recent" emojis category in the emoji keyboard.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

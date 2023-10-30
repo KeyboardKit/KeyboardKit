@@ -24,8 +24,12 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     var audioEngine: MockAudioFeedbackEngine!
     var hapticEngine: MockHapticFeedbackEngine!
     
+    var registeredEmojis: [Emoji] = []
+    
 
     override func setUp() {
+        registeredEmojis = []
+        
         controller = MockKeyboardInputViewController()
         spaceDragHandler = MockSpaceDragGestureHandler(action: { _ in })
         textDocumentProxy = MockTextDocumentProxy()
@@ -44,6 +48,10 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
             spaceDragGestureHandler: controller.services.spaceDragGestureHandler
         )
         
+        handler.emojiRegistrationAction = { [weak self] in
+            self?.registeredEmojis.append($0)
+        }
+        
         audioEngine = MockAudioFeedbackEngine()
         hapticEngine = MockHapticFeedbackEngine()
         AudioFeedback.Engine.shared = audioEngine
@@ -55,7 +63,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertTrue(handler.canHandle(.press, on: .backspace))
         XCTAssertFalse(handler.canHandle(.doubleTap, on: .backspace))
     }
-
+    
     func testHandlingGestureOnActionTriggersManyOperations() {
         handler.handle(.release, on: .character("a"))
         XCTAssertTrue(handler.hasCalled(\.tryRemoveAutocompleteInsertedSpaceRef))
@@ -64,7 +72,21 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
         XCTAssertTrue(handler.hasCalled(\.tryEndSentenceRef))
         XCTAssertTrue(handler.hasCalled(\.tryChangeKeyboardTypeRef))
         XCTAssertTrue(controller.hasCalled(\.performAutocompleteRef))
+        XCTAssertEqual(registeredEmojis, [])
     }
+    
+    func testHandlingGestureOnEmojiTriggersEmojiRegistration() {
+        handler.handle(.release, on: .emoji(.init("👍")))
+        handler.handle(.release, on: .emoji(.init("🤩")))
+        XCTAssertTrue(handler.hasCalled(\.tryRemoveAutocompleteInsertedSpaceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryApplyAutocorrectSuggestionRef))
+        XCTAssertTrue(handler.hasCalled(\.tryReinsertAutocompleteRemovedSpaceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryEndSentenceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryChangeKeyboardTypeRef))
+        XCTAssertTrue(controller.hasCalled(\.performAutocompleteRef))
+        XCTAssertEqual(registeredEmojis.map { $0.char }, ["👍", "🤩"])
+    }
+    
 
     func testHandlingDragGestureOnActionDoesNotDoAnythingOnNonSpaceActions() {
         let actions = KeyboardAction.testActions.filter { $0 != .space }
