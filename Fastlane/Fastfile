@@ -26,7 +26,6 @@ platform :ios do
     add_git_tag(tag: version)
     push_git_tags()
     push_to_git_remote()
-    pod_push()
   end
   
   desc "Build a new version"
