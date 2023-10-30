@@ -28,9 +28,9 @@ import Foundation
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
-    
     // MARK: - Initialization
     
+    #if os(iOS)
     /**
      Create a standard keyboard action handler.
 
@@ -49,6 +49,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
             spaceDragGestureHandler: controller.services.spaceDragGestureHandler
         )
     }
+    #endif
     
     /**
      Create a standard keyboard action handler.
