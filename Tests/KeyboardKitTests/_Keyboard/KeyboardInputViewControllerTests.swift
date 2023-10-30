@@ -162,13 +162,17 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func testTextWillChangeTriggersViewWillSyncWithTextDocumentProxy() {
         vc.textWillChange(nil)
-        XCTAssertTrue(vc.state.keyboardContext.textDocumentProxy === vc.textDocumentProxy)
+        eventually {
+            XCTAssertTrue(self.vc?.state.keyboardContext.textDocumentProxy === self.vc?.textDocumentProxy)
+        }
     }
 
     func testTextDidChangeTriggersPerformAutocomplete() {
         XCTAssertFalse(vc.hasCalled(\.performAutocompleteRef))
         vc.textDidChange(nil)
-        XCTAssertTrue(vc.hasCalled(\.performAutocompleteRef))
+        eventually {
+            XCTAssertTrue(self.vc?.hasCalled(\.performAutocompleteRef) == true)
+        }
     }
 
     func testTextDidChangeTriesToChangeKeyboardType() {
