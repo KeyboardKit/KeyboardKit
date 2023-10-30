@@ -13,6 +13,8 @@ disabled_rules:
   - type_name
   - vertical_whitespace
 
+  - type_body_length
+
 included:
   - Sources
   - Tests
