@@ -33,7 +33,7 @@ open class InputSetBasedKeyboardLayoutProvider: BaseKeyboardLayoutProvider, Keyb
     public override init(
         alphabeticInputSet: InputSet = .qwerty,
         numericInputSet: InputSet = .standardNumeric(currency: "$"),
-        symbolicInputSet: InputSet = .standardSymbolic(currencies: "€£¥".chars)
+        symbolicInputSet: InputSet = .standardSymbolic(currencies: ["€","£","¥"])
     ) {
         super.init(
             alphabeticInputSet: alphabeticInputSet,

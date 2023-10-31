@@ -11,6 +11,27 @@ These release notes will only contain the current version. Just check out an old
 
 
 
+## 8.0.1 - 8.0.2
+
+This patch tweaks some migration guides before removing them in 8.1.
+
+This patch also makes some license-depending views throwing instead of rendering empty content.
+
+All access to now throwing types can just be prefixed with `try?` to mitigate the breaking change.
+
+## 🗑️ New Deprecations Guides 
+
+* `Emojis.MostRecentProvider` is renamed to `Emoji.MostRecentProvider`.
+* `Emojis.Category.frequentEmojiProvider` is renamed to `Emoji.Category.frequentEmojiProvider`.
+
+## 💥 Breaking changes 
+
+* `EmojiCategory` initializers are now throwing.
+* `Emoji` skin tones are now throwing.
+* `Emoji.Version` functionality is now throwing.
+
+
+
 ## 8.0
 
 Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit SDK!

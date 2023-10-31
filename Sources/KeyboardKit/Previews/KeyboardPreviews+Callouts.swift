@@ -46,7 +46,7 @@ public extension KeyboardPreviews {
             switch action {
             case .character(let char):
                 switch char {
-                case "a": return "aàáâäæãåā".chars.map { KeyboardAction.character($0) }
+                case "a": return "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
                 default: return []
                 }
             default: break

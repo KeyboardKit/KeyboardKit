@@ -1,9 +1,9 @@
 //
-//  String+CharacterMap.swift
+//  String+Chars.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2021-02-03.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2023-11-01.
+//  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
 import Foundation

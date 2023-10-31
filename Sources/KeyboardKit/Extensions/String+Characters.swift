@@ -30,7 +30,7 @@ public extension String {
     static var sentenceDelimiters = ["!", ".", "?"]
 
     /// A list of mutable western word delimiters.
-    static var wordDelimiters = "!.?,;:()[]{}<>".chars + [" ", .newline]
+    static var wordDelimiters = "!.?,;:()[]{}<>".map(String.init) + [" ", .newline]
 }
 
 public extension String {

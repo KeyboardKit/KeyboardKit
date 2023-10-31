@@ -9,6 +9,29 @@ platform :ios do
   build_folder_docs = ".build/docs"
 
 
+  # EmojiKit ===================
+  
+  ek_dest = "Sources/" + library_name + "/Emojis/"
+  ek_source = "../emojikitsource/Sources/EmojiKit/"
+
+  desc "Remove EmojiKit"
+  lane :ekremove do
+    ensure_git_status_clean
+    sh("cd .. && rm -rf " + ek_dest + "Emoji.swift")
+    sh("cd .. && rm -rf " + ek_dest + "Extensions")
+  end
+
+  desc "Update EmojiKit"
+  lane :ekupdate do
+    ekremove
+    sh("cd .. && rm -rf Sources/" + library_name + "/Bundle/Bundle+Locale.swift")
+    sh("cd .. && cp -r " + ek_source + "Emoji.swift " + ek_dest)
+    sh("cd .. && cp -r " + ek_source + "Extensions " + ek_dest)
+    sh("cd .. && cp -r  " + ek_source + "/Bundle/Bundle+Locale.swift Sources/" + library_name + "/Bundle")
+    git_commit(path: "*", message: "Update EmojiKit")
+  end
+
+
   # Version ================
 
   desc "Create a new version"
