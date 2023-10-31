@@ -9,6 +9,12 @@
 import Foundation
 
 extension Bundle {
+    
+    /// The main library bundle.
+    static var library = Bundle.keyboardKit
+}
+
+extension Bundle {
 
     /**
      The name of the package bundle, which may change in new
