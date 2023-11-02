@@ -136,7 +136,6 @@ KeyboardKit is available under the MIT license.
 
 ### Emojis
 
-- ``Emojis``
 - ``Emoji``
 
 ### Feedback

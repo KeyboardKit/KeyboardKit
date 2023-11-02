@@ -1,5 +1,5 @@
 //
-//  Emojis+KeyboardWrapper.swift
+//  Emoji+KeyboardWrapper.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-10-26.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension Emojis {
+public extension Emoji {
     
     /**
      This is used as a view eraser for the emoji keyboard.

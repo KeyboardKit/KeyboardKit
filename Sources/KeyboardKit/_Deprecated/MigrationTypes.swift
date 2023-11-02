@@ -281,3 +281,6 @@ public extension View {
         keyboardButtonStyle(style)
     }
 }
+
+@available(*, deprecated, renamed: "Emoji")
+public typealias Emojis = Emoji

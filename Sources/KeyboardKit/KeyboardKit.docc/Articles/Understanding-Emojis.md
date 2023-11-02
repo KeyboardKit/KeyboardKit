@@ -2,17 +2,9 @@
 
 This article describes the KeyboardKit emoji engine.
 
-KeyboardKit provides you with an ``Emoji`` type that has unicode and emoji information, an emoji localization engine, etc.
+KeyboardKit provides you with an ``Emoji`` type that provides many emoji-related features.
 
-[KeyboardKit Pro][Pro] unlocks an emoji keyboard, as well as emoji categories, keyboards, skintones, version information, etc. Information about Pro features can be found at the end of this article.
-
-
-
-## Emojis namespace
-
-KeyboardKit has an ``Emojis`` namespace that contains emoji-related types and views. KeyboardKit Pro adds more features to this namespace.
-
-The namespace doesn't contain protocols, open classes, or types that are meant to be exposed at the top-level.
+[KeyboardKit Pro][Pro] unlocks an emoji keyboard, as well as categories, keyboards, skintones, version information, etc. Information about Pro features can be found at the end of this article.
 
 
 
@@ -24,30 +16,7 @@ KeyboardKit has an ``Emoji`` struct that lets you work with emojis in a more str
 let emoji = Emoji("😀")
 ```
 
-This type provides you with a bunch of information, such as the emoji's unique unicode-based identifier and name, localized name etc.:
-
-```swift
-let emoji = Emoji("😀")
-emoji.unicodeIdentifier // \\N{GRINNING FACE}
-emoji.unicodeName // Grinning Face
-```
-
-Emojis can be localized with the localization files found in the `Sources/Resources` folder. Emojis that lack a localized name will use ``Emoji/unicodeName`` as a fallback.
-
-```swift
-let emoji = Emoji("😀")
-emoji.localizedName(for: .english) // Grinning Face
-emoji.localizedName(for: .swedish) // Leende Ansikte
-```
-
-To localize emojis for a locale, add translations to the correct `Localizable.strings` file on this format:
-
-```
-/* [😀] */ "Emoji.GrinningFace" = "Grinning Face";
-/* [😃] */ "Emoji.SmilingFaceWithOpenMouth" = "Smiling Face with Open Mouth";
-```
-
-Emoji localization is a major undertaking and will therefore have to be a community effort.
+This type can be used to create actions with the ``KeyboardAction/emoji(_:)-swift.enum.case`` action type.
 
 
 
@@ -56,23 +25,23 @@ Emoji localization is a major undertaking and will therefore have to be a commun
 KeyboardKit has String and Character extensions to detect emojis, for instance:
 
 ```swift
-"Hello!".containsEmoji // false
-"Hello! 👋".containsEmoji // true
-"Hello! 👋".containsOnlyEmojis // false
-"👋".containsOnlyEmojis // true
-"Hello! 👋😀".emojis // ["👋", "😀"]
-"Hello! 👋😀".emojiString // "👋😀"
-"🫸🫷".isSingleEmoji // false
-"👍".isSingleEmoji // true
+"Hello!".containsEmoji          // false
+"Hello! 👋".containsEmoji       // true
+"Hello! 👋".containsOnlyEmojis  // false
+"👋".containsOnlyEmojis         // true
+"Hello! 👋😀".emojis            // ["👋", "😀"]
+"Hello! 👋😀".emojiString       // "👋😀"
+"🫸🫷".isSingleEmoji            // false
+"👍".isSingleEmoji              // true
 ```
 
-These extensions make it easier to handle text and inputs, and are used to power more powerful features.
+These extensions are used to power more powerful features.
 
 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks an emoji keyboard, categories, keyboards, skintones, version info, etc.
+[KeyboardKit Pro][Pro] unlocks an emoji keyboard, categories, keyboards, skintones, version information, etc.
 
 
 ### Emoji Keyboard
@@ -81,12 +50,42 @@ KeyboardKit Pro unlocks an **EmojiKeyboard** that mimics the native emoji keyboa
 
 ![Emoji Keyboard](emoji-keyboard-500.jpg)
 
-The keyboard uses a bunch of views that are also unlocked by KeyboardKit Pro, such as the **Emojis.Grid**, as well as titles, menus, etc. You can use these views as standalone components as well. 
+The keyboard uses a bunch of views that are also unlocked by KeyboardKit Pro, such as **Emoji.KeyboardGrid**, titles, menus, etc. You can use these views as standalone components as well.
 
 
-### Emoji Categories
+### Unicode information
 
-KeyboardKit Pro unlocks an **Emojis.Category** enum that defines all available emoji categories and their emojis, for instance:
+KeyboardKit Pro unlocks unique unicode-based identifiers and names for all emojis:
+
+```swift
+let emoji = Emoji("😀")
+emoji.unicodeIdentifier // \\N{GRINNING FACE}
+emoji.unicodeName // Grinning Face
+```
+
+This information can be used to identify and localize emojis.
+
+
+### Localized names
+
+KeyboardKit Pro unlocks localized names for all emojis:
+
+```swift
+let emoji = Emoji("😀")
+emoji.localizedName(for: .english) // Grinning Face
+emoji.localizedName(for: .swedish) // Leende Ansikte
+```
+
+Emojis can be localized with the localization files found in `/Sources/Resources`.
+
+Emojis are currently only localized in English. Emoji localization is a major undertaking and will therefore have to be a community effort. 
+
+Feel free to contribute localizations for your language.
+
+
+### Categories
+
+KeyboardKit Pro unlocks an **Emoji.Category** enum that defines all emoji categories and their emojis, for instance:
 
 ```swift
 Emojis.Category.smileys.emojis    // 😀😃😄😁😆🥹😅😂🤣🥲 ...
@@ -99,7 +98,7 @@ You can get a list of all available categories like this:
 Emojis.Category.all     // [.frequent, .smileys, .animals, ...]
 ```
 
-and use these categories to get a list of all available emojis:
+This information is used to provide a list of all available emojis:
 
 ```swift
 Emoji.all     // 😀😃😄😁😆🥹😅😂🤣🥲 ...
@@ -108,9 +107,9 @@ Emoji.all     // 😀😃😄😁😆🥹😅😂🤣🥲 ...
 Emoji categories are also used to power the **EmojiKeyboard**.
 
 
-### Emoji Skin tones
+### Skin Tones
 
-KeyboardKit Pro unlocks additional ``Emoji`` extensions to get skin tone information:
+KeyboardKit Pro unlocks additional ``Emoji`` skin tone information:
 
 ```swift
 Emoji("👍").hasSkinToneVariants     // true
@@ -120,17 +119,19 @@ Emoji("👍").skinToneVariants        // 👍👍🏻👍🏼👍🏽👍🏾�
 Emoji("👍").skinToneVariantActions  // The above variants as keyboard actions
 ```
 
-Skin tones will also be used as secondary callout actions, which means that long pressing an emoji with skintones in an emoji keyboard will show an action callout. 
+Skin tones will automatically be used as secondary callout actions, which means that long pressing an emoji with skintones in an emoji keyboard will show an action callout. 
 
 > Note: Skin tone support for emojis with multiple skin tone components are currently not supported, such as two persons kissing.
 
 
 ### Emoji Versions
 
-KeyboardKit Pro unlocks an **EmojiVersion** type that defines emoji versions, platform availability and included emojis, for instance:
+KeyboardKit Pro unlocks an **Emoji.Version** type that defines emoji versions, platform availability and included emojis.
+
+To get the latest available version for the current runtime, you can use **.current**:
 
 ```swift
-let version = EmojiVersion.v15
+let version = Emoji.Version.current
 version.version  // 15.0
 version.iOS      // 16.4
 version.macOS    // 13.3
@@ -138,14 +139,25 @@ version.tvOS     // 16.4
 version.watchOS  // 9.4
 ```
 
-You can also get the emoji version included in a certain platform version, for instance:
+You can also request specific versions, for instance:
 
 ```swift
-let version = EmojiVersion(iOS: 15.4)
+let version = Emoji.Version.v15
+version.version  // 15.0
+version.iOS      // 16.4
+version.macOS    // 13.3
+version.tvOS     // 16.4
+version.watchOS  // 9.4
+```
+
+You can also get the latest version for a certain OS version, for instance:
+
+```swift
+let version = Emoji.Version(iOS: 15.4)
 version.version  // 14.0
 ```
 
-A version specifies the emojis introduced in that version, later and older versions and emojis that were introduced in later versions:
+An emoji version specifies the emojis introduced in that version, later and older versions and emojis that were introduced in later versions:
 
 ```swift
 let version = EmojiVersion.v14
@@ -160,9 +172,9 @@ This can be used to filter out unavailable emojis from the various categories, w
 
 ### Most recent emojis
 
-[KeyboardKit Pro][Pro] unlocks an **Emojis.MostRecentProvider** that can be used to register and get the most recently used emojis, e.g. in an emoji keyboard.
+KeyboardKit Pro unlocks an **Emoji.MostRecentProvider** that can be used to register and get the most recently used emojis.
 
-KeyboardKit Pro also registers a ``StandardKeyboardActionHandler/emojiRegistrationAction`` into the ``StandardKeyboardActionHandler``, that automatically registers emojis as you use them. This will automatically update the "most recent" emojis category in the emoji keyboard.
+KeyboardKit Pro binds such an instance to **Emoji.frequentEmojiProvider** and injects it into the ``StandardKeyboardActionHandler/emojiRegistrationAction``. This will make the "most recent" emojis category automatically update when you tap emojis in the emoji keyboard.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
