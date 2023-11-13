@@ -22,7 +22,7 @@ This type can be used to create actions with the ``KeyboardAction/emoji(_:)-swif
 
 ## String & Character Extensions
 
-KeyboardKit has String and Character extensions to detect emojis, for instance:
+KeyboardKit has String and Character extensions that can be used to detect and handle emojis, for instance:
 
 ```swift
 "Hello!".containsEmoji          // false
@@ -35,7 +35,19 @@ KeyboardKit has String and Character extensions to detect emojis, for instance:
 "👍".isSingleEmoji              // true
 ```
 
-These extensions are used to power more powerful features.
+These extensions are used to power many of the emoji-specific features in the library, but can be used as stand-alone features as well.
+
+
+
+## Get all available emojis
+
+You can use ``Emoji/all`` to get a list of all emojis that are available to the currently exeucting runtime:
+
+```swift
+let emojis = Emoji.all          // 😀😃😄😁😆🥹😅😂🤣🥲...
+```
+
+This property uses underlying Emoji version information to filter out unavailable emojis and avoid empty spaces for emojis that are not available in the current OS version.
 
 
 
