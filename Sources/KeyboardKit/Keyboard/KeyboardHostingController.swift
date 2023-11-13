@@ -40,7 +40,11 @@ public class KeyboardHostingController<Content: View>: UIHostingController<Conte
 
     deinit {
         removeFromParent()
-        view.removeFromSuperview()
+        guard let view = view else { return }
+        DispatchQueue.main.async {
+            if view.superview == nil { return }
+            view.removeFromSuperview()
+        }
     }
     
     public override func viewWillLayoutSubviews() {
