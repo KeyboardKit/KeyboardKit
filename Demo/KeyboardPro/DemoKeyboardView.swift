@@ -33,10 +33,7 @@ struct DemoKeyboardView: View {
             services: services,
             buttonContent: { $0.view },
             buttonView: { $0.view },
-            emojiKeyboard: { _ in EmojiKeyboard(
-                state: state,
-                services: services)
-            },
+            emojiKeyboard: { $0.view },
             toolbar: { $0.view }
         )
     }

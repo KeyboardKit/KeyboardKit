@@ -35,14 +35,21 @@ struct DemoKeyboardView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            KeyboardTextField("Type text here...", text: $text1, controller: controller)
-                .focused($isFocused1, doneButton: doneButton)
-                .padding(3)
+            KeyboardTextField(
+                "Type text here...",
+                text: $text1,
+                controller: controller
+            )
+            .focused($isFocused1, doneButton: doneButton)
+            .padding(3)
 
-            KeyboardTextView(text: $text2, controller: controller)
-                .focused($isFocused2, doneButton: doneButton)
-                .frame(height: 80)
-                .padding(3)
+            KeyboardTextView(
+                text: $text2,
+                controller: controller
+            )
+            .focused($isFocused2, doneButton: doneButton)
+            .frame(height: 80)
+            .padding(3)
 
             SystemKeyboard(
                 state: controller.state,
