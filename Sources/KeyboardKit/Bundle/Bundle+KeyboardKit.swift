@@ -66,7 +66,8 @@ extension Bundle {
                 return bundle
             }
         }
-        fatalError("Can't find custom bundle. See Bundle+KeyboardKit.swift")
+        
+        return Bundle(for: BundleFinder.self)
     }()
 }
 
