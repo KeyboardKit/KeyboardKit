@@ -20,44 +20,33 @@ import SwiftUI
 struct DemoKeyboardView: View {
 
     @State
-    private var text1 = ""
-
-    @State
-    private var text2 = ""
+    private var text = ""
 
     @FocusState
-    private var isFocused1: Bool
-
-    @FocusState
-    private var isFocused2: Bool
+    private var isFocused: Bool
 
     unowned var controller: KeyboardInputViewController
 
     var body: some View {
         VStack(spacing: 0) {
-            KeyboardTextField(
-                "Type text here...",
-                text: $text1,
-                controller: controller
-            )
-            .focused($isFocused1, doneButton: doneButton)
-            .padding(3)
-
-            KeyboardTextView(
-                text: $text2,
-                controller: controller
-            )
-            .focused($isFocused2, doneButton: doneButton)
-            .frame(height: 80)
-            .padding(3)
-
             SystemKeyboard(
                 state: controller.state,
                 services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },
-                toolbar: { $0.view }
+                toolbar: { params in
+                    VStack {
+                        params.view
+                        KeyboardTextField(
+                            controller.hasFullAccess ? "Search..." : "NEEDS FULL ACCESS!",
+                            text: $text,
+                            controller: controller
+                        )
+                        .focused($isFocused, doneButton: doneButton)
+                        .padding(3)
+                    }
+                }
             )
         }.buttonStyle(.plain)
     }
