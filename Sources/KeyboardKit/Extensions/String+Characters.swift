@@ -26,10 +26,10 @@ public extension String {
     static let zeroWidthSpace = "\u{200B}"
 
 
-    /// A list of mutable western sentence delimiters.
+    /// A list of mutable, western sentence delimiters.
     static var sentenceDelimiters = ["!", ".", "?"]
 
-    /// A list of mutable western word delimiters.
+    /// A list of mutable, western word delimiters.
     static var wordDelimiters = "!.?,;:()[]{}<>".map(String.init) + [" ", .newline]
 }
 
