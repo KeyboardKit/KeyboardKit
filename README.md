@@ -4,7 +4,7 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
-    <img src="https://img.shields.io/badge/swift-5.7-orange.svg" alt="Swift 5.6" />
+    <img src="https://img.shields.io/badge/swift-5.8-orange.svg" alt="Swift 5.8" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
     <a href="https://twitter.com/getkeyboardkit">
         <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" />

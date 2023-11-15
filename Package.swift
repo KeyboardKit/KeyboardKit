@@ -1,4 +1,4 @@
-// swift-tools-version:5.8
+// swift-tools-version: 5.8
 
 import PackageDescription
 
@@ -14,7 +14,8 @@ let package = Package(
     products: [
         .library(
             name: "KeyboardKit",
-            targets: ["KeyboardKit"])
+            targets: ["KeyboardKit"]
+        )
     ],
     dependencies: [
         .package(url: "https://github.com/danielsaidi/MockingKit.git", .upToNextMajor(from: "1.3.0"))
@@ -27,6 +28,7 @@ let package = Package(
         ),
         .testTarget(
             name: "KeyboardKitTests",
-            dependencies: ["KeyboardKit", "MockingKit"])
+            dependencies: ["KeyboardKit", "MockingKit"]
+        )
     ]
 )

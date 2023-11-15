@@ -11,7 +11,9 @@ import SwiftUI
 public extension Emoji {
     
     /**
-     This is used as a view eraser for the emoji keyboard.
+     This is used as a view eraser for the emoji keyboard to
+     make it possible to inject it with the standard builder
+     in the system keyboard initializer.
      */
     struct KeyboardWrapper: View {
         

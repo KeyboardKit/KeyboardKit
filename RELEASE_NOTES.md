@@ -15,20 +15,16 @@ These release notes will only contain the current version. Just check out an old
 
 This patch tweaks some migration guides before removing them in 8.1.
 
-This patch also makes some license-depending views throwing instead of rendering empty content.
+This patch moves emoji features from `Emojis` (which was introduced in 8.0) to `Emoji` after developer feedback that `Emojis` was a strange prefix.
 
-All access to now throwing types can just be prefixed with `try?` to mitigate the breaking change.
-
-## 🗑️ New Deprecations Guides 
-
-* `Emojis.MostRecentProvider` is renamed to `Emoji.MostRecentProvider`.
-* `Emojis.Category.frequentEmojiProvider` is renamed to `Emoji.Category.frequentEmojiProvider`.
+This patch makes some Pro views throwing instead of rendering empty content, since this was confusing. If you run into problems with this, just prefix your call with `try?`.
 
 ## 💥 Breaking changes 
 
 * `EmojiCategory` initializers are now throwing.
 * `Emoji` skin tones are now throwing.
 * `Emoji.Version` functionality is now throwing.
+* `Emojis` is deprecated since all functionality is moved into `Emoji`.
 
 
 

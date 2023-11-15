@@ -39,18 +39,6 @@ These extensions are used to power many of the emoji-specific features in the li
 
 
 
-## Get all available emojis
-
-You can use ``Emoji/all`` to get a list of all emojis that are available to the currently exeucting runtime:
-
-```swift
-let emojis = Emoji.all          // 😀😃😄😁😆🥹😅😂🤣🥲...
-```
-
-This property uses underlying Emoji version information to filter out unavailable emojis and avoid empty spaces for emojis that are not available in the current OS version.
-
-
-
 ## 👑 Pro features
 
 [KeyboardKit Pro][Pro] unlocks an emoji keyboard, categories, keyboards, skintones, version information, etc.
@@ -100,8 +88,8 @@ Feel free to contribute localizations for your language.
 KeyboardKit Pro unlocks an **Emoji.Category** enum that defines all emoji categories and their emojis, for instance:
 
 ```swift
-Emojis.Category.smileys.emojis    // 😀😃😄😁😆🥹😅😂🤣🥲 ...
-Emojis.Category.animals.emojis    // 🐶🐱🐭🐹🐰🦊🐻🐼🐻‍❄️🐨 ...
+Emoji.Category.smileys.emojis    // 😀😃😄😁😆🥹😅😂🤣🥲 ...
+Emoji.Category.animals.emojis    // 🐶🐱🐭🐹🐰🦊🐻🐼🐻‍❄️🐨 ...
 ```
 
 You can get a list of all available categories like this:
@@ -172,7 +160,7 @@ version.version  // 14.0
 An emoji version specifies the emojis introduced in that version, later and older versions and emojis that were introduced in later versions:
 
 ```swift
-let version = EmojiVersion.v14
+let version = Emoji.Version.v14
 version.emojis            // 🫠🫢🫣🫡🫥🫤🥹...
 version.laterVersions     // [.v15]
 version.olderVersions     // []
