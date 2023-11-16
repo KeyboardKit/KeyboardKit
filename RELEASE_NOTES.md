@@ -11,6 +11,24 @@ These release notes will only contain the current version. Just check out an old
 
 
 
+## 8.0.3
+
+This patch improves the text routing views and fixes a big in the text field.
+
+### ✨ New Features
+
+* `KeyboardTextView` makes it easier to define leading and trailing views for the native text field.
+
+### 💡 Adjustments
+  
+* `KeyboardTextView` applies padding to the native text field's left and right side views.
+
+### 🐛 Bug fixes
+
+* `KeyboardTextView` auto-reset in 8.0.2. This has been fixed.
+
+
+
 ## 8.0.2
 
 This patch tweaks some migration guides before removing them in 8.1.
@@ -37,7 +55,7 @@ This patch makes some Pro views throwing instead of rendering empty content, sin
 Welcome to KeyboardKit 8.0 - a massive update to the KeyboardKit SDK!
 
 
-## 📣 Major Changes
+### 📣 Major Changes
 
 KeyboardKit 8.0 is all about cleaning up the library to make it better structured and easier to use. It removes previously deprecated code, moves types into namespaces, and removes low-value utilities, including types solely used for DocC exposure.
 
@@ -52,7 +70,7 @@ The documentation has been extensively updated to provide more information and c
 I hope that you will love this major update to KeyboardKit!
 
 
-## 🛟 KeyboardKit 8 Migration Help
+### 🛟 KeyboardKit 8 Migration Help
 
 If you're a KeyboardKit 7 user, the best way to migrate to KeyboardKit 8 is to first upgrade to the last available 7.9 version. This version contains deprecations that helps you prepare for some of the changes in KeyboardKit 8.
 
@@ -61,7 +79,7 @@ As you then upgrade to KeyboardKit 8, the 8.0 release has many TEMPORARY depreca
 You may run into some breaking changes, since there are some type changes that can't be handled by these deprecations. I have tried to keep these to a minimum, but see the breaking changes section below if you run into any problems.
 
 
-## 🚨 Important Information
+### 🚨 Important Information
 
 Here's a list of some things that may be important to know
 
@@ -74,7 +92,7 @@ Here's a list of some things that may be important to know
 * `SystemKeyboard` no longer auto-hides the toolbar. You can do this in the `toolbar` builder.
 
 
-## ✨ New Features
+### ✨ New Features
 
 * `InputSetBasedKeyboardLayoutProvider` is a new provider.
 * `KeyboardAction` now has a `standardAccessibilityLabel`.
@@ -105,7 +123,7 @@ Here's a list of some things that may be important to know
 * `View.keyboardLayoutItemSize` is a new extension that applies a layout item size.
 
 
-## 💡 Adjustments
+### 💡 Adjustments
   
 * `AutocompleteProvider` is now async.
 * `EmojiKeyboard` uses the standard context style as default.
@@ -119,7 +137,7 @@ Here's a list of some things that may be important to know
 * `KeyboardInputViewController` `textDidChange` performs operations after a delay. 
 
 
-## 👑 Pro Adjustments
+### 👑 Pro Adjustments
 
 * Many emoji types have become Pro features.
 * Many routing types have become Pro features.
@@ -142,7 +160,7 @@ Here's a list of some things that may be important to know
 * `KeyboardInputViewController` has a license config action for both setups.
 
 
-## 🐛 Bug fixes
+### 🐛 Bug fixes
 
 * `Emojis.Version` fixes an iOS availability bug for Unicode v15.
 * `FeedbackConfiguration` used an incorrect disabled audio config by default.
@@ -152,7 +170,7 @@ Here's a list of some things that may be important to know
 * `textDidChange` applies autocapitalization after an async delay, to let the proxy update.
     
 
-## 💥 Breaking changes 
+### 💥 Breaking changes 
 
 * All deprecated code has been removed.
 * DocC exposing types have been removed. 
