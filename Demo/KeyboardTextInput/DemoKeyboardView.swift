@@ -18,14 +18,14 @@ import SwiftUI
  field receives input.
  */
 struct DemoKeyboardView: View {
+    
+    unowned var controller: KeyboardInputViewController
 
     @State
     private var text = ""
-
+    
     @FocusState
     private var isFocused: Bool
-
-    unowned var controller: KeyboardInputViewController
 
     var body: some View {
         VStack(spacing: 0) {
@@ -35,23 +35,26 @@ struct DemoKeyboardView: View {
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },
-                toolbar: { params in
+                toolbar: { toolbarParams in
                     VStack {
-                        params.view
+                        toolbarParams.view
+                        
                         KeyboardTextField(
                             controller.hasFullAccess ? "Search..." : "NEEDS FULL ACCESS!",
                             text: $text,
                             controller: controller
-                        )
-                        .focused($isFocused, doneButton: doneButton)
+                        ) { textField in
+                            textField.setLeftImage(systemName: "magnifyingglass")
+                            textField.setRightImage(systemName: "magnifyingglass.circle.fill")
+                        }
+                        .focused($isFocused) {
+                            Image(systemName: "xmark.circle.fill")
+                        }
+                        .tint(.secondary)
                         .padding(3)
                     }
                 }
             )
         }.buttonStyle(.plain)
-    }
-
-    func doneButton() -> some View {
-        Image(systemName: "x.circle.fill")
     }
 }
