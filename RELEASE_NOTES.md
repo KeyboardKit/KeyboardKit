@@ -11,6 +11,12 @@ These release notes will only contain the current version. Just check out an old
 
 
 
+## 8.0.4
+
+This patch makes the `LocalAutocompleteProvider` callout function `open` instead of `public`.
+
+
+
 ## 8.0.3
 
 This patch improves the text routing views and fixes a big in the text field.
