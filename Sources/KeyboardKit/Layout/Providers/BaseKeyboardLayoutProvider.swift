@@ -41,13 +41,13 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     
     
     /// The alphabetic input set to use.
-    public private(set) var alphabeticInputSet: InputSet
+    public var alphabeticInputSet: InputSet
     
     /// The numeric input set to use.
-    public private(set) var numericInputSet: InputSet
+    public var numericInputSet: InputSet
     
     /// The symbolic input set to use.
-    public private(set) var symbolicInputSet: InputSet
+    public var symbolicInputSet: InputSet
     
     
     /// Get a keyboard layout for the provided context.

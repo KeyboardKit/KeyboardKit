@@ -11,6 +11,12 @@ These release notes will only contain the current version. Just check out an old
 
 
 
+## 8.0.5
+
+This patch makes the `BaseKeyboardLayoutProvider` input sets settable.
+
+
+
 ## 8.0.4
 
 This patch makes the `LocalAutocompleteProvider` callout function `open` instead of `public`.
