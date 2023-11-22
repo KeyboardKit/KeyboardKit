@@ -13,7 +13,7 @@ These release notes will only contain the current version. Just check out an old
 
 ## 8.0.5
 
-This patch makes the `BaseKeyboardLayoutProvider` input sets settable.
+This patch makes the `BaseKeyboardLayoutProvider` input set properties mutable.
 
 
 
