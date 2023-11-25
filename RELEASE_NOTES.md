@@ -4,24 +4,40 @@ KeyboardKit tries to honor semantic versioning:
 
 * Deprecations can happen at any time.
 * Deprecated code will only be removed in `major` versions.
-* Breaking changes should not happen in `minor` and `patch` versions.
-* Breaking changes can still occur in minor versions and BETA features, if the alternative is to not be able to release new critical features or fixes.
+* Breaking changes should not occur in `minor` and `patch` updates.
+* Breaking changes can still occur in `minor` and `patch` updates, if needed for critical fixes or improvements.
 
-The release notes only covers the current major version. 
+These release notes only cover the current major version. 
 
 
 
 ## 8.0.7
 
-This patch fixes a dictation navigation bug and syncs the controller's host bundle ID with the keyboard context.
+This patch fixes an iOS 17 dictation navigation bug and syncs the controller's host bundle ID with the keyboard context.
 
 ### ✨ New Features
 
 * `KeyboardContext` has a new `hostApplicationBundleId` property.
 
+### 💡 Adjustments
+
+* `SystemKeyboardButtonPreview` has been simplified and made greedy.
+* `SystemKeyboardPreview` can now be used as a header/footer without useing any modifiers.
+
+### 👑 Pro Adjustments
+
+* `PreviousAppNavigator` has been configured to work even in iOS 17.
+* `StandardKeyboardDictationService` can once again navigate back when dictation finishes.
+
 ### 🐛 Bug fixes
 
-* `StandardKeyboardDictationService` can once again navigate back when dictation finishes.
+* `InputSet.Turkish` has been slightly adjusted.
+* `SystemKeyboardButtonPreview` now renders themes correctly.
+* `PreviousAppNavigator` now renders themes correctly.
+
+### 💥 Breaking changes 
+
+* `SystemKeyboardPreview` header/footer modifiers are removed since they're no longer needed. See the docs.
 
 
 
@@ -104,7 +120,6 @@ As you then upgrade to KeyboardKit 8, the 8.0 release has many TEMPORARY depreca
 
 You may run into some breaking changes, since there are some type changes that can't be handled by these deprecations. I have tried to keep these to a minimum, but see the breaking changes section below if you run into any problems.
 
-
 ### 🚨 Important Information
 
 Here's a list of some things that may be important to know
@@ -116,7 +131,6 @@ Here's a list of some things that may be important to know
 * `SystemKeyboard` now hides the `emoji` keyboard key if `emojiKeyboard` is an `EmptyView`. 
 * `SystemKeyboard` no longer has an emoji keyboard by deafult, since it's now a Pro feature.
 * `SystemKeyboard` no longer auto-hides the toolbar. You can do this in the `toolbar` builder.
-
 
 ### ✨ New Features
 
@@ -148,7 +162,6 @@ Here's a list of some things that may be important to know
 * `View.keyboardCalloutContainer` is a new extension that will apply both callouts. 
 * `View.keyboardLayoutItemSize` is a new extension that applies a layout item size.
 
-
 ### 💡 Adjustments
   
 * `AutocompleteProvider` is now async.
@@ -161,7 +174,6 @@ Here's a list of some things that may be important to know
 * `SystemKeyboard` no longer needs you to provide it with an explicit width.
 * `SystemKeyboard` now guides you to use the controller-based setup function.
 * `KeyboardInputViewController` `textDidChange` performs operations after a delay. 
-
 
 ### 👑 Pro Adjustments
 
@@ -185,7 +197,6 @@ Here's a list of some things that may be important to know
 * `SystemKeyboardButtonPreview` is a new system keyboard button preview.
 * `KeyboardInputViewController` has a license config action for both setups.
 
-
 ### 🐛 Bug fixes
 
 * `Emojis.Version` fixes an iOS availability bug for Unicode v15.
@@ -195,7 +206,6 @@ Here's a list of some things that may be important to know
 * `textDidChange` performs autocomplete after an async delay, to let the proxy update.
 * `textDidChange` applies autocapitalization after an async delay, to let the proxy update.
     
-
 ### 💥 Breaking changes 
 
 * All deprecated code has been removed.
