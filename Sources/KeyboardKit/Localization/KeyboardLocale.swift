@@ -250,14 +250,6 @@ public extension KeyboardLocale {
         case .uzbek: return "🇺🇿"
         }
     }
-    
-    /**
-     Whether or not the locale prefers to replace any single
-     alternate ending quotation delimiters with begin ones.
-     */
-    var prefersAlternateQuotationReplacement: Bool {
-        locale.prefersAlternateQuotationReplacement
-    }
 
     /// Whether or not the locale matches a certain locale.
     func matches(_ locale: Locale) -> Bool {

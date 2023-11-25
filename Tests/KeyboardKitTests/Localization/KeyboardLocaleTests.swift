@@ -175,12 +175,6 @@ class KeyboardLocaleTests: XCTestCase {
         }
     }
 
-    func testPrefersAlternateQuotationReplacementIsDerivedFromResolvedLocale() {
-        locales.forEach {
-            XCTAssertEqual($0.prefersAlternateQuotationReplacement, $0.locale.prefersAlternateQuotationReplacement)
-        }
-    }
-
 
     func testInsertingFirstReturnsValidArray() {
         let locales: [KeyboardLocale] = [.finnish, .hungarian]
