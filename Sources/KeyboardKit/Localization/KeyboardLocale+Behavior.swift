@@ -18,3 +18,15 @@ public extension KeyboardLocale {
         locale.prefersAlternateQuotationReplacement
     }
 }
+
+public extension Locale {
+    
+    /**
+     Whether or not the locale prefers to replace any single
+     alternate ending quotation delimiters with begin ones.
+     */
+    var prefersAlternateQuotationReplacement: Bool {
+        if identifier.hasPrefix("en") { return false }
+        return true
+    }
+}

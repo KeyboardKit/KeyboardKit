@@ -38,3 +38,36 @@ public extension Collection where Element == KeyboardLocale {
         KeyboardLocale.allRtl
     }
 }
+
+public extension Locale {
+
+    /// Get the locale character direction.
+    var characterDirection: LanguageDirection {
+        Locale.characterDirection(forLanguage: languageCode ?? "")
+    }
+
+    /// Whether or not the line direction is `.bottomToTop`.
+    var isBottomToTop: Bool {
+        lineDirection == .bottomToTop
+    }
+
+    /// Whether or not the line direction is `.topToBottom`.
+    var isTopToBottom: Bool {
+        lineDirection == .topToBottom
+    }
+
+    /// Whether or not the char direction is `.leftToRight`.
+    var isLeftToRight: Bool {
+        characterDirection == .leftToRight
+    }
+
+    /// Whether or not the char direction is `.rightToLeft`.
+    var isRightToLeft: Bool {
+        characterDirection == .rightToLeft
+    }
+
+    /// Get the locale line direction.
+    var lineDirection: LanguageDirection {
+        Locale.lineDirection(forLanguage: languageCode ?? "")
+    }
+}

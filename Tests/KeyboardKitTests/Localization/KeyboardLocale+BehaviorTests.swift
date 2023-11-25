@@ -16,4 +16,11 @@ class KeyboardLocale_BehaviorTests: XCTestCase {
             XCTAssertEqual($0.prefersAlternateQuotationReplacement, $0.locale.prefersAlternateQuotationReplacement)
         }
     }
+    
+    func testPrefersAlternateQuotationReplacementIsFalseForEnglish() {
+        KeyboardLocale.allCases.forEach {
+            let result = $0.prefersAlternateQuotationReplacement
+            XCTAssertNotEqual(result, $0.localeIdentifier.hasPrefix("en"))
+        }
+    }
 }
