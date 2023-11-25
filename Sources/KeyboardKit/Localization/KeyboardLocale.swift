@@ -98,16 +98,6 @@ public extension KeyboardLocale {
         allCases
     }
     
-    /// Get all LTR locales.
-    static var allLtr: [KeyboardLocale] {
-        allCases.filter { $0.locale.isLeftToRight }
-    }
-
-    /// Get all RTL locales.
-    static var allRtl: [KeyboardLocale] {
-        allCases.filter { $0.locale.isRightToLeft }
-    }
-    
     /// The locale's unique identifier.
     var id: String { rawValue }
     
@@ -284,21 +274,6 @@ public extension Locale {
 }
 
 public extension Collection where Element == KeyboardLocale {
-
-    /// Get all locales.
-    static var all: [KeyboardLocale] {
-        KeyboardLocale.all
-    }
-
-    /// Get all LTR locales.
-    static var allLtr: [KeyboardLocale] {
-        KeyboardLocale.allLtr
-    }
-
-    /// Get all RTL locales.
-    static var allRtl: [KeyboardLocale] {
-        KeyboardLocale.allRtl
-    }
     
     /// Get all native locales in the collection
     var locales: [Locale] {
