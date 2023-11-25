@@ -23,36 +23,30 @@ import SwiftUI
  a deeplink that opens the app to start dictation and an app
  group that is registered for both your app and its keyboard.
  
- Your app must then create an instance of this context using
- this configuration, then bind it to your root view with the
- `.keyboardDictation(...)` modifier. Your keyboard extension
- will get a context instance from its controller, and should
- instead call ``setup(with:)`` with your app-specific config.
+ Your app must create an instance of this context using your
+ app-specific configuration, then bind it to your app's root
+ view with `.keyboardDictation(...)`. The keyboard extension
+ will get a context instance from the controller, and should
+ then call ``setup(with:)`` with the same configuration.
  
  KeyboardKit automatically creates an instance of this class
  and binds it to ``KeyboardInputViewController/state``.
  */
 public class DictationContext: ObservableObject {
 
-    /**
-     Create a context for a keyboard extension.
-     */
+    /// Create a keyboard dictation context for a keyboard.
     internal init() {
         setupAppGroup()
     }
-
-    /**
-     Create a context for an app and basic in-app dictation.
-     */
-    public init(config: Dictation.Configuration) {
-        localeId = config.localeId
-    }
-
-    /**
-     Create a context for an app and in-keyboard dictation.
-     */
+    
+    /// Create a keyboard dictation context for an app.
     public init(config: Dictation.KeyboardConfiguration) {
         setup(with: config)
+    }
+
+    /// Create a in-app dictation context for an app.
+    public init(config: Dictation.Configuration) {
+        localeId = config.localeId
     }
 
 
@@ -62,6 +56,7 @@ public class DictationContext: ObservableObject {
     /// This enum defines keys that are used to persist data.
     public enum PersistedKey: String {
         case appGroupId
+        case hostApplicationBundleId
         case isDictationStartedByKeyboard
         case localeId
         case silenceLimit
@@ -83,24 +78,30 @@ public class DictationContext: ObservableObject {
     }
 
     /**
-     The deep link to use to open the app, when initializing
-     a dictation operation from a keyboard extension.
+     The deep link that should be used to open the app, when
+     dictation is started from a keyboard extension.
      */
     public var appDeepLink: String?
 
     /**
-     The last dictated text.
-
-     Set ``appGroupId`` to sync the value between a keyboard
-     and its app.
+     The currently dictated text, which can be observed from
+     your app, and will be applied when dictation ends.
      */
     @Published
     public var dictatedText = "" {
         didSet { persistedDictatedText = dictatedText }
     }
+    
+    /**
+     The bundle ID of the app that is using the keyboard.
+     */
+    @Published
+    public var hostApplicationBundleId: String? {
+        didSet { persistedHostApplicationBundleId = hostApplicationBundleId }
+    }
 
     /**
-     Whether or not dictation is in progress.
+     Whether or not dictation is currently in progress.
      */
     @Published
     public var isDictating = false
@@ -114,28 +115,21 @@ public class DictationContext: ObservableObject {
     }
 
     /**
-     The last applied dictation error.
-
-     This can be written by any dictation that isn't handled
-     manually, to expose errors that need to be handled.
+     The last applied dictation error, which can be observed
+     and handled by the keyboard or app.
      */
     @Published
     public var lastError: Error?
 
     /**
-     The last inserted dictated text.
-
-     This can be used to undo the last inserted dictation if
-     the dictated text turned out bad.
+     The last inserted dictated text, which can be used when
+     you want to undo the last inserted dictation result.
      */
     @Published
     public var lastInsertedText: String?
-
+    
     /**
      The locale identifier that is currently used to dictate.
-
-     Set ``appGroupId`` to sync the value between a keyboard
-     and its app.
      */
     @Published
     public var localeId = Locale.current.identifier {
@@ -143,53 +137,39 @@ public class DictationContext: ObservableObject {
     }
 
     /**
-     This property is used to keep a strong reference to the
-     dictation service, while dictation is ongoing.
+     This service keeps a strong reference to your dictation
+     service, while dictation is ongoing.
      */
     @Published
     public var service: KeyboardDictationService?
 
     /**
-     The time in seconds after which a dictation should stop,
-     to let users finish without having to tap a button.
-
-     This is by default set to `30` seconds, since a shorter
-     time limit may be unexpected. If you decide to go use a
-     long time limit, make sure to also add a done button to
-     give users a chance to manually finish dictation.
+     The seconds of silence after which the dictation should
+     automatically stop, to let users finish by stop talking.
      */
     @Published
-    public var silenceLimit: TimeInterval = 30 {
+    public var silenceLimit: TimeInterval = 10 {
         didSet { persistedSilenceLimit = silenceLimit }
     }
 }
 
 public extension DictationContext {
 
-    /**
-     Reset the context.
-     */
+    /// Reset the context.
     func reset() {
         isDictating = false
         isDictationStartedByKeyboard = false
         dictatedText = ""
     }
 
-    /**
-     Set ``isDictating`` with an animation.
-     */
+    /// Set ``isDictating`` with an animation.
     func setIsDictating(_ value: Bool) {
         withAnimation {
             isDictating = value
         }
     }
 
-    /**
-     Set up the context with an app-specific configuration.
-
-     This function must be called by a keyboard extension to
-     make it able to start a keyboard dictation operation.
-     */
+    /// Setup the context with an app-specific configuration.
     func setup(with config: Dictation.KeyboardConfiguration) {
         appDeepLink = config.appDeepLink
         appGroupId = config.appGroupId
@@ -203,9 +183,10 @@ private extension DictationContext {
         guard let id = appGroupId else { return }
         guard let store = UserDefaults(suiteName: id) else { return }
         userDefaults = store
-        localeId = persistedLocaleId ?? localeId
         dictatedText = persistedDictatedText ?? dictatedText
+        hostApplicationBundleId = persistedHostApplicationBundleId ?? hostApplicationBundleId
         isDictationStartedByKeyboard = persistedIsDictationStartedByKeyboard ?? isDictationStartedByKeyboard
+        localeId = persistedLocaleId ?? localeId
         silenceLimit = persistedSilenceLimit
     }
 
@@ -262,6 +243,11 @@ private extension DictationContext {
     var persistedLocaleId: String? {
         get { string(for: .localeId) }
         set { set(newValue, for: .localeId) }
+    }
+    
+    var persistedHostApplicationBundleId: String? {
+        get { string(for: .hostApplicationBundleId) }
+        set { set(newValue, for: .hostApplicationBundleId) }
     }
 
     var persistedSilenceLimit: TimeInterval {
