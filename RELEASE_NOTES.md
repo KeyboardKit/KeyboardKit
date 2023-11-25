@@ -11,6 +11,20 @@ The release notes only covers the current major version.
 
 
 
+## 8.0.7
+
+This patch fixes a dictation navigation bug and syncs the controller's host bundle ID with the keyboard context.
+
+### ✨ New Features
+
+* `KeyboardContext` has a new `hostApplicationBundleId` property.
+
+### 🐛 Bug fixes
+
+* `StandardKeyboardDictationService` can once again navigate back when dictation finishes.
+
+
+
 ## 8.0.5
 
 This patch makes the `BaseKeyboardLayoutProvider` input set properties mutable.

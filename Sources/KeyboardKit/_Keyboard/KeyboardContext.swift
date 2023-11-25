@@ -54,6 +54,10 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var hasFullAccess: Bool = false
 
+    /// The bundle ID of the keyboard host application.
+    @Published
+    public var hostApplicationBundleId: String?
+    
     /// The current interface orientation.
     @Published
     public var interfaceOrientation: InterfaceOrientation = .portrait
@@ -322,12 +326,19 @@ extension KeyboardContext {
         if hasDictationKey != controller.hasDictationKey {
             hasDictationKey = controller.hasDictationKey
         }
+        
         if hasFullAccess != controller.hasFullAccess {
             hasFullAccess = controller.hasFullAccess
         }
+        
+        if hostApplicationBundleId != controller.hostBundleId {
+            hostApplicationBundleId = controller.hostBundleId
+        }
+        
         if interfaceOrientation != controller.orientation {
             interfaceOrientation = controller.orientation
         }
+        
         if needsInputModeSwitchKey != controller.needsInputModeSwitchKey {
             needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         }
@@ -342,12 +353,15 @@ extension KeyboardContext {
         if primaryLanguage != controller.primaryLanguage {
             primaryLanguage = controller.primaryLanguage
         }
+        
         if screenSize != controller.screenSize {
             screenSize = controller.screenSize
         }
+        
         if textInputMode != controller.textInputMode {
             textInputMode = controller.textInputMode
         }
+
         if traitCollection != controller.traitCollection {
             traitCollection = controller.traitCollection
         }

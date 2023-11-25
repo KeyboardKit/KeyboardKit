@@ -13,15 +13,12 @@ import UIKit
 public extension KeyboardInputViewController {
 
     /**
-     Get the bundle ID of the app that is using the keyboard.
+     The bundle ID of the keyboard host application, if any.
 
-     Note that this implementation makes use of technologies
-     that may stop working in any future iOS version. Do not
-     rely solely on this and make sure to design your app to
-     be able to function even if this suddenly stops working.
-
-     Also note that the ID that is returned can differ based
-     on the iOS version that is being used to parse it.
+     The property uses technologies that may stop working in
+     any future iOS version. Do not rely solely on this, and
+     make sure to design your app to be able to work even if
+     it suddenly stops working.
      */
     var hostBundleId: String? {
         if let id = hostBundleIdValueBefore16 { return id }
