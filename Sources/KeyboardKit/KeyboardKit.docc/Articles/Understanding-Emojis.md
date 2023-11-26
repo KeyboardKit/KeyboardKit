@@ -10,7 +10,7 @@ KeyboardKit provides you with an ``Emoji`` type that provides many emoji-related
 
 ## Emoji
 
-KeyboardKit has an ``Emoji`` struct that lets you work with emojis in a more structured way:
+KeyboardKit has an **Emoji** struct that lets you work with emojis in a more structured way:
 
 ```swift
 let emoji = Emoji("😀")
@@ -109,7 +109,7 @@ Emoji categories are also used to power the **EmojiKeyboard**.
 
 ### Skin Tones
 
-KeyboardKit Pro unlocks additional ``Emoji`` skin tone information:
+KeyboardKit Pro unlocks additional emoji skin tone information:
 
 ```swift
 Emoji("👍").hasSkinToneVariants     // true

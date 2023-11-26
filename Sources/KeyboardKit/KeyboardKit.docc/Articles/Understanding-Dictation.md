@@ -2,9 +2,9 @@
 
 This article describes the KeyboardKit dictation engine.
 
-Dictation can be used to let users enter text by speaking into the microphone, instead of typing. It's however hard to implement, since keyboard extensions don't have access to the microphone.
+Dictation can be used to let users enter text by speaking into the microphone, instead of typing. It can however be hard to implement, since keyboard extensions can't access the microphone.
 
-KeyboardKit defines dictation-specific types, enums and protocols, that you can use to implement dictation for either your keyboard extension or main application.
+KeyboardKit defines dictation-specific types that you can use to implement dictation for either your keyboard extension or main app.
 
 [KeyboardKit Pro][Pro] unlocks and registers dictation service implementations that can be easily configured to perform dictionary in either your keyboard extension or main application. Information about Pro features can be found at the end of this article.
 
@@ -48,9 +48,9 @@ Since dictation may stop at any time, for instance due to silence, a dictation s
 
 ### How to perform dictation in a keyboard extension
 
-You can use a ``KeyboardDictationService`` to perform dictation in keyboard extensions, where microphone access isn't available. 
+You can use a ``KeyboardDictationService`` to perform dictation in keyboard extensions, where microphone access isn't available.
 
-Keyboard dictation should open the app and make it start dictation, then write the dictated text to shared storage and return to the keyboard to let it process the result. 
+While in-app dictation works right away, keyboard dictation must open the app to start dictation, then write the dictated text to shared storage and return to the keyboard to let it process the result. 
 
 This can be tricky to set up, but KeyboardKit Pro lets you configure this in a few simple steps.
 
@@ -64,24 +64,30 @@ KeyboardKit Pro unlocks a bunch of addictation-related views, like **Dictation.B
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks dictation services and tools that let you setup and perform dictation with a few simple steps.
-
-* **ProDictationService** - Can perform dictation within the main application.
-* **ProKeyboardDictationService** - Can perform dictation from a keyboard extension.
-
-KeyboardKit Pro will also add a bunch of dictation-related views to the ``Dictation`` namespace, such as **Dictation.BarVisualizer**, **Dictation.Screen**, etc. You can use them to build a nice dictation experience for your users.
+[KeyboardKit Pro][Pro] unlocks services and tools that let you setup and perform dictation with a few simple steps, with very little coding.
 
 
-### Supported locales
+### Services
 
-By default, KeyboardKit Pro's dictation engine supports the following languages:
+KeyboardKit Pro unlocks a **ProDictationService** service that can be used within the main app, and a **ProKeybpardDictationService** that can be used to trigger dictation from the keyboard extension.
+
+
+### Supported languages
+
+By default, the speech recognizer that is used by KeyboardKit Pro supports the following languages:
 
 English, Arabic, Catalan, Croatian, Czech, Danish, Dutch, Finnish, French, German, Greek, Hebrew, Hungarian, Indonesian, Italian, Malay, Norwegian, Polish, Portuguese, Romanian, Russian, Slovak, Spanish, Swedish, Turkish, Ukrainian
 
-If you want to use the dictation engine with other locales, you must implement a custom speech recognizer (see below).
+If you want to use dictation with other languages, you must implement a custom speech recognizer.
 
 
-### How to perform dictation with KeyboardKit Pro
+### Additional views
+
+KeyboardKit Pro also unlocks dictation-specific views like overlays and visualizers, that you can use to build a nice dictation experience for your users.
+
+
+
+## How to perform dictation with KeyboardKit Pro
 
 Dictation requires some configuration, but KeyboardKit Pro makes it easy to do. 
 
@@ -228,8 +234,17 @@ public class StandardSpeechRecognizer: SpeechRecognizer {
 
     public init() {}
 
-    var supportedLocales: [KeyboardLocale] {
-        [.english, .arabic, .catalan, .croatian, .czech, .danish, .dutch, .dutch_belgium, .english_gb, .english_us, .finnish, .french, .french_belgium, .french_switzerland, .german, .german_austria, .german_switzerland, .greek, .hebrew, .hungarian, .indonesian, .italian, .malay, .norwegian, .polish, .portuguese, .portuguese_brazil, .romanian, .russian, .slovak, .spanish, .swedish, .turkish, .ukrainian]
+    public var supportedLocales: [KeyboardLocale] {
+        [
+            .english, .arabic, .catalan, .croatian, .czech,
+            .danish, .dutch, .dutch_belgium, .english_gb,
+            .english_us, .finnish, .french, .french_belgium,
+            .french_switzerland, .german, .german_austria,
+            .german_switzerland, .greek, .hebrew, .hungarian,
+            .indonesian, .italian, .malay, .norwegian, .polish,
+            .portuguese, .portuguese_brazil, .romanian, .russian,
+            .slovak, .spanish, .swedish, .turkish, .ukrainian
+        ]
     }
 
     private var resultHandler: ResultHandler?
