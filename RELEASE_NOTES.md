@@ -11,6 +11,27 @@ These release notes only cover the current major version.
 
 
 
+## 8.0.8
+
+This patch improves system keyboard toolbars and the ToggleToolbar in KeyboardKit Pro.
+
+The demo app has been improved to persist the typed text and to show more pro features. 
+
+### 💡 Adjustments
+
+* `SystemKeyboard` now applies a minimum height to custom toolbars, to avoid confusion where they disappear when no height is applied.
+
+### 🐛 Bug fixes
+
+* `ToggleToolbar` now uses the same default `.slideUp` animation for all initializers.
+* `ToggleToolbar` now applies a content shape to the default toggle to improve tap area.
+
+### 💥 Deprecations
+
+* `ToggleToolbar` deprecates the `toggleView` initializer in favor for the shorter `toggle` one.
+
+
+
 ## 8.0.7
 
 This patch fixes an iOS 17 dictation navigation bug and syncs the controller's host bundle ID with the keyboard context.

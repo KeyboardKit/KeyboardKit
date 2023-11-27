@@ -23,7 +23,7 @@ struct HomeScreen: View {
     @State
     private var isAppearanceDark = false
 
-    @State
+    @AppStorage("com.keyboardkit.demo.text")
     private var text = ""
 
     @StateObject
