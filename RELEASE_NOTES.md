@@ -20,9 +20,13 @@ The demo app has been improved to persist the typed text and to show more pro fe
 ### 💡 Adjustments
 
 * `SystemKeyboard` now applies a minimum height to custom toolbars, to avoid confusion where they disappear when no height is applied.
+* `SystemKeyboardButtonPreview` now disables hit testing for the button view.
 
 ### 🐛 Bug fixes
 
+* `Gestures.GestureButton` now has a public initializer.
+* `Gestures.ScrollViewGestureButton` now has a public initializer.
+* `SystemKeyboardButtonPreview` now uses the passed in style provider, if any.
 * `ToggleToolbar` now uses the same default `.slideUp` animation for all initializers.
 * `ToggleToolbar` now applies a content shape to the default toggle to improve tap area.
 
