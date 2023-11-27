@@ -387,6 +387,7 @@ private extension SystemKeyboard {
                 suggestionAction: actionHandler.handle(_:)
             )
         ))
+        .frame(minHeight: styleProvider.autocompleteToolbarStyle.height)
     }
 }
 
