@@ -1,0 +1,135 @@
+//
+//  DemoToolbar.swift
+//  KeyboardPro
+//
+//  Created by Daniel Saidi on 2023-11-27.
+//  Copyright © 2023 Daniel Saidi. All rights reserved.
+//
+
+import KeyboardKitPro
+import SwiftUI
+
+/**
+ This demo uses a KeyboardKit Pro `ToggleToolbar` that shows
+ a main toolbar, but can switch to an alternate one.
+ 
+ The demo uses the standard autocomplete toolbar as the main
+ toolbar, and this custom one as the alternate one.
+ */
+struct DemoToolbar: View {
+    
+    unowned var controller: KeyboardInputViewController
+    
+    @Binding
+    var theme: KeyboardTheme?
+    
+    var proxy: UITextDocumentProxy
+    
+    @State
+    private var fullDocumentContext: String?
+    
+    @State
+    private var isThemePickerPresented = false
+    
+    @FocusState
+    private var isTextFieldFocused
+    
+    @State
+    private var text = ""
+    
+    var body: some View {
+        HStack {
+            if controller.hasFullAccess {
+                KeyboardTextField(text: $text, controller: controller) {
+                    $0.placeholder = "Type here..."
+                }
+                .focused($isTextFieldFocused) {
+                    Image(systemName: "xmark.circle.fill")
+                }
+                .buttonStyle(.plain)
+            }
+            toolbarButton(toggleThemePicker, "paintpalette")
+            toolbarButton(readFullDocumentContext, "doc.text.magnifyingglass")
+        }
+        .padding(10)
+        .font(.headline)
+        .buttonStyle(.bordered)
+        .sheet(item: $fullDocumentContext, content: fullDocumentContextSheet)
+        .sheet(isPresented: $isThemePickerPresented, content: themePickerSheet)
+    }
+}
+
+private extension DemoToolbar {
+    
+    func fullDocumentContextSheet(text: String?) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(text ?? "-")
+        }
+        .padding()
+        .demoSheet("Full Document Reader")
+    }
+    
+    func themePickerSheet() -> some View {
+        KeyboardTheme.ShelfView(
+            themes: KeyboardTheme.allPredefined
+        ) { theme in
+            self.theme = theme
+        } title: { collection in
+            Text(collection.name)
+                .font(.callout.bold())
+                .frame(maxWidth: .infinity, alignment: .leading)
+        } item: { theme in
+            KeyboardTheme.ShelfViewItem(theme: theme)
+                .shadow(radius: 1, x: 0, y: 1)
+                .padding(.vertical, 3)
+        }
+        .demoSheet("Full Document Reader")
+    }
+    
+    func toolbarButton(
+        _ action: @escaping () -> Void,
+        _ imageName: String
+    ) -> some View {
+        Button(action: action) {
+            Image(systemName: imageName)
+                .frame(maxHeight: .infinity)
+        }
+    }
+}
+
+private extension DemoToolbar {
+    
+    func readFullDocumentContext() {
+        fullDocumentContext = "Reading..."
+        Task {
+            let result = try await proxy.fullDocumentContext()
+            await MainActor.run { self.fullDocumentContext = result.fullDocumentContext }
+        }
+    }
+    
+    func selectTheme(_ theme: KeyboardTheme) {
+        self.theme = theme
+        isThemePickerPresented = false
+    }
+    
+    func toggleThemePicker() {
+        isThemePickerPresented.toggle()
+    }
+}
+
+private extension View {
+    
+    func demoSheet(_ title: String) -> some View {
+        NavigationView {
+            ScrollView {
+                self
+            }
+            .navigationTitle(title)
+        }
+    }
+}
+
+extension String: Identifiable {
+    
+    public var id: String { self }
+}

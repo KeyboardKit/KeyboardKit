@@ -15,10 +15,17 @@ These release notes only cover the current major version.
 
 This patch improves system keyboard toolbars and the ToggleToolbar in KeyboardKit Pro.
 
-The demo app has been improved to persist the typed text and to show more pro features. 
+The demo app has been improved to persist the typed text and to show more pro features, like the full document reader and a theme picker. 
+
+### ✨ New Features
+
+* `Collection<KeyboardTheme>` has a new, static `allPredefined` property.
+* `KeyboardTheme.ShelfView` is a new view that creates scrolling shelves.
+* `KeyboardTheme.ShelfViewItem` is a new view that can be used in a theme shelf view.
 
 ### 💡 Adjustments
 
+* `KeyboardTheme.Collection` is now `Identifiable`.
 * `SystemKeyboard` now applies a minimum height to custom toolbars, to avoid confusion where they disappear when no height is applied.
 * `SystemKeyboardButtonPreview` now disables hit testing for the button view.
 

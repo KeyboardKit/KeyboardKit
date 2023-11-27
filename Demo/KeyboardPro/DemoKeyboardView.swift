@@ -26,78 +26,47 @@ import SwiftUI
  */
 struct DemoKeyboardView: View {
     
-    var state: Keyboard.KeyboardState
-    var services: Keyboard.KeyboardServices
+    unowned var controller: KeyboardInputViewController
     
-     @State
-     private var fullDocumentContext: String?
+    @State
+    private var theme: KeyboardTheme?
     
     @EnvironmentObject
     private var keyboardContext: KeyboardContext
     
     var body: some View {
         SystemKeyboard(
-            state: state,
-            services: services,
+            state: controller.state,
+            services: keyboardServices,
             buttonContent: { $0.view },
             buttonView: { $0.view },
             emojiKeyboard: { $0.view },
-            toolbar: {
-                 try? ToggleToolbar.init(
-                     toolbar: $0.view,
-                     toggledToolbar: toggledToolbar
-                 )
+            toolbar: { params in
+                try? ToggleToolbar.init(
+                    toolbar: params.view,
+                    toggledToolbar: DemoToolbar(
+                        controller: controller,
+                        theme: $theme,
+                        proxy: controller.state.keyboardContext.textDocumentProxy
+                    )
+                ).foregroundColor(params.style.item.titleColor)
             }
         )
-        .sheet(item: $fullDocumentContext, content: fullDocumentContextSheet)
     }
 }
 
 private extension DemoKeyboardView {
     
-    var toggledToolbar: some View {
-        HStack {
-            Spacer()
-            Button(action: readFullDocumentContext) {
-                Image(systemName: "doc.text.magnifyingglass")
+    var keyboardServices: Keyboard.KeyboardServices {
+        let services = controller.services
+        if let theme {
+            if let provider = try? ThemeBasedKeyboardStyleProvider(
+                theme: theme,
+                keyboardContext: controller.state.keyboardContext
+            ) {
+                services.styleProvider = provider
             }
         }
-        .font(.headline)
-        .padding(.horizontal, 10)
-        .buttonStyle(.bordered)
+        return services
     }
-    
-    func fullDocumentContextSheet(text: String?) -> some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 10) {
-                Text("Document text")
-                    .font(.title)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Text(text ?? "-")
-            }.padding()
-        }
-    }
-}
-
-private extension DemoKeyboardView {
-    
-    var proxy: UITextDocumentProxy {
-        state.keyboardContext.textDocumentProxy
-    }
-    
-    func readFullDocumentContext() {
-        fullDocumentContext = "Reading..."
-        Task {
-            let result = try await proxy.fullDocumentContext()
-            await MainActor.run { self.fullDocumentContext = result.fullDocumentContext }
-        }
-    }
-}
-
-
-// MARK: - Convenience extensions
-
-extension String: Identifiable {
-    
-    public var id: String { self }
 }
