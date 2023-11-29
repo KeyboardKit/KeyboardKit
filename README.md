@@ -148,13 +148,10 @@ KeyboardKit Pro lets you create fully localized keyboards with a single line of 
 
 ## Demo App
 
-The KeyboardKit repository has a demo app that shows how to display keyboard state, link to system settings, etc.
-
-The demo app has three keyboards: 
+The repository has a demo app that shows how to display keyboard state, link to system settings, etc. It has two keyboards: 
 
 * `Keyboard` uses KeyboardKit and a standard `SystemKeyboard`.
 * `KeyboardPro` uses KeyboardKit Pro and a `SystemKeyboard` with 60+ locales, autocomplete, etc.
-* `KeyboardTextInput` uses KeyboardKit Pro and lets you test using text input within the keyboard.
 
 Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. Note that you need to enable full access for some features, like haptic feedback.
 
