@@ -39,15 +39,7 @@ struct DemoToolbar: View {
     
     var body: some View {
         HStack {
-            if controller.hasFullAccess {
-                KeyboardTextField(text: $text, controller: controller) {
-                    $0.placeholder = "Type here..."
-                }
-                .focused($isTextFieldFocused) {
-                    Image(systemName: "xmark.circle.fill")
-                }
-                .buttonStyle(.plain)
-            }
+            textFieldIfFullAccess
             toolbarButton(toggleThemePicker, "paintpalette")
             toolbarButton(readFullDocumentContext, "doc.text.magnifyingglass")
         }
@@ -60,6 +52,19 @@ struct DemoToolbar: View {
 }
 
 private extension DemoToolbar {
+    
+    @ViewBuilder
+    var textFieldIfFullAccess: some View {
+        if controller.hasFullAccess {
+            KeyboardTextField(text: $text, controller: controller) {
+                $0.placeholder = "Type here..."
+            }
+            .focused($isTextFieldFocused) {
+                Image(systemName: "xmark.circle.fill")
+            }
+            .buttonStyle(.plain)
+        }
+    }
     
     func fullDocumentContextSheet(text: String?) -> some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -83,7 +88,7 @@ private extension DemoToolbar {
                 .shadow(radius: 1, x: 0, y: 1)
                 .padding(.vertical, 3)
         }
-        .demoSheet("Full Document Reader")
+        .demoSheet("Theme Picker")
     }
     
     func toolbarButton(
