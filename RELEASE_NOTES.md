@@ -11,6 +11,11 @@ These release notes only cover the current major version.
 
 
 
+## 8.0.9
+
+This patch reverts the dictation navigation change that was added to `8.0.7`.
+
+
 ## 8.0.8
 
 This patch improves system keyboard toolbars and the ToggleToolbar in KeyboardKit Pro.
