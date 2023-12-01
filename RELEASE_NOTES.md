@@ -11,9 +11,16 @@ These release notes only cover the current major version.
 
 
 
+## 8.0.10
+
+This patch improves the performance of the KeyboardKit Pro license validation.
+
+
+
 ## 8.0.9
 
 This patch reverts the dictation navigation change that was added to `8.0.7`.
+
 
 
 ## 8.0.8
