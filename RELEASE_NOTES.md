@@ -11,6 +11,17 @@ These release notes only cover the current major version.
 
 
 
+## 8.0.11
+
+This patch removes all previous app navigation after App Store review rejections.
+
+### 👑 Pro Adjustments
+
+* `KeyboardInputViewController` has a new way to define when to show license validation errors.
+* `KeyboardInputViewController` no longer shows an license validation errors alerts by default.
+
+
+
 ## 8.0.10
 
 This patch improves the performance of the KeyboardKit Pro license validation.
