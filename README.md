@@ -1,32 +1,28 @@
 <p align="center">
-    <img src ="Resources/Logo_GitHub.png" alt="KeyboardKit Logo" title="KeyboardKit" width=600 />
+    <img src ="Resources/Logo_GitHub.png" alt="KeyboardKit Logo" title="KeyboardKit" />
 </p>
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/swift-5.8-orange.svg" alt="Swift 5.8" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
-    <a href="https://twitter.com/getkeyboardkit">
-        <img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" />
-    </a>
-    <a href="https://techhub.social/@keyboardkit">
-        <img src="https://img.shields.io/mastodon/follow/109340839247880048?domain=https%3A%2F%2Ftechhub.social&style=social" alt="Mastodon: @keyboardkit@techhub.social" title="Mastodon: @keyboardkit@mastodon.social" />
-    </a>
+    <a href="https://twitter.com/getkeyboardkit"><img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" /></a>
+    <a href="https://techhub.social/@keyboardkit"><img src="https://img.shields.io/mastodon/follow/109340839247880048?domain=https%3A%2F%2Ftechhub.social&style=social" alt="Mastodon: @keyboardkit@techhub.social" title="Mastodon: @keyboardkit@mastodon.social" /></a>
 </p>
 
 
 
 ## About KeyboardKit
 
-KeyboardKit helps you create custom keyboards for iOS and iPadOS, using Swift and SwiftUI. It extends Apple's native keyboard APIs and provides you with more functionality.
+KeyboardKit helps you create custom keyboard extensions with Swift and SwiftUI. It extends Apple's native APIs and provides you with more functionality.
 
 KeyboardKit lets you create keyboards that mimic native iOS keyboards in a few lines of code. 
 
 <p align="center">
-    <img src ="Resources/Demo.gif" width="300" />
+    <img src ="Resources/Demo.gif" />
 </p>
 
-These keyboards can be customized to change input keys, layout, design, behavior etc. You can also use completely custom views.
+These keyboards customized input keys, layout, design, behavior etc. You can even use completely custom views in or around the keyboard.
 
 
 
