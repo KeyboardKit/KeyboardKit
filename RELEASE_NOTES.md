@@ -13,12 +13,13 @@ These release notes only cover the current major version.
 
 ## 8.0.11
 
-This patch removes all previous app navigation after App Store review rejections.
+This patch removes previous app navigation from KeyboardKit Pro after sudden App Store review rejections.
 
 ### 👑 Pro Adjustments
 
-* `KeyboardInputViewController` has a new way to define when to show license validation errors.
-* `KeyboardInputViewController` no longer shows an license validation errors alerts by default.
+* `KeyboardInputViewController` no longer shows license validation error alerts by default.
+* `KeyboardInputViewController` now lets you define whether or not to show a license validation error alert.
+* `PreviousAppNavigator` default navigator is removed, since it started causing occasional review rejections.
 
 
 
