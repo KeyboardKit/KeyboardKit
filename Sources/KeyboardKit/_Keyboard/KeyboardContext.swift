@@ -154,16 +154,6 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var traitCollection = UITraitCollection()
     #endif
-    
-    
-    // MARK: - Deprecations
-    
-    #if os(iOS) || os(tvOS)
-    @available(*, deprecated, renamed: "originalTextDocumentProxy")
-    open var mainTextDocumentProxy: UITextDocumentProxy {
-        originalTextDocumentProxy
-    }
-    #endif
 }
 
 

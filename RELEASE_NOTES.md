@@ -3,9 +3,9 @@
 KeyboardKit tries to honor semantic versioning:
 
 * Deprecations can happen at any time.
-* Deprecated code will only be removed in `major` versions.
+* Deprecations should only be removed in `major` versions.
 * Breaking changes should not occur in `minor` and `patch` updates.
-* Breaking changes can still occur in `minor` and `patch` updates, if needed for critical fixes or improvements.
+* Breaking changes can occur in `minor` and `patch` updates, if needed for critical fixes.
 
 These release notes only cover the current major version. 
 

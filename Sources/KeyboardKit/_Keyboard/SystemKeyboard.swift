@@ -110,68 +110,6 @@ public struct SystemKeyboard<
         _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
     }
-    
-
-    @available(*, deprecated, message: "Use the initializer without autocomplete toolbar parameters. Warning - the width and autocomplete toolbar parameters no longer have any effect!")
-    public init(
-        layout: KeyboardLayout,
-        actionHandler: KeyboardActionHandler,
-        styleProvider: KeyboardStyleProvider,
-        autocompleteContext: AutocompleteContext,
-        autocompleteToolbar: AutocompleteToolbarMode,
-        autocompleteToolbarAction: @escaping AutocompleteToolbarAction,
-        keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
-        renderBackground: Bool = true,
-        @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
-        @ViewBuilder buttonView: @escaping ButtonViewBuilder,
-        @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
-        @ViewBuilder toolbar: @escaping ToolbarBuilder
-    ) {
-        self.layout = layout
-        self.layoutConfig = .standard(for: keyboardContext)
-        self.actionHandler = actionHandler
-        self.styleProvider = styleProvider
-        self.renderBackground = renderBackground
-        self.buttonContentBuilder = buttonContent
-        self.buttonViewBuilder = buttonView
-        self.emojiKeyboardBuilder = emojiKeyboard
-        self.toolbarBuilder = toolbar
-        _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
-        _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
-        _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-    }
-    
-    #if os(iOS) || os(tvOS)
-    @available(*, deprecated, message: "Use the state and services initializer instead. Warning - the width and autocomplete toolbar parameters no longer have any effect!")
-    public init(
-        controller: KeyboardInputViewController,
-        autocompleteToolbar: AutocompleteToolbarMode = .automatic,
-        autocompleteToolbarAction: AutocompleteToolbarAction? = nil,
-        width: CGFloat? = nil,
-        renderBackground: Bool = true,
-        @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
-        @ViewBuilder buttonView: @escaping ButtonViewBuilder,
-        @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
-        @ViewBuilder toolbar: @escaping ToolbarBuilder
-    ) {
-        self.init(
-            layout: controller.services.layoutProvider.keyboardLayout(for: controller.state.keyboardContext),
-            actionHandler: controller.services.actionHandler,
-            styleProvider: controller.services.styleProvider,
-            autocompleteContext: controller.state.autocompleteContext,
-            autocompleteToolbar: autocompleteToolbar,
-            autocompleteToolbarAction: { _ in },
-            keyboardContext: controller.state.keyboardContext,
-            calloutContext: controller.state.calloutContext,
-            renderBackground: renderBackground,
-            buttonContent: buttonContent,
-            buttonView: buttonView,
-            emojiKeyboard: emojiKeyboard,
-            toolbar: toolbar
-        )
-    }
-    #endif
 
 
     /// This typealias defines a button content builder.

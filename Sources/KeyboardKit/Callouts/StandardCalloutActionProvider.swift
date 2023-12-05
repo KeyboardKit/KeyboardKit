@@ -72,16 +72,4 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     ) -> CalloutActionProvider {
         localizedProviders.value(for: locale) ?? baseProvider
     }
-    
-    
-    
-    @available(*, deprecated, renamed: "calloutActionProvider(for:)")
-    open func provider(for context: KeyboardContext) -> CalloutActionProvider? {
-        provider(for: context.locale)
-    }
-    
-    @available(*, deprecated, renamed: "calloutActionProvider(for:)")
-    open func provider(for locale: Locale) -> CalloutActionProvider? {
-        localizedProviders.value(for: locale)
-    }
 }

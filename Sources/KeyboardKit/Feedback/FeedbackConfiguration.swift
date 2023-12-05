@@ -70,14 +70,14 @@ public extension FeedbackConfiguration {
 
     /// Get or set whether or not audio feedback is enabled.
     var isAudioFeedbackEnabled: Bool {
-        get { audioConfiguration == enabledAudio }
-        set { audioConfiguration = newValue ? enabledAudio : .disabled }
+        get { audio == enabledAudio }
+        set { audio = newValue ? enabledAudio : .disabled }
     }
 
     /// Get or set whether or not haptic feedback is enabled.
     var isHapticFeedbackEnabled: Bool {
-        get { hapticConfiguration == enabledHaptic }
-        set { hapticConfiguration = newValue ? enabledHaptic : .disabled }
+        get { haptic == enabledHaptic }
+        set { haptic = newValue ? enabledHaptic : .disabled }
     }
 
     /// Toggle audio feedback between enabled and disabled.

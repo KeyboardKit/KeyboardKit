@@ -320,31 +320,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             }
         }
     }
-    
-
-    // MARK: - Deprecated
-    
-    @available(*, deprecated, renamed: "adjustTextPosition(by:)")
-    open func adjustTextPosition(byCharacterOffset offset: Int) {
-        adjustTextPosition(by: offset)
-    }
-    
-    @available(*, deprecated, renamed: "originalTextDocumentProxy")
-    open var mainTextDocumentProxy: UITextDocumentProxy {
-        originalTextDocumentProxy
-    }
-    
-    @available(*, deprecated, message: "This is no longer used. Use the action handler's handle(_:) instead.")
-    open func insertAutocompleteSuggestion(_ suggestion: Autocomplete.Suggestion) {
-        services.actionHandler.handle(suggestion)
-    }
-    
-    @available(*, deprecated, message: "Use the controller-based setup function")
-    open func setup<Content: View>(
-        with view: @escaping () -> Content
-    ) {
-        setup(withRootView: Keyboard.RootView(view))
-    }
 }
 
 // MARK: - Private Functions
