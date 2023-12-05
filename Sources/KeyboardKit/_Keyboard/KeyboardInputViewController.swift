@@ -283,7 +283,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// Whether or not autocomple is enabled.
     open var isAutocompleteEnabled: Bool {
-        state.autocompleteContext.isEnabled && !textDocumentProxy.isReadingFullDocumentContext
+        guard state.autocompleteContext.isAutocompleteEnabled else { return false }
+        return !textDocumentProxy.isReadingFullDocumentContext
     }
 
     /// Perform an autocomplete operation.

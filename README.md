@@ -176,6 +176,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Mastodon]: https://techhub.social/@keyboardkit
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
+[KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 [Gumroad]: https://kankoda.gumroad.com
 [App]: https://keyboardkit.com/app

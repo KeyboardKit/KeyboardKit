@@ -9,8 +9,18 @@
 import Combine
 
 /**
- This is an observable class that can be used to store a set
- of autocomplete suggestions.
+ This observable class can be used to handle an autocomplete
+ specific state, including configurations and suggestions.
+ 
+ The ``isAutocompleteEnabled`` property can be set to `false`
+ to completely disable autocomplete. The property is used by
+ both the ``KeyboardInputViewController`` as well as service
+ implementations, to not perform autocomplete.
+ 
+ The ``isAutocorrectEnabled`` property can be set to `false`,
+ to disable autocorrection. This property can be used by any
+ autocomplete service implementation, to remove autocorrects
+ from the result.
 
  KeyboardKit automatically creates an instance of this class
  and binds it to ``KeyboardInputViewController/state``.
@@ -18,10 +28,14 @@ import Combine
 public class AutocompleteContext: ObservableObject {
     
     public init() {}
-
+    
+    /// Whether or not autocorrect is enabled.
+    @Published
+    public var isAutocorrectEnabled = true
+    
     /// Whether or not autocomplete is enabled.
     @Published
-    public var isEnabled = true
+    public var isAutocompleteEnabled = true
 
     /// Whether or not suggestions are being fetched.
     @Published
@@ -34,7 +48,6 @@ public class AutocompleteContext: ObservableObject {
     /// The last received autocomplete suggestions.
     @Published
     public var suggestions: [Autocomplete.Suggestion] = []
-
 
     /// Reset the autocomplete contexts.
     public func reset() {

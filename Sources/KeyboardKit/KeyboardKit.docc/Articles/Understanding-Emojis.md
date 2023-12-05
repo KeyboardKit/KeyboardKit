@@ -2,7 +2,7 @@
 
 This article describes the KeyboardKit emoji engine.
 
-KeyboardKit provides you with an ``Emoji`` type that provides many emoji-related features.
+KeyboardKit provides you with an **Emoji** type that provides many emoji-related features.
 
 [KeyboardKit Pro][Pro] unlocks an emoji keyboard, as well as categories, keyboards, skintones, version information, etc. Information about Pro features can be found at the end of this article.
 

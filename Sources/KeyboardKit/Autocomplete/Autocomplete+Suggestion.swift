@@ -14,11 +14,13 @@ public extension Autocomplete {
      This struct represents a suggestion that is returned by
      an ``AutocompleteProvider``.
      
-     `isAutocorrect` suggestions are usually rendered with a
-     white background and are applied when a user taps space.
+     The ``isAutocorrect`` property indicates whether or not
+     the suggestion will automatically be applied with space.
+     Autocorrect suggestions usually have a white background.
      
-     `isUnknown` suggestions are usually rendered wrapped in
-     locale-specific quotation marks.
+     The ``isUnknown`` property indicates whether or not the
+     suggestion is unknown. Unknown suggestions usually have
+     the text wrapped in locale-specific quotation marks.
      */
     struct Suggestion {
         

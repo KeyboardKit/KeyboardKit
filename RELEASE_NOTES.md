@@ -11,6 +11,26 @@ These release notes only cover the current major version.
 
 
 
+## 8.1
+
+This version adds autocomplete improvements.
+
+### ✨ New Features
+
+* `AutocompleteContext` has a new `isAutocorrectDisabled` property.
+
+### 👑 Pro Adjustments
+
+* `LocalAutocompleteProvider` removes autocorrect suggestions if the context has autocorrect disabled.
+* `RemoteAutocompleteProvider` removes autocorrect suggestions if the context has autocorrect disabled.
+
+### 🗑️ Deprecations
+
+* `AutocompleteContext` `isEnabled` is renamed to `isAutocompleteEnabled`.
+
+
+
+
 ## 8.0.11
 
 This patch removes previous app navigation from KeyboardKit Pro after sudden App Store review rejections.
@@ -61,7 +81,7 @@ The demo app has been improved to persist the typed text and to show more pro fe
 * `ToggleToolbar` now uses the same default `.slideUp` animation for all initializers.
 * `ToggleToolbar` now applies a content shape to the default toggle to improve tap area.
 
-### 💥 Deprecations
+### 🗑️ Deprecations
 
 * `ToggleToolbar` deprecates the `toggleView` initializer in favor for the shorter `toggle` one.
 

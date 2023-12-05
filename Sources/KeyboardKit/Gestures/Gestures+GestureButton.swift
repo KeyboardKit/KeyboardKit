@@ -31,12 +31,12 @@ public extension Gestures {
            - pressAction: The action to trigger when the button is pressed, by default `nil`.
            - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
            - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
-           - longPressDelay: The time it takes for a press to count as a long press, by default ``GestureButtonDefaults/longPressDelay``.
+           - longPressDelay: The time it takes for a press to count as a long press.
            - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
-           - doubleTapTimeout: The max time between two taps for them to count as a double tap, by default ``GestureButtonDefaults/doubleTapTimeout``.
+           - doubleTapTimeout: The max time between two taps for them to count as a double tap.
            - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
-           - repeatDelay: The time it takes for a press to count as a repeat trigger, by default ``GestureButtonDefaults/repeatDelay``.
-           - repeatTimer: The repeat timer to use for the repeat action, by default ``RepeatGestureTimer/shared``.
+           - repeatDelay: The time it takes for a press to count as a repeat trigger.
+           - repeatTimer: The repeat timer to use for the repeat action.
            - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
            - dragStartAction: The action to trigger when a drag gesture starts.
            - dragAction: The action to trigger when a drag gesture changes.
