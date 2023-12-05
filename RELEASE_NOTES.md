@@ -21,8 +21,13 @@ This version adds autocomplete improvements.
 
 ### 👑 Pro Adjustments
 
+* `LocalAutocompleteProvider` `maxCount` is now `public` and mutable.
 * `LocalAutocompleteProvider` removes autocorrect suggestions if the context has autocorrect disabled.
+* `RemoteAutocompleteProvider` `autocompleteSuggestions` is now `open`.
+* `RemoteAutocompleteProvider` properties are now `public` and mutable.
 * `RemoteAutocompleteProvider` removes autocorrect suggestions if the context has autocorrect disabled.
+
+    
 
 ### 🗑️ Deprecations
 
