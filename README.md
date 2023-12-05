@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/swift-5.8-orange.svg" alt="Swift 5.8" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
     <a href="https://twitter.com/getkeyboardkit"><img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" /></a>
-    <a href="https://techhub.social/@keyboardkit"><img src="https://img.shields.io/mastodon/follow/109340839247880048?domain=https%3A%2F%2Ftechhub.social&style=social" alt="Mastodon: @keyboardkit@techhub.social" title="Mastodon: @keyboardkit@mastodon.social" /></a>
+    <a href="https://techhub.social/@keyboardkit"><img src="https://img.shields.io/mastodon/follow/109340839247880048?domain=https%3A%2F%2Ftechhub.social&style=social" alt="Mastodon: @keyboardkit@techhub.social" title="Mastodon: @keyboardkit@techhub.social" /></a>
 </p>
 
 
@@ -16,7 +16,7 @@
 
 KeyboardKit helps you create custom keyboard extensions with Swift and SwiftUI. 
 
-KeyboardKit extends Apple's native APIs and provides you with a lot more functionality. It lets you create keyboards that mimic native iOS keyboards with just a few lines of code. 
+KeyboardKit extends Apple's native APIs and provides you with a lot more functionality. It lets you create custom keyboards that mimic native iOS keyboards with just a few lines of code. 
 
 <p align="center">
     <img src ="Resources/Demo.gif" width=450 />
