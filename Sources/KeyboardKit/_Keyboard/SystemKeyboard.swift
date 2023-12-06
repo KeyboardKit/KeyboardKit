@@ -199,6 +199,7 @@ public struct SystemKeyboard<
 
     public var body: some View {
         geoContent
+            .autocorrectionDisabled(with: autocompleteContext)
             .opacity(shouldShowEmojiKeyboard ? 0 : 1)
             .overlay(emojiKeyboard(), alignment: .bottom)
             .foregroundColor(styleProvider.foregroundColor)

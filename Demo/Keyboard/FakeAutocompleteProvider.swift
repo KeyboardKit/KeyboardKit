@@ -15,11 +15,11 @@ import KeyboardKit
  */
 class FakeAutocompleteProvider: AutocompleteProvider {
 
-    init(match: String = "match") {
-        self.match = match
+    init(context: AutocompleteContext) {
+        self.context = context
     }
 
-    private var match: String
+    private var context: AutocompleteContext
     
     var locale: Locale = .current
     
@@ -39,11 +39,12 @@ class FakeAutocompleteProvider: AutocompleteProvider {
         for text: String
     ) async throws -> [Autocomplete.Suggestion] {
         guard text.count > 0 else { return [] }
-        if text == match {
-            return matchSuggestions()
-        } else {
-            return fakeSuggestions(for: text)
-        }
+        return fakeSuggestions(for: text)
+            .map {
+                var suggestion = $0
+                suggestion.isAutocorrect = $0.isAutocorrect && context.isAutocorrectEnabled
+                return suggestion
+            }
     }
 }
 
@@ -51,21 +52,9 @@ private extension FakeAutocompleteProvider {
     
     func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
         [
-            .init(text: text + "-1"),
-            .init(text: text + "-2", subtitle: "Subtitle"),
-            .init(text: text + "-3")
-        ]
-    }
-    
-    func fakeSuggestion(_ text: String, _ subtitle: String? = nil) -> Autocomplete.Suggestion {
-        .init(text: text, subtitle: subtitle)
-    }
-
-    func matchSuggestions() -> [Autocomplete.Suggestion] {
-        [
-            .init(text: match, isUnknown: true),
-            .init(text: match, isAutocorrect: true),
-            .init(text: match),
+            .init(text: text, isUnknown: true),
+            .init(text: text, isAutocorrect: true),
+            .init(text: text, subtitle: "Subtitle")
         ]
     }
 }

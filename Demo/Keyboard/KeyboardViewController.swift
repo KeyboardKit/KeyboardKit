@@ -41,7 +41,9 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// This fake provider will provide fake suggestions.
         /// Try the Pro demo for real suggestions.
-        services.autocompleteProvider = FakeAutocompleteProvider()
+        services.autocompleteProvider = FakeAutocompleteProvider(
+            context: state.autocompleteContext
+        )
         
         /// 💡 Setup a demo-specific callout action provider.
         ///
@@ -123,6 +125,7 @@ class KeyboardViewController: KeyboardInputViewController {
                 emojiKeyboard: { $0.view },
                 toolbar: { $0.view }
             )
+            // .autocorrectionDisabled()
         }
     }
 }

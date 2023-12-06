@@ -91,9 +91,9 @@ private extension FakeAutocompleteProvider {
     
     func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
         [
-            .init(text: text + "-1"),
-            .init(text: text + "-2", subtitle: "Subtitle"),
-            .init(text: text + "-3")
+            .init(text: text, isUnknown: true),
+            .init(text: text, isAutocorrect: true),
+            .init(text: text, subtitle: "Subtitle")
         ]
     }
     

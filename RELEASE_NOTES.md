@@ -17,7 +17,13 @@ This version adds autocomplete improvements.
 
 ### ✨ New Features
 
+* `Autocomplete` has a new `AutocorrectionDisabledToContextModifer` modifier.
 * `AutocompleteContext` has a new `isAutocorrectDisabled` property.
+* `View` has a new `autocorrectionDisabled(with:)` modifier.
+
+### 💡 Adjustments
+
+* `SystemKeyboard` now automatically honors any `.autocorrectionDisabled()` that is applied above it.
 
 ### 👑 Pro Adjustments
 
@@ -30,7 +36,6 @@ This version adds autocomplete improvements.
 ### 🗑️ Deprecations
 
 * `AutocompleteContext` `isEnabled` is renamed to `isAutocompleteEnabled`.
-
 
 
 
