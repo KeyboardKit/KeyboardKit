@@ -51,7 +51,7 @@ The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically apply th
 
 In KeyboardKit, a ``CalloutActionProvider`` can be used to provide dynamic callout actions.
 
-You can customize the callout actions by adding localized providers to the default ``StandardCalloutActionProvider``, or by replacing ``KeyboardInputViewController/calloutActionProvider`` with a custom ``CalloutActionProvider``.
+You can customize the callout actions by adding localized providers to the default ``StandardCalloutActionProvider``, or by replacing the ``KeyboardInputViewController/services`` provider with a custom ``CalloutActionProvider``.
 
 
 
@@ -96,24 +96,34 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for each locale in your license and injects them into the ``StandardCalloutActionProvider``.
+[KeyboardKit Pro][Pro] unlocks a ``CalloutActionProvider`` for each locale in your license.
 
-You can access all providers that your license unlocks like this:
+KeyboardKit Pro automaticallys inject all providers from your license into the ``StandardCalloutActionProvider``, to make it support all locales.
+
+
+### How to access your localized providers
+
+You can access all localized providers in your license like this:
 
 ```swift
 let providers = License.current.localizedCalloutActionProviders
 ```
 
-and locale-specific providers like this:
+or any locale-specific provider like this:
 
 ```swift
 let provider = try ProCalloutActionProvider.Swedish()
 ```
 
-The **ProCalloutActionProvider** base class provides more convenience functions for specifying actions. You can inherit it, or any of the available localized versions, to customize the base behavior:
+Note that your license must include the locale, otherwise the provider will throw a license error.
+
+
+### How to customize a localized provider
+
+You can inherit and customize any localized provider, to customize that specific locale:
 
 ```swift
-class CustomCalloutActionProvider: ProCalloutActionProvider.Swedish {
+class CustomProvider: ProCalloutActionProvider.Swedish {
 
     override func calloutActionString(for char: String) -> String {
         switch char {
@@ -124,26 +134,35 @@ class CustomCalloutActionProvider: ProCalloutActionProvider.Swedish {
 }
 ```
 
-To use a custom provider with KeyboardKit Pro, make sure to register it *after* registering your license key, otherwise it will be overwritten by the license registration process.
-
-For instance, this is how you would register the custom provider that we created earlier, using the localized providers from your license:
+You can register this provider *after* registering your license key, to customize that specific locale:
 
 ```swift
-open func setupKeyboardKit() {
-    try? setupPro(withLicenseKey: key, view: keyboardView) { license in
-        self.setupCustomServices(with: license)
-    }
-}
+class KeyboardController: KeyboardInputViewController {
 
-func setupCustomServices(with license: License) {
-    services.calloutActionProvider = CustomCalloutActionProvider(
-        keyboardContext: keyboardContext,
-        localizedProviders: license.localizedCalloutActionProviders
-    )
+    override func viewWillSetupKeyboard() {
+        super.viewWillSetupKeyboard()
+
+        setupPro(withLicenseKey: "...") { license in
+            setupCustomProvider()
+        } view: { controller in
+            // Return your keyboard view here
+        }
+    }
+
+    func setupCustomProvider() {
+        do {
+            let provider = try CustomProvider()
+            let standard = services.calloutActionProvider as? StandardCalloutActionProvider
+            standard.localizedProviders[.swedish] = provider
+            services.keyboardLayoutProvider = standard
+        } catch {
+            print(error)
+        }
+    }
 }
 ```
 
-You can add a custom initializer to your custom provider if you need additional setup, then just call `super.init` to setup the rest.
+Note that the standard provider cast will fail if you replace it.
 
 
 

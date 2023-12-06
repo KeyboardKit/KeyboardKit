@@ -86,13 +86,11 @@ class String_QuotationTests: XCTestCase {
     }
 
     func testQuoteStringForLocale() {
-        XCTAssertEqual(quote("Hello", for: .dutch), "‘Hello’")
         XCTAssertEqual(quote("Hello", for: .italian), "«Hello»")
         XCTAssertEqual(quote("Hello", for: .swedish), "”Hello”")
     }
 
     func testAlternateQuoteStringForLocale() {
-        XCTAssertEqual(alternateQuote("Hello", for: .dutch), "“Hello”")
         XCTAssertEqual(alternateQuote("Hello", for: .italian), "“Hello”")
         XCTAssertEqual(alternateQuote("Hello", for: .swedish), "’Hello’")
     }

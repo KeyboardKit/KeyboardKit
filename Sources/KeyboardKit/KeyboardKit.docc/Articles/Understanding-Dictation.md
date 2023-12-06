@@ -147,13 +147,11 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         let keyboardSettings = keyboardSettings
-        setupPro(
-            withLicenseKey: "your license key",
-            licenseConfiguration: { license in
-                state.dictationContext.setup(with: .app)
-            },
-            view: { $0.view }
-        )
+        setupPro(withLicenseKey: "...") { license in
+            state.dictationContext.setup(with: .app)
+        } view: { controller in
+            // Return your keyboard view here
+        }
     }
 } 
 ```

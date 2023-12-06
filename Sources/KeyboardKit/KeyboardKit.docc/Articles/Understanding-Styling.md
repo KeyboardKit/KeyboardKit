@@ -237,11 +237,13 @@ override func viewWillSetupKeyboard() {
     super.viewWillSetupKeyboard()
 
     // Setup KeyboardKit Pro with a license
-    try? setupPro(withLicenseKey: "LICENSE_KEY_HERE") { _ in
+    setupPro(withLicenseKey: "...") { license in
         keyboardStyleProvider = ThemeBasedKeyboardStyleProvider(
             theme: .cottonCandy,
             keyboardContext: keyboardContext
         )
+    } view: { controller in
+        // Return your keyboard view here
     }
 }
 ```

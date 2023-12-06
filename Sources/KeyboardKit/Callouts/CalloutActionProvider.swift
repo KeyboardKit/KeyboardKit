@@ -10,16 +10,15 @@ import Foundation
 
 /**
  This protocol can be implemented by classes that can return
- secondary callout actions for keyboard actions.
+ secondary callout actions for any ``KeyboardAction``.
  
- Callout actions are shown in a callout above the key when a
- user long presses a key for an action that has such actions.
+ Callout actions are shown in a callout above a long pressed
+ key, if the key action has any such actions.
  
  KeyboardKit will create a ``StandardCalloutActionProvider``
  instance when the keyboard extension is started, then apply
- it to ``KeyboardInputViewController/calloutActionProvider``.
- This instance is then used by default to get the actions to
- display for a certain action.
+ it to ``KeyboardInputViewController/state``. It's then used
+ as the default provider, for instance in ``SystemKeyboard``.
  
  To change the callout actions that are shown when different
  keys are long pressed, you can implement a custom provider.
@@ -34,11 +33,6 @@ import Foundation
  */
 public protocol CalloutActionProvider: AnyObject {
     
-    /**
-     Get callout actions for the provided `action`.
-     
-     These actions are presented in a callout when a user is
-     long pressing this action.
-     */
+    /// Get secondary callout actions for a certain action.
     func calloutActions(for action: KeyboardAction) -> [KeyboardAction]
 }

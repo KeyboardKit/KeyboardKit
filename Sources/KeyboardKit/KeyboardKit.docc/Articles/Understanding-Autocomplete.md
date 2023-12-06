@@ -34,7 +34,13 @@ KeyboardKit will automatically call ``KeyboardController/performAutocomplete()``
 
 You can use the suggestions in any way you like. Views like ``AutocompleteToolbar`` automatically present the latest suggestions, and handle any tapped suggestion with the main ``KeyboardActionHandler``.
 
-You can call the context's ``AutocompleteContext/reset()`` function to reset the autocomplete state, and use ``AutocompleteContext/isAutocompleteEnabled`` to disable autocomplete altogether, or ``AutocompleteContext/isAutocorrectEnabled`` to just disable autocorrection.
+
+
+## How to disable autocomplete and autocorrect
+
+You can use the context's ``AutocompleteContext/isAutocorrectEnabled`` property to disable autocorrection and the ``AutocompleteContext/isAutocompleteEnabled`` property to disable autocomplete altogether.
+
+You can also disable autocorrect by applying a `.autocorrectionDisabled()` view modifier to the keyboard view.
 
 
 

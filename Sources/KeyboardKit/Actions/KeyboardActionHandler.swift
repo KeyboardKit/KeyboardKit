@@ -14,9 +14,8 @@ import CoreGraphics
  
  KeyboardKit will create a ``StandardKeyboardActionHandler``
  instance when the keyboard extension is started, then apply
- it to ``KeyboardInputViewController/keyboardActionHandler``.
- This instance is then used by default to determine how your
- keyboard extension handles actions.
+ it to ``KeyboardInputViewController/state``. It's then used
+ as the default handler, for instance in ``SystemKeyboard``.
  
  Many actions have standard behaviors while others don't and
  therefore require a custom action handler to have an effect.

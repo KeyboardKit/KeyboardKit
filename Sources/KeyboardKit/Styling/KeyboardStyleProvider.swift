@@ -15,9 +15,8 @@ import SwiftUI
  
  KeyboardKit will create a ``StandardKeyboardStyleProvider``
  instance when the keyboard extension is started, then apply
- it to ``KeyboardInputViewController/keyboardStyleProvider``.
- This instance is then used by default to determine how your
- keyboard looks if you use a standard ``SystemKeyboard``.
+ it to ``KeyboardInputViewController/state``. It's then used
+ as the default provider, for instance in ``SystemKeyboard``. 
  
  To change the style of some parts of your keyboard, you can
  implement a custom keyboard style provider.

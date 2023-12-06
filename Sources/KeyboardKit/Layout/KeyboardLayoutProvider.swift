@@ -10,13 +10,16 @@ import Foundation
 
 /**
  This protocol can be implemented by classes that can return
- keyboard layouts for keyboard contexts.
+ keyboard layouts for any ``KeyboardContext``.
+ 
+ Keyboard layouts can be used by keyboard-related views like
+ ``SystemKeyboard`` to provide information about the keys to
+ show, what size each key should have, etc.
  
  KeyboardKit will create a ``StandardKeyboardLayoutProvider``
  instance when the keyboard extension is started, then apply
- it to ``KeyboardInputViewController/keyboardLayoutProvider``.
- The instance is then used by default to create layouts that
- can be used in e.g. a ``SystemKeyboard``.
+ it to ``KeyboardInputViewController/state``. It's then used
+ as the default provider, for instance in ``SystemKeyboard``.
  
  To change the layouts that are used for different keyboards,
  you can implement a custom provider.

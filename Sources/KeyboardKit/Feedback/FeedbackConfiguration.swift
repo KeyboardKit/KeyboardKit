@@ -13,8 +13,8 @@ import Foundation
  This class can be used to specify what kind of feedback the
  current keyboard should give to the user.
  
- Use ``audioConfiguration`` and ``hapticConfiguration`` when
- modifying the feedback behavior.
+ You can modify the ``audio`` and ``haptic`` properties when
+ you want to customize the feedback behavior in the keyboard.
  
  KeyboardKit automatically creates an instance of this class
  and binds it to ``KeyboardInputViewController/state``.

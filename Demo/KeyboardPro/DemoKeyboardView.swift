@@ -14,10 +14,9 @@ import SwiftUI
  customizes it with some Pro features.
  
  Note that `setup` and `setupPro` will use a `SystemKeyboard`
- by default, if you don't provide a custom view.
- 
- Just return `$0.view` in the `SystemKeyboard` view builders,
- if you just want to use the default view.
+ by default. This demo customizes it a bit, to show how this
+ is done. Just return `$0.view` in the `SystemKeyboard` view
+ builders, if you just want to use the default view.
  
  > Important: When you customize your view, you need to make
  it observe the `KeyboardContext` in the environment. If you

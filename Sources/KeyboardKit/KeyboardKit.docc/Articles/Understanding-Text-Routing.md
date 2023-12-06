@@ -26,7 +26,7 @@ KeyboardKit has a ``TextInputProxy`` that can be used to route text to a custom 
 
 Setting ``KeyboardInputViewController/textInputProxy`` to a custom proxy will cause any text you type into the keyboard to be sent to that proxy instead of the original proxy. Just set the custom proxy to `nil` to restore the original proxy and start routing text back to the main application.  
 
-You can always access the original text document proxy with ``KeyboardInputViewController/mainTextDocumentProxy``.
+You can always access the original text document proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.
 
 
 

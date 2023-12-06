@@ -101,7 +101,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /**
      This function is called whenever the controller must be
-     synced with its ``keyboardContext``.
+     synced with the ``state`` keyboard context.
      */
     open func viewWillSyncWithContext() {
         performKeyboardContextSync()
@@ -253,10 +253,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
     
     /**
-     Perform a text context sync.
+     Perform a keyboard context sync.
 
-     This is performed to ensure that ``keyboardContext`` is
-     synced. It aborts if ``isContextSyncEnabled`` is `false`.
+     This is performed to keep the ``state`` context in sync.
+     It's cancelled if ``isContextSyncEnabled`` is `false`.
      */
     open func performKeyboardContextSync() {
         guard isContextSyncEnabled else { return }
