@@ -27,8 +27,6 @@ This version adds autocomplete improvements.
 * `RemoteAutocompleteProvider` properties are now `public` and mutable.
 * `RemoteAutocompleteProvider` removes autocorrect suggestions if the context has autocorrect disabled.
 
-    
-
 ### 🗑️ Deprecations
 
 * `AutocompleteContext` `isEnabled` is renamed to `isAutocompleteEnabled`.
