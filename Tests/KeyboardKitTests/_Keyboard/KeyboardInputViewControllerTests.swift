@@ -17,7 +17,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     
     private var vc: TestClass!
 
-    private let mockAutocompleteProvider = MockAutocompleteProvider()
+    private let mockAutocompleteProvider = Autocomplete.DisabledProvider()
     private let mockTextDocumentProxy = MockTextDocumentProxy()
 
     override func setUp() {
@@ -243,7 +243,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testPerformingAutocompleteWritesResultToAutocompleteContext() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
-        mockAutocompleteProvider.autocompleteSuggestions = [.init(text: "")]
+        mockAutocompleteProvider.suggestions = [.init(text: "")]
         vc.performAutocomplete()
         eventually {
             XCTAssertEqual(vc.state.autocompleteContext.suggestions.count, 0)

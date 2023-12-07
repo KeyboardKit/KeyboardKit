@@ -34,8 +34,8 @@ public protocol AutocompleteProvider: AnyObject {
     func autocompleteSuggestions(
         for text: String
     ) async throws -> [Autocomplete.Suggestion]
-
-
+    
+    
     /// Whether or not the provider can ignore words.
     var canIgnoreWords: Bool { get }
 

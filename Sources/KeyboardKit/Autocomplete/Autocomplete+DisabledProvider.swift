@@ -13,14 +13,19 @@ public extension Autocomplete {
     /// This provider can be used to disable autocomplete.
     class DisabledProvider: AutocompleteProvider {
         
-        public init() {}
+        public init(
+            suggestions: [Autocomplete.Suggestion] = []
+        ) {
+            self.suggestions = suggestions
+        }
         
         public var locale: Locale = .current
+        public internal(set) var suggestions: [Autocomplete.Suggestion]
         
         public func autocompleteSuggestions(
             for text: String
         ) async throws -> [Autocomplete.Suggestion] {
-            []
+            suggestions
         }
         
         public var canIgnoreWords: Bool { false }

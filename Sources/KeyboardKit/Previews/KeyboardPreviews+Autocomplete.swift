@@ -32,35 +32,7 @@ public extension AutocompleteProvider where Self == KeyboardPreviews.PreviewAuto
 
 public extension KeyboardPreviews {
     
-    class PreviewAutocompleteProvider: AutocompleteProvider {
-        
-        public init(
-            suggestions: [Autocomplete.Suggestion]
-        ) {
-            self.suggestions = suggestions
-        }
-        
-        public var locale: Locale = .current
-        public let suggestions: [Autocomplete.Suggestion]
-        
-        public func autocompleteSuggestions(
-            for text: String
-        ) async throws -> [Autocomplete.Suggestion] {
-            suggestions
-        }
-        
-        public var canIgnoreWords: Bool { false }
-        public var canLearnWords: Bool { false }
-        public var ignoredWords: [String] = []
-        public var learnedWords: [String] = []
-        
-        public func hasIgnoredWord(_ word: String) -> Bool { false }
-        public func hasLearnedWord(_ word: String) -> Bool { false }
-        public func ignoreWord(_ word: String) {}
-        public func learnWord(_ word: String) {}
-        public func removeIgnoredWord(_ word: String) {}
-        public func unlearnWord(_ word: String) {}
-    }
+    class PreviewAutocompleteProvider: Autocomplete.DisabledProvider {}
 }
 
 public extension Collection where Element == Autocomplete.Suggestion {
