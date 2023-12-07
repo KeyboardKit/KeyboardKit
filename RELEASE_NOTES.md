@@ -33,6 +33,10 @@ This version adds autocomplete improvements.
 * `RemoteAutocompleteProvider` properties are now `public` and mutable.
 * `RemoteAutocompleteProvider` removes autocorrect suggestions if the context has autocorrect disabled.
 
+### 🐛 Bug fixes
+
+* `KeyboardLocale.kurdish_sorani_pc` now displays its localized name properly on iOS 17.
+
 ### 🗑️ Deprecations
 
 * `AutocompleteContext` `isEnabled` is renamed to `isAutocompleteEnabled`.

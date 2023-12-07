@@ -12,17 +12,20 @@ public extension Locale {
 
     /// The full name of this locale in its own language.
     var localizedName: String {
-        localizedString(forIdentifier: identifier) ?? ""
+        localizedName(in: self)
     }
 
     /// The full name of this locale in another locale.
     func localizedName(in locale: Locale) -> String {
-        locale.localizedString(forIdentifier: identifier) ?? ""
+        if identifier == "ckb_PC" {
+            return KeyboardLocale.kurdish_sorani.locale.localizedName(in: locale) + " (PC)"
+        }
+        return locale.localizedString(forIdentifier: identifier) ?? ""
     }
 
     /// The language name of this locale in its own language.
     var localizedLanguageName: String {
-        localizedString(forLanguageCode: languageCode ?? "") ?? ""
+        localizedLanguageName(in: self)
     }
 
     /// The language name of this locale in another locale.
