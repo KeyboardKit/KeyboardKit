@@ -38,7 +38,7 @@ This enum also serves as a namespace for types like ``HapticFeedback/Configurati
 
 ## How to configure feedback
 
-KeyboardKit has an observable ``FeedbackConfiguration`` class that can be used to configure the feedback for various actions. KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``. 
+KeyboardKit has an observable ``FeedbackConfiguration`` class that can be used to configure the feedback for various actions. KeyboardKit automatically creates an instance of this class and registers it with ``KeyboardInputViewController/state``. 
 
 You can use this settings instance to customize the feedback configuration:
 

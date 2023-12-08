@@ -2,11 +2,9 @@
 
 This article describes the KeyboardKit layout engine.
 
-A flexible keyboard layout is an important part of a software keyboard, where many factors like device, screen orientation, locale, etc. can all affect the layout.
+A flexible keyboard layout is an important part of a software keyboard, where many factors like device, screen orientation, locale, etc. can affect the layout.
 
-In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important concepts to create a flexible keyboard layout, where the input set specifies the input keys of the keyboard and the keyboard layout specifies the full set of keys.
-
-KeyboardKit will bind a ``StandardKeyboardLayoutProvider`` to ``KeyboardInputViewController/services`` when the keyboard is loaded. It has a QWERTY layout by default, but you can inject localized providers into it or modify it, or replace it, at any time.
+In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important concepts when creating keyboard layouts, where an input set specifies input keys and the keyboard layout specifies the full set of keys and their layout.
 
 [KeyboardKit Pro][Pro] unlocks and registers localized input sets and layout providers. Information about Pro features can be found at the end of this article.
 
@@ -30,15 +28,17 @@ This is however not true for all locales. For instance, Armenian has 4 input row
 
 
 
-## Hot to custome the keyboard layout
+## Keyboard layout providers
 
-In KeyboardKit, a ``KeyboardLayoutProvider`` can be used to create a dynamic layout based on many different factors, such as the current device type, orientation, locale, etc. 
+In KeyboardKit, a ``KeyboardLayoutProvider`` can be used to create a dynamic layout based on many different factors, such as the current device type, orientation, locale, etc.
 
-You can customize the keyboard layout by adding localized providers to the default ``StandardKeyboardLayoutProvider``, or by replacing the ``KeyboardInputViewController/services`` provider with a custom ``KeyboardLayoutProvider``.
+KeyboardKit registers a ``StandardKeyboardLayoutProvider`` with ``KeyboardInputViewController/services`` when a keyboard is loaded. It has a QWERTY layout by default, but you can inject localized providers into it or modify it, or replace it, at any time.
+
+You can add and replace localized providers to the default ``StandardKeyboardLayoutProvider``, or replace the ``KeyboardInputViewController/services`` provider with a custom ``KeyboardLayoutProvider``.
 
 
 
-## How to create a custom callout action provider
+## How to create a custom provider
 
 You can create a custom ``KeyboardLayoutProvider`` by inheriting ``StandardKeyboardLayoutProvider`` and customize what want, or implement the ``KeyboardLayoutProvider`` protocol from scratch.
 
@@ -82,9 +82,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks a ``KeyboardLayoutProvider`` for each locale in your license.
-
-KeyboardKit Pro automaticallys inject all providers from your license into the ``StandardKeyboardLayoutProvider``, to make it support all locales.
+[KeyboardKit Pro][Pro] unlocks a ``KeyboardLayoutProvider`` for every locale that your license unlocks, and automatically registers them with the ``StandardKeyboardLayoutProvider``.
 
 
 ### How to access your localized providers
@@ -101,12 +99,12 @@ or any locale-specific provider like this:
 let provider = try ProKeyboardLayoutProvider.Swedish()
 ```
 
-Note that your license must include the locale, otherwise the provider will throw a license error.  
+> Note: A localized provider will throw a license error if the locale isn't unlocked.  
 
 
 ### How to customize a localized provider
 
-You can inherit and customize any localized provider, to customize that specific locale:
+You can inherit and customize any localized provider:
 
 ```swift
 class CustomProvider: ProKeyboardLayoutProvider.Swedish {
@@ -122,13 +120,13 @@ class CustomProvider: ProKeyboardLayoutProvider.Swedish {
 private extension KeyboardLayout {
 
     func tryInsertFlag() {
-        guard let button = tryCreateBottomRowItem(for:  .character("🇸🇪")) else { return }
-        itemRows.insert(button, after: .space, atRow: bottomRowIndex)
+        guard let item = tryCreateBottomRowItem(for:  .character("🇸🇪")) else { return }
+        itemRows.insert(item, after: .space, atRow: bottomRowIndex)
     }
 }
 ```
 
-You can register this provider *after* registering your license key, to customize that specific locale:
+You can register this provider *after* registering your license key:
 
 ```swift
 class KeyboardController: KeyboardInputViewController {
@@ -145,10 +143,9 @@ class KeyboardController: KeyboardInputViewController {
 
     func setupCustomProvider() {
         do {
-            let provider = try CustomKeyboardLayoutProvider()
-            let standard = services.keyboardLayoutProvider as? StandardKeyboardLayoutProvider
-            standard.localizedProviders[.swedish] = provider
-            services.keyboardLayoutProvider = standard
+            let provider = try CustomProvider()
+            let standard = services.calloutActionProvider as? StandardCalloutActionProvider
+            standard?.registerLocalizedProvider(provider)
         } catch {
             print(error)
         }
@@ -156,7 +153,7 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-Note that the standard provider cast will fail if you replace it.
+Note that the provider cast will fail if you replace the instance.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

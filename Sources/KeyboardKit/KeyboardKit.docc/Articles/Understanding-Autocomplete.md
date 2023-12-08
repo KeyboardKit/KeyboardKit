@@ -24,7 +24,7 @@ The namespace doesn't contain protocols, open classes, or types that are meant t
 
 KeyboardKit has an observable ``AutocompleteContext`` class that can be used to handle autocomplete state, such as whether or not autocomplete and autocorrection is enabled, which suggestions to show the user, etc.
 
-KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then updates it when autocomplete is performed.
+KeyboardKit automatically creates an instance of this class and registers it with ``KeyboardInputViewController/state``, then updates it when autocomplete is performed.
 
 
 

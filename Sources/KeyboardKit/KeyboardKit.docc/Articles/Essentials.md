@@ -34,7 +34,7 @@ KeyboardKit has an observable ``KeyboardContext`` class that provides informatio
 
 You can use the context to affect the keyboard. For instance, setting the ``KeyboardContext/locale`` will automatically update the ``SystemKeyboard``.
 
-KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then syncs it with the controller whenever needed.
+KeyboardKit automatically creates an instance of this class and registers it with ``KeyboardInputViewController/state``, then syncs it with the controller whenever needed.
 
 
 
@@ -42,7 +42,7 @@ KeyboardKit automatically creates an instance of this class and binds it to ``Ke
 
 KeyboardKit has a ``KeyboardBehavior`` protocol that can be used to determine certain keyboard behaviors. It's used by e.g. the ``StandardKeyboardActionHandler`` to make some decisions.
 
-KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/services``. You can modify or replace it at any time.
+KeyboardKit automatically creates an instance of this class and registers it with ``KeyboardInputViewController/services``. You can modify or replace it at any time.
 
 
 

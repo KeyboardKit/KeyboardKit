@@ -6,8 +6,6 @@ While native iOS keyboards provide very little ways of customizing the look and 
 
 KeyboardKit uses ``KeyboardStyle`` types to style its views. For instance, a ``KeyboardStyle/InputCallout`` style can be used to style a ``Callouts/InputCallout`` view.
 
-KeyboardKit will bind a ``StandardKeyboardStyleProvider`` instance to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this provider at any time. 
-
 [KeyboardKit Pro][Pro] unlocks a powerful theme engine and a bunch of themes. More information about Pro features can be found at the end of this article.
 
 
@@ -83,6 +81,16 @@ Most styles have a **.standard** style that you can use as a template. The stand
 
 
 
+## Keyboard style providers
+
+In KeyboardKit, a ``KeyboardStyleProvider`` can return dynamic styles for different parts of the keyboard. Unlike static styles, style providers can vary styles depending on the ``KeyboardContext``, ``KeyboardAction`` etc.
+
+Views like the ``SystemKeyboard`` use a style provider to get a button style for each keyboard button, based on the button action, current device, etc. 
+
+KeyboardKit registers a ``StandardKeyboardStyleProvider`` instance with ``KeyboardInputViewController/services`` when a keyboard is loaded. You can modify or replace this provider at any time. 
+
+
+
 ## Keyboard button styles
 
 Most view that support styling let you pass in a style in their initializer. For instance, here we apply a custom autocomplete toolbar style that makes the item title font bold:
@@ -100,16 +108,6 @@ let bar = AutocompleteToolbar(
 The ``KeyboardStyle/Button`` is different from most other styles, since it can style any view to look like a keyboard button, using the `.keyboardButtonStyle(...)` view modifier. 
 
 The ``KeyboardStyle/Button`` style also doesn't have a **.standard** style, since the style of a keyboard button depends on so many factors, such as button type, device type, keyboard appearance, color scheme, etc.
-
-You can use a ``KeyboardStyleProvider`` to create dynamic button styles. Views like the ``SystemKeyboard`` use a style provider to get a button style for each keyboard button, based on the button action, current device, etc. 
-
-
-
-## Style providers
-
-A ``KeyboardStyleProvider`` can return dynamic styles for different parts of the keyboard. Unlike static styles, style providers can vary styles depending on the ``KeyboardContext``, ``KeyboardAction`` etc.
-
-KeyboardKit will bind a ``StandardKeyboardStyleProvider`` instance to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this provider at any time.
 
 
 

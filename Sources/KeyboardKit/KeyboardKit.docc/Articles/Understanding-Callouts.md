@@ -2,11 +2,9 @@
 
 This article describes the KeyboardKit callout engine.
 
-Callouts are an important part of the typing experience, where input callouts show the currently pressed key and action callouts present secondary keyboard actions.
+Callouts are an important part of the typing experience, where input callouts show the currently pressed key and action callouts can show secondary keyboard actions.
 
-In KeyboardKit, a ``CalloutActionProvider`` can be used to provide secondary actions to a ``CalloutContext``, which in turn will update views like ``Callouts/ActionCallout``.
-
-KeyboardKit will bind a ``StandardCalloutActionProvider`` instance to ``KeyboardInputViewController/services`` when the keyboard is loaded. You can modify or replace this provider at any time.
+In KeyboardKit, a ``CalloutActionProvider`` can be used to provide callout actions to a ``CalloutContext``, which in turn will update views like ``Callouts/ActionCallout``.
 
 [KeyboardKit Pro][Pro] unlocks and registers localized action providers. Information about Pro features can be found at the end of this article.
 
@@ -24,9 +22,19 @@ The namespace doesn't contain protocols, open classes, or types that are meant t
 
 ## Callout context
 
-KeyboardKit has an observable ``CalloutContext`` class that provides state for input and action callouts, such as the pressed key or the currently presented secondary actions.
+KeyboardKit has an observable ``CalloutContext`` class that provides input and action callout state, such as the pressed key or the currently presented secondary actions.
 
-KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then updates it when keys are pressed.
+KeyboardKit automatically creates an instance of this class and registers it with ``KeyboardInputViewController/state``, then updates it when keys are pressed.
+
+
+
+## Callout action providers
+
+In KeyboardKit, a ``CalloutActionProvider`` can be used to provide dynamic callout actions.
+
+KeyboardKit registers a ``StandardCalloutActionProvider`` instance with ``KeyboardInputViewController/services`` when a keyboard is loaded. You can modify or replace this provider at any time.
+
+You can add and replace localized providers to the default ``StandardCalloutActionProvider``, or by replacing the ``KeyboardInputViewController/services`` provider with a custom ``CalloutActionProvider``.
 
 
 
@@ -44,14 +52,6 @@ MyKeyboard()
 This will bind a ``CalloutContext`` to the view, then apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as these contexts change. 
 
 The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically apply this extension and update the callout contexts as you interact with the keyboard.
-
-
-
-## How to customize callout actions
-
-In KeyboardKit, a ``CalloutActionProvider`` can be used to provide dynamic callout actions.
-
-You can customize the callout actions by adding localized providers to the default ``StandardCalloutActionProvider``, or by replacing the ``KeyboardInputViewController/services`` provider with a custom ``CalloutActionProvider``.
 
 
 
@@ -96,9 +96,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks a ``CalloutActionProvider`` for each locale in your license.
-
-KeyboardKit Pro automaticallys inject all providers from your license into the ``StandardCalloutActionProvider``, to make it support all locales.
+[KeyboardKit Pro][Pro] unlocks a ``CalloutActionProvider`` for every locale that your license unlocks, and automatically registers them with the ``StandardCalloutActionProvider``.
 
 
 ### How to access your localized providers
@@ -115,12 +113,12 @@ or any locale-specific provider like this:
 let provider = try ProCalloutActionProvider.Swedish()
 ```
 
-Note that your license must include the locale, otherwise the provider will throw a license error.
+> Note: A localized provider will throw a license error if the locale isn't unlocked.
 
 
 ### How to customize a localized provider
 
-You can inherit and customize any localized provider, to customize that specific locale:
+You can inherit and customize any localized provider:
 
 ```swift
 class CustomProvider: ProCalloutActionProvider.Swedish {
@@ -134,7 +132,7 @@ class CustomProvider: ProCalloutActionProvider.Swedish {
 }
 ```
 
-You can register this provider *after* registering your license key, to customize that specific locale:
+You can register this provider *after* registering your license key:
 
 ```swift
 class KeyboardController: KeyboardInputViewController {
@@ -153,8 +151,7 @@ class KeyboardController: KeyboardInputViewController {
         do {
             let provider = try CustomProvider()
             let standard = services.calloutActionProvider as? StandardCalloutActionProvider
-            standard.localizedProviders[.swedish] = provider
-            services.keyboardLayoutProvider = standard
+            standard?.registerLocalizedProvider(provider)
         } catch {
             print(error)
         }
@@ -162,7 +159,7 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-Note that the standard provider cast will fail if you replace it.
+Note that the provider cast will fail if you replace the instance.
 
 
 

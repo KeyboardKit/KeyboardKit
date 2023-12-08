@@ -26,7 +26,7 @@ The namespace doesn't contain protocols, open classes, or types that are meant t
 
 KeyboardKit has an observable ``DictationContext`` class that is used to handle dictation state, such as the currently dictated text, in which application dictation was started, etc.
 
-KeyboardKit automatically creates an instance of this class and binds it to ``KeyboardInputViewController/state``, then updates it during dictation.
+KeyboardKit automatically creates an instance of this class and registers it with ``KeyboardInputViewController/state``, then updates it during dictation.
 
 
 
