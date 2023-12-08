@@ -26,8 +26,12 @@ public extension Autocomplete {
         
         private let context: AutocompleteContext
         
+        #if os(iOS) || os(tvOS) || os(macOS)
         @Environment(\.autocorrectionDisabled)
         private var autocorrectionDisabled
+        #else
+        private let autocorrectionDisabled = false
+        #endif
         
         public func body(content: Content) -> some View {
             content

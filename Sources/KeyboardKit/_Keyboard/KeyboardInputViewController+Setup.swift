@@ -6,6 +6,7 @@
 //  Copyright © 2023 Daniel Saidi. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import SwiftUI
 
 extension KeyboardInputViewController {
@@ -43,3 +44,4 @@ extension KeyboardInputViewController {
         }.store(in: &cancellables)
     }
 }
+#endif
