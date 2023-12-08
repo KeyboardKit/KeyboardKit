@@ -39,52 +39,35 @@ import Foundation
  */
 public protocol KeyboardDictationService: AnyObject {
 
-    /**
-     The current dictation authorization status.
-     */
+    /// The current dictation authorization status.
     var authorizationStatus: Dictation.AuthorizationStatus { get }
+    
+    /// A list of supported locales.
+    var supportedLocales: [KeyboardLocale] { get }
 
-    /**
-     Request dictation authorization.
-     */
+    
+    /// Request dictation authorization.
     func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus
 
-    /**
-     Call this function to start dictation from the keyboard,
-     where no microphone access is available.
-     */
+    /// Start a dictation operation from the keyboard.
     func startDictationFromKeyboard(
         with config: Dictation.KeyboardConfiguration
     ) async throws
 
-    /**
-     Call this function to perform dictation in the main app,
-     where microphone access is available.
-     */
+    /// Perform a dictation operation in the main app.
     func performDictationInApp(
         with config: Dictation.KeyboardConfiguration
     ) async throws
 
-    /**
-     Call this function to abort an ongoing dictation in the
-     main app, then return to the keyboard.
-     */
+    /// Abort an active dictation operation in the main app.
     func abortDictationInApp() async throws
 
-    /**
-     Call this function to finish an active dictation in the
-     main app, then return to the keyboard.
-     */
+    /// Finish an active dictation operation in the main app.
     func finishDictationInApp() async throws
 
-    /**
-     Call this function to handle any dictation result, when
-     returning to the keyboard from the main app.
-     */
+    /// Handle any dictation result in the keyboard.
     func handleDictationResultInKeyboard() async throws
 
-    /**
-     Undo the last performed dictation operation, if any.
-     */
+    /// Undo the last performed dictation operation, if any.
     func undoLastDictation()
 }

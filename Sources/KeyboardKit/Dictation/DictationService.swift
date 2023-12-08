@@ -31,9 +31,12 @@ import SwiftUI
  dictation service when a Gold license key is registered.
  */
 public protocol DictationService: AnyObject {
-
+    
     /// The current dictation authorization status.
     var authorizationStatus: Dictation.AuthorizationStatus { get }
+    
+    /// A list of supported locales.
+    var supportedLocales: [KeyboardLocale] { get }
 
 
     /// Request dictation authorization.
