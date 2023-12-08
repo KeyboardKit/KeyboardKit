@@ -18,7 +18,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
         context = KeyboardContext()
         provider = StandardKeyboardLayoutProvider(
             baseProvider: InputSetBasedKeyboardLayoutProvider(),
-            localizedProviders: [TestKeyboardLayoutProvider()]
+            localizedProviders: [TestProvider()]
         )
     }
 
@@ -27,7 +27,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
         let layout = provider.keyboardLayout(for: context)
         let firstItem = layout.itemRows[0].first
         let result = provider.keyboardLayoutProvider(for: context)
-        XCTAssertTrue(result is TestKeyboardLayoutProvider)
+        XCTAssertTrue(result is TestProvider)
         XCTAssertEqual(firstItem?.action, .character("a"))
     }
     
@@ -39,17 +39,26 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
         XCTAssertTrue(result is InputSetBasedKeyboardLayoutProvider)
         XCTAssertEqual(firstItem?.action, .character("q"))
     }
+    
+    func testCanRegisterLocalizedProvider() {
+        let locale = KeyboardLocale.albanian
+        let new = TestProvider(localeKey: locale.localeIdentifier)
+        XCTAssertNil(provider.localizedProviders.value(for: locale.locale))
+        provider.registerLocalizedProvider(new)
+        XCTAssertIdentical(provider.localizedProviders.value(for: locale.locale), new)
+    }
 }
 
-private class TestKeyboardLayoutProvider: BaseKeyboardLayoutProvider, LocalizedService {
-    
-    let localeKey = "sv-SE"
-    
-    init() {
+private class TestProvider: BaseKeyboardLayoutProvider, LocalizedService {
+
+    init(localeKey: String = "sv-SE") {
+        self.localeKey = localeKey
         super.init(
             alphabeticInputSet: .init(rows: [.init(chars: "abcdefghij")]),
             numericInputSet: .standardNumeric(currency: "$"),
             symbolicInputSet: .standardSymbolic(currencies: "€£¥".chars)
         )
     }
+    
+    var localeKey: String
 }

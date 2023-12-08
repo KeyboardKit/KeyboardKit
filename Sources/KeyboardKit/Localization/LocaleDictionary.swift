@@ -36,12 +36,38 @@ public struct LocaleDictionary<ItemType> {
     public typealias LocaleIdentifier = String
     
     /// The locale/valye dicitionary.
-    public let dictionary: [LocaleIdentifier: ItemType]
+    public var dictionary: [LocaleIdentifier: ItemType]
+}
+
+public extension LocaleDictionary {
     
     /// Get a certain value for the provided locale.
-    public func value(for locale: Locale) -> ItemType? {
+    func value(for locale: Locale) -> ItemType? {
         if let item = dictionary[locale.identifier] { return item }
         if let item = dictionary[locale.languageCode ?? ""] { return item }
         return nil
+    }
+    
+    /// Insert a value into the dictionary.
+    mutating func set(_ value: ItemType, for locale: Locale) {
+        set(value, for: locale.identifier)
+    }
+    
+    /// Insert a value into the dictionary.
+    mutating func set(_ value: ItemType, for localeIdentifier: String) {
+        dictionary[localeIdentifier] = value
+    }
+}
+
+public extension LocaleDictionary {
+    
+    /// Get a certain value for the provided locale.
+    func value(for locale: KeyboardLocale) -> ItemType? {
+        value(for: locale.locale)
+    }
+    
+    /// Insert a value into the dictionary.
+    mutating func set(_ value: ItemType, for locale: KeyboardLocale) {
+        set(value, for: locale.locale)
     }
 }

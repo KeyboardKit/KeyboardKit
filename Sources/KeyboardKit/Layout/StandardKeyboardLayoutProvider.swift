@@ -33,7 +33,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     public init(
         baseProvider: KeyboardLayoutProvider = InputSetBasedKeyboardLayoutProvider(),
-        localizedProviders: [KeyboardLayoutProvider & LocalizedService] = []
+        localizedProviders: [LocalizedProvider] = []
     ) {
         self.baseProvider = baseProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
@@ -41,11 +41,15 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     }
 
     
+    /// This typealias represents a localized provider.
+    public typealias LocalizedProvider = KeyboardLayoutProvider & LocalizedService
+    
+    
     /// The base provider to use.
     public private(set) var baseProvider: KeyboardLayoutProvider
 
     /// A dictionary with localized layout providers.
-    public let localizedProviders: LocaleDictionary<KeyboardLayoutProvider>
+    public var localizedProviders: LocaleDictionary<KeyboardLayoutProvider>
 
 
     /// The keyboard layout to use for a certain context.
@@ -58,5 +62,12 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
         let localized = localizedProviders.value(for: context.locale)
         return localized ?? baseProvider
+    }
+    
+    /// Register a new localized provider.
+    open func registerLocalizedProvider(
+        _ provider: LocalizedProvider
+    ) {
+        localizedProviders.set(provider, for: provider.localeKey)
     }
 }

@@ -64,9 +64,17 @@ class StandardCalloutActionProviderTests: XCTestCase {
         XCTAssertNotEqual(nonEmptyActions, [])
         XCTAssertEqual(emptyActions, [])
     }
+    
+    func testCanRegisterLocalizedProvider() {
+        let locale = KeyboardLocale.albanian
+        let new = TestProvider(localeKey: locale.localeIdentifier)
+        XCTAssertNil(provider.localizedProviders.value(for: locale.locale))
+        provider.registerLocalizedProvider(new)
+        XCTAssertIdentical(provider.localizedProviders.value(for: locale.locale), new)
+    }
 }
 
-class TestProvider: CalloutActionProvider, LocalizedService {
+private class TestProvider: CalloutActionProvider, LocalizedService {
     
     init(localeKey: String) {
         self.localeKey = localeKey

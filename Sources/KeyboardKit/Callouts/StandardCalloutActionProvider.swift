@@ -35,13 +35,18 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     public init(
         keyboardContext: KeyboardContext,
         baseProvider: CalloutActionProvider = BaseCalloutActionProvider(),
-        localizedProviders: [CalloutActionProvider & LocalizedService] = []
+        localizedProviders: [LocalizedProvider] = []
     ) {
         self.keyboardContext = keyboardContext
         self.baseProvider = baseProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
         self.localizedProviders = LocaleDictionary(dict)
     }
+    
+    
+    /// This typealias represents a localized provider.
+    public typealias LocalizedProvider = CalloutActionProvider & LocalizedService
+    
 
     /// The keyboard context to use.
     public let keyboardContext: KeyboardContext
@@ -71,5 +76,12 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
         for locale: Locale
     ) -> CalloutActionProvider {
         localizedProviders.value(for: locale) ?? baseProvider
+    }
+    
+    /// Register a new localized provider.
+    open func registerLocalizedProvider(
+        _ provider: LocalizedProvider
+    ) {
+        localizedProviders.set(provider, for: provider.localeKey)
     }
 }

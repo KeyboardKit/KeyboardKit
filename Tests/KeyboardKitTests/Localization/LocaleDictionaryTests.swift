@@ -72,4 +72,11 @@ class LocaleDictionaryTests: XCTestCase {
         XCTAssertNil(stringDict.value(for: locale))
         XCTAssertNil(intDict.value(for: locale))
     }
+    
+    func testCanRegisterAdditionalValues() {
+        let locale = KeyboardLocale.danish
+        XCTAssertNil(intDict.value(for: locale))
+        intDict.set(10, for: locale)
+        XCTAssertEqual(intDict.value(for: locale), 10)
+    }
 }

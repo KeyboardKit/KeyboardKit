@@ -21,6 +21,9 @@ This version adds autocomplete improvements.
 * `AutocompleteContext` has a new `isAutocorrectDisabled` property.
 * `DictationService` has a new `supportedLocales` property.
 * `KeyboardDictationService` has a new `supportedLocales` property.
+* `LocaleDictionary` has new getters and setters.
+* `StandardCalloutActionProvider` has a new `registerLocalizedProvider` function.
+* `StandardKeyboardLayoutProvider` has a new `registerLocalizedProvider` function.
 * `View` has a new `autocorrectionDisabled(with:)` modifier.
 
 ### 💡 Adjustments
