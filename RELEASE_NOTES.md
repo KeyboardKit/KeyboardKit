@@ -15,6 +15,10 @@ These release notes only cover the current major version.
 
 This version adds autocomplete improvements.
 
+### 🚨 Important Information
+
+This version removes the temporary migration types that were added in 8.0. To upgrade to this or any later version, first update to 8.0 and follow the migration guides. This will remove any breaking changes when upgrading to this version.
+
 ### ✨ New Features
 
 * `Autocomplete` has a new `AutocorrectionDisabledToContextModifer` modifier.
