@@ -13,7 +13,7 @@ These release notes only cover the current major version.
 
 ## 8.1
 
-This version adds autocomplete improvements.
+This version improves autocomplete and localized provider capabilities.
 
 ### 🚨 Important Information
 
@@ -23,8 +23,6 @@ This version removes the temporary migration types that were added in 8.0. To up
 
 * `Autocomplete` has a new `AutocorrectionDisabledToContextModifer` modifier.
 * `AutocompleteContext` has a new `isAutocorrectDisabled` property.
-* `DictationService` has a new `supportedLocales` property.
-* `KeyboardDictationService` has a new `supportedLocales` property.
 * `LocaleDictionary` has new getters and setters.
 * `StandardCalloutActionProvider` has a new `registerLocalizedProvider` function.
 * `StandardKeyboardLayoutProvider` has a new `registerLocalizedProvider` function.
@@ -44,7 +42,7 @@ This version removes the temporary migration types that were added in 8.0. To up
 
 ### 🐛 Bug fixes
 
-* `KeyboardLocale.kurdish_sorani_pc` now displays its localized name properly on iOS 17.
+* `KeyboardLocale.kurdish_sorani_pc` now displays its localized name properly in iOS 17.
 
 ### 🗑️ Deprecations
 
