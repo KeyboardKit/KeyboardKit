@@ -11,6 +11,12 @@ These release notes only cover the current major version.
 
 
 
+## 8.1.1
+
+This version fixes a configuration bug in KeyboardKit Pro, that caused autocorrect to not disable.
+
+
+
 ## 8.1
 
 This version improves autocomplete and localized provider capabilities.
