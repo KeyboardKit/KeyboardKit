@@ -18,9 +18,7 @@ import SwiftUI
  access to features like haptic feedback.
 
  💡 The project only links KeyboardKit Pro to the app target,
- while the base library is linked to all targets that use it.
- Since KeyboardKit Pro is a binary library, this is how it's
- supposed to be linked, since extensions can still locate it.
+ which is how KeyboardKit Pro should be linked.
  */
 class KeyboardViewController: KeyboardInputViewController {
 
@@ -40,8 +38,8 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Add more locales to the keyboard.
         ///
-        /// The demo layout provider will add a "next locale"
-        /// button if you have more than one locale.
+        /// ``DemoLayoutProvider`` adds a next locale button
+        /// if you have more than one locale.
         state.keyboardContext.localePresentationLocale = .current
         // state.keyboardContext.locales = This is set to the license locales
         
@@ -60,10 +58,16 @@ class KeyboardViewController: KeyboardInputViewController {
         
         /// 💡 Setup audio and haptic feedback.
         ///
-        /// The default haptic feedback is `.minimal`, which
-        /// only has haptic feedback for long press on space.
-        // state.feedbackConfiguration.audioConfiguration.delete = .custom(id: 1329)
+        /// The code below enabled haptic feedback and plays
+        /// a custom sound when backspace is tapped.
         state.feedbackConfiguration.isHapticFeedbackEnabled = true
+        state.feedbackConfiguration.audio.delete = .custom(id: 1329)
+        
+        /// 💡 Disable autocorrect.
+        ///
+        /// Uncomment the line below if you want to test how
+        /// autocomplete behaves without autocorrect.
+        state.autocompleteContext.isAutocorrectEnabled = false
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
