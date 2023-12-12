@@ -43,6 +43,7 @@ struct DemoToolbar: View {
             toolbarButton(toggleThemePicker, "paintpalette")
             toolbarButton(readFullDocumentContext, "doc.text.magnifyingglass")
             toolbarButton(startDictation, "mic")
+            toolbarButton(openSettings, "gearshape")
         }
         .padding(10)
         .font(.headline)
@@ -104,6 +105,10 @@ private extension DemoToolbar {
 }
 
 private extension DemoToolbar {
+    
+    func openSettings() {
+        try? KeyboardUrlOpener.shared.open(.keyboardSettings)
+    }
     
     func readFullDocumentContext() {
         fullDocumentContext = "Reading..."

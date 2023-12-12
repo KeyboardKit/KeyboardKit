@@ -156,7 +156,6 @@
 				A921152925D58A96003510D9 /* Assets.xcassets */,
 				A921152525D58A94003510D9 /* DemoApp.swift */,
 				A921152725D58A94003510D9 /* HomeScreen.swift */,
-				A9521CF229A3941400C62ECE /* Settings.bundle */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -187,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				A921152E25D58A96003510D9 /* Info.plist */,
+				A9521CF229A3941400C62ECE /* Settings.bundle */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
