@@ -6,7 +6,7 @@
 //  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
+import KeyboardKitPro
 import SwiftUI
 
 /**
@@ -47,17 +47,21 @@ struct HomeScreen: View {
             }
         }
         .navigationViewStyle(.stack)
-        .onOpenURL { _ in print("WARNING: Keyboard dictation requires KeyboardKit Pro and a signed app group") }
-        /**
-         This view modifier is available in KeyboardKit Pro.
-         .keyboardDictation(context: dictationContext, config: .app) {
-             DictationScreen(
-                 dictationContext: dictationContext,
-                 titleView: { EmptyView() },
-                 indicator: { DictationBarVisualizer(isDictating: $0) }
-             )
-         }
-         */
+        .keyboardDictation(
+            context: dictationContext,
+            config: .app,
+            speechRecognizer: StandardSpeechRecognizer()
+        ) {
+            Dictation.Screen(
+                dictationContext: dictationContext) {
+                    EmptyView()
+                } indicator: {
+                    Dictation.BarVisualizer(isAnimating: $0)
+                } doneButton: { action in
+                    Button("Done", action: action)
+                        .buttonStyle(.borderedProminent)
+                }
+        }
     }
 }
 

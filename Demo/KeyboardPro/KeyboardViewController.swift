@@ -11,14 +11,24 @@ import SwiftUI
 
 /**
  This keyboard demonstrates how to setup Keyboard Pro with a
- license that unlocks locales and features like autocomplete.
+ license key, to unlock all locales and pro features.
+ 
+ This keyboard uses KeyboardKit Pro autocomplete, instead of
+ a fake provider like the other keyboard. It also customizes
+ the keyboard layout with the ``DemoLayoutProvider`` and has
+ a custom `ToggleToolbar` with a custom menu.
+ 
+ Note that the dictation button in the toggle menu will open
+ the app. However, since this demo app is not configured for
+ the App Store, it has no App Group, which is needed to make
+ dictation work and for sharing data between the two targets.
 
  To use this keyboard, you must enable it in system settings
  ("Settings/General/Keyboards"). It needs full access to get
  access to features like haptic feedback.
 
  💡 The project only links KeyboardKit Pro to the app target,
- which is how KeyboardKit Pro should be linked.
+ which is how binary frameworks should be linked.
  */
 class KeyboardViewController: KeyboardInputViewController {
 
@@ -31,8 +41,10 @@ class KeyboardViewController: KeyboardInputViewController {
     }
 
     /**
-     This function is called when the controller loads. Here,
-     we make demo-specific service configurations.
+     This function is called when the controller loads. 
+     
+     Here, we make some demo-specific service configurations
+     that aren't overwritten when a license is registered.
      */
     override func viewDidLoad() {
 

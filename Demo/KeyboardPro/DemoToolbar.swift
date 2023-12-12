@@ -42,6 +42,7 @@ struct DemoToolbar: View {
             textFieldIfFullAccess
             toolbarButton(toggleThemePicker, "paintpalette")
             toolbarButton(readFullDocumentContext, "doc.text.magnifyingglass")
+            toolbarButton(startDictation, "mic")
         }
         .padding(10)
         .font(.headline)
@@ -115,6 +116,10 @@ private extension DemoToolbar {
     func selectTheme(_ theme: KeyboardTheme) {
         self.theme = theme
         isThemePickerPresented = false
+    }
+    
+    func startDictation() {
+        controller.performDictation()
     }
     
     func toggleThemePicker() {
