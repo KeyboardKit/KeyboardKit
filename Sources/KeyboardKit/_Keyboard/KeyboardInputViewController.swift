@@ -28,6 +28,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - View Controller Lifecycle
+    
+    deinit {
+        viewWillUnregisterSharedController()
+    }
 
     open override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,7 +76,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             }
         }
     }
-
+    
     /**
      This function is called when the controller is about to
      register itself as the shared controller.
@@ -80,6 +84,15 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func viewWillRegisterSharedController() {
         NextKeyboardController.shared = self
         KeyboardUrlOpener.shared.controller = self
+    }
+    
+    /**
+     This function is called when the controller is about to
+     deinit, to unregister itself as the shared controller.
+     */
+    open func viewWillUnregisterSharedController() {
+        NextKeyboardController.shared = nil
+        KeyboardUrlOpener.shared.controller = nil
     }
 
     /**

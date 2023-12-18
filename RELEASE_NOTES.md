@@ -11,6 +11,16 @@ These release notes only cover the current major version.
 
 
 
+## 8.2
+
+This version xxx.
+
+### 💡 Adjustments
+
+* `KeyboardInputViewController` now unregisters itself as shared controller in deinit.
+
+
+
 ## 8.1.1
 
 This version fixes a configuration bug in KeyboardKit Pro, that caused autocorrect to not disable.
