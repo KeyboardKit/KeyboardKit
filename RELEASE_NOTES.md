@@ -19,6 +19,11 @@ This version xxx.
 
 * `KeyboardInputViewController` now unregisters itself as shared controller in deinit.
 
+### 👑 Pro Adjustments
+
+* `PreviousAppNavigator` has been deprecated.
+* `.keyboardDictation` modifiers now support injecting a custom service.
+
 ### 🗑️ Deprecations
 
 * `KeyboardUrlOpener` has been deprecated.

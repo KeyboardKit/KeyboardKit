@@ -171,10 +171,6 @@ KeyboardKit is available under the MIT license.
 - ``LocaleDictionary``
 - ``LocalizedService``
 
-### Navigation
-
-- ``KeyboardUrlOpener``
-
 ### Previews
 
 - ``KeyboardPreviews``
