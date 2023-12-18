@@ -19,6 +19,10 @@ This version xxx.
 
 * `KeyboardInputViewController` now unregisters itself as shared controller in deinit.
 
+### 🗑️ Deprecations
+
+* `KeyboardUrlOpener` has been deprecated.
+
 
 
 ## 8.1.1
