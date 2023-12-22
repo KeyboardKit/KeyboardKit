@@ -25,7 +25,9 @@ final class KeyboardStyle_EmojiKeyboardTests: XCTestCase {
         XCTAssertEqual(config.itemSize, 55)
         XCTAssertEqual(config.horizontalItemSpacing, 10)
         XCTAssertEqual(config.verticalCategoryStackSpacing, 7)
+        #if os(iOS)
         XCTAssertEqual(config.categoryTitleFont, .system(size: 16).bold())
+        #endif
         XCTAssertEqual(config.categoryTitlePadding, .init(top: 14, leading: 0, bottom: 0, trailing: 0))
     }
 
