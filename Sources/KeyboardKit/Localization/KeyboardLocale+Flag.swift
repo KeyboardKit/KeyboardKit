@@ -48,7 +48,7 @@ public extension KeyboardLocale {
         case .hungarian: return "🇭🇺"
             
         case .icelandic: return "🇮🇸"
-        case .inari_sami: return "🏳️"
+        case .inariSami: return "🏳️"
         case .indonesian: return "🇮🇩"
         case .irish: return "🇮🇪"
         case .italian: return "🇮🇹"
@@ -64,7 +64,7 @@ public extension KeyboardLocale {
         case .maltese: return "🇲🇹"
         case .mongolian: return "🇲🇳"
         case .norwegian: return "🇳🇴"
-        case .northern_sami: return "🏳️"
+        case .northernSami: return "🏳️"
         case .persian: return "🇮🇷"
         case .polish: return "🇵🇱"
         case .portuguese: return "🇵🇹"
