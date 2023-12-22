@@ -10,26 +10,29 @@ import SwiftUI
 
 /**
  This enum defines keyboard-specific, localized texts.
+ 
+ Note that ``emergencyCall`` and ``ok`` are supported, since
+ only `SubmitLabel` cases will be supported from now on. Any
+ unsupported primary keys will get a fixed text.
  */
 public enum KKL10n: String, CaseIterable, Identifiable {
 
-    case
-    `continue`,
-    done,
-    emergencyCall,
-    go,
-    join,
-    next,
-    ok,
-    `return`,
-    route,
-    search,
-    send,
-    space,
+    case `continue`
+    case done
+    case emergencyCall  // deprecated
+    case go
+    case join
+    case next
+    case ok             // deprecated
+    case `return`
+    case route
+    case search
+    case send
+    case space
     
-    keyboardTypeAlphabetic,
-    keyboardTypeNumeric,
-    keyboardTypeSymbolic
+    case keyboardTypeAlphabetic
+    case keyboardTypeNumeric
+    case keyboardTypeSymbolic
 }
 
 public extension KKL10n {

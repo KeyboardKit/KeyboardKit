@@ -37,6 +37,8 @@ This version xxx.
 ### 🗑️ Deprecations
 
 * `KeyboardUrlOpener` has been deprecated.
+* `KKL10n.emergencyCall` is deprecated.
+* `KKL10n.ok` is deprecated.
 
 
 
