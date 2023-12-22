@@ -20,10 +20,9 @@
 "search" = "Εύρεση";
 "send" = "send";
 "space" = "διάστημα";
-
-"keyboardTypeAlphabetic" = "ABΓ";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
+"switcherAlphabetic" = "ABΓ";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

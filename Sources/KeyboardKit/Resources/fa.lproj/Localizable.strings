@@ -20,10 +20,9 @@
 "search" = "جستجو";
 "send" = "send";
 "space" = "فاصله";
-
-"keyboardTypeAlphabetic" = "ا‌ب‌ج";
-"keyboardTypeNumeric" = "۱۲۳";
-"keyboardTypeSymbolic" = "#+=";
+"switcherAlphabetic" = "ا‌ب‌ج";
+"switcherNumeric" = "۱۲۳";
+"switcherSymbolic" = "#+=";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

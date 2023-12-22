@@ -20,12 +20,11 @@
 "search" = "sök";
 "send" = "skicka";
 "space" = "mellanslag";
+"switcherAlphabetic" = "ABC";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
-"keyboardTypeAlphabetic" = "ABC";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
-
-"searchEmoji" = "";
+"searchEmoji" = "Sök emoji";
 
 /* [😀] */ "Emoji.GrinningFace" = "Leende ansikte";
 

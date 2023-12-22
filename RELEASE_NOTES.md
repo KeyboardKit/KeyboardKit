@@ -13,7 +13,7 @@ These release notes only cover the current major version.
 
 ## 8.2
 
-This version xxx.
+This version adjusts localization and adds support for Inari Sámi and Northern Sámi.
 
 ### ✨ Features
 
@@ -37,8 +37,11 @@ This version xxx.
 ### 🗑️ Deprecations
 
 * `KeyboardUrlOpener` has been deprecated.
-* `KKL10n.emergencyCall` is deprecated.
-* `KKL10n.ok` is deprecated.
+* `KKL10n.emergencyCall` has been deprecated.
+* `KKL10n.keyboardTypeAlphabetic` has been renamed to `.switcherAlphabetic`.
+* `KKL10n.keyboardTypeNumeric` has been renamed to `.switcherNumeric`.
+* `KKL10n.keyboardTypeSymbolic` has been renamed to `.switcherSymbolic`.
+* `KKL10n.ok` has been deprecated.
 
 
 

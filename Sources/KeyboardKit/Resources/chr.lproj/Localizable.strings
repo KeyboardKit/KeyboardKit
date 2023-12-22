@@ -20,12 +20,9 @@
 "search" = "ᎠᏯᏍᏗ";
 "send" = "send";
 "space" = "ᎦᎳᏅᏓᏗᏍᎩ";
-
-"keyboardTypeAlphabetic" = "ABC";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
-
-"searchEmoji" = "Search Emoji";
+"switcherAlphabetic" = "ABC";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

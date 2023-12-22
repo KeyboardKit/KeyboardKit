@@ -29,16 +29,24 @@ public enum KKL10n: String, CaseIterable, Identifiable {
     case search
     case send
     case space
-    
-    case keyboardTypeAlphabetic
-    case keyboardTypeNumeric
-    case keyboardTypeSymbolic
+    case switcherAlphabetic
+    case switcherNumeric
+    case switcherSymbolic
 }
+
+
 
 public extension KKL10n {
 
     /// The bundle to use to retrieve localized strings.
     static var bundle: Bundle = .keyboardKit
+    
+    @available(*, deprecated, renamed: "switcherAlphabetic")
+    static var keyboardTypeAlphabetic = KKL10n.switcherAlphabetic
+    @available(*, deprecated, renamed: "switcherNumeric")
+    static var keyboardTypeNumeric = KKL10n.switcherNumeric
+    @available(*, deprecated, renamed: "switcherSymbolic")
+    static var keyboardTypeSymbolic = KKL10n.switcherSymbolic
 }
 
 public extension KKL10n {

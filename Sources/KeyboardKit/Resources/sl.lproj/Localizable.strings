@@ -20,10 +20,9 @@
 "search" = "Išči";
 "send" = "send";
 "space" = "Preslednica";
-
-"keyboardTypeAlphabetic" = "ABC";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
+"switcherAlphabetic" = "ABC";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

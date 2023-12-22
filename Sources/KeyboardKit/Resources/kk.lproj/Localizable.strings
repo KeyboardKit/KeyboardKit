@@ -18,9 +18,8 @@
 "route" = "route";
 "search" = "Іздеу";
 "space" = "бос орын";
-
-"keyboardTypeAlphabetic" = "АБВ";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
+"switcherAlphabetic" = "АБВ";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
 "searchEmoji" = "Emoji Табу";

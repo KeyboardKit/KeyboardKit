@@ -20,10 +20,9 @@
 "search" = "leita";
 "send" = "send";
 "space" = "millumrúm";
-
-"keyboardTypeAlphabetic" = "AÁB";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
+"switcherAlphabetic" = "AÁB";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

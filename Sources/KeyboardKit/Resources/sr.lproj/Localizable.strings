@@ -20,10 +20,9 @@
 "search" = "претражи";
 "send" = "send";
 "space" = "размак";
-
-"keyboardTypeAlphabetic" = "АБВ";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
+"switcherAlphabetic" = "АБВ";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

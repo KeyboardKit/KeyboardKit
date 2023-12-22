@@ -20,10 +20,9 @@
 "search" = "ძიება";
 "send" = "send";
 "space" = "ჰარი";
-
-"keyboardTypeAlphabetic" = "ა";
-"keyboardTypeNumeric" = "123";
-"keyboardTypeSymbolic" = "#+=";
+"switcherAlphabetic" = "ა";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then
