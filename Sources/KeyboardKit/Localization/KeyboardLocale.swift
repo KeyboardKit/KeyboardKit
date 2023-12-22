@@ -66,6 +66,7 @@ public enum KeyboardLocale: String,
     case kurdish_sorani = "ckb"
     case kurdish_sorani_arabic = "ckb_IQ"
     case kurdish_sorani_pc = "ckb_PC"
+    case inari_sami = "smn"
     case latvian = "lv"
     case lithuanian = "lt"
     case macedonian = "mk"
@@ -73,6 +74,7 @@ public enum KeyboardLocale: String,
     case maltese = "mt"
     case mongolian = "mn"
     case norwegian = "nb"
+    case northern_sami = "se"
     case persian = "fa"
     case polish = "pl"
     case portuguese = "pt_PT"
@@ -144,6 +146,7 @@ public extension KeyboardLocale {
         case .hungarian: return "hungarian"
 
         case .icelandic: return "icelandic"
+        case .inari_sami: return "inari_sami"
         case .indonesian: return "indonesian"
         case .irish: return "irish"
         case .italian: return "italian"
@@ -152,20 +155,21 @@ public extension KeyboardLocale {
         case .kurdish_sorani_arabic: return "kurdish_sorani_arabic"
         case .kurdish_sorani_pc: return "kurdish_sorani_pc"
         case .latvian: return "latvian"
+            
         case .lithuanian: return "lithuanian"
         case .macedonian: return "macedonian"
-
         case .malay: return "malay"
         case .maltese: return "maltese"
         case .mongolian: return "mongolian"
+        case .northern_sami: return "northern_sami"
         case .norwegian: return "norwegian"
         case .persian: return "persian"
         case .polish: return "polish"
         case .portuguese: return "portuguese"
+            
         case .portuguese_brazil: return "portuguese_brazil"
         case .romanian: return "romanian"
         case .russian: return "russian"
-
         case .serbian: return "serbian"
         case .serbian_latin: return "serbian_latin"
         case .slovenian: return "slovenian"
@@ -173,6 +177,7 @@ public extension KeyboardLocale {
         case .spanish: return "spanish"
         case .swedish: return "swedish"
         case .swahili: return "swahili"
+            
         case .turkish: return "turkish"
         case .ukrainian: return "ukrainian"
         case .uzbek: return "uzbek"

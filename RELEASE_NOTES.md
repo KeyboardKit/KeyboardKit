@@ -15,11 +15,21 @@ These release notes only cover the current major version.
 
 This version xxx.
 
+### ✨ Features
+
+* `SubmitLabel+CaseIterable` makes the type implement `CaseIterable`.
+
+### 🌐 Localization
+
+* `KeyboardLocale.northernSami` is a new supported locale.
+* `KeyboardLocale.inariSami` is a new supported locale.
+
 ### 💡 Adjustments
 
 * `KeyboardInputViewController` now unregisters itself as shared controller in deinit.
+* `KKL10n` no longer has a `.searchEmoji` key.
 
-### 👑 Pro Adjustments
+### 👑 KeyboardKit Pro
 
 * `PreviousAppNavigator` has been deprecated.
 * `.keyboardDictation` modifiers now support injecting a custom service.
@@ -44,7 +54,7 @@ This version improves autocomplete and localized provider capabilities.
 
 This version removes the temporary migration types that were added in 8.0. To upgrade to this or any later version, first update to 8.0 and follow the migration guides. This will remove any breaking changes when upgrading to this version.
 
-### ✨ New Features
+### ✨ Features
 
 * `Autocomplete` has a new `AutocorrectionDisabledToContextModifer` modifier.
 * `AutocompleteContext` has a new `isAutocorrectDisabled` property.
@@ -57,7 +67,7 @@ This version removes the temporary migration types that were added in 8.0. To up
 
 * `SystemKeyboard` now automatically honors any `.autocorrectionDisabled()` that is applied above it.
 
-### 👑 Pro Adjustments
+### 👑 KeyboardKit Pro
 
 * `LocalAutocompleteProvider` `maxCount` is now `public` and mutable.
 * `LocalAutocompleteProvider` removes autocorrect suggestions if the context has autocorrect disabled.
@@ -79,7 +89,7 @@ This version removes the temporary migration types that were added in 8.0. To up
 
 This patch removes previous app navigation from KeyboardKit Pro after sudden App Store review rejections.
 
-### 👑 Pro Adjustments
+### 👑 KeyboardKit Pro
 
 * `KeyboardInputViewController` no longer shows license validation error alerts by default.
 * `KeyboardInputViewController` now lets you define whether or not to show a license validation error alert.
@@ -144,7 +154,7 @@ This patch fixes an iOS 17 dictation navigation bug and syncs the controller's h
 * `SystemKeyboardButtonPreview` has been simplified and made greedy.
 * `SystemKeyboardPreview` can now be used as a header/footer without useing any modifiers.
 
-### 👑 Pro Adjustments
+### 👑 KeyboardKit Pro
 
 * `PreviousAppNavigator` has been configured to work even in iOS 17.
 * `StandardKeyboardDictationService` can once again navigate back when dictation finishes.
@@ -295,7 +305,7 @@ Here's a list of some things that may be important to know
 * `SystemKeyboard` now guides you to use the controller-based setup function.
 * `KeyboardInputViewController` `textDidChange` performs operations after a delay. 
 
-### 👑 Pro Adjustments
+### 👑 KeyboardKit Pro
 
 * Many emoji types have become Pro features.
 * Many routing types have become Pro features.

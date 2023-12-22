@@ -22,6 +22,7 @@ class DemoActionHandler: StandardKeyboardActionHandler {
         for gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction
     ) -> KeyboardAction.GestureAction? {
+        print(gesture)
         let standard = super.action(for: gesture, on: action)
         switch gesture {
         case .longPress: return longPressAction(for: action) ?? standard

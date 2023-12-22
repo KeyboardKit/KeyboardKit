@@ -12,9 +12,9 @@ In KeyboardKit, a ``KeyboardLocale`` enum defines keyboard-specific languages, w
 
 ## Supported locales
 
-KeyboardKit supports 61 keyboard-specific ``KeyboardLocale``s:
+KeyboardKit supports 63 keyboard-specific ``KeyboardLocale``s:
 
-🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇿 <br />
+🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇿 <br />
 
 Each keyboard locale refers to a native `Locale` and has additional keyboard-specific information, as well as localized assets and strings that can be translated with the ``KKL10n`` enum.
 
@@ -127,37 +127,7 @@ Besides localized strings, You can get a flag for a locale, using the ``Keyboard
 
 ## How to add a new keyboard locale
 
-Since each ``KeyboardLocale`` is hard-coded into the library, new keyboard locales must be hard-coded in the same way.
-
-You can add new keyboard locales by following these steps:
-
-* Fork the KeyboardKit project and create a feature branch.
-* Create a new ``KeyboardLocale`` case and define all required properties.
-* Create a new `Resources/<id>.lproj` folder for the new locale.
-* Make sure that linting works and that all tests pass, then push your changes to your fork. 
-* Create a pull request from your specific fork and feature branch.
-
-In the PR, please provide any additional information that is needed to correctly support the locale.
-
-
-### Primary button types
-
-To properly translate the various primary button types, you can find them in the following places:
-
-* `done` - Apple Calendar, when adding new activity and tapping place or video call.
-* `go` - Mobile Safari, when typing a url.  
-* `join` - System Settings, when joining a wi-fi network with password.
-* `next` - System Settings, when joining an enterprise wi-fi network with uid/pwd.
-* `ok` - A standard OK button.
-* `return` - Apple Notes, when typing.
-* `search` - Mobile Safari, when typing in the google.com search bar.
-* `send` - Some chat apps (WeChat, QQ), when typing in a chat text field.
-* `space` - The text that is displayed on the space bar.   
-
-
-### Emojis
-
-Emojis can be localized as well, but that is a massive undertaking. Have a look at the English localization file for an example.
+For information on how to add new keyboard locales, see the `Instructions.md` file under `Resources`.
 
 
 

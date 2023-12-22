@@ -29,9 +29,7 @@ public enum KKL10n: String, CaseIterable, Identifiable {
     
     keyboardTypeAlphabetic,
     keyboardTypeNumeric,
-    keyboardTypeSymbolic,
-
-    searchEmoji
+    keyboardTypeSymbolic
 }
 
 public extension KKL10n {

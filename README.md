@@ -40,15 +40,15 @@ KeyboardKit supports `iOS`, `macOS`, `tvOS` and `watchOS`, but some features are
 
 ## Supported Locales
 
-KeyboardKit is localized in [60+ keyboard-specific locales][Localization]:
+KeyboardKit supports [63 keyboard-specific locales][Localization]:
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
-🇮🇸 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 <br />
-🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 <br />
-🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 🇹🇷 🇺🇦 <br />
-🇺🇿 <br />
+🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 <br />
+🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 <br />
+🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
+🇹🇷 🇺🇦 🇺🇿 <br />
 
 KeyboardKit provides basic input sets, keyboard layouts and callout actions, while [KeyboardKit Pro][Pro] provides localized variants for all supported locales.
 
@@ -72,7 +72,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 👆 [Gestures][Gestures] - KeyboardKit has rich, keyboard-specific gestures.
 * 🖼️ [Images][Images] - KeyboardKit defines a bunch of keyboard-related images.
 * 🔣 [Layout][Layout] - KeyboardKit defines dynamic input sets and keyboard layouts.
-* 🌐 [Localization][Localization] - KeyboardKit supports 60+ locales.
+* 🌐 [Localization][Localization] - KeyboardKit supports 63 locales.
 * 🗺️ [Navigation][Navigation] - KeyboardKit lets you open urls and other apps.
 * 👁 [Previews][Previews] - KeyboardKit lets you preview views and components in SwiftUI.
 * ➡️ [Proxy Extensions][Proxy] - KeyboardKit makes `UITextDocumentProxy` do a LOT more.
@@ -134,8 +134,8 @@ The repository has a demo app that shows how to display keyboard state, link to 
 
 The demo app has two keyboards: 
 
-* `Keyboard` uses KeyboardKit and a standard `SystemKeyboard`.
-* `KeyboardPro` uses KeyboardKit Pro and a `SystemKeyboard` with 60+ locales, autocomplete, etc.
+* `Keyboard` uses KeyboardKit and a customized `SystemKeyboard`.
+* `KeyboardPro` uses KeyboardKit Pro and a customized `SystemKeyboard` with all locales, autocomplete, themes etc.
 
 Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. Note that you need to enable full access for some features, like haptic feedback.
 

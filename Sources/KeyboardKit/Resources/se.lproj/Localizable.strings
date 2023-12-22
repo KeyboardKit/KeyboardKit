@@ -2,25 +2,22 @@
  Localizable.strings
  KeyboardKit
  
- Created by Daniel Saidi on 2022-01-10.
- Copyright © 2022 Daniel Saidi. All rights reserved.
+ Created by Daniel Saidi on 2023-12-22.
+ Copyright © 2023 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "hr";
+"locale" = "se";
 
 "continue" = "continue";
-"done" = "OK";
-"emergencyCall" = "Emergency Call";
-"go" = "Idi";
-"join" = "join";
-"next" = "next";
-"ok" = "OK";
+"done" = "geargan";
+"go" = "raba";
+"join" = "searvva";
+"next" = "boahtte";
 "return" = "↵";
-"route" = "route";
-"search" = "Traži";
-"send" = "send";
-"space" = "Razmaknica";
-
+"route" = "ruvtu";
+"search" = "oza";
+"send" = "sádde";
+"space" = "gaska";
 "keyboardTypeAlphabetic" = "ABC";
 "keyboardTypeNumeric" = "123";
 "keyboardTypeSymbolic" = "#+=";
