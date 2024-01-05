@@ -11,8 +11,8 @@ import Foundation
 public extension InputSet {
     
     /**
-     This struct represents an input item that has a neutral,
-     uppercased and lowercased string.
+     This struct represents an input set item with a neutral,
+     uppercased and lowercased variant.
      
      You can create an instance with just a string, which is
      the regular way of working with input sets. However, it
@@ -25,7 +25,7 @@ public extension InputSet {
          Create an input set item.
          
          - Parameters:
-         - char: The char to use for all casings.
+           - char: The char to use for all casings.
          */
         public init(_ char: String) {
             self.neutral = char
@@ -34,12 +34,12 @@ public extension InputSet {
         }
         
         /**
-         Create an input set item with individual char values.
+         Create an input set item with individual characters.
          
          - Parameters:
-         - neutral: The neutral char value.
-         - uppercased: The uppercased char value.
-         - lowercased: The lowercased char value.
+           - neutral: The neutral char value.
+           - uppercased: The uppercased char value.
+           - lowercased: The lowercased char value.
          */
         public init(
             neutral: String,

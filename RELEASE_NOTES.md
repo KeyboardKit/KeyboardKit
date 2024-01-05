@@ -11,6 +11,14 @@ These release notes only cover the current major version.
 
 
 
+## 8.2.1
+
+### 👑 KeyboardKit Pro
+
+* `SystemKeyboard` now only shows an emoji button if the license key unlocks the emoji keyboard.
+
+
+
 ## 8.2
 
 This version adjusts localization and adds support for Inari Sámi and Northern Sámi.
