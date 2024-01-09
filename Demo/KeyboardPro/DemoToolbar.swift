@@ -107,7 +107,7 @@ private extension DemoToolbar {
 private extension DemoToolbar {
     
     func openSettings() {
-        try? KeyboardUrlOpener.shared.open(.keyboardSettings)
+        controller.openUrl(.keyboardSettings)
     }
     
     func readFullDocumentContext() {
