@@ -29,6 +29,12 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 
 
+## Gettings Started
+
+See the <doc:Getting-Started> article for information on how to get started with KeyboardKit.
+
+
+
 ## Supported Locales
 
 KeyboardKit supports **63** keyboard-specific ``KeyboardLocale``s:

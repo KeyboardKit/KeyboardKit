@@ -31,7 +31,7 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives your controller access to new lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard-specific ``KeyboardInputViewController/services``, and much more.
 
-KeyboardKit will by use a standard ``SystemKeyboard`` as the default keyboard view. To customize or replace it, override **viewWillSetupKeyboard()** and call any **setup** function with the view you want to use:
+KeyboardKit will use a ``SystemKeyboard`` as the default keyboard view. To customize or replace it, override `viewWillSetupKeyboard()` and call any `setup` function with any custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -52,8 +52,6 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-You don't have to call `setup` if you want to use the standard keyboard view.
-
 You can find more information on how to customize the ``SystemKeyboard`` in <doc:Essentials>.
 
 > Important: The view builder provides you with an unowned controller, to help avoiding memory leaks. Use it to access state and services, and avoid passing it around. If you do, make sure to keep it unowned.
@@ -62,9 +60,11 @@ You can find more information on how to customize the ``SystemKeyboard`` in <doc
 
 ## How to setup KeyboardKit Pro for a keyboard extension
 
-Unlike KeyboardKit, KeyboardKit Pro has **setupPro** functions that let you register a license key, select locales, use the license to configure the keyboard, etc.
+Unlike KeyboardKit, KeyboardKit Pro has `setupPro` functions that let you register a license key, select locales, use the license to configure the keyboard, etc.
 
-To use KeyboardKit Pro with the default keyboard view, just override **viewDidLoad** and call **setupPro** without a view builder:
+KeyboardKit Pro will use a ``SystemKeyboard`` with an `EmojiKeyboard` and an `Autocomplete.Toolbar` as the default keyboard view. 
+
+To use KeyboardKit Pro with the default view, just call `setupPro` without a view in `viewDidLoad`:
 
 ```swift
 func viewDidLoad() {
@@ -78,7 +78,7 @@ func viewDidLoad() {
 }
 ```
 
-To use KeyboardKit Pro with a custom keyboard view, override **viewWillSetupKeyboard** and use a **setupPro** function with a view builder:
+To use KeyboardKit Pro with a custom keyboard view, override `viewWillSetupKeyboard` and call `setupPro` with any custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
