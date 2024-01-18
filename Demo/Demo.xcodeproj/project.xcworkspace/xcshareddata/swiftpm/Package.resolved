@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
       "state" : {
-        "revision" : "1e42f32894c4e2805a2b01558c0f76f1c1f4288e",
-        "version" : "8.2.1"
+        "revision" : "515c326573a56d8abb9edfa1da468e27877f2ccf",
+        "version" : "8.2.2"
       }
     },
     {
@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/danielsaidi/MockingKit.git",
       "state" : {
-        "revision" : "02bd7911f153ad2f91d4e91f189fde5152ede6a7",
-        "version" : "1.3.0"
+        "revision" : "4967086efeb95d5e5dc33709307bf6bacdcfab63",
+        "version" : "1.4.0"
       }
     }
   ],
