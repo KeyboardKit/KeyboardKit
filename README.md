@@ -22,7 +22,9 @@ KeyboardKit extends Apple's native APIs and provides you with a lot more functio
     <img src ="Resources/Demo.gif" width=450 />
 </p>
 
-KeyboardKit supports custom input keys, layout, design, behavior, etc. You can even use completely custom views.
+KeyboardKit lets you customize all parts of the keyboard. You can use custom layouts, designs, behavior, etc. and make any key or gesture trigger any action. You can even use completely custom views and just use the underlying functionality.
+
+You can use KeyboardKit in many different ways. Keyboard extensions can use it to create custom keyboards. Apps can use it to check keyboard enabled state, full access, state, provide settings etc. Furthermore, any target can use it to build upon its models and functionality.
 
 
 
@@ -34,7 +36,7 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-KeyboardKit supports `iOS`, `macOS`, `tvOS` and `watchOS`, but some features are unavailable on some platforms.
+After installing KeyboardKit, make sure to link it to all targets that need it.
 
 
 
@@ -50,7 +52,7 @@ KeyboardKit supports [63 keyboard-specific locales][Localization]:
 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
 🇹🇷 🇺🇦 🇺🇿 <br />
 
-KeyboardKit provides basic input sets, keyboard layouts and callout actions, while [KeyboardKit Pro][Pro] provides localized variants for all supported locales.
+KeyboardKit provides a basic keyboard layout and callout actions, while [KeyboardKit Pro][Pro] provides localized layouts, callouts and behaviors for all supported locales.
 
 
 
@@ -87,7 +89,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 
 ## Getting Started
 
-After installing KeyboardKit, just import it and make your controller inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+After installing KeyboardKit, just make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
@@ -95,9 +97,9 @@ import KeyboardKit
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives your controller access to new lifecycle functions, observable state, services, and much more.
+This gives your controller access to new lifecycle functions like `viewWillSetupKeyboard`, observable state like `state.keyboardContext`, services like `actionHandler`, and much more.
 
-You can then override `viewWillSetupKeyboard()` and call any of the `setup` functions to customize or replace the standard ``SystemKeyboard`` view:
+KeyboardKit will by use a standard `SystemKeyboard` as the default keyboard view. To customize or replace it, override `viewWillSetupKeyboard()` and call any setup function with the view you want to use:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -118,6 +120,8 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
+You don't have to call `setup` if you want to use the standard keyboard view.
+
 For more information, please see the [getting started guide][Getting-Started].
 
 
@@ -130,9 +134,9 @@ The [online documentation][Documentation] has more information, articles, code e
 
 ## Demo App
 
-The repository has a demo app that shows how to display keyboard state, link to system settings, etc.
+The repository has a demo app that shows how to display keyboard state, link to system settings, etc. 
 
-The demo app has two keyboards: 
+The app has two keyboards: 
 
 * `Keyboard` uses KeyboardKit and a customized `SystemKeyboard`.
 * `KeyboardPro` uses KeyboardKit Pro and a customized `SystemKeyboard` with all locales, autocomplete, themes etc.
@@ -143,7 +147,7 @@ Just open and run the demo app in the `Demo` folder, then enable the keyboards u
 
 ## KeyboardKit App
 
-If you want to try KeyboardKit Pro without having to write any code or build the demo app from Xcode, there is a [KeyboardKit app][App] in the App Store, that lets you try out many pro features.
+If you want to try KeyboardKit Pro without having to write any code or build the demo app from Xcode, there [KeyboardKit app][App] in the App Store lets you try out many pro features.
 
 
 

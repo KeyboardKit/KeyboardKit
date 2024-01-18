@@ -23,7 +23,7 @@ Make sure that you `import KeyboardKit` (or `import KeyboardKitPro` for Keyboard
 
 The most common use-case is to use KeyboardKit in a keyboard extension, to create a custom keyboard that is powered by the library.
 
-After installing KeyboardKit, make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+After installing KeyboardKit, just make your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 class KeyboardController: KeyboardInputViewController {}
@@ -52,7 +52,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-You don't have to call `setup` if you want to use the standard keyboard view. Just inherit ``KeyboardInputViewController`` and you'll get a keyboard that responds to the changes you perform to the services and state.
+You don't have to call `setup` if you want to use the standard keyboard view.
 
 You can find more information on how to customize the ``SystemKeyboard`` in <doc:Essentials>.
 
