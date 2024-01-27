@@ -12,6 +12,19 @@ import MockingKit
 import XCTest
 
 class String_SentencesTests: XCTestCase {
+    
+    func testStringDefinesSentenceDelimiters() {
+        let delimiters = String.sentenceDelimiters
+        let expected = ["!", ".", "?"]
+        XCTAssertEqual(delimiters, expected)
+        XCTAssertEqual([String].sentenceDelimiters, delimiters)
+    }
+
+    func testStringCanIdentifyAsSentenceDelimiter() {
+        let result = String.sentenceDelimiters.map { $0.isSentenceDelimiter }
+        XCTAssertTrue(result.allSatisfy { $0 })
+        XCTAssertFalse("a".isSentenceDelimiter)
+    }
 
     func testIsLastSentenceEnded() {
         XCTAssertFalse("some text".isLastSentenceEnded)

@@ -81,6 +81,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * ⚙️ [Settings][Settings] - KeyboardKit has a bunch of settings tools.
 * 🩺 [State][State] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - KeyboardKit lets you style your keyboards to great extent.
+* 🎨 [Themes][Themes] - KeyboardKit Pro defines a theme engine with many predefined themes.
 * 🚏 [Text Routing][Text-Routing] - KeyboardKit kan route text to other places.
 
 [KeyboardKit Pro][Pro] extends KeyboardKit with a lot of Pro features, such as localized keyboards and services, autocomplete, autocorrect, dictation, emoji keyboards and features, themes, etc.
@@ -188,27 +189,28 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 [Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
 
-[Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-actions
-[AI]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-ai-support
-[Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-autocomplete
-[Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-buttons
-[Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-callouts
-[Colors]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-colors
-[Device-Utilities]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-device-utilities
-[Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-dictation
-[Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-emojis
-[External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-external-keyboards
-[Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-feedback
-[Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-gestures
-[Images]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-images
-[Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-layout
-[Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-localization
-[Navigation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-navigation
-[Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-previews
-[Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-proxy-utilities
-[Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-settings
-[State]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-state
-[Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-styling
-[Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/understanding-text-routing
+[Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions-article
+[AI]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/ai-support-article
+[Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocompletion-article
+[Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/buttons-article
+[Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callout-article
+[Colors]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/colors-article
+[Device-Utilities]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/device-utilities-article
+[Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation-article
+[Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis-article
+[External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards-article
+[Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback-article
+[Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures-article
+[Images]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/images-article
+[Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout-article
+[Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization-article
+[Navigation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/navigation-article
+[Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews-article
+[Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/proxy-utilities-article
+[Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings-article
+[State]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/state-article
+[Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling-article
+[Themes]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/themes-article
+[Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/text-routing-article
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE

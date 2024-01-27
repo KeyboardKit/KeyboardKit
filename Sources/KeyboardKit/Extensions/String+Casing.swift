@@ -8,9 +8,6 @@
 
 import Foundation
 
-
-// MARK: - String
-
 public extension String {
 
     /// Whether or not the string is in its lowercased form.

@@ -9,6 +9,23 @@
 import Foundation
 
 public extension String {
+    
+    /// A list of mutable, western word delimiters.
+    static var wordDelimiters = "!.?,;:()[]{}<>".map(String.init) + [" ", .newline]
+    
+    /// Whether or not this is a western word delimiter.
+    var isWordDelimiter: Bool {
+        Self.wordDelimiters.contains(self)
+    }
+}
+
+public extension Collection where Element == String {
+
+    /// A list of mutable western word delimiters.
+    static var wordDelimiters: [String] { String.wordDelimiters }
+}
+
+public extension String {
 
     /**
      Check whether or not the last character within a string

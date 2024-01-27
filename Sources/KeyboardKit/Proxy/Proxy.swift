@@ -11,8 +11,8 @@ import Foundation
 /**
  This namespace contains proxy-related types.
  
- The namespace doesn't contain protocols or open classes, or
- types that are meant to be top-level ones.
+ This namespace doesn't contain protocols, open classes, nor
+ types of higher importance.
  
  For now, this namespace will only have things in it when it
  is part of the KeyboardKit Pro build.

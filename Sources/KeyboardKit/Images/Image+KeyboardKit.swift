@@ -10,14 +10,29 @@ import SwiftUI
 
 public extension Image {
     
+    @available(*, deprecated, renamed: "keyboardArrowLeft")
+    static var keyboardLeft = symbol("arrow.left")
+    
+    @available(*, deprecated, renamed: "keyboardArrowRight")
+    static var keyboardRight = symbol("arrow.right")
+}
+
+public extension Image {
+    
     static var keyboardEmoji = asset("keyboardEmoji")
     static var keyboardKit = asset("keyboardKitIcon")
     
     static var keyboard = symbol("keyboard")
+    static var keyboardArrowUp = symbol("arrow.up")
+    static var keyboardArrowDown = symbol("arrow.down")
+    static var keyboardArrowLeft = symbol("arrow.left")
+    static var keyboardArrowRight = symbol("arrow.right")
     static var keyboardAudioFeedbackEnabled = symbol("speaker.fill")
     static var keyboardAudioFeedbackDisabled = symbol("speaker")
     static var keyboardBackspace = symbol("delete.left")
     static var keyboardBackspaceRtl = symbol("delete.right")
+    static var keyboardBrightnessDown = symbol("sun.min")
+    static var keyboardBrightnessUp = symbol("sun.max")
     static var keyboardCommand = symbol("command")
     static var keyboardControl = symbol("control")
     static var keyboardDictation = symbol("mic")
@@ -28,16 +43,18 @@ public extension Image {
     static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
     static var keyboardHapticFeedbackDisabled = symbol("hand.tap")
     static var keyboardImages = symbol("photo")
-    static var keyboardLeft = symbol("arrow.left")
     static var keyboardNewline = symbol("arrow.turn.down.left")
     static var keyboardNewlineRtl = symbol("arrow.turn.down.right")
     static var keyboardOption = symbol("option")
     static var keyboardRedo = symbol("arrow.uturn.right")
-    static var keyboardRight = symbol("arrow.right")
+    static var keyboardSearch = symbol("magnifyingglass")
     static var keyboardSettings = symbol("gearshape")
     static var keyboardShiftCapslocked = symbol("capslock.fill")
     static var keyboardShiftLowercased = symbol("shift")
     static var keyboardShiftUppercased = symbol("shift.fill")
+    static var keyboardSpeaker = symbol("speaker")
+    static var keyboardSpeakerDown = symbol("speaker.wave.3")
+    static var keyboardSpeakerUp = symbol("speaker.wave.1")
     static var keyboardTab = symbol("arrow.right.to.line")
     static var keyboardUndo = symbol("arrow.uturn.left")
     static var keyboardZeroWidthSpace = symbol("circle.dotted")
@@ -72,34 +89,67 @@ extension Image {
     }
 }
 
-struct Image_Previews: PreviewProvider {
+#Preview {
     
-    static var images: [Image] = [
-        .keyboardEmoji,
-        .keyboardKit,
-        .keyboardUndo
-    ]
+    func images() -> [Image] {
+        [
+            .keyboard,
+            .keyboardArrowUp,
+            .keyboardArrowDown,
+            .keyboardArrowLeft,
+            .keyboardArrowRight,
+            .keyboardAudioFeedbackEnabled,
+            .keyboardAudioFeedbackDisabled,
+            .keyboardBackspace,
+            .keyboardBackspaceRtl,
+            .keyboardBrightnessDown,
+            .keyboardBrightnessUp,
+            .keyboardCommand,
+            .keyboardControl,
+            .keyboardDictation,
+            .keyboardDismiss,
+            .keyboardEmail,
+            .keyboardEmojiSymbol,
+            .keyboardGlobe,
+            .keyboardHapticFeedbackEnabled,
+            .keyboardHapticFeedbackDisabled,
+            .keyboardImages,
+            .keyboardNewline,
+            .keyboardNewlineRtl,
+            .keyboardOption,
+            .keyboardRedo,
+            .keyboardSearch,
+            .keyboardSettings,
+            .keyboardShiftCapslocked,
+            .keyboardShiftLowercased,
+            .keyboardShiftUppercased,
+            .keyboardSpeaker,
+            .keyboardSpeakerDown,
+            .keyboardSpeakerUp,
+            .keyboardTab,
+            .keyboardUndo,
+            .keyboardZeroWidthSpace,
+            .keyboardEmoji,
+            .keyboardKit
+        ]
+    }
     
-    static func listItem(for image: Image) -> some View {
+    func listItem(for image: Image) -> some View {
         image
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .padding(5)
+            .frame(height: 30)
             .background(Color.primary.colorInvert())
     }
     
-    static var previews: some View {
-        let images = Self.images.map { (UUID(), $0)}
-        ScrollView(.horizontal) {
-            HStack(spacing: 0) {
-                ForEach(images, id: \.0) { img in
-                    VStack(spacing: 0) {
-                        listItem(for: img.1)
-                        listItem(for: img.1).colorScheme(.dark)
-                    }
-                    .frame(height: 70)
-                }
+    return ScrollView(.vertical) {
+        LazyVGrid(
+            columns: [.init(.adaptive(minimum: 40, maximum: 50), spacing: 20)],
+            spacing: 20
+        ) {
+            ForEach(Array(images().enumerated()), id: \.0) { img in
+                listItem(for: img.1)
             }
-        }.previewLayout(.sizeThatFits)
+        }.padding()
     }
 }

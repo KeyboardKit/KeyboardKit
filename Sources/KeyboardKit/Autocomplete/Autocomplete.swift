@@ -10,9 +10,9 @@ import Foundation
 
 /**
  This namespace contains autocomplete-related types, as well
- as disabled service implementations.
+ as a disabled ``AutocompleteProvider``.
  
- The namespace doesn't contain protocols or open classes, or
- types that are meant to be top-level ones.
+ This namespace doesn't contain protocols, open classes, nor
+ types of higher importance.
  */
 public struct Autocomplete {}

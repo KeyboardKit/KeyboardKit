@@ -24,16 +24,4 @@ class String_CharactersTests: XCTestCase {
         XCTAssertEqual([String].sentenceDelimiters, String.sentenceDelimiters)
         XCTAssertEqual([String].wordDelimiters, String.wordDelimiters)
     }
-
-    func testStringCanIdentifyAsSentenceDelimiter() {
-        let result = String.sentenceDelimiters.map { $0.isSentenceDelimiter }
-        XCTAssertTrue(result.allSatisfy { $0 == true })
-        XCTAssertFalse("a".isSentenceDelimiter)
-    }
-
-    func testStringCanIdentifyAsWordDelimiter() {
-        let result = String.wordDelimiters.map { $0.isWordDelimiter }
-        XCTAssertTrue(result.allSatisfy { $0 == true })
-        XCTAssertFalse("a".isWordDelimiter)
-    }
 }

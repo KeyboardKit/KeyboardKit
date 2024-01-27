@@ -18,7 +18,10 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/danielsaidi/MockingKit.git", .upToNextMajor(from: "1.3.0"))
+        .package(
+            url: "https://github.com/danielsaidi/MockingKit.git",
+            .upToNextMajor(from: "1.3.0")
+        )
     ],
     targets: [
         .target(
@@ -32,3 +35,4 @@ let package = Package(
         )
     ]
 )
+    

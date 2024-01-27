@@ -11,7 +11,7 @@ import Foundation
 /**
  This namespace contains callout-related types.
  
- The namespace doesn't contain protocols or open classes, or
- types that are meant to be top-level ones.
+ This namespace doesn't contain protocols, open classes, nor
+ types of higher importance.
  */
 public struct Callouts {}

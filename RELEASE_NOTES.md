@@ -11,6 +11,21 @@ These release notes only cover the current major version.
 
 
 
+## 8.3
+
+The documentation has been thoroughly rewritten to be more consistent, up to date, and include more images and code samples.
+
+### ✨ Features
+
+* There are a bunch of new `Image.keyboard...` images.
+
+### 🗑️ Deprecations
+
+* `Image.keyboardLeft` has been renamed to `.keyboardArrowLeft`.
+* `Image.keyboardRight` has been renamed to `.keyboardArrowRight`.
+
+
+
 ## 8.2.1
 
 ### 👑 KeyboardKit Pro

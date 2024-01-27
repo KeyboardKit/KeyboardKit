@@ -12,6 +12,19 @@ import MockingKit
 import XCTest
 
 class String_WordsTests: XCTestCase {
+    
+    func testStringDefinesCharacters() {
+        let delimiters = String.wordDelimiters
+        let expected = "!.?,;:()[]{}<>".map(String.init) + [" ", .newline]
+        XCTAssertEqual(delimiters, expected)
+        XCTAssertEqual([String].sentenceDelimiters, delimiters)
+    }
+
+    func testStringCanIdentifyAsWordDelimiter() {
+        let result = String.wordDelimiters.map { $0.isWordDelimiter }
+        XCTAssertTrue(result.allSatisfy { $0 })
+        XCTAssertFalse("a".isWordDelimiter)
+    }
 
     func testWordFragmentAtStart(in text: String, expected: String) {
         XCTAssertEqual(text.wordFragmentAtStart, expected)

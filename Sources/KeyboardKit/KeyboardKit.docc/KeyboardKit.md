@@ -9,9 +9,9 @@ KeyboardKit helps you create custom keyboard extensions with Swift and SwiftUI.
 
 KeyboardKit extends Apple's native APIs and provides you with a lot more functionality. It lets you create custom keyboards that mimic native iOS keyboards with just a few lines of code.
 
-KeyboardKit lets you customize all parts of the keyboard. You can use custom layouts, designs, behavior, etc. and make any key or gesture trigger any action. You can even use completely custom views and just use the underlying functionality.
+KeyboardKit lets you customize all parts of the keyboard. You can use custom layouts, designs, views, behavior, etc. and make any key or gesture trigger any action.
 
-You can use KeyboardKit in many different ways. Keyboard extensions can use it to create custom keyboards. Apps can use it to check keyboard enabled state, full access, state, provide settings etc. Furthermore, any target can use it to build upon its models and functionality.
+Keyboard extensions can use KeyboardKit to create custom keyboards, while apps can use it to check keyboard state, provide shared settings, link to System Settings, etc.
 
 
 
@@ -47,7 +47,7 @@ KeyboardKit supports **63** keyboard-specific ``KeyboardLocale``s:
 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
 🇹🇷 🇺🇦 🇺🇿 <br />
 
-Read more about localization in <doc:Understanding-Localization>.
+Read more about localization in <doc:Localization-Article>.
 
 
 
@@ -69,31 +69,33 @@ KeyboardKit is available under the MIT license.
 - <doc:Getting-Started>
 - <doc:Essentials>
 
-### Articles
+### Features
 
-- <doc:Understanding-Actions>
-- <doc:Understanding-AI-Support>
-- <doc:Understanding-Autocomplete>
-- <doc:Understanding-Buttons>
-- <doc:Understanding-Callouts>
-- <doc:Understanding-Colors>
-- <doc:Understanding-Device-Utilities>
-- <doc:Understanding-Dictation>
-- <doc:Understanding-Emojis>
-- <doc:Understanding-Extensions>
-- <doc:Understanding-External-Keyboards>
-- <doc:Understanding-Feedback>
-- <doc:Understanding-Gestures>
-- <doc:Understanding-Images>
-- <doc:Understanding-Layout>
-- <doc:Understanding-Localization>
-- <doc:Understanding-Navigation>
-- <doc:Understanding-Previews>
-- <doc:Understanding-Proxy-Utilities>
-- <doc:Understanding-Settings>
-- <doc:Understanding-State>
-- <doc:Understanding-Styling>
-- <doc:Understanding-Text-Routing>
+- <doc:Actions-Article>
+- <doc:AI-Article>
+- <doc:Autocomplete-Article>
+- <doc:Buttons-Article>
+- <doc:Callouts-Article>
+- <doc:Colors-Article>
+- <doc:Device-Article>
+- <doc:Dictation-Article>
+- <doc:Emojis-Article>
+- <doc:Extensions-Article>
+- <doc:External-Keyboards-Article>
+- <doc:Feedback-Article>
+- <doc:Gestures-Article>
+- <doc:Images-Article>
+- <doc:Layout-Article>
+- <doc:Localization-Article>
+- <doc:Navigation-Article>
+- <doc:Previews-Article>
+- <doc:Proxy-Utilities-Article>
+- <doc:Settings-Article>
+- <doc:State-Article>
+- <doc:Styling-Article>
+- <doc:Text-Routing-Article>
+- <doc:Themes-Article>
+- <doc:Views>
 
 ### Essentials
 

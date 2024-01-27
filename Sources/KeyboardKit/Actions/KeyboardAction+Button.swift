@@ -23,8 +23,8 @@ public extension KeyboardAction {
         case .dismissKeyboard: return .keyboardDismiss
         case .image(_, let imageName, _): return Image(imageName)
         case .keyboardType(let type): return type.standardButtonImage
-        case .moveCursorBackward: return .keyboardLeft
-        case .moveCursorForward: return .keyboardRight
+        case .moveCursorBackward: return .keyboardArrowLeft
+        case .moveCursorForward: return .keyboardArrowRight
         case .nextKeyboard: return .keyboardGlobe
         case .option: return .keyboardOption
         case .primary(let type): return type.standardButtonImage(for: context.locale)
