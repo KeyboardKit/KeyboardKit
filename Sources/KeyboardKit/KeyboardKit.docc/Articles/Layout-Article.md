@@ -6,7 +6,7 @@ A flexible keyboard layout is at the heart of a software keyboard, with many con
 
 In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important parts of creating a layout, where the input set specifies the input keys and the layout specifies the full layout configuration.
 
-[KeyboardKit Pro][Pro] unlocks input sets and localized layout providers for all ``KeyboardLocale``s. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks support for iPad Pro-specific layouts, as well as localized input sets and layout providers for all ``KeyboardLocale``s.
 
 
 
@@ -26,7 +26,13 @@ Keyboard layouts can vary greatly for different device types, screen orientation
 
 For instance, iOS keyboards often have 3 input rows, where the input keys are surrounded by actions, as well as a bottom row with a space key and action buttons on both sides.
 
-This is however not always true. Most layouts are very different on iPhone and iPad. Some, like Armenian, have 4 input rows. Greek keyboards remove many side-buttons. And so on.
+![System Keyboard - English](systemkeyboard-english-350.jpg)
+
+This is however not always true. Most layouts are very different on iPhone and iPad. Some, like Armenian, have 4 input rows, some remove some side-buttons, etc. 
+
+For instance, here's an iPad Pro layout, where many buttons look and behave very different:
+
+![System Keyboard - iPad Pro](systemkeyboard-ipadpro.jpg)
 
 Since the layout differences can be significant, the layout engine has to be flexible. KeyboardKit therefore uses a dynamic ``KeyboardLayoutProvider`` to resolve layouts at runtime. 
 
@@ -91,6 +97,8 @@ There are also other base classes, such as ``BaseKeyboardLayoutProvider``, ``Inp
 ## 👑 Pro features
 
 [KeyboardKit Pro][Pro] unlocks a ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``StandardKeyboardLayoutProvider``.
+
+KeyboardKit Pro also unlocks an **iPadProKeyboardLayoutProvider** that provides iPad Pro-specific layouts, and automatically use it for most locales.
 
 
 ### How to access your localized providers

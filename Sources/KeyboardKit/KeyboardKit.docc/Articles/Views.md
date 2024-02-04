@@ -18,6 +18,10 @@ KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboards and can 
 
 ![SystemKeyboard](systemkeyboard-styled-350.jpg)
 
+``SystemKeyboard`` even supports iPad Pro, if you upgrade to [KeyboardKit Pro][Pro]:
+
+![System Keyboard - iPad Pro](systemkeyboard-ipadpro.jpg)
+
 See the <doc:Essentials> article for more information.
 
 

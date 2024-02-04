@@ -85,6 +85,7 @@ final class KeyboardActionTests: XCTestCase {
             let result = action.isSystemAction
             switch action {
             case .backspace: XCTAssertTrue(result)
+            case .capsLock: XCTAssertTrue(result)
             case .command: XCTAssertTrue(result)
             case .control: XCTAssertTrue(result)
             case .dictation: XCTAssertTrue(result)
