@@ -8,6 +8,7 @@
 
 "locale" = "sr";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "урађено";
 "emergencyCall" = "Emergency Call";

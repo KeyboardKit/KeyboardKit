@@ -8,6 +8,7 @@
 
 "locale" = "sw";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "kumaliza";
 "emergencyCall" = "Emergency Call";

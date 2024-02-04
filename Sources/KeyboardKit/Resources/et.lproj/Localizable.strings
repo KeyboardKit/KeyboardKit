@@ -8,6 +8,7 @@
 
 "locale" = "et";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Valmis";
 "emergencyCall" = "Emergency Call";

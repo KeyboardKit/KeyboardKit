@@ -18,6 +18,7 @@ import SwiftUI
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case `continue`
+    case capsLock
     case done
     case emergencyCall  // deprecated
     case go

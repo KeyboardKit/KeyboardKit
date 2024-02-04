@@ -8,6 +8,7 @@
 
 "locale" = "mt";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "↵";
 "emergencyCall" = "Emergency Call";

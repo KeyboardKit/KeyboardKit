@@ -23,6 +23,10 @@ The documentation has been thoroughly rewritten to be more consistent, up to dat
 * `KeyboardLayout.ItemRows` has a new `hasKeyboardSwitcher` function.
 * `KeyboardLayout.ItemRows` has a new `inputWidth` function.
 
+### 🌐 Localization
+
+* `KKL10n` has a new `capsLock` key, which is currently only localized in English.
+
 ### 🗑️ Deprecations
 
 * `Image.keyboardLeft` has been renamed to `.keyboardArrowLeft`.

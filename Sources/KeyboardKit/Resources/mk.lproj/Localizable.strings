@@ -8,6 +8,7 @@
 
 "locale" = "mk";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Сторено";
 "emergencyCall" = "Emergency Call";

@@ -8,6 +8,7 @@
 
 "locale" = "kk";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Болды";
 "emergencyCall" = "Emergency Call";

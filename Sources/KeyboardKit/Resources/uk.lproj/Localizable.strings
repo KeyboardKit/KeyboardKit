@@ -8,6 +8,7 @@
 
 "locale" = "uk";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Готово";
 "emergencyCall" = "Emergency Call";

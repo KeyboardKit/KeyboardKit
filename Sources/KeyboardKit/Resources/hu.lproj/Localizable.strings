@@ -8,6 +8,7 @@
 
 "locale" = "hu";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Kész";
 "emergencyCall" = "Emergency Call";

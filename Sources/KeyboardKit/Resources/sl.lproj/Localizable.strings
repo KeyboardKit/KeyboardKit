@@ -8,6 +8,7 @@
 
 "locale" = "sl";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Končano";
 "emergencyCall" = "Emergency Call";

@@ -8,6 +8,7 @@
 
 "locale" = "be";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Гатова";
 "emergencyCall" = "Emergency Call";

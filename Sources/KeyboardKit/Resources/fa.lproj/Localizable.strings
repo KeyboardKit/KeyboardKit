@@ -8,6 +8,7 @@
 
 "locale" = "fa";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "انجام شد";
 "emergencyCall" = "Emergency Call";

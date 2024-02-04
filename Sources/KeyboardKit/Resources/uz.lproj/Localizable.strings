@@ -8,6 +8,7 @@
 
 "locale" = "uz";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Bajarildi";
 "emergencyCall" = "Emergency Call";

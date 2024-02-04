@@ -8,6 +8,7 @@
 
 "locale" = "ga_IE";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "déanta";
 "emergencyCall" = "Emergency Call";

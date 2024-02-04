@@ -8,6 +8,7 @@
 
 "locale" = "mn";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Дууслаа";
 "emergencyCall" = "Emergency Call";

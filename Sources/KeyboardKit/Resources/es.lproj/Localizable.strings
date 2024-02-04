@@ -8,6 +8,7 @@
 
 "locale" = "es";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "aceptar";
 "emergencyCall" = "Emergency Call";

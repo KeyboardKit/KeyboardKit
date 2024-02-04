@@ -8,6 +8,7 @@
 
 "locale" = "haw";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "Pau";
 "emergencyCall" = "Emergency Call";

@@ -8,6 +8,7 @@
 
 "locale" = "fi";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "valmis";
 "emergencyCall" = "Emergency Call";

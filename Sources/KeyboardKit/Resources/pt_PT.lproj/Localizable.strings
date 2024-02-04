@@ -8,6 +8,7 @@
 
 "locale" = "pt_PT";
 
+"capsLock" = "";
 "continue" = "continue";
 "done" = "OK";
 "emergencyCall" = "Emergency Call";
