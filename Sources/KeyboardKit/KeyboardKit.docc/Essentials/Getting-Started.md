@@ -40,7 +40,7 @@ KeyboardKit will use a ``SystemKeyboard`` as the default keyboard view. To custo
 
 ### KeyboardKit
 
-With KeyboardKit, you can customize or replace the default keyboard view by calling ``KeyboardInputViewController/setup(with:)-7ca6w`` and provide a modified system keyboard, or a completely custom view:
+With KeyboardKit, you can customize or replace the default keyboard view by calling **setup(with:)** and provide a modified system keyboard, or a completely custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

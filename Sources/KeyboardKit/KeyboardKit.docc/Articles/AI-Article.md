@@ -33,7 +33,7 @@ This makes it hard to add AI-based features that require user input within the k
 
 [KeyboardKit Pro][Pro] unlocks ways to route text from the main app to text fields within the keyboard extension. It also has a **KeyboardTextField** that handles this automatically.
 
-Read more in the <doc:Understanding-Text-Routing> article.
+Read more in the <doc:Text-Routing-Article> article.
 
 
 

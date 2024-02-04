@@ -2,7 +2,7 @@
 
 This article describes the KeyboardKit emoji engine.
 
-KeyboardKit has an ``KeyboardKit/Emoji`` struct that represents an emoji value. It also serves as a namespace for emoji-related functionality.
+KeyboardKit has an ``Emoji`` struct that represents an emoji value. It also serves as a namespace for emoji-related functionality.
 
 [KeyboardKit Pro][Pro] unlocks an **EmojiKeyboard**, emoji categories, skintone and version information, etc. Information about Pro features can be found at the end of this article.
 
