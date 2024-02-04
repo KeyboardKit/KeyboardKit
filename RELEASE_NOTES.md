@@ -15,7 +15,7 @@ These release notes only cover the current major version.
 
 The documentation has been thoroughly rewritten to be more consistent, up to date, and include more images and code samples.
 
-KeyboardKit Pro adds support for iPad Pro keyboard layout for a few locales. It will be fully implemented in the next minor update. 
+KeyboardKit Pro adds support for iPad Pro keyboard layout for almost half of all supported locales.
 
 ### ✨ Features
 
@@ -44,6 +44,9 @@ KeyboardKit Pro adds support for iPad Pro keyboard layout for a few locales. It 
 - `.dutchBelgium`
 - `.estonian`
 - `.filipino`
+- `.french`
+- `.french_belgium`
+- `.french_switzerland`
 - `.hungarian`
 - `.indonesian`
 - `.irish`

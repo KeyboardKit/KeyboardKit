@@ -70,9 +70,8 @@ public extension KeyboardAction {
     var standardPressAction: GestureAction? {
         switch self {
         case .backspace: { $0?.deleteBackward() }
-        case .capsLock: Keyboard.Case.capsLocked.standardPressAction
+        case .capsLock: { $0?.setKeyboardType(.alphabetic(.capsLocked)) }
         case .keyboardType(let type): { $0?.setKeyboardType(type) }
-        case .shift(let currentCase): currentCase.standardPressAction
         default: nil
         }
     }
@@ -83,7 +82,6 @@ public extension KeyboardAction {
      */
     var standardReleaseAction: GestureAction? {
         switch self {
-        case .capsLock: Keyboard.Case.capsLocked.standardPressAction
         case .character(let char): { $0?.insertText(char) }
         case .characterMargin(let char): { $0?.insertText(char) }
         case .dictation: { $0?.performDictation() }

@@ -29,24 +29,6 @@ public extension KeyboardPreviews {
         init() {
             super.init(keyboardContext: .preview)
         }
-        
-        public override var inputCalloutStyle: KeyboardStyle.InputCallout {
-            .init(
-                callout: .preview1,
-                calloutSize: CGSize(width: 0, height: 40),
-                font: .init(.body, .regular)
-            )
-        }
-        
-        public override var actionCalloutStyle: KeyboardStyle.ActionCallout {
-            .init(
-                callout: .preview1,
-                font: .init(.headline),
-                selectedBackgroundColor: .yellow,
-                selectedForegroundColor: .black,
-                verticalTextPadding: 10
-            )
-        }
     }
 }
 
@@ -55,11 +37,29 @@ extension KeyboardPreviews {
     /// This style provider can be used in SwiftUI KeyboardPreviews.
     class CrazyStyleProvider: KeyboardPreviews.PreviewKeyboardStyleProvider {
         
-        public override func buttonStyle(
+        override func buttonStyle(
             for action: KeyboardAction,
             isPressed: Bool
         ) -> KeyboardStyle.Button {
             isPressed ? .preview2 : .preview1
+        }
+        
+        override var inputCalloutStyle: KeyboardStyle.InputCallout {
+            .init(
+                callout: .preview1,
+                calloutSize: CGSize(width: 0, height: 40),
+                font: .init(.body, .regular)
+            )
+        }
+        
+        override var actionCalloutStyle: KeyboardStyle.ActionCallout {
+            .init(
+                callout: .preview1,
+                font: .init(.headline),
+                selectedBackgroundColor: .yellow,
+                selectedForegroundColor: .black,
+                verticalTextPadding: 10
+            )
         }
     }
 }
