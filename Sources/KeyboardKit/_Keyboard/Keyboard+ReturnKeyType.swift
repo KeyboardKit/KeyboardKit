@@ -114,7 +114,7 @@ public extension Keyboard.ReturnKeyType {
         default: return nil
         }
     }
-
+    
     /// The standard button to text for a certain locale.
     func standardButtonText(for locale: Locale) -> String? {
         switch self {
@@ -133,10 +133,34 @@ public extension Keyboard.ReturnKeyType {
         case .send: return KKL10n.send.text(for: locale)
         }
     }
+    
+    /// The standard button to text for a certain locale.
+    func standardButtonText(for locale: KeyboardLocale) -> String? {
+        standardButtonText(for: locale.locale)
+    }
 }
 
 #if os(iOS) || os(tvOS)
 import UIKit
+
+extension Keyboard.ReturnKeyType {
+    
+    var nativeType: UIReturnKeyType {
+        switch self {
+        case .return: return .default
+        case .done: return .done
+        case .go: return .go
+        case .join: return .join
+        case .next: return .next
+        case .route: return .route
+        case .search: return .search
+        case .send: return .send
+        case .emergencyCall: return .emergencyCall
+        case .continue: return .continue
+        default: return .default
+        }
+    }
+}
 
 extension UIReturnKeyType {}
 

@@ -15,16 +15,57 @@ These release notes only cover the current major version.
 
 The documentation has been thoroughly rewritten to be more consistent, up to date, and include more images and code samples.
 
+This version adds a iPad Pro layout provider to KeyboardKit Pro. This provider is used for a few locales, but will be completely implemented in the next minor version update. 
+
 ### ✨ Features
 
 * `Image` has many more keyboard image extensions.
 * `KeyboardAction` has a new `capsLock` action.
+* `Keyboard.ReturnKeyType` has a new `nativeType` property on `iOS`.
 * `KeyboardLayout.ItemRow` has new `hasKeyboardSwitcher` and `suggestedInputWidth` function.
 * `KeyboardLayout.ItemRows` has new `hasKeyboardSwitcher` and `inputWidth` function.
+
+### 👑 KeyboardKit Pro
+
+* `iPadProKeyboardLayoutProvider` is a new layout provider for iPad Pro layouts.
+* `ProKeyboardLayoutProvider.spanish` now supports QWERTY, QWERTZ and AZERTY.
+
+### 🔣 Layout Changes
+
+* The new `iPadProKeyboardLayoutProvider` is (so far) used by the following locales:
+- `.english` 
+- `.albanian`
+- `.croatian`
+- `.dutch`
+- `.dutchBelgium`
+- `.estonian`
+- `.filipino`
+- `.hungarian`
+- `.indonesian`
+- `.irish`
+- `.italian`
+- `.latvian`
+- `.lithuanian`
+- `.malay`
+- `.polish`
+- `.portuguese`
+- `.portuguese_brazil`
+- `.romanian`
+- `.serbian_latin`
+- `.spanish`
+- `.slovenian`
+- `.swahili`
+- `.swedish`
+- `.uzbek`
+
 
 ### 🌐 Localization
 
 * `KKL10n` has a new `capsLock` key, which is currently only localized in English.
+
+### 🐛 Bug fixes
+
+* `InputSet.azerty` now displays correctly on iPad.
 
 ### 🗑️ Deprecations
 
