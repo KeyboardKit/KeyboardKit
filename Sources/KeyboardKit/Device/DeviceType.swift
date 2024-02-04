@@ -25,6 +25,15 @@ public enum DeviceType: String, CaseIterable, Equatable {
 
 public extension DeviceType {
     
+    var isMac: Bool { self == .mac }
+    var isPad: Bool { self == .pad }
+    var isPhone: Bool { self == .phone }
+    var isTv: Bool { self == .tv }
+    var isWatch: Bool { self == .watch }
+}
+
+public extension DeviceType {
+    
     /// Get the current device type.
     static var current: DeviceType {
         #if os(iOS)

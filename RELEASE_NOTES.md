@@ -19,6 +19,7 @@ This version adds a iPad Pro layout provider to KeyboardKit Pro. This provider i
 
 ### ✨ Features
 
+* `DeviceType` has a new boolean properties.
 * `Image` has many more keyboard image extensions.
 * `KeyboardAction` has a new `capsLock` action.
 * `Keyboard.ReturnKeyType` has a new `nativeType` property on `iOS`.
