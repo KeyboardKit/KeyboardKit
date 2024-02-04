@@ -9,15 +9,13 @@
 import SwiftUI
 
 /**
- This class provides a keyboard layout that corresponds to a
- standard QWERTY layout for an iPad with a home button.
+ This layout provider provides a keyboard layout for an iPad.
 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- > Note: This class is currently used to provide layouts for
- all iPad types, although iPad Air and Pro have more buttons.
- This should be addressed in a future version.
+ KeyboardKit Pro has an `iPadProKeyboardLayoutProvider` that
+ can create layouts for iPad Air and iPad Pro devices.
  */
 open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
@@ -69,35 +67,35 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     open func systemButtonWidth(
         for context: KeyboardContext
     ) -> KeyboardLayout.ItemWidth {
-        return .input
+        .input
     }
 
     /// Leading actions to add to the top input row.
     open func topLeadingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
-        return []
+        []
     }
 
     /// Trailing actions to add to the top input row.
     open func topTrailingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
-        return [.backspace]
+        [.backspace]
     }
 
     /// Leading actions to add to the middle input row.
     open func middleLeadingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
-        return [.none]
+        [.none]
     }
 
     /// Trailing actions to add to the middle input row.
     open func middleTrailingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
-        return [keyboardReturnAction(for: context)]
+        [keyboardReturnAction(for: context)]
     }
 
     /// Leading actions to add to the lower input row.
@@ -141,4 +139,30 @@ private extension iPadKeyboardLayoutProvider {
         default: return false
         }
     }
+}
+
+
+#Preview {
+    
+    func layout() -> KeyboardLayout {
+        iPadKeyboardLayoutProvider(
+            alphabeticInputSet: .qwerty,
+            numericInputSet: .standardNumeric(currency: "$"),
+            symbolicInputSet: .standardSymbolic(currencies: [""])
+        ).keyboardLayout(for: .preview)
+    }
+    
+    return SystemKeyboard(
+        layout: layout(),
+        actionHandler: .preview,
+        styleProvider: .preview,
+        keyboardContext: .preview,
+        autocompleteContext: .preview,
+        calloutContext: .preview,
+        buttonContent: { $0.view },
+        buttonView: { $0.view },
+        emojiKeyboard: { $0.view },
+        toolbar: { $0.view}
+    )
+    .background(Color.standardKeyboardBackground)
 }

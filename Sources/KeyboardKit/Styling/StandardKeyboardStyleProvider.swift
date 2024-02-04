@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -45,7 +45,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
      - Parameters:
        - keyboardContext: The keyboard context to use.
      */
-    public init(keyboardContext: KeyboardContext) {
+    public init(
+        keyboardContext: KeyboardContext
+    ) {
         self.keyboardContext = keyboardContext
     }
 
@@ -62,19 +64,16 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The foreground color to apply to the entire keyboard.
-    open var foregroundColor: Color? { nil }
+    open var foregroundColor: Color? {
+        nil
+    }
 
     /// The edge insets to apply to the entire keyboard.
     open var keyboardEdgeInsets: EdgeInsets {
         switch keyboardContext.deviceType {
-        case .pad: return .init(top: 0, leading: 0, bottom: 4, trailing: 0)
-        case .phone:
-            if keyboardContext.screenSize.isEqual(to: .iPhoneProMaxScreenPortrait, withTolerance: 10) {
-                return .init(top: 0, leading: 0, bottom: 0, trailing: 0)
-            } else {
-                return .init(top: 0, leading: 0, bottom: -2, trailing: 0)
-            }
-        default: return .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        case .pad: .init(bottom: 4)
+        case .phone: isProMaxPhone ? .zero : .init(bottom: -2)
+        default: .zero
         }
     }
 
@@ -89,17 +88,17 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The button content bottom margin for an action.
     open func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat {
         switch action {
-        case .character(let char): return buttonContentBottomMargin(for: char)
-        default: return 0
+        case .character(let char): buttonContentBottomMargin(for: char)
+        default: 0
         }
     }
     
     /// The button content bottom margin for a character.
     open func buttonContentBottomMargin(for char: String) -> CGFloat {
         switch char {
-        case "-", "/", ":", ";", "@": return 3
-        case "(", ")": return 4
-        default: return 0
+        case "-", "/", ":", ";", "@": 3
+        case "(", ")": 4
+        default: 0
         }
     }
 
@@ -111,8 +110,8 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The content scale factor to use for a certain action.
     open func buttonImageScaleFactor(for action: KeyboardAction) -> CGFloat {
         switch keyboardContext.deviceType {
-        case .pad: return 1.2
-        default: return 1
+        case .pad: 1.2
+        default: 1
         }
     }
 
@@ -188,8 +187,8 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The border style to use for a certain action.
     open func buttonBorderStyle(for action: KeyboardAction) -> KeyboardStyle.ButtonBorder {
         switch action {
-        case .emoji, .none: return .noBorder
-        default: return .standard
+        case .emoji, .none: .noBorder
+        default: .standard
         }
     }
 
@@ -220,9 +219,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The font size to override for a certain action.
     func buttonFontSizeActionOverride(for action: KeyboardAction) -> CGFloat? {
         switch action {
-        case .keyboardType(let type): return buttonFontSize(for: type)
-        case .space: return 16
-        default: return nil
+        case .keyboardType(let type): buttonFontSize(for: type)
+        case .space: 16
+        default: nil
         }
     }
 
@@ -278,9 +277,25 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 // MARK: - Internal, Testable Extensions
 
 extension StandardKeyboardStyleProvider {
-
+    
     var isGregorianAlpha: Bool {
-        keyboardContext.keyboardType.isAlphabetic && keyboardContext.locale.matches(.georgian)
+        keyboardType.isAlphabetic && locale.matches(.georgian)
+    }
+    
+    var isProMaxPhone: Bool {
+        screenSize.isEqual(to: .iPhoneProMaxScreenPortrait, withTolerance: 10)
+    }
+    
+    var keyboardType: Keyboard.KeyboardType {
+        keyboardContext.keyboardType
+    }
+    
+    var locale: Locale {
+        keyboardContext.locale
+    }
+    
+    var screenSize: CGSize {
+        keyboardContext.screenSize
     }
 }
 
