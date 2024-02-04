@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-18.
-//  Copyright © 2019-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -55,37 +55,45 @@ public extension Keyboard.KeyboardType {
     /// The type's unique identifier.
     var id: String {
         switch self {
-        case .alphabetic(let casing): return casing.id
-        case .numeric: return "numeric"
-        case .symbolic: return "symbolic"
-        case .email: return "email"
-        case .emojis: return "emojis"
-        case .images: return "images"
-        case .custom(let name): return name
+        case .alphabetic(let casing): casing.id
+        case .numeric: "numeric"
+        case .symbolic: "symbolic"
+        case .email: "email"
+        case .emojis: "emojis"
+        case .images: "images"
+        case .custom(let name): name
         }
     }
 
     /// Whether or not the type is alphabetic.
     var isAlphabetic: Bool {
         switch self {
-        case .alphabetic: return true
-        default: return false
+        case .alphabetic: true
+        default: false
+        }
+    }
+    
+    /// Whether or not the type is caps locked.
+    var isAlphabeticCapsLocked: Bool {
+        switch self {
+        case .alphabetic(let current): current.isCapsLocked
+        default: false
         }
     }
 
     /// Whether or not the type is uppercased alphabetic.
     var isAlphabeticUppercased: Bool {
         switch self {
-        case .alphabetic(let current): return current.isUppercased
-        default: return false
+        case .alphabetic(let current): current.isUppercased
+        default: false
         }
     }
 
     /// Whether or not the type is an alphabetic state type.
     func isAlphabetic(_ case: Keyboard.Case) -> Bool {
         switch self {
-        case .alphabetic(let current): return current == `case`
-        default: return false
+        case .alphabetic(let current): current == `case`
+        default: false
         }
     }
 }
@@ -95,20 +103,20 @@ public extension Keyboard.KeyboardType {
     /// The keyboard type's standard button image.
     var standardButtonImage: Image? {
         switch self {
-        case .email: return .keyboardEmail
-        case .emojis: return .keyboardEmoji
-        case .images: return .keyboardImages
-        default: return nil
+        case .email: .keyboardEmail
+        case .emojis: .keyboardEmoji
+        case .images: .keyboardImages
+        default: nil
         }
     }
     
     /// The keyboard type's standard button text.
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
-        case .alphabetic: return KKL10n.switcherAlphabetic.text(for: context)
-        case .numeric: return KKL10n.switcherNumeric.text(for: context)
-        case .symbolic: return KKL10n.switcherSymbolic.text(for: context)
-        default: return nil
+        case .alphabetic: KKL10n.switcherAlphabetic.text(for: context)
+        case .numeric: KKL10n.switcherNumeric.text(for: context)
+        case .symbolic: KKL10n.switcherSymbolic.text(for: context)
+        default: nil
         }
     }
 }

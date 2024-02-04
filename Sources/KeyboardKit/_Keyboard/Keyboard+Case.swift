@@ -25,23 +25,33 @@ public extension Keyboard.Case {
     /// The case's unique identifier.
     var id: String { rawValue }
     
+    /// Whether or not the case is caps locked.
+    var isCapsLocked: Bool {
+        switch self {
+        case .auto: false
+        case .capsLocked: true
+        case .lowercased: false
+        case .uppercased: false
+        }
+    }
+    
     /// Whether or not the case is lowercased.
     var isLowercased: Bool {
         switch self {
-        case .auto: return false
-        case .capsLocked: return false
-        case .lowercased: return true
-        case .uppercased: return false
+        case .auto: false
+        case .capsLocked: false
+        case .lowercased: true
+        case .uppercased: false
         }
     }
     
     /// Whether or not the case is uppercased.
     var isUppercased: Bool {
         switch self {
-        case .auto: return false
-        case .capsLocked: return true
-        case .lowercased: return false
-        case .uppercased: return true
+        case .auto: false
+        case .capsLocked: true
+        case .lowercased: false
+        case .uppercased: true
         }
     }
 }

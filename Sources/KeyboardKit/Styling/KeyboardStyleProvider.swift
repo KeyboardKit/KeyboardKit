@@ -16,7 +16,7 @@ import SwiftUI
  KeyboardKit will create a ``StandardKeyboardStyleProvider``
  instance when the keyboard extension is started, then apply
  it to ``KeyboardInputViewController/state``. It's then used
- as the default provider, for instance in ``SystemKeyboard``. 
+ as the default provider, for instance in ``SystemKeyboard``.
  
  To change the style of some parts of your keyboard, you can
  implement a custom keyboard style provider.
@@ -41,7 +41,10 @@ public protocol KeyboardStyleProvider: AnyObject {
 
     // MARK: - Buttons
     
-    /// The button content bottom margin for an action.
+    /// The overall insets action's content.
+    func buttonContentInsets(for action: KeyboardAction) -> EdgeInsets
+
+    /// The additional bottom margin for an action's content.
     func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat
 
     /// The button image to use for a certain action.

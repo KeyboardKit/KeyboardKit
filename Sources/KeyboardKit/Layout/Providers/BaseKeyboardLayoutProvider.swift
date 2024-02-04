@@ -76,17 +76,19 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         context: KeyboardContext
     ) -> [[String]] {
         switch context.keyboardType {
-        case .alphabetic(let casing): return rows.characters(for: casing)
-        default: return rows.characters()
+        case .alphabetic(let casing): rows.characters(for: casing)
+        default: rows.characters()
         }
     }
     
     /// Get input rows for the provided context.
-    open func inputRows(for context: KeyboardContext) -> InputSet.Rows {
+    open func inputRows(
+        for context: KeyboardContext
+    ) -> InputSet.Rows {
         switch context.keyboardType {
-        case .numeric: return numericInputSet.rows
-        case .symbolic: return symbolicInputSet.rows
-        default: return alphabeticInputSet.rows
+        case .numeric: numericInputSet.rows
+        case .symbolic: symbolicInputSet.rows
+        default: alphabeticInputSet.rows
         }
     }
     
@@ -97,25 +99,54 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     ) -> KeyboardLayout.ItemRows {
         actions.enumerated().map { row in
             row.element.enumerated().map { action in
-                item(for: action.element, row: row.offset, index: action.offset, context: context)
+                item(
+                    for: action.element,
+                    in: actions,
+                    row: row.offset,
+                    index: action.offset,
+                    context: context
+                )
             }
         }
     }
     
     /// Get a layout item for the provided parameters.
-    open func item(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> KeyboardLayout.Item {
+    open func item(
+        for action: KeyboardAction,
+        in actions: KeyboardAction.Rows,
+        row: Int,
+        index: Int,
+        context: KeyboardContext
+    ) -> KeyboardLayout.Item {
         KeyboardLayout.Item(
             action: action,
             size: itemSize(for: action, row: row, index: index, context: context),
+            alignment: itemAlignment(for: action, in: actions, row: row, index: index, context: context),
             edgeInsets: itemInsets(for: action, row: row, index: index, context: context)
         )
     }
     
+    /// Get a layout item for the provided parameters.
+    open func itemAlignment(
+        for action: KeyboardAction,
+        in actions: KeyboardAction.Rows,
+        row: Int,
+        index: Int,
+        context: KeyboardContext
+    ) -> Alignment {
+        .center
+    }
+    
     /// Get layout item insets for the provided parameters.
-    open func itemInsets(for action: KeyboardAction, row: Int, index: Int, context: KeyboardContext) -> EdgeInsets {
+    open func itemInsets(
+        for action: KeyboardAction,
+        row: Int,
+        index: Int,
+        context: KeyboardContext
+    ) -> EdgeInsets {
         switch action {
-        case .characterMargin, .none: return EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        default: return KeyboardLayout.Configuration
+        case .characterMargin, .none: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        default: KeyboardLayout.Configuration
                 .standard(for: context)
                 .buttonInsets
         }

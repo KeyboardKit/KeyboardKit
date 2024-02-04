@@ -54,6 +54,16 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     /// The keyboard context to use.
     public let keyboardContext: KeyboardContext
+    
+    
+    // MARK: - iPad Pro Temp Workaround
+    
+    static var iPadProRenderingModeActive = false
+    
+    /// Whether or not the style is for an iPad Pro.
+    public var iPadProRenderingModeActive: Bool {
+        Self.iPadProRenderingModeActive
+    }
 
 
     // MARK: - Keyboard
@@ -85,6 +95,11 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     // MARK: - Buttons
     
+    open func buttonContentInsets(for action: KeyboardAction) -> EdgeInsets {
+        if let override = buttonContentInsetsOverride(for: action) { return override }
+        return .init(horizontal: 3, vertical: 3)
+    }
+    
     /// The button content bottom margin for an action.
     open func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat {
         switch action {
@@ -96,7 +111,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The button content bottom margin for a character.
     open func buttonContentBottomMargin(for char: String) -> CGFloat {
         switch char {
-        case "-", "/", ":", ";", "@": 3
+        case "-", "/", ":", ";", "@", ",": 3
         case "(", ")": 4
         default: 0
         }
@@ -104,7 +119,10 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     /// The button image to use for a certain action.
     open func buttonImage(for action: KeyboardAction) -> Image? {
-        action.standardButtonImage(for: keyboardContext)
+        if iPadProRenderingModeActive, let image = buttonImagePadProOverride(for: action) {
+            return image
+        }
+        return action.standardButtonImage(for: keyboardContext)
     }
 
     /// The content scale factor to use for a certain action.
@@ -129,7 +147,8 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     /// The button text to use for a certain action, if any.
     open func buttonText(for action: KeyboardAction) -> String? {
-        action.standardButtonText(for: keyboardContext)
+        if let override = buttonTextPadOverride(for: action) { return override }
+        return action.standardButtonText(for: keyboardContext)
     }
 
 
@@ -162,7 +181,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     /// The style to apply to ``AutocompleteToolbar`` views.
     public var autocompleteToolbarStyle: KeyboardStyle.AutocompleteToolbar {
-        return .standard
+        .standard
     }
 
 
@@ -170,6 +189,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     /// The background color to use for a certain action.
     open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+        if iPadProRenderingModeActive, let color = buttonColorPadProOverride(for: action) {
+            return color
+        }
         let context = keyboardContext
         let color = action.buttonBackgroundColor(for: context, isPressed: isPressed)
         let opacity = buttonBackgroundOpacity(for: action, isPressed: isPressed)
@@ -223,17 +245,6 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
         case .space: 16
         default: nil
         }
-    }
-
-    /// The font size to override for a certain iPad action.
-    func buttonFontSizePadOverride(for action: KeyboardAction) -> CGFloat? {
-        guard keyboardContext.deviceType == .pad else { return nil }
-        let isLandscape = keyboardContext.interfaceOrientation.isLandscape
-        guard isLandscape else { return nil }
-        if action.isAlphabeticKeyboardTypeAction { return 22 }
-        if action.isKeyboardTypeAction(.numeric) { return 22 }
-        if action.isKeyboardTypeAction(.symbolic) { return 20 }
-        return nil
     }
 
     /// The font size to use for a certain keyboard type.

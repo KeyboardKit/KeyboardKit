@@ -23,15 +23,18 @@ public extension KeyboardLayout {
          - Parameters:
            - action: The keyboard action to use.
            - size: The layout size to use.
+           - alignment: The content alignment, by default `.center`.
            - edgeInsets: The edge insets to apply, by default none.
          */
         public init(
             action: KeyboardAction,
             size: ItemSize,
+            alignment: Alignment = .center,
             edgeInsets: EdgeInsets = .init()
         ) {
             self.action = action
             self.size = size
+            self.alignment = alignment
             self.edgeInsets = edgeInsets
         }
         
@@ -40,6 +43,9 @@ public extension KeyboardLayout {
         
         /// The layout size to use.
         public var size: ItemSize
+        
+        /// The content alignment to apply.
+        public var alignment: Alignment
         
         /// The edge insets to apply.
         public var edgeInsets: EdgeInsets

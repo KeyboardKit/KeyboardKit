@@ -46,7 +46,7 @@ public extension KeyboardButton {
         
         public var body: some View {
             bodyContent
-                .padding(3)
+                .padding(styleProvider.buttonContentInsets(for: action))
                 .contentShape(Rectangle())
         }
     }

@@ -61,22 +61,25 @@ public struct SystemKeyboardItem<Content: View>: View {
     private var isPressed = false
     
     public var body: some View {
-        content
-            .opacity(contentOpacity)
-            .animation(.default, value: keyboardContext.isSpaceDragGestureActive)
-            .keyboardLayoutItemSize(
-                for: item,
-                rowWidth: keyboardWidth,
-                inputWidth: inputWidth)
-            .keyboardButton(
-                for: item.action,
-                style: buttonStyle,
-                actionHandler: actionHandler,
-                keyboardContext: keyboardContext,
-                calloutContext: calloutContext,
-                edgeInsets: item.edgeInsets,
-                isPressed: $isPressed
-            )
+        ZStack(alignment: item.alignment) {
+            Color.clear
+            content
+        }
+        .opacity(contentOpacity)
+        .animation(.default, value: keyboardContext.isSpaceDragGestureActive)
+        .keyboardLayoutItemSize(
+            for: item,
+            rowWidth: keyboardWidth,
+            inputWidth: inputWidth)
+        .keyboardButton(
+            for: item.action,
+            style: buttonStyle,
+            actionHandler: actionHandler,
+            keyboardContext: keyboardContext,
+            calloutContext: calloutContext,
+            edgeInsets: item.edgeInsets,
+            isPressed: $isPressed
+        )
     }
     
     private var contentOpacity: Double {
@@ -86,4 +89,23 @@ public struct SystemKeyboardItem<Content: View>: View {
     private var buttonStyle: KeyboardStyle.Button {
         item.action.isSpacer ? .spacer : styleProvider.buttonStyle(for: item.action, isPressed: isPressed)
     }
+}
+
+#Preview {
+    
+    SystemKeyboardItem(
+        item: .init(
+            action: .backspace,
+            size: .init(width: .points(100), height: 100),
+            alignment: .bottomLeading,
+            edgeInsets: .init(horizontal: 10, vertical: 10)
+        ),
+        actionHandler: .preview,
+        styleProvider: .preview,
+        keyboardContext: .preview,
+        calloutContext: .preview,
+        keyboardWidth: 100,
+        inputWidth: 100,
+        content: Text("HEJ")
+    )
 }

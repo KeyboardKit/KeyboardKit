@@ -198,7 +198,8 @@ public struct SystemKeyboard<
     private var keyboardContext: KeyboardContext
 
     public var body: some View {
-        geoContent
+        StandardKeyboardStyleProvider.iPadProRenderingModeActive = layout.ipadProLayout
+        return geoContent
             .autocorrectionDisabled(with: autocompleteContext)
             .opacity(shouldShowEmojiKeyboard ? 0 : 1)
             .overlay(emojiKeyboard(), alignment: .bottom)

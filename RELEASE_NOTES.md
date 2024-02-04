@@ -15,16 +15,19 @@ These release notes only cover the current major version.
 
 The documentation has been thoroughly rewritten to be more consistent, up to date, and include more images and code samples.
 
-This version adds a iPad Pro layout provider to KeyboardKit Pro. This provider is used for a few locales, but will be completely implemented in the next minor version update. 
+KeyboardKit Pro adds support for iPad Pro keyboard layout for a few locales. It will be fully implemented in the next minor update. 
 
 ### ✨ Features
 
 * `DeviceType` has a new boolean properties.
 * `Image` has many more keyboard image extensions.
 * `KeyboardAction` has a new `capsLock` action.
+* `Keyboard.Case` has a new `isCapsLocked` property.
+* `Keyboard.KeyboardType` has a new `isAlphabeticCapsLocked` property.
 * `Keyboard.ReturnKeyType` has a new `nativeType` property on `iOS`.
 * `KeyboardLayout.ItemRow` has new `hasKeyboardSwitcher` and `suggestedInputWidth` function.
 * `KeyboardLayout.ItemRows` has new `hasKeyboardSwitcher` and `inputWidth` function.
+* `KeyboardStyleProvider` has a new `buttonContentInsets` function.
 
 ### 👑 KeyboardKit Pro
 
@@ -58,7 +61,6 @@ This version adds a iPad Pro layout provider to KeyboardKit Pro. This provider i
 - `.swahili`
 - `.swedish`
 - `.uzbek`
-
 
 ### 🌐 Localization
 

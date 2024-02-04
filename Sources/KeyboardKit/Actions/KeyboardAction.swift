@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-02-02.
-//  Copyright © 2018-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2018-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -126,24 +126,24 @@ public extension KeyboardAction {
     /// Whether or not the action is an alphabetic type.
     var isAlphabeticKeyboardTypeAction: Bool {
         switch self {
-        case .keyboardType(let type): return type.isAlphabetic
-        default: return false
+        case .keyboardType(let type): type.isAlphabetic
+        default: false
         }
     }
     
     /// Whether or not the action is a character action.
     var isCharacterAction: Bool {
         switch self {
-        case .character: return true
-        default: return false
+        case .character: true
+        default: false
         }
     }
 
     /// Whether or not the action is an emoji action.
     var isEmojiAction: Bool {
         switch self {
-        case .emoji: return true
-        default: return false
+        case .emoji: true
+        default: false
         }
     }
     
@@ -155,13 +155,13 @@ public extension KeyboardAction {
      */
     var isInputAction: Bool {
         switch self {
-        case .character: return true
-        case .characterMargin: return true
-        case .emoji: return true
-        case .image: return true
-        case .space: return true
-        case .systemImage: return true
-        default: return false
+        case .character: true
+        case .characterMargin: true
+        case .emoji: true
+        case .image: true
+        case .space: true
+        case .systemImage: true
+        default: false
         }
     }
     
@@ -173,65 +173,66 @@ public extension KeyboardAction {
      */
     var isPrimaryAction: Bool {
         switch self {
-        case .primary: return true
-        default: return false
+        case .primary: true
+        default: false
         }
     }
     
     /// Whether or not the action is a shift action.
     var isShiftAction: Bool {
         switch self {
-        case .shift: return true
-        default: return false
+        case .shift: true
+        default: false
         }
     }
 
     /// Whether or not the action primary serves as a spacer.
     var isSpacer: Bool {
         switch self {
-        case .characterMargin: return true
-        case .none: return true
-        default: return false
+        case .characterMargin: true
+        case .none: true
+        default: false
         }
     }
     
     /// Whether or not the action is a dark system action.
     var isSystemAction: Bool {
         switch self {
-        case .backspace: return true
-        case .command: return true
-        case .control: return true
-        case .dictation: return true
-        case .dismissKeyboard: return true
-        case .escape: return true
-        case .function: return true
-        case .keyboardType: return true
-        case .moveCursorBackward: return true
-        case .moveCursorForward: return true
-        case .nextKeyboard: return true
-        case .nextLocale: return true
-        case .option: return true
-        case .primary(let type): return type.isSystemAction
-        case .shift: return true
-        case .settings: return true
-        case .tab: return true
-        default: return false
+        case .backspace: true
+        case .capsLock: true
+        case .command: true
+        case .control: true
+        case .dictation: true
+        case .dismissKeyboard: true
+        case .escape: true
+        case .function: true
+        case .keyboardType: true
+        case .moveCursorBackward: true
+        case .moveCursorForward: true
+        case .nextKeyboard: true
+        case .nextLocale: true
+        case .option: true
+        case .primary(let type): type.isSystemAction
+        case .shift: true
+        case .settings: true
+        case .tab: true
+        default: false
         }
     }
     
     /// Whether or not the action is uppercase shift.
     var isUppercasedShiftAction: Bool {
         switch self {
-        case .shift(let state): return state.isUppercased
-        default: return false
+        case .shift(let state): state.isUppercased
+        default: false
         }
     }
 
     /// Whether or not the action is a keyboard type action.
     func isKeyboardTypeAction(_ keyboardType: Keyboard.KeyboardType) -> Bool {
         switch self {
-        case .keyboardType(let type): return type == keyboardType
-        default: return false
+        case .keyboardType(let type): type == keyboardType
+        default: false
         }
     }
 }
@@ -249,34 +250,34 @@ public extension KeyboardAction {
      */
     var standardAccessibilityLabel: String? {
         switch self {
-        case .backspace: return "Backspace"
-        case .capsLock: return "Capslock"
-        case .character(let char): return char
-        case .characterMargin: return nil
-        case .command: return "Command"
-        case .control: return "Control"
-        case .custom(let name): return name
-        case .dictation: return "Dictation"
-        case .dismissKeyboard: return "Dismiss Keyboard"
-        case .emoji(let emoji): return "Emoji - \(emoji)"
-        case .escape: return "Escape"
-        case .function: return "Function"
-        case .image(let desc, _, _): return desc
-        case .keyboardType(let keyboardType): return "Keyboard Type - \(keyboardType.id)"
-        case .moveCursorBackward: return "Move Cursor Backward"
-        case .moveCursorForward: return "Move Cursor Forward"
-        case .nextKeyboard: return "Next Keyboard"
-        case .nextLocale: return "Next Locale"
-        case .none: return nil
-        case .option: return "Option"
-        case .primary(let returnKeyType): return returnKeyType.id
-        case .settings: return "Settings"
-        case .shift: return "Shift"
-        case .space: return KKL10n.space.text
-        case .systemImage(let desc, _, _): return desc
-        case .systemSettings: return "System Settings"
-        case .tab: return "Tab"
-        case .url(let url, _): return "Open \(url?.absoluteString ?? "invalid url")"
+        case .backspace: "Backspace"
+        case .capsLock: "Capslock"
+        case .character(let char): char
+        case .characterMargin: nil
+        case .command: "Command"
+        case .control: "Control"
+        case .custom(let name): name
+        case .dictation: "Dictation"
+        case .dismissKeyboard: "Dismiss Keyboard"
+        case .emoji(let emoji): "Emoji - \(emoji)"
+        case .escape: "Escape"
+        case .function: "Function"
+        case .image(let desc, _, _): desc
+        case .keyboardType(let keyboardType): "Keyboard Type - \(keyboardType.id)"
+        case .moveCursorBackward: "Move Cursor Backward"
+        case .moveCursorForward: "Move Cursor Forward"
+        case .nextKeyboard: "Next Keyboard"
+        case .nextLocale: "Next Locale"
+        case .none: nil
+        case .option: "Option"
+        case .primary(let returnKeyType): returnKeyType.id
+        case .settings: "Settings"
+        case .shift: "Shift"
+        case .space: KKL10n.space.text
+        case .systemImage(let desc, _, _): desc
+        case .systemSettings: "System Settings"
+        case .tab: "Tab"
+        case .url(let url, _): "Open \(url?.absoluteString ?? "invalid url")"
         }
     }
 }

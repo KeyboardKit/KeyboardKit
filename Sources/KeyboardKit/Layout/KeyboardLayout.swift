@@ -47,6 +47,9 @@ public class KeyboardLayout {
 
     /// A `CGFloat` typealias for the total keyboard width.
     public typealias TotalWidth = CGFloat
+    
+    /// Whether or not this is an iPad Pro layout.
+    var ipadProLayout = false
 
     /// A cache used to avoid having to recalculate widths.
     var widthCache = [TotalWidth: CGFloat]()
