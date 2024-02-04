@@ -21,7 +21,7 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 
     // MARK: - Overrides
-
+    
     open override func actions(
         for inputs: InputSet.Rows,
         context: KeyboardContext
@@ -62,13 +62,6 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 
     // MARK: - iPad Specific
-    
-    /// The standard system button width for a context.
-    open func systemButtonWidth(
-        for context: KeyboardContext
-    ) -> KeyboardLayout.ItemWidth {
-        .input
-    }
 
     /// Leading actions to add to the top input row.
     open func topLeadingActions(
@@ -88,7 +81,7 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
     open func middleLeadingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
-        [.none]
+        return [.none]
     }
 
     /// Trailing actions to add to the middle input row.
@@ -126,17 +119,39 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         result.append(.dismissKeyboard)
         return result
     }
+    
+    /// The standard system button width for a context.
+    open func systemButtonWidth(
+        for context: KeyboardContext
+    ) -> KeyboardLayout.ItemWidth {
+        .input
+    }
 }
 
 
 // MARK: - Private utils
 
-private extension iPadKeyboardLayoutProvider {
-
-    func isLowerTrailingSwitcher(_ action: KeyboardAction, row: Int, index: Int) -> Bool {
+extension iPadKeyboardLayoutProvider {
+    
+    func isLowerLeadingSwitcher(
+        _ action: KeyboardAction,
+        row: Int,
+        index: Int
+    ) -> Bool {
         switch action {
-        case .shift, .keyboardType: return row == 2 && index > 0
-        default: return false
+        case .shift, .keyboardType: row == 2 && index == 0
+        default: false
+        }
+    }
+    
+    func isLowerTrailingSwitcher(
+        _ action: KeyboardAction,
+        row: Int,
+        index: Int
+    ) -> Bool {
+        switch action {
+        case .shift, .keyboardType: row == 2 && index > 0
+        default: false
         }
     }
 }
