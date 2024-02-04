@@ -13,9 +13,9 @@ public extension KeyboardLayout {
     
     /**
      A keyboard layout items specifies an action, a size and
-     edge insets for a key on a layout-based keyboard.
+     optional insets for a key on a layout-based keyboard.
      */
-    struct Item: Equatable, KeyboardLayoutRowItem {
+    struct Item: Equatable, KeyboardLayoutRowIdentifiable {
         
         /**
          Create a new layout item.

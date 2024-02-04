@@ -167,7 +167,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayout``
 - ``KeyboardLayoutProvider``
 - ``KeyboardLayoutProviderProxy``
-- ``KeyboardLayoutRowItem``
+- ``KeyboardLayoutRowIdentifiable``
 
 - ``BaseKeyboardLayoutProvider``
 - ``StandardKeyboardLayoutProvider``

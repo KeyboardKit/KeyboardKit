@@ -1,5 +1,5 @@
 //
-//  KeyboardLayoutRowItem.swift
+//  KeyboardLayoutRowIdentifiable.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-08.
@@ -19,7 +19,7 @@ import Foundation
  since the same item may appear many times in a row. The row
  ID is used to identify the item in a collection.
  */
-public protocol KeyboardLayoutRowItem {
+public protocol KeyboardLayoutRowIdentifiable {
     
     associatedtype ID: Equatable
     
@@ -31,7 +31,7 @@ public protocol KeyboardLayoutRowItem {
  This extension contains mutating functions for arrays where
  the elements implement ``KeyboardLayoutRowItem``.
  */
-public extension RangeReplaceableCollection where Element: KeyboardLayoutRowItem, Index == Int {
+public extension RangeReplaceableCollection where Element: KeyboardLayoutRowIdentifiable, Index == Int {
 
     /// Get the index of a certain item, if any.
     func index(of item: Element) -> Index? {
@@ -102,7 +102,7 @@ public extension RangeReplaceableCollection where Element: KeyboardLayoutRowItem
 public extension Array where
     Element: RangeReplaceableCollection,
     Element.Index == Int,
-    Element.Element: KeyboardLayoutRowItem {
+    Element.Element: KeyboardLayoutRowIdentifiable {
     
     /// Get the row at a certain index.
     func row(at index: Int) -> Element? {
