@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
 import CoreGraphics
@@ -44,7 +44,7 @@ public extension KeyboardLayout {
         /// The edge insets to apply.
         public var edgeInsets: EdgeInsets
         
-        /// The row ID the is used to identify the item in a row.
+        /// The ID used to identify the item in a row.
         public var rowId: KeyboardAction { action }
     }
 }

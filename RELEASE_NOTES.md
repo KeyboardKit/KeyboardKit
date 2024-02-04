@@ -18,6 +18,10 @@ The documentation has been thoroughly rewritten to be more consistent, up to dat
 ### ✨ Features
 
 * There are a bunch of new `Image.keyboard...` images.
+* `KeyboardLayout.ItemRow` has a new `hasKeyboardSwitcher` function.
+* `KeyboardLayout.ItemRow` has a new `suggestedInputWidth` function.
+* `KeyboardLayout.ItemRows` has a new `hasKeyboardSwitcher` function.
+* `KeyboardLayout.ItemRows` has a new `inputWidth` function.
 
 ### 🗑️ Deprecations
 
