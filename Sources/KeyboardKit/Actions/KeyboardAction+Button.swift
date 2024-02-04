@@ -12,13 +12,19 @@ import SwiftUI
 public extension KeyboardAction {
     
     /// The action's standard button image.
-    func standardButtonImage(for context: KeyboardContext) -> Image? {
-        if let image = standardButtonTextImageReplacement(for: context) { return image }
-        return standardButtonImageRaw(for: context)
+    func standardButtonImage(
+        for context: KeyboardContext
+    ) -> Image? {
+        switch standardButtonText(for: context) {
+        case "↵", "↳": .keyboardNewline(for: context.locale)
+        default: standardButtonImageRaw(for: context)
+        }
     }
     
     /// The action's standard button text.
-    func standardButtonText(for context: KeyboardContext) -> String? {
+    func standardButtonText(
+        for context: KeyboardContext
+    ) -> String? {
         switch self {
         case .character(let char): standardButtonText(for: char)
         case .emoji(let emoji): emoji.char
@@ -26,14 +32,6 @@ public extension KeyboardAction {
         case .nextLocale: context.locale.languageCode?.uppercased()
         case .primary(let type): type.standardButtonText(for: context.locale)
         case .space: KKL10n.space.text(for: context)
-        default: nil
-        }
-    }
-    
-    /// The action's standard button text image replacement.
-    func standardButtonTextImageReplacement(for context: KeyboardContext) -> Image? {
-        switch standardButtonText(for: context) {
-        case "↵", "↳": .keyboardNewline(for: context.locale)
         default: nil
         }
     }

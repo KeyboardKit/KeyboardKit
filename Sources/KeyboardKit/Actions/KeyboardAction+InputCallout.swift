@@ -16,9 +16,9 @@ public extension KeyboardAction {
      */
     var inputCalloutText: String? {
         switch self {
-        case .character(let char): return char
-        case .emoji(let emoji): return emoji.char
-        default: return nil
+        case .character(let char): char
+        case .emoji(let emoji): emoji.char
+        default: nil
         }
     }
 }

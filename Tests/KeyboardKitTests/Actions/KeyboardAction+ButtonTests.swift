@@ -33,6 +33,7 @@ final class KeyboardAction_ImagesTests: XCTestCase {
 
         expected = [
             .backspace,
+            .capsLock,
             .command,
             .control,
             .dictation,

@@ -49,6 +49,7 @@ extension KeyboardAction {
             .primary(.search),
             .primary(.return),
             
+            .capsLock,
             .shift(currentCasing: .lowercased),
             .shift(currentCasing: .uppercased),
             .shift(currentCasing: .capsLocked),

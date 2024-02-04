@@ -36,10 +36,9 @@ public extension KeyboardAction.Row {
 
     /// Get a matching character margin action for an action.
     func characterMarginAction(for action: KeyboardAction?) -> KeyboardAction {
-        guard let action = action else { return .none }
         switch action {
-        case .character(let char): return .characterMargin(char)
-        default: return .none
+        case .character(let char): .characterMargin(char)
+        default: .none
         }
     }
 }
@@ -48,6 +47,8 @@ public extension KeyboardAction.Rows {
     
     /// Map a string array array to keyboard action rows.
     init(characters: [[String]]) {
-        self = characters.map { KeyboardAction.Row(characters: $0) }
+        self = characters.map {
+            KeyboardAction.Row(characters: $0)
+        }
     }
 }

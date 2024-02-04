@@ -93,7 +93,7 @@ public extension KeyboardAction {
         case .moveCursorForward: { $0?.adjustTextPosition(by: 1) }
         case .nextLocale: { $0?.selectNextLocale() }
         case .primary: { $0?.insertText(.newline) }
-        case .shift(let currentCase): currentCase.standardReleaseAction
+        case .shift(let current): current.standardReleaseAction
         case .space: { $0?.insertText(.space) }
         case .systemSettings: { $0?.openUrl(.keyboardSettings) }
         case .tab: { $0?.insertText(.tab) }

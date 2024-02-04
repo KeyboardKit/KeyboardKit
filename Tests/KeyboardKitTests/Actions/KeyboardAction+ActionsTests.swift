@@ -84,7 +84,8 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .keyboardType(.email),
             .keyboardType(.emojis),
             .keyboardType(.images),
-            .keyboardType(.custom(named: ""))
+            .keyboardType(.custom(named: "")),
+            .shift(currentCasing: .lowercased)
         ]
         expected.forEach { XCTAssertNotNil(action($0)) }
         unexpected.forEach { XCTAssertNil(action($0)) }
@@ -105,7 +106,6 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .primary(.ok),
             .primary(.search),
             .primary(.return),
-            .shift(currentCasing: .lowercased),
             .shift(currentCasing: .uppercased),
             .shift(currentCasing: .capsLocked),
             .space,

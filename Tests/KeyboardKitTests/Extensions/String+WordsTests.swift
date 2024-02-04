@@ -17,7 +17,7 @@ class String_WordsTests: XCTestCase {
         let delimiters = String.wordDelimiters
         let expected = "!.?,;:()[]{}<>".map(String.init) + [" ", .newline]
         XCTAssertEqual(delimiters, expected)
-        XCTAssertEqual([String].sentenceDelimiters, delimiters)
+        XCTAssertEqual([String].wordDelimiters, delimiters)
     }
 
     func testStringCanIdentifyAsWordDelimiter() {

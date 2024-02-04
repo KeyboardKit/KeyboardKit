@@ -16,9 +16,9 @@ public extension KeyboardAction {
     /// The image to which the action refers, if any.
     var image: Image? {
         switch self {
-        case .image(_, let imageName, _): return Image(imageName, bundle: .keyboardKit)
-        case .systemImage(_, let imageName, _): return Image(systemName: imageName)
-        default: return nil
+        case .image(_, let name, _): Image(name)
+        case .systemImage(_, let name, _): .symbol(name)
+        default: nil
         }
     }
 }
