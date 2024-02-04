@@ -41,6 +41,7 @@ public extension Image {
     static var keyboardSearch = symbol("magnifyingglass")
     static var keyboardSettings = symbol("gearshape")
     static var keyboardShiftCapslocked = symbol("capslock.fill")
+    static var keyboardShiftCapslockInactive = symbol("capslock")
     static var keyboardShiftLowercased = symbol("shift")
     static var keyboardShiftUppercased = symbol("shift.fill")
     static var keyboardSpeaker = symbol("speaker")
@@ -112,6 +113,7 @@ extension Image {
             .keyboardSearch,
             .keyboardSettings,
             .keyboardShiftCapslocked,
+            .keyboardShiftCapslockInactive,
             .keyboardShiftLowercased,
             .keyboardShiftUppercased,
             .keyboardSpeaker,
