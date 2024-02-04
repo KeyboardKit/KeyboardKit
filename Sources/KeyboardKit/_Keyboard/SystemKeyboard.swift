@@ -262,8 +262,12 @@ private extension SystemKeyboard {
     ) -> some View {
         HStack(spacing: 0) {
             ForEach(Array(itemRow.enumerated()), id: \.offset) {
-                buttonView(for: $0.element, keyboardSize: size)
-            }.id(keyboardContext.locale.identifier)
+                buttonView(
+                    for: $0.element,
+                    totalWidth: size.width
+                )
+            }
+            .id(keyboardContext.locale.identifier)
         }
     }
 }
@@ -285,7 +289,7 @@ private extension SystemKeyboard {
     
     func buttonView(
         for item: KeyboardLayout.Item,
-        keyboardSize: CGSize
+        totalWidth width: CGFloat
     ) -> ButtonView {
         buttonViewBuilder((
             item: item,
@@ -295,8 +299,8 @@ private extension SystemKeyboard {
                 styleProvider: styleProvider,
                 keyboardContext: keyboardContext,
                 calloutContext: calloutContext,
-                keyboardWidth: keyboardSize.width,
-                inputWidth: layout.inputWidth(for: keyboardSize.width),
+                keyboardWidth: width,
+                inputWidth: layout.inputWidth(for: width),
                 content: buttonContent(for: item)
             )
         ))

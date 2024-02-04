@@ -38,11 +38,11 @@ public extension KeyboardAction {
      */
     func standardAction(for gesture: Gestures.KeyboardGesture) -> GestureAction? {
         switch gesture {
-        case .doubleTap: return standardDoubleTapAction
-        case .longPress: return standardLongPressAction
-        case .press: return standardPressAction
-        case .release: return standardReleaseAction
-        case .repeatPress: return standardRepeatAction
+        case .doubleTap: standardDoubleTapAction
+        case .longPress: standardLongPressAction
+        case .press: standardPressAction
+        case .release: standardReleaseAction
+        case .repeatPress: standardRepeatAction
         }
     }
     
@@ -58,8 +58,8 @@ public extension KeyboardAction {
      */
     var standardLongPressAction: GestureAction? {
         switch self {
-        case .space: return { _ in }
-        default: return nil
+        case .space: { _ in }
+        default: nil
         }
     }
     
@@ -69,9 +69,11 @@ public extension KeyboardAction {
      */
     var standardPressAction: GestureAction? {
         switch self {
-        case .backspace: return { $0?.deleteBackward() }
-        case .keyboardType(let type): return { $0?.setKeyboardType(type) }
-        default: return nil
+        case .backspace: { $0?.deleteBackward() }
+        case .capsLock: Keyboard.Case.capsLocked.standardPressAction
+        case .keyboardType(let type): { $0?.setKeyboardType(type) }
+        case .shift(let currentCase): currentCase.standardPressAction
+        default: nil
         }
     }
     
@@ -81,26 +83,22 @@ public extension KeyboardAction {
      */
     var standardReleaseAction: GestureAction? {
         switch self {
-        case .character(let char): return { $0?.insertText(char) }
-        case .characterMargin(let char): return { $0?.insertText(char) }
-        case .dictation: return { $0?.performDictation() }
-        case .dismissKeyboard: return { $0?.dismissKeyboard() }
-        case .emoji(let emoji): return { $0?.insertText(emoji.char) }
-        case .moveCursorBackward: return { $0?.adjustTextPosition(by: -1) }
-        case .moveCursorForward: return { $0?.adjustTextPosition(by: 1) }
-        case .nextLocale: return { $0?.selectNextLocale() }
-        case .primary: return { $0?.insertText(.newline) }
-        case .shift(let currentState): return {
-            switch currentState {
-            case .lowercased: $0?.setKeyboardType(.alphabetic(.uppercased))
-            case .auto, .capsLocked, .uppercased: $0?.setKeyboardType(.alphabetic(.lowercased))
-            }
-        }
-        case .space: return { $0?.insertText(.space) }
-        case .systemSettings: return { $0?.openUrl(.keyboardSettings) }
-        case .tab: return { $0?.insertText(.tab) }
-        case .url(let url, _): return { $0?.openUrl(url) }
-        default: return nil
+        case .capsLock: Keyboard.Case.capsLocked.standardPressAction
+        case .character(let char): { $0?.insertText(char) }
+        case .characterMargin(let char): { $0?.insertText(char) }
+        case .dictation: { $0?.performDictation() }
+        case .dismissKeyboard: { $0?.dismissKeyboard() }
+        case .emoji(let emoji): { $0?.insertText(emoji.char) }
+        case .moveCursorBackward: { $0?.adjustTextPosition(by: -1) }
+        case .moveCursorForward: { $0?.adjustTextPosition(by: 1) }
+        case .nextLocale: { $0?.selectNextLocale() }
+        case .primary: { $0?.insertText(.newline) }
+        case .shift(let currentCase): currentCase.standardReleaseAction
+        case .space: { $0?.insertText(.space) }
+        case .systemSettings: { $0?.openUrl(.keyboardSettings) }
+        case .tab: { $0?.insertText(.tab) }
+        case .url(let url, _): { $0?.openUrl(url) }
+        default: nil
         }
     }
     
@@ -110,8 +108,8 @@ public extension KeyboardAction {
      */
     var standardRepeatAction: GestureAction? {
         switch self {
-        case .backspace: return standardPressAction
-        default: return nil
+        case .backspace: standardPressAction
+        default: nil
         }
     }
 }

@@ -17,7 +17,8 @@ The documentation has been thoroughly rewritten to be more consistent, up to dat
 
 ### ✨ Features
 
-* There are a bunch of new `Image.keyboard...` images.
+* `Image` has many more keyboard image extensions.
+* `KeyboardAction` has a new `capsLock` action.
 * `KeyboardLayout.ItemRow` has a new `hasKeyboardSwitcher` function.
 * `KeyboardLayout.ItemRow` has a new `suggestedInputWidth` function.
 * `KeyboardLayout.ItemRows` has a new `hasKeyboardSwitcher` function.

@@ -1,16 +1,16 @@
 //
-//  KeyboardLayoutTests.swift
+//  KeyboardLayoutTests+InputWidth.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
 import XCTest
 
 @testable import KeyboardKit
 
-class KeyboardLayoutTests: XCTestCase {
+class KeyboardLayoutTests_InputWidth: XCTestCase {
 
     func item(_ width: KeyboardLayout.ItemWidth) -> KeyboardLayout.Item {
         let size = KeyboardLayout.ItemSize(width: width, height: 0)

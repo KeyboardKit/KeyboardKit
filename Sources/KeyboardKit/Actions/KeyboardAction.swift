@@ -28,6 +28,9 @@ public enum KeyboardAction: Codable, Equatable {
     /// Deletes backwards when pressed, and repeats until released.
     case backspace
     
+    /// Switch to a caps-lock keyboard.
+    case capsLock
+    
     /// Inserts a text character when released.
     case character(String)
     
@@ -247,6 +250,7 @@ public extension KeyboardAction {
     var standardAccessibilityLabel: String? {
         switch self {
         case .backspace: return "Backspace"
+        case .capsLock: return "Capslock"
         case .character(let char): return char
         case .characterMargin: return nil
         case .command: return "Command"
