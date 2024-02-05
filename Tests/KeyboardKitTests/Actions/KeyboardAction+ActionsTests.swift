@@ -76,6 +76,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         action = { $0.standardPressAction }
         expected = [
             .backspace,
+            .capsLock,
             .keyboardType(.alphabetic(.lowercased)),
             .keyboardType(.alphabetic(.uppercased)),
             .keyboardType(.alphabetic(.capsLocked)),
@@ -84,11 +85,10 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .keyboardType(.email),
             .keyboardType(.emojis),
             .keyboardType(.images),
-            .keyboardType(.custom(named: "")),
-            .shift(currentCasing: .lowercased)
+            .keyboardType(.custom(named: ""))
         ]
-        expected.forEach { XCTAssertNotNil(action($0)) }
-        unexpected.forEach { XCTAssertNil(action($0)) }
+        expected.forEach { XCTAssertNotNil(action($0), "\($0)") }
+        unexpected.forEach { XCTAssertNil(action($0), "\($0)") }
 
         action = { $0.standardReleaseAction }
         expected = [
@@ -106,6 +106,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .primary(.ok),
             .primary(.search),
             .primary(.return),
+            .shift(currentCasing: .lowercased),
             .shift(currentCasing: .uppercased),
             .shift(currentCasing: .capsLocked),
             .space,

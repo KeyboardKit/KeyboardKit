@@ -13,9 +13,9 @@ These release notes only cover the current major version.
 
 ## 8.3
 
-The documentation has been thoroughly rewritten to be more consistent, up to date, and include more images and code samples.
+This version adds support for iPad Pro layouts to KeyboardKit Pro, for selected locales.
 
-KeyboardKit Pro adds support for iPad Pro keyboard layout for almost half of all supported locales.
+The documentation has been thoroughly rewritten to be more consistent and to include more images and code samples.
 
 ### ✨ Features
 
