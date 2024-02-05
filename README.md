@@ -67,7 +67,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🔤 [Buttons][Buttons] - KeyboardKit can style any view as a keyboard button.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary callouts.
 * 🌈 [Colors][Colors] - KeyboardKit defines a bunch of keyboard-related colors.
-* 📱 [Device Utilities][Device-Utilities] - KeyboardKit has a bunch of device-specific utilities.
+* 📱 [Device Utilities][Device] - KeyboardKit has a bunch of device-specific utilities.
 * 🎤 [Dictation (BETA)][Dictation] - KeyboardKit can perform dictation from the keyboard.
 * 😀 [Emojis][Emojis] - KeyboardKit defines an emoji type with a lot of information.
 * 🔉 [Feedback][Feedback] - KeyboardKit can trigger audio and haptic feedback.
@@ -81,7 +81,6 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * ⚙️ [Settings][Settings] - KeyboardKit has a bunch of settings tools.
 * 🩺 [State][State] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - KeyboardKit lets you style your keyboards to great extent.
-* 🍭 [Themes][Themes] - KeyboardKit Pro defines a theme engine with many predefined themes.
 * 🚏 [Text Routing][Text-Routing] - KeyboardKit can route text to other places.
 * 🌁 [Views][Views] - KeyboardKit defines a bunch of keyboard-related views and modifiers.
 
@@ -196,7 +195,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/buttons-article
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts-article
 [Colors]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/colors-article
-[Device-Utilities]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/device-article
+[Device]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/device-article
 [Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation-article
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis-article
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards-article
@@ -213,6 +212,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling-article
 [Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/text-routing-article
 [Themes]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/themes-article
-[Views]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/views-article
+[Views]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/views
 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
