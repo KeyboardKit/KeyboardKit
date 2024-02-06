@@ -4,7 +4,7 @@ This article describes the KeyboardKit action engine.
 
 In KeyboardKit, the ``KeyboardAction`` enum defines keyboard-specific actions that can be bound to buttons and handled with a ``KeyboardActionHandler``.
 
-[KeyboardKit Pro][Pro] makes the keyboard action handler automatically registers the most recently used emojis. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] makes the keyboard action handler automatically register the most recently used emojis. Information about Pro features can be found at the end of this article.
 
 
 

@@ -2,7 +2,7 @@
 
 This article describes various KeyboardKit buttons.
 
-KeyboardKit has a few general buttons that can be used to mimic native keyboard buttons.
+KeyboardKit has some general buttons that can be used to mimic native keyboard buttons.
 
 KeyboardKit doesn't require you to use the views and buttons in the library, but it can help speed up development.
 

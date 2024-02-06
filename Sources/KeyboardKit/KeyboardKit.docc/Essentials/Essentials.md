@@ -2,7 +2,7 @@
 
 This article describes the essential parts of KeyboardKit.
 
-KeyboardKit extends Apple's limited keyboard APIs. It extends the text document proxy to make it more capable, adds a lot of additional features, and lets you use SwiftUI instead of UIKit.
+KeyboardKit extends Apple's limited keyboard APIs with many new features and views, makes the text document proxy more capable, and lets you use SwiftUI instead of UIKit.
 
 KeyboardKit also has a ``SystemKeyboard`` view, that mimics the native iOS keyboard and can be customized and styled to great extent.
 
@@ -20,7 +20,7 @@ This namespace doesn't have protocols, open classes, or types that are meant to 
 
 ## Keyboard input view controller
 
-``KeyboardInputViewController`` is the most essential type in the library. Just make your **KeyboardController** inherit this class, to get access to a bunch of additional capabilities.
+``KeyboardInputViewController`` is the most essential type in the library. Just make your **KeyboardController** inherit this class to get access to a bunch of additional capabilities.
 
 KeyboardKit also has a ``KeyboardController`` protocol that aims to make it easier to use KeyboardKit in platforms that don't support UIKit. This is however not fully implemented yet.
 
@@ -116,7 +116,7 @@ KeyboardKit Pro unlocks localized layouts, callouts, and services for all ``Keyb
 
 ### Emoji Keyboard
 
-KeyboardKit Pro (from Silver and up) will make ``SystemKeyboard`` use an **EmojisKeyboard** view (read more in <doc:Emojis-Article>) as the default emoji keyboard.
+KeyboardKit Pro (from Silver and up) will make ``SystemKeyboard`` use an **EmojiKeyboard** view (read more in <doc:Emojis-Article>) as the default emoji keyboard.
 
 ![EmojiKeyboard](emojikeyboard-350.jpg)
 

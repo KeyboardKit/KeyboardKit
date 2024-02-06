@@ -179,5 +179,5 @@ extension iPadKeyboardLayoutProvider {
         emojiKeyboard: { $0.view },
         toolbar: { $0.view}
     )
-    .background(Color.standardKeyboardBackground)
+    .background(Color.keyboardBackground)
 }

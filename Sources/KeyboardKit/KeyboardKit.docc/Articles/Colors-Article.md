@@ -12,20 +12,20 @@ Some of these colors come with some built-in logic to help work around iOS syste
 
 ## Raw colors
 
-The raw colors aim to match the iOS system design as closely as possible:
+The raw `Color` extensions aim to match the iOS system design:
 
 ```swift
-Color.standardButtonBackground
-Color.standardButtonBackgroundForDarkAppearance
-Color.standardButtonForeground
-Color.standardButtonForegroundForDarkAppearance
-Color.standardButtonShadow
-Color.standardDarkButtonBackground
-Color.standardDarkButtonBackgroundForDarkAppearance
-Color.standardDarkButtonForeground
-Color.standardDarkButtonForegroundForDarkAppearance
-Color.standardKeyboardBackground
-Color.standardKeyboardBackgroundForDarkAppearance
+Color.keyboardBackground
+Color.keyboardBackgroundForDarkAppearance
+Color.keyboardButtonBackground
+Color.keyboardButtonBackgroundForDarkAppearance
+Color.keyboardButtonForeground
+Color.keyboardButtonForegroundForDarkAppearance
+Color.keyboardButtonShadow
+Color.keyboardDarkButtonBackground
+Color.keyboardDarkButtonBackgroundForDarkAppearance
+Color.keyboardDarkButtonForeground
+Color.keyboardDarkButtonForegroundForDarkAppearance
 ```
 
 The colors without **ForDarkAppearance** support both light and dark mode, while the ones with that suffix are meant to be used for dark appearance keyboards in light mode.
@@ -34,14 +34,15 @@ The colors without **ForDarkAppearance** support both light and dark mode, while
 
 ## Contextual colors
 
-Contextual colors take a ``KeyboardContext`` value and vary the result based on the context:
+Contextual colors take a ``KeyboardContext`` and vary the result based on the context:
 
 ```swift
-Color.standardButtonBackground(for: context)
-Color.standardButtonForeground(for: context)
-Color.standardButtonShadow(for: context)
-Color.standardDarkButtonBackground(for: context)
-Color.standardDarkButtonForeground(for: context)
+Color.keyboardBackground(for: context)
+Color.keyboardButtonBackground(for: context)
+Color.keyboardButtonForeground(for: context)
+Color.keyboardButtonShadow(for: context)
+Color.keyboardDarkButtonBackground(for: context)
+Color.keyboardDarkButtonForeground(for: context)
 ```
 
 When you use these colors, you don't have to check if the keyboard is in dark or light mode, which device that is currently used, etc.

@@ -119,7 +119,7 @@ public extension KeyboardStyle {
         public var shadowSize: CGFloat? {
             didSet {
                 guard shadowSize != nil, shadowColor == nil else { return }
-                shadowColor = .standardButtonShadow
+                shadowColor = .keyboardButtonShadow
             }
         }
         
@@ -180,11 +180,11 @@ public extension KeyboardStyle {
          Create a keyboard button shadow style.
          
          - Parameters:
-           - color: The color of the shadow, by default `.standardButtonShadow`.
+           - color: The color of the shadow, by default `.keyboardButtonShadow`.
            - size: The size of the shadow, by default `1`.
          */
         public init(
-            color: Color = .standardButtonShadow,
+            color: Color = .keyboardButtonShadow,
             size: CGFloat = 1
         ) {
             self.color = color

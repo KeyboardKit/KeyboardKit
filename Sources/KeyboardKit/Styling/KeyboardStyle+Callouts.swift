@@ -35,7 +35,7 @@ public extension KeyboardStyle {
          and use the default values for all other parameters.
          
          - Parameters:
-           - backgroundColor: The background color of the entire callout, by default `.standardButtonBackground`.
+           - backgroundColor: The background color of the entire callout, by default `.keyboardButtonBackground`.
            - borderColor: The border color of the entire callout, by default transparent `.black`.
            - buttonCornerRadius: The corner radius of the callout edges, by default `4`.
            - buttonInset: The inset to apply to the button overlay, by default transparent `.zero`.
@@ -46,7 +46,7 @@ public extension KeyboardStyle {
            - textColor: The text color to use in the callout, by default `.primary`.
          */
         public init(
-            backgroundColor: Color = .standardButtonBackground,
+            backgroundColor: Color = .keyboardButtonBackground,
             borderColor: Color = Color.black.opacity(0.5),
             buttonCornerRadius: CGFloat = 5,
             buttonInset: CGSize = CGSize.zero,

@@ -410,7 +410,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                         },
                         toolbar: { $0.view }
                     )
-                }.background(Color.standardKeyboardBackground)
+                }.background(Color.keyboardBackground)
             }
         }
     }

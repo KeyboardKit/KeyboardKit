@@ -11,6 +11,16 @@ These release notes only cover the current major version.
 
 
 
+## 8.4
+
+This version renames all colors to have more obvious naming.
+
+### 🗑️ Deprecations
+
+* `Color` extensions now use `keyboard` as prefix instead of `standard`.
+
+
+
 ## 8.3
 
 This version adds support for iPad Pro layouts to KeyboardKit Pro, for selected locales.

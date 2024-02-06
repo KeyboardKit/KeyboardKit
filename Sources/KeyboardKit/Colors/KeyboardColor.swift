@@ -16,17 +16,38 @@ import SwiftUI
  */
 enum KeyboardColor: String, CaseIterable, Identifiable {
     
-    case standardButtonBackground
-    case standardButtonBackgroundForColorSchemeBug
-    case standardButtonBackgroundForDarkAppearance
-    case standardButtonForeground
-    case standardButtonForegroundForDarkAppearance
-    case standardButtonShadow
-    case standardDarkButtonBackground
-    case standardDarkButtonBackgroundForColorSchemeBug
-    case standardDarkButtonBackgroundForDarkAppearance
-    case standardKeyboardBackground
-    case standardKeyboardBackgroundForDarkAppearance
+    /// The standard keyboard background color.
+    case keyboardBackground
+    
+    /// The standard keyboard background color for dark appearance.
+    case keyboardBackgroundForDarkAppearance
+    
+    /// The standard keyboard button background color.
+    case keyboardButtonBackground
+    
+    /// A keyboard button background color that fixes a color scheme bug.
+    case keyboardButtonBackgroundForColorSchemeBug
+    
+    /// The standard keyboard button background color for dark appearance.
+    case keyboardButtonBackgroundForDarkAppearance
+    
+    /// The standard keyboard button foreground color.
+    case keyboardButtonForeground
+    
+    /// The standard keyboard button foreground color for dark appearance.
+    case keyboardButtonForegroundForDarkAppearance
+    
+    /// The standard keyboard button shadow color.
+    case keyboardButtonShadow
+    
+    /// The standard dark keyboard button background color.
+    case keyboardDarkButtonBackground
+    
+    /// A dark keyboard button background color that fixes a color scheme bug.
+    case keyboardDarkButtonBackgroundForColorSchemeBug
+    
+    /// The standard dark keyboard button background color for dark apperance.
+    case keyboardDarkButtonBackgroundForDarkAppearance
 }
 
 extension KeyboardColor {

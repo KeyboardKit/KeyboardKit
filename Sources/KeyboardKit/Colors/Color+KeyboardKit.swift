@@ -8,9 +8,6 @@
 
 import SwiftUI
 
-
-// MARK: - Raw Colors
-
 public extension Color {
 
     /**
@@ -24,135 +21,102 @@ public extension Color {
         Color.white.opacity(0.001)
     }
     
-    /**
-     The standard background color of light keyboard buttons.
-     */
-    static var standardButtonBackground: Color {
-        color(for: .standardButtonBackground)
+    /// The standard keyboard background color.
+    static var keyboardBackground: Color {
+        color(for: .keyboardBackground)
     }
     
-    /**
-     The standard background color of light keyboard buttons
-     in dark keyboard appearance.
-     */
-    static var standardButtonBackgroundForDarkAppearance: Color {
-        color(for: .standardButtonBackgroundForDarkAppearance)
+    /// The standard keyboard background color for dark appearance.
+    static var keyboardBackgroundForDarkAppearance: Color {
+        color(for: .keyboardBackgroundForDarkAppearance)
     }
     
-    /**
-     The standard foreground color of light keyboard buttons.
-     */
-    static var standardButtonForeground: Color {
-        color(for: .standardButtonForeground)
+    /// The standard keyboard button background color.
+    static var keyboardButtonBackground: Color {
+        color(for: .keyboardButtonBackground)
     }
     
-    /**
-     The standard foreground color of light keyboard buttons
-     in dark keyboard appearance.
-     */
-    static var standardButtonForegroundForDarkAppearance: Color {
-        color(for: .standardButtonForegroundForDarkAppearance)
+    /// The standard keyboard button background color for dark appearance.
+    static var keyboardButtonBackgroundForDarkAppearance: Color {
+        color(for: .keyboardButtonBackgroundForDarkAppearance)
     }
     
-    /**
-     The standard shadow color of keyboard buttons.
-     */
-    static var standardButtonShadow: Color {
-        color(for: .standardButtonShadow)
+    /// The standard keyboard button foreground color.
+    static var keyboardButtonForeground: Color {
+        color(for: .keyboardButtonForeground)
     }
     
-    /**
-     The standard background color of a dark keyboard button.
-     */
-    static var standardDarkButtonBackground: Color {
-        color(for: .standardDarkButtonBackground)
+    /// The standard keyboard button foreground color for dark appearance.
+    static var keyboardButtonForegroundForDarkAppearance: Color {
+        color(for: .keyboardButtonForegroundForDarkAppearance)
     }
     
-    /**
-     The standard background color of a dark keyboard button
-     in dark keyboard appearance.
-     */
-    static var standardDarkButtonBackgroundForDarkAppearance: Color {
-        color(for: .standardDarkButtonBackgroundForDarkAppearance)
+    /// The standard keyboard button shadow color.
+    static var keyboardButtonShadow: Color {
+        color(for: .keyboardButtonShadow)
     }
     
-    /**
-     The standard foreground color of a dark keyboard button.
-     */
-    static var standardDarkButtonForeground: Color {
-        color(for: .standardButtonForeground)
+    /// The standard dark keyboard button background color.
+    static var keyboardDarkButtonBackground: Color {
+        color(for: .keyboardDarkButtonBackground)
     }
     
-    /**
-     The standard foreground color of a dark keyboard button
-     in dark keyboard appearance.
-     */
-    static var standardDarkButtonForegroundForDarkAppearance: Color {
-        color(for: .standardButtonForegroundForDarkAppearance)
+    /// The standard dark keyboard button background color for dark apperance.
+    static var keyboardDarkButtonBackgroundForDarkAppearance: Color {
+        color(for: .keyboardDarkButtonBackgroundForDarkAppearance)
     }
     
-    /**
-     The standard keyboard background color.
-     */
-    static var standardKeyboardBackground: Color {
-        color(for: .standardKeyboardBackground)
+    /// The standard dark keyboard button foreground color.
+    static var keyboardDarkButtonForeground: Color {
+        color(for: .keyboardButtonForeground)
     }
     
-    /**
-     The standard keyboard background color in dark keyboard
-     appearance.
-     */
-    static var standardKeyboardBackgroundForDarkAppearance: Color {
-        color(for: .standardKeyboardBackgroundForDarkAppearance)
+    /// The standard dark keyboard button foreground color for dark apperance.
+    static var keyboardDarkButtonForegroundForDarkAppearance: Color {
+        color(for: .keyboardButtonForegroundForDarkAppearance)
     }
 }
-
 
 // MARK: - Contextual Colors
 
 public extension Color {
-
-    /**
-     The standard background color of light keyboard buttons.
-     */
-    static func standardButtonBackground(for context: KeyboardContext) -> Color {
+    
+    /// The standard keyboard button background color.
+    static func keyboardBackground(for context: KeyboardContext) -> Color {
+        .keyboardBackground
+    }
+    
+    /// The standard keyboard button background color.
+    static func keyboardButtonBackground(for context: KeyboardContext) -> Color {
         context.hasDarkColorScheme ?
-            .standardButtonBackgroundForColorSchemeBug :
-            .standardButtonBackground
+            .keyboardButtonBackgroundForColorSchemeBug :
+            .keyboardButtonBackground
     }
 
-    /**
-     The standard foreground color of light keyboard buttons.
-     */
-    static func standardButtonForeground(for context: KeyboardContext) -> Color {
+    /// The standard keyboard button foreground color.
+    static func keyboardButtonForeground(for context: KeyboardContext) -> Color {
         context.hasDarkColorScheme ?
-            .standardButtonForegroundForDarkAppearance :
-            .standardButtonForeground
+            .keyboardButtonForegroundForDarkAppearance :
+            .keyboardButtonForeground
     }
 
-    /**
-     The standard shadow color of keyboard buttons.
-     */
-    static func standardButtonShadow(for context: KeyboardContext) -> Color {
-        .standardButtonShadow
+    /// The standard keyboard button shadow color.
+    static func keyboardButtonShadow(for context: KeyboardContext) -> Color {
+        .keyboardButtonShadow
     }
 
-    /**
-     The standard background color of dark keyboard buttons.
-     */
-    static func standardDarkButtonBackground(for context: KeyboardContext) -> Color {
+    /// The standard dark keyboard button background color.
+    static func keyboardDarkButtonBackground(for context: KeyboardContext) -> Color {
         context.hasDarkColorScheme ?
-            .standardDarkButtonBackgroundForColorSchemeBug :
-            .standardDarkButtonBackground
+            .keyboardDarkButtonBackgroundForColorSchemeBug :
+            .keyboardDarkButtonBackground
     }
 
-    /**
-     The standard foreground color of dark keyboard buttons.
-     */
-    static func standardDarkButtonForeground(for context: KeyboardContext) -> Color {
+    /// The standard dark keyboard button foreground color.
+    static func keyboardDarkButtonForeground(for context: KeyboardContext) -> Color {
         context.hasDarkColorScheme ?
-            .standardDarkButtonForegroundForDarkAppearance :
-            .standardDarkButtonForeground
+            .keyboardDarkButtonForegroundForDarkAppearance :
+            .keyboardDarkButtonForeground
     }
 }
 
@@ -161,20 +125,12 @@ public extension Color {
 
 extension Color {
     
-    /**
-     The standard background color of light keyboard buttons
-     when accounting for the iOS dark mode bug.
-     */
-    static var standardButtonBackgroundForColorSchemeBug: Color {
-        color(for: .standardButtonBackgroundForColorSchemeBug)
+    static var keyboardButtonBackgroundForColorSchemeBug: Color {
+        color(for: .keyboardButtonBackgroundForColorSchemeBug)
     }
     
-    /**
-     The standard background color of a dark keyboard button
-     when accounting for the iOS dark mode bug.
-     */
-    static var standardDarkButtonBackgroundForColorSchemeBug: Color {
-        color(for: .standardDarkButtonBackgroundForColorSchemeBug)
+    static var keyboardDarkButtonBackgroundForColorSchemeBug: Color {
+        color(for: .keyboardDarkButtonBackgroundForColorSchemeBug)
     }
 }
 
@@ -206,21 +162,23 @@ struct Color_KeyboardKit_Previews: PreviewProvider {
         ScrollView {
             VStack {
                 Group {
-                    preview(for: .standardButtonBackground, name: "standardButtonBackground")
-                    preview(for: .standardButtonBackgroundForColorSchemeBug, name: "standardButtonBackgroundForColorSchemeBug")
-                    preview(for: .standardButtonBackgroundForDarkAppearance, name: "standardButtonBackgroundForDarkAppearance")
-                    preview(for: .standardButtonForeground, name: "standardButtonForeground")
-                    preview(for: .standardButtonForegroundForDarkAppearance, name: "standardButtonForegroundForDarkAppearance")
-                    preview(for: .standardButtonShadow, name: "standardButtonShadow")
+                    preview(for: .keyboardBackground, name: "keyboardBackground")
+                    preview(for: .keyboardBackgroundForDarkAppearance, name: "keyboardBackgroundForDarkAppearance")
                 }
                 Group {
-                    preview(for: .standardDarkButtonBackground, name: "standardDarkButtonBackground")
-                    preview(for: .standardDarkButtonBackgroundForColorSchemeBug, name: "standardDarkButtonBackgroundForColorSchemeBug")
-                    preview(for: .standardDarkButtonBackgroundForDarkAppearance, name: "standardDarkButtonBackgroundForDarkAppearance")
-                    preview(for: .standardDarkButtonForeground, name: "standardDarkButtonForeground")
-                    preview(for: .standardDarkButtonForegroundForDarkAppearance, name: "standardDarkButtonForegroundForDarkAppearance")
-                    preview(for: .standardKeyboardBackground, name: "standardKeyboardBackground")
-                    preview(for: .standardKeyboardBackgroundForDarkAppearance, name: "standardKeyboardBackgroundForDarkAppearance")
+                    preview(for: .keyboardButtonBackground, name: "keyboardButtonBackground")
+                    preview(for: .keyboardButtonBackgroundForColorSchemeBug, name: "keyboardButtonBackgroundForColorSchemeBug")
+                    preview(for: .keyboardButtonBackgroundForDarkAppearance, name: "keyboardButtonBackgroundForDarkAppearance")
+                    preview(for: .keyboardButtonForeground, name: "keyboardButtonForeground")
+                    preview(for: .keyboardButtonForegroundForDarkAppearance, name: "keyboardButtonForegroundForDarkAppearance")
+                    preview(for: .keyboardButtonShadow, name: "keyboardButtonShadow")
+                }
+                Group {
+                    preview(for: .keyboardDarkButtonBackground, name: "keyboardDarkButtonBackground")
+                    preview(for: .keyboardDarkButtonBackgroundForColorSchemeBug, name: "keyboardDarkButtonBackgroundForColorSchemeBug")
+                    preview(for: .keyboardDarkButtonBackgroundForDarkAppearance, name: "keyboardDarkButtonBackgroundForDarkAppearance")
+                    preview(for: .keyboardDarkButtonForeground, name: "keyboardDarkButtonForeground")
+                    preview(for: .keyboardDarkButtonForegroundForDarkAppearance, name: "keyboardDarkButtonForegroundForDarkAppearance")
                 }
             }.padding()
         }.background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))

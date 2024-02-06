@@ -62,7 +62,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 
 * ⌨️ [Essentials][Essentials] - KeyboardKit comes with a bunch of essential features and types.
 * 💥 [Actions][Actions] - KeyboardKit has keyboard actions like characters, actions, etc.
-* 🤖 [AI Support][AI] - KeyboardKit has capabilities that are needed for AI.
+* 🤖 [AI Support][AI] - KeyboardKit unlocks capabilities that are needed for AI.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete and autocorrect.
 * 🔤 [Buttons][Buttons] - KeyboardKit can style any view as a keyboard button.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary callouts.
