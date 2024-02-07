@@ -3,7 +3,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "KeyboardKit",
+    name: "KeyboardKit-LearnAI",
     defaultLocalization: "en",
     platforms: [
         .iOS(.v14),
@@ -13,7 +13,7 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "KeyboardKit",
+            name: "KeyboardKit-LearnAI",
             targets: ["KeyboardKit"]
         )
     ],
