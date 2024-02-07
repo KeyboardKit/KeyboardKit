@@ -79,14 +79,16 @@ public struct AutocompleteToolbar<ItemView: View, SeparatorView: View>: View {
     }
     
     public var body: some View {
-        HStack {
-            ForEach(items) { item in
-                itemButton(for: item.suggestion)
-                if useSeparator(for: item) {
-                    separatorView(item.suggestion, style)
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(items) { item in
+                    itemButton(for: item.suggestion)
+                    if useSeparator(for: item) {
+                        separatorView(item.suggestion, style)
+                    }
                 }
-            }
-        }.frame(height: style.height)
+            }.frame(height: style.height)
+        }
     }
 }
 
