@@ -2,9 +2,9 @@
 
 This article describes various KeyboardKit device utilities.
 
-KeyboardKit has platform-agnostic device-related features that aim to help you customize your keyboard to various device.
+KeyboardKit has various device-related features that aim to help you customize your keyboard for various devices.
 
-You should avoid designing for a specific device type, interface orientation, or screen size, but some features need these kinds of adjustments.
+Although you should avoid designing for a specific device, orientation, or screen size in general, some features need these kinds of considerations.
 
 
 
@@ -23,7 +23,7 @@ let isPad = type == .pad
 
 ## Interface orientation
 
-KeyboardKit has a platform-agnostic ``InterfaceOrientation`` enum. 
+KeyboardKit has a platform-agnostic ``InterfaceOrientation`` enum that defines various interface (screen) orientations. 
 
 You can use ``InterfaceOrientation/current`` to get the current interface orientation.
 
@@ -36,7 +36,7 @@ let isPortrait = orientation.portrait
 
 ## Screen sizes
 
-KeyboardKit has `CGSize` utilities to help detecting which kind of hardware you're on, e.g.:
+KeyboardKit has `CGSize` extensions to help detecting which kind of hardware you're on, e.g.:
 
 ```swift
 CGSize.iPadProLargeScreenPortrait/Landscape
@@ -46,7 +46,7 @@ CGSize.iPadScreenPortrait/Landscape
 CGSize.iPhoneProMaxScreenPortrait/Landscape
 ```
 
-There's also an `isScreenSize` function that compares rotation-agnostic screen sizes. 
+There's also an **.isScreenSize(_:)** function that compares rotation-agnostic screen sizes. 
 
 ```swift
 

@@ -4,7 +4,7 @@ This article describes the KeyboardKit keyboard image engine.
 
 While you can use any native **Image** in your custom keyboards, having access to keyboard-specific images simplifies creating keyboards that look more native.
 
-KeyboardKit provides keyboard-specific image extensions, for both SF Symbols and assets. 
+KeyboardKit provides keyboard-specific **Image** extensions, for both SF Symbols and assets. 
 
 
 

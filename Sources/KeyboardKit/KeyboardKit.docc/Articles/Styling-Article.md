@@ -27,7 +27,7 @@ You can mix and match these concepts as you see fit.
 KeyboardKit comes with colors and assets that can be used to create native-looking keyboards.
 
 * **Image** has a bunch of keyboard-specific images, e.g. **.keyboardBackspace**.
-* **Color** has a bunch of keyboard-specific colors, e.g. **.standardButtonBackground**.
+* **Color** has a bunch of keyboard-specific colors, e.g. **.keyboardButtonBackground**.
 * ``KeyboardAction``, and many other types, have standard images, texts and colors.
 
 For instance, to get the standard button image and text for an action, you can do this:

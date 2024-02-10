@@ -70,6 +70,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 📱 [Device Utilities][Device] - KeyboardKit has a bunch of device-specific utilities.
 * 🎤 [Dictation (BETA)][Dictation] - KeyboardKit can perform dictation from the keyboard.
 * 😀 [Emojis][Emojis] - KeyboardKit defines an emoji type with a lot of information.
+* ⌨️ [External Keyboards][External] - KeyboardKit can detect external keyboards.
 * 🔉 [Feedback][Feedback] - KeyboardKit can trigger audio and haptic feedback.
 * 👆 [Gestures][Gestures] - KeyboardKit has rich, keyboard-specific gestures.
 * 🖼️ [Images][Images] - KeyboardKit defines a bunch of keyboard-related images.

@@ -2,11 +2,11 @@
 
 This article describes the KeyboardKit external keyboard engine.
 
-Connecting an external keyboard to your iPhone or iPad will cause your keyboard extension to stop working as expected.
+It's important for a keyboard extension to be able to detect if an external keyboard is connected, since this will causes it to stop working as expected 
 
-For instance, the text document proxy will not update while you type on the external keyboard, which makes it impossible to provide features like autocomplete.
+For instance, the text document proxy will not update while you type on an external keyboard, which makes it impossible to provide features like autocomplete.
 
-[KeyboardKit Pro][Pro] unlocks ways to detect if an external keyboard is connected to the device, to let you adjust your keyboard accordingly.
+[KeyboardKit Pro][Pro] therefore unlocks tools to help you detect if an external keyboard is connected.
 
 
 ## Important about external keyboards

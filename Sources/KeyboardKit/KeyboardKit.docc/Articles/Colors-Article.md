@@ -10,31 +10,21 @@ Some of these colors come with some built-in logic to help work around iOS syste
 
 
 
-## Raw colors
+## Color Extensions
 
-The raw `Color` extensions aim to match the iOS system design:
+KeyboardKit has static colors that aim to match native iOS system colors, like:
 
 ```swift
 Color.keyboardBackground
-Color.keyboardBackgroundForDarkAppearance
 Color.keyboardButtonBackground
 Color.keyboardButtonBackgroundForDarkAppearance
 Color.keyboardButtonForeground
-Color.keyboardButtonForegroundForDarkAppearance
 Color.keyboardButtonShadow
-Color.keyboardDarkButtonBackground
-Color.keyboardDarkButtonBackgroundForDarkAppearance
-Color.keyboardDarkButtonForeground
-Color.keyboardDarkButtonForegroundForDarkAppearance
 ```
 
-The colors without **ForDarkAppearance** support both light and dark mode, while the ones with that suffix are meant to be used for dark appearance keyboards in light mode.
+Colors without a **ForDarkAppearance** suffix support both light and dark mode, while the ones with the suffix are meant to be used for dark appearance keyboards in light mode.
 
-
-
-## Contextual colors
-
-Contextual colors take a ``KeyboardContext`` and vary the result based on the context:
+KeyboardKit also has contextual colors take a ``KeyboardContext`` and base the color on it:
 
 ```swift
 Color.keyboardBackground(for: context)
@@ -45,7 +35,7 @@ Color.keyboardDarkButtonBackground(for: context)
 Color.keyboardDarkButtonForeground(for: context)
 ```
 
-When you use these colors, you don't have to check if the keyboard is in dark or light mode, which device that is currently used, etc.
+Using the contextual colors means that you don't have to check for light or dark mode, which device that is currently used, etc. It's recommended to use these instead of the raw values.
 
 
 

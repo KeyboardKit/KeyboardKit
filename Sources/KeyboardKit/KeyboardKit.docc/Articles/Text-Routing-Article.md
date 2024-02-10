@@ -8,7 +8,7 @@ If you have a text field *within* your keyboard, you therefore need to find a wa
 
 KeyboardKit adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to route text to any other text field.
 
-[KeyboardKit Pro][Pro] unlocks even more routing utils, like a **KeyboardTextField** that automatically register and resign as the main proxy s it receives and loses focus.
+[KeyboardKit Pro][Pro] unlocks even more routing utils, like a **KeyboardTextField** that automatically register and resign as the main text input proxy.
 
 
 

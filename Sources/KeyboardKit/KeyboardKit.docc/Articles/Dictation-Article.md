@@ -1,10 +1,10 @@
-# Dictation [BETA]
+# Dictation
 
 This article describes the KeyboardKit dictation engine.
 
-Dictation lets users enter text by speaking instead of typing. This can be hard to implement in a keyboard extension, where microphone access is unavailable.
+Dictation can be used to let users enter text by speaking instead of typing. This can be hard to implement in a keyboard extension, where microphone access is unavailable.
 
-KeyboardKit therefore provides dictation-specific tools that you can use to implement dictation for both your keyboard extension and main app.
+KeyboardKit therefore provides dictation-specific tools that you can use to add dictation to both your keyboard extension and main app.
 
 [KeyboardKit Pro][Pro] unlocks dictation services that can be used to perform app- and keyboard-based dictation. Information about Pro features can be found at the end of this article.
 
