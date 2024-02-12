@@ -314,7 +314,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 // MARK: - Private Functions
 
-private extension KeyboardInputViewController {
+public extension KeyboardInputViewController {
 
     func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
         let shouldSwitch = services.keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
