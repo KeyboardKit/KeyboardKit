@@ -41,6 +41,7 @@ public extension Autocomplete {
             isAutocorrect: Bool = false,
             isUnknown: Bool = false,
             subtitle: String? = nil,
+            isSentence: Bool = false,
             additionalInfo: [String: Any] = [:]
         ) {
             self.text = text
@@ -48,6 +49,7 @@ public extension Autocomplete {
             self.isAutocorrect = isAutocorrect
             self.isUnknown = isUnknown
             self.subtitle = subtitle
+            self.isSentence = isSentence
             self.additionalInfo = additionalInfo
         }
         
@@ -65,6 +67,9 @@ public extension Autocomplete {
         
         /// An optional subtitle that can complete the title.
         public var subtitle: String?
+        
+        /// Whether or not this is an autocorrect sentence suggestion
+        public var isSentence: Bool
         
         /// An optional dictionary with additional info.
         public var additionalInfo: [String: Any]

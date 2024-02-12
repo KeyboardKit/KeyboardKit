@@ -44,6 +44,22 @@ public extension UITextDocumentProxy {
     }
     
     /**
+     Replace the current sentence in the proxy with a suggestion,
+     then try to insert a space, if applicable.
+     
+     If a space is automatically inserted, the proxy will be
+     set to an `autoInserted` state.
+     */
+    func insertSentenceAutocompleteSuggestion(
+        _ suggestion: Autocomplete.Suggestion,
+        tryInsertSpace: Bool = true
+    ) {
+        replaceCurrentSentence(with: suggestion.text)
+        guard tryInsertSpace else { return }
+        tryInsertSpaceAfterAutocomplete()
+    }
+    
+    /**
      Try inserting a space into the proxy after inserting an
      autocompete suggestion.
      
