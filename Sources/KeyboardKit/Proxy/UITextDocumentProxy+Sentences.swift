@@ -57,9 +57,11 @@ public extension UITextDocumentProxy {
     }
     
     func replaceCurrentSentence(with replacement: String) {
-        guard let currentText = self.documentContextBeforeInput else { return }
-        let offset = currentWordPostCursorPart?.count ?? 0
-        adjustTextPosition(byCharacterOffset: offset)
+        let textBeforeCursor = self.documentContextBeforeInput ?? ""
+        let textAfterCursor = self.documentContextAfterInput ?? ""
+        let currentText = textBeforeCursor + textAfterCursor
+        if (currentText == "") { return }
+        adjustTextPosition(byCharacterOffset:textAfterCursor.count)
         deleteBackward(times: currentText.count)
         insertText(replacement)
     }
