@@ -48,7 +48,8 @@ struct DemoKeyboardView: View {
                         theme: $theme,
                         proxy: controller.state.keyboardContext.textDocumentProxy
                     )
-                ).foregroundColor(params.style.item.titleColor)
+                )
+                .foregroundColor(params.style.item.titleColor)
             }
         )
     }
