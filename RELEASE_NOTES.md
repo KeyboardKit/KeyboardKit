@@ -18,6 +18,7 @@ This version optimizes the binary size of the KeyboardKit Pro framework.
 ### 👑 KeyboardKit Pro
 
 * The framework size is now almost half in size compared to the 8.0 version.
+* The `Color` extension changes in 8.3.1 are now implemented in Pro as well.
 
 
 
