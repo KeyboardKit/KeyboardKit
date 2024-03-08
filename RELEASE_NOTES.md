@@ -11,7 +11,17 @@ These release notes only cover the current major version.
 
 
 
-## 8.4
+## 8.3.3
+
+This version optimizes the binary size of the KeyboardKit Pro framework.
+
+### 👑 KeyboardKit Pro
+
+* The framework size is now almost half in size compared to the 8.0 version.
+
+
+
+## 8.3.1
 
 This version renames all colors to have more obvious naming.
 
