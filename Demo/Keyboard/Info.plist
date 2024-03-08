@@ -39,6 +39,6 @@
 		<string>$(PRODUCT_MODULE_NAME).KeyboardViewController</string>
 	</dict>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © 2021-2023 Daniel Saidi. All rights reserved.</string>
+	<string>Copyright © 2021-2024 Daniel Saidi. All rights reserved.</string>
 </dict>
 </plist>
