@@ -11,6 +11,12 @@ These release notes only cover the current major version.
 
 
 
+## 8.4
+
+This version bumps Swift to 5.9.
+
+
+
 ## 8.3.3
 
 This version optimizes the binary size of the KeyboardKit Pro framework.
