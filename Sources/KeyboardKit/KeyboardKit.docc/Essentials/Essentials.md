@@ -44,6 +44,14 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 
 
+## Extensions
+
+KeyboardKit extends native types with a lot more information, to help with things like autocomplete, text analysis, etc.
+
+Check the extension section in the bottom of the documentation root, or the `Extensions` folder for more info.
+
+
+
 ## Views
 
 ### System Keyboard

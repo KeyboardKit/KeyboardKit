@@ -22,7 +22,7 @@ Keyboard extensions are by default only able to get a little text before and aft
 
 By reading the full text, you can pass in more information to your AI model or ChatGPT powered functionality, and make your AI-based features a lot more capable.
 
-Read more in the <doc:Proxy-Utilities-Article> article.
+Read more in the <doc:Proxy-Article> article.
 
 
 ### Text Routing
