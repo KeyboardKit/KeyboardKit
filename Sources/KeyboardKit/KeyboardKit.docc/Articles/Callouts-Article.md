@@ -59,7 +59,7 @@ The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically apply th
 
 You can create a custom callout action provider to customize the callout actions to present for a certain ``KeyboardAction``.
 
-You can either inherit ``StandardCalloutActionProvider`` and customize what you want, or implement the ``CalloutActionProvider`` protocol from scratch.
+You can implement ``CalloutActionProvider`` from scratch, or inherit and customize ``StandardCalloutActionProvider``.
 
 For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the actions for **$**:
 
@@ -92,7 +92,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom provider instead of the standard one.
+This will make KeyboardKit use your custom implementation instead of the standard one.
 
 
 

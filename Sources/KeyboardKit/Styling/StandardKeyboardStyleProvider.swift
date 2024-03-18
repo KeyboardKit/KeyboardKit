@@ -12,6 +12,9 @@ import CoreGraphics
 /**
  This standard style provider returns styles that by default
  mimic the look of a native iOS keyboard.
+ 
+ KeyboardKit automatically creates an instance of this class
+ and injects it into ``KeyboardInputViewController/services``.
 
  You can inherit this class and override any open properties
  and functions to customize the various styles.
@@ -33,9 +36,6 @@ import CoreGraphics
      }
  }
  ```
- 
- KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/services``.
  */
 open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 

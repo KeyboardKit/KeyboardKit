@@ -54,7 +54,7 @@ You can add and replace localized providers to the default ``StandardKeyboardLay
 
 You can create a custom layout provider to customize the layout for certain locales, certain devices, or to provide a completely custom layout.
 
-You can either inherit ``StandardKeyboardLayoutProvider`` and customize what you want, or implement the ``KeyboardLayoutProvider`` protocol from scratch.
+You can implement ``KeyboardLayoutProvider`` from scratch, or inherit and customize ``StandardKeyboardLayoutProvider``.
 
 For instance, here's a custom provider that inherits ``StandardKeyboardLayoutProvider`` and injects a tab key into the layout:
 

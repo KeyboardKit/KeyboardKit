@@ -10,10 +10,8 @@ import Foundation
 
 public extension Array where Element == KeyboardAction {
     
-    /**
-     Fill the array with enough `none` actions to evenly fit
-     a grid with a certain number of columns.
-     */
+    /// Add enough actions to make the array fit a grid with
+    /// a certain number of columns.
     func evened(for columns: Int) -> [KeyboardAction] {
         var actions = self
         while actions.count % columns > 0 {

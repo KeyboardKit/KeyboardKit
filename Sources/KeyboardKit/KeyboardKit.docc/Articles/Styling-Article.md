@@ -117,7 +117,7 @@ The ``KeyboardStyle/Button`` style also doesn't have a **.standard** style, sinc
 
 You can create a custom style provider to customize any keyboard component style in any way you want. You can also change the **.standard** styles directly.
 
-You can either inherit ``StandardKeyboardStyleProvider`` and customize what you want, or implement the ``KeyboardStyleProvider`` protocol from scratch.
+You can implement ``KeyboardStyleProvider`` from scratch, or inherit and customize ``StandardKeyboardStyleProvider``.
 
 For instance, here's a custom provider that inherits ``StandardKeyboardStyleProvider`` and makes all input buttons red:
 

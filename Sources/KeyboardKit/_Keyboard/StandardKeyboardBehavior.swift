@@ -11,16 +11,15 @@ import Foundation
 /**
  This class defines how a standard, Western keyboard behaves.
  
+ KeyboardKit automatically creates an instance of this class
+ and injects it into ``KeyboardInputViewController/services``.
+ 
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/services``.
- 
- > Note: This class handles `shift` a bit different since it
- must handle double taps to switch to caps lock. Due to this,
- it must not switch to the preferred keyboard, but must also
- always try to do so. This is tested to behave as it should.
+ Note that this class handles `shift` a bit different, since
+ it must handle double taps to switch to caps lock. This has
+ been tested to behave as it should.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
 

@@ -147,12 +147,10 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action is an input action.
-
-     An input action inserts content into the text proxy and
-     is by default rendered as a light button.
-     */
+    /// Whether or not the action is an input action.
+    ///
+    /// Input actions insert content into the text proxy and
+    /// are by default rendered as light buttons.
     var isInputAction: Bool {
         switch self {
         case .character: true
@@ -165,12 +163,10 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action is a primary action.
-
-     A primary action inserts a new line into the proxy, but
-     the button can rendered differently to express intent.
-     */
+    /// Whether or not the action is a primary action.
+    ///
+    /// Primary actions insert new lines into the proxy, but
+    /// can be rendered differently to express intent.
     var isPrimaryAction: Bool {
         switch self {
         case .primary: true

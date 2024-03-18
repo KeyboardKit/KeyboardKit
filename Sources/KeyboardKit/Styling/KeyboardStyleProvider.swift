@@ -13,19 +13,18 @@ import SwiftUI
  This protocol can be implemented by classes that can define
  styles for different parts of a keyboard.
  
- KeyboardKit will create a ``StandardKeyboardStyleProvider``
- instance when the keyboard extension is started, then apply
- it to ``KeyboardInputViewController/state``. It's then used
- as the default provider, for instance in ``SystemKeyboard``.
+ KeyboardKit will register a ``StandardKeyboardStyleProvider``
+ with ``KeyboardInputViewController/services``. It will then
+ be used as the default style provider.
  
  To change the style of some parts of your keyboard, you can
- implement a custom keyboard style provider.
-
+ implement a custom style provider.
+ 
  To create a custom implementation of this protocol, you can
- implement it from scratch or inherit the standard class and
- override the parts that you want to change. When the custom
- implementation is done, you can just replace the controller
- service to make KeyboardKit use the custom service globally.
+ either implement the protocol from scratch, or subclass the
+ standard class and override what you want to change. Inject
+ it into ``KeyboardInputViewController/services`` to make it
+ be used as the global default. 
  */
 public protocol KeyboardStyleProvider: AnyObject {
 

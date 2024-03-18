@@ -10,10 +10,7 @@ import Foundation
 
 public extension KeyboardAction {
     
-    /**
-     The text that should be presented in a secondary action
-     callout as users long press on the action.
-     */
+    /// The input callout text to present for the action.
     var inputCalloutText: String? {
         switch self {
         case .character(let char): char

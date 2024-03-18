@@ -11,28 +11,25 @@ import Foundation
 /**
  This standard keyboard action handler is used by default by
  KeyboardKit and provides a standard way of handling actions.
-
- You can inherit this class and override any open properties
- and functions to customize the standard behavior. It uses a
- ``KeyboardBehavior`` for some behavioral decisions.
-
- Note that the ``keyboardController`` reference is `weak` to
- avoid a retain cycle.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/services``.
+ and injects it into ``KeyboardInputViewController/services``.
+
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
+ 
+ Note that the ``keyboardController`` reference is `weak` to
+ avoid a retain cycle.
  */
 open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     
     // MARK: - Initialization
     
     #if os(iOS)
-    /**
-     Create a standard keyboard action handler.
-
-     - Parameters:
-       - controller: The keyboard input controller to use.
-     */
+    /// Create a standard keyboard action handler.
+    ///
+    /// - Parameters:
+    ///   - controller: The keyboard input controller to use.
     public convenience init(
         controller: KeyboardInputViewController
     ) {
@@ -47,17 +44,15 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
     }
     #endif
     
-    /**
-     Create a standard keyboard action handler.
-
-     - Parameters:
-       - controller: The keyboard controller to use, if any.
-       - keyboardContext: The keyboard context to use.
-       - keyboardBehavior: The keyboard behavior to use.
-       - autocompleteContext: The autocomplete context to use.
-       - feedbackConfiguration: The feedback configuration to use.
-       - spaceDragGestureHandler: The space gesture handler to use.
-     */
+    /// Create a standard keyboard action handler.
+    ///
+    /// - Parameters:
+    ///   - controller: The keyboard controller to use, if any.
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - keyboardBehavior: The keyboard behavior to use.
+    ///   - autocompleteContext: The autocomplete context to use.
+    ///   - feedbackConfiguration: The feedback configuration to use.
+    ///   - spaceDragGestureHandler: The space gesture handler to use.
     public init(
         controller: KeyboardController?,
         keyboardContext: KeyboardContext,
@@ -235,10 +230,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
 
     // MARK: - Open Functions
 
-    /**
-     This is the standard action that is used by the handler
-     when a gesture is performed on a certain action.
-     */
+    /// The standard action to use for a gesture action.
     open func action(
         for gesture: Gesture,
         on action: KeyboardAction
@@ -249,10 +241,7 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         return isSpaceDragActive ? nil : standard
     }
 
-    /**
-     Try to resolve a replacement action before a gesture is
-     performed on the provided action.
-     */
+    /// An optional replacement action for a gesture action.
     open func replacementAction(for gesture: Gesture, on action: KeyboardAction) -> KeyboardAction? {
         guard gesture == .release else { return nil }
 
@@ -272,20 +261,14 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         return nil
     }
 
-    /**
-     Whether or not a feedback should be given for a certain
-     gesture on a certain action.
-     */
+    /// Whether to trigger feedback for a gesture action.
     open func shouldTriggerFeedback(for gesture: Gesture, on action: KeyboardAction) -> Bool {
         if gesture == .press && self.action(for: .release, on: action) != nil { return true }
         if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
         return false
     }
 
-    /**
-     Try to apply an `isAutocomplete` autocomplete suggesion
-     before the `gesture` has been performed on the `action`.
-     */
+    /// Whether to apply autocorrect before a gesture action.
     open func tryApplyAutocorrectSuggestion(
         before gesture: Gesture,
         on action: KeyboardAction
@@ -300,29 +283,20 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
     }
 
-    /**
-     Try to change `keyboardType` after a `gesture` has been
-     performed on the provided `action`.
-     */
+    /// Try to change keyboard type after a gesture action.
     open func tryChangeKeyboardType(after gesture: Gesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
         let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
         keyboardContext.keyboardType = newType
     }
 
-    /**
-     Try to end the current sentence after the `gesture` has
-     been performed on the provided `action`.
-     */
+    /// Try to end a current sentence after a gesture action.
     open func tryEndSentence(after gesture: Gesture, on action: KeyboardAction) {
         guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
         keyboardContext.endSentence()
     }
     
-    /**
-     Try to perform autocomplete, after a `gesture` has been
-     performed on the provided `action`.
-     */
+    /// Try to perform autocomplete after a gesture action.
     open func tryPerformAutocomplete(
         after gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction
@@ -330,13 +304,9 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         keyboardController?.performAutocomplete()
     }
     
-    /**
-     Try to register a certain emoji after the `gesture` has
-     been performed on the provided `action`.
-     
-     The class will by default use ``emojiRegistrationAction``
-     so just set it to any action to perform a registration.
-     */
+    /// Try to register an emoji after a gesture action.
+    ///
+    /// This will by default use ``emojiRegistrationAction``.
     open func tryRegisterEmoji(
         after gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction
@@ -348,34 +318,31 @@ open class StandardKeyboardActionHandler: NSObject, KeyboardActionHandler {
         }
     }
 
-    /**
-     Try to resolve and handle a replacement keyboard action
-     before the `gesture` is performed on the `action`.
-
-     When this returns true, the caller should stop handling
-     the provided action.
-     */
-    open func tryHandleReplacementAction(before gesture: Gesture, on action: KeyboardAction) -> Bool {
+    /// Handle a replacement action before a gesture action.
+    ///
+    /// When this returns true, the caller should not handle
+    /// the provided action.
+    open func tryHandleReplacementAction(
+        before gesture: Gesture,
+        on action: KeyboardAction
+    ) -> Bool {
         guard let action = replacementAction(for: gesture, on: action) else { return false }
         handle(.release, on: action, replaced: true)
         return true
     }
 
-    /**
-     Try to reinsert an automatically removed space that was
-     removed due to autocomplete after the provided `gesture`
-     has been performed on the provided `action`.
-     */
+    /// Try to reinsert removed space after a gesture action.
+    ///
+    /// This is used to handle autocomplete space insertions.
     open func tryReinsertAutocompleteRemovedSpace(after gesture: Gesture, on action: KeyboardAction) {
         guard gesture == .release else { return }
         guard action.shouldReinsertAutocompleteInsertedSpace else { return }
         keyboardContext.tryReinsertAutocompleteRemovedSpace()
     }
 
-    /**
-     Try to removed an autocomplete inserted space after the
-     `gesture` has been performed on the provided `action`.
-     */
+    /// Try to remove inserted space before a gesture action.
+    ///
+    /// This is used to handle autocomplete space insertions.
     open func tryRemoveAutocompleteInsertedSpace(before gesture: Gesture, on action: KeyboardAction) {
         guard gesture == .release else { return }
         guard action.shouldRemoveAutocompleteInsertedSpace else { return }

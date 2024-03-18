@@ -10,10 +10,8 @@ import Foundation
 
 public extension KeyboardAction {
     
-    /**
-     Whether or not the action should apply any autocomplete
-     suggestions where `isAutocorrect`  is true.
-     */
+    /// Whether or not this action should apply autocomplete
+    /// suggestions where `isAutocorrect`  is true.
     var shouldApplyAutocorrectSuggestion: Bool {
         switch self {
         case .character(let char): char.isWordDelimiter
@@ -23,18 +21,14 @@ public extension KeyboardAction {
         }
     }
     
-    /**
-     Whether or not the action should insert an autocomplete
-     removed space.
-     */
+    /// Whether or not the action should insert autocomplete
+    /// removed spaces.
     var shouldReinsertAutocompleteInsertedSpace: Bool {
         shouldRemoveAutocompleteInsertedSpace
     }
     
-    /**
-     Whether or not the action should remove an autocomplete
-     inserted space.
-     */
+    /// Whether or not the action should insert autocomplete
+    /// inserted spaces.
     var shouldRemoveAutocompleteInsertedSpace: Bool {
         switch self {
         case .character(let char): char.isWordDelimiter && self != .space

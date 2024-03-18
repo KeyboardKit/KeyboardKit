@@ -11,7 +11,7 @@ import SwiftUI
 
 public extension KeyboardAction {
     
-    /// The action's standard button image.
+    /// The standard button image for thre action.
     func standardButtonImage(
         for context: KeyboardContext
     ) -> Image? {
@@ -21,7 +21,7 @@ public extension KeyboardAction {
         }
     }
     
-    /// The action's standard button text.
+    /// The standard button text for thre action.
     func standardButtonText(
         for context: KeyboardContext
     ) -> String? {

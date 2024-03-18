@@ -12,26 +12,25 @@ import Foundation
  This provider is initialized with a collection of localized
  providers, as well as a base provider.
  
- If the localized providers doesn't contain a provider for a
- certain locale, the base provider will be used.
- 
- The standard configuration is to use a base provider and no
- localized providers. KeyboardKit Pro will inject a provider
- for each locale in your license when you register a license.
- 
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/services``.
+ and injects it into ``KeyboardInputViewController/services``.
+
+ You can inherit this class and override any open properties
+ and functions to customize the standard behavior.
+ 
+ If the localized providers doesn't contain a provider for a
+ certain locale, the base provider will be used. KeyboardKit
+ Pro will inject a provider for every locale in your license
+ when you register a license.
  */
 open class StandardCalloutActionProvider: CalloutActionProvider {
 
-    /**
-     Create a standard callout action provider.
-
-      - Parameters:
-        - keyboardContext: The keyboard context to use.
-        - baseProvider: The base provider, by default a ``BaseCalloutActionProvider``.
-        - localizedProviders: A list of localized layout providers, by default `empty`.
-     */
+    /// Create a standard callout action provider.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - baseProvider: The base provider, by default a ``BaseCalloutActionProvider``.
+    ///   - localizedProviders: A list of localized layout providers, by default `empty`.
     public init(
         keyboardContext: KeyboardContext,
         baseProvider: CalloutActionProvider = BaseCalloutActionProvider(),
