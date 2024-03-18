@@ -28,7 +28,7 @@ KeyboardKit requires slightly different setup depending on if you set it up for 
 
 ## How to set up KeyboardKit for a keyboard extension
 
-To set up a keyboard extension, first let your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+To set up KeyboardKit for a keyboard extension, import KeyboardKit and let `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit // or KeyboardKitPro
@@ -36,10 +36,10 @@ import KeyboardKit // or KeyboardKitPro
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives your controller access to new lifecycle functions, like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard-specific ``KeyboardInputViewController/services``, and much more.
+This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, and more.
 
 
-To replace the default ``SystemKeyboard``, override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call ``KeyboardInputViewController/setup(with:)-7ca6w`` with a custom view:
+KeyboardKit will by default use a ``SystemKeyboard`` as the main keyboard view. To replace or customize it, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call ``KeyboardInputViewController/setup(with:)-7ca6w`` with a custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -62,35 +62,42 @@ class KeyboardViewController: KeyboardInputViewController {
 
 You can use the view builder `controller` parameter to access ``KeyboardInputViewController/state``, ``KeyboardInputViewController/services`` and any other properties and functions you need.
 
-> Important: The view builder provides you with an unowned controller, to avoid memory leaks. If you pass it on, make sure to keep it unowned.
+> Important: The view builder provides you with an unowned controller, to avoid memory leaks. If you pass it on, make sure to keep it unowned!
 
 
-### KeyboardKit Pro
+### 👑 KeyboardKit Pro
 
 Unlike KeyboardKit, KeyboardKit Pro has a setup function that lets you register a license key, after which KeyboardKit Pro automatically sets up your license and unlocks all included features.
 
 To use KeyboardKit Pro with the default ``SystemKeyboard`` view, just call **setupPro** without a view in **viewDidLoad**:
 
 ```swift
-func viewDidLoad() {
-    super.viewDidLoad()
-    setupPro(
-        withLicenseKey: "your-key",
-        locales: [...], // Define which locales to use for Basic & Silver licenses
-        licenseConfiguration: { license in ... }  // Customize the keyboard for the license
-    )
+import KeyboardKitPro
+
+class KeyboardViewController: KeyboardInputViewController {
+
+    func viewDidLoad() {
+        super.viewDidLoad()
+        setupPro(
+            withLicenseKey: "your-license-key",
+            locales: [...], // Define which locales to use for Basic & Silver licenses
+            licenseConfiguration: { license in ... }  // Customize the keyboard for the license
+        )
+    }
 }
 ```
 
 To use KeyboardKit Pro with a custom view, just call **setupPro** and provide it with any custom view in ``KeyboardInputViewController/viewWillSetupKeyboard()``:
 
 ```swift
+import KeyboardKitPro
+
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setupPro(
-            withLicenseKey: "your-key",
+            withLicenseKey: "your-license-key",
             locales: [...], // Define which locales to use for Basic & Silver licenses
             licenseConfiguration: { license in ... }  // Customize the keyboard for the license
             view: { controller in
@@ -122,25 +129,27 @@ You can use KeyboardKit in your main app, to check keyboard enabled state and Fu
 You don't have to set up KeyboardKit in your app. Just import KeyboardKit in any file where you want to use it, and you're good to go.
 
 
-### KeyboardKit Pro
+### 👑 KeyboardKit Pro
 
 To set up KeyboardKit Pro in your main app, just register your license key as soon as the the application launches: 
 
 ```swift
+import KeyboardKitPro
+
 @main
 struct MyApp: App {
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .task { setupKeyboardKit() }
+                .task { setupKeyboardKitPro() }
         }
     }
 }
 
 extension MyApp {
 
-    func setupKeyboardKit() async throws {
+    func setupKeyboardKitPro() async throws {
         do {
             let license = try await License.register(...)
             // KeyboardKit Pro is now activated.
@@ -161,7 +170,7 @@ If you need to use Pro features on the root screen, just set some observed state
 To set up KeyboardKit as a transient package dependency, just add it to package dependencies and link it to any target that needs it.
 
 
-### KeyboardKit Pro
+### 👑 KeyboardKit Pro
 
 Since KeyboardKit Pro is a binary target, it requires some special handling to be used as a transient package dependency:
 
