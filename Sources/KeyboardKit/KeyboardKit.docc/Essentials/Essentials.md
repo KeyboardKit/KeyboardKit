@@ -136,7 +136,7 @@ KeyboardKit Pro unlocks additional, powerful capabilities for the ``SystemKeyboa
         ![SystemKeyboard](systemkeyboard-swedish-350.jpg)
     }
     @Column(size: 2) {
-        ### Locales
+        #### Locales
 
         KeyboardKit Pro unlocks layouts, callouts, and services for all ``KeyboardLocale``s. This means that you can support up to 63 locales without any additional code.
         
@@ -149,11 +149,9 @@ KeyboardKit Pro unlocks additional, powerful capabilities for the ``SystemKeyboa
         ![EmojiKeyboard](emojikeyboard-350.jpg)
     }
     @Column(size: 2) {
-        ### Emoji Keyboard
+        #### EmojiKeyboard
 
-        KeyboardKit Pro Gold unlocks an **EmojiKeyboard** view and makes ``SystemKeyboard`` use it as the default emoji keyboard.
-        
-        This means that by just registering a valid license key, your keyboard will automatically show an emoji keyboard when ``KeyboardContext/keyboardType`` changes to ``Keyboard/KeyboardType/emojis``.
+        KeyboardKit Pro Gold unlocks a full **EmojiKeyboard** and makes ``SystemKeyboard`` use it as the default emoji keyboard.
         
         See the <doc:Emojis-Article> article for more information.
     }
@@ -161,18 +159,25 @@ KeyboardKit Pro unlocks additional, powerful capabilities for the ``SystemKeyboa
 
 @Row {
     @Column {
-        ```swift
-        SystemKeyboardPreview(
-            theme: try? .candyShop
-        )
-        ```
+        ![SystemKeyboardPreview](systemkeyboardpreview-theme-350.jpg)
     }
     @Column(size: 2) {
-        ### System Keyboard Preview
+        #### SystemKeyboardPreview
 
-        KeyboardKit Pro unlocks a **SystemKeyboardPreview** that can preview different styles, configurations and themes. 
+        KeyboardKit Pro Gold unlocks a **SystemKeyboardPreview** view that can be used to preview different locales, styles, configurations and themes. 
         
-        This is a regular view that you can place anywhere, even in your main app.
+        See the <doc:Previews-Article> article for more information.
+    }
+}
+
+@Row {
+    @Column {
+        ![SystemKeyboardButtonPreview](systemkeyboardbuttonpreview-350.jpg)
+    }
+    @Column(size: 2) {
+        #### SystemKeyboardButtonPreview
+
+        KeyboardKit Pro Gold unlocks a **SystemKeyboardButtonPreview** that can preview different styles, configurations and themes. 
         
         See the <doc:Previews-Article> article for more information.
     }
