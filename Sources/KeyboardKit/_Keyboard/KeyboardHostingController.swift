@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-03-13.
-//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -11,19 +11,16 @@ import SwiftUI
 
 /**
  This controller can be used to add any `SwiftUI`-based view
- to a `KeyboardInputViewController`.
+ to a ``KeyboardInputViewController``.
  
- You can either manually create a controller instance with a
- `rootView` then add it to your `KeyboardInputViewController`
- with `add(to:)` or use the input controller's `setup(with:)`
- with any custom view.
+ KeyboardKit calls ``add(to:)`` when setting up a view for a
+ ``KeyboardInputViewController``, which is done when calling
+ ``KeyboardInputViewController/setup(with:)``.
  */
 class KeyboardHostingController<Content: View>: UIHostingController<Content> {
     
-    /**
-     Add the hosting controller to a keyboard extension then
-     add constraints to resize extension as the size changes.
-     */
+    /// Add this hosting controller to a keyboard input view
+    /// controller, with every required resizing constraints.
     public func add(to controller: KeyboardInputViewController) {
         controller.addChild(self)
         controller.view.addSubview(view)

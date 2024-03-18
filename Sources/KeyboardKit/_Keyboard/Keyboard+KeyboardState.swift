@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-10-02.
-//  Copyright © 2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -11,17 +11,19 @@ import SwiftUI
 public extension Keyboard {
 
     /**
-     This type is used to retain keyboard state instances.
+     This type is used to specify observable keyboard states.
+     
+     The type lets us decouple an input view controller from
+     any views that require state from it. You can config or
+     customize any state values at any time.
      
      This lets us decouple the primary input controller from
      any views that require many properties from it. You can
      configure the state instances at any time.
      
-     Instead of passing the entire controller instance, pass
-     in ``KeyboardInputViewController/state``.
-     
-     > Important: Only use the class as a transfer mechanism,
-     to simplify passing all services used by a keyboard.
+     Instead of passing the entire controller instance, just
+     use ``KeyboardInputViewController/state``. This reduces
+     the risk of memory leaks.
      */
     class KeyboardState {
         
@@ -51,6 +53,7 @@ public extension Keyboard {
 #if os(iOS) || os(tvOS)
 public extension Keyboard.KeyboardState {
     
+    // Setup the state instance for the provided controller.
     func setup(for controller: KeyboardInputViewController) {
         let isPhone = UIDevice.current.userInterfaceIdiom == .phone
         keyboardContext.sync(with: controller)
@@ -61,11 +64,17 @@ public extension Keyboard.KeyboardState {
 
 public extension View {
     
-    func withEnvironment(fromState state: Keyboard.KeyboardState) -> some View {
+    // Inject all observable state into the view hierarchy.
+    func keyboardState(_ state: Keyboard.KeyboardState) -> some View {
         self.environmentObject(state.autocompleteContext)
             .environmentObject(state.calloutContext)
             .environmentObject(state.dictationContext)
             .environmentObject(state.feedbackConfiguration)
             .environmentObject(state.keyboardContext)
+    }
+    
+    @available(*, deprecated, renamed: "keyboardState(_:)")
+    func withEnvironment(fromState state: Keyboard.KeyboardState) -> some View {
+        self.keyboardState(state)
     }
 }

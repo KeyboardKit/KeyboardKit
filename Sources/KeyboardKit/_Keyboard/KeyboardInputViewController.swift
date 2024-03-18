@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2018-03-13.
-//  Copyright © 2018-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2018-2024 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -16,13 +16,10 @@ import UIKit
  specific functionality.
 
  Let your `KeyboardController` inherit this class instead of
- `UIInputViewController` to get new lifecycle functions like
- ``viewWillSetupKeyboard()``, observable ``state``, standard
- ``services``, and much more.
+ `UIInputViewController` to get new lifecycle functions.
 
- The controller can override any function, modify or replace
- any state or service property, and injects its ``state`` as
- environment objects into the view hierarchy.
+ Your `KeyboardController` can override any function, modify
+ any ``state`` and replace any ``services``.
  */
 open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
@@ -59,10 +56,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Keyboard View Controller Lifecycle
 
-    /**
-     This function is called to handle any dictation results
-     when returning from the main app.
-     */
+    /// This function is called to handle a dictation result
+    /// when returning from the main app.
     open func viewWillHandleDictationResult() {
         Task {
             do {
@@ -73,19 +68,15 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         }
     }
 
-    /**
-     This function is called when the controller is about to
-     register itself as the shared controller.
-     */
+    /// This function is called when the controller is about
+    /// to register itself as the shared controller.
     open func viewWillRegisterSharedController() {
         NextKeyboardController.shared = self
         KeyboardUrlOpenerInternal.controller = self
     }
 
-    /**
-     This function is called whenever the keyboard view must
-     be setup. It will by default setup a ``SystemKeyboard``.
-     */
+    /// This function is called when a keyboard view must be
+    /// created. It will by default setup a ``SystemKeyboard``.
     open func viewWillSetupKeyboard() {
         setup { controller in
             SystemKeyboard(
@@ -99,16 +90,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         }
     }
 
-    /**
-     This function is called whenever the controller must be
-     synced with the ``state`` keyboard context.
-     */
+    /// This function is called when the controller is about
+    /// to sync with the ``Keyboard/KeyboardState`` contexts.
     open func viewWillSyncWithContext() {
         performKeyboardContextSync()
     }
 
 
     // MARK: - Setup
+    
+    /// The error that was thrown during a pro setup, if any.
+    public var setupProError: Error?
 
     /// Setup KeyboardKit with a custom keyboard view.
     open func setup<Content: View>(
@@ -132,15 +124,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     var cancellables = Set<AnyCancellable>()
 
 
-    // MARK: - Properties
+    // MARK: - Proxy Properties
     
     /// The original text document proxy.
     open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
     }
-    
-    /// The error that was thrown during a pro setup, if any.
-    public var setupProError: Error?
 
     /// The text document proxy that is currently active.
     open override var textDocumentProxy: UITextDocumentProxy {
@@ -242,22 +231,18 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Syncing
 
-    /**
-     Whether or not context syncing is enabled.
-
-     By default, context sync is enabled as long as the text
-     text document proxy isn't reading full document context.
-     */
+    /// Whether or not context syncing is enabled.
+    ///
+    /// By default, syncung is enabled while a text document
+    /// proxy isn't reading full the document context.
     open var isContextSyncEnabled: Bool {
         !textDocumentProxy.isReadingFullDocumentContext
     }
     
-    /**
-     Perform a keyboard context sync.
-
-     This is performed to keep the ``state`` context in sync.
-     It's cancelled if ``isContextSyncEnabled`` is `false`.
-     */
+    /// Perform a keyboard context sync.
+    ///
+    /// This is performed to keep the ``state`` in sync, and
+    /// will abort if ``isContextSyncEnabled`` is `false`.
     open func performKeyboardContextSync() {
         guard isContextSyncEnabled else { return }
         state.keyboardContext.sync(with: self)
@@ -304,7 +289,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public func performDictation() {
         Task {
             do {
-                try await services.dictationService.startDictationFromKeyboard(with: state.dictationConfig)
+                try await services.dictationService
+                    .startDictationFromKeyboard(with: state.dictationConfig)
             } catch {
                 await updateLastDictationError(error)
             }
@@ -345,10 +331,17 @@ private extension KeyboardInputViewController {
 
 public extension View {
     
+    func keyboardState(
+        from controller: KeyboardInputViewController
+    ) -> some View {
+        self.keyboardState(controller.state)
+    }
+    
+    @available(*, deprecated, renamed: "keyboardState(from:)")
     func withEnvironment(
         fromController controller: KeyboardInputViewController
     ) -> some View {
-        self.withEnvironment(fromState: controller.state)
+        self.keyboardState(from: controller)
     }
 }
 #endif

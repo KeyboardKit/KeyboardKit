@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-10-02.
-//  Copyright © 2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -11,26 +11,22 @@ import Foundation
 public extension Keyboard {
 
     /**
-     This type is used to retain keyboard service instances.
+     This type is used to specify keyboard service instances.
      
-     This lets us decouple the primary input controller from
-     any views that require many properties from it. You can
-     configure or replace the services instances at any time.
+     The type lets us decouple an input view controller from
+     any views that require services from it. You can config
+     or replace any service instance at any time.
      
-     Instead of passing the entire controller instance, pass
-     in ``KeyboardInputViewController/services``.
-     
-     > Important: Only use the class as a transfer mechanism,
-     to simplify passing all services used by a keyboard.
+     Instead of passing the entire controller instance, just
+     use ``KeyboardInputViewController/services``. This will
+     reduce the risk of memory leaks.
      */
     class KeyboardServices {
         
-        /**
-         Create an instance for the provided keyboard state.
-         
-         - Parameters:
-           - state: The state to base the services on.
-         */
+        /// Create a service instance based on state.
+        ///
+        /// - Parameters:
+        ///   - state: The state to base the services on.
         public init(state: KeyboardState) {
             self.state = state
             setupCalloutContextForServices()
@@ -41,7 +37,7 @@ public extension Keyboard {
         private let state: KeyboardState
         
         
-        /// The action handler to use.
+        /// The keyboard action handler to use.
         public lazy var actionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
             controller: nil,
             keyboardContext: state.keyboardContext,
@@ -56,7 +52,7 @@ public extension Keyboard {
         /// The autocomplete provider to use.
         public lazy var autocompleteProvider: AutocompleteProvider = .disabled
         
-        /// The callout action provider to use, by default a standard one.
+        /// The callout action provider to use.
         public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
             keyboardContext: state.keyboardContext
         ) {
@@ -90,16 +86,19 @@ public extension Keyboard {
 #if os(iOS) || os(tvOS)
 public extension Keyboard.KeyboardServices {
     
+    // Setup the service instance for the provided controller.
     func setup(for controller: KeyboardInputViewController) {
         setupActionHandler(for: controller)
         setupSpaceGesture(for: controller)
     }
     
+    // Setup the action handler for the provided controller.
     func setupActionHandler(for controller: KeyboardInputViewController) {
         weak var weakController = controller
         (actionHandler as? StandardKeyboardActionHandler)?.keyboardController = weakController
     }
     
+    // Setup space gestures for the provided controller.
     func setupSpaceGesture(for controller: KeyboardInputViewController) {
         weak var weakController = controller
         spaceDragGestureHandler.action = { [weak self] in

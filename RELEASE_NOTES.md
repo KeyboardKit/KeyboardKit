@@ -15,7 +15,16 @@ These release notes only cover the current major version.
 
 This version bumps Swift to 5.9 and adds support for visionOS.
 
+### ✨ Features
 
+* `Keyboard.Toolbar` is a new view that applies a minimum height to its content.
+* `Keyboard.ToolbarStyle` is a new style that can be applied with a view modifier.
+* `StandardKeyboardBehavior` modifies some functions to be `open` to modifications.
+
+### 💡 Adjustments
+
+* `View` `.withEnvironment(fromController:)` has been renamed to `.keyboardState(from:)`.
+* `View` `.withEnvironment(fromState:)` has been renamed to `.keyboardState(_:)`.
 
 
 

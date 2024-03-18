@@ -6,7 +6,7 @@
 //  Source: https://gist.github.com/wearhere/f46ab9d837acaeaabfa86a813c44ad25
 //
 //  Created by Daniel Saidi on 2021-07-14.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)

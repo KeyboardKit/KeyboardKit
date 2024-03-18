@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-27.
-//  Copyright © 2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -12,14 +12,12 @@ import UIKit
 
 public extension KeyboardInputViewController {
 
-    /**
-     The bundle ID of the keyboard host application, if any.
-
-     The property uses technologies that may stop working in
-     any future iOS version. Do not rely solely on this, and
-     make sure to design your app to be able to work even if
-     it suddenly stops working.
-     */
+    /// The bundle ID of the host application, if any.
+    ///
+    /// The property uses technologies that may stop working
+    /// in any future iOS version. Do not rely solely on the
+    /// function, and design the app to be able to work even
+    /// if this feature suddenly stops working.
     var hostBundleId: String? {
         if let id = hostBundleIdValueBefore16 { return id }
         return hostBundleIdValueFor16

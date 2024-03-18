@@ -3,18 +3,17 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
-//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
 
 public extension KeyboardContext {
     
-    /**
-     The preferred keyboard type for the context is based on
-     the current keyboard type and the text document proxy's
-     `autocapitalization` configuration.
-     */
+    /// The currently preferred keyboard type.
+    ///
+    /// This value is based on the current keyboard type and
+    /// the ``textDocumentProxy`` autocapitalization.
     var preferredKeyboardType: Keyboard.KeyboardType {
         if keyboardType.isAlphabetic(.capsLocked) { return keyboardType }
         if let type = preferredAutocapitalizedKeyboardType { return type }

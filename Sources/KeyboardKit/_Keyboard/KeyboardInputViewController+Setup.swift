@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-12-06.
-//  Copyright © 2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -17,8 +17,7 @@ extension KeyboardInputViewController {
     ) {
         self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = view
-            .withEnvironment(fromController: self)
+        let view = view.keyboardState(from: self)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }

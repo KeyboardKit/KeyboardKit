@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-15.
-//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
 import Combine
@@ -16,17 +16,19 @@ import UIKit
 
 /**
  This class provides keyboard extensions with contextual and
- observable information about the keyboard extension itself.
+ observable information about the keyboard extension.
 
  This class will continuously sync with the input controller
- to provide updated information. It is also extensively used
- within the library, to make keyboard-related decisions.
+ to updated its state. It's also extensively used within the
+ library, to make keyboard-related decisions.
+ 
+ For instance, you can change the ``keyboardType`` to change
+ which kind of keyboard that is rendered.
 
- You can use ``locale`` to get and set the raw locale of the
- keyboard or use the properties and functions that allows us
- to use a ``KeyboardLocale``. You can use ``locales`` to set
- all locales, then call ``selectNextLocale()`` to select the
- next available locale.
+ You can use ``locale`` to get & set the raw keyboard locale
+ or use the properties and functions that allows us to use a
+ ``KeyboardLocale``. If ``locales`` has multiple values, the
+ ``selectNextLocale()`` function toggles through the locales.
  
  KeyboardKit automatically creates an instance of this class
  and binds it to ``KeyboardInputViewController/state``.
@@ -179,13 +181,11 @@ public extension KeyboardContext {
 
 public extension KeyboardContext {
 
-    /**
-     The autocapitalization type to use.
-
-     This is by default fetched from the text document proxy.
-     You can use ``autocapitalizationTypeOverride`` to apply
-     a custom value that overrides the default one.
-     */
+    /// The autocapitalization type to use.
+    ///
+    /// This value comes from the ``textDocumentProxy``. The
+    /// ``autocapitalizationTypeOverride`` value can be used
+    /// to overrides this property.
     var autocapitalizationType: Keyboard.AutocapitalizationType? {
         #if os(iOS) || os(tvOS)
         autocapitalizationTypeOverride ?? textDocumentProxy.autocapitalizationType?.keyboardType
@@ -194,10 +194,7 @@ public extension KeyboardContext {
         #endif
     }
 
-    /**
-     Whether or not the context specifies that we should use
-     a dark color scheme.
-     */
+    /// Whether or not to use a dark color scheme.
     var hasDarkColorScheme: Bool {
         #if os(iOS) || os(tvOS)
         colorScheme == .dark
@@ -205,10 +202,13 @@ public extension KeyboardContext {
         false
         #endif
     }
+    
+    /// Whether or not the context has multiple locales.
+    var hasMultipleLocales: Bool {
+        locales.count > 1
+    }
 
-    /**
-     Try to map the current ``locale`` to a keyboard locale.
-     */
+    /// Map the current ``locale`` to a ``KeyboardLocale``.
     var keyboardLocale: KeyboardLocale? {
         KeyboardLocale.allCases.first { $0.localeIdentifier == locale.identifier }
     }
@@ -219,26 +219,23 @@ public extension KeyboardContext {
 
 public extension KeyboardContext {
 
-    /// Whether or not the context has multiple locales.
-    var hasMultipleLocales: Bool {
-        locales.count > 1
-    }
-
     /// Whether or not the context has a certain locale.
-    func hasKeyboardLocale(_ locale: KeyboardLocale) -> Bool {
+    func hasKeyboardLocale(
+        _ locale: KeyboardLocale
+    ) -> Bool {
         self.locale.identifier == locale.localeIdentifier
     }
 
     /// Whether or not a certain keyboard type is selected.
-    func hasKeyboardType(_ type: Keyboard.KeyboardType) -> Bool {
+    func hasKeyboardType(
+        _ type: Keyboard.KeyboardType
+    ) -> Bool {
         keyboardType == type
     }
 
-    /**
-     Select the next locale in ``locales``, depending on the
-     ``locale``. If ``locale`` is last in ``locales`` or not
-     in the list, the first list locale is selected.
-     */
+    /// Select the next locale in ``locales``.
+    ///
+    /// This will loop through all locales in ``locales``.
     func selectNextLocale() {
         let fallback = locales.first ?? locale
         guard let currentIndex = locales.firstIndex(of: locale) else { return locale = fallback }
@@ -305,10 +302,7 @@ public extension KeyboardContext {
 
 extension KeyboardContext {
 
-    /**
-     Perform this after an async delay, to make sure that we
-     have the latest information.
-     */
+    /// Perform a sync after an async delay.
     func syncAfterAsync(with controller: KeyboardInputViewController) {
         syncTextDocumentProxy(with: controller)
         syncTextInputProxy(with: controller)

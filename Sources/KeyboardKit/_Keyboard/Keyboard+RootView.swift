@@ -3,17 +3,15 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-02-04.
-//  Copyright © 2022-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
 
 extension Keyboard {
     
-    /**
-     This view is used as a wrapper view, to be able to bind the
-     keyboard view to properties that affect your layout.
-     */
+    /// This view is used as a wrapper view, to make sure it
+    /// binds to state that affects your layout.
     struct RootView<ViewType: View>: View {
         
         init(@ViewBuilder _ view: @escaping () -> ViewType) {

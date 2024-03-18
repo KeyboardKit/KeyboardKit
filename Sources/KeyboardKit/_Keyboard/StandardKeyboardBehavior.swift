@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
-//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -14,30 +14,23 @@ import Foundation
  You can inherit this class and override any open properties
  and functions to customize the standard behavior.
  
- This class makes heavy use of standard logic that's defined
- elsewhere. However, having this makes it easy to change the
- actual behavior.
- 
  KeyboardKit automatically creates an instance of this class
  and binds it to ``KeyboardInputViewController/services``.
  
  > Note: This class handles `shift` a bit different since it
  must handle double taps to switch to caps lock. Due to this,
  it must not switch to the preferred keyboard, but must also
- always try to do so. This behavior is tested to ensure that
- it is behaving as it should.
+ always try to do so. This is tested to behave as it should.
  */
 open class StandardKeyboardBehavior: KeyboardBehavior {
 
-    /**
-      Create a standard keyboard behavior instance.
-
-      - Parameters:
-        - keyboardContext: The keyboard context to use.
-        - doubleTapThreshold: The second threshold to detect a tap as a double tap, by default `0.5`.
-        - endSentenceThreshold: The second threshold during which a sentence can be auto-closed, by default `3.0`.
-        - repeatGestureTimer: A timer that is responsible for triggering a repeat gesture action, by default ``Gestures/RepeatTimer/shared``.
-     */
+    /// Create a standard keyboard behavior instance.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - doubleTapThreshold: The douple tap threshold to use, by default `0.5` seconds.
+    ///   - endSentenceThreshold: The end sentence auto-close threshold to use, by default `3.0` seconds.
+    ///   - repeatGestureTimer: The repease gesture timer to use, by default ``Gestures/RepeatTimer/shared``.
     public init(
         keyboardContext: KeyboardContext,
         doubleTapThreshold: TimeInterval = 0.5,
@@ -54,37 +47,33 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
     /// The keyboard context to use.
     public let keyboardContext: KeyboardContext
 
-    /// The second threshold to detect a tap as a double tap.
+    /// The douple tap threshold to use.
     public let doubleTapThreshold: TimeInterval
 
-    /// The second threshold during which a sentence can be auto-closed.
+    /// The end sentence auto-close threshold to use.
     public let endSentenceThreshold: TimeInterval
 
-    /// A timer that is responsible for triggering a repeat gesture action.
+    /// The repease gesture timer to use.
     public let repeatGestureTimer: Gestures.RepeatTimer
 
 
     /// An internal state to keep track of shift checks.
-    var lastShiftCheck = Date()
+    public private(set) var lastShiftCheck = Date()
     
     /// An internal state to keep track of the last space tap.
-    var lastSpaceTap = Date()
+    public private(set) var lastSpaceTap = Date()
     
     
-    /**
-     The range that the backspace key should delete when the
-     key is long pressed.
-     */
-    public var backspaceRange: Keyboard.BackspaceRange {
+    // MARK: - KeyboardBehavior
+    
+    /// The range that backspace should delete.
+    open var backspaceRange: Keyboard.BackspaceRange {
         let duration = repeatGestureTimer.duration ?? 0
         return duration > 3 ? .word : .character
     }
     
-    /**
-     The preferred keyboard type that should be applied when
-     a certain gesture has been performed on an action.
-     */
-    public func preferredKeyboardType(
+    /// The preferred keyboard type after an action gesture.
+    open func preferredKeyboardType(
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType {
@@ -97,10 +86,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         }
     }
     
-    /**
-     Whether or not to end the currently typed sentence when
-     a certain gesture has been performed on an action.
-     */
+    /// Whether to end the sentence after a gesture action.
     open func shouldEndSentence(
         after gesture: Gesture,
         on action: KeyboardAction
@@ -120,57 +106,49 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         #endif
     }
     
-    /**
-     Whether or not to switch to capslock when a gesture has
-     been performed on an action.
-     */
+    /// Whether to switch to capslock after a gesture action.
     open func shouldSwitchToCapsLock(
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         switch action {
-        case .shift: return isDoubleShiftTap
-        default: return false
+        case .shift: isDoubleShiftTap
+        default: false
         }
     }
     
-    /**
-     Whether or not to switch to the preferred keyboard type
-     when a certain gesture has been performed on an action.
-     */
+    /// Whether to switch to the preferred keyboard type after
+    /// a gesture action.
     open func shouldSwitchToPreferredKeyboardType(
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
         // if action.isAlternateQuotationDelimiter(for: context) { return true }
         switch action {
-        case .backspace: return isPreferredKeyboardDifferent
-        case .keyboardType(let type): return type.shouldSwitchToPreferredKeyboardType
-        case .shift: return true
-        default:
-            let isRelease = gesture == .release
-            let isDifferent = isPreferredKeyboardDifferent
-            return isRelease && isDifferent
+        case .backspace: isPreferredKeyboardDifferent
+        case .keyboardType(let type): type.shouldSwitchToPreferredKeyboardType
+        case .shift: true
+        default: gesture == .release && isPreferredKeyboardDifferent
         }
     }
     
-    /**
-     Whether or not to switch to the preferred keyboard type
-     after the text document proxy text did change.
-     */
+    /// Whether to switch to a preferred keyboard type after
+    /// the text document proxy text changes.
     public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
         isPreferredKeyboardDifferent
     }
 }
 
-private extension StandardKeyboardBehavior {
+public extension StandardKeyboardBehavior {
     
+    /// Is the preferred keyboard different from the current.
     var isPreferredKeyboardDifferent: Bool {
         let current = keyboardContext.keyboardType
         let preferred = keyboardContext.preferredKeyboardType
         return current != preferred
     }
     
+    /// Is the type currently registering a double shift tap.
     var isDoubleShiftTap: Bool {
         guard keyboardContext.keyboardType.isAlphabetic else { return false }
         let date = Date().timeIntervalSinceReferenceDate
@@ -185,8 +163,8 @@ private extension KeyboardAction {
     
     func isAlternateQuotationDelimiter(for context: KeyboardContext) -> Bool {
         switch self {
-        case .character(let char): return char.isAlternateQuotationDelimiter(for: context)
-        default: return false
+        case .character(let char): char.isAlternateQuotationDelimiter(for: context)
+        default: false
         }
     }
 }
@@ -203,8 +181,8 @@ private extension Keyboard.KeyboardType {
     
     var shouldSwitchToPreferredKeyboardType: Bool {
         switch self {
-        case .alphabetic(let state): return state.shouldSwitchToPreferredKeyboardType
-        default: return false
+        case .alphabetic(let state): state.shouldSwitchToPreferredKeyboardType
+        default: false
         }
     }
 }
@@ -213,8 +191,8 @@ private extension Keyboard.Case {
     
     var shouldSwitchToPreferredKeyboardType: Bool {
         switch self {
-        case .auto: return true
-        default: return false
+        case .auto: true
+        default: false
         }
     }
 }

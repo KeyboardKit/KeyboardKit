@@ -3,7 +3,7 @@
 //  Demo
 //
 //  Created by Daniel Saidi on 2023-12-12.
-//  Copyright © 2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
 import Speech

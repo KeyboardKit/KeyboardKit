@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
-//  Copyright © 2021-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI

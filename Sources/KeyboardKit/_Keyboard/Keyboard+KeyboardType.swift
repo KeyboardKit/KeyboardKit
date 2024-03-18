@@ -17,13 +17,8 @@ public extension Keyboard {
      
      The ``SystemKeyboard`` can be used to render alphabetic,
      numeric, symbolic and emoji keyboards. You just have to
-     set ``KeyboardContext/keyboardType`` to a keyboard type
-     that you want to use, and it will render it.
-     
-     If you want to use a keyboard type that isn't supported
-     by the system keyboard (yet), you can implement it with
-     a custom ``KeyboardLayout`` and just inject it into the
-     system keyboard.
+     set ``KeyboardContext/keyboardType`` to a type you want
+     to use, and the keyboard will render it.
      */
     enum KeyboardType: Codable, Equatable, Identifiable {
         

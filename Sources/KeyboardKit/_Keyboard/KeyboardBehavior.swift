@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
-//  Copyright © 2020-2023 Daniel Saidi. All rights reserved.
+//  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -14,54 +14,37 @@ import Foundation
  */
 public protocol KeyboardBehavior {
     
-    /// This typealias resolves to a keyboard gesture
     typealias Gesture = Gestures.KeyboardGesture
     
-    /**
-     The range that the backspace key should delete when the
-     key is long pressed.
-     */
+    /// The range that backspace should delete.
     var backspaceRange: Keyboard.BackspaceRange { get }
     
-    /**
-     The preferred keyboard type that should be applied when
-     a certain gesture has been performed on an action.
-     */
+    /// The preferred keyboard type after an action gesture.
     func preferredKeyboardType(
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType
     
-    /**
-     Whether or not to end the currently typed sentence when
-     a certain gesture has been performed on an action.
-     */
+    /// Whether to end the sentence after a gesture action.
     func shouldEndSentence(
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
     
-    /**
-     Whether or not to switch to capslock when a gesture has
-     been performed on an action.
-     */
+    /// Whether to switch to capslock after a gesture action.
     func shouldSwitchToCapsLock(
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
     
-    /**
-     Whether or not to switch to the preferred keyboard type
-     when a certain gesture has been performed on an action.
-     */
+    /// Whether to switch to the preferred keyboard type after
+    /// a gesture action.
     func shouldSwitchToPreferredKeyboardType(
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
 
-    /**
-     Whether or not to switch to the preferred keyboard type
-     after the text document proxy text did change.
-     */
+    /// Whether to switch to a preferred keyboard type after
+    /// the text document proxy text changes.
     func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool
 }
