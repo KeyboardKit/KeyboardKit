@@ -57,10 +57,10 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
 
 
     /// An internal state to keep track of shift checks.
-    public private(set) var lastShiftCheck = Date()
+    public internal(set) var lastShiftCheck = Date()
     
     /// An internal state to keep track of the last space tap.
-    public private(set) var lastSpaceTap = Date()
+    public internal(set) var lastSpaceTap = Date()
     
     
     // MARK: - KeyboardBehavior

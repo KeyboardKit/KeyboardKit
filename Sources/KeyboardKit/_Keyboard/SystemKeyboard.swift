@@ -154,11 +154,11 @@ public struct SystemKeyboard<
     /// This typealias defines toolbar builder params.
     public typealias ToolbarParams = (
         autocompleteAction: (Autocomplete.Suggestion) -> Void,
-        style: KeyboardStyle.AutocompleteToolbar,
+        style: Autocomplete.ToolbarStyle,
         view: StandardToolbarView)
 
     /// The standard toolbar view type.
-    public typealias StandardToolbarView = AutocompleteToolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
+    public typealias StandardToolbarView = Autocomplete.Toolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
 
     
     private let actionHandler: KeyboardActionHandler
@@ -324,7 +324,7 @@ private extension SystemKeyboard {
         toolbarBuilder((
             autocompleteAction: actionHandler.handle(_:),
             style: styleProvider.autocompleteToolbarStyle,
-            view: AutocompleteToolbar(
+            view: Autocomplete.Toolbar(
                 suggestions: autocompleteContext.suggestions,
                 locale: keyboardContext.locale,
                 style: styleProvider.autocompleteToolbarStyle,

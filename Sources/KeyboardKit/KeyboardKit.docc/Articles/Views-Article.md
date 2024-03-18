@@ -28,7 +28,7 @@ See the <doc:Essentials> article for more information.
 
 ## Autocomplete Views
 
-KeyboardKit has an ``AutocompleteToolbar``, that mimics a native autocomplete toolbar.
+KeyboardKit has an ``Autocomplete/Toolbar``, that mimics a native autocomplete toolbar.
 
 ![AutocompleteToolbar](autocompletetoolbar-350.jpg)
 

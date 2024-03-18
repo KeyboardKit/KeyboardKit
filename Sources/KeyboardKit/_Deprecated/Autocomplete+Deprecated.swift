@@ -8,6 +8,9 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "Autocomplete.Toolbar")
+public typealias AutocompleteToolbar = Autocomplete.Toolbar
+
 public extension AutocompleteContext {
     
     @available(*, deprecated, renamed: "isAutocompleteEnabled")

@@ -4,7 +4,7 @@ This article describes the KeyboardKit autocomplete engine.
 
 Autocomplete is an important part of the typing experience, where suggestions are shown as the user types.
 
-In KeyboardKit, an ``AutocompleteProvider`` can be used to provide suggestions, which in turn can be presented in views like the ``AutocompleteToolbar``.
+In KeyboardKit, an ``AutocompleteProvider`` can be used to provide suggestions, which in turn can be presented in views like the ``Autocomplete/Toolbar``.
 
 KeyboardKit doesn't have a standard autocomplete provider. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
@@ -32,7 +32,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 KeyboardKit will automatically call ``KeyboardController/performAutocomplete()`` whenever the text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the ``KeyboardInputViewController/services`` provider.
 
-Views like ``AutocompleteToolbar`` will automatically present the latest suggestions, and handle any tapped suggestion with the main ``KeyboardActionHandler``.
+Views like ``Autocomplete/Toolbar`` will automatically present the latest suggestions, and handle any tapped suggestion with the main ``KeyboardActionHandler``.
 
 
 
@@ -137,7 +137,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## Views
 
-KeyboardKit has an ``AutocompleteToolbar``, that mimics a native autocomplete toolbar.
+KeyboardKit has an ``Autocomplete/Toolbar``, that mimics a native autocomplete toolbar.
 
 ![AutocompleteToolbar](autocompletetoolbar-350.jpg)
 

@@ -10,24 +10,33 @@ import SwiftUI
 
 public extension Autocomplete {
     
-    /**
-     This view mimics native autocomplete toolbar separators.
-     */
+    /// This view mimics a native autocomplete separator.
+    ///
+    /// Style it with `.autocompleteToolbarSeparatorStyle`.
     struct ToolbarSeparator: View {
         
-        /**
-         Create an autocomplete toolbar item separator.
-         
-         - Parameters:
-           - style: The style to apply, by default `.standard`.
-         */
-        public init(
-            style: KeyboardStyle.AutocompleteToolbarSeparator = .standard
-        ) {
-            self.style = style
+        /// Create an autocomplete toolbar item separator.
+        public init() {
+            self.initStyle = nil
         }
         
-        private let style: KeyboardStyle.AutocompleteToolbarSeparator
+        @available(*, deprecated, message: "Style this view with .autocompleteToolbarSeparatorStyle instead.")
+        public init(
+            style: Autocomplete.ToolbarSeparatorStyle
+        ) {
+            self.initStyle = style
+        }
+        
+        /// Deprecated: Remove this in 9.0.
+        private let initStyle: Autocomplete.ToolbarSeparatorStyle?
+        
+        @Environment(\.autocompleteToolbarSeparatorStyle)
+        private var envStyle
+        
+        /// Deprecated: Replace this with initStyle in 9.0.
+        private var style: Autocomplete.ToolbarSeparatorStyle {
+            initStyle ?? envStyle
+        }
         
         public var body: some View {
             style.color
@@ -37,13 +46,15 @@ public extension Autocomplete {
     }
 }
 
-struct Autocomplete_ToolbarSeparator_Previews: PreviewProvider {
+#Preview {
     
-    static var previews: some View {
-        HStack {
-            Autocomplete.ToolbarSeparator(style: .standard)
-            Autocomplete.ToolbarSeparator(style: .preview1)
-            Autocomplete.ToolbarSeparator(style: .preview2)
-        }.frame(height: 50)
+    HStack {
+        Autocomplete.ToolbarSeparator()
+            .autocompleteToolbarSeparatorStyle(.standard)
+        Autocomplete.ToolbarSeparator()
+            .autocompleteToolbarSeparatorStyle(.preview1)
+        Autocomplete.ToolbarSeparator()
+            .autocompleteToolbarSeparatorStyle(.preview2)
     }
+    .frame(height: 50)
 }

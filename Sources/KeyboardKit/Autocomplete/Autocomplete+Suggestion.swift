@@ -14,27 +14,25 @@ public extension Autocomplete {
      This struct represents a suggestion that is returned by
      an ``AutocompleteProvider``.
      
-     The ``isAutocorrect`` property indicates whether or not
-     the suggestion will automatically be applied with space.
-     Autocorrect suggestions usually have a white background.
+     Autocomplete suggestions can be standard suggestions or
+     autocorrecting ones that are automatically applies when
+     a user taps space.
      
-     The ``isUnknown`` property indicates whether or not the
-     suggestion is unknown. Unknown suggestions usually have
-     the text wrapped in locale-specific quotation marks.
+     Autocorrecting suggestions are typically presented with
+     a white background, while ``isUnknown`` suggestions are
+     wrapped in locale-specific quotation marks.
      */
     struct Suggestion {
         
-        /**
-         Create an autocomplete suggestion.
-
-         - Parameters:
-           - text: The text that should be sent to the proxy.
-           - title: The text that should be displayed, by default `text`.
-           - isAutocorrect: Whether or not this is an autocorrect suggestion, by default `false`.
-           - isUnknown: Whether or not this is an unknown suggestion, by default `false`.
-           - subtitle: An optional subtitle that can complete the title, by default `nil`.
-           - additionalInfo: An optional dictionary that can contain additional info, by default `empty`.
-         */
+        /// Create an autocomplete suggestion.
+        ///
+        /// - Parameters:
+        ///   - text: The text that should be sent to the proxy.
+        ///   - title: The text that should be displayed, by default `text`.
+        ///   - isAutocorrect: Whether or the suggestion is autocorrecting, by default `false`.
+        ///   - isUnknown: Whether or the suggestion is unknown, by default `false`.
+        ///   - subtitle: An optional subtitle that can complete the title, by default `nil`.
+        ///   - additionalInfo: An optional info dictionary, by default `empty`.
         public init(
             text: String,
             title: String? = nil,
@@ -54,19 +52,19 @@ public extension Autocomplete {
         /// The text that should be sent to the proxy.
         public var text: String
         
-        /// The text that should be presented.
+        /// The text that should be displayed.
         public var title: String
         
-        /// Whether or not this is an autocorrect suggestion.
+        /// Whether or the suggestion is autocorrecting.
         public var isAutocorrect: Bool
         
-        /// Whether or not this is an unknown suggestion.
+        /// Whether or the suggestion is unknown.
         public var isUnknown: Bool
         
         /// An optional subtitle that can complete the title.
         public var subtitle: String?
         
-        /// An optional dictionary with additional info.
+        /// An optional info dictionary.
         public var additionalInfo: [String: Any]
     }
 }

@@ -15,18 +15,34 @@ These release notes only cover the current major version.
 
 This version bumps Swift to 5.9 and adds support for visionOS.
 
+This version also refactors view styling to be injected with view modifiers instead of with initializers.
+
 ### ✨ Features
 
+* `Autocomplete.ToolbarStyle` has support for more styling.
+* `Autocomplete.ToolbarItemStyle` has support for more explicit styling.
 * `Keyboard.Toolbar` is a new view that applies a minimum height to its content.
 * `Keyboard.ToolbarStyle` is a new style that can be applied with a view modifier.
 * `StandardKeyboardBehavior` modifies some functions to be `open` to modifications.
 
 ### 💡 Adjustments
 
-* `View` `.withEnvironment(fromController:)` has been renamed to `.keyboardState(from:)`.
-* `View` `.withEnvironment(fromState:)` has been renamed to `.keyboardState(_:)`.
+* `AutocompleteToolbar` has been renamed to `Autocomplete.Toolbar`.
+* `Autocomplete.Toolbar` and its views now apply styles with view modifiers.
+* `KeyboardStyle.AutocompleteToolbar` has been renamed to `Autocomplete.ToolbarStyle`.
+* `KeyboardStyle.AutocompleteToolbarItem` has been renamed to `Autocomplete.ToolbarItemStyle`.
+* `KeyboardStyle.AutocompleteToolbarSeparator` has been renamed to `Autocomplete.ToolbarSeparatorStyle`.
+* `.withEnvironment(fromController:)` has been renamed to `.keyboardState(from:)`.
+* `.withEnvironment(fromState:)` has been renamed to `.keyboardState(_:)`.
+
+### 🗑️ Deprecations
+
+* `KeyboardStyle.AutocompleteToolbarItemBackground` has been deprecated - just use `Autocomplete.ToolbarItem`. 
+* `Autocomplete.ToolbarItemTitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
+* `Autocomplete.ToolbarItemSubtitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
 
 
+    
 
 ## 8.3.3
 

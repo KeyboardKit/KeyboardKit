@@ -24,7 +24,7 @@ import SwiftUI
  either implement the protocol from scratch, or subclass the
  standard class and override what you want to change. Inject
  it into ``KeyboardInputViewController/services`` to make it
- be used as the global default. 
+ be used as the global default.
  */
 public protocol KeyboardStyleProvider: AnyObject {
 
@@ -70,6 +70,6 @@ public protocol KeyboardStyleProvider: AnyObject {
 
     // MARK: - Callouts
 
-    /// The style to use for ``AutocompleteToolbar`` views.
-    var autocompleteToolbarStyle: KeyboardStyle.AutocompleteToolbar { get }
+    /// The style to use for ``Autocomplete/Toolbar`` views.
+    var autocompleteToolbarStyle: Autocomplete.ToolbarStyle { get }
 }
