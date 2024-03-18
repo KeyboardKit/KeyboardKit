@@ -2,7 +2,7 @@
 
 This article describes the essential parts of KeyboardKit.
 
-KeyboardKit extends Apple's limited keyboard APIs with many new features and views, makes the text document proxy more capable, and lets you use SwiftUI instead of UIKit.
+KeyboardKit extends Apple's native APIs and provides you with a lot more functionality. It lets you mimic the native iOS keyboard and tweak its style and behavior, or create completely custom keyboards.
 
 KeyboardKit also has a ``SystemKeyboard`` view, that mimics the native iOS keyboard and can be customized and styled to great extent.
 

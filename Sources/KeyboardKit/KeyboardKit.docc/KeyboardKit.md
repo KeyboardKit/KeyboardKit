@@ -60,7 +60,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🩺 <doc:State-Article> - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 <doc:Styling-Article> - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
 * 🚏 <doc:Text-Routing-Article> - KeyboardKit can route text input from the main app to in-keyboard textfields.
-* 🌁 <doc:Views> - KeyboardKit defines a bunch of keyboard-related views and modifiers.
+* 🌁 <doc:Views-Article> - KeyboardKit defines a bunch of keyboard-related views and modifiers.
 
 
 
@@ -107,10 +107,10 @@ KeyboardKit is available under the MIT license.
 ### Getting Started
 
 - <doc:Getting-Started>
-- <doc:Essentials>
 
 ### Features
 
+- <doc:Essentials>
 - <doc:Actions-Article>
 - <doc:AI-Article>
 - <doc:Autocomplete-Article>
@@ -133,7 +133,7 @@ KeyboardKit is available under the MIT license.
 - <doc:State-Article>
 - <doc:Styling-Article>
 - <doc:Text-Routing-Article>
-- <doc:Views>
+- <doc:Views-Article>
 
 ### Essentials
 
