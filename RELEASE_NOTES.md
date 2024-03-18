@@ -13,7 +13,9 @@ These release notes only cover the current major version.
 
 ## 8.4
 
-This version bumps Swift to 5.9.
+This version bumps Swift to 5.9 and adds support for visionOS.
+
+
 
 
 
