@@ -10,12 +10,16 @@ import SwiftUI
 
 public extension Autocomplete {
     
-    /// This style can style ``Autocomplete/ToolbarSeparator``.
+    /// This style can be used to modify the visual style of
+    /// the ``Autocomplete/ToolbarSeparator`` component.
     ///
-    /// Apply it with `.autocompleteToolbarSeparatorStyle`.
+    /// You can apply this view style with the view modifier
+    /// `autocompleteToolbarSeparatorStyle(_:)`.
+    ///
+    /// You can use the ``standard`` style or your own style.
     struct ToolbarSeparatorStyle: Codable, Equatable {
         
-        /// Create an autocomplete toolbar separator style.
+        /// Create a custom toolbar separator style.
         ///
         /// - Parameters:
         ///   - color: The separator color, by default `.secondary.opacity(0.5)`.

@@ -10,9 +10,13 @@ import SwiftUI
 
 public extension Autocomplete {
     
-    /// This style can style a ``Autocomplete/Toolbar``.
+    /// This style can be used to modify the visual style of
+    /// the ``Autocomplete/Toolbar`` component.
     ///
-    /// Apply this style with `.autocompleteToolbarStyle`.
+    /// You can apply this view style with the view modifier
+    /// `autocompleteToolbarStyle(_:)`.
+    ///
+    /// You can use the ``standard`` style or your own style.
     struct ToolbarStyle: Codable, Equatable {
         
         /// Create an autocomplete toolbar style.

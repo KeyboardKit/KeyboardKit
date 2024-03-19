@@ -12,7 +12,8 @@ public extension Autocomplete {
     
     /// This view mimics a native autocomplete separator.
     ///
-    /// Style it with `.autocompleteToolbarSeparatorStyle`.
+    /// You can style this component using the view modifier
+    /// ``autocompleteToolbarSeparatorStyle(_:)``.
     struct ToolbarSeparator: View {
         
         /// Create an autocomplete toolbar item separator.

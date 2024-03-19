@@ -12,9 +12,16 @@ public extension Autocomplete {
     
     /// This view mimics a native autocomplete toolbar.
     ///
-    /// Style this view with `.autocompleteToolbarStyle`.
-    ///
+    /// You can style this component with the style modifier
+    /// ``autocompleteToolbarStyle(_:)``.
+    /// 
     /// You can also pass in custom item and separator views.
+    ///
+    /// > Note: This view will be rebuilt in KeyboardKit 9.0,
+    /// to work like SystemKeyboard, where the view builders
+    /// provide you with the standard view. This will reduce
+    /// the number of initializers needed and make it easier
+    /// to work with this component.
     struct Toolbar<ItemView: View, SeparatorView: View>: View {
         
         /// Create a toolbar with custom views.
@@ -29,7 +36,7 @@ public extension Autocomplete {
         public init(
             suggestions: [Autocomplete.Suggestion],
             locale: Locale = .current,
-            itemView: @escaping ItemViewBuilder,
+            itemView: @escaping ItemViewBuilderOld,
             separatorView: @escaping SeparatorViewBuilder,
             suggestionAction: @escaping SuggestionAction
         ) {
@@ -46,7 +53,7 @@ public extension Autocomplete {
             suggestions: [Autocomplete.Suggestion],
             locale: Locale = .current,
             style: Style,
-            itemView: @escaping ItemViewBuilder,
+            itemView: @escaping ItemViewBuilderOld,
             separatorView: @escaping SeparatorViewBuilder,
             suggestionAction: @escaping SuggestionAction
         ) {
@@ -59,14 +66,17 @@ public extension Autocomplete {
         }
         
         public typealias Item = Autocomplete.ToolbarItem
+        public typealias ItemViewBuilderOld = (Suggestion, Style, Locale) -> ItemView
         public typealias Separator = Autocomplete.ToolbarSeparator
+        public typealias SeparatorViewBuilder = (Suggestion, Style) -> SeparatorView
         public typealias Style = Autocomplete.ToolbarStyle
         public typealias Suggestion = Autocomplete.Suggestion
+        public typealias SuggestionAction = (Suggestion) -> Void
         
         private let items: [BarItem]
         private let locale: Locale
         private let suggestionAction: SuggestionAction
-        private let itemView: ItemViewBuilder
+        private let itemView: ItemViewBuilderOld
         private let separatorView: SeparatorViewBuilder
         
         /// Deprecated: Remove this in 9.0.
@@ -79,16 +89,6 @@ public extension Autocomplete {
         private var style: Autocomplete.ToolbarStyle {
             initStyle ?? envStyle
         }
-        
-        
-        /// This is a typealias for a suggestion tap action.
-        public typealias SuggestionAction = (Suggestion) -> Void
-        
-        /// This toolbar item view builder.
-        public typealias ItemViewBuilder = (Suggestion, Style, Locale) -> ItemView
-        
-        /// This toolbar separator view builder.
-        public typealias SeparatorViewBuilder = (Suggestion, Style) -> SeparatorView
         
         /// This internal struct is used to wrap item data.
         struct BarItem: Identifiable {
@@ -113,6 +113,41 @@ public extension Autocomplete {
             }
             .frame(height: style.height)
         }
+    }
+}
+
+private extension Autocomplete.Toolbar {
+    
+    func itemButton(for suggestion: Suggestion) -> some View {
+        Button {
+            suggestionAction(suggestion)
+        } label: {
+            itemView(suggestion, style, locale)
+                .autocompleteToolbarItemStyle(
+                    suggestion.isAutocorrect ? style.autocorrectItem : style.item
+                )
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+private extension Autocomplete.Toolbar {
+    
+    func isLast(_ item: BarItem) -> Bool {
+        item.id == items.last?.id
+    }
+    
+    func isNextItemAutocomplete(for item: BarItem) -> Bool {
+        guard let index = (items.firstIndex { $0.id == item.id }) else { return false }
+        let nextIndex = items.index(after: index)
+        guard nextIndex < items.count else { return false }
+        return items[nextIndex].suggestion.isAutocorrect
+    }
+    
+    func useSeparator(for item: BarItem) -> Bool {
+        if item.suggestion.isAutocorrect { return false }
+        if isLast(item) { return false }
+        return !isNextItemAutocomplete(for: item)
     }
 }
 
@@ -180,7 +215,7 @@ public extension Autocomplete.Toolbar where SeparatorView == Separator {
     init(
         suggestions: [Suggestion],
         locale: Locale = .current,
-        itemView: @escaping ItemViewBuilder,
+        itemView: @escaping ItemViewBuilderOld,
         suggestionAction: @escaping SuggestionAction
     ) {
         self.items = suggestions.map { BarItem($0) }
@@ -196,7 +231,7 @@ public extension Autocomplete.Toolbar where SeparatorView == Separator {
         suggestions: [Suggestion],
         locale: Locale = .current,
         style: Style,
-        itemView: @escaping ItemViewBuilder,
+        itemView: @escaping ItemViewBuilderOld,
         suggestionAction: @escaping SuggestionAction
     ) {
         self.items = suggestions.map { BarItem($0) }
@@ -249,41 +284,6 @@ public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == S
         self.suggestionAction = suggestionAction
         self.itemView = Self.standardItemView
         self.separatorView = Self.standardSeparatorView
-    }
-}
-
-private extension Autocomplete.Toolbar {
-    
-    func itemButton(for suggestion: Suggestion) -> some View {
-        Button {
-            suggestionAction(suggestion)
-        } label: {
-            itemView(suggestion, style, locale)
-                .autocompleteToolbarItemStyle(
-                    suggestion.isAutocorrect ? style.autocorrectItem : style.item
-                )
-        }
-        .buttonStyle(.plain)
-    }
-}
-
-private extension Autocomplete.Toolbar {
-    
-    func isLast(_ item: BarItem) -> Bool {
-        item.id == items.last?.id
-    }
-    
-    func isNextItemAutocomplete(for item: BarItem) -> Bool {
-        guard let index = (items.firstIndex { $0.id == item.id }) else { return false }
-        let nextIndex = items.index(after: index)
-        guard nextIndex < items.count else { return false }
-        return items[nextIndex].suggestion.isAutocorrect
-    }
-    
-    func useSeparator(for item: BarItem) -> Bool {
-        if item.suggestion.isAutocorrect { return false }
-        if isLast(item) { return false }
-        return !isNextItemAutocomplete(for: item)
     }
 }
 

@@ -12,7 +12,8 @@ public extension Autocomplete {
     
     /// This view mimics a native autocomplete toolbar item.
     ///
-    /// Style this view with `.autocompleteToolbarItemStyle`.
+    /// You can style this component using the view modifier
+    /// ``autocompleteToolbarItemStyle(_:)``.
     struct ToolbarItem: View {
         
         /// Create an autocomplete toolbar item.
