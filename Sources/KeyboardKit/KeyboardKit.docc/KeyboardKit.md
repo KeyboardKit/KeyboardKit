@@ -133,6 +133,7 @@ KeyboardKit is available under the MIT license.
 - <doc:State-Article>
 - <doc:Styling-Article>
 - <doc:Text-Routing-Article>
+- <doc:Themes-Article>
 - <doc:Views-Article>
 
 ### Essentials
@@ -186,6 +187,10 @@ KeyboardKit is available under the MIT license.
 ### Emojis
 
 - ``Emoji``
+- ``EmojiCategory``
+- ``EmojiVersion``
+- ``MostRecentEmojiProvider``
+- ``FrequentEmojiProvider``
 
 ### Feedback
 
@@ -218,6 +223,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLocale``
 - ``LocaleContextMenu``
 - ``LocaleDictionary``
+- ``Localizable``
 - ``LocalizedService``
 
 ### Previews

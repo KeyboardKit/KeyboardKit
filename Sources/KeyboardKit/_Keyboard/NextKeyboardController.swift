@@ -16,7 +16,7 @@ import UIKit
  The ``KeyboardInputViewController`` will by register itself
  as the ``shared`` controller in `viewDidLoad`.
  */
-final class NextKeyboardController {
+public final class NextKeyboardController {
 
     private init() {}
 
