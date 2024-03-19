@@ -21,22 +21,32 @@ public extension Callouts {
         /// - Parameters:
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
-        ///   - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
         ///   - emojiStyle: The emoji style to apply to the view, by default the standard style for the provided context.
         public init(
             calloutContext: CalloutContext.ActionContext,
             keyboardContext: KeyboardContext,
-            style: KeyboardStyle.ActionCallout = .standard,
             emojiStyle: KeyboardStyle.EmojiKeyboard? = nil
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.style = style
+            self.initStyle = nil
+            self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
+        }
+        
+        @available(*, deprecated, message: "Style this view with .actionCalloutStyle instead.")
+        public init(
+            calloutContext: CalloutContext.ActionContext,
+            keyboardContext: KeyboardContext,
+            style: Callouts.ActionCalloutStyle = .standard,
+            emojiStyle: KeyboardStyle.EmojiKeyboard? = nil
+        ) {
+            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
+            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+            self.initStyle = style
             self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
         }
         
         public typealias Context = CalloutContext.ActionContext
-        public typealias Style = KeyboardStyle.ActionCallout
         public typealias EmojiStyle = KeyboardStyle.EmojiKeyboard
         
         @ObservedObject
@@ -45,8 +55,10 @@ public extension Callouts {
         @ObservedObject
         private var keyboardContext: KeyboardContext
         
-        private let style: Style
         private let emojiStyle: EmojiStyle
+        
+        @Environment(\.actionCalloutStyle)
+        private var envStyle
         
         public var body: some View {
             Button(action: calloutContext.reset) {
@@ -63,6 +75,12 @@ public extension Callouts {
             .position(x: positionX, y: positionY)
             .offset(y: style.verticalOffset)
         }
+        
+        // MARK: - Deprecated
+        
+        private typealias Style = Callouts.ActionCalloutStyle
+        private let initStyle: Style?
+        private var style: Style { initStyle ?? envStyle }
     }
 }
 
@@ -84,15 +102,18 @@ private extension Callouts.ActionCallout {
         let buttonSize = CGSize(width: frameSize.width * widthScale, height: frameSize.height)
         return buttonSize.limited(to: style.maxButtonSize)
     }
-    var calloutStyle: KeyboardStyle.Callout { style.callout }
+    var calloutStyle: Callouts.CalloutStyle { style.callout }
     var cornerRadius: CGFloat { calloutStyle.cornerRadius }
     var curveSize: CGSize { calloutStyle.curveSize }
     var isLeading: Bool { calloutContext.isLeading }
     var isTrailing: Bool { calloutContext.isTrailing }
     
     var buttonArea: some View {
-        Callouts.ButtonArea(frame: buttonFrame, style: calloutStyle)
-            .opacity(isPad ? 0 : 1)
+        Callouts.ButtonArea(
+            frame: buttonFrame
+        )
+        .opacity(isPad ? 0 : 1)
+        .calloutStyle(calloutStyle)
     }
     
     var callout: some View {
@@ -177,25 +198,19 @@ private extension KeyboardAction {
     }
 }
 
-struct Callouts_ActionCallout_Previews: PreviewProvider {
+#Preview {
 
-    static let actionHandler = KeyboardPreviews.PreviewKeyboardActionHandler()
-
-    static let actionProvider = KeyboardPreviews.PreviewCalloutActionProvider()
-
-    static let keyboardContext = KeyboardContext.preview
-
-    static let actionContext1 = Callouts.ActionCallout.Context(
-        actionProvider: actionProvider,
+    let actionContext1 = Callouts.ActionCallout.Context(
+        actionProvider: .preview,
         tapAction: { _ in }
     )
 
-    static let actionContext2 = Callouts.ActionCallout.Context(
-        actionProvider: actionProvider,
+    let actionContext2 = Callouts.ActionCallout.Context(
+        actionProvider: .preview,
         tapAction: { _ in }
     )
 
-    static func previewGroup<ButtonView: View>(
+    func previewGroup<ButtonView: View>(
         view: ButtonView,
         actionContext: CalloutContext.ActionContext,
         alignment: HorizontalAlignment
@@ -213,21 +228,24 @@ struct Callouts_ActionCallout_Previews: PreviewProvider {
         )
         .keyboardActionCalloutContainer(
             calloutContext: actionContext,
-            keyboardContext: keyboardContext,
-            style: .standard
+            keyboardContext: .preview
         )
     }
     
-    static var previews: some View {
-        VStack {
-            previewGroup(
-                view: Color.red.frame(width: 40, height: 50),
-                actionContext: actionContext1,
-                alignment: .leading)
-            previewGroup(
-                view: Color.yellow.frame(width: 40, height: 50),
-                actionContext: actionContext2,
-                alignment: .trailing)
-        }
+    return VStack {
+        previewGroup(
+            view: Color.red.frame(width: 40, height: 50),
+            actionContext: actionContext1,
+            alignment: .leading
+        )
+        previewGroup(
+            view: Color.yellow.frame(width: 40, height: 50),
+            actionContext: actionContext2,
+            alignment: .trailing
+        )
     }
+    .actionCalloutStyle(.init(
+        callout: .preview2,
+        selectedBackgroundColor: .purple
+    ))
 }

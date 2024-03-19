@@ -19,7 +19,7 @@ The ``KeyboardButton`` namespace defines a set of keyboard button types that can
 
 You can also use the **.keyboardButton** view modifier to convert any view to a keyboard button.
 
-These button components can be styled with the ``KeyboardStyle/Button`` style, and the other button-specific styles.
+These button components can be styled with ``KeyboardButton/ButtonStyle``, and the other button-specific styles.
 
 
 

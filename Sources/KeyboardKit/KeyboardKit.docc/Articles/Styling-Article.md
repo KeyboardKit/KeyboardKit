@@ -2,9 +2,7 @@
 
 This article describes the KeyboardKit styling engine.
 
-While native iOS keyboards provide few ways to customize the look and feel of the keyboard, KeyboardKit-based keyboards can be styled and customized to great extent.
-
-KeyboardKit uses ``KeyboardStyle`` types to style its views. For instance, a ``KeyboardStyle/InputCallout`` style can be used to style a ``Callouts/InputCallout`` view.
+While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit-based keyboards can be customized to great extent.
 
 [KeyboardKit Pro][Pro] unlocks a powerful theme engine and many themes. More information about Pro features can be found at the end of this article.
 
@@ -67,17 +65,17 @@ Note that applying a dark appearances will make iOS tell the extension that the 
 
 ## Keyboard styles
 
-The ``KeyboardStyle`` namespace contains many styles, like ``KeyboardStyle/Button``, ``KeyboardStyle/Callout`` and ``KeyboardStyle/EmojiKeyboard``.
+KeyboardKit defines many different styles, like ``KeyboardButton/ButtonStyle``, ``Callouts/CalloutStyle``, etc.
 
-All styles can be modified, including most standard values. For instance, here we apply a red background to the standard ``KeyboardStyle/Callout`` style:
+All styles can be modified, including most standard values. For instance, here we apply a red background to the standard ``Callouts/CalloutStyle`` style:
 
 ```swift
-var style = KeyboardStyle.Callout.standard
+var style = Callouts.CalloutStyle.standard
 style.backgroundColor = .red
-KeyboardStyle.Callout.standard = style
+Callouts.CalloutStyle.standard = style
 ```
 
-Most styles have a **.standard** style that serves as a global default. These standard styles can be overwritten to change the global default style of that component.
+Most styles have a **.standard** style that serves as a global default. These standard styles can be overwritten to change the global default style for that particular component.
 
 
 

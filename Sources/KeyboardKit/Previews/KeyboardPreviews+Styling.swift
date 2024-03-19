@@ -44,7 +44,7 @@ extension KeyboardPreviews {
             isPressed ? .preview2 : .preview1
         }
         
-        override var inputCalloutStyle: KeyboardStyle.InputCallout {
+        override var inputCalloutStyle: Callouts.InputCalloutStyle {
             .init(
                 callout: .preview1,
                 calloutSize: CGSize(width: 0, height: 40),
@@ -52,7 +52,7 @@ extension KeyboardPreviews {
             )
         }
         
-        override var actionCalloutStyle: KeyboardStyle.ActionCallout {
+        override var actionCalloutStyle: Callouts.ActionCalloutStyle {
             .init(
                 callout: .preview1,
                 font: .init(.headline),

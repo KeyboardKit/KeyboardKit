@@ -105,7 +105,7 @@ private extension Autocomplete.ToolbarStyle {
 
     struct Key: EnvironmentKey {
 
-        public static var defaultValue: Autocomplete.ToolbarStyle = .standard
+        static var defaultValue: Autocomplete.ToolbarStyle = .standard
     }
 }
 

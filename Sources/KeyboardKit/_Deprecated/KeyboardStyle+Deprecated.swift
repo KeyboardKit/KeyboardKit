@@ -37,6 +37,15 @@ public extension KeyboardStyle {
     
     @available(*, deprecated, renamed: "KeyboardButton.ButtonShadowStyle")
     typealias ButtonShadow = KeyboardButton.ButtonShadowStyle
+    
+    @available(*, deprecated, renamed: "Callouts.CalloutStyle")
+    typealias Callout = Callouts.CalloutStyle
+    
+    @available(*, deprecated, renamed: "Callouts.ActionCalloutStyle")
+    typealias ActionCallout = Callouts.ActionCalloutStyle
+    
+    @available(*, deprecated, renamed: "Callouts.InputCalloutStyle")
+    typealias InputCallout = Callouts.InputCalloutStyle
 }
 
 @available(*, deprecated, message: "This style is replaced by the Autocomplete.ToolbarItem's background properties.")

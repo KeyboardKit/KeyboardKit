@@ -50,7 +50,7 @@ private extension Keyboard.ToolbarStyle {
 
     struct Key: EnvironmentKey {
 
-        public static var defaultValue: Keyboard.ToolbarStyle = .standard
+        static var defaultValue: Keyboard.ToolbarStyle = .standard
     }
 }
 

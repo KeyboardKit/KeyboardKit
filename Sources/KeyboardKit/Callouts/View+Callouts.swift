@@ -10,18 +10,31 @@ import SwiftUI
 
 public extension View {
     
-    /// Apply a keyboard action and input callout to the view.
+    /// Setup the view as an keyboard callout container.
     ///
     /// - Parameters:
     ///   - calloutContext: The callout context to use.
     ///   - keyboardContext: The keyboard context to use.
-    ///   - actionCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
-    ///   - inputCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
+    func keyboardCalloutContainer(
+        calloutContext: CalloutContext,
+        keyboardContext: KeyboardContext
+    ) -> some View {
+        self.keyboardActionCalloutContainer(
+                calloutContext: calloutContext.actionContext,
+                keyboardContext: keyboardContext
+            )
+            .keyboardInputCalloutContainer(
+                calloutContext: calloutContext.inputContext,
+                keyboardContext: keyboardContext
+            )
+    }
+    
+    @available(*, deprecated, message: "Apply style with .actionCalloutStyle and  .inputCalloutStyle instead.")
     func keyboardCalloutContainer(
         calloutContext: CalloutContext,
         keyboardContext: KeyboardContext,
-        actionCalloutStyle: KeyboardStyle.ActionCallout = .standard,
-        inputCalloutStyle: KeyboardStyle.InputCallout = .standard
+        actionCalloutStyle: Callouts.ActionCalloutStyle = .standard,
+        inputCalloutStyle: Callouts.InputCalloutStyle = .standard
     ) -> some View {
         self.keyboardActionCalloutContainer(
                 calloutContext: calloutContext.actionContext,
@@ -35,16 +48,29 @@ public extension View {
             )
     }
 
-    /// Apply a keyboard action callout to the view.
+    /// Setup the view as an action callout container.
     ///
     /// - Parameters:
     ///   - calloutContext: The callout context to use.
     ///   - keyboardContext: The keyboard context to use.
-    ///   - style: The style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
+    func keyboardActionCalloutContainer(
+        calloutContext: CalloutContext.ActionContext,
+        keyboardContext: KeyboardContext
+    ) -> some View {
+        self.overlay(
+            Callouts.ActionCallout(
+                calloutContext: calloutContext,
+                keyboardContext: keyboardContext
+            )
+        )
+        .coordinateSpace(name: calloutContext.coordinateSpace)
+    }
+    
+    @available(*, deprecated, message: "Apply a style with .actionCalloutStyle instead.")
     func keyboardActionCalloutContainer(
         calloutContext: CalloutContext.ActionContext,
         keyboardContext: KeyboardContext,
-        style: KeyboardStyle.ActionCallout = .standard
+        style: Callouts.ActionCalloutStyle = .standard
     ) -> some View {
         self.overlay(
             Callouts.ActionCallout(
@@ -61,22 +87,35 @@ public extension View {
     /// - Parameters:
     ///   - style: The style apply, by default `.standard`.
     func keyboardCalloutShadow(
-        style: KeyboardStyle.Callout = .standard
+        style: Callouts.CalloutStyle = .standard
     ) -> some View {
         self.shadow(color: style.borderColor, radius: 0.4)
             .shadow(color: style.shadowColor, radius: style.shadowRadius)
     }
     
-    /// Apply a keyboard input callout to the view.
+    /// Setup the view as an input callout container.
     ///
     /// - Parameters:
     ///   - calloutContext: The callout context to use.
     ///   - keyboardContext: The keyboard context to use.
-    ///   - style: The style to apply, by default ``KeyboardStyle/InputCallout/standard``.
+    func keyboardInputCalloutContainer(
+        calloutContext: CalloutContext.InputContext,
+        keyboardContext: KeyboardContext
+    ) -> some View {
+        self.overlay(
+            Callouts.InputCallout(
+                calloutContext: calloutContext,
+                keyboardContext: keyboardContext
+            )
+        )
+        .coordinateSpace(name: calloutContext.coordinateSpace)
+    }
+    
+    @available(*, deprecated, message: "Apply a style with .inputCalloutStyle instead.")
     func keyboardInputCalloutContainer(
         calloutContext: CalloutContext.InputContext,
         keyboardContext: KeyboardContext,
-        style: KeyboardStyle.InputCallout = .standard
+        style: Callouts.InputCalloutStyle = .standard
     ) -> some View {
         self.overlay(
             Callouts.InputCallout(

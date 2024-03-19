@@ -123,7 +123,7 @@ public extension CalloutContext.ActionContext {
         if shouldReset(for: value) { return reset() }
         guard shouldUpdateSelection(for: value) else { return }
         let translation = value.width
-        let standardStyle = KeyboardStyle.ActionCallout.standard
+        let standardStyle = Callouts.ActionCalloutStyle.standard
         let maxButtonSize = standardStyle.maxButtonSize
         let buttonSize = buttonFrame.size.limited(to: maxButtonSize)
         let indexWidth = 0.9 * buttonSize.width

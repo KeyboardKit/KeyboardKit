@@ -15,7 +15,9 @@ These release notes only cover the current major version.
 
 This version bumps Swift to 5.9 and adds support for visionOS.
 
-This version also refactors view styling to be injected with view modifiers instead of with initializers.
+This version also refactors view styling to be injected with view modifiers instead of initializers.
+
+Due to complexities with the style provider concept, some views still use a style provider instead of environment styles.
 
 ### ✨ Features
 
@@ -29,16 +31,19 @@ This version also refactors view styling to be injected with view modifiers inst
 ### 💡 Adjustments
 
 * `AutocompleteToolbar` has been renamed to `Autocomplete.Toolbar`.
-* `Autocomplete.Toolbar` and its views now apply styles with view modifiers.
-* `KeyboardButton` now partially uses environment styling, where applicable.
-* `KeyboardButton` and its views now apply styles with view modifiers. 
+* `KeyboardButton` sub views now apply styles using view modifiers. 
 * `KeyboardStyle.AutocompleteToolbar` has been renamed to `Autocomplete.ToolbarStyle`.
 * `KeyboardStyle.AutocompleteToolbarItem` has been renamed to `Autocomplete.ToolbarItemStyle`.
 * `KeyboardStyle.AutocompleteToolbarSeparator` has been renamed to `Autocomplete.ToolbarSeparatorStyle`.
-* `KeyboardStyle+Background` has been renamed to `Keyboard.Background`.
+* `KeyboardStyle.Background` has been renamed to `Keyboard.Background`.
 * `KeyboardStyle.Button` has been renamed to `KeyboardButton.ButtonStyle`.
 * `KeyboardStyle.ButtonBorder` has been renamed to `KeyboardButton.ButtonBorderStyle`.
 * `KeyboardStyle.ButtonShadow` has been renamed to `Autocomplete.ButtonShadowStyle`.
+* `KeyboardStyle.Callout` has been renamed to `Callouts.CalloutStyle`.
+* `KeyboardStyle.ActionCallout` has been renamed to `Callouts.ActionCalloutStyle`.
+* `KeyboardStyle.InputCallout` has been renamed to `Callouts.InputCalloutStyle`.
+
+### 💡 Renamed View Modifiers
 
 * `.keyboardButtonStyle` has been renamed to `.keyboardButton`.
 * `.keyboardButtonStyle` is a new modifier that applies an environment style.

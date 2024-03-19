@@ -174,14 +174,14 @@ public struct SystemKeyboard<
 
     public typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
     
-    private var actionCalloutStyle: KeyboardStyle.ActionCallout {
+    private var actionCalloutStyle: Callouts.ActionCalloutStyle {
         var style = styleProvider.actionCalloutStyle
         let insets = layoutConfig.buttonInsets
         style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
         return style
     }
 
-    private var inputCalloutStyle: KeyboardStyle.InputCallout {
+    private var inputCalloutStyle: Callouts.InputCalloutStyle {
         var style = styleProvider.inputCalloutStyle
         let insets = layoutConfig.buttonInsets
         style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
@@ -207,10 +207,10 @@ public struct SystemKeyboard<
             .background(renderBackground ? styleProvider.backgroundStyle : nil)
             .keyboardCalloutContainer(
                 calloutContext: calloutContext,
-                keyboardContext: keyboardContext,
-                actionCalloutStyle: actionCalloutStyle,
-                inputCalloutStyle: inputCalloutStyle
+                keyboardContext: keyboardContext
             )
+            .actionCalloutStyle(actionCalloutStyle)
+            .inputCalloutStyle(inputCalloutStyle)
     }
 }
 
@@ -341,7 +341,7 @@ private extension SystemKeyboard {
  `IMPORTANT` In previews, you must provide a custom width to
  get buttons to show up, since there is no shared controller.
  */
-struct SystemKeyboard_Previews: PreviewProvider {
+#Preview {
 
     struct Preview: View {
 
@@ -352,6 +352,7 @@ struct SystemKeyboard_Previews: PreviewProvider {
                 .init(text: "Bar", isAutocorrect: true),
                 .init(text: "Baz")
             ]
+            // controller.services.styleProvider = .crazy
             // controller.keyboardContext.keyboardType = .emojis
             return controller
         }()
@@ -410,13 +411,12 @@ struct SystemKeyboard_Previews: PreviewProvider {
                         },
                         toolbar: { $0.view }
                     )
-                }.background(Color.keyboardBackground)
+                }
+                .background(Color.keyboardBackground)
             }
         }
     }
 
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }
 #endif

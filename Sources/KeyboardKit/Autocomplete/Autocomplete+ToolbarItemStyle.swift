@@ -122,7 +122,7 @@ private extension Autocomplete.ToolbarItemStyle {
 
     struct Key: EnvironmentKey {
 
-        public static var defaultValue: Autocomplete.ToolbarItemStyle = .standard
+        static var defaultValue: Autocomplete.ToolbarItemStyle = .standard
     }
 }
 

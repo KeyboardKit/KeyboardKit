@@ -18,19 +18,26 @@ public extension Callouts {
         ///
         /// - Parameters:
         ///   - frame: The button area frame.
-        ///   - style: The style to use, by default `.standard`.
         public init(
-            frame: CGRect,
-            style: Style = .standard
+            frame: CGRect
         ) {
             self.frame = frame
-            self.style = style
+            self.initStyle = nil
         }
         
-        public typealias Style = KeyboardStyle.Callout
+        @available(*, deprecated, message: "Style this view with .calloutStyle instead.")
+        public init(
+            frame: CGRect,
+            style: Callouts.CalloutStyle = .standard
+        ) {
+            self.frame = frame
+            self.initStyle = style
+        }
         
         private let frame: CGRect
-        private let style: Style
+        
+        @Environment(\.calloutStyle)
+        private var envStyle
         
         public var body: some View {
             HStack(alignment: .top, spacing: 0) {
@@ -39,6 +46,12 @@ public extension Callouts {
                 calloutCurve
             }
         }
+        
+        // MARK: - Deprecated
+        
+        private typealias Style = Callouts.CalloutStyle
+        private let initStyle: Style?
+        private var style: Style { initStyle ?? envStyle }
     }
 }
 
@@ -64,10 +77,10 @@ private extension Callouts.ButtonArea {
 #Preview {
     
     Callouts.ButtonArea(
-        frame: CGRect(x: 0, y: 0, width: 50, height: 50),
-        style: .standard
+        frame: CGRect(x: 0, y: 0, width: 50, height: 50)
     )
     .padding(30)
     .background(Color.gray)
     .cornerRadius(20)
+    .calloutStyle(.preview1)
 }

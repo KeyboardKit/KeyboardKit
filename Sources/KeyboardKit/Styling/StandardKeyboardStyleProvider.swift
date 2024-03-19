@@ -170,23 +170,23 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     // MARK: - Callouts
 
     /// The callout style to apply to callouts.
-    open var calloutStyle: KeyboardStyle.Callout {
-        var style = KeyboardStyle.Callout.standard
+    open var calloutStyle: Callouts.CalloutStyle {
+        var style = Callouts.CalloutStyle.standard
         let button = buttonStyle(for: .character(""), isPressed: false)
         style.buttonCornerRadius = button.cornerRadius ?? 5
         return style
     }
 
     /// The style to use on ``Callouts/ActionCallout`` views.
-    open var actionCalloutStyle: KeyboardStyle.ActionCallout {
-        var style = KeyboardStyle.ActionCallout.standard
+    open var actionCalloutStyle: Callouts.ActionCalloutStyle {
+        var style = Callouts.ActionCalloutStyle.standard
         style.callout = calloutStyle
         return style
     }
 
     /// The style to use on ``Callouts/InputCallout`` views.
-    open var inputCalloutStyle: KeyboardStyle.InputCallout {
-        var style = KeyboardStyle.InputCallout.standard
+    open var inputCalloutStyle: Callouts.InputCalloutStyle {
+        var style = Callouts.InputCalloutStyle.standard
         style.callout = calloutStyle
         return style
     }

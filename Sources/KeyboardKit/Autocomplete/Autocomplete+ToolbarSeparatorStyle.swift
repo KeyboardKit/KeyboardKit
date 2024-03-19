@@ -82,7 +82,7 @@ private extension Autocomplete.ToolbarSeparatorStyle {
 
     struct Key: EnvironmentKey {
 
-        public static var defaultValue: Autocomplete.ToolbarSeparatorStyle = .standard
+        static var defaultValue: Autocomplete.ToolbarSeparatorStyle = .standard
     }
 }
 
