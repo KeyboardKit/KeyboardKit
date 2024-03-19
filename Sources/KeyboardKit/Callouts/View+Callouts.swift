@@ -10,23 +10,20 @@ import SwiftUI
 
 public extension View {
     
-    /**
-     Apply a keyboard action and input callout to the view.
-
-     - Parameters:
-       - calloutContext: The callout context to use.
-       - keyboardContext: The keyboard context to use.
-       - actionCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
-       - inputCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
-     */
+    /// Apply a keyboard action and input callout to the view.
+    ///
+    /// - Parameters:
+    ///   - calloutContext: The callout context to use.
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - actionCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
+    ///   - inputCalloutStyle: The action callout style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
     func keyboardCalloutContainer(
         calloutContext: CalloutContext,
         keyboardContext: KeyboardContext,
         actionCalloutStyle: KeyboardStyle.ActionCallout = .standard,
         inputCalloutStyle: KeyboardStyle.InputCallout = .standard
     ) -> some View {
-        self
-            .keyboardActionCalloutContainer(
+        self.keyboardActionCalloutContainer(
                 calloutContext: calloutContext.actionContext,
                 keyboardContext: keyboardContext,
                 style: actionCalloutStyle
@@ -38,14 +35,12 @@ public extension View {
             )
     }
 
-    /**
-     Apply a keyboard action callout to the view.
-
-     - Parameters:
-       - calloutContext: The callout context to use.
-       - keyboardContext: The keyboard context to use.
-       - style: The style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
-     */
+    /// Apply a keyboard action callout to the view.
+    ///
+    /// - Parameters:
+    ///   - calloutContext: The callout context to use.
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - style: The style to apply, by default ``KeyboardStyle/ActionCallout/standard``.
     func keyboardActionCalloutContainer(
         calloutContext: CalloutContext.ActionContext,
         keyboardContext: KeyboardContext,
@@ -57,15 +52,14 @@ public extension View {
                 keyboardContext: keyboardContext,
                 style: style
             )
-        ).coordinateSpace(name: calloutContext.coordinateSpace)
+        )
+        .coordinateSpace(name: calloutContext.coordinateSpace)
     }
 
-    /**
-     Apply a keyboard callout shadow to the view.
-
-     - Parameters:
-       - style: The style apply, by default `.standard`.
-     */
+    /// Apply a keyboard callout shadow to the view.
+    ///
+    /// - Parameters:
+    ///   - style: The style apply, by default `.standard`.
     func keyboardCalloutShadow(
         style: KeyboardStyle.Callout = .standard
     ) -> some View {
@@ -73,14 +67,12 @@ public extension View {
             .shadow(color: style.shadowColor, radius: style.shadowRadius)
     }
     
-    /**
-     Apply a keyboard input callout to the view.
-     
-     - Parameters:
-       - calloutContext: The callout context to use.
-       - keyboardContext: The keyboard context to use.
-       - style: The style to apply, by default ``KeyboardStyle/InputCallout/standard``.
-     */
+    /// Apply a keyboard input callout to the view.
+    ///
+    /// - Parameters:
+    ///   - calloutContext: The callout context to use.
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - style: The style to apply, by default ``KeyboardStyle/InputCallout/standard``.
     func keyboardInputCalloutContainer(
         calloutContext: CalloutContext.InputContext,
         keyboardContext: KeyboardContext,
@@ -92,6 +84,7 @@ public extension View {
                 keyboardContext: keyboardContext,
                 style: style
             )
-        ).coordinateSpace(name: calloutContext.coordinateSpace)
+        )
+        .coordinateSpace(name: calloutContext.coordinateSpace)
     }
 }

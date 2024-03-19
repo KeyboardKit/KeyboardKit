@@ -4,19 +4,16 @@
 //
 //  Created by Daniel Saidi on 2021-01-05.
 //
-//  Original solution by @kontiki at:
-//  https://stackoverflow.com/questions/56760335/round-specific-corners-swiftui
+//  Original: https://stackoverflow.com/questions/56760335
 //
 
 import SwiftUI
 
-/**
- This shape is a rounded rectangle where every corner can be
- given a custom corner radius.
- 
- The shape is internal, since it's just an internal tool. It
- is not a public part of KeyboardKit.
- */
+/// This shape is a rounded rectangle where every corner can
+/// be given a custom corner radius.
+///
+/// This view will be removed when this library is bumped to
+/// iOS 17, since SwiftUI then has an UnevenRoundedRectangle.
 struct CustomRoundedRectangle: Shape {
     
     init(
@@ -76,13 +73,16 @@ struct CustomRoundedRectangle: Shape {
     }
 }
 
-struct CustomRoundedRectangle_Previews: PreviewProvider {
+#Preview {
     
-    static var previews: some View {
-        CustomRoundedRectangle(topLeft: 10, topRight: 20, bottomLeft: 30, bottomRight: 40)
-            .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
-            .padding()
-            .background(Color.red)
-            .frame(width: 200, height: 200)
-    }
+    CustomRoundedRectangle(
+        topLeft: 10,
+        topRight: 20,
+        bottomLeft: 30,
+        bottomRight: 40
+    )
+    .foregroundColor(.blue)
+    .padding()
+    .background(Color.red)
+    .frame(width: 200, height: 200)
 }

@@ -101,7 +101,7 @@ private extension KeyboardButton.Content {
 #Preview {
     
     let multiLocaleContext: KeyboardContext = {
-        var context = KeyboardContext.preview
+        let context = KeyboardContext.preview
         context.locales = [
             KeyboardLocale.english.locale,
             KeyboardLocale.swedish.locale

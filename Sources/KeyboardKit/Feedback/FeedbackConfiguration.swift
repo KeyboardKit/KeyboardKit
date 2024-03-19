@@ -17,7 +17,7 @@ import Foundation
  you want to customize the feedback behavior in the keyboard.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/state``.
+ and injects it into ``KeyboardInputViewController/state``.
  */
 public class FeedbackConfiguration: ObservableObject {
     

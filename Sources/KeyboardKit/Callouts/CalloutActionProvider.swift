@@ -13,8 +13,7 @@ import Foundation
  secondary callout actions for any ``KeyboardAction``.
  
  KeyboardKit will register a ``StandardCalloutActionProvider``
- with ``KeyboardInputViewController/services``. It will then
- be used as the default action provider.
+ with ``KeyboardInputViewController/services``.
  
  To change the callout actions that are shown when different
  keys are long pressed, you can implement a custom provider.
@@ -30,5 +29,7 @@ import Foundation
 public protocol CalloutActionProvider: AnyObject {
     
     /// Get secondary callout actions for a certain action.
-    func calloutActions(for action: KeyboardAction) -> [KeyboardAction]
+    func calloutActions(
+        for action: KeyboardAction
+    ) -> [KeyboardAction]
 }

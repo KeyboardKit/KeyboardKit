@@ -10,24 +10,19 @@ import SwiftUI
 
 public extension Callouts {
     
-    /**
-     This callout can be used to present a secondary actions
-     callout above a keyboard button.
-     
-     In native iOS keyboards, an action callout is presented
-     when a button with secondary actions is long pressed.
-     */
+    /// This callout can show secondary actions in a callout.
+    ///
+    /// In iOS, this callout is presented when a button with
+    /// secondary actions is long pressed.
     struct ActionCallout: View {
         
-        /**
-         Create an action callout.
-         
-         - Parameters:
-           - calloutContext: The callout context to use.
-           - keyboardContext: The keyboard context to use.
-           - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
-           - emojiStyle: The emoji style to apply to the view, by default the standard style for the provided context.
-         */
+        /// Create an action callout.
+        ///
+        /// - Parameters:
+        ///   - calloutContext: The callout context to use.
+        ///   - keyboardContext: The keyboard context to use.
+        ///   - style: The style to apply to the view, by default ``KeyboardStyle/ActionCallout/standard``.
+        ///   - emojiStyle: The emoji style to apply to the view, by default the standard style for the provided context.
         public init(
             calloutContext: CalloutContext.ActionContext,
             keyboardContext: KeyboardContext,

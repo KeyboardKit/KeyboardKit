@@ -9,20 +9,19 @@
 import SwiftUI
 
 public extension Callouts {
-    /**
-     This callout can be used to show the currently typed action
-     above the pressed keyboard button.
-     */
+    
+    /// This callout can show the pressed char in a callout.
+    ///
+    /// In iOS, this callout is presented when a button with
+    /// an input character is pressed.
     struct InputCallout: View {
         
-        /**
-         Create an input callout.
-         
-         - Parameters:
-           - calloutContext: The callout context to use.
-           - keyboardContext: The keyboard context to use.
-           - style: The style to apply to the view, by default ``KeyboardStyle/InputCallout/standard``.
-         */
+        /// Create an input callout.
+        ///
+        /// - Parameters:
+        ///   - calloutContext: The callout context to use.
+        ///   - keyboardContext: The keyboard context to use.
+        ///   - style: The style to apply to the view, by default ``KeyboardStyle/InputCallout/standard``.
         public init(
             calloutContext: Context,
             keyboardContext: KeyboardContext,

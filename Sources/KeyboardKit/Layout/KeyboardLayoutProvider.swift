@@ -13,8 +13,7 @@ import Foundation
  keyboard layouts for any ``KeyboardContext``.
  
  KeyboardKit will inject a ``StandardKeyboardLayoutProvider``
- into ``KeyboardInputViewController/services``. It will then
- be used as the default layout provider.
+ into ``KeyboardInputViewController/services``.
  
  To change the layouts that are used for different keyboards,
  you can implement a custom provider.

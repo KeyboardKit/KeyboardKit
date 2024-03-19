@@ -31,7 +31,7 @@ import UIKit
  ``selectNextLocale()`` function toggles through the locales.
  
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/state``.
+ and injects it into ``KeyboardInputViewController/state``.
  */
 public class KeyboardContext: ObservableObject {
 

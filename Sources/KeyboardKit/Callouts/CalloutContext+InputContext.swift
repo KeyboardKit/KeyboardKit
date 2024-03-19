@@ -12,17 +12,13 @@ import SwiftUI
 
 public extension CalloutContext {
     
-    /**
-     This type can be used as input callout state.
-     */
+    /// This class provides observable input callout state.
     class InputContext: ObservableObject {
         
-        /**
-         Create a new input callout context instance.
-         
-         - Parameters:
-         - isEnabled: Whether or not callouts are enabled.
-         */
+        /// Create an input callout context instance.
+        ///
+        /// - Parameters:
+        ///   - isEnabled: Whether or not input callouts are enabled.
         public init(isEnabled: Bool) {
             self.isEnabled = isEnabled
         }
@@ -97,6 +93,7 @@ public extension CalloutContext.InputContext {
         self.buttonFrame = geo.frame(in: .named(coordinateSpace))
     }
 }
+
 
 // MARK: - Context Builders
 

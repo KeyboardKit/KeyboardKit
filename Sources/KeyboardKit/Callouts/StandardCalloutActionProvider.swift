@@ -58,7 +58,9 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
 
 
     /// Get callout actions for the provided action.
-    open func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
+    open func calloutActions(
+        for action: KeyboardAction
+    ) -> [KeyboardAction] {
         calloutActionProvider(for: keyboardContext)
             .calloutActions(for: action)
     }

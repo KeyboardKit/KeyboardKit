@@ -11,20 +11,14 @@ import SwiftUI
 
 public extension CalloutContext {
     
-    /**
-     This type can be used as action callout state.
-     
-     The tap action and action provider can be changed later.
-     */
+    /// This class provides observable action callout state.
     class ActionContext: ObservableObject {
         
-        /**
-         Create a new action callout context instance.
-         
-         - Parameters:
-           - actionProvider: The action provider to use, if any.
-           - tapAction: The action to perform when tapping an action.
-         */
+        /// Create an action callout context instance.
+        ///
+        /// - Parameters:
+        ///   - actionProvider: The action provider to use, if any.
+        ///   - tapAction: The action to perform when tapping an action.
         public init(
             actionProvider: CalloutActionProvider?,
             tapAction: @escaping (KeyboardAction) -> Void

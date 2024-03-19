@@ -11,5 +11,5 @@ import Foundation
 /// This namespace contains callout-related types.
 ///
 /// The namespace doesn't contain protocols, open classes or
-/// types of higher importance. 
+/// types of higher importance.
 public struct Callouts {}

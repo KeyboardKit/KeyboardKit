@@ -23,7 +23,7 @@ import Combine
  from the result.
 
  KeyboardKit automatically creates an instance of this class
- and binds it to ``KeyboardInputViewController/state``.
+ and injects it into ``KeyboardInputViewController/state``.
  */
 public class AutocompleteContext: ObservableObject {
     

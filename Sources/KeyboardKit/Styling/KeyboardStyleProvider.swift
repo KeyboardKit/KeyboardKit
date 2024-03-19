@@ -14,8 +14,7 @@ import SwiftUI
  styles for different parts of a keyboard.
  
  KeyboardKit will register a ``StandardKeyboardStyleProvider``
- with ``KeyboardInputViewController/services``. It will then
- be used as the default style provider.
+ with ``KeyboardInputViewController/services``.
  
  To change the style of some parts of your keyboard, you can
  implement a custom style provider.

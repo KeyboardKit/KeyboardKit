@@ -10,19 +10,15 @@ import SwiftUI
 
 public extension Callouts {
     
-    /**
-     This view is used to cover the parts of the button that
-     was tapped or pressed to trigger the callout.
-     */
+    /// This view is used to cover the part of a button that
+    /// was tapped or pressed to trigger the callout.
     struct ButtonArea: View {
         
-        /**
-         Create an autocomplete toolbar item style.
-         
-         - Parameters:
-           - frame: The button area frame.
-           - style: The style to use, by default `.standard`.
-         */
+        /// Create a callout button area.
+        ///
+        /// - Parameters:
+        ///   - frame: The button area frame.
+        ///   - style: The style to use, by default `.standard`.
         public init(
             frame: CGRect,
             style: Style = .standard
@@ -49,9 +45,7 @@ public extension Callouts {
 private extension Callouts.ButtonArea {
     
     var backgroundColor: Color { style.backgroundColor }
-    
     var cornerRadius: CGFloat { style.buttonCornerRadius }
-    
     var curveSize: CGSize { style.curveSize }
     
     var buttonBody: some View {
@@ -67,15 +61,13 @@ private extension Callouts.ButtonArea {
     }
 }
 
-struct Callouts_ButtonArea_Previews: PreviewProvider {
+#Preview {
     
-    static var previews: some View {
-        Callouts.ButtonArea(
-            frame: CGRect(x: 0, y: 0, width: 50, height: 50),
-            style: .standard
-        )
-        .padding(30)
-        .background(Color.gray)
-        .cornerRadius(20)
-    }
+    Callouts.ButtonArea(
+        frame: CGRect(x: 0, y: 0, width: 50, height: 50),
+        style: .standard
+    )
+    .padding(30)
+    .background(Color.gray)
+    .cornerRadius(20)
 }

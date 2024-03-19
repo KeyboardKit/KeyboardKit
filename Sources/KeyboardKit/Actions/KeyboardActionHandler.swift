@@ -13,8 +13,7 @@ import CoreGraphics
  ``KeyboardAction``s.
  
  KeyboardKit will register a ``StandardKeyboardActionHandler``
- with ``KeyboardInputViewController/services``. It will then
- be used as the default action handler.
+ with ``KeyboardInputViewController/services``.
  
  To change how keyboard actions are handled by your keyboard,
  you can implement a custom provider.
