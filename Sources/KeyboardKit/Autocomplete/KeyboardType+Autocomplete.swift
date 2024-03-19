@@ -11,13 +11,13 @@ public extension Keyboard.KeyboardType {
     /// Whether or not this type prefers autocomplete.
     var prefersAutocomplete: Bool {
         switch self {
-        case .alphabetic: return true
-        case .numeric: return true
-        case .symbolic: return true
-        case .email: return false
-        case .emojis: return false
-        case .images: return false
-        case .custom: return true
+        case .alphabetic: true
+        case .numeric: true
+        case .symbolic: true
+        case .email: false
+        case .emojis: false
+        case .images: false
+        case .custom: true
         }
     }
 }
@@ -30,20 +30,20 @@ public extension UIKeyboardType {
     /// Whether or not this type prefers autocomplete.
     var prefersAutocomplete: Bool {
         switch self {
-        case .default: return true
-        case .alphabet: return true
-        case .asciiCapableNumberPad: return false
-        case .asciiCapable: return true
-        case .decimalPad: return false
-        case .emailAddress: return false
-        case .namePhonePad: return false
-        case .numberPad: return false
-        case .numbersAndPunctuation: return false
-        case .phonePad: return false
-        case .twitter: return true
-        case .URL: return false
-        case .webSearch: return false
-        @unknown default: return true
+        case .default: true
+        case .alphabet: true
+        case .asciiCapableNumberPad: false
+        case .asciiCapable: true
+        case .decimalPad: false
+        case .emailAddress: false
+        case .namePhonePad: false
+        case .numberPad: false
+        case .numbersAndPunctuation: false
+        case .phonePad: false
+        case .twitter: true
+        case .URL: false
+        case .webSearch: false
+        @unknown default: true
         }
     }
 }

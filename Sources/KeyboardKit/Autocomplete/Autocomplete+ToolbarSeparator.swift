@@ -28,22 +28,20 @@ public extension Autocomplete {
             self.initStyle = style
         }
         
-        /// Deprecated: Remove this in 9.0.
-        private let initStyle: Autocomplete.ToolbarSeparatorStyle?
-        
         @Environment(\.autocompleteToolbarSeparatorStyle)
         private var envStyle
-        
-        /// Deprecated: Replace this with initStyle in 9.0.
-        private var style: Autocomplete.ToolbarSeparatorStyle {
-            initStyle ?? envStyle
-        }
         
         public var body: some View {
             style.color
                 .frame(width: style.width)
                 .frame(height: style.height)
         }
+        
+        // MARK: - Deprecated
+        
+        private typealias Style = Autocomplete.ToolbarSeparatorStyle
+        private let initStyle: Style?
+        private var style: Style { initStyle ?? envStyle }
     }
 }
 

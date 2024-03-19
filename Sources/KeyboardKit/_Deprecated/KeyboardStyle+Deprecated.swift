@@ -25,6 +25,15 @@ public extension KeyboardStyle {
         public var color: Color
         public var cornerRadius: CGFloat
     }
+    
+    @available(*, deprecated, renamed: "KeyboardButton.ButtonStyle")
+    typealias Button = KeyboardButton.ButtonStyle
+    
+    @available(*, deprecated, renamed: "KeyboardButton.ButtonBorderStyle")
+    typealias ButtonBorder = KeyboardButton.ButtonBorderStyle
+    
+    @available(*, deprecated, renamed: "KeyboardButton.ButtonShadowStyle")
+    typealias ButtonShadow = KeyboardButton.ButtonShadowStyle
 }
 
 @available(*, deprecated, message: "This style is replaced by the Autocomplete.ToolbarItem's background properties.")

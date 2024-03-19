@@ -10,26 +10,27 @@ import SwiftUI
 
 public extension KeyboardButton {
     
-    /// This view renders a keyboard button bottom shadow.
+    /// This view mimics a native keyboard button shadow.
     ///
     /// Instead of being a shadow, the view is an overlay to
-    /// lets us use opaque shadows for transparent buttons.
+    /// support opaque shadows with semi-transparent buttons.
     ///
-    /// This is needed to render a shadow correctly for dark
-    /// mode bug workaround colors, which are semi-opaque.
+    /// You can style this component using the view modifier
+    /// ``keyboardButtonStyle(_:)``. 
     struct Shadow: View {
         
         /// Create a keyboard button shadow.
-        ///
-        /// - Parameters:
-        ///   - style: The button style to apply.
-        public init(style: Style) {
-            self.style = style
+        public init() {
+            self.initStyle = nil
         }
         
-        public typealias Style = KeyboardStyle.Button
+        @available(*, deprecated, message: "Style this view with .keyboardButtonStyle instead.")
+        public init(style: KeyboardButton.ButtonStyle) {
+            self.initStyle = style
+        }
         
-        private let style: Style
+        @Environment(\.keyboardButtonStyle)
+        private var envStyle
         
         public var body: some View {
             buttonShape
@@ -37,6 +38,12 @@ public extension KeyboardButton {
                 .offset(y: shadowSize)
                 .mask(buttonMask)
         }
+        
+        // MARK: - Deprecated
+        
+        private typealias Style = KeyboardButton.ButtonStyle
+        private let initStyle: Style?
+        private var style: Style { initStyle ?? envStyle }
     }
 }
 
@@ -71,4 +78,15 @@ private extension KeyboardButton.Shadow {
     var shadowSize: CGFloat {
         style.shadow?.size ?? 0
     }
+}
+
+#Preview {
+    
+    VStack {
+        KeyboardButton.Shadow()
+            .keyboardButtonStyle(.preview1)
+        KeyboardButton.Shadow()
+            .keyboardButtonStyle(.preview2)
+    }
+    .padding()
 }

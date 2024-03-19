@@ -11,19 +11,19 @@ public extension Keyboard.ReturnKeyType {
     /// Whether or not this type prefers autocomplete.
     var prefersAutocomplete: Bool {
         switch self {
-        case .return: return true
-        case .continue: return false
-        case .done: return false
-        case .emergencyCall: return false
-        case .go: return false
-        case .join: return false
-        case .newLine: return true
-        case .next: return false
-        case .ok: return true
-        case .route: return false
-        case .search: return false
-        case .send: return true
-        case .custom: return true
+        case .return: true
+        case .continue: false
+        case .done: false
+        case .emergencyCall: false
+        case .go: false
+        case .join: false
+        case .newLine: true
+        case .next: false
+        case .ok: true
+        case .route: false
+        case .search: false
+        case .send: true
+        case .custom: true
         }
     }
 }

@@ -10,28 +10,38 @@ import SwiftUI
 
 public extension KeyboardButton {
     
-    /// This view renders the key shape of a keyboard button.
+    /// This view mimics a native keyboard button shape.
     ///
     /// It applies a button shape, corner radius, shadow etc.
+    ///
+    /// You can style this component using the view modifier
+    /// ``keyboardButtonStyle(_:)``.
     struct Key: View {
         
-        /// Create a keyboard button body view.
+        /// Create a keyboard button body.
         ///
         /// - Parameters:
-        ///   - style: The button style to apply.
         ///   - isPressed: Whether or not the button is pressed, by default `false`.
         public init(
-            style: Style,
             isPressed: Bool = false
         ) {
-            self.style = style
+            self.initStyle = nil
             self.isPressed = isPressed
         }
         
-        public typealias Style = KeyboardStyle.Button
+        @available(*, deprecated, message: "Style this view with .keyboardButtonStyle instead.")
+        public init(
+            style: KeyboardButton.ButtonStyle,
+            isPressed: Bool = false
+        ) {
+            self.initStyle = style
+            self.isPressed = isPressed
+        }
         
-        private let style: Style
         private let isPressed: Bool
+        
+        @Environment(\.keyboardButtonStyle)
+        private var envStyle
         
         public var body: some View {
             RoundedRectangle(cornerRadius: cornerRadius)
@@ -40,8 +50,15 @@ public extension KeyboardButton {
                 .background(backgroundColor)
                 .overlay(isPressed ? style.pressedOverlayColor : .clear)
                 .cornerRadius(cornerRadius)
-                .overlay(KeyboardButton.Shadow(style: style))
+                .overlay(KeyboardButton.Shadow())
+                .keyboardButtonStyle(style)  // Not needed in 9.0
         }
+        
+        // MARK: - Deprecated
+        
+        private typealias Style = KeyboardButton.ButtonStyle
+        private let initStyle: Style?
+        private var style: Style { initStyle ?? envStyle }
     }
 }
 
@@ -56,12 +73,12 @@ public extension KeyboardButton.Key {
 #Preview {
     
     VStack {
-        KeyboardButton.Key(style: .preview1)
-        KeyboardButton.Key(style: .preview2)
-        KeyboardButton.Key(style: .previewImage)
+        KeyboardButton.Key()
+            .keyboardButtonStyle(.preview1)
+        KeyboardButton.Key()
+            .keyboardButtonStyle(.preview2)
+        KeyboardButton.Key()
+            .keyboardButtonStyle(.previewImage)
     }
     .padding()
-    .background(Color.gray)
-    .cornerRadius(10)
-    .environment(\.sizeCategory, .extraExtraLarge)
 }

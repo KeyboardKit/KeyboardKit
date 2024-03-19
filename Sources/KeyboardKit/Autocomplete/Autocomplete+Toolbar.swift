@@ -79,16 +79,8 @@ public extension Autocomplete {
         private let itemView: ItemViewBuilderOld
         private let separatorView: SeparatorViewBuilder
         
-        /// Deprecated: Remove this in 9.0.
-        private let initStyle: Autocomplete.ToolbarStyle?
-        
         @Environment(\.autocompleteToolbarStyle)
         private var envStyle
-        
-        /// Deprecated: Replace this with initStyle in 9.0.
-        private var style: Autocomplete.ToolbarStyle {
-            initStyle ?? envStyle
-        }
         
         /// This internal struct is used to wrap item data.
         struct BarItem: Identifiable {
@@ -113,6 +105,12 @@ public extension Autocomplete {
             }
             .frame(height: style.height)
         }
+        
+        
+        // MARK: - Deprecated
+        
+        private let initStyle: Style?
+        private var style: Style { initStyle ?? envStyle }
     }
 }
 

@@ -27,7 +27,7 @@ public extension View {
     ///   - releaseOutsideTolerance: The percentage of the button size that spans outside the button and still counts as a release, by default `1`.
     func keyboardButton(
         for action: KeyboardAction,
-        style: KeyboardStyle.Button,
+        style: KeyboardButton.ButtonStyle,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
@@ -37,7 +37,7 @@ public extension View {
         releaseOutsideTolerance: Double = 1
     ) -> some View {
         self
-            .keyboardButtonStyle(style)
+            .keyboardButton(style)
             .padding(edgeInsets)
             .contentShape(Rectangle())
             .keyboardButtonGestures(
@@ -99,7 +99,7 @@ private extension View {
     }
 }
 
-struct View_KeyboardButton_Previews: PreviewProvider {
+#Preview {
     
     struct Preview: View {
         
@@ -142,7 +142,7 @@ struct View_KeyboardButton_Previews: PreviewProvider {
         func button<Content: View>(
             for content: Content,
             action: KeyboardAction = .backspace,
-            style: KeyboardStyle.Button,
+            style: KeyboardButton.ButtonStyle,
             insets: EdgeInsets = .init()
         ) -> some View {
             content
@@ -159,7 +159,5 @@ struct View_KeyboardButton_Previews: PreviewProvider {
         }
     }
 
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }

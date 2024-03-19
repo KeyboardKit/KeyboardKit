@@ -22,19 +22,17 @@ public extension KeyboardButton {
     /// `.keyboardButton(...)` view modifier.
     struct Button<Content: View>: View {
         
-        /**
-         Create a keyboard button.
-         
-         - Parameters:
-           - action: The keyboard action to apply.
-           - actionHandler: The action handler to use.
-           - styleProvider: The style provider to use.
-           - keyboardContext: The keyboard context to which the button should apply.
-           - calloutContext: The callout context to affect, if any.
-           - edgeInsets: The edge insets to apply to the interactable area, if any.
-           - isPressed: An external boolean binding for the pressed state, if any.
-           - content: An optional view configuration that can be used to customize or replace the standard button content.
-         */
+        /// Create a keyboard button.
+        ///
+        /// - Parameters:
+        ///   - action: The keyboard action to apply.
+        ///   - actionHandler: The action handler to use.
+        ///   - styleProvider: The style provider to use.
+        ///   - keyboardContext: The keyboard context to which the button should apply.
+        ///   - calloutContext: The callout context to affect, if any.
+        ///   - edgeInsets: The edge insets to apply to the interactable area, if any.
+        ///   - isPressed: An external boolean binding for the pressed state, if any.
+        ///   - content: An optional content builder that can be used to customize or replace the standard button content.
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
@@ -55,18 +53,16 @@ public extension KeyboardButton {
             self.content = content
         }
         
-        /**
-         Create a keyboard button.
-         
-         - Parameters:
-           - action: The keyboard action to apply.
-           - actionHandler: The action handler to use.
-           - styleProvider: The style provider to use.
-           - keyboardContext: The keyboard context to which the button should apply.
-           - calloutContext: The callout context to affect, if any.
-           - edgeInsets: The edge insets to apply to the interactable area, if any.
-           - isPressed: An external boolean binding for the pressed state, if any.
-         */
+        /// Create a keyboard button.
+        ///
+        /// - Parameters:
+        ///   - action: The keyboard action to apply.
+        ///   - actionHandler: The action handler to use.
+        ///   - styleProvider: The style provider to use.
+        ///   - keyboardContext: The keyboard context to which the button should apply.
+        ///   - calloutContext: The callout context to affect, if any.
+        ///   - edgeInsets: The edge insets to apply to the interactable area, if any.
+        ///   - isPressed: An external boolean binding for the pressed state, if any.
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
@@ -129,7 +125,7 @@ private extension KeyboardButton.Button {
         )
     }
     
-    var style: KeyboardStyle.Button {
+    var style: KeyboardButton.ButtonStyle {
         styleProvider.buttonStyle(
             for: action,
             isPressed: isPressed?.wrappedValue ?? isPressedInternal

@@ -44,16 +44,8 @@ public extension Autocomplete {
         private let suggestion: Suggestion
         private let locale: Locale
         
-        /// Deprecated: Remove this in 9.0.
-        private let initStyle: Autocomplete.ToolbarItemStyle?
-        
         @Environment(\.autocompleteToolbarItemStyle)
         private var envStyle
-        
-        /// Deprecated: Replace this with initStyle in 9.0.
-        private var style: Autocomplete.ToolbarItemStyle {
-            initStyle ?? envStyle
-        }
         
         public var body: some View {
             VStack(spacing: 0) {
@@ -66,6 +58,12 @@ public extension Autocomplete {
             .cornerRadius(style.backgroundCornerRadius)
             .autocompleteToolbarItemStyle(style)    // Deprecated: Remove in 9.0
         }
+        
+        // MARK: - Deprecated
+        
+        private typealias Style = Autocomplete.ToolbarItemStyle
+        private let initStyle: Style?
+        private var style: Style { initStyle ?? envStyle }
     }
 }
 

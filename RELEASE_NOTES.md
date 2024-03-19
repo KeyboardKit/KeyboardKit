@@ -29,9 +29,18 @@ This version also refactors view styling to be injected with view modifiers inst
 
 * `AutocompleteToolbar` has been renamed to `Autocomplete.Toolbar`.
 * `Autocomplete.Toolbar` and its views now apply styles with view modifiers.
+* `KeyboardButton` now partially uses environment styling, where applicable.
+* `KeyboardButton` and its views now apply styles with view modifiers. 
 * `KeyboardStyle.AutocompleteToolbar` has been renamed to `Autocomplete.ToolbarStyle`.
 * `KeyboardStyle.AutocompleteToolbarItem` has been renamed to `Autocomplete.ToolbarItemStyle`.
 * `KeyboardStyle.AutocompleteToolbarSeparator` has been renamed to `Autocomplete.ToolbarSeparatorStyle`.
+* `KeyboardStyle+Background` has been renamed to `Keyboard.Background`.
+* `KeyboardStyle.Button` has been renamed to `KeyboardButton.ButtonStyle`.
+* `KeyboardStyle.ButtonBorder` has been renamed to `KeyboardButton.ButtonBorderStyle`.
+* `KeyboardStyle.ButtonShadow` has been renamed to `Autocomplete.ButtonShadowStyle`.
+
+* `.keyboardButtonStyle` has been renamed to `.keyboardButton`.
+* `.keyboardButtonStyle` is a new modifier that applies an environment style.
 * `.withEnvironment(fromController:)` has been renamed to `.keyboardState(from:)`.
 * `.withEnvironment(fromState:)` has been renamed to `.keyboardState(_:)`.
 
@@ -41,6 +50,10 @@ This version also refactors view styling to be injected with view modifiers inst
 * `Autocomplete.ToolbarItemTitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
 * `Autocomplete.ToolbarItemSubtitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
 
+### 🚨 Important Information
+
+* The `keyboardButtonStyle` view modifier has been renamed to `keyboardButton`.
+* The new `keyboardButtonStyle` view modifier only injects the style as an environment variable. 
 
     
 

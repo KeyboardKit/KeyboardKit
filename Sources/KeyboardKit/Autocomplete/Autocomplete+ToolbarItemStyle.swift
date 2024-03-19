@@ -15,6 +15,8 @@ public extension Autocomplete {
     ///
     /// You can apply this view style with the view modifier
     /// `autocompleteToolbarItemStyle(_:)`.
+    ///
+    /// You can use the ``standard`` style or your own style.
     struct ToolbarItemStyle: Codable, Equatable {
         
         /// Create an autocomplete toolbar item style.
