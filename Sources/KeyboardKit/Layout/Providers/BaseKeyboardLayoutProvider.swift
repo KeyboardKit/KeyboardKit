@@ -184,8 +184,8 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         context: KeyboardContext
     ) -> KeyboardLayout.ItemWidth {
         switch action {
-        case .character: return .input
-        default: return .available
+        case .character: .input
+        default: .available
         }
     }
     
@@ -205,10 +205,10 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func keyboardSwitchActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
-        case .alphabetic(let casing): return .shift(currentCasing: casing)
-        case .numeric: return .keyboardType(.symbolic)
-        case .symbolic: return .keyboardType(.numeric)
-        default: return .shift(currentCasing: .lowercased)
+        case .alphabetic(let casing): .shift(currentCasing: casing)
+        case .numeric: .keyboardType(.symbolic)
+        case .symbolic: .keyboardType(.numeric)
+        default: .shift(currentCasing: .lowercased)
         }
     }
     
@@ -218,10 +218,10 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
      */
     open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
-        case .alphabetic: return .keyboardType(.numeric)
-        case .numeric: return .keyboardType(.alphabetic(.auto))
-        case .symbolic: return .keyboardType(.alphabetic(.auto))
-        default: return .keyboardType(.numeric)
+        case .alphabetic: .keyboardType(.numeric)
+        case .numeric: .keyboardType(.alphabetic(.auto))
+        case .symbolic: .keyboardType(.alphabetic(.auto))
+        default: .keyboardType(.numeric)
         }
     }
 }

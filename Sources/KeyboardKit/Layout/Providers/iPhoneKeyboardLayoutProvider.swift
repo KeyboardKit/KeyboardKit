@@ -41,14 +41,14 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         context: KeyboardContext
     ) -> KeyboardLayout.ItemWidth {
         switch action {
-        case context.keyboardDictationReplacement: return bottomSystemButtonWidth(for: context)
-        case .character: return isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
-        case .backspace: return lowerSystemButtonWidth(for: context)
-        case .keyboardType: return bottomSystemButtonWidth(for: context)
-        case .nextKeyboard: return bottomSystemButtonWidth(for: context)
-        case .primary: return .percentage(isPortrait(context) ? 0.25 : 0.195)
-        case .shift: return lowerSystemButtonWidth(for: context)
-        default: return .available
+        case context.keyboardDictationReplacement: bottomSystemButtonWidth(for: context)
+        case .character: isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
+        case .backspace: lowerSystemButtonWidth(for: context)
+        case .keyboardType: bottomSystemButtonWidth(for: context)
+        case .nextKeyboard: bottomSystemButtonWidth(for: context)
+        case .primary: .percentage(isPortrait(context) ? 0.25 : 0.195)
+        case .shift: lowerSystemButtonWidth(for: context)
+        default: .available
         }
     }
 
@@ -182,19 +182,14 @@ private extension iPhoneKeyboardLayoutProvider {
         context.interfaceOrientation.isPortrait
     }
 
-    /**
-     The width of the last numeric/symbolic row input button.
-     */
+    /// The width of the last symbolic row input button.
     func lastSymbolicInputWidth(
         for context: KeyboardContext
     ) -> KeyboardLayout.ItemWidth {
         .percentage(0.14)
     }
 
-    /**
-     Whether or not a certain row is the last input row in a
-     numeric or symbolic keyboard.
-     */
+    /// Whether or not a row is the last input/symbolic row.
     func isLastNumericInputRow(_ row: Int, for context: KeyboardContext) -> Bool {
         let isNumeric = context.keyboardType == .numeric
         let isSymbolic = context.keyboardType == .symbolic

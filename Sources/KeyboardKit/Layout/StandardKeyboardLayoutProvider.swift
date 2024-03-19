@@ -52,13 +52,17 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
 
 
     /// The keyboard layout to use for a certain context.
-    open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
+    open func keyboardLayout(
+        for context: KeyboardContext
+    ) -> KeyboardLayout {
         keyboardLayoutProvider(for: context)
             .keyboardLayout(for: context)
     }
 
     /// The layout provider to use for a given context.
-    open func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
+    open func keyboardLayoutProvider(
+        for context: KeyboardContext
+    ) -> KeyboardLayoutProvider {
         let localized = localizedProviders.value(for: context.locale)
         return localized ?? baseProvider
     }

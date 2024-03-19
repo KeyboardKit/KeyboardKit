@@ -164,7 +164,8 @@ extension iPadKeyboardLayoutProvider {
             alphabeticInputSet: .qwerty,
             numericInputSet: .standardNumeric(currency: "$"),
             symbolicInputSet: .standardSymbolic(currencies: [""])
-        ).keyboardLayout(for: .preview)
+        )
+        .keyboardLayout(for: .preview)
     }
     
     return SystemKeyboard(
