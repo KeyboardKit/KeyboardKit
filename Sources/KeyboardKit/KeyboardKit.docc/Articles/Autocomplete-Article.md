@@ -152,7 +152,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 @TabNavigator {
     
-    @Tab("Toolbar") {
+    @Tab("Autocomplete.Toolbar") {
         
         KeyboardKit has an autocomplete ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar.
         
@@ -175,7 +175,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
         ```
     }
         
-    @Tab("Toolbar Item & Separator") {
+    @Tab("Autocomplete.ToolbarItem/Separator") {
         
         The ``Autocomplete`` namespace also has other ``Autocomplete/ToolbarItem`` and ``Autocomplete/ToolbarSeparator`` views, which are used by the toolbar and can be styled with `.toolbarItemStyle` and `.toolbarSeparatorStyle` when rendered as standalone components.
         

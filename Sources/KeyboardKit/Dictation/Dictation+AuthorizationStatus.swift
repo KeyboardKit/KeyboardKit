@@ -8,10 +8,7 @@
 
 public extension Dictation {
     
-    /**
-     This enum maps platform-specific dictation status types
-     to multi-platform values.
-     */
+    /// This enum defines various dictation statuses.
     enum AuthorizationStatus: Int {
         
         case disabledService = -1

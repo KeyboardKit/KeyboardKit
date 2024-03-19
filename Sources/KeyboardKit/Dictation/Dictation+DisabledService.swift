@@ -10,7 +10,7 @@ import SwiftUI
 
 public extension Dictation {
     
-    /// This service can be used to disable dictation.
+    /// This is a disabled dictation service.
     class DisabledService: DictationService {
         
         public init() {}
@@ -31,7 +31,9 @@ public extension Dictation.DisabledService {
 
     func resetDictationResult() async throws {}
 
-    func startDictation(with config: Dictation.Configuration) async throws {
+    func startDictation(
+        with config: Dictation.Configuration
+    ) async throws {
         throw Dictation.ServiceError.disabledService
     }
 

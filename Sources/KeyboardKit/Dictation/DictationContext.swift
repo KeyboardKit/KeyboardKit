@@ -65,88 +65,68 @@ public class DictationContext: ObservableObject {
         public var key: String { "com.keyboardkit.dictation.\(rawValue)" }
     }
 
-    /**
-     The ID of the App Group that should be used to sync any
-     dictation values between your main app and its keyboard.
-
-     The value is persisted to be available to your keyboard
-     when it returns, before your setup code has been called.
-     */
+    /// The ID of the App Group to use to sync any dictation
+    /// data between your main app and its keyboard.
+    ///
+    /// This is persisted in user defaults to stay available
+    /// to your keyboard when it returns.
     @AppStorage(PersistedKey.appGroupId.key)
     public var appGroupId: String? {
         didSet { setupAppGroup() }
     }
 
-    /**
-     The deep link that should be used to open the app, when
-     dictation is started from a keyboard extension.
-     */
+    /// The deep link that should be used to open the app to
+    /// start dictation from a keyboard extension.
     public var appDeepLink: String?
 
-    /**
-     The currently dictated text, which can be observed from
-     your app, and will be applied when dictation ends.
-     */
+    /// The currently dictated text, which will update while
+    /// dictation detects new text.
+    ///
+    /// This text can be observed from your app, and will be
+    /// applied when dictation ends.
     @Published
     public var dictatedText = "" {
         didSet { persistedDictatedText = dictatedText }
     }
     
-    /**
-     The bundle ID of the app that is using the keyboard.
-     */
+    /// The bundle ID of the app that is using the keyboard.
     @Published
     public var hostApplicationBundleId: String? {
         didSet { persistedHostApplicationBundleId = hostApplicationBundleId }
     }
 
-    /**
-     Whether or not dictation is currently in progress.
-     */
+    /// Whether dictation is currently in progress.
     @Published
     public var isDictating = false
 
-    /**
-     Whether or not dictation has been started by a keyboard.
-     */
+    /// Whether dictation has been started by a keyboard.
     @Published
     public var isDictationStartedByKeyboard = false {
         didSet { persistedIsDictationStartedByKeyboard = isDictationStartedByKeyboard }
     }
 
-    /**
-     The last applied dictation error, which can be observed
-     and handled by the keyboard or app.
-     */
+    /// The last applied dictation error.
     @Published
     public var lastError: Error?
 
-    /**
-     The last inserted dictated text, which can be used when
-     you want to undo the last inserted dictation result.
-     */
+    /// The last inserted dictated text.
+    ///
+    /// This can be used to undo the last inserted dictation.
     @Published
     public var lastInsertedText: String?
     
-    /**
-     The locale identifier that is currently used to dictate.
-     */
+    /// The locale identifier that is used to dictate.
     @Published
     public var localeId = Locale.current.identifier {
         didSet { persistedLocaleId = localeId }
     }
 
-    /**
-     This service keeps a strong reference to your dictation
-     service, while dictation is ongoing.
-     */
+    /// A strong reference to the current dictation service.
     @Published
     public var service: KeyboardDictationService?
 
-    /**
-     The seconds of silence after which the dictation should
-     automatically stop, to let users finish by stop talking.
-     */
+    /// The seconds of silence to allow before automatically
+    /// ending an ongoing dictation operation.
     @Published
     public var silenceLimit: TimeInterval = 10 {
         didSet { persistedSilenceLimit = silenceLimit }

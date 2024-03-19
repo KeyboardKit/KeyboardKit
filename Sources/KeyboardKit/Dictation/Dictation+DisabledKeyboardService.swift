@@ -10,7 +10,7 @@ import SwiftUI
 
 public extension Dictation {
     
-    /// This service can be used to disable dictation.
+    /// This is a disabled keyboard dictation service.
     class DisabledKeyboardService: KeyboardDictationService {
         
         public init(context: DictationContext) {

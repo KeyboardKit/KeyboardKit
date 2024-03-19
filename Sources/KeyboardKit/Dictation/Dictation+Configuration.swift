@@ -10,17 +10,13 @@ import Foundation
 
 public extension Dictation {
     
-    /**
-     This type can be used to configure a ``DictationService``.
-     */
+    /// This type can configure a ``DictationService``.
     struct Configuration: Codable, Equatable {
         
-        /**
-         Create a dictation configuration.
-         
-         - Parameters:
-           - localeId: The locale to use for dictation, by default the ID of the `.current` locale.
-         */
+        /// Create a dictation configuration.
+        ///
+        /// - Parameters:
+        ///   - localeId: The locale to use for dictation, by the `.current` locale.
         public init(
             localeId: String = Locale.current.identifier
         ) {

@@ -69,7 +69,7 @@ KeyboardKit extends native types with a lot more information, to make it easier 
 
 @TabNavigator {
     
-    @Tab("System Keyboard") {
+    @Tab("SystemKeyboard") {
         
         KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboard. It can be used for alphabetic, numeric & symbolic keyboards, 
         supports all supported locales, layouts, callouts, etc., and can be styled to great extent with styles & themes:
@@ -104,7 +104,7 @@ KeyboardKit extends native types with a lot more information, to make it easier 
         To use the standard views, just return `{ $0.view }`, or `{ params in params.view }`. Otherwise, just return the view you want to use for the provided params. The view builders provide information to help you setup custom views.
     }
     
-    @Tab("Toolbar") {
+    @Tab("Keyboard.Toolbar") {
         
         Unlike native keyboards, custom iOS keyboards can't expand beyond the keyboard frame. As such, it's always a good idea to have at least 50 points above the keyboard, to avoid cutting off the input and action callouts that the keyboard can present.
         
@@ -125,58 +125,57 @@ KeyboardKit extends native types with a lot more information, to make it easier 
 
 KeyboardKit Pro unlocks additional, powerful capabilities for the ``SystemKeyboard``.
 
-@Row {
-    @Column {
-        ![SystemKeyboard](systemkeyboard-swedish-350.jpg)
-    }
-    @Column(size: 2) {
-        #### Locales
+@TabNavigator {
+    
+    @Tab("Locales") {
+        @Row {
+            @Column {
+                ![SystemKeyboard](systemkeyboard-swedish-350.jpg)
+            }
+            @Column(size: 2) {
+                #### Locales
 
-        KeyboardKit Pro unlocks layouts, callouts, and services for all ``KeyboardLocale``s. This means that you can support up to 63 locales without any additional code.
-        
-        See the <doc:Localization-Article> article for more information.
+                KeyboardKit Pro unlocks layouts, callouts, and services for all ``KeyboardLocale``s. This means that you can support up to 63 locales without any additional code.
+                
+                See the <doc:Localization-Article> article for more information.
+            }
+        }
+    }
+    
+    @Tab("Emojis") {
+        @Row {
+            @Column {
+                ![EmojiKeyboard](emojikeyboard-350.jpg)
+            }
+            @Column(size: 2) {
+                #### Emojis
+
+                KeyboardKit Pro Gold unlocks a full **EmojiKeyboard** and makes ``SystemKeyboard`` use it as the default emoji keyboard.
+                
+                See the <doc:Emojis-Article> article for more information.
+            }
+        }
+    }
+    
+    @Tab("Previews") {
+        @Row {
+            @Column {
+                ![SystemKeyboardPreview](systemkeyboardpreview-theme-350.jpg)
+                
+                ![SystemKeyboardButtonPreview](systemkeyboardbuttonpreview-350.jpg)
+            }
+            @Column(size: 2) {
+                #### Previews
+
+                KeyboardKit Pro Gold unlocks a **SystemKeyboardPreview** view that can be used to show how different locales, styles, configurations & themes affect the keyboard. 
+                
+                KeyboardKit Pro Gold also unlocks a more performant **SystemKeyboardButtonPreview** that lets you preview separate buttons in powerful ways.
+                
+                See the <doc:Previews-Article> article for more information.
+            }
+        }
     }
 }
-
-@Row {
-    @Column {
-        ![EmojiKeyboard](emojikeyboard-350.jpg)
-    }
-    @Column(size: 2) {
-        #### EmojiKeyboard
-
-        KeyboardKit Pro Gold unlocks a full **EmojiKeyboard** and makes ``SystemKeyboard`` use it as the default emoji keyboard.
-        
-        See the <doc:Emojis-Article> article for more information.
-    }
-}
-
-@Row {
-    @Column {
-        ![SystemKeyboardPreview](systemkeyboardpreview-theme-350.jpg)
-    }
-    @Column(size: 2) {
-        #### SystemKeyboardPreview
-
-        KeyboardKit Pro Gold unlocks a **SystemKeyboardPreview** view that can be used to preview different locales, styles, configurations and themes. 
-        
-        See the <doc:Previews-Article> article for more information.
-    }
-}
-
-@Row {
-    @Column {
-        ![SystemKeyboardButtonPreview](systemkeyboardbuttonpreview-350.jpg)
-    }
-    @Column(size: 2) {
-        #### SystemKeyboardButtonPreview
-
-        KeyboardKit Pro Gold unlocks a **SystemKeyboardButtonPreview** that can preview different styles, configurations and themes. 
-        
-        See the <doc:Previews-Article> article for more information.
-    }
-}
-
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

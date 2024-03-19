@@ -109,9 +109,9 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 @TabNavigator {
     
-    @Tab("ActionCallout") {
+    @Tab("Callouts.ActionCallout") {
         
-        KeyboardKit has a ``Callouts/ActionCallout`` that mimics a native action callout and can be used to present secondary actions for any key.
+        KeyboardKit has an ``Callouts/ActionCallout`` that mimics a native action callout and can be used to present secondary actions for any key.
         
         ![ActionCallout](actioncallout-350.jpg)
         
@@ -125,9 +125,9 @@ This will make KeyboardKit use your custom implementation instead of the standar
         ```
     }
     
-    @Tab("InputCallout") {
+    @Tab("Callouts.InputCallout") {
         
-        KeyboardKit has a ``Callouts/InputCallout`` that mimics a native input callout and can be show the currently pressed key.
+        KeyboardKit has an ``Callouts/InputCallout`` that mimics a native input callout and can be show the currently pressed key.
         
         ![InputCallout](inputcallout-350.jpg)  
         
