@@ -17,8 +17,8 @@ class DemoCalloutActionProvider: BaseCalloutActionProvider {
     
     override func calloutActionString(for char: String) -> String {
         switch char {
-        case "k": return String("keyboard".reversed())
-        default: return super.calloutActionString(for: char)
+        case "k": String("keyboard".reversed())
+        default: super.calloutActionString(for: char)
         }
     }
 }

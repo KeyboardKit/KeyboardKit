@@ -711,7 +711,7 @@
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
 				kind = exactVersion;
-				version = 8.3.3;
+				version = 8.3.5;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

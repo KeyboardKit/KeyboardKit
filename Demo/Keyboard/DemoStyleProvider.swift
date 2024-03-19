@@ -25,48 +25,51 @@ class DemoStyleProvider: StandardKeyboardStyleProvider {
         return action.isRocket ? 1.8 * standard : standard
     }
     
-    override func buttonStyle(
-        for action: KeyboardAction,
-        isPressed: Bool
-    ) -> KeyboardButton.ButtonStyle {
-        if action.isRocket {
-            return super.buttonStyle(for: .backspace, isPressed: isPressed)
-        }
-        return super.buttonStyle(for: action, isPressed: isPressed)
-    }
+//    override func buttonStyle(
+//        for action: KeyboardAction,
+//        isPressed: Bool
+//    ) -> KeyboardButton.ButtonStyle {
+//        if action.isRocket {
+//            return super.buttonStyle(for: .primary(.continue), isPressed: isPressed)
+//        }
+//        return super.buttonStyle(for: action, isPressed: isPressed)
+//    }
     
-    // override func buttonImage(for action: KeyboardAction) -> Image? {
-    //     if action == .keyboardType(.emojis) { return nil }
-    //     return super.buttonImage(for: action)
-    // }
+//     override func buttonImage(for action: KeyboardAction) -> Image? {
+//         switch action {
+//         case .primary: Image.keyboardBrightnessUp
+//         default: super.buttonImage(for: action)
+//         }
+//     }
 
-    // override func buttonText(for action: KeyboardAction) -> String? {
-    //     if action == .return { return "⏎" }
-    //     if action == .space { return "" }
-    //     if action == .keyboardType(.emojis) { return "🤯" }
-    //     return super.buttonText(for: action)
-    // }
+//     override func buttonText(for action: KeyboardAction) -> String? {
+//         switch action {
+//         case .primary: "⏎"
+//         case .space: "SpACe"
+//         default: super.buttonText(for: action)
+//         }
+//     }
 
-    // override var actionCalloutStyle: ActionCalloutStyle {
-    //     var style = super.actionCalloutStyle()
-    //     style.callout.backgroundColor = .red
-    //     return style
-    // }
+//    override var actionCalloutStyle: Callouts.ActionCalloutStyle {
+//        var style = super.actionCalloutStyle
+//        style.callout.backgroundColor = .red
+//        return style
+//    }
 
-    // override var inputCalloutStyle: InputCalloutStyle {
-    //     var style = super.inputCalloutStyle()
-    //     style.callout.backgroundColor = .blue
-    //     style.callout.textColor = .yellow
-    //     return style
-    // }
+//    override var inputCalloutStyle: Callouts.InputCalloutStyle {
+//        var style = super.inputCalloutStyle
+//        style.callout.backgroundColor = .blue
+//        style.callout.textColor = .yellow
+//        return style
+//    }
 }
 
 private extension KeyboardAction {
     
     var isRocket: Bool {
         switch self {
-        case .character(let char): return char == "🚀"
-        default: return false
+        case .character(let char): char == "🚀"
+        default: false
         }
     }
 }

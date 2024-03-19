@@ -1,15 +1,23 @@
 {
-  "originHash" : "22964a358f199a59ad16018a19f61c1a4d898478575a8b59a7883eda0dd9d62b",
   "pins" : [
     {
       "identity" : "keyboardkitpro",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
       "state" : {
-        "revision" : "6c7f674b76405d3becfbb0391b855a740a267ddc",
-        "version" : "8.3.3"
+        "revision" : "6733455f59bd6a5631523f31820200cb0080a974",
+        "version" : "8.3.5"
+      }
+    },
+    {
+      "identity" : "mockingkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/danielsaidi/MockingKit.git",
+      "state" : {
+        "revision" : "4967086efeb95d5e5dc33709307bf6bacdcfab63",
+        "version" : "1.4.0"
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

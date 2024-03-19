@@ -19,10 +19,9 @@ import SwiftUI
  */
 class KeyboardViewController: KeyboardInputViewController {
 
-    /**
-     This function is called when the controller loads. Here,
-     we make demo-specific service configurations.
-     */
+    /// This function is called when the controller loads.
+    ///
+    /// Here, we make demo-specific service keyboard configs.
     override func viewDidLoad() {
         
         /// 💡 Setup a demo-specific action handler.
@@ -84,7 +83,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// Since dictation is not available by default, the
         /// dictation button is removed if we don't set this.
-        state.keyboardContext.keyboardDictationReplacement = .character("$")
+        state.keyboardContext.keyboardDictationReplacement = .character("😀")
         
         /// 💡 Configure the space long press behavior.
         ///
@@ -109,17 +108,16 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
     }
 
-    /**
-     This function is called whenever the keyboard should be
-     created or updated.
-     */
+    /// This function is called whenever the keyboard should
+    /// be created or updated.
+    ///
+    /// Here, we just create a standard system keyboard like
+    /// the library does it, just to show how it's done. You
+    /// can customize anything you want.
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
 
         /// 💡 Make the demo use a standard ``SystemKeyboard``.
-        ///
-        /// This is not needed if you want to use a standard
-        /// view, but this is how you can setup a custom one.
         setup { controller in
             SystemKeyboard(
                 state: controller.state,
