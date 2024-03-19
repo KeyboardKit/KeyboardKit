@@ -1,10 +1,10 @@
 # Device Utilities
 
-This article describes various KeyboardKit device utilities.
+This article describes the KeyboardKit device utilities.
 
-KeyboardKit has various device-related features that aim to help you customize your keyboard for various devices.
+KeyboardKit has device-related features that can help customize your keyboard for various devices.
 
-Although you should avoid designing for a specific device, orientation, or screen size in general, some features need these kinds of considerations.
+Although you should avoid designing for a specific device, orientation, or screen size, some features do need these considerations.
 
 
 
@@ -12,11 +12,10 @@ Although you should avoid designing for a specific device, orientation, or scree
 
 KeyboardKit has a platform-agnostic ``DeviceType`` enum that defines available device types. 
 
-You can use ``DeviceType/current`` to get the current device type.
+You can use ``DeviceType/current`` to get the current device type:
 
 ```swift
-let type = DeviceType.current
-let isPad = type == .pad
+let isPad = DeviceType.current == .pad
 ```
 
 
@@ -25,11 +24,10 @@ let isPad = type == .pad
 
 KeyboardKit has a platform-agnostic ``InterfaceOrientation`` enum that defines various interface (screen) orientations. 
 
-You can use ``InterfaceOrientation/current`` to get the current interface orientation.
+You can use ``InterfaceOrientation/current`` to get the current interface orientation:
 
 ```swift
-let orientation = InterfaceOrientation.current 
-let isPortrait = orientation.portrait
+let isPortrait = InterfaceOrientation.current.portrait
 ```
 
 
@@ -54,7 +52,7 @@ let size = CGSize.iPadProLargeScreenPortrait
 size.isScreenSize(.iPadProLargeScreenLandscape) // True
 ```
 
-It's extra important to avoid designing for a specific screen size, if possible, since apps can run in split screen, the keyboard can be floating, etc.
+It's important to avoid designing for a specific screen size, since apps can run in split screen, a keyboard can be floating, etc. However, the screen size may provide you with information about the device.
 
 
 

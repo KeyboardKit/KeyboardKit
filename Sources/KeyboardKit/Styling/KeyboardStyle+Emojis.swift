@@ -139,22 +139,21 @@ public extension KeyboardStyle {
 
 public extension KeyboardStyle.EmojiKeyboard {
     
-    /**
-     Get the standard style to use for a certain context.
-
-     - Parameters:
-       - context: The context to base the style on.
-     */
+    /// Get the standard style to use for a certain context.
+    ///
+    /// - Parameters:
+    ///   - context: The context to base the style on.
     static func standard(
         for context: KeyboardContext
     ) -> KeyboardStyle.EmojiKeyboard {
         switch context.deviceType {
-        case .mac: return .standardPhonePortrait
-        case .phone: return standardPhone(for: context)
-        case .pad: return standardPad(for: context)
-        case .tv: return .standardPhonePortrait
-        case .watch: return .standardPhonePortrait
-        case .other: return .standardPhonePortrait
+        case .mac: .standardPhonePortrait
+        case .phone: standardPhone(for: context)
+        case .pad: standardPad(for: context)
+        case .tv: .standardPhonePortrait
+        case .watch: .standardPhonePortrait
+        case .vision: .standardPhonePortrait
+        case .other: .standardPhonePortrait
         }
     }
 

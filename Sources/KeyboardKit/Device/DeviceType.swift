@@ -12,15 +12,13 @@ import Foundation
 import UIKit
 #endif
 
-/**
- This enum can be used to specify a device type.
- 
- The static ``current`` property will resolve to the current
- device type.
- */
+/// This enum defines various supported device types.
+///
+/// The static ``current`` property will resolve the current
+/// device type.
 public enum DeviceType: String, CaseIterable, Equatable {
     
-    case phone, pad, watch, mac, tv, other
+    case phone, pad, watch, mac, tv, vision, other
 }
 
 public extension DeviceType {
@@ -30,6 +28,7 @@ public extension DeviceType {
     var isPhone: Bool { self == .phone }
     var isTv: Bool { self == .tv }
     var isWatch: Bool { self == .watch }
+    var isVisionPro: Bool { self == .vision }
 }
 
 public extension DeviceType {
@@ -44,6 +43,8 @@ public extension DeviceType {
         .tv
         #elseif os(watchOS)
         .watch
+        #elseif os(visionOS)
+        .vision
         #else
         .other
         #endif
