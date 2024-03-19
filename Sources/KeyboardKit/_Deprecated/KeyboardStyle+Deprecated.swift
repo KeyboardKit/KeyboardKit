@@ -26,6 +26,9 @@ public extension KeyboardStyle {
         public var cornerRadius: CGFloat
     }
     
+    @available(*, deprecated, renamed: "Keyboard.Background")
+    typealias Background = Keyboard.Background
+    
     @available(*, deprecated, renamed: "KeyboardButton.ButtonStyle")
     typealias Button = KeyboardButton.ButtonStyle
     

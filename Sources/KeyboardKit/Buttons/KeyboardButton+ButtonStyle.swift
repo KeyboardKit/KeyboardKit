@@ -27,7 +27,7 @@ public extension KeyboardButton {
         /// Create a keyboard button style.
         ///
         /// - Parameters:
-        ///   - background: The background style to apply to the button, by default `nil`.
+        ///   - background: The background to apply to the button, by default `nil`.
         ///   - backgroundColor: The background color to apply to the button, by default `nil`.
         ///   - foregroundColor: The border color to apply to the button, by default `nil`.
         ///   - font: The font to apply to the button, by default `nil`.
@@ -36,7 +36,7 @@ public extension KeyboardButton {
         ///   - shadow: The shadow style to apply to the button, by default `nil`.
         ///   - pressedOverlayColor: The color to overlay the background color when pressed, by default `nil`.
         public init(
-            background: KeyboardStyle.Background? = nil,
+            background: Keyboard.Background? = nil,
             backgroundColor: Color? = nil,
             foregroundColor: Color? = nil,
             font: KeyboardFont? = nil,
@@ -61,7 +61,7 @@ public extension KeyboardButton {
         public typealias ShadowStyle = KeyboardButton.ButtonShadowStyle
         
         /// The background style to apply to the button.
-        public var background: KeyboardStyle.Background?
+        public var background: Keyboard.Background?
         
         /// The background color to apply to the button.
         public var backgroundColor: Color?

@@ -1,5 +1,5 @@
 //
-//  KeyboardStyle+Background.swift
+//  Keyboard+Background.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-18.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardStyle {
+public extension Keyboard {
     
     /// This background style can define the background of a
     /// keyboard or any components within.
@@ -99,7 +99,7 @@ public extension KeyboardStyle {
     }
 }
 
-public extension KeyboardStyle.Background {
+public extension Keyboard.Background {
 
     /// The standard keyboard background style.
     ///
@@ -165,7 +165,7 @@ private extension View {
     
     @ViewBuilder
     func optionalAspectRatio(
-        with mode: KeyboardStyle.Background.ImageContentMode
+        with mode: Keyboard.Background.ImageContentMode
     ) -> some View {
         if let mode = mode.nativeMode {
             self.aspectRatio(contentMode: mode)
@@ -175,7 +175,7 @@ private extension View {
     }
 }
 
-private extension KeyboardStyle.Background {
+private extension Keyboard.Background {
 
     func image(from data: Data?) -> Image? {
         guard let data else { return nil }
@@ -194,9 +194,9 @@ private extension KeyboardStyle.Background {
 #Preview {
     
     VStack {
-        KeyboardStyle.Background.color(.red)
-        KeyboardStyle.Background.verticalGradient([.red, .blue])
-        KeyboardStyle.Background.image(systemName: "checkmark")
+        Keyboard.Background.color(.red)
+        Keyboard.Background.verticalGradient([.red, .blue])
+        Keyboard.Background.image(systemName: "checkmark")
     }
     .padding()
 }

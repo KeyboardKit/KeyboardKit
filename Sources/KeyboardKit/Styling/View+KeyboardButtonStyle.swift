@@ -16,8 +16,9 @@ public extension View {
      - Parameters:
        - style: The style to apply.
      */
-    func keyboardButton(_ style: KeyboardStyle.Button) -> some View {
-        self.background(KeyboardButton.Key(style: style))
+    func keyboardButton(_ style: KeyboardButton.ButtonStyle) -> some View {
+        self.background(KeyboardButton.Key())
+            .keyboardButtonStyle(style)
             .foregroundColor(style.foregroundColor)
             .font(style.font?.font)
     }
@@ -39,7 +40,7 @@ struct View_Button_Previews: PreviewProvider {
     
     static func button<Content: View>(
         for content: Content,
-        style: KeyboardStyle.Button
+        style: KeyboardButton.ButtonStyle
     ) -> some View {
         content
             .padding()

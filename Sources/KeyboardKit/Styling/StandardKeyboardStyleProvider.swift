@@ -28,7 +28,7 @@ import CoreGraphics
      override func buttonStyle(
          for action: KeyboardAction,
          isPressed: Bool
-     ) -> KeyboardStyle.Button {
+     ) -> KeyboardButton.ButtonStyle {
          let style = super.buttonStyle(for: action, isPressed: isPressed)
          if !action.isInputAction { return style }
          style.backgroundColor = .red
@@ -69,7 +69,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     // MARK: - Keyboard
 
     /// The background style to apply to the entire keyboard.
-    open var backgroundStyle: KeyboardStyle.Background {
+    open var backgroundStyle: Keyboard.Background {
         .standard
     }
 
@@ -95,13 +95,17 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
 
     // MARK: - Buttons
     
-    open func buttonContentInsets(for action: KeyboardAction) -> EdgeInsets {
+    open func buttonContentInsets(
+        for action: KeyboardAction
+    ) -> EdgeInsets {
         if let override = buttonContentInsetsOverride(for: action) { return override }
         return .init(horizontal: 3, vertical: 3)
     }
     
     /// The button content bottom margin for an action.
-    open func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat {
+    open func buttonContentBottomMargin(
+        for action: KeyboardAction
+    ) -> CGFloat {
         switch action {
         case .character(let char): buttonContentBottomMargin(for: char)
         default: 0
@@ -109,7 +113,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
     
     /// The button content bottom margin for a character.
-    open func buttonContentBottomMargin(for char: String) -> CGFloat {
+    open func buttonContentBottomMargin(
+        for char: String
+    ) -> CGFloat {
         switch char {
         case "-", "/", ":", ";", "@", ",": 3
         case "(", ")": 4
@@ -118,7 +124,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The button image to use for a certain action.
-    open func buttonImage(for action: KeyboardAction) -> Image? {
+    open func buttonImage(
+        for action: KeyboardAction
+    ) -> Image? {
         if iPadProRenderingModeActive, let image = buttonImagePadProOverride(for: action) {
             return image
         }
@@ -126,7 +134,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The content scale factor to use for a certain action.
-    open func buttonImageScaleFactor(for action: KeyboardAction) -> CGFloat {
+    open func buttonImageScaleFactor(
+        for action: KeyboardAction
+    ) -> CGFloat {
         switch keyboardContext.deviceType {
         case .pad: 1.2
         default: 1
@@ -134,7 +144,10 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The button style to use for a certain action.
-    open func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardStyle.Button {
+    open func buttonStyle(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> KeyboardButton.ButtonStyle {
         .init(
             backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
             foregroundColor: buttonForegroundColor(for: action, isPressed: isPressed),
@@ -146,7 +159,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The button text to use for a certain action, if any.
-    open func buttonText(for action: KeyboardAction) -> String? {
+    open func buttonText(
+        for action: KeyboardAction
+    ) -> String? {
         if let override = buttonTextPadOverride(for: action) { return override }
         return action.standardButtonText(for: keyboardContext)
     }
@@ -188,7 +203,10 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     // MARK: - Overridable Button Style Components
 
     /// The background color to use for a certain action.
-    open func buttonBackgroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+    open func buttonBackgroundColor(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> Color {
         if iPadProRenderingModeActive, let color = buttonColorPadProOverride(for: action) {
             return color
         }
@@ -199,7 +217,10 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
     
     /// The background opacity to use for a certain action.
-    open func buttonBackgroundOpacity(for action: KeyboardAction, isPressed: Bool) -> Double {
+    open func buttonBackgroundOpacity(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> Double {
         let context = keyboardContext
         if context.isSpaceDragGestureActive { return 0.5 }
         if context.hasDarkColorScheme || isPressed { return 1 }
@@ -207,7 +228,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The border style to use for a certain action.
-    open func buttonBorderStyle(for action: KeyboardAction) -> KeyboardStyle.ButtonBorder {
+    open func buttonBorderStyle(
+        for action: KeyboardAction
+    ) -> KeyboardButton.ButtonBorderStyle {
         switch action {
         case .emoji, .none: .noBorder
         default: .standard
@@ -215,12 +238,16 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The corner radius to use for a certain action.
-    open func buttonCornerRadius(for action: KeyboardAction) -> CGFloat {
+    open func buttonCornerRadius(
+        for action: KeyboardAction
+    ) -> CGFloat {
         keyboardLayoutConfiguration.buttonCornerRadius
     }
 
     /// The font to use for a certain action.
-    open func buttonFont(for action: KeyboardAction) -> KeyboardFont {
+    open func buttonFont(
+        for action: KeyboardAction
+    ) -> KeyboardFont {
         let size = buttonFontSize(for: action)
         let font = KeyboardFont.system(size: size)
         guard let weight = buttonFontWeight(for: action) else { return font }
@@ -228,7 +255,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The font size to use for a certain action.
-    open func buttonFontSize(for action: KeyboardAction) -> CGFloat {
+    open func buttonFontSize(
+        for action: KeyboardAction
+    ) -> CGFloat {
         if let override = buttonFontSizePadOverride(for: action) { return override }
         if buttonImage(for: action) != nil { return 20 }
         if let override = buttonFontSizeActionOverride(for: action) { return override }
@@ -239,7 +268,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The font size to override for a certain action.
-    func buttonFontSizeActionOverride(for action: KeyboardAction) -> CGFloat? {
+    func buttonFontSizeActionOverride(
+        for action: KeyboardAction
+    ) -> CGFloat? {
         switch action {
         case .keyboardType(let type): buttonFontSize(for: type)
         case .space: 16
@@ -248,7 +279,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The font size to use for a certain keyboard type.
-    open func buttonFontSize(for keyboardType: Keyboard.KeyboardType) -> CGFloat {
+    open func buttonFontSize(
+        for keyboardType: Keyboard.KeyboardType
+    ) -> CGFloat {
         switch keyboardType {
         case .alphabetic: return 15
         case .numeric: return 16
@@ -258,7 +291,9 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The font weight to use for a certain action.
-    open func buttonFontWeight(for action: KeyboardAction) -> KeyboardFont.FontWeight? {
+    open func buttonFontWeight(
+        for action: KeyboardAction
+    ) -> KeyboardFont.FontWeight? {
         if isGregorianAlpha { return .regular }
         switch action {
         case .backspace: return .regular
@@ -268,12 +303,17 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     }
 
     /// The foreground color to use for a certain action.
-    open func buttonForegroundColor(for action: KeyboardAction, isPressed: Bool) -> Color {
+    open func buttonForegroundColor(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> Color {
         action.buttonForegroundColor(for: keyboardContext, isPressed: isPressed)
     }
     
     /// The shadow style to use for a certain action.
-    open func buttonShadowStyle(for action: KeyboardAction) -> KeyboardStyle.ButtonShadow {
+    open func buttonShadowStyle(
+        for action: KeyboardAction
+    ) -> KeyboardButton.ButtonShadowStyle {
         if keyboardContext.isSpaceDragGestureActive { return .noShadow }
         switch action {
         case .characterMargin: return .noShadow

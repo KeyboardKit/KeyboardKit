@@ -204,7 +204,7 @@ public struct SystemKeyboard<
             .opacity(shouldShowEmojiKeyboard ? 0 : 1)
             .overlay(emojiKeyboard(), alignment: .bottom)
             .foregroundColor(styleProvider.foregroundColor)
-            .background(renderBackground ? styleProvider.backgroundStyle.backgroundView : nil)
+            .background(renderBackground ? styleProvider.backgroundStyle : nil)
             .keyboardCalloutContainer(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext,

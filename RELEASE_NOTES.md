@@ -21,6 +21,7 @@ This version also refactors view styling to be injected with view modifiers inst
 
 * `Autocomplete.ToolbarStyle` has support for more styling.
 * `Autocomplete.ToolbarItemStyle` has support for more explicit styling.
+* `Keyboard.Background` now implements `View` and can be used right away.
 * `Keyboard.Toolbar` is a new view that applies a minimum height to its content.
 * `Keyboard.ToolbarStyle` is a new style that can be applied with a view modifier.
 * `StandardKeyboardBehavior` modifies some functions to be `open` to modifications.

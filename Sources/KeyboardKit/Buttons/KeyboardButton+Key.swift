@@ -46,7 +46,7 @@ public extension KeyboardButton {
         public var body: some View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .strokeBorder(borderColor, lineWidth: borderLineWidth)
-                .background(style.background?.backgroundView)
+                .background(style.background)
                 .background(backgroundColor)
                 .overlay(isPressed ? style.pressedOverlayColor : .clear)
                 .cornerRadius(cornerRadius)

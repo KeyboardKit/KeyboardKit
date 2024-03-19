@@ -29,7 +29,7 @@ import SwiftUI
 public protocol KeyboardStyleProvider: AnyObject {
 
     /// The background style to apply to the entire keyboard.
-    var backgroundStyle: KeyboardStyle.Background { get }
+    var backgroundStyle: Keyboard.Background { get }
 
     /// The foreground color to apply to the entire keyboard.
     var foregroundColor: Color? { get }
