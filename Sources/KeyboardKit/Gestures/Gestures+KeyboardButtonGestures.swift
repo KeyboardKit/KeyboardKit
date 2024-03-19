@@ -11,36 +11,31 @@ import SwiftUI
 
 extension Gestures {
     
-    /**
-     This view applies keyboard gestures to any content view.
-     */
+    /// This view applies keyboard gestures to any view.
     struct KeyboardButtonGestures<Content: View>: View {
         
-        /**
-         Apply a set of optional gesture actions to the provided
-         view, for a certain keyboard action.
-         
-         - Parameters:
-           - view: The view to apply the gestures to.
-           - action: The keyboard action to trigger.
-           - calloutContext: The callout context to affect, if any.
-           - isPressed: An optional binding that can be used to observe the button pressed state.
-           - isInScrollView: Whether or not the gestures are used in a scroll view.
-           - releaseOutsideTolerance: The percentage of the button size that should span outside the button bounds and still count as a release, by default `0.75`.
-           - doubleTapAction: The action to trigger when the button is double tapped.
-           - longPressAction: The action to trigger when the button is long pressed.
-           - pressAction: The action to trigger when the button is pressed.
-           - releaseAction: The action to trigger when the button is released, regardless of where the gesture ends.
-           - repeatAction: The action to trigger when the button is pressed and held.
-           - dragAction: The action to trigger when the button is dragged.
-         */
+        /// Apply a set of action gestures to a view.
+        ///
+        /// - Parameters:
+        ///   - view: The view to apply the gestures to.
+        ///   - action: The keyboard action to trigger.
+        ///   - calloutContext: The callout context to affect, if any.
+        ///   - isPressed: An optional binding that can be used to observe the button pressed state.
+        ///   - isInScrollView: Whether or not the gestures are used in a scroll view.
+        ///   - releaseOutsideTolerance: The percentage of the button size outside its bounds that should count as a release, by default `1.0`.
+        ///   - doubleTapAction: The action to trigger when the button is double tapped.
+        ///   - longPressAction: The action to trigger when the button is long pressed.
+        ///   - pressAction: The action to trigger when the button is pressed.
+        ///   - releaseAction: The action to trigger when the button is released, regardless of where the gesture ends.
+        ///   - repeatAction: The action to trigger when the button is pressed and held.
+        ///   - dragAction: The action to trigger when the button is dragged.
         init(
             view: Content,
             action: KeyboardAction?,
             calloutContext: CalloutContext?,
             isPressed: Binding<Bool>,
             isInScrollView: Bool,
-            releaseOutsideTolerance: Double,
+            releaseOutsideTolerance: Double? = nil,
             doubleTapAction: KeyboardGestureAction?,
             longPressAction: KeyboardGestureAction?,
             pressAction: KeyboardGestureAction?,
@@ -53,7 +48,7 @@ extension Gestures {
             self.calloutContext = calloutContext
             self.isPressed = isPressed
             self.isInScrollView = isInScrollView
-            self.releaseOutsideTolerance = releaseOutsideTolerance
+            self.releaseOutsideTolerance = releaseOutsideTolerance ?? 1.0
             self.doubleTapAction = doubleTapAction
             self.longPressAction = longPressAction
             self.pressAction = pressAction

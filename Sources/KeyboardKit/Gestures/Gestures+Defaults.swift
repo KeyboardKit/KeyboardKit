@@ -10,9 +10,7 @@ import Foundation
 
 public extension Gestures {
     
-    /**
-     This type has default gesture values.
-     */
+    /// This type defines default gesture values.
     struct Defaults {
         
         /// The max time between two taps for them to count as a double tap, by default `0.2`.

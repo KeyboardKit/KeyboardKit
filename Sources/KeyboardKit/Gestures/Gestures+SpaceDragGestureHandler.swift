@@ -10,23 +10,19 @@ import CoreGraphics
 
 public extension Gestures {
     
-    /**
-     This drag gesture handler handles the space key gesture
-     that moves the input cursor.
-     
-     KeyboardKit automatically creates an instance and binds
-     it to ``KeyboardInputViewController/services``.
-     */
+    /// This custom gesture handler can handle the space key
+    /// gesture that moves the input cursor.
+    ///
+    /// KeyboardKit will create an instance of the class and
+    /// inject it into ``KeyboardInputViewController/state``.
     class SpaceDragGestureHandler: DragGestureHandler {
         
-        /**
-         Create a gesture handler instance.
-         
-         - Parameters:
-           - sensitivity: The drag sensitivity, by default `.medium`.
-           - verticalThreshold: The vertical threshold in points, by default `50`.
-           - action: The action to perform when the offset changes.
-         */
+        /// Create a space drag gesture handler instance.
+        ///
+        /// - Parameters:
+        ///   - sensitivity: The drag sensitivity, by default `.medium`.
+        ///   - verticalThreshold: The vertical threshold in points, by default `50`.
+        ///   - action: The action to perform when the offset changes.
         public init(
             sensitivity: Gestures.SpaceDragSensitivity = .medium,
             verticalThreshold: Double = 50,
@@ -54,10 +50,8 @@ public extension Gestures {
         /// The currently applied drag text position offset.
         public var currentDragTextPositionOffset: Int = 0
         
-        /**
-         Handle a drag gesture on space, which by default should
-         move the cursor left and right after a long press.
-         */
+        /// Handle a drag gesture on space, which by default
+        /// should activate after a long press.
         public func handleDragGesture(
             from startLocation: CGPoint,
             to currentLocation: CGPoint
@@ -80,28 +74,22 @@ import UIKit
 
 extension UITextDocumentProxy {
 
-    /**
-     This hopefully temporary multiplier offset is used when
-     a drag gesture moves over a combined emoji.
-     */
+    /// This drag offset is used when the gesture moves over
+    /// a combined emoji.
     func spaceDragOffset(for rawOffset: Int) -> Int? {
         let multiplier = spaceDragOffsetMultiplier(for: rawOffset)
         return rawOffset * (multiplier ?? 1)
     }
 
-    /**
-     This hopefully temporary multiplier is used when a drag
-     gesture moves over a combined emoji.
-     */
+    /// This offset muliplier is used when the gesture moves
+    /// over a combined emoji.
     func spaceDragOffsetMultiplier(for offset: Int) -> Int? {
         let char = spaceDragOffsetMultiplierCharacter(for: offset)
         return char?.spaceDragOffsetMultiplier
     }
 
-    /**
-     This hopefully temporary character is used when a space
-     drag gesture moves over a combined emoji.
-     */
+    /// This character is used when the gesture moves over a
+    /// combined emoji.
     func spaceDragOffsetMultiplierCharacter(for offset: Int) -> String.Element? {
         if offset == 1 { return documentContextAfterInput?.first }
         if offset == -1 { return documentContextBeforeInput?.last }
@@ -112,10 +100,8 @@ extension UITextDocumentProxy {
 
 extension String.Element {
 
-    /**
-     This hopefully temporary multiplier is used when a drag
-     gesture moves over a combined emoji.
-     */
+    /// This offset muliplier is used when the gesture moves
+    /// over a combined emoji.
     var spaceDragOffsetMultiplier: Int {
         guard isEmoji else { return 1 }
         return Int(floor(Double(utf8.count)/2))

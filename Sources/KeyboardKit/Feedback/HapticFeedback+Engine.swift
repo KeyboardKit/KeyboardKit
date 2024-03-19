@@ -15,8 +15,7 @@ public extension HapticFeedback {
     /// This engine can be used to trigger haptic feedback.
     ///
     /// The engine uses UIKit functionality that require iOS.
-    /// Therefore, other platforms have no haptic feedback.
-     */
+    /// Other platforms have no haptic feedback.
     class Engine {
         
         /// Create a haptic feedback engine instance.

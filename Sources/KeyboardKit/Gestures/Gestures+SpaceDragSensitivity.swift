@@ -10,13 +10,11 @@ import Foundation
 
 public extension Gestures {
     
-    /**
-     This enum can be used to specify a sensitivity for when
-     long pressing and dragging on the space key.
-     
-     > Note: This sensitivity corresponds to how many points
-     space key must be dragged for the cursor to move a step.
-     */
+    /// This enum defines supported space drag sensitivities.
+    ///
+    /// > Note: This type defines to how many points a space
+    /// key must be dragged for the input cursor to be moved
+    /// a step. Higher sensitivity means fewer points.
     enum SpaceDragSensitivity: Codable, Identifiable {
         
         case low, medium, high, custom(points: Int)
@@ -29,10 +27,10 @@ public extension Gestures.SpaceDragSensitivity {
     
     var points: Int {
         switch self {
-        case .low: return 10
-        case .medium: return 5
-        case .high: return 2
-        case .custom(let points): return points
+        case .low: 10
+        case .medium: 5
+        case .high: 2
+        case .custom(let points): points
         }
     }
 }

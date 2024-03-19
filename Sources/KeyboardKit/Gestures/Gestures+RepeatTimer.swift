@@ -10,10 +10,7 @@ import Foundation
 
 public extension Gestures {
     
-    /**
-     This class can be used to handle repeating actions on a
-     keyboard button.
-     */
+    /// This class can be used to handle repeating actions.
     class RepeatTimer {
         
         public init() {}

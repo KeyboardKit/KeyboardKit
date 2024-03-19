@@ -10,10 +10,8 @@ import Foundation
 
 public extension Gestures {
  
-    /**
-     This enum defines various keyboard gestures that can be
-     used to interact with a keyboard.
-     */
+    /// This enum defines various keyboard gestures that can
+    /// be used to interact with a keyboard.
     enum KeyboardGesture: String, CaseIterable, Codable, Equatable, Identifiable {
 
         /// Triggers when a button is double tapped.

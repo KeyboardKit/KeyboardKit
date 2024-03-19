@@ -10,9 +10,7 @@ import Foundation
 
 public extension Gestures {
     
-    /**
-     This enum defines various space key long press actions.
-     */
+    /// This enum defines various space long press actions.
     enum SpaceLongPressBehavior: Codable {
         
         /// Long pressing space moves the input cursor.

@@ -11,39 +11,35 @@ import SwiftUI
 
 public extension Gestures {
     
-    /**
-     This button can be used to apply a bunch of gestures to
-     the provided button label.
-     
-     The button has a single drag gesture to add support for
-     a bunch of different gestures, in a way that blocks the
-     scroll gesture of a `ScrollView`.
-     
-     Use a ``ScrollViewGestureButton`` inside a `ScrollView`.
-     */
+    /// This button supports triggering gesture actions in a
+    /// way that maximizes performance.
+    ///
+    /// This button can however not be used in a `ScrollView`
+    /// since it blocks the scroll view gesture.
+    ///
+    /// Use a ``Gestures/ScrollViewGestureButton`` when your
+    /// buttons won't be used within `ScrollView`.
     struct GestureButton<Label: View>: View {
         
-        /**
-         Create a drag gesture button.
-         
-         - Parameters:
-           - isPressed: A custom, optional binding to track pressed state, by default `nil`.
-           - pressAction: The action to trigger when the button is pressed, by default `nil`.
-           - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
-           - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
-           - longPressDelay: The time it takes for a press to count as a long press.
-           - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
-           - doubleTapTimeout: The max time between two taps for them to count as a double tap.
-           - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
-           - repeatDelay: The time it takes for a press to count as a repeat trigger.
-           - repeatTimer: The repeat timer to use for the repeat action.
-           - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
-           - dragStartAction: The action to trigger when a drag gesture starts.
-           - dragAction: The action to trigger when a drag gesture changes.
-           - dragEndAction: The action to trigger when a drag gesture ends.
-           - endAction: The action to trigger when a button gesture ends, by default `nil`.
-           - label: The button label.
-         */
+        /// Create a scroll gesture button.
+        ///
+        /// - Parameters:
+        ///   - isPressed: A custom, optional binding to track pressed state, by default `nil`.
+        ///   - pressAction: The action to trigger when the button is pressed, by default `nil`.
+        ///   - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
+        ///   - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
+        ///   - longPressDelay: The time it takes for a press to count as a long press.
+        ///   - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
+        ///   - doubleTapTimeout: The max time between two taps for them to count as a double tap.
+        ///   - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
+        ///   - repeatDelay: The time it takes for a press to count as a repeat trigger.
+        ///   - repeatTimer: The repeat timer to use for the repeat action.
+        ///   - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
+        ///   - dragStartAction: The action to trigger when a drag gesture starts.
+        ///   - dragAction: The action to trigger when a drag gesture changes.
+        ///   - dragEndAction: The action to trigger when a drag gesture ends.
+        ///   - endAction: The action to trigger when a button gesture ends, by default `nil`.
+        ///   - label: The button label.
         public init(
             isPressed: Binding<Bool>? = nil,
             pressAction: Action? = nil,
@@ -217,7 +213,7 @@ private extension GeometryProxy {
     }
 }
 
-struct GestureButton_Previews: PreviewProvider {
+#Preview {
 
     struct Preview: View {
 
@@ -288,8 +284,10 @@ struct GestureButton_Previews: PreviewProvider {
                     ForEach(0...3, id: \.self) { _ in
                         button()
                     }
-                }.frame(maxWidth: .infinity)
-            }.padding(.horizontal)
+                }
+                .frame(maxWidth: .infinity)
+            }
+            .padding(.horizontal)
         }
     }
 
@@ -370,12 +368,11 @@ struct GestureButton_Previews: PreviewProvider {
             HStack {
                 Text("\(title):")
                 Text(value).bold()
-            }.lineLimit(1)
+            }
+            .lineLimit(1)
         }
     }
 
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }
 #endif

@@ -11,45 +11,34 @@ import SwiftUI
 
 public extension Gestures {
     
-    /**
-     This button can be used to apply a bunch of gestures to
-     the provided button label, that works in a `ScrollView`.
-     
-     The button has gestures and states to add support for a
-     bunch of different gestures, in a way that works with a
-     `ScrollView` and doesn't block its scroll gestures.
-     
-     The code is quite complicated and is the result of much
-     trial and (many) errors. Use a ``GestureButton`` if you
-     will not use it inside a `ScrollView`.
-     
-     > Note: This view uses a `ButtonStyle` to make gestures
-     work, and therefore doesn't support other button styles.
-     You can however use the `isPressed` value that's passed
-     to the `label` builder, to configure the label.
-     */
+    /// This button supports triggering gesture actions in a
+    /// way that works within a `ScrollView`.
+    ///
+    /// This button has complicated code that does not block
+    /// the scroll view gestures.
+    ///
+    /// Use a ``Gestures/GestureButton`` when you don't need
+    /// to use your buttons within a `ScrollView` .
     struct ScrollViewGestureButton<Label: View>: View {
         
-        /**
-         Create a gesture button.
-         
-         - Parameters:
-           - isPressed: A custom, optional binding to track pressed state, by default `nil`.
-           - pressAction: The action to trigger when the button is pressed, by default `nil`.
-           - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
-           - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
-           - longPressDelay: The time it takes for a press to count as a long press.
-           - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
-           - doubleTapTimeout: The max time between two taps for them to count as a double tap.
-           - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
-           - repeatTimer: The repeat timer to use for the repeat action.
-           - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
-           - dragStartAction: The action to trigger when a drag gesture starts.
-           - dragAction: The action to trigger when a drag gesture changes.
-           - dragEndAction: The action to trigger when a drag gesture ends.
-           - endAction: The action to trigger when a button gesture ends, by default `nil`.
-           - label: The button label.
-         */
+        /// Create a scroll view gesture button.
+        ///
+        /// - Parameters:
+        ///   - isPressed: A custom, optional binding to track pressed state, by default `nil`.
+        ///   - pressAction: The action to trigger when the button is pressed, by default `nil`.
+        ///   - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
+        ///   - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
+        ///   - longPressDelay: The time it takes for a press to count as a long press.
+        ///   - longPressAction: The action to trigger when the button is long pressed, by default `nil`.
+        ///   - doubleTapTimeout: The max time between two taps for them to count as a double tap.
+        ///   - doubleTapAction: The action to trigger when the button is double tapped, by default `nil`.
+        ///   - repeatTimer: The repeat timer to use for the repeat action.
+        ///   - repeatAction: The action to repeat while the button is being pressed, by default `nil`.
+        ///   - dragStartAction: The action to trigger when a drag gesture starts.
+        ///   - dragAction: The action to trigger when a drag gesture changes.
+        ///   - dragEndAction: The action to trigger when a drag gesture ends.
+        ///   - endAction: The action to trigger when a button gesture ends, by default `nil`.
+        ///   - label: The button label.
         public init(
             isPressed: Binding<Bool>? = nil,
             pressAction: Action? = nil,
@@ -115,7 +104,8 @@ public extension Gestures {
                 Style(
                     isPressed: $isPressed,
                     isPressedByGesture: $isPressedByGesture,
-                    config: config)
+                    config: config
+                )
             )
             .onChange(of: isPressed) { newValue in
                 isPressedBinding.wrappedValue = newValue
@@ -287,7 +277,7 @@ private extension GeometryProxy {
     }
 }
 
-struct ScrollViewGestureButton_Previews: PreviewProvider {
+#Preview {
 
     struct Preview: View {
 
@@ -444,12 +434,11 @@ struct ScrollViewGestureButton_Previews: PreviewProvider {
             HStack {
                 Text("\(title):")
                 Text(value).bold()
-            }.lineLimit(1)
+            }
+            .lineLimit(1)
         }
     }
 
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }
 #endif
