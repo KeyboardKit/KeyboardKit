@@ -9,25 +9,21 @@
 import Combine
 import Foundation
 
-/**
- This class can be used to specify what kind of feedback the
- current keyboard should give to the user.
- 
- You can modify the ``audio`` and ``haptic`` properties when
- you want to customize the feedback behavior in the keyboard.
- 
- KeyboardKit automatically creates an instance of this class
- and injects it into ``KeyboardInputViewController/state``.
- */
+/// This class can be used to configure the kind of feedback
+/// a keyboard should give to the user.
+///
+/// You can setup the ``audio`` and ``haptic`` properties to
+/// customize the feedback behavior.
+///
+/// KeyboardKit creates an instance of the class and injects
+/// it into ``KeyboardInputViewController/state`` on launch.
 public class FeedbackConfiguration: ObservableObject {
     
-    /**
-     Create a keyboard feedback settings instance.
-     
-     - Parameters:
-       - audioConfiguration: The configuration to use for audio feedback, by deafult `.enabled`.
-       - hapticConfiguration: The configuration to use for haptic feedback, by deafult `.minimal`.
-     */
+    /// Create a keyboard configuration instance.
+    ///
+    /// - Parameters:
+    ///   - audioConfiguration: The configuration to use for audio feedback, by deafult `.enabled`.
+    ///   - hapticConfiguration: The configuration to use for haptic feedback, by deafult `.minimal`.
     public init(
         audio: AudioFeedback.Configuration = .enabled,
         haptic: HapticFeedback.Configuration = .minimal

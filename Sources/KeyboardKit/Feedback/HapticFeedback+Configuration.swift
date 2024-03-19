@@ -10,26 +10,22 @@ import Foundation
 
 public extension HapticFeedback {
     
-    /**
-     This struct can be used to configure haptic feedback.
-     
-     You can create a custom configuration or use the static
-     values, like ``HapticFeedback/Configuration/enabled``.
-     */
+    /// This struct can be used to configure haptic feedback.
+    ///
+    /// You can use any of the standard configurations, like
+    /// ``enabled`` and ``disabled``, or create a custom one.
     struct Configuration: Codable, Equatable {
         
-        /**
-         Create a haptic feedback configuration.
-         
-         - Parameters:
-           - press: The feedback to use for presses, by default `.none`.
-           - release: The feedback to use for releases, by default `.none`.
-           - doubleTap: The feedback to use for double taps, by default `.none`.
-           - longPress: The feedback to use for long presses, by default `.none`.
-           - longPressOnSpace: The feedback to use for long presses on space, by default `.mediumImpact`.
-           - repeat: The feedback to use for repeat, by default `.none`.
-           - actions: A list of action/gesture-specific feedback, by default `empty`.
-         */
+        /// Create a haptic feedback configuration.
+        ///
+        /// - Parameters:
+        ///   - press: The feedback to use for presses, by default `.none`.
+        ///   - release: The feedback to use for releases, by default `.none`.
+        ///   - doubleTap: The feedback to use for double taps, by default `.none`.
+        ///   - longPress: The feedback to use for long presses, by default `.none`.
+        ///   - longPressOnSpace: The feedback to use for long presses on space, by default `.mediumImpact`.
+        ///   - repeat: The feedback to use for repeat, by default `.none`.
+        ///   - actions: A list of action/gesture-specific feedback, by default `empty`.
         public init(
             press: HapticFeedback = .none,
             release: HapticFeedback = .none,

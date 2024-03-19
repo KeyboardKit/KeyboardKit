@@ -12,13 +12,10 @@ import AudioToolbox
 
 public extension AudioFeedback {
     
-    /**
-     This engine can be used to trigger audio feedback.
-     
-     This engine uses the `AudioToolbox` framework, which is
-     not available on watchOS. Therefore, it does nothing on
-     watchoS.
-     */
+    /// This engine can be used to trigger audio feedback.
+    ///
+    /// The engine uses `AudioToolbox`, which is unavailable
+    /// on watchOS. Therefore, watchOS has no audio feedback.
     class Engine {
         
         /// Create an audio feedback engine instance.

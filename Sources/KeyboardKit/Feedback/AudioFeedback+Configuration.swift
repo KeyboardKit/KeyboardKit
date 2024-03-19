@@ -10,23 +10,19 @@ import Foundation
 
 public extension AudioFeedback {
     
-    /**
-     This struct can be used to configure audio feedback.
-     
-     You can create a custom configuration or use the static
-     values, like ``AudioFeedback/Configuration/enabled``.
-     */
+    /// This struct can be used to configure audio feedback.
+    ///
+    /// You can use any of the standard configurations, like
+    /// ``enabled`` and ``disabled``, or create a custom one.
     struct Configuration: Codable, Equatable {
         
-        /**
-         Create an audio feedback configuration.
-         
-         - Parameters:
-           - input: The feedback to use for input keys, by default `.input`.
-           - delete: The feedback to use for delete keys, by default `.delete`.
-           - system: The feedback to use for system keys, by default `.system`.
-           - actions: A list of action-specific feedback, by default `empty`.
-         */
+        /// Create an audio feedback configuration.
+        ///
+        /// - Parameters:
+        ///   - input: The feedback to use for input keys, by default `.input`.
+        ///   - delete: The feedback to use for delete keys, by default `.delete`.
+        ///   - system: The feedback to use for system keys, by default `.system`.
+        ///   - actions: A list of action-specific feedback, by default `empty`.
         public init(
             input: AudioFeedback = .input,
             delete: AudioFeedback = .delete,

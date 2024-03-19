@@ -8,34 +8,29 @@
 
 import Foundation
 
-/**
- This enum contains audio feedback types that maps to system
- audio feedback values.
- 
- You can call ``trigger()`` on any feedback type, to play it
- with the ``AudioFeedback/Engine/shared`` audio engine.
- 
- Every feedback type has a unique id that refers to a system
- sound that will be played when the feedback is played. 
-*/
+/// This enum defines standard audio feedback types.
+///
+/// You can call ``trigger()`` on any feedback type, to play
+/// it with the ``AudioFeedback/Engine/shared`` engine.
+///
+/// Each feedback type has a unique system id that refers to
+/// a system sound that is played when feedback is triggered.
 public enum AudioFeedback: Codable, Equatable, Identifiable {
     
-    case
-    
     /// Represents the sound of an input key.
-    input,
+    case input
     
     /// Represents the sound of a system key.
-    system,
+    case system
     
     /// Represents the sound of a delete key.
-    delete,
+    case delete
     
     /// Represents a custom system sound.
-    custom(id: UInt32),
+    case custom(id: UInt32)
     
     /// Can be used to disable feedback.
-    none
+    case none
 }
 
 public extension AudioFeedback {
@@ -43,11 +38,11 @@ public extension AudioFeedback {
     /// The unique system sound identifier.
     var id: UInt32 {
         switch self {
-        case .input: return 1104
-        case .delete: return 1155
-        case .system: return 1156
-        case .custom(let value): return value
-        case .none: return 0
+        case .input: 1104
+        case .delete: 1155
+        case .system: 1156
+        case .custom(let value): value
+        case .none: 0
         }
     }
     

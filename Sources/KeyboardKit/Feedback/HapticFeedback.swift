@@ -8,43 +8,41 @@
 
 import Foundation
 
-/**
- This enum contains haptic feedback types that maps to names
- that are then mapped to system haptic feedback types.
-  
- You can call ``trigger()`` on any feedback type, to trigger
- it with the ``HapticFeedback/Engine/shared`` haptic engine.
-*/
+/// This enum defines standard haptic feedback types.
+///
+/// You can call ``trigger()`` on any feedback type, to play
+/// it with the ``HapticFeedback/Engine/shared`` engine.
+/// 
+/// Each feedback type has a native haptic type that will be
+/// played when feedback is triggered.
 public enum HapticFeedback: String, CaseIterable, Codable, Equatable, Identifiable {
     
-    case
-
     /// Represents feedback for an error event.
-    error,
+    case error
 
     /// Represents feedback for a successful event.
-    success,
+    case success
 
     /// Represents feedback for a warning event.
-    warning,
+    case warning
 
 
     /// Represents light impact feedback.
-    lightImpact,
+    case lightImpact
 
     /// Represents medium impact feedback.
-    mediumImpact,
+    case mediumImpact
 
     /// Represents heavy impact feedback.
-    heavyImpact,
+    case heavyImpact
 
 
     /// Represents feedback when a selection changes.
-    selectionChanged,
+    case selectionChanged
 
 
     /// Can be used to disable feedback.
-    none
+    case none
 }
 
 

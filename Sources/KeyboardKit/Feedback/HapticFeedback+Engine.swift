@@ -12,11 +12,10 @@ import UIKit
 
 public extension HapticFeedback {
     
-    /**
-     This engine can be used to trigger haptic feedback.
-     
-     This engine uses UIKit features that are only available
-     on iOS. Therefore, it does nothing on watchOS and macOS.
+    /// This engine can be used to trigger haptic feedback.
+    ///
+    /// The engine uses UIKit functionality that require iOS.
+    /// Therefore, other platforms have no haptic feedback.
      */
     class Engine {
         
