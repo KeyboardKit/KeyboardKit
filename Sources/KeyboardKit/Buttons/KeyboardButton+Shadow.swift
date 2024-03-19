@@ -10,23 +10,19 @@ import SwiftUI
 
 public extension KeyboardButton {
     
-    /**
-     This view renders the round shadow of a keyboard button.
-     
-     Instead of being a real shadow, this view is an overlay
-     that lets us use opaque shadows for transparent buttons.
-     
-     This is needed to render the shadow correctly, even for
-     dark mode bug workaround colors, which are semi-opaque.
-     */
+    /// This view renders a keyboard button bottom shadow.
+    ///
+    /// Instead of being a shadow, the view is an overlay to
+    /// lets us use opaque shadows for transparent buttons.
+    ///
+    /// This is needed to render a shadow correctly for dark
+    /// mode bug workaround colors, which are semi-opaque.
     struct Shadow: View {
         
-        /**
-         Create a keyboard button shadow.
-         
-         - Parameters:
-           - style: The button style to apply.
-         */
+        /// Create a keyboard button shadow.
+        ///
+        /// - Parameters:
+        ///   - style: The button style to apply.
         public init(style: Style) {
             self.style = style
         }

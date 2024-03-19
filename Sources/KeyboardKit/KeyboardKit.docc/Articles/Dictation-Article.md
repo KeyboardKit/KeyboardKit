@@ -14,7 +14,7 @@ KeyboardKit therefore provides dictation-specific tools that you can use to add 
 
 KeyboardKit has a ``Dictation`` namespace that contains dictation-related types.
 
-This namespace doesn't have protocols, open classes, or types that are meant to be top-level.
+This namespace doesn't contain protocols, open classes, or types that are meant to be top-level.
 
 
 ## Dictation context

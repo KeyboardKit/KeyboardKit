@@ -12,14 +12,11 @@ import UIKit
 
 /**
  This button makes any view behave as a next keyboard button,
- which switches to the next keyboard when tapped and opens a
- keyboard switcher menu when pressed.
+ which switches keyboard on tap and opens a menu on press.
 
  Note that you must provide a `UIInputViewController` in the
- initializer or set the `NextKeyboardController.shared` to a
- controller before you create an instance of this view. When
- using KeyboardKit, the ``KeyboardInputViewController`` will
- automatically register itself as the shared instance.
+ initializer or set ``NextKeyboardController/shared`` before
+ you use the view. This is automatically done by KeyboardKit.
  */
 public struct NextKeyboardButton<Content: View>: View {
 
@@ -45,20 +42,16 @@ public struct NextKeyboardButton<Content: View>: View {
     }
 }
 
-struct NextKeyboardButton_Previews: PreviewProvider {
+#Preview {
 
-    static var previews: some View {
-        NextKeyboardButton {
-            Image.keyboardGlobe.font(.title)
-        }
+    NextKeyboardButton {
+        Image.keyboardGlobe.font(.title)
     }
 }
 
-/**
- This overlay sets up a `next keyboard` controller action on
- a blank `UIKit` button. This can hopefully be removed later,
- without public changes.
- */
+/// This overlay sets up a `next keyboard` controller action
+/// on a blank `UIKit` button. This can hopefully be removed
+/// later, without public changes.
 private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 
     init(

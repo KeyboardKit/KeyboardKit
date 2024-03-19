@@ -46,7 +46,7 @@ Have a look at the <doc:Colors-Article> and <doc:Images-Article> articles for mo
 
 KeyboardKit has a ``Styling`` namespace that contains styling-related types.
 
-This namespace doesn't have protocols, open classes, or types that are meant to be top-level.
+This namespace doesn't contain protocols, open classes, or types that are meant to be top-level.
 
 
 

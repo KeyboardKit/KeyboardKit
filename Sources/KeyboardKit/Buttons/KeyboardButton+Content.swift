@@ -10,26 +10,21 @@ import SwiftUI
 
 public extension KeyboardButton {
     
-    /**
-     This view renders the content of a keyboard button, for
-     the provided ``KeyboardAction``.
-     
-     This view will adapt its content to the provided action,
-     style provider and keyboard context.
-     
-     The view sets up gestures, line limits, vertical offset,
-     and styles the view according to the `styleProvider`.
-     */
+    /// This view renders the content of a keyboard button.
+    ///
+    /// The view adapts its content to fit the action, state
+    /// and services that are passed in.
+    ///
+    /// The view sets up gestures, line limits, offset, etc.
+    /// according to the provided `styleProvider`.
     struct Content: View {
         
-        /**
-         Create a system keyboard action button content view.
-         
-         - Parameters:
-           - action: The keyboard action to use.
-           - styleProvider: The style provider to use.
-           - keyboardContext: The keyboard context to use.
-         */
+        /// Create a keyboard button content view.
+        ///
+        /// - Parameters:
+        ///   - action: The keyboard action to use.
+        ///   - styleProvider: The style provider to use.
+        ///   - keyboardContext: The keyboard context to use.
         public init(
             action: KeyboardAction,
             styleProvider: KeyboardStyleProvider,
@@ -103,17 +98,18 @@ private extension KeyboardButton.Content {
     }
 }
 
-struct KeyboardButton_Content_Previews: PreviewProvider {
+#Preview {
     
-    static let multiLocaleContext: KeyboardContext = {
+    let multiLocaleContext: KeyboardContext = {
         var context = KeyboardContext.preview
         context.locales = [
             KeyboardLocale.english.locale,
-            KeyboardLocale.swedish.locale]
+            KeyboardLocale.swedish.locale
+        ]
         return context
     }()
     
-    static func preview(
+    func preview(
         for action: KeyboardAction,
         multiLocale: Bool = false
     ) -> some View {
@@ -121,19 +117,18 @@ struct KeyboardButton_Content_Previews: PreviewProvider {
             action: action,
             styleProvider: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview
-        ).background(Color.gray)
+        )
+        .background(Color.gray)
     }
     
-    static var previews: some View {
-        VStack {
-            preview(for: .backspace)
-            preview(for: .nextKeyboard)
-            preview(for: .nextLocale)
-            preview(for: .keyboardType(.emojis))
-            preview(for: .space, multiLocale: false)
-            preview(for: .space, multiLocale: true)
-            preview(for: .character("PascalCased"))
-            preview(for: .character("lowercased"))
-        }
+    return VStack {
+        preview(for: .backspace)
+        preview(for: .nextKeyboard)
+        preview(for: .nextLocale)
+        preview(for: .keyboardType(.emojis))
+        preview(for: .space, multiLocale: false)
+        preview(for: .space, multiLocale: true)
+        preview(for: .character("PascalCased"))
+        preview(for: .character("lowercased"))
     }
 }

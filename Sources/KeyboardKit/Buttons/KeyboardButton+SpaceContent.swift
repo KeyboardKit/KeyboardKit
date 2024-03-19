@@ -10,21 +10,17 @@ import SwiftUI
 
 public extension KeyboardButton {
     
-    /**
-     This view renders the content of a system space button.
-     
-     This view starts with showing the provided `localeText`,
-     then fades to the provided `spaceText` or `spaceView`.
-     */
+    /// This view renders system space key content.
+    ///
+    /// This view starts with showing a provided `localeText`,
+    /// then fades to the provided `spaceText` or `spaceView`.
     struct SpaceContent<SpaceView: View>: View {
         
-        /**
-         Create a system keyboard space button content view.
-         
-         - Parameters:
-           - localeText: The display name of the current locale.
-           - spaceView: The custom view to use in the space button.
-         */
+        /// Create a space key content view.
+        ///
+        /// - Parameters:
+        ///   - localeText: The name of the current locale.
+        ///   - spaceView: The custom view to use in the space button.
         public init(
             localeText: String,
             spaceView: SpaceView
@@ -33,13 +29,11 @@ public extension KeyboardButton {
             self.spaceView = spaceView
         }
         
-        /**
-         Create a system keyboard space button content view.
-         
-         - Parameters:
-           - localeText: The display name of the current locale.
-           - spaceText: The localized name for "space".
-         */
+        /// Create a space key content view.
+        ///
+        /// - Parameters:
+        ///   - localeText: The name of the current locale.
+        ///   - spaceText: The localized name for "space".
         init(
             localeText: String,
             spaceText: String
@@ -106,29 +100,19 @@ private extension KeyboardButton.SpaceContent {
     }
 }
 
-struct KeyboardButton_SpaceContent_Previews: PreviewProvider {
+#Preview {
     
-    static var spaceText: some View {
+    Group {
         KeyboardButton.SpaceContent(
             localeText: KeyboardLocale.english.locale.localizedName,
-            spaceText: KKL10n.space.text(for: .english))
-    }
-    
-    static var spaceView: some View {
+            spaceText: KKL10n.space.text(for: .english)
+        )
         KeyboardButton.SpaceContent(
             localeText: KeyboardLocale.spanish.locale.localizedName,
-            spaceView: Image.keyboardGlobe)
+            spaceView: Image.keyboardGlobe
+        )
     }
-    
-    static var previews: some View {
-        VStack {
-            Group {
-                spaceText
-                spaceView
-            }
-            .padding()
-            .background(Color.red)
-            .cornerRadius(10)
-        }
-    }
+    .padding()
+    .background(Color.red)
+    .cornerRadius(10)
 }

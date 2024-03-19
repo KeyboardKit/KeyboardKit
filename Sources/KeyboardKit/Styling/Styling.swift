@@ -8,10 +8,8 @@
 
 import Foundation
 
-/**
- This namespace contains styling-related types.
- 
- This namespace doesn't contain protocols, open classes, nor
- types of higher importance.
- */
+/// This namespace contains style-related types.
+///
+/// The namespace doesn't contain protocols, open classes or
+/// types of higher importance. 
 public struct Styling {}

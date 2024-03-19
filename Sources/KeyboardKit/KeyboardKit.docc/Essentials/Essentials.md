@@ -29,7 +29,7 @@ KeyboardKit has a ``Keyboard`` namespace with a lot of keyboard-related types, s
 
 Namespaces are used to make the surface API smaller, by nesting types together in logical groups. By typing ``Keyboard`` followed by a `.`, Xcode will provide you with a convenient list of types that are included in this essential namespace. 
 
-This namespace doesn't have protocols, open classes, or types that are meant to be top-level.
+This namespace doesn't contain protocols, open classes, or types that are meant to be top-level.
 
 
 
@@ -67,15 +67,12 @@ KeyboardKit extends native types with a lot more information, to make it easier 
 
 ## Views
 
-This section describes essential views in the KeyboardKit library.
-
 @TabNavigator {
     
     @Tab("System Keyboard") {
         
-        KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboard. It can be used for alphabetic, numeric & symbolic keyboards.
-        
-        It supports all ``KeyboardLocale``s, custom layouts, callouts, and can be customized and styled to great extent with styles and themes:
+        KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboard. It can be used for alphabetic, numeric & symbolic keyboards, 
+        supports all supported locales, layouts, callouts, etc., and can be styled to great extent with styles & themes:
 
         @Row {
             
@@ -114,16 +111,13 @@ This section describes essential views in the KeyboardKit library.
         The Keyboard namespace therefore has a ``Keyboard/Toolbar`` that applies a minimum height to its content. It can be styled with a ``Keyboard/ToolbarStyle``, which is applied with a `.keyboardToolbarStyle` view modifier:
         
         ```swift
-        VStack(spacing: 0) {
-            Keyboard.Toolbar {
-                Text("Here's a toolbar")
-            }
+        Keyboard.Toolbar {
+            Text("Here's a toolbar")
         }
         .keyboardToolbarStyle(...)
         ```
     }
 }
-
 
 
 

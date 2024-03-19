@@ -45,11 +45,8 @@ public extension Autocomplete {
 
 public extension View {
 
-    /**
-     This view modifier can be applied to any view, to honor
-     `.autocorrectionDisabled()` by disabling autocorrect in
-     the provided context.
-     */
+    /// This modifier can be applied to any view, to make it
+    /// honor `.autocorrectionDisabled()`.
     func autocorrectionDisabled(
         with context: AutocompleteContext
     ) -> some View {

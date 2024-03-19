@@ -8,10 +8,8 @@
 
 import Foundation
 
-/**
- This namespace contains callout-related types.
- 
- This namespace doesn't contain protocols, open classes, nor
- types of higher importance.
- */
+/// This namespace contains callout-related types.
+///
+/// The namespace doesn't contain protocols, open classes or
+/// types of higher importance. 
 public struct Callouts {}

@@ -10,18 +10,16 @@ import SwiftUI
 
 public extension KeyboardButton {
     
-    /**
-     This view mimics a native keyboard button.
-     
-     This view adapts its content to the provided action, as
-     well as the provided states and and services.
-     
-     You can use an optional `contentConfig` view builder to
-     customize the content view or replace it altogether.
-     
-     You can turn any view into a button like this, by using
-     the `.keyboardButton(...)` view modifier.
-     */
+    /// This view mimics a native keyboard button.
+    ///
+    /// The view adapts its content to fit the action, state
+    /// and services that are passed in.
+    ///
+    /// You can use an optional `contentConfig` view builder
+    /// to customize or replace the button content view.
+    ///
+    /// You can turn any view into a button, by applying the
+    /// `.keyboardButton(...)` view modifier.
     struct Button<Content: View>: View {
         
         /**
@@ -35,7 +33,7 @@ public extension KeyboardButton {
            - calloutContext: The callout context to affect, if any.
            - edgeInsets: The edge insets to apply to the interactable area, if any.
            - isPressed: An external boolean binding for the pressed state, if any.
-           - contentConfig: An optional view configuration that can be used to customize or replace the standard button content.
+           - content: An optional view configuration that can be used to customize or replace the standard button content.
          */
         public init(
             action: KeyboardAction,
@@ -45,7 +43,7 @@ public extension KeyboardButton {
             calloutContext: CalloutContext?,
             edgeInsets: EdgeInsets = .init(),
             isPressed: Binding<Bool>? = nil,
-            @ViewBuilder contentConfig: @escaping ContentConfig
+            @ViewBuilder content: @escaping ContentBuilder
         ) {
             self.action = action
             self.actionHandler = actionHandler
@@ -54,7 +52,7 @@ public extension KeyboardButton {
             self.calloutContext = calloutContext
             self.edgeInsets = edgeInsets
             self.isPressed = isPressed
-            self.contentConfig = contentConfig
+            self.content = content
         }
         
         /**
@@ -86,7 +84,7 @@ public extension KeyboardButton {
                 calloutContext: calloutContext,
                 edgeInsets: edgeInsets,
                 isPressed: isPressed,
-                contentConfig: { $0 }
+                content: { $0 }
             )
         }
         
@@ -97,12 +95,12 @@ public extension KeyboardButton {
         private let calloutContext: CalloutContext?
         private let edgeInsets: EdgeInsets
         private var isPressed: Binding<Bool>?
-        private let contentConfig: ContentConfig
+        private let content: ContentBuilder
         
         @State
         private var isPressedInternal = false
         
-        public typealias ContentConfig = (_ standardContent: KeyboardButton.Content) -> Content
+        public typealias ContentBuilder = (_ content: KeyboardButton.Content) -> Content
         
         public var body: some View {
             buttonContent
@@ -122,7 +120,7 @@ public extension KeyboardButton {
 private extension KeyboardButton.Button {
     
     var buttonContent: some View {
-        contentConfig(
+        content(
             KeyboardButton.Content(
                 action: action,
                 styleProvider: styleProvider,
@@ -139,7 +137,7 @@ private extension KeyboardButton.Button {
     }
 }
 
-struct KeyboardButton_Button_Previews: PreviewProvider {
+#Preview {
     
     struct Preview: View {
         
@@ -184,7 +182,5 @@ struct KeyboardButton_Button_Previews: PreviewProvider {
         }
     }
     
-    static var previews: some View {
-        Preview()
-    }
+    return Preview()
 }

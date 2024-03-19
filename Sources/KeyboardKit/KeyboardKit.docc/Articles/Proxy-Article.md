@@ -18,7 +18,7 @@ KeyboardKit adds a bunch of proxy extension to make things easier. ``KeyboardInp
 
 KeyboardKit has a ``Proxy`` namespace that contains proxy-related types.
 
-This namespace doesn't have protocols, open classes, or types that are meant to be top-level. For now, it only contains types when it's part of the KeyboardKit Pro build.
+This namespace doesn't contain protocols, open classes, or types that are meant to be top-level. For now, it only contains types when it's part of the KeyboardKit Pro build.
 
 
 

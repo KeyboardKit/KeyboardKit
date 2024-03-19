@@ -8,7 +8,5 @@
 
 import Foundation
 
-/**
- This namespace contains various keyboard button types.
- */
+/// This namespace contains various button types.
 public struct KeyboardButton {}

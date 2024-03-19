@@ -10,23 +10,21 @@ import SwiftUI
 
 public extension View {
 
-    /**
-     Apply a keyboard button style and gestures to the view.
-     
-     The `edgeInsets` parameter can be used to add intrinsic
-     edge insets within the interactable button area.
-
-     - Parameters:
-       - action: The keyboard action to trigger.
-       - style: The keyboard style to apply.
-       - actionHandler: The keyboard action handler to use.
-       - keyboardContext: The keyboard context to use.
-       - calloutContext: The callout context to affect, if any.
-       - edgeInsets: The edge insets to apply to the interactable area, if any.
-       - isPressed: An optional binding that can be used to observe the button pressed state.
-       - isInScrollView: Whether or not the gestures are used in a scroll view, by default `false`.
-       - releaseOutsideTolerance: The percentage of the button size that should span outside the button bounds and still count as a release, by default `0.75`.
-     */
+    /// Bind keyboard button styles and gestures to the view.
+    /// 
+    /// The `edgeInsets` init parameter can be used to apply
+    /// intrinsic insets within the interactable button area.
+    ///
+    /// - Parameters:
+    ///   - action: The keyboard action to trigger.
+    ///   - style: The keyboard style to apply.
+    ///   - actionHandler: The keyboard action handler to use.
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - calloutContext: The callout context to affect, if any.
+    ///   - edgeInsets: The edge insets to apply to the interactable area, if any.
+    ///   - isPressed: An optional binding that can observe the button pressed state.
+    ///   - isInScrollView: Whether the gestures are used in a scroll view, by default `false`.
+    ///   - releaseOutsideTolerance: The percentage of the button size that spans outside the button and still counts as a release, by default `1`.
     func keyboardButton(
         for action: KeyboardAction,
         style: KeyboardStyle.Button,
