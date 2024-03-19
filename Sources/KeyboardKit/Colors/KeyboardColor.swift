@@ -52,12 +52,6 @@ enum KeyboardColor: String, CaseIterable, Identifiable {
 
 extension KeyboardColor {
 
-    /**
-     The bundle to use to retrieve bundle-based color assets.
-
-     You should only override this value when the entire set
-     of colors should be loaded from another bundle.
-     */
     static var bundle: Bundle = .keyboardKit
 }
 
@@ -75,9 +69,9 @@ extension KeyboardColor {
     var resourceName: String { rawValue }
 }
 
-struct KeyboardColor_Previews: PreviewProvider {
+#Preview {
     
-    static func preview(for color: KeyboardColor) -> some View {
+    func preview(for color: KeyboardColor) -> some View {
         VStack(alignment: .leading) {
             Text(color.resourceName).font(.footnote)
             HStack(spacing: 0) {
@@ -89,13 +83,13 @@ struct KeyboardColor_Previews: PreviewProvider {
         }
     }
     
-    static var previews: some View {
-        ScrollView {
-            VStack {
-                ForEach(KeyboardColor.allCases) {
-                    preview(for: $0)
-                }
-            }.padding()
-        }.background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
+    return ScrollView {
+        VStack {
+            ForEach(KeyboardColor.allCases) {
+                preview(for: $0)
+            }
+        }
+        .padding()
     }
+    .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
 }

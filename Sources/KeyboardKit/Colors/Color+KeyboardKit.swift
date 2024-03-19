@@ -10,13 +10,8 @@ import SwiftUI
 
 public extension Color {
 
-    /**
-     This color can be used instead of `.clear` if the color
-     should be registering touches and gestures.
-
-     This will be phased out. Instead of this, use a content
-     shape within buttons and views that use touches.
-     */
+    /// This color can be used instead of `clear` to make it
+    /// register touches & gestures.
     static var clearInteractable: Color {
         Color.white.opacity(0.001)
     }
