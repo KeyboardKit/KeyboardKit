@@ -27,7 +27,7 @@
 
 "searchEmoji" = "Sök emoji";
 
-/* [😀] */ "Emoji.GrinningFace" = "Leende ansikte";
+"😀" = "Leende ansikte";
 
 /**
  For emojis localization, copy the text in `Emojis.md`, then

@@ -9,24 +9,25 @@ platform :ios do
 
 
   # EmojiKit ===================
-  
-  ek_dest = "Sources/" + library_name + "/Emojis/"
-  ek_source = "../emojikitsource/Sources/EmojiKit/"
+    
+  ek_from = "../emojikit/Sources/EmojiKit/"
+  ek_dest = "Sources/" + name + "/Emojis/EmojiKit/"
 
   desc "Remove EmojiKit"
   lane :ekremove do
     ensure_git_status_clean
-    sh("cd .. && rm -rf " + ek_dest + "Emoji.swift")
-    sh("cd .. && rm -rf " + ek_dest + "Extensions")
+    sh("cd .. && rm -rf " + ek_dest)
   end
 
   desc "Update EmojiKit"
   lane :ekupdate do
+    ensure_git_status_clean
     ekremove
-    sh("cd .. && rm -rf Sources/" + library_name + "/Bundle/Bundle+Locale.swift")
-    sh("cd .. && cp -r " + ek_source + "Emoji.swift " + ek_dest)
-    sh("cd .. && cp -r " + ek_source + "Extensions " + ek_dest)
-    sh("cd .. && cp -r  " + ek_source + "/Bundle/Bundle+Locale.swift Sources/" + library_name + "/Bundle")
+    sh("cd .. && cp -r " + ek_from + " " + ek_dest)
+    sh("cd .. && rm -rf " + ek_dest + "/Bundle")
+    sh("cd .. && rm -rf " + ek_dest + "/EmojiKit.docc")
+    sh("cd .. && rm -rf " + ek_dest + "/Resources")
+    sh("cd .. && git add .")
     git_commit(path: "*", message: "Update EmojiKit")
   end
 

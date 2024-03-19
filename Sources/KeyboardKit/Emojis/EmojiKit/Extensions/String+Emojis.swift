@@ -1,5 +1,5 @@
 //
-//  String+Emojis.swift
+//  String+Emoji.swift
 //  EmojiKit
 //
 //  Created by Daniel Saidi on 2023-11-01.

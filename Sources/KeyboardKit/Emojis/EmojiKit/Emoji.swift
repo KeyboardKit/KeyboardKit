@@ -19,11 +19,11 @@ public struct Emoji: Equatable, Codable, Identifiable {
         self.char = String(char)
     }
     
-    /// Create an emoji from a certain character.
+    /// Create an emoji from a certain string.
     public init(_ char: String) {
         self.char = char
     }
-   
+    
     /// The emoji character string.
     public let char: String
 }
