@@ -2,13 +2,24 @@
 
 This article describes the KeyboardKit autocomplete engine.
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 Autocomplete is an important part of the typing experience, where suggestions are shown as the user types.
 
 In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions that can be listed in views like an autocomplete ``Autocomplete/Toolbar``.
 
 KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
-[KeyboardKit Pro][Pro] unlocks local and remote autocomplete. More information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks local and remote autocomplete. More information about Pro features can be found at the end of this article.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -18,7 +29,7 @@ KeyboardKit doesn't have a standard autocomplete provider implementation. Instea
 
 KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types, models and views.
 
-This namespace doesn't contain protocols, open classes, or types that are meant to be top-level.
+This namespace doesn't contain protocols, open classes or types of higher importance.
 
 
 
@@ -143,7 +154,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
     
     @Tab("Toolbar") {
         
-        KeyboardKit has an autocomplete ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar. The view can be customized and styled with a ``Autocomplete/ToolbarStyle``, which is applied with a `.autocompleteToolbarStyle` view modifier:
+        KeyboardKit has an autocomplete ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar.
         
         @Row {
             @Column {
@@ -153,6 +164,8 @@ This will make KeyboardKit use your custom implementation instead of the standar
                 ![AutocompleteToolbar](autocompletetoolbar-styled.jpg)
             }
         }   
+            
+        The view can be customized and styled with a ``Autocomplete/ToolbarStyle``, which can be applied with `.autocompleteToolbarStyle`:
         
         ```swift
         Autocomplete.Toolbar {

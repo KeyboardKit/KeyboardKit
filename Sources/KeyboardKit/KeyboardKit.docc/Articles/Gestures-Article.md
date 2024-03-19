@@ -14,7 +14,7 @@ KeyboardKit has a ``Gestures`` namespace that contains gesture-related types.
 
 For instance, a ``Gestures/GestureButton`` can be used to apply many gestures to a single button, a ``Gestures/RepeatTimer`` can be used to repeat an action, etc.
 
-This namespace doesn't contain protocols, open classes, or types that are meant to be top-level.
+This namespace doesn't contain protocols, open classes or types of higher importance.
 
 
 

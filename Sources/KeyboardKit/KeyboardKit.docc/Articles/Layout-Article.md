@@ -96,12 +96,9 @@ There are also other base classes, such as ``BaseKeyboardLayoutProvider``, ``Inp
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks a ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``StandardKeyboardLayoutProvider``.
+[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``StandardKeyboardLayoutProvider``.
 
 KeyboardKit Pro also unlocks an **iPadProKeyboardLayoutProvider** that provides iPad Pro-specific layouts, and automatically use it for most locales.
-
-
-### How to access your localized providers
 
 You can access all localized providers in your license, or any specific provider, like this:
 

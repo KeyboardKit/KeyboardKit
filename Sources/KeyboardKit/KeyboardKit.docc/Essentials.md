@@ -29,7 +29,7 @@ KeyboardKit has a ``Keyboard`` namespace with a lot of keyboard-related types, s
 
 Namespaces are used to make the surface API smaller, by nesting types together in logical groups. By typing ``Keyboard`` followed by a `.`, Xcode will provide you with a convenient list of types that are included in this essential namespace. 
 
-This namespace doesn't contain protocols, open classes, or types that are meant to be top-level.
+This namespace doesn't contain protocols, open classes or types of higher importance.
 
 
 
@@ -108,7 +108,7 @@ KeyboardKit extends native types with a lot more information, to make it easier 
         
         Unlike native keyboards, custom iOS keyboards can't expand beyond the keyboard frame. As such, it's always a good idea to have at least 50 points above the keyboard, to avoid cutting off the input and action callouts that the keyboard can present.
         
-        The Keyboard namespace therefore has a ``Keyboard/Toolbar`` that applies a minimum height to its content. It can be styled with a ``Keyboard/ToolbarStyle``, which is applied with a `.keyboardToolbarStyle` view modifier:
+        The Keyboard namespace therefore has a ``Keyboard/Toolbar`` that applies a minimum height to its content. It can be customized and styled with a ``Keyboard/ToolbarStyle``, which can be applied with `.keyboardToolbarStyle`:
         
         ```swift
         Keyboard.Toolbar {

@@ -13,13 +13,13 @@ This article describes the KeyboardKit AI support capabilities.
     @PageColor(blue)
 }
 
-[KeyboardKit Pro][Pro] provides additional functionality are often needed by AI-based keyboards.
+Apple's native keyboard APIs lack many features that are often needed by AI-based keyboards.
 
 For instance, AI-based keyboards may need to read the entire document to perform tasks like spellchecking and proofreading, and also let users type within the keyboard to type prompts or intents.
 
 Keyboard extensions have little native support for this. The text document proxy will not return all the text within the document, and may cancel at any time. You also can't type in text fields within the keyboard, since text is always sent to the main app.
 
-[KeyboardKit Pro][Pro] unlocks these capabilities, and makes it possible to read the full document and type in a text field within the keyboard.
+👑 [KeyboardKit Pro][Pro] unlocks these capabilities to make it possible to read the full document and type in a text field within the keyboard.
 
 
 
