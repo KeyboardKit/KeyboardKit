@@ -10,10 +10,8 @@ import Foundation
 
 public extension KeyboardLocale {
     
-    /**
-     Whether or not the locale prefers to replace any single
-     alternate ending quotation delimiters with begin ones.
-     */
+    /// Whether a locale prefers to replace alternate ending
+    /// quotation delimiters with begin ones.
     var prefersAlternateQuotationReplacement: Bool {
         locale.prefersAlternateQuotationReplacement
     }
@@ -21,10 +19,8 @@ public extension KeyboardLocale {
 
 public extension Locale {
     
-    /**
-     Whether or not the locale prefers to replace any single
-     alternate ending quotation delimiters with begin ones.
-     */
+    /// Whether a locale prefers to replace alternate ending
+    /// quotation delimiters with begin ones.
     var prefersAlternateQuotationReplacement: Bool {
         if identifier.hasPrefix("en") { return false }
         return true

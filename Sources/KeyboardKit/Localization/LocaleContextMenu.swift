@@ -24,14 +24,12 @@ import SwiftUI
  */
 public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
 
-    /**
-     Create a context menu that lists all the locales in the
-     context as a `Text` view with the full localized name.
-
-     - Parameters:
-       - keyboardContext: The keyboard context to use.
-       - tapAction: The action to trigger when the view is tapped.
-     */
+    /// Create a context menu that lists all context locales
+    /// as a `Text` view with the full localized name.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - tapAction: The action to trigger when the view is tapped.
     public init(
         keyboardContext: KeyboardContext,
         tapAction: @escaping () -> Void
@@ -44,15 +42,13 @@ public struct LocaleContextMenu<MenuItem: View>: ViewModifier {
         }
     }
 
-    /**
-     Create a context menu that lists all the locales in the
-     context as custom views.
-
-     - Parameters:
-       - keyboardContext: The keyboard context to use.
-       - tapAction: The action to trigger when the view is tapped.
-       - menuItem: A menu item view builder.
-     */
+    /// Create a context menu that lists all context locales
+    /// as custom views.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - tapAction: The action to trigger when the view is tapped.
+    ///   - menuItem: A menu item view builder.
     public init(
         keyboardContext: KeyboardContext,
         tapAction: @escaping () -> Void,
@@ -138,14 +134,12 @@ private extension LocaleContextMenu {
 
 public extension View {
 
-    /**
-     Apply a menu that lists all the locales in the keyboard
-     context as a `Text` view with the full localized name.
-
-     - Parameters:
-       - keyboardContext: The keyboard context to use.
-       - tapAction: The action to trigger when the view is tapped.
-     */
+    /// Apply a context menu, that lists all context locales
+    /// as `Text` views with the full localized name.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - tapAction: The action to trigger when the view is tapped.
     func localeContextMenu(
         for context: KeyboardContext,
         tapAction: @escaping () -> Void
@@ -158,15 +152,13 @@ public extension View {
         )
     }
 
-    /**
-     Apply a menu that lists all the locales in the keyboard
-     context as custom views.
-
-     - Parameters:
-       - keyboardContext: The keyboard context to use.
-       - tapAction: The action to trigger when the view is tapped.
-       - menuItem: A menu item view builder.
-     */
+    /// Apply a context menu, that lists all context locales
+    /// as custom views.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - tapAction: The action to trigger when the view is tapped.
+    ///   - menuItem: A menu item view builder.
     func localeContextMenu<ButtonView: View>(
         for context: KeyboardContext,
         tapAction: @escaping () -> Void,
@@ -182,21 +174,19 @@ public extension View {
     }
 }
 
-struct LocaleContextMenu_Previews: PreviewProvider {
+#Preview {
 
-    static let context: KeyboardContext = {
+    let context: KeyboardContext = {
         let context = KeyboardContext.preview
         context.locales = KeyboardLocale.allCases.map { $0.locale }
         context.localePresentationLocale = KeyboardLocale.danish.locale
         return context
     }()
 
-    static var previews: some View {
-        VStack(spacing: 20) {
-            Text("🌐").localeContextMenu(
-                for: context,
-                tapAction: {}
-            )
-        }
+    return VStack(spacing: 20) {
+        Text("🌐").localeContextMenu(
+            for: context,
+            tapAction: {}
+        )
     }
 }

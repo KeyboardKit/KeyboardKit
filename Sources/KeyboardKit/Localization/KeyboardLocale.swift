@@ -9,19 +9,18 @@
 import Foundation
 
 /**
- This enum defines KeyboardKit-supported locales.
+ This enum defines all KeyboardKit-supported locales.
  
- Each keyboard locale refers to a native ``locale`` that can
- provide locale-specific information. A keyboard locale also
- has localized assets that can be translated with ``KKL10n``.
+ Every locale refers to a native ``locale`` that can provide
+ locale-specific information. A keyboard locale also defines
+ localized assets that can be translated with ``KKL10n``.
  */
-public enum KeyboardLocale: String,
-                            CaseIterable,
-                            Codable,
-                            Identifiable {
+public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
     /// Try to map a fuzzy name to a keyboard locale.
-    public init?(fuzzyName: String) {
+    public init?(
+        fuzzyName: String
+    ) {
         let match = Self.allCases.first { fuzzyName.matches($0) }
         guard let match = match else { return nil }
         self = match
@@ -112,75 +111,75 @@ public extension KeyboardLocale {
     /// The raw locale name, as defined within the library.
     var rawName: String {
         switch self {
-        case .albanian: return "albanian"
-        case .arabic: return "arabic"
-        case .armenian: return "armenian"
-        case .belarusian: return "belarusian"
-        case .bulgarian: return "bulgarian"
-        case .catalan: return "catalan"
-        case .cherokee: return "cherokee"
-        case .croatian: return "croatian"
-        case .czech: return "czech"
-        case .danish: return "danish"
+        case .albanian: "albanian"
+        case .arabic: "arabic"
+        case .armenian: "armenian"
+        case .belarusian: "belarusian"
+        case .bulgarian: "bulgarian"
+        case .catalan: "catalan"
+        case .cherokee: "cherokee"
+        case .croatian: "croatian"
+        case .czech: "czech"
+        case .danish: "danish"
 
-        case .dutch: return "dutch"
-        case .dutch_belgium: return "dutch_belgium"
-        case .english: return "english"
-        case .english_gb: return "english_gb"
-        case .english_us: return "english_us"
-        case .estonian: return "estonian"
-        case .faroese: return "faroese"
-        case .filipino: return "filipino"
-        case .finnish: return "finnish"
-        case .french: return "french"
+        case .dutch: "dutch"
+        case .dutch_belgium: "dutch_belgium"
+        case .english: "english"
+        case .english_gb: "english_gb"
+        case .english_us: "english_us"
+        case .estonian: "estonian"
+        case .faroese: "faroese"
+        case .filipino: "filipino"
+        case .finnish: "finnish"
+        case .french: "french"
 
-        case .french_belgium: return "french_belgium"
-        case .french_switzerland: return "french_switzerland"
-        case .georgian: return "georgian"
-        case .german: return "german"
-        case .german_austria: return "german_austria"
-        case .german_switzerland: return "german_switzerland"
-        case .greek: return "greek"
-        case .hawaiian: return "hawaiian"
-        case .hebrew: return "hebrew"
-        case .hungarian: return "hungarian"
+        case .french_belgium: "french_belgium"
+        case .french_switzerland: "french_switzerland"
+        case .georgian: "georgian"
+        case .german: "german"
+        case .german_austria: "german_austria"
+        case .german_switzerland: "german_switzerland"
+        case .greek: "greek"
+        case .hawaiian: "hawaiian"
+        case .hebrew: "hebrew"
+        case .hungarian: "hungarian"
 
-        case .icelandic: return "icelandic"
-        case .inariSami: return "inariSami"
-        case .indonesian: return "indonesian"
-        case .irish: return "irish"
-        case .italian: return "italian"
-        case .kazakh: return "kazakh"
-        case .kurdish_sorani: return "kurdish_sorani"
-        case .kurdish_sorani_arabic: return "kurdish_sorani_arabic"
-        case .kurdish_sorani_pc: return "kurdish_sorani_pc"
-        case .latvian: return "latvian"
+        case .icelandic: "icelandic"
+        case .inariSami: "inariSami"
+        case .indonesian: "indonesian"
+        case .irish: "irish"
+        case .italian: "italian"
+        case .kazakh: "kazakh"
+        case .kurdish_sorani: "kurdish_sorani"
+        case .kurdish_sorani_arabic: "kurdish_sorani_arabic"
+        case .kurdish_sorani_pc: "kurdish_sorani_pc"
+        case .latvian: "latvian"
             
-        case .lithuanian: return "lithuanian"
-        case .macedonian: return "macedonian"
-        case .malay: return "malay"
-        case .maltese: return "maltese"
-        case .mongolian: return "mongolian"
-        case .northernSami: return "northernSami"
-        case .norwegian: return "norwegian"
-        case .persian: return "persian"
-        case .polish: return "polish"
-        case .portuguese: return "portuguese"
+        case .lithuanian: "lithuanian"
+        case .macedonian: "macedonian"
+        case .malay: "malay"
+        case .maltese: "maltese"
+        case .mongolian: "mongolian"
+        case .northernSami: "northernSami"
+        case .norwegian: "norwegian"
+        case .persian: "persian"
+        case .polish: "polish"
+        case .portuguese: "portuguese"
             
-        case .portuguese_brazil: return "portuguese_brazil"
-        case .romanian: return "romanian"
-        case .russian: return "russian"
-        case .serbian: return "serbian"
-        case .serbian_latin: return "serbian_latin"
-        case .slovenian: return "slovenian"
-        case .slovak: return "slovak"
-        case .spanish: return "spanish"
-        case .swedish: return "swedish"
-        case .swahili: return "swahili"
+        case .portuguese_brazil: "portuguese_brazil"
+        case .romanian: "romanian"
+        case .russian: "russian"
+        case .serbian: "serbian"
+        case .serbian_latin: "serbian_latin"
+        case .slovenian: "slovenian"
+        case .slovak: "slovak"
+        case .spanish: "spanish"
+        case .swedish: "swedish"
+        case .swahili: "swahili"
             
-        case .turkish: return "turkish"
-        case .ukrainian: return "ukrainian"
-        case .uzbek: return "uzbek"
+        case .turkish: "turkish"
+        case .ukrainian: "ukrainian"
+        case .uzbek: "uzbek"
         }
     }
 
