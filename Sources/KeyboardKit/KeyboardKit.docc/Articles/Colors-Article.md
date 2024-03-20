@@ -13,7 +13,7 @@ This article describes the KeyboardKit color engine.
     @PageColor(blue)
 }
 
-KeyboardKit provides a collection of additional, keyboard-specific colors, that makes it easy to apply a native looking keyboard style.
+KeyboardKit provides additional, keyboard-specific colors that make it easy to apply a keyboard style that mimics the native style.
 
 
 
