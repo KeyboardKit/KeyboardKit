@@ -32,6 +32,8 @@ Due to complexities with the style provider concept, some views still use a styl
 ### 💡 Adjustments
 
 * `AutocompleteToolbar` has been renamed to `Autocomplete.Toolbar`.
+* `InputSet.standardNumeric` has been renamed to `.numeric`.
+* `InputSet.standardSymbolic` has been renamed to `.symbolic`. 
 * `KeyboardButton` sub views now apply styles using view modifiers. 
 * `KeyboardStyle.AutocompleteToolbar` has been renamed to `Autocomplete.ToolbarStyle`.
 * `KeyboardStyle.AutocompleteToolbarItem` has been renamed to `Autocomplete.ToolbarItemStyle`.

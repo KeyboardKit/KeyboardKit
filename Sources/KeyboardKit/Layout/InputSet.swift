@@ -8,19 +8,19 @@
 
 import Foundation
 
-/**
- An input set defines the input keys on a keyboard.
- 
- Input sets can be used to create a ``KeyboardLayout`` which
- defines the full set of keys of a keyboard, often including
- keys around the input rows and a bottom system row.
- 
- KeyboardKit has a couple of pre-defined input sets, such as
- standard ``qwerty``, a ``standardNumeric(currency:)`` and a
- ``standardSymbolic(currencies:)``. KeyboardKit Pro provides
- even more input sets like `qwertz` and `azerty`, as well as
- alphabetic, numeric and symbolic input sets for all locales.
- */
+/// An input set defines the input keys on a keyboard.
+///
+/// Input sets are used to create ``KeyboardLayout``s, which
+/// define the full set of keys of a keyboard, including the
+/// keys surrounding the input rows and a bottom row.
+///
+/// KeyboardKit has pre-defined input sets, such as ``qwerty``,
+/// ``numeric(currency:)`` and ``symbolic(currencies:)``, to
+/// let you easily get started with a base setup that can be
+/// tweaked as needed.
+///
+/// KeyboardKit Pro unlocks additional input sets to support
+/// more locales, like `qwertz` and `azerty`.
 public struct InputSet: Equatable {
     
     /// Create an input set with rows.
@@ -42,7 +42,7 @@ public extension InputSet {
         ])
     }
     
-    static func standardNumeric(currency: String) -> InputSet {
+    static func numeric(currency: String) -> InputSet {
         .init(rows: [
             .init(chars: "1234567890"),
             .init(phone: "-/:;()\(currency)&@”", pad: "@#\(currency)&*()’”"),
@@ -50,7 +50,7 @@ public extension InputSet {
         ])
     }
     
-    static func standardSymbolic(currencies: [String]) -> InputSet {
+    static func symbolic(currencies: [String]) -> InputSet {
         .init(rows: [
             .init(phone: "[]{}#%^*+=", pad: "1234567890"),
             .init(

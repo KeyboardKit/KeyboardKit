@@ -10,12 +10,11 @@ import Foundation
 
 public extension KeyboardLayout {
     
-    /**
-     Calculate the width of an input key given a `totalWidth`.
-
-     This will find the smallest required input width in all
-     rows, which can then be applied to all input keys.
-     */
+    /// Calculate the input key width for a total width.
+    ///
+    /// This function will find the smallest, required input
+    /// width in all rows, which can then be applied to each
+    /// input key in the entire layout.
     func inputWidth(
         for totalWidth: TotalWidth
     ) -> CGFloat {
@@ -61,21 +60,21 @@ private extension KeyboardLayout.Item {
 
     func allocatedWidth(for totalWidth: CGFloat) -> CGFloat {
         switch size.width {
-        case .available: return 0
-        case .input: return 0
-        case .inputPercentage: return 0
-        case .percentage(let percentage): return totalWidth * percentage
-        case .points(let points): return points
+        case .available: 0
+        case .input: 0
+        case .inputPercentage: 0
+        case .percentage(let percentage): totalWidth * percentage
+        case .points(let points): points
         }
     }
 
     var inputPercentageFactor: CGFloat {
         switch size.width {
-        case .available: return 0
-        case .input: return 1
-        case .inputPercentage(let percentage): return percentage
-        case .percentage: return 0
-        case .points: return 0
+        case .available: 0
+        case .input: 1
+        case .inputPercentage(let percentage): percentage
+        case .percentage: 0
+        case .points: 0
         }
     }
 }

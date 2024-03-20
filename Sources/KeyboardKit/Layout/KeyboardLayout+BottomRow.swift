@@ -23,14 +23,11 @@ public extension KeyboardLayout {
         }
     }
 
-    /**
-     Get the bottom row system items.
-
-     This function will use the first ``bottomRowSystemItems``
-     as item template if you don't provide a template. If no
-     template is found, the function will return `nil` since
-     it lacks information to create a valid item.
-     */
+    /// Try to create a bottom row item.
+    ///
+    /// This uses the first ``bottomRowSystemItems`` item as
+    /// template, if you don't provide an action. If none is
+    /// found, the function returns `nil`.
     func tryCreateBottomRowItem(
         for action: KeyboardAction
     ) -> KeyboardLayout.Item? {

@@ -2,27 +2,27 @@
 
 This article describes the KeyboardKit layout engine.
 
-A flexible keyboard layout is at the heart of a software keyboard, with many considerations like device models, screen orientation, locale, etc.
+A flexible keyboard layout is at the heart of a software keyboard, with many considerations like device models, screen orientation, locale, keyboard-specific considerations, etc.
 
-In KeyboardKit, ``InputSet``s and ``KeyboardLayout``s are important parts of creating a layout, where the input set specifies the input keys and the layout specifies the full layout configuration.
+In KeyboardKit, an ``InputSet`` is important parts of a ``KeyboardLayout``, where the input set specifies the input keys and the layout specifies the full layout configuration.
 
-[KeyboardKit Pro][Pro] unlocks support for iPad Pro-specific layouts, as well as localized input sets and layout providers for all ``KeyboardLocale``s.
+KeyboardKit has a ``KeyboardLayoutProvider`` protocol that describes how to provide the keyboard with dynamic layouts, as well as a base classes that provide standard layouts.   
+
+👑 [KeyboardKit Pro][Pro] unlocks localized providers for all locales, and more input sets, like `qwertz` and `azerty`. Information about Pro features can be found at the end of this article.
 
 
 
 ## Input Sets
 
-An ``InputSet`` set specifies the input keys of a keyboard.
+An ``InputSet`` set specifies the input keys of a keyboard. It makes it possible to define different input keys for the same keyboard layout.
 
-KeyboardKit has some input sets, like ``InputSet/qwerty``, ``InputSet/standardNumeric(currency:)`` and ``InputSet/standardSymbolic(currencies:)``. You can also create your own custom input sets.
+KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` and ``InputSet/symbolic(currencies:)``.
 
 
 
 ## Keyboard layouts
 
-A ``KeyboardLayout`` specifies the full set of keys of a keyboard. 
-
-Keyboard layouts can vary greatly for different device types, screen orientations, locales, etc.
+A ``KeyboardLayout`` specifies the full set of keys of a keyboard. Layouts can vary greatly for different device types, screen orientations, locales, etc.
 
 For instance, iOS keyboards often have 3 input rows, where the input keys are surrounded by actions, as well as a bottom row with a space key and action buttons on both sides.
 
@@ -34,27 +34,23 @@ For instance, here's an iPad Pro layout, where many buttons look and behave very
 
 ![System Keyboard - iPad Pro](systemkeyboard-ipadpro.jpg)
 
-Since the layout differences can be significant, the layout engine has to be flexible. KeyboardKit therefore uses a dynamic ``KeyboardLayoutProvider`` to resolve layouts at runtime. 
+Since the layout differences can be significant, the layout engine has to be flexible. KeyboardKit therefore has a ``KeyboardLayoutProvider`` concept to generate layouts at runtime. 
 
 
 
 ## Keyboard layout providers
 
-In KeyboardKit, a ``KeyboardLayoutProvider`` can create a dynamic layout based on many different factors, such as the current locale, device, screen orientation, etc.
+In KeyboardKit, a ``KeyboardLayoutProvider`` can create a layout based on many different factors, such as locale, device, screen orientation, etc.
 
-KeyboardKit injects a ``StandardKeyboardLayoutProvider`` into ``KeyboardInputViewController/services``. You can modify or replace this instance at any time.
-
-The standard layout uses a QWERTY layout by default, but you can inject localized providers into it, modify it, or even replace it, as you see fit.
-
-You can add and replace localized providers to the default ``StandardKeyboardLayoutProvider``, or replace the ``KeyboardInputViewController/services`` provider with a custom ``KeyboardLayoutProvider``.
+KeyboardKit will inject a ``StandardKeyboardLayoutProvider`` into ``KeyboardInputViewController/services``. You can modify or replace this instance at any time, and inject localized providers into it.
 
 
 
 ## How to create a custom provider
 
-You can create a custom layout provider to customize the layout for certain locales, certain devices, or to provide a completely custom layout.
+You can create a custom layout provider to customize the layout for certain locales or devices, or to provide a completely custom layout.
 
-You can implement ``KeyboardLayoutProvider`` from scratch, or inherit and customize ``StandardKeyboardLayoutProvider``.
+You can implement ``KeyboardLayoutProvider`` from scratch, or inherit and customize ``StandardKeyboardLayoutProvider``, ``BaseKeyboardLayoutProvider``, ``iPadKeyboardLayoutProvider``, or ``iPhoneKeyboardLayoutProvider``, depending on the baseline you want to customize. 
 
 For instance, here's a custom provider that inherits ``StandardKeyboardLayoutProvider`` and injects a tab key into the layout:
 
@@ -82,7 +78,7 @@ To use this provider instead of the standard one, just inject it into ``Keyboard
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-services.keyboardLayoutProvider = CustomKeyboardLayoutProvider()
+        services.layoutProvider = CustomKeyboardLayoutProvider()
         super.viewDidLoad()
     }
 }
@@ -90,15 +86,13 @@ services.keyboardLayoutProvider = CustomKeyboardLayoutProvider()
 
 This will make KeyboardKit use your custom implementation instead of the standard one.
 
-There are also other base classes, such as ``BaseKeyboardLayoutProvider``, ``InputSetBasedKeyboardLayoutProvider``, ``iPadKeyboardLayoutProvider`` and ``iPhoneKeyboardLayoutProvider``.
-
 
 
 ## 👑 Pro features
 
 [KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``StandardKeyboardLayoutProvider``.
 
-KeyboardKit Pro also unlocks an **iPadProKeyboardLayoutProvider** that provides iPad Pro-specific layouts, and automatically use it for most locales.
+KeyboardKit Pro also unlocks more input sets, like **qwertz** and **azerty**, which are used by some locales, as well as an **iPadProKeyboardLayoutProvider** that provides iPad Pro-specific layouts.
 
 You can access all localized providers in your license, or any specific provider, like this:
 
@@ -152,7 +146,7 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-Note that the provider cast will fail if you replace the instance with your own type.
+This is useful for the cases when you want to make modifications to a single locale, but keep all other locales unaffected.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

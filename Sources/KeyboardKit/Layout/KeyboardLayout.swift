@@ -9,23 +9,19 @@
 import CoreGraphics
 import SwiftUI
 
-/**
- A keyboard layout defines the keys and spaces on a keyboard,
- often including keys around the input rows and a bottom row.
- 
- A keyboard layout also specify sizes, insets and properties
- needed to propertly render the full keyboard layout.
- */
+/// A keyboard layout contains the full set of keyboard keys
+/// that should be rendered for a keyboard.
+///
+/// A layout also specifies sizes, alignments, etc. which is
+/// required information when rendering a keyboard.
 public class KeyboardLayout {
 
-    /**
-     Create a new layout with the provided items.
-
-     - Parameters:
-       - itemRows: The layout item rows to show in the keyboard.
-       - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
-       - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
-    */
+    /// Create a new layout with the provided items.
+    ///
+    /// - Parameters:
+    ///   - itemRows: The items to add to the keyboard.
+    ///   - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
+    ///   - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
     public init(
         itemRows rows: KeyboardLayout.ItemRows,
         idealItemHeight height: Double? = nil,

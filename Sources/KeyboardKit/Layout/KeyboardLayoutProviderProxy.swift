@@ -27,11 +27,13 @@ public protocol KeyboardLayoutProviderProxy: KeyboardLayoutProvider {
 public extension KeyboardLayoutProviderProxy {
     
     /// The keyboard layout provider to use for the context.
-    func keyboardLayoutProvider(for context: KeyboardContext) -> KeyboardLayoutProvider {
+    func keyboardLayoutProvider(
+        for context: KeyboardContext
+    ) -> KeyboardLayoutProvider {
         switch context.deviceType {
-        case .phone: return iPhoneProvider
-        case .pad: return iPadProvider
-        default: return iPhoneProvider
+        case .phone: iPhoneProvider
+        case .pad: iPadProvider
+        default: iPhoneProvider
         }
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 
 public extension KeyboardLayout {
     
-    /// Whether or not the layout has a certain switcher.
+    /// Whether the layout has a certain switcher.
     func hasKeyboardSwitcher(_ type: Keyboard.KeyboardType) -> Bool {
         itemRows.hasKeyboardSwitcher(type)
     }
@@ -18,7 +18,7 @@ public extension KeyboardLayout {
 
 public extension KeyboardLayout.ItemRows {
     
-    /// Whether or not the rows have a certain switcher.
+    /// Whether the rows have a certain switcher.
     func hasKeyboardSwitcher(
         _ type: Keyboard.KeyboardType
     ) -> Bool {
@@ -28,7 +28,7 @@ public extension KeyboardLayout.ItemRows {
 
 public extension KeyboardLayout.ItemRow {
     
-    /// Whether or not the row has a certain switcher.
+    /// Whether the row has a certain switcher.
     func hasKeyboardSwitcher(
         _ type: Keyboard.KeyboardType
     ) -> Bool {

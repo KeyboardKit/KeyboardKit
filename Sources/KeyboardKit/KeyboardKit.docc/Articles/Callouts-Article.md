@@ -198,8 +198,7 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-Note that the provider cast will fail if you replace the instance with your own type.
-
+This is useful for the cases when you want to make modifications to a single locale, but keep all other locales unaffected.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

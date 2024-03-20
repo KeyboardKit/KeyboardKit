@@ -8,17 +8,18 @@
 
 import Foundation
 
-/**
- This protocol can be implemented by types that represent an
- ID-based layout row item.
- 
- Implementing the protocol unlocks extensions that make it a
- lot easier to handle and modify the items in the collection.
- 
- Unlike `Identifiable`, ``rowId`` does not have to be unique,
- since the same item may appear many times in a row. The row
- ID is used to identify the item in a collection.
- */
+/// This protocol can be implemented by types that represent
+/// an ID-based layout row item.
+///
+/// Implementing the protocol unlocks extensions that can be
+/// used toto handle and modify the items in the collection.
+///
+/// Unlike `Identifiable`, the ``rowId`` does not have to be
+/// unique, since an item may appear many times within a row.
+///
+/// The mutating collection and array functions will use the
+/// row identifier when adding and removing items. If the ID
+/// is used by many items, the first match will be used.
 public protocol KeyboardLayoutRowIdentifiable {
     
     associatedtype ID: Equatable
@@ -27,180 +28,253 @@ public protocol KeyboardLayoutRowIdentifiable {
     var rowId: ID { get }
 }
 
-/**
- This extension contains mutating functions for arrays where
- the elements implement ``KeyboardLayoutRowItem``.
- */
+/// This extension adds functions to ``KeyboardLayoutRowItem``
+/// collections.
 public extension RangeReplaceableCollection where Element: KeyboardLayoutRowIdentifiable, Index == Int {
 
-    /// Get the index of a certain item, if any.
-    func index(of item: Element) -> Index? {
+    /// Get the index of a certain item in the collection.
+    func index(
+        of item: Element
+    ) -> Index? {
         index(of: item.rowId)
     }
 
-    /// Get the index of a certain item id, if any.
-    func index(of id: Element.ID) -> Index? {
+    /// Get the index of a certain item id in the collection.
+    func index(
+        of id: Element.ID
+    ) -> Index? {
         firstIndex { $0.rowId == id }
     }
 
-    /// Insert an item after another item.
-    mutating func insert(_ item: Element, after target: Element) {
+    /// Insert an item after another item in the collection.
+    mutating func insert(
+        _ item: Element,
+        after target: Element
+    ) {
         insert(item, after: target.rowId)
     }
     
-    /// Insert an item after another item.
-    mutating func insert(_ item: Element, after id: Element.ID) {
+    /// Insert an item after another item in the collection.
+    mutating func insert(
+        _ item: Element,
+        after id: Element.ID
+    ) {
         guard let index = index(of: id) else { return }
         insert(item, at: index.advanced(by: 1))
     }
 
-    /// Insert an item before another item.
-    mutating func insert(_ item: Element, before target: Element) {
+    /// Insert an item before another item in the collection.
+    mutating func insert(
+        _ item: Element,
+        before target: Element
+    ) {
         insert(item, before: target.rowId)
     }
     
-    /// Insert an item before another item.
-    mutating func insert(_ item: Element, before id: Element.ID) {
+    /// Insert an item before another item in the collection.
+    mutating func insert(
+        _ item: Element,
+        before id: Element.ID
+    ) {
         guard let index = index(of: id) else { return }
         insert(item, at: index)
     }
     
-    /// Remove a certain item.
-    mutating func remove(_ item: Element) {
+    /// Remove a certain item from the collection.
+    mutating func remove(
+        _ item: Element
+    ) {
         remove(item.rowId)
     }
     
-    /// Remove a certain item.
-    mutating func remove(_ id: Element.ID) {
+    /// Remove a certain item from the collection.
+    mutating func remove(
+        _ id: Element.ID
+    ) {
         while let index = index(of: id) {
             remove(at: index)
         }
     }
 
-    /// Replace an item with another item.
-    mutating func replace(_ item: Element, with replacement: Element) {
+    /// Replace an item with another item in the collection.
+    mutating func replace(
+        _ item: Element,
+        with replacement: Element
+    ) {
         insert(replacement, after: item)
         remove(item)
     }
 
-    /// Replace an item with another item.
-    mutating func replace(_ id: Element.ID, with replacement: Element) {
+    /// Replace an item with another item in the collection.
+    mutating func replace(
+        _ id: Element.ID,
+        with replacement: Element
+    ) {
         guard let index = index(of: id) else { return }
         insert(replacement, after: id)
         remove(at: index)
     }
 }
 
-/**
- This extension contains mutating functions for arrays where
- the elements are ``KeyboardLayoutRowItem`` arrays.
- 
- Note that the `insert` and `remove` operations will use the
- first index found. If the same id appears many times at one
- row, pick an adjacent id instead.
- */
+
+/// This extension adds functions to ``KeyboardLayoutRowItem``
+/// arrays.
 public extension Array where
     Element: RangeReplaceableCollection,
     Element.Index == Int,
     Element.Element: KeyboardLayoutRowIdentifiable {
     
     /// Get the row at a certain index.
-    func row(at index: Int) -> Element? {
+    func row(
+        at index: Int
+    ) -> Element? {
         guard index >= 0, count > index else { return nil }
         return self[index]
     }
 
     /// Insert an item after another item in all rows.
-    mutating func insert(_ item: Element.Element, after target: Element.Element) {
+    mutating func insert(
+        _ item: Element.Element,
+        after target: Element.Element
+    ) {
         insert(item, after: target.rowId)
     }
     
     /// Insert an item after another item in all rows.
-    mutating func insert(_ item: Element.Element, after target: Element.Element.ID) {
+    mutating func insert(
+        _ item: Element.Element,
+        after target: Element.Element.ID
+    ) {
         enumerated().forEach {
             insert(item, after: target, atRow: $0.offset)
         }
     }
 
     /// Insert an item after another item in a certain row.
-    mutating func insert(_ item: Element.Element, after target: Element.Element, atRow index: Int) {
+    mutating func insert(
+        _ item: Element.Element,
+        after target: Element.Element,
+        atRow index: Int
+    ) {
         insert(item, after: target.rowId, atRow: index)
     }
     
     /// Insert an item after another item on a certain row.
-    mutating func insert(_ item: Element.Element, after target: Element.Element.ID, atRow index: Int) {
+    mutating func insert(
+        _ item: Element.Element,
+        after target: Element.Element.ID,
+        atRow index: Int
+    ) {
         guard var row = self.row(at: index) else { return }
         row.insert(item, after: target)
         self[index] = row
     }
 
     /// Insert an item before another item in all rows.
-    mutating func insert(_ item: Element.Element, before target: Element.Element) {
+    mutating func insert(
+        _ item: Element.Element,
+        before target: Element.Element
+    ) {
         insert(item, before: target.rowId)
     }
     
     /// Insert an item before another item in all rows.
-    mutating func insert(_ item: Element.Element, before target: Element.Element.ID) {
+    mutating func insert(
+        _ item: Element.Element,
+        before target: Element.Element.ID
+    ) {
         enumerated().forEach {
             insert(item, before: target, atRow: $0.offset)
         }
     }
 
     /// Insert an item before another item in a certain row.
-    mutating func insert(_ item: Element.Element, before target: Element.Element, atRow index: Int) {
+    mutating func insert(
+        _ item: Element.Element,
+        before target: Element.Element,
+        atRow index: Int
+    ) {
         insert(item, before: target.rowId, atRow: index)
     }
     
     /// Insert an item before another item in a certain row.
-    mutating func insert(_ item: Element.Element, before target: Element.Element.ID, atRow index: Int) {
+    mutating func insert(
+        _ item: Element.Element,
+        before target: Element.Element.ID,
+        atRow index: Int
+    ) {
         guard var row = self.row(at: index) else { return }
         row.insert(item, before: target)
         self[index] = row
     }
     
     /// Remove a certain item in all rows.
-    mutating func remove(_ item: Element.Element) {
+    mutating func remove(
+        _ item: Element.Element
+    ) {
         remove(item.rowId)
     }
     
     /// Remove a certain item item in all rows.
-    mutating func remove(_ id: Element.Element.ID) {
+    mutating func remove(
+        _ id: Element.Element.ID
+    ) {
         enumerated().forEach {
             remove(id, atRow: $0.offset)
         }
     }
 
     /// Remove a certain item in a certain row.
-    mutating func remove(_ item: Element.Element, atRow index: Int) {
+    mutating func remove(
+        _ item: Element.Element,
+        atRow index: Int
+    ) {
         remove(item.rowId, atRow: index)
     }
 
     /// Remove a certain item at a certain row.
-    mutating func remove(_ id: Element.Element.ID, atRow index: Int) {
+    mutating func remove(
+        _ id: Element.Element.ID,
+        atRow index: Int
+    ) {
         guard var row = self.row(at: index) else { return }
         row.remove(id)
         self[index] = row
     }
 
     /// Replace an item with another item in all rows.
-    mutating func replace(_ item: Element.Element, with replacement: Element.Element) {
+    mutating func replace(
+        _ item: Element.Element,
+        with replacement: Element.Element
+    ) {
         replace(item.rowId, with: replacement)
     }
 
     /// Replace an item with another item in all rows.
-    mutating func replace(_ item: Element.Element.ID, with replacement: Element.Element) {
+    mutating func replace(
+        _ item: Element.Element.ID,
+        with replacement: Element.Element
+    ) {
         enumerated().forEach {
             replace(item, with: replacement, atRow: $0.offset)
         }
     }
 
     /// Replace an item with another item in a certain row.
-    mutating func replace(_ item: Element.Element, with replacement: Element.Element, atRow index: Int) {
+    mutating func replace(
+        _ item: Element.Element,
+        with replacement: Element.Element,
+        atRow index: Int
+    ) {
         replace(item.rowId, with: replacement, atRow: index)
     }
 
     /// Replace an item with another item in a certain row.
-    mutating func replace(_ item: Element.Element.ID, with replacement: Element.Element, atRow index: Int) {
+    mutating func replace(
+        _ item: Element.Element.ID,
+        with replacement: Element.Element,
+        atRow index: Int
+    ) {
         guard var row = self.row(at: index) else { return }
         row.replace(item, with: replacement)
         self[index] = row

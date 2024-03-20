@@ -10,37 +10,31 @@ import Foundation
 
 public extension InputSet {
     
-    /**
-     This struct represents an input set item with a neutral,
-     uppercased and lowercased variant.
-     
-     You can create an instance with just a string, which is
-     the regular way of working with input sets. However, it
-     also supports specific casings, which means that we can
-     use it to create unicode keyboards etc.
-     */
+    /// This struct represents an input set item, that has a
+    /// neutral, uppercased and lowercased input variant.
+    ///
+    /// You can create an instance with just a string, which
+    /// is the default way. You can however provide explicit
+    /// casings, to fully customize the input characters for
+    /// certain casings.
     struct Item: Equatable {
         
-        /**
-         Create an input set item.
-         
-         - Parameters:
-           - char: The char to use for all casings.
-         */
+        /// Create an input set item with a single character.
+        ///
+        /// - Parameters:
+        ///   - char: The char to use for all casings.
         public init(_ char: String) {
             self.neutral = char
             self.uppercased = char.uppercased()
             self.lowercased = char.lowercased()
         }
         
-        /**
-         Create an input set item with individual characters.
-         
-         - Parameters:
-           - neutral: The neutral char value.
-           - uppercased: The uppercased char value.
-           - lowercased: The lowercased char value.
-         */
+        /// Create an input set item with certain characters.
+        ///
+        /// - Parameters:
+        ///   - neutral: The neutral char value.
+        ///   - uppercased: The uppercased char value.
+        ///   - lowercased: The lowercased char value.
         public init(
             neutral: String,
             uppercased: String,

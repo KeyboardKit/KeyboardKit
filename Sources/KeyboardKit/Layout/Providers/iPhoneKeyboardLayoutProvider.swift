@@ -8,13 +8,12 @@
 
 import SwiftUI
 
-/**
- This class provides a keyboard layout that corresponds to a
- standard QWERTY layout for an iPhone device.
-
- You can inherit this class and override any open properties
- and functions to customize the standard behavior.
- */
+/// This layout provider provides iPhone-specific layouts.
+///
+/// This provider will by default generate a `QWERTY` layout,
+/// which is the standard layout for many locales.
+///
+/// You can inherit this provider and customize it as needed.
 open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 
@@ -55,7 +54,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
     // MARK: - iPhone Specific
 
-    /// Leading actions to add to the top input row.
+    /// The leading actions to add to the top input row.
     open func topLeadingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -64,7 +63,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return [actions[0].leadingCharacterMarginAction]
     }
 
-    /// Trailing actions to add to the top input row.
+    /// The trailing actions to add to the top input row.
     open func topTrailingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -73,7 +72,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return [actions[0].trailingCharacterMarginAction]
     }
 
-    /// Leading actions to add to the middle input row.
+    /// The leading actions to add to the middle input row.
     open func middleLeadingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -82,7 +81,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return [actions[1].leadingCharacterMarginAction]
     }
 
-    /// Trailing actions to add to the middle input row.
+    /// The trailing actions to add to the middle input row.
     open func middleTrailingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -91,7 +90,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return [actions[1].trailingCharacterMarginAction]
     }
 
-    /// Leading actions to add to the lower input row.
+    /// The leading actions to add to the lower input row.
     open func lowerLeadingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -102,7 +101,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return [switcher, margin]
     }
 
-    /// Trailing actions to add to the lower input row.
+    /// The trailing actions to add to the lower input row.
     open func lowerTrailingActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -154,7 +153,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         .percentage(isPortrait(context) ? 0.123 : 0.095)
     }
 
-    /// Whether or not to add margins to the middle row.
+    /// Whether to add margins to the middle row.
     open func shouldAddMiddleMarginActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -163,7 +162,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return actions[0].count > actions[1].count
     }
 
-    /// Whether or not to add margins to the upper row.
+    /// Whether to add margins to the upper row.
     open func shouldAddUpperMarginActions(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -174,11 +173,15 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 private extension iPhoneKeyboardLayoutProvider {
 
-    func isExpectedActionSet(_ actions: KeyboardAction.Rows) -> Bool {
+    func isExpectedActionSet(
+        _ actions: KeyboardAction.Rows
+    ) -> Bool {
         actions.count == 3
     }
 
-    func isPortrait(_ context: KeyboardContext) -> Bool {
+    func isPortrait(
+        _ context: KeyboardContext
+    ) -> Bool {
         context.interfaceOrientation.isPortrait
     }
 
@@ -190,7 +193,10 @@ private extension iPhoneKeyboardLayoutProvider {
     }
 
     /// Whether or not a row is the last input/symbolic row.
-    func isLastNumericInputRow(_ row: Int, for context: KeyboardContext) -> Bool {
+    func isLastNumericInputRow(
+        _ row: Int,
+        for context: KeyboardContext
+    ) -> Bool {
         let isNumeric = context.keyboardType == .numeric
         let isSymbolic = context.keyboardType == .symbolic
         guard isNumeric || isSymbolic else { return false }
@@ -199,7 +205,7 @@ private extension iPhoneKeyboardLayoutProvider {
 }
 
 
-// MARK: - KeyboardContext Extension
+// MARK: - KeyboardContext
 
 private extension KeyboardContext {
 

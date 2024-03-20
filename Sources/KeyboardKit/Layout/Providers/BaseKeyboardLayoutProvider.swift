@@ -9,26 +9,28 @@
 import CoreGraphics
 import SwiftUI
 
-/**
- This is a base class for custom keyboard layout providers.
- 
- You can inherit this class to get access to convenient base
- functionality, then override any parts you want to change.
-
- The class is used by the ``iPadKeyboardLayoutProvider`` and
- the ``iPhoneKeyboardLayoutProvider`` which provide specific
- layouts for the various platforms on top of this base class.
- */
+/// This is a keyboard layout provider base class.
+///
+/// Since the ``StandardKeyboardLayoutProvider`` is based on
+/// injecting providers, this class serves as a base to make
+/// it easy to implement custom layout providers that can be
+/// injected into the standard provider.
+///
+/// The main idea with this class is to provide many smaller
+/// functions, that you can override as needed.
+///
+/// The class is injerited by ``iPhoneKeyboardLayoutProvider``
+/// and ``iPhoneKeyboardLayoutProvider`` which overrides the
+/// base with platform-specific adjustments. You can inherit
+/// these classes as well.
 open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     
-    /**
-     Create a system keyboard layout provider.
-     
-     - Parameters:
-       - alphabeticInputSet: The alphabetic input set to use.
-       - numericInputSet: The numeric input set to use.
-       - symbolicInputSet: The symbolic input set to use.
-     */
+    /// Create an ``InputSet``-based layout provider.
+    ///
+    /// - Parameters:
+    ///   - alphabeticInputSet: The alphabetic input set to use.
+    ///   - numericInputSet: The numeric input set to use.
+    ///   - symbolicInputSet: The symbolic input set to use.
     public init(
         alphabeticInputSet: InputSet,
         numericInputSet: InputSet,
@@ -39,7 +41,6 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         self.symbolicInputSet = symbolicInputSet
     }
     
-    
     /// The alphabetic input set to use.
     public var alphabeticInputSet: InputSet
     
@@ -49,19 +50,20 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     /// The symbolic input set to use.
     public var symbolicInputSet: InputSet
     
-    
     /// Get a keyboard layout for the provided context.
-    open func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let inputs = self.inputRows(for: context)
-        let actions = self.actions(for: inputs, context: context)
-        let items = self.items(for: actions, context: context)
+    open func keyboardLayout(
+        for context: KeyboardContext
+    ) -> KeyboardLayout {
+        let rows = inputRows(for: context)
+        let actions = actions(for: rows, context: context)
+        let items = items(for: actions, context: context)
         return KeyboardLayout(itemRows: items)
     }
     
     
-    // MARK: - Overridable helper functions
+    // MARK: - Open helper functions
     
-    /// Get actions for the provided rows and context.
+    /// Map ``InputSet`` rows to action rows.
     open func actions(
         for rows: InputSet.Rows,
         context: KeyboardContext
@@ -70,7 +72,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         return .init(characters: characters)
     }
     
-    /// Get action chars for the provided rows and context.
+    /// Map ``InputSet`` rows to action character rows.
     open func actionCharacters(
         for rows: InputSet.Rows,
         context: KeyboardContext
@@ -81,7 +83,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /// Get input rows for the provided context.
+    /// Get ``InputSet`` rows for the provided context.
     open func inputRows(
         for context: KeyboardContext
     ) -> InputSet.Rows {
@@ -92,7 +94,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /// Get item rows for the provided actions and context.
+    /// Map ``KeyboardAction`` rows to layout items rows.
     open func items(
         for actions: KeyboardAction.Rows,
         context: KeyboardContext
@@ -110,7 +112,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /// Get a layout item for the provided parameters.
+    /// Get a layout item for the provided params.
     open func item(
         for action: KeyboardAction,
         in actions: KeyboardAction.Rows,
@@ -118,7 +120,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         index: Int,
         context: KeyboardContext
     ) -> KeyboardLayout.Item {
-        KeyboardLayout.Item(
+        .init(
             action: action,
             size: itemSize(for: action, row: row, index: index, context: context),
             alignment: itemAlignment(for: action, in: actions, row: row, index: index, context: context),
@@ -126,7 +128,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         )
     }
     
-    /// Get a layout item for the provided parameters.
+    /// Get a layout item alignment for the provided params.
     open func itemAlignment(
         for action: KeyboardAction,
         in actions: KeyboardAction.Rows,
@@ -137,7 +139,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         .center
     }
     
-    /// Get layout item insets for the provided parameters.
+    /// Get layout item insets for the provided params.
     open func itemInsets(
         for action: KeyboardAction,
         row: Int,
@@ -145,14 +147,14 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         context: KeyboardContext
     ) -> EdgeInsets {
         switch action {
-        case .characterMargin, .none: EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        case .characterMargin, .none: .init(all: 0)
         default: KeyboardLayout.Configuration
                 .standard(for: context)
                 .buttonInsets
         }
     }
     
-    /// Get a layout item size for the provided parameters.
+    /// Get a layout item size for the provided params.
     open func itemSize(
         for action: KeyboardAction,
         row: Int,
@@ -161,10 +163,10 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
     ) -> KeyboardLayout.ItemSize {
         let width = itemSizeWidth(for: action, row: row, index: index, context: context)
         let height = itemSizeHeight(for: action, row: row, index: index, context: context)
-        return KeyboardLayout.ItemSize(width: width, height: height)
+        return .init(width: width, height: height)
     }
     
-    /// Get a layout item height for the provided parameters.
+    /// Get a layout item height for the provided params.
     open func itemSizeHeight(
         for action: KeyboardAction,
         row: Int,
@@ -176,7 +178,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
             .rowHeight
     }
     
-    /// Get a layout item width for the provided parameters.
+    /// Get a layout item width for the provided params.
     open func itemSizeWidth(
         for action: KeyboardAction,
         row: Int,
@@ -189,8 +191,10 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /// The return action to use for the provided context.
-    open func keyboardReturnAction(for context: KeyboardContext) -> KeyboardAction {
+    /// Get a return action for the provided context.
+    open func keyboardReturnAction(
+        for context: KeyboardContext
+    ) -> KeyboardAction {
         #if os(iOS) || os(tvOS)
         let proxy = context.textDocumentProxy
         let returnType = proxy.returnKeyType?.keyboardReturnKeyType
@@ -199,11 +203,10 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         return .primary(.return)
     }
     
-    /**
-     The keyboard switch action that should be on the bottom
-     input row, which is the row above the bottommost row.
-     */
-    open func keyboardSwitchActionForBottomInputRow(for context: KeyboardContext) -> KeyboardAction? {
+    /// The keyboard switcher to use on the bottom input row.
+    open func keyboardSwitchActionForBottomInputRow(
+        for context: KeyboardContext
+    ) -> KeyboardAction? {
         switch context.keyboardType {
         case .alphabetic(let casing): .shift(currentCasing: casing)
         case .numeric: .keyboardType(.symbolic)
@@ -212,10 +215,7 @@ open class BaseKeyboardLayoutProvider: KeyboardLayoutProvider {
         }
     }
     
-    /**
-     The keyboard switch action that should be on the bottom
-     keyboard row, which is the row with the space button.
-     */
+    /// The keyboard switcher to use on the bottom row.
     open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
         switch context.keyboardType {
         case .alphabetic: .keyboardType(.numeric)

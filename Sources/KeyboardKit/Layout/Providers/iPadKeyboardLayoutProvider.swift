@@ -8,15 +8,15 @@
 
 import SwiftUI
 
-/**
- This layout provider provides a keyboard layout for an iPad.
-
- You can inherit this class and override any open properties
- and functions to customize the standard behavior.
- 
- KeyboardKit Pro has an `iPadProKeyboardLayoutProvider` that
- can create layouts for iPad Air and iPad Pro devices.
- */
+/// This layout provider provides iPad-specific layouts.
+///
+/// This provider will by default generate a `QWERTY` layout,
+/// which is the standard layout for many locales.
+///
+/// You can inherit this provider and customize it as needed.
+///
+/// KeyboardKit Pro unlocks an iPadProKeyboardLayoutProvider,
+/// which can be used to create layouts for iPad Air and Pro.
 open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
 
@@ -63,35 +63,35 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 
     // MARK: - iPad Specific
 
-    /// Leading actions to add to the top input row.
+    /// The leading actions to add to the top input row.
     open func topLeadingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
         []
     }
 
-    /// Trailing actions to add to the top input row.
+    /// The trailing actions to add to the top input row.
     open func topTrailingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
         [.backspace]
     }
 
-    /// Leading actions to add to the middle input row.
+    /// The leading actions to add to the middle input row.
     open func middleLeadingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
         return [.none]
     }
 
-    /// Trailing actions to add to the middle input row.
+    /// The trailing actions to add to the middle input row.
     open func middleTrailingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
         [keyboardReturnAction(for: context)]
     }
 
-    /// Leading actions to add to the lower input row.
+    /// The leading actions to add to the lower input row.
     open func lowerLeadingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
@@ -99,7 +99,7 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         return [action]
     }
 
-    /// Trailing actions to add to the lower input row.
+    /// The trailing actions to add to the lower input row.
     open func lowerTrailingActions(
         for context: KeyboardContext
     ) -> KeyboardAction.Row {
@@ -129,7 +129,7 @@ open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
 }
 
 
-// MARK: - Private utils
+// MARK: - Private functions
 
 extension iPadKeyboardLayoutProvider {
     
@@ -162,8 +162,8 @@ extension iPadKeyboardLayoutProvider {
     func layout() -> KeyboardLayout {
         iPadKeyboardLayoutProvider(
             alphabeticInputSet: .qwerty,
-            numericInputSet: .standardNumeric(currency: "$"),
-            symbolicInputSet: .standardSymbolic(currencies: [""])
+            numericInputSet: .numeric(currency: "$"),
+            symbolicInputSet: .symbolic(currencies: [""])
         )
         .keyboardLayout(for: .preview)
     }

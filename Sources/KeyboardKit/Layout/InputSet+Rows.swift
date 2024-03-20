@@ -19,43 +19,27 @@ public extension InputSet {
 
 public extension InputSet.Row {
     
-    /**
-     Create an input row from a string, where each character
-     is mapped to an ``InputSet/Item``.
-     */
+    /// Create an input row from a character string.
     init(chars: String) {
         self.init(chars: chars.chars)
     }
     
-    /**
-     Create an input row from an array, where each character
-     is mapped to an ``InputSet/Item``.
-     */
+    /// Create an input row from a character array.
     init(chars: [String]) {
         self = chars.map {
             InputSet.Item($0)
         }
     }
 
-    /**
-     Create an input row from a lowercased and an uppercased
-     string, where each char is mapped to an ``InputSet/Item``.
-
-     Both strings must contain the same amount of characters.
-     */
+    /// Create an input row from two cased character strings.
     init(lowercased: String, uppercased: String) {
         self.init(
             lowercased: lowercased.chars,
             uppercased: uppercased.chars
         )
     }
-
-    /**
-     Create an input row from a lowercased and an uppercased
-     array, where each char is mapped to an ``InputSet/Item``.
-
-     Both arrays must contain the same amount of characters.
-     */
+    
+    /// Create an input row from two cased character arrays.
     init(lowercased: [String], uppercased: [String]) {
         let equal = lowercased.count == uppercased.count
         assert(equal, "lowercased and uppercased must contain the same number of characters")
@@ -68,10 +52,7 @@ public extension InputSet.Row {
         }
     }
 
-    /**
-     Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet/Item``.
-     */
+    /// Create an input row from device character strings.
     init(
         phone: String,
         pad: String,
@@ -79,11 +60,8 @@ public extension InputSet.Row {
     ) {
         self.init(chars: deviceType == .pad ? pad : phone)
     }
-
-    /**
-     Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet/Item``.
-     */
+    
+    /// Create an input row from device character arrays.
     init(
         phone: [String],
         pad: [String],
@@ -92,10 +70,7 @@ public extension InputSet.Row {
         self.init(chars: deviceType == .pad ? pad : phone)
     }
 
-    /**
-     Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet/Item``.
-     */
+    /// Create an input row from device character strings.
     init(
         phoneLowercased: String,
         phoneUppercased: String,
@@ -104,15 +79,12 @@ public extension InputSet.Row {
         deviceType: DeviceType = .current
     ) {
         self.init(
-            lowercased: deviceType == .pad ? padLowercased.chars : phoneLowercased.chars,
-            uppercased: deviceType == .pad ? padUppercased.chars : phoneUppercased.chars
+            lowercased: deviceType == .pad ? padLowercased : phoneLowercased,
+            uppercased: deviceType == .pad ? padUppercased : phoneUppercased
         )
     }
-
-    /**
-     Create an input row from phone and pad-specific strings,
-     where each character is mapped to an ``InputSet/Item``.
-     */
+    
+    /// Create an input row from device character arrays.
     init(
         phoneLowercased: [String],
         phoneUppercased: [String],
@@ -126,20 +98,20 @@ public extension InputSet.Row {
         )
     }
     
-    /**
-     Get all input characters for a certain keyboard case.
-     */
-    func characters(for case: Keyboard.Case = .lowercased) -> [String] {
+    /// Get all input characters for a certain keyboard case.
+    func characters(
+        for case: Keyboard.Case = .lowercased
+    ) -> [String] {
         map { $0.character(for: `case`) }
     }
 }
 
 public extension InputSet.Rows {
 
-    /**
-     Get all input characters for a certain keyboard case.
-     */
-    func characters(for case: Keyboard.Case = .lowercased) -> [[String]] {
+    /// Get all input characters for a certain keyboard case.
+    func characters(
+        for case: Keyboard.Case = .lowercased
+    ) -> [[String]] {
         map { $0.characters(for: `case`) }
     }
 }

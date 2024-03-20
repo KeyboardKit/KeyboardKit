@@ -8,32 +8,26 @@
 
 import Foundation
 
-/**
- This layout provider maps the provided input sets to device
- specific keyboard layouts.
- 
- The provider returns layouts with the same configuration as
- standard QWERTY keyboards. This is a layout that is used by
- many native keyboards, e.g. English.
- 
- You can inherit and customize this class to change any part
- of the provided layout. You can also replace the iPhone and
- iPad specific providers.
- */
+/// This layout provider provides ``InputSet``-based layouts.
+///
+/// The provider will generate a layout that is based on the
+/// input sets you inject, using either the ``iPhoneProvider``
+/// or ``iPadProvider``. It will use the provided context to
+/// determine things like keyboard type and current platform.
+///
+/// You can inherit this provider and customize it as needed.
 open class InputSetBasedKeyboardLayoutProvider: BaseKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
 
-    /**
-     Create an input set-based keyboard layout provider.
-     
-     - Parameters:
-       - alphabeticInputSet: The alphabetic input set to use, by default ``InputSet/qwerty``.
-       - numericInputSet: The numeric input set to use, by default ``InputSet/standardNumeric(currency:)``.
-       - symbolicInputSet: The symbolic input set to use, by default ``InputSet/standardSymbolic(currencies:)``.
-     */
+    /// Create an input set-based keyboard layout provider.
+    ///
+    /// - Parameters:
+    ///   - alphabeticInputSet: The alphabetic input set to use, by default ``InputSet/qwerty``.
+    ///   - numericInputSet: The numeric input set to use, by default ``InputSet/numeric(currency:)``.
+    ///   - symbolicInputSet: The symbolic input set to use, by default ``InputSet/symbolic(currencies:)``.
     public override init(
         alphabeticInputSet: InputSet = .qwerty,
-        numericInputSet: InputSet = .standardNumeric(currency: "$"),
-        symbolicInputSet: InputSet = .standardSymbolic(currencies: ["€", "£", "¥"])
+        numericInputSet: InputSet = .numeric(currency: "$"),
+        symbolicInputSet: InputSet = .symbolic(currencies: ["€", "£", "¥"])
     ) {
         super.init(
             alphabeticInputSet: alphabeticInputSet,
@@ -60,8 +54,11 @@ open class InputSetBasedKeyboardLayoutProvider: BaseKeyboardLayoutProvider, Keyb
     )
 
     /// The layout keyboard to use for the provided context.
-    open override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        keyboardLayoutProvider(for: context)
-            .keyboardLayout(for: context)
+    open override func keyboardLayout(
+        for context: KeyboardContext
+    ) -> KeyboardLayout {
+        let provider = keyboardLayoutProvider(for: context)
+        let layout = provider.keyboardLayout(for: context)
+        return layout
     }
 }
