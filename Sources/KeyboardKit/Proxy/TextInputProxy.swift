@@ -12,31 +12,27 @@
 #if os(iOS) || os(tvOS)
 import UIKit
 
-/**
- This class can be used to route text from an app to another
- text field, for instance in keyboard extension itself.
-
- This class implements `UITextDocumentProxy` and exposes the
- features as `open` to let us customize the default behavior.
- 
- The proxy also implements `UITextInputTraits` to let us add
- customizations to the input-related behavior, such as which
- return button type to use.
- 
- Finally, the proxy implements `UIKeyInput` to let us handle
- text insert and delete behavior.
- 
- The `KeyboardTextField` and `KeyboardTextView` views in Pro
- automatically registers their underlying input views as the
- main text proxy when they receive focus.
- */
+/// This class can be used to route typed text from the main
+/// app to text fields within the keyboard extension.
+///
+/// This class implements `UITextDocumentProxy` and provides
+/// `open` functions to let us customize it when needed.
+///
+/// This class also implements `UITextInputTraits` to let us
+/// apply customizations, like which return type to use.
+///
+/// Finally, this class also implements `UIKeyInput`, to let
+/// us handle text insert and delete behavior.
+///
+/// The **KeyboardTextField** and **KeyboardTextView** views
+/// in KeyboardKit Pro automatically registers themselves as
+/// the main text proxy when they receive focus.
 open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
     
-    /**
-     Create a text input proxy instance.
-     
-     - Parameter input: The input to use.
-     */
+    /// Create a text input proxy instance.
+    ///
+    /// - Parameters:
+    ///   - input: The input to use.
     public init(input: TextInput) {
         self.input = input
         self.autocapitalizationType = input.autocapitalizationType ?? .none
@@ -105,13 +101,11 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
         return input.text(in: selectedTextRange)
     }
     
-    /**
-     Adjust the text position by a certain offset.
-     
-     https://stackoverflow.com/a/41023439/495611 suggests us
-     to adjust the text position (i.e. moving the cursor) by
-     adjusting the selected text range.
-     */
+    /// Adjust the text position by a certain offset.
+    ///
+    /// https://stackoverflow.com/a/41023439/495611 suggests
+    /// adjusting the text position (i.e. moving the cursor)
+    /// by adjusting the selected text range.
     open func adjustTextPosition(byCharacterOffset offset: Int) {
         guard
             let input = input,

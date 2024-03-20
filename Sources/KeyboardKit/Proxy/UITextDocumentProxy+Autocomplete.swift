@@ -11,29 +11,21 @@ import UIKit
 
 public extension UITextDocumentProxy {
     
-    /**
-     Whether or not the proxy has a space before the current
-     input, that has been inserted by autocomplete.
-     */
+    /// Whether the proxy has an autocomplete inserted space.
     var hasAutocompleteInsertedSpace: Bool {
         ProxyState.spaceState == .autoInserted && documentContextBeforeInput?.hasSuffix(" ") == true
     }
     
-    /**
-     Whether or not the proxy has removed a space before the
-     current input, that has been inserted by autocomplete.
-     */
+    /// Whether the proxy has an autocomplete removed space.
     var hasAutocompleteRemovedSpace: Bool {
         ProxyState.spaceState == .autoRemoved
     }
     
-    /**
-     Replace the current word in the proxy with a suggestion,
-     then try to insert a space, if applicable.
-     
-     If a space is automatically inserted, the proxy will be
-     set to an `autoInserted` state.
-     */
+    /// Replace the current word in the texts document proxy
+    /// with a suggestion, then try to insert a space.
+    ///
+    /// If a space is automatically inserted, the proxy will
+    /// be set to an `autoInserted` state.
     func insertAutocompleteSuggestion(
         _ suggestion: Autocomplete.Suggestion,
         tryInsertSpace: Bool = true
@@ -43,13 +35,11 @@ public extension UITextDocumentProxy {
         tryInsertSpaceAfterAutocomplete()
     }
     
-    /**
-     Try inserting a space into the proxy after inserting an
-     autocompete suggestion.
-     
-     Calling this function instead of just inserting a space
-     puts the proxy in the correct autocomplete state.
-     */
+    /// Try to insert a space into the proxy after inserting
+    /// an autocompete suggestion.
+    ///
+    /// Call this function instead of just inserting a space
+    /// to apply the correct autocomplete state to the proxy.
     func tryInsertSpaceAfterAutocomplete() {
         let space = " "
         let hasPreviousSpace = documentContextBeforeInput?.hasSuffix(space) ?? false
@@ -59,22 +49,18 @@ public extension UITextDocumentProxy {
         setState(.autoInserted)
     }
     
-    /**
-     Try re-inserting any space that were previously removed
-     by `tryRemoveAutocompleteInsertedSpace`.
-     */
+    /// Try to re-insert a space that was previously removed
+    /// by `tryRemoveAutocompleteInsertedSpace`.
     func tryReinsertAutocompleteRemovedSpace() {
         if hasAutocompleteRemovedSpace { insertText(" ") }
         resetState()
     }
     
-    /**
-     Try removing any space before the current text input if
-     is was inserted by `insertAutocompleteSuggestion`.
-     
-     If a space is automatically removed, this proxy will be
-     set to an `autoRemoved` state.
-     */
+    /// Try to remove any space before the text input, if it
+    /// was inserted by `insertAutocompleteSuggestion`.
+    ///
+    /// If a space is automatically removed, this proxy will
+    /// be set to an `autoRemoved` state.
     func tryRemoveAutocompleteInsertedSpace() {
         guard hasAutocompleteInsertedSpace else { return resetState() }
         deleteBackward()
@@ -93,17 +79,13 @@ private extension UITextDocumentProxy {
     }
 }
 
-/**
- This class is a private way to store state for a text proxy.
- */
+/// This class is a private text document proxy storage type.
 private final class ProxyState {
     
     private init() {}
     
-    /**
-     This flag is used to keep track of if a space character
-     has been inserted by `insertAutocompleteSuggestion`.
-     */
+    /// This state is used to keep track if a space has been
+    /// inserted by `insertAutocompleteSuggestion`.
     static var spaceState = ProxyAutocompleteSpaceState.none
 }
 

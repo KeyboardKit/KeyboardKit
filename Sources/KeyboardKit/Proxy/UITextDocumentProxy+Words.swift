@@ -11,7 +11,7 @@ import UIKit
 
 public extension UITextDocumentProxy {
     
-    /// The word that is at the current cursor location.
+    /// The word at the cursor location, if any.
     var currentWord: String? {
         let pre = currentWordPreCursorPart
         let post = currentWordPostCursorPart
@@ -19,29 +19,29 @@ public extension UITextDocumentProxy {
         return (pre ?? "") + (post ?? "")
     }
     
-    /// The part of the current word that is before the cursor.
+    /// The word segment before the cursor location, if any.
     var currentWordPreCursorPart: String? {
         documentContextBeforeInput?.wordFragmentAtEnd
     }
     
-    /// The part of the current word that is after the cursor.
+    /// The word segment after the cursor location, if any.
     var currentWordPostCursorPart: String? {
         documentContextAfterInput?.wordFragmentAtStart
     }
     
-    /// Whether or not the proxy has a current word.
+    /// Whether the proxy has a current word.
     var hasCurrentWord: Bool {
         currentWord != nil
     }
 
-    /// Whether or not the cursor is at the beginning of a word.
+    /// Whether the cursor is at the beginning of a word.
     var isCursorAtNewWord: Bool {
         guard let pre = documentContextBeforeInput else { return true }
         let lastCharacter = String(pre.suffix(1))
         return pre.isEmpty || lastCharacter.isWordDelimiter
     }
 
-    /// Whether or not the cursor is at the end of the current word.
+    /// Whether the cursor is at the end of the current word.
     var isCursorAtTheEndOfTheCurrentWord: Bool {
         if currentWord == nil { return false }
         let postCount = currentWordPostCursorPart?.trimmingCharacters(in: .whitespaces).count ?? 0
@@ -84,8 +84,10 @@ extension UITextDocumentProxy {
 
 private extension UITextDocumentProxy {
     
-    /// Check if a character should be included in the current word.
-    func shouldIncludeCharacterInCurrentWord(_ character: Character?) -> Bool {
+    /// Whether to include a character in the current word.
+    func shouldIncludeCharacterInCurrentWord(
+        _ character: Character?
+    ) -> Bool {
         guard let character = character else { return false }
         return !wordDelimiters.contains("\(character)")
     }

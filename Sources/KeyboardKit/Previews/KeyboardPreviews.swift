@@ -9,27 +9,24 @@
 import Foundation
 
 /**
- This namespace contains preview-related types.
+ This namespace defines preview-related types for many types.
  
  This namespace contains preview-related implementations for
- protocols and classes, such as:
+ protocols, types and observable, such as:
  
+ - ``AutocompleteContext``.``AutocompleteContext/preview``
  - ``AutocompleteProvider``.``AutocompleteProvider/preview``
+ - ``CalloutContext``.``CalloutContext/preview``
  - ``CalloutActionProvider``.``CalloutActionProvider/preview``
  - ``KeyboardActionHandler``.``KeyboardActionHandler/preview``
+ - ``KeyboardContext``.``KeyboardContext/preview``.
  - ``KeyboardInputViewController``.``KeyboardInputViewController/preview``
  - ``KeyboardLayout``.``KeyboardLayout/preview``
  - ``KeyboardLayoutProvider``.``KeyboardLayoutProvider/preview``
  - ``KeyboardStyleProvider``.``KeyboardStyleProvider/preview``
  - **UITextDocumentProxy.UITextDocumentProxy**
  
- as well as for observable state, such as:
- 
- - ``AutocompleteContext``.``AutocompleteContext/preview``
- - ``CalloutContext``.``CalloutContext/preview``
- - ``KeyboardContext``.``KeyboardContext/preview``.
- 
  These preview implementations make it easier to use SwiftUI
- previews with components that use KeyboardKit types.
+ previews with KeyboardKit types.
  */
 public struct KeyboardPreviews {}

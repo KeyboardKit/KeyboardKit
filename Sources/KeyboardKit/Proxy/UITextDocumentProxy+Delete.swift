@@ -12,25 +12,38 @@ import UIKit
 public extension UITextDocumentProxy {
 
     /// Delete backwards a certain range.
-    func deleteBackward(range: Keyboard.BackspaceRange) {
+    func deleteBackward(
+        range: Keyboard.BackspaceRange
+    ) {
         guard let text = deleteBackwardText(for: range) else { return deleteBackward() }
         deleteBackward(times: text.count)
     }
     
     /// Delete backwards a certain number of times.
-    func deleteBackward(times: Int) {
+    func deleteBackward(
+        times: Int
+    ) {
         for _ in 0..<times { deleteBackward() }
     }
 }
 
 extension UITextDocumentProxy {
     
-    func deleteBackwardText(for range: Keyboard.BackspaceRange) -> String? {
+    func deleteBackwardText(
+        for range: Keyboard.BackspaceRange
+    ) -> String? {
         guard let text = documentContextBeforeInput else { return nil }
+        return deleteBackwardText(for: text, range: range)
+    }
+    
+    func deleteBackwardText(
+        for text: String,
+        range: Keyboard.BackspaceRange
+    ) -> String? {
         switch range {
-        case .character: return text.lastCharacter
-        case .sentence: return text.lastSentenceSegment
-        case .word: return text.lastWordSegment
+        case .character: text.lastCharacter
+        case .sentence: text.lastSentenceSegment
+        case .word: text.lastWordSegment
         }
     }
 }

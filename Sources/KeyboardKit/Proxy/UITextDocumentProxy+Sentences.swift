@@ -11,43 +11,32 @@ import UIKit
 
 public extension UITextDocumentProxy {
 
-    /**
-     Check if the text input cursor is at the start of a new
-     sentence, with or without trailing whitespace.
-     */
+    /// Whether the proxy's input cursor is at the beginning
+    /// of a sentence, with or without trailing whitespaces.
     var isCursorAtNewSentence: Bool {
         documentContextBeforeInput?.isLastSentenceEnded ?? true
     }
 
-    /**
-     Check if the text input cursor is at the start of a new
-     sentence, with trailing whitespace.
-     */
+    /// Whether the proxy's input cursor is at the beginning
+    /// of a sentence, with trailing whitespaces.
     var isCursorAtNewSentenceWithTrailingWhitespace: Bool {
         documentContextBeforeInput?.isLastSentenceEndedWithTrailingWhitespace ?? true
     }
 
-    /**
-     The last ended sentence right before the cursor, if any.
-     */
+    /// The last ended sentence just before the input cursor.
     var sentenceBeforeInput: String? {
         documentContextBeforeInput?.lastSentence
     }
 
-    /**
-     A list of western sentence delimiters.
-
-     You can set the `String.sentenceDelimiters` to a custom
-     value to modify this delimiter collection.
-     */
+    /// A list of western sentence delimiters.
+    ///
+    /// Set `String.sentenceDelimiters` to modify this value.
     var sentenceDelimiters: [String] {
         String.sentenceDelimiters
     }
 
-    /**
-     End the current sentence by removing all trailing space
-     characters, then injecting a dot and a space.
-     */
+    /// End the current sentence by removing trailing spaces,
+    /// then injecting a dot and a space.
     func endSentence() {
         guard isCursorAtTheEndOfTheCurrentWord else { return }
         while (documentContextBeforeInput ?? "").hasSuffix(" ") {
