@@ -36,3 +36,6 @@ public extension View {
             .font(style.font?.font)
     }
 }
+
+@available(*, deprecated, renamed: "Keyboard.NextKeyboardButton")
+public typealias NextKeyboardButton = Keyboard.NextKeyboardButton

@@ -27,7 +27,7 @@ See the <doc:Essentials> article for more information.
 
 @Row {
     @Column {
-        ``Keyboard`` ``Keyboard/Button``
+        ``Keyboard``.``Keyboard/Button``
     }
     @Column {
         ![Keyboard Button](systemkeyboardbuttonpreview.jpg)
@@ -36,7 +36,7 @@ See the <doc:Essentials> article for more information.
 
 @Row {
     @Column {
-        ``Keyboard`` ``Keyboard/Toolbar``
+        ``Keyboard``.``Keyboard/Toolbar``
     }
     @Column {
         ![Keyboard Toolbar](autocompletetoolbar.jpg)
@@ -45,7 +45,7 @@ See the <doc:Essentials> article for more information.
 
 @Row {
     @Column {
-        ``Keyboard`` ``NextKeyboardButton``
+        ``Keyboard``.``Keyboard/NextKeyboardButton``
     }
     @Column {
         ![Next Keyboard Button](nextkeyboardbutton.jpg)
@@ -61,7 +61,7 @@ See the <doc:Autocomplete-Article> article for more information.
 
 @Row {
     @Column {
-        ``Autocomplete`` ``Autocomplete/Toolbar``
+        ``Autocomplete``.``Autocomplete/Toolbar``
     }
     @Column {
         ![Autocomplete Toolbar](autocompletetoolbar.jpg)
@@ -75,7 +75,7 @@ See the <doc:Callouts-Article> article for more information.
 
 @Row {
     @Column {
-        ``Callouts`` ``Callouts/InputCallout``
+        ``Callouts``.``Callouts/InputCallout``
     }
     @Column {
         ![Input Callout](inputcallout)
@@ -83,7 +83,7 @@ See the <doc:Callouts-Article> article for more information.
 }
 @Row {
     @Column {
-        ``Callouts`` ``Callouts/ActionCallout``
+        ``Callouts``.``Callouts/ActionCallout``
     }
     @Column {
         ![Action Callout](actioncallout)
@@ -97,9 +97,9 @@ See the <doc:Dictation-Article> article for more information.
 
 @Row {
     @Column {
-        ``Dictation`` ``Dictation/Screen``
+        ``Dictation``.``Dictation/Screen``
         
-        ``Dictation`` ``Dictation/BarVisualizer``
+        ``Dictation``.``Dictation/BarVisualizer``
     }
     @Column {
         ![Dictation Screen & Bar Visualizer](dictationscreen)

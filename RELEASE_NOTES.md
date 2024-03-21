@@ -15,9 +15,9 @@ These release notes only cover the current major version.
 
 This version bumps to Swift 5.9 and adds support for visionOS.
 
-This version also refactors view styling to be injected with view modifiers instead of initializers.
+This version also adjusts some view namings, and refactors view styling to be injected with view modifiers instead of with the view initializer.
 
-Due to complexities with the style provider concept, some views still use a style provider instead of environment styles.
+Views that require complex style resolving still use the style provider concept.
 
 ### ✨ Features
 
@@ -33,7 +33,8 @@ Due to complexities with the style provider concept, some views still use a styl
 
 * `AutocompleteToolbar` has been renamed to `Autocomplete.Toolbar`.
 * `InputSet.standardNumeric` has been renamed to `.numeric`.
-* `InputSet.standardSymbolic` has been renamed to `.symbolic`.  
+* `InputSet.standardSymbolic` has been renamed to `.symbolic`.
+* `KeyboardButton.Button` and all related views have been moved to `Keyboard`.  
 * `KeyboardStyle.AutocompleteToolbar` has been renamed to `Autocomplete.ToolbarStyle`.
 * `KeyboardStyle.AutocompleteToolbarItem` has been renamed to `Autocomplete.ToolbarItemStyle`.
 * `KeyboardStyle.AutocompleteToolbarSeparator` has been renamed to `Autocomplete.ToolbarSeparatorStyle`.
@@ -45,6 +46,7 @@ Due to complexities with the style provider concept, some views still use a styl
 * `KeyboardStyle.ActionCallout` has been renamed to `Callouts.ActionCalloutStyle`.
 * `KeyboardStyle.InputCallout` has been renamed to `Callouts.InputCalloutStyle`.
 * `KeyboardStateLabel` can now apply icons with the style and view modifiers.
+* `NextKeyboardButton` has been renamed to `Keyboard.NextKeyboardButton`.
 
 ### 💡 Renamed View Modifiers
 
@@ -62,7 +64,6 @@ Due to complexities with the style provider concept, some views still use a styl
 
 ### 🚨 Important Information
 
-* The `keyboardButtonStyle` view modifier has been renamed to `keyboardButton`.
 * The new `keyboardButtonStyle` view modifier only injects the style as an environment variable. 
 
     

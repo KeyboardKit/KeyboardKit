@@ -100,7 +100,7 @@ public extension View {
 
         #if os(iOS)
         if action == .nextKeyboard {
-            NextKeyboardButton {
+            Keyboard.NextKeyboardButton {
                 self
             }
         } else {
