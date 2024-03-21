@@ -82,7 +82,7 @@ For more information, please see the [getting started guide][Getting-Started].
 KeyboardKit comes packed features to help you build amazing keyboard extensions:
 
 * ⌨️ [Essentials][Essentials] - KeyboardKit comes with a bunch of essential features, types and views.
-* 💥 [Actions][Actions] - KeyboardKit makes it easy to trigger actions like character insertion, locale switching, etc.
+* 💥 [Actions][Actions] - KeyboardKit makes it easy to trigger character insertion, locale switching, etc.
 * 🤖 [AI Support][AI] - KeyboardKit unlocks additional capabilities that are useful for AI-based tools.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform on-device and remote autocomplete & autocorrect.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary action callouts.
@@ -103,7 +103,6 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🩺 [State][State] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
 * 🚏 [Text Routing][Text-Routing] - KeyboardKit can route text input from the main app to in-keyboard textfields.
-* 🌁 [Views][Views] - KeyboardKit defines a bunch of keyboard-related views and modifiers.
 
 
 
