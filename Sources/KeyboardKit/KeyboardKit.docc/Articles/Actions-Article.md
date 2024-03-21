@@ -121,7 +121,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 [KeyboardKit Pro][Pro] injects an ``StandardKeyboardActionHandler/emojiRegistrationAction`` function into the ``StandardKeyboardActionHandler``, then uses it to automatically register emojis as you use them.
 
-This will automatically update the "most recent" **EmojiCategory** and make the **EmojiKeyboard** display the most recently used emojis.
+This will automatically update the ``EmojiCategory/frequent`` ``EmojiCategory`` and make ``EmojiKeyboard`` display the most recently used emojis.
 
 
 

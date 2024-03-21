@@ -21,26 +21,9 @@ KeyboardKit provides additional, keyboard-specific images that make it easy to a
 
 ## Symbol-based image extensions
 
-KeyboardKit has a bunch of **Image** extensions that resolve to SF Symbols, for instance:
+KeyboardKit has additional images that aim to match native iOS system images, for instance ``SwiftUI/Image/keyboard``. See ``SwiftUI/Image`` for a complete list of additional images that are provided by the library.
 
-@Row {
-    @Column(size:2) {
-        ```swift
-        .keyboard
-        .keyboardArrowUp
-        .keyboardArrowDown
-        .keyboardArrowLeft
-        .keyboardArrowRight
-        .keyboardAudioFeedbackEnabled
-        // ...and so on
-        ```
-    }
-    @Column {
-        ![SF Symbol Images](images.jpg)        
-    }
-}
-
-
+![SF Symbol Images](images.jpg)
 
 These images are prefixed with **keyboard** to make them easy to find, and scale well when resized with the **.frame** and **.font** modifiers.
 
@@ -51,33 +34,13 @@ These images are prefixed with **keyboard** to make them easy to find, and scale
 KeyboardKit Pro unlocks additional image extensions that resolve to custom, vectorized assets for certain parts of the keyboard.
 
 
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+
 ### Emojis
 
-KeyboardKit Pro unlocks additional **Image** extensions that resolve to vectorized assets for the emoji key and every ``EmojiCategory``.
+KeyboardKit Pro unlocks additional **Image** extensions that resolve to vectorized assets for the emoji key and every ``EmojiCategory``, for instance ``SwiftUI/Image/keyboardEmoji`` and ``SwiftUI/Image/emojiCategory(_:)``:
 
-@Row {
-    @Column(size:2) {
-        ```swift
-        Image.keyboardEmoji
-
-        Image.emojiCategory(.frequent)
-        Image.emojiCategory(.smileys)
-        Image.emojiCategory(.animals)
-        Image.emojiCategory(.food)
-        Image.emojiCategory(.activities)
-        Image.emojiCategory(.travels)
-        Image.emojiCategory(.objects)
-        Image.emojiCategory(.symbols)
-        Image.emojiCategory(.flags)
-        ```
-    }
-    @Column {
-        ![Asset-based Images](images-emojis.jpg)        
-    }
-}
+![Asset-based Images](images-emojis.jpg)
 
 Since these images are vectorized PDF assets, they will also scale well when they are resized.
-
-
-
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro

@@ -12,15 +12,15 @@ KeyboardKit therefore provides ways to open URLs from a keyboard extension, with
 
 ## How to open URLs from a keyboard extension
 
-One way to open a URL from a keyboard, is to use the controller's ``KeyboardInputViewController/openUrl(_:)``. 
+One way to open a URL from a keyboard, is to use the controller's ``KeyboardInputViewController/openUrl(_:)``.
 
-If you don't want to depend on the controller (which can lead to memory leaks), a better way is to trigger a ``KeyboardAction/url(_:id:)`` action and let the ``KeyboardActionHandler`` in ``KeyboardInputViewController/services`` handle it.
+A better way is to trigger a ``KeyboardAction/url(_:id:)`` action and let the ``KeyboardActionHandler`` in ``KeyboardInputViewController/services`` handle it. This lets us avoid having to depend on the controller, which can lead to memory leaks. 
 
 
 
 ## How to open System Settings
 
-KeyboardKit defines a **URL.keyboardSettings** URL, which can be used to open your app in System Settings.
+KeyboardKit defines a ``Foundation/URL/keyboardSettings`` URL, which can be used to open your app in System Settings.
 
 If your keyboard randomly navigates to the System Settings root instead of your app, try to add an empty settings bundle to your app. 
 

@@ -19,18 +19,17 @@ import SwiftUI
  */
 public enum EmojiCategory: Codable, Equatable, Hashable, Identifiable {
     
-    case
-    frequent,
-    smileysAndPeople,
-    animalsAndNature,
-    foodAndDrink,
-    activity,
-    travelAndPlaces,
-    objects,
-    symbols,
-    flags,
+    case frequent
+    case smileysAndPeople
+    case animalsAndNature
+    case foodAndDrink
+    case activity
+    case travelAndPlaces
+    case objects
+    case symbols
+    case flags
     
-    custom(
+    case custom(
         id: String,
         name: String,
         emojis: String = "",

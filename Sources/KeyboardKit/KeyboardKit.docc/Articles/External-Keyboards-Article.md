@@ -34,7 +34,7 @@ Due to this limitation, it may be better to collapse the keyboard to a compact t
 
 ## 👑 Pro features
 
-KeyboardKit has an **ExternalKeyboardContext** that can detect if an external keyboard is connected, such as the Smart Keyboard Folio, Magic Keyboard, Bluetooth keyboards, etc.
+KeyboardKit has an ``ExternalKeyboardContext`` that can detect if an external keyboard is connected, such as the Smart Keyboard Folio, Magic Keyboard, Bluetooth keyboards, etc.
 
 Unlike other contexts, this context is not automatically setup when the keyboard launches. To use it, just set it up as an observed object:
 

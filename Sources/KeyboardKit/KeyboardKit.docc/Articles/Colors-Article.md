@@ -19,30 +19,11 @@ KeyboardKit provides additional, keyboard-specific colors that make it easy to a
 
 ## Color Extensions
 
-KeyboardKit has static colors that aim to match native iOS system colors, for instance:
+KeyboardKit has additional colors that aim to match native iOS system colors, for instance ``SwiftUI/Color/keyboardBackground``. See ``SwiftUI/Color`` for a full list of additional colors that are provided by the library.
 
-```swift
-Color.keyboardBackground
-Color.keyboardButtonBackground
-Color.keyboardButtonBackgroundForDarkAppearance
-Color.keyboardButtonForeground
-Color.keyboardButtonShadow
-```
+Colors without the **ForDarkAppearance** name suffix support both light & dark mode, while colors with the suffix are meant to be used for dark appearance keyboards in light mode.
 
-Colors without **ForDarkAppearance** support both light and dark mode, while the ones with that suffix are meant to be used for dark appearance keyboards in light mode.
-
-KeyboardKit also has contextual colors take a ``KeyboardContext`` and base the color on it:
-
-```swift
-Color.keyboardBackground(for: context)
-Color.keyboardButtonBackground(for: context)
-Color.keyboardButtonForeground(for: context)
-Color.keyboardButtonShadow(for: context)
-Color.keyboardDarkButtonBackground(for: context)
-Color.keyboardDarkButtonForeground(for: context)
-```
-
-It's recommended to use these functions instead of the raw color values, since they will adjust the color based on the provided context. 
+KeyboardKit also has contextual color functions that take a ``KeyboardContext``, for instance ``SwiftUI/Color/keyboardBackground(for:)`` and base the color on the context. It's recommended to use these functions instead of the raw color values. 
 
 
 
@@ -50,7 +31,7 @@ It's recommended to use these functions instead of the raw color values, since t
 
 If you take a closer look at some of these keyboard-specific colors, you will notice that some are semi-transparent. The reason for this is to work around a system bug in iOS.
 
-iOS namely provide keyboard extensions with an invalid color scheme when it's used with a dark appearance text field. iOS will say that the color scheme is `.dark`, even if the system's color scheme is light. 
+iOS namely provide keyboard extensions with an invalid color scheme when it's used with a dark appearance text field. iOS will say that the color scheme is `.dark`, even if the system color scheme is light. 
 
 Since dark appearance keyboards in light mode look quite different from keyboards in dark mode, this bug makes it impossible to apply the correct style, since it's impossible to determine if the system uses light or dark mode.
 

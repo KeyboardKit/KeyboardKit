@@ -15,7 +15,7 @@ This article describes the KeyboardKit emoji engine.
 
 KeyboardKit has an ``Emoji`` struct that represents an emoji value, and defines available ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.
 
-👑 [KeyboardKit Pro][Pro] unlocks an **EmojiKeyboard**, which is automatically added to ``SystemKeyboard`` when a valid license is registered. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that is automatically added to ``SystemKeyboard`` when a valid license is registered. Information about Pro features can be found at the end of this article.
 
 
 
@@ -153,7 +153,7 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks an **EmojiKeyboard**, which is automatically added to ``SystemKeyboard`` when a valid license is registered.
+[KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard``, which is automatically added to ``SystemKeyboard`` when a valid license is registered.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -161,17 +161,12 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
     
     @Tab("EmojiKeyboard") {
         
-        KeyboardKit Pro unlocks an `EmojiKeyboard` that mimics a native emoji keyboard.
+        KeyboardKit Pro unlocks an ``EmojiKeyboard`` that mimics the native emoji keyboard, with support for categories, skin tones, etc.
         
         ![Emoji Keyboard](emojikeyboard-350.jpg)
-            
-        The view can be styled with an `EmojiKeyboardStyle`, which can be applied with the `.emojiKeyboardStyle` view modifier:
         
-        ```swift
-        EmojiKeyboard {
-            ...
+        The view can be styled with an ``EmojiKeyboardStyle``, which can be applied with the ``SwiftUI/View/emojiKeyboardStyle(_:)`` view modifier.
         }
-        .emojiKeyboardStyle(...)
-        ```
-    }
 }
+        
+See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.

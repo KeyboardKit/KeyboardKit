@@ -39,7 +39,7 @@ This means that you will most likely only get a partial text result, which makes
 
 KeyboardKit Pro therefore unlocks additional capabilities to read *all* text from the document, by moving the text cursor in careful ways to unlock more content, then returning the input cursor to the original position.
 
-To read *all* text from the document, just use the **fullDocumentContext** functions instead of the ``UIKit/UITextDocumentProxy/documentContext`` ones:
+To read *all* the text from the document, just use the ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)`` functions instead of ``UIKit/UITextDocumentProxy/documentContext``:
 
 ```swift
 struct KeyboardView: View {

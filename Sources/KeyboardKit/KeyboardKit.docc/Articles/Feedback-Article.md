@@ -84,4 +84,4 @@ extension AudioFeedback {
 }
 ```
 
-You can also implement a custom action handler to trigger feedback in a completely different way. See <doc:Actions-Article> for more information.
+You can also implement a custom action handler to trigger feedback in a different ways. See the <doc:Actions-Article> article for more information.

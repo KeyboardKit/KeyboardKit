@@ -27,18 +27,18 @@ Keyboard extensions have little native support for this. The text document proxy
 
 ### Full Document Reader
 
-[KeyboardKit Pro][Pro] unlocks ways to read **all** text from a text field, using the **fullDocumentContext** text document proxy extensions that are unlocked by the Silver and Gold tiers.
+[KeyboardKit Pro][Pro] unlocks ways to read **all** text from a text field, using the ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)`` proxy extensions that will read the full document content instead of just returning the text closest to the input cursor.
 
-By reading the full text in the main app, you can pass in more information to your AI model or ChatGPT powered functionality, and make your AI-based features a lot more capable.
+By reading the full text, you can pass in more information to your AI model or ChatGPT-powered functionality, and make your AI-based features a lot more capable.
 
 Read more in the <doc:Proxy-Article> article.
 
 
 ### Text Routing
 
-[KeyboardKit Pro][Pro] unlocks ways to route text from the main app to text fields within the keyboard extension. It has a **KeyboardTextField** view that handles this automatically.
+[KeyboardKit Pro][Pro] unlocks ways to route text to text fields within the keyboard extension. It has a ``KeyboardTextField`` that will handle this automatically, by registering and unregistering as the ``KeyboardInputViewController/textDocumentProxy`` when it gets and loses focus.
 
-This makes it easy to build AI-based features that require user input within the keyboard, such as generating custom images with Open AI and DALL·E, asking questions to an AI, etc.
+This lets you build AI-based features that require user input within the keyboard, such as generating custom images with Open AI and DALL·E, asking questions to an AI, etc.
 
 Read more in the <doc:Text-Routing-Article> article.
 

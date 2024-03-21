@@ -103,9 +103,9 @@ For information on how to add new keyboard locales, see **Instructions.md** in *
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks localized ``InputSet``s, ``KeyboardLayoutProvider``s & ``CalloutActionProvider``s for every locale in the license. 
+[KeyboardKit Pro][Pro] unlocks fully localized ``InputSet``, ``KeyboardLayoutProvider`` & ``CalloutActionProvider`` implementations for every locale in your license. 
 
-This lets KeyboardKit Pro create fully localized ``SystemKeyboard`` for all locales, with no additional code needed. You can customize any input set or provider for any locale at any time, whenever needed.
+This lets KeyboardKit Pro create fully localized ``SystemKeyboard`` for every supported locale, with no additional code needed. You can customize any input set or provider for any locale at any time, whenever needed.
 
 
 

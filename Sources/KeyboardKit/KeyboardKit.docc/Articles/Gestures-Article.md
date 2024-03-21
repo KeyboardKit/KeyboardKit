@@ -29,13 +29,7 @@ This namespace doesn't contain protocols, open classes or types of higher import
 
 ## Keyboard gestures
 
-KeyboardKit has a ``Gestures/KeyboardGesture`` enum that defines supported keyboard gestures:
-
-* ``Gestures/KeyboardGesture/press``
-* ``Gestures/KeyboardGesture/release``
-* ``Gestures/KeyboardGesture/doubleTap``
-* ``Gestures/KeyboardGesture/longPress``
-* ``Gestures/KeyboardGesture/repeatPress``
+KeyboardKit has a ``Gestures/KeyboardGesture`` enum that defines supported keyboard gestures, like ``Gestures/KeyboardGesture/press``, ``Gestures/KeyboardGesture/release``, ``Gestures/KeyboardGesture/doubleTap``, etc.
 
 These gestures are used within the library, e.g. to handle ``KeyboardAction``s in various ways. The built in gestures can also provide drag information when a user presses and drags a view.
 
@@ -43,7 +37,7 @@ These gestures are used within the library, e.g. to handle ``KeyboardAction``s i
 
 ## Keyboard gestures view modifier
 
-You can use the **.keyboardButtonGestures(...)** view modifier to apply keyboard gestures:
+You can use the ``SwiftUI/View/keyboardButtonGestures(for:actionHandler:calloutContext:isPressed:isInScrollView:releaseOutsideTolerance:)`` view modifier to apply keyboard gestures:
 
 ```swift
 Text("😀")
@@ -53,8 +47,6 @@ Text("😀")
         ...
     )
 ```
-
-You can provide a ``KeyboardActionHandler`` and an optional ``CalloutContext`` to make the button use the KeyboardKit engine, or provide separate actions for every gesture.
 
 
 

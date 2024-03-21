@@ -15,7 +15,7 @@ This article describes the KeyboardKit callout engine.
 
 Callouts are an important part of the typing experience, where input callouts show the currently pressed character and action callouts show secondary actions when certain keys are long pressed.
 
-In KeyboardKit, a ``CalloutActionProvider`` can provide actions, which in turn will update views like ``Callouts/ActionCallout`` by updating the current ``CalloutContext``.
+KeyboardKit has ways to automatically show an ``Callouts/InputCallout`` when the user types, and has a ``CalloutActionProvider`` that can provide actions that can be presented in an ``Callouts/ActionCallout`` when long pressing certain keys.
 
 👑 [KeyboardKit Pro][Pro] unlocks localized providers for all locales. Information about Pro features can be found at the end of this article.
 
@@ -51,7 +51,7 @@ You can add and replace localized providers to the ``StandardCalloutActionProvid
 
 ## How to show input and action callouts
 
-You can apply a `.keyboardCalloutContainer` view extension to make any view act as the container of input and action callouts:
+You can apply a ``SwiftUI/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view extension to make any view act as the container of input and action callouts:
 
 ```swift
 MyKeyboard()
@@ -60,17 +60,17 @@ MyKeyboard()
 
 This will bind a ``CalloutContext`` to the view, then apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that show as this context changes. There are also separate input and action-specific container extensions.
 
+There are also individual extensions for ``SwiftUI/View/keyboardActionCalloutContainer(calloutContext:keyboardContext:)`` and ``SwiftUI/View/keyboardInputCalloutContainer(calloutContext:keyboardContext:)``. 
+
 The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically apply the proper extensions and update the context as you interact with them.
 
 
 
 ## How to create a custom callout action provider
 
-You can create a custom callout action provider to customize the callout actions to present for a certain ``KeyboardAction``.
+You can create a custom callout action provider to customize the callout actions to present for a certain ``KeyboardAction``. You can implement ``CalloutActionProvider`` from scratch, or inherit and customize ``StandardCalloutActionProvider``.
 
-You can implement ``CalloutActionProvider`` from scratch, or inherit and customize ``StandardCalloutActionProvider``.
-
-For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the actions for **$**:
+For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the actions for the $ key:
 
 ```swift
 class CustomCalloutActionProvider: StandardCalloutActionProvider {
@@ -109,36 +109,22 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 @TabNavigator {
     
-    @Tab("Callouts.ActionCallout") {
+    @Tab("Action Callout") {
         
-        KeyboardKit has an ``Callouts/ActionCallout`` that mimics a native action callout and can be used to present secondary actions for any key.
+        KeyboardKit has a ``Callouts`` ``Callouts/ActionCallout`` that mimics a native action callout and can present secondary actions for any key:
         
         ![ActionCallout](actioncallout-350.jpg)
         
-        The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the `.actionCalloutStyle` view modifier:
-        
-        ```swift
-        Callouts.ActionCallout {
-            ...
-        }
-        .actionCalloutStyle(...)
-        ```
+        The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUI/View/actionCalloutStyle(_:)`` view modifier.
     }
     
-    @Tab("Callouts.InputCallout") {
+    @Tab("Input Callout") {
         
-        KeyboardKit has an ``Callouts/InputCallout`` that mimics a native input callout and can be show the currently pressed key.
+        KeyboardKit has a ``Callouts`` ``Callouts/InputCallout`` that mimics a native input callout and can be show the currently pressed key.
         
         ![InputCallout](inputcallout-350.jpg)  
         
-        The view can be styled with a ``Callouts/InputCalloutStyle``, which can be applied with the `.inputCalloutStyle` view modifier:
-        
-        ```swift
-        Callouts.InputCallout {
-            ...
-        }
-        .inputCalloutStyle(...)
-        ```
+        The view can be styled with a ``Callouts/InputCalloutStyle``, which can be applied with the ``SwiftUI/View/inputCalloutStyle(_:)`` view modifier.
     }
 }
 

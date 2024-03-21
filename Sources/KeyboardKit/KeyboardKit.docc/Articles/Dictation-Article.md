@@ -73,33 +73,33 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
 @TabNavigator {
     
     @Tab("Screen") {
-        KeyboardKit Pro unlocks a **Dictation.Screen** that let you inspect the dictation, using any visualizer like a **Dictation.BarVisualizer**:
+        KeyboardKit Pro unlocks a ``Dictation`` ``Dictation/Screen`` that lets you visualize a dictation, using any visualizer like a ``Dictation/BarVisualizer``:
 
         ![DictationScreen](dictationscreen-350.jpg)
         
-        The **Dictation.Screen** will automatically fade in when dictation becomes active, when you use the view extensions described below.
+        This screen will automatically fade in when a dictation is started, when you use the Pro ``SwiftUI/View/keyboardDictation()`` view modifiers.
     }
     
     @Tab("Bar Visualizer") {
-        The **Dictation.BarVisualizer** can be styled to great extent. You can change the number of bars, the colors & thickness of the bars, etc.
+        A ``Dictation`` ``Dictation/BarVisualizer`` can be used to visualize an ongoing dictation operation as a collection of vertical, animating bars.
 
         ![DictationScreen](dictationscreen-350.jpg)
         
-        You can implement your own visualizer as well, and inject it into the dictation view extension. This lets you customize how the dictation operation is presented to the user. 
+        You can change the number of bars, the colors & thickness of the bars, etc. You can also implement your own visualizer, to customize how the dictation operation is presented to the user. 
     }
 }
 
 
 ### Services
 
-KeyboardKit Pro unlocks a **ProDictationService** service that can be used within the main app, and a **ProKeyboardDictationService** that can be used to initialize a dictation operation from a keyboard extension.
+KeyboardKit Pro unlocks a ``ProDictationService`` that can be used in the main app, and a ``ProKeyboardDictationService`` that can be used to initialize a dictation operation from within a keyboard extension.
 
 
 ### Supported languages
 
 The speech recognizer that is used by KeyboardKit Pro supports the following languages:
 
-English, Arabic, Catalan, Croatian, Czech, Danish, Dutch, Finnish, French, German, Greek, Hebrew, Hungarian, Indonesian, Italian, Malay, Norwegian, Polish, Portuguese, Romanian, Russian, Slovak, Spanish, Swedish, Turkish, Ukrainian
+``KeyboardLocale/english``, ``KeyboardLocale/english_gb``, ``KeyboardLocale/english_us``, ``KeyboardLocale/arabic``, ``KeyboardLocale/catalan``, ``KeyboardLocale/croatian``, ``KeyboardLocale/czech``, ``KeyboardLocale/danish``, ``KeyboardLocale/dutch``, ``KeyboardLocale/dutch_belgium``, ``KeyboardLocale/finnish``, ``KeyboardLocale/french``, ``KeyboardLocale/french_belgium``, ``KeyboardLocale/french_switzerland``, ``KeyboardLocale/german``, ``KeyboardLocale/german_austria``, ``KeyboardLocale/german_switzerland``, ``KeyboardLocale/greek``, ``KeyboardLocale/hebrew``, ``KeyboardLocale/hungarian``, ``KeyboardLocale/indonesian``, ``KeyboardLocale/italian``, ``KeyboardLocale/malay``, ``KeyboardLocale/norwegian``, ``KeyboardLocale/polish``, ``KeyboardLocale/portuguese``, ``KeyboardLocale/portuguese_brazil``, ``KeyboardLocale/romanian``, ``KeyboardLocale/russian``, ``KeyboardLocale/slovak``, ``KeyboardLocale/spanish``, ``KeyboardLocale/swedish``, ``KeyboardLocale/turkish``, ``KeyboardLocale/ukrainian``.
 
 If you want to use dictation with other languages, you must implement a custom recognizer.
 
@@ -214,14 +214,14 @@ struct ContentView: View {
 }
 ```
 
-The **.keyboardDictation** view modifier has an **overlay** parameter that defines the overlay to show while dictation is active. You can use the Pro **Dictation.Screen** with any of the built-in dictation visualizers, or a completely custom view.
+The ``SwiftUI/View/keyboardDictation()`` view modifier has an overlay parameter that defines the view to show while dictation is active. You can use the Pro ``Dictation`` ``Dictation/Screen`` with any of the built-in dictation visualizers, or a completely custom view.
 
 
 #### 7. Create a speech recognizer
 
-The **keyboardDictation** view modifier requires a `SpeechRecognizer`, which is a Pro protocol that is used to decouple KeyboardKit from the Speech framework, since referring to Speech would force *all* apps to specify permissions for dictation.
+The ``SwiftUI/View/keyboardDictation()`` view modifier requires a ``SpeechRecognizer``, which is a protocol that decouples KeyboardKit from the Speech framework, to avoid *all* apps from having to specify dictation permissions.
 
-Instead, just add the code below to your app, then inject a `StandardSpeechRecognizer` into the **keyboardDictation** view modifier.
+Instead, just add this code to your app, then inject an instance of this class into the ``SwiftUI/View/keyboardDictation()`` view modifier.
 
 ```swift
 import Speech
@@ -333,7 +333,7 @@ You can now start dictation in your keyboard by triggering ``KeyboardAction/dict
 
 If everything is correctly configured, the keyboard should open the app to start dictation. When the user returns to the keyboard, it will automatically send the dictated text to the text field.
 
-You can override ``KeyboardInputViewController/viewWillHandleDictationResult()`` to customize how the keyboard handles the dictated text. 
+You can override the controller ``KeyboardInputViewController/viewWillHandleDictationResult()`` to customize how the keyboard handles the dictated text. 
 
 > Important: In a DocumentGroup-based app, the .keyboardDictation modifier only works when a document is open. Instead, check if isDictationStartedByKeyboard. If it's true, present a sheet or modal and add .keyboardDictationOnAppear to its root view.
 
@@ -342,11 +342,9 @@ You can override ``KeyboardInputViewController/viewWillHandleDictationResult()``
 
 Once dictation is done, the app should return to the keyboard to let it handle the dictated text.
 
-KeyboardKit Pro used to have a **PreviousAppNavigator** that was used to automatically navigate back to the keyboard, but this stopped working in iOS 17. A new implementation that worked great was then rejected by Apple, due to using private APIs.
+KeyboardKit Pro used to have a `PreviousAppNavigator` to automatically navigate back to the keyboard, but this stopped working in iOS 17. A new implementation that worked great was then rejected by Apple, due to using private APIs.
 
-KeyboardKit can't add this to the library, since it will cause *all* apps to be rejected. Instead, you can decide if you want to try submitting an app that uses it, or instruct your users to tap the back button to return to the keyboard. 
-
-To implement automatic back navigation, inherit **ProKeyboardDictationService** and override **tryToReturnToKeyboard**:
+KeyboardKit can't add this code, since it would cause *all* apps to be rejected. To add a custom back navigation implementation, you can inherit ``ProKeyboardDictationService`` and override ``ProKeyboardDictationService/tryToReturnToKeyboard()``:
 
 ```swift
 class CustomDictationService: ProKeyboardDictationService {
@@ -357,4 +355,4 @@ class CustomDictationService: ProKeyboardDictationService {
 }
 ```
 
-See the <doc:Navigation-Article> for the two implementations that were previously used by the library. Although they may be rejected by Apple, they may give you some inspiration.
+See the <doc:Navigation-Article> for the implementations that were previously used. Although they may be rejected, they may give some inspiration.

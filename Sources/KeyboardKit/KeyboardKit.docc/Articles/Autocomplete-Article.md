@@ -15,7 +15,7 @@ This article describes the KeyboardKit autocomplete engine.
 
 Autocomplete is an important part of the typing experience, where suggestions are shown as the user types.
 
-In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions that can be listed in views like an autocomplete ``Autocomplete/Toolbar``.
+In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``AutocompleteContext`` whenever the user types, to automatically update views like an autocomplete ``Autocomplete/Toolbar``.
 
 KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
@@ -43,7 +43,7 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 
 ## How to perform autocomplete
 
-KeyboardKit will automatically call the controller's ``KeyboardController/performAutocomplete()`` function whenever the text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the provider in ``KeyboardInputViewController/services``.
+KeyboardKit will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the ``AutocompleteProvider`` in ``KeyboardInputViewController/services``.
 
 Views like the autocomplete ``Autocomplete/Toolbar`` can list these suggestions and handle suggestion with the main ``KeyboardActionHandler``.
 
@@ -51,17 +51,15 @@ Views like the autocomplete ``Autocomplete/Toolbar`` can list these suggestions 
 
 ## How to disable autocomplete and autocorrect
 
-Set the ``AutocompleteContext`` ``AutocompleteContext/isAutocorrectEnabled`` to **false** to disable autocorrection, and set ``AutocompleteContext/isAutocompleteEnabled`` to **false** to disable autocomplete altogether.
-
-You can also disable autocorrection by applying an **.autocorrectionDisabled()** view modifier to the view hierarchy.
+You can set ``AutocompleteContext/isAutocorrectEnabled`` to false to disable autocorrection, and ``AutocompleteContext/isAutocompleteEnabled`` to disable autocomplete altopgether. You can also disable autocorrection by applying ``SwiftUI/View/autocorrectionDisabled(with:)`` to the keyboard view.
 
 
 
 ## How to customize the autocomplete behavior
 
-You can customize the autocomplete behavior by replacing the ``KeyboardInputViewController/services`` provider with a custom ``AutocompleteProvider``. You can also customize the ``KeyboardInputViewController`` to change its autocomplete behavior.
+You can customize the autocomplete behavior by replacing the ``AutocompleteProvider`` in ``KeyboardInputViewController/services`` with a custom provider. You can also customize the ``KeyboardInputViewController`` to change the autocomplete behavior.
 
-For instance, the ``KeyboardInputViewController/autocompleteText`` property determines which text to use for autocomplete. It uses ``KeyboardInputViewController/textDocumentProxy`` by default, but you can override it to customize which text to use.
+For instance, the ``KeyboardInputViewController/autocompleteText`` property determines which text to use for autocomplete. It will use ``KeyboardInputViewController/textDocumentProxy`` by default, but you can override it to customize which text to use.
 
 
 
@@ -152,18 +150,11 @@ This will make KeyboardKit use your custom implementation instead of the standar
     
     @Tab("Toolbar") {
         
-        KeyboardKit has an Autocomplete.``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar.
+        KeyboardKit has an ``Autocomplete`` ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar.
         
         ![AutocompleteToolbar](autocompletetoolbar.jpg)
             
-        The view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier:
-        
-        ```swift
-        Autocomplete.Toolbar {
-            ...
-        }
-        .autocompleteToolbarStyle(...)
-        ```
+        The view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier.
     }
         
     @Tab("Items & Separators") {
@@ -177,16 +168,16 @@ See the <doc:Styling-Article> article for more information about how styling is 
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and injects a **LocalAutocompleteProvider** into ``KeyboardInputViewController/services`` when you register a license key. These providers are open to inheritance, so you can inherit and customize them to fir your needs.
+[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and injects a ``LocalAutocompleteProvider`` into ``KeyboardInputViewController/services`` when you register a license key. These providers are open to inheritance, so you can inherit and customize them to fir your needs.
 
 ### LocalAutocompleteProvider
 
-The **LocalAutocompleteProvider** implementation performs autocomplete on-device. It works offline, doesn't require Full Access and integrates with other system services, like the local lexicon.
+A ``LocalAutocompleteProvider`` performs autocomplete operations locally, on-device. It supporst most keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
 
 > Important: This provider currently doesn't provide next word prediction, since Apple removed these capabilities in iOS 16. 
 
 ### RemoteAutocompleteProvider
 
-The **RemoteAutocompleteProvider** implementation can be used to integrate with external APIs and web services. It requires that the device is online and that Full Access is enabled, to make network requests. 
+A ``RemoteAutocompleteProvider`` can be used to perform autocomplete by integrating with external REST APIs. It requires that the device is online, and requires Full Access to be able to make network requests. 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

@@ -6,7 +6,7 @@ SwiftUI previews are a great way to work on your project in Xcode without having
 
 KeyboardKit has preview-specific services and state, that can be used in your previews. This makes it easy to set up and preview your keyboard-specific views directly in Xcode.
 
-[KeyboardKit Pro][Pro] unlocks powerful system keyboard and theme previews. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks system keyboard and theme previews. Information about Pro features can be found at the end of this article.
 
 
 
@@ -14,9 +14,9 @@ KeyboardKit has preview-specific services and state, that can be used in your pr
 
 KeyboardKit has a ``KeyboardPreviews`` namespace that contains preview-related services and state. The name doesn't match the group name, since "Previews" conflicts with SwiftUI.
 
-For instance, the ``KeyboardContext``.``KeyboardContext/preview`` can be used as a dummy context, and the ``KeyboardInputViewController``.``KeyboardInputViewController/preview`` as a dummy controller. 
+For instance, the ``KeyboardContext`` ``KeyboardContext/preview`` can be used as a dummy context, and the ``KeyboardInputViewController`` ``KeyboardInputViewController/preview`` as a dummy input controller. 
 
-These preview-specific services and state simplifies creating previews for views that require KeyboardKit. Just use **.preview** instead of creating a proper instance.
+These static, preview-specific services and state values simplify creating previews for views that use KeyboardKit-specific types.
 
 
 
@@ -65,42 +65,51 @@ You can take a look at the source code of the various views in the library for i
 
 ## 👑 Pro features
 
-KeyboardKit Pro unlocks powerful system keyboard previews.
-
-### System Keyboard Preview
-
-KeyboardKit Pro unlocks a **SystemKeyboardPreview** that can be used to preview a ``SystemKeyboard`` with many different configurations, styles and themes.
-
-Use the **keyboardContext** parameter to configure things like locale, keyboard type, etc. and the **layoutProvider** and **styleProvider** to customize the layout and style.
-
-```swift
-let context = KeyboardContext.preview
-context.setLocale(.turkish)
-
-SystemKeyboardPreview(keyboardContext: context)
-```
-
-![System Keyboard Preview - Turkish](systemkeyboardpreview-350.jpg)
-
-You can use the **theme** parameter to easily preview any Pro unlocked **KeyboardTheme**.
-
-```swift
-SystemKeyboardPreview(theme: try? .candyShop)
-```
-
-![System Keyboard Preview - Theme](systemkeyboardpreview-theme-350.jpg)
-
-Since this view draws a keyboard with full interaction, you shouldn't use many at the same time.
-
-
-### System Keyboard Preview
-
-KeyboardKit Pro also unlocks a more lightweight **SystemKeyboardButtonPreview** that can be used to preview many styles or themes at once.
-
-![System Keyboard Button Preview](systemkeyboardbuttonpreview-350.jpg)
-
-You can use this view to preview any ``KeyboardAction`` and any Pro **KeyboardTheme**.
-
-
+[KeyboardKit Pro][Pro] unlocks powerful system keyboard previews, that can be used to preview different locales, configurations and themes.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+@TabNavigator {
+    
+    @Tab("System Keyboard Preview") {
+        
+        KeyboardKit Pro unlocks a ``SystemKeyboardPreview`` that can be used to preview a full ``SystemKeyboard`` in many different ways, for instance by passing in a custom locale or theme:
+        
+        @Row {
+            @Column(size: 2) {
+                ```swift
+                let context = KeyboardContext.preview
+                context.setLocale(.turkish)
+
+                SystemKeyboardPreview(keyboardContext: context)
+                ```
+            }
+            @Column {
+                ![System Keyboard Preview - Turkish](systemkeyboardpreview-350.jpg)
+            }
+        }
+        
+        @Row {
+            @Column(size: 2) {
+                ```swift
+                SystemKeyboardPreview(theme: try? .candyShop)
+                ```
+            }
+            @Column {
+                ![System Keyboard Preview - Theme](systemkeyboardpreview-theme-350.jpg)
+            }
+        }
+        
+        This preview is intended to be used in the main app, to for instance provide interactive previews in a settings screen. Since it draws a full keyboard with all interactions enabled, avoid displaying more one at a time.
+    }
+    
+    @Tab("System Keyboard Button Preview") {
+        
+        KeyboardKit Pro also unlocks a more lightweight ``SystemKeyboardButtonPreview`` that can be used to preview many buttons at once, for instance to preview multiple styles or ``KeyboardTheme``s at once:
+        
+        ![System Keyboard Button Preview](systemkeyboardbuttonpreview-350.jpg)
+
+        Unlike the ``SystemKeyboardPreview``, this view just renders a very lightweight button preview, and is perfect for being used in style or theme pickers, to quickly visualize how certain button types look for a certain configuration, etc.
+
+    }
+}

@@ -17,12 +17,7 @@ The ``KeyboardButton`` namespace defines a set of keyboard button types that can
 - ``KeyboardButton/SpaceContent`` renders the content of a native space content.
 - ``KeyboardButton/Title`` renders the title content of a native keyboard button.
 
-Most of the views can be styled with a ``KeyboardButton/ButtonStyle``, which can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier:
-
-```swift
-KeyboardButton.Key()
-    .keyboardButtonStyle(.standard)
-```
+Most of the views can be styled with a ``KeyboardButton/ButtonStyle``, which can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier.
 
 This is however not yet true for some views, that use a ``KeyboardStyleProvider`` to support more complex styling. See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
 
@@ -33,6 +28,6 @@ A ``NextKeyboardButton`` can be used to integrate with the system keyboard switc
 
 ![NextKeyboardButton](nextkeyboardbutton-250.jpg)
 
-This button requires a ``KeyboardInputViewController`` to function. KeyboardKit will by default register the current controller when the keyboard launches.
+This button requires a ``Keyboard/NextKeyboardController`` to trigger controller-based functionality that switches keyboard and shows the menu. KeyboardKit automatically registers the ``KeyboardInputViewController`` when it launches.
 
-KeyboardKit will by default map ``KeyboardAction/nextKeyboard`` to this view when rendering the action.
+KeyboardKit will by default map ``KeyboardAction/nextKeyboard`` to this view when rendering the action, which means that keyboards that have this action will automatically support the native keyboard switching.

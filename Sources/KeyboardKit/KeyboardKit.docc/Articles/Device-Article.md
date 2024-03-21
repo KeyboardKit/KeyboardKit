@@ -34,7 +34,7 @@ let isPortrait = InterfaceOrientation.current.portrait
 
 ## Screen sizes
 
-KeyboardKit has ``CoreGraphics/CGSize`` extensions for detecting which kind of hardware you're on, for instance to define and compare various device screen sizes. Tap the link for more information.
+KeyboardKit has ``CoreFoundation/CGSize`` extensions for detecting which kind of hardware you're on, for instance to define and compare various device screen sizes. Tap the link for more information.
 
 It's important to avoid designing for a specific screen size, since apps can run in split screen, a keyboard can be floating, etc. However, the screen size may provide you with information about the device.
 
