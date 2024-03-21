@@ -85,7 +85,6 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 💥 [Actions][Actions] - KeyboardKit makes it easy to trigger actions like character insertion, locale switching, etc.
 * 🤖 [AI Support][AI] - KeyboardKit unlocks additional capabilities that are useful for AI-based tools.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform on-device and remote autocomplete & autocorrect.
-* 🔤 [Buttons][Buttons] - KeyboardKit can style any view as a keyboard button, with rich customization capabilities.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary action callouts.
 * 🌈 [Colors][Colors] - KeyboardKit defines keyboard-specific colors.
 * 📱 [Device Utilities][Device] - KeyboardKit provides device-specific utilities.

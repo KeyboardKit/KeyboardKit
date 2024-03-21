@@ -50,8 +50,6 @@ Section 1.10.33 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }

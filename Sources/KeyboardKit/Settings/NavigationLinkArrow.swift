@@ -44,9 +44,7 @@ private extension NavigationLinkArrow {
     }
 }
 
-struct Image_App_Previews: PreviewProvider {
+#Preview {
 
-    static var previews: some View {
-        NavigationLinkArrow()
-    }
+    NavigationLinkArrow()
 }

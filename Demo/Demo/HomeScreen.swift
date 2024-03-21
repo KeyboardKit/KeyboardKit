@@ -129,8 +129,7 @@ extension HomeScreen {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeScreen()
-    }
+#Preview {
+    
+    HomeScreen()
 }
