@@ -18,7 +18,7 @@ import Foundation
 extension KeyboardContext {
     
     func endSentence() {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         textDocumentProxy.endSentence()
         #endif
     }
@@ -27,7 +27,7 @@ extension KeyboardContext {
         _ suggestion: Autocomplete.Suggestion,
         tryInsertSpace: Bool = true
     ) {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         textDocumentProxy.insertAutocompleteSuggestion(
             suggestion,
             tryInsertSpace: tryInsertSpace
@@ -38,7 +38,7 @@ extension KeyboardContext {
     }
     
     var isCursorAtNewWord: Bool {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         textDocumentProxy.isCursorAtNewWord
         #else
         return false
@@ -49,7 +49,7 @@ extension KeyboardContext {
         whenInserting text: String,
         for locale: Locale
     ) -> String? {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         textDocumentProxy.documentContextBeforeInput?.preferredQuotationReplacement(whenAppending: text, for: locale)
         #else
         return nil
@@ -57,7 +57,7 @@ extension KeyboardContext {
     }
     
     func spaceDragOffset(for rawOffset: Int) -> Int? {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         textDocumentProxy.spaceDragOffset(for: rawOffset)
         #else
         return nil
@@ -65,13 +65,13 @@ extension KeyboardContext {
     }
     
     func tryReinsertAutocompleteRemovedSpace() {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         textDocumentProxy.tryReinsertAutocompleteRemovedSpace()
         #endif
     }
     
     func tryRemoveAutocompleteInsertedSpace() {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
         #endif
     }

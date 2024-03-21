@@ -50,7 +50,7 @@ public extension Keyboard {
     }
 }
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 public extension Keyboard.KeyboardState {
     
     // Setup the state instance for the provided controller.

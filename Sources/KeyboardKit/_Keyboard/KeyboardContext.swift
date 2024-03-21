@@ -128,7 +128,7 @@ public class KeyboardContext: ObservableObject {
     public var spaceLongPressBehavior = Gestures.SpaceLongPressBehavior.moveInputCursor
     
     
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     
     // MARK: - iOS/tvOS proxy properties
     
@@ -161,7 +161,7 @@ public class KeyboardContext: ObservableObject {
 
 // MARK: - Public iOS/tvOS Properties
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 public extension KeyboardContext {
 
     /// The current trait collection's color scheme.
@@ -187,7 +187,7 @@ public extension KeyboardContext {
     /// ``autocapitalizationTypeOverride`` value can be used
     /// to overrides this property.
     var autocapitalizationType: Keyboard.AutocapitalizationType? {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         autocapitalizationTypeOverride ?? textDocumentProxy.autocapitalizationType?.keyboardType
         #else
         autocapitalizationTypeOverride ?? nil
@@ -196,7 +196,7 @@ public extension KeyboardContext {
 
     /// Whether or not to use a dark color scheme.
     var hasDarkColorScheme: Bool {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         colorScheme == .dark
         #else
         false
@@ -273,7 +273,7 @@ public extension KeyboardContext {
 
 // MARK: - iOS/tvOS syncing
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 public extension KeyboardContext {
     
     /// Sync the context with the provided input controller.
@@ -368,11 +368,19 @@ extension KeyboardContext {
 private extension UIInputViewController {
 
     var orientation: InterfaceOrientation {
+        #if os(iOS) || os(tvOS)
         view.window?.screen.interfaceOrientation ?? .portrait
+        #else
+        .portrait
+        #endif
     }
 
     var screenSize: CGSize {
+        #if os(iOS) || os(tvOS)
         view.window?.screen.bounds.size ?? .zero
+        #else
+        .zero
+        #endif
     }
 }
 #endif

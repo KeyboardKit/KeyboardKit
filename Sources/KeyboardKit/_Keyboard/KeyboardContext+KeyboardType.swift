@@ -32,7 +32,7 @@ private extension KeyboardContext {
     func preferredAutocapitalizedKeyboardType(
         requiresAlphabetic: Bool
     ) -> Keyboard.KeyboardType? {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         guard isAutoCapitalizationEnabled else { return nil }
         guard let proxyType = autocapitalizationType else { return nil }
         if requiresAlphabetic && !keyboardType.isAlphabetic { return nil }
@@ -51,7 +51,7 @@ private extension KeyboardContext {
     }
 
     var preferredKeyboardTypeAfterAlphaTyping: Keyboard.KeyboardType? {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         guard keyboardType.isAlphabetic else { return nil }
         return .alphabetic(.lowercased)
         #else
@@ -60,7 +60,7 @@ private extension KeyboardContext {
     }
     
     var preferredKeyboardTypeAfterNumericOrSymbolicSpaceOrReturn: Keyboard.KeyboardType? {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         guard keyboardType == .numeric || keyboardType == .symbolic else { return nil }
         guard let before = textDocumentProxy.documentContextBeforeInput else { return nil }
         let preferred = preferredAutocapitalizedKeyboardType(requiresAlphabetic: false)

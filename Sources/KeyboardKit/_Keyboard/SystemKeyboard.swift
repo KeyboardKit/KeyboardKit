@@ -336,7 +336,7 @@ private extension SystemKeyboard {
 }
 
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 /**
  `IMPORTANT` In previews, you must provide a custom width to
  get buttons to show up, since there is no shared controller.

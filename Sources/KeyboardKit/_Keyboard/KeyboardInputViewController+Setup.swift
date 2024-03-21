@@ -6,7 +6,7 @@
 //  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import SwiftUI
 
 extension KeyboardInputViewController {
@@ -30,7 +30,11 @@ extension KeyboardInputViewController {
     
     /// Set up an initial width to avoid SwiftUI layout bugs.
     func setupInitialWidth() {
+        #if os(iOS) || os(tvOS)
         view.frame.size.width = UIScreen.main.bounds.width
+        #else
+        view.frame.size.width = 500
+        #endif
     }
 
     /// Setup locale observation to handle locale changes.

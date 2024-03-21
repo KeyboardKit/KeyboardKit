@@ -124,7 +124,7 @@ public extension Keyboard.Background {
         )
     }
     
-    #if os(iOS) || os(tvOS) || os(watchOS)
+    #if canImport(UIKit)
     /// A background style with a single image.
     static func image(
         _ image: UIImage?,
@@ -196,7 +196,10 @@ private extension Keyboard.Background {
     VStack {
         Keyboard.Background.color(.red)
         Keyboard.Background.verticalGradient([.red, .blue])
+        #if os(macOS)
+        #else
         Keyboard.Background.image(systemName: "checkmark")
+        #endif
     }
     .padding()
 }

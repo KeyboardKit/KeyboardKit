@@ -132,7 +132,7 @@ open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
         let dictationReplacement = context.keyboardDictationReplacement
         if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
         result.append(.space)
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         if context.textDocumentProxy.keyboardType == .emailAddress {
             result.append(.character("@"))
             result.append(.character("."))

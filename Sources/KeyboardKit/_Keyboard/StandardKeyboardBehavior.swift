@@ -90,7 +90,7 @@ open class StandardKeyboardBehavior: KeyboardBehavior {
         after gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         guard gesture == .release, action == .space else { return false }
         let proxy = keyboardContext.textDocumentProxy
         let isNewWord = proxy.isCursorAtNewWord

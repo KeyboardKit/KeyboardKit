@@ -193,6 +193,3 @@ See the <doc:State-Article> article for more information.
 KeyboardKit Pro unlocks a ``KeyboardTextField`` and a ``KeyboardTextView``, that let you type into a text field within the keyboard extension, by automatically registering and unregistering themselves as the main input proxy when they get and lose focus.
 
 See the <doc:Text-Routing-Article> article for more information.
-
-
-

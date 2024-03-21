@@ -8,7 +8,7 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 #endif
 
@@ -30,7 +30,7 @@ public extension URL {
     /// name was used to reduce the risk of naming conflicts
     /// with other URL extensions.
     static var keyboardSettings: URL? {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         URL(string: UIApplication.openSettingsURLString)
         #else
         nil

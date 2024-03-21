@@ -6,7 +6,7 @@
 //  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 
 public extension UITextDocumentProxy {

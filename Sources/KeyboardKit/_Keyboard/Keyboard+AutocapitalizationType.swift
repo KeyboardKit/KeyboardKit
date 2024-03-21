@@ -27,7 +27,7 @@ public extension Keyboard {
     }
 }
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 
 public extension UITextAutocapitalizationType {
@@ -35,11 +35,11 @@ public extension UITextAutocapitalizationType {
     /// Map this type to a ``Keyboard/AutocapitalizationType``.
     var keyboardType: Keyboard.AutocapitalizationType {
         switch self {
-        case .none: return .none
-        case .words: return .words
-        case .sentences: return .sentences
-        case .allCharacters: return .allCharacters
-        @unknown default: return .none
+        case .none: .none
+        case .words: .words
+        case .sentences: .sentences
+        case .allCharacters: .allCharacters
+        @unknown default: .none
         }
     }
 }

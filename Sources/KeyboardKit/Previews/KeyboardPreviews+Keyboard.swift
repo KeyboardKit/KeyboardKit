@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-#if os(iOS) || os(tvOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 public extension KeyboardInputViewController {
 
     static var preview: KeyboardInputViewController {
@@ -29,7 +29,7 @@ public extension KeyboardPreviews {
 public extension Keyboard.KeyboardServices {
     
     static var preview: Keyboard.KeyboardServices {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         KeyboardInputViewController.preview.services
         #else
         Keyboard.KeyboardServices(state: .preview)
@@ -40,7 +40,7 @@ public extension Keyboard.KeyboardServices {
 public extension Keyboard.KeyboardState {
     
     static var preview: Keyboard.KeyboardState {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         KeyboardInputViewController.preview.state
         #else
         Keyboard.KeyboardState()
@@ -51,7 +51,7 @@ public extension Keyboard.KeyboardState {
 public extension KeyboardContext {
     
     static var preview: KeyboardContext {
-        #if os(iOS) || os(tvOS)
+        #if os(iOS) || os(tvOS) || os(visionOS)
         let context = KeyboardContext()
         context.sync(with: .preview)
         return context
