@@ -50,7 +50,7 @@ platform :ios do
 
   # Test ==================
   
-  lane :test_ios do |options|
+  lane :test do |options|
     destination = options[:destination]
     sh("cd .. && xcodebuild test -scheme " + name + " -derivedDataPath .build -destination '" + destination + "' -enableCodeCoverage YES;")
   end

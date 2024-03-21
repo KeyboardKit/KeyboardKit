@@ -37,5 +37,7 @@ public extension View {
     }
 }
 
+#if os(iOS) || os(tvOS) || os(visionOS)
 @available(*, deprecated, renamed: "Keyboard.NextKeyboardButton")
 public typealias NextKeyboardButton = Keyboard.NextKeyboardButton
+#endif
