@@ -71,8 +71,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// This function is called when the controller is about
     /// to register itself as the shared controller.
     open func viewWillRegisterSharedController() {
-        NextKeyboardController.shared = self
-        KeyboardUrlOpenerInternal.controller = self
+        KeyboardUrlOpenerInternal.controller = self         // Remore in KeyboardKit 9.0
+        Keyboard.NextKeyboardController.shared = self
     }
 
     /// This function is called when a keyboard view must be

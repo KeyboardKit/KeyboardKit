@@ -115,7 +115,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
         
         ![ActionCallout](actioncallout-350.jpg)
         
-        The view can be customized and styled with a ``Callouts/ActionCalloutStyle``, which is applied with `.actionCalloutStyle`:
+        The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the `.actionCalloutStyle` view modifier:
         
         ```swift
         Callouts.ActionCallout {
@@ -131,7 +131,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
         
         ![InputCallout](inputcallout-350.jpg)  
         
-        The view can be customized and styled with a ``Callouts/InputCalloutStyle``, which can be applied with `.inputCalloutStyle`:
+        The view can be styled with a ``Callouts/InputCalloutStyle``, which can be applied with the `.inputCalloutStyle` view modifier:
         
         ```swift
         Callouts.InputCallout {
@@ -141,6 +141,8 @@ This will make KeyboardKit use your custom implementation instead of the standar
         ```
     }
 }
+
+See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
 
 
 
@@ -159,7 +161,7 @@ let provider = try ProCalloutActionProvider.Swedish()
 > Important: These providers will throw a license error if their locale is not included in the license.
 
 
-### How to customize a localized provider
+### How to customize a Pro callout action provider
 
 You can inherit and customize any localized provider, then manually register your provider *after* registering your license key:
 

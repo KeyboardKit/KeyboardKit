@@ -165,7 +165,7 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
         
         ![Emoji Keyboard](emojikeyboard-350.jpg)
             
-        The view can be customized and styled with an ``EmojiKeyboardStyle``, which can be applied with `.emojiKeyboardStyle`:
+        The view can be styled with an `EmojiKeyboardStyle`, which can be applied with the `.emojiKeyboardStyle` view modifier:
         
         ```swift
         EmojiKeyboard {

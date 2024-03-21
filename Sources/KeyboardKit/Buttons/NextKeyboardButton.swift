@@ -26,7 +26,7 @@ public struct NextKeyboardButton<Content: View>: View {
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.overlay = NextKeyboardButtonOverlay(
-            controller: controller ?? NextKeyboardController.shared,
+            controller: controller ?? Keyboard.NextKeyboardController.shared,
             throwAssertionForMissingController: throwAssertionForMissingController
         )
         self.content = content

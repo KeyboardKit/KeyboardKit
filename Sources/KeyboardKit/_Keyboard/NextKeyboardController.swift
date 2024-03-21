@@ -9,17 +9,21 @@
 #if os(iOS) || os(tvOS)
 import UIKit
 
-/**
- This class is used as global state for next keyboard button
- views, since they need an input view controller to function.
+public extension Keyboard {
 
- The ``KeyboardInputViewController`` will by register itself
- as the ``shared`` controller in `viewDidLoad`.
- */
-public final class NextKeyboardController {
-
-    private init() {}
-
-    public weak static var shared: UIInputViewController?
+    /**
+     This class is used as global state for a "next keyboard"
+     operation, since it needs a controller to function.
+     
+     ``KeyboardInputViewController`` will register itself as
+     the ``shared`` controller when it loads, and unregister
+     when it unloads.
+     */
+    final class NextKeyboardController {
+        
+        private init() {}
+        
+        public weak static var shared: UIInputViewController?
+    }
 }
 #endif

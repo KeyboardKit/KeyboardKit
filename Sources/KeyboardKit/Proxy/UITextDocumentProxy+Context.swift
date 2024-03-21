@@ -11,17 +11,17 @@ import UIKit
 
 public extension UITextDocumentProxy {
 
-    /// Get the document context before and after the input.
+    /// Get the document context (the text) before and after
+    /// the input cursor.
     ///
-    /// Note that this property will most often not give you
-    /// the entire text, since keyboard extensions only have
-    /// limited access to the document.
+    /// It's important to note that this does NOT return the
+    /// full document text. A keyboard extension has limited
+    /// access to the document, and any new paragraph in the
+    /// text may cause it to stop looking for more text.
     ///
-    /// Any new paragraph in the text may cause the keyboard
-    /// to stop looking for more content.
-    ///
-    /// KeyboardKit Pro unlocks ways to read the entire text
-    /// from the current document.
+    /// KeyboardKit Pro therefore unlocks additional ways to
+    /// read the entire text from a document. Take a look at
+    /// the <doc:Proxy-Article> article for more information.
     var documentContext: String? {
         let before = documentContextBeforeInput ?? ""
         let after = documentContextAfterInput ?? ""

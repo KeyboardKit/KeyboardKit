@@ -192,6 +192,15 @@ KeyboardKit is available under the MIT license.
 - ``MostRecentEmojiProvider``
 - ``FrequentEmojiProvider``
 
+### Extensions
+
+- ``CoreFoundation``
+- ``Foundation``
+- ``Speech``
+- ``Swift``
+- ``SwiftUI``
+- ``UIKit``
+
 ### Feedback
 
 - ``AudioFeedback``

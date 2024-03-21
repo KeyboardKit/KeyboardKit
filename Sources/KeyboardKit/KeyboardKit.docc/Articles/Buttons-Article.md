@@ -17,37 +17,22 @@ The ``KeyboardButton`` namespace defines a set of keyboard button types that can
 - ``KeyboardButton/SpaceContent`` renders the content of a native space content.
 - ``KeyboardButton/Title`` renders the title content of a native keyboard button.
 
-You can also use the **.keyboardButton** view modifier to convert any view to a keyboard button.
-
-These button components can be styled with ``KeyboardButton/ButtonStyle``, and the other button-specific styles.
-
-
-
-## Next Keyboard Button
-
-@Row {
-    @Column {
-        ![NextKeyboardButton](nextkeyboardbutton-250.jpg)        
-    }
-    @Column(size: 3) {
-        A ``NextKeyboardButton`` can be used to trigger the system keyboard switcher, which selects the next keyboard when tapped and shows a keyboard menu when long pressed.
-        
-        This button requires a ``KeyboardInputViewController`` to function. KeyboardKit will by default register the current controller when the keyboard launches.
-
-        KeyboardKit will by default map the ``KeyboardAction/nextKeyboard`` action to this view when rendering the action.
-       
-    }
-}
-
-
-
-## Styling
-
-Most ``KeyboardButton`` views can be styled by appying a ``KeyboardButton/ButtonStyle`` view modifier, for instance:
+Most of the views can be styled with a ``KeyboardButton/ButtonStyle``, which can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier:
 
 ```swift
 KeyboardButton.Key()
     .keyboardButtonStyle(.standard)
 ```
 
-This is however not yet true for the keyboard ``KeyboardButton/Button``, which currently requires a ``KeyboardStyleProvider`` to provide flexibility in how an action is rendered. Future versions of KeyboardKit will most probably use a hybrid approach to support both cases.
+This is however not yet true for some views, that use a ``KeyboardStyleProvider`` to support more complex styling. See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+
+
+## Next Keyboard Button
+
+A ``NextKeyboardButton`` can be used to integrate with the system keyboard switcher, which selects the next keyboard when tapped and shows a keyboard menu when long pressed.
+
+![NextKeyboardButton](nextkeyboardbutton-250.jpg)
+
+This button requires a ``KeyboardInputViewController`` to function. KeyboardKit will by default register the current controller when the keyboard launches.
+
+KeyboardKit will by default map ``KeyboardAction/nextKeyboard`` to this view when rendering the action.

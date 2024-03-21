@@ -72,7 +72,7 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
 
 @TabNavigator {
     
-    @Tab("Dictation.Screen") {
+    @Tab("Screen") {
         KeyboardKit Pro unlocks a **Dictation.Screen** that let you inspect the dictation, using any visualizer like a **Dictation.BarVisualizer**:
 
         ![DictationScreen](dictationscreen-350.jpg)
@@ -80,7 +80,7 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
         The **Dictation.Screen** will automatically fade in when dictation becomes active, when you use the view extensions described below.
     }
     
-    @Tab("Dictation.BarVisualizer") {
+    @Tab("Bar Visualizer") {
         The **Dictation.BarVisualizer** can be styled to great extent. You can change the number of bars, the colors & thickness of the bars, etc.
 
         ![DictationScreen](dictationscreen-350.jpg)

@@ -67,9 +67,7 @@ For instance, the ``KeyboardInputViewController/autocompleteText`` property dete
 
 ## How to create a custom autocomplete provider
 
-You can create a custom autocomplete provider to customize the autocomplete behavior, for instance to integrate with 3rd party tools. 
-
-You can implement ``AutocompleteProvider`` from scratch, or inherit and customize any of the providers in [KeyboardKit Pro][Pro]. 
+You can create a custom autocomplete provider to customize the autocomplete behavior, for instance to integrate with 3rd party tools. You can implement ``AutocompleteProvider`` from scratch, or inherit and customize any [KeyboardKit Pro][Pro] provider. 
 
 For instance, here's a custom provider that just adds a suffix to the provided text's current word:
 
@@ -152,20 +150,13 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 @TabNavigator {
     
-    @Tab("Autocomplete.Toolbar") {
+    @Tab("Toolbar") {
         
-        KeyboardKit has an autocomplete ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar.
+        KeyboardKit has an Autocomplete.``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar.
         
-        @Row {
-            @Column {
-                ![AutocompleteToolbar](autocompletetoolbar.jpg)
-            }
-            @Column {
-                ![AutocompleteToolbar](autocompletetoolbar-styled.jpg)
-            }
-        }   
+        ![AutocompleteToolbar](autocompletetoolbar.jpg)
             
-        The view can be customized and styled with a ``Autocomplete/ToolbarStyle``, which can be applied with `.autocompleteToolbarStyle`:
+        The view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier:
         
         ```swift
         Autocomplete.Toolbar {
@@ -175,13 +166,13 @@ This will make KeyboardKit use your custom implementation instead of the standar
         ```
     }
         
-    @Tab("Autocomplete.ToolbarItem/Separator") {
+    @Tab("Items & Separators") {
         
-        The ``Autocomplete`` namespace also has other ``Autocomplete/ToolbarItem`` and ``Autocomplete/ToolbarSeparator`` views, which are used by the toolbar and can be styled with `.toolbarItemStyle` and `.toolbarSeparatorStyle` when rendered as standalone components.
-        
-        When using an autocomplete ``Autocomplete/Toolbar``, you can inject custom styles, or use the toolbar style to style these views within the toolbar.
+        The ``Autocomplete`` namespace has ``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator`` views, that are used by the toolbar. They can be styled with ``SwiftUI/View/autocompleteToolbarItemStyle(_:)`` & ``SwiftUI/View/autocompleteToolbarSeparatorStyle(_:)`` when used separately.
     }
 }
+
+See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
 
 
 ## 👑 Pro features
