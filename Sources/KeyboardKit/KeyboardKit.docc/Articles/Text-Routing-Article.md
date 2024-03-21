@@ -2,27 +2,25 @@
 
 This article describes the KeyboardKit text routing engine.
 
-iOS keyboard extensions use the native **UITextDocumentProxy** to interact with the currently active application's selected text field, e.g. to insert or delete text. 
+Custom iOS keyboard extensions use ``UIKit/UITextDocumentProxy`` to interact with the currently selected text field, e.g. to insert or delete text, move the input cursor, etc.
 
-If you have a text field *within* your keyboard, you therefore need to find a way to route text to that text field instead of the active application.  
+Keyboard extensions will however *not* send text to text fields *within* your keyboard by default. Even if you focus on a text field within the keyboard, the text will still be sent to the selected text field in the currently active app.
 
-KeyboardKit adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to route text to any other text field.
+These limitations make it hard to implement features that require text input in the keyboard, like emoji search, and AI-based features.
 
-[KeyboardKit Pro][Pro] unlocks even more routing utils, like a **KeyboardTextField** that automatically register and resign as the main text input proxy.
+KeyboardKit therefore adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to route text to any other text field.
+
+👑 [KeyboardKit Pro][Pro] unlocks even more text routing utils, like a ``KeyboardTextField`` that automatically registers and unregisters as the input proxy when it gets and loses focus, to let you seemlessly provide text input-based features in your keyboard.
 
 
 
 ## How to route text with KeyboardKit
 
-**UIInputController** has a **textDocumentProxy**, which is how a keyboard extension by default interacts with the currently active application.
+``UIKit/UITextDocumentProxy`` has a native textDocumentProxy, which is how a keyboard extension by default interacts with the currently selected text field, e.g. to insert or delete text, move the input cursor, etc.
 
-To make text routing easy, ``KeyboardInputViewController`` has a ``KeyboardInputViewController/textInputProxy`` that can be set to override ``KeyboardInputViewController/textDocumentProxy`` as the main text document proxy.
+``KeyboardInputViewController`` has a ``KeyboardInputViewController/textInputProxy`` that can be set to override ``KeyboardInputViewController/textDocumentProxy`` as the main text document proxy. Setting it will cause any text you type to be sent to that proxy instead of the original one. 
 
-Setting ``KeyboardInputViewController/textInputProxy`` to a custom proxy will cause any text you type with the keyboard to be sent to that proxy instead of the original proxy. 
-
-Just set ``KeyboardInputViewController/textInputProxy`` to **nil** to restore the original proxy and start routing text back to the main application. 
-
-You can always access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.  
+Just set ``KeyboardInputViewController/textInputProxy`` to **nil** to restore the original proxy and start routing text back to the main application. You can also always access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.  
 
 
 
@@ -30,10 +28,12 @@ You can always access the original proxy with ``KeyboardInputViewController/orig
 
 KeyboardKit Pro unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus:
 
-* **KeyboardTextField** wraps a **UITextField** and can be used for single-line text inputs.
-* **KeyboardTextView** wraps a **UITextView** and can be used for multi-line text inputs.
+* ``KeyboardTextField`` wraps a native text field and can be used for single-line text inputs.
+* ``KeyboardTextView`` wraps a native text view and can be used for multi-line text inputs.
 
-Both views also support SwiftUI **FocusState** and have a **focused** view modifier that lets you provide a custom done button that slides in when the view is focused.
+Note that you can also use the ``KeyboardTextField`` text field configuration block to enable multiline support on later iOS versions.
+
+Both views support SwiftUI focus state, and have a custom focused view modifier that lets you provide a custom done button that will slide in when the view is focused:
 
 ```swift
 struct CustomKeyboardToolbar: View {
@@ -59,7 +59,7 @@ struct CustomKeyboardToolbar: View {
 }
 ```
 
-> Important: Due to an iOS bug, text inputs in a keyboard extension will crash if Full Access is disabled. To avoid this, this view is automatically disabled if Full Access is disabled.
+> Important: This view requires Full Access and will automatically disable itself when it's disabled, due to an iOS bug that causes a crash when using text field while Full Access is disabled. 
 
 
 

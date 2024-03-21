@@ -11,23 +11,22 @@ import Foundation
 import Combine
 import UIKit
 
-/**
- This class can be used to observe the state of any keyboard.
-
- This lets us check if a keyboard has been enabled in System
- Settings, if Full Access is granted, and if it's being used.
-
- This type supports bundle id wildcards, which means that it
- can be used to inspect multiple keyboards, with a single id:
-
- ```
- @StateObject
- var state = KeyboardStateContext(bundleId: "com.myapp.*")
- ```
-
- The context is not added to the input controller, since the
- keyboard state is intended to be used in the main app.
- */
+/// This context can be used to observe the enabled state of
+/// a keyboard extension.
+///
+/// It can check if a keyboard is enabled in System Settings,
+/// if Full Access is enabled, if a keyboard is active, etc.
+///
+/// This type supports bundle ID wildcards, which means that
+/// it can inspect multiple keyboards at once, for instance:
+///
+/// ```
+/// @StateObject
+/// var state = KeyboardStateContext(bundleId: "com.myapp.*")
+/// ```
+///
+/// This context is not added to the input controller, since
+/// it's intended to be used in the main app, not a keyboard.
 public class KeyboardStateContext: KeyboardStateInspector, ObservableObject {
 
     /**

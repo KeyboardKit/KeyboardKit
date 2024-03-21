@@ -45,6 +45,7 @@ Due to complexities with the style provider concept, some views still use a styl
 * `KeyboardStyle.Callout` has been renamed to `Callouts.CalloutStyle`.
 * `KeyboardStyle.ActionCallout` has been renamed to `Callouts.ActionCalloutStyle`.
 * `KeyboardStyle.InputCallout` has been renamed to `Callouts.InputCalloutStyle`.
+* `KeyboardStateLabel` can now apply icons with the style and view modifiers.
 
 ### 💡 Renamed View Modifiers
 

@@ -146,6 +146,8 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## Views
 
+KeyboardKit provides autocomple-specific views that can be used to mimic the native autocomplete toolbar items for iOS and iPadOS.
+
 @TabNavigator {
     
     @Tab("Toolbar") {

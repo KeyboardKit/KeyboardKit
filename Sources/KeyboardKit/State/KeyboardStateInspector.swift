@@ -10,26 +10,27 @@
 import Foundation
 import UIKit
 
-/**
- This protocol can be implemented by any type that can check
- state of any keyboard extension.
-
- This lets us check if a keyboard has been enabled in System
- Settings, if Full Access is granted, and if it's being used.
-
- This type supports bundle id wildcards, which means that it
- can be used to inspect multiple keyboards, with a single id.
- 
- The easiest way to observe a keyboard's enabled state is to
- use the observable ``KeyboardStateContext`` class.
- */
+/// This protocol can be implemented by classes that must be
+/// able to check the enabled state of a keyboard extension.
+///
+/// It can check if a keyboard is enabled in System Settings,
+/// if Full Access is enabled, if a keyboard is active, etc.
+///
+/// This type supports bundle ID wildcards, which means that
+/// it can inspect multiple keyboards at once, for instance:
+///
+/// ```
+/// @StateObject
+/// var state = KeyboardStateContext(bundleId: "com.myapp.*")
+/// ```
+///
+/// The easiest way to observe a keyboard's enabled state is
+/// to use an observable ``KeyboardStateContext``.
 public protocol KeyboardStateInspector {}
 
 public extension KeyboardStateInspector {
 
-    /**
-     Get a list of all active keyboard bundle identifiers.
-     */
+    /// Get a list of all active keyboard bundle IDs.
     var activeKeyboardBundleIds: [String] {
         let modes = UITextInputMode.activeInputModes
         let displayed = modes.filter { $0.value(forKey: "isDisplayed") as? Int == 1 }
@@ -37,33 +38,19 @@ public extension KeyboardStateInspector {
         return ids
     }
 
-    /**
-     Get a list of all enabled keyboard bundle identifiers.
-
-     - Parameters:
-       - defaults: The user defaults instance to use, by default `.standard`.
-     */
+    /// Get a list of all enabled keyboard bundle IDs.
     func enabledKeyboardBundleIds(
         defaults: UserDefaults = .standard
     ) -> [String] {
-        let key = "AppleKeyboards"
-        return defaults.object(forKey: key) as? [String] ?? []
+        defaults.object(forKey: "AppleKeyboards") as? [String] ?? []
     }
     
-    /**
-     Check whether or not the app has been given full access
-     in System Settings.
-     */
+    /// Whether the full access is enabled in System Settings.
     var isFullAccessEnabled: Bool {
         FullAccessInspector().hasFullAccess
     }
     
-    /**
-     Whether or not a certain keyboard extension is active.
-     
-     - Parameters:
-       - bundleId: The bundle id of the keyboard extension.
-     */
+    /// Whether a certain keyboard extension is active.
     func isKeyboardActive(
         withBundleId bundleId: String
     ) -> Bool {
@@ -71,13 +58,7 @@ public extension KeyboardStateInspector {
         return isKeyboardActive(withId: bundleId, in: ids)
     }
     
-    /**
-     Whether or not a certain keyboard extension is enabled.
-
-     - Parameters:
-       - bundleId: The bundle id of the keyboard extension.
-       - defaults: The user defaults instance to use, by default `.standard`.
-     */
+    /// Whether a certain keyboard extension is enabled.
     func isKeyboardEnabled(
         withBundleId bundleId: String,
         defaults: UserDefaults = .standard
@@ -86,9 +67,6 @@ public extension KeyboardStateInspector {
         return isKeyboardEnabled(withId: bundleId, in: ids)
     }
 }
-
-
-// MARK: - Internal Test Functions
 
 extension KeyboardStateInspector {
 

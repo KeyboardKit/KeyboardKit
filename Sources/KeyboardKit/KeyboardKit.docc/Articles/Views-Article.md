@@ -2,171 +2,197 @@
 
 This article describes various KeyboardKit views.
 
-KeyboardKit has views in many different parts of the library. Some are top-level components, while others are nested in namespaces, like ``Autocomplete``.
+KeyboardKit has views in many different parts of the library. Some are top-level components, while others are nested in namespaces.
 
-[KeyboardKit Pro][Pro] unlocks many more views than what are available in KeyboardKit. More information about Pro features can be found in each section.
+This article shows some of the views that are provided by the library. Please see the indivudual articles for even more views, and for more info on how to customize and style these views. 
+
+[KeyboardKit Pro][Pro] unlocks more views, that take your keyboards to the next level. Information about Pro features is found in each article.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
 
 ## Essential Views
 
-KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboards and can be used to create alphabetic, numeric and symbolic keyboards.
+See the <doc:Essentials> article for more information.
 
-![SystemKeyboard](systemkeyboard-english-350.jpg)
+@Row {
+    @Column {
+        ``SystemKeyboard``
+    }
+    @Column {
+        ![SystemKeyboard](systemkeyboard-english.jpg)
+    }
+}
 
-``SystemKeyboard`` supports all ``KeyboardLocale``s, custom layouts, callouts, and can be customized and styled to great extent, using a ``KeyboardStyleProvider`` or Pro **Theme**s.
+@Row {
+    @Column {
+        ``Keyboard`` ``KeyboardButton/Button``
+    }
+    @Column {
+        ![Keyboard Button](systemkeyboardbuttonpreview.jpg)
+    }
+}
 
-![SystemKeyboard](systemkeyboard-styled-350.jpg)
+@Row {
+    @Column {
+        ``Keyboard`` ``Keyboard/Toolbar``
+    }
+    @Column {
+        ![Keyboard Toolbar](autocompletetoolbar.jpg)
+    }
+}
 
-``SystemKeyboard`` even supports iPad Pro, if you upgrade to [KeyboardKit Pro][Pro]:
-
-![System Keyboard - iPad Pro](systemkeyboard-ipadpro.jpg)
+@Row {
+    @Column {
+        ``NextKeyboardButton``
+    }
+    @Column {
+        ![Next Keyboard Button](nextkeyboardbutton.jpg)
+    }
+}
 
 See the <doc:Essentials> article for more information.
 
 
-
-## Autocomplete Views
-
-KeyboardKit has an ``Autocomplete/Toolbar``, that mimics a native autocomplete toolbar.
-
-![AutocompleteToolbar](autocompletetoolbar-350.jpg)
-
-The bar can be customized, and styled with ``KeyboardStyle/AutocompleteToolbar``:
-
-![AutocompleteToolbar](autocompletetoolbar-styled-350.jpg)
+## Autocomplete
 
 See the <doc:Autocomplete-Article> article for more information.
 
+@Row {
+    @Column {
+        ``Autocomplete`` ``Autocomplete/Toolbar``
+    }
+    @Column {
+        ![Autocomplete Toolbar](autocompletetoolbar.jpg)
+    }
+}
 
 
-## Button Views
+## Callouts
 
-The ``KeyboardButton`` namespace defines a couple of general button types that can help you mimic native keyboard buttons (or keys).
+See the <doc:Callouts-Article> article for more information.
 
-The ``NextKeyboardButton`` can be used to trigger the system keyboard switcher function, which selects the next keyboard when tapped and shows a keyboard menu when long pressed. 
-
-![NextKeyboardButton](nextkeyboardbutton-250.jpg)
-
-See the <doc:Buttons-Article> article for more information.
-
-
-
-## Callout Views
-
-KeyboardKit has a ``Callouts/InputCallout`` that can be show the currently pressed key.
-
-![InputCallout](inputcallout-350.jpg)
-
-KeyboardKit also has a ``Callouts/ActionCallout`` that can present secondary actions.
-
-![InputCallout](actioncallout-350.jpg)
-
-See the <doc:Callouts-Article> article for more infor.
-
+@Row {
+    @Column {
+        ``Callouts`` ``Callouts/InputCallout``
+    }
+    @Column {
+        ![Input Callout](inputcallout)
+    }
+}
+@Row {
+    @Column {
+        ``Callouts`` ``Callouts/ActionCallout``
+    }
+    @Column {
+        ![Action Callout](actioncallout)
+    }
+}
 
 
 ## Dictation
 
-KeyboardKit Pro unlocks dictation views, like this **DictationScreen** and **DictationBarVisualizer**.
-
-![DictationScreen](dictationscreen-350.jpg)
-
 See the <doc:Dictation-Article> article for more information.
 
+@Row {
+    @Column {
+        ``Dictation`` ``Dictation/Screen``
+        
+        ``Dictation`` ``Dictation/BarVisualizer``
+    }
+    @Column {
+        ![Dictation Screen & Bar Visualizer](dictationscreen)
+    }
+}
 
 
 ## Emoji Views
 
-KeyboardKit Pro unlocks an **EmojiKeyboard** that mimics the native emoji keyboard. 
-
-![Emoji Keyboard](emojikeyboard-350.jpg)
-
 See the <doc:Emojis-Article> article for more information.
 
-
-
-## Gestures
-
-KeyboardKit has a ``Gestures/GestureButton`` and a ``Gestures/ScrollViewGestureButton`` that can be used to apply many gestures to the same button.
-
-See the <doc:Gestures-Article> article for more information.
-
+@Row {
+    @Column {
+        ``EmojiKeyboard``
+    }
+    @Column {
+        ![Emoji Keyboard](emojikeyboard.jpg)
+    }
+}
 
 
 ## Images
 
-KeyboardKit has a bunch of **Image** extensions that resolve to SF Symbols, for instance:.
-
-![InputCallout](images-350.jpg)
-
-KeyboardKit also has **Image** extensions that resolve to custom emoji assets, for instance:
-
-![InputCallout](images-emojis-350.jpg)
-
 See the <doc:Images-Article> article for more information.
 
+@Row {
+    @Column {
+        ``SwiftUI/Image``
+    }
+    @Column {
+        ![Images](images.jpg)
+        
+        ![Images](images-emojis.jpg)
+    }
+}
 
 
 ## Localization
 
-KeyboardKit has a ``LocaleContextMenu`` that can be used to pick locales:
-
-![LocaleContextMenu](localecontextmenu-350.jpg)
-
 See the <doc:Localization-Article> article for more information.
 
+@Row {
+    @Column {
+        ``LocaleContextMenu``
+    }
+    @Column {
+        ![LocaleContextMenu](localecontextmenu.jpg)
+    }
+}
 
 
 ## Previews
 
-KeyboardKit Pro unlocks powerful system keyboard previews. For instance, **SystemKeyboardPreview** can be used to preview different configurations and themes.
-
-![System Keyboard Preview - Turkish](systemkeyboardpreview-350.jpg)
-
-![System Keyboard Preview - Theme](systemkeyboardpreview-theme-350.jpg)
-
-KeyboardKit Pro also unlocks a lightweight **SystemKeyboardButtonPreview** that can be used to preview many styles or themes at once.
-
-![System Keyboard Button Preview](systemkeyboardbuttonpreview-350.jpg)
-
 See the <doc:Previews-Article> article for more information.
 
-
-
-## Settings
-
-KeyboardKit has a ``KeyboardSettingsLink`` that can be used to open System Settings:
-
-```swift
-KeyboardSettingsLink {
-    Text("Open System Settings")
+@Row {
+    @Column {
+        ``SystemKeyboardPreview``
+    }
+    @Column {
+        ![System Keyboard Preview - Theme](systemkeyboardpreview-theme.jpg)
+    }
 }
-```
 
-See the <doc:Settings-Article> article for more information.
-
+@Row {
+    @Column {
+        ``SystemKeyboardButtonPreview``
+    }
+    @Column {
+        ![System Keyboard Button Preview](systemkeyboardbuttonpreview.jpg)
+    }
+}
 
 
 ## State
 
-KeyboardKit has a ``KeyboardStateLabel`` that can be used to display any keyboard state:
-
-![KeyboardStateLabel](keyboardstatelabel-350.jpg)
-
 See the <doc:State-Article> article for more information.
 
+@Row {
+    @Column {
+        ``KeyboardStateLabel``
+    }
+    @Column {
+        ![Keyboard State Label](keyboardstatelabel.jpg)
+    }
+}
 
 
 ## Text Routing
 
-KeyboardKit Pro unlocks text input components that automatically register and unregister themselves as proxy when they receive and lose focus:
-
-* **KeyboardTextField** wraps a **UITextField** and can be used for single-line text inputs.
-* **KeyboardTextView** wraps a **UITextView** and can be used for multi-line text inputs.
+KeyboardKit Pro unlocks a ``KeyboardTextField`` and a ``KeyboardTextView``, that let you type into a text field within the keyboard extension, by automatically registering and unregistering themselves as the main input proxy when they get and lose focus.
 
 See the <doc:Text-Routing-Article> article for more information.
 
 
 
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro

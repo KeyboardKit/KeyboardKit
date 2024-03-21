@@ -11,13 +11,10 @@ import SwiftUI
 public extension Callouts {
     
     /// This style can be used to modify the visual style of
-    /// some ``Callouts`` components.
-    ///
-    /// The style is just used to define the visual style of
-    /// the callout shape.
+    /// the ``Callouts`` components callout shape.
     ///
     /// You can apply this view style with the view modifier
-    /// `calloutStyle(_:)`.
+    /// ``SwiftUI/View/calloutStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct CalloutStyle: Codable, Equatable {

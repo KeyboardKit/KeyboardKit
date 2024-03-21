@@ -14,7 +14,7 @@ public extension Autocomplete {
     /// the ``Autocomplete/ToolbarItem`` component.
     ///
     /// You can apply this view style with the view modifier
-    /// `autocompleteToolbarItemStyle(_:)`.
+    /// ``SwiftUI/View/autocompleteToolbarItemStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct ToolbarItemStyle: Codable, Equatable {

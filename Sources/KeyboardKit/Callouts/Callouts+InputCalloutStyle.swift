@@ -14,7 +14,7 @@ public extension Callouts {
     /// the ``Callouts/InputCallout`` component.
     ///
     /// You can apply this view style with the view modifier
-    /// `inputCalloutStyle(_:)`.
+    /// ``SwiftUI/View/inputCalloutStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct InputCalloutStyle: Codable, Equatable {

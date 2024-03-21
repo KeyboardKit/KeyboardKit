@@ -2,76 +2,48 @@
 
 This article describes the KeyboardKit theme engine.
 
-[KeyboardKit Pro][Pro] unlocks a theme engine that makes it a lot easier to style your keyboard. It comes with many predefined themes and style variations.
+👑 [KeyboardKit Pro][Pro] unlocks a theme engine and ``KeyboardTheme`` type, that makes it a lot easier to style your keyboard with themes. 
+
+KeyboardKit Pro comes with many predefined themes and style variations. You can also create your own themes and style variations.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
 ## What is a theme?
 
-A **KeyboardTheme** can be used to define keyboard styles in a way that can be easily used and modified. Themes can define style variations, to provide even more variations.
+A ``KeyboardTheme`` can be used to define keyboard styles in a way that can be easily used and modified. Themes can also define style variations, to provide even more variations within a constrained set of properties.
 
-KeyboardKit Pro unlocks a **ThemeBasedKeyboardStyleProvider** that can be used to apply any theme in a convenient way.
+KeyboardKit Pro also unlocks a ``ThemeBasedKeyboardStyleProvider``, which can be used to apply themes with the same style provider concept that is already used by many views in the library.
 
 
 ## Predefined themes
 
-KeyboardKit comes with many pre-defined themes:
+KeyboardKit comes with many pre-defined themes, like ``KeyboardTheme/standard``, ``KeyboardTheme/swifty`` and ``KeyboardTheme/minimal``. See the table further down for a full list of pre-defined themes.
 
-```swift
-KeyboardTheme.standard
-KeyboardTheme.swifty
-KeyboardTheme.minimal
-KeyboardTheme.candyShop
-KeyboardTheme.colorful
-KeyboardTheme.neon
-KeyboardTheme.tron
-```
-
-All pre-defined themes come with style variations that allow you to tweak parts of a theme:
-
-```swift
-KeyboardTheme.standard(.pink)
-KeyboardTheme.swifty(.blue)
-KeyboardTheme.minimal(.midnight)
-KeyboardTheme.candyShop(.cottonCandy)
-KeyboardTheme.colorful(.purple)
-KeyboardTheme.neon(.night)
-KeyboardTheme.tron(.sark)
-```
-
-You can also define custom style variations directly in a theme initializer:
-
-```swift
-KeyboardTheme.standard(
-    .init(tint: .black)
-)
-```
-
-Style variations make it easy to define what parts of a theme that should be customizable.
+All themes come with individual style variations that lets you to tweak certain parts of the theme. This makes it easy for themes to define which parts that are customizable, to constrain variations.
 
 
-### Custom themes
+### How to create a custom theme
 
-You can create completely custom themes, like this one that changes the primary button color:
+You can create completely custom themes, like this one that only changes the color of the primary button:
 
 ```swift
 extension KeyboardTheme {
 
-    static var customTheme: KeyboardTheme {
+    static var customTheme: Self {
         get throws {
-            var theme = try? KeyboardTheme(
-                primaryBackgroundColor: .green
-            )
+            try? Self(primaryBackgroundColor: .green)
         }
     }
 }
 ```
 
-You can also use other themes as templates when creating custom themes, for instance:
+You use other themes as base when creating custom themes, for instance:
 
 ```swift
 extension KeyboardTheme {
 
-    static var anotherTheme: KeyboardTheme {
+    static var anotherTheme: Self {
         get throws {
             var theme = try? KeyboardTheme.standard
             theme.buttonStyles[.primary]?.backgroundColor = .green
@@ -81,12 +53,24 @@ extension KeyboardTheme {
 }
 ```
 
-You can then access your theme with **KeyboardTheme.customTheme** or just **.customTheme** when passing it as a parameter.
+You can also create custom themes that just tweak the style variation of another theme:
+
+```swift
+extension KeyboardTheme {
+
+    static var standardBlack: Self {
+        .standard(.init(tint: .black))
+    }
+}
+```
+
+All these combinations make the theme engine very flexible and powerful.
 
 
-### Theme-based styling
 
-Once you have a theme, you can apply it with a **ThemeBasedKeyboardStyleProvider**:
+## How to apply themes
+
+You can apply any theme by applying a ``ThemeBasedKeyboardStyleProvider`` or the ``KeyboardStyleProvider/themed(with:context:)`` shorthand:
 
 ```swift
 override func viewWillSetupKeyboard() {
@@ -94,51 +78,111 @@ override func viewWillSetupKeyboard() {
 
     // Setup KeyboardKit Pro with a license
     setupPro(withLicenseKey: "...") { license in
-        keyboardStyleProvider = ThemeBasedKeyboardStyleProvider(
-            theme: .cottonCandy,
-            keyboardContext: keyboardContext
-        )
+        keyboardStyleProvider = .themed(.cottonCandy, context: keyboardContext)
     } view: { controller in
         // Return your keyboard view here
     }
 }
 ```
 
-This will make any view that uses the style provider (like ``SystemKeyboard``) use this theme.
-
-You can inherit **ThemeBasedKeyboardStyleProvider** to customize this theme-based provider even further, which lets you mix the benefits of themes and styles in even more ways.
-
-> Important: The theme engine requires KeyboardKit Pro, so you must register the provider after registering your license key. 
+You can inherit ``ThemeBasedKeyboardStyleProvider`` to customize this theme-based provider even further, which lets you mix the benefits of themes and styles in even more ways. 
 
 
 ### Pre-defined themes
 
-You can access all pre-defined themes with **KeyboardTheme.{ID}**, e.g. **KeyboardKit.standard** or **KeyboardKit.minimal(.pink)**. 
+You can access all pre-defined themes with `KeyboardTheme.{ID}`, e.g. **KeyboardKit.standard** or **KeyboardKit.minimal(.pink)**. 
 
 Here is a list of all pre-defined themes with some style variations:
 
-| Theme        |                                     |                                        |                                       |                                         |
-| ------------ | ----------------------------------- | -------------------------------------- | ------------------------------------- | --------------------------------------- | 
-| `.standard`  | ![Standard](standard.jpg)           | ![Standard Blue](standard-blue.jpg)    | ![Standard Pink](standard-pink.jpg)   | ![Standard Green](standard-green.jpg)   | 
-| `.swifty`    | ![Swifty](swifty.jpg)               | ![Swifty Blue](swifty-blue.jpg)        | ![Swifty Pink](swifty-pink.jpg)       | ![Swifty Green](swifty-green.jpg)       | 
-| `.minimal`   | ![Minimal](minimal.jpg)             | ![Minimal Blue](minimal-blue.jpg)      | ![Minimal Sunset](minimal-sunset.jpg) | ![Sunset Green](minimal-midnight.jpg)   | 
-| `.candyShop` | ![Candy Shop](candyshop.jpg)        | ![Cuppy Cake](candyshop-cuppycake.jpg) |                                       |                                         | 
-| `.colorful`  | ![Colorful Blue](colorful-blue.jpg) | ![Colorful Green](colorful-green.jpg)  | ![Colorful Red](colorful-red.jpg)     | ![Colorful Purple](colorful-purple.jpg) |
-| `.neon`      | ![Neon](neon.jpg)                   |                                        |                                       |                                         | 
-| `.tron`      | ![Tron](tron.jpg)                   | ![fCon](tron-fcon.jpg)                 | ![virus](tron-virus.jpg)              | ![virus](tron-sark.jpg)                 |
+@TabNavigator {
+    @Tab(".standard"){
+        @Row {
+            @Column {
+                ![standard](standard.jpg)
+            }
+            @Column {
+                ![blue](standard-blue.jpg)
+            }
+            @Column {
+                ![green](standard-green.jpg)
+            }   
+        }
+    }
+    @Tab(".swifty") {
+        @Row {
+            @Column {
+                ![standard](swifty.jpg)
+            }
+            @Column {
+                ![blue](swifty-blue.jpg)
+            }
+            @Column {
+                ![green](swifty-green.jpg)
+            }   
+        }
+    }
+    @Tab(".minimal") {
+        @Row {
+            @Column {
+                ![standard](minimal.jpg)
+            }
+            @Column {
+                ![blue](minimal-blue.jpg)
+            }
+            @Column {
+                ![subset](minimal-sunset.jpg)
+            }   
+        }
+    }
+    @Tab(".candyShop") {
+        @Row {
+            @Column {
+                ![standard](candyshop.jpg)
+            }
+            @Column {
+                ![cuppycake](candyshop-cuppycake.jpg)
+            }
+            @Column {
+            }   
+        }
+    }
+    @Tab(".colorful") {
+        @Row {
+            @Column {
+                ![blue](colorful-blue.jpg)
+            }
+            @Column {
+                ![green](colorful-green.jpg)
+            }   
+            @Column {
+                ![standard](colorful-orange.jpg)
+            }
+        }
+    }
+    @Tab(".neon") {
+        @Row {
+            @Column {
+                ![standard](neon.jpg)
+            }
+            @Column {
+            }
+            @Column {
+            }   
+        }
+    }
+    @Tab(".tron") {
+        @Row {
+            @Column {
+                ![blue](tron.jpg)
+            }
+            @Column {
+                ![fcon](tron-fcon.jpg)
+            }   
+            @Column {
+                ![virus](tron-virus.jpg)
+            }   
+        }
+    }
+}
 
-You can access all pre-defined themes with **KeyboardTheme.allPredefined**. Pre-defined style variations also have an **allPredefined** property, e.g. **KeyboardTheme.SwiftyStyle.allPredefined**.
-
-
-### Previews
-
-KeyboardKit Pro unlocks powerful tools to preview themes. See <doc:Previews-Article> for more information.
-
-
-### License Requirements
-
-The KeyboardKit Pro theme engine requires a `Gold` license.
-
-
-
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+You can get a list of all pre-defined themes, as well as all pre-defined style variations, using the static ``KeyboardTheme/allPredefined`` properties.

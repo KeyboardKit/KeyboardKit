@@ -4,7 +4,7 @@ This article describes the KeyboardKit state engine.
 
 KeyboardKit has ways to check various keyboard state, such as if a keyboard is enabled in System Settings, if **Full Access** is enabled, if the keyboard is currently being used, etc.
 
-This information can be used to make the main app help users setup their keyboard properly. 
+This information can be used to make an app help users to set up their keyboard properly. 
 
 
 ## Keyboard state
@@ -19,9 +19,9 @@ struct MyView: View {
 
     var body: some View {
         VStack {
-            Text("Enabled: \(stateContext.isKeyboardEnabled.description)")
-            Text("Active: \(stateContext.isKeyboardActive.description)")
-            Text("Full Access: \(stateContext.isFullAccessEnabled.description)")
+            Text("Enabled: \(state.isKeyboardEnabled.description)")
+            Text("Active: \(state.isKeyboardActive.description)")
+            Text("Full Access: \(state.isFullAccessEnabled.description)")
         }
     }
 } 
@@ -29,38 +29,42 @@ struct MyView: View {
 
 Since the context is observable, any state changes will immediately cause the view to refresh.
 
-The context supports bundle ID wildcards, which means that a single instance can be used to inspect multiple keyboards:
+The context supports bundle ID wildcards, which means that you can inspect multiple keyboards with a single instance:
 
 ```
 @StateObject
 var state = KeyboardStateContext(bundleId: "com.myapp.*")
 ```
 
-The ``KeyboardStateInspector`` protocol that powers the context can be implemented by any type, to make it able to inspect the state of a keyboard.
+The ``KeyboardStateInspector`` protocol that powers the context can be implemented by any type, to make it able to inspect the state of a keyboard at any time.
 
 
 ## Views
 
-The ``KeyboardStateLabel`` view can be used to display any keyboard state, for instance:
+@TabNavigator {
+    
+    @Tab("Keyboard State Label") {
+        The ``KeyboardStateLabel`` view can be used to display any keyboard state, for instance:
 
-```swift
-struct MyView: View {
+        ```swift
+        struct MyView: View {
 
-    @StateObject
-    var state = KeyboardStateContext(bundleId: "com.myapp.keyboard")
+            @StateObject
+            var state = KeyboardStateContext(bundleId: "com.myapp.keyboard")
 
-    var body: some View {
-        KeyboardStateLabel(
-            isEnabled: state.isKeyboardEnabled,
-            enabledText: "Keyboard is enabled",
-            disabledText: "Keyboard is disabled",
-        )
+            var body: some View {
+                KeyboardStateLabel(
+                    isEnabled: state.isKeyboardEnabled,
+                    enabledText: "Keyboard is enabled",
+                    disabledText: "Keyboard is disabled",
+                )
+            }
+        } 
+        ```
+        
+        The view can be wrapped in a `Link` or ``KeyboardSettingsLink`` to link to System Settings. It supports custom texts, icons, etc.
+        and can be styled with a ``KeyboardStateLabelStyle`` by applying a ``SwiftUI/View/keyboardStateLabelStyle(_:)`` view modifier.
     }
-} 
-```
+}
 
-The view can be wrapped in a `Link` or ``KeyboardSettingsLink`` to link to System Settings:
-
-![KeyboardStateLabel](keyboardstatelabel-350.jpg)
-
-It supports custom texts, icons, etc. and can be styled with a ``KeyboardStateLabelStyle``.
+See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.

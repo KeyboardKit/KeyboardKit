@@ -2,9 +2,9 @@
 
 This article describes the KeyboardKit styling engine.
 
-While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit-based keyboards can be customized to great extent.
+While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit keyboards can be customized to great extent.
 
-[KeyboardKit Pro][Pro] unlocks a powerful theme engine and many themes. More information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks a theme engine and many themes. More information about Pro features can be found at the end of this article.
 
 
 
@@ -12,31 +12,9 @@ While native iOS keyboards provide few ways to customize the look and feel, Keyb
 
 KeyboardKit uses different names for different ways to style keyboards. 
 
-* A ``KeyboardStyle`` style is *static* and can be applied to certain views.
-* A ``KeyboardStyleProvider`` is *dynamic* and provides context-based styles.
-* A (Pro) **KeyboardTheme** is a *static* style provider that can define, reuse and share styles.
-
-You can mix and match these concepts as you see fit.
-
-
-
-## Resources & Assets
-
-KeyboardKit comes with colors and assets that can be used to create native-looking keyboards.
-
-* **Image** has a bunch of keyboard-specific images, e.g. **.keyboardBackspace**.
-* **Color** has a bunch of keyboard-specific colors, e.g. **.keyboardButtonBackground**.
-* ``KeyboardAction``, and many other types, have standard images, texts and colors.
-
-For instance, to get the standard button image and text for an action, you can do this:
-
-```swift
-let context = KeyboardContext()
-let image = KeyboardAction.command.standardButtonImage(for: context) // Command icon
-let text = KeyboardAction.space.standardButtonText(for: context)     // Localized "space"
-```
-
-Have a look at the <doc:Colors-Article> and <doc:Images-Article> articles for more information about colors and images.
+* A ``KeyboardStyle`` style is *static* and can be applied to certain views, using view modifiers with the same name prefix as the view.
+* A ``KeyboardStyleProvider`` is *dynamic* and provides context-based styles, which is currently required for more complex views.
+* A ``KeyboardTheme`` is a *static* style provider that can define, reuse and share styles.
 
 
 
@@ -48,74 +26,63 @@ This namespace doesn't contain protocols, open classes or types of higher import
 
 
 
+## Resources & Assets
+
+KeyboardKit comes with colors and assets that can be used to create native-looking keyboards.
+
+* ``SwiftUI/Color`` has a bunch of keyboard-specific colors, like ``SwiftUI/Color/keyboardBackground``.
+* ``SwiftUI/Image`` has a bunch of keyboard-specific images, like ``SwiftUI/Image/keyboard``.
+
+Many types in the library define standard images, texts & colors. For instance you can get the standard image and text for a ``KeyboardAction`` with the ``KeyboardAction/standardButtonImage(for:)`` and ``KeyboardAction/standardButtonText(for:)``:
+
+```swift
+let context = KeyboardContext()
+let image = KeyboardAction.command.standardButtonImage(for: context) // Command icon
+let text = KeyboardAction.space.standardButtonText(for: context)     // KKL10n.space
+```
+
+Have a look at the <doc:Colors-Article> and <doc:Images-Article> articles for more information about colors and images.
+
+
+
 ## Keyboard appearance
 
-A keyboard appearance determines whether or not the keyboard will be light or dark. It's not the same as a *color scheme*. This means that a keyboard can be dark(er) while in light mode.
+A keyboard appearance is used to determine if a keyboard is light or dark. This is not the same thing as the *color scheme*. A keyboard can be defined as "dark" even in light mode, and will render slightly darker than the default keyboard.
 
-KeyboardKit has a ``Styling/KeyboardAppearanceViewModifier`` that can be used to apply a keyboard appearance to a view:
+KeyboardKit has a ``Styling/KeyboardAppearanceViewModifier`` that can be used to apply a keyboard appearance to a view, using the ``SwiftUI/View/keyboardAppearance(_:)`` view modifier:
 
 ```
 TextField("Enter text", text: $text)
     .keyboardAppearance(.dark)
 ```
 
-Note that applying a dark appearances will make iOS tell the extension that the *color scheme* is dark, while this may in fact not be true. See the <doc:Colors-Article> article for more information.
+Note that applying a dark appearances will make iOS tell the extension that the *color scheme* is dark, while this may in fact not be true. This will lead to visual bugs, that require certain workarounds. See the <doc:Colors-Article> article for more information.
 
 
 
-## Keyboard styles
+## View styles
 
-KeyboardKit defines many different styles, like ``KeyboardButton/ButtonStyle``, ``Callouts/CalloutStyle``, etc.
+KeyboardKit defines custom styles for its various view. For instance, the ``KeyboardButton`` ``KeyboardButton/Button`` view has a ``KeyboardButton/ButtonStyle`` that can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier.
 
-All styles can be modified, including most standard values. For instance, here we apply a red background to the standard ``Callouts/CalloutStyle`` style:
-
-```swift
-var style = Callouts.CalloutStyle.standard
-style.backgroundColor = .red
-Callouts.CalloutStyle.standard = style
-```
-
-Most styles have a **.standard** style that serves as a global default. These standard styles can be overwritten to change the global default style for that particular component.
+Most views have static, standard styles that can be replaced by custom styles to change the global default style for that particular view. 
 
 
 
-## Keyboard style providers
+## Style providers
 
-In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. 
+In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc. 
 
-Unlike static styles, a style provider can vary styles depending on the ``KeyboardContext``, ``KeyboardAction``, etc.
+More complex components, like ``SystemKeyboard``, does not yet use view modifiers, but instead use a ``KeyboardStyleProvider`` to apply dynamic, contextual, styles based on internal and external state.
 
-Views like the ``SystemKeyboard`` use a style provider to get a button style for each keyboard button, based on the button action, current device, etc. 
+KeyboardKit injects a ``StandardKeyboardStyleProvider`` into ``KeyboardInputViewController/services``. You can modify or replace this instance at any time.
 
-KeyboardKit injects a ``StandardKeyboardStyleProvider`` into ``KeyboardInputViewController/services``. You can modify or replace this instance at any time. 
-
-
-
-## Keyboard button styles
-
-Most view that support styling let you pass in a style in the initializer. For instance, here we apply a custom ``KeyboardStyle/AutocompleteToolbar`` style that makes the item title font bold:
-
-```swift
-var style = KeyboardStyle.AutocompleteToolbar.standard
-style.item.titleFont = .body.weight(.bold)
-
-let bar = AutocompleteToolbar(
-    suggestions: [...],
-    style: style
-)
-```
-
-The ``KeyboardStyle/Button`` style is different from other styles, since it can style any view to look like a keyboard button, using the **.keyboardButtonStyle(...)** modifier. 
-
-The ``KeyboardStyle/Button`` style also doesn't have a **.standard** style, since button styles depend on many factors, like button type, device, keyboard appearance, color scheme, etc.
+> Important: Views like ``SystemKeyboard`` will apply style provider-based view modifiers to any view that it renders. This means that you can't apply these view modifiers to the ``SystemKeyboard``. You can however add custom styles to the views you provide in the various view builders, so use this approach if you want to style individual parts of these more complex views.  
 
 
 
 ## How to create a custom style provider
 
-You can create a custom style provider to customize any keyboard component style in any way you want. You can also change the **.standard** styles directly.
-
-You can implement ``KeyboardStyleProvider`` from scratch, or inherit and customize ``StandardKeyboardStyleProvider``.
+You can create a custom style provider to customize any style in any way you want. You can implement ``KeyboardStyleProvider`` from scratch, or inherit and customize ``StandardKeyboardStyleProvider``.
 
 For instance, here's a custom provider that inherits ``StandardKeyboardStyleProvider`` and makes all input buttons red:
 
@@ -152,9 +119,9 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 Pro features
 
-[KeyboardKit Pro][Pro] unlocks a theme engine that makes it a lot easier to style your keyboard.
+[KeyboardKit Pro][Pro] unlocks a theme engine and a ``KeyboardTheme`` type, that makes it a lot easier to style your keyboard with themes.
 
-Information about themes can be found in the <doc:Themes-Article> article.
+See the <doc:Themes-Article> article for more information.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

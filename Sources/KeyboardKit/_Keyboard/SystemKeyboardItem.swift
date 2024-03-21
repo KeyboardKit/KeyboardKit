@@ -8,24 +8,20 @@
 
 import SwiftUI
 
-/**
- This view renders button item for a ``SystemKeyboard``.
- */
+/// This view renders button item for a ``SystemKeyboard``.
 public struct SystemKeyboardItem<Content: View>: View {
     
-    /**
-     Create a system keyboard button row item.
-     
-     - Parameters:
-       - item: The layout item to use within the item.
-       - actionHandler: The button style to apply.
-       - styleProvider: The style provider to use.
-       - keyboardContext: The keyboard context to which the item should apply.,
-       - calloutContext: The callout context to affect, if any.
-       - keyboardWidth: The total width of the keyboard.
-       - inputWidth: The input width within the keyboard.
-       - content: The content view to use within the item.
-     */
+    /// Create a system keyboard item.
+    ///
+    /// - Parameters:
+    ///   - item: The layout item to use within the item.
+    ///   - actionHandler: The button style to apply.
+    ///   - styleProvider: The style provider to use.
+    ///   - keyboardContext: The keyboard context to which the item should apply.,
+    ///   - calloutContext: The callout context to affect, if any.
+    ///   - keyboardWidth: The total width of the keyboard.
+    ///   - inputWidth: The input width within the keyboard.
+    ///   - content: The content view to use within the item.
     init(
         item: KeyboardLayout.Item,
         actionHandler: KeyboardActionHandler,

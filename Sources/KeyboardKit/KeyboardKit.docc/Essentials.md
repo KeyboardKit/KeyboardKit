@@ -67,6 +67,8 @@ KeyboardKit extends native types with a lot more information, to make it easier 
 
 ## Views
 
+KeyboardKit provides essential views that can be used to create keyboards that mimic the native system keyboards for iOS and iPadOS.
+
 @TabNavigator {
     
     @Tab("SystemKeyboard") {

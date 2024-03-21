@@ -3,15 +3,13 @@
 //  SwiftUIKit
 //
 //  Created by Daniel Saidi on 2021-02-18.
-//  Copyright © 2021 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
 
-/**
- This view represents the trailing navigation arrow that are
- added to iOS `NavigationLink` items in a `List`.
- */
+/// This view mimics the trailing navigation arrows that are
+/// used by iOS navigation links.
 struct NavigationLinkArrow: View {
 
     var body: some View {
@@ -27,21 +25,21 @@ private extension NavigationLinkArrow {
 
     var font: Font {
         #if os(iOS)
-        return Font.footnote.weight(.semibold)
+        Font.footnote.weight(.semibold)
         #elseif os(tvOS)
-        return Font.caption.weight(.bold)
+        Font.caption.weight(.bold)
         #else
-        return Font.footnote.weight(.semibold)
+        Font.footnote.weight(.semibold)
         #endif
     }
 
     var scale: CGFloat {
         #if os(iOS)
-        return 1.05
+        1.05
         #elseif os(tvOS)
-        return 0.95
+        0.95
         #else
-        return 1.00
+        1.00
         #endif
     }
 }

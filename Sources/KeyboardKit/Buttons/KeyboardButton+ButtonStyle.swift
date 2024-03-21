@@ -11,12 +11,10 @@ import SwiftUI
 public extension KeyboardButton {
     
     /// This style can be used to modify the visual style of
-    /// the ``KeyboardButton/Button`` component.
-    ///
-    /// The style is also used by the many button components.
+    /// the various ``KeyboardButton/Button`` components.
     ///
     /// You can apply this view style with the view modifier
-    /// `keyboardButtonStyle(_:)`.
+    /// ``SwiftUI/View/keyboardButtonStyle(_:)``.
     ///
     /// Unlike most other styles, the style doesn't yet have
     /// a standard style, due to the complexities of how the
