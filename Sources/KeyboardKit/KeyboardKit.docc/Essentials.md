@@ -106,11 +106,24 @@ KeyboardKit provides essential views that can be used to create keyboards that m
         To use the standard views, just return `{ $0.view }`, or `{ params in params.view }`. Otherwise, just return the view you want to use for the provided params. The view builders provide information to help you setup custom views.
     }
     
-    @Tab("Keyboard.Toolbar") {
+    @Tab("Keyboard Button") {
         
-        Unlike native keyboards, custom iOS keyboards can't expand beyond the keyboard frame. As such, it's always a good idea to have at least 50 points above the keyboard, to avoid cutting off the input and action callouts that the keyboard can present.
+        KeyboardKit has a collection of ``Keyboard`` ``Keyboard/Button`` views and styles that can be used to mimic native iOS keyboard buttons, as well as their native gestures and behavior.
         
-        The Keyboard namespace therefore has a ``Keyboard/Toolbar`` that applies a minimum height to its content. It can be customized and styled with a ``Keyboard/ToolbarStyle``, which can be applied with `.keyboardToolbarStyle`:
+        ![Keyboard Button](systemkeyboardbuttonpreview-350.jpg)
+
+        Most of the views can be styled with a ``Keyboard/ButtonStyle``, which can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier. This is however not yet true for the ``Keyboard/Button`` itself, which uses a ``KeyboardStyleProvider`` to support more complex styling. 
+        
+        See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+    }
+    
+    @Tab("Keyboard Toolbar") {
+        
+        KeyboardKit has a ``Keyboard`` ``Keyboard/Toolbar`` that applies a minimum height to its content. This can be used to stop input & action callouts from being cut off, since a custom iOS keyboard can't render outside of its frame.
+        
+        ![Keyboard Toolbar](autocompletetoolbar.jpg)
+        
+        This view can be styled with a ``Keyboard/ToolbarStyle``, which can be applied with the ``SwiftUI/View/keyboardToolbarStyle(_:)`` view modifier:
         
         ```swift
         Keyboard.Toolbar {
@@ -118,6 +131,18 @@ KeyboardKit provides essential views that can be used to create keyboards that m
         }
         .keyboardToolbarStyle(...)
         ```
+    }
+    
+    @Tab("Next Keyboard Button") {
+
+        KeyboardKit has a ``Keyboard`` ``NextKeyboardButton`` that be used to integrate with the iOS keyboard switcher, which selects the next keyboard when tapped and shows a keyboard menu when being long pressed.
+
+        ![NextKeyboardButton](nextkeyboardbutton-250.jpg)
+
+        This button requires a ``Keyboard/NextKeyboardController`` to trigger controller-based functionality that switches keyboard and shows the menu. KeyboardKit automatically registers the ``KeyboardInputViewController`` when it launches.
+
+        KeyboardKit will by default map ``KeyboardAction/nextKeyboard`` to this view when rendering the action, which means that you don't have to do this.
+
     }
 }
 

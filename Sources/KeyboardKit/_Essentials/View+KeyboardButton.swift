@@ -27,7 +27,7 @@ public extension View {
     ///   - releaseOutsideTolerance: The percentage of the button size that spans outside the button and still counts as a release, by default `1`.
     func keyboardButton(
         for action: KeyboardAction,
-        style: KeyboardButton.ButtonStyle,
+        style: Keyboard.ButtonStyle,
         actionHandler: KeyboardActionHandler,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
@@ -37,7 +37,10 @@ public extension View {
         releaseOutsideTolerance: Double = 1
     ) -> some View {
         self
-            .keyboardButton(style)
+            .background(Keyboard.ButtonKey())
+            .keyboardButtonStyle(style)
+            .foregroundColor(style.foregroundColor)
+            .font(style.font?.font)
             .padding(edgeInsets)
             .contentShape(Rectangle())
             .keyboardButtonGestures(
@@ -56,6 +59,7 @@ public extension View {
             .keyboardButtonAccessibility(for: action)
     }
     
+    /// Apply keyboard accessibility for the provided action.
     @ViewBuilder
     func keyboardButtonAccessibility(
         for action: KeyboardAction
@@ -142,7 +146,7 @@ private extension View {
         func button<Content: View>(
             for content: Content,
             action: KeyboardAction = .backspace,
-            style: KeyboardButton.ButtonStyle,
+            style: Keyboard.ButtonStyle,
             insets: EdgeInsets = .init()
         ) -> some View {
             content

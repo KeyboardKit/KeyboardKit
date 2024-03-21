@@ -1,5 +1,5 @@
 //
-//  NextKeyboardController.swift
+//  Keyboard+NextKeyboardController.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-25.

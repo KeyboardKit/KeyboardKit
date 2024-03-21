@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+Title.swift
+//  Keyboard+ButtonTitle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-10-04.
@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-public extension KeyboardButton {
+public extension Keyboard {
     
-    /// This view renders keyboard button text content.
+    /// This view renders keyboard a button title text.
     ///
     /// The text is limited to a single line with a vertical
     /// offset for input actions with lowercased text.
-    struct Title: View {
+    struct ButtonTitle: View {
         
         /// Create a system keyboard button text view.
         ///
@@ -40,7 +40,7 @@ public extension KeyboardButton {
     }
 }
 
-private extension KeyboardButton.Title {
+private extension Keyboard.ButtonTitle {
     
     var useNegativeOffset: Bool {
         isInputAction && text.isLowercasedWithUppercaseVariant
@@ -50,9 +50,9 @@ private extension KeyboardButton.Title {
 #Preview {
     
     HStack {
-        KeyboardButton.Title(text: "PasCal", action: .space)
-        KeyboardButton.Title(text: "UPPER", action: .space)
-        KeyboardButton.Title(text: "lower", action: .space)
-        KeyboardButton.Title(text: "non-input", action: .backspace)
+        Keyboard.ButtonTitle(text: "PasCal", action: .space)
+        Keyboard.ButtonTitle(text: "UPPER", action: .space)
+        Keyboard.ButtonTitle(text: "lower", action: .space)
+        Keyboard.ButtonTitle(text: "non-input", action: .backspace)
     }
 }

@@ -28,7 +28,7 @@ import CoreGraphics
      override func buttonStyle(
          for action: KeyboardAction,
          isPressed: Bool
-     ) -> KeyboardButton.ButtonStyle {
+     ) -> Keyboard.ButtonStyle {
          let style = super.buttonStyle(for: action, isPressed: isPressed)
          if !action.isInputAction { return style }
          style.backgroundColor = .red
@@ -147,7 +147,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     open func buttonStyle(
         for action: KeyboardAction,
         isPressed: Bool
-    ) -> KeyboardButton.ButtonStyle {
+    ) -> Keyboard.ButtonStyle {
         .init(
             backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
             foregroundColor: buttonForegroundColor(for: action, isPressed: isPressed),
@@ -230,7 +230,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The border style to use for a certain action.
     open func buttonBorderStyle(
         for action: KeyboardAction
-    ) -> KeyboardButton.ButtonBorderStyle {
+    ) -> Keyboard.ButtonBorderStyle {
         switch action {
         case .emoji, .none: .noBorder
         default: .standard
@@ -313,7 +313,7 @@ open class StandardKeyboardStyleProvider: KeyboardStyleProvider {
     /// The shadow style to use for a certain action.
     open func buttonShadowStyle(
         for action: KeyboardAction
-    ) -> KeyboardButton.ButtonShadowStyle {
+    ) -> Keyboard.ButtonShadowStyle {
         if keyboardContext.isSpaceDragGestureActive { return .noShadow }
         switch action {
         case .characterMargin: return .noShadow

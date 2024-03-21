@@ -62,7 +62,7 @@ Note that applying a dark appearances will make iOS tell the extension that the 
 
 ## View styles
 
-KeyboardKit defines custom styles for its various view. For instance, the ``KeyboardButton`` ``KeyboardButton/Button`` view has a ``KeyboardButton/ButtonStyle`` that can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier.
+KeyboardKit defines custom styles for its various view. For instance, the ``Keyboard`` ``Keyboard/Button`` view has a ``Keyboard/ButtonStyle`` that can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier.
 
 Most views have static, standard styles that can be replaced by custom styles to change the global default style for that particular view. 
 
@@ -92,7 +92,7 @@ class CustomKeyboardStyleProvider: StandardKeyboardStyleProvider {
     override func buttonStyle(
         for action: KeyboardAction,
         isPressed: Bool
-    ) -> KeyboardButton.ButtonStyle {
+    ) -> Keyboard.ButtonStyle {
         let style = super.buttonStyle(for: action, isPressed: isPressed)
         if !action.isInputAction { return style }
         style.backgroundColor = .red

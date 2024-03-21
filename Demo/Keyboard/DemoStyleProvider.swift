@@ -28,7 +28,7 @@ class DemoStyleProvider: StandardKeyboardStyleProvider {
 //    override func buttonStyle(
 //        for action: KeyboardAction,
 //        isPressed: Bool
-//    ) -> KeyboardButton.ButtonStyle {
+//    ) -> Keyboard.ButtonStyle {
 //        if action.isRocket {
 //            return super.buttonStyle(for: .primary(.continue), isPressed: isPressed)
 //        }

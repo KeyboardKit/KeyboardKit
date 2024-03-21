@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+Shadow.swift
+//  Keyboard+Shadow.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-09-02.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardButton {
+public extension Keyboard {
     
     /// This view mimics a native keyboard button shadow.
     ///
@@ -17,7 +17,7 @@ public extension KeyboardButton {
     ///
     /// You can style this component using the view modifier
     /// ``keyboardButtonStyle(_:)``. 
-    struct Shadow: View {
+    struct ButtonShadow: View {
         
         /// Create a keyboard button shadow.
         public init() {
@@ -25,7 +25,7 @@ public extension KeyboardButton {
         }
         
         @available(*, deprecated, message: "Style this view with .keyboardButtonStyle instead.")
-        public init(style: KeyboardButton.ButtonStyle) {
+        public init(style: Keyboard.ButtonStyle) {
             self.initStyle = style
         }
         
@@ -41,13 +41,13 @@ public extension KeyboardButton {
         
         // MARK: - Deprecated
         
-        private typealias Style = KeyboardButton.ButtonStyle
+        private typealias Style = Keyboard.ButtonStyle
         private let initStyle: Style?
         private var style: Style { initStyle ?? envStyle }
     }
 }
 
-private extension KeyboardButton.Shadow {
+private extension Keyboard.ButtonShadow {
 
     var buttonMask: some View {
         GeometryReader {
@@ -83,9 +83,9 @@ private extension KeyboardButton.Shadow {
 #Preview {
     
     VStack {
-        KeyboardButton.Shadow()
+        Keyboard.ButtonShadow()
             .keyboardButtonStyle(.preview1)
-        KeyboardButton.Shadow()
+        Keyboard.ButtonShadow()
             .keyboardButtonStyle(.preview2)
     }
     .padding()

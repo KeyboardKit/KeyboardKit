@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+ButtonStyle.swift
+//  Keyboard+ButtonStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-08-03.
@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-public extension KeyboardButton {
+public extension Keyboard {
     
     /// This style can be used to modify the visual style of
-    /// the various ``KeyboardButton/Button`` components.
+    /// the various ``Keyboard/Button`` components.
     ///
     /// You can apply this view style with the view modifier
     /// ``SwiftUI/View/keyboardButtonStyle(_:)``.
@@ -55,8 +55,8 @@ public extension KeyboardButton {
             self.pressedOverlayColor = pressedOverlayColor
         }
         
-        public typealias BorderStyle = KeyboardButton.ButtonBorderStyle
-        public typealias ShadowStyle = KeyboardButton.ButtonShadowStyle
+        public typealias BorderStyle = Keyboard.ButtonBorderStyle
+        public typealias ShadowStyle = Keyboard.ButtonShadowStyle
         
         /// The background style to apply to the button.
         public var background: Keyboard.Background?
@@ -182,12 +182,12 @@ public extension KeyboardButton {
     }
 }
 
-public extension KeyboardButton.ButtonStyle {
+public extension Keyboard.ButtonStyle {
 
     /// Extend the style with another style. This will apply
     /// all non-optional properties from the provided style.
     func extended(
-        with style: KeyboardButton.ButtonStyle
+        with style: Keyboard.ButtonStyle
     ) -> Self {
         var result = self
         result.backgroundColor = style.backgroundColor ?? backgroundColor
@@ -214,7 +214,7 @@ public extension KeyboardButton.ButtonStyle {
 
 // MARK: - Standard Styles
 
-public extension KeyboardButton.ButtonBorderStyle {
+public extension Keyboard.ButtonBorderStyle {
     
     /// This style applies no border.
     static var noBorder = Self()
@@ -225,7 +225,7 @@ public extension KeyboardButton.ButtonBorderStyle {
     static var standard = Self()
 }
 
-public extension KeyboardButton.ButtonShadowStyle {
+public extension Keyboard.ButtonShadowStyle {
     
     /// This style applies no shadow.
     static var noShadow = Self(color: .clear)
@@ -236,7 +236,7 @@ public extension KeyboardButton.ButtonShadowStyle {
     static var standard = Self()
 }
 
-extension KeyboardButton.ButtonStyle {
+extension Keyboard.ButtonStyle {
 
     static let preview1 = Self(
         backgroundColor: .yellow,
@@ -268,8 +268,8 @@ extension KeyboardButton.ButtonStyle {
         )
     )
     
-    static let previewImage: KeyboardButton.ButtonStyle = {
-        var style = KeyboardButton.ButtonStyle.preview1
+    static let previewImage: Keyboard.ButtonStyle = {
+        var style = Keyboard.ButtonStyle.preview1
         style.backgroundColor = .red
         #if canImport(UIKit)
         let image = UIImage(systemName: "face.smiling")
@@ -284,27 +284,27 @@ extension KeyboardButton.ButtonStyle {
 
 public extension View {
 
-    /// Apply a ``KeyboardButton/ButtonStyle``.
+    /// Apply a ``Keyboard/ButtonStyle``.
     func keyboardButtonStyle(
-        _ style: KeyboardButton.ButtonStyle
+        _ style: Keyboard.ButtonStyle
     ) -> some View {
         self.environment(\.keyboardButtonStyle, style)
     }
 }
 
-private extension KeyboardButton.ButtonStyle {
+private extension Keyboard.ButtonStyle {
 
     struct Key: EnvironmentKey {
 
         /// TODO: For now, there's no standard button style.
-        public static var defaultValue: KeyboardButton.ButtonStyle = .init(background: .color(.red))
+        public static var defaultValue: Keyboard.ButtonStyle = .init(background: .color(.red))
     }
 }
 
 public extension EnvironmentValues {
 
-    var keyboardButtonStyle: KeyboardButton.ButtonStyle {
-        get { self [KeyboardButton.ButtonStyle.Key.self] }
-        set { self [KeyboardButton.ButtonStyle.Key.self] = newValue }
+    var keyboardButtonStyle: Keyboard.ButtonStyle {
+        get { self [Keyboard.ButtonStyle.Key.self] }
+        set { self [Keyboard.ButtonStyle.Key.self] = newValue }
     }
 }

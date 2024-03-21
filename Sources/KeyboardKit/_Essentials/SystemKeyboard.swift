@@ -121,7 +121,7 @@ public struct SystemKeyboard<
         view: StandardButtonContent)
     
     /// The standard button content view type.
-    public typealias StandardButtonContent = KeyboardButton.Content
+    public typealias StandardButtonContent = Keyboard.ButtonContent
     
     
     /// This typealias defines a button view builder.
@@ -280,7 +280,7 @@ private extension SystemKeyboard {
     ) -> ButtonContent {
         buttonContentBuilder((
             item: item,
-            view: KeyboardButton.Content(
+            view: Keyboard.ButtonContent(
                 action: item.action,
                 styleProvider: styleProvider,
                 keyboardContext: keyboardContext

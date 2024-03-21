@@ -40,7 +40,7 @@ extension KeyboardPreviews {
         override func buttonStyle(
             for action: KeyboardAction,
             isPressed: Bool
-        ) -> KeyboardButton.ButtonStyle {
+        ) -> Keyboard.ButtonStyle {
             isPressed ? .preview2 : .preview1
         }
         

@@ -62,7 +62,7 @@ This will bind a ``CalloutContext`` to the view, then apply ``Callouts/ActionCal
 
 There are also individual extensions for ``SwiftUI/View/keyboardActionCalloutContainer(calloutContext:keyboardContext:)`` and ``SwiftUI/View/keyboardInputCalloutContainer(calloutContext:keyboardContext:)``. 
 
-The ``SystemKeyboard`` and ``KeyboardButton/Button`` will automatically apply the proper extensions and update the context as you interact with them.
+The ``SystemKeyboard`` and ``Keyboard/Button`` will automatically apply the proper extensions and update the context as you interact with them.
 
 
 

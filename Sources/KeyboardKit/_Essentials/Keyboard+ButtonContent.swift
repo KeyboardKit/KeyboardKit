@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+Content.swift
+//  Keyboard+ButtonContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardButton {
+public extension Keyboard {
     
     /// This view renders the content of a keyboard button.
     ///
@@ -17,7 +17,7 @@ public extension KeyboardButton {
     ///
     /// The view sets up gestures, line limits, offset, etc.
     /// according to the provided `styleProvider`.
-    struct Content: View {
+    struct ButtonContent: View {
         
         /// Create a keyboard button content view.
         ///
@@ -47,7 +47,7 @@ public extension KeyboardButton {
     }
 }
 
-private extension KeyboardButton.Content {
+private extension Keyboard.ButtonContent {
 
     @ViewBuilder
     var bodyContent: some View {
@@ -67,14 +67,14 @@ private extension KeyboardButton.Content {
     }
     
     var spaceView: some View {
-        KeyboardButton.SpaceContent(
+        Keyboard.SpaceContent(
             localeText: shouldShowLocaleName ? localeName : spaceText,
             spaceText: spaceText
         )
     }
     
     func textView(for action: KeyboardAction, text: String) -> some View {
-        KeyboardButton.Title(
+        Keyboard.ButtonTitle(
             text: text,
             action: action
         )
@@ -83,7 +83,7 @@ private extension KeyboardButton.Content {
     }
 }
 
-private extension KeyboardButton.Content {
+private extension Keyboard.ButtonContent {
     
     var localeName: String {
         keyboardContext.locale.localizedLanguageName
@@ -113,7 +113,7 @@ private extension KeyboardButton.Content {
         for action: KeyboardAction,
         multiLocale: Bool = false
     ) -> some View {
-        KeyboardButton.Content(
+        Keyboard.ButtonContent(
             action: action,
             styleProvider: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview

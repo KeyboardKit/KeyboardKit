@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+SpaceContent.swift
+//  Keyboard+SpaceContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardButton {
+public extension Keyboard {
     
     /// This view renders system space key content.
     ///
@@ -37,7 +37,7 @@ public extension KeyboardButton {
         init(
             localeText: String,
             spaceText: String
-        ) where SpaceView == KeyboardButton.Title {
+        ) where SpaceView == Keyboard.ButtonTitle {
             self.init(
                 localeText: localeText,
                 spaceView: .init(
@@ -64,14 +64,14 @@ public extension KeyboardButton {
     }
 }
 
-private struct KeyboardButtonSpaceContentState {
+private struct KeyboardSpaceContentState {
     
     static var lastLocaleText: String?
 }
 
-private extension KeyboardButton.SpaceContent {
+private extension Keyboard.SpaceContent {
     
-    var localeView: KeyboardButton.Title {
+    var localeView: Keyboard.ButtonTitle {
         .init(
             text: localeText,
             action: .space
@@ -84,16 +84,16 @@ private extension KeyboardButton.SpaceContent {
     }
 }
 
-private extension KeyboardButton.SpaceContent {
+private extension Keyboard.SpaceContent {
     
     var isNewLocale: Bool {
-        localeText != KeyboardButtonSpaceContentState.lastLocaleText
+        localeText != KeyboardSpaceContentState.lastLocaleText
     }
     
     func performAnimation() {
         showLocale = isNewLocale
         guard isNewLocale else { return }
-        KeyboardButtonSpaceContentState.lastLocaleText = localeText
+        KeyboardSpaceContentState.lastLocaleText = localeText
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             withAnimation { showLocale = false }
         }
@@ -103,11 +103,11 @@ private extension KeyboardButton.SpaceContent {
 #Preview {
     
     Group {
-        KeyboardButton.SpaceContent(
+        Keyboard.SpaceContent(
             localeText: KeyboardLocale.english.locale.localizedName,
             spaceText: KKL10n.space.text(for: .english)
         )
-        KeyboardButton.SpaceContent(
+        Keyboard.SpaceContent(
             localeText: KeyboardLocale.spanish.locale.localizedName,
             spaceView: Image.keyboardGlobe
         )

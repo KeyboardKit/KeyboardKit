@@ -82,7 +82,7 @@ public struct SystemKeyboardItem<Content: View>: View {
         keyboardContext.isSpaceDragGestureActive ? 0 : 1
     }
     
-    private var buttonStyle: KeyboardButton.ButtonStyle {
+    private var buttonStyle: Keyboard.ButtonStyle {
         item.action.isSpacer ? .spacer : styleProvider.buttonStyle(for: item.action, isPressed: isPressed)
     }
 }

@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+Key.swift
+//  Keyboard+ButtonKey.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-09-02.
@@ -8,17 +8,18 @@
 
 import SwiftUI
 
-public extension KeyboardButton {
+public extension Keyboard {
     
-    /// This view mimics a native keyboard button shape.
+    /// This view mimics a native keyboard button key shape.
     ///
-    /// It applies a button shape, corner radius, shadow etc.
+    /// The view will render the button shape, corner radius,
+    /// shadow etc. and act on an injected pressed state.
     ///
     /// You can style this component using the view modifier
     /// ``keyboardButtonStyle(_:)``.
-    struct Key: View {
+    struct ButtonKey: View {
         
-        /// Create a keyboard button body.
+        /// Create a keyboard button key.
         ///
         /// - Parameters:
         ///   - isPressed: Whether or not the button is pressed, by default `false`.
@@ -31,7 +32,7 @@ public extension KeyboardButton {
         
         @available(*, deprecated, message: "Style this view with .keyboardButtonStyle instead.")
         public init(
-            style: KeyboardButton.ButtonStyle,
+            style: Keyboard.ButtonStyle,
             isPressed: Bool = false
         ) {
             self.initStyle = style
@@ -50,19 +51,19 @@ public extension KeyboardButton {
                 .background(backgroundColor)
                 .overlay(isPressed ? style.pressedOverlayColor : .clear)
                 .cornerRadius(cornerRadius)
-                .overlay(KeyboardButton.Shadow())
+                .overlay(Keyboard.ButtonShadow())
                 .keyboardButtonStyle(style)  // Not needed in 9.0
         }
         
         // MARK: - Deprecated
         
-        private typealias Style = KeyboardButton.ButtonStyle
+        private typealias Style = Keyboard.ButtonStyle
         private let initStyle: Style?
         private var style: Style { initStyle ?? envStyle }
     }
 }
 
-public extension KeyboardButton.Key {
+public extension Keyboard.ButtonKey {
 
     var backgroundColor: Color { style.backgroundColor ?? .clear }
     var borderColor: Color { style.border?.color ?? .clear }
@@ -73,11 +74,11 @@ public extension KeyboardButton.Key {
 #Preview {
     
     VStack {
-        KeyboardButton.Key()
+        Keyboard.ButtonKey()
             .keyboardButtonStyle(.preview1)
-        KeyboardButton.Key()
+        Keyboard.ButtonKey()
             .keyboardButtonStyle(.preview2)
-        KeyboardButton.Key()
+        Keyboard.ButtonKey()
             .keyboardButtonStyle(.previewImage)
     }
     .padding()

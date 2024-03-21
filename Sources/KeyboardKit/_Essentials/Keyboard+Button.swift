@@ -1,5 +1,5 @@
 //
-//  KeyboardButton+Button.swift
+//  Keyboard+Button.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-02.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardButton {
+public extension Keyboard {
     
     /// This view mimics a native keyboard button.
     ///
@@ -71,7 +71,7 @@ public extension KeyboardButton {
             calloutContext: CalloutContext?,
             edgeInsets: EdgeInsets = .init(),
             isPressed: Binding<Bool>? = nil
-        ) where Content == KeyboardButton.Content {
+        ) where Content == Keyboard.ButtonContent {
             self.init(
                 action: action,
                 actionHandler: actionHandler,
@@ -96,7 +96,7 @@ public extension KeyboardButton {
         @State
         private var isPressedInternal = false
         
-        public typealias ContentBuilder = (_ content: KeyboardButton.Content) -> Content
+        public typealias ContentBuilder = (_ content: Keyboard.ButtonContent) -> Content
         
         public var body: some View {
             buttonContent
@@ -113,11 +113,11 @@ public extension KeyboardButton {
     }
 }
 
-private extension KeyboardButton.Button {
+private extension Keyboard.Button {
     
     var buttonContent: some View {
         content(
-            KeyboardButton.Content(
+            Keyboard.ButtonContent(
                 action: action,
                 styleProvider: styleProvider,
                 keyboardContext: keyboardContext
@@ -125,7 +125,7 @@ private extension KeyboardButton.Button {
         )
     }
     
-    var style: KeyboardButton.ButtonStyle {
+    var style: Keyboard.ButtonStyle {
         styleProvider.buttonStyle(
             for: action,
             isPressed: isPressed?.wrappedValue ?? isPressedInternal
@@ -141,7 +141,7 @@ private extension KeyboardButton.Button {
         private var isPressed = false
         
         func button(for action: KeyboardAction) -> some View {
-            KeyboardButton.Button(
+            Keyboard.Button(
                 action: action,
                 actionHandler: .preview,
                 styleProvider: .preview,
@@ -160,7 +160,7 @@ private extension KeyboardButton.Button {
                 button(for: .nextKeyboard)
                 button(for: .character("a"))
                 button(for: .character("A"))
-                KeyboardButton.Button(
+                Keyboard.Button(
                     action: .emoji(.init("😀")),
                     actionHandler: .preview,
                     styleProvider: .preview,

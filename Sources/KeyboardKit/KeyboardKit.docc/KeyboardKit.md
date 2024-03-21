@@ -37,11 +37,10 @@ The <doc:Getting-Started> article helps you get started with KeyboardKit.
 
 KeyboardKit comes packed features to help you build amazing keyboard extensions:
 
-* ⌨️ <doc:Essentials> - KeyboardKit comes with a bunch of essential features, types and views.
+* ⌨️ <doc:Essentials> - KeyboardKit comes with a many essential features, types and views.
 * 💥 <doc:Actions-Article> - KeyboardKit makes it easy to trigger actions like character insertion, locale switching, etc.
 * 🤖 <doc:AI-Article> - KeyboardKit unlocks additional capabilities that are useful for AI-based tools.
 * 💡 <doc:Autocomplete-Article> - KeyboardKit can perform on-device and remote autocomplete & autocorrect.
-* 🔤 <doc:Buttons-Article> - KeyboardKit can style any view as a keyboard button, with rich customization capabilities.
 * 🗯 <doc:Callouts-Article> - KeyboardKit can show input and secondary action callouts.
 * 🌈 <doc:Colors-Article> - KeyboardKit defines keyboard-specific colors.
 * 📱 <doc:Device-Article> - KeyboardKit provides device-specific utilities.
@@ -158,11 +157,6 @@ KeyboardKit is available under the MIT license.
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
-
-### Buttons
-
-- ``KeyboardButton``
-- ``NextKeyboardButton``
 
 ### Callouts
 

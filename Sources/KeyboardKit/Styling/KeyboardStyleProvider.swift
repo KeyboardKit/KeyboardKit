@@ -52,7 +52,7 @@ public protocol KeyboardStyleProvider: AnyObject {
     func buttonImageScaleFactor(for action: KeyboardAction) -> CGFloat
     
     /// The button style to use for a certain action.
-    func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> KeyboardButton.ButtonStyle
+    func buttonStyle(for action: KeyboardAction, isPressed: Bool) -> Keyboard.ButtonStyle
     
     /// The button text to use for a certain action.
     func buttonText(for action: KeyboardAction) -> String?

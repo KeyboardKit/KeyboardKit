@@ -29,14 +29,14 @@ public extension KeyboardStyle {
     @available(*, deprecated, renamed: "Keyboard.Background")
     typealias Background = Keyboard.Background
     
-    @available(*, deprecated, renamed: "KeyboardButton.ButtonStyle")
-    typealias Button = KeyboardButton.ButtonStyle
+    @available(*, deprecated, renamed: "Keyboard.ButtonStyle")
+    typealias Button = Keyboard.ButtonStyle
     
-    @available(*, deprecated, renamed: "KeyboardButton.ButtonBorderStyle")
-    typealias ButtonBorder = KeyboardButton.ButtonBorderStyle
+    @available(*, deprecated, renamed: "Keyboard.ButtonBorderStyle")
+    typealias ButtonBorder = Keyboard.ButtonBorderStyle
     
-    @available(*, deprecated, renamed: "KeyboardButton.ButtonShadowStyle")
-    typealias ButtonShadow = KeyboardButton.ButtonShadowStyle
+    @available(*, deprecated, renamed: "Keyboard.ButtonShadowStyle")
+    typealias ButtonShadow = Keyboard.ButtonShadowStyle
     
     @available(*, deprecated, renamed: "Callouts.CalloutStyle")
     typealias Callout = Callouts.CalloutStyle

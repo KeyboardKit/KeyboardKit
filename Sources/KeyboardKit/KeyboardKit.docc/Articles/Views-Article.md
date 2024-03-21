@@ -27,7 +27,7 @@ See the <doc:Essentials> article for more information.
 
 @Row {
     @Column {
-        ``Keyboard`` ``KeyboardButton/Button``
+        ``Keyboard`` ``Keyboard/Button``
     }
     @Column {
         ![Keyboard Button](systemkeyboardbuttonpreview.jpg)
@@ -45,7 +45,7 @@ See the <doc:Essentials> article for more information.
 
 @Row {
     @Column {
-        ``NextKeyboardButton``
+        ``Keyboard`` ``NextKeyboardButton``
     }
     @Column {
         ![Next Keyboard Button](nextkeyboardbutton.jpg)

@@ -16,7 +16,7 @@ class StandardKeyboardStyleProviderTests: XCTestCase {
     var provider: StandardKeyboardStyleProvider!
     var context: KeyboardContext!
 
-    var styles: [(action: KeyboardAction, style: KeyboardButton.ButtonStyle)]!
+    var styles: [(action: KeyboardAction, style: Keyboard.ButtonStyle)]!
     let config = KeyboardLayout.Configuration.standard(for: .preview)
 
     override func setUp() {

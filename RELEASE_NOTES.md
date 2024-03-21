@@ -13,7 +13,7 @@ These release notes only cover the current major version.
 
 ## 8.4
 
-This version bumps Swift to 5.9 and adds support for visionOS.
+This version bumps to Swift 5.9 and adds support for visionOS.
 
 This version also refactors view styling to be injected with view modifiers instead of initializers.
 
@@ -33,8 +33,7 @@ Due to complexities with the style provider concept, some views still use a styl
 
 * `AutocompleteToolbar` has been renamed to `Autocomplete.Toolbar`.
 * `InputSet.standardNumeric` has been renamed to `.numeric`.
-* `InputSet.standardSymbolic` has been renamed to `.symbolic`. 
-* `KeyboardButton` sub views now apply styles using view modifiers. 
+* `InputSet.standardSymbolic` has been renamed to `.symbolic`.  
 * `KeyboardStyle.AutocompleteToolbar` has been renamed to `Autocomplete.ToolbarStyle`.
 * `KeyboardStyle.AutocompleteToolbarItem` has been renamed to `Autocomplete.ToolbarItemStyle`.
 * `KeyboardStyle.AutocompleteToolbarSeparator` has been renamed to `Autocomplete.ToolbarSeparatorStyle`.
@@ -56,6 +55,7 @@ Due to complexities with the style provider concept, some views still use a styl
 
 ### 🗑️ Deprecations
 
+* `KeyboardButton` has been deprecated and all its views moved to `Keyboard`.
 * `KeyboardStyle.AutocompleteToolbarItemBackground` has been deprecated - just use `Autocomplete.ToolbarItem`. 
 * `Autocomplete.ToolbarItemTitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
 * `Autocomplete.ToolbarItemSubtitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
