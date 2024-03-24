@@ -24,11 +24,6 @@ public extension Keyboard {
             self.initStyle = nil
         }
         
-        @available(*, deprecated, message: "Style this view with .keyboardButtonStyle instead.")
-        public init(style: Keyboard.ButtonStyle) {
-            self.initStyle = style
-        }
-        
         @Environment(\.keyboardButtonStyle)
         private var envStyle
         
@@ -40,6 +35,11 @@ public extension Keyboard {
         }
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .keyboardButtonStyle to apply the style instead.")
+        public init(style: Keyboard.ButtonStyle) {
+            self.initStyle = style
+        }
         
         private typealias Style = Keyboard.ButtonStyle
         private let initStyle: Style?

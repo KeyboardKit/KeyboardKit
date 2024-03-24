@@ -30,15 +30,6 @@ public extension Keyboard {
             self.isPressed = isPressed
         }
         
-        @available(*, deprecated, message: "Style this view with .keyboardButtonStyle instead.")
-        public init(
-            style: Keyboard.ButtonStyle,
-            isPressed: Bool = false
-        ) {
-            self.initStyle = style
-            self.isPressed = isPressed
-        }
-        
         private let isPressed: Bool
         
         @Environment(\.keyboardButtonStyle)
@@ -56,6 +47,15 @@ public extension Keyboard {
         }
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .keyboardButtonStyle to apply the style instead.")
+        public init(
+            style: Keyboard.ButtonStyle,
+            isPressed: Bool = false
+        ) {
+            self.initStyle = style
+            self.isPressed = isPressed
+        }
         
         private typealias Style = Keyboard.ButtonStyle
         private let initStyle: Style?

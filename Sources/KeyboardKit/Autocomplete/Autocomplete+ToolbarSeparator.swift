@@ -21,13 +21,6 @@ public extension Autocomplete {
             self.initStyle = nil
         }
         
-        @available(*, deprecated, message: "Style this view with .autocompleteToolbarSeparatorStyle instead.")
-        public init(
-            style: Autocomplete.ToolbarSeparatorStyle
-        ) {
-            self.initStyle = style
-        }
-        
         @Environment(\.autocompleteToolbarSeparatorStyle)
         private var envStyle
         
@@ -38,6 +31,13 @@ public extension Autocomplete {
         }
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .autocompleteToolbarSeparatorStyle to apply the style instead.")
+        public init(
+            style: Autocomplete.ToolbarSeparatorStyle
+        ) {
+            self.initStyle = style
+        }
         
         private typealias Style = Autocomplete.ToolbarSeparatorStyle
         private let initStyle: Style?

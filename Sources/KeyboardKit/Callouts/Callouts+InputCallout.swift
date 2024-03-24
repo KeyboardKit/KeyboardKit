@@ -30,17 +30,6 @@ public extension Callouts {
             self.initStyle = nil
         }
         
-        @available(*, deprecated, message: "Style this view with .inputCalloutStyle instead.")
-        public init(
-            calloutContext: Context,
-            keyboardContext: KeyboardContext,
-            style: Callouts.InputCalloutStyle = .standard
-        ) {
-            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.initStyle = style
-        }
-        
         public typealias Context = CalloutContext.InputContext
         
         @ObservedObject
@@ -62,6 +51,17 @@ public extension Callouts {
         }
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .inputCalloutStyle to apply the style instead.")
+        public init(
+            calloutContext: Context,
+            keyboardContext: KeyboardContext,
+            style: Callouts.InputCalloutStyle = .standard
+        ) {
+            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
+            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+            self.initStyle = style
+        }
         
         private typealias Style = Callouts.InputCalloutStyle
         private let initStyle: Style?

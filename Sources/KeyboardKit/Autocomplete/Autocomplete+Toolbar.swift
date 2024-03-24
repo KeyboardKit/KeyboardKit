@@ -48,23 +48,6 @@ public extension Autocomplete {
             self.suggestionAction = suggestionAction
         }
         
-        @available(*, deprecated, message: "Use .autocompleteToolbarStyle to apply the style instead.")
-        public init(
-            suggestions: [Autocomplete.Suggestion],
-            locale: Locale = .current,
-            style: Style,
-            itemView: @escaping ItemViewBuilderOld,
-            separatorView: @escaping SeparatorViewBuilder,
-            suggestionAction: @escaping SuggestionAction
-        ) {
-            self.items = suggestions.map { BarItem($0) }
-            self.itemView = itemView
-            self.locale = locale
-            self.initStyle = style
-            self.separatorView = separatorView
-            self.suggestionAction = suggestionAction
-        }
-        
         public typealias Item = Autocomplete.ToolbarItem
         public typealias ItemViewBuilderOld = (Suggestion, Style, Locale) -> ItemView
         public typealias Separator = Autocomplete.ToolbarSeparator
@@ -108,6 +91,23 @@ public extension Autocomplete {
         
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .autocompleteToolbarStyle to apply the style instead.")
+        public init(
+            suggestions: [Autocomplete.Suggestion],
+            locale: Locale = .current,
+            style: Style,
+            itemView: @escaping ItemViewBuilderOld,
+            separatorView: @escaping SeparatorViewBuilder,
+            suggestionAction: @escaping SuggestionAction
+        ) {
+            self.items = suggestions.map { BarItem($0) }
+            self.itemView = itemView
+            self.locale = locale
+            self.initStyle = style
+            self.separatorView = separatorView
+            self.suggestionAction = suggestionAction
+        }
         
         private let initStyle: Style?
         private var style: Style { initStyle ?? envStyle }

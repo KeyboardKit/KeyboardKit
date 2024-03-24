@@ -25,15 +25,6 @@ public extension Callouts {
             self.initStyle = nil
         }
         
-        @available(*, deprecated, message: "Style this view with .calloutStyle instead.")
-        public init(
-            frame: CGRect,
-            style: Callouts.CalloutStyle = .standard
-        ) {
-            self.frame = frame
-            self.initStyle = style
-        }
-        
         private let frame: CGRect
         
         @Environment(\.calloutStyle)
@@ -48,6 +39,15 @@ public extension Callouts {
         }
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .calloutStyle to apply the style instead.")
+        public init(
+            frame: CGRect,
+            style: Callouts.CalloutStyle = .standard
+        ) {
+            self.frame = frame
+            self.initStyle = style
+        }
         
         private typealias Style = Callouts.CalloutStyle
         private let initStyle: Style?

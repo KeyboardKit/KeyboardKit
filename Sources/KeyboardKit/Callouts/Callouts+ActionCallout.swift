@@ -33,19 +33,6 @@ public extension Callouts {
             self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
         }
         
-        @available(*, deprecated, message: "Style this view with .actionCalloutStyle instead.")
-        public init(
-            calloutContext: CalloutContext.ActionContext,
-            keyboardContext: KeyboardContext,
-            style: Callouts.ActionCalloutStyle = .standard,
-            emojiStyle: KeyboardStyle.EmojiKeyboard? = nil
-        ) {
-            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.initStyle = style
-            self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
-        }
-        
         public typealias Context = CalloutContext.ActionContext
         public typealias EmojiStyle = KeyboardStyle.EmojiKeyboard
         
@@ -77,6 +64,19 @@ public extension Callouts {
         }
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .actionCalloutStyle to apply the style instead.")
+        public init(
+            calloutContext: CalloutContext.ActionContext,
+            keyboardContext: KeyboardContext,
+            style: Callouts.ActionCalloutStyle = .standard,
+            emojiStyle: KeyboardStyle.EmojiKeyboard? = nil
+        ) {
+            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
+            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+            self.initStyle = style
+            self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
+        }
         
         private typealias Style = Callouts.ActionCalloutStyle
         private let initStyle: Style?

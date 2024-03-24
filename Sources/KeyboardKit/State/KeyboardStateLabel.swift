@@ -38,23 +38,6 @@ public struct KeyboardStateLabel<EnabledIcon: View, DisabledIcon: View>: View {
         self.disabledIcon = disabledIcon
         self.initStyle = nil
     }
-    
-    @available(*, deprecated, message: "Style this view with .keyboardStateLabelStyle instead.")
-    public init(
-        isEnabled: Bool,
-        enabledIcon: EnabledIcon,
-        enabledText: String,
-        disabledIcon: DisabledIcon,
-        disabledText: String,
-        style: KeyboardStateLabelStyle = .standard
-    ) {
-        self.isEnabled = isEnabled
-        self.enabledText = enabledText
-        self.enabledIcon = enabledIcon
-        self.disabledText = disabledText
-        self.disabledIcon = disabledIcon
-        self.initStyle = style
-    }
 
     private let isEnabled: Bool
     private let enabledText: String
@@ -74,6 +57,23 @@ public struct KeyboardStateLabel<EnabledIcon: View, DisabledIcon: View>: View {
     }
     
     // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use .keyboardStateLabelStyle to apply the style instead.")
+    public init(
+        isEnabled: Bool,
+        enabledIcon: EnabledIcon,
+        enabledText: String,
+        disabledIcon: DisabledIcon,
+        disabledText: String,
+        style: KeyboardStateLabelStyle = .standard
+    ) {
+        self.isEnabled = isEnabled
+        self.enabledText = enabledText
+        self.enabledIcon = enabledIcon
+        self.disabledText = disabledText
+        self.disabledIcon = disabledIcon
+        self.initStyle = style
+    }
     
     private typealias Style = KeyboardStateLabelStyle
     private let initStyle: Style?

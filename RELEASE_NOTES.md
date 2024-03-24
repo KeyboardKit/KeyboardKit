@@ -19,12 +19,18 @@ This version also adjusts some view namings, and refactors view styling to be in
 
 Views that require complex style resolving still use the style provider concept.
 
+### 🚨 Important Information
+
+* The new `keyboardButtonStyle` view modifier only injects the style as an environment variable.
+* Some `Emoji` functions are no longer throwing. If you refer to them, just remove try.
+
 ### ✨ Features
 
 * `Autocomplete.ToolbarStyle` has support for more styling.
 * `Autocomplete.ToolbarItemStyle` has support for more styling.
 * `DeviceType` defines a new `.vision` device type and supports visionOS.
-* `Keyboard.Background` now implements `View` and can be used right away.
+* `Emoji` adds a lot of new features without having to use KeyboardKit Pro. 
+* `Keyboard.Background` now implements `View` and can be used as a plain view.
 * `Keyboard.Toolbar` is a new view that applies a minimum height to its content.
 * `Keyboard.ToolbarStyle` is a new style that can be applied with a view modifier.
 * `StandardKeyboardBehavior` modifies some functions to be `open` to modifications.
@@ -55,16 +61,19 @@ Views that require complex style resolving still use the style provider concept.
 * `.withEnvironment(fromController:)` has been renamed to `.keyboardState(from:)`.
 * `.withEnvironment(fromState:)` has been renamed to `.keyboardState(_:)`.
 
+### 👑 KeyboardKit Pro
+
+* `Dictation.BarVisualizer` now applies bars with the style.
+* `Dictation.BarVisualizer` now applies style with the environment. 
+
+
 ### 🗑️ Deprecations
 
+* `Emoji` renames a lof of types & categories, and many things non-throwing.
 * `KeyboardButton` has been deprecated and all its views moved to `Keyboard`.
 * `KeyboardStyle.AutocompleteToolbarItemBackground` has been deprecated - just use `Autocomplete.ToolbarItem`. 
 * `Autocomplete.ToolbarItemTitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
-* `Autocomplete.ToolbarItemSubtitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
-
-### 🚨 Important Information
-
-* The new `keyboardButtonStyle` view modifier only injects the style as an environment variable. 
+* `Autocomplete.ToolbarItemSubtitle` has been deprecated - just use `Autocomplete.ToolbarItem`. 
 
     
 

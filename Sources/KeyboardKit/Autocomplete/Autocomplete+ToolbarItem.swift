@@ -30,17 +30,6 @@ public extension Autocomplete {
             self.initStyle = nil
         }
         
-        @available(*, deprecated, message: "Style this view with .autocompleteToolbarItemStyle instead.")
-        public init(
-            suggestion: Autocomplete.Suggestion,
-            locale: Locale = .current,
-            style: Autocomplete.ToolbarItemStyle
-        ) {
-            self.suggestion = suggestion
-            self.locale = locale
-            self.initStyle = style
-        }
-        
         private let suggestion: Suggestion
         private let locale: Locale
         
@@ -60,6 +49,17 @@ public extension Autocomplete {
         }
         
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use .autocompleteToolbarItemStyle to apply the style instead.")
+        public init(
+            suggestion: Autocomplete.Suggestion,
+            locale: Locale = .current,
+            style: Autocomplete.ToolbarItemStyle
+        ) {
+            self.suggestion = suggestion
+            self.locale = locale
+            self.initStyle = style
+        }
         
         private typealias Style = Autocomplete.ToolbarItemStyle
         private let initStyle: Style?
