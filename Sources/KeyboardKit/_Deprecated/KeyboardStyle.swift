@@ -8,5 +8,5 @@
 
 import Foundation
 
-/// This is a namespace for various keyboard styles.
+@available(*, deprecated, message: "View styles are now named like their related views")
 public struct KeyboardStyle {}
