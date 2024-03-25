@@ -15,7 +15,7 @@ public extension Keyboard {
     /// Instead of being a shadow, the view is an overlay to
     /// support opaque shadows with semi-transparent buttons.
     ///
-    /// You can style this component using the view modifier
+    /// You can style this component with the style modifier
     /// ``keyboardButtonStyle(_:)``. 
     struct ButtonShadow: View {
         

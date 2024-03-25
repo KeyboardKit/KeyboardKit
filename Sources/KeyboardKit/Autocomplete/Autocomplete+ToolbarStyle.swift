@@ -19,7 +19,7 @@ public extension Autocomplete {
     /// You can use the ``standard`` style or your own style.
     struct ToolbarStyle: Codable, Equatable {
         
-        /// Create an autocomplete toolbar style.
+        /// Create a custom autocomplete toolbar style.
         ///
         /// - Parameters:
         ///   - height: An optional fixed height, by default `50`.

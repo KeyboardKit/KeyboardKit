@@ -16,7 +16,7 @@ public extension AudioFeedback {
     /// ``enabled`` and ``disabled``, or create a custom one.
     struct Configuration: Codable, Equatable {
         
-        /// Create an audio feedback configuration.
+        /// Create a custom audio feedback configuration.
         ///
         /// - Parameters:
         ///   - input: The feedback to use for input keys, by default `.input`.

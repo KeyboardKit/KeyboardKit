@@ -19,7 +19,7 @@ public extension Callouts {
     /// You can use the ``standard`` style or your own style.
     struct CalloutStyle: Codable, Equatable {
         
-        /// Create a callout style.
+        /// Create a custom callout style.
         ///
         /// When creating custom styles, note that the style
         /// has components that are meant to fit the overall

@@ -15,7 +15,7 @@ public extension Keyboard {
     /// The view will render the button shape, corner radius,
     /// shadow etc. and act on an injected pressed state.
     ///
-    /// You can style this component using the view modifier
+    /// You can style this component with the style modifier
     /// ``keyboardButtonStyle(_:)``.
     struct ButtonKey: View {
         

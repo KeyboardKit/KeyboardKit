@@ -19,7 +19,7 @@ public extension Callouts {
     /// You can use the ``standard`` style or your own style.
     struct ActionCalloutStyle: Codable, Equatable {
         
-        /// Create an action callout style.
+        /// Create a custom action callout style.
         ///
         /// - Parameters:
         ///   - callout: The callout style to use, by default `.standard`.

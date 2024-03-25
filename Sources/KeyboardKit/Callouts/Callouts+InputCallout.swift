@@ -16,7 +16,7 @@ public extension Callouts {
     /// an input character is pressed.
     struct InputCallout: View {
         
-        /// Create an input callout.
+        /// Create a custom input callout.
         ///
         /// - Parameters:
         ///   - calloutContext: The callout context to use.

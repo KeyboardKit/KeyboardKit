@@ -16,7 +16,7 @@ public extension HapticFeedback {
     /// ``enabled`` and ``disabled``, or create a custom one.
     struct Configuration: Codable, Equatable {
         
-        /// Create a haptic feedback configuration.
+        /// Create a custom haptic feedback configuration.
         ///
         /// - Parameters:
         ///   - press: The feedback to use for presses, by default `.none`.

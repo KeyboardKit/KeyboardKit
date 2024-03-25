@@ -22,7 +22,7 @@ public extension Keyboard {
     /// will be added in KeyboardKit 9 (TODO).
     struct ButtonStyle: Codable, Equatable {
         
-        /// Create a keyboard button style.
+        /// Create a custom keyboard button style.
         ///
         /// - Parameters:
         ///   - background: The background to apply to the button, by default `nil`.
@@ -136,7 +136,7 @@ public extension Keyboard {
     /// You can use the ``standard`` style or your own style.
     struct ButtonBorderStyle: Codable, Equatable {
         
-        /// Create a keyboard button border style.
+        /// Create a custom keyboard button border style.
         ///
         /// - Parameters:
         ///   - color: The border color, by default `.clear`.
@@ -161,7 +161,7 @@ public extension Keyboard {
     /// You can use the ``standard`` style or your own style.
     struct ButtonShadowStyle: Codable, Equatable {
         
-        /// Create a keyboard button shadow style.
+        /// Create a custom keyboard button shadow style.
         ///
         /// - Parameters:
         ///   - color: The shadow color, by default `.keyboardButtonShadow`.

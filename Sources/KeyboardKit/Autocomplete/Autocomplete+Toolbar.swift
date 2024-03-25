@@ -14,8 +14,9 @@ public extension Autocomplete {
     ///
     /// You can style this component with the style modifier
     /// ``autocompleteToolbarStyle(_:)``.
-    /// 
-    /// You can also pass in custom item and separator views.
+    ///
+    /// You can also customize this view by returning custom
+    /// views in the view builders.
     ///
     /// > Note: This view will be rebuilt in KeyboardKit 9.0,
     /// to work like SystemKeyboard, where the view builders
@@ -29,7 +30,6 @@ public extension Autocomplete {
         /// - Parameters:
         ///   - suggestions: The suggestions to display.
         ///   - locale: The locale to use, by default `.current`.
-        ///   - style: The style to apply, by default `.standard`.
         ///   - itemView: The suggestion view builder to use.
         ///   - separatorView: The separator view builder to use.
         ///   - suggestionAction: The action to trigger when tapping a suggestion.
@@ -52,7 +52,6 @@ public extension Autocomplete {
         public typealias ItemViewBuilderOld = (Suggestion, Style, Locale) -> ItemView
         public typealias Separator = Autocomplete.ToolbarSeparator
         public typealias SeparatorViewBuilder = (Suggestion, Style) -> SeparatorView
-        public typealias Style = Autocomplete.ToolbarStyle
         public typealias Suggestion = Autocomplete.Suggestion
         public typealias SuggestionAction = (Suggestion) -> Void
         
@@ -109,6 +108,7 @@ public extension Autocomplete {
             self.suggestionAction = suggestionAction
         }
         
+        public typealias Style = Autocomplete.ToolbarStyle
         private let initStyle: Style?
         private var style: Style { initStyle ?? envStyle }
     }

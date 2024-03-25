@@ -63,14 +63,15 @@ Views that require complex style resolving still use the style provider concept.
 
 ### 👑 KeyboardKit Pro
 
-* `Dictation.BarVisualizer` now applies bars with the style.
+* `Dictation.BarVisualizer` now applies more things with its style.
 * `Dictation.BarVisualizer` now applies style with the environment. 
 
 
 ### 🗑️ Deprecations
 
 * `Emoji` renames a lof of types & categories, and many things non-throwing.
-* `KeyboardButton` has been deprecated and all its views moved to `Keyboard`.
+* `LazyHGrid`/`LazyVGrid` emoji initializers are deprecated in favor of `Emoji.Grid`.  
+* `KeyboardButton` has been deprecated and all its views have been moved to `Keyboard`.
 * `KeyboardStyle.AutocompleteToolbarItemBackground` has been deprecated - just use `Autocomplete.ToolbarItem`. 
 * `Autocomplete.ToolbarItemTitle` has been deprecated - just use `Autocomplete.ToolbarItem`.
 * `Autocomplete.ToolbarItemSubtitle` has been deprecated - just use `Autocomplete.ToolbarItem`. 

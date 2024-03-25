@@ -12,7 +12,7 @@ public extension Autocomplete {
     
     /// This view mimics a native autocomplete separator.
     ///
-    /// You can style this component using the view modifier
+    /// You can style this component with the style modifier
     /// ``autocompleteToolbarSeparatorStyle(_:)``.
     struct ToolbarSeparator: View {
         

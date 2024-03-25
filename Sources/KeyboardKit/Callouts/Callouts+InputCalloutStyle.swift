@@ -19,7 +19,7 @@ public extension Callouts {
     /// You can use the ``standard`` style or your own style.
     struct InputCalloutStyle: Codable, Equatable {
         
-        /// Create an input callout style.
+        /// Create a custom input callout style.
         ///
         /// - Parameters:
         ///   - callout: The callout style to use, by default `.standard`.

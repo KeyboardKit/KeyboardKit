@@ -19,7 +19,7 @@ public extension Autocomplete {
     /// You can use the ``standard`` style or your own style.
     struct ToolbarItemStyle: Codable, Equatable {
         
-        /// Create an autocomplete toolbar item style.
+        /// Create a custom autocomplete toolbar item style.
         ///
         /// - Parameters:
         ///   - titleFont: The title font to use, by default `.body`.

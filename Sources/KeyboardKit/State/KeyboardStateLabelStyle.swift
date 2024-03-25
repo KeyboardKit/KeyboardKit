@@ -17,13 +17,13 @@ import SwiftUI
 /// You can use the ``standard`` style or add your own style.
 public struct KeyboardStateLabelStyle: Equatable {
 
-    /// Create an enabled label style.
+    /// Create a custom label style.
     ///
     /// - Parameters:
-    ///   - enabledIcon: The icon style to use when the state is enabled.
-    ///   - enabledText: The text style to use when the state is enabled.
-    ///   - disabledIcon: The icon style to use when the state is disabled.
-    ///   - disabledText: The text style to use when the state is disabled.
+    ///   - enabledIcon: The enabled icon style, by default `.green`.
+    ///   - enabledText: The enabled text style, if any.
+    ///   - disabledIcon: The disabled icon style, by default `.orange`.
+    ///   - disabledText: The disabled text style, if any.
     public init(
         enabledIcon: ComponentStyle = .init(color: .green, font: nil),
         enabledText: ComponentStyle = .init(color: nil, font: nil),
@@ -51,16 +51,16 @@ public struct KeyboardStateLabelStyle: Equatable {
         public var font: Font?
     }
 
-    /// The icon style to use when the state is enabled/active.
+    /// The enabled icon style.
     public var enabledIcon: ComponentStyle
 
-    /// The text style to use when the state is enabled/active.
+    /// The enabled text style.
     public var enabledText: ComponentStyle
 
-    /// The icon style to use when the state is disabled/inactive.
+    /// The disabled icon style.
     public var disabledIcon: ComponentStyle
 
-    /// The text style to use when the state is disabled/inactive.
+    /// The disabled text style.
     public var disabledText: ComponentStyle
 }
 
