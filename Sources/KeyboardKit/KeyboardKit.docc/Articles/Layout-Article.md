@@ -2,6 +2,17 @@
 
 This article describes the KeyboardKit layout engine.
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 A flexible keyboard layout is an important part of a software keyboard, with many considerations like device models, screen orientation, locale, keyboard-specific considerations, etc.
 
 In KeyboardKit, an ``InputSet`` is used to create a ``KeyboardLayout``, where the input set specifies input keys and the layout specifies the full keyboard layout.
@@ -80,7 +91,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks more input sets, as well as a localized ``KeyboardLayoutProvider`` for every locale in your license, that it automatically injects into the ``StandardKeyboardLayoutProvider``.
 

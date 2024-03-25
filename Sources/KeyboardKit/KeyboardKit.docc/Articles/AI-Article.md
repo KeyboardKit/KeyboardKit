@@ -23,7 +23,7 @@ Keyboard extensions have little native support for this. The text document proxy
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 ### Full Document Reader
 

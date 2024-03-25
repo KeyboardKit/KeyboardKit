@@ -32,7 +32,7 @@ One way to force the proxy to update is to move the text cursor with a fixed int
 Due to this limitation, it may be better to collapse the keyboard to a compact toolbar when an external keyboard is connected. You can always add a button that expands the keyboard again.
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 KeyboardKit has an ``ExternalKeyboardContext`` that can detect if an external keyboard is connected, such as the Smart Keyboard Folio, Magic Keyboard, Bluetooth keyboards, etc.
 

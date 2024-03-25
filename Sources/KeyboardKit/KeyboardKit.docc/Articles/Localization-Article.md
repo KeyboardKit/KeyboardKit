@@ -2,11 +2,24 @@
 
 This article describes the KeyboardKit localization engine.
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 A flexible localization engine is an important part of a keyboard, where every supported locale should be able to localize the keyboard.
 
-In KeyboardKit, each ``KeyboardLocale`` defines localized strings, assets, and locale-specific information. KeyboardKit also extends the native **Locale** type with a bunch of additional capabilities.
+In KeyboardKit, each ``KeyboardLocale`` defines localized strings, assets, and locale-specific information. KeyboardKit also extends the native ``Foundation/Locale`` type with a bunch of additional capabilities.
 
 👑 [KeyboardKit Pro][Pro] unlocks localized keyboards and services for all the locales in your license. Information about Pro features can be found at the end of this article.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
 
@@ -19,7 +32,7 @@ KeyboardKit supports 63 keyboard-specific ``KeyboardLocale``s, like ``KeyboardLo
 
 ## Locale capabilities
 
-A keyboard locale refers to a native ``KeyboardLocale/locale`` and has localized assets and strings that can be translated with ``KKL10n``. KeyboardKit also extends the native **Locale** type with a bunch of additional capabilities.
+A keyboard locale refers to a native ``KeyboardLocale/locale`` and has localized assets and strings that can be translated with ``KKL10n``. KeyboardKit also extends the native ``Foundation/Locale`` type with a bunch of additional capabilities.
 
 ``KeyboardLocale`` has provides collection modifiers, behaviors, flags, search & sorting capabilities, and much more. For instance, you can get the ``KeyboardLocale/flag`` of a locale, translate the name of a locale with other locales, etc.
 
@@ -29,11 +42,12 @@ Many extensions are applied to `Locale` instead of ``KeyboardLocale``, whenever 
 
 ## How to get and set the current keyboard locale 
 
-The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and available ``KeyboardContext/locales``. These properties are raw `Locale` values, since a keyboard isn't limited to ``KeyboardLocale``. 
+The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and available ``KeyboardContext/locales``. These properties are raw ``Foundation/Locale`` values, since a keyboard isn't limited to ``KeyboardLocale``.  The context also has ``KeyboardLocale``-specific variants.
 
-The context has optional, ``KeyboardLocale``-specific variants as well, to let you use strongly typed locales instead of `Locale` values.
+If the context ``KeyboardContext/locales`` has multiple values, you can switch locale with ``KeyboardContext/selectNextLocale()`` or a ``KeyboardLocale/ContextMenu`` that lets the user select a locale. You can apply a locale context menu with ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)``.
 
-If the context ``KeyboardContext/locales`` has multiple values, you can switch locale with ``KeyboardContext/selectNextLocale()`` or a ``LocaleContextMenu`` that lets the user select a locale.
+
+## How to change the primary language  
 
 Setting the ``KeyboardContext/locale`` will update the controller's **primaryLanguage**, which controls things like spell checking and text direction. This also sets the keyboard locale name in the keyboard switcher.
 
@@ -101,12 +115,10 @@ For information on how to add new keyboard locales, see **Instructions.md** in *
 }
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks fully localized ``InputSet``, ``KeyboardLayoutProvider`` & ``CalloutActionProvider`` implementations for every locale in your license. 
 
 This lets KeyboardKit Pro create fully localized ``SystemKeyboard`` for every supported locale, with no additional code needed. You can customize any input set or provider for any locale at any time, whenever needed.
-
-
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

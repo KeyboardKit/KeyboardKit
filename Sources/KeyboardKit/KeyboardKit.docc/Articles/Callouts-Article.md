@@ -109,18 +109,18 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 @TabNavigator {
     
-    @Tab("Action Callout") {
+    @Tab("Callouts.ActionCallout") {
         
-        KeyboardKit has a ``Callouts`` ``Callouts/ActionCallout`` that mimics a native action callout and can present secondary actions for any key:
+        KeyboardKit has an ``Callouts/ActionCallout`` that mimics a native action callout and can be used to present secondary actions for any key:
         
         ![ActionCallout](actioncallout-350.jpg)
         
         The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUI/View/actionCalloutStyle(_:)`` view modifier.
     }
     
-    @Tab("Input Callout") {
+    @Tab("Callouts.InputCallout") {
         
-        KeyboardKit has a ``Callouts`` ``Callouts/InputCallout`` that mimics a native input callout and can be show the currently pressed key.
+        KeyboardKit has an ``Callouts/InputCallout`` that mimics a native input callout and can be used to show the currently pressed key:
         
         ![InputCallout](inputcallout-350.jpg)  
         
@@ -133,7 +133,7 @@ See the <doc:Styling-Article> article for more information about how styling is 
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for every locale in your license, and automatically injects them into the ``StandardCalloutActionProvider``.
 

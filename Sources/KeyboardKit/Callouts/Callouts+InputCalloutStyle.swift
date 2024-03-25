@@ -56,7 +56,7 @@ public extension Callouts.InputCalloutStyle {
     
     /// The standard input callout style.
     ///
-    /// You can set this style to affect the global default.
+    /// You can set this style to change the global default.
     static var standard = Self()
 }
 

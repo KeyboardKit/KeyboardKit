@@ -19,7 +19,7 @@ In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``Auto
 
 KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
-👑 [KeyboardKit Pro][Pro] unlocks local and remote autocomplete. More information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks local and remote autocomplete. Information about Pro features can be found at the end of this article.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -150,25 +150,22 @@ KeyboardKit provides autocomple-specific views that can be used to mimic the nat
 
 @TabNavigator {
     
-    @Tab("Toolbar") {
+    @Tab("Autocomplete.Toolbar") {
         
-        KeyboardKit has an ``Autocomplete`` ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar.
+        KeyboardKit has an autocomplete ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar and can be used to display autocomplete items.
         
         ![AutocompleteToolbar](autocompletetoolbar.jpg)
+        
+        This view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier. It can can use ``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator``views, or use completely custom views.
             
-        The view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier.
-    }
         
-    @Tab("Items & Separators") {
-        
-        The ``Autocomplete`` namespace has ``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator`` views, that are used by the toolbar. They can be styled with ``SwiftUI/View/autocompleteToolbarItemStyle(_:)`` & ``SwiftUI/View/autocompleteToolbarSeparatorStyle(_:)`` when used separately.
     }
 }
 
 See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks additional autocomplete providers and injects a ``LocalAutocompleteProvider`` into ``KeyboardInputViewController/services`` when you register a license key. These providers are open to inheritance, so you can inherit and customize them to fir your needs.
 

@@ -221,7 +221,7 @@ public extension Keyboard.ButtonBorderStyle {
     
     /// The standard button border style.
     ///
-    /// You can set this style to affect the global default.
+    /// You can set this style to change the global default.
     static var standard = Self()
 }
 
@@ -232,7 +232,7 @@ public extension Keyboard.ButtonShadowStyle {
     
     /// The standard button shadow style.
     ///
-    /// You can set this style to affect the global default.
+    /// You can set this style to change the global default.
     static var standard = Self()
 }
 

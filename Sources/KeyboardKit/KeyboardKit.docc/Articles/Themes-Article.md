@@ -1,10 +1,21 @@
 # Themes
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 This article describes the KeyboardKit theme engine.
 
 👑 [KeyboardKit Pro][Pro] unlocks a theme engine and ``KeyboardTheme`` type, that makes it a lot easier to style your keyboard with themes. 
 
-KeyboardKit Pro comes with many predefined themes and style variations. You can also create your own themes and style variations.
+KeyboardKit Pro comes with many predefined themes, style variations and theme-based views. You can also create your own themes and style variations.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -186,3 +197,23 @@ Here is a list of all pre-defined themes with some style variations:
 }
 
 You can get a list of all pre-defined themes, as well as all pre-defined style variations, using the static ``KeyboardTheme/allPredefined`` properties.
+
+
+### Views
+
+KeyboardKit Pro provides some theme-based views:
+
+@TabNavigator {
+    @Tab("Theme.Shelf"){
+        @Row {
+            @Column {
+                A theme ``KeyboardTheme/Shelf`` renders theme collections in horizontally scrolling shelves.
+                
+                You can use a ``KeyboardTheme/ShelfItem`` as item view to show how a ``Keyboard/Button`` will look, or use completely custom views for titles and items.
+            }
+            @Column {
+                ![ThemeShelf](themeshelf.jpg)
+            }   
+        }
+    }
+}

@@ -2,6 +2,17 @@
 
 This article describes the KeyboardKit navigation engine.
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 A custom keyboard extension may sometimes have to open URLs or trigger deep links, for instance to open the app or System Settings.
 
 Keyboard extensions can however not access **UIApplication.shared**, which means that you have to jump through hoops to open URLs.

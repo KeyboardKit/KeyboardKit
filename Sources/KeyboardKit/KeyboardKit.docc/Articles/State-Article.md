@@ -1,5 +1,16 @@
 # State
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 This article describes the KeyboardKit state engine.
 
 KeyboardKit has ways to check various keyboard state, such as if a keyboard is enabled in System Settings, if **Full Access** is enabled, if the keyboard is currently being used, etc.
@@ -43,8 +54,8 @@ The ``KeyboardStateInspector`` protocol that powers the context can be implement
 
 @TabNavigator {
     
-    @Tab("Keyboard State Label") {
-        The ``KeyboardStateLabel`` view can be used to display any keyboard state, for instance:
+    @Tab("KeyboardState.Label") {
+        A keyboard state ``KeyboardState/Label`` can be used to display any keyboard state, for instance if the keyboard has been enabled in System Settings, if Full Access is enabled, etc.
 
         ```swift
         struct MyView: View {
@@ -53,7 +64,7 @@ The ``KeyboardStateInspector`` protocol that powers the context can be implement
             var state = KeyboardStateContext(bundleId: "com.myapp.keyboard")
 
             var body: some View {
-                KeyboardStateLabel(
+                KeyboardState.Label(
                     isEnabled: state.isKeyboardEnabled,
                     enabledText: "Keyboard is enabled",
                     disabledText: "Keyboard is disabled",
@@ -63,7 +74,7 @@ The ``KeyboardStateInspector`` protocol that powers the context can be implement
         ```
         
         The view can be wrapped in a `Link` or ``KeyboardSettingsLink`` to link to System Settings. It supports custom texts, icons, etc.
-        and can be styled with a ``KeyboardStateLabelStyle`` by applying a ``SwiftUI/View/keyboardStateLabelStyle(_:)`` view modifier.
+        and can be styled with a ``KeyboardState/LabelStyle`` or by applying a ``SwiftUI/View/keyboardStateLabelStyle(_:)`` view modifier.
     }
 }
 

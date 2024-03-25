@@ -83,9 +83,10 @@ private extension View {
         actionHandler: KeyboardActionHandler
     ) -> some View {
         if shouldApplyLocaleContextMenu(for: action, context: context) {
-            self.localeContextMenu(for: context) {
+            self.keyboardLocaleContextMenu(for: context) {
                 actionHandler.handle(.release, on: action)
-            }.id(context.locale.identifier)
+            }
+            .id(context.locale.identifier)
         } else {
             self
         }

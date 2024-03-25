@@ -117,7 +117,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] injects an ``StandardKeyboardActionHandler/emojiRegistrationAction`` function into the ``StandardKeyboardActionHandler``, then uses it to automatically register emojis as you use them.
 

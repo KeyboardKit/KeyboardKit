@@ -257,10 +257,9 @@ KeyboardKit is available under the MIT license.
 
 ### State
 
+- ``KeyboardState``
 - ``KeyboardStateContext``
 - ``KeyboardStateInspector``
-- ``KeyboardStateLabel``
-- ``KeyboardStateLabelStyle``
 
 ### Styling
 
@@ -269,7 +268,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
 - ``StandardKeyboardStyleProvider``
-
 
 ### Themes
 

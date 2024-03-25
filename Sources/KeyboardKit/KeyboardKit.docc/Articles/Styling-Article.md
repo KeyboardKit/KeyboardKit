@@ -1,10 +1,21 @@
 # Styling
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 This article describes the KeyboardKit styling engine.
 
 While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit keyboards can be customized to great extent.
 
-[KeyboardKit Pro][Pro] unlocks a theme engine and many themes. More information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks a theme engine and many themes. Information about Pro features can be found at the end of this article.
 
 
 
@@ -117,7 +128,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks a theme engine and a ``KeyboardTheme`` type, that makes it a lot easier to style your keyboard with themes.
 

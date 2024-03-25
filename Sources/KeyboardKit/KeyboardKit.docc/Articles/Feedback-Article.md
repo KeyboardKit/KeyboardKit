@@ -17,6 +17,8 @@ Feedback is an important part of the typing experience, where a keyboard can tri
 
 In KeyboardKit, audio and haptic feedback can be triggered with a ``KeyboardActionHandler`` or by triggering an ``AudioFeedback`` or ``HapticFeedback`` type directly.
 
+👑 [KeyboardKit Pro][Pro] unlocks a convenient feedback toggle view. Information about Pro features can be found at the end of this article.
+
 
 
 ## Audio feedback
@@ -85,3 +87,27 @@ extension AudioFeedback {
 ```
 
 You can also implement a custom action handler to trigger feedback in a different ways. See the <doc:Actions-Article> article for more information.
+
+
+
+## 👑 KeyboardKit Pro
+
+[KeyboardKit Pro][Pro] unlocks a convenient feedback toggle that can be added to a keyboard toolbar to toggle audio or haptic feedback.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+### Views
+
+@TabNavigator {
+    
+    @Tab("FeedbackConfiguration.Toggle") {
+        
+        A feedback configuration ``FeedbackConfiguration/Toggle`` can be used to toggle audio & haptic feedback on and off. It can be added to the keyboard toolbar, or anywhere you want it.
+        
+        ![FeedbackToggle](feedbackconfigurationtoggle.jpg)
+        
+        The view can be customized with other enabled and disabled icons, and be further styled with native accent colors, fonts, etc. It's currently not style-based, since it's not needed.
+    }
+}
+
+

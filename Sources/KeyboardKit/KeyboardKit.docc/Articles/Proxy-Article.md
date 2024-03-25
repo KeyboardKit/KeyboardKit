@@ -2,13 +2,24 @@
 
 This article describes the KeyboardKit proxy engine and its utilities.
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 iOS keyboard extensions use a **UITextDocumentProxy** to integrate with the currently selected text field. The proxy lets you insert and delete text, get the currently selected text, move the input cursor, etc.
 
 The native APIs are however quite limited, and make it hard to get detailed text information and to perform many standard operations. For instance, you have to write code to get the current word or sentence, understand where the cursor is, etc.
 
 KeyboardKit therefore adds a bunch of extension to the `UITextDocumentProxy` to make things easier. ``KeyboardInputViewController`` also has a custom ``KeyboardInputViewController/textDocumentProxy`` that lets you do even more. 
 
-👑 [KeyboardKit Pro][Pro] adds even more proxy capabilities, such as the ability to read the full content of the current document. Information about Pro features can be found at the end of this article. 
+👑 [KeyboardKit Pro][Pro] unlocks the ability to read the full content of the current document. Information about Pro features can be found at the end of this article.
 
 
 
@@ -26,7 +37,7 @@ KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional cap
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks additional ``UIKit/UITextDocumentProxy`` capabilities, like the ability to read the full document content instead of just the content closest to the input cursor.
 

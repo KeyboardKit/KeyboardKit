@@ -15,7 +15,7 @@ This article describes the KeyboardKit keyboard image engine.
 
 KeyboardKit provides additional, keyboard-specific images that make it easy to apply a keyboard style that mimics the native style.
 
-👑 [KeyboardKit Pro][Pro] also provides vectorized assets for e.g. ``EmojiCategory``. More information can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] provides vectorized assets for e.g. ``EmojiCategory``. Information about Pro features can be found at the end of this article.
 
 
 

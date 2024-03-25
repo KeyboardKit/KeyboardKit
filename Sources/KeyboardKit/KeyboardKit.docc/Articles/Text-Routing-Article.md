@@ -1,5 +1,16 @@
 # Text Routing
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 This article describes the KeyboardKit text routing engine.
 
 Custom iOS keyboard extensions use ``UIKit/UITextDocumentProxy`` to interact with the currently selected text field, e.g. to insert or delete text, move the input cursor, etc.
@@ -10,7 +21,7 @@ These limitations make it hard to implement features that require text input in 
 
 KeyboardKit therefore adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to route text to any other text field.
 
-👑 [KeyboardKit Pro][Pro] unlocks even more text routing utils, like a ``KeyboardTextField`` that automatically registers and unregisters as the input proxy when it gets and loses focus, to let you seemlessly provide text input-based features in your keyboard.
+👑 [KeyboardKit Pro][Pro] unlocks even more text routing utils, like a ``KeyboardTextField`` that automatically registers and unregisters as the input proxy when it gets and loses focus. Information about Pro features can be found at the end of this article.
 
 
 
@@ -24,7 +35,7 @@ Just set ``KeyboardInputViewController/textInputProxy`` to **nil** to restore th
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 KeyboardKit Pro unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus:
 

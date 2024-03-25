@@ -151,7 +151,7 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 
 
 
-## 👑 Pro features
+## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] adds more types to ``Emoji`` and unlocks an ``EmojiKeyboard`` that is automatically added to the ``SystemKeyboard`` when a valid license is registered.
 
