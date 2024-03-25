@@ -141,7 +141,7 @@ public struct SystemKeyboard<
     
     /// This typealias defines emoji keyboard builder params.
     public typealias EmojiKeyboardParams = (
-        style: KeyboardStyle.EmojiKeyboard,
+        style: EmojiKeyboardStyle,
         view: StandardEmojiKeyboard)
     
     /// The standard emoji keyboard view type.
@@ -309,7 +309,7 @@ private extension SystemKeyboard {
     
     func emojiKeyboard() -> some View {
         emojiKeyboardBuilder((
-            style: KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext),
+            style: EmojiKeyboardStyle.standard(for: keyboardContext),
             view: Emoji.KeyboardWrapper(
                 actionHandler: actionHandler,
                 keyboardContext: keyboardContext,

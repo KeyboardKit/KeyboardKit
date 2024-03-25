@@ -25,16 +25,16 @@ public extension Callouts {
         public init(
             calloutContext: CalloutContext.ActionContext,
             keyboardContext: KeyboardContext,
-            emojiStyle: KeyboardStyle.EmojiKeyboard? = nil
+            emojiStyle: EmojiStyle? = nil
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
             self.initStyle = nil
-            self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
+            self.emojiStyle = emojiStyle ?? EmojiStyle.standard(for: keyboardContext)
         }
         
         public typealias Context = CalloutContext.ActionContext
-        public typealias EmojiStyle = KeyboardStyle.EmojiKeyboard
+        public typealias EmojiStyle = EmojiKeyboardStyle
         
         @ObservedObject
         private var calloutContext: Context
@@ -69,13 +69,13 @@ public extension Callouts {
         public init(
             calloutContext: CalloutContext.ActionContext,
             keyboardContext: KeyboardContext,
-            style: Callouts.ActionCalloutStyle = .standard,
-            emojiStyle: KeyboardStyle.EmojiKeyboard? = nil
+            style: Callouts.ActionCalloutStyle,
+            emojiStyle: EmojiKeyboardStyle? = nil
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
             self.initStyle = style
-            self.emojiStyle = emojiStyle ?? KeyboardStyle.EmojiKeyboard.standard(for: keyboardContext)
+            self.emojiStyle = emojiStyle ?? EmojiKeyboardStyle.standard(for: keyboardContext)
         }
         
         private typealias Style = Callouts.ActionCalloutStyle

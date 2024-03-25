@@ -15,7 +15,7 @@ These release notes only cover the current major version.
 
 This version bumps to Swift 5.9 and adds support for visionOS.
 
-This version also adjusts some view namings, and refactors view styling to be injected with view modifiers instead of with the view initializer.
+This version also adjusts some view names and refactors view styling to be injected with view modifiers instead of with the initializer.
 
 Views that require complex style resolving still use the style provider concept.
 

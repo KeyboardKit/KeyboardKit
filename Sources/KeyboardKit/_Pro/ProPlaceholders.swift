@@ -30,7 +30,16 @@ public struct EmojiKeyboard {}
 /// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/KeyboardKit/KeyboardKitPro) for more information.
-public struct EmojiKeyboardStyle {}
+public struct EmojiKeyboardStyle {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public var itemFont: Font { .body }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func standard(for context: KeyboardContext) -> Self {
+        .init()
+    }
+}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
 ///

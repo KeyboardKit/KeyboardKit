@@ -10,48 +10,11 @@ import CoreGraphics
 import Foundation
 import SwiftUI
 
+@available(*, deprecated, renamed: "EmojiKeyboardStyle")
 public extension KeyboardStyle {
     
-    /**
-     This style can be used to style emoji keyboards, like a
-     Pro **EmojiKeyboard** and other emoji views.
-     
-     The style can customize the font, spacing, etc. of both
-     keyboards, grids, callouts, etc.
-     
-     Note that the style has both an ``itemSize`` as well as
-     an ``itemFont`` parameter. SwiftUI grids use ``itemSize``
-     as pre-calculated cell size, then apply ``itemFont`` to
-     each grid item. Make sure to find a good combo when you
-     customize these values.
-     */
     struct EmojiKeyboard {
         
-        /**
-         Create an emoji keyboard item style.
-         
-         The standard parameter values aim to create a style
-         that mimics a standard iOS emoji portrait keyboard.
-         
-         - Parameters:
-           - rows: The number of rows to use in the keyboard, by default `5`.
-           - itemSize: The emoji item size to use, by default `40`.
-           - itemFont: The font to apply to emojis, by default `.system(size: 33)`.
-           - horizontalItemSpacing: The horizontal spacing to use between emojis, by default `10`.
-           - verticalPadding: The vertical padding of the keyboard, by default `5`.
-           - verticalItemSpacing: The vertical spacing to use between emojis, by default `6`.
-           - verticalCategoryStackSpacing: The vertical spacing to apply to the vertical category keyboard stack, by default `0`.
-           - categoryTitleFont: The font to apply to the category title label, by default `.system(size: 12)`.
-           - categoryTitlePadding: The top and bottom padding to apply to the category title label, by default `2` and `5` for top and bottom.
-           - menuAbcText: The text to use for the menu ABC button, by default `ABC`.
-           - menuAbcFont: The font to apply to the menu ABC button, by default `.system(size: 14)`.
-           - menuIconSize: The size to apply to the menu category icons, by default `15`.
-           - menuIconSpacing: The spacing to apply between menu category icons, by default `5`.
-           - menuIconSelectionSize: The size of the selection outside of the icon, by default `6`.
-           - menuBackspaceIcon: The icon to use for the menu backspace button, by default `.keyboardBackspace`.
-           - menuBackspaceFont: The font to apply to the menu backspace button, by default `.system(size: 16)`.
-           - selectedCategoryColor: The color to apply to the selected category, by default `.primary.opacity(0.1)`.
-         */
         public init(
             rows: Int = 5,
             itemSize: Double = 40,
@@ -137,12 +100,9 @@ public extension KeyboardStyle {
     }
 }
 
+@available(*, deprecated, renamed: "EmojiKeyboardStyle")
 public extension KeyboardStyle.EmojiKeyboard {
     
-    /// Get the standard style to use for a certain context.
-    ///
-    /// - Parameters:
-    ///   - context: The context to base the style on.
     static func standard(
         for context: KeyboardContext
     ) -> KeyboardStyle.EmojiKeyboard {
@@ -157,12 +117,6 @@ public extension KeyboardStyle.EmojiKeyboard {
         }
     }
 
-    /**
-     Get the standard style to use for a certain context.
-
-     - Parameters:
-       - context: The context to base the style on.
-     */
     static func standardPad(
         for context: KeyboardContext
     ) -> KeyboardStyle.EmojiKeyboard {
@@ -174,12 +128,6 @@ public extension KeyboardStyle.EmojiKeyboard {
         return isPortrait ? .standardPadPortrait : .standardPadLandscape
     }
 
-    /**
-     Get the standard style to use for a certain context.
-
-     - Parameters:
-       - context: The context to base the style on.
-     */
     static func standardPhone(
         for context: KeyboardContext
     ) -> KeyboardStyle.EmojiKeyboard {
@@ -212,20 +160,8 @@ public extension KeyboardStyle.EmojiKeyboard {
         )
     }
     
-    /**
-     The style to use for large iPads.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardLargePad = standardLargePadPortrait
 
-    /**
-     The style to use for large iPads in landscape.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardLargePadLandscape = standardPad(
         rows: 6,
         horizontalItemSpacing: 10,
@@ -233,12 +169,6 @@ public extension KeyboardStyle.EmojiKeyboard {
         categoryTitlePadding: .init(top: 18, leading: 0, bottom: 0, trailing: 0)
     )
     
-    /**
-     The style to use for large iPads in portrait.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardLargePadPortrait = standardPad(
         rows: 5,
         itemSize: 55,
@@ -248,20 +178,8 @@ public extension KeyboardStyle.EmojiKeyboard {
         categoryTitlePadding: .init(top: 14, leading: 0, bottom: 0, trailing: 0)
     )
     
-    /**
-     The style to use for standard iPads.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardPad = standardPadPortrait
     
-    /**
-     The style to use for standard iPads in landscape.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardPadLandscape = standardPad(
         rows: 5,
         itemSize: 58,
@@ -269,12 +187,6 @@ public extension KeyboardStyle.EmojiKeyboard {
         verticalCategoryStackSpacing: 7
     )
     
-    /**
-     The style to use for standard iPads in landscape.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardPadPortrait = standardPad(
         rows: 3,
         itemSize: 67,
@@ -282,29 +194,11 @@ public extension KeyboardStyle.EmojiKeyboard {
         verticalCategoryStackSpacing: 5
     )
     
-    /**
-     The style to use for iPhones.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardPhone = standardPhonePortrait
     
-    /**
-     The style to use for iPhones in landscape.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardPhoneLandscape = KeyboardStyle.EmojiKeyboard(
         rows: 3
     )
     
-    /**
-     The style to use for iPhones in portrait.
-     
-     This property can be changed to change the global style
-     of all emoji keyboards in this configuration.
-     */
     static var standardPhonePortrait = KeyboardStyle.EmojiKeyboard()
 }
