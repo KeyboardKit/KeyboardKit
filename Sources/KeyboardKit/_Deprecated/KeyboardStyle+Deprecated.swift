@@ -1,5 +1,6 @@
 import SwiftUI
 
+@available(*, deprecated, message: "View styles are now named like their related views")
 public extension KeyboardStyle {
     
     @available(*, deprecated, renamed: "Autocomplete.ToolbarStyle")
