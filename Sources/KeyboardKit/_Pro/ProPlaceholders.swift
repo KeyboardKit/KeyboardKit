@@ -13,46 +13,46 @@ import UIKit
 #endif
 
 
-public enum ProPlaceholderError: LocalizedError {
+enum ProPlaceholderError: LocalizedError {
     
     case proPlaceholder
     
-    public var errorDescription: String? {
-        "This is unlocked by KeyboardKit Pro."
+    var errorDescription: String? {
+        "👑 This is unlocked by KeyboardKit Pro."
     }
 }
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public struct EmojiKeyboard {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public struct EmojiKeyboardStyle {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public class ExternalKeyboardContext: ObservableObject {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public class iPadProKeyboardLayoutProvider: iPadKeyboardLayoutProvider {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public struct KeyboardTextField {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public struct KeyboardTextView {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public struct KeyboardTheme {
@@ -74,22 +74,22 @@ public struct KeyboardTheme {
     }
 }
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public class ThemeBasedKeyboardStyleProvider {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 /// 
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public class LocalAutocompleteProvider {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public class ProDictationService {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public class ProKeyboardDictationService {
@@ -97,22 +97,22 @@ public class ProKeyboardDictationService {
     public func tryToReturnToKeyboard() {}
 }
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public class RemoteAutocompleteProvider {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public protocol SpeechRecognizer {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public struct SystemKeyboardPreview {}
 
-/// This is unlocked by KeyboardKit Pro.
+/// 👑 This is unlocked by KeyboardKit Pro.
 ///
 /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
 public struct SystemKeyboardButtonPreview {}
@@ -147,7 +147,7 @@ public extension Image {
 
 public extension InputSet {
 
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     static var azerty: InputSet {
@@ -156,7 +156,7 @@ public extension InputSet {
         }
     }
 
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     static var qwertz: InputSet {
@@ -169,7 +169,7 @@ public extension InputSet {
 
 public extension KeyboardStyleProvider {
     
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     static func themed(
@@ -183,12 +183,12 @@ public extension KeyboardStyleProvider {
 
 public extension Proxy {
     
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     struct FullDocumentConfiguration {}
     
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     struct FullDocumentResult {
@@ -204,14 +204,14 @@ public extension Proxy {
 
 public extension View {
     
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     func emojiKeyboardStyle(_ style: EmojiKeyboardStyle) -> some View {
         Text(ProPlaceholderError.proPlaceholder.localizedDescription)
     }
     
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     func keyboardDictation<Overlay: View>() -> some View {
@@ -223,7 +223,7 @@ public extension View {
 #if os(iOS) || os(tvOS) || os(visionOS)
 public extension UITextDocumentProxy {
     
-    /// This is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     ///
     /// See [KeyboardKit Pro](https://github.com/Keyboard/KeyboardKitPro) for more information.
     func fullDocumentContext(

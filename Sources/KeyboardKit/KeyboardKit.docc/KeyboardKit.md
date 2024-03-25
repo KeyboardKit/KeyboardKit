@@ -112,7 +112,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Actions-Article>
 - <doc:AI-Article>
 - <doc:Autocomplete-Article>
-- <doc:Buttons-Article>
 - <doc:Callouts-Article>
 - <doc:Colors-Article>
 - <doc:Device-Article>
@@ -142,6 +141,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardController``
 - ``StandardKeyboardBehavior``
 - ``SystemKeyboard``
+- ``SystemKeyboardPreview``
+- ``SystemKeyboardButtonPreview``
 - ``SystemKeyboardItem``
 
 ### Actions
@@ -155,6 +156,8 @@ KeyboardKit is available under the MIT license.
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
+- ``LocalAutocompleteProvider``
+- ``RemoteAutocompleteProvider``
 
 ### Callouts
 
@@ -175,14 +178,19 @@ KeyboardKit is available under the MIT license.
 - ``DictationContext``
 - ``DictationService``
 - ``KeyboardDictationService``
+- ``ProDictationService``
+- ``ProKeyboardDictationService``
+- ``SpeechRecognizer``
 
 ### Emojis
 
 - ``Emoji``
 - ``EmojiCategory``
+- ``EmojiKeyboard``
+- ``EmojiKeyboardStyle``
 - ``EmojiVersion``
-- ``MostRecentEmojiProvider``
 - ``FrequentEmojiProvider``
+- ``MostRecentEmojiProvider``
 
 ### Extensions
 
@@ -192,6 +200,10 @@ KeyboardKit is available under the MIT license.
 - ``Swift``
 - ``SwiftUI``
 - ``UIKit``
+
+### External
+
+- ``ExternalKeyboardContext``
 
 ### Feedback
 
@@ -216,6 +228,7 @@ KeyboardKit is available under the MIT license.
 - ``StandardKeyboardLayoutProvider``
 - ``InputSetBasedKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
+- ``iPadProKeyboardLayoutProvider``
 - ``iPhoneKeyboardLayoutProvider``
 
 ### Localization
@@ -235,6 +248,8 @@ KeyboardKit is available under the MIT license.
 
 - ``Proxy``
 - ``TextInputProxy``
+- ``KeyboardTextField``
+- ``KeyboardTextView``
 
 ### Settings
 
@@ -253,5 +268,10 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardFont``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
-
 - ``StandardKeyboardStyleProvider``
+
+
+### Themes
+
+- ``KeyboardTheme``
+- ``ThemeBasedKeyboardStyleProvider``

@@ -70,6 +70,7 @@ Views that require complex style resolving still use the style provider concept.
 ### 🗑️ Deprecations
 
 * `Emoji` renames a lof of types & categories, and many things non-throwing.
+* `Emoji.Picker` has been deprecated in favor of the EmojiKit open-source view.
 * `LazyHGrid`/`LazyVGrid` emoji initializers are deprecated in favor of `Emoji.Grid`.  
 * `KeyboardButton` has been deprecated and all its views have been moved to `Keyboard`.
 * `KeyboardStyle.AutocompleteToolbarItemBackground` has been deprecated - just use `Autocomplete.ToolbarItem`. 
