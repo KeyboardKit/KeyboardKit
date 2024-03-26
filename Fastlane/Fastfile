@@ -85,7 +85,7 @@ platform :ios do
     ensure_git_branch(branch: main_branch)
     swiftlint(strict: true)
     build_all
-    test_ios
+    test_all
   end
 
 end
