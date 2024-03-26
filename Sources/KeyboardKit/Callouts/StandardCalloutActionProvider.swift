@@ -39,7 +39,7 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
         self.keyboardContext = keyboardContext
         self.baseProvider = baseProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
-        self.localizedProviders = LocaleDictionary(dict)
+        self.localizedProviders = .init(dict)
     }
     
     
@@ -54,7 +54,7 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     public private(set) var baseProvider: CalloutActionProvider
 
     /// This is used to resolve the a provider for the context.
-    public var localizedProviders: LocaleDictionary<CalloutActionProvider>
+    public var localizedProviders: KeyboardLocale.Dictionary<CalloutActionProvider>
 
 
     /// Get callout actions for the provided action.

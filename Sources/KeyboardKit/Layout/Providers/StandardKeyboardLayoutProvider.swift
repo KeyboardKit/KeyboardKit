@@ -36,7 +36,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     ) {
         self.baseProvider = baseProvider
         let dict = Dictionary(uniqueKeysWithValues: localizedProviders.map { ($0.localeKey, $0) })
-        self.localizedProviders = LocaleDictionary(dict)
+        self.localizedProviders = .init(dict)
     }
 
     
@@ -48,7 +48,7 @@ open class StandardKeyboardLayoutProvider: KeyboardLayoutProvider {
     public private(set) var baseProvider: KeyboardLayoutProvider
 
     /// A dictionary with localized layout providers.
-    public var localizedProviders: LocaleDictionary<KeyboardLayoutProvider>
+    public var localizedProviders: KeyboardLocale.Dictionary<KeyboardLayoutProvider>
 
 
     /// The keyboard layout to use for a certain context.

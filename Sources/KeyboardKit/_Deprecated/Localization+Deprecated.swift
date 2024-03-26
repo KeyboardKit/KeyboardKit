@@ -3,6 +3,9 @@ import SwiftUI
 @available(*, deprecated, renamed: "KeyboardLocale.ContextMenu")
 public typealias LocaleContextMenu = KeyboardLocale.ContextMenu
 
+@available(*, deprecated, renamed: "KeyboardLocale.Dictionary")
+public typealias LocaleDictionary = KeyboardLocale.Dictionary
+
 public extension View {
 
     @available(*, deprecated, renamed: "keyboardLocaleContextMenu(for:tapAction:)")

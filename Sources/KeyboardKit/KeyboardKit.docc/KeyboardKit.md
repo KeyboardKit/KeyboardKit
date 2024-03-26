@@ -235,8 +235,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KKL10n``
 - ``KeyboardLocale``
-- ``LocaleContextMenu``
-- ``LocaleDictionary``
 - ``Localizable``
 - ``LocalizedService``
 
@@ -265,7 +263,6 @@ KeyboardKit is available under the MIT license.
 
 - ``Styling``
 - ``KeyboardFont``
-- ``KeyboardStyle``
 - ``KeyboardStyleProvider``
 - ``StandardKeyboardStyleProvider``
 

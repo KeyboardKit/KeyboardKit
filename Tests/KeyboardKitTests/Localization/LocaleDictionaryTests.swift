@@ -1,5 +1,5 @@
 //
-//  LocaleDictionaryTests.swift
+//  KeyboardLocale+DictionaryTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -9,14 +9,14 @@
 import KeyboardKit
 import XCTest
 
-class LocaleDictionaryTests: XCTestCase {
+class KeyboardLocale_DictionaryTests: XCTestCase {
     
-    var typedDict: LocaleDictionary<String>!
-    var stringDict: LocaleDictionary<String>!
-    var intDict: LocaleDictionary<Int>!
+    var typedDict: KeyboardLocale.Dictionary<String>!
+    var stringDict: KeyboardLocale.Dictionary<String>!
+    var intDict: KeyboardLocale.Dictionary<Int>!
 
     override func setUp() {
-        typedDict = LocaleDictionary(
+        typedDict = KeyboardLocale.Dictionary(
             [
                 .english: "English",
                 .german: "German",
@@ -25,7 +25,7 @@ class LocaleDictionaryTests: XCTestCase {
             ]
         )
 
-        stringDict = LocaleDictionary(
+        stringDict = KeyboardLocale.Dictionary(
             [
                 KeyboardLocale.english.id: "English",
                 KeyboardLocale.german.id: "German",
@@ -34,7 +34,7 @@ class LocaleDictionaryTests: XCTestCase {
             ]
         )
 
-        intDict = LocaleDictionary(
+        intDict = KeyboardLocale.Dictionary(
             [
                 KeyboardLocale.english.id: 1,
                 KeyboardLocale.german.id: 2,
@@ -44,7 +44,7 @@ class LocaleDictionaryTests: XCTestCase {
         )
     }
 
-    func testLocaleDictionaryCanBeCreatedWithAnyItemType() {
+    func testKeyboardLocaleDictionaryCanBeCreatedWithAnyItemType() {
         XCTAssertEqual(typedDict.dictionary.keys.sorted(), ["de", "en", "it", "sv"])
         XCTAssertNotNil(typedDict)
         XCTAssertEqual(stringDict.dictionary.keys.sorted(), ["de", "en", "it", "sv"])
@@ -52,21 +52,21 @@ class LocaleDictionaryTests: XCTestCase {
         XCTAssertNotNil(intDict)
     }
 
-    func testLocaleDictionaryCanResolveExistingValuesOnLocale() {
+    func testKeyboardLocaleDictionaryCanResolveExistingValuesOnLocale() {
         let locale = KeyboardLocale.swedish.locale
         XCTAssertEqual(typedDict.value(for: locale), "Swedish")
         XCTAssertEqual(stringDict.value(for: locale), "Swedish")
         XCTAssertEqual(intDict.value(for: locale), 4)
     }
 
-    func testLocaleDictionaryCanResolveExistingValuesOnLocaleLanguageCode() {
+    func testKeyboardLocaleDictionaryCanResolveExistingValuesOnLocaleLanguageCode() {
         let locale = Locale(identifier: "sv-SE")
         XCTAssertEqual(typedDict.value(for: locale), "Swedish")
         XCTAssertEqual(stringDict.value(for: locale), "Swedish")
         XCTAssertEqual(intDict.value(for: locale), 4)
     }
 
-    func testLocaleDictionaryReturnsNilForNonExistingLocale() {
+    func testKeyboardLocaleDictionaryReturnsNilForNonExistingLocale() {
         let locale = Locale(identifier: "abc")
         XCTAssertNil(typedDict.value(for: locale))
         XCTAssertNil(stringDict.value(for: locale))

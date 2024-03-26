@@ -8,13 +8,17 @@
 
 import Foundation
 
-/**
- This enum defines all KeyboardKit-supported locales.
- 
- Every locale refers to a native ``locale`` that can provide
- locale-specific information. A keyboard locale also defines
- localized assets that can be translated with ``KKL10n``.
- */
+/// This enum defines KeyboardKit-supported locales and is a
+/// namespace for related types.
+///
+/// Every keyboard locale refers to a native ``locale`` that
+/// provide locale-specific information. 
+///
+/// A keyboard locale also defines localized assets that can
+/// be translated with ``KKL10n``.
+///
+/// The namespace doesn't contain protocols, open classes or
+/// types of higher importance.
 public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     
     /// Try to map a fuzzy name to a keyboard locale.
