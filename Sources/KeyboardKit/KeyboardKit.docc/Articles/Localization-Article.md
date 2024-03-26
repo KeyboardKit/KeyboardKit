@@ -80,7 +80,7 @@ For instance, this translates the numeric button key for the current locale:
 let translation = KKL10n.keyboardTypeNumeric.text
 ```
 
-To translate the same text for a certain ``KeyboardLocale`` or `Locale`, you can use the various ``KKL10n/text(for:)-4dq8k`` functions, which either take ``KeyboardLocale`` or raw `Locale` values:
+To translate the same text for a certain ``KeyboardLocale`` or `Locale`, you can use the various ``KKL10n/text`` functions, which either take ``KeyboardLocale`` or raw `Locale` values:
 
 ```
 let translation = KKL10n.keyboardTypeNumeric.text(for: .spanish)

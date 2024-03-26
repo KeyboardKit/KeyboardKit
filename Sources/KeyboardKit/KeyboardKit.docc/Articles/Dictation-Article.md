@@ -77,9 +77,7 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
 
         ![DictationScreen](dictationscreen-350.jpg)
         
-        This screen will automatically fade in when a dictation is started, when you use the Pro ``SwiftUI/View/keyboardDictation()`` view modifiers.
-        
-        The view can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
+        This screen will automatically fade in when a dictation is started, if you use the Pro keyboard dictation view modifiers. It can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
     
     @Tab("Dictation.BarVisualizer") {
@@ -220,14 +218,14 @@ struct ContentView: View {
 }
 ```
 
-The ``SwiftUI/View/keyboardDictation()`` view modifier has an overlay parameter that defines the view to show while dictation is active. You can use the Pro ``Dictation`` ``Dictation/Screen`` with any of the built-in dictation visualizers, or a completely custom view.
+The keyboard dictation view modifier has an overlay parameter that defines the view to show while dictation is active. You can use the Pro dictation ``Dictation/Screen`` with any of the built-in dictation visualizers, or a completely custom view.
 
 
 #### 7. Create a speech recognizer
 
-The ``SwiftUI/View/keyboardDictation()`` view modifier requires a ``SpeechRecognizer``, which is a protocol that decouples KeyboardKit from the Speech framework, to avoid *all* apps from having to specify dictation permissions.
+The Pro keyboard dictation view modifier requires a ``SpeechRecognizer``, which is a protocol that decouples KeyboardKit from the Speech framework, to avoid apps from having to specify dictation permissions when not using speech recognition.
 
-Instead, just add this code to your app, then inject an instance of this class into the ``SwiftUI/View/keyboardDictation()`` view modifier.
+Instead, just add this speech recognizer code to your app, then inject an instance of the class into the keyboard dictation view modifier.
 
 ```swift
 import Speech

@@ -39,7 +39,7 @@ class KeyboardController: KeyboardInputViewController {}
 This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, and more.
 
 
-KeyboardKit will by default use a ``SystemKeyboard`` as the main keyboard view. To replace or customize it, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call ``KeyboardInputViewController/setup(with:)-7ca6w`` with a custom view:
+KeyboardKit will by default use a ``SystemKeyboard`` as the main keyboard view. To replace or customize it, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any setup function with a custom view:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

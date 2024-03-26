@@ -42,7 +42,7 @@ KeyboardKit injects a ``StandardKeyboardActionHandler`` into ``KeyboardInputView
 
 KeyboardKit automatically triggers actions when a user interacts with the keyboard, or when certain system events happen. You can intercept these actions with a custom action handler, to perform any logic you want.
 
-You can trigger actions programmatically by calling ``KeyboardActionHandler/handle(_:)-35vwk`` or ``KeyboardActionHandler/handle(_:on:)`` to trigger an action with an optional gesture:
+You can trigger actions programmatically by calling any of the ``KeyboardActionHandler/handle(_:on:)`` functions to trigger an action with an optional gesture:
 
 ```swift
 func doStuff(with handler: KeyboardActionHandler) {
