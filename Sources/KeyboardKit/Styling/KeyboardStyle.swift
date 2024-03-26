@@ -8,5 +8,8 @@
 
 import Foundation
 
-@available(*, deprecated, message: "View styles are now named like their related views")
+/// This namespace contains style-related types.
+///
+/// The namespace doesn't contain protocols, open classes or
+/// types of higher importance.
 public struct KeyboardStyle {}

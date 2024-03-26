@@ -39,12 +39,12 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 
 * ⌨️ <doc:Essentials> - KeyboardKit comes with a many essential features, types and views.
 * 💥 <doc:Actions-Article> - KeyboardKit makes it easy to trigger character insertion, locale switching, etc.
-* 🤖 <doc:AI-Article> - KeyboardKit unlocks additional capabilities that are useful for AI-based tools.
+* 🤖 <doc:AI-Article> - KeyboardKit has tools that are required for AI-based features.
 * 💡 <doc:Autocomplete-Article> - KeyboardKit can perform on-device and remote autocomplete & autocorrect.
 * 🗯 <doc:Callouts-Article> - KeyboardKit can show input and secondary action callouts.
 * 🌈 <doc:Colors-Article> - KeyboardKit defines keyboard-specific colors.
 * 📱 <doc:Device-Article> - KeyboardKit provides device-specific utilities.
-* 🎤 <doc:Dictation-Article> - KeyboardKit can perform dictation from the keyboard.
+* 🎤 <doc:Dictation-Article> - KeyboardKit can perform dictation from the app and the keyboard.
 * 😀 <doc:Emojis-Article> - KeyboardKit defines an emoji type, categories, an emoji keyboard, etc.
 * ⌨️ <doc:External-Keyboards-Article> - KeyboardKit can detect and react to external keyboards.
 * 🔉 <doc:Feedback-Article> - KeyboardKit can trigger and customize audio and haptic feedback.
@@ -58,7 +58,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * ⚙️ <doc:Settings-Article> - KeyboardKit has a bunch of tools for managing in-app settings & System Settings.
 * 🩺 <doc:State-Article> - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 <doc:Styling-Article> - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
-* 🚏 <doc:Text-Routing-Article> - KeyboardKit can route text input from the main app to in-keyboard textfields.
+* 🚏 <doc:Text-Routing-Article> - KeyboardKit lets you type in textfields in the keyboard extensions.
 
 
 
@@ -233,8 +233,8 @@ KeyboardKit is available under the MIT license.
 
 ### Localization
 
-- ``KKL10n``
 - ``KeyboardLocale``
+- ``KKL10n``
 - ``Localizable``
 - ``LocalizedService``
 
@@ -263,6 +263,7 @@ KeyboardKit is available under the MIT license.
 
 - ``Styling``
 - ``KeyboardFont``
+- ``KeyboardStyle``
 - ``KeyboardStyleProvider``
 - ``StandardKeyboardStyleProvider``
 
