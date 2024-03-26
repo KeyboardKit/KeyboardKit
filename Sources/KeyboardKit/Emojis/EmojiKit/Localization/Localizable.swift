@@ -24,7 +24,7 @@ public extension Localizable {
     /// The localized name for a certain `Locale`.
     func localizedName(for locale: Locale) -> String {
         let key = localizationKey
-        let bundle = Bundle.module
+        let bundle = Bundle.keyboardKit
         let localeBundle = bundle.bundle(for: locale) ?? bundle
         return NSLocalizedString(key, bundle: localeBundle, comment: "")
     }
