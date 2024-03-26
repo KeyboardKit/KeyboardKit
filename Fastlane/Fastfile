@@ -10,21 +10,21 @@ platform :ios do
 
   # EmojiKit ===================
     
-  ek_from = "../emojikit/Sources/EmojiKit/"
-  ek_dest = "Sources/" + name + "/Emojis/EmojiKit/"
+  ek_source = "../emojikit/Sources/EmojiKit/"
+  ek_target = "Sources/" + name + "/Emojis/EmojiKit/"
 
   desc "Remove EmojiKit"
   lane :ekremove do
-    sh("cd .. && rm -rf " + ek_dest)
+    sh("cd .. && rm -rf " + ek_target)
   end
 
   desc "Add EmojiKit"
   lane :ekadd do
-    sh("cd .. && cp -r " + ek_from + " " + ek_dest)
-    sh("cd .. && rm -rf " + ek_dest + "/Bundle")
-    sh("cd .. && rm -rf " + ek_dest + "/EmojiKit.docc")
-    sh("cd .. && rm -rf " + ek_dest + "/Resources")
-    sh("cd .. && rm -rf " + ek_dest + "/Views")
+    sh("cd .. && cp -r " + ek_source + " " + ek_target)
+    sh("cd .. && rm -rf " + ek_target + "/Bundle")
+    sh("cd .. && rm -rf " + ek_target + "/EmojiKit.docc")
+    sh("cd .. && rm -rf " + ek_target + "/Resources")
+    sh("cd .. && rm -rf " + ek_target + "/Views")
     sh("cd .. && git add .")
   end
 
