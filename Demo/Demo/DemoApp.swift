@@ -8,13 +8,11 @@
 
 import SwiftUI
 
-/**
- This is the main demo app.
- 
- The app has several keyboard extensions that can be enabled
- in System Settings. Full Access must be enabled for some of
- the features to work.
- */
+/// This is the main demo app.
+///
+/// The app has two keyboard extensions, that can be enabled
+/// in System Settings. Full Access must be enabled for some
+/// features to work.
 @main
 struct DemoApp: App {
     

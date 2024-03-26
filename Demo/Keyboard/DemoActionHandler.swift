@@ -9,10 +9,11 @@
 import KeyboardKit
 import UIKit
 
-/**
- This demo-specific action handler inherits the standard one
- and adds demo-specific image logic to it.
- */
+/// This demo-specific class inherits the standard one, then
+/// overrides it with demo-specific adjustments.
+///
+/// You can play around with this class to see how it can be
+/// customized, tro trigger custom actions.
 class DemoActionHandler: StandardKeyboardActionHandler {
 
 
@@ -33,14 +34,18 @@ class DemoActionHandler: StandardKeyboardActionHandler {
     
     // MARK: - Custom actions
     
-    func longPressAction(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
+    func longPressAction(
+        for action: KeyboardAction
+    ) -> KeyboardAction.GestureAction? {
         switch action {
         case .image(_, _, let imageName): { [weak self] _ in self?.saveImage(named: imageName) }
         default: nil
         }
     }
     
-    func releaseAction(for action: KeyboardAction) -> KeyboardAction.GestureAction? {
+    func releaseAction(
+        for action: KeyboardAction
+    ) -> KeyboardAction.GestureAction? {
         switch action {
         case .image(_, _, let imageName): { [weak self] _ in self?.copyImage(named: imageName) }
         default: nil
@@ -51,7 +56,7 @@ class DemoActionHandler: StandardKeyboardActionHandler {
     // MARK: - Functions
     
     func alert(_ message: String) {
-        print("Implement alert functionality if you want, or just place a breakpoint here.")
+        print("Implement alert functionality if you want.")
     }
     
     func copyImage(named imageName: String) {

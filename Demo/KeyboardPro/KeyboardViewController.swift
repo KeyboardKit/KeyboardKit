@@ -9,43 +9,37 @@
 import KeyboardKitPro
 import SwiftUI
 
-/**
- This keyboard demonstrates how to setup Keyboard Pro with a
- license key, to unlock all locales and pro features.
- 
- This keyboard uses KeyboardKit Pro autocomplete, instead of
- a fake provider like the other keyboard. It also customizes
- the keyboard layout with the ``DemoLayoutProvider`` and has
- a custom `ToggleToolbar` with a custom menu.
- 
- Note that the dictation button in the toggle menu will open
- the app. However, since this demo app is not configured for
- the App Store, it has no App Group, which is needed to make
- dictation work and for sharing data between the two targets.
-
- To use this keyboard, you must enable it in system settings
- ("Settings/General/Keyboards"). It needs full access to get
- access to features like haptic feedback.
-
- 💡 The project only links KeyboardKit Pro to the app target,
- which is how binary frameworks should be linked.
- */
+/// This keyboard demonstrates how to set up KeyboardKit Pro
+/// and how to customize the standard configuration.
+///
+/// To use the keyboard, simply enable it in system settings
+/// ("Settings/General/Keyboards") and switch to it when you
+/// type in an app.
+///
+/// The keyboard needs full access to use some features like
+/// haptic feedback.
+///
+///This keyboard uses KeyboardKit Pro autocomplete, instead
+///of a fake provider like the other keyboard. It customizes
+///the keyboard layout with a ``DemoLayoutProvider`` and has
+///a Pro `ToggleToolbar` with a custom menu.
+///
+/// Note that the dictation button will open the main app to
+/// start dictation, but since the demo can't use App Groups
+/// due to code signing, this app can't persist the dictated
+/// text in a way that can be accessed by the keyboard.
 class KeyboardViewController: KeyboardInputViewController {
 
-    /**
-     This demo will persist the current locale to be able to
-     restore it the next time the keyboard is created.
-     */
+    /// This demo will persist the current locale to be able
+    /// to restore it the next time the keyboard is created.
     deinit {
         persistedLocaleId = state.keyboardContext.locale.identifier
     }
 
-    /**
-     This function is called when the controller loads. 
-     
-     Here, we make some demo-specific service configurations
-     that aren't overwritten when a license is registered.
-     */
+    /// This function is called when the controller loads.
+    ///
+    /// Here, we make demo-specific configurations, that are
+    /// not overwritten when a license is registered.
     override func viewDidLoad() {
 
         /// 💡 Add more locales to the keyboard.
@@ -87,13 +81,11 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
     }
 
-    /**
-     This function is called whenever the keyboard should be
-     created or updated.
-     
-     Here, we register a KeyboardKit Pro license key and use
-     a ``DemoKeyboardView`` as the main keyboard view.
-     */
+    /// This function is called whenever the keyboard should
+    /// be created or updated.
+    ///
+    /// Here, we register a KeyboardKit Pro license key then
+    /// use a ``DemoKeyboardView`` as the main keyboard view.
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()        
         
@@ -109,10 +101,8 @@ class KeyboardViewController: KeyboardInputViewController {
         }
     }
 
-    /**
-     This is called by `licenseConfiguration`, to configure
-     the keyboard with the registered license.
-     */
+    /// This function is called by the `licenseConfiguration`
+    /// to set up the keyboard with the registered license.
     func setup(with license: License) {
         
         /// 💡 Restore the last persisted locale.

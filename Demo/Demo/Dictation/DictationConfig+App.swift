@@ -10,16 +10,14 @@ import KeyboardKitPro
 
 extension Dictation.KeyboardConfiguration {
 
-    /**
-     This is how you define a shared dictation config for an
-     app and its keyboard extension.
-     
-     Note that this app can't use dictation, since dictation
-     requires an App Group to share data between the app and
-     its keyboard, which requires the app to be signed. This
-     app can be opened from the keyboard and start dictation,
-     but the keyboard isn't able to access the dictated text.
-     */
+    /// This is how you define a shared dictation config for
+    /// an app and its keyboard extension.
+    ///
+    /// Note that this demo app can't start dictation, since
+    /// it requires a signed App Group to share data between
+    /// the app and the keyboard. The app can be opened from
+    /// the keyboard to start dictation, but the keyboard is
+    /// not able to access the dictated text.
     static let app = Dictation.KeyboardConfiguration(
         appGroupId: "group.com.keyboardkit.demo",
         appDeepLink: "kkdemo://dictation"

@@ -9,13 +9,16 @@
 import KeyboardKitPro
 import SwiftUI
 
-/**
- This demo uses a KeyboardKit Pro `ToggleToolbar` that shows
- a main toolbar, but can switch to an alternate one.
- 
- The demo uses the standard autocomplete toolbar as the main
- toolbar, and this custom one as the alternate one.
- */
+/// This keyboard has a KeyboardKit Pro `ToggleToolbar` that
+/// can toggle between a main and an alternate toolbar.
+///
+/// This demo uses the standard autocomplete toolbar as main
+/// toolbar, and this custom one as the alternate one.
+///
+/// This toolbar has a text field that lets you test how the
+/// text routing text field behaves, as well as buttons that
+/// trigger certain operations like picking themes, starting
+/// dictation, open settings, etc.
 struct DemoToolbar: View {
     
     unowned var controller: KeyboardInputViewController
@@ -77,7 +80,7 @@ private extension DemoToolbar {
     }
     
     func themePickerSheet() -> some View {
-        KeyboardTheme.ShelfView(
+        KeyboardTheme.Shelf(
             themes: KeyboardTheme.allPredefined
         ) { theme in
             self.theme = theme
@@ -86,7 +89,7 @@ private extension DemoToolbar {
                 .font(.callout.bold())
                 .frame(maxWidth: .infinity, alignment: .leading)
         } item: { theme in
-            KeyboardTheme.ShelfViewItem(theme: theme)
+            KeyboardTheme.ShelfItem(theme: theme)
                 .shadow(radius: 1, x: 0, y: 1)
                 .padding(.vertical, 3)
         }

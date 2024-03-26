@@ -9,12 +9,10 @@
 import KeyboardKitPro
 import SwiftUI
 
-/**
- This is the main demo app screen.
-
- This screen has a text field, an appearance toggle and list
- items that show various keyboard-specific states.
- */
+/// This is the main demo app screen.
+///
+/// The screen shows keyboard-specific states and has a text
+/// field, an appearance toggle and some settings.
 struct HomeScreen: View {
 
     @State

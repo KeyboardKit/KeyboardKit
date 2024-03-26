@@ -9,10 +9,11 @@
 import KeyboardKit
 import UIKit
 
-/**
- This demo-specific callout action provider adds a couple of
- dummy callouts when typing.
- */
+/// This demo-specific class inherits the standard one, then
+/// overrides it with demo-specific adjustments.
+///
+/// You can play around with this class to see how it can be
+/// customized, tro trigger custom actions.
 class DemoCalloutActionProvider: BaseCalloutActionProvider {
     
     override func calloutActionString(for char: String) -> String {

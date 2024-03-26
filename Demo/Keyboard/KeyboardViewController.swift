@@ -9,14 +9,15 @@
 import KeyboardKit
 import SwiftUI
 
-/**
- This keyboard demonstrates how to setup KeyboardKit and how
- to customize the standard configuration.
-
- To use this keyboard, you must enable it in system settings
- ("Settings/General/Keyboards"). It needs full access to get
- access to features like haptic feedback.
- */
+/// This keyboard demonstrates how to set up KeyboardKit and
+/// how to customize the standard configuration.
+///
+/// To use the keyboard, simply enable it in system settings
+/// ("Settings/General/Keyboards") and switch to it when you
+/// type in an app.
+///
+/// The keyboard needs full access to use some features like
+/// haptic feedback.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller loads.
