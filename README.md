@@ -5,6 +5,7 @@
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/swift-5.9-orange.svg" alt="Swift 5.9" />
+    <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
     <a href="https://twitter.com/getkeyboardkit"><img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" /></a>
     <a href="https://techhub.social/@keyboardkit"><img src="https://img.shields.io/mastodon/follow/109340839247880048?domain=https%3A%2F%2Ftechhub.social&style=social" alt="Mastodon: @keyboardkit@techhub.social" title="Mastodon: @keyboardkit@techhub.social" /></a>
@@ -52,7 +53,9 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives your controller access to new lifecycle functions like `viewWillSetupKeyboard`, observable state like `state.keyboardContext`, services like `services.actionHandler`, and much more.
 
-To replace the default `SystemKeyboard`, override `viewWillSetupKeyboard` and call `setup` with a custom view:
+If you just want to use the default `SystemKeyboard` view, which mimics a native iOS keyboard and updates when the observable state changes, you don't have to do anything else. KeyboardKit will set up everything.
+
+To replace or customize the default `SystemKeyboard`, just override `viewWillSetupKeyboard` and call `setup`:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -74,6 +77,22 @@ class KeyboardViewController: KeyboardInputViewController {
 ```
 
 For more information, please see the [getting started guide][Getting-Started].
+
+
+
+## Supported Locales
+
+KeyboardKit supports [63 keyboard-specific locales][Localization]:
+
+🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
+🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
+🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
+🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 <br />
+🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 <br />
+🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
+🇹🇷 🇺🇦 🇺🇿 <br />
+
+KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] provides localized layouts, callouts and behaviors for all supported locales.
 
 
 
@@ -104,29 +123,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🎨 [Styling][Styling] - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
 * 🚏 [Text Routing][Text-Routing] - KeyboardKit can route text input from the main app to in-keyboard textfields.
 
-
-
-## Supported Locales
-
-KeyboardKit supports [63 keyboard-specific locales][Localization]:
-
-🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
-🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
-🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
-🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 <br />
-🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 <br />
-🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
-🇹🇷 🇺🇦 🇺🇿 <br />
-
-KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] provides localized layouts, callouts and behaviors for all supported locales.
-
-
-
-## KeyboardKit Pro
-
-[KeyboardKit Pro][Pro] is a commercial add-on that extends KeyboardKit with Pro features, like localized keyboards and services, autocomplete & autocorrect, dictation, themes, etc.
-
-If you want to give KeyboardKit Pro a try without having to write any code, the [KeyboardKit app][App] on the App Store lets you try out many pro features directly on your iPhone or iPad.
+You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features like fully localized keyboards & services, autocomplete, an emoji keyboard, AI supporting capabilities, themes, dictation, and much more.
 
 You can purchase a KeyboardKit Pro license from the [KeyboardKit website][Website].
 
@@ -140,12 +137,20 @@ The [online documentation][Documentation] has more information, articles, code e
 
 ## Demo App
 
-The demo app shows how to display keyboard state, link to system settings, etc. It also has two demo keyboards: 
+The demo app shows how to display keyboard state, link to system settings, etc. 
+
+The demo app has two demo keyboards: 
 
 * `Keyboard` uses KeyboardKit and a customized `SystemKeyboard`.
 * `KeyboardPro` uses KeyboardKit Pro and enables all locales, autocomplete, themes, etc.
 
 Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. Note that you need to enable full access for some features to work.
+
+
+
+## KeyboardKit App
+
+If you want to try KeyboardKit Pro without having to write any code or build the demo app from Xcode, there is a [KeyboardKit app][App] in the App Store, that lets you try out many pro features.
 
 
 
@@ -208,7 +213,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling-article
 [Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/text-routing-article
 [Themes]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/themes-article
-[Views]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/views
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started

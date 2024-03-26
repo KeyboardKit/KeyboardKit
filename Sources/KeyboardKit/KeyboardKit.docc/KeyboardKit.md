@@ -33,6 +33,22 @@ The <doc:Getting-Started> article helps you get started with KeyboardKit.
 
 
 
+## Supported Locales
+
+KeyboardKit supports **63** keyboard-specific ``KeyboardLocale``s:
+
+🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
+🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
+🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
+🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 <br />
+🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 <br />
+🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
+🇹🇷 🇺🇦 🇺🇿 <br />
+
+KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] unlocks localized layouts, callouts & behaviors for all supported locales, as described in the <doc:Localization-Article> article.
+
+
+
 ## Features
 
 KeyboardKit comes packed features to help you build amazing keyboard extensions:
@@ -59,22 +75,6 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🩺 <doc:State-Article> - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 <doc:Styling-Article> - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
 * 🚏 <doc:Text-Routing-Article> - KeyboardKit lets you type in textfields in the keyboard extensions.
-
-
-
-## Supported Locales
-
-KeyboardKit supports **63** keyboard-specific ``KeyboardLocale``s:
-
-🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
-🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
-🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
-🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 <br />
-🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 <br />
-🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
-🇹🇷 🇺🇦 🇺🇿 <br />
-
-KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] unlocks localized layouts, callouts & behaviors for all supported locales, as described in the <doc:Localization-Article> article.
 
 
 
