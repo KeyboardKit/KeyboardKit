@@ -17,6 +17,8 @@ This version bumps to Swift 5.9 and adds support for visionOS.
 
 This version renames some views and refactors view styling to be injected with view modifiers instead of with the initializer.
 
+This version also convers many emoji features to open-source variants, and no longer requires a license to use these features.
+
 Views that require complex style resolving still use the style provider concept.
 
 ### 🚨 Important Information
@@ -31,8 +33,7 @@ Views that require complex style resolving still use the style provider concept.
 
 * `Autocomplete.ToolbarStyle` has support for more styling.
 * `Autocomplete.ToolbarItemStyle` has support for more styling.
-* `DeviceType` defines a new `.vision` device to support visionOS.
-* `Emoji` adds a lot of features without having to use KeyboardKit Pro. 
+* `DeviceType` defines a new `.vision` device to support visionOS. 
 * `Keyboard.Background` implements `View` and can be used as a plain view.
 * `Keyboard.Toolbar` is a new view that applies a min height to its content.
 * `Keyboard.ToolbarStyle` is a new style that can be applied with a view modifier.
