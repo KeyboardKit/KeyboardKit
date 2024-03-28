@@ -55,7 +55,7 @@ struct DemoKeyboardView: View {
 
 private extension DemoKeyboardView {
     
-    var keyboardServices: Keyboard.KeyboardServices {
+    var keyboardServices: Keyboard.Services {
         let services = controller.services
         if let theme {
             if let provider = try? ThemeBasedKeyboardStyleProvider(

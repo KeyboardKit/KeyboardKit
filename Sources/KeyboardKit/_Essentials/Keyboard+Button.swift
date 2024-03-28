@@ -93,7 +93,7 @@ public extension Keyboard {
         private var isPressed: Binding<Bool>?
         private let content: ContentBuilder
         
-        @State
+        @SwiftUI.State
         private var isPressedInternal = false
         
         public typealias ContentBuilder = (_ content: Keyboard.ButtonContent) -> Content

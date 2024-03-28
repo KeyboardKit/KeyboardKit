@@ -50,7 +50,7 @@ public extension Keyboard {
         private let localeText: String
         private let spaceView: SpaceView
         
-        @State
+        @SwiftUI.State
         private var showLocale = true
         
         public var body: some View {

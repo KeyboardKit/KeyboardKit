@@ -1,5 +1,5 @@
 //
-//  Keyboard+KeyboardServices.swift
+//  Keyboard+Services.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-10-02.
@@ -10,31 +10,28 @@ import Foundation
 
 public extension Keyboard {
 
-    /**
-     This type is used to specify keyboard service instances.
-     
-     The type lets us decouple an input view controller from
-     any views that require services from it. You can config
-     or replace any service instance at any time.
-     
-     Instead of passing the entire controller instance, just
-     use ``KeyboardInputViewController/services``. This will
-     reduce the risk of memory leaks.
-     */
-    class KeyboardServices {
+    /// This type specifies keyboard service instances.
+    ///
+    /// This lets us decouple the input view controller from
+    /// any views that require its states and services. This
+    /// reduces the risk of memory leaks.
+    ///
+    /// You can adjust or replace any service at any time to
+    /// adjust the global behavior of the keyboard.
+    class Services {
         
-        /// Create a service instance based on state.
+        /// Create service instances based on keyboard state.
         ///
         /// - Parameters:
         ///   - state: The state to base the services on.
-        public init(state: KeyboardState) {
+        public init(state: State) {
             self.state = state
             setupCalloutContextForServices()
         }
         
         
         /// The state to base the services on.
-        private let state: KeyboardState
+        private let state: State
         
         
         /// The keyboard action handler to use.
@@ -84,7 +81,7 @@ public extension Keyboard {
 }
 
 #if os(iOS) || os(tvOS) || os(visionOS)
-public extension Keyboard.KeyboardServices {
+public extension Keyboard.Services {
     
     // Setup the service instance for the provided controller.
     func setup(for controller: KeyboardInputViewController) {
@@ -109,7 +106,7 @@ public extension Keyboard.KeyboardServices {
 }
 #endif
 
-private extension Keyboard.KeyboardServices {
+private extension Keyboard.Services {
     
     func setupCalloutContextForServices() {
         let context = state.calloutContext.actionContext

@@ -11,6 +11,17 @@ These release notes only cover the current major version.
 
 
 
+## 8.5
+
+This version moves service implementations into their related namespaces, to make the SDK smaller and easier to overview.
+
+### 🗑️ Deprecations
+
+* `Keyboard.KeyboardServices` is renamed to `Keyboard.Services`.
+* `Keyboard.KeyboardState` is renamed to `Keyboard.State`.
+
+
+
 ## 8.4
 
 This version bumps to Swift 5.9 and adds support for visionOS.

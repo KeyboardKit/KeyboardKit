@@ -42,8 +42,8 @@ public struct SystemKeyboard<
        - toolbar: The toolbar view to add above the keyboard.
      */
     public init(
-        state: Keyboard.KeyboardState,
-        services: Keyboard.KeyboardServices,
+        state: Keyboard.State,
+        services: Keyboard.Services,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
