@@ -11,15 +11,17 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /**
-     This enum defines various keyboard types, of which some
-     are implemented by the library.
-     
-     The ``SystemKeyboard`` can be used to render alphabetic,
-     numeric, symbolic and emoji keyboards. You just have to
-     set ``KeyboardContext/keyboardType`` to a type you want
-     to use, and the keyboard will render it.
-     */
+    /// This enum defines various keyboard types, of which a
+    /// few are already implemented by the library.
+    ///
+    /// Just set the ``KeyboardContext/keyboardType`` to any
+    /// type you want to use, then observe the value and act
+    /// on the change.
+    ///
+    /// The ``SystemKeyboard`` will automatically render the
+    /// ``alphabetic(_:)``, ``numeric`` & ``symbolic`` types,
+    /// and will render ``emojis`` when KeyboardKit Pro Gold
+    /// has been unlocked. The rest must be handled manually.
     enum KeyboardType: Codable, Equatable, Identifiable {
         
         /// A keyboard with alphabetic input keys.

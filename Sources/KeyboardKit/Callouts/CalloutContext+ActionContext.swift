@@ -55,7 +55,6 @@ public extension CalloutContext {
         @Published
         public private(set) var selectedIndex: Int = -1
     }
-    
 }
 
 

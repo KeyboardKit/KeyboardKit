@@ -11,16 +11,15 @@ import Combine
 import SwiftUI
 import UIKit
 
-/**
- This class extends `UIInputViewController` with KeyboardKit
- specific functionality.
-
- Let your `KeyboardController` inherit this class instead of
- `UIInputViewController` to get new lifecycle functions.
-
- Your `KeyboardController` can override any function, modify
- any ``state`` and replace any ``services``.
- */
+/// This is the main input controller in a KeyboardKit-based
+/// keyboard extension.
+///
+/// Let your `KeyboardController` inherit this class instead
+/// of `UIInputViewController` to extend it with KeyboardKit
+/// specific functionality.
+///
+/// You can override any functions, modify any ``state`` and
+/// replace any ``services`` to tweak your keyboard behavior.
 open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
 

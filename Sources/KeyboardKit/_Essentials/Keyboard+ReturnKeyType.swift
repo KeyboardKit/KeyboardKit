@@ -10,14 +10,11 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /**
-     This enum defines various keyboard return key types, to
-     make it possible to modify the return key.
-     
-     Return keys can be used as ``KeyboardAction/primary(_:)``
-     actions and will insert a new line or perform a primary
-     action when they are tapped.
-     */
+    /// This enum defines various keyboard return key types.
+    ///
+    /// Return keys are used as ``KeyboardAction/primary(_:)``
+    /// actions and insert a new line or perform the primary
+    /// action when they are tapped.
     enum ReturnKeyType: CaseIterable, Codable, Equatable, Identifiable {
         
         /// A return key that uses a return text and not a ⏎.

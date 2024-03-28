@@ -10,9 +10,13 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /// This style can style a ``Keyboard/Toolbar``.
+    /// This style can be used to modify the visual style of
+    /// the ``Keyboard/Toolbar`` component.
     ///
-    /// Apply the style with `.keyboardToolbarStyle`. 
+    /// You can apply this view style with the view modifier
+    /// ``SwiftUI/View/keyboardToolbarStyle(_:)``.
+    ///
+    /// You can use the ``standard`` style or your own style.
     struct ToolbarStyle {
         
         public init(

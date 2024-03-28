@@ -9,14 +9,8 @@
 #if os(iOS) || os(tvOS) || os(visionOS)
 import SwiftUI
 
-/**
- This controller can be used to add any `SwiftUI`-based view
- to a ``KeyboardInputViewController``.
- 
- KeyboardKit calls ``add(to:)`` when setting up a view for a
- ``KeyboardInputViewController``, which is done when calling
- ``KeyboardInputViewController/setup(with:)``.
- */
+/// This controller is used to set up custom `SwiftUI` views
+/// with ``KeyboardInputViewController``.
 class KeyboardHostingController<Content: View>: UIHostingController<Content> {
     
     /// Add this hosting controller to a keyboard input view

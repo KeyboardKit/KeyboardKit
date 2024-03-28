@@ -10,7 +10,8 @@ import Foundation
 
 public extension Dictation {
     
-    /// This type can configure a ``KeyboardDictationService``.
+    /// This type can configure a ``KeyboardDictationService``
+    /// by describing how to perform keyboard dictation.
     struct KeyboardConfiguration: Codable, Equatable {
         
         /// Create a keyboard dictation configuration.

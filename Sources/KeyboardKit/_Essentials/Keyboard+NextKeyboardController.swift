@@ -11,14 +11,12 @@ import UIKit
 
 public extension Keyboard {
 
-    /**
-     This class is used as global state for a "next keyboard"
-     operation, since it needs a controller to function.
-     
-     ``KeyboardInputViewController`` will register itself as
-     the ``shared`` controller when it loads, and unregister
-     when it unloads.
-     */
+    /// This class is used as global controller for the next
+    /// keyboard operation.
+    ///
+    /// ``KeyboardInputViewController`` will register itself
+    /// as the ``shared`` controller on load, and unregister
+    /// itself when it unloads.
     final class NextKeyboardController {
         
         private init() {}

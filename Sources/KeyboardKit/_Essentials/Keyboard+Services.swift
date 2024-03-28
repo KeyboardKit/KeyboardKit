@@ -10,7 +10,7 @@ import Foundation
 
 public extension Keyboard {
 
-    /// This type specifies keyboard service instances.
+    /// This type specifies global keyboard services.
     ///
     /// This lets us decouple the input view controller from
     /// any views that require its states and services. This

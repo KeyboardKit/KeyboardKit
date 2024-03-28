@@ -12,20 +12,16 @@ import UIKit
 
 public extension Keyboard {
     
-    /**
-     This view makes a view behave as a next keyboard button.
-     
-     The native iOS next keyboard button switches the to the
-     next keyboard on tap and opens a switcher menu on press.
-     This button applies the same behavior to a content view.
-     
-     Note that you must provide a `UIInputViewController` in
-     the initializer, or set ``NextKeyboardController/shared``
-     before you use the view.
-     
-     This is automatically done by KeyboardKit, so you don't
-     have to think about it when using this SDK.
-     */
+    /// This view can be used to make any view behave as the
+    /// native next keyboard button.
+    ///
+    /// The native next keyboard button switches to the next
+    /// keyboard on tap and opens a menu on press.
+    ///
+    /// You must provide a `UIInputViewController`, or setup
+    /// ``NextKeyboardController/shared`` in advance, before
+    /// using the view. This is automatically handled by the
+    /// ``KeyboardInputViewController``.
     struct NextKeyboardButton<Content: View>: View {
         
         public init(

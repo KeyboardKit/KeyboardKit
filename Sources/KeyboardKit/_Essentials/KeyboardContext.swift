@@ -14,25 +14,27 @@ import SwiftUI
 import UIKit
 #endif
 
-/**
- This class provides keyboard extensions with contextual and
- observable information about the keyboard extension.
-
- This class will continuously sync with the input controller
- to updated its state. It's also extensively used within the
- library, to make keyboard-related decisions.
- 
- For instance, you can change the ``keyboardType`` to change
- which kind of keyboard that is rendered.
-
- You can use ``locale`` to get & set the raw keyboard locale
- or use the properties and functions that allows us to use a
- ``KeyboardLocale``. If ``locales`` has multiple values, the
- ``selectNextLocale()`` function toggles through the locales.
- 
- KeyboardKit automatically creates an instance of this class
- and injects it into ``KeyboardInputViewController/state``.
- */
+/// This class provides observable keyboard state.
+///
+/// This class syncs with ``KeyboardInputViewController`` to
+/// keep itself up to date. It's extensively used within the
+/// library to make state-based decisions. For instance, you
+/// can check the current device type, interface orientation,
+/// full access state, etc.
+///
+/// This class also has properties that you can actively set
+/// to affect the keyboard. For instance, the ``keyboardType``
+/// can be used to change what kind of keyboard to use. This
+/// is e.g. automatically used by ``SystemKeyboard``.
+///
+/// You can use ``locale`` to get and set the current locale
+/// or use ``KeyboardLocale``-based properties and functions
+/// for more convenience. If ``locales`` has multiple values,
+/// ``selectNextLocale()`` will toggle through these locales.
+///
+/// KeyboardKit will automatically setup an instance of this
+/// class in ``KeyboardInputViewController/state``, then use
+/// it as global state and inject it as an environment value.
 public class KeyboardContext: ObservableObject {
 
     public init() {}

@@ -11,11 +11,10 @@ import Foundation
 import Combine
 import UIKit
 
-/// This context can be used to observe the enabled state of
-/// a keyboard extension.
+/// This class provides observable keyboard enabled status.
 ///
-/// It can check if a keyboard is enabled in System Settings,
-/// if Full Access is enabled, if a keyboard is active, etc.
+/// This class can be used to check if a keyboard is enabled
+/// in System Settings, if Full Access is enabled, etc.
 ///
 /// This type supports bundle ID wildcards, which means that
 /// it can inspect multiple keyboards at once, for instance:
@@ -29,16 +28,14 @@ import UIKit
 /// it's intended to be used in the main app, not a keyboard.
 public class KeyboardStateContext: KeyboardStateInspector, ObservableObject {
 
-    /**
-     Create an instance of this observable state class.
-
-     Make sure to use the `bundleId` of the keyboard and not
-     the main application.
-
-     - Parameters:
-       - bundleId: The bundle ID of the keyboard extension.
-       - notificationCenter: The notification center to use to observe changes.
-     */
+    /// Create an instance of this observable state class.
+    ///
+    /// Make sure to use the `bundleId` of the keyboard, not
+    /// the main application.
+    ///
+    /// - Parameters:
+    ///   - bundleId: The bundle ID of the keyboard extension.
+    ///   - notificationCenter: The notification center to use to observe changes.
     public init(
         bundleId: String,
         notificationCenter: NotificationCenter = .default
@@ -60,23 +57,15 @@ public class KeyboardStateContext: KeyboardStateInspector, ObservableObject {
     private var cancellables = Set<AnyCancellable>()
     private let notificationCenter: NotificationCenter
 
-    /**
-     Whether or not a keyboard extension with the ``bundleId``
-     is currently being used.
-     */
+    /// Whether the keyboard extension is actively used.
     @Published
     public var isKeyboardActive: Bool = false
 
-    /**
-     Whether or not a keyboard extension with the ``bundleId``
-     has been enabled in System Settings.
-     */
+    /// Whether the keyboard extension has been enabled.
     @Published
     public var isKeyboardEnabled: Bool = false
 
-    /**
-     Refresh state for the currently used keyboard extension.
-     */
+    /// Refresh the observable state.
     public func refresh() {
         isKeyboardActive = isKeyboardActive(withBundleId: bundleId)
         isKeyboardEnabled = isKeyboardEnabled(withBundleId: bundleId)
@@ -86,11 +75,15 @@ public class KeyboardStateContext: KeyboardStateInspector, ObservableObject {
 private extension KeyboardStateContext {
 
     var activePublisher: NotificationCenter.Publisher {
-        notificationCenter.publisher(for: UIApplication.didBecomeActiveNotification)
+        notificationCenter.publisher(
+            for: UIApplication.didBecomeActiveNotification
+        )
     }
 
     var textPublisher: NotificationCenter.Publisher {
-        notificationCenter.publisher(for: UITextInputMode.currentInputModeDidChangeNotification)
+        notificationCenter.publisher(
+            for: UITextInputMode.currentInputModeDidChangeNotification
+        )
     }
 }
 #endif

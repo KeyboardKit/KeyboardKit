@@ -10,28 +10,15 @@ import Combine
 import Foundation
 import SwiftUI
 
-/**
- This context can be used to handle regular in-app dictation
- and keyboard-based dictation.
-
- The context is used by both ``DictationService`` as well as
- ``KeyboardDictationService``. Use the initializer that fits
- your use-case when implementing dictation.
-
- For keyboard dictation, make sure to set up an app-specific
- ``Dictation/KeyboardConfiguration`` that is configured with
- a deeplink that opens the app to start dictation and an app
- group that is registered for both your app and its keyboard.
- 
- Your app must create an instance of this context using your
- app-specific configuration, then bind it to your app's root
- view with `.keyboardDictation(...)`. The keyboard extension
- will get a context instance from the controller, and should
- then call ``setup(with:)`` with the same configuration.
- 
- KeyboardKit automatically creates an instance of this class
- and injects it into ``KeyboardInputViewController/state``.
- */
+/// This class provides observable dictation state.
+///
+/// The context is used by both ``DictationService`` as well
+/// as ``KeyboardDictationService``. Use an initializer that
+/// fits your use-case, as described in the documentation.
+///
+/// KeyboardKit will automatically setup an instance of this
+/// class in ``KeyboardInputViewController/state``, then use
+/// it as global state and inject it as an environment value.
 public class DictationContext: ObservableObject {
 
     /// Create a keyboard dictation context for a keyboard.

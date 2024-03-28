@@ -10,7 +10,7 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /// This view renders system space key content.
+    /// This view renders standard system space key content.
     ///
     /// This view starts with showing a provided `localeText`,
     /// then fades to the provided `spaceText` or `spaceView`.
