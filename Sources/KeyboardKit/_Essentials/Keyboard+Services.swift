@@ -62,7 +62,7 @@ public extension Keyboard {
         )
         
         /// The keyboard behavior to use.
-        public lazy var keyboardBehavior: KeyboardBehavior = StandardKeyboardBehavior(
+        public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(
             keyboardContext: state.keyboardContext)
         
         /// The keyboard layout provider to use.

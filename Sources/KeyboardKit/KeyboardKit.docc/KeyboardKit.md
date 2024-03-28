@@ -134,12 +134,11 @@ KeyboardKit is available under the MIT license.
 
 ### Essentials
 
-- ``KeyboardInputViewController``
 - ``Keyboard``
 - ``KeyboardBehavior``
 - ``KeyboardContext``
 - ``KeyboardController``
-- ``StandardKeyboardBehavior``
+- ``KeyboardInputViewController``
 - ``SystemKeyboard``
 - ``SystemKeyboardPreview``
 - ``SystemKeyboardButtonPreview``

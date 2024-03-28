@@ -17,8 +17,9 @@ This version moves service implementations into their related namespaces, to mak
 
 ### 🗑️ Deprecations
 
-* `Keyboard.KeyboardServices` is renamed to `Keyboard.Services`.
-* `Keyboard.KeyboardState` is renamed to `Keyboard.State`.
+* `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
+* `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
+* `StandardKeyboardBehavior` has been renamed to `Keyboard.StandardBehavior`.
 
 
 

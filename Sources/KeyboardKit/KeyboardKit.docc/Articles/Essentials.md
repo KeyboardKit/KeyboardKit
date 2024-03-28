@@ -57,7 +57,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 KeyboardKit has a ``KeyboardBehavior`` protocol that can be used to define the keyboard's behavior. It's used by e.g. the ``StandardKeyboardActionHandler`` to make behavior-based decisions.
 
-KeyboardKit automatically creates a ``StandardKeyboardBehavior`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time.
+KeyboardKit automatically creates a ``Keyboard/StandardBehavior`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time.
 
 
 

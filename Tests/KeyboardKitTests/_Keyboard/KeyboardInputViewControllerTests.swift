@@ -126,7 +126,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.services.autocompleteProvider as? Autocomplete.DisabledProvider)
         XCTAssertNotNil(vc.services.calloutActionProvider as? StandardCalloutActionProvider)
         XCTAssertNotNil(vc.services.dictationService as? Dictation.DisabledKeyboardService)
-        XCTAssertNotNil(vc.services.keyboardBehavior as? StandardKeyboardBehavior)
+        XCTAssertNotNil(vc.services.keyboardBehavior as? Keyboard.StandardBehavior)
         XCTAssertNotNil(vc.services.layoutProvider as? StandardKeyboardLayoutProvider)
         XCTAssertNotNil(vc.services.styleProvider as? StandardKeyboardStyleProvider)
     }

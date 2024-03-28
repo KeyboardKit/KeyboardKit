@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardBehaviorTests.swift
+//  Keyboard+StandardBehaviorTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-06.
@@ -13,11 +13,11 @@ import XCTest
 
 @testable import KeyboardKit
 
-class StandardKeyboardBehaviorTests: XCTestCase {
+class Keyboard_StandardBehaviorTests: XCTestCase {
     
     typealias Gesture = Gestures.KeyboardGesture
     
-    var behavior: StandardKeyboardBehavior!
+    var behavior: Keyboard.StandardBehavior!
     var keyboardContext: KeyboardContext!
     var proxy: MockTextDocumentProxy!
     var timer: Gestures.RepeatTimer!
@@ -26,10 +26,10 @@ class StandardKeyboardBehaviorTests: XCTestCase {
     override func setUp() {
         timer = Gestures.RepeatTimer.shared
         proxy = MockTextDocumentProxy()
-        keyboardContext = KeyboardContext()
+        keyboardContext = .init()
         keyboardContext.sync(with: MockKeyboardInputViewController())
         keyboardContext.originalTextDocumentProxy = proxy
-        behavior = StandardKeyboardBehavior(keyboardContext: keyboardContext)
+        behavior = .init(keyboardContext: keyboardContext)
     }
 
 
