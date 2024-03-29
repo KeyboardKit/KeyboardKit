@@ -160,7 +160,6 @@ KeyboardKit is available under the MIT license.
 - ``Callouts``
 - ``CalloutContext``
 - ``CalloutActionProvider``
-- ``StandardCalloutActionProvider``
 
 ### Device
 

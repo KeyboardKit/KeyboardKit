@@ -50,7 +50,7 @@ public extension Keyboard {
         public lazy var autocompleteProvider: AutocompleteProvider = .disabled
         
         /// The callout action provider to use.
-        public lazy var calloutActionProvider: CalloutActionProvider = StandardCalloutActionProvider(
+        public lazy var calloutActionProvider: CalloutActionProvider = Callouts.StandardActionProvider(
             keyboardContext: state.keyboardContext
         ) {
             didSet { setupCalloutContextForServices() }

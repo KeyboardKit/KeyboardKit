@@ -49,7 +49,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// The demo provider adds "keyboard" callout action
         /// buttons to the "k" key.
-        services.calloutActionProvider = StandardCalloutActionProvider(
+        services.calloutActionProvider = Callouts.StandardActionProvider(
             keyboardContext: state.keyboardContext,
             baseProvider: DemoCalloutActionProvider())
         

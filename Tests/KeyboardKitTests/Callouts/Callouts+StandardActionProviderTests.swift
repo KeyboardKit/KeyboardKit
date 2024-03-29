@@ -1,5 +1,5 @@
 //
-//  StandardCalloutActionProviderTests.swift
+//  Callouts+StandardActionProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -9,16 +9,14 @@
 import KeyboardKit
 import XCTest
 
-class StandardCalloutActionProviderTests: XCTestCase {
+class Callouts_StandardActionProviderTests: XCTestCase {
     
-    var provider: StandardCalloutActionProvider!
+    var provider: Callouts.StandardActionProvider!
     var context: KeyboardContext!
     
     override func setUp() {
         context = KeyboardContext()
-        provider = StandardCalloutActionProvider(
-            keyboardContext: context
-        )
+        provider = .init(keyboardContext: context)
     }
     
     func testLocalizedProvidersHaveNoDefaultProviders() {
@@ -27,7 +25,7 @@ class StandardCalloutActionProviderTests: XCTestCase {
     }
     
     func testLocalizedProvidersAcceptCustomProviders() {
-        provider = StandardCalloutActionProvider(
+        provider = .init(
             keyboardContext: context,
             localizedProviders: [
                 TestProvider(localeKey: "en"),
@@ -43,7 +41,7 @@ class StandardCalloutActionProviderTests: XCTestCase {
     
     func testCalloutActionsMapsContextLocaleToProvider() {
         context.locale = Locale(identifier: KeyboardLocale.english.id)
-        provider = StandardCalloutActionProvider(
+        provider = .init(
             keyboardContext: context,
             localizedProviders: [TestProvider(localeKey: "en")]
         )
@@ -55,7 +53,7 @@ class StandardCalloutActionProviderTests: XCTestCase {
     
     func testCalloutActionsReturnsEmptyResultForMissingLocale() {
         context.locale = Locale(identifier: KeyboardLocale.swedish.id)
-        provider = StandardCalloutActionProvider(
+        provider = .init(
             keyboardContext: context,
             localizedProviders: [TestProvider(localeKey: "en")]
         )

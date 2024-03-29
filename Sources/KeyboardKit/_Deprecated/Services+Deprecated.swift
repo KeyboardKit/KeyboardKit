@@ -17,4 +17,5 @@ public typealias RemoteAutocompleteProvider = Autocomplete.RemoteProvider
 @available(*, deprecated, renamed: "Callouts.BaseActionProvider")
 public typealias BaseCalloutActionProvider = Callouts.BaseActionProvider
 
-
+@available(*, deprecated, renamed: "Callouts.StandardActionProvider")
+public typealias StandardCalloutActionProvider = Callouts.StandardActionProvider

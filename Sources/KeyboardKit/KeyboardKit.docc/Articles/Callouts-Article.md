@@ -43,9 +43,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 In KeyboardKit, a ``CalloutActionProvider`` can be used to provide dynamic callout actions, which are then presented when a key that has actions defined in the provider is long pressed.
 
-KeyboardKit injects a ``StandardCalloutActionProvider`` into ``KeyboardInputViewController/services``. You can modify or replace this instance at any time.
-
-You can add and replace localized providers to the ``StandardCalloutActionProvider``, or replace the ``KeyboardInputViewController/services`` provider with a custom ``CalloutActionProvider``.
+KeyboardKit automatically creates an instance of ``Callouts/StandardActionProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized providers into it.
 
 
 
@@ -68,12 +66,12 @@ The ``SystemKeyboard`` and ``Keyboard/Button`` will automatically apply the prop
 
 ## How to create a custom callout action provider
 
-You can create a custom callout action provider to customize the callout actions to present for a certain ``KeyboardAction``. You can implement ``CalloutActionProvider`` from scratch, or inherit and customize ``StandardCalloutActionProvider``.
+You can create a custom ``CalloutActionProvider`` to customize which callout actions to present for certain ``KeyboardAction``s.
 
-For instance, here's a custom provider that inherits ``StandardCalloutActionProvider`` and customizes the actions for the $ key:
+You can implement ``CalloutActionProvider`` from scratch, or inherit and customize the ``Callouts/StandardActionProvider``. For instance, here's a custom callout action provider that inherits ``Callouts/StandardActionProvider`` and customizes the actions for the $ key:
 
 ```swift
-class CustomCalloutActionProvider: StandardCalloutActionProvider {
+class CustomCalloutActionProvider: Callout.StandardActionProvider {
     
     override func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         switch action {
@@ -135,9 +133,7 @@ See the <doc:Styling-Article> article for more information about how styling is 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for every locale in your license, and automatically injects them into the ``StandardCalloutActionProvider``.
-
-You can access all localized providers in your license, or any specific provider, like this:
+[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for every locale in your license, and automatically injects them into the ``Callouts/StandardActionProvider``. You can access all localized providers in your license like this:
 
 ```swift
 let providers = License.current.localizedCalloutActionProviders
@@ -177,7 +173,7 @@ class KeyboardController: KeyboardInputViewController {
     func setupCustomProvider() {
         do {
             let provider = try CustomProvider()
-            let standard = services.calloutActionProvider as? StandardCalloutActionProvider
+            let standard = services.calloutActionProvider as? Callouts.StandardActionProvider
             standard?.registerLocalizedProvider(provider)
         } catch {
             print(error)

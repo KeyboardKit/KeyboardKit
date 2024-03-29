@@ -36,9 +36,9 @@ See the ``KeyboardAction`` for a list of all available action types.
 
 ## How to handle keyboard actions
 
-Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions, gestures, and trigger feedback.
+In KeyboardKit, a ``KeyboardActionHandler`` can be used to handle keyboard actions, gestures, and trigger feedback.
 
-KeyboardKit automatically creates an instance of ``KeyboardAction/StandardHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as is described further down.
+KeyboardKit automatically creates an instance of ``KeyboardAction/StandardHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
 
 
@@ -84,7 +84,7 @@ This will by default insert the suggestion into the text document proxy and rese
 
 ## How to create a custom action handler
 
-You can create a custom action handler to customize certain actions, and to handle actions that don't have default actions, like ``KeyboardAction/image``. 
+You can create a custom ``KeyboardActionHandler`` to customize how certain actions are handled, and to handle actions that don't have any default handling, like ``KeyboardAction/image``. 
 
 You can implement ``KeyboardActionHandler`` from scratch, or inherit and customize the ``KeyboardAction/StandardHandler``. For instance, here's a custom action handler that inherits ``KeyboardAction/StandardHandler`` and prints when space is pressed:
 
