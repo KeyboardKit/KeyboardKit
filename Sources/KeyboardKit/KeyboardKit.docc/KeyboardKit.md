@@ -172,8 +172,6 @@ KeyboardKit is available under the MIT license.
 - ``DictationContext``
 - ``DictationService``
 - ``KeyboardDictationService``
-- ``ProDictationService``
-- ``ProKeyboardDictationService``
 - ``SpeechRecognizer``
 
 ### Emojis

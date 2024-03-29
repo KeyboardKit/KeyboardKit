@@ -63,7 +63,7 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks services that let you setup and perform dictation with very little code.
+[KeyboardKit Pro][Pro] unlocks services that let you setup and perform dictation in your app and from your keyboard, with very little code.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -81,13 +81,11 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
     }
     
     @Tab("Dictation.BarVisualizer") {
-        A ``Dictation`` ``Dictation/BarVisualizer`` can be used to visualize an ongoing dictation operation as a collection of vertical, animating bars.
+        KeyboardKit Pro unlocks a ``Dictation/BarVisualizer`` that can be used to visualize an ongoing dictation with a collection of animating bars.
 
         ![DictationScreen](dictationscreen-350.jpg)
         
-        The view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
-        
-        You can change the number of bars, the colors & thickness of the bars, etc. You can also implement your own visualizer, to customize how the dictation operation is presented to the user. 
+        You can change the number of bars, the colors & thickness of the bars, etc. You can also implement your own visualizer. The view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
 }
 
@@ -96,7 +94,7 @@ See the <doc:Styling-Article> article for more information about how styling is 
 
 ### Services
 
-KeyboardKit Pro unlocks a ``ProDictationService`` that can be used in the main app, and a ``ProKeyboardDictationService`` that can be used to initialize a dictation operation from within a keyboard extension.
+KeyboardKit Pro unlocks a ``Dictation/ProService`` that can be used in the main app, and a ``Dictation/ProKeyboardService`` that can initialize dictation from a keyboard extension, perform it in the main app, then return to the keyboard to handle the result.
 
 
 ### Supported languages
@@ -348,10 +346,10 @@ Once dictation is done, the app should return to the keyboard to let it handle t
 
 KeyboardKit Pro used to have a `PreviousAppNavigator` to automatically navigate back to the keyboard, but this stopped working in iOS 17. A new implementation that worked great was then rejected by Apple, due to using private APIs.
 
-KeyboardKit can't add this code, since it would cause *all* apps to be rejected. To add a custom back navigation implementation, you can inherit ``ProKeyboardDictationService`` and override ``ProKeyboardDictationService/tryToReturnToKeyboard()``:
+KeyboardKit can't add this code, since it would cause *all* apps to be rejected. To add a custom back navigation implementation, you can inherit ``Dictation/ProKeyboardService`` and override ``Dictation/ProKeyboardService/tryToReturnToKeyboard()``:
 
 ```swift
-class CustomDictationService: ProKeyboardDictationService {
+class CustomDictationService: Dictation.ProKeyboardService {
 
     override func tryToReturnToKeyboard() {
         // Add your code here

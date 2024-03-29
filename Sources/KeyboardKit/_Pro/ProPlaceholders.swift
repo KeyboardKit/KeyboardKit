@@ -79,15 +79,6 @@ public struct KeyboardTheme {
 public class ThemeBasedKeyboardStyleProvider {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public class ProDictationService {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
-public class ProKeyboardDictationService {
-    
-    public func tryToReturnToKeyboard() {}
-}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
 public protocol SpeechRecognizer {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
@@ -106,7 +97,6 @@ public extension Autocomplete {
     class RemoteProvider {}
 }
 
-
 public extension Dictation {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -114,6 +104,15 @@ public extension Dictation {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     struct BarVisualizerStyle {}
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    class ProService {}
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    class ProKeyboardService {
+        
+        public func tryToReturnToKeyboard() {}
+    }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     struct Screen {}

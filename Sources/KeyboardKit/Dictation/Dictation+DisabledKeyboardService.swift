@@ -10,7 +10,11 @@ import SwiftUI
 
 public extension Dictation {
     
-    /// This is a disabled keyboard dictation service.
+    /// This class is used as the default service, until you
+    /// register a custom implementation or register a valid
+    /// KeyboardKit Pro license key.
+    ///
+    /// See <doc:Dictation-Article> for more information.
     class DisabledKeyboardService: KeyboardDictationService {
         
         public init(context: DictationContext) {
