@@ -79,11 +79,6 @@ public struct KeyboardTheme {
 public class ThemeBasedKeyboardStyleProvider {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-/// 
-/// See [KeyboardKit Pro](https://github.com/KeyboardKit/KeyboardKitPro) for more information.
-public class LocalAutocompleteProvider {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
 public class ProDictationService {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
@@ -93,9 +88,6 @@ public class ProKeyboardDictationService {
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public class RemoteAutocompleteProvider {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
 public protocol SpeechRecognizer {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
@@ -103,6 +95,16 @@ public struct SystemKeyboardPreview {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct SystemKeyboardButtonPreview {}
+
+
+public extension Autocomplete {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    class LocalProvider {}
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    class RemoteProvider {}
+}
 
 
 public extension Dictation {

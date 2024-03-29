@@ -18,7 +18,8 @@ import Combine
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value.
+/// it as global state and inject it as an environment value
+/// into the view hierarchy. 
 public class AutocompleteContext: ObservableObject {
     
     public init() {}

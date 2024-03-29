@@ -18,7 +18,8 @@ import SwiftUI
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value.
+/// it as global state and inject it as an environment value
+/// into the view hierarchy. 
 public class CalloutContext: ObservableObject {
 
     /// Create a callout context, with separate contexts for

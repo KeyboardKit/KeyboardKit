@@ -167,16 +167,16 @@ See the <doc:Styling-Article> article for more information about how styling is 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and injects a ``LocalAutocompleteProvider`` into ``KeyboardInputViewController/services`` when you register a license key. These providers are open to inheritance, so you can inherit and customize them to fir your needs.
+[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and injects a ``Autocomplete/LocalProvider`` into ``KeyboardInputViewController/services`` when you register a valid license key. These providers are open to inheritance, so you can inherit and customize them to fit your needs.
 
 ### Local Autocomplete
 
-A ``LocalAutocompleteProvider`` performs autocomplete operations locally, on-device. It supporst most keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
+The ``Autocomplete/LocalProvider`` performs autocomplete operations locally, on-device. It supporst most keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
 
 > Important: This provider currently doesn't provide next word prediction, since Apple removed these capabilities in iOS 16. 
 
 ### Remote Autocomplete
 
-A ``RemoteAutocompleteProvider`` can be used to perform autocomplete by integrating with external REST APIs. It requires that the device is online, and requires Full Access to be able to make network requests. 
+The ``Autocomplete/RemoteProvider`` can be used to perform autocomplete by integrating with an external API. It requires that the device is online, and requires that Full Access is enabled, to allow it to make network requests. 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

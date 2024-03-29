@@ -10,7 +10,11 @@ import Foundation
 
 public extension Autocomplete {
  
-    /// This provider can be used to disable autocomplete.
+    /// This class is used as the default provider until you
+    /// register a custom implementation or register a valid
+    /// KeyboardKit Pro license key.
+    ///
+    /// See <doc:Autocomplete-Article> for more information.
     class DisabledProvider: AutocompleteProvider {
         
         public init(

@@ -19,6 +19,8 @@ This version moves service implementations into their related namespaces, to mak
 
 * `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
 * `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
+* `LocalAutocompleteProvider` has been renamed to `Autocomplete.LocalProvider`.
+* `RemoteAutocompleteProvider` has been renamed to `Autocomplete.RemoteProvider`.
 * `StandardKeyboardBehavior` has been renamed to `Keyboard.StandardBehavior`.
 * `StandardKeyboardActionHandler` has been renamed to `KeyboardAction.StandardHandler`.
 

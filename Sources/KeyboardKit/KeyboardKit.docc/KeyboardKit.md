@@ -154,8 +154,6 @@ KeyboardKit is available under the MIT license.
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
-- ``LocalAutocompleteProvider``
-- ``RemoteAutocompleteProvider``
 
 ### Callouts
 

@@ -16,11 +16,7 @@ import Foundation
 /// when the keyboard is launched. You can change or replace
 /// it at any time to customize the keyboard behavior.
 ///
-/// To create a custom implementation, either implement this
-/// protocol from scratch, or inherit the standard class and
-/// override what you want to change. You can then inject it
-/// into ``KeyboardInputViewController/services`` to make it
-/// the global default.
+/// See the <doc:Essentials> for more information.
 public protocol KeyboardBehavior {
     
     typealias Gesture = Gestures.KeyboardGesture

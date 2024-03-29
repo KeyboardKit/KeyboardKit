@@ -19,9 +19,6 @@ extension KeyboardAction {
     ///
     /// You can inherit and override any open parts that you
     /// want to change.
-    ///
-    /// Note that the class uses a weak ``keyboardController``
-    /// reference to avoid retain cycles.
     open class StandardHandler: NSObject, KeyboardActionHandler {
         
         // MARK: - Initialization
