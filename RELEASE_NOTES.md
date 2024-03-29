@@ -13,14 +13,19 @@ These release notes only cover the current major version.
 
 ## 8.5
 
-This version moves service implementations into their related namespaces, to make the SDK smaller and easier to overview.
+This version moves service implementations into their namespaces.
+
+This makes the SDK smaller and easier to overview.
 
 ### 🗑️ Deprecations
 
 * `BaseCalloutActionProvider` has been renamed to `Callouts.BaseActionProvider`.
 * `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
 * `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
+* `KeyboardLayoutRowIdentifiable` has been renamed to `KeyboardLayoutIdentifiable`.
 * `LocalAutocompleteProvider` has been renamed to `Autocomplete.LocalProvider`.
+* `ProDictationService` has been renamed to `Dictation.ProService`.
+* `ProKeyboardDictationService` has been renamed to `Dictation.ProKeyboardService`.
 * `RemoteAutocompleteProvider` has been renamed to `Autocomplete.RemoteProvider`.
 * `StandardCalloutActionProvider` has been renamed to `Callouts.StandardActionProvider`.
 * `StandardKeyboardBehavior` has been renamed to `Keyboard.StandardBehavior`.

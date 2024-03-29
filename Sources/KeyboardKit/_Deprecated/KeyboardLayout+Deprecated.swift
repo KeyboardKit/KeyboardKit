@@ -11,3 +11,7 @@ public extension KeyboardLayout {
 
 @available(*, deprecated, renamed: "KeyboardLayoutRowIdentifiable")
 public typealias KeyboardLayoutRowItem = KeyboardLayoutRowIdentifiable
+
+@available(*, deprecated, renamed: "KeyboardLayoutIdentifiable")
+public typealias KeyboardLayoutRowIdentifiable = KeyboardLayoutIdentifiable
+

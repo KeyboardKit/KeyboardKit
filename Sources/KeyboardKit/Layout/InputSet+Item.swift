@@ -53,20 +53,23 @@ public extension InputSet {
         
         /// The lowercased char value.
         public var lowercased: String
-        
-        /// Resolve the character to use for a certain case.
-        public func character(for case: Keyboard.Case) -> String {
-            switch `case` {
-            case .auto: return lowercased
-            case .lowercased: return lowercased
-            case .uppercased, .capsLocked: return uppercased
-            }
-        }
     }
 }
 
-extension InputSet.Item: KeyboardLayoutRowIdentifiable {
+extension InputSet.Item: KeyboardLayoutIdentifiable {
 
-    /// The row-specific ID to use for the action.
-    public var rowId: InputSet.Item { self }
+    /// The layout ID to use for the item.
+    public var rowId: Self { self }
+}
+
+public extension InputSet.Item {
+
+    /// Resolve the character to use for a certain case.
+    func character(for case: Keyboard.Case) -> String {
+        switch `case` {
+        case .auto: lowercased
+        case .lowercased: lowercased
+        case .uppercased, .capsLocked: uppercased
+        }
+    }
 }

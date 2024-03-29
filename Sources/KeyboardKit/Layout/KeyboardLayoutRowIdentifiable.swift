@@ -1,5 +1,5 @@
 //
-//  KeyboardLayoutRowIdentifiable.swift
+//  KeyboardLayoutIdentifiable.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-08.
@@ -9,28 +9,24 @@
 import Foundation
 
 /// This protocol can be implemented by types that represent
-/// an ID-based layout row item.
+/// an ID-based layout items.
 ///
 /// Implementing the protocol unlocks extensions that can be
-/// used toto handle and modify the items in the collection.
+/// used to handle and modify layout item collections.
 ///
 /// Unlike `Identifiable`, the ``rowId`` does not have to be
-/// unique, since an item may appear many times within a row.
-///
-/// The mutating collection and array functions will use the
-/// row identifier when adding and removing items. If the ID
-/// is used by many items, the first match will be used.
-public protocol KeyboardLayoutRowIdentifiable {
+/// unique, since a layout item may appear many times in the
+/// layout. The mutating collection extensions will use this
+/// identifier when looking for items.
+public protocol KeyboardLayoutIdentifiable {
     
     associatedtype ID: Equatable
     
-    /// The row-specific item identifier.
+    /// The layout-specific item identifier.
     var rowId: ID { get }
 }
 
-/// This extension adds functions to ``KeyboardLayoutRowItem``
-/// collections.
-public extension RangeReplaceableCollection where Element: KeyboardLayoutRowIdentifiable, Index == Int {
+public extension RangeReplaceableCollection where Element: KeyboardLayoutIdentifiable, Index == Int {
 
     /// Get the index of a certain item in the collection.
     func index(
@@ -116,13 +112,10 @@ public extension RangeReplaceableCollection where Element: KeyboardLayoutRowIden
     }
 }
 
-
-/// This extension adds functions to ``KeyboardLayoutRowItem``
-/// arrays.
 public extension Array where
     Element: RangeReplaceableCollection,
     Element.Index == Int,
-    Element.Element: KeyboardLayoutRowIdentifiable {
+    Element.Element: KeyboardLayoutIdentifiable {
     
     /// Get the row at a certain index.
     func row(
