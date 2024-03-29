@@ -161,7 +161,6 @@ KeyboardKit is available under the MIT license.
 - ``CalloutContext``
 - ``CalloutActionProvider``
 - ``StandardCalloutActionProvider``
-- ``BaseCalloutActionProvider``
 
 ### Device
 

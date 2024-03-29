@@ -17,8 +17,10 @@ extension KeyboardAction {
     /// class when the keyboard is launched, then injects it
     /// into ``KeyboardInputViewController/services``.
     ///
-    /// You can inherit and override any open parts that you
-    /// want to change.
+    /// You can inherit this class to get base functionality,
+    /// then override any open parts that you want to change.
+    ///
+    /// See <doc:Actions-Article> for more information.
     open class StandardHandler: NSObject, KeyboardActionHandler {
         
         // MARK: - Initialization

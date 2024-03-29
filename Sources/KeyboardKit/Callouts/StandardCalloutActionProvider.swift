@@ -29,11 +29,11 @@ open class StandardCalloutActionProvider: CalloutActionProvider {
     ///
     /// - Parameters:
     ///   - keyboardContext: The keyboard context to use.
-    ///   - baseProvider: The base provider, by default a ``BaseCalloutActionProvider``.
+    ///   - baseProvider: The base provider, by default a ``Callouts/BaseActionProvider``.
     ///   - localizedProviders: A list of localized layout providers, by default `empty`.
     public init(
         keyboardContext: KeyboardContext,
-        baseProvider: CalloutActionProvider = BaseCalloutActionProvider(),
+        baseProvider: CalloutActionProvider = Callouts.BaseActionProvider(),
         localizedProviders: [LocalizedProvider] = []
     ) {
         self.keyboardContext = keyboardContext

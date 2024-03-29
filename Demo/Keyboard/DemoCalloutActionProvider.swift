@@ -14,7 +14,7 @@ import UIKit
 ///
 /// You can play around with this class to see how it can be
 /// customized, tro trigger custom actions.
-class DemoCalloutActionProvider: BaseCalloutActionProvider {
+class DemoCalloutActionProvider: Callouts.BaseActionProvider {
     
     override func calloutActionString(for char: String) -> String {
         switch char {

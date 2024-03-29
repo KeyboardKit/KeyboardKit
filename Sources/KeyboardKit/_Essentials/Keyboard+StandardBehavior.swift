@@ -13,15 +13,15 @@ extension Keyboard {
     /// This class defines the standard keyboard behavior of
     /// a standard western keyboard, with some locale tweaks.
     ///
+    /// Note that this class handles `shift` a bit different,
+    /// since it must handle double taps for caps lock.
+    ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it
     /// into ``KeyboardInputViewController/services``.
     ///
-    /// You can inherit and override any open parts that you
-    /// want to change.
-    ///
-    /// Note that this class handles `shift` a bit different,
-    /// since it must handle double taps for caps lock.
+    /// You can inherit this class to get base functionality,
+    /// then override any open parts that you want to change.
     open class StandardBehavior: KeyboardBehavior {
         
         /// Create a standard keyboard behavior instance.
