@@ -26,3 +26,7 @@ public typealias ProDictationService = Dictation.ProService
 
 @available(*, deprecated, renamed: "Dictation.ProKeyboardService")
 public typealias ProKeyboardDictationService = Dictation.ProKeyboardService
+
+
+@available(*, deprecated, renamed: "KeyboardLayout.BaseProvider")
+public typealias BaseKeyboardLayoutProvider = KeyboardLayout.BaseProvider

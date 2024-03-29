@@ -1,5 +1,5 @@
 //
-//  RepeatGestureTimerTests.swift
+//  Gestures+RepeatTimerTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-05-06.
@@ -10,7 +10,7 @@ import XCTest
 
 @testable import KeyboardKit
 
-class RepeatGestureTimerTests: XCTestCase {
+class Gestures_RepeatTimerTests: XCTestCase {
 
     let timer = Gestures.RepeatTimer.shared
 

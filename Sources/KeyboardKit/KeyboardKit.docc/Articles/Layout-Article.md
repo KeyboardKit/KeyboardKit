@@ -53,7 +53,7 @@ KeyboardKit injects a ``StandardKeyboardLayoutProvider`` into ``KeyboardInputVie
 
 You can create a custom layout provider to customize the layout for certain locales or devices, or to provide a completely custom layout.
 
-You can implement ``KeyboardLayoutProvider`` from scratch, or inherit and customize ``StandardKeyboardLayoutProvider``, ``BaseKeyboardLayoutProvider``, ``iPadKeyboardLayoutProvider``, or ``iPhoneKeyboardLayoutProvider``. 
+You can implement ``KeyboardLayoutProvider`` from scratch, or inherit and customize ``StandardKeyboardLayoutProvider``, ``KeyboardLayout/BaseProvider``, ``iPadKeyboardLayoutProvider``, or ``iPhoneKeyboardLayoutProvider``. 
 
 For instance, here's a custom provider that inherits ``StandardKeyboardLayoutProvider``, then injects a ``KeyboardAction/tab`` key into the layout:
 

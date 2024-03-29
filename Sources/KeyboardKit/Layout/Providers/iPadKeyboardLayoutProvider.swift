@@ -17,7 +17,7 @@ import SwiftUI
 ///
 /// KeyboardKit Pro unlocks an iPadProKeyboardLayoutProvider,
 /// which can be used to create layouts for iPad Air and Pro.
-open class iPadKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
+open class iPadKeyboardLayoutProvider: KeyboardLayout.BaseProvider {
 
 
     // MARK: - Overrides

@@ -49,7 +49,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
     }
 }
 
-private class TestProvider: BaseKeyboardLayoutProvider, LocalizedService {
+private class TestProvider: KeyboardLayout.BaseProvider, LocalizedService {
 
     init(localeKey: String = "sv-SE") {
         self.localeKey = localeKey

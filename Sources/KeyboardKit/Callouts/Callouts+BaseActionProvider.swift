@@ -10,7 +10,8 @@ import SwiftUI
 
 extension Callouts {
     
-    /// This class provides a base set of callout actions.
+    /// This base class provides a foundation for creating a
+    /// custom callout action provider.
     ///
     /// This class only provides alphabetic, English callout
     /// actions. For localized, as well as symbolic, numeric

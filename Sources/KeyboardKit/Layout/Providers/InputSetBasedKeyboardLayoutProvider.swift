@@ -16,7 +16,7 @@ import Foundation
 /// determine things like keyboard type and current platform.
 ///
 /// You can inherit this provider and customize it as needed.
-open class InputSetBasedKeyboardLayoutProvider: BaseKeyboardLayoutProvider, KeyboardLayoutProviderProxy, LocalizedService {
+open class InputSetBasedKeyboardLayoutProvider: KeyboardLayout.BaseProvider, KeyboardLayoutProviderProxy, LocalizedService {
 
     /// Create an input set-based keyboard layout provider.
     ///

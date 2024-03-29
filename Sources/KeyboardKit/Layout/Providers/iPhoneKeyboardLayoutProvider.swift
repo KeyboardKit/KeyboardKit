@@ -14,7 +14,7 @@ import SwiftUI
 /// which is the standard layout for many locales.
 ///
 /// You can inherit this provider and customize it as needed.
-open class iPhoneKeyboardLayoutProvider: BaseKeyboardLayoutProvider {
+open class iPhoneKeyboardLayoutProvider: KeyboardLayout.BaseProvider {
 
 
     // MARK: - Overrides

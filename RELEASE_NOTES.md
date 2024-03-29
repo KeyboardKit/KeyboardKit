@@ -20,6 +20,7 @@ This makes the SDK smaller and easier to overview.
 ### 🗑️ Deprecations
 
 * `BaseCalloutActionProvider` has been renamed to `Callouts.BaseActionProvider`.
+* `BaseKeyboardLayoutProvider` has been renamed to `KeyboardLayout.BaseProvider`.
 * `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
 * `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
 * `KeyboardLayoutRowIdentifiable` has been renamed to `KeyboardLayoutIdentifiable`.

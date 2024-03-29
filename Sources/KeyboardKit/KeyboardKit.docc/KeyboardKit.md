@@ -216,7 +216,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayoutProvider``
 - ``KeyboardLayoutProviderProxy``
 
-- ``BaseKeyboardLayoutProvider``
 - ``StandardKeyboardLayoutProvider``
 - ``InputSetBasedKeyboardLayoutProvider``
 - ``iPadKeyboardLayoutProvider``
