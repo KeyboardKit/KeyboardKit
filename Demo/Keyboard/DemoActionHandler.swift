@@ -14,7 +14,7 @@ import UIKit
 ///
 /// You can play around with this class to see how it can be
 /// customized, tro trigger custom actions.
-class DemoActionHandler: StandardKeyboardActionHandler {
+class DemoActionHandler: KeyboardAction.StandardHandler {
 
 
     // MARK: - Overrides

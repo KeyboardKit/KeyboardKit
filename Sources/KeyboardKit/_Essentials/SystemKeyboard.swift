@@ -8,39 +8,36 @@
 
 import SwiftUI
 
-/**
- This keyboard can be used to create alphabetic, numeric and
- symbolic keyboards that mimic the native iOS keyboard.
- 
- KeyboardKit will by default use a standard ``SystemKeyboard``
- if you don't provide a custom view. So, if you just want to
- use such a standard keyboard, you don't have to do anything.
- 
- If you want to customize the system keyboard, just override
- ``KeyboardInputViewController/viewWillSetupKeyboard()`` and
- call any of the `setup(with:)` functions with a custom view.
- 
- For more information on how to customize this view, as well
- as code examples, see <doc:Essentials>.
- */
+/// This keyboard can be used to mimic a native iOS keyboard.
+///
+/// This view can render any ``KeyboardLayout`` and supports
+/// alphabetic, numeric and symbolic keyboard types, as well
+/// as any custom layout you may specify.
+///
+/// KeyboardKit will by default use this as the default view.
+/// So, if you only want to use a standard keyboard view and
+/// use the ``KeyboardInputViewController/state`` properties
+/// and the ``KeyboardInputViewController/services`` service
+/// instances to customize it, you don't have to do anything.
+///
+/// For more information on how to customize th view and how
+/// to customize it, see <doc:Essentials>.
 public struct SystemKeyboard<
     ButtonContent: View,
     ButtonView: View,
     EmojiKeyboard: View,
     Toolbar: View>: View {
     
-    /**
-     Create a system keyboard based on state and services.
-     
-     - Parameters:
-       - state: The value to fetch observable state from.
-       - services: The value to fetch keyboard services from.
-       - renderBackground: Whether or not to render the background, by default `true`.
-       - buttonContent: The content view to use for buttons.
-       - buttonView: The button view to use for an buttons.
-       - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.
-       - toolbar: The toolbar view to add above the keyboard.
-     */
+    /// Create a system keyboard based on state and services.
+    ///
+    /// - Parameters:
+    ///   - state: The value to fetch observable state from.
+    ///   - services: The value to fetch keyboard services from.
+    ///   - renderBackground: Whether or not to render the background, by default `true`.
+    ///   - buttonContent: The content view to use for buttons.
+    ///   - buttonView: The button view to use for an buttons.
+    ///   - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.
+    ///   - toolbar: The toolbar view to add above the keyboard.
     public init(
         state: Keyboard.State,
         services: Keyboard.Services,
@@ -65,22 +62,20 @@ public struct SystemKeyboard<
         )
     }
     
-    /**
-     Create a system keyboard based on raw properties.
-     
-     - Parameters:
-       - layout: The layout to use.
-       - actionHandler: The action handler to use.
-       - styleProvider: The style provider to use.
-       - keyboardContext: The keyboard context to use.
-       - autocompleteContext: The autocomplete context to use.
-       - calloutContext: The callout context to use.
-       - renderBackground: Whether or not to render the background, by default `true`.
-       - buttonContent: The content view to use for buttons.
-       - buttonView: The button view to use for an buttons.
-       - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.
-       - toolbar: The toolbar view to add above the keyboard.
-     */
+    /// Create a system keyboard based on raw properties.
+    ///
+    /// - Parameters:
+    ///   - layout: The layout to use.
+    ///   - actionHandler: The action handler to use.
+    ///   - styleProvider: The style provider to use.
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - autocompleteContext: The autocomplete context to use.
+    ///   - calloutContext: The callout context to use.
+    ///   - renderBackground: Whether or not to render the background, by default `true`.
+    ///   - buttonContent: The content view to use for buttons.
+    ///   - buttonView: The button view to use for an buttons.
+    ///   - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.
+    ///   - toolbar: The toolbar view to add above the keyboard.
     public init(
         layout: KeyboardLayout,
         actionHandler: KeyboardActionHandler,
@@ -337,10 +332,8 @@ private extension SystemKeyboard {
 
 
 #if os(iOS) || os(tvOS) || os(visionOS)
-/**
- `IMPORTANT` In previews, you must provide a custom width to
- get buttons to show up, since there is no shared controller.
- */
+/// IMPORTANT! You must apply a preview width to get buttons
+/// to show up, since there's no shared controller.
 #Preview {
 
     struct Preview: View {

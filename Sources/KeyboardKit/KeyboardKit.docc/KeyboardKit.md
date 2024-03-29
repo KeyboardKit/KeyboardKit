@@ -140,15 +140,14 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardController``
 - ``KeyboardInputViewController``
 - ``SystemKeyboard``
+- ``SystemKeyboardItem``
 - ``SystemKeyboardPreview``
 - ``SystemKeyboardButtonPreview``
-- ``SystemKeyboardItem``
 
 ### Actions
 
 - ``KeyboardAction``
 - ``KeyboardActionHandler``
-- ``StandardKeyboardActionHandler``
 
 ### Autocomplete
 

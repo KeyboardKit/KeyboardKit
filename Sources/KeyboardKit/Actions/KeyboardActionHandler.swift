@@ -9,7 +9,7 @@
 import CoreGraphics
 
 /// This protocol can be implemented by any classes that can
-/// handle triggered ``KeyboardAction``s.
+/// handle triggered ``KeyboardAction`` events.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
@@ -26,29 +26,29 @@ public protocol KeyboardActionHandler: AnyObject {
     /// This typealias resolves to a keyboard gesture
     typealias Gesture = Gestures.KeyboardGesture
     
-    /// Whether or not the handler handles an action gesture.
+    /// Whether the handler can handle an action gesture.
     func canHandle(
         _ gesture: Gesture,
         on action: KeyboardAction
     ) -> Bool
     
-    /// Handle a certain action using its standard action.
+    /// Handle a certain keyboard action.
     func handle(
         _ action: KeyboardAction
+    )
+    
+    /// Handle a certain keyboard action gesture.
+    func handle(
+        _ gesture: Gesture,
+        on action: KeyboardAction
     )
     
     /// Handle a certain autocomplete suggestion.
     func handle(
         _ suggestion: Autocomplete.Suggestion
     )
-
-    /// Handle a certain action gesture.
-    func handle(
-        _ gesture: Gesture,
-        on action: KeyboardAction
-    )
     
-    /// Handle a drag gesture on a certain action.
+    /// Handle a certain keyboard action drag gesture.
     func handleDrag(
         on action: KeyboardAction,
         from startLocation: CGPoint,

@@ -213,7 +213,7 @@ struct CustomKeyboard: View {
 Services are not injected into the view hierarchy, and must be passed around. KeyboardKit uses init injection for both state and services.
 
 
-You can easily modify any state and replace any service with custom implementations. For instance, here we disable autocomplete with the shared ``AutocompleteContext`` and replace the default ``StandardKeyboardActionHandler`` with a custom action handler:
+You can easily modify any state and replace any service with custom implementations. For instance, here we disable autocomplete with the shared ``AutocompleteContext`` and replace the standard ``KeyboardActionHandler`` with a custom one:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

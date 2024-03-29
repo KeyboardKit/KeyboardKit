@@ -10,12 +10,15 @@ import Foundation
 
 extension Keyboard {
     
-    /// This class defines how a default US keyboard behaves,
-    /// with a few locale-specific tweaks for other locales.
+    /// This class defines the standard keyboard behavior of
+    /// a standard western keyboard, with some locale tweaks.
     ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it
     /// into ``KeyboardInputViewController/services``.
+    ///
+    /// You can inherit and override any open parts that you
+    /// want to change.
     ///
     /// Note that this class handles `shift` a bit different,
     /// since it must handle double taps for caps lock.

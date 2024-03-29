@@ -35,7 +35,7 @@ public extension Keyboard {
         
         
         /// The keyboard action handler to use.
-        public lazy var actionHandler: KeyboardActionHandler = StandardKeyboardActionHandler(
+        public lazy var actionHandler: KeyboardActionHandler = KeyboardAction.StandardHandler(
             controller: nil,
             keyboardContext: state.keyboardContext,
             keyboardBehavior: keyboardBehavior,
@@ -92,7 +92,7 @@ public extension Keyboard.Services {
     // Setup the action handler for the provided controller.
     func setupActionHandler(for controller: KeyboardInputViewController) {
         weak var weakController = controller
-        (actionHandler as? StandardKeyboardActionHandler)?.keyboardController = weakController
+        (actionHandler as? KeyboardAction.StandardHandler)?.keyboardController = weakController
     }
     
     // Setup space gestures for the provided controller.

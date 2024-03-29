@@ -8,14 +8,13 @@
 
 import Foundation
 
-/**
- This extension defines standard gesture actions for various
- keyboard actions and ``KeyboardInputViewController``s.
-
- The ``KeyboardAction/GestureAction`` typealias signature is
- using an optional ``KeyboardController`` since some classes
- will use this with a weak controller reference.
- */
+/// This extension defines standard gestures for the various
+/// keyboard actions.
+///
+///
+/// The ``KeyboardAction/GestureAction`` typealias signature
+/// uses an optional ``KeyboardController`` since some types
+/// will use this with a weak controller reference.
 public extension KeyboardAction {
     
     /// This typealias defines a controller gesture action.

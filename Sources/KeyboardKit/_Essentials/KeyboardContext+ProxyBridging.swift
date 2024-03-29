@@ -8,13 +8,11 @@
 
 import Foundation
 
-/**
- These TEMPORARY extensions are used internally, to abstract
- the proxy and make the context compile for multi-platform.
- 
- Since some of these abstractions will return invalid result
- on e.g. macOS and watchOS, make sure to replace them later.
- */
+/// This TEMPORARY extension is used internally, to abstract
+/// the proxy and make the context multi-platform supporting.
+///
+/// Since some of the abstractions return invalid result for
+/// e.g. macOS and watchOS, make sure to replace them later.
 extension KeyboardContext {
     
     func endSentence() {

@@ -8,21 +8,21 @@
 
 import Foundation
 
-/**
- This enum defines keyboard-specific actions that correspond
- to actions that can be found on various keyboards.
- 
- Keyboard actions can be bound to buttons and triggered with
- a ``KeyboardActionHandler``. They are also used by keyboard
- layouts and other parts of the library, as declarative ways
- to describe various parts of the keyboard without having to
- specify how the actions will be executed.
-
- The documentation for each action type describes the type's
- standard behavior, if any. Types that don't have a standard
- behavior require a custom ``KeyboardActionHandler`` to have
- any effect when the user interacts with them.
- */
+/// This enum defines keyboard-specific actions that trigger
+/// keyboard-related operations.
+///
+/// Some actions are ``KeyboardAction/character(_:)``, which
+/// inserts text, ``KeyboardAction/keyboardType(_:)``, which
+/// switches keyboard type, etc.
+///
+/// The idea with these keyboard actions is that they can be
+/// used to triggered keyboard-related operations, e.g. when
+/// tapping a button, or when certain events happen. You can
+/// trigger actions with a ``KeyboardActionHandler``.
+///
+/// The documentation for each action describes the standard
+/// behavior, if any. Types that without a standard behavior
+/// require a custom ``KeyboardActionHandler`` to be handled.
 public enum KeyboardAction: Codable, Equatable {
 
     /// Deletes backwards when pressed, and repeats until released.
@@ -238,12 +238,7 @@ public extension KeyboardAction {
 
 public extension KeyboardAction {
     
-    /**
-     The standard accessibility label for the action.
-     
-     This should be localized or at least use KKL10n to make
-     it easier to localize it in the future.
-     */
+    /// The standard accessibility label for the action.
     var standardAccessibilityLabel: String? {
         switch self {
         case .backspace: "Backspace"

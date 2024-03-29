@@ -122,7 +122,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     // MARK: - Services
 
     func servicesHaveStandardInstancesByDefault() {
-        XCTAssertNotNil(vc.services.actionHandler as? StandardKeyboardActionHandler)
+        XCTAssertNotNil(vc.services.actionHandler as? KeyboardAction.StandardHandler)
         XCTAssertNotNil(vc.services.autocompleteProvider as? Autocomplete.DisabledProvider)
         XCTAssertNotNil(vc.services.calloutActionProvider as? StandardCalloutActionProvider)
         XCTAssertNotNil(vc.services.dictationService as? Dictation.DisabledKeyboardService)

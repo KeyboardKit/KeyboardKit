@@ -36,9 +36,13 @@ See the ``KeyboardAction`` for a list of all available action types.
 
 ## How to handle keyboard actions
 
-Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions.
+Keyboard actions can be handled with a ``KeyboardActionHandler``, which is a protocol that can be implemented by any class that can handle keyboard actions, gestures, and trigger feedback.
 
-KeyboardKit injects a ``StandardKeyboardActionHandler`` into ``KeyboardInputViewController/services``. You can modify or replace this instance at any time.
+KeyboardKit automatically creates an instance of ``KeyboardAction/StandardHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as is described further down.
+
+
+
+## How to trigger keyboard actions
 
 KeyboardKit automatically triggers actions when a user interacts with the keyboard, or when certain system events happen. You can intercept these actions with a custom action handler, to perform any logic you want.
 
@@ -82,9 +86,7 @@ This will by default insert the suggestion into the text document proxy and rese
 
 You can create a custom action handler to customize certain actions, and to handle actions that don't have default actions, like ``KeyboardAction/image``. 
 
-You can implement ``KeyboardActionHandler`` from scratch, or inherit and customize ``StandardKeyboardActionHandler``. 
-
-For instance, here's a custom handler that inherits ``StandardKeyboardActionHandler`` and prints when space is pressed:
+You can implement ``KeyboardActionHandler`` from scratch, or inherit and customize the ``KeyboardAction/StandardHandler``. For instance, here's a custom action handler that inherits ``KeyboardAction/StandardHandler`` and prints when space is pressed:
 
 ```swift
 class CustomActionHandler: StandardActionHandler {
@@ -119,9 +121,9 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] injects an ``StandardKeyboardActionHandler/emojiRegistrationAction`` function into the ``StandardKeyboardActionHandler``, then uses it to automatically register emojis as you use them.
+[KeyboardKit Pro][Pro] injects an ``KeyboardAction/StandardHandler/emojiRegistrationAction`` function into the ``KeyboardAction/StandardHandler`` and uses it to automatically register emojis as you use them, which will automatically update the ``EmojiCategory/frequent`` ``EmojiCategory``.
 
-This will automatically update the ``EmojiCategory/frequent`` ``EmojiCategory`` and make ``EmojiKeyboard`` display the most recently used emojis.
+This means that the ``EmojiKeyboard`` is automatically updated with the most recently used emojis when emoji actions are triggered.
 
 
 

@@ -1,9 +1,9 @@
 //
-//  StandardKeyboardActionHandlerTests.swift
+//  KeyboardAction+StandardHandlerTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-06.
-//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2024 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
@@ -12,7 +12,7 @@ import XCTest
 
 @testable import KeyboardKit
 
-final class StandardKeyboardActionHandlerTests: XCTestCase {
+final class KeyboardAction_StandardHandlerTests: XCTestCase {
     
     typealias Gesture = Gestures.KeyboardGesture
 
@@ -248,7 +248,7 @@ final class StandardKeyboardActionHandlerTests: XCTestCase {
     }
 }
 
-private class TestClass: StandardKeyboardActionHandler, Mockable {
+private class TestClass: KeyboardAction.StandardHandler, Mockable {
 
     var mock = Mock()
 
