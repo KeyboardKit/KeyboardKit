@@ -12,7 +12,7 @@ import KeyboardKit
  This demo-specific provider inherits the standard one, then
  adds a rocket and a locale key around the space key.
  */
-class DemoLayoutProvider: StandardKeyboardLayoutProvider {
+class DemoLayoutProvider: KeyboardLayout.StandardProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)

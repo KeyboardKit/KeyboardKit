@@ -16,7 +16,7 @@ import KeyboardKitPro
 ///
 /// The locale button is only added if the keyboard has many
 /// locales.
-class DemoLayoutProvider: StandardKeyboardLayoutProvider {
+class DemoLayoutProvider: KeyboardLayout.StandardProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)

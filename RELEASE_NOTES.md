@@ -21,6 +21,10 @@ This makes the SDK smaller and easier to overview.
 
 * `BaseCalloutActionProvider` has been renamed to `Callouts.BaseActionProvider`.
 * `BaseKeyboardLayoutProvider` has been renamed to `KeyboardLayout.BaseProvider`.
+* `InputSetBasedKeyboardLayoutProvider` has been renamed to `KeyboardLayout.DeviceBasedProvider`.
+* `iPadKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPadProvider`.
+* `iPadProKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPadProProvider`.
+* `iPhoneKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPhoneProvider`.
 * `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
 * `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
 * `KeyboardLayoutRowIdentifiable` has been renamed to `KeyboardLayoutIdentifiable`.
@@ -29,8 +33,9 @@ This makes the SDK smaller and easier to overview.
 * `ProKeyboardDictationService` has been renamed to `Dictation.ProKeyboardService`.
 * `RemoteAutocompleteProvider` has been renamed to `Autocomplete.RemoteProvider`.
 * `StandardCalloutActionProvider` has been renamed to `Callouts.StandardActionProvider`.
-* `StandardKeyboardBehavior` has been renamed to `Keyboard.StandardBehavior`.
 * `StandardKeyboardActionHandler` has been renamed to `KeyboardAction.StandardHandler`.
+* `StandardKeyboardBehavior` has been renamed to `Keyboard.StandardBehavior`.
+* `StandardKeyboardLayoutProvider` has been renamed to `KeyboardLayout.StandardProvider`.
 
 
 

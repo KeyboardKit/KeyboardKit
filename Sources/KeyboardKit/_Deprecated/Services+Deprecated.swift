@@ -30,3 +30,18 @@ public typealias ProKeyboardDictationService = Dictation.ProKeyboardService
 
 @available(*, deprecated, renamed: "KeyboardLayout.BaseProvider")
 public typealias BaseKeyboardLayoutProvider = KeyboardLayout.BaseProvider
+
+@available(*, deprecated, renamed: "KeyboardLayout.DeviceBasedProvider")
+public typealias InputSetBasedKeyboardLayoutProvider = KeyboardLayout.DeviceBasedProvider
+
+@available(*, deprecated, renamed: "KeyboardLayout.iPadProvider")
+public typealias iPadKeyboardLayoutProvider = KeyboardLayout.iPadProvider
+
+@available(*, deprecated, renamed: "KeyboardLayout.iPadProProvider")
+public typealias iPadProKeyboardLayoutProvider = KeyboardLayout.iPadProProvider
+
+@available(*, deprecated, renamed: "KeyboardLayout.iPhoneProvider")
+public typealias iPhoneKeyboardLayoutProvider = KeyboardLayout.iPhoneProvider
+
+@available(*, deprecated, renamed: "KeyboardLayout.StandardProvider")
+public typealias StandardKeyboardLayoutProvider = KeyboardLayout.StandardProvider

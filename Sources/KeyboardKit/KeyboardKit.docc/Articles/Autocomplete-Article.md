@@ -15,9 +15,7 @@ This article describes the KeyboardKit autocomplete engine.
 
 Autocomplete is an important part of the typing experience, where suggestions are shown as the user types.
 
-In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``AutocompleteContext`` whenever the user types, to automatically update views like an autocomplete ``Autocomplete/Toolbar``.
-
-KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
+In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``AutocompleteContext`` whenever the user types. Unlike other service types, there is no open-source implementation of this protocol.
 
 👑 [KeyboardKit Pro][Pro] unlocks local and remote autocomplete. Information about Pro features can be found at the end of this article.
 
@@ -38,6 +36,14 @@ This namespace doesn't contain protocols, open classes or types of higher import
 KeyboardKit has an observable ``AutocompleteContext`` that can handle autocomplete state, such as if autocomplete is enabled, which suggestions to present, etc.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
+
+
+
+## Autocomplete providers
+
+In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``AutocompleteContext`` whenever the user types, to automatically update views like an autocomplete ``Autocomplete/Toolbar``.
+
+KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
 
 

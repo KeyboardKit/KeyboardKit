@@ -66,7 +66,7 @@ public extension Keyboard {
             keyboardContext: state.keyboardContext)
         
         /// The keyboard layout provider to use.
-        public lazy var layoutProvider: KeyboardLayoutProvider = StandardKeyboardLayoutProvider()
+        public lazy var layoutProvider: KeyboardLayoutProvider = KeyboardLayout.StandardProvider()
         
         /// The space drag gesture handler to use.
         public lazy var spaceDragGestureHandler = Gestures.SpaceDragGestureHandler(

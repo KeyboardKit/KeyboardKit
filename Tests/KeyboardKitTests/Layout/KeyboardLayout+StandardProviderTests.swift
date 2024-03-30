@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardLayoutProviderTests.swift
+//  KeyboardLayout+StandardProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-17.
@@ -9,15 +9,15 @@
 import KeyboardKit
 import XCTest
 
-class StandardKeyboardLayoutProviderTests: XCTestCase {
+class KeyboardLayout_StandardProviderTests: XCTestCase {
     
     var context: KeyboardContext!
-    var provider: StandardKeyboardLayoutProvider!
+    var provider: KeyboardLayout.StandardProvider!
 
     override func setUp() {
-        context = KeyboardContext()
-        provider = StandardKeyboardLayoutProvider(
-            baseProvider: InputSetBasedKeyboardLayoutProvider(),
+        context = .init()
+        provider = .init(
+            baseProvider: KeyboardLayout.DeviceBasedProvider(),
             localizedProviders: [TestProvider()]
         )
     }
@@ -36,7 +36,7 @@ class StandardKeyboardLayoutProviderTests: XCTestCase {
         let layout = provider.keyboardLayout(for: context)
         let firstItem = layout.itemRows[0].first
         let result = provider.keyboardLayoutProvider(for: context)
-        XCTAssertTrue(result is InputSetBasedKeyboardLayoutProvider)
+        XCTAssertTrue(result is KeyboardLayout.DeviceBasedProvider)
         XCTAssertEqual(firstItem?.action, .character("q"))
     }
     

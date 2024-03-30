@@ -2,9 +2,11 @@
 
 This article describes the KeyboardKit dictation engine.
 
-Dictation can be used to let users enter text by speaking instead of typing on the keyboard. 
+Dictation can be used to let users enter text by speaking instead of typing on the keyboard.
 
-Dictation can be hard to implement in a keyboard, where microphone access is unavailable. KeyboardKit therefore provides dictation-specific tools that lets you add dictation to both an app and its keyboard extension.
+Dictation can be hard to implement in keyboards, where no microphone access is available. KeyboardKit therefore provides dictation-specific tools that lets you perform dictation in both the app and keyboard extension.
+
+In KeyboardKit, a ``KeyboardDictationService`` can be used to perform autocomplete from the keyboard. Unlike other service types, there is no open-source implementation of this protocol.
 
 👑 [KeyboardKit Pro][Pro] unlocks dictation services for app- and keyboard-based dictation. Information about Pro features can be found at the end of this article.
 
@@ -29,7 +31,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 In KeyboardKit, a ``DictationService`` can perform dictation where microphone access is available, while a ``KeyboardDictationService`` can initialize a dictation operation from a keyboard extension, by opening the main app.
 
-KeyboardKit doesn't have a standard dictation service. Instead, it injects a disabled service into ``KeyboardInputViewController/services`` until you register a custom instance or register a KeyboardKit Pro license key.
+KeyboardKit doesn't have standard service  implementations. Instead, it injects a disabled service into ``KeyboardInputViewController/services`` until you replace it with a custom service or activate KeyboardKit Pro.
 
 
 

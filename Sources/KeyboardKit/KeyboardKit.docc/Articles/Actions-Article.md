@@ -34,7 +34,7 @@ See the ``KeyboardAction`` for a list of all available action types.
 
 
 
-## How to handle keyboard actions
+## Keyboard action handlers
 
 In KeyboardKit, a ``KeyboardActionHandler`` can be used to handle keyboard actions, gestures, and trigger feedback.
 

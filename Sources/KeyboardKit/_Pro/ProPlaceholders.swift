@@ -41,9 +41,6 @@ public struct EmojiKeyboardStyle {
 public class ExternalKeyboardContext: ObservableObject {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public class iPadProKeyboardLayoutProvider: iPadKeyboardLayoutProvider {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
 public struct KeyboardTextField {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
@@ -158,6 +155,12 @@ public extension Keyboard {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     struct ToggleToolbar {}
+}
+
+public extension KeyboardLayout {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    class iPadProProvider: iPadProvider {}
 }
 
 public extension KeyboardStyleProvider {

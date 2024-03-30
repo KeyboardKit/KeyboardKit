@@ -28,7 +28,7 @@ public extension KeyboardPreviews {
     class PreviewKeyboardLayoutProvider: KeyboardLayoutProvider {
 
         public init(keyboardContext: KeyboardContext = .preview) {
-            provider = StandardKeyboardLayoutProvider()
+            provider = KeyboardLayout.StandardProvider()
         }
 
         private let provider: KeyboardLayoutProvider

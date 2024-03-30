@@ -11,14 +11,12 @@ import SwiftUI
 
 extension KeyboardLayout {
     
-    /// This base class provides a foundation for creating a
-    /// custom layout provider.
+    /// This base class provides a foundation for generating
+    /// layouts that are based on an ``InputSet``.
     ///
-    /// This class provides many smaller functions, that you
-    /// can override as needed. This class is also inherited
-    /// by the ``iPhoneProvider`` and ``iPadProvider`` which
-    /// overrides this base layout with platform adjustments.
-    /// You can inherit these classes as well.
+    /// The class will map the provided input sets to layout
+    /// item rows, then add additional surrounding items and
+    /// an additional bottom row, based on the context.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.

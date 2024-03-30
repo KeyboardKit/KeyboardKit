@@ -39,7 +39,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 
 
-## How to provide callout actions
+## Callout action providers
 
 In KeyboardKit, a ``CalloutActionProvider`` can be used to provide dynamic callout actions, which are then presented when a key that has actions defined in the provider is long pressed.
 
