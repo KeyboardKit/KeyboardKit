@@ -1,5 +1,5 @@
 //
-//  KeyboardState+Label.swift
+//  KeyboardStatus+Label.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-09.
@@ -8,13 +8,7 @@
 
 import SwiftUI
 
-@available(*, deprecated, renamed: "KeyboardState.Label")
-public typealias KeyboardStateLabel = KeyboardState.Label
-
-@available(*, deprecated, renamed: "KeyboardState.LabelStyle")
-public typealias KeyboardStateLabelStyle = KeyboardState.LabelStyle
-
-public extension KeyboardState {
+public extension KeyboardStatus {
     
     /// This label can be used to show the currently enabled
     /// state for a keyboard.
@@ -24,7 +18,7 @@ public extension KeyboardState {
     /// has full access etc.
     ///
     /// You can style this component with the style modifier
-    /// ``keyboardStateLabelStyle(_:)``.
+    /// ``keyboardStatusLabelStyle(_:)``.
     struct Label<EnabledIcon: View, DisabledIcon: View>: View {
         
         /// Create an enabled label.
@@ -56,7 +50,7 @@ public extension KeyboardState {
         private let disabledText: String
         private let disabledIcon: DisabledIcon
         
-        @Environment(\.keyboardStateLabelStyle)
+        @Environment(\.keyboardStatusLabelStyle)
         private var envStyle
         
         public var body: some View {
@@ -76,7 +70,7 @@ public extension KeyboardState {
             enabledText: String,
             disabledIcon: DisabledIcon,
             disabledText: String,
-            style: KeyboardStateLabelStyle = .standard
+            style: KeyboardStatus.LabelStyle = .standard
         ) {
             self.isEnabled = isEnabled
             self.enabledText = enabledText
@@ -86,13 +80,13 @@ public extension KeyboardState {
             self.initStyle = style
         }
         
-        private typealias Style = KeyboardState.LabelStyle
+        private typealias Style = KeyboardStatus.LabelStyle
         private let initStyle: Style?
         private var style: Style { initStyle ?? envStyle }
     }
 }
 
-public extension KeyboardState.Label where EnabledIcon == Image, DisabledIcon == Image {
+public extension KeyboardStatus.Label where EnabledIcon == Image, DisabledIcon == Image {
     
     /// Create an enabled label.
     ///
@@ -117,14 +111,14 @@ public extension KeyboardState.Label where EnabledIcon == Image, DisabledIcon ==
         self.initStyle = nil
     }
     
-    @available(*, deprecated, message: "Style this view with .keyboardStateLabelStyle instead.")
+    @available(*, deprecated, message: "Style this view with .keyboardStatusLabelStyle instead.")
     init(
         isEnabled: Bool,
         enabledIcon: Image = .init(systemName: "checkmark"),
         enabledText: String,
         disabledIcon: Image = .init(systemName: "exclamationmark.triangle"),
         disabledText: String,
-        style: KeyboardStateLabelStyle = .standard
+        style: KeyboardStatus.LabelStyle = .standard
     ) {
         self.isEnabled = isEnabled
         self.enabledText = enabledText
@@ -135,7 +129,7 @@ public extension KeyboardState.Label where EnabledIcon == Image, DisabledIcon ==
     }
 }
 
-private extension KeyboardState.Label {
+private extension KeyboardStatus.Label {
 
     @ViewBuilder
     var icon: some View {
@@ -176,7 +170,7 @@ private extension KeyboardState.Label {
     List {
         Section {
             ForEach([true, false], id: \.self) {
-                KeyboardState.Label(
+                KeyboardStatus.Label(
                     isEnabled: $0,
                     enabledText: "Enabled",
                     disabledText: "Disabled"
@@ -185,7 +179,7 @@ private extension KeyboardState.Label {
         }
         Section {
             ForEach([true, false], id: \.self) {
-                KeyboardState.Label(
+                KeyboardStatus.Label(
                     isEnabled: $0,
                     enabledIcon: Color.green,
                     enabledText: "Yes",

@@ -72,7 +72,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 👁 <doc:Previews-Article> - KeyboardKit has SwiftUI preview support and lets you show keyboard previews to your users.
 * ➡️ <doc:Proxy-Article> - KeyboardKit extends the native `UITextDocumentProxy` with a lot more capabilities.
 * ⚙️ <doc:Settings-Article> - KeyboardKit has a bunch of tools for managing in-app settings & System Settings.
-* 🩺 <doc:State-Article> - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
+* 🩺 <doc:Status-Article> - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 <doc:Styling-Article> - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
 * 🚏 <doc:Text-Routing-Article> - KeyboardKit lets you type in textfields in the keyboard extensions.
 
@@ -127,7 +127,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Previews-Article>
 - <doc:Proxy-Article>
 - <doc:Settings-Article>
-- <doc:State-Article>
+- <doc:Status-Article>
 - <doc:Styling-Article>
 - <doc:Text-Routing-Article>
 - <doc:Themes-Article>
@@ -237,11 +237,11 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardSettingsLink``
 
-### State
+### Status
 
-- ``KeyboardState``
-- ``KeyboardStateContext``
-- ``KeyboardStateInspector``
+- ``KeyboardStatus``
+- ``KeyboardStatusContext``
+- ``KeyboardStatusInspector``
 
 ### Styling
 

@@ -1,5 +1,5 @@
 //
-//  KeyboardStateContext.swift
+//  KeyboardStatusContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-18.
@@ -11,7 +11,7 @@ import Foundation
 import Combine
 import UIKit
 
-/// This class provides observable keyboard enabled status.
+/// This class has observable, keybpard status-related state.
 ///
 /// This class can be used to check if a keyboard is enabled
 /// in System Settings, if Full Access is enabled, etc.
@@ -21,12 +21,12 @@ import UIKit
 ///
 /// ```
 /// @StateObject
-/// var state = KeyboardStateContext(bundleId: "com.myapp.*")
+/// var status = KeyboardStatusContext(bundleId: "com.myapp.*")
 /// ```
 ///
 /// This context is not added to the input controller, since
 /// it's intended to be used in the main app, not a keyboard.
-public class KeyboardStateContext: KeyboardStateInspector, ObservableObject {
+public class KeyboardStatusContext: KeyboardStatusInspector, ObservableObject {
 
     /// Create an instance of this observable state class.
     ///
@@ -72,7 +72,7 @@ public class KeyboardStateContext: KeyboardStateInspector, ObservableObject {
     }
 }
 
-private extension KeyboardStateContext {
+private extension KeyboardStatusContext {
 
     var activePublisher: NotificationCenter.Publisher {
         notificationCenter.publisher(

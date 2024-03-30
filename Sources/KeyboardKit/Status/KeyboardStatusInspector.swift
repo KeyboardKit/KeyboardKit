@@ -1,5 +1,5 @@
 //
-//  KeyboardStateInspector.swift
+//  KeyboardStatusInspector.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-05-05.
@@ -21,14 +21,14 @@ import UIKit
 ///
 /// ```
 /// @StateObject
-/// var state = KeyboardStateContext(bundleId: "com.myapp.*")
+/// var status = KeyboardStatusContext(bundleId: "com.myapp.*")
 /// ```
 ///
 /// The easiest way to observe a keyboard's enabled state is
-/// to use an observable ``KeyboardStateContext``.
-public protocol KeyboardStateInspector {}
+/// to use an observable ``KeyboardStatusContext``.
+public protocol KeyboardStatusInspector {}
 
-public extension KeyboardStateInspector {
+public extension KeyboardStatusInspector {
 
     /// Get a list of all active keyboard bundle IDs.
     var activeKeyboardBundleIds: [String] {
@@ -68,7 +68,7 @@ public extension KeyboardStateInspector {
     }
 }
 
-extension KeyboardStateInspector {
+extension KeyboardStatusInspector {
 
     func isKeyboardActive(
         withId bundleId: String,

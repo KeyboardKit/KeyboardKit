@@ -12,7 +12,7 @@ import SwiftUI
 
 public extension CalloutContext {
     
-    /// This class provides observable input callout state.
+    /// This class has observable input callout state.
     class InputContext: ObservableObject {
         
         /// Create an input callout context instance.

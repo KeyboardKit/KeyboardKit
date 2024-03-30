@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-/// This class provides observable feedback configurations.
+/// This class has observable, feedback-related state.
 ///
 /// This class can be used to configure the audio and haptic
 /// feedback that a keyboard should provide.

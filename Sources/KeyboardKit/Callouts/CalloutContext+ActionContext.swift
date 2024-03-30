@@ -11,7 +11,7 @@ import SwiftUI
 
 public extension CalloutContext {
     
-    /// This class provides observable action callout state.
+    /// This class has observable action callout state.
     class ActionContext: ObservableObject {
         
         /// Create an action callout context instance.

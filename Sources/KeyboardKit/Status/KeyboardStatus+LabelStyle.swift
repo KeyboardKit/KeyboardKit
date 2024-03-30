@@ -1,5 +1,5 @@
 //
-//  KeyboardState+LabelStyle.swift
+//  KeyboardStatus+LabelStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-09.
@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-public extension KeyboardState {
+public extension KeyboardStatus {
     
     /// This style can be used to modify the visual style of
-    /// the ``KeyboardState/Label`` component.
+    /// the ``KeyboardStatus/Label`` component.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUI/View/keyboardStateLabelStyle(_:)``.
+    /// ``SwiftUI/View/keyboardStatusLabelStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct LabelStyle: Equatable {
@@ -67,9 +67,9 @@ public extension KeyboardState {
     }
 }
 
-public extension KeyboardState.LabelStyle {
+public extension KeyboardStatus.LabelStyle {
 
-    /// The standard state label style.
+    /// The standard status label style.
     ///
     /// You can set this style to change the global default.
     static var standard = Self()
@@ -77,26 +77,32 @@ public extension KeyboardState.LabelStyle {
 
 public extension View {
 
-    /// Apply a ``KeyboardState/LabelStyle``.
-    func keyboardStateLabelStyle(
-        _ style: KeyboardState.LabelStyle
+    /// Apply a ``KeyboardStatus/LabelStyle``.
+    func keyboardStatusLabelStyle(
+        _ style: KeyboardStatus.LabelStyle
     ) -> some View {
-        self.environment(\.keyboardStateLabelStyle, style)
+        self.environment(\.keyboardStatusLabelStyle, style)
     }
 }
 
-private extension KeyboardState.LabelStyle {
+private extension KeyboardStatus.LabelStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: KeyboardState.LabelStyle = .standard
+        static var defaultValue: KeyboardStatus.LabelStyle = .standard
     }
 }
 
 public extension EnvironmentValues {
 
-    var keyboardStateLabelStyle: KeyboardState.LabelStyle {
-        get { self [KeyboardState.LabelStyle.Key.self] }
-        set { self [KeyboardState.LabelStyle.Key.self] = newValue }
+    var keyboardStatusLabelStyle: KeyboardStatus.LabelStyle {
+        get { self [KeyboardStatus.LabelStyle.Key.self] }
+        set { self [KeyboardStatus.LabelStyle.Key.self] = newValue }
+    }
+
+    @available(*, deprecated, renamed: "keyboardStatusLabelStyle")
+    var keyboardStateLabelStyle: KeyboardStatus.LabelStyle {
+        get { self [KeyboardStatus.LabelStyle.Key.self] }
+        set { self [KeyboardStatus.LabelStyle.Key.self] = newValue }
     }
 }

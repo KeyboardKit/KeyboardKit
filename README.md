@@ -25,7 +25,7 @@ KeyboardKit extends Apple's native APIs and provides you with a lot more functio
 
 Custom iOS keyboard extensions can be used with all other apps that support text input. It's the only way for your product, brand or technology to directly interact with other apps on iOS. Don't miss out!
 
-KeyboardKit can be used in different ways. Keyboard extensions can use it to create custom keyboards. Apps can use it to check keyboard state, full access, provide settings etc.
+KeyboardKit can be used in different ways. Keyboard extensions can use it to create custom keyboards. Apps can use it to check keyboard and full access status, provide settings etc.
 
 
 
@@ -119,7 +119,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 👁 [Previews][Previews] - KeyboardKit has SwiftUI preview support and lets you show keyboard previews to your users.
 * ➡️ [Proxy Extensions][Proxy] - KeyboardKit extends the native `UITextDocumentProxy` with a lot more capabilities.
 * ⚙️ [Settings][Settings] - KeyboardKit has a bunch of tools for managing in-app settings & System Settings.
-* 🩺 [State][State] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
+* 🩺 [Status][Status] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
 * 🚏 [Text Routing][Text-Routing] - KeyboardKit can route text input from the main app to in-keyboard textfields.
 
@@ -209,7 +209,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Previews]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/previews-article
 [Proxy]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/proxy-article
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings-article
-[State]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/state-article
+[Status]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/status-article
 [Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling-article
 [Text-Routing]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/text-routing-article
 [Themes]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/themes-article

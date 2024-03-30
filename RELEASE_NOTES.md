@@ -13,9 +13,9 @@ These release notes only cover the current major version.
 
 ## 8.5
 
-This version moves service implementations into their namespaces.
+This version moves service implementations into their namespaces. This makes the SDK smaller and easier to overview.
 
-This makes the SDK smaller and easier to overview.
+This version also renames the `KeyboardState` namespace and its types to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.State`.
 
 ### 🗑️ Deprecations
 
@@ -29,6 +29,9 @@ This makes the SDK smaller and easier to overview.
 * `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
 * `KeyboardLayoutProviderProxy` has been deprecated.
 * `KeyboardLayoutRowIdentifiable` has been renamed to `KeyboardLayoutIdentifiable`.
+* `KeyboardState` has been renamed to `KeyboardStatus`.
+* `KeyboardStateContext` has been renamed to `KeyboardStatusContext`.
+* `KeyboardStateInspector` has been renamed to `KeyboardStatusInspector`.
 * `LocalAutocompleteProvider` has been renamed to `Autocomplete.LocalProvider`.
 * `ProDictationService` has been renamed to `Dictation.ProService`.
 * `ProKeyboardDictationService` has been renamed to `Dictation.ProKeyboardService`.

@@ -8,7 +8,7 @@
 
 import Combine
 
-/// This class provides observable autocomplete state.
+/// This class has observable, autocomplete-related state.
 ///
 /// The ``suggestions`` property can be updated whenever the
 /// user types on the keyboard or the current text selection

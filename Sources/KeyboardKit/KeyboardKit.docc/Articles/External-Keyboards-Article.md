@@ -47,13 +47,9 @@ struct CustomKeyboardView: View {
    var body: some View {
        VStack {
            Text("Is an external keyboard connected?")
-           Text(stateDescription)
+           Text(context.isExternalKeyboardConnected.description)
        }
        .environmentObject(context)
-   }
-
-   var stateDescription: String {
-       context.isExternalKeyboardConnected.description
    }
 }
 ```

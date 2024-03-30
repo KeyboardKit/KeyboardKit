@@ -28,7 +28,7 @@ struct HomeScreen: View {
     private var dictationContext = DictationContext(config: .app)
 
     @StateObject
-    private var keyboardState = KeyboardStateContext(
+    private var keyboardStatus = KeyboardStatusContext(
         bundleId: "com.keyboardkit.demo.*")
 
     var body: some View {
@@ -95,21 +95,21 @@ extension HomeScreen {
 
     var stateSection: some View {
         Section(header: Text("Keyboard"), footer: footerText) {
-            KeyboardStateLabel(
-                isEnabled: keyboardState.isKeyboardActive,
+            KeyboardStatusLabel(
+                isEnabled: keyboardStatus.isKeyboardActive,
                 enabledText: "Demo keyboard is active",
                 disabledText: "Demo keyboard is not active"
             )
             KeyboardSettingsLink(addNavigationArrow: true) {
-                KeyboardStateLabel(
-                    isEnabled: keyboardState.isKeyboardEnabled,
+                KeyboardStatus.Label(
+                    isEnabled: keyboardStatus.isKeyboardEnabled,
                     enabledText: "Demo keyboard is enabled",
                     disabledText: "Demo keyboard not enabled"
                 )
             }
             KeyboardSettingsLink(addNavigationArrow: true) {
-                KeyboardStateLabel(
-                    isEnabled: keyboardState.isFullAccessEnabled,
+                KeyboardStatus.Label(
+                    isEnabled: keyboardStatus.isFullAccessEnabled,
                     enabledText: "Full Access is enabled",
                     disabledText: "Full Access is disabled"
                 )
@@ -122,7 +122,7 @@ extension HomeScreen {
     }
 
     var isRtl: Bool {
-        let keyboardId = keyboardState.activeKeyboardBundleIds.first
+        let keyboardId = keyboardStatus.activeKeyboardBundleIds.first
         return keyboardId?.hasSuffix("rtl") ?? false
     }
 }

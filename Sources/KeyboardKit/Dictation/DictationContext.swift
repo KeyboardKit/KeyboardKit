@@ -10,7 +10,7 @@ import Combine
 import Foundation
 import SwiftUI
 
-/// This class provides observable dictation state.
+/// This class has observable, dictation-related state.
 ///
 /// The context is used by both ``DictationService`` as well
 /// as ``KeyboardDictationService``. Use an initializer that

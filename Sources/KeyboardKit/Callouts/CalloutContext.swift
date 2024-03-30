@@ -10,7 +10,7 @@ import Combine
 import SwiftUI
 
 
-/// This class provides observable callout state.
+/// This class has observable, callout-related state.
 ///
 /// The ``inputContext`` property is used for input callouts,
 /// and ``actionContext`` for action callouts. This class is
