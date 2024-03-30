@@ -8,13 +8,7 @@
 
 import Foundation
 
-/**
- This protocol extends ``KeyboardLayoutProvider`` and lets a
- provider resolve layouts with different providers.
-
- For now, the protocol lets you switch provider based on the
- current device type.
- */
+@available(*, deprecated, message: "This is no longer used.")
 public protocol KeyboardLayoutProviderProxy: KeyboardLayoutProvider {
     
     /// The layout provider to use for iPad devices.
@@ -24,6 +18,7 @@ public protocol KeyboardLayoutProviderProxy: KeyboardLayoutProvider {
     var iPhoneProvider: KeyboardLayoutProvider { get }
 }
 
+@available(*, deprecated, message: "This is no longer used.")
 public extension KeyboardLayoutProviderProxy {
     
     /// The keyboard layout provider to use for the context.

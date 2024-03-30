@@ -21,7 +21,7 @@ extension KeyboardLayout {
     /// then override any open parts that you want to change.
     ///
     /// See <doc:Layout-Article> for more information.
-    open class DeviceBasedProvider: KeyboardLayout.BaseProvider, KeyboardLayoutProviderProxy, LocalizedService {
+    open class DeviceBasedProvider: KeyboardLayout.BaseProvider, LocalizedService {
         
         /// Create an device-based keyboard layout provider.
         ///
@@ -58,13 +58,24 @@ extension KeyboardLayout {
             symbolicInputSet: symbolicInputSet
         )
         
-        /// The layout keyboard to use for the provided context.
+        /// The layout to use for the provided context.
         open override func keyboardLayout(
             for context: KeyboardContext
         ) -> KeyboardLayout {
             let provider = keyboardLayoutProvider(for: context)
             let layout = provider.keyboardLayout(for: context)
             return layout
+        }
+        
+        /// The provider to use for the provided context.
+        open func keyboardLayoutProvider(
+            for context: KeyboardContext
+        ) -> KeyboardLayoutProvider {
+            switch context.deviceType {
+            case .phone: iPhoneProvider
+            case .pad: iPadProvider
+            default: iPhoneProvider
+            }
         }
     }
 }

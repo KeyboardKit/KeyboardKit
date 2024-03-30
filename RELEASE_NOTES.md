@@ -27,6 +27,7 @@ This makes the SDK smaller and easier to overview.
 * `iPhoneKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPhoneProvider`.
 * `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
 * `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
+* `KeyboardLayoutProviderProxy` has been deprecated.
 * `KeyboardLayoutRowIdentifiable` has been renamed to `KeyboardLayoutIdentifiable`.
 * `LocalAutocompleteProvider` has been renamed to `Autocomplete.LocalProvider`.
 * `ProDictationService` has been renamed to `Dictation.ProService`.

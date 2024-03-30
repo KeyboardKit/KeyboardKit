@@ -214,7 +214,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayout``
 - ``KeyboardLayoutIdentifiable``
 - ``KeyboardLayoutProvider``
-- ``KeyboardLayoutProviderProxy``
 
 ### Localization
 
