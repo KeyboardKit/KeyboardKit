@@ -17,6 +17,10 @@ This version moves service implementations into their namespaces. This makes the
 
 This version also renames the `KeyboardState` namespace and its types to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.State`.
 
+### 💡 Adjustments
+
+* `KeyboardSettings` is a new namespace for settings-related types.
+
 ### 🗑️ Deprecations
 
 * `BaseCalloutActionProvider` has been renamed to `Callouts.BaseActionProvider`.

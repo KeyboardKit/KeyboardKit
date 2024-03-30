@@ -23,8 +23,6 @@ These gestures can be complicated to set up, but KeyboardKit provides you with h
 
 KeyboardKit has a ``Gestures`` namespace with gesture-related types, like ``Gestures/GestureButton``, ``Gestures/ScrollViewGestureButton``, etc.
 
-This namespace doesn't contain protocols, open classes or types of higher importance.
-
 
 
 ## Keyboard gestures

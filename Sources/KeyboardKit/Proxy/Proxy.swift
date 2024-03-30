@@ -13,6 +13,5 @@ import Foundation
 /// For now, this namespace will only have things in it when 
 /// it's part of the KeyboardKit Pro build.
 ///
-/// The namespace doesn't contain protocols, open classes or
-/// types of higher importance.
+/// The namespace doesn't contain protocols or context types.
 public struct Proxy {}

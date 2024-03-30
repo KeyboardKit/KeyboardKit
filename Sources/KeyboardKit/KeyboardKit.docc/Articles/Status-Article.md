@@ -55,7 +55,7 @@ The ``KeyboardStatusInspector`` protocol that powers the context can be implemen
     @Tab("KeyboardStatus.Label") {
         A keyboard status ``KeyboardStatus/Label`` can display various keyboard statuses, e.g. if a keyboard has been enabled, if Full Access is enabled, etc.
         
-        ![KeyboardStatus.Label](keyboardstatelabel.jpg)
+        ![KeyboardStatus.Label](keyboardstatuslabel.jpg)
         
         This view can be used together with a ``KeyboardStatusContext``, to automatically update the label whenever the status changes:
 
@@ -75,7 +75,7 @@ The ``KeyboardStatusInspector`` protocol that powers the context can be implemen
         } 
         ```
         
-        The view can be wrapped in a `Link` or ``KeyboardSettingsLink`` to link to System Settings. It supports custom texts, icons, etc.
+        The view can be wrapped in a `Link` or ``KeyboardSettings/Link`` to link to System Settings. It supports custom texts, icons, etc.
         and can be styled with a ``KeyboardStatus/LabelStyle`` or by applying a ``SwiftUI/View/keyboardStatusLabelStyle(_:)`` view modifier.
     }
 }

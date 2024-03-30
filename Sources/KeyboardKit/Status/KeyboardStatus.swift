@@ -8,9 +8,11 @@
 
 import Foundation
 
-/// This namespace contains keyboard status-related types to
-/// handle the enabled state of a keyboard.
+/// This namespace contains keyboard status-related types.
 ///
-/// The namespace doesn't contain protocols, open classes or
-/// types of higher importance.
+/// These types can be used to display and handle the status
+/// of a keyboard, such as if the keyboard extension or Full
+/// Access is enabled.
+///
+/// The namespace doesn't contain protocols or context types.
 public struct KeyboardStatus {}

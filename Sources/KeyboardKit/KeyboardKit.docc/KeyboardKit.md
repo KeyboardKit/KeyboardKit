@@ -235,7 +235,7 @@ KeyboardKit is available under the MIT license.
 
 ### Settings
 
-- ``KeyboardSettingsLink``
+- ``KeyboardSettings``
 
 ### Status
 

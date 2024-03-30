@@ -8,9 +8,7 @@
 
 import Foundation
 
-/// This namespace contains dictation-related types, as well
-/// as disabled service implementations.
+/// This namespace contains dictation-related types.
 ///
-/// The namespace doesn't contain protocols, open classes or
-/// types of higher importance.
+/// The namespace doesn't contain protocols or context types.
 public struct Dictation {}

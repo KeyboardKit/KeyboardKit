@@ -29,11 +29,9 @@ KeyboardKit uses different names for different ways to style keyboards.
 
 
 
-## Styling namespace
+## KeyboardStyle namespace
 
-KeyboardKit has a ``Styling`` namespace that contains styling-related types.
-
-This namespace doesn't contain protocols, open classes or types of higher importance.
+KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 
 
 

@@ -8,9 +8,7 @@
 
 import Foundation
 
-/// This namespace contains autocomplete types, as well as a
-/// disabled ``AutocompleteProvider``.
+/// This namespace contains autocomplete-related types.
 ///
-/// The namespace doesn't contain protocols, open classes or
-/// types of higher importance.
+/// The namespace doesn't contain protocols or context types.
 public struct Autocomplete {}

@@ -31,10 +31,10 @@ if let url = URL.keyboardSettings {
 }
 ```
 
-You can also use the convenient, configurable ``KeyboardSettingsLink``:
+You can also use the convenient, configurable ``KeyboardSettings/Link``:
 
 ```swift
-KeyboardSettingsLink {
+KeyboardSettings.Link {
     Text("Open System Settings")
 }
 ```

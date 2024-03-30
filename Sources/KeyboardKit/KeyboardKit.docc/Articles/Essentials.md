@@ -31,8 +31,6 @@ KeyboardKit has a ``Keyboard`` namespace with a lot of keyboard-related types, s
 
 Namespaces are used to make the surface API smaller, by nesting types together in logical groups. By typing ``Keyboard`` followed by a `.`, Xcode will provide you with a convenient list of types that are included in this essential namespace. 
 
-This namespace doesn't contain protocols, open classes or types of higher importance.
-
 
 
 ## Keyboard input view controller

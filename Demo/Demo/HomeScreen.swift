@@ -100,14 +100,14 @@ extension HomeScreen {
                 enabledText: "Demo keyboard is active",
                 disabledText: "Demo keyboard is not active"
             )
-            KeyboardSettingsLink(addNavigationArrow: true) {
+            KeyboardSettings.Link(addNavigationArrow: true) {
                 KeyboardStatus.Label(
                     isEnabled: keyboardStatus.isKeyboardEnabled,
                     enabledText: "Demo keyboard is enabled",
                     disabledText: "Demo keyboard not enabled"
                 )
             }
-            KeyboardSettingsLink(addNavigationArrow: true) {
+            KeyboardSettings.Link(addNavigationArrow: true) {
                 KeyboardStatus.Label(
                     isEnabled: keyboardStatus.isFullAccessEnabled,
                     enabledText: "Full Access is enabled",

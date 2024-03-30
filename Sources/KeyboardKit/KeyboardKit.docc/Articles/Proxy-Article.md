@@ -25,9 +25,7 @@ KeyboardKit therefore adds a bunch of extension to the `UITextDocumentProxy` to 
 
 ## Proxy namespace
 
-KeyboardKit has a ``Proxy`` namespace that contains proxy-related types.
-
-This namespace doesn't contain protocols, open classes or types of higher importance. For now, it only contains types when it's part of the KeyboardKit Pro build.
+KeyboardKit has a ``Proxy`` namespace that contains proxy-related types. For now, it only contains types when it's part of the KeyboardKit Pro build.
 
 
 

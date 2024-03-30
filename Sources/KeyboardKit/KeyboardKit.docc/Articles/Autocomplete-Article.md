@@ -27,8 +27,6 @@ In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``Auto
 
 KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types, models and views.
 
-This namespace doesn't contain protocols, open classes or types of higher importance.
-
 
 
 ## Autocomplete context

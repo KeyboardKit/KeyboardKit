@@ -27,8 +27,6 @@ KeyboardKit has ways to automatically show an ``Callouts/InputCallout`` when the
 
 KeyboardKit has a ``Callouts`` namespace that has callout-related types and views. For instance, an ``Callouts/InputCallout`` can present the currently pressed character while an ``Callouts/ActionCallout`` can present secondary actions while long pressing a key.
 
-This namespace doesn't contain protocols, open classes or types of higher importance.
-
 
 
 ## Callout context

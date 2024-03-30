@@ -16,8 +16,6 @@ In KeyboardKit, a ``KeyboardDictationService`` can be used to perform autocomple
 
 KeyboardKit has a ``Dictation`` namespace that contains dictation-related types.
 
-This namespace doesn't contain protocols, open classes or types of higher importance.
-
 
 ## Dictation context
 
