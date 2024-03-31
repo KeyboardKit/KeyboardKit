@@ -16,7 +16,7 @@ import SwiftUI
  There's a bunch of disabled code that you can enable to see
  how the style of the keyboard changes.
  */
-class DemoStyleProvider: StandardKeyboardStyleProvider {
+class DemoStyleProvider: KeyboardStyle.StandardProvider {
     
     override func buttonFontSize(
         for action: KeyboardAction

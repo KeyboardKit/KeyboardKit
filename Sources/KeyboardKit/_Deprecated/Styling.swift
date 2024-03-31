@@ -8,7 +8,5 @@
 
 import Foundation
 
-/// This namespace contains style-related types.
-///
-/// The namespace doesn't contain protocols or context types.
+@available(*, deprecated, message: "This namespace is no longer used.")
 public struct Styling {}

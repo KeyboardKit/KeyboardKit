@@ -245,11 +245,9 @@ KeyboardKit is available under the MIT license.
 
 ### Styling
 
-- ``Styling``
 - ``KeyboardFont``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
-- ``StandardKeyboardStyleProvider``
 
 ### Themes
 

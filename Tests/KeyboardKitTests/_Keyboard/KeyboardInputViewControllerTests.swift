@@ -128,7 +128,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
         XCTAssertNotNil(vc.services.dictationService as? Dictation.DisabledKeyboardService)
         XCTAssertNotNil(vc.services.keyboardBehavior as? Keyboard.StandardBehavior)
         XCTAssertNotNil(vc.services.layoutProvider as? KeyboardLayout.StandardProvider)
-        XCTAssertNotNil(vc.services.styleProvider as? StandardKeyboardStyleProvider)
+        XCTAssertNotNil(vc.services.styleProvider as? KeyboardStyle.StandardProvider)
     }
     
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForKeyboardActionHandler() {

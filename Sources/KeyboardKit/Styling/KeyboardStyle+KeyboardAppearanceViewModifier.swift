@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension Styling {
+public extension KeyboardStyle {
     
     /**
      This view modifier can be used to apply a light or dark
@@ -50,7 +50,7 @@ public extension View {
      */
     func keyboardAppearance(_ appearance: ColorScheme) -> some View {
         self.modifier(
-            Styling.KeyboardAppearanceViewModifier(appearance: appearance)
+            KeyboardStyle.KeyboardAppearanceViewModifier(appearance: appearance)
         )
     }
 }

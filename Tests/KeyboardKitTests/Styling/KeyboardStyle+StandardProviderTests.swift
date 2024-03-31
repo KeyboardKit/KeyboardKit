@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardStyleProviderTests.swift
+//  KeyboardStyle+StandardProviderTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -11,17 +11,17 @@ import XCTest
 
 @testable import KeyboardKit
 
-class StandardKeyboardStyleProviderTests: XCTestCase {
+class KeyboardStyle_StandardProviderTests: XCTestCase {
 
-    var provider: StandardKeyboardStyleProvider!
+    var provider: KeyboardStyle.StandardProvider!
     var context: KeyboardContext!
 
     var styles: [(action: KeyboardAction, style: Keyboard.ButtonStyle)]!
     let config = KeyboardLayout.Configuration.standard(for: .preview)
 
     override func setUp() {
-        context = KeyboardContext()
-        provider = StandardKeyboardStyleProvider(keyboardContext: context)
+        context = .init()
+        provider = .init(keyboardContext: context)
         styles = KeyboardAction.testActions.map {
             (action: $0, style: provider.buttonStyle(for: $0, isPressed: false))
         }

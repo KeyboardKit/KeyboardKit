@@ -12,16 +12,18 @@ import SwiftUI
 /// This protocol can be implemented by any classes that can
 /// provide dynamic keyboard styles.
 ///
+/// While most views in the library have view modifiers that
+/// apply their specific styles, some views are more complex
+/// and require more dynamic styling, at least for now. This
+/// protocol lets us register a global style provider, which
+/// then is used to style e.g. the ``SystemKeyboard``.
+///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
-/// it at any time to customize the keyboard style.
+/// it at any time to customize the keyboard action behavior.
 ///
-/// To create a custom implementation, either implement this
-/// protocol from scratch, or inherit the standard class and
-/// override what you want to change. You can then inject it
-/// into ``KeyboardInputViewController/services`` to make it
-/// the global default.
+/// See <doc:Styling-Article> for more information.
 public protocol KeyboardStyleProvider: AnyObject {
 
     /// The background style to apply to the entire keyboard.

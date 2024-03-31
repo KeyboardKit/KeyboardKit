@@ -1,5 +1,5 @@
 //
-//  StandardKeyboardStyleProvider+iPad.swift
+//  KeyboardStyle+StandardProvider+iPad.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension StandardKeyboardStyleProvider {
+extension KeyboardStyle.StandardProvider {
     
     var useSmallTextForControlButtons: Bool {
         return

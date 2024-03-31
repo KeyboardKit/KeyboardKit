@@ -75,8 +75,9 @@ public extension Keyboard {
         )
         
         /// The keyboard style provider to use.
-        public lazy var styleProvider: KeyboardStyleProvider = StandardKeyboardStyleProvider(
-            keyboardContext: state.keyboardContext)
+        public lazy var styleProvider: KeyboardStyleProvider = KeyboardStyle.StandardProvider(
+            keyboardContext: state.keyboardContext
+        )
     }
 }
 

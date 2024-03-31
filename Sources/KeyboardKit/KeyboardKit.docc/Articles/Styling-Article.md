@@ -35,6 +35,18 @@ KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 
 
 
+## Keyboard style providers
+
+In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc. 
+
+More complex components, like ``SystemKeyboard``, does not yet use view modifiers, but instead use a ``KeyboardStyleProvider`` to apply dynamic, contextual, styles based on internal and external state.
+
+KeyboardKit automatically creates an instance of ``KeyboardStyleProvider/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
+
+> Important: Views like ``SystemKeyboard`` will apply style modifiers to any view that it renders. This means that you can't apply these view modifiers to the ``SystemKeyboard``. You can however apply style modifiers to views that you create in view builders.
+
+
+
 ## Resources & Assets
 
 KeyboardKit comes with colors and assets that can be used to create native-looking keyboards.
@@ -77,26 +89,14 @@ Most views have static, standard styles that can be replaced by custom styles to
 
 
 
-## Style providers
-
-In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc. 
-
-More complex components, like ``SystemKeyboard``, does not yet use view modifiers, but instead use a ``KeyboardStyleProvider`` to apply dynamic, contextual, styles based on internal and external state.
-
-KeyboardKit injects a ``StandardKeyboardStyleProvider`` into ``KeyboardInputViewController/services``. You can modify or replace this instance at any time.
-
-> Important: Views like ``SystemKeyboard`` will apply style provider-based view modifiers to any view that it renders. This means that you can't apply these view modifiers to the ``SystemKeyboard``. You can however add custom styles to the views you provide in the various view builders, so use this approach if you want to style individual parts of these more complex views.  
-
-
-
 ## How to create a custom style provider
 
-You can create a custom style provider to customize any style in any way you want. You can implement ``KeyboardStyleProvider`` from scratch, or inherit and customize ``StandardKeyboardStyleProvider``.
+You can create a custom style provider to customize any style in any way you want. You can implement ``KeyboardStyleProvider`` from scratch, or inherit and customize ``KeyboardStyle/StandardProvider``.
 
-For instance, here's a custom provider that inherits ``StandardKeyboardStyleProvider`` and makes all input buttons red:
+For instance, here's a custom provider that inherits ``KeyboardStyle/StandardProvider`` and makes all input buttons red:
 
 ```swift
-class CustomKeyboardStyleProvider: StandardKeyboardStyleProvider {
+class CustomKeyboardStyleProvider: KeyboardStyle.StandardProvider {
     
     override func buttonStyle(
         for action: KeyboardAction,

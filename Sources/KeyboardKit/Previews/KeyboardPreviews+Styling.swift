@@ -24,7 +24,7 @@ extension KeyboardStyleProvider where Self == KeyboardPreviews.CrazyStyleProvide
 
 public extension KeyboardPreviews {
     
-    class PreviewKeyboardStyleProvider: StandardKeyboardStyleProvider {
+    class PreviewKeyboardStyleProvider: KeyboardStyle.StandardProvider {
         
         init() {
             super.init(keyboardContext: .preview)
