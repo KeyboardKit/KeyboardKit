@@ -25,7 +25,7 @@ extension KeyboardAction {
         
         // MARK: - Initialization
         
-#if os(iOS)
+        #if os(iOS)
         /// Create a standard keyboard action handler for an
         /// input controller.
         ///
@@ -43,7 +43,7 @@ extension KeyboardAction {
                 spaceDragGestureHandler: controller.services.spaceDragGestureHandler
             )
         }
-#endif
+        #endif
         
         /// Create a standard keyboard action handler with a
         /// separate set of services.
