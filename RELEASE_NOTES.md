@@ -24,6 +24,7 @@ This version also renames the `KeyboardState` namespace and its types to `Keyboa
 ### 💡 Adjustments
 
 * `KeyboardApp` is a new namespace for app-related types.
+* `KeyboardApp.HomeScreen` is a new app home screen template.
 * `KeyboardSettings` is a new namespace for settings-related types.
 * `KeyboardStyle.StandardProvider` now applies a light weight to backspace.
 

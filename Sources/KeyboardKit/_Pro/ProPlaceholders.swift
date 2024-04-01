@@ -193,6 +193,14 @@ public extension Keyboard {
     struct ToggleToolbar {}
 }
 
+public extension KeyboardApp {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:App-Article> for more information.
+    struct HomeScreen {}
+}
+
 public extension KeyboardLayout {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
