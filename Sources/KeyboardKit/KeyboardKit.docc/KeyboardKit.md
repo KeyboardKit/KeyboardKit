@@ -214,6 +214,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardLayout``
 - ``KeyboardLayoutIdentifiable``
 - ``KeyboardLayoutProvider``
+- ``KeyboardLayoutProviderProxy``
 
 ### Localization
 
@@ -230,6 +231,9 @@ KeyboardKit is available under the MIT license.
 
 - ``Proxy``
 - ``TextInputProxy``
+
+### Routing
+
 - ``KeyboardTextField``
 - ``KeyboardTextView``
 
@@ -252,4 +256,3 @@ KeyboardKit is available under the MIT license.
 ### Themes
 
 - ``KeyboardTheme``
-- ``ThemeBasedKeyboardStyleProvider``

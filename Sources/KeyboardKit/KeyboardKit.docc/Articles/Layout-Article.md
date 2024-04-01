@@ -112,7 +112,7 @@ KeyboardKit Pro unlocks a localized ``KeyboardLayoutProvider`` for every locale 
 
 ```swift
 let providers = License.current.localizedKeyboardLayoutProviders
-let provider = try ProKeyboardLayoutProvider.Swedish()
+let provider = try KeyboardLayout.ProProvider.Swedish()
 ```
 
 > Important: These providers will throw a license error if their locale is not included in the license.
@@ -123,7 +123,7 @@ let provider = try ProKeyboardLayoutProvider.Swedish()
 You can inherit and customize any localized provider, then manually register your provider *after* registering your license key:
 
 ```swift
-class CustomProvider: ProKeyboardLayoutProvider.Swedish {
+class CustomProvider: KeyboardLayout.ProProvider.Swedish {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let provider = keyboardLayoutProvider(for: context)

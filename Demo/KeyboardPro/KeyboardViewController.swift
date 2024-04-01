@@ -130,7 +130,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// Themes are powerful ways to specify styles for a
         /// keyboard. You can insert any theme below.
-        services.styleProvider = (try? ThemeBasedKeyboardStyleProvider(
+        services.styleProvider = (try? KeyboardStyle.ThemeBasedProvider(
             theme: .standard, // .candyShop .tron
             keyboardContext: state.keyboardContext)) ?? services.styleProvider
     }

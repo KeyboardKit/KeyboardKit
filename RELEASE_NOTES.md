@@ -31,12 +31,12 @@ This version also renames the `KeyboardState` namespace and its types to `Keyboa
 * `iPhoneKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPhoneProvider`.
 * `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
 * `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
-* `KeyboardLayoutProviderProxy` has been deprecated.
 * `KeyboardLayoutRowIdentifiable` has been renamed to `KeyboardLayoutIdentifiable`.
 * `KeyboardState` has been renamed to `KeyboardStatus`.
 * `KeyboardStateContext` has been renamed to `KeyboardStatusContext`.
 * `KeyboardStateInspector` has been renamed to `KeyboardStatusInspector`.
 * `LocalAutocompleteProvider` has been renamed to `Autocomplete.LocalProvider`.
+* `ProCalloutActionProvider` has been renamed to `Callouts.ProActionProvider`.
 * `ProDictationService` has been renamed to `Dictation.ProService`.
 * `ProKeyboardDictationService` has been renamed to `Dictation.ProKeyboardService`.
 * `RemoteAutocompleteProvider` has been renamed to `Autocomplete.RemoteProvider`.
@@ -44,6 +44,7 @@ This version also renames the `KeyboardState` namespace and its types to `Keyboa
 * `StandardKeyboardActionHandler` has been renamed to `KeyboardAction.StandardHandler`.
 * `StandardKeyboardBehavior` has been renamed to `Keyboard.StandardBehavior`.
 * `StandardKeyboardLayoutProvider` has been renamed to `KeyboardLayout.StandardProvider`.
+* `ThemeBasedKeyboardLayoutProvider` has been renamed to `KeyboardLayout.ThemeBasedProvider`.
 
 
 

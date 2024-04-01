@@ -135,7 +135,7 @@ See the <doc:Styling-Article> article for more information about how styling is 
 
 ```swift
 let providers = License.current.localizedCalloutActionProviders
-let provider = try ProCalloutActionProvider.Swedish()
+let provider = try Callouts.ProActionProvider.Swedish()
 ```
 
 > Important: These providers will throw a license error if their locale is not included in the license.
@@ -146,7 +146,7 @@ let provider = try ProCalloutActionProvider.Swedish()
 You can inherit and customize any localized provider, then manually register your provider *after* registering your license key:
 
 ```swift
-class CustomProvider: ProCalloutActionProvider.Swedish {
+class CustomProvider: Callouts.ProActionProvider.Swedish {
 
     override func calloutActionString(for char: String) -> String {
         switch char {

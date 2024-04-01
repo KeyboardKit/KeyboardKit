@@ -8,7 +8,12 @@
 
 import Foundation
 
-@available(*, deprecated, message: "This is no longer used.")
+/// This protocol is a help protocol that makes device-based
+/// layout providers share behavior when basing their layout
+/// on different device types.
+///
+/// The protocol is currently only used by localized service
+/// implementations in KeyboardKit Pro.
 public protocol KeyboardLayoutProviderProxy: KeyboardLayoutProvider {
     
     /// The layout provider to use for iPad devices.
@@ -18,7 +23,6 @@ public protocol KeyboardLayoutProviderProxy: KeyboardLayoutProvider {
     var iPhoneProvider: KeyboardLayoutProvider { get }
 }
 
-@available(*, deprecated, message: "This is no longer used.")
 public extension KeyboardLayoutProviderProxy {
     
     /// The keyboard layout provider to use for the context.

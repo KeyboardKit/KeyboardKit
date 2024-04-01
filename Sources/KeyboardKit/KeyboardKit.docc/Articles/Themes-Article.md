@@ -22,26 +22,26 @@ KeyboardKit Pro comes with many predefined themes, style variations and theme-ba
 
 ## What is a theme?
 
-A ``KeyboardTheme`` can be used to define keyboard styles in a way that can be easily used and modified. Themes can also define style variations, to provide even more variations within a constrained set of properties.
+A ``KeyboardTheme`` can provide various keyboard styles in a way that can be easily used and modified. A theme can also define a style variation that can be used to create variations of the theme with a constrained set of properties.
 
-KeyboardKit Pro also unlocks a ``ThemeBasedKeyboardStyleProvider``, which can be used to apply themes with the same style provider concept that is already used by many views in the library.
+KeyboardKit Pro also unlocks a ``KeyboardStyle/ThemeBasedProvider``, which can be used to apply themes with the ``KeyboardStyleProvider`` concept that is used by some views in the library.
 
 
 ## Predefined themes
 
-KeyboardKit comes with many pre-defined themes, like ``KeyboardTheme/standard``, ``KeyboardTheme/swifty`` and ``KeyboardTheme/minimal``. See the table further down for a full list of pre-defined themes.
+KeyboardKit comes with pre-defined themes, like ``KeyboardTheme/standard``, ``KeyboardTheme/swifty`` and ``KeyboardTheme/minimal``. See the grid further down for a full list themes.
 
 All themes come with individual style variations that lets you to tweak certain parts of the theme. This makes it easy for themes to define which parts that are customizable, to constrain variations.
 
 
 ### How to create a custom theme
 
-You can create completely custom themes, like this one that only changes the color of the primary button:
+Since a ``KeyboardTheme`` is just a struct, you can easily create custom themes by just defining new static value types. For instance, this theme only changes the color of the primary button:
 
 ```swift
 extension KeyboardTheme {
 
-    static var customTheme: Self {
+    static var greenPrimary: Self {
         get throws {
             try? Self(primaryBackgroundColor: .green)
         }
@@ -49,14 +49,14 @@ extension KeyboardTheme {
 }
 ```
 
-You use other themes as base when creating custom themes, for instance:
+You can also use other themes as a foundation when creating your own custom themes. For instance, this theme starts with the minimal theme and changes the color of the primary button to pink:
 
 ```swift
 extension KeyboardTheme {
 
-    static var anotherTheme: Self {
+    static var pinkPrimary: Self {
         get throws {
-            var theme = try? KeyboardTheme.standard
+            var theme = try? KeyboardTheme.minimal
             theme.buttonStyles[.primary]?.backgroundColor = .green
             return theme
         }
@@ -64,7 +64,7 @@ extension KeyboardTheme {
 }
 ```
 
-You can also create custom themes that just tweak the style variation of another theme:
+You can also create custom themes that just tweak the style variation of another theme. For instance, this custom theme is a standard theme what applies a black tint color:
 
 ```swift
 extension KeyboardTheme {
@@ -81,7 +81,7 @@ All these combinations make the theme engine very flexible and powerful.
 
 ## How to apply themes
 
-You can apply any theme by applying a ``ThemeBasedKeyboardStyleProvider`` or the ``KeyboardStyleProvider/themed(with:context:)`` shorthand:
+You can apply any theme by using the ``KeyboardStyle``'s ``KeyboardStyle/ThemeBasedProvider`` or the ``KeyboardStyleProvider/themed(with:context:)`` shorthand:
 
 ```swift
 override func viewWillSetupKeyboard() {
@@ -96,7 +96,7 @@ override func viewWillSetupKeyboard() {
 }
 ```
 
-You can inherit ``ThemeBasedKeyboardStyleProvider`` to customize this theme-based provider even further, which lets you mix the benefits of themes and styles in even more ways. 
+You can inherit the ``KeyboardStyle/ThemeBasedProvider`` to customize its styles even further, which lets you mix the benefits of themes and styles.
 
 
 ### Pre-defined themes

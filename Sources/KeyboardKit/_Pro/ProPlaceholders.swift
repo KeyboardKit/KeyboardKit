@@ -23,9 +23,13 @@ enum ProPlaceholderError: LocalizedError {
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.
+///
+/// See <doc:Emojis-Article> for more information.
 public struct EmojiKeyboard {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
+///
+/// See <doc:Emojis-Article> for more information.
 public struct EmojiKeyboardStyle {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -47,6 +51,8 @@ public struct KeyboardTextField {}
 public struct KeyboardTextView {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
+///
+/// See <doc:Themes-Article> for more information.
 public struct KeyboardTheme {
     
     public static var allPredefined: [KeyboardTheme] {
@@ -73,54 +79,78 @@ public struct KeyboardTheme {
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public class ThemeBasedKeyboardStyleProvider {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
+///
+/// See <doc:Dictation-Article> for more information.
 public protocol SpeechRecognizer {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
+///
+/// See <doc:Previews-Article> for more information.
 public struct SystemKeyboardPreview {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
+///
+/// See <doc:Previews-Article> for more information.
 public struct SystemKeyboardButtonPreview {}
+
+@available(*, deprecated, renamed: "KeyboardStyle.ThemeBasedProvider")
+public typealias ThemeBasedKeyboardStyleProvider = KeyboardStyle.StandardProvider
 
 
 public extension Autocomplete {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Autocomplete-Article> for more information.
     class LocalProvider {}
 
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Autocomplete-Article> for more information.
     class RemoteProvider {}
 }
 
 public extension Dictation {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Dictation-Article> for more information.
     struct BarVisualizer {}
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Dictation-Article> for more information.
     struct BarVisualizerStyle {}
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Dictation-Article> for more information.
     class ProService {}
 
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Dictation-Article> for more information.
     class ProKeyboardService {
         
         public func tryToReturnToKeyboard() {}
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Dictation-Article> for more information.
     struct Screen {}
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Dictation-Article> for more information.
     struct ScreenStyle {}
 }
 
 public extension Image {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Emojis-Article> for more information.
     static func emojiCategory(
         _ category: EmojiCategory
     ) throws -> Image {
@@ -131,12 +161,16 @@ public extension Image {
 public extension FeedbackConfiguration {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Feedback-Article> for more information.
     struct Toggle {}
 }
 
 public extension InputSet {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Layout-Article> for more information.
     static var azerty: InputSet {
         get throws {
             throw ProPlaceholderError.proPlaceholder
@@ -144,6 +178,8 @@ public extension InputSet {
     }
 
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Layout-Article> for more information.
     static var qwertz: InputSet {
         get throws {
             throw ProPlaceholderError.proPlaceholder
@@ -160,12 +196,24 @@ public extension Keyboard {
 public extension KeyboardLayout {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Layout-Article> for more information.
     class iPadProProvider: iPadProvider {}
+}
+
+public extension KeyboardStyle {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Themes-Article> for more information.
+    class ThemeBasedProvider {}
 }
 
 public extension KeyboardStyleProvider {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// See <doc:Themes-Article> for more information.
     static func themed(
         with theme: KeyboardTheme,
         context: KeyboardContext
