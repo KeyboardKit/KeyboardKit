@@ -296,7 +296,7 @@ extension KeyboardStyle {
         ) -> KeyboardFont.FontWeight? {
             if isGregorianAlpha { return .regular }
             switch action {
-            case .backspace: return .regular
+            case .backspace: return .light
             case .character(let char): return char.isLowercasedWithUppercaseVariant ? .light : nil
             default: return buttonImage(for: action) != nil ? .light : nil
             }
