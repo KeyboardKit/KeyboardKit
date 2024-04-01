@@ -130,7 +130,7 @@ public extension KeyboardLayout.Configuration {
     /// You can set this config to affect the global default.
     static var standardPad = Self(
         buttonCornerRadius: 5,
-        buttonInsets: .init(horizontal: 6, vertical: 4),
+        buttonInsets: .init(horizontal: 5, vertical: 4),
         rowHeight: standardPadRowHeight
     )
 
