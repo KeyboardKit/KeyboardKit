@@ -93,6 +93,13 @@ extension KeyboardLayout {
             }
         }
         
+        /// Whether or not an index is the bottom row index.
+        open func isBottomRowIndex(
+            _ index: Int
+        ) -> Bool {
+            index == 3
+        }
+        
         /// Map ``KeyboardAction`` rows to layout items rows.
         open func items(
             for actions: KeyboardAction.Rows,

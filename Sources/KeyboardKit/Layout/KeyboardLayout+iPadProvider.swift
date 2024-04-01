@@ -70,35 +70,35 @@ extension KeyboardLayout {
         
         // MARK: - iPad Specific
         
-        /// The leading actions to add to the top input row.
+        /// The top input row's leading actions.
         open func topLeadingActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Row {
             []
         }
         
-        /// The trailing actions to add to the top input row.
+        /// The top input row's trailing actions.
         open func topTrailingActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Row {
             [.backspace]
         }
         
-        /// The leading actions to add to the middle input row.
+        /// The middle input row's leading actions.
         open func middleLeadingActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Row {
-            return [.none]
+            [.none]
         }
         
-        /// The trailing actions to add to the middle input row.
+        /// The middle input row's trailing actions.
         open func middleTrailingActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Row {
             [keyboardReturnAction(for: context)]
         }
         
-        /// The leading actions to add to the lower input row.
+        /// The lower input row's leading actions.
         open func lowerLeadingActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Row {
@@ -106,7 +106,7 @@ extension KeyboardLayout {
             return [action]
         }
         
-        /// The trailing actions to add to the lower input row.
+        /// The lower input row's trailing actions.
         open func lowerTrailingActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Row {
@@ -114,7 +114,7 @@ extension KeyboardLayout {
             return [action]
         }
         
-        /// The actions to add to the bottom system row.
+        /// The bottom row actions.
         open func bottomActions(for context: KeyboardContext) -> KeyboardAction.Row {
             var result = KeyboardAction.Row()
             let needsDictation = context.needsInputModeSwitchKey
@@ -140,6 +140,17 @@ extension KeyboardLayout {
 // MARK: - Private functions
 
 extension KeyboardLayout.iPadProvider {
+    
+    func isBottomTrailingSwitcher(
+        _ action: KeyboardAction,
+        row: Int,
+        index: Int
+    ) -> Bool {
+        switch action {
+        case .shift, .keyboardType: row == 3 && index == 0
+        default: false
+        }
+    }
     
     func isLowerLeadingSwitcher(
         _ action: KeyboardAction,

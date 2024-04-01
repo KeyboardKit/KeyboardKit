@@ -20,6 +20,12 @@ This version also renames the `KeyboardState` namespace and its types to `Keyboa
 ### 💡 Adjustments
 
 * `KeyboardSettings` is a new namespace for settings-related types.
+* `KeyboardStyle.StandardProvider` now applies a light weight to backspace.
+
+### 👑 KeyboardKit Pro
+
+* The iPad Pro-specific layout has been tweaked to look better.
+* These locales now use iPad Pro layouts: `Catalan`, `Czech`, `Danish`, `Faroese`, `Finnish`, `Georgian`, `German`, `German (Austria)`, `German (Switzerland)`, `Greek`, `Hawaiian`, `Icelandic`, `Inari Sámi`, `Macedonian`, `Maltese`, `Mongolian`, `Northern Sámi`, `Norwegian`, `Russian`, `Serbian`, `Slovak`, `Turkish`, `Ukrainian`.
 
 ### 🗑️ Deprecations
 
