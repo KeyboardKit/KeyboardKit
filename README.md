@@ -103,10 +103,11 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * ⌨️ [Essentials][Essentials] - KeyboardKit comes with a bunch of essential features, types and views.
 * 💥 [Actions][Actions] - KeyboardKit makes it easy to trigger character insertion, locale switching, etc.
 * 🤖 [AI Support][AI] - KeyboardKit has tools that are required for AI-based features.
+* 📱 [App Utilities][App] - KeyboardKit provides app-specific utilities.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform on-device and remote autocomplete & autocorrect.
 * 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary action callouts.
 * 🌈 [Colors][Colors] - KeyboardKit defines keyboard-specific colors.
-* 📱 [Device Utilities][Device] - KeyboardKit provides device-specific utilities.
+* 🖥️ [Device Utilities][Device] - KeyboardKit provides device-specific utilities.
 * 🎤 [Dictation][Dictation] - KeyboardKit can perform dictation from the keyboard.
 * 😀 [Emojis][Emojis] - KeyboardKit defines an emoji type, categories, an emoji keyboard, etc.
 * ⌨️ [External Keyboards][External] - KeyboardKit can detect and react to external keyboards.
@@ -192,6 +193,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions-article
 [AI]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/ai-article
+[App]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/app-article
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete-article
 [Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/buttons-article
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts-article
