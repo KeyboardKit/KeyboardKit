@@ -19,36 +19,28 @@ public extension KeyboardStatus {
     ///
     /// You can style this component with the style modifier
     /// ``keyboardStatusLabelStyle(_:)``.
-    struct Label<EnabledIcon: View, DisabledIcon: View>: View {
+    struct Label: View {
         
         /// Create an enabled label.
         ///
         /// - Parameters:
         ///   - isEnabled: Whether or not the state is enabled.
         ///   - enabledText: The text to show when the state is enabled.
-        ///   - enabledIcon: The icon to show when the state is enabled, by default `checkmark`.
         ///   - disabledText: The text to show when the state is disabled.
-        ///   - disabledIcon: The icon to show when the state is disabled, by default `exclamationmark.triangle`.
         public init(
             isEnabled: Bool,
-            enabledIcon: EnabledIcon,
             enabledText: String,
-            disabledIcon: DisabledIcon,
             disabledText: String
         ) {
             self.isEnabled = isEnabled
             self.enabledText = enabledText
-            self.enabledIcon = enabledIcon
             self.disabledText = disabledText
-            self.disabledIcon = disabledIcon
             self.initStyle = nil
         }
         
         private let isEnabled: Bool
         private let enabledText: String
-        private let enabledIcon: EnabledIcon
         private let disabledText: String
-        private let disabledIcon: DisabledIcon
         
         @Environment(\.keyboardStatusLabelStyle)
         private var envStyle
@@ -63,8 +55,22 @@ public extension KeyboardStatus {
         
         // MARK: - Deprecated
         
+        @available(*, deprecated, message: "Use .keyboardStateLabelStyle to change icons.")
+        public init<EnabledIcon: View, DisabledIcon: View>(
+            isEnabled: Bool,
+            enabledIcon: EnabledIcon,
+            enabledText: String,
+            disabledIcon: DisabledIcon,
+            disabledText: String
+        ) {
+            self.isEnabled = isEnabled
+            self.enabledText = enabledText
+            self.disabledText = disabledText
+            self.initStyle = nil
+        }
+        
         @available(*, deprecated, message: "Use .keyboardStateLabelStyle to apply the style instead.")
-        public init(
+        public init<EnabledIcon: View, DisabledIcon: View>(
             isEnabled: Bool,
             enabledIcon: EnabledIcon,
             enabledText: String,
@@ -74,9 +80,7 @@ public extension KeyboardStatus {
         ) {
             self.isEnabled = isEnabled
             self.enabledText = enabledText
-            self.enabledIcon = enabledIcon
             self.disabledText = disabledText
-            self.disabledIcon = disabledIcon
             self.initStyle = style
         }
         
@@ -86,66 +90,23 @@ public extension KeyboardStatus {
     }
 }
 
-public extension KeyboardStatus.Label where EnabledIcon == Image, DisabledIcon == Image {
-    
-    /// Create an enabled label.
-    ///
-    /// - Parameters:
-    ///   - isEnabled: Whether or not the state is enabled.
-    ///   - enabledText: The text to show when the state is enabled.
-    ///   - enabledIcon: The icon to show when the state is enabled, by default `checkmark`.
-    ///   - disabledText: The text to show when the state is disabled.
-    ///   - disabledIcon: The icon to show when the state is disabled, by default `exclamationmark.triangle`.
-    init(
-        isEnabled: Bool,
-        enabledIcon: Image = .init(systemName: "checkmark"),
-        enabledText: String,
-        disabledIcon: Image = .init(systemName: "exclamationmark.triangle"),
-        disabledText: String
-    ) {
-        self.isEnabled = isEnabled
-        self.enabledText = enabledText
-        self.enabledIcon = enabledIcon
-        self.disabledText = disabledText
-        self.disabledIcon = disabledIcon
-        self.initStyle = nil
-    }
-    
-    @available(*, deprecated, message: "Style this view with .keyboardStatusLabelStyle instead.")
-    init(
-        isEnabled: Bool,
-        enabledIcon: Image = .init(systemName: "checkmark"),
-        enabledText: String,
-        disabledIcon: Image = .init(systemName: "exclamationmark.triangle"),
-        disabledText: String,
-        style: KeyboardStatus.LabelStyle = .standard
-    ) {
-        self.isEnabled = isEnabled
-        self.enabledText = enabledText
-        self.enabledIcon = enabledIcon
-        self.disabledText = disabledText
-        self.disabledIcon = disabledIcon
-        self.initStyle = style
-    }
-}
-
 private extension KeyboardStatus.Label {
 
     @ViewBuilder
     var icon: some View {
         if isEnabled {
-            enabledIcon
+            style.enabledIcon
         } else {
-            disabledIcon
+            style.disabledIcon
         }
     }
 
     var iconColor: Color? {
-        value(style.enabledIcon.color, style.disabledIcon.color)
+        value(style.enabledIconStyle.color, style.disabledIconStyle.color)
     }
 
     var iconFont: Font? {
-        value(style.enabledIcon.font, style.disabledIcon.font)
+        value(style.enabledIconStyle.font, style.disabledIconStyle.font)
     }
 
     var text: Text {
@@ -153,11 +114,11 @@ private extension KeyboardStatus.Label {
     }
 
     var textColor: Color? {
-        value(style.enabledText.color, style.disabledText.color)
+        value(style.enabledTextStyle.color, style.disabledTextStyle.color)
     }
 
     var textFont: Font? {
-        value(style.enabledText.font, style.disabledText.font)
+        value(style.enabledTextStyle.font, style.disabledTextStyle.font)
     }
 
     func value<T>(_ enabled: T, _ disabled: T) -> T {
@@ -181,12 +142,16 @@ private extension KeyboardStatus.Label {
             ForEach([true, false], id: \.self) {
                 KeyboardStatus.Label(
                     isEnabled: $0,
-                    enabledIcon: Color.green,
-                    enabledText: "Yes",
-                    disabledIcon: Color.red,
-                    disabledText: "No"
+                    enabledText: "Enabled",
+                    disabledText: "Disabled"
                 )
             }
         }
+        .keyboardStatusLabelStyle(
+            .init(
+                enabledIcon: Circle().fill(.green),
+                disabledIcon: Circle().fill(.orange)
+            )
+        )
     }
 }

@@ -17,25 +17,52 @@ public extension KeyboardStatus {
     /// ``SwiftUI/View/keyboardStatusLabelStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
-    struct LabelStyle: Equatable {
+    struct LabelStyle {
         
         /// Create a custom keyboard state label style.
         ///
         /// - Parameters:
-        ///   - enabledIcon: The enabled icon style, by default `.green`.
-        ///   - enabledText: The enabled text style, if any.
-        ///   - disabledIcon: The disabled icon style, by default `.orange`.
-        ///   - disabledText: The disabled text style, if any.
-        public init(
-            enabledIcon: ComponentStyle = .init(color: .green, font: nil),
-            enabledText: ComponentStyle = .init(color: nil, font: nil),
-            disabledIcon: ComponentStyle = .init(color: .orange, font: nil),
-            disabledText: ComponentStyle = .init(color: nil, font: nil)
+        ///   - enabledIcon: The enabled icon view.
+        ///   - enabledIconStyle: The enabled icon style, by default `.green`.
+        ///   - enabledTextStyle: The enabled text style, if any.
+        ///   - disabledIcon: The enabled icon view.
+        ///   - disabledIconStyle: The disabled icon style, by default `.orange`.
+        ///   - disabledTextStyle: The disabled text style, if any.
+        public init<EnabledIcon: View, DisabledIcon: View>(
+            enabledIcon: EnabledIcon,
+            enabledIconStyle: ComponentStyle = .init(color: .green, font: nil),
+            enabledTextStyle: ComponentStyle = .init(color: nil, font: nil),
+            disabledIcon: DisabledIcon,
+            disabledIconStyle: ComponentStyle = .init(color: .orange, font: nil),
+            disabledTextStyle: ComponentStyle = .init(color: nil, font: nil)
         ) {
-            self.enabledIcon = enabledIcon
-            self.enabledText = enabledText
-            self.disabledIcon = disabledIcon
-            self.disabledText = disabledText
+            self.enabledIcon = AnyView(enabledIcon)
+            self.enabledIconStyle = enabledIconStyle
+            self.enabledTextStyle = enabledTextStyle
+            self.disabledIcon = AnyView(disabledIcon)
+            self.disabledIconStyle = disabledIconStyle
+            self.disabledTextStyle = disabledTextStyle
+        }
+        
+        /// Create a custom keyboard state label style.
+        ///
+        /// - Parameters:
+        ///   - enabledIconStyle: The enabled icon style, by default `.green`.
+        ///   - enabledTextStyle: The enabled text style, if any.
+        ///   - disabledIconStyle: The disabled icon style, by default `.orange`.
+        ///   - disabledTextStyle: The disabled text style, if any.
+        public init(
+            enabledIconStyle: ComponentStyle = .init(color: .green, font: nil),
+            enabledTextStyle: ComponentStyle = .init(color: nil, font: nil),
+            disabledIconStyle: ComponentStyle = .init(color: .orange, font: nil),
+            disabledTextStyle: ComponentStyle = .init(color: nil, font: nil)
+        ) {
+            self.enabledIcon = AnyView(Image(systemName: "checkmark"))
+            self.enabledIconStyle = enabledIconStyle
+            self.enabledTextStyle = enabledTextStyle
+            self.disabledIcon = AnyView(Image(systemName: "exclamationmark.triangle"))
+            self.disabledIconStyle = disabledIconStyle
+            self.disabledTextStyle = disabledTextStyle
         }
         
         /// This style defines the style of a label component.
@@ -53,17 +80,23 @@ public extension KeyboardStatus {
             public var font: Font?
         }
         
+        /// The enabled icon view.
+        public var enabledIcon: AnyView
+        
         /// The enabled icon style.
-        public var enabledIcon: ComponentStyle
+        public var enabledIconStyle: ComponentStyle
         
         /// The enabled text style.
-        public var enabledText: ComponentStyle
+        public var enabledTextStyle: ComponentStyle
+        
+        /// The disabled icon view.
+        public var disabledIcon: AnyView
         
         /// The disabled icon style.
-        public var disabledIcon: ComponentStyle
+        public var disabledIconStyle: ComponentStyle
         
         /// The disabled text style.
-        public var disabledText: ComponentStyle
+        public var disabledTextStyle: ComponentStyle
     }
 }
 

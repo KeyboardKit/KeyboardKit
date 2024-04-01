@@ -17,6 +17,10 @@ This version moves service implementations into their namespaces. This makes the
 
 This version also renames the `KeyboardState` namespace and its types to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.State`.
 
+### 🚨 Important Information
+
+* `KeyboardStatus.Label` now uses its style modifier to change icons.
+
 ### 💡 Adjustments
 
 * `KeyboardApp` is a new namespace for app-related types.
