@@ -27,7 +27,10 @@ public enum AudioFeedback: Codable, Equatable, Identifiable {
     case delete
     
     /// Represents a custom system sound.
-    case custom(id: UInt32)
+    case customId(_ id: UInt32)
+    
+    /// Represents a custom sound at a certain URL.
+    case customUrl(_ url: URL?)
     
     /// Can be used to disable feedback.
     case none
@@ -35,13 +38,22 @@ public enum AudioFeedback: Codable, Equatable, Identifiable {
 
 public extension AudioFeedback {
     
+    @available(*, deprecated, renamed: "customId(_:)")
+    static func custom(id: UInt32) -> AudioFeedback {
+        customId(id)
+    }
+}
+
+public extension AudioFeedback {
+    
     /// The unique system sound identifier.
-    var id: UInt32 {
+    var id: UInt32? {
         switch self {
         case .input: 1104
         case .delete: 1155
         case .system: 1156
-        case .custom(let value): value
+        case .customId(let id): id
+        case .customUrl: nil
         case .none: 0
         }
     }

@@ -13,13 +13,22 @@ These release notes only cover the current major version.
 
 ## 8.5
 
-This version moves service implementations into their namespaces. This makes the SDK smaller and easier to overview.
+This version moves service implementations into their related namespaces. This makes the SDK surface smaller and easier to overview.
 
-This version also renames the `KeyboardState` namespace and its types to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.State`.
+The `KeyboardState` namespace and its types are renamed to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.KeyboardState`. The `Keyboard.KeyboardState` and `Keyboard.KeyboardServices` types have also been renamed to the shorted `Keyboard.State` and `Keyboard.Services`.
+
+It's now possible to play URL-based audio with `AudioFeedback`. Only your imagination can stop you from creating that wild and crazy sound board that you've dreamt of for so long.
+
+KeyboardKit Pro makes even more locales use the new iPad Pro layout. It also adds a new `KeyboardApp.HomeScreen` template that can be used to create a basic home screen for your keyboard app. 
 
 ### 🚨 Important Information
 
+* `EmojiKeyboard` components are now throwing as well.
 * `KeyboardStatus.Label` now uses its style modifier to change icons.
+
+### ✨ Features
+
+* `AudioFeedback` has a new `customUrl` type that can play short audio from any URL.
 
 ### 💡 Adjustments
 
@@ -35,8 +44,10 @@ This version also renames the `KeyboardState` namespace and its types to `Keyboa
 
 ### 🗑️ Deprecations
 
+* `AudioFeedback.custom(id:)` has been renamed to `AudioFeedback.customId(_:)`.
 * `BaseCalloutActionProvider` has been renamed to `Callouts.BaseActionProvider`.
 * `BaseKeyboardLayoutProvider` has been renamed to `KeyboardLayout.BaseProvider`.
+* `Emoji.Grid` has been moved to `EmojiKit`.
 * `InputSetBasedKeyboardLayoutProvider` has been renamed to `KeyboardLayout.DeviceBasedProvider`.
 * `iPadKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPadProvider`.
 * `iPadProKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPadProProvider`.

@@ -153,7 +153,7 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
 
 
     func prepareNoPostCursorPart() {
-        proxy.documentContextBeforeInput = "this a text"
+        proxy.documentContextBeforeInput = "this is díacrïtics"
         proxy.replaceCurrentWord(with: "replacement")
     }
 
@@ -167,7 +167,7 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
     func testReplacingCurrentWordWithNoPostCustorPartDeletesBackwardsCurrentWordCountTimes() {
         prepareNoPostCursorPart()
         let calls = proxy.calls(to: \.deleteBackwardRef)
-        XCTAssertEqual(calls.count, 4)
+        XCTAssertEqual(calls.count, 10)
     }
 
     func testReplacingCurrentWordWithNoPostCustorPartInsertsReplacementText() {

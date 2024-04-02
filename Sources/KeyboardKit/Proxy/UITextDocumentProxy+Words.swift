@@ -70,7 +70,7 @@ public extension UITextDocumentProxy {
         guard let word = currentWord else { return }
         let offset = currentWordPostCursorPart?.count ?? 0
         adjustTextPosition(byCharacterOffset: offset)
-        deleteBackward(times: word.count)
+        deleteBackward(times: (word as NSString).length)    // Casting to NSString to handle diacritics
         insertText(replacement)
     }
 }
