@@ -98,9 +98,11 @@ class KeyboardViewController: KeyboardInputViewController {
         /// The code below enabled haptic feedback and plays
         /// a rocket sound when a rocket button is tapped.
         state.feedbackConfiguration.isHapticFeedbackEnabled = true
-        state.feedbackConfiguration.audio.actions = [
-            .init(action: .character("🚀"), feedback: .custom(id: 1303))
-        ]
+        state.feedbackConfiguration.audio.register(
+            feedback: .customId(1303),
+            for: .press,
+            on: .character("🚀")
+        )
         
         // state.feedbackConfiguration.disableAudioFeedback()
         // state.feedbackConfiguration.disableHapticFeedback()
