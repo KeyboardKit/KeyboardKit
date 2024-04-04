@@ -37,6 +37,7 @@ KeyboardKit Pro makes even more locales use the new iPad Pro layout. It also add
 * `KeyboardApp` is a new namespace for app-related types.
 * `KeyboardApp.HomeScreen` is a new app home screen template.
 * `KeyboardSettings` is a new namespace for settings-related types.
+* `KeyboardStatus.Label` now uses filled icon variants, by default.
 * `KeyboardStyle.StandardProvider` now applies a light weight to backspace.
 
 ### 👑 KeyboardKit Pro

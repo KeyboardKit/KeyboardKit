@@ -57,10 +57,14 @@ public extension KeyboardStatus {
             disabledIconStyle: ComponentStyle = .init(color: .orange, font: nil),
             disabledTextStyle: ComponentStyle = .init(color: nil, font: nil)
         ) {
-            self.enabledIcon = AnyView(Image(systemName: "checkmark"))
+            self.enabledIcon = AnyView(
+                Image(systemName: "checkmark.circle.fill")
+            )
             self.enabledIconStyle = enabledIconStyle
             self.enabledTextStyle = enabledTextStyle
-            self.disabledIcon = AnyView(Image(systemName: "exclamationmark.triangle"))
+            self.disabledIcon = AnyView(
+                Image(systemName: "exclamationmark.triangle.fill")
+            )
             self.disabledIconStyle = disabledIconStyle
             self.disabledTextStyle = disabledTextStyle
         }
