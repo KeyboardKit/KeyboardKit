@@ -190,7 +190,7 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) -> AudioFeedback? {
             let config = feedbackConfiguration.audio
-            let custom = config.actions.first { $0.action == action }
+            let custom = config.feedback(for: gesture, on: action)
             if let custom = custom { return custom.feedback }
             if action == .space && gesture == .longPress { return nil }
             if action == .backspace { return config.delete }
@@ -205,16 +205,10 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) -> HapticFeedback? {
             let config = feedbackConfiguration.haptic
-            let custom = config.actions.first { $0.action == action && $0.gesture == gesture }
+            let custom = config.feedback(for: gesture, on: action)
             if let custom = custom { return custom.feedback }
             if action == .space && gesture == .longPress { return config.longPressOnSpace }
-            switch gesture {
-            case .doubleTap: return config.doubleTap
-            case .longPress: return config.longPress
-            case .press: return config.press
-            case .release: return config.release
-            case .repeatPress: return config.repeat
-            }
+            return config.feedback(for: gesture)
         }
         
         /// Trigger feedback for a certain action gesture.

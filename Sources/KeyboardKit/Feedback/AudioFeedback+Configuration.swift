@@ -40,13 +40,16 @@ public extension AudioFeedback {
             
             public init(
                 action: KeyboardAction,
+                gesture: Gestures.KeyboardGesture,
                 feedback: AudioFeedback
             ) {
                 self.action = action
+                self.gesture = gesture
                 self.feedback = feedback
             }
             
             public let action: KeyboardAction
+            public let gesture: Gestures.KeyboardGesture
             public let feedback: AudioFeedback
         }
         
@@ -61,6 +64,32 @@ public extension AudioFeedback {
         
         /// The audio to play when an action is triggered.
         public var actions: [ActionFeedback]
+    }
+}
+
+public extension AudioFeedback.Configuration {
+    
+    /// Get the feedback to use for a certain action.
+    func feedback(
+        for gesture: Gestures.KeyboardGesture = .press,
+        on action: KeyboardAction
+    ) -> ActionFeedback? {
+        actions.first { $0.action == action && $0.gesture == gesture }
+    }
+    
+    /// Register feedback for a certain action gesture.
+    mutating func register(
+        feedback: AudioFeedback,
+        for gesture: Gestures.KeyboardGesture = .press,
+        on action: KeyboardAction
+    ) {
+        actions.append(
+            .init(
+                action: action,
+                gesture: gesture,
+                feedback: feedback
+            )
+        )
     }
 }
 

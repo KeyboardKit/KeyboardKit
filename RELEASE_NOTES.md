@@ -28,7 +28,9 @@ KeyboardKit Pro makes even more locales use the new iPad Pro layout. It also add
 
 ### ✨ Features
 
-* `AudioFeedback` has a new `customUrl` type that can play short audio from any URL.
+* `AudioFeedback` has a new `customUrl` that can play URL-based audio.
+* `AudioFeedback.Configuration` has a new ways to register custom feedback.
+* `HapticFeedback.Configuration` has a new ways to register custom feedback.
 
 ### 💡 Adjustments
 

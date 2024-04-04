@@ -87,6 +87,45 @@ public extension HapticFeedback {
 
 public extension HapticFeedback.Configuration {
     
+    /// Get the feedback to use for a certain gesture.
+    func feedback(
+        for gesture: Gestures.KeyboardGesture
+    ) -> HapticFeedback? {
+        switch gesture {
+        case .doubleTap: doubleTap
+        case .longPress: longPress
+        case .press: press
+        case .release: release
+        case .repeatPress: `repeat`
+        }
+    }
+    
+    /// Get the feedback to use for a certain action.
+    func feedback(
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) -> ActionFeedback? {
+        actions.first { $0.action == action && $0.gesture == gesture }
+    }
+    
+    /// Register feedback for a certain action gesture.
+    mutating func register(
+        feedback: HapticFeedback,
+        for gesture: Gestures.KeyboardGesture = .press,
+        on action: KeyboardAction
+    ) {
+        actions.append(
+            .init(
+                action: action,
+                gesture: gesture,
+                feedback: feedback
+            )
+        )
+    }
+}
+
+public extension HapticFeedback.Configuration {
+    
     /// This configuration enables all audio feedback.
     static let enabled = HapticFeedback.Configuration(
         press: .lightImpact,
