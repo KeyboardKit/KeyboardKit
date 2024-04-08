@@ -40,3 +40,41 @@ public extension Keyboard.State {
         set { feedbackContext = newValue }
     }
 }
+
+public extension FeedbackContext {
+    
+    @available(*, deprecated, renamed: "init(audioConfiguration:hapticConfiguration:)")
+    convenience init(
+        audio: Feedback.AudioConfiguration = .enabled,
+        haptic: Feedback.HapticConfiguration = .minimal
+    ) {
+        self.init(
+            audioConfiguration: audio,
+            hapticConfiguration: haptic
+        )
+    }
+    
+    @available(*, deprecated, renamed: "audioConfiguration")
+    var audio: Feedback.AudioConfiguration {
+        get { audioConfiguration }
+        set { audioConfiguration = newValue }
+    }
+    
+    @available(*, deprecated, renamed: "hapticConfiguration")
+    var haptic: Feedback.HapticConfiguration {
+        get { hapticConfiguration }
+        set { hapticConfiguration = newValue }
+    }
+    
+    @available(*, deprecated, renamed: "enabledAudioConfiguration")
+    var enabledAudio: Feedback.AudioConfiguration {
+        get { enabledAudioConfiguration }
+        set { enabledAudioConfiguration = newValue }
+    }
+    
+    @available(*, deprecated, renamed: "enabledHapticConfiguration")
+    var enabledHaptic: Feedback.HapticConfiguration {
+        get { enabledHapticConfiguration }
+        set { enabledHapticConfiguration = newValue }
+    }
+}

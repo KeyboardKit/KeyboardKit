@@ -9,11 +9,14 @@
 import KeyboardKit
 import UIKit
 
-/// This demo-specific class inherits the standard one, then
-/// overrides it with demo-specific adjustments.
+/// This provider inherits the standard provider, then makes
+/// demo-specific adjustments to the standard actions.
 ///
-/// You can play around with this class to see how it can be
-/// customized, tro trigger custom actions.
+/// The provider will return "keyboard" as character actions
+/// when long pressing the "k" key.
+///
+/// You can play around with the class and customize it more,
+/// to see how it affects the demo keyboard.
 class DemoCalloutActionProvider: Callouts.BaseActionProvider {
     
     override func calloutActionString(for char: String) -> String {

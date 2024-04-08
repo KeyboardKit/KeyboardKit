@@ -27,9 +27,9 @@ struct HomeScreen: View {
     @StateObject
     private var dictationContext = DictationContext(config: .app)
 
-    @StateObject
-    private var keyboardStatus = KeyboardStatusContext(
-        bundleId: "com.keyboardkit.demo.*")
+//    @StateObject
+//    private var keyboardStatus = KeyboardStatusContext(
+//        bundleId: "com.keyboardkit.demo.*")
 
     var body: some View {
         NavigationView {
@@ -45,21 +45,21 @@ struct HomeScreen: View {
             }
         }
         .navigationViewStyle(.stack)
-        .keyboardDictation(
-            context: dictationContext,
-            config: .app,
-            speechRecognizer: StandardSpeechRecognizer()
-        ) {
-            Dictation.Screen(
-                dictationContext: dictationContext) {
-                    EmptyView()
-                } indicator: {
-                    Dictation.BarVisualizer(isAnimating: $0)
-                } doneButton: { action in
-                    Button("Done", action: action)
-                        .buttonStyle(.borderedProminent)
-                }
-        }
+//        .keyboardDictation(
+//            context: dictationContext,
+//            config: .app,
+//            speechRecognizer: StandardSpeechRecognizer()
+//        ) {
+//            Dictation.Screen(
+//                dictationContext: dictationContext) {
+//                    EmptyView()
+//                } indicator: {
+//                    Dictation.BarVisualizer(isAnimating: $0)
+//                } doneButton: { action in
+//                    Button("Done", action: action)
+//                        .buttonStyle(.borderedProminent)
+//                }
+//        }
     }
 }
 
@@ -70,7 +70,7 @@ extension HomeScreen {
             TextEditor(text: $text)
                 .frame(height: 100)
                 .keyboardAppearance(appearance)
-                .environment(\.layoutDirection, isRtl ? .rightToLeft : .leftToRight)
+//                .environment(\.layoutDirection, isRtl ? .rightToLeft : .leftToRight)
             Toggle(isOn: $isAppearanceDark) {
                 Text("Dark appearance")
             }
@@ -95,25 +95,25 @@ extension HomeScreen {
 
     var stateSection: some View {
         Section(header: Text("Keyboard"), footer: footerText) {
-            KeyboardStatusLabel(
-                isEnabled: keyboardStatus.isKeyboardActive,
-                enabledText: "Demo keyboard is active",
-                disabledText: "Demo keyboard is not active"
-            )
-            KeyboardSettings.Link(addNavigationArrow: true) {
-                KeyboardStatus.Label(
-                    isEnabled: keyboardStatus.isKeyboardEnabled,
-                    enabledText: "Demo keyboard is enabled",
-                    disabledText: "Demo keyboard not enabled"
-                )
-            }
-            KeyboardSettings.Link(addNavigationArrow: true) {
-                KeyboardStatus.Label(
-                    isEnabled: keyboardStatus.isFullAccessEnabled,
-                    enabledText: "Full Access is enabled",
-                    disabledText: "Full Access is disabled"
-                )
-            }
+//            KeyboardStatusLabel(
+//                isEnabled: keyboardStatus.isKeyboardActive,
+//                enabledText: "Demo keyboard is active",
+//                disabledText: "Demo keyboard is not active"
+//            )
+//            KeyboardSettings.Link(addNavigationArrow: true) {
+//                KeyboardStatus.Label(
+//                    isEnabled: keyboardStatus.isKeyboardEnabled,
+//                    enabledText: "Demo keyboard is enabled",
+//                    disabledText: "Demo keyboard not enabled"
+//                )
+//            }
+//            KeyboardSettings.Link(addNavigationArrow: true) {
+//                KeyboardStatus.Label(
+//                    isEnabled: keyboardStatus.isFullAccessEnabled,
+//                    enabledText: "Full Access is enabled",
+//                    disabledText: "Full Access is disabled"
+//                )
+//            }
         }
     }
     
@@ -121,10 +121,10 @@ extension HomeScreen {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
     }
 
-    var isRtl: Bool {
-        let keyboardId = keyboardStatus.activeKeyboardBundleIds.first
-        return keyboardId?.hasSuffix("rtl") ?? false
-    }
+//    var isRtl: Bool {
+//        let keyboardId = keyboardStatus.activeKeyboardBundleIds.first
+//        return keyboardId?.hasSuffix("rtl") ?? false
+//    }
 }
 
 #Preview {

@@ -189,13 +189,13 @@ extension KeyboardAction {
             for gesture: Gesture,
             on action: KeyboardAction
         ) -> Feedback.Audio? {
-            let config = feedbackContext.audio
+            let config = feedbackContext.audioConfiguration
             let custom = config.feedback(for: gesture, on: action)
             if let custom = custom { return custom.feedback }
             if action == .space && gesture == .longPress { return nil }
             if action == .backspace { return config.delete }
-            if action.isInputAction { return config.input }
-            if action.isSystemAction { return config.system }
+            if action.isInputAction && gesture == .press { return config.input }
+            if action.isSystemAction && gesture == .press { return config.system }
             return nil
         }
         
@@ -204,7 +204,7 @@ extension KeyboardAction {
             for gesture: Gesture,
             on action: KeyboardAction
         ) -> Feedback.Haptic? {
-            let config = feedbackContext.haptic
+            let config = feedbackContext.hapticConfiguration
             let custom = config.feedback(for: gesture, on: action)
             if let custom = custom { return custom.feedback }
             if action == .space && gesture == .longPress { return config.longPressOnSpace }
@@ -216,6 +216,7 @@ extension KeyboardAction {
             for gesture: Gesture,
             on action: KeyboardAction
         ) {
+            if !shouldTriggerAudioFeedback(for: gesture, on: action) { return }
             let feedback = audioFeedback(for: gesture, on: action)
             feedback?.trigger()
         }
@@ -225,6 +226,7 @@ extension KeyboardAction {
             for gesture: Gesture,
             on action: KeyboardAction
         ) {
+            if !shouldTriggerHapticFeedback(for: gesture, on: action) { return }
             let feedback = hapticFeedback(for: gesture, on: action)
             feedback?.trigger()
         }
@@ -266,8 +268,24 @@ extension KeyboardAction {
             return nil
         }
         
-        /// Whether to trigger feedback for a gesture action.
-        open func shouldTriggerFeedback(for gesture: Gesture, on action: KeyboardAction) -> Bool {
+        /// Whether to trigger feedback for an action.
+        open func shouldTriggerFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            return true
+        }
+        
+        /// Whether to trigger audio feedback for an action.
+        open func shouldTriggerAudioFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            return true
+        }
+        
+        /// Whether to trigger haptic feedback for an action.
+        open func shouldTriggerHapticFeedback(for gesture: Gesture, on action: KeyboardAction) -> Bool {
             if gesture == .press && self.action(for: .release, on: action) != nil { return true }
             if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
             return false

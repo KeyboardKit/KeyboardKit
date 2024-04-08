@@ -9,31 +9,30 @@
 import KeyboardKit
 import SwiftUI
 
-/**
- This demo-specific provider inherits the standard one, then
- makes the rocket button font larger.
- 
- There's a bunch of disabled code that you can enable to see
- how the style of the keyboard changes.
- */
+/// This provider inherits the standard provider, then makes
+/// demo-specific adjustments to the standard style.
+///
+/// The provider will only style the rocket button, to avoid
+/// making too many potentially confusing changes.
+///
+/// You can play around with the class and customize it more,
+/// to see how it affects the demo keyboard.
 class DemoStyleProvider: KeyboardStyle.StandardProvider {
     
     override func buttonFontSize(
         for action: KeyboardAction
     ) -> CGFloat {
-        let standard = super.buttonFontSize(for: action)
-        return action.isRocket ? 1.8 * standard : standard
+        let base = super.buttonFontSize(for: action)
+        return action.fontScaleFactor * base
     }
     
-//    override func buttonStyle(
-//        for action: KeyboardAction,
-//        isPressed: Bool
-//    ) -> Keyboard.ButtonStyle {
-//        if action.isRocket {
-//            return super.buttonStyle(for: .primary(.continue), isPressed: isPressed)
-//        }
-//        return super.buttonStyle(for: action, isPressed: isPressed)
-//    }
+    override func buttonStyle(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> Keyboard.ButtonStyle {
+        let action = action.replacementAction ?? action
+        return super.buttonStyle(for: action, isPressed: isPressed)
+    }
     
 //     override func buttonImage(for action: KeyboardAction) -> Image? {
 //         switch action {
@@ -71,5 +70,13 @@ private extension KeyboardAction {
         case .character(let char): char == "🚀"
         default: false
         }
+    }
+    
+    var fontScaleFactor: Double {
+        isRocket ? 1.8 : 1
+    }
+    
+    var replacementAction: KeyboardAction? {
+        isRocket ? .primary(.continue) : nil
     }
 }

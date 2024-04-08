@@ -26,35 +26,35 @@ public class FeedbackContext: ObservableObject {
     ///   - audio: The audio configuration to use, by deafult `.enabled`.
     ///   - haptic: The haptic configuration to use, by deafult `.minimal`.
     public init(
-        audio: Feedback.AudioConfiguration = .enabled,
-        haptic: Feedback.HapticConfiguration = .minimal
+        audioConfiguration: Feedback.AudioConfiguration = .enabled,
+        hapticConfiguration: Feedback.HapticConfiguration = .minimal
     ) {
-        self.audio = audio
-        self.haptic = haptic
-        enabledAudio = audio == .disabled ? .enabled : audio
-        enabledHaptic = haptic == .disabled ? .enabled : haptic
+        self.audioConfiguration = audioConfiguration
+        self.hapticConfiguration = hapticConfiguration
+        enabledAudioConfiguration = audioConfiguration == .disabled ? .enabled : audioConfiguration
+        enabledHapticConfiguration = hapticConfiguration == .disabled ? .enabled : hapticConfiguration
     }
     
     /// The configuration to use for audio feedback.
     @Published
-    public var audio: Feedback.AudioConfiguration {
+    public var audioConfiguration: Feedback.AudioConfiguration {
         didSet {
-            guard audio != .disabled else { return }
-            enabledAudio = audio
+            guard audioConfiguration != .disabled else { return }
+            enabledAudioConfiguration = audioConfiguration
         }
     }
     
     /// The configuration to use for haptic feedback.
     @Published
-    public var haptic: Feedback.HapticConfiguration {
+    public var hapticConfiguration: Feedback.HapticConfiguration {
         didSet {
-            guard haptic != .disabled else { return }
-            enabledHaptic = haptic
+            guard hapticConfiguration != .disabled else { return }
+            enabledHapticConfiguration = hapticConfiguration
         }
     }
     
-    private var enabledAudio: Feedback.AudioConfiguration
-    private var enabledHaptic: Feedback.HapticConfiguration
+    var enabledAudioConfiguration: Feedback.AudioConfiguration
+    var enabledHapticConfiguration: Feedback.HapticConfiguration
 }
 
 public extension FeedbackContext {
@@ -67,14 +67,14 @@ public extension FeedbackContext {
 
     /// Get or set whether or not audio feedback is enabled.
     var isAudioFeedbackEnabled: Bool {
-        get { audio == enabledAudio }
-        set { audio = newValue ? enabledAudio : .disabled }
+        get { audioConfiguration == enabledAudioConfiguration }
+        set { audioConfiguration = newValue ? enabledAudioConfiguration : .disabled }
     }
 
     /// Get or set whether or not haptic feedback is enabled.
     var isHapticFeedbackEnabled: Bool {
-        get { haptic == enabledHaptic }
-        set { haptic = newValue ? enabledHaptic : .disabled }
+        get { hapticConfiguration == enabledHapticConfiguration }
+        set { hapticConfiguration = newValue ? enabledHapticConfiguration : .disabled }
     }
 
     /// Toggle audio feedback between enabled and disabled.

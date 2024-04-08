@@ -9,11 +9,11 @@
 import KeyboardKit
 import UIKit
 
-/// This demo-specific class inherits the standard one, then
-/// overrides it with demo-specific adjustments.
+/// This action handler inherits the standard one, and makes
+/// demo-specific adjustments to the standard handling.
 ///
-/// You can play around with this class to see how it can be
-/// customized, tro trigger custom actions.
+/// You can play around with the class and customize it more,
+/// to see how it affects the demo keyboard.
 class DemoActionHandler: KeyboardAction.StandardHandler {
 
 

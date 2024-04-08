@@ -12,9 +12,8 @@ import SwiftUI
 /// This keyboard demonstrates how to set up KeyboardKit and
 /// how to customize the standard configuration.
 ///
-/// To use the keyboard, simply enable it in system settings
-/// ("Settings/General/Keyboards") and switch to it when you
-/// type in an app.
+/// To use the keyboard, simply enable it in System Settings,
+/// then switch to it when you type in any app.
 ///
 /// The keyboard needs full access to use some features like
 /// haptic feedback.
@@ -34,7 +33,7 @@ class KeyboardViewController: KeyboardInputViewController {
             keyboardContext: state.keyboardContext,
             keyboardBehavior: services.keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
-            feedbackConfiguration: state.feedbackConfiguration,
+            feedbackContext: state.feedbackContext,
             spaceDragGestureHandler: services.spaceDragGestureHandler)
         
         /// 💡 Setup a fake autocomplete provider.
@@ -97,10 +96,10 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// The code below enabled haptic feedback and plays
         /// a rocket sound when a rocket button is tapped.
-        state.feedbackConfiguration.isHapticFeedbackEnabled = true
-        state.feedbackConfiguration.audio.register(
+        state.feedbackContext.isHapticFeedbackEnabled = true
+        state.feedbackContext.audioConfiguration.register(
             feedback: .customId(1303),
-            for: .press,
+            for: .release,
             on: .character("🚀")
         )
         
