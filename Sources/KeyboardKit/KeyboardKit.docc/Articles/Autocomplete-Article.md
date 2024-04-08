@@ -31,7 +31,7 @@ KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related
 
 ## Autocomplete context
 
-KeyboardKit has an observable ``AutocompleteContext`` that can handle autocomplete state, such as if autocomplete is enabled, which suggestions to present, etc.
+KeyboardKit has an observable ``AutocompleteContext`` that handles autocomplete state, such as if autocomplete is enabled, which suggestions to present, etc.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
 
@@ -39,7 +39,7 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 
 ## Autocomplete providers
 
-In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``AutocompleteContext`` whenever the user types, to automatically update views like an autocomplete ``Autocomplete/Toolbar``.
+In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions when the user types or the text input cursor moves in the text.
 
 KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
 
@@ -47,7 +47,7 @@ KeyboardKit doesn't have a standard autocomplete provider implementation. Instea
 
 ## How to perform autocomplete
 
-KeyboardKit will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the ``AutocompleteProvider`` in ``KeyboardInputViewController/services``.
+KeyboardKit will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the ``KeyboardInputViewController/services`` autocomplete provider.
 
 Views like the autocomplete ``Autocomplete/Toolbar`` can list these suggestions and handle suggestion with the main ``KeyboardActionHandler``.
 
@@ -55,7 +55,7 @@ Views like the autocomplete ``Autocomplete/Toolbar`` can list these suggestions 
 
 ## How to disable autocomplete and autocorrect
 
-You can set ``AutocompleteContext/isAutocorrectEnabled`` to false to disable autocorrection, and ``AutocompleteContext/isAutocompleteEnabled`` to disable autocomplete altopgether. You can also disable autocorrection by applying ``SwiftUI/View/autocorrectionDisabled(with:)`` to the keyboard view.
+You can use ``AutocompleteContext/isAutocorrectEnabled`` to disable autocorrection, and ``AutocompleteContext/isAutocompleteEnabled`` to disable autocomplete. You can also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` modifier to the keyboard view.
 
 
 
@@ -63,13 +63,13 @@ You can set ``AutocompleteContext/isAutocorrectEnabled`` to false to disable aut
 
 You can customize the autocomplete behavior by replacing the ``AutocompleteProvider`` in ``KeyboardInputViewController/services`` with a custom provider. You can also customize the ``KeyboardInputViewController`` to change the autocomplete behavior.
 
-For instance, the ``KeyboardInputViewController/autocompleteText`` property determines which text to use for autocomplete. It will use ``KeyboardInputViewController/textDocumentProxy`` by default, but you can override it to customize which text to use.
+For instance, the controller's ``KeyboardInputViewController/autocompleteText`` property is used to determine which text to use for autocomplete. You can override it to customize which text to use, without having to create a custom autocomplete provider.
 
 
 
 ## How to create a custom autocomplete provider
 
-You can create a custom autocomplete provider to customize the autocomplete behavior, for instance to integrate with 3rd party tools. You can implement ``AutocompleteProvider`` from scratch, or inherit and customize any [KeyboardKit Pro][Pro] provider. 
+You can create a custom autocomplete provider to customize the autocomplete behavior, to integrate with 3rd party tools, etc. You can implement ``AutocompleteProvider`` from scratch, or inherit and customize any of the [KeyboardKit Pro][Pro] providers. 
 
 For instance, here's a custom provider that just adds a suffix to the provided text's current word:
 
@@ -150,23 +150,32 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## Views
 
-KeyboardKit provides autocomple-specific views that can be used to mimic the native autocomplete toolbar items for iOS and iPadOS.
+The ``Autocomplete`` namespace has autocomplete-specific views, that can be used to mimic native autocomplete toolbars and items.
 
 @TabNavigator {
     
-    @Tab("Autocomplete.Toolbar") {
+    @Tab("Toolbar") {
         
-        KeyboardKit has an autocomplete ``Autocomplete/Toolbar`` that mimics a native autocomplete toolbar and can be used to display autocomplete items.
+        The autocomplete ``Autocomplete/Toolbar`` mimics a native autocomplete toolbar, and can be used to present autocomplete suggestions to the user:
         
         ![AutocompleteToolbar](autocompletetoolbar.jpg)
         
-        This view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier. It can can use ``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator``views, or use completely custom views.
+        This view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier. It can also use custom ``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator`` views.
+    }
+    
+    @Tab("ToolbarItem") {
+        
+        The autocomplete-specific ``Autocomplete/ToolbarItem`` and ``Autocomplete/ToolbarSeparator`` views can be used to customize the autocomplete ``Autocomplete/Toolbar``:
+        
+        ![AutocompleteToolbar](autocompletetoolbar.jpg)
+        
+        These views can be styled with the ``Autocomplete/ToolbarItemStyle`` and ``Autocomplete/ToolbarSeparatorStyle`` styles, which can be applied with the ``SwiftUI/View/autocompleteToolbarItemStyle(_:)`` and ``SwiftUI/View/autocompleteToolbarSeparatorStyle(_:)`` view modifiers.
             
         
     }
 }
 
-See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
 
 
 ## 👑 KeyboardKit Pro

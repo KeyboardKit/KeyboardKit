@@ -37,14 +37,25 @@ Just set ``KeyboardInputViewController/textInputProxy`` to **nil** to restore th
 
 ## 👑 KeyboardKit Pro
 
-KeyboardKit Pro unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus:
+KeyboardKit Pro unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus.
 
-* ``KeyboardTextField`` wraps a native text field and can be used for single-line text inputs.
-* ``KeyboardTextView`` wraps a native text view and can be used for multi-line text inputs.
+
+## Views
+
+@TabNavigator {
+    
+    @Tab("KeyboardTextField") {
+        The ``KeyboardTextField`` component wraps a native text field and can be used for single-line text inputs.
+    }
+    
+    @Tab("KeyboardTextView") {
+        The ``KeyboardTextView`` component wraps a native text view and can be used for multi-line text inputs.
+    }
+}
 
 Note that you can also use the ``KeyboardTextField`` text field configuration block to enable multiline support on later iOS versions.
 
-Both views support SwiftUI focus state, and have a custom focused view modifier that lets you provide a custom done button that will slide in when the view is focused:
+Both views support SwiftUI `@FocusState`, and have a custom ``SwiftUI/View/focused`` view modifier that lets you provide a custom done button that will slide in when the view is focused:
 
 ```swift
 struct CustomKeyboardToolbar: View {

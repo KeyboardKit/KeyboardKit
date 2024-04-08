@@ -103,20 +103,22 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## Views
 
+The ``Callouts`` namespace has callout-specific views, that can be used to mimic the native iOS & iPadOS input and action callouts.
+
 @TabNavigator {
     
-    @Tab("Callouts.ActionCallout") {
+    @Tab("ActionCallout") {
         
-        KeyboardKit has an ``Callouts/ActionCallout`` that mimics a native action callout and can be used to present secondary actions for any key:
+        The ``Callouts/ActionCallout`` view mimics a native action callout, and can present secondary actions when a keyboard key is long-pressed:
         
         ![ActionCallout](actioncallout-350.jpg)
         
         The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUI/View/actionCalloutStyle(_:)`` view modifier.
     }
     
-    @Tab("Callouts.InputCallout") {
+    @Tab("InputCallout") {
         
-        KeyboardKit has an ``Callouts/InputCallout`` that mimics a native input callout and can be used to show the currently pressed key:
+        The ``Callouts/InputCallout`` view mimics a native input callout, and can be used to show the currently pressed key as the user types:
         
         ![InputCallout](inputcallout-350.jpg)  
         
@@ -124,14 +126,16 @@ This will make KeyboardKit use your custom implementation instead of the standar
     }
 }
 
-See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
 
 
 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for every locale in your license, and automatically injects them into the ``Callouts/StandardActionProvider``. You can access all localized providers in your license like this:
+[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for every locale in your license, and automatically injects them into the ``Callouts/StandardActionProvider`` when a valid license key is registered.
+
+You can access all localized providers in your license, or access a specific provider for a specific ``KeyboardLocale``, like this:
 
 ```swift
 let providers = License.current.localizedCalloutActionProviders

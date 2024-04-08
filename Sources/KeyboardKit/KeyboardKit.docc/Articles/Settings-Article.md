@@ -63,3 +63,22 @@ The app will always write data to the App Group, in a way that makes it instantl
 A common feature request is to be able to access various settings from System Settings, for instance autocapitalization & autocorrect preferences that the user has configured.
 
 This is not possible, at least not with the public APIs. This is most probably due to privacy concerns, and unfortunately means that your app must provide its own keyboard settings.
+
+
+
+## Views
+
+The ``KeyboardSettings`` namespace has settings-specific views, that can be used to link to System Settings:
+
+@TabNavigator {
+    
+    @Tab("Link") {
+        A keyboard status ``KeyboardSettings/Link`` can be used to link to System Settings.
+        
+        ![KeyboardStatus.Label](keyboardstatuslabel.jpg)
+        
+        The view can wrap any content, and is used by the <doc:Status-Article> views, to link the user to SystemSettings.
+    }
+}
+
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.

@@ -13,9 +13,9 @@ This article describes the KeyboardKit action engine.
     @PageColor(blue)
 }
 
-In KeyboardKit, ``KeyboardAction`` defines keyboard-specific actions that can be triggered by the keyboard or by code, and handled with a ``KeyboardActionHandler``.
+In KeyboardKit, the ``KeyboardAction`` enum defines keyboard-specific actions, that can be triggered by the keyboard or by code, and handled with a ``KeyboardActionHandler``.
 
-👑 [KeyboardKit Pro][Pro] makes the action handler automatically register the most recently used emojis. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] extends the action handler, and makes it register the most recently used emojis in a way that automatically updates the ``EmojiCategory/frequent`` category. Information about Pro features can be found at the end of this article.
 
 
 
@@ -36,7 +36,7 @@ See the ``KeyboardAction`` for a list of all available action types.
 
 ## Keyboard action handlers
 
-In KeyboardKit, a ``KeyboardActionHandler`` can be used to handle keyboard actions, gestures, and trigger feedback.
+In KeyboardKit, a ``KeyboardActionHandler`` can be used to handle actions, autocomplete, and to trigger audio & haptic feedback.
 
 KeyboardKit automatically creates an instance of ``KeyboardAction/StandardHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 

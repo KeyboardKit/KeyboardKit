@@ -21,7 +21,7 @@ KeyboardKit provides additional, keyboard-specific images that make it easy to a
 
 ## Symbol-based image extensions
 
-KeyboardKit has additional images that aim to match native iOS system images, for instance ``SwiftUI/Image/keyboard``. See ``SwiftUI/Image`` for a complete list of additional images that are provided by the library.
+KeyboardKit has additional images that aim to match native iOS system images, for instance ``SwiftUI/Image/keyboard``. See the ``SwiftUI/Image`` extension file for a complete list of images that are provided by the library.
 
 ![SF Symbol Images](images.jpg)
 
@@ -39,7 +39,7 @@ KeyboardKit Pro unlocks additional image extensions that resolve to custom, vect
 
 ### Emojis
 
-KeyboardKit Pro unlocks additional **Image** extensions that resolve to vectorized assets for the emoji key and every ``EmojiCategory``, for instance ``SwiftUI/Image/keyboardEmoji`` and ``SwiftUI/Image/emojiCategory(_:)``:
+KeyboardKit Pro unlocks additional ``SwiftUI/Image`` extensions that resolve to vectorized assets for the emoji key and every ``EmojiCategory``, for instance ``SwiftUI/Image/keyboardEmoji`` and ``SwiftUI/Image/emojiCategory(_:)``:
 
 ![Asset-based Images](images-emojis.jpg)
 

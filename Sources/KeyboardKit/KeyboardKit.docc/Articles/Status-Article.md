@@ -1,4 +1,4 @@
-# State
+# Status
 
 @Metadata {
 
@@ -11,14 +11,14 @@
     @PageColor(blue)
 }
 
-This article describes the KeyboardKit state engine.
+This article describes the KeyboardKit status engine.
 
-KeyboardKit has ways to check various keyboard state, such as if a keyboard is enabled in System Settings, if **Full Access** is enabled, if the keyboard is currently being used, etc.
+KeyboardKit has ways to check various keyboard statuses, e.g. if a keyboard is enabled in System Settings, if Full Access is enabled, if a keyboard is actively being used, etc.
 
 This information can be used to make an app help users to set up their keyboard properly. 
 
 
-## Keyboard state
+## Keyboard Status Context
 
 The observable ``KeyboardStatusContext`` can be used to observe the state of any keyboard:
 
@@ -45,14 +45,19 @@ The context is observable, so any status changes will immediately cause the view
 var status = KeyboardStatusContext(bundleId: "com.myapp.*")
 ```
 
+
+## Keyboard Status Inspector
+
 The ``KeyboardStatusInspector`` protocol that powers the context can be implemented by any type, to make it able to inspect the status of any keyboard at any time.
 
 
 ## Views
 
+The ``KeyboardStatus`` namespace has status-specific views, that can be used to display various keyboard status-related values:
+
 @TabNavigator {
     
-    @Tab("KeyboardStatus.Label") {
+    @Tab("Label") {
         A keyboard status ``KeyboardStatus/Label`` can display various keyboard statuses, e.g. if a keyboard has been enabled, if Full Access is enabled, etc.
         
         ![KeyboardStatus.Label](keyboardstatuslabel.jpg)
@@ -80,4 +85,4 @@ The ``KeyboardStatusInspector`` protocol that powers the context can be implemen
     }
 }
 
-See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.

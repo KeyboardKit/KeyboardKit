@@ -98,15 +98,17 @@ You can also implement a custom action handler to trigger feedback in a differen
 
 ### Views
 
+[KeyboardKit Pro][Pro] unlocks views in the ``FeedbackConfiguration`` namespace, that let you easily toggle audio and haptic feedback:
+
 @TabNavigator {
     
-    @Tab("FeedbackConfiguration.Toggle") {
+    @Tab("Toggle") {
         
-        A feedback configuration ``FeedbackConfiguration/Toggle`` can be used to toggle audio & haptic feedback on and off. It can be added to the keyboard toolbar, or anywhere you want it.
+        The feedback ``FeedbackConfiguration/Toggle`` can be used to toggle audio & haptic feedback on and off. It can be added to a toolbar, or anywhere you want it.
         
         ![FeedbackToggle](feedbackconfigurationtoggle.jpg)
         
-        The view can be customized with other enabled and disabled icons, and be further styled with native accent colors, fonts, etc. It's currently not style-based, since it's not needed.
+        The view can be customized with other icons, and be further styled with native accent colors, fonts, etc. It's currently not style-based.
     }
 }
 

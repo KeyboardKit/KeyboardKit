@@ -201,19 +201,20 @@ You can get a list of all pre-defined themes, as well as all pre-defined style v
 
 ### Views
 
-KeyboardKit Pro provides some theme-based views:
+[KeyboardKit Pro][Pro] unlocks views in the ``KeyboardTheme`` namespace, that make it easy to preview and present keyboard themes:
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 @TabNavigator {
     @Tab("Theme.Shelf"){
+        A keyboard theme ``KeyboardTheme/Shelf`` can be used to list theme collections in a vertical list of horizontally scrolling shelves, much like a Netflix list:
+        
         @Row {
-            @Column {
-                A theme ``KeyboardTheme/Shelf`` renders theme collections in horizontally scrolling shelves.
-                
-                You can use a ``KeyboardTheme/ShelfItem`` as item view to show how a ``Keyboard/Button`` will look, or use completely custom views for titles and items.
-            }
-            @Column {
-                ![ThemeShelf](themeshelf.jpg)
-            }   
+            @Column {}
+            @Column(size:2) { ![ThemeShelf](themeshelf.jpg) }
+            @Column {}
         }
+        
+        You can use the standard ``KeyboardTheme/ShelfItem`` view to show how a ``Keyboard/Button`` will look, or use completely custom views for the titles and items.
     }
 }

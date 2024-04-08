@@ -143,7 +143,7 @@ KeyboardKit provides essential views that can be used to create keyboards that m
     }
 }
     
-See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
 
 
 

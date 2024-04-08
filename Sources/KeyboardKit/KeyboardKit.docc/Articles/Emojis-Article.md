@@ -159,11 +159,13 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 
 ### Views
 
+[KeyboardKit Pro][Pro] unlocks views in the ``Emoji`` namespace, for instance a complete ``EmojiKeyboard`` component and many sub views:
+
 @TabNavigator {
     
     @Tab("EmojiKeyboard") {
         
-        KeyboardKit Pro unlocks an ``EmojiKeyboard`` that mimics the native emoji keyboard, with support for categories, skin tones, etc.
+        The ``EmojiKeyboard`` component mimics a native emoji keyboard, with support for categories, skin tones, etc. It uses many additional views that are unlocked by KeyboardKit Pro, such as the title, grid, and menu. These views can be used individually as well. 
         
         ![Emoji Keyboard](emojikeyboard-350.jpg)
         
@@ -171,4 +173,4 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
         }
 }
         
-See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.

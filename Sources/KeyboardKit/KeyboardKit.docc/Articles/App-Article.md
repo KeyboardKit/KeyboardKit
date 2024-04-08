@@ -21,21 +21,21 @@ KeyboardKit provides utility types for the main app target of a keyboard app. It
 
 ## KeyboardApp namespace
 
-KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types. For now, it only has nested types when it is a part of a KeyboardKit Pro build.
+KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types, that are meant to be used in the main app. It currently only contains utilities when it's part of a KeyboardKit Pro build.
 
 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks views that let you quickly get the main app up and running.
+[KeyboardKit Pro][Pro] unlocks views in the ``KeyboardApp`` namespace, that let you quickly add keyboard-related features to your main app:
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 @TabNavigator {
     
-    @Tab("KeyboardApp.HomeScreen") {
+    @Tab("HomeScreen") {
         
-        KeyboardKit Pro unlocks a ``KeyboardApp/HomeScreen`` that can be used as the home screen of a keyboard app's main app. It will by default r  render an app icon header, a custom top content, a keyboard status section, and a custom bottom content.
+        KeyboardKit Pro unlocks a ``KeyboardApp/HomeScreen`` that can be used as the home screen of a keyboard app. It renders an app icon header, then adds a keyboard status section that can be surrounded by a custom top and bottom content.
     
         @Row {
             @Column {}
@@ -45,6 +45,8 @@ KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types. For
             @Column {}
         }
         
-        This screen can be styled with the ``SwiftUI/View/keyboardStateLabelStyle(_:)`` modifier, to change things like the icon and style of the status label. It automatically links to System Settings, where the user can enable the keyboard and Full Access.
+        This screen can be styled with the ``SwiftUI/View/keyboardStateLabelStyle(_:)`` modifier, to style things like the icon and the status labels.
     }
 }
+
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.

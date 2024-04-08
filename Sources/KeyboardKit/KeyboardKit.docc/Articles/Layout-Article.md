@@ -93,7 +93,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``KeyboardLayout/StandardProvider``.
+[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``KeyboardLayout/StandardProvider`` when a valid license key is registered.
 
 
 ### Input Sets

@@ -70,26 +70,28 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
 
 ### Views
 
+[KeyboardKit Pro][Pro] unlocks views in the ``Dictation`` namespace, that let you quickly add dictation visualization views to your main app:
+
 @TabNavigator {
     
-    @Tab("Dictation.Screen") {
-        KeyboardKit Pro unlocks a dictation ``Dictation/Screen`` that lets you visualize a dictation, using any visualizer like a ``Dictation/BarVisualizer``:
+    @Tab("Screen") {
+        KeyboardKit Pro unlocks a dictation ``Dictation/Screen`` that lets you overlay your main app with a custom dictation view while dictation is active:
 
         ![DictationScreen](dictationscreen-350.jpg)
         
         This screen will automatically fade in when a dictation is started, if you use the Pro keyboard dictation view modifiers. It can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
     
-    @Tab("Dictation.BarVisualizer") {
+    @Tab("BarVisualizer") {
         KeyboardKit Pro unlocks a ``Dictation/BarVisualizer`` that can be used to visualize an ongoing dictation with a collection of animating bars.
 
         ![DictationScreen](dictationscreen-350.jpg)
         
-        You can change the number of bars, the colors & thickness of the bars, etc. You can also implement your own visualizer. The view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
+        You can change the number of bars, the colors & thickness of the bars, etc. The view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
 }
 
-See the <doc:Styling-Article> article for more information about how styling is handled in KeyboardKit.
+See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
 
 
 ### Services

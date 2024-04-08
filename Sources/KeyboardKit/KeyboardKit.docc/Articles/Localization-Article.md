@@ -98,19 +98,17 @@ For information on how to add new keyboard locales, see **Instructions.md** in *
 
 ## Views
 
+The ``KeyboardLocale`` namespace has locale-specific views, that can be used to perform native locale operations, pick locales, etc.
+
 @TabNavigator {
     
-    @Tab("LocaleContextMenu") {
-        @Row {
-            @Column(size: 2) {
-                KeyboardKit has a ``LocaleContextMenu`` that can be used to pick a locale and apply it to the main ``KeyboardContext``'s ``KeyboardContext/locale``.
-                
-                The menu can be applied to any view, and is used by ``SystemKeyboard`` to apply it to any key that is configured to trigger the ``KeyboardAction/nextLocale`` action.
-            }
-            @Column {
-                ![LocaleContextMenu](localecontextmenu-350.jpg)
-            }
-        }
+    @Tab("ContextMenu") {
+        
+        KeyboardKit has a ``KeyboardLocale/ContextMenu`` that can be used to pick a locale and apply it to the main ``KeyboardContext``'s ``KeyboardContext/locale``.
+        
+        ![LocaleContextMenu](localecontextmenu-350.jpg)
+        
+        This menu can be applied to any view, and is applied by ``SystemKeyboard`` to every key that triggers the ``KeyboardAction/nextLocale`` action.
     }
 }
 
