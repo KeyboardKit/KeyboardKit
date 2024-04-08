@@ -13,22 +13,22 @@ These release notes only cover the current major version.
 
 ## 8.5
 
-This version moves more types into their related namespaces, to make the SDK smaller and easier to overview.
-
 The `KeyboardState` namespace and its types are renamed to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.KeyboardState`. 
 
-Tge `Keyboard.KeyboardState` and `Keyboard.KeyboardServices` types have also been renamed to the shorter `Keyboard.State` and `Keyboard.Services`.
+The `Keyboard.KeyboardState` & `Keyboard.KeyboardServices` types have also been renamed to the shorter `Keyboard.State` and `Keyboard.Services`.
 
-KeyboardKit Pro makes even more locales use the new iPad Pro layout. It also adds a new `KeyboardApp.HomeScreen` that can be used to create a keyboard app home screen. 
+KeyboardKit Pro makes more locales use the new iPad Pro layout, and has a new `KeyboardApp.HomeScreen` that can be used as a keyboard app home screen. 
 
-It's now possible to use `Feedback.Audio` with custom, URL-based audio that refer to bundle resources. Only your imagination can now stop you from creating wild and crazy keyboard sound boards.
+You can now use `Feedback.Audio` to play bundle audio files. Only your imagination can now stop you from creating wild and crazy keyboard sound boards.
+
+This version moves may types into namespaces, to make the SDK smaller and easier to overview. Since this involves many renamings, the `Deprecations` section only lists deprecated types.
 
 ### 🚨 Important Information 
 
+* Many types are moved into their related namespaces.
 * The `EmojiKeyboard` sub-components are now throwing as well.
 * The `KeyboardStatus.Label` now uses its style to change icons.
-* Due to the many renamings, only deprecated types are listed under `Deprecations`.
-* Renamed types use `@available` deprecations to help you adjust your code in Xcode.
+* Renamed types use `@available` deprecations to help adjust your code.
 
 ### ✨ Features
 

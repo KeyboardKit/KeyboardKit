@@ -12,7 +12,7 @@ import XCTest
 class FeedbackContextTests: XCTestCase {
     
     func testFeedbackSettingsUsesStandardConfigurationsByDefault() {
-        let settings = FeedbackConfiguration()
+        let settings = FeedbackContext()
         XCTAssertEqual(settings.audio, .enabled)
         XCTAssertEqual(settings.haptic, .minimal)
     }
@@ -29,7 +29,7 @@ class FeedbackContextTests: XCTestCase {
             longPress: .success,
             longPressOnSpace: .lightImpact,
             repeat: .error)
-        let settings = FeedbackConfiguration(
+        let settings = FeedbackContext(
             audio: audio,
             haptic: haptic)
         XCTAssertNotEqual(settings.audio, .enabled)

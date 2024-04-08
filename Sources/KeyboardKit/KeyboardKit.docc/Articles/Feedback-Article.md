@@ -110,7 +110,7 @@ You can also implement a custom action handler to trigger feedback in a differen
     
     @Tab("Toggle") {
         
-        The feedback ``FeedbackConfiguration/Toggle`` can be used to toggle audio & haptic feedback on and off. It can be added to a toolbar, or anywhere you want it.
+        The feedback ``Feedback/Toggle`` can be used to toggle audio & haptic feedback on and off. It can be added to a toolbar, or anywhere you want it.
         
         ![FeedbackToggle](feedbackconfigurationtoggle.jpg)
         

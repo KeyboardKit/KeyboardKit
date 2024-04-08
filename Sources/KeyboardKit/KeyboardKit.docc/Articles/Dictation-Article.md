@@ -168,7 +168,7 @@ Make sure to add this configuration file to both the main app target and the key
 
 #### Step 5. Set up dictation in the keyboard extension
 
-To configure dictation for the *keyboard extension*, set up the global ``Keyboard/KeyboardState/dictationConfig`` with the app-specific config we just set up:
+To configure dictation for the *keyboard extension*, set up the global ``Keyboard/State/dictationConfig`` with the app-specific config we just set up:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

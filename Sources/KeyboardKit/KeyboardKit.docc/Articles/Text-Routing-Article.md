@@ -55,7 +55,7 @@ KeyboardKit Pro unlocks text input components that automatically register and un
 
 Note that you can also use the ``KeyboardTextField`` text field configuration block to enable multiline support on later iOS versions.
 
-Both views support SwiftUI `@FocusState`, and have a custom ``SwiftUI/View/focused`` view modifier that lets you provide a custom done button that will slide in when the view is focused:
+Both views support `@FocusState`, and have a custom focused view modifier that lets you provide a custom done button that will slide in when the view is focused, and can be tapped to dismiss the text field:
 
 ```swift
 struct CustomKeyboardToolbar: View {

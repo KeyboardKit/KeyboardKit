@@ -99,7 +99,7 @@ public struct EmojiKeyboardStyle {
 /// 👑 This is unlocked by KeyboardKit Pro.
 public class ExternalKeyboardContext: ObservableObject {}
 
-public extension FeedbackConfiguration {
+public extension Feedback {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     ///

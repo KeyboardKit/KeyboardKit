@@ -1,5 +1,5 @@
 //
-//  FeedbackConfiguration.swift
+//  FeedbackContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -18,7 +18,7 @@ import Foundation
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value
 /// into the view hierarchy.
-public class FeedbackConfiguration: ObservableObject {
+public class FeedbackContext: ObservableObject {
     
     /// Create a keyboard configuration instance.
     ///
@@ -57,13 +57,13 @@ public class FeedbackConfiguration: ObservableObject {
     private var enabledHaptic: Feedback.HapticConfiguration
 }
 
-public extension FeedbackConfiguration {
+public extension FeedbackContext {
     
     /// This specifies a standard feedback configuration.
-    static let standard = FeedbackConfiguration()
+    static let standard = FeedbackContext()
 }
 
-public extension FeedbackConfiguration {
+public extension FeedbackContext {
 
     /// Get or set whether or not audio feedback is enabled.
     var isAudioFeedbackEnabled: Bool {

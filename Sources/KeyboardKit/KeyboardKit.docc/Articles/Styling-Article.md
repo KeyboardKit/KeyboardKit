@@ -41,7 +41,7 @@ In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for
 
 More complex components, like ``SystemKeyboard``, does not yet use view modifiers, but instead use a ``KeyboardStyleProvider`` to apply dynamic, contextual, styles based on internal and external state.
 
-KeyboardKit automatically creates an instance of ``KeyboardStyleProvider/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
+KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
 > Important: Views like ``SystemKeyboard`` will apply style modifiers to any view that it renders. This means that you can't apply these view modifiers to the ``SystemKeyboard``. You can however apply style modifiers to views that you create in view builders.
 
@@ -70,7 +70,7 @@ Have a look at the <doc:Colors-Article> and <doc:Images-Article> articles for mo
 
 A keyboard appearance is used to determine if a keyboard is light or dark. This is not the same thing as the *color scheme*. A keyboard can be defined as "dark" even in light mode, and will render slightly darker than the default keyboard.
 
-KeyboardKit has a ``Styling/KeyboardAppearanceViewModifier`` that can be used to apply a keyboard appearance to a view, using the ``SwiftUI/View/keyboardAppearance(_:)`` view modifier:
+KeyboardKit has a ``KeyboardStyle/KeyboardAppearanceViewModifier`` that can be used to apply a keyboard appearance to a view, using the ``SwiftUI/View/keyboardAppearance(_:)`` view modifier:
 
 ```
 TextField("Enter text", text: $text)

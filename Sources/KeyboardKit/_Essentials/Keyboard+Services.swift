@@ -40,7 +40,7 @@ public extension Keyboard {
             keyboardContext: state.keyboardContext,
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
-            feedbackConfiguration: state.feedbackConfiguration,
+            feedbackContext: state.feedbackContext,
             spaceDragGestureHandler: spaceDragGestureHandler
         ) {
             didSet { setupCalloutContextForServices() }

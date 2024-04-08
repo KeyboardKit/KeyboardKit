@@ -7,6 +7,28 @@ public typealias StandardKeyboardBehavior = Keyboard.StandardBehavior
 @available(*, deprecated, renamed: "KeyboardAction.StandardHandler")
 public typealias StandardKeyboardActionHandler = KeyboardAction.StandardHandler
 
+public extension KeyboardAction.StandardHandler {
+
+    @available(*, deprecated, message: "Use feedbackContext instead.")
+    convenience init(
+        controller: KeyboardController?,
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior,
+        autocompleteContext: AutocompleteContext,
+        feedbackConfiguration: FeedbackConfiguration,
+        spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
+    ) {
+        self.init(
+            controller: controller,
+            keyboardContext: keyboardContext,
+            keyboardBehavior: keyboardBehavior,
+            autocompleteContext: autocompleteContext,
+            feedbackContext: feedbackConfiguration,
+            spaceDragGestureHandler: spaceDragGestureHandler
+        )
+    }
+}
+
 
 @available(*, deprecated, renamed: "Autocomplete.LocalProvider")
 public typealias LocalAutocompleteProvider = Autocomplete.LocalProvider

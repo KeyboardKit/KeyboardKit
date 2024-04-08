@@ -15,8 +15,8 @@ public extension Feedback {
     /// You can call ``trigger()`` to play any feedback type.
     ///
     /// Audio feedback has a unique system id that refers to
-    /// a system sound. You can use ``customId(id:)`` to add
-    /// custom ID-based feedback types, or ``customUrl(_:)``
+    /// system sounds. You can use ``customId(_:)`` to add a
+    /// custom ID-based feedback type, and ``customUrl(_:)``
     /// to add custom audio feedback types that play a local
     /// audio resource from any URL.
     enum Audio: Codable, Equatable, Identifiable {

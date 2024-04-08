@@ -36,7 +36,7 @@ public extension Keyboard {
         public lazy var dictationContext = DictationContext()
         
         /// The feedback context to use.
-        public lazy var feedbackConfiguration = FeedbackConfiguration()
+        public lazy var feedbackContext = FeedbackContext()
         
         /// The keyboard context to use.
         public lazy var keyboardContext = KeyboardContext()
@@ -62,7 +62,7 @@ public extension View {
         self.environmentObject(state.autocompleteContext)
             .environmentObject(state.calloutContext)
             .environmentObject(state.dictationContext)
-            .environmentObject(state.feedbackConfiguration)
+            .environmentObject(state.feedbackContext)
             .environmentObject(state.keyboardContext)
     }
 }
