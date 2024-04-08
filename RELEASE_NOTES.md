@@ -13,64 +13,45 @@ These release notes only cover the current major version.
 
 ## 8.5
 
-This version moves service implementations into their related namespaces. This makes the SDK surface smaller and easier to overview.
+This version moves more types into their related namespaces, to make the SDK smaller and easier to overview.
 
-The `KeyboardState` namespace and its types are renamed to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.KeyboardState`. The `Keyboard.KeyboardState` and `Keyboard.KeyboardServices` types have also been renamed to the shorted `Keyboard.State` and `Keyboard.Services`.
-
-It's now possible to play URL-based audio with `AudioFeedback`. Only your imagination can stop you from creating that wild and crazy sound board that you've dreamt of for so long.
+The `KeyboardState` namespace and its types are renamed to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.KeyboardState`. `Keyboard.KeyboardState` and `Keyboard.KeyboardServices` have also been renamed to the shorter `Keyboard.State` and `Keyboard.Services`.
 
 KeyboardKit Pro makes even more locales use the new iPad Pro layout. It also adds a new `KeyboardApp.HomeScreen` template that can be used to create a basic home screen for your keyboard app. 
 
-### 🚨 Important Information
+It's now possible to play URL-based audio with `AudioFeedback`. Only your imagination can stop you from creating that wild and crazy sound board that you've dreamt of for so long.
 
-* `EmojiKeyboard` components are now throwing as well.
-* `KeyboardStatus.Label` now uses its style modifier to change icons.
+### 🚨 Important Information 
+
+* The `EmojiKeyboard` sub-components are now throwing as well.
+* The `KeyboardStatus.Label` now uses its style to change icons.
+* Due to the many renamings, only deprecated types are listed under `Deprecations`.
+* Renamed types use `@available` deprecations to help you adjust your code in Xcode.
 
 ### ✨ Features
 
 * `AudioFeedback` has a new `customUrl` that can play URL-based audio.
-* `AudioFeedback.Configuration` has a new ways to register custom feedback.
-* `HapticFeedback.Configuration` has a new ways to register custom feedback.
+* `AudioFeedback.Configuration` has new ways to register custom feedback.
+* `HapticFeedback.Configuration` has new ways to register custom feedback.
 
 ### 💡 Adjustments
 
 * `KeyboardApp` is a new namespace for app-related types.
-* `KeyboardApp.HomeScreen` is a new app home screen template.
+* `KeyboardApp.HomeScreen` is a new app home screen view template.
+* `KeyboardFeedback` is a new namespace for feedback-related types.
 * `KeyboardSettings` is a new namespace for settings-related types.
 * `KeyboardStatus.Label` now uses filled icon variants, by default.
 * `KeyboardStyle.StandardProvider` now applies a light weight to backspace.
 
 ### 👑 KeyboardKit Pro
 
-* The iPad Pro-specific layout has been tweaked to look better.
-* These locales now use iPad Pro layouts: `Catalan`, `Czech`, `Danish`, `Faroese`, `Finnish`, `Georgian`, `German`, `German (Austria)`, `German (Switzerland)`, `Greek`, `Hawaiian`, `Icelandic`, `Inari Sámi`, `Macedonian`, `Maltese`, `Mongolian`, `Northern Sámi`, `Norwegian`, `Russian`, `Serbian`, `Slovak`, `Turkish`, `Ukrainian`.
+* The iPad Pro keyboard layout has been tweaked to look better.
+* The iPad Pro keyboard layout is now used by the following locales: 
+* `Catalan`, `Czech`, `Danish`, `Faroese`, `Finnish`, `Georgian`, `German`, `German (Austria)`, `German (Switzerland)`, `Greek`, `Hawaiian`, `Icelandic`, `Inari Sámi`, `Macedonian`, `Maltese`, `Mongolian`, `Northern Sámi`, `Norwegian`, `Russian`, `Serbian`, `Slovak`, `Turkish`, `Ukrainian`.
 
 ### 🗑️ Deprecations
 
-* `AudioFeedback.custom(id:)` has been renamed to `AudioFeedback.customId(_:)`.
-* `BaseCalloutActionProvider` has been renamed to `Callouts.BaseActionProvider`.
-* `BaseKeyboardLayoutProvider` has been renamed to `KeyboardLayout.BaseProvider`.
 * `Emoji.Grid` has been moved to `EmojiKit`.
-* `InputSetBasedKeyboardLayoutProvider` has been renamed to `KeyboardLayout.DeviceBasedProvider`.
-* `iPadKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPadProvider`.
-* `iPadProKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPadProProvider`.
-* `iPhoneKeyboardLayoutProvider` has been renamed to `KeyboardLayout.iPhoneProvider`.
-* `Keyboard.KeyboardServices` has been renamed to `Keyboard.Services`.
-* `Keyboard.KeyboardState` has been renamed to `Keyboard.State`.
-* `KeyboardLayoutRowIdentifiable` has been renamed to `KeyboardLayoutIdentifiable`.
-* `KeyboardState` has been renamed to `KeyboardStatus`.
-* `KeyboardStateContext` has been renamed to `KeyboardStatusContext`.
-* `KeyboardStateInspector` has been renamed to `KeyboardStatusInspector`.
-* `LocalAutocompleteProvider` has been renamed to `Autocomplete.LocalProvider`.
-* `ProCalloutActionProvider` has been renamed to `Callouts.ProActionProvider`.
-* `ProDictationService` has been renamed to `Dictation.ProService`.
-* `ProKeyboardDictationService` has been renamed to `Dictation.ProKeyboardService`.
-* `RemoteAutocompleteProvider` has been renamed to `Autocomplete.RemoteProvider`.
-* `StandardCalloutActionProvider` has been renamed to `Callouts.StandardActionProvider`.
-* `StandardKeyboardActionHandler` has been renamed to `KeyboardAction.StandardHandler`.
-* `StandardKeyboardBehavior` has been renamed to `Keyboard.StandardBehavior`.
-* `StandardKeyboardLayoutProvider` has been renamed to `KeyboardLayout.StandardProvider`.
-* `ThemeBasedKeyboardLayoutProvider` has been renamed to `KeyboardLayout.ThemeBasedProvider`.
 
 
 
