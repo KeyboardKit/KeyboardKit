@@ -1,5 +1,5 @@
 //
-//  HapticFeedback+Configuration.swift
+//  Feedback+HapticConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-public extension HapticFeedback {
+public extension Feedback {
     
     /// This struct can be used to configure haptic feedback.
     ///
     /// You can use any of the standard configurations, like
     /// ``enabled`` and ``disabled``, or create a custom one.
-    struct Configuration: Codable, Equatable {
+    struct HapticConfiguration: Codable, Equatable {
         
         /// Create a custom haptic feedback configuration.
         ///
@@ -27,12 +27,12 @@ public extension HapticFeedback {
         ///   - repeat: The feedback to use for repeat, by default `.none`.
         ///   - actions: A list of action/gesture-specific feedback, by default `empty`.
         public init(
-            press: HapticFeedback = .none,
-            release: HapticFeedback = .none,
-            doubleTap: HapticFeedback = .none,
-            longPress: HapticFeedback = .none,
-            longPressOnSpace: HapticFeedback = .mediumImpact,
-            repeat: HapticFeedback = .none,
+            press: Feedback.Haptic = .none,
+            release: Feedback.Haptic = .none,
+            doubleTap: Feedback.Haptic = .none,
+            longPress: Feedback.Haptic = .none,
+            longPressOnSpace: Feedback.Haptic = .mediumImpact,
+            repeat: Feedback.Haptic = .none,
             actions: [ActionFeedback] = []
         ) {
             self.press = press
@@ -50,7 +50,7 @@ public extension HapticFeedback {
             public init(
                 action: KeyboardAction,
                 gesture: Gestures.KeyboardGesture,
-                feedback: HapticFeedback
+                feedback: Feedback.Haptic
             ) {
                 self.action = action
                 self.gesture = gesture
@@ -59,38 +59,38 @@ public extension HapticFeedback {
             
             public let action: KeyboardAction
             public let gesture: Gestures.KeyboardGesture
-            public let feedback: HapticFeedback
+            public let feedback: Feedback.Haptic
         }
         
         /// The feedback to use for presses.
-        public var press: HapticFeedback
+        public var press: Feedback.Haptic
         
         /// The feedback to use for releases.
-        public var release: HapticFeedback
+        public var release: Feedback.Haptic
         
         /// The feedback to use for double taps.
-        public var doubleTap: HapticFeedback
+        public var doubleTap: Feedback.Haptic
         
         /// The feedback to use for long presses.
-        public var longPress: HapticFeedback
+        public var longPress: Feedback.Haptic
         
         /// The feedback to use for long presses on space.
-        public var longPressOnSpace: HapticFeedback
+        public var longPressOnSpace: Feedback.Haptic
         
         /// The feedback to use for repeat.
-        public var `repeat`: HapticFeedback
+        public var `repeat`: Feedback.Haptic
         
         /// A list of action/gesture-specific feedback.
         public var actions: [ActionFeedback]
     }
 }
 
-public extension HapticFeedback.Configuration {
+public extension Feedback.HapticConfiguration {
     
     /// Get the feedback to use for a certain gesture.
     func feedback(
         for gesture: Gestures.KeyboardGesture
-    ) -> HapticFeedback? {
+    ) -> Feedback.Haptic? {
         switch gesture {
         case .doubleTap: doubleTap
         case .longPress: longPress
@@ -110,7 +110,7 @@ public extension HapticFeedback.Configuration {
     
     /// Register feedback for a certain action gesture.
     mutating func register(
-        feedback: HapticFeedback,
+        feedback: Feedback.Haptic,
         for gesture: Gestures.KeyboardGesture = .press,
         on action: KeyboardAction
     ) {
@@ -124,10 +124,10 @@ public extension HapticFeedback.Configuration {
     }
 }
 
-public extension HapticFeedback.Configuration {
+public extension Feedback.HapticConfiguration {
     
     /// This configuration enables all audio feedback.
-    static let enabled = HapticFeedback.Configuration(
+    static let enabled = Self(
         press: .lightImpact,
         release: .lightImpact,
         doubleTap: .lightImpact,
@@ -137,7 +137,7 @@ public extension HapticFeedback.Configuration {
     )
     
     /// This configuration disables all audio feedback.
-    static let disabled = HapticFeedback.Configuration(
+    static let disabled = Self(
         press: .none,
         release: .none,
         doubleTap: .none,
@@ -147,7 +147,7 @@ public extension HapticFeedback.Configuration {
     )
     
     /// This configuration only enables long press on space.
-    static let minimal = HapticFeedback.Configuration(
+    static let minimal = Self(
         press: .none,
         release: .none,
         doubleTap: .none,

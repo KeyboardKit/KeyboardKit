@@ -29,7 +29,7 @@ KeyboardKit has a ``Feedback`` namespace with feedback-related types, like ``Fee
 
 ## Audio feedback
 
-KeyboardKit has an ``Feedback/Audio`` enum that defines various standard audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc.
+KeyboardKit has an ``Feedback/Audio`` feedback enum that defines various standard audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc.
 
 This enum also serves as a namespace for other audio feedback-related types like ``Feedback/AudioConfiguration`` and ``Feedback/AudioEngine``.
 
@@ -37,19 +37,19 @@ This enum also serves as a namespace for other audio feedback-related types like
 
 ## Haptic feedback
 
-KeyboardKit has an ``HapticFeedback`` enum that defines various haptic feedback types, like ``HapticFeedback/error``, ``HapticFeedback/success``, and ``HapticFeedback/warning``. 
+KeyboardKit has an ``Feedback/Haptic`` feedback enum that defines various standard haptic feedback types, like ``Feedback/Haptic/success``, ``Feedback/Haptic/warning``, etc.
 
-This enum also serves as a namespace for types like ``HapticFeedback/Configuration`` and ``HapticFeedback/Engine``.
+This enum also serves as a namespace for other haptic feedback-related types like ``Feedback/HapticConfiguration`` and ``Feedback/HapticEngine``.
 
 
 
-## How to trigger audio & haptic feedback
+## How to trigger feedback
 
-You can trigger any ``Feedback/Audio`` feedback with the audio ``Feedback/Audio/trigger()`` function, and any haptic feedback with ``HapticFeedback/trigger()``:
+You can trigger any ``Feedback/Audio`` and ``Feedback/Haptic`` feedback with the ``Feedback/Audio/trigger()`` enum functions:
 
 ```swift
 Feedback.Audio.input.trigger()
-HapticFeedback.lightImpact.trigger()
+Feedback.Haptic.success.trigger()
 ```
 
 You can also trigger feedback with a ``KeyboardActionHandler``, using ``KeyboardActionHandler/triggerFeedback(for:on:)``. You can either use the feedback configuration described below to customize the feedback, or create a custom action handler. 

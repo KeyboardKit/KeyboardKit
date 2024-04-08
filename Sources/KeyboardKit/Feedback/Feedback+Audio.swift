@@ -1,5 +1,5 @@
 //
-//  Feedback.Audio.swift
+//  Feedback+Audio.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -10,12 +10,15 @@ import Foundation
 
 public extension Feedback {
     
-    /// This enum defines audio feedback types.
+    /// This enum defines standard audio feedback types.
     ///
     /// You can call ``trigger()`` to play any feedback type.
     ///
-    /// Each feedback type has a unique system id that refers to
-    /// a system sound that is played when feedback is triggered.
+    /// Audio feedback has a unique system id that refers to
+    /// a system sound. You can use ``customId(id:)`` to add
+    /// custom ID-based feedback types, or ``customUrl(_:)``
+    /// to add custom audio feedback types that play a local
+    /// audio resource from any URL.
     enum Audio: Codable, Equatable, Identifiable {
         
         /// Represents the sound of an input key.

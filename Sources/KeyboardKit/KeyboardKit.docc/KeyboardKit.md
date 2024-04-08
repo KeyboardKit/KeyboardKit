@@ -206,7 +206,6 @@ KeyboardKit is available under the MIT license.
 ### Feedback
 
 - ``Feedback``
-- ``HapticFeedback``
 - ``FeedbackConfiguration``
 
 ### Gestures

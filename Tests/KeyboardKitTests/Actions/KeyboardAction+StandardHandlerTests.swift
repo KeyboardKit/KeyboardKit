@@ -55,7 +55,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         audioEngine = MockAudioFeedbackEngine()
         hapticEngine = MockHapticFeedbackEngine()
         Feedback.AudioEngine.shared = audioEngine
-        HapticFeedback.Engine.shared = hapticEngine
+        Feedback.HapticEngine.shared = hapticEngine
     }
 
 
@@ -164,7 +164,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     func validateHapticFeedback(
         for gesture: Gesture,
         on action: KeyboardAction,
-        expected: HapticFeedback?
+        expected: Feedback.Haptic?
     ) {
         let result = handler.hapticFeedback(for: gesture, on: action)
         XCTAssertEqual(result, expected)

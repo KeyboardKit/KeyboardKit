@@ -101,7 +101,7 @@ public extension CalloutContext.ActionContext {
     
     /// Trigger haptic feedback for selection change.
     func triggerHapticFeedbackForSelectionChange() {
-        HapticFeedback.selectionChanged.trigger()
+        Feedback.Haptic.selectionChanged.trigger()
     }
     
     /// Update the input actions for a certain action.

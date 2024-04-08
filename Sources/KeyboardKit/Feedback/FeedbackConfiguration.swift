@@ -27,7 +27,7 @@ public class FeedbackConfiguration: ObservableObject {
     ///   - haptic: The haptic configuration to use, by deafult `.minimal`.
     public init(
         audio: Feedback.AudioConfiguration = .enabled,
-        haptic: HapticFeedback.Configuration = .minimal
+        haptic: Feedback.HapticConfiguration = .minimal
     ) {
         self.audio = audio
         self.haptic = haptic
@@ -46,7 +46,7 @@ public class FeedbackConfiguration: ObservableObject {
     
     /// The configuration to use for haptic feedback.
     @Published
-    public var haptic: HapticFeedback.Configuration {
+    public var haptic: Feedback.HapticConfiguration {
         didSet {
             guard haptic != .disabled else { return }
             enabledHaptic = haptic
@@ -54,7 +54,7 @@ public class FeedbackConfiguration: ObservableObject {
     }
     
     private var enabledAudio: Feedback.AudioConfiguration
-    private var enabledHaptic: HapticFeedback.Configuration
+    private var enabledHaptic: Feedback.HapticConfiguration
 }
 
 public extension FeedbackConfiguration {

@@ -1,5 +1,5 @@
 //
-//  HapticFeedbackTests.swift
+//  Feedback+HapticTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -9,18 +9,18 @@
 import XCTest
 @testable import KeyboardKit
 
-class HapticFeedbackTests: XCTestCase {
+class Feedback_HapticTests: XCTestCase {
 
     var engine: MockHapticFeedbackEngine!
 
     override func setUp() {
         engine = MockHapticFeedbackEngine()
-        HapticFeedback.Engine.shared = engine
+        Feedback.HapticEngine.shared = engine
     }
 
     func testPreparingFeedbackUsesSharedAudioEngine() {
-        HapticFeedback.success.prepare()
-        HapticFeedback.warning.prepare()
+        Feedback.Haptic.success.prepare()
+        Feedback.Haptic.warning.prepare()
         let calls = engine.calls(to: \.prepareRef)
         XCTAssertEqual(calls.count, 2)
         XCTAssertEqual(calls[0].arguments, .success)
@@ -28,8 +28,8 @@ class HapticFeedbackTests: XCTestCase {
     }
 
     func testTriggeringFeedbackUsesSharedAudioEngine() {
-        HapticFeedback.success.trigger()
-        HapticFeedback.warning.trigger()
+        Feedback.Haptic.success.trigger()
+        Feedback.Haptic.warning.trigger()
         let calls = engine.calls(to: \.triggerRef)
         XCTAssertEqual(calls.count, 2)
         XCTAssertEqual(calls[0].arguments, .success)

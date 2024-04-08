@@ -203,7 +203,7 @@ extension KeyboardAction {
         open func hapticFeedback(
             for gesture: Gesture,
             on action: KeyboardAction
-        ) -> HapticFeedback? {
+        ) -> Feedback.Haptic? {
             let config = feedbackConfiguration.haptic
             let custom = config.feedback(for: gesture, on: action)
             if let custom = custom { return custom.feedback }

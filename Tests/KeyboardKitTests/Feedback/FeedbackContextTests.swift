@@ -22,7 +22,7 @@ class FeedbackContextTests: XCTestCase {
             input: .delete,
             delete: .input,
             system: .system)
-        let haptic = HapticFeedback.Configuration(
+        let haptic = Feedback.HapticConfiguration(
             press: .error,
             release: .error,
             doubleTap: .warning,

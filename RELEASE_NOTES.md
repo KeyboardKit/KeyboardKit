@@ -32,9 +32,9 @@ It's now possible to use `Feedback.Audio` with custom, URL-based audio that refe
 
 ### ✨ Features
 
-* `AudioFeedback` has a new `customUrl` that can play URL-based audio.
-* `AudioFeedback.Configuration` has new ways to register custom feedback.
-* `HapticFeedback.Configuration` has new ways to register custom feedback.
+* `Feedback.Audio` has a new `customUrl` that can play URL-based audio.
+* `Feedback.AudioConfiguration` has new ways to register custom feedback.
+* `Feedback.HapticConfiguration` has new ways to register custom feedback.
 
 ### 💡 Adjustments
 

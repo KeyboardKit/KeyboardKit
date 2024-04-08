@@ -1,5 +1,5 @@
 //
-//  HapticFeedback+ConfigurationTests.swift
+//  Feedback+HapticConfigurationTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -9,20 +9,22 @@
 import KeyboardKit
 import XCTest
 
-class HapticFeedback_ConfigurationTests: XCTestCase {
+class Feedback_HapticConfigurationTests: XCTestCase {
+    
+    typealias Config = Feedback.HapticConfiguration
     
     func testDefaultInitilizerUsesStandardFeedback() {
-        let config = HapticFeedback.Configuration()
-        XCTAssertEqual(config.press, HapticFeedback.none)
-        XCTAssertEqual(config.release, HapticFeedback.none)
-        XCTAssertEqual(config.doubleTap, HapticFeedback.none)
-        XCTAssertEqual(config.longPress, HapticFeedback.none)
+        let config = Config()
+        XCTAssertEqual(config.press, Feedback.Haptic.none)
+        XCTAssertEqual(config.release, Feedback.Haptic.none)
+        XCTAssertEqual(config.doubleTap, Feedback.Haptic.none)
+        XCTAssertEqual(config.longPress, Feedback.Haptic.none)
         XCTAssertEqual(config.longPressOnSpace, .mediumImpact)
-        XCTAssertEqual(config.repeat, HapticFeedback.none)
+        XCTAssertEqual(config.repeat, Feedback.Haptic.none)
     }
 
     func testEnabledConfigurationEnabledAllFeedback() {
-        let config = HapticFeedback.Configuration.enabled
+        let config = Config.enabled
         XCTAssertEqual(config.press, .lightImpact)
         XCTAssertEqual(config.release, .lightImpact)
         XCTAssertEqual(config.doubleTap, .lightImpact)
@@ -32,7 +34,7 @@ class HapticFeedback_ConfigurationTests: XCTestCase {
     }
 
     func testDisabledConfigurationUsesDisabledFeedback() {
-        let config = HapticFeedback.Configuration.disabled
+        let config = Config.disabled
         XCTAssertEqual(config.press, .none)
         XCTAssertEqual(config.release, .none)
         XCTAssertEqual(config.doubleTap, .none)
@@ -42,7 +44,7 @@ class HapticFeedback_ConfigurationTests: XCTestCase {
     }
 
     func testMinimalConfigurationUsesMinimalFeedback() {
-        let config = HapticFeedback.Configuration.minimal
+        let config = Config.minimal
         XCTAssertEqual(config.press, .none)
         XCTAssertEqual(config.release, .none)
         XCTAssertEqual(config.doubleTap, .none)
