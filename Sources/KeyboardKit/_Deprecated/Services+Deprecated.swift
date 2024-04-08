@@ -1,4 +1,4 @@
-import Foundation
+import SwiftUI
 
 @available(*, deprecated, renamed: "Keyboard.StandardBehavior")
 public typealias StandardKeyboardBehavior = Keyboard.StandardBehavior
@@ -26,6 +26,20 @@ public extension KeyboardAction.StandardHandler {
             feedbackContext: feedbackConfiguration,
             spaceDragGestureHandler: spaceDragGestureHandler
         )
+    }
+}
+
+public extension KeyboardStyle {
+    
+    @available(*, deprecated, renamed: "Keyboard.AppearanceViewModifier")
+    typealias KeyboardAppearanceViewModifier = Keyboard.AppearanceViewModifier
+}
+
+public extension Keyboard.AppearanceViewModifier {
+    
+    @available(*, deprecated, renamed: "init(_:)")
+    init(appearance: ColorScheme) {
+        self.init(appearance)
     }
 }
 

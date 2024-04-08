@@ -1,5 +1,5 @@
 //
-//  KeyboardAppearanceViewModifier.swift
+//  Keyboard+AppearanceViewModifier.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-09.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardStyle {
+public extension Keyboard {
     
     /**
      This view modifier can be used to apply a light or dark
@@ -20,9 +20,9 @@ public extension KeyboardStyle {
      To set the text color of the modifier text field/editor,
      you must apply a `foregroundColor` before this modifier.
      */
-    struct KeyboardAppearanceViewModifier: ViewModifier {
+    struct AppearanceViewModifier: ViewModifier {
         
-        public init(appearance: ColorScheme) {
+        public init(_ appearance: ColorScheme) {
             self.appearance = appearance
         }
         
@@ -31,7 +31,7 @@ public extension KeyboardStyle {
         
         private let appearance: ColorScheme
         
-        public func body(content: Content) -> some View {
+        public func body(content: Self.Content) -> some View {
             content
                 .foregroundColor(colorScheme == .dark ? .white : .black)
                 .colorScheme(appearance)
@@ -50,7 +50,7 @@ public extension View {
      */
     func keyboardAppearance(_ appearance: ColorScheme) -> some View {
         self.modifier(
-            KeyboardStyle.KeyboardAppearanceViewModifier(appearance: appearance)
+            Keyboard.AppearanceViewModifier(appearance)
         )
     }
 }

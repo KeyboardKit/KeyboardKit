@@ -66,21 +66,6 @@ Have a look at the <doc:Colors-Article> and <doc:Images-Article> articles for mo
 
 
 
-## Keyboard appearance
-
-A keyboard appearance is used to determine if a keyboard is light or dark. This is not the same thing as the *color scheme*. A keyboard can be defined as "dark" even in light mode, and will render slightly darker than the default keyboard.
-
-KeyboardKit has a ``KeyboardStyle/KeyboardAppearanceViewModifier`` that can be used to apply a keyboard appearance to a view, using the ``SwiftUI/View/keyboardAppearance(_:)`` view modifier:
-
-```
-TextField("Enter text", text: $text)
-    .keyboardAppearance(.dark)
-```
-
-Note that applying a dark appearances will make iOS tell the extension that the *color scheme* is dark, while this may in fact not be true. This will lead to visual bugs, that require certain workarounds. See the <doc:Colors-Article> article for more information.
-
-
-
 ## View styles
 
 KeyboardKit defines custom styles for its various view. For instance, the ``Keyboard`` ``Keyboard/Button`` view has a ``Keyboard/ButtonStyle`` that can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier.

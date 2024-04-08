@@ -59,6 +59,23 @@ KeyboardKit automatically creates an instance of ``Keyboard/StandardBehavior`` a
 
 
 
+## Keyboard appearance
+
+A keyboard appearance is used to determine if a keyboard is light or dark. This is not the same thing as the *color scheme*. A keyboard can be defined as "dark" even in light mode, and will render slightly darker than the default keyboard.
+
+KeyboardKit has an ``Keyboard/AppearanceViewModifier`` that can be applied with the ``SwiftUI/View/keyboardAppearance(_:)`` view modifier:
+
+```
+TextField("Enter text", text: $text)
+    .keyboardAppearance(.dark)
+```
+
+Note that applying a dark appearances will make iOS tell the extension that the *color scheme* is dark, while this may in fact not be true. This will lead to visual bugs, that require certain workarounds. 
+
+See the <doc:Colors-Article> article for more information.
+
+
+
 ## Extensions
 
 KeyboardKit extends native types with a lot more information, to make it easier to implement features like autocomplete, text analysis, etc. Check the extension section in the bottom of the documentation root, or the `Extensions` folder for more info.
