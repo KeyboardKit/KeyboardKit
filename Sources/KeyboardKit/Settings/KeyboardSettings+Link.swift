@@ -71,10 +71,12 @@ public extension KeyboardSettings.Link where Content == Label<Text, Image> {
     ///   - title: The button text, by default `System Settings`.
     ///   - icon: The button icon, by default ``SwiftUI/Image/keyboardSettings``.
     ///   - url: The url to navigate to, by default ``Foundation/URL/keyboardSettings``.
+    ///   - addNavigationArrow: Whether to add a trailing disclosure arrow, by default `false`.   
     init(
         title: String = "System Settings",
         icon: Image = .keyboardSettings,
-        url: URL? = .keyboardSettings
+        url: URL? = .keyboardSettings,
+        addNavigationArrow: Bool = false
     ) {
         self.init(url: url) {
             Label {
