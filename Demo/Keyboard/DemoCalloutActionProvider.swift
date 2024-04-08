@@ -17,6 +17,9 @@ import UIKit
 ///
 /// You can play around with the class and customize it more,
 /// to see how it affects the demo keyboard.
+///
+/// The ``KeyboardViewController`` shows how you can replace
+/// the standard provider with this custom one. 
 class DemoCalloutActionProvider: Callouts.BaseActionProvider {
     
     override func calloutActionString(for char: String) -> String {

@@ -13,8 +13,11 @@ import KeyboardKit
 ///
 /// The provider will inject a rocket button into the layout.
 ///
-/// You can play around with the class and customize it more,
-/// to see how it affects the demo keyboard. 
+/// You can play around with the class to see how it affects
+/// the demo keyboard.
+///
+/// The ``KeyboardViewController`` shows how you can replace
+/// the standard provider with this custom one.
 class DemoLayoutProvider: KeyboardLayout.StandardProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {

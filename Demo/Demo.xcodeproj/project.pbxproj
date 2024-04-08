@@ -10,6 +10,8 @@
 		A91322652AB9C5BE00780625 /* DemoCalloutActionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A91322642AB9C5BE00780625 /* DemoCalloutActionProvider.swift */; };
 		A9155CF42BC45081008C360F /* Demo+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9155CF12BC45081008C360F /* Demo+Audio.swift */; };
 		A9155CFB2BC450DA008C360F /* fuse.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9155CF92BC450DA008C360F /* fuse.wav */; };
+		A9155D012BC49350008C360F /* fuse.wav in Resources */ = {isa = PBXBuildFile; fileRef = A9155CFF2BC49350008C360F /* fuse.wav */; };
+		A9155D032BC49356008C360F /* Demo+Audio.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9155D022BC49356008C360F /* Demo+Audio.swift */; };
 		A921152625D58A94003510D9 /* DemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921152525D58A94003510D9 /* DemoApp.swift */; };
 		A921152825D58A94003510D9 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921152725D58A94003510D9 /* HomeScreen.swift */; };
 		A921152A25D58A96003510D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A921152925D58A96003510D9 /* Assets.xcassets */; };
@@ -69,6 +71,8 @@
 		A91322642AB9C5BE00780625 /* DemoCalloutActionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoCalloutActionProvider.swift; sourceTree = "<group>"; };
 		A9155CF12BC45081008C360F /* Demo+Audio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Demo+Audio.swift"; sourceTree = "<group>"; };
 		A9155CF92BC450DA008C360F /* fuse.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fuse.wav; sourceTree = "<group>"; };
+		A9155CFF2BC49350008C360F /* fuse.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = fuse.wav; sourceTree = "<group>"; };
+		A9155D022BC49356008C360F /* Demo+Audio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Demo+Audio.swift"; sourceTree = "<group>"; };
 		A921152225D58A94003510D9 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A921152525D58A94003510D9 /* DemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoApp.swift; sourceTree = "<group>"; };
 		A921152725D58A94003510D9 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
@@ -146,6 +150,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A9155CFE2BC4933F008C360F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A93342D1299A855F008FAA95 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A9155D002BC49350008C360F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A9155CFF2BC49350008C360F /* fuse.wav */,
+			);
+			path = Assets;
+			sourceTree = SOURCE_ROOT;
+		};
 		A921151925D58A94003510D9 = {
 			isa = PBXGroup;
 			children = (
@@ -185,13 +205,13 @@
 			children = (
 				A9155CFA2BC450DA008C360F /* Assets */,
 				A9155CFC2BC450DD008C360F /* Supporting Files */,
+				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 				A9155CF12BC45081008C360F /* Demo+Audio.swift */,
 				A9EAA6F327B165B600BC9376 /* DemoActionHandler.swift */,
 				A91322642AB9C5BE00780625 /* DemoCalloutActionProvider.swift */,
 				A9EAA6F227B165B600BC9376 /* DemoLayoutProvider.swift */,
 				A9C672642A7BCE37004A5721 /* DemoStyleProvider.swift */,
 				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
-				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -216,8 +236,10 @@
 		A93342CE299A855F008FAA95 /* KeyboardPro */ = {
 			isa = PBXGroup;
 			children = (
-				A93342D1299A855F008FAA95 /* Info.plist */,
+				A9155D002BC49350008C360F /* Assets */,
+				A9155CFE2BC4933F008C360F /* Supporting Files */,
 				A93342CF299A855F008FAA95 /* KeyboardViewController.swift */,
+				A9155D022BC49356008C360F /* Demo+Audio.swift */,
 				A92E4A1D2B15101500F957C6 /* DemoToolbar.swift */,
 				A9A7E079299B72BC00713F2A /* DemoLayoutProvider.swift */,
 				A9A7E076299B721600713F2A /* DemoKeyboardView.swift */,
@@ -366,6 +388,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9155D012BC49350008C360F /* fuse.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +427,7 @@
 				A9A7E07A299B72BF00713F2A /* DemoLayoutProvider.swift in Sources */,
 				A93342D0299A855F008FAA95 /* KeyboardViewController.swift in Sources */,
 				A92E4A1E2B15101500F957C6 /* DemoToolbar.swift in Sources */,
+				A9155D032BC49356008C360F /* Demo+Audio.swift in Sources */,
 				A9A7E077299B721B00713F2A /* DemoKeyboardView.swift in Sources */,
 				A96AA3632B28AE0C00A6F6E8 /* DictationConfig+App.swift in Sources */,
 			);
@@ -734,8 +758,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.4.2;
+				branch = "8.5.0-rc1";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

@@ -14,6 +14,9 @@ import UIKit
 ///
 /// You can play around with the class and customize it more,
 /// to see how it affects the demo keyboard.
+///
+/// The ``KeyboardViewController`` shows how you can replace
+/// the standard handler with this custom one.
 class DemoActionHandler: KeyboardAction.StandardHandler {
 
 

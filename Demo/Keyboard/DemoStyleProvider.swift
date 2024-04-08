@@ -15,8 +15,11 @@ import SwiftUI
 /// The provider will only style the rocket button, to avoid
 /// making too many potentially confusing changes.
 ///
-/// You can play around with the class and customize it more,
-/// to see how it affects the demo keyboard.
+/// You can play around with the class to see how it affects
+/// the demo keyboard.
+///
+/// The ``KeyboardViewController`` shows how you can replace
+/// the standard provider with this custom one.
 class DemoStyleProvider: KeyboardStyle.StandardProvider {
     
     override func buttonFontSize(

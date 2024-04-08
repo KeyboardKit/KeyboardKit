@@ -13,15 +13,11 @@ These release notes only cover the current major version.
 
 ## 8.5
 
-The `KeyboardState` namespace and its types are renamed to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.KeyboardState`. 
+This version moves may types into namespaces, to make the SDK smaller and easier to overview. Since this involves many renamings, the `Deprecations` section only lists deprecated types. The library has deprecation types to help you migrate to the new type names.
 
-The `Keyboard.KeyboardState` & `Keyboard.KeyboardServices` types have also been renamed to the shorter `Keyboard.State` and `Keyboard.Services`.
+The `KeyboardState` namespace is renamed to `KeyboardStatus`, since it was often confused with `Keyboard.KeyboardState`. `Keyboard.KeyboardState` & `Keyboard.KeyboardServices` are also renamed to the shorter `Keyboard.State` and `Keyboard.Services`.
 
-KeyboardKit Pro makes more locales use the new iPad Pro layout, and has a new `KeyboardApp.HomeScreen` that can be used as a keyboard app home screen. 
-
-You can now use `Feedback.Audio` to play bundle audio files. Only your imagination can now stop you from creating wild and crazy keyboard sound boards.
-
-This version moves may types into namespaces, to make the SDK smaller and easier to overview. Since this involves many renamings, the `Deprecations` section only lists deprecated types.
+KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `KeyboardApp.HomeScreen` that can be used as a keyboard app home screen. There is also a new URL-support for audio feedback. Only your imagination can now stop you from creating crazy sound boards.
 
 ### 🚨 Important Information 
 

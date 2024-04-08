@@ -11,8 +11,8 @@ import SwiftUI
 
 /// This is the main demo app screen.
 ///
-/// The screen shows keyboard-specific states and has a text
-/// field, an appearance toggle and some settings.
+/// This screen displays keyboard-specific statuses, and has
+/// a text field, an appearance toggle and some settings.
 struct HomeScreen: View {
 
     @State
@@ -25,11 +25,14 @@ struct HomeScreen: View {
     private var text = ""
 
     @StateObject
-    private var dictationContext = DictationContext(config: .app)
+    private var dictationContext = DictationContext(
+        config: .app
+    )
 
-//    @StateObject
-//    private var keyboardStatus = KeyboardStatusContext(
-//        bundleId: "com.keyboardkit.demo.*")
+    @StateObject
+    private var keyboardStatus = KeyboardStatusContext(
+        bundleId: "com.keyboardkit.demo.*"
+    )
 
     var body: some View {
         NavigationView {
@@ -45,21 +48,22 @@ struct HomeScreen: View {
             }
         }
         .navigationViewStyle(.stack)
-//        .keyboardDictation(
-//            context: dictationContext,
-//            config: .app,
-//            speechRecognizer: StandardSpeechRecognizer()
-//        ) {
-//            Dictation.Screen(
-//                dictationContext: dictationContext) {
-//                    EmptyView()
-//                } indicator: {
-//                    Dictation.BarVisualizer(isAnimating: $0)
-//                } doneButton: { action in
-//                    Button("Done", action: action)
-//                        .buttonStyle(.borderedProminent)
-//                }
-//        }
+        .keyboardDictation(
+            context: dictationContext,
+            config: .app,
+            speechRecognizer: StandardSpeechRecognizer()
+        ) {
+            Dictation.Screen(
+                dictationContext: dictationContext
+            ) {
+                EmptyView()
+            } indicator: {
+                Dictation.BarVisualizer(isAnimating: $0)
+            } doneButton: { action in
+                Button("Done", action: action)
+                    .buttonStyle(.borderedProminent)
+            }
+        }
     }
 }
 
@@ -95,25 +99,25 @@ extension HomeScreen {
 
     var stateSection: some View {
         Section(header: Text("Keyboard"), footer: footerText) {
-//            KeyboardStatusLabel(
-//                isEnabled: keyboardStatus.isKeyboardActive,
-//                enabledText: "Demo keyboard is active",
-//                disabledText: "Demo keyboard is not active"
-//            )
-//            KeyboardSettings.Link(addNavigationArrow: true) {
-//                KeyboardStatus.Label(
-//                    isEnabled: keyboardStatus.isKeyboardEnabled,
-//                    enabledText: "Demo keyboard is enabled",
-//                    disabledText: "Demo keyboard not enabled"
-//                )
-//            }
-//            KeyboardSettings.Link(addNavigationArrow: true) {
-//                KeyboardStatus.Label(
-//                    isEnabled: keyboardStatus.isFullAccessEnabled,
-//                    enabledText: "Full Access is enabled",
-//                    disabledText: "Full Access is disabled"
-//                )
-//            }
+            KeyboardStatus.Label(
+                isEnabled: keyboardStatus.isKeyboardActive,
+                enabledText: "Demo keyboard is active",
+                disabledText: "Demo keyboard is not active"
+            )
+            KeyboardSettings.Link(addNavigationArrow: true) {
+                KeyboardStatus.Label(
+                    isEnabled: keyboardStatus.isKeyboardEnabled,
+                    enabledText: "Demo keyboard is enabled",
+                    disabledText: "Demo keyboard not enabled"
+                )
+            }
+            KeyboardSettings.Link(addNavigationArrow: true) {
+                KeyboardStatus.Label(
+                    isEnabled: keyboardStatus.isFullAccessEnabled,
+                    enabledText: "Full Access is enabled",
+                    disabledText: "Full Access is disabled"
+                )
+            }
         }
     }
     
