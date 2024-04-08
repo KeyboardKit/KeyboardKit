@@ -15,11 +15,13 @@ These release notes only cover the current major version.
 
 This version moves more types into their related namespaces, to make the SDK smaller and easier to overview.
 
-The `KeyboardState` namespace and its types are renamed to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.KeyboardState`. `Keyboard.KeyboardState` and `Keyboard.KeyboardServices` have also been renamed to the shorter `Keyboard.State` and `Keyboard.Services`.
+The `KeyboardState` namespace and its types are renamed to `KeyboardStatus`, since developers tend to confuse it with `Keyboard.KeyboardState`. 
 
-KeyboardKit Pro makes even more locales use the new iPad Pro layout. It also adds a new `KeyboardApp.HomeScreen` template that can be used to create a basic home screen for your keyboard app. 
+Tge `Keyboard.KeyboardState` and `Keyboard.KeyboardServices` types have also been renamed to the shorter `Keyboard.State` and `Keyboard.Services`.
 
-It's now possible to play URL-based audio with `AudioFeedback`. Only your imagination can stop you from creating that wild and crazy sound board that you've dreamt of for so long.
+KeyboardKit Pro makes even more locales use the new iPad Pro layout. It also adds a new `KeyboardApp.HomeScreen` that can be used to create a keyboard app home screen. 
+
+It's now possible to use `Feedback.Audio` with custom, URL-based audio that refer to bundle resources. Only your imagination can now stop you from creating wild and crazy keyboard sound boards.
 
 ### 🚨 Important Information 
 
@@ -45,6 +47,7 @@ It's now possible to play URL-based audio with `AudioFeedback`. Only your imagin
 
 ### 👑 KeyboardKit Pro
 
+* There is a new `KeyboardApp.HomeScreen` screen template view.  
 * The iPad Pro keyboard layout has been tweaked to look better.
 * The iPad Pro keyboard layout is now used by the following locales: 
 * `Catalan`, `Czech`, `Danish`, `Faroese`, `Finnish`, `Georgian`, `German`, `German (Austria)`, `German (Switzerland)`, `Greek`, `Hawaiian`, `Icelandic`, `Inari Sámi`, `Macedonian`, `Maltese`, `Mongolian`, `Northern Sámi`, `Norwegian`, `Russian`, `Serbian`, `Slovak`, `Turkish`, `Ukrainian`.

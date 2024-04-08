@@ -1,5 +1,5 @@
 //
-//  FeedbackSettingsTests.swift
+//  FeedbackContextTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class FeedbackSettingsTests: XCTestCase {
+class FeedbackContextTests: XCTestCase {
     
     func testFeedbackSettingsUsesStandardConfigurationsByDefault() {
         let settings = FeedbackConfiguration()
@@ -18,7 +18,7 @@ class FeedbackSettingsTests: XCTestCase {
     }
 
     func testFeedbackSettingsCanUseCustomConfigurations() {
-        let audio = AudioFeedback.Configuration(
+        let audio = Feedback.AudioConfiguration(
             input: .delete,
             delete: .input,
             system: .system)

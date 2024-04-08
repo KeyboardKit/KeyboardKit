@@ -1,5 +1,5 @@
 //
-//  AudioFeedbackTests.swift
+//  Feedback+AudioTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -9,16 +9,16 @@
 import XCTest
 @testable import KeyboardKit
 
-class AudioFeedbackTests: XCTestCase {
+class Feedback_AudioTests: XCTestCase {
     
     var engine: MockAudioFeedbackEngine!
 
     override func setUp() {
         engine = MockAudioFeedbackEngine()
-        AudioFeedback.Engine.shared = engine
+        Feedback.AudioEngine.shared = engine
     }
 
-    func id(for feedback: AudioFeedback) -> UInt32? {
+    func id(for feedback: Feedback.Audio) -> UInt32? {
         feedback.id
     }
 
@@ -31,8 +31,8 @@ class AudioFeedbackTests: XCTestCase {
     }
 
     func testTriggeringFeedbackUsesSharedAudioEngine() {
-        AudioFeedback.customId(111).trigger()
-        AudioFeedback.customId(124).trigger()
+        Feedback.Audio.customId(111).trigger()
+        Feedback.Audio.customId(124).trigger()
         let calls = engine.calls(to: \.triggerRef)
         XCTAssertEqual(calls.count, 2)
         XCTAssertEqual(calls[0].arguments.id, 111)

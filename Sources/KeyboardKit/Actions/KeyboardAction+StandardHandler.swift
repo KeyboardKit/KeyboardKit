@@ -188,7 +188,7 @@ extension KeyboardAction {
         open func audioFeedback(
             for gesture: Gesture,
             on action: KeyboardAction
-        ) -> AudioFeedback? {
+        ) -> Feedback.Audio? {
             let config = feedbackConfiguration.audio
             let custom = config.feedback(for: gesture, on: action)
             if let custom = custom { return custom.feedback }
@@ -212,13 +212,19 @@ extension KeyboardAction {
         }
         
         /// Trigger feedback for a certain action gesture.
-        open func triggerAudioFeedback(for gesture: Gesture, on action: KeyboardAction) {
+        open func triggerAudioFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) {
             let feedback = audioFeedback(for: gesture, on: action)
             feedback?.trigger()
         }
         
         /// Trigger feedback for a certain action gesture.
-        open func triggerHapticFeedback(for gesture: Gesture, on action: KeyboardAction) {
+        open func triggerHapticFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) {
             let feedback = hapticFeedback(for: gesture, on: action)
             feedback?.trigger()
         }

@@ -15,17 +15,23 @@ This article describes the KeyboardKit feedback engine.
 
 Feedback is an important part of the typing experience, where a keyboard can trigger audio and haptic feedback when a user taps on a key or performs certain actions.
 
-In KeyboardKit, audio and haptic feedback can be triggered with a ``KeyboardActionHandler`` or by triggering an ``AudioFeedback`` or ``HapticFeedback`` type directly.
+In KeyboardKit, audio and haptic feedback can be triggered with a ``KeyboardActionHandler`` or by using the ``Feedback/Audio`` and ``HapticFeedback`` ``Feedback/Audio/trigger()`` functions directly.
 
 👑 [KeyboardKit Pro][Pro] unlocks a convenient feedback toggle view. Information about Pro features can be found at the end of this article.
 
 
 
+## Feedback Namespace
+
+KeyboardKit has a ``Feedback`` namespace with feedback-related types, like ``Feedback/Audio``, ``Feedback/Haptic``, etc.
+
+
+
 ## Audio feedback
 
-KeyboardKit has an ``AudioFeedback`` enum that defines various standard audio feedback types, like ``AudioFeedback/input``, ``AudioFeedback/system``, ``AudioFeedback/delete``, etc.
+KeyboardKit has an ``Feedback/Audio`` enum that defines various standard audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc.
 
-This enum also serves as a namespace for other audio feedbac-related types like ``AudioFeedback/Configuration`` and ``AudioFeedback/Engine``.
+This enum also serves as a namespace for other audio feedback-related types like ``Feedback/AudioConfiguration`` and ``Feedback/AudioEngine``.
 
 
 
@@ -39,10 +45,10 @@ This enum also serves as a namespace for types like ``HapticFeedback/Configurati
 
 ## How to trigger audio & haptic feedback
 
-You can trigger any audio feedback with ``AudioFeedback/trigger()``, and any haptic feedback with ``HapticFeedback/trigger()``:
+You can trigger any ``Feedback/Audio`` feedback with the audio ``Feedback/Audio/trigger()`` function, and any haptic feedback with ``HapticFeedback/trigger()``:
 
 ```swift
-AudioFeedback.input.trigger()
+Feedback.Audio.input.trigger()
 HapticFeedback.lightImpact.trigger()
 ```
 
@@ -75,12 +81,12 @@ Since the configuration is observable, any changes will automatically cause the 
 
 ## How to define custom audio feedback
 
-Since ``AudioFeedback`` uses **AudioServices** to play audio, you can use any system audio ID (see [this website](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback. 
+Since ``Feedback/Audio`` uses **AudioServices** to play audio, you can use any system audio ID (see [this website](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback. 
 
 For instance, this is a way to define a custom sound:
 
 ```swift
-extension AudioFeedback {
+extension Feedback.Audio {
 
     static let sentMessage = .custom(id: 1004)
 }

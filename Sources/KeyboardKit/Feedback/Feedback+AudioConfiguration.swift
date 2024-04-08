@@ -1,5 +1,5 @@
 //
-//  AudioFeedback+Configuration.swift
+//  Feedback+AudioConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -8,13 +8,13 @@
 
 import Foundation
 
-public extension AudioFeedback {
+public extension Feedback {
     
     /// This struct can be used to configure audio feedback.
     ///
     /// You can use any of the standard configurations, like
     /// ``enabled`` and ``disabled``, or create a custom one.
-    struct Configuration: Codable, Equatable {
+    struct AudioConfiguration: Codable, Equatable {
         
         /// Create a custom audio feedback configuration.
         ///
@@ -24,9 +24,9 @@ public extension AudioFeedback {
         ///   - system: The feedback to use for system keys, by default `.system`.
         ///   - actions: A list of action-specific feedback, by default `empty`.
         public init(
-            input: AudioFeedback = .input,
-            delete: AudioFeedback = .delete,
-            system: AudioFeedback = .system,
+            input: Feedback.Audio = .input,
+            delete: Feedback.Audio = .delete,
+            system: Feedback.Audio = .system,
             actions: [ActionFeedback] = []
         ) {
             self.input = input
@@ -41,7 +41,7 @@ public extension AudioFeedback {
             public init(
                 action: KeyboardAction,
                 gesture: Gestures.KeyboardGesture,
-                feedback: AudioFeedback
+                feedback: Feedback.Audio
             ) {
                 self.action = action
                 self.gesture = gesture
@@ -50,24 +50,24 @@ public extension AudioFeedback {
             
             public let action: KeyboardAction
             public let gesture: Gestures.KeyboardGesture
-            public let feedback: AudioFeedback
+            public let feedback: Feedback.Audio
         }
         
         /// The audio to play when a delete key is pressed.
-        public var delete: AudioFeedback
+        public var delete: Feedback.Audio
         
         /// The audio to play when an input key is pressed.
-        public var input: AudioFeedback
+        public var input: Feedback.Audio
         
         /// The audio to play when a system key is pressed.
-        public var system: AudioFeedback
+        public var system: Feedback.Audio
         
         /// The audio to play when an action is triggered.
         public var actions: [ActionFeedback]
     }
 }
 
-public extension AudioFeedback.Configuration {
+public extension Feedback.AudioConfiguration {
     
     /// Get the feedback to use for a certain action.
     func feedback(
@@ -79,7 +79,7 @@ public extension AudioFeedback.Configuration {
     
     /// Register feedback for a certain action gesture.
     mutating func register(
-        feedback: AudioFeedback,
+        feedback: Feedback.Audio,
         for gesture: Gestures.KeyboardGesture = .press,
         on action: KeyboardAction
     ) {
@@ -93,7 +93,7 @@ public extension AudioFeedback.Configuration {
     }
 }
 
-public extension AudioFeedback.Configuration {
+public extension Feedback.AudioConfiguration {
     
     /// This configuration enables all audio feedback.
     static let enabled = Self()

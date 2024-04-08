@@ -1,5 +1,5 @@
 //
-//  AudioFeedback+Engine.swift
+//  Feedback+AudioEngine.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-10-15.
@@ -10,19 +10,19 @@
 import AudioToolbox
 #endif
 
-public extension AudioFeedback {
+public extension Feedback {
     
     /// This engine can be used to trigger audio feedback.
     ///
     /// The engine uses `AudioToolbox`, which is unavailable
     /// on watchOS. Therefore, watchOS has no audio feedback.
-    class Engine {
+    class AudioEngine {
         
         /// Create an audio feedback engine instance.
         public init() {}
         
         /// Trigger a certain audio feedback type.
-        func trigger(_ audio: AudioFeedback) {
+        func trigger(_ audio: Feedback.Audio) {
             switch audio {
             case .none: return
             case .customUrl(let url): playAudio(at: url)
@@ -32,18 +32,17 @@ public extension AudioFeedback {
     }
 }
 
-
-public extension AudioFeedback.Engine {
+public extension Feedback.AudioEngine {
     
     /// This shared instance can be used from anywhere.
-    static var shared = AudioFeedback.Engine()
+    static var shared = Feedback.AudioEngine()
 }
 
-private extension AudioFeedback.Engine {
+private extension Feedback.AudioEngine {
     
     static var systemSoundIDs: [URL: SystemSoundID] = [:]
     
-    func play(_ audio: AudioFeedback) {
+    func play(_ audio: Feedback.Audio) {
         guard let id = audio.id else { return }
         #if os(iOS) || os(macOS) || os(tvOS)
         AudioServicesPlaySystemSound(id)

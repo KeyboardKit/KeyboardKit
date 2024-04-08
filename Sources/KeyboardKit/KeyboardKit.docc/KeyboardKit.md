@@ -205,7 +205,7 @@ KeyboardKit is available under the MIT license.
 
 ### Feedback
 
-- ``AudioFeedback``
+- ``Feedback``
 - ``HapticFeedback``
 - ``FeedbackConfiguration``
 
