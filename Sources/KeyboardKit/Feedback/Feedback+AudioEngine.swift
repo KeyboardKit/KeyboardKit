@@ -6,9 +6,13 @@
 //  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(tvOS)
+#if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
 import AudioToolbox
+#else
+typealias SystemSoundID = Int
 #endif
+
+import Foundation
 
 public extension Feedback {
     
