@@ -25,10 +25,13 @@ struct DemoToolbar: View {
     var proxy: UITextDocumentProxy
     
     @State
-    private var fullDocumentContext: String?
+    private var fullDocumentContext = ""
     
     @State
     private var isThemePickerPresented = false
+    
+    @State
+    private var isFullDocumentContextActive = false
     
     @FocusState
     private var isTextFieldFocused
@@ -47,7 +50,7 @@ struct DemoToolbar: View {
         .padding(10)
         .font(.headline)
         .buttonStyle(.bordered)
-        .sheet(item: $fullDocumentContext, content: fullDocumentContextSheet)
+        .sheet(isPresented: $isFullDocumentContextActive, content: fullDocumentContextSheet)
         .sheet(isPresented: $isThemePickerPresented, content: themePickerSheet)
     }
 }
@@ -67,9 +70,10 @@ private extension DemoToolbar {
         }
     }
     
-    func fullDocumentContextSheet(text: String?) -> some View {
+    func fullDocumentContextSheet() -> some View {
         VStack(alignment: .leading, spacing: 10) {
-            Text(text ?? "-")
+            Text(fullDocumentContext)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
         .padding()
         .demoSheet("Full Document Reader")
@@ -110,6 +114,7 @@ private extension DemoToolbar {
     }
     
     func readFullDocumentContext() {
+        isFullDocumentContextActive = true
         fullDocumentContext = "Reading..."
         Task {
             let result = try await proxy.fullDocumentContext()

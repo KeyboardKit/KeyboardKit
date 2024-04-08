@@ -11,8 +11,9 @@ import SwiftUI
 
 /// This is the main demo app screen.
 ///
-/// This screen displays keyboard-specific statuses, and has
-/// a text field, an appearance toggle and some settings.
+/// This view uses a KeyboardKit Pro `KeyboardApp.HomeScreen`
+/// to show keyboard-specific statuses with a few additional
+/// views above and below the statuses.
 struct HomeScreen: View {
 
     @State
@@ -36,18 +37,24 @@ struct HomeScreen: View {
 
     var body: some View {
         NavigationView {
-            List {
-                textFieldSection
-                editorLinkSection
-                stateSection
-            }
-            .buttonStyle(.plain)
+            KeyboardApp.HomeScreen(
+                appIcon: Image(.icon),
+                keyboardBundleId: "com.keyboardkit.demo.*",
+                localization: .init(
+                    statusSectionTitle: "Keyboard status"
+                ),
+                topListContent: editorLinkSection,
+                bottomListContent: textFieldSection
+            )
             .navigationTitle("KeyboardKit")
             .onChange(of: isAppearanceDark) { newValue in
                 appearance = isAppearanceDark ? .dark : .light
             }
         }
         .navigationViewStyle(.stack)
+        .keyboardAppHomeScreenStyle(
+            .init(appIconSize: 120)
+        )
         .keyboardDictation(
             context: dictationContext,
             config: .app,
@@ -69,19 +76,18 @@ struct HomeScreen: View {
 
 extension HomeScreen {
 
-    var textFieldSection: some View {
+    func textFieldSection() -> some View {
         Section(header: Text("Text Field")) {
             TextEditor(text: $text)
                 .frame(height: 100)
                 .keyboardAppearance(appearance)
-//                .environment(\.layoutDirection, isRtl ? .rightToLeft : .leftToRight)
             Toggle(isOn: $isAppearanceDark) {
                 Text("Dark appearance")
             }
         }
     }
 
-    var editorLinkSection: some View {
+    func editorLinkSection() -> some View {
         Section(header: Text("Editor")) {
             NavigationLink {
                 TextEditor(text: $text)
@@ -96,39 +102,10 @@ extension HomeScreen {
             }
         }
     }
-
-    var stateSection: some View {
-        Section(header: Text("Keyboard"), footer: footerText) {
-            KeyboardStatus.Label(
-                isEnabled: keyboardStatus.isKeyboardActive,
-                enabledText: "Demo keyboard is active",
-                disabledText: "Demo keyboard is not active"
-            )
-            KeyboardSettings.Link(addNavigationArrow: true) {
-                KeyboardStatus.Label(
-                    isEnabled: keyboardStatus.isKeyboardEnabled,
-                    enabledText: "Demo keyboard is enabled",
-                    disabledText: "Demo keyboard not enabled"
-                )
-            }
-            KeyboardSettings.Link(addNavigationArrow: true) {
-                KeyboardStatus.Label(
-                    isEnabled: keyboardStatus.isFullAccessEnabled,
-                    enabledText: "Full Access is enabled",
-                    disabledText: "Full Access is disabled"
-                )
-            }
-        }
-    }
     
     var footerText: some View {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
     }
-
-//    var isRtl: Bool {
-//        let keyboardId = keyboardStatus.activeKeyboardBundleIds.first
-//        return keyboardId?.hasSuffix("rtl") ?? false
-//    }
 }
 
 #Preview {
