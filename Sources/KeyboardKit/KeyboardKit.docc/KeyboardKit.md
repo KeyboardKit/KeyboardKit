@@ -190,15 +190,6 @@ KeyboardKit is available under the MIT license.
 - ``FrequentEmojiProvider``
 - ``MostRecentEmojiProvider``
 
-### Extensions
-
-- ``CoreFoundation``
-- ``Foundation``
-- ``Speech``
-- ``Swift``
-- ``SwiftUI``
-- ``UIKit``
-
 ### External
 
 - ``ExternalKeyboardContext``
