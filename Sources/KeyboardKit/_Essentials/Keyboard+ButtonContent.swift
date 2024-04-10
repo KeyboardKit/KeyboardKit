@@ -78,7 +78,6 @@ private extension Keyboard.ButtonContent {
             text: text,
             action: action
         )
-        .minimumScaleFactor(0.5)
         .padding(.bottom, styleProvider.buttonContentBottomMargin(for: action))
     }
 }
