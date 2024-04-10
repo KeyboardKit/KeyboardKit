@@ -89,10 +89,8 @@ private extension Callouts.InputCallout {
     }
     
     var calloutButton: some View {
-        Callouts.ButtonArea(
-            frame: buttonFrame
-        )
-        .calloutStyle(style.callout)
+        ButtonArea(frame: buttonFrame)
+            .calloutStyle(style.callout)
     }
 }
 
@@ -183,7 +181,7 @@ private extension Callouts.InputCallout {
                     label: { _ in Color.red.cornerRadius(5) }
                 )
             }
-            .frame(width: 15, height: 15)
+            .frame(width: 40, height: 40)
             .padding()
             .background(Color.yellow.cornerRadius(6))
         }

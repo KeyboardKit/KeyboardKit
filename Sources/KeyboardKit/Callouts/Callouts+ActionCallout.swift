@@ -109,11 +109,10 @@ private extension Callouts.ActionCallout {
     var isTrailing: Bool { calloutContext.isTrailing }
     
     var buttonArea: some View {
-        Callouts.ButtonArea(
-            frame: buttonFrame
-        )
-        .opacity(isPad ? 0 : 1)
-        .calloutStyle(calloutStyle)
+        ButtonArea(frame: buttonFrame)
+            .opacity(isPad ? 0 : 1)
+            .calloutStyle(calloutStyle)
+            .rotation3DEffect(isTrailing ? .degrees(180) : .zero, axis: (x: 0.0, y: 1.0, z: 0.0))
     }
     
     var callout: some View {
@@ -135,8 +134,8 @@ private extension Callouts.ActionCallout {
         CustomRoundedRectangle(
             topLeft: cornerRadius,
             topRight: cornerRadius,
-            bottomLeft: !isPad && isLeading ? 2 : cornerRadius,
-            bottomRight: !isPad && isTrailing ? 2 : cornerRadius
+            bottomLeft: cornerRadius,
+            bottomRight: cornerRadius
         )
         .foregroundColor(backgroundColor)
     }
@@ -177,7 +176,9 @@ private extension Callouts.ActionCallout {
 
 private extension Callouts.ActionCallout {
     
-    var isPad: Bool { keyboardContext.deviceType == .pad }
+    var isPad: Bool {
+        keyboardContext.deviceType == .pad
+    }
 
     var isEmojiCallout: Bool {
         calloutActions.first?.isEmojiAction ?? false
@@ -192,8 +193,8 @@ private extension KeyboardAction {
     
     var input: String? {
         switch self {
-        case .character(let char): return char
-        default: return nil
+        case .character(let char): char
+        default: nil
         }
     }
 }
@@ -232,7 +233,7 @@ private extension KeyboardAction {
         )
     }
     
-    return VStack {
+    return VStack(spacing: 100) {
         previewGroup(
             view: Color.red.frame(width: 40, height: 50),
             actionContext: actionContext1,
@@ -245,7 +246,7 @@ private extension KeyboardAction {
         )
     }
     .actionCalloutStyle(.init(
-        callout: .preview2,
+        //callout: .preview2,
         selectedBackgroundColor: .purple
     ))
 }

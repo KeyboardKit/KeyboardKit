@@ -34,6 +34,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 
 ### 💡 Adjustments
 
+* `Callouts` now use individual callout curves.
 * `Keyboard.Button` no longer has a minimum scale factor.
 * `KeyboardApp` is a new namespace for app-related types.
 * `KeyboardApp.HomeScreen` is a new app home screen view template.
@@ -51,6 +52,8 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 
 ### 🗑️ Deprecations
 
+* `Callouts.ButtonArea` has been deprecated.
+* `Callouts.Curve` has been deprecated.
 * `Emoji.Grid` has been moved to `EmojiKit`.
 
 

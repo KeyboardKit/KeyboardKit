@@ -10,8 +10,7 @@ import SwiftUI
 
 public extension Callouts {
     
-    /// This view is used to cover the part of a button that
-    /// was tapped or pressed to trigger the callout.
+    @available(*, deprecated, message: "This view has been replaced by callout-specific button areas.")
     struct ButtonArea: View {
         
         /// Create a callout button area.
@@ -55,6 +54,8 @@ public extension Callouts {
     }
 }
 
+
+@available(*, deprecated, message: "This view has been replaced by callout-specific button areas.")
 private extension Callouts.ButtonArea {
     
     var backgroundColor: Color { style.backgroundColor }
@@ -72,15 +73,4 @@ private extension Callouts.ButtonArea {
             .frame(width: curveSize.width, height: curveSize.height)
             .foregroundColor(backgroundColor)
     }
-}
-
-#Preview {
-    
-    Callouts.ButtonArea(
-        frame: CGRect(x: 0, y: 0, width: 50, height: 50)
-    )
-    .padding(30)
-    .background(Color.gray)
-    .cornerRadius(20)
-    .calloutStyle(.preview1)
 }
