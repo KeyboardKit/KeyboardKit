@@ -312,6 +312,7 @@ private extension SystemKeyboard {
                 styleProvider: styleProvider
             )
         ))
+        .id(keyboardContext.interfaceOrientation)           // TODO: Temp orientation fix
         .opacity(shouldShowEmojiKeyboard ? 1 : 0)
     }
     
@@ -332,8 +333,6 @@ private extension SystemKeyboard {
 
 
 #if os(iOS) || os(tvOS) || os(visionOS)
-/// IMPORTANT! You must apply a preview width to get buttons
-/// to show up, since there's no shared controller.
 #Preview {
 
     struct Preview: View {
