@@ -1,5 +1,5 @@
 //
-//  AudioFeedback+Demo.swift
+//  KeyboardKit+Demo.swift
 //  Keyboard
 //
 //  Created by Daniel Saidi on 2022-02-07.
@@ -7,11 +7,18 @@
 //
 
 import Foundation
-import KeyboardKit
+import KeyboardKitPro
+
+extension KeyboardAction {
+    
+    static let rocket = character("🚀")
+}
 
 extension Feedback.Audio {
  
-    static let fuse = Self.customUrl(
+    static let rocketFuse = customUrl(
         Bundle.main.url(forResource: "fuse", withExtension: "wav")
     )
+    
+    static let rocketLaunch = customId(1303)
 }

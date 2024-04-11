@@ -30,7 +30,7 @@ class DemoLayoutProvider: KeyboardLayout.StandardProvider {
 private extension KeyboardLayout {
     
     func tryInsertRocketButton() {
-        guard let button = tryCreateBottomRowItem(for:  .character("🚀")) else { return }
+        guard let button = tryCreateBottomRowItem(for:  .rocket) else { return }
         itemRows.insert(button, before: .space, atRow: bottomRowIndex)
     }
 }

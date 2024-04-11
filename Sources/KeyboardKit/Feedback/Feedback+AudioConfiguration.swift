@@ -78,17 +78,13 @@ public extension Feedback.AudioConfiguration {
     }
     
     /// Register feedback for a certain action gesture.
-    mutating func register(
-        feedback: Feedback.Audio,
+    mutating func registerFeedback(
+        _ feedback: Feedback.Audio,
         for gesture: Gestures.KeyboardGesture = .press,
         on action: KeyboardAction
     ) {
         actions.append(
-            .init(
-                action: action,
-                gesture: gesture,
-                feedback: feedback
-            )
+            .init(action: action, gesture: gesture, feedback: feedback)
         )
     }
 }

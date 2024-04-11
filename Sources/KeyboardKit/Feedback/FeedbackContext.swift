@@ -14,6 +14,12 @@ import Foundation
 /// This class can be used to configure the audio and haptic
 /// feedback that a keyboard should provide.
 ///
+/// For instance, you can use ``audioConfiguration`` to make
+/// audio-specific adjustments, use ``isAudioFeedbackEnabled``
+/// to toggle audio feedback on and off, and reguster custom
+/// audio feedback with ``registerAudioFeedback(_:for:on:)``.
+/// Haptic feedback has similar functionality.
+///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value
@@ -75,6 +81,24 @@ public extension FeedbackContext {
     var isHapticFeedbackEnabled: Bool {
         get { hapticConfiguration == enabledHapticConfiguration }
         set { hapticConfiguration = newValue ? enabledHapticConfiguration : .disabled }
+    }
+    
+    /// Register custom audio feedback for a certain action.
+    func registerAudioFeedback(
+        _ feedback: Feedback.Audio,
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) {
+        audioConfiguration.registerFeedback(feedback, for: gesture, on: action)
+    }
+    
+    /// Register custom haptic feedback for a certain action.
+    func registerHapticFeedback(
+        _ feedback: Feedback.Haptic,
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) {
+        hapticConfiguration.registerFeedback(feedback, for: gesture, on: action)
     }
 
     /// Toggle audio feedback between enabled and disabled.

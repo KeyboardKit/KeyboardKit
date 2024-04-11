@@ -109,17 +109,13 @@ public extension Feedback.HapticConfiguration {
     }
     
     /// Register feedback for a certain action gesture.
-    mutating func register(
-        feedback: Feedback.Haptic,
+    mutating func registerFeedback(
+        _ feedback: Feedback.Haptic,
         for gesture: Gestures.KeyboardGesture = .press,
         on action: KeyboardAction
     ) {
         actions.append(
-            .init(
-                action: action,
-                gesture: gesture,
-                feedback: feedback
-            )
+            .init(action: action, gesture: gesture, feedback: feedback)
         )
     }
 }

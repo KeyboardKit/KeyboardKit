@@ -92,24 +92,15 @@ class KeyboardViewController: KeyboardInputViewController {
         state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
         // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
         
-        /// 💡 Setup haptic feedback.
+        /// 💡 Setup haptic and audio feedback.
         ///
-        /// The code below enables all haptic feedback.
-        state.feedbackContext.isHapticFeedbackEnabled = true
-        
-        /// 💡 Setup audio feedback.
-        ///
-        /// The code below sets up a fuse sound for when the
-        /// rocket is pressed, and a system sound on release.
-        state.feedbackContext.audioConfiguration.register(
-            feedback: .fuse, for: .press, on: .character("🚀")
-        )
-        state.feedbackContext.audioConfiguration.register(
-            feedback: .customId(1303), for: .release, on: .character("🚀")
-        )
-        
-        // state.feedbackConfiguration.disableAudioFeedback()
-        // state.feedbackConfiguration.disableHapticFeedback()
+        /// The code below enables all haptic feedback, then
+        /// sets up custom audio for the rocket button.
+        let feedback = state.feedbackContext
+        feedback.isHapticFeedbackEnabled = true
+        feedback.registerAudioFeedback(.rocketFuse, for: .press, on: .rocket)
+        feedback.registerAudioFeedback(.rocketLaunch, for: .release, on: .rocket)
+        // feedback.isAudioFeedbackEnabled = false
         
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
