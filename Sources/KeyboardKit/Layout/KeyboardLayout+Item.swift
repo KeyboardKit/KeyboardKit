@@ -129,3 +129,12 @@ public extension KeyboardLayout {
         case points(_ points: CGFloat)
     }
 }
+
+public extension KeyboardLayout {
+    
+    /// Get the item row, if any at a certain row index.
+    func itemRow(at rowIndex: Int) -> ItemRow? {
+        guard rowIndex > 0 && rowIndex < itemRows.count else { return nil }
+        return itemRows[rowIndex]
+    }
+}

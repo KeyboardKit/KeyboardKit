@@ -139,7 +139,7 @@ class KeyboardStyle_StandardProviderTests: XCTestCase {
     func testButtonFontWeightIsLightForActionsWithImageAndLowerCasedChar() {
         XCTAssertNil(buttonFontWeight(for: .character("A")))
         XCTAssertEqual(buttonFontWeight(for: .character("a")), .light)
-        XCTAssertEqual(buttonFontWeight(for: .backspace), .regular)
+        XCTAssertEqual(buttonFontWeight(for: .backspace), .light)
     }
 
     func testButtonStyleForegroundColorIsStandardForAllActionsExceptPrimaryActions() {

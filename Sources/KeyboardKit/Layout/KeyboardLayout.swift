@@ -14,6 +14,9 @@ import SwiftUI
 ///
 /// A layout also specifies sizes, alignments, etc. which is
 /// required information when rendering a keyboard.
+///
+/// You can use the ``itemRows`` property to modify a layout,
+/// e.g. with the various insert, replace & remove functions.
 public class KeyboardLayout {
 
     /// Create a new layout with the provided items.
@@ -23,7 +26,7 @@ public class KeyboardLayout {
     ///   - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
     ///   - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
     public init(
-        itemRows rows: KeyboardLayout.ItemRows,
+        itemRows rows: ItemRows,
         idealItemHeight height: Double? = nil,
         idealItemInsets insets: EdgeInsets? = nil
     ) {
@@ -33,7 +36,7 @@ public class KeyboardLayout {
     }
 
     /// The layout item rows to show in the keyboard.
-    public var itemRows: KeyboardLayout.ItemRows
+    public var itemRows: ItemRows
 
     /// The ideal item height.
     public var idealItemHeight: Double
@@ -53,12 +56,16 @@ public class KeyboardLayout {
 
 private extension KeyboardLayout {
 
-    static func resolveIdealItemHeight(for rows: KeyboardLayout.ItemRows) -> Double {
+    static func resolveIdealItemHeight(
+        for rows: KeyboardLayout.ItemRows
+    ) -> Double {
         let item = rows.flatMap { $0 }.first
         return Double(item?.size.height ?? .zero)
     }
 
-    static func resolveIdealItemInsets(for rows: KeyboardLayout.ItemRows) -> EdgeInsets {
+    static func resolveIdealItemInsets(
+        for rows: KeyboardLayout.ItemRows
+    ) -> EdgeInsets {
         let item = rows.flatMap { $0 }.first
         return item?.edgeInsets ?? EdgeInsets()
     }
