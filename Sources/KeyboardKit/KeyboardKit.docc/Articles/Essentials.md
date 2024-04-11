@@ -19,7 +19,7 @@ The essential goal for KeyboardKit is to make it easier to create powerful and f
 
 KeyboardKit also has a ``SystemKeyboard`` view that mimics the native iOS keyboard and can be customized & styled to great extent. Much of the views in the SDK are not used directly when you use a system keyboard.
 
-👑 [KeyboardKit Pro][Pro] unlocks a lot of essential Pro features. Information about these features can be found at the end of each article.
+👑 [KeyboardKit Pro][Pro] unlocks a lot of essential Pro features, such as a toggle toolbar, a system keyboard number toolbar, previews, etc. Information about Pro features can be found at the end of this article.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -174,16 +174,25 @@ See the <doc:Localization-Article>, <doc:Emojis-Article> and <doc:Previews-Artic
 
 ### Views
 
-KeyboardKit Pro adds more views to the SDK, to let you build more complex keyboards with fewer lines of code.
+KeyboardKit Pro adds more views to the SDK, to let you build more complex keyboards with fewer lines of code, such as a toolbar with toggle support, and a numeric system keyboard toolbar.
 
 @TabNavigator {
     
     @Tab("Keyboard.ToggleToolbar") {
         
-        The ``Keyboard/ToggleToolbar`` can toggle between two toolbars. It's a great way to place a main menu "behind" the autocomplete toolbar, and let it slide in when tapping the customizable toggle.
+        The ``Keyboard/ToggleToolbar`` can be used to toggle between two toolbars, e.g. to place a main menu "behind" the autocomplete toolbar:
         
         ![ToggleToolbar](keyboardtoggletoolbar.jpg)
         
         This view wraps itself in a ``Keyboard/Toolbar``, which means that it can also be styled with the ``SwiftUI/View/keyboardToolbarStyle(_:)`` modifier.
+    }
+    
+    @Tab("SystemKeyboardNumberToolbar") {
+        
+        The ``SystemKeyboardNumberToolbar`` can be used in ``SystemKeyboard`` to add numbers between the toolbar the keyboard.
+        
+        ![ToggleToolbar](keyboardtoggletoolbar.jpg)
+        
+        You can enable this toolbar for any ``SystemKeyboard`` with the ``SwiftUI/View/systemKeyboardNumberToolbarDisplayMode(_:)`` modifier.
     }
 }

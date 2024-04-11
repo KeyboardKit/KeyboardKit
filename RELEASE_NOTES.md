@@ -34,6 +34,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `KeyboardLayout` has new functions for using and tweaking the bottom row.
 * `KeyboardLayout` has a new functions for getting the total layout height.
 * `SystemKeyboard`'s service-based initializer now allows a layout override.
+* `View` has a new `systemKeyboardNumberToolbarDisplayMode` modifier for displaying a number toolbar.
 
 ### 💡 Adjustments
 
@@ -41,13 +42,14 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `Keyboard.Button` no longer has a minimum scale factor.
 * `KeyboardApp` is a new namespace for app-related types.
 * `KeyboardApp.HomeScreen` is a new app home screen view template.
+* `KeyboardLayout` has a new `numberToolbarLayout` layout builder.
 * `KeyboardLayout.Configuration` now defines number toolbar height.
 * `KeyboardFeedback` is a new namespace for feedback-related types.
 * `KeyboardSettings` is a new namespace for settings-related types.
 * `KeyboardStatus.Label` now uses filled icon variants, by default.
 * `KeyboardStyle.StandardProvider` now applies a light weight to backspace.
 * `KeyboardStyle.StandardProvider` now applies more adaptive content insets.
-* `SystemKeyboard` has been drastically optimized in how it renders the keyboard view.
+* `SystemKeyboard` has been optimized in how it renders the system keyboard.
 
 ### 👑 KeyboardKit Pro
 
@@ -55,6 +57,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * The iPad Pro keyboard layout has been tweaked to look better.
 * The iPad Pro keyboard layout is now used by the following locales: 
 * `Catalan`, `Czech`, `Danish`, `Faroese`, `Finnish`, `Georgian`, `German`, `German (Austria)`, `German (Switzerland)`, `Greek`, `Hawaiian`, `Icelandic`, `Inari Sámi`, `Macedonian`, `Maltese`, `Mongolian`, `Northern Sámi`, `Norwegian`, `Russian`, `Serbian`, `Slovak`, `Turkish`, `Ukrainian`.
+* `SystemKeyboard` now has an `addNumberToolbar` parameter to add a number toolbar in KeyboardKit Pro.
 
 ### 🗑️ Deprecations
 
