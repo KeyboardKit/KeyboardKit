@@ -32,6 +32,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `Feedback.AudioConfiguration` has new ways to register custom feedback.
 * `Feedback.HapticConfiguration` has new ways to register custom feedback.
 * `KeyboardLayout` has new functions for using and tweaking the bottom row.
+* `SystemKeyboard`'s state/services initializer now allows a layout override.
 
 ### 💡 Adjustments
 

@@ -31,6 +31,7 @@ public struct SystemKeyboard<
     /// Create a system keyboard based on state and services.
     ///
     /// - Parameters:
+    ///   - layout: A custom keyboard layout to use, if any.
     ///   - state: The value to fetch observable state from.
     ///   - services: The value to fetch keyboard services from.
     ///   - renderBackground: Whether or not to render the background, by default `true`.
@@ -39,6 +40,7 @@ public struct SystemKeyboard<
     ///   - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.
     ///   - toolbar: The toolbar view to add above the keyboard.
     public init(
+        layout: KeyboardLayout? = nil,
         state: Keyboard.State,
         services: Keyboard.Services,
         renderBackground: Bool = true,
@@ -47,8 +49,10 @@ public struct SystemKeyboard<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
+        let serviceLayout = services.layoutProvider
+            .keyboardLayout(for: state.keyboardContext)
         self.init(
-            layout: services.layoutProvider.keyboardLayout(for: state.keyboardContext),
+            layout: layout ?? serviceLayout,
             actionHandler: services.actionHandler,
             styleProvider: services.styleProvider,
             keyboardContext: state.keyboardContext,
@@ -345,18 +349,9 @@ private extension SystemKeyboard {
                 .init(text: "Baz")
             ]
             // controller.services.styleProvider = .crazy
-            // controller.keyboardContext.keyboardType = .emojis
+            controller.state.keyboardContext.keyboardType = .numeric
             return controller
         }()
-        
-        var emojiKeyboard: some View {
-            Button {
-                controller.state.keyboardContext.keyboardType = .alphabetic(.lowercased)
-            } label: {
-                Color.red
-                    .overlay(Text("Not implemented"))
-            }
-        }
         
         var keyboard: some View {
             SystemKeyboard(
@@ -370,41 +365,61 @@ private extension SystemKeyboard {
         }
 
         var body: some View {
-            VStack(spacing: 10) {
-                Group {
-                    ZStack {
-                        keyboard.offset(x: -200)
-                        keyboard.offset(x: 200)
+            ScrollView {
+                VStack(spacing: 10) {
+                    Group {
+                        ZStack {
+                            keyboard.offset(x: -200)
+                            keyboard.offset(x: 200)
+                        }
+                        
+                        keyboard.frame(width: 250)
+                        
+                        SystemKeyboard(
+                            layout: controller.services
+                                .layoutProvider
+                                .keyboardLayout(for: .preview)
+                                .bottomRowLayout,
+                            state: controller.state,
+                            services: controller.services,
+                            buttonContent: { $0.view },
+                            buttonView: { $0.view },
+                            emojiKeyboard: { $0.view },
+                            toolbar: { _ in EmptyView() }
+                        )
+                        
+                        SystemKeyboard(
+                            state: controller.state,
+                            services: controller.services,
+                            buttonContent: { param in
+                                switch param.item.action {
+                                case .backspace:
+                                    Image(systemName: "trash").foregroundColor(Color.red)
+                                default: param.view
+                                }
+                            },
+                            buttonView: { param in
+                                switch param.item.action {
+                                case .space:
+                                    Text("This is a space bar replacement")
+                                        .frame(maxWidth: .infinity)
+                                        .multilineTextAlignment(.center)
+                                default: param.view
+                                }
+                            },
+                            emojiKeyboard: { _ in
+                                Button {
+                                    controller.state.keyboardContext.keyboardType = .alphabetic(.lowercased)
+                                } label: {
+                                    Color.red
+                                        .overlay(Text("Not implemented"))
+                                }
+                            },
+                            toolbar: { $0.view }
+                        )
                     }
-                    
-                    keyboard.frame(width: 250)
-                    
-                    SystemKeyboard(
-                        state: controller.state,
-                        services: controller.services,
-                        buttonContent: { param in
-                            switch param.item.action {
-                            case .backspace:
-                                Image(systemName: "trash").foregroundColor(Color.red)
-                            default: param.view
-                            }
-                        },
-                        buttonView: { param in
-                            switch param.item.action {
-                            case .space:
-                                Text("This is a space bar replacement")
-                                    .frame(maxWidth: .infinity)
-                                    .multilineTextAlignment(.center)
-                            default: param.view
-                            }
-                        },
-                        emojiKeyboard: { _ in
-                            emojiKeyboard
-                        },
-                        toolbar: { $0.view }
-                    )
+                    .background(Color.keyboardBackground)
                 }
-                .background(Color.keyboardBackground)
             }
         }
     }
