@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+InputWidth.swift
+//  KeyboardLayout+Size.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -10,6 +10,11 @@ import Foundation
 
 public extension KeyboardLayout {
     
+    /// The total height of the layout.
+    var totalHeight: Double {
+        itemRows.totalHeight
+    }
+    
     /// Calculate the input key width for a total width.
     ///
     /// This function will find the smallest, required input
@@ -17,7 +22,7 @@ public extension KeyboardLayout {
     /// input key in the entire layout.
     func inputWidth(
         for totalWidth: TotalWidth
-    ) -> CGFloat {
+    ) -> Double {
         if let result = widthCache[totalWidth] { return result }
         let result = itemRows.inputWidth(for: totalWidth)
         widthCache[totalWidth] = result
@@ -27,10 +32,17 @@ public extension KeyboardLayout {
 
 public extension KeyboardLayout.ItemRows {
     
+    /// The total height of the layout.
+    var totalHeight: Double {
+        map {
+            $0.compactMap { $0.size.height }.max() ?? 0
+        }.reduce(0, +)
+    }
+    
     /// The width to apply to input keys given a total width.
     func inputWidth(
-        for totalWidth: CGFloat
-    ) -> CGFloat {
+        for totalWidth: Double
+    ) -> Double {
         compactMap {
             $0.suggestedInputWidth(for: totalWidth)
         }.min() ?? 0

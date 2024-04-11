@@ -225,12 +225,6 @@ private extension SystemKeyboard {
         default: false
         }
     }
-    
-    var totalKeyboardHeight: Double {
-        layout.itemRows.map {
-            $0.compactMap { $0.size.height }.max() ?? 0
-        }.reduce(0, +)
-    }
 }
 
 private extension SystemKeyboard {
@@ -245,7 +239,7 @@ private extension SystemKeyboard {
             .padding(styleProvider.keyboardEdgeInsets)
             .environment(\.layoutDirection, .leftToRight)
         }
-        .frame(height: totalKeyboardHeight)
+        .frame(height: layout.totalHeight)
     }
     
     func items(
