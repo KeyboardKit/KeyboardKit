@@ -19,7 +19,7 @@ The essential goal for KeyboardKit is to make it easier to create powerful and f
 
 KeyboardKit also has a ``SystemKeyboard`` view that mimics the native iOS keyboard and can be customized & styled to great extent. Much of the views in the SDK are not used directly when you use a system keyboard.
 
-👑 [KeyboardKit Pro][Pro] unlocks a lot of essential Pro features, such as a toggle toolbar, a system keyboard number toolbar, previews, etc. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a lot of essential Pro features, such as a toggle toolbar, a system keyboard input toolbar, additional view previews, etc. Information about Pro features can be found at the end of this article.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -108,7 +108,7 @@ KeyboardKit provides essential views that can be used to create keyboards that m
             }
         }
 
-        ``SystemKeyboard`` can be customized to great extent. You can pass in custom services & state, and replace any part of the keyboard:
+        ``SystemKeyboard`` can be customized to great extent. You can pass in custom services & state, replace any part of the keyboard, and enable additional components:
 
         ```swift
         SystemKeyboard(
@@ -120,7 +120,7 @@ KeyboardKit provides essential views that can be used to create keyboards that m
         )
         ```
 
-        To use the standard views, just return `{ $0.view }`, or `{ params in params.view }`. Otherwise, just return the view you want to use for the provided params. The view builders provide information to help you setup custom views.
+        To use the standard views, just return `{ $0.view }`, or `{ params in params.view }`. Otherwise, just return the view you want to use for the provided parameters, which contain contextual information.
     }
     
     @Tab("Keyboard.Button") {
@@ -166,11 +166,42 @@ See the <doc:Styling-Article> article for more information about KeyboardKit vie
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks additional, powerful capabilities for the ``SystemKeyboard``, such as support for every ``KeyboardLocale``, an ``EmojiKeyboard``, and powerful ``SystemKeyboardPreview`` and ``SystemKeyboardButtonPreview`` view.
+[KeyboardKit Pro][Pro] unlocks additional, powerful capabilities for the ``SystemKeyboard``, including full support for every ``KeyboardLocale``, a full-blown ``EmojiKeyboard``, input toolbars, powerful ``SystemKeyboardPreview``s, etc.
 
-See the <doc:Localization-Article>, <doc:Emojis-Article> and <doc:Previews-Article> articles for more information.
+See the <doc:Localization-Article>, <doc:Emojis-Article> and <doc:Previews-Article> articles for more information about these features.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+
+### System Keyboard Input Toolbar
+
+KeyboardKit Pro will automatically add an input toolbar to ``SystemKeyboard`` if ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)`` is applied to the view hierarchy.
+
+The toolbar will be added between the autocomplete toolbar and the keyboard, and show a custom row of additional input buttons. For instance, here the ``Keyboard/InputToolbarDisplayMode/numbers`` display mode is used to add numeric input keys to the top of the toolbar.
+
+@Row {
+    @Column {
+        ![Input Row in iPad](inputtoolbar-ipad)
+    }
+    @Column {
+        ![Input Row in iPad](inputtoolbar-ipadpro)
+    }
+}
+
+```swift
+SystemKeyboard(
+    controller: controller,             // You can setup the view with a controller instance 
+    buttonContent: { $0.view },         // Can be used to customize the content view of any button
+    buttonView: { $0.view },            // Can be used to customize the entire view of any button
+    emojiKeyboard: { $0.view },         // Can be used to customize the emoji keyboard, if any
+    toolbar: { params in params.view }  // Can be used to customize the toolbar above the keyboard
+)
+.keyboardInputToolbarDisplayMode(.numbers)
+```
+
+You can use ``Keyboard/InputToolbarDisplayMode/numbers`` to add `1-0` inputs, or ``Keyboard/InputToolbarDisplayMode/inputs(_:)`` to use custom input characters, or define your own custom display modes. 
+ 
+
 
 ### Views
 
@@ -185,14 +216,5 @@ KeyboardKit Pro adds more views to the SDK, to let you build more complex keyboa
         ![ToggleToolbar](keyboardtoggletoolbar.jpg)
         
         This view wraps itself in a ``Keyboard/Toolbar``, which means that it can also be styled with the ``SwiftUI/View/keyboardToolbarStyle(_:)`` modifier.
-    }
-    
-    @Tab("SystemKeyboardNumberToolbar") {
-        
-        The ``SystemKeyboardNumberToolbar`` can be used in ``SystemKeyboard`` to add numbers between the toolbar the keyboard.
-        
-        ![ToggleToolbar](keyboardtoggletoolbar.jpg)
-        
-        You can enable this toolbar for any ``SystemKeyboard`` with the ``SwiftUI/View/systemKeyboardNumberToolbarDisplayMode(_:)`` modifier.
     }
 }

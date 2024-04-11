@@ -96,7 +96,7 @@ public struct SystemKeyboard<
         if !Emoji.KeyboardWrapper.isPro {
             layout.itemRows.remove(.keyboardType(.emojis))
         }
-        self.layout = layout
+        self.rawLayout = layout
         self.layoutConfig = .standard(for: keyboardContext)
         self.actionHandler = actionHandler
         self.styleProvider = styleProvider
@@ -111,7 +111,7 @@ public struct SystemKeyboard<
     }
     
     private let actionHandler: KeyboardActionHandler
-    private let layout: KeyboardLayout
+    private let rawLayout: KeyboardLayout
     private let layoutConfig: KeyboardLayout.Configuration
     private let styleProvider: KeyboardStyleProvider
     private let renderBackground: Bool
@@ -195,15 +195,14 @@ public struct SystemKeyboard<
     @ObservedObject
     private var keyboardContext: KeyboardContext
     
-    @Environment(\.systemKeyboardNumberToolbarDisplayMode)
-    private var numberToolbarDisplayMode
+    @Environment(\.keyboardInputToolbarDisplayMode)
+    private var inputToolbarDisplayMode
 
     public var body: some View {
         KeyboardStyle.StandardProvider.iPadProRenderingModeActive = layout.ipadProLayout
         
         return VStack(spacing: 0) {
             toolbar
-            numberToolbar
             systemKeyboard
         }
         .autocorrectionDisabled(with: autocompleteContext)
@@ -222,6 +221,13 @@ public struct SystemKeyboard<
 
 private extension SystemKeyboard {
     
+    var layout: KeyboardLayout {
+        rawLayout.adjusted(
+            for: inputToolbarDisplayMode,
+            layoutConfiguration: layoutConfig
+        )
+    }
+    
     var shouldShowEmojiKeyboard: Bool {
         switch keyboardContext.keyboardType {
         case .emojis: true
@@ -234,29 +240,25 @@ private extension SystemKeyboard {
 
     var systemKeyboard: some View {
         GeometryReader { geo in
+            let inputWidth = layout.inputWidth(for: geo.size.width)
             VStack(spacing: 0) {
-                ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
-                    items(for: geo.size, layout: layout, itemRow: $0.element)
+                ForEach(Array(layout.itemRows.enumerated()), id: \.offset) { row in
+                    HStack(spacing: 0) {
+                        ForEach(Array(row.element.enumerated()), id: \.offset) { item in
+                            buttonView(
+                                for: item.element,
+                                totalWidth: geo.size.width,
+                                inputWidth: inputWidth
+                            )
+                        }
+                    }
                 }
             }
             .padding(styleProvider.keyboardEdgeInsets)
             .environment(\.layoutDirection, .leftToRight)
         }
         .frame(height: layout.totalHeight)
-    }
-    
-    @ViewBuilder
-    var numberToolbar: some View {
-        switch numberToolbarDisplayMode {
-        case .hidden: EmptyView()
-        case .numbers(let numbers):
-            SystemKeyboardNumberToolbar(
-                numbers: numbers,
-                actionHandler: actionHandler,
-                styleProvider: styleProvider,
-                keyboardContext: keyboardContext
-            )
-        }
+        .id(keyboardContext.locale.identifier)
     }
     
     var emojiKeyboard: some View {
@@ -305,7 +307,8 @@ private extension SystemKeyboard {
     
     func buttonView(
         for item: KeyboardLayout.Item,
-        totalWidth width: CGFloat
+        totalWidth width: Double,
+        inputWidth: Double
     ) -> ButtonView {
         buttonViewBuilder((
             item: item,
@@ -316,26 +319,10 @@ private extension SystemKeyboard {
                 keyboardContext: keyboardContext,
                 calloutContext: calloutContext,
                 keyboardWidth: width,
-                inputWidth: layout.inputWidth(for: width),
+                inputWidth: inputWidth,
                 content: buttonContent(for: item)
             )
         ))
-    }
-    
-    func items(
-        for size: CGSize,
-        layout: KeyboardLayout,
-        itemRow: KeyboardLayout.ItemRow
-    ) -> some View {
-        HStack(spacing: 0) {
-            ForEach(Array(itemRow.enumerated()), id: \.offset) {
-                buttonView(
-                    for: $0.element,
-                    totalWidth: size.width
-                )
-            }
-            .id(keyboardContext.locale.identifier)
-        }
     }
 }
 
@@ -353,7 +340,7 @@ private extension SystemKeyboard {
                 .init(text: "Baz")
             ]
             // controller.services.styleProvider = .crazy
-            controller.state.keyboardContext.keyboardType = .numeric
+            // controller.state.keyboardContext.keyboardType = .numeric
             return controller
         }()
         
@@ -373,10 +360,7 @@ private extension SystemKeyboard {
             ScrollView {
                 VStack(spacing: 10) {
                     Group {
-                        ZStack {
-                            keyboard.offset(x: -200)
-                            keyboard.offset(x: 200)
-                        }
+                        keyboard
                         
                         keyboard.frame(width: 250)
                         
@@ -424,7 +408,7 @@ private extension SystemKeyboard {
                         )
                     }
                     .background(Color.keyboardBackground)
-                    .systemKeyboardNumberToolbarDisplayMode(.visible)
+                    .keyboardInputToolbarDisplayMode(.numbers)
                 }
             }
         }

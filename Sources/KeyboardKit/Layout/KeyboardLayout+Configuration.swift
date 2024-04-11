@@ -34,7 +34,7 @@ public extension KeyboardLayout {
             self.buttonCornerRadius = buttonCornerRadius
             self.buttonInsets = buttonInsets
             self.rowHeight = rowHeight
-            self.numberToolbarHeight = numberToolbarHeight ?? (0.8 * rowHeight)
+            self.numberToolbarHeight = numberToolbarHeight ?? (0.75 * rowHeight)
         }
         
         /// The keyboard button corner radius.
@@ -192,7 +192,8 @@ public extension KeyboardLayout.Configuration {
     static var standardPhoneProMax = Self(
         buttonCornerRadius: 5,
         buttonInsets: .init(horizontal: 3, vertical: 5.5),
-        rowHeight: standardPhoneProMaxRowHeight
+        rowHeight: standardPhoneProMaxRowHeight,
+        numberToolbarHeight: standardPhoneProMaxRowHeight
     )
 
     /// The standard config for iPhone Pro Max in landscape.
@@ -201,6 +202,7 @@ public extension KeyboardLayout.Configuration {
     static var standardPhoneProMaxLandscape = Self(
         buttonCornerRadius: 5,
         buttonInsets: .init(horizontal: 3, vertical: 4),
-        rowHeight: standardPhoneProMaxLandscapeRowHeight
+        rowHeight: standardPhoneProMaxLandscapeRowHeight,
+        numberToolbarHeight: standardPhoneProMaxLandscapeRowHeight
     )
 }

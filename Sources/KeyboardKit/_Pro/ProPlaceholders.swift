@@ -15,12 +15,12 @@ import UIKit
 enum ProPlaceholderError: LocalizedError, View {
     
     case proPlaceholder
-    case proView(_ name: String)
+    case proFeature(_ name: String)
     
     var errorDescription: String {
         switch self {
         case .proPlaceholder: "👑 This is unlocked by KeyboardKit Pro."
-        case .proView(let name): "👑 \(name) is unlocked by KeyboardKit Pro."
+        case .proFeature(let name): "👑 \(name) is unlocked by KeyboardKit Pro."
         }
     }
     
@@ -132,6 +132,14 @@ public extension KeyboardLayout {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     class iPadProProvider: iPadProvider {}
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func adjusted(
+        for displayMode: Keyboard.InputToolbarDisplayMode,
+        layoutConfiguration: KeyboardLayout.Configuration
+    ) -> KeyboardLayout {
+        return self
+    }
 }
 
 public extension KeyboardStyle {
@@ -208,28 +216,6 @@ public struct SystemKeyboardPreview {}
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct SystemKeyboardButtonPreview {}
 
-/// 👑 This is unlocked by KeyboardKit Pro.
-public struct SystemKeyboardNumberToolbar: View {
-    
-    public init(
-        numbers: String? = nil,
-        state: Keyboard.State,
-        services: Keyboard.Services
-    ) {}
-    
-    public init(
-        numbers: String? = nil,
-        actionHandler: KeyboardActionHandler,
-        styleProvider: KeyboardStyleProvider,
-        keyboardContext: KeyboardContext
-    ) {}
-    
-    public var body: some View {
-        ProPlaceholderError.proView("SystemKeyboardNumberToolbar")
-            .frame(height: 30)
-    }
-}
-
 @available(*, deprecated, renamed: "KeyboardStyle.ThemeBasedProvider")
 public typealias ThemeBasedKeyboardStyleProvider = KeyboardStyle.StandardProvider
 
@@ -249,26 +235,26 @@ public extension View {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func dictationBarVisualizerStyle(_ style: Dictation.BarVisualizerStyle) -> some View {
-        ProPlaceholderError.proView(".dictationBarVisualizerStyle")
+        ProPlaceholderError.proFeature(".dictationBarVisualizerStyle")
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func dictationScreenStyle(_ style: Dictation.ScreenStyle) -> some View {
-        ProPlaceholderError.proView(".dictationScreenStyle")
+        ProPlaceholderError.proFeature(".dictationScreenStyle")
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func emojiKeyboardStyle(_ style: EmojiKeyboardStyle) -> some View {
-        ProPlaceholderError.proView(".emojiKeyboardStyle")
+        ProPlaceholderError.proFeature(".emojiKeyboardStyle")
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func keyboardAppHomeScreenStyle(_ style: KeyboardApp.HomeScreenStyle) -> some View {
-        ProPlaceholderError.proView(".keyboardAppHomeScreenStyle")
+        ProPlaceholderError.proFeature(".keyboardAppHomeScreenStyle")
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func keyboardDictation<Overlay: View>() -> some View {
-        ProPlaceholderError.proView(".keyboardDictation")
+        ProPlaceholderError.proFeature(".keyboardDictation")
     }
 }

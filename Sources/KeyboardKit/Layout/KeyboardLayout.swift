@@ -23,14 +23,17 @@ public class KeyboardLayout {
     ///
     /// - Parameters:
     ///   - itemRows: The items to add to the keyboard.
+    ///   - iPadProLayout: Whether the layout is iPad Pro specific.
     ///   - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
     ///   - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
     public init(
         itemRows rows: ItemRows,
+        iPadProLayout: Bool = false,
         idealItemHeight height: Double? = nil,
         idealItemInsets insets: EdgeInsets? = nil
     ) {
         self.itemRows = rows
+        self.ipadProLayout = iPadProLayout
         self.idealItemHeight = height ?? Self.resolveIdealItemHeight(for: rows)
         self.idealItemInsets = insets ?? Self.resolveIdealItemInsets(for: rows)
     }
@@ -43,15 +46,28 @@ public class KeyboardLayout {
 
     /// The ideal item inserts.
     public var idealItemInsets: EdgeInsets
+    
+    /// Whether this is an iPad Pro layout.
+    public var ipadProLayout: Bool
 
     /// A `CGFloat` typealias for the total keyboard width.
     public typealias TotalWidth = CGFloat
-    
-    /// Whether or not this is an iPad Pro layout.
-    var ipadProLayout = false
 
     /// A cache used to avoid having to recalculate widths.
     var widthCache = [TotalWidth: CGFloat]()
+}
+
+public extension KeyboardLayout {
+    
+    /// Create a copy of the keyboard.
+    func copy() -> KeyboardLayout {
+        .init(
+            itemRows: itemRows,
+            iPadProLayout: ipadProLayout,
+            idealItemHeight: idealItemHeight,
+            idealItemInsets: idealItemInsets
+        )
+    }
 }
 
 private extension KeyboardLayout {

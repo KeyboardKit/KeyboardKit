@@ -31,18 +31,19 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `Feedback.Audio` has a new `customUrl` that can play URL-based audio.
 * `Feedback.AudioConfiguration` has new ways to register custom feedback.
 * `Feedback.HapticConfiguration` has new ways to register custom feedback.
+* `KeyboardLayout` has a new `copy()` function that creates a mutable copy.
 * `KeyboardLayout` has new functions for using and tweaking the bottom row.
+* `KeyboardLayout` has a new `inputToolbarLayout()` value builder function.
 * `KeyboardLayout` has a new functions for getting the total layout height.
 * `SystemKeyboard`'s service-based initializer now allows a layout override.
-* `View` has a new `systemKeyboardNumberToolbarDisplayMode` modifier for displaying a number toolbar.
+* `View` has a new `keyboardInputToolbarDisplayMode` modifier for input toolbars.
 
 ### 💡 Adjustments
 
-* `Callouts` now use individual callout curves.
+* `Callouts` now use curves that look a lot more native.
 * `Keyboard.Button` no longer has a minimum scale factor.
 * `KeyboardApp` is a new namespace for app-related types.
 * `KeyboardApp.HomeScreen` is a new app home screen view template.
-* `KeyboardLayout` has a new `numberToolbarLayout` layout builder.
 * `KeyboardLayout.Configuration` now defines number toolbar height.
 * `KeyboardFeedback` is a new namespace for feedback-related types.
 * `KeyboardSettings` is a new namespace for settings-related types.
