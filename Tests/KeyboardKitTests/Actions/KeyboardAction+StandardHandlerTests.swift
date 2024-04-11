@@ -123,16 +123,14 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         XCTAssertNil(result)
     }
 
-    func testShouldTriggerFeedbackForGestureOnActionReturnsTrueInSomeCases() {
-        var result = handler.shouldTriggerFeedback(for: .press, on: .control)
+    func testShouldTriggerHapticFeedbackInSomeCases() {
+        var result = handler.shouldTriggerHapticFeedback(for: .press, on: .control)
         XCTAssertFalse(result)
-        result = handler.shouldTriggerFeedback(for: .press, on: .character(""))
+        result = handler.shouldTriggerHapticFeedback(for: .press, on: .character(""))
         XCTAssertTrue(result)
-        result = handler.shouldTriggerFeedback(for: .release, on: .character(""))
+        result = handler.shouldTriggerHapticFeedback(for: .release, on: .character(""))
         XCTAssertFalse(result)
-        result = handler.shouldTriggerFeedback(for: .release, on: .character(""))
-        XCTAssertFalse(result)
-        result = handler.shouldTriggerFeedback(for: .longPress, on: .space)
+        result = handler.shouldTriggerHapticFeedback(for: .longPress, on: .space)
         XCTAssertTrue(result)
     }
     
@@ -154,7 +152,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
     
     func testAudioFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.feedbackContext.audio
+        let config = handler.feedbackContext.audioConfiguration
         validateAudioFeedback(for: .longPress, on: .space, expected: nil)
         validateAudioFeedback(for: .press, on: .backspace, expected: config.delete)
         validateAudioFeedback(for: .press, on: .character("a"), expected: config.input)
@@ -171,7 +169,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
     
     func testHapticFeedbackForGestureOnActionReturnsCorrectValue() {
-        let config = handler.feedbackContext.haptic
+        let config = handler.feedbackContext.hapticConfiguration
         let char = KeyboardAction.character("a")
         validateHapticFeedback(for: .longPress, on: .space, expected: config.longPressOnSpace)
         validateHapticFeedback(for: .doubleTap, on: char, expected: config.doubleTap)

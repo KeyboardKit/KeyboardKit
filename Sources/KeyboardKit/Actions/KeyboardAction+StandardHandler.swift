@@ -273,7 +273,8 @@ extension KeyboardAction {
             for gesture: Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            return true
+            shouldTriggerAudioFeedback(for: gesture, on: action) ||
+            shouldTriggerHapticFeedback(for: gesture, on: action)
         }
         
         /// Whether to trigger audio feedback for an action.
@@ -285,7 +286,10 @@ extension KeyboardAction {
         }
         
         /// Whether to trigger haptic feedback for an action.
-        open func shouldTriggerHapticFeedback(for gesture: Gesture, on action: KeyboardAction) -> Bool {
+        open func shouldTriggerHapticFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
             if gesture == .press && self.action(for: .release, on: action) != nil { return true }
             if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
             return false
