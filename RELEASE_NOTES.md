@@ -32,7 +32,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `Feedback.AudioConfiguration` has new ways to register custom feedback.
 * `Feedback.HapticConfiguration` has new ways to register custom feedback.
 * `KeyboardLayout` has new functions for using and tweaking the bottom row.
-* `SystemKeyboard`'s state/services initializer now allows a layout override.
+* `SystemKeyboard`'s service-based initializer now allows a layout override.
 
 ### 💡 Adjustments
 
@@ -45,6 +45,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `KeyboardStatus.Label` now uses filled icon variants, by default.
 * `KeyboardStyle.StandardProvider` now applies a light weight to backspace.
 * `KeyboardStyle.StandardProvider` now applies more adaptive content insets.
+* `SystemKeyboard` has been drastically optimized in how it renders the keyboard view.
 
 ### 👑 KeyboardKit Pro
 

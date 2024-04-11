@@ -198,18 +198,22 @@ public struct SystemKeyboard<
 
     public var body: some View {
         KeyboardStyle.StandardProvider.iPadProRenderingModeActive = layout.ipadProLayout
-        return geoContent
-            .autocorrectionDisabled(with: autocompleteContext)
-            .opacity(shouldShowEmojiKeyboard ? 0 : 1)
-            .overlay(emojiKeyboard(), alignment: .bottom)
-            .foregroundColor(styleProvider.foregroundColor)
-            .background(renderBackground ? styleProvider.backgroundStyle : nil)
-            .keyboardCalloutContainer(
-                calloutContext: calloutContext,
-                keyboardContext: keyboardContext
-            )
-            .actionCalloutStyle(actionCalloutStyle)
-            .inputCalloutStyle(inputCalloutStyle)
+        
+        return VStack(spacing: 0) {
+            toolbar()
+            systemKeyboard
+        }
+        .autocorrectionDisabled(with: autocompleteContext)
+        .opacity(shouldShowEmojiKeyboard ? 0 : 1)
+        .overlay(emojiKeyboard(), alignment: .bottom)
+        .foregroundColor(styleProvider.foregroundColor)
+        .background(renderBackground ? styleProvider.backgroundStyle : nil)
+        .keyboardCalloutContainer(
+            calloutContext: calloutContext,
+            keyboardContext: keyboardContext
+        )
+        .actionCalloutStyle(actionCalloutStyle)
+        .inputCalloutStyle(inputCalloutStyle)
     }
 }
 
@@ -217,42 +221,31 @@ private extension SystemKeyboard {
     
     var shouldShowEmojiKeyboard: Bool {
         switch keyboardContext.keyboardType {
-        case .emojis: return true
-        default: return false
+        case .emojis: true
+        default: false
         }
+    }
+    
+    var totalKeyboardHeight: Double {
+        layout.itemRows.map {
+            $0.compactMap { $0.size.height }.max() ?? 0
+        }.reduce(0, +)
     }
 }
 
 private extension SystemKeyboard {
-    
-    var geoContent: some View {
-        bodyContent(
-            for: .init(width: 100, height: 0)
-        )
-        .disabled(true)
-        .opacity(0)
-        .overlay(GeometryReader(content: bodyContent))
-    }
-    
-    func bodyContent(for geo: GeometryProxy) -> some View {
-        bodyContent(for: geo.size)
-    }
-    
-    func bodyContent(for size: CGSize) -> some View {
-        VStack(spacing: 0) {
-            toolbar()
-            systemKeyboard(for: size)
-        }
-    }
 
-    func systemKeyboard(for size: CGSize) -> some View {
-        VStack(spacing: 0) {
-            ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
-                items(for: size, layout: layout, itemRow: $0.element)
+    var systemKeyboard: some View {
+        GeometryReader { geo in
+            VStack(spacing: 0) {
+                ForEach(Array(layout.itemRows.enumerated()), id: \.offset) {
+                    items(for: geo.size, layout: layout, itemRow: $0.element)
+                }
             }
+            .padding(styleProvider.keyboardEdgeInsets)
+            .environment(\.layoutDirection, .leftToRight)
         }
-        .padding(styleProvider.keyboardEdgeInsets)
-        .environment(\.layoutDirection, .leftToRight)
+        .frame(height: totalKeyboardHeight)
     }
     
     func items(
