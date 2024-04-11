@@ -41,7 +41,7 @@ public protocol KeyboardStyleProvider: AnyObject {
     /// The overall insets action's content.
     func buttonContentInsets(for action: KeyboardAction) -> EdgeInsets
 
-    /// The additional bottom margin for an action's content.
+    @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
     func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat
 
     /// The button image to use for a certain action.

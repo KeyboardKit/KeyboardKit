@@ -95,14 +95,34 @@ extension KeyboardStyle {
         
         // MARK: - Buttons
         
+        open var standardButtonContentInsets: EdgeInsets {
+            .init(all: iPadProRenderingModeActive ? 6 : 3)
+        }
+        
         open func buttonContentInsets(
             for action: KeyboardAction
         ) -> EdgeInsets {
-            if let override = buttonContentInsetsOverride(for: action) { return override }
-            return .init(horizontal: 3, vertical: 3)
+            switch action {
+            case .character(let char): buttonContentInsets(for: char)
+            case .characterMargin, .none: .init(all: 0)
+            default: standardButtonContentInsets
+            }
         }
         
-        /// The button content bottom margin for an action.
+        open func buttonContentInsets(
+            for char: String
+        ) -> EdgeInsets {
+            var insets = standardButtonContentInsets
+            switch char {
+            case "[", "]", "(", ")", "{", "}": insets.bottom = 6
+            case "<", ">": insets.bottom = 4
+            default: break
+            }
+            return insets
+        }
+        
+        
+        @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
         open func buttonContentBottomMargin(
             for action: KeyboardAction
         ) -> CGFloat {
@@ -112,7 +132,7 @@ extension KeyboardStyle {
             }
         }
         
-        /// The button content bottom margin for a character.
+        @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
         open func buttonContentBottomMargin(
             for char: String
         ) -> CGFloat {
@@ -127,9 +147,7 @@ extension KeyboardStyle {
         open func buttonImage(
             for action: KeyboardAction
         ) -> Image? {
-            if iPadProRenderingModeActive, let image = buttonImagePadProOverride(for: action) {
-                return image
-            }
+            if let image = buttonImagePadOverride(for: action) { return image }
             return action.standardButtonImage(for: keyboardContext)
         }
         
@@ -283,10 +301,10 @@ extension KeyboardStyle {
             for keyboardType: Keyboard.KeyboardType
         ) -> CGFloat {
             switch keyboardType {
-            case .alphabetic: return 15
-            case .numeric: return 16
-            case .symbolic: return 14
-            default: return 14
+            case .alphabetic: 15
+            case .numeric: 16
+            case .symbolic: 14
+            default: 14
             }
         }
         

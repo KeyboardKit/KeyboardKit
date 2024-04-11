@@ -43,7 +43,8 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `KeyboardFeedback` is a new namespace for feedback-related types.
 * `KeyboardSettings` is a new namespace for settings-related types.
 * `KeyboardStatus.Label` now uses filled icon variants, by default.
-* `KeyboardStyle.StandardProvider` now applies a light font weight to backspace.
+* `KeyboardStyle.StandardProvider` now applies a light weight to backspace.
+* `KeyboardStyle.StandardProvider` now applies more adaptive content insets.
 
 ### 👑 KeyboardKit Pro
 
@@ -57,6 +58,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `Callouts.ButtonArea` has been deprecated.
 * `Callouts.Curve` has been deprecated.
 * `Emoji.Grid` has been moved to `EmojiKit`.
+* `KeyboardStyleProvider.buttonContentBottomMargin` is no longer used.
 
 
 

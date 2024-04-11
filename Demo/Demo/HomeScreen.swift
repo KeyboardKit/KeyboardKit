@@ -64,7 +64,7 @@ struct HomeScreen: View {
                 dictationContext: dictationContext
             ) {
                 EmptyView()
-            } indicator: {
+            } visualizer: {
                 Dictation.BarVisualizer(isAnimating: $0)
             } doneButton: { action in
                 Button("Done", action: action)

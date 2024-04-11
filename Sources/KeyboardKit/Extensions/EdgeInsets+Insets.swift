@@ -46,7 +46,5 @@ extension EdgeInsets {
         )
     }
 
-    static let zero = Self.init(
-        optionalTop: 0
-    )
+    static let zero = Self.init(all: 0)
 }

@@ -26,16 +26,10 @@ extension KeyboardStyle.StandardProvider {
         }
     }
     
-    func buttonContentInsetsOverride(for action: KeyboardAction) -> EdgeInsets? {
-        guard action.isSystemAction else { return nil }
-        return .init(horizontal: 8, vertical: 7)
-    }
-    
     func buttonFontSizePadOverride(for action: KeyboardAction) -> CGFloat? {
         if useSmallText(for: action) {
             return keyboardContext.interfaceOrientation == .portrait ? 16 : 20
         }
-        
         guard keyboardContext.deviceType == .pad else { return nil }
         let isLandscape = keyboardContext.interfaceOrientation.isLandscape
         guard isLandscape else { return nil }
@@ -45,7 +39,8 @@ extension KeyboardStyle.StandardProvider {
         return nil
     }
     
-    func buttonImagePadProOverride(for action: KeyboardAction) -> Image? {
+    func buttonImagePadOverride(for action: KeyboardAction) -> Image? {
+        guard iPadProRenderingModeActive else { return nil }
         let isCapsLock = keyboardType.isAlphabeticCapsLocked
         switch action {
         case .capsLock: return isCapsLock ? .keyboardShiftCapslocked : .keyboardShiftCapslockInactive
@@ -61,11 +56,7 @@ extension KeyboardStyle.StandardProvider {
         case .capsLock: return "caps lock"
         case .shift: return "shift"
         case .backspace: return "delete"
-        case .primary(let type):
-            switch type {
-            case .newLine: return "return"
-            default: return type.standardButtonText(for: .english)
-            }
+        case .primary(let type): return type.buttonTextPadOverride
         default: return nil
         }
     }
@@ -84,6 +75,16 @@ extension KeyboardStyle.StandardProvider {
         switch type {
         case .alphabetic, .numeric, .symbolic: return true
         default: return false
+        }
+    }
+}
+
+private extension Keyboard.ReturnKeyType {
+    
+    var buttonTextPadOverride: String? {
+        switch self {
+        case .newLine: "return"
+        default: standardButtonText(for: .english)
         }
     }
 }

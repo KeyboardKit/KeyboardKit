@@ -67,9 +67,12 @@ private extension Keyboard.ButtonContent {
     }
     
     var spaceView: some View {
-        Keyboard.SpaceContent(
-            localeText: shouldShowLocaleName ? localeName : spaceText,
-            spaceText: spaceText
+        let text = styleProvider.buttonText(for: action) ?? ""
+        let showLocale = keyboardContext.locales.count > 1
+        let localeName = keyboardContext.locale.localizedLanguageName
+        return Keyboard.SpaceContent(
+            localeText: showLocale ? localeName : text,
+            spaceText: text
         )
     }
     
@@ -78,22 +81,6 @@ private extension Keyboard.ButtonContent {
             text: text,
             action: action
         )
-        .padding(.bottom, styleProvider.buttonContentBottomMargin(for: action))
-    }
-}
-
-private extension Keyboard.ButtonContent {
-    
-    var localeName: String {
-        keyboardContext.locale.localizedLanguageName
-    }
-    
-    var shouldShowLocaleName: Bool {
-        keyboardContext.locales.count > 1
-    }
-    
-    var spaceText: String {
-        styleProvider.buttonText(for: action) ?? ""
     }
 }
 
