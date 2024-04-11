@@ -41,6 +41,7 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 * `Keyboard.Button` no longer has a minimum scale factor.
 * `KeyboardApp` is a new namespace for app-related types.
 * `KeyboardApp.HomeScreen` is a new app home screen view template.
+* `KeyboardLayout.Configuration` now defines number toolbar height.
 * `KeyboardFeedback` is a new namespace for feedback-related types.
 * `KeyboardSettings` is a new namespace for settings-related types.
 * `KeyboardStatus.Label` now uses filled icon variants, by default.
