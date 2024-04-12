@@ -1,4 +1,4 @@
-# Text Routing
+# Text Input Support
 
 @Metadata {
 
@@ -11,7 +11,7 @@
     @PageColor(blue)
 }
 
-This article describes the KeyboardKit text routing engine.
+This article describes the KeyboardKit text input engine.
 
 Custom iOS keyboard extensions use ``UIKit/UITextDocumentProxy`` to interact with the currently selected text field, e.g. to insert or delete text, move the input cursor, etc.
 

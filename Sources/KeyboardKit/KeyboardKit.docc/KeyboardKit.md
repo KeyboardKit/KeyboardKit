@@ -75,7 +75,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * ⚙️ <doc:Settings-Article> - KeyboardKit has a bunch of tools for managing in-app settings & System Settings.
 * 🩺 <doc:Status-Article> - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
 * 🎨 <doc:Styling-Article> - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
-* 🚏 <doc:Text-Routing-Article> - KeyboardKit lets you type in textfields in the keyboard extensions.
+* 📝 <doc:Text-Input-Article> - KeyboardKit lets you type into text fields within the keyboard extension.
 
 
 
@@ -228,11 +228,6 @@ KeyboardKit is available under the MIT license.
 - ``Proxy``
 - ``TextInputProxy``
 
-### Routing
-
-- ``KeyboardTextField``
-- ``KeyboardTextView``
-
 ### Settings
 
 - ``KeyboardSettings``
@@ -248,6 +243,11 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardFont``
 - ``KeyboardStyle``
 - ``KeyboardStyleProvider``
+
+### Text Input
+
+- ``KeyboardTextField``
+- ``KeyboardTextView``
 
 ### Themes
 

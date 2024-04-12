@@ -34,13 +34,15 @@ By reading the full text, you can pass in more information to your AI model or C
 Read more in the <doc:Proxy-Article> article.
 
 
-### Text Routing
+### Text Input Support
 
-[KeyboardKit Pro][Pro] unlocks ways to route text to text fields within the keyboard extension. It has a ``KeyboardTextField`` that will handle this automatically, by registering and unregistering as the ``KeyboardInputViewController/textDocumentProxy`` when it gets and loses focus.
+[KeyboardKit Pro][Pro] unlocks ways to let you type within a keyboard extension, by routing text input from the main app to text fields within the keyboard extension.
 
-This lets you build AI-based features that require user input within the keyboard, such as generating custom images with Open AI and DALL·E, asking questions to an AI, etc.
+KeyboardKit Pro has a ``KeyboardTextField`` that handles text routing automatically, by registering and unregistering itself as the ``KeyboardInputViewController/textDocumentProxy`` when it gets and loses focus. There is also a multi-line ``KeyboardTextView``.
 
-Read more in the <doc:Text-Routing-Article> article.
+This lets you provide AI-based features that require user input in your keyboard, such as generating custom images with DALL·E, asking questions to an AI like ChatGPT, etc.
+
+Read more in the <doc:Text-Input-Article> article.
 
 
 
