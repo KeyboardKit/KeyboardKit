@@ -159,7 +159,7 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 
 ### Views
 
-[KeyboardKit Pro][Pro] unlocks views in the ``Emoji`` namespace, for instance a complete ``EmojiKeyboard`` component and many sub views:
+KeyboardKit Pro unlocks views in the ``Emoji`` namespace, for instance a complete ``EmojiKeyboard`` component and many sub views:
 
 @TabNavigator {
     

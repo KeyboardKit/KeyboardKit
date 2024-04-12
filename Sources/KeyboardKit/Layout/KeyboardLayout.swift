@@ -57,19 +57,6 @@ public class KeyboardLayout {
     var widthCache = [TotalWidth: CGFloat]()
 }
 
-public extension KeyboardLayout {
-    
-    /// Create a copy of the keyboard.
-    func copy() -> KeyboardLayout {
-        .init(
-            itemRows: itemRows,
-            iPadProLayout: ipadProLayout,
-            idealItemHeight: idealItemHeight,
-            idealItemInsets: idealItemInsets
-        )
-    }
-}
-
 private extension KeyboardLayout {
 
     static func resolveIdealItemHeight(

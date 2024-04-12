@@ -140,6 +140,43 @@ public extension KeyboardLayout {
     ) -> KeyboardLayout {
         return self
     }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func copy() -> KeyboardLayout {
+        .init(
+            itemRows: itemRows,
+            iPadProLayout: ipadProLayout,
+            idealItemHeight: idealItemHeight,
+            idealItemInsets: idealItemInsets
+        )
+    }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func createIdealItem(
+        for action: KeyboardAction,
+        width: KeyboardLayout.ItemWidth = .available,
+        alignment: Alignment = .center
+    ) -> KeyboardLayout.Item {
+        .init(
+            action: action,
+            size: .init(width: width, height: idealItemHeight),
+            alignment: alignment,
+            edgeInsets: idealItemInsets
+        )
+    }
+}
+
+public extension KeyboardStatus {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct Section: View {
+        public var body: some View {
+            EmptyView()
+        }
+    }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct SectionStyle {}
 }
 
 public extension KeyboardStyle {
@@ -235,26 +272,44 @@ public extension View {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func dictationBarVisualizerStyle(_ style: Dictation.BarVisualizerStyle) -> some View {
-        ProPlaceholderError.proFeature(".dictationBarVisualizerStyle")
+        self
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func dictationScreenStyle(_ style: Dictation.ScreenStyle) -> some View {
-        ProPlaceholderError.proFeature(".dictationScreenStyle")
+        self
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    func emojiKeyboardStyle(_ style: EmojiKeyboardStyle) -> some View {
-        ProPlaceholderError.proFeature(".emojiKeyboardStyle")
+    func emojiKeyboardStyle(
+        _ style: EmojiKeyboardStyle
+    ) -> some View {
+        self
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    func keyboardAppHomeScreenStyle(_ style: KeyboardApp.HomeScreenStyle) -> some View {
-        ProPlaceholderError.proFeature(".keyboardAppHomeScreenStyle")
+    @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 9.0, *)
+    func focused<DoneButton: View>(
+        _ value: FocusState<Bool>.Binding,
+        @ViewBuilder doneButton: @escaping () -> DoneButton
+    ) -> some View { self }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func keyboardAppHomeScreenStyle(
+        _ style: KeyboardApp.HomeScreenStyle
+    ) -> some View {
+        self
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func keyboardDictation<Overlay: View>() -> some View {
-        ProPlaceholderError.proFeature(".keyboardDictation")
+        self
+    }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func keyboardStatusSectionStyle(
+        _ style: KeyboardStatus.SectionStyle
+    ) -> some View {
+        self
     }
 }

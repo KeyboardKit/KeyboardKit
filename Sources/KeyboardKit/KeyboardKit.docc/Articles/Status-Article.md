@@ -17,6 +17,10 @@ KeyboardKit has ways to check various keyboard statuses, e.g. if a keyboard is e
 
 This information can be used to make an app help users to set up their keyboard properly. 
 
+👑 [KeyboardKit Pro][Pro] unlocks more status-related views & utilities. Information about Pro features can be found at the end of this article.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
 
 ## Keyboard Status Context
 
@@ -60,29 +64,35 @@ The ``KeyboardStatus`` namespace has status-specific views, that can be used to 
     @Tab("Label") {
         A keyboard status ``KeyboardStatus/Label`` can display various keyboard statuses, e.g. if a keyboard has been enabled, if Full Access is enabled, etc.
         
-        ![KeyboardStatus.Label](keyboardstatuslabel.jpg)
+        @Row {
+            @Column {}
+            @Column(size:2) { ![KeyboardStatus.Label](keyboardstatuslabel) }
+            @Column {}
+        }
         
-        This view can be used together with a ``KeyboardStatusContext``, to automatically update the label whenever the status changes:
-
-        ```swift
-        struct MyView: View {
-
-            @StateObject
-            var status = KeyboardStatusContext(bundleId: "com.myapp.keyboard")
-
-            var body: some View {
-                KeyboardStatus.Label(
-                    isEnabled: status.isKeyboardEnabled,
-                    enabledText: "Keyboard is enabled",
-                    disabledText: "Keyboard is disabled",
-                )
-            }
-        } 
-        ```
-        
-        The view can be wrapped in a `Link` or ``KeyboardSettings/Link`` to link to System Settings. It supports custom texts, icons, etc.
+        The view can be wrapped in a SwiftUI or ``KeyboardSettings`` ``KeyboardSettings/Link`` to link to System Settings. It supports custom texts, icons, etc.
         and can be styled with a ``KeyboardStatus/LabelStyle`` or by applying a ``SwiftUI/View/keyboardStatusLabelStyle(_:)`` view modifier.
     }
 }
 
-See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
+
+## 👑 KeyboardKit Pro
+
+[KeyboardKit Pro][Pro] unlocks additional keyboard status views and utilities, like a keyboard status section that can be added to the home or settings screen in an app that provider a custom keyboard.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+@TabNavigator {
+    
+    @Tab("Section ") {
+        A keyboard status ``KeyboardStatus/Section`` can display all relevant status labels for a keyboard extension, with a link to System Settings if needed:
+        
+        @Row {
+            @Column {}
+            @Column(size:2) { ![KeyboardStatus.Label](keyboardstatussection) }
+            @Column {}
+        }
+        
+        The view is used by the ``KeyboardApp/HomeScreen`` component, and can be added as a standalone section, in e.g. an app's settings screen. It can be styled by applying a ``SwiftUI/View/keyboardStatusSectionStyle(_:)`` view modifier.
+    }
+}

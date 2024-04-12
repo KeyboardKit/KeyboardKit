@@ -95,10 +95,17 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 [KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``KeyboardLayout/StandardProvider`` when a valid license key is registered.
 
+KeyboardKit Pro also unlocks more standard input sets, like QWERTZ and AZERTY, adds more capabilities to the ``KeyboardLayout`` and in general makes it a lot easier to work with layouts
 
-### Input Sets
+
+### More Input Sets
 
 KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` and ``InputSet/azerty``. These are used by some of the localized layouts, but you can use them separately as well.
+
+
+### More KeyboardLayout functionality
+
+KeyboardKit Pro unlocks more ``KeyboardLayout`` capabilities, like ``KeyboardLayout/adjusted(for:layoutConfiguration:)``, ``KeyboardLayout/copy()``, and ``KeyboardLayout/createIdealItem(for:width:alignment:)``, which are used by some other Pro features.
 
 
 ### iPad Pro layout support

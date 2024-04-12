@@ -104,11 +104,11 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
     
     @Tab("ContextMenu") {
         
-        KeyboardKit has a ``KeyboardLocale/ContextMenu`` that can be used to pick a locale and apply it to the main ``KeyboardContext``'s ``KeyboardContext/locale``.
+        KeyboardKit has a ``KeyboardLocale/ContextMenu`` that can be used to change the main ``KeyboardContext`` ``KeyboardContext/locale`` from a callout context menu: 
         
         ![LocaleContextMenu](localecontextmenu-350.jpg)
         
-        This menu can be applied to any view, and is applied by ``SystemKeyboard`` to every key that triggers the ``KeyboardAction/nextLocale`` action.
+        This menu can be applied to any view. It's applied by ``SystemKeyboard`` to every key that triggers the ``KeyboardAction/nextLocale`` action, as well as to the space bar, if the ``Gestures/SpaceLongPressBehavior`` is set to ``Gestures/SpaceLongPressBehavior/openLocaleContextMenu``.
     }
 }
 
@@ -118,5 +118,7 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
 [KeyboardKit Pro][Pro] unlocks fully localized ``InputSet``, ``KeyboardLayoutProvider`` & ``CalloutActionProvider`` implementations for every locale in your license. 
 
 This lets KeyboardKit Pro create fully localized ``SystemKeyboard`` for every supported locale, with no additional code needed. You can customize any input set or provider for any locale at any time, whenever needed.
+
+After setting up KeyboardKit Pro with your license key, as described in the <doc:Getting-Started> article, you can just change the ``KeyboardContext/locale`` to a locale in your license to automatically update the system keyboard to that locale.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

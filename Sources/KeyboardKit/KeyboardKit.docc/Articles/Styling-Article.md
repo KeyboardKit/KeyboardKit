@@ -113,9 +113,14 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a theme engine and a ``KeyboardTheme`` type, that makes it a lot easier to style your keyboard with themes.
-
-See the <doc:Themes-Article> article for more information.
-
+[KeyboardKit Pro][Pro] unlocks a theme engine and a ``KeyboardTheme``, that makes it a lot easier to style your keyboard with themes.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+@Row {
+    @Column { ![Standard Green Theme](standard-green) }
+    @Column { ![Swifty Blue Theme](swifty-blue) }
+    @Column { ![Cotton Candy Theme](candyshop-cottoncandy) }
+}
+
+See the <doc:Themes-Article> article for more information.

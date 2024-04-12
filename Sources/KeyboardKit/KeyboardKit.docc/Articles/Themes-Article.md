@@ -103,94 +103,105 @@ You can inherit the ``KeyboardStyle/ThemeBasedProvider`` to customize its styles
 
 You can access all pre-defined themes with `KeyboardTheme.{ID}`, e.g. **KeyboardKit.standard** or **KeyboardKit.minimal(.pink)**. 
 
-Here is a list of all pre-defined themes with some style variations:
+KeyboardKit Pro provides three basic themes that let you apply a discrete background tint color and remove some key backgrounds:
 
 @TabNavigator {
-    @Tab(".standard"){
+    @Tab(".standard") {
         @Row {
-            @Column {
-                ![standard](standard.jpg)
+            @Column { 
+                ![standard](standard) 
             }
-            @Column {
-                ![blue](standard-blue.jpg)
+            @Column { 
+                ![blue](standard-blue) 
             }
-            @Column {
-                ![green](standard-green.jpg)
+            @Column { 
+                ![green](standard-green) 
             }   
         }
     }
     @Tab(".swifty") {
         @Row {
-            @Column {
-                ![standard](swifty.jpg)
+            @Column { 
+                ![standard](swifty) 
             }
-            @Column {
-                ![blue](swifty-blue.jpg)
+            @Column { 
+                ![blue](swifty-blue) 
             }
-            @Column {
-                ![green](swifty-green.jpg)
+            @Column { 
+                ![green](swifty-green) 
             }   
         }
     }
     @Tab(".minimal") {
         @Row {
-            @Column {
-                ![standard](minimal.jpg)
+            @Column { 
+                ![standard](minimal) 
             }
-            @Column {
-                ![blue](minimal-blue.jpg)
+            @Column { 
+                ![blue](minimal-blue) 
             }
-            @Column {
-                ![subset](minimal-sunset.jpg)
+            @Column { 
+                ![subset](minimal-sunset) 
             }   
+        }
+    }
+}
+
+KeyboardKit Pro also provides more expressive themes, that can be customized further by creating custom style variations:
+
+@TabNavigator {
+    @Tab(".aesthetic") {
+        @Row {
+            @Column { 
+                ![boho](aesthetic-boho) 
+            }
+            @Column {}
+            @Column {}
         }
     }
     @Tab(".candyShop") {
         @Row {
-            @Column {
-                ![standard](candyshop.jpg)
+            @Column { 
+                ![standard](candyshop) 
             }
-            @Column {
-                ![cuppycake](candyshop-cuppycake.jpg)
+            @Column { 
+                ![cuppycake](candyshop-cuppycake) 
             }
-            @Column {
-            }   
+            @Column {}
         }
     }
     @Tab(".colorful") {
         @Row {
-            @Column {
-                ![blue](colorful-blue.jpg)
+            @Column { 
+                ![blue](colorful-blue) 
             }
-            @Column {
-                ![green](colorful-green.jpg)
+            @Column { 
+                ![green](colorful-green) 
             }   
-            @Column {
-                ![standard](colorful-orange.jpg)
+            @Column { 
+                ![standard](colorful-orange) 
             }
         }
     }
     @Tab(".neon") {
         @Row {
-            @Column {
-                ![standard](neon.jpg)
+            @Column { 
+                ![standard](neon) 
             }
-            @Column {
-            }
-            @Column {
-            }   
+            @Column {}
+            @Column {}
         }
     }
     @Tab(".tron") {
         @Row {
-            @Column {
-                ![blue](tron.jpg)
+            @Column { 
+                ![blue](tron) 
             }
-            @Column {
-                ![fcon](tron-fcon.jpg)
+            @Column { 
+                ![fcon](tron-fcon) 
             }   
-            @Column {
-                ![virus](tron-virus.jpg)
+            @Column { 
+                ![virus](tron-virus) 
             }   
         }
     }
@@ -201,9 +212,7 @@ You can get a list of all pre-defined themes, as well as all pre-defined style v
 
 ### Views
 
-[KeyboardKit Pro][Pro] unlocks views in the ``KeyboardTheme`` namespace, that make it easy to preview and present keyboard themes:
-
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it easy to preview and present keyboard themes:
 
 @TabNavigator {
     @Tab("Theme.Shelf"){
@@ -211,7 +220,7 @@ You can get a list of all pre-defined themes, as well as all pre-defined style v
         
         @Row {
             @Column {}
-            @Column(size:2) { ![ThemeShelf](themeshelf.jpg) }
+            @Column { ![ThemeShelf](themeshelf.jpg) }
             @Column {}
         }
         

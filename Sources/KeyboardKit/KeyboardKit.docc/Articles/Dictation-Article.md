@@ -70,7 +70,7 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
 
 ### Views
 
-[KeyboardKit Pro][Pro] unlocks views in the ``Dictation`` namespace, that let you quickly add dictation visualization views to your main app:
+KeyboardKit Pro unlocks views in the ``Dictation`` namespace, that let you quickly add dictation visualization views to your main app:
 
 @TabNavigator {
     

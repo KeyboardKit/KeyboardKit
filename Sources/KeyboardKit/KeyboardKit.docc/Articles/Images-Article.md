@@ -31,7 +31,7 @@ These images are prefixed with **keyboard** to make them easy to find, and scale
 
 ## 👑 KeyboardKit Pro
 
-KeyboardKit Pro unlocks additional image extensions that resolve to custom, vectorized assets for certain parts of the keyboard.
+[KeyboardKit Pro][Pro] unlocks additional ``SwiftUI/Image`` extensions that resolve to custom, vectorized image assets for certain parts of the keyboard.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
@@ -39,8 +39,8 @@ KeyboardKit Pro unlocks additional image extensions that resolve to custom, vect
 
 ### Emojis
 
-KeyboardKit Pro unlocks additional ``SwiftUI/Image`` extensions that resolve to vectorized assets for the emoji key and every ``EmojiCategory``, for instance ``SwiftUI/Image/keyboardEmoji`` and ``SwiftUI/Image/emojiCategory(_:)``:
+KeyboardKit Pro unlocks vectorized assets for the emoji key and all ``EmojiCategory``s, for instance ``SwiftUI/Image/keyboardEmoji`` and ``SwiftUI/Image/emojiCategory(_:)``:
 
 ![Asset-based Images](images-emojis.jpg)
 
-Since these images are vectorized PDF assets, they will also scale well when they are resized.
+Since these images are vectorized, they scale well when they are resized.

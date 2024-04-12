@@ -104,7 +104,7 @@ You can also implement a custom action handler to trigger feedback in a differen
 
 ### Views
 
-[KeyboardKit Pro][Pro] unlocks views in the ``FeedbackConfiguration`` namespace, that let you easily toggle audio and haptic feedback:
+KeyboardKit Pro unlocks views in the ``FeedbackConfiguration`` namespace, that let you easily toggle audio and haptic feedback:
 
 @TabNavigator {
     
