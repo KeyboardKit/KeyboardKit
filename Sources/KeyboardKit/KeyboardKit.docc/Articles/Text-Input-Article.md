@@ -94,4 +94,6 @@ struct CustomKeyboardToolbar: View {
 }
 ```
 
+> Note: The default `.onSubmit { ... }` view modifier doesn't work for these text views. If you want to detect when the return key is pressed, you can instead pass in `onSubmit:` in the initializer.
+
 > Important: This view requires Full Access and will automatically disable itself when it's disabled, due to an iOS bug that causes a crash when using text field while Full Access is disabled.

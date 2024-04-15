@@ -55,7 +55,8 @@ KeyboardKit Pro makes more locales use the iPad Pro layout, and has a new `Keybo
 
 ### 👑 KeyboardKit Pro
 
-* `KeyboardApp.HomeScreen` is a new app-specific home screen template.  
+* `KeyboardApp.HomeScreen` is a new app-specific home screen template.
+* `KeyboardStatus` has a new `Section` view that can display keyboard statuses.
 * `KeyboardTextField` and `KeyboardTextView` can now trigger a custom `onSubmit` function.
 * `SystemKeyboard` now has an `addNumberToolbar` parameter to add a number toolbar in KeyboardKit Pro.
 * The iPad Pro layout has been tweaked to look more native, and is now used by all these locales as well:

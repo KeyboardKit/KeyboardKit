@@ -14,12 +14,28 @@ import UIKit
 /// This is the main input controller in a KeyboardKit-based
 /// keyboard extension.
 ///
-/// Let your `KeyboardController` inherit this class instead
-/// of `UIInputViewController` to extend it with KeyboardKit
-/// specific functionality.
+/// When using KeyboardKit, let `KeyboardController` inherit
+/// this class instead of `UIInputViewController`, to extend
+/// it with KeyboardKit-specific functionality.
 ///
 /// You can override any functions, modify any ``state`` and
 /// replace any ``services`` to tweak your keyboard behavior.
+/// You also get a lot of additional controller features.
+///
+/// > Warning: A very important thing that you MUST consider
+/// when you use `setup` or `setupPro` with a `view` builder,
+/// is that the `view` builder provides you with an `unowned`
+/// controller reference, since referring to `self` from the
+/// view builder can cause memory leaks. However, since this
+/// reference is a ``KeyboardInputViewController``, you must
+/// still use `self` when you have to refer to your specific
+/// controller class. If you do, it is VERY important to add
+/// `[weak self]` or `[unowned self]` to the builder. If you
+/// don't, the `self` reference will cause a memory leak.
+///
+/// See the <doc:Getting-Started> guide and <doc:Essentials>
+/// article for more information about how to set up and use
+/// this keyboard controller class.
 open class KeyboardInputViewController: UIInputViewController, KeyboardController {
 
 
@@ -102,6 +118,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public var setupProError: Error?
 
     /// Setup KeyboardKit with a custom keyboard view.
+    ///
+    /// > Warning: Make sure to read the class documentation
+    /// for important information on the unowned `controller`
+    /// reference that is passed to the `view` builder. Make
+    /// sure to use `[weak self]` or `[unowned self]` if the
+    /// `view` builder needs to refer to your specific class.
     open func setup<Content: View>(
         with view: @autoclosure @escaping () -> Content
     ) {
@@ -109,6 +131,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
     
     /// Setup KeyboardKit with a custom keyboard view.
+    ///
+    /// > Warning: Make sure to read the class documentation
+    /// for important information on the unowned `controller`
+    /// reference that is passed to the `view` builder. Make
+    /// sure to use `[weak self]` or `[unowned self]` if the
+    /// `view` builder needs to refer to your specific class.
     open func setup<Content: View>(
         with view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {
