@@ -53,16 +53,16 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives your controller access to new lifecycle functions like `viewWillSetupKeyboard`, observable state like `state.keyboardContext`, services like `services.actionHandler`, and much more.
 
-If you just want to use the default `SystemKeyboard` view, which mimics a native iOS keyboard and updates when the observable state changes, you don't have to do anything else. KeyboardKit will set up everything.
+If you just want to use the default `SystemKeyboard` view, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything.
 
-To replace or customize the default `SystemKeyboard`, just override `viewWillSetupKeyboard` and call `setup`:
+To replace or customize the default `SystemKeyboard`, just override `viewWillSetupKeyboard` and call `setup` with a `view` builder:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
-        setup { controller in
+        setup { [weak self] controller in // <-- Use [weak self] or [unowned self] if you need self here.
             SystemKeyboard(
                 state: controller.state,
                 services: controller.services,
@@ -203,7 +203,10 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 [Gumroad]: https://kankoda.gumroad.com
 [App]: https://keyboardkit.com/app
+[License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 
+[Documentation]: https://keyboardkit.github.io/KeyboardKit/
+[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
 [Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
 
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions-article
@@ -230,8 +233,3 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling-article
 [Text-Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/text-input-article
 [Themes]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/themes-article
-
-[Documentation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/
-[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
-
-[License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
