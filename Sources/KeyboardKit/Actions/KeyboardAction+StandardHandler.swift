@@ -170,16 +170,6 @@ extension KeyboardAction {
             )
         }
         
-        /// Trigger feedback for a certain action gesture.
-        open func triggerFeedback(
-            for gesture: Gesture,
-            on action: KeyboardAction
-        ) {
-            guard shouldTriggerFeedback(for: gesture, on: action) else { return }
-            triggerAudioFeedback(for: gesture, on: action)
-            triggerHapticFeedback(for: gesture, on: action)
-        }
-        
         
         
         // MARK: - Feedback
@@ -193,7 +183,8 @@ extension KeyboardAction {
             let custom = config.feedback(for: gesture, on: action)
             if let custom = custom { return custom.feedback }
             if action == .space && gesture == .longPress { return nil }
-            if action == .backspace { return config.delete }
+            if action == .backspace && gesture == .press { return config.delete }
+            if action == .backspace && gesture == .repeatPress { return config.delete }
             if action.isInputAction && gesture == .press { return config.input }
             if action.isSystemAction && gesture == .press { return config.system }
             return nil
@@ -209,6 +200,42 @@ extension KeyboardAction {
             if let custom = custom { return custom.feedback }
             if action == .space && gesture == .longPress { return config.longPressOnSpace }
             return config.feedback(for: gesture)
+        }
+        
+        /// Whether to trigger feedback for an action.
+        open func shouldTriggerFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            return true
+        }
+        
+        /// Whether to trigger audio feedback for an action.
+        open func shouldTriggerAudioFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            return true
+        }
+        
+        /// Whether to trigger haptic feedback for an action.
+        open func shouldTriggerHapticFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            if gesture == .press && self.action(for: .release, on: action) != nil { return true }
+            if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
+            return false
+        }
+        
+        /// Trigger feedback for a certain action gesture.
+        open func triggerFeedback(
+            for gesture: Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldTriggerFeedback(for: gesture, on: action) else { return }
+            triggerAudioFeedback(for: gesture, on: action)
+            triggerHapticFeedback(for: gesture, on: action)
         }
         
         /// Trigger feedback for a certain action gesture.
@@ -268,32 +295,6 @@ extension KeyboardAction {
             return nil
         }
         
-        /// Whether to trigger feedback for an action.
-        open func shouldTriggerFeedback(
-            for gesture: Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            shouldTriggerAudioFeedback(for: gesture, on: action) ||
-            shouldTriggerHapticFeedback(for: gesture, on: action)
-        }
-        
-        /// Whether to trigger audio feedback for an action.
-        open func shouldTriggerAudioFeedback(
-            for gesture: Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            return true
-        }
-        
-        /// Whether to trigger haptic feedback for an action.
-        open func shouldTriggerHapticFeedback(
-            for gesture: Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            if gesture == .press && self.action(for: .release, on: action) != nil { return true }
-            if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
-            return false
-        }
         
         /// Whether to apply autocorrect before an action.
         open func tryApplyAutocorrectSuggestion(

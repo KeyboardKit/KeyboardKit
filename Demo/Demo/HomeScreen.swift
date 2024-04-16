@@ -40,9 +40,6 @@ struct HomeScreen: View {
             KeyboardApp.HomeScreen(
                 appIcon: Image(.icon),
                 keyboardBundleId: "com.keyboardkit.demo.*",
-                localization: .init(
-                    statusSectionTitle: "Keyboard status"
-                ),
                 topListContent: editorLinkSection,
                 bottomListContent: textFieldSection
             )
