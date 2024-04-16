@@ -246,7 +246,7 @@ private extension KeyboardAction {
         )
     }
     .actionCalloutStyle(.init(
-        //callout: .preview2,
+        // callout: .preview2,
         selectedBackgroundColor: .purple
     ))
 }

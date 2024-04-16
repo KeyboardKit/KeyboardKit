@@ -14,4 +14,3 @@ public typealias KeyboardLayoutRowItem = KeyboardLayoutRowIdentifiable
 
 @available(*, deprecated, renamed: "KeyboardLayoutIdentifiable")
 public typealias KeyboardLayoutRowIdentifiable = KeyboardLayoutIdentifiable
-
