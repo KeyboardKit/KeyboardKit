@@ -19,9 +19,11 @@ The library has deprecation types to help you migrate to the new type names, so 
 
 The `KeyboardState` namespace has been renamed to `KeyboardStatus`, since it was often confused with `Keyboard.KeyboardState`. `Keyboard.KeyboardState` & `Keyboard.KeyboardServices` have also been renamed to the shorter `Keyboard.State` and `Keyboard.Services`, since it reads better in code.
 
-This version also makes it a lot easier and reliable to register custom audio and haptic feedback, in a way that now requires less or no customizations in the action handler. Just register custom feedback for any gesture on any action, and it will be played.
+This version also makes it easier register custom audio and haptic feedback, in a way that now requires less or no customizations in the action handler. Just register any custom feedback for any gesture on any action, and it will be triggered by the standard action handler.
 
-FInally, KeyboardKit Pro makes more locales use the new iPad Pro layout, provides a brand new `KeyboardApp.HomeScreen` that can be used as a app home screen, and provides a new `KeyboardStatus.Section` view that can show all relevant statuses for a keyboard app.
+This version also makes the action and input callout bubbles look more native.
+
+Finally, KeyboardKit Pro makes more locales use the new iPad Pro layout. It also provides a brand new `KeyboardApp.HomeScreen` that can be used as an app home screen, and a new `KeyboardStatus.Section` that can show all relevant statuses for a keyboard app.
 
 ### 🚨 Important Information 
 
