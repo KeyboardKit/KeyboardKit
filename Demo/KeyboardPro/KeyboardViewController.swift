@@ -10,36 +10,30 @@ import KeyboardKitPro
 import SwiftUI
 
 /// This keyboard demonstrates how to set up KeyboardKit Pro
-/// and how to customize the standard configuration.
+/// and customize the standard configuration.
 ///
-/// To use the keyboard, simply enable it in system settings
-/// ("Settings/General/Keyboards") and switch to it when you
-/// type in an app.
+/// To use the keyboard, simply enable it in System Settings,
+/// then switch to it when you type in the demo (or any) app.
 ///
-/// The keyboard needs full access to use some features like
-/// haptic feedback.
+/// This keyboard uses KeyboardKit Pro-based autocomplete to
+/// provide localized suggestions for every supported locale.
+/// It also uses a Pro toggle toolbar, to add a menu "behind"
+/// the main autocomplete toolbar.
 ///
-///This keyboard uses KeyboardKit Pro autocomplete, instead
-///of a fake provider like the other keyboard. It customizes
-///the keyboard layout with a ``DemoLayoutProvider`` and has
-///a Pro `ToggleToolbar` with a custom menu.
-///
-/// Note that the dictation button will open the main app to
-/// start dictation, but since the demo can't use App Groups
-/// due to code signing, this app can't persist the dictated
-/// text in a way that can be accessed by the keyboard.
+/// > Important: This keyboard needs full access to use some
+/// features, like haptic feedback.
 class KeyboardViewController: KeyboardInputViewController {
 
-    /// This demo will persist the current locale to be able
-    /// to restore it the next time the keyboard is created.
+    /// This demo will persist the current locale so that it
+    /// can restore it the next time the keyboard is created.
     deinit {
         persistedLocaleId = state.keyboardContext.locale.identifier
     }
 
-    /// This function is called when the controller loads.
+    /// This function is called when the controller launches.
     ///
     /// Here, we make demo-specific configurations, that are
-    /// not overwritten when a license is registered.
+    /// not overwritten when KeyboardKit Pro is registered.
     override func viewDidLoad() {
 
         /// 💡 Add more locales to the keyboard.
@@ -64,19 +58,17 @@ class KeyboardViewController: KeyboardInputViewController {
         
         /// 💡 Setup haptic and audio feedback.
         ///
-        /// The code below enables all haptic feedback, then
-        /// sets up custom audio for the rocket button.
+        /// The code below enables audio and haptic feedback,
+        /// then sets up custom audio for the rocket button.
         let feedback = state.feedbackContext
-        feedback.isHapticFeedbackEnabled = true
-        feedback.registerAudioFeedback(.rocketFuse, for: .press, on: .rocket)
-        feedback.registerAudioFeedback(.rocketLaunch, for: .release, on: .rocket)
-        // feedback.isAudioFeedbackEnabled = false
+        feedback.audioConfiguration = .enabled
+        feedback.hapticConfiguration = .enabled
+        feedback.register(.haptic(.selection, for: .repeat, on: .rocket))
+        feedback.register(.audio(.rocketFuse, for: .press, on: .rocket))
+        feedback.register(.audio(.rocketLaunch, for: .release, on: .rocket))
         
         /// 💡 Disable autocorrect.
-        ///
-        /// Uncomment the line below if you want to test how
-        /// autocomplete behaves without autocorrect.
-        state.autocompleteContext.isAutocorrectEnabled = false
+        // state.autocompleteContext.isAutocorrectEnabled = false
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
