@@ -32,6 +32,39 @@ public extension Feedback.Haptic {
     typealias Engine = Feedback.HapticEngine
 }
 
+public extension Feedback.HapticConfiguration {
+    
+    @available(*, deprecated, renamed: "init(press:release:doubleTap:longPress:longPressOnSpace:repeat:custom:)")
+    init(
+        press: Feedback.Haptic = .none,
+        release: Feedback.Haptic = .none,
+        doubleTap: Feedback.Haptic = .none,
+        longPress: Feedback.Haptic = .none,
+        longPressOnSpace: Feedback.Haptic = .mediumImpact,
+        repeat: Feedback.Haptic = .none,
+        actions: [ActionFeedback]
+    ) {
+        self.init(
+            press: press,
+            release: release,
+            doubleTap: doubleTap,
+            longPress: longPress,
+            longPressOnSpace: longPressOnSpace,
+            repeat: `repeat`,
+            custom: actions
+        )
+    }
+    
+    @available(*, deprecated, renamed: "CustomFeedback")
+    typealias ActionFeedback = CustomFeedback
+    
+    @available(*, deprecated, renamed: "custom")
+    var actions: [ActionFeedback] {
+        get { custom }
+        set { custom = newValue }
+    }
+}
+
 public extension Keyboard.State {
     
     @available(*, deprecated, renamed: "feedbackContext")

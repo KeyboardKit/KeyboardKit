@@ -33,7 +33,7 @@ public extension Feedback {
             longPress: Feedback.Haptic = .none,
             longPressOnSpace: Feedback.Haptic = .mediumImpact,
             repeat: Feedback.Haptic = .none,
-            actions: [ActionFeedback] = []
+            custom: [CustomFeedback] = []
         ) {
             self.press = press
             self.release = release
@@ -41,25 +41,9 @@ public extension Feedback {
             self.longPress = longPress
             self.longPressOnSpace = longPressOnSpace
             self.repeat = `repeat`
-            self.actions = actions
-        }
-        
-        /// This struct is used for action-specific feedback.
-        public struct ActionFeedback: Codable, Equatable {
-            
-            public init(
-                action: KeyboardAction,
-                gesture: Gestures.KeyboardGesture,
-                feedback: Feedback.Haptic
-            ) {
-                self.action = action
-                self.gesture = gesture
-                self.feedback = feedback
-            }
-            
-            public let action: KeyboardAction
-            public let gesture: Gestures.KeyboardGesture
-            public let feedback: Feedback.Haptic
+            self.custom = custom + [
+                .hapticFeedback(longPressOnSpace, for: .longPress, on: .space)
+            ]
         }
         
         /// The feedback to use for presses.
@@ -81,42 +65,76 @@ public extension Feedback {
         public var `repeat`: Feedback.Haptic
         
         /// A list of action/gesture-specific feedback.
-        public var actions: [ActionFeedback]
+        public var custom: [CustomFeedback]
     }
 }
 
 public extension Feedback.HapticConfiguration {
     
-    /// Get the feedback to use for a certain gesture.
-    func feedback(
-        for gesture: Gestures.KeyboardGesture
-    ) -> Feedback.Haptic? {
-        switch gesture {
-        case .doubleTap: doubleTap
-        case .longPress: longPress
-        case .press: press
-        case .release: release
-        case .repeatPress: `repeat`
+    /// This struct is used for custom haptic feedback.
+    struct CustomFeedback: Codable, Equatable {
+        
+        public init(
+            action: KeyboardAction,
+            gesture: Gestures.KeyboardGesture,
+            feedback: Feedback.Haptic
+        ) {
+            self.action = action
+            self.gesture = gesture
+            self.feedback = feedback
         }
+        
+        public let action: KeyboardAction
+        public let gesture: Gestures.KeyboardGesture
+        public let feedback: Feedback.Haptic
+    }
+}
+
+public extension Feedback.HapticConfiguration.CustomFeedback {
+    
+    static func hapticFeedback(
+        _ feedback: Feedback.Haptic,
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Self {
+        .init(action: action, gesture: gesture, feedback: feedback)
+    }
+}
+
+public extension Feedback.HapticConfiguration {
+    
+    /// Get a custom registered feedback, if any.
+    func customFeedback(
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Feedback.Haptic? {
+        custom.first {
+            $0.action == action && $0.gesture == gesture
+        }?.feedback
+    }
+    
+    /// Whether a custom haptic feedback has been registered.
+    func hasCustomFeedback(
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Bool {
+        customFeedback(for: gesture, on: action) != nil
     }
     
     /// Get the feedback to use for a certain action.
     func feedback(
         for gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction
-    ) -> ActionFeedback? {
-        actions.first { $0.action == action && $0.gesture == gesture }
+    ) -> Feedback.Haptic? {
+        let custom = customFeedback(for: gesture, on: action)
+        return custom ?? feedback(for: gesture)
     }
     
     /// Register feedback for a certain action gesture.
-    mutating func registerFeedback(
-        _ feedback: Feedback.Haptic,
-        for gesture: Gestures.KeyboardGesture = .press,
-        on action: KeyboardAction
+    mutating func registerCustomFeedback(
+        _ feedback: CustomFeedback
     ) {
-        actions.append(
-            .init(action: action, gesture: gesture, feedback: feedback)
-        )
+        custom.append(feedback)
     }
 }
 
@@ -151,4 +169,20 @@ public extension Feedback.HapticConfiguration {
         longPressOnSpace: .mediumImpact,
         repeat: .none
     )
+}
+
+private extension Feedback.HapticConfiguration {
+    
+    /// Get the feedback to use for a certain gesture.
+    func feedback(
+        for gesture: Gestures.KeyboardGesture
+    ) -> Feedback.Haptic? {
+        switch gesture {
+        case .doubleTap: doubleTap
+        case .longPress: longPress
+        case .press: press
+        case .release: release
+        case .repeatPress: `repeat`
+        }
+    }
 }

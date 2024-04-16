@@ -97,7 +97,11 @@ class KeyboardViewController: KeyboardInputViewController {
         /// The code below enables all haptic feedback, then
         /// sets up custom audio for the rocket button.
         let feedback = state.feedbackContext
-        feedback.isHapticFeedbackEnabled = true
+        feedback.audioConfiguration = .enabled
+        feedback.hapticConfiguration = .enabled
+        feedback.register(.hapticFeedback(
+            .selectionChanged, for: .repeatPress, on: .rocket)
+        )
         feedback.registerAudioFeedback(.rocketFuse, for: .press, on: .rocket)
         feedback.registerAudioFeedback(.rocketLaunch, for: .release, on: .rocket)
         // feedback.isAudioFeedbackEnabled = false

@@ -196,10 +196,7 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) -> Feedback.Haptic? {
             let config = feedbackContext.hapticConfiguration
-            let custom = config.feedback(for: gesture, on: action)
-            if let custom = custom { return custom.feedback }
-            if action == .space && gesture == .longPress { return config.longPressOnSpace }
-            return config.feedback(for: gesture)
+            return config.feedback(for: gesture, on: action)
         }
         
         /// Whether to trigger feedback for an action.
@@ -223,9 +220,12 @@ extension KeyboardAction {
             for gesture: Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            if gesture == .press && self.action(for: .release, on: action) != nil { return true }
-            if gesture != .release && self.action(for: gesture, on: action) != nil { return true }
-            return false
+            let hasRelease = self.action(for: .release, on: action) != nil
+            if gesture == .press && hasRelease { return true }
+            let hasAction = self.action(for: gesture, on: action) != nil
+            if gesture != .release && hasAction { return true }
+            let config = feedbackContext.hapticConfiguration
+            return config.hasCustomFeedback(for: gesture, on: action)
         }
         
         /// Trigger feedback for a certain action gesture.

@@ -72,12 +72,20 @@ public extension FeedbackContext {
 public extension FeedbackContext {
 
     /// Get or set whether or not audio feedback is enabled.
+    ///
+    /// This will toggle between the last used feedback that
+    /// isn't ``Feedback/AudioConfiguration/disabled`` and a
+    /// purely disabled configuration.
     var isAudioFeedbackEnabled: Bool {
         get { audioConfiguration == enabledAudioConfiguration }
         set { audioConfiguration = newValue ? enabledAudioConfiguration : .disabled }
     }
 
     /// Get or set whether or not haptic feedback is enabled.
+    ///
+    /// This will toggle between the last used feedback that
+    /// isn't ``Feedback/AudioConfiguration/disabled`` and a
+    /// purely disabled configuration.
     var isHapticFeedbackEnabled: Bool {
         get { hapticConfiguration == enabledHapticConfiguration }
         set { hapticConfiguration = newValue ? enabledHapticConfiguration : .disabled }
@@ -93,12 +101,10 @@ public extension FeedbackContext {
     }
     
     /// Register custom haptic feedback for a certain action.
-    func registerHapticFeedback(
-        _ feedback: Feedback.Haptic,
-        for gesture: Gestures.KeyboardGesture,
-        on action: KeyboardAction
+    func register(
+        _ feedback: Feedback.HapticConfiguration.CustomFeedback
     ) {
-        hapticConfiguration.registerFeedback(feedback, for: gesture, on: action)
+        hapticConfiguration.registerCustomFeedback(feedback)
     }
 
     /// Toggle audio feedback between enabled and disabled.
