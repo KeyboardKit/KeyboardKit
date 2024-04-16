@@ -33,6 +33,12 @@ public extension Gestures {
 
 public extension Gestures.KeyboardGesture {
     
+    /// A ``Gestures/KeyboardGesture/repeatPress`` shorthand.
+    static let `repeat` = repeatPress
+}
+
+public extension Gestures.KeyboardGesture {
+    
     /// The gesture's unique identifier.
     var id: String { rawValue }
 }

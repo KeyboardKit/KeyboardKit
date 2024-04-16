@@ -15,9 +15,9 @@ This article describes the KeyboardKit feedback engine.
 
 Feedback is an important part of the typing experience, where a keyboard can trigger audio and haptic feedback when a user taps on a key or performs certain actions.
 
-In KeyboardKit, audio and haptic feedback can be triggered with a ``KeyboardActionHandler`` or by using the ``Feedback/Audio`` and ``HapticFeedback`` ``Feedback/Audio/trigger()`` functions directly.
+In KeyboardKit, audio and haptic feedback can be triggered with a ``KeyboardActionHandler`` or by using the ``Feedback/Audio`` and ``Feedback/Haptic`` ``Feedback/Audio/trigger()`` functions directly.
 
-👑 [KeyboardKit Pro][Pro] unlocks a convenient feedback toggle view. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a convenient feedback toggle view, that lets you toggle between the last enabled feedback and a disabled configuration. Information about Pro features can be found at the end of this article.
 
 
 
@@ -58,7 +58,7 @@ You can also trigger feedback with a ``KeyboardActionHandler``, using ``Keyboard
 
 ## How to configure feedback
 
-KeyboardKit has an observable ``FeedbackConfiguration`` that can be used to configure feedback for various actions. 
+KeyboardKit has an observable ``FeedbackContext`` that can be used to configure feedback for various actions. 
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``. You can use this instance to configure feedback:
 
@@ -67,10 +67,24 @@ class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let config = state.feedbackConfiguration 
-        config.audio = .disabled
-        config.audio.input = .custom(id: 1329)
-        config.haptic = .minimal
+        let feedback = state.feedbackContext 
+        feedback.audioConfiguration = .enabled
+        feedback.audioConfiguration.input = .custom(id: 1329)
+        feedback.hapticConfiguration = .enabled
+    }
+}
+```
+
+You can also use use the context or its underlying configurations to register custom feedback for any gesture on any action.
+
+```swift
+class KeyboardViewController: KeyboardInputViewController {
+
+    override func viewDidLoad() {
+        ...
+        feedback.register(.audio(.rocketFuse, for: .press, on: .rocket))
+        feedback.register(.audio(.rocketLaunch, for: .release, on: .rocket))
+        feedback.register(.haptic(.selection, for: .repeat, on: .rocket))
     }
 }
 ```
@@ -91,6 +105,8 @@ extension Feedback.Audio {
     static let sentMessage = .custom(id: 1004)
 }
 ```
+
+You can also use the ``Feedback/Audio/customUrl(_:)`` enum case to define custom audio feedback that loads the sound effect from an audio file.
 
 You can also implement a custom action handler to trigger feedback in a different ways. See the <doc:Actions-Article> article for more information.
 
@@ -115,7 +131,7 @@ KeyboardKit Pro unlocks views in the ``FeedbackConfiguration`` namespace, that l
         ![FeedbackToggle](feedbackconfigurationtoggle.jpg)
         
         The view can be customized with other icons, and be further styled with native accent colors, fonts, etc. It's currently not style-based.
+        
+        Note that this toggle will use ``FeedbackContext/toggleIsAudioFeedbackEnabled()`` and ``FeedbackContext/toggleIsHapticFeedbackEnabled()``, which will toggle between a disabled configuration and the *last enabled* configuration. Haptic feedback uses a minimal configuration by default. 
     }
 }
-
-

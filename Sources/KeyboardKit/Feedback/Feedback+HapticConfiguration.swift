@@ -14,6 +14,9 @@ public extension Feedback {
     ///
     /// You can use any of the standard configurations, like
     /// ``enabled`` and ``disabled``, or create a custom one.
+    ///
+    /// Note that this library uses ``minimal`` as a default
+    /// configuration.
     struct HapticConfiguration: Codable, Equatable {
         
         /// Create a custom haptic feedback configuration.
@@ -25,7 +28,7 @@ public extension Feedback {
         ///   - longPress: The feedback to use for long presses, by default `.none`.
         ///   - longPressOnSpace: The feedback to use for long presses on space, by default `.mediumImpact`.
         ///   - repeat: The feedback to use for repeat, by default `.none`.
-        ///   - actions: A list of action/gesture-specific feedback, by default `empty`.
+        ///   - custom: A list of custom feedback, by default `empty`.
         public init(
             press: Feedback.Haptic = .none,
             release: Feedback.Haptic = .none,
@@ -42,7 +45,7 @@ public extension Feedback {
             self.longPressOnSpace = longPressOnSpace
             self.repeat = `repeat`
             self.custom = custom + [
-                .hapticFeedback(longPressOnSpace, for: .longPress, on: .space)
+                .haptic(longPressOnSpace, for: .longPress, on: .space)
             ]
         }
         
@@ -64,7 +67,7 @@ public extension Feedback {
         /// The feedback to use for repeat.
         public var `repeat`: Feedback.Haptic
         
-        /// A list of action/gesture-specific feedback.
+        /// A list of custom haptic feedback.
         public var custom: [CustomFeedback]
     }
 }
@@ -92,7 +95,8 @@ public extension Feedback.HapticConfiguration {
 
 public extension Feedback.HapticConfiguration.CustomFeedback {
     
-    static func hapticFeedback(
+    /// Create a custom haptic feedback configuration.
+    static func haptic(
         _ feedback: Feedback.Haptic,
         for gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction
@@ -113,7 +117,7 @@ public extension Feedback.HapticConfiguration {
         }?.feedback
     }
     
-    /// Whether a custom haptic feedback has been registered.
+    /// Whether a custom feedback has been registered.
     func hasCustomFeedback(
         for gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction

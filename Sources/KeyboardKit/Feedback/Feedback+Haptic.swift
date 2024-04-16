@@ -47,6 +47,12 @@ public extension Feedback {
 
 public extension Feedback.Haptic {
     
+    /// A ``Feedback/Haptic/selectionChanged`` shorthand.
+    static let selection = selectionChanged
+}
+
+public extension Feedback.Haptic {
+    
     /// The unique feedback identifier.
     var id: String { rawValue }
 

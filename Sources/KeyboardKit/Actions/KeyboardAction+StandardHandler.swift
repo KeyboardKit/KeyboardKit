@@ -180,8 +180,8 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) -> Feedback.Audio? {
             let config = feedbackContext.audioConfiguration
-            let custom = config.feedback(for: gesture, on: action)
-            if let custom = custom { return custom.feedback }
+            let custom = config.customFeedback(for: gesture, on: action)
+            if let custom = custom { return custom }
             if action == .space && gesture == .longPress { return nil }
             if action == .backspace && gesture == .press { return config.delete }
             if action == .backspace && gesture == .repeatPress { return config.delete }
@@ -216,6 +216,8 @@ extension KeyboardAction {
         }
         
         /// Whether to trigger haptic feedback for an action.
+        ///
+        /// This code is a bit
         open func shouldTriggerHapticFeedback(
             for gesture: Gesture,
             on action: KeyboardAction

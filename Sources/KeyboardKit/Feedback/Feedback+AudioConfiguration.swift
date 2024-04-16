@@ -22,35 +22,17 @@ public extension Feedback {
         ///   - input: The feedback to use for input keys, by default `.input`.
         ///   - delete: The feedback to use for delete keys, by default `.delete`.
         ///   - system: The feedback to use for system keys, by default `.system`.
-        ///   - actions: A list of action-specific feedback, by default `empty`.
+        ///   - custom: A list of custom feedback, by default `empty`.
         public init(
             input: Feedback.Audio = .input,
             delete: Feedback.Audio = .delete,
             system: Feedback.Audio = .system,
-            actions: [ActionFeedback] = []
+            custom: [CustomFeedback] = []
         ) {
             self.input = input
             self.delete = delete
             self.system = system
-            self.actions = actions
-        }
-        
-        /// This struct is used for action-specific feedback.
-        public struct ActionFeedback: Codable, Equatable {
-            
-            public init(
-                action: KeyboardAction,
-                gesture: Gestures.KeyboardGesture,
-                feedback: Feedback.Audio
-            ) {
-                self.action = action
-                self.gesture = gesture
-                self.feedback = feedback
-            }
-            
-            public let action: KeyboardAction
-            public let gesture: Gestures.KeyboardGesture
-            public let feedback: Feedback.Audio
+            self.custom = custom
         }
         
         /// The audio to play when a delete key is pressed.
@@ -62,30 +44,77 @@ public extension Feedback {
         /// The audio to play when a system key is pressed.
         public var system: Feedback.Audio
         
-        /// The audio to play when an action is triggered.
-        public var actions: [ActionFeedback]
+        /// A list of custom audio feedback.
+        public var custom: [CustomFeedback]
     }
 }
 
 public extension Feedback.AudioConfiguration {
     
+    /// This struct is used for custom audio feedback.
+    struct CustomFeedback: Codable, Equatable {
+        
+        public init(
+            action: KeyboardAction,
+            gesture: Gestures.KeyboardGesture,
+            feedback: Feedback.Audio
+        ) {
+            self.action = action
+            self.gesture = gesture
+            self.feedback = feedback
+        }
+        
+        public let action: KeyboardAction
+        public let gesture: Gestures.KeyboardGesture
+        public let feedback: Feedback.Audio
+    }
+}
+
+public extension Feedback.AudioConfiguration.CustomFeedback {
+    
+    /// Create a custom audio feedback configuration.
+    static func audio(
+        _ feedback: Feedback.Audio,
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Self {
+        .init(action: action, gesture: gesture, feedback: feedback)
+    }
+}
+
+public extension Feedback.AudioConfiguration {
+    
+    /// Get a custom registered feedback, if any.
+    func customFeedback(
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Feedback.Audio? {
+        custom.first {
+            $0.action == action && $0.gesture == gesture
+        }?.feedback
+    }
+    
+    /// Whether a custom feedback has been registered.
+    func hasCustomFeedback(
+        for gesture: Gestures.KeyboardGesture,
+        on action: KeyboardAction
+    ) -> Bool {
+        customFeedback(for: gesture, on: action) != nil
+    }
+    
     /// Get the feedback to use for a certain action.
     func feedback(
-        for gesture: Gestures.KeyboardGesture = .press,
+        for gesture: Gestures.KeyboardGesture,
         on action: KeyboardAction
-    ) -> ActionFeedback? {
-        actions.first { $0.action == action && $0.gesture == gesture }
+    ) -> Feedback.Audio? {
+        customFeedback(for: gesture, on: action)
     }
     
     /// Register feedback for a certain action gesture.
-    mutating func registerFeedback(
-        _ feedback: Feedback.Audio,
-        for gesture: Gestures.KeyboardGesture = .press,
-        on action: KeyboardAction
+    mutating func registerCustomFeedback(
+        _ feedback: CustomFeedback
     ) {
-        actions.append(
-            .init(action: action, gesture: gesture, feedback: feedback)
-        )
+        custom.append(feedback)
     }
 }
 

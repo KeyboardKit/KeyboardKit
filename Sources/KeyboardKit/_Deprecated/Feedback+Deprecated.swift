@@ -32,6 +32,33 @@ public extension Feedback.Haptic {
     typealias Engine = Feedback.HapticEngine
 }
 
+public extension Feedback.AudioConfiguration {
+    
+    @available(*, deprecated, renamed: "init(input:delete:system:custom:)")
+    init(
+        input: Feedback.Audio = .input,
+        delete: Feedback.Audio = .delete,
+        system: Feedback.Audio = .system,
+        actions: [ActionFeedback]
+    ) {
+        self.init(
+            input: input,
+            delete: delete,
+            system: system,
+            custom: actions
+        )
+    }
+    
+    @available(*, deprecated, renamed: "CustomFeedback")
+    typealias ActionFeedback = CustomFeedback
+    
+    @available(*, deprecated, renamed: "custom")
+    var actions: [ActionFeedback] {
+        get { custom }
+        set { custom = newValue }
+    }
+}
+
 public extension Feedback.HapticConfiguration {
     
     @available(*, deprecated, renamed: "init(press:release:doubleTap:longPress:longPressOnSpace:repeat:custom:)")

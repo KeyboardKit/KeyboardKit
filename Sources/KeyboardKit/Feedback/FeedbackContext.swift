@@ -92,12 +92,10 @@ public extension FeedbackContext {
     }
     
     /// Register custom audio feedback for a certain action.
-    func registerAudioFeedback(
-        _ feedback: Feedback.Audio,
-        for gesture: Gestures.KeyboardGesture,
-        on action: KeyboardAction
+    func register(
+        _ feedback: Feedback.AudioConfiguration.CustomFeedback
     ) {
-        audioConfiguration.registerFeedback(feedback, for: gesture, on: action)
+        audioConfiguration.registerCustomFeedback(feedback)
     }
     
     /// Register custom haptic feedback for a certain action.
