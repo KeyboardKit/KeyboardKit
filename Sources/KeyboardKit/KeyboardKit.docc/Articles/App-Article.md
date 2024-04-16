@@ -13,7 +13,7 @@ This article describes the KeyboardKit app-specific utilities.
     @PageColor(blue)
 }
 
-KeyboardKit provides utility types for the main app target of a keyboard app. It's a new namespace that for now only contains a home screen template. 
+KeyboardKit provides utility types for the main app target of a keyboard app. It's a new namespace that for now only contains a home screen template.
 
 👑 [KeyboardKit Pro][Pro] unlocks app views for the main app target. Information about Pro features can be found at the end of this article.
 
@@ -40,7 +40,7 @@ KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types, tha
         @Row {
             @Column {}
             @Column {
-                ![Keyboard App Home Screen](keyboardapp_homescreen.jpg)
+                ![Keyboard App Home Screen](keyboardapp-homescreen)
             }
             @Column {}
         }

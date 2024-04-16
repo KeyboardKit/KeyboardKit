@@ -100,25 +100,24 @@ KeyboardKit provides a basic keyboard layout with basic callout actions. [Keybo
 
 KeyboardKit comes packed features to help you build amazing keyboard extensions:
 
-* ⌨️ [Essentials][Essentials] - KeyboardKit comes with a many essential features, types and views.
-* 💥 [Actions][Actions] - KeyboardKit makes it easy to trigger character insertion, locale switching, etc.
-* 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform on-device and remote autocomplete & autocorrect.
-* 🗯 [Callouts][Callouts] - KeyboardKit can show input and secondary action callouts.
+* ⌨️ [Essentials][Essentials] - KeyboardKit provides essential utilities, types & views.
+* 💥 [Actions][Actions] - KeyboardKit makes it easy to trigger keyboard-related actions.
+* 💡 [Autocomplete][Autocomplete] - KeyboardKit can perform autocomplete.
+* 🗯 [Callouts][Callouts] - KeyboardKit can show input & secondary action callouts.
 * 🌈 [Colors][Colors] - KeyboardKit defines keyboard-specific colors.
-* 🖥️ [Device][Device] - KeyboardKit provides device-specific utilities.
-* 🎤 [Dictation][Dictation] - KeyboardKit can perform dictation from the app and the keyboard.
-* 😀 [Emojis][Emojis] - KeyboardKit defines an emoji type, categories, skin tones, etc.
-* 🔉 [Feedback][Feedback] - KeyboardKit can trigger and customize audio and haptic feedback.
-* 👆 [Gestures][Gestures] - KeyboardKit has rich, customizable keyboard-specific gestures.
+* 🖥️ [Device][Device] - KeyboardKit has device-specific utilities.
+* 😀 [Emojis][Emojis] - KeyboardKit defines emojis, categories, versions, skin tones, etc.
+* 🔉 [Feedback][Feedback] - KeyboardKit can trigger audio & haptic feedback.
+* 👆 [Gestures][Gestures] - KeyboardKit has a customizable keyboard gesture engine.
 * 🖼️ [Images][Images] - KeyboardKit defines keyboard-specific images.
-* 🔣 [Layout][Layout] - KeyboardKit defines dynamic input sets and customizable keyboard layouts.
-* 🌐 [Localization][Localization] - KeyboardKit defines localized texts and assets for 63 locales.
-* 🗺️ [Navigation][Navigation] - KeyboardKit lets you open urls and other apps from the keyboard.
-* 👁 [Previews][Previews] - KeyboardKit has SwiftUI preview support and lets you show keyboard previews to your users.
-* ➡️ [Proxy][Proxy] - KeyboardKit extends the native `UITextDocumentProxy` with a lot more capabilities.
-* ⚙️ [Settings][Settings] - KeyboardKit has a bunch of tools for managing in-app settings & System Settings.
-* 🩺 [Status][Status] - KeyboardKit lets you detect if a keyboard is enabled, has full access, etc.
-* 🎨 [Styling][Styling] - KeyboardKit provides pre-defined themes and lets you style your keyboards to great extent.
+* 🔣 [Layout][Layout] - KeyboardKit has customizable input sets & keyboard layouts.
+* 🌐 [Localization][Localization] - KeyboardKit defines localized texts & assets for 63 locales.
+* 🗺️ [Navigation][Navigation] - KeyboardKit lets you open urls and apps from the keyboard.
+* 👁 [Previews][Previews] - KeyboardKit has extensive SwiftUI preview support.
+* ➡️ [Proxy][Proxy] - KeyboardKit extends `UITextDocumentProxy` with a lot more capabilities.
+* ⚙️ [Settings][Settings] - KeyboardKit has tools for in-app settings & System Settings.
+* 🩺 [Status][Status] - KeyboardKit can detect if a keyboard is enabled, has full access, etc.
+* 🎨 [Styling][Styling] - KeyboardKit lets you style your keyboards to great extent.
 
 These features are all open-source and free to use. You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
@@ -128,17 +127,21 @@ These features are all open-source and free to use. You can upgrade to [Keyboard
 
 [KeyboardKit Pro][Pro] unlocks Pro features, like fully localized and locale-specific system keyboards, layouts & services, on-device and remote autocomplete & autocorrect, dictation, themes, etc.
 
-* ⌨️ [Essentials][Essentials] KeyboardKit Pro unlocks more essential tools, system keyboard previews, etc.
-* 🤖 [AI][AI] - KeyboardKit Pro unlocks tools that are required for AI-based features.
-* 📱 [App][App] - KeyboardKit Pro unlocks app-specific screens and views.
-* 💡 [Autocomplete][Autocomplete] - KeyboardKit Pro unlocks on-device and remote autocomplete.
-* 🎤 [Dictation][Dictation] - KeyboardKit Pro unlocks dictation services and a speech recognizer.
+* ⌨️ [Essentials][Essentials] - KeyboardKit Pro unlocks more essential tools, system keyboard previews, etc.
+* 💥 [Actions][Actions] - KeyboardKit Pro auto-registers the most recently used emojis.
+* 🤖 [AI][AI] - KeyboardKit Pro unlocks features that are needed for AI.
+* 📱 [App][App] - KeyboardKit Pro unlocks app-specific screens & views.
+* 💡 [Autocomplete][Autocomplete] - KeyboardKit Pro unlocks on-device & remote autocomplete.
+* 🗯 [Callouts][Callouts] - KeyboardKit Pro unlocks localized callouts for all locales.
+* 🎤 [Dictation][Dictation] - KeyboardKit Pro can perform dictation from the keyboard.
 * 😀 [Emojis][Emojis] - KeyboardKit Pro unlocks a powerful emoji keyboard.
-* ⌨️ [External][External] - KeyboardKit Pro unlocks ways to detect and handle external keyboards.
-* 🔉 [Feedback][Feedback] - KeyboardKit Pro unlocks components for toogling feedback on & off.
+* ⌨️ [External][External] - KeyboardKit Pro can detect if an external keyboard is connected. 
+* 🔉 [Feedback][Feedback] - KeyboardKit Pro unlocks tools for toogling feedback on & off.
+* 🔣 [Layout][Layout] - KeyboardKit Pro unlocks localized layouts for all locales.
 * 🌐 [Localization][Localization] - KeyboardKit Pro unlocks **63** locale-specific services and system keyboards.
+* 👁 [Previews][Previews] - KeyboardKit Pro unlocks system keyboard and theme previews.
 * ➡️ [Proxy][Proxy] - KeyboardKit Pro unlocks ways for ``UIKit/UITextDocumentProxy`` to read the full document.
-* 🚏 [Text][Text-Input] - KeyboardKit Pro unlocks text input views that let you type within a keyboard extension.
+* 📝 [Text][Text-Input] - KeyboardKit Pro unlocks tools to let you type within the keyboard.
 * 🍭 [Themes][Themes] - KeyboardKit Pro unlocks a theme engine with many pre-defined themes.
 
 Every article in the [documentation][Documentation] describes in detail what KeyboardKit Pro unlocks for that part of the SDK. 
