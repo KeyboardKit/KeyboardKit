@@ -187,6 +187,7 @@ private extension Feedback.HapticConfiguration {
         case .press: press
         case .release: release
         case .repeatPress: `repeat`
+        case .end: nil
         }
     }
 }

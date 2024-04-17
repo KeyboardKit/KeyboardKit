@@ -19,6 +19,11 @@ This version adjusts an autocomplete behavior.
 
 * `KeyboardInputViewController` no longer hard resets the autocomplet econtext when the text is empty.
 
+### 🐛 Bug fixes
+
+* `KeyboardGesture` has a new `.end` gesture, which is used to fix a bug that could cause space drag to never end.
+
+
 ### 👑 KeyboardKit Pro
 
 * KeyboardKit Pro has new ways to allow more flexible feature and tier validation. 

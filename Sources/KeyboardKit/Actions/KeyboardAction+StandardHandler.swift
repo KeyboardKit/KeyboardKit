@@ -269,7 +269,7 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) -> KeyboardAction.GestureAction? {
             let standard = action.standardAction(for: gesture)
-            if action != .space && gesture != .release { return standard }
+            guard action == .space, gesture == .release else { return standard }
             let isSpaceDragActive = keyboardContext.isSpaceDragGestureActive
             return isSpaceDragActive ? nil : standard
         }
@@ -420,7 +420,7 @@ private extension KeyboardAction.StandardHandler {
             spaceDragActivationLocation = nil
         case .longPress:
             setSpaceDragActive(true)
-        case .release:
+        case .release, .end:
             setSpaceDragActive(false)
         default: break
         }

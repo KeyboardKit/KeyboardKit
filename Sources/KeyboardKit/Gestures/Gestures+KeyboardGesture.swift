@@ -25,9 +25,12 @@ public extension Gestures {
         
         /// Triggers when a button is long pressed.
         case longPress
-
+        
         /// Triggers repeatedly when a button is pressed & held.
         case repeatPress
+        
+        /// Triggers when a button gesture ends.
+        case end
     }
 }
 

@@ -35,6 +35,7 @@ public extension KeyboardAction {
         case .press: standardPressAction
         case .release: standardReleaseAction
         case .repeatPress: standardRepeatAction
+        case .end: nil
         }
     }
     

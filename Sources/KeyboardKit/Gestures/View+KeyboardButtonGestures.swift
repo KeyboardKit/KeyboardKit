@@ -45,7 +45,8 @@ public extension View {
             pressAction: { actionHandler.handle(.press, on: action) },
             releaseAction: { actionHandler.handle(.release, on: action) },
             repeatAction: { actionHandler.handle(.repeatPress, on: action) },
-            dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) }
+            dragAction: { start, current in actionHandler.handleDrag(on: action, from: start, to: current) },
+            endAction: { actionHandler.handle(.end, on: action) }
         )
     }
     
@@ -79,7 +80,8 @@ public extension View {
         pressAction: KeyboardGestureAction? = nil,
         releaseAction: KeyboardGestureAction? = nil,
         repeatAction: KeyboardGestureAction? = nil,
-        dragAction: KeyboardDragGestureAction? = nil
+        dragAction: KeyboardDragGestureAction? = nil,
+        endAction: KeyboardGestureAction? = nil
     ) -> some View {
         #if os(iOS) || os(macOS) || os(watchOS)
         let gestures = Gestures.KeyboardButtonGestures(
@@ -94,7 +96,8 @@ public extension View {
             pressAction: pressAction,
             releaseAction: releaseAction,
             repeatAction: repeatAction,
-            dragAction: dragAction
+            dragAction: dragAction,
+            endAction: endAction
         )
         #endif
 

@@ -44,6 +44,7 @@ public extension Autocomplete {
             .padding(.horizontal, style.horizontalPadding)
             .padding(.vertical, style.verticalPadding)
             .background(style.backgroundColor)
+            .background(Color.clearInteractable)
             .cornerRadius(style.backgroundCornerRadius)
             .autocompleteToolbarItemStyle(style)    // Deprecated: Remove in 9.0
         }

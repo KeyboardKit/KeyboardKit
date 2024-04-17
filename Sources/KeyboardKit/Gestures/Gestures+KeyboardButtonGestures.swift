@@ -29,6 +29,7 @@ extension Gestures {
         ///   - releaseAction: The action to trigger when the button is released, regardless of where the gesture ends.
         ///   - repeatAction: The action to trigger when the button is pressed and held.
         ///   - dragAction: The action to trigger when the button is dragged.
+        ///   - endAction: The action to trigger when the gesture end.
         init(
             view: Content,
             action: KeyboardAction?,
@@ -41,7 +42,8 @@ extension Gestures {
             pressAction: KeyboardGestureAction?,
             releaseAction: KeyboardGestureAction?,
             repeatAction: KeyboardGestureAction?,
-            dragAction: KeyboardDragGestureAction?
+            dragAction: KeyboardDragGestureAction?,
+            endAction: KeyboardGestureAction?
         ) {
             self.view = view
             self.action = action
@@ -55,6 +57,7 @@ extension Gestures {
             self.releaseAction = releaseAction
             self.repeatAction = repeatAction
             self.dragAction = dragAction
+            self.endAction = endAction
         }
         
         private let view: Content
@@ -69,6 +72,7 @@ extension Gestures {
         private let releaseAction: KeyboardGestureAction?
         private let repeatAction: KeyboardGestureAction?
         private let dragAction: KeyboardDragGestureAction?
+        private let endAction: KeyboardGestureAction?
         
         @State
         private var lastDragValue: DragGesture.Value?
@@ -162,6 +166,7 @@ private extension Gestures.KeyboardButtonGestures {
         calloutContext?.inputContext.resetWithDelay()
         calloutContext?.actionContext.reset()
         resetGestureState()
+        endAction?()
     }
 
     func handleLongPress(in geo: GeometryProxy) {
