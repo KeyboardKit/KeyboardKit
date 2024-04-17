@@ -13,11 +13,11 @@ These release notes only cover the current major version.
 
 ## 8.5.1
 
-This version adjusts an autocomplete behavior.
+This version adjusts the autocomplete behavior for empty text and fixes a gesture bug.
 
 ### 💡 Adjustments
 
-* `KeyboardInputViewController` no longer hard resets the autocomplet econtext when the text is empty.
+* `KeyboardInputViewController` no longer hard resets the autocomplete context when the text is empty.
 
 ### 🐛 Bug fixes
 
