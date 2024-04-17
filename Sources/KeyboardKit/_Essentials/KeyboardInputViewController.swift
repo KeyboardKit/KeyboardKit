@@ -292,11 +292,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// Perform an autocomplete operation.
     open func performAutocomplete() {
         guard isAutocompleteEnabled else { return }
-        guard let text = autocompleteText else { return resetAutocomplete() }
         Task {
             do {
                 let suggestions = try await services.autocompleteProvider
-                    .autocompleteSuggestions(for: text)
+                    .autocompleteSuggestions(for: autocompleteText ?? "")
                 updateAutocompleteContext(with: suggestions)
             } catch {
                 updateAutocompleteContext(with: error)

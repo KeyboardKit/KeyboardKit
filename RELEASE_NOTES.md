@@ -13,7 +13,15 @@ These release notes only cover the current major version.
 
 ## 8.5.1
 
-This version adds new KeyboardKit Pro license tools, to allow more flexible feature and tier validation. 
+This version adjusts an autocomplete behavior.
+
+### 💡 Adjustments
+
+* `KeyboardInputViewController` no longer hard resets the autocomplet econtext when the text is empty.
+
+### 👑 KeyboardKit Pro
+
+* KeyboardKit Pro has new ways to allow more flexible feature and tier validation. 
 
 
 

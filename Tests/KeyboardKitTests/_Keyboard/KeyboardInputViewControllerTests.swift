@@ -246,7 +246,8 @@ class KeyboardInputViewControllerTests: XCTestCase {
         mockAutocompleteProvider.suggestions = [.init(text: "")]
         vc.performAutocomplete()
         eventually {
-            XCTAssertEqual(vc.state.autocompleteContext.suggestions.count, 0)
+            let suggestions = vc.state.autocompleteContext.suggestions
+            XCTAssertEqual(suggestions.count, 1)
         }
     }
 
