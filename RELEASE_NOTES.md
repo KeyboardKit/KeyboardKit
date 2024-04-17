@@ -11,6 +11,12 @@ These release notes only cover the current major version.
 
 
 
+## 8.5.1
+
+This version adds new KeyboardKit Pro license tools, to allow more flexible feature and tier validation. 
+
+
+
 ## 8.5
 
 This version moves many types into their related namespaces, to make the SDK surface smaller and easier to overview. Since this involves many renamings, the `Deprecations` section below only lists deprecated types. 
