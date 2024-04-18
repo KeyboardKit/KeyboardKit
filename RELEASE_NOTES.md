@@ -17,12 +17,12 @@ This version adjusts the autocomplete behavior for empty text and fixes a gestur
 
 ### ✨ Features
 
-* `KeyboardAction` has a new `.text` action that can insert long texts without an input callout.
+* `KeyboardAction` has a new `.text` action to insert long text.
+* `KeyboardLayout` has a new `.bottomRowSystemItemWidth` property. 
 
 ### 💡 Adjustments
 
 * `KeyboardAction.url` is now a system key.
-
 
 
 

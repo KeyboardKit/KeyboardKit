@@ -32,6 +32,11 @@ public extension KeyboardLayout {
     var bottomRowSystemItems: [KeyboardLayout.Item]? {
         bottomRow?.filter { $0.action.isSystemAction }
     }
+    
+    /// Get the bottom row's system item width, if any.
+    var bottomRowSystemItemWidth: KeyboardLayout.ItemWidth? {
+        bottomRowSystemItems?.first?.size.width
+    }
 
     /// Try to create a bottom row item.
     ///
