@@ -31,10 +31,10 @@ public struct SystemKeyboard<
     /// Create a system keyboard based on state and services.
     ///
     /// - Parameters:
-    ///   - layout: A custom keyboard layout to use, if any.
-    ///   - state: The value to fetch observable state from.
-    ///   - services: The value to fetch keyboard services from.
-    ///   - renderBackground: Whether to render the background, by default `true`.
+    ///   - layout: A custom keyboard layout, if any.
+    ///   - state: The keyboard state to use.
+    ///   - services: The keyboard services to use.
+    ///   - renderBackground: Whether to render the background.
     ///   - buttonContent: The content view to use for buttons.
     ///   - buttonView: The button view to use for an buttons.
     ///   - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.

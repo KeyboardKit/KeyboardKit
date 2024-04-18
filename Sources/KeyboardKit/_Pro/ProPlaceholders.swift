@@ -248,6 +248,9 @@ public extension Proxy {
 public protocol SpeechRecognizer {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
+public struct SystemKeyboardBottomRow {}
+
+/// 👑 This is unlocked by KeyboardKit Pro.
 public struct SystemKeyboardPreview {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.

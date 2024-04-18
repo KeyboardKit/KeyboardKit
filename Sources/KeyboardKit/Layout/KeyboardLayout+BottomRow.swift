@@ -20,8 +20,7 @@ public extension KeyboardLayout {
         itemRows.count - 1
     }
     
-    /// Get the bottom row-only layout, which can be used to
-    /// e.g. just render a bottom space bar row.
+    /// Get the bottom row-only layout.
     var bottomRowLayout: KeyboardLayout {
         let layout = self
         layout.itemRows = layout.itemRows.suffix(1)
