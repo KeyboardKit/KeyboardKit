@@ -11,14 +11,13 @@ These release notes only cover the current major version.
 
 
 
-## 8.5.2
-
-This version adjusts the autocomplete behavior for empty text and fixes a gesture bug.
+## 8.6
 
 ### ✨ Features
 
 * `KeyboardAction` has a new `.text` action to insert long text.
 * `KeyboardLayout` has a new `.bottomRowSystemItemWidth` property. 
+* `SystemKeyboardComponent` is a new protocol that defines shared typealiases. 
 
 ### 💡 Adjustments
 

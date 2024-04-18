@@ -112,7 +112,6 @@ The demo app in the [KeyboardKit repository][SDK] lets you try out both Keyboard
 KeyboardKit is available under the MIT license.
 
 
-
 [App]: https://keyboardkit.com/app
 [SDK]: https://github.com/KeyboardKit/KeyboardKit
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
@@ -161,6 +160,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardController``
 - ``KeyboardInputViewController``
 - ``SystemKeyboard``
+- ``SystemKeyboardComponent``
 - ``SystemKeyboardItem``
 - ``SystemKeyboardPreview``
 - ``SystemKeyboardButtonPreview``

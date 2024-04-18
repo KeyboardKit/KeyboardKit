@@ -20,13 +20,13 @@ import SwiftUI
 /// and the ``KeyboardInputViewController/services`` service
 /// instances to customize it, you don't have to do anything.
 ///
-/// For more information on how to customize th view and how
-/// to customize it, see <doc:Essentials>.
+/// See the <doc:Essentials> article for more information on
+/// how you can customize this and other system views.
 public struct SystemKeyboard<
     ButtonContent: View,
     ButtonView: View,
     EmojiKeyboard: View,
-    Toolbar: View>: View {
+    Toolbar: View>: SystemKeyboardComponent {
     
     /// Create a system keyboard based on state and services.
     ///
@@ -121,56 +121,13 @@ public struct SystemKeyboard<
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
 
-
-    /// This typealias defines a button content builder.
-    public typealias ButtonContentBuilder = (ButtonContentParams) -> ButtonContent
-    
-    /// This typealias defines button content builder params.
-    public typealias ButtonContentParams = (
-        item: KeyboardLayout.Item,
-        view: StandardButtonContent)
-    
-    /// The standard button content view type.
-    public typealias StandardButtonContent = Keyboard.ButtonContent
-    
-    
-    /// This typealias defines a button view builder.
-    public typealias ButtonViewBuilder = (ButtonViewParams) -> ButtonView
-    
-    /// This typealias defines button view builder params.
-    public typealias ButtonViewParams = (
-        item: KeyboardLayout.Item,
-        view: StandardButtonView)
-    
-    /// The standard button view type.
-    public typealias StandardButtonView = SystemKeyboardItem<ButtonContent>
-    
     
     /// This typealias defines a emoji keyboard builder.
     public typealias EmojiKeyboardBuilder = (EmojiKeyboardParams) -> EmojiKeyboard
     
-    /// This typealias defines emoji keyboard builder params.
-    public typealias EmojiKeyboardParams = (
-        style: EmojiKeyboardStyle,
-        view: StandardEmojiKeyboard)
-    
-    /// The standard emoji keyboard view type.
-    public typealias StandardEmojiKeyboard = Emoji.KeyboardWrapper
-    
-
     /// This typealias defines a toolbar builder.
     public typealias ToolbarBuilder = (ToolbarParams) -> Toolbar
-
-    /// This typealias defines toolbar builder params.
-    public typealias ToolbarParams = (
-        autocompleteAction: (Autocomplete.Suggestion) -> Void,
-        style: Autocomplete.ToolbarStyle,
-        view: StandardToolbarView)
-
-    /// The standard toolbar view type.
-    public typealias StandardToolbarView = Autocomplete.Toolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
-
-    public typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
+    
     
     private var actionCalloutStyle: Callouts.ActionCalloutStyle {
         var style = styleProvider.actionCalloutStyle
