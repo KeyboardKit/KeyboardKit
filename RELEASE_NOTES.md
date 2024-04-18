@@ -11,6 +11,21 @@ These release notes only cover the current major version.
 
 
 
+## 8.5.2
+
+This version adjusts the autocomplete behavior for empty text and fixes a gesture bug.
+
+### ✨ Features
+
+* `KeyboardAction` has a new `.text` action that can insert long texts without an input callout.
+
+### 💡 Adjustments
+
+* `KeyboardAction.url` is now a system key.
+
+
+
+
 ## 8.5.1
 
 This version adjusts the autocomplete behavior for empty text and fixes a gesture bug.

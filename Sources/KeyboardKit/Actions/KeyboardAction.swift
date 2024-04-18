@@ -105,6 +105,9 @@ public enum KeyboardAction: Codable, Equatable {
     
     /// Inserts a tab when released.
     case tab
+    
+    /// Inserts a text string when released.
+    case text(String)
 
     /// Open an url when released, using a custom id for identification.
     case url(_ url: URL?, id: String? = nil)
@@ -159,6 +162,7 @@ public extension KeyboardAction {
         case .image: true
         case .space: true
         case .systemImage: true
+        case .text: true
         default: false
         }
     }
@@ -212,6 +216,7 @@ public extension KeyboardAction {
         case .shift: true
         case .settings: true
         case .tab: true
+        case .url: true
         default: false
         }
     }
@@ -268,6 +273,7 @@ public extension KeyboardAction {
         case .systemImage(let desc, _, _): desc
         case .systemSettings: "System Settings"
         case .tab: "Tab"
+        case .text(let text): text
         case .url(let url, _): "Open \(url?.absoluteString ?? "invalid url")"
         }
     }
