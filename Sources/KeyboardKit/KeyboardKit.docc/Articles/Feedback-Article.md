@@ -128,7 +128,7 @@ KeyboardKit Pro unlocks views in the ``FeedbackConfiguration`` namespace, that l
         
         The feedback ``Feedback/Toggle`` can be used to toggle audio & haptic feedback on and off. It can be added to a toolbar, or anywhere you want it.
         
-        ![FeedbackToggle](feedbackconfigurationtoggle.jpg)
+        ![FeedbackToggle](feedbackconfigurationtoggle)
         
         The view can be customized with other icons, and be further styled with native accent colors, fonts, etc. It's currently not style-based.
         

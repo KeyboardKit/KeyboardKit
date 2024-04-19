@@ -48,5 +48,3 @@ KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types, tha
         This screen can be styled with the ``SwiftUI/View/keyboardStateLabelStyle(_:)`` modifier, to style things like the icon and the status labels.
     }
 }
-
-See the <doc:Styling-Article> article for more information about KeyboardKit view styling.

@@ -167,10 +167,14 @@ KeyboardKit Pro unlocks views in the ``Emoji`` namespace, for instance a complet
         
         The ``EmojiKeyboard`` component mimics a native emoji keyboard, with support for categories, skin tones, etc. It uses many additional views that are unlocked by KeyboardKit Pro, such as the title, grid, and menu. These views can be used individually as well. 
         
-        ![Emoji Keyboard](emojikeyboard-350.jpg)
+        @Row {
+            @Column {}
+            @Column(size: 2) {
+                ![Emoji Keyboard](emojikeyboard)
+            }
+            @Column {}
+        }
         
         The view can be styled with an ``EmojiKeyboardStyle``, which can be applied with the ``SwiftUI/View/emojiKeyboardStyle(_:)`` view modifier.
         }
 }
-        
-See the <doc:Styling-Article> article for more information about KeyboardKit view styling.

@@ -88,10 +88,10 @@ You can take a look at the source code of the various views in the library for i
         
         @Row {
             @Column {
-                ![System Keyboard Preview - Turkish](systemkeyboardpreview.jpg)
+                ![System Keyboard Preview - Turkish](systemkeyboardpreview)
             }
             @Column {
-                ![System Keyboard Preview - Theme](systemkeyboardpreview-theme.jpg)
+                ![System Keyboard Preview - Theme](systemkeyboardpreview-theme)
             }
         }
         
@@ -101,8 +101,8 @@ You can take a look at the source code of the various views in the library for i
         
         @Row {
             @Column {}
-            @Column {
-                ![System Keyboard Button Preview](systemkeyboardbuttonpreview.jpg)
+            @Column(size: 2) {
+                ![System Keyboard Button Preview](systemkeyboardbuttonpreview)
             }
             @Column {}
         }
@@ -111,8 +111,8 @@ You can take a look at the source code of the various views in the library for i
         
         @Row {
             @Column {}
-            @Column {
-                ![Theme Shelf](themeshelf.jpg)
+            @Column(size: 2) {
+                ![Theme Shelf](themeshelf)
             }
             @Column {}
         }

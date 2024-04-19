@@ -106,7 +106,13 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
         
         KeyboardKit has a ``KeyboardLocale/ContextMenu`` that can be used to change the main ``KeyboardContext`` ``KeyboardContext/locale`` from a callout context menu: 
         
-        ![LocaleContextMenu](localecontextmenu-350.jpg)
+        @Row {
+            @Column {}
+            @Column(size: 2) {
+                ![Locale Context Menu](localecontextmenu)
+            }
+            @Column {}
+        }
         
         This menu can be applied to any view. It's applied by ``SystemKeyboard`` to every key that triggers the ``KeyboardAction/nextLocale`` action, as well as to the space bar, if the ``Gestures/SpaceLongPressBehavior`` is set to ``Gestures/SpaceLongPressBehavior/openLocaleContextMenu``.
     }

@@ -107,26 +107,32 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
 
 @TabNavigator {
     
-    @Tab("ActionCallout") {
+    @Tab("Action Callout") {
         
         The ``Callouts/ActionCallout`` view mimics a native action callout, and can present secondary actions when a keyboard key is long-pressed:
         
-        ![ActionCallout](actioncallout-350.jpg)
+        @Row {
+            @Column { }
+            @Column(size: 2) { ![ActionCallout](actioncallout) }
+            @Column { }
+        }
         
         The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUI/View/actionCalloutStyle(_:)`` view modifier.
     }
     
-    @Tab("InputCallout") {
+    @Tab("Input Callout") {
         
         The ``Callouts/InputCallout`` view mimics a native input callout, and can be used to show the currently pressed key as the user types:
         
-        ![InputCallout](inputcallout-350.jpg)  
+        @Row {
+            @Column { }
+            @Column(size: 2) { ![InputCallout](inputcallout) }
+            @Column { }
+        }  
         
         The view can be styled with a ``Callouts/InputCalloutStyle``, which can be applied with the ``SwiftUI/View/inputCalloutStyle(_:)`` view modifier.
     }
 }
-
-See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
 
 
 

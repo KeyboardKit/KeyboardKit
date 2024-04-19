@@ -158,7 +158,13 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
         
         The autocomplete ``Autocomplete/Toolbar`` mimics a native autocomplete toolbar, and can be used to present autocomplete suggestions to the user:
         
-        ![AutocompleteToolbar](autocompletetoolbar.jpg)
+        @Row {
+            @Column {}
+            @Column(size: 2) {
+                ![AutocompleteToolbar](autocompletetoolbar)
+            }
+            @Column {}
+        }
         
         This view can be styled with a ``Autocomplete/ToolbarStyle``, which can be applied with the ``SwiftUI/View/autocompleteToolbarStyle(_:)`` view modifier. It can also use custom ``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator`` views.
     }
@@ -167,15 +173,19 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
         
         The autocomplete-specific ``Autocomplete/ToolbarItem`` and ``Autocomplete/ToolbarSeparator`` views can be used to customize the autocomplete ``Autocomplete/Toolbar``:
         
-        ![AutocompleteToolbar](autocompletetoolbar.jpg)
+        @Row {
+            @Column {}
+            @Column(size: 2) {
+                ![AutocompleteToolbar](autocompletetoolbar)
+            }
+            @Column {}
+        }
         
         These views can be styled with the ``Autocomplete/ToolbarItemStyle`` and ``Autocomplete/ToolbarSeparatorStyle`` styles, which can be applied with the ``SwiftUI/View/autocompleteToolbarItemStyle(_:)`` and ``SwiftUI/View/autocompleteToolbarSeparatorStyle(_:)`` view modifiers.
             
         
     }
 }
-
-See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
 
 
 ## 👑 KeyboardKit Pro

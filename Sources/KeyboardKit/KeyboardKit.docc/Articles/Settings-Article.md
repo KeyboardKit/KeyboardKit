@@ -75,7 +75,13 @@ The ``KeyboardSettings`` namespace has settings-specific views, that can be used
     @Tab("Link") {
         A keyboard status ``KeyboardSettings/Link`` can be used to link to System Settings.
         
-        ![KeyboardStatus.Label](keyboardstatuslabel.jpg)
+        @Row {
+            @Column {}
+            @Column(size: 2) {
+                ![KeyboardStatus.Label](keyboardstatuslabel)
+            }
+            @Column {}
+        }
         
         The view can wrap any content, and is used by the <doc:Status-Article> views, to link the user to SystemSettings.
     }

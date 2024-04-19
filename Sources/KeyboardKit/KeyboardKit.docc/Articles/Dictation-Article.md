@@ -77,7 +77,13 @@ KeyboardKit Pro unlocks views in the ``Dictation`` namespace, that let you quick
     @Tab("Screen") {
         KeyboardKit Pro unlocks a dictation ``Dictation/Screen`` that lets you overlay your main app with a custom dictation view while dictation is active:
 
-        ![DictationScreen](dictationscreen-350.jpg)
+        @Row {
+            @Column {}
+            @Column(size: 2) {
+                ![DictationScreen](dictationscreen)
+            }
+            @Column {}
+        }
         
         This screen will automatically fade in when a dictation is started, if you use the Pro keyboard dictation view modifiers. It can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
@@ -85,13 +91,17 @@ KeyboardKit Pro unlocks views in the ``Dictation`` namespace, that let you quick
     @Tab("BarVisualizer") {
         KeyboardKit Pro unlocks a ``Dictation/BarVisualizer`` that can be used to visualize an ongoing dictation with a collection of animating bars.
 
-        ![DictationScreen](dictationscreen-350.jpg)
+        @Row {
+            @Column {}
+            @Column(size: 2) {
+                ![DictationScreen](dictationscreen)
+            }
+            @Column {}
+        }
         
         You can change the number of bars, the colors & thickness of the bars, etc. The view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
 }
-
-See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
 
 
 ### Services
@@ -132,10 +142,10 @@ To share data between your app and keyboard extension, you must setup a shared a
 
 @Row {
     @Column {
-        ![Set up an App Group for the app](dictation-appgroup-app.jpg)        
+        ![Set up an App Group for the app](dictation-appgroup-app)        
     }
     @Column {
-        ![Set up an App Group for the keyboard](dictation-appgroup-keyboard.jpg)       
+        ![Set up an App Group for the keyboard](dictation-appgroup-keyboard)       
     }
 }
 
@@ -146,7 +156,7 @@ To share data between your app and keyboard extension, you must setup a shared a
 
 To make it possible for the keyboard to open the app, you must set up a deep link URL scheme for the app target:
 
-![Set up a URL Scheme for the app](dictation-url-scheme.jpg)
+![Set up a URL Scheme for the app](dictation-url-scheme)
 
 
 #### Step 4. Create a keyboard dictation configuration

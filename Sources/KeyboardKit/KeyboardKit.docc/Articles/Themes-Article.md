@@ -220,7 +220,7 @@ KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it e
         
         @Row {
             @Column {}
-            @Column { ![ThemeShelf](themeshelf.jpg) }
+            @Column(size: 2) { ![ThemeShelf](themeshelf) }
             @Column {}
         }
         
