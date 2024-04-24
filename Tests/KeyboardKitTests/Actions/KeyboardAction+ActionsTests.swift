@@ -112,6 +112,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
             .space,
             .systemSettings,
             .tab,
+            .text(""),
             .url(URL(string: ""))
         ]
         expected.forEach { XCTAssertNotNil(action($0)) }

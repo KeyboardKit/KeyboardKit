@@ -43,6 +43,7 @@ final class KeyboardActionTests: XCTestCase {
             case .emoji: XCTAssertTrue(result)
             case .image: XCTAssertTrue(result)
             case .space: XCTAssertTrue(result)
+            case .text: XCTAssertTrue(result)
             case .systemImage: XCTAssertTrue(result)
             default: XCTAssertFalse(result)
             }
@@ -102,6 +103,7 @@ final class KeyboardActionTests: XCTestCase {
             case .primary(.return): XCTAssertTrue(result)
             case .shift: XCTAssertTrue(result)
             case .tab: XCTAssertTrue(result)
+            case .url: XCTAssertTrue(result)
             default: XCTAssertFalse(result)
             }
         }

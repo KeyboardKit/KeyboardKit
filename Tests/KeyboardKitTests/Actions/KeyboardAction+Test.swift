@@ -26,6 +26,7 @@ extension KeyboardAction {
             .escape,
             .function,
             .image(description: "", keyboardImageName: "", imageName: ""),
+            .text(""),
             
             .keyboardType(.alphabetic(.lowercased)),
             .keyboardType(.alphabetic(.uppercased)),
