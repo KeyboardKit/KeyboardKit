@@ -3,15 +3,17 @@
 KeyboardKit tries to honor semantic versioning:
 
 * Deprecations can happen at any time.
-* Deprecations should only be removed in `major` versions.
+* Deprecations should only be removed in `major` updates.
 * Breaking changes should not occur in `minor` and `patch` updates.
-* Breaking changes can occur in `minor` and `patch` updates, if needed for critical fixes.
+* Breaking changes can occur in `minor` and `patch` updates, if needed.
 
 These release notes only cover the current major version. 
 
 
 
-## 8.6
+## 8.5.2
+
+This version adds a new `SystemKeyboardBottomRow` component, adds some new actions and fixes a bug.
 
 ### ✨ Features
 
@@ -22,6 +24,14 @@ These release notes only cover the current major version.
 ### 💡 Adjustments
 
 * `KeyboardAction.url` is now a system key.
+
+### 👑 KeyboardKit Pro
+
+* `SystemKeyboardBottomRow` is a new Pro component.
+
+### 🐛 Bug fixes
+
+* `SystemKeyboard` no longer shows the emoji key for insufficient KeyboardKit Pro licenses.
 
 
 
@@ -36,7 +46,6 @@ This version adjusts the autocomplete behavior for empty text and fixes a gestur
 ### 🐛 Bug fixes
 
 * `KeyboardGesture` has a new `.end` gesture, which is used to fix a bug that could cause space drag to never end.
-
 
 ### 👑 KeyboardKit Pro
 

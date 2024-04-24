@@ -93,7 +93,7 @@ public struct SystemKeyboard<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
-        if !Emoji.KeyboardWrapper.isPro {
+        if !Emoji.KeyboardWrapper.isEmojiKeyboardAvailable {
             layout.itemRows.remove(.keyboardType(.emojis))
         }
         self.rawLayout = layout

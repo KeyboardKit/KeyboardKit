@@ -10,11 +10,8 @@ import SwiftUI
 
 public extension Emoji {
     
-    /**
-     This is used as a view eraser for the emoji keyboard to
-     make it possible to inject it with the standard builder
-     in the system keyboard initializer.
-     */
+    /// This view is used as a keyboard emoji view eraser to
+    /// ensure that the view is only used for valid licenses.
     struct KeyboardWrapper: View {
         
         init(
@@ -28,6 +25,6 @@ public extension Emoji {
             EmptyView()
         }
         
-        static let isPro = false
+        static let isEmojiKeyboardAvailable = false
     }
 }
