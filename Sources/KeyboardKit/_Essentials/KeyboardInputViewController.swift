@@ -114,7 +114,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Setup
     
-    /// The error that was thrown during a pro setup, if any.
+    @available(*, deprecated, message: "Use the setupPro licenseError parameter instead.")
     public var setupProError: Error?
 
     /// Setup KeyboardKit with a custom keyboard view.

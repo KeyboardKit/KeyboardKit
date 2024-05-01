@@ -77,8 +77,15 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
         setupPro(
             withLicenseKey: "your-license-key",
-            locales: [...], // Define which locales to use for Basic & Silver licenses
-            licenseConfiguration: { license in ... }  // Customize the keyboard for the license
+            locales: [...], // Define which locales to use (Basic & Silver licenses)  
+            licenseError: { error in
+                // This is called if the license registration fails.
+            }
+            licenseConfiguration: { license in
+                // This is called if the license registration succeeds.
+                // You can use this license to configure your keyboard.
+                // You can now also access all KeyboardKit Pro features.
+            }
         )
     }
 }
@@ -95,8 +102,9 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewWillSetupKeyboard()
         setupPro(
             withLicenseKey: "your-license-key",
-            locales: [...], // Define which locales to use for Basic & Silver licenses
-            licenseConfiguration: { license in ... }  // Customize the keyboard for the license
+            locales: [...],
+            licenseError: { error in ... }
+            licenseConfiguration: { license in ... }
             view: { controller in
                 SystemKeyboard(
                     state: controller.state,
@@ -114,7 +122,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
 Since Basic, Silver, and monthly Gold licenses validate licenses over the Internet, your keyboard extension must enable Full Access to be able to make network requests. This is not needed for yearly Gold and custom licenses, which are validated on-device.  
 
-> Important: A Basic license unlocks 1 locale, Silver unlocks 5 and Gold unlocks all supported locales. You can change which locales to use for each new version of your app, after which the locales will be persisted for that particular app version.
+> Important: A Basic license unlocks 1 locale, Silver unlocks 5 and Gold unlocks all supported locales. You can change which locales to use for each new version of your app, after which the locales will be persisted for that app version.
  
 
 

@@ -5,9 +5,17 @@ KeyboardKit tries to honor semantic versioning:
 * Deprecations can happen at any time.
 * Deprecations should only be removed in `major` updates.
 * Breaking changes should not occur in `minor` and `patch` updates.
-* Breaking changes can occur in `minor` and `patch` updates, if needed.
+* Breaking changes *can* occur in `minor` and `patch` updates, if needed.
 
 These release notes only cover the current major version. 
+
+
+
+## 8.5.3
+
+This version adds a `licenseError` parameter to `setupPro`.
+
+As such, the `setupProError` in `KeyboardInputViewController` is deprecated and no longer used.
 
 
 
