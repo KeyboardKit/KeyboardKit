@@ -89,7 +89,7 @@ override func viewWillSetupKeyboard() {
 
     // Setup KeyboardKit Pro with a license
     setupPro(withLicenseKey: "...") { license in
-        keyboardStyleProvider = .themed(.cottonCandy, context: keyboardContext)
+        keyboardStyleProvider = .themed(with: .cottonCandy, context: keyboardContext)
     } view: { controller in
         // Return your keyboard view here
     }

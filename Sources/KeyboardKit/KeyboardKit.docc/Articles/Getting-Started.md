@@ -126,7 +126,6 @@ Since Basic, Silver, and monthly Gold licenses validate licenses over the Intern
  
 
 
-
 ## How to set up KeyboardKit for an app
 
 You can use KeyboardKit in your main app, to check the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place to provide app settings, since it has more available space than the keyboard extension.
