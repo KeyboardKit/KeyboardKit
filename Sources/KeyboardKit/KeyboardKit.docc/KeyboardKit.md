@@ -149,7 +149,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Settings-Article>
 - <doc:Status-Article>
 - <doc:Styling-Article>
-- <doc:Text-Routing-Article>
+- <doc:Text-Input-Article>
 - <doc:Themes-Article>
 
 ### Essentials
@@ -160,6 +160,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardController``
 - ``KeyboardInputViewController``
 - ``SystemKeyboard``
+- ``SystemKeyboardBottomRow``
 - ``SystemKeyboardComponent``
 - ``SystemKeyboardItem``
 - ``SystemKeyboardPreview``
@@ -271,3 +272,4 @@ KeyboardKit is available under the MIT license.
 ### Themes
 
 - ``KeyboardTheme``
+- ``KeyboardThemeStyleVariation``

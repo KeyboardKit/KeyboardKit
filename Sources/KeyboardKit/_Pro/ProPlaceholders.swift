@@ -190,9 +190,18 @@ public extension KeyboardStyleProvider {
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func themed(
         with theme: KeyboardTheme,
-        context: KeyboardContext
-    ) throws -> Self {
+        keyboardContext: KeyboardContext
+    ) throws -> KeyboardStyle.ThemeBasedProvider {
         throw ProPlaceholderError.proPlaceholder
+    }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func themed(
+        with theme: KeyboardTheme,
+        keyboardContext: KeyboardContext,
+        fallback: KeyboardStyleProvider
+    ) -> any KeyboardStyleProvider {
+        fallback
     }
 }
 
@@ -205,20 +214,37 @@ public struct KeyboardTextView {}
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct KeyboardTheme {
     
+    /// 👑 This is unlocked by KeyboardKit Pro.
     public static var allPredefined: [KeyboardTheme] {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
+    /// 👑 This is unlocked by KeyboardKit Pro.
     public static var standard: KeyboardTheme {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
+    /// 👑 This is unlocked by KeyboardKit Pro.
     public static var swifty: KeyboardTheme {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
+    /// 👑 This is unlocked by KeyboardKit Pro.
     public static var minimal: KeyboardTheme {
         get throws { throw ProPlaceholderError.proPlaceholder }
+    }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public struct StandardStyle: KeyboardThemeStyleVariation {
+    
+        /// 👑 This is unlocked by KeyboardKit Pro.
+        public static let standard = Self()
+        
+        /// 👑 This is unlocked by KeyboardKit Pro.
+        public static let blue = Self()
+        
+        /// 👑 This is unlocked by KeyboardKit Pro.
+        public static let green = Self()
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -227,6 +253,9 @@ public struct KeyboardTheme {
     /// 👑 This is unlocked by KeyboardKit Pro.
     public struct ShelfItem {}
 }
+    
+/// 👑 This is unlocked by KeyboardKit Pro.
+public protocol KeyboardThemeStyleVariation {}
 
 public extension Proxy {
     

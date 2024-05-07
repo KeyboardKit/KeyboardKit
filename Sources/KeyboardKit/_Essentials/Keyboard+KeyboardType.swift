@@ -14,14 +14,13 @@ public extension Keyboard {
     /// This enum defines various keyboard types, of which a
     /// few are already implemented by the library.
     ///
-    /// Just set the ``KeyboardContext/keyboardType`` to any
-    /// type you want to use, then observe the value and act
-    /// on the change.
-    ///
     /// The ``SystemKeyboard`` will automatically render the
     /// ``alphabetic(_:)``, ``numeric`` & ``symbolic`` types,
-    /// and will render ``emojis`` when KeyboardKit Pro Gold
-    /// has been unlocked. The rest must be handled manually.
+    /// as well as ``emojis`` if KeyboardKit Pro is unlocked.
+    /// The rest must be handled manually.
+    ///
+    /// Just set the ``KeyboardContext/keyboardType`` to any
+    /// type you want to use, then observe the value.
     enum KeyboardType: Codable, Equatable, Identifiable {
         
         /// A keyboard with alphabetic input keys.

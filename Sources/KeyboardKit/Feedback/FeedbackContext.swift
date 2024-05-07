@@ -12,13 +12,13 @@ import Foundation
 /// This class has observable, feedback-related state.
 ///
 /// This class can be used to configure the audio and haptic
-/// feedback that a keyboard should provide.
+/// feedback that a keyboard should use.
 ///
-/// For instance, you can use ``audioConfiguration`` to make
-/// audio-specific adjustments, use ``isAudioFeedbackEnabled``
-/// to toggle audio feedback on and off, and reguster custom
-/// audio feedback with ``registerAudioFeedback(_:for:on:)``.
-/// Haptic feedback has similar functionality.
+/// For instance, you can use the ``audioConfiguration`` and
+/// ``hapticConfiguration`` properties to configure feedback,
+/// ``isAudioFeedbackEnabled`` and ``isHapticFeedbackEnabled``
+/// to toggle feedback on and off. You can also register any
+/// custom feedback for any custom action and gesture.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use

@@ -14,8 +14,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/danielsaidi/MockingKit.git",
       "state" : {
-        "revision" : "4967086efeb95d5e5dc33709307bf6bacdcfab63",
-        "version" : "1.4.0"
+        "revision" : "ff094ab2f6ae8e76be2360ea449f03e8642adfb6",
+        "version" : "1.4.1"
       }
     }
   ],
