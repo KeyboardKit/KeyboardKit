@@ -16,16 +16,16 @@ public extension KeyboardContext {
     /// the ``textDocumentProxy`` autocapitalization.
     var preferredKeyboardType: Keyboard.KeyboardType {
         if keyboardType.isAlphabetic(.capsLocked) { return keyboardType }
-        if let type = preferredAutocapitalizedKeyboardType { return type }
-        if let type = preferredKeyboardTypeAfterAlphaTyping { return type }
-        if let type = preferredKeyboardTypeAfterNumericOrSymbolicSpaceOrReturn { return type }
+        if let type = preferredAutocapitalizedType { return type }
+        if let type = preferredTypeAfterAlphaTyping { return type }
+        if let type = preferredTypeAfterNonAlphaSpaceOrReturn { return type }
         return keyboardType
     }
 }
 
 private extension KeyboardContext {
     
-    var preferredAutocapitalizedKeyboardType: Keyboard.KeyboardType? {
+    var preferredAutocapitalizedType: Keyboard.KeyboardType? {
         preferredAutocapitalizedKeyboardType(requiresAlphabetic: true)
     }
     
@@ -50,7 +50,7 @@ private extension KeyboardContext {
         #endif
     }
 
-    var preferredKeyboardTypeAfterAlphaTyping: Keyboard.KeyboardType? {
+    var preferredTypeAfterAlphaTyping: Keyboard.KeyboardType? {
         #if os(iOS) || os(tvOS) || os(visionOS)
         guard keyboardType.isAlphabetic else { return nil }
         return .alphabetic(.lowercased)
@@ -59,7 +59,7 @@ private extension KeyboardContext {
         #endif
     }
     
-    var preferredKeyboardTypeAfterNumericOrSymbolicSpaceOrReturn: Keyboard.KeyboardType? {
+    var preferredTypeAfterNonAlphaSpaceOrReturn: Keyboard.KeyboardType? {
         #if os(iOS) || os(tvOS) || os(visionOS)
         guard keyboardType == .numeric || keyboardType == .symbolic else { return nil }
         guard let before = textDocumentProxy.documentContextBeforeInput else { return nil }

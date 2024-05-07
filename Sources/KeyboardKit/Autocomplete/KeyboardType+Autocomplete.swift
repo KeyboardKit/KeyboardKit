@@ -17,6 +17,7 @@ public extension Keyboard.KeyboardType {
         case .email: false
         case .emojis: false
         case .images: false
+        case .numberPad: true
         case .custom: true
         }
     }

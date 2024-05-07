@@ -11,6 +11,20 @@ These release notes only cover the current major version.
 
 
 
+## 8.5.5
+
+This version adds a new `.numberPad` keyboard type, which you can use to provide a number pad view.
+
+### ✨ Features
+
+* `Keyboard.KeyboardType` has a new `.numberPad` type.
+
+### 💡 Adjustments
+
+* `KeyboardContext` will now get its initial keyboard type set to the document text proxy's keyboard type.
+
+
+
 ## 8.5.3
 
 This version adds a `licenseError` parameter to `setupPro`.

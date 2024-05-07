@@ -41,6 +41,9 @@ public extension Keyboard {
         /// An image keyboard, not currently implemented.
         case images
         
+        /// A number pad keyboard.
+        case numberPad
+        
         /// A custom keyboard type, if you need to use one.
         case custom(named: String)
     }
@@ -57,6 +60,7 @@ public extension Keyboard.KeyboardType {
         case .email: "email"
         case .emojis: "emojis"
         case .images: "images"
+        case .numberPad: "numberPad"
         case .custom(let name): name
         }
     }
@@ -116,3 +120,28 @@ public extension Keyboard.KeyboardType {
         }
     }
 }
+
+#if canImport(UIKit)
+public extension UIKeyboardType {
+ 
+    /// The ``Keyboard/KeyboardType`` this type represents.
+    var keyboardType: Keyboard.KeyboardType? {
+        switch self {
+        case .default: .alphabetic(.auto)
+        case .asciiCapable: nil
+        case .numbersAndPunctuation: .numeric
+        case .URL: .alphabetic(.auto)
+        case .numberPad: .numberPad
+        case .phonePad: nil
+        case .namePhonePad: nil
+        case .emailAddress: .alphabetic(.auto)
+        case .decimalPad: nil
+        case .twitter: .alphabetic(.auto)
+        case .webSearch: .alphabetic(.auto)
+        case .asciiCapableNumberPad: .numberPad
+        case .alphabet: .alphabetic(.auto)
+        @unknown default: .alphabetic(.auto)
+        }
+    }
+}
+#endif
