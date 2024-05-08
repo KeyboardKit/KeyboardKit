@@ -30,7 +30,7 @@ class KeyboardType_AutocompleteTests: XCTestCase {
     }
 
 
-    #if os(iOS) || os(tvOS)
+    #if os(iOS) || os(tvOS) || os(visionOS)
     func testNativeKeyboardTypePrefersAutocomplete() {
         func prefersAutocompleteResult(for type: UIKeyboardType) -> Bool {
             type.prefersAutocomplete

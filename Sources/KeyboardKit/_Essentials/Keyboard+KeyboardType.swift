@@ -121,7 +121,7 @@ public extension Keyboard.KeyboardType {
     }
 }
 
-#if canImport(UIKit)
+#if os(iOS) || os(tvOS) || os(visionOS)
 public extension UIKeyboardType {
  
     /// The ``Keyboard/KeyboardType`` this type represents.
