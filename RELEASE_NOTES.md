@@ -13,11 +13,12 @@ These release notes only cover the current major version.
 
 ## 8.5.6
 
-This version adds a new `.numberPad` keyboard type, which you can use to provide a number pad view.
+This version makes it easier to create a themed style provider, and adds a new `.numberPad` keyboard type.
 
 ### ✨ Features
 
 * `Keyboard.KeyboardType` has a new `.numberPad` type.
+* `KeyboardStyleProvider.themed` has new convenience apis.
 
 ### 💡 Adjustments
 

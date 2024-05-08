@@ -151,39 +151,3 @@ class KeyboardViewController: KeyboardInputViewController {
         set { defaults.set(newValue, forKey: persistedLocaleKey) }
     }
 }
-
-public extension KeyboardStyleProvider where Self == KeyboardStyle.ThemeBasedProvider {
-    
-    /// Create a theme-based style provider.
-    ///
-    /// This function will throw an error if the theme-based
-    /// provider can't be created, e.g. if a current license
-    /// doesn't include the themes feature.
-    ///
-    /// - Parameters:
-    ///   - theme: The keyboard theme to use.
-    ///   - context: The keyboard context to use.
-    static func themed(
-        with theme: KeyboardTheme,
-        keyboardContext: KeyboardContext
-    ) throws -> KeyboardStyle.ThemeBasedProvider {
-        try .init(theme: theme, keyboardContext: keyboardContext)
-    }
-    
-    /// Create a theme-based style provider, with a fallback.
-    ///
-    /// This function will use the fallback if a theme-based
-    /// provider can't be created, e.g. if a current license
-    /// doesn't include the themes feature.
-    ///
-    /// - Parameters:
-    ///   - theme: The keyboard theme to use.
-    ///   - context: The keyboard context to use.
-    static func themed(
-        with theme: KeyboardTheme,
-        keyboardContext: KeyboardContext,
-        fallback: KeyboardStyleProvider
-    ) -> any KeyboardStyleProvider {
-        (try? themed(with: theme, keyboardContext: keyboardContext)) ?? fallback
-    }
-}
