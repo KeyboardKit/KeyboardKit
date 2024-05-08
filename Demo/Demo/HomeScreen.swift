@@ -21,6 +21,9 @@ struct HomeScreen: View {
 
     @State
     private var isAppearanceDark = false
+    
+    @State
+    private var isNumberPad = false
 
     @AppStorage("com.keyboardkit.demo.text")
     private var text = ""
@@ -40,7 +43,7 @@ struct HomeScreen: View {
             KeyboardApp.HomeScreen(
                 appIcon: Image(.icon),
                 keyboardBundleId: "com.keyboardkit.demo.*",
-                topListContent: editorLinkSection,
+                topListContent: {},
                 bottomListContent: textFieldSection
             )
             .navigationTitle("KeyboardKit")
@@ -55,53 +58,47 @@ struct HomeScreen: View {
         .keyboardDictation(
             context: dictationContext,
             config: .app,
-            speechRecognizer: StandardSpeechRecognizer()
-        ) {
-            Dictation.Screen(
-                dictationContext: dictationContext
-            ) {
-                EmptyView()
-            } visualizer: {
-                Dictation.BarVisualizer(isAnimating: $0)
-            } doneButton: { action in
-                Button("Done", action: action)
-                    .buttonStyle(.borderedProminent)
-            }
-        }
+            speechRecognizer: StandardSpeechRecognizer(),
+            overlay: dictationScreen
+        )
+        .keyboardStatusSectionStyle(
+            .init(systemSettingsLink: .always)
+        )
     }
 }
 
 extension HomeScreen {
-
-    func textFieldSection() -> some View {
-        Section(header: Text("Text Field")) {
-            TextEditor(text: $text)
-                .frame(height: 100)
-                .keyboardAppearance(appearance)
-            Toggle(isOn: $isAppearanceDark) {
-                Text("Dark appearance")
-            }
-        }
-    }
-
-    func editorLinkSection() -> some View {
-        Section(header: Text("Editor")) {
-            NavigationLink {
-                TextEditor(text: $text)
-                    .padding(.horizontal)
-                    .navigationTitle("Editor")
-            } label: {
-                Label {
-                    Text("Full screen editor")
-                } icon: {
-                    Image(systemName: "doc.text")
-                }
-            }
+    
+    func dictationScreen() -> some View {
+        Dictation.Screen(
+            dictationContext: dictationContext
+        ) {
+            EmptyView()
+        } visualizer: {
+            Dictation.BarVisualizer(isAnimating: $0)
+        } doneButton: { action in
+            Button("Done", action: action)
+                .buttonStyle(.borderedProminent)
         }
     }
     
     var footerText: some View {
         Text("You must enable the keyboard in System Settings, then select it with 🌐 when typing.")
+    }
+    
+    func textFieldSection() -> some View {
+        Section(header: Text("Text Field")) {
+            TextField("Type here...", text: $text)
+                .lineLimit(3...)
+                .keyboardAppearance(appearance)
+                .keyboardType(isNumberPad ? .numberPad : .alphabet)
+            Toggle(isOn: $isAppearanceDark) {
+                Text("Dark appearance")
+            }
+            Toggle(isOn: $isNumberPad) {
+                Text("Number Pad")
+            }
+        }
     }
 }
 
