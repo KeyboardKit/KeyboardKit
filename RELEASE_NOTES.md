@@ -11,6 +11,22 @@ These release notes only cover the current major version.
 
 
 
+## 8.6
+
+This version makes it easier to identify the host application.
+
+### 👑 KeyboardKit Pro
+
+* `KeyboardContext` has a new `hostApplication` property.
+* `KeyboardHostApplication` is a new enum with known applications.
+* `KeyboardInputViewController` has a new `hostApplication` property.
+
+### 💡 Adjustments
+
+* `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
+
+
+
 ## 8.5.6
 
 This version makes it easier to create a themed style provider, and adds a new `.numberPad` keyboard type.

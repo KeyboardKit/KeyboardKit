@@ -109,6 +109,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 😀 [Emojis][Emojis] - KeyboardKit defines emojis, categories, versions, skin tones, etc.
 * 🔉 [Feedback][Feedback] - KeyboardKit can trigger audio & haptic feedback.
 * 👆 [Gestures][Gestures] - KeyboardKit has a customizable keyboard gesture engine.
+* 🏠 [Host][Host] - KeyboardKit can identify the host application.
 * 🖼️ [Images][Images] - KeyboardKit defines keyboard-specific images.
 * 🔣 [Layout][Layout] - KeyboardKit has customizable input sets & keyboard layouts.
 * 🌐 [Localization][Localization] - KeyboardKit defines localized texts & assets for 63 locales.
@@ -119,11 +120,11 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🩺 [Status][Status] - KeyboardKit can detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - KeyboardKit lets you style your keyboards to great extent.
 
-These features are all open-source and free to use. You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
+These features all open-source and free to use. You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
 
 
-## KeyboardKit Pro
+## Pro Features
 
 [KeyboardKit Pro][Pro] unlocks Pro features, like fully localized and locale-specific system keyboards, layouts & services, on-device and remote autocomplete & autocorrect, dictation, themes, etc.
 
@@ -137,6 +138,7 @@ These features are all open-source and free to use. You can upgrade to [Keyboard
 * 😀 [Emojis][Emojis] - KeyboardKit Pro unlocks a powerful emoji keyboard.
 * ⌨️ [External][External] - KeyboardKit Pro can detect if an external keyboard is connected. 
 * 🔉 [Feedback][Feedback] - KeyboardKit Pro unlocks tools for toogling feedback on & off.
+* 🏠 [Host][Host] - KeyboardKit Pro unlocks ways to identify specific applications.
 * 🔣 [Layout][Layout] - KeyboardKit Pro unlocks localized layouts for all locales.
 * 🌐 [Localization][Localization] - KeyboardKit Pro unlocks **63** locale-specific services and system keyboards.
 * 👁 [Previews][Previews] - KeyboardKit Pro unlocks system keyboard and theme previews.
@@ -225,6 +227,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards-article
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback-article
 [Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures-article
+[Host]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/host-article
 [Images]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/images-article
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout-article
 [Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization-article

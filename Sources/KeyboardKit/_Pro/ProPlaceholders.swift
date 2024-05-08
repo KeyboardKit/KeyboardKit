@@ -128,6 +128,9 @@ public extension KeyboardApp {
     struct HomeScreenStyle {}
 }
 
+/// 👑 This is unlocked by KeyboardKit Pro.
+public enum KeyboardHostApplication {}
+
 public extension KeyboardLayout {
     
     /// 👑 This is unlocked by KeyboardKit Pro.

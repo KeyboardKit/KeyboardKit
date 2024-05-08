@@ -1,5 +1,5 @@
 //
-//  KeyboardViewController+Host.swift
+//  KeyboardInputViewController+Host.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-27.
@@ -11,16 +11,21 @@ import SwiftUI
 import UIKit
 
 public extension KeyboardInputViewController {
-
+    
     /// The bundle ID of the host application, if any.
     ///
     /// The property uses technologies that may stop working
     /// in any future iOS version. Do not rely solely on the
     /// function, and design the app to be able to work even
     /// if this feature suddenly stops working.
-    var hostBundleId: String? {
+    var hostApplicationBundleId: String? {
         if let id = hostBundleIdValueBefore16 { return id }
         return hostBundleIdValueFor16
+    }
+    
+    @available(*, deprecated, renamed: "hostApplicationBundleId")
+    var hostBundleId: String? {
+        hostApplicationBundleId
     }
 }
 
