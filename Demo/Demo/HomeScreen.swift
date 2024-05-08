@@ -89,7 +89,6 @@ extension HomeScreen {
     func textFieldSection() -> some View {
         Section(header: Text("Text Field")) {
             TextField("Type here...", text: $text)
-                .lineLimit(3...)
                 .keyboardAppearance(appearance)
                 .keyboardType(isNumberPad ? .numberPad : .alphabet)
             Toggle(isOn: $isAppearanceDark) {

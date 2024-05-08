@@ -11,7 +11,7 @@ These release notes only cover the current major version.
 
 
 
-## 8.5.5
+## 8.5.6
 
 This version adds a new `.numberPad` keyboard type, which you can use to provide a number pad view.
 
