@@ -84,8 +84,7 @@ For instance, KeyboardKit extends types in ``Foundation``, ``Swift``, ``SwiftUI`
 
 ## System Keyboard
 
-KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboard. It can be used for alphabetic, numeric & symbolic keyboards, 
-supports all supported locales, layouts, callouts, etc., and can be styled to great extent with styles & themes:
+KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboard. It can be used for alphabetic, numeric & symbolic keyboards, supports all supported locales, layouts, callouts, etc., and can be styled to great extent with styles & themes:
 
 @Row {
     

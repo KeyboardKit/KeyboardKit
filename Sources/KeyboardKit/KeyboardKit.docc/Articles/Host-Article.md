@@ -13,9 +13,9 @@ This article describes how KeyboardKit can identify the host application.
     @PageColor(blue)
 }
 
-KeyboardKit provides additional utilities that it easy to identify the host application.
+KeyboardKit provides ways to easily identify the host application, which may be of interest for many reasons, e.g. to vary the style of functionality of a keyboard based on the active app.
 
-👑 [KeyboardKit Pro][Pro] unlocks a list of host applications, to make this even easier.
+👑 [KeyboardKit Pro][Pro] unlocks an additional list of popular host applications, to make it even easier to identify the active app.
 
 
 

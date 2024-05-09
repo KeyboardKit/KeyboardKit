@@ -48,6 +48,7 @@ public extension Image {
     static var keyboardSpeakerDown = symbol("speaker.wave.3")
     static var keyboardSpeakerUp = symbol("speaker.wave.1")
     static var keyboardTab = symbol("arrow.right.to.line")
+    static var keyboardTabRtl = symbol("arrow.left.to.line")
     static var keyboardUndo = symbol("arrow.uturn.left")
     static var keyboardZeroWidthSpace = symbol("circle.dotted")
     
@@ -59,15 +60,18 @@ public extension Image {
         locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
     }
     
-    static func keyboardShift(_ casing: Keyboard.Case) -> Image {
-        switch casing {
-        case .auto: return .keyboardShiftLowercased
-        case .capsLocked: return .keyboardShiftCapslocked
-        case .lowercased: return .keyboardShiftLowercased
-        case .uppercased: return .keyboardShiftUppercased
-        }
+    static func keyboardTab(for locale: Locale) -> Image {
+        locale.isLeftToRight ? .keyboardTab : .keyboardTabRtl
     }
     
+    static func keyboardShift(_ casing: Keyboard.Case) -> Image {
+        switch casing {
+        case .auto: .keyboardShiftLowercased
+        case .capsLocked: .keyboardShiftCapslocked
+        case .lowercased: .keyboardShiftLowercased
+        case .uppercased: .keyboardShiftUppercased
+        }
+    }
 }
 
 extension Image {

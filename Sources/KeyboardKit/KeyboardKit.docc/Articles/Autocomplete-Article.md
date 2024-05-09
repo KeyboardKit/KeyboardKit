@@ -182,8 +182,6 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
         }
         
         These views can be styled with the ``Autocomplete/ToolbarItemStyle`` and ``Autocomplete/ToolbarSeparatorStyle`` styles, which can be applied with the ``SwiftUI/View/autocompleteToolbarItemStyle(_:)`` and ``SwiftUI/View/autocompleteToolbarSeparatorStyle(_:)`` view modifiers.
-            
-        
     }
 }
 
@@ -192,14 +190,26 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 
 [KeyboardKit Pro][Pro] unlocks additional autocomplete providers and injects a ``Autocomplete/LocalProvider`` into ``KeyboardInputViewController/services`` when you register a valid license key. These providers are open to inheritance, so you can inherit and customize them to fit your needs.
 
+
 ### Local Autocomplete
 
 The ``Autocomplete/LocalProvider`` performs autocomplete operations locally, on-device. It supporst most keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
 
 > Important: This provider currently doesn't provide next word prediction, since Apple removed these capabilities in iOS 16. 
 
+
 ### Remote Autocomplete
 
-The ``Autocomplete/RemoteProvider`` can be used to perform autocomplete by integrating with an external API. It requires that the device is online, and requires that Full Access is enabled, to allow it to make network requests. 
+The ``Autocomplete/RemoteProvider`` can be used to perform autocomplete by integrating with an external API. It requires that the device is online, and requires that Full Access is enabled, to allow it to make network requests.
+
+
+### Supported Locales
+
+The ``Autocomplete/LocalProvider`` that is unlocked by KeyboardKit Pro supports the following locales:
+
+``KeyboardLocale/arabic``, ``KeyboardLocale/bulgarian``, ``KeyboardLocale/czech``, ``KeyboardLocale/danish``, ``KeyboardLocale/dutch``, ``KeyboardLocale/dutch_belgium``, ``KeyboardLocale/english``, ``KeyboardLocale/english_gb``, ``KeyboardLocale/english_us``, ``KeyboardLocale/filipino``, ``KeyboardLocale/finnish``, ``KeyboardLocale/french``, ``KeyboardLocale/french_belgium``, ``KeyboardLocale/french_switzerland``, ``KeyboardLocale/german``, ``KeyboardLocale/german_austria``, ``KeyboardLocale/german_switzerland``, ``KeyboardLocale/greek``, ``KeyboardLocale/hebrew``, ``KeyboardLocale/hungarian``, ``KeyboardLocale/irish``, ``KeyboardLocale/italian``, ``KeyboardLocale/norwegian``, ``KeyboardLocale/polish``, ``KeyboardLocale/portuguese_brazil``, ``KeyboardLocale/portuguese``, ``KeyboardLocale/romanian``, ``KeyboardLocale/russian``, ``KeyboardLocale/spanish``, ``KeyboardLocale/swedish``, ``KeyboardLocale/turkish``, ``KeyboardLocale/ukrainian``.
+
+If you want to use autocomplete with other locales, you must use remote autocomplete or implement a custom recognizer.
+
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

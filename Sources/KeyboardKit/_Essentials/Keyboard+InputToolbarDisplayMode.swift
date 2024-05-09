@@ -17,12 +17,22 @@ public extension Keyboard {
     /// You can apply a display mode using the view modifier
     /// ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)``.
     enum InputToolbarDisplayMode {
-        case inputs(_ inputs: String)
-        case hidden
         
-        public static let automatic = Self.hidden
-        public static let numbers = Self.inputs("1234567890")
+        /// This mode can be used to display a set of inputs.
+        case inputs(_ inputs: String)
+        
+        /// This mode can be used to hide the input toolbar.
+        case hidden
     }
+}
+
+public extension Keyboard.InputToolbarDisplayMode {
+    
+    /// This mode can be used to apply the default mode.
+    static let automatic = Self.hidden
+    
+    /// This mode can be used to display 1-0 as inputs.
+    static let numbers = Self.inputs("1234567890")
 }
 
 public extension View {
@@ -30,9 +40,10 @@ public extension View {
     /// Apply an ``Keyboard/InputToolbarDisplayMode`` to the
     /// view hierarchy.
     ///
-    /// 👑 KeyboardKit Pro unlocks additional utilities that
-    /// automatically injects toolbars into ``SystemKeyboard``
-    /// when the display mode is set to present inputs.
+    /// 👑 KeyboardKit Pro automatically adds the toolbar to
+    /// ``SystemKeyboard`` when this is applied using inputs.
+    /// If you don't use KeyboardKit Pro, you can check this
+    /// value and manually add a toolbar.
     func keyboardInputToolbarDisplayMode(
         _ style: Keyboard.InputToolbarDisplayMode
     ) -> some View {

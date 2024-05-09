@@ -15,15 +15,44 @@ These release notes only cover the current major version.
 
 This version makes it easier to identify the host application.
 
+### 💡 Adjustments
+
+* `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
+
 ### 👑 KeyboardKit Pro
 
 * `KeyboardContext` has a new `hostApplication` property.
 * `KeyboardHostApplication` is a new enum with known applications.
-* `KeyboardInputViewController` has a new `hostApplication` property.
+* `KeyboardInputViewController` has a new `hostApplication` property. 
 
-### 💡 Adjustments
+### 🌐 Locale Adjustments
 
-* `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
+* These locales now use iPad Pro layout:
+    * Arabic
+    * Belarusian
+    * Bulgarian
+    * Catalan
+    * Cherokee
+    * Hebrew
+    * Kazakh
+    * Kurdish Sorani
+    * Kurdish Sorani - Arabic
+    * Kurdish Sorani - PC
+    * Persian
+    
+* These locales have improved iPad Pro layouts:
+    * French (Switzerland)
+    * Greek
+    * Inari Sami
+    * Macedonian
+    * Mongolian
+    
+* These locales have improved iPhone layouts:
+    * Arabic
+    
+### 🐛 Bug fixes
+
+* `KeyboardAction.tab` now uses an LTR/RTL supporting icon.
 
 
 

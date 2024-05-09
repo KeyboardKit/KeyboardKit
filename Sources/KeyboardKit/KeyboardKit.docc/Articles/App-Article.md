@@ -13,7 +13,7 @@ This article describes the KeyboardKit app-specific utilities.
     @PageColor(blue)
 }
 
-KeyboardKit provides utility types for the main app target of a keyboard app. It's a new namespace that for now only contains a home screen template.
+KeyboardKit provides many utilities for the main app target, that simplifies building a great keyboard app.
 
 👑 [KeyboardKit Pro][Pro] unlocks app views for the main app target. Information about Pro features can be found at the end of this article.
 
