@@ -35,7 +35,7 @@ The <doc:Getting-Started> article helps you get started with KeyboardKit.
 
 ## Supported Locales
 
-KeyboardKit supports **63** keyboard-specific ``KeyboardLocale``s:
+KeyboardKit supports **64** keyboard-specific ``KeyboardLocale``s:
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
@@ -43,7 +43,7 @@ KeyboardKit supports **63** keyboard-specific ``KeyboardLocale``s:
 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 <br />
 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 <br />
 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
-🇹🇷 🇺🇦 🇺🇿 <br />
+🇹🇷 🇺🇦 🇺🇿 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
 
 KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] unlocks localized layouts, callouts & behaviors for all supported locales, as described in the <doc:Localization-Article> article.
 
@@ -69,7 +69,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🏠 <doc:Host-Article> - KeyboardKit can identify the host application.
 * 🖼️ <doc:Images-Article> - KeyboardKit defines keyboard-specific images.
 * 🔣 <doc:Layout-Article> - KeyboardKit has customizable input sets & keyboard layouts.
-* 🌐 <doc:Localization-Article> - KeyboardKit supports **63 locales**.
+* 🌐 <doc:Localization-Article> - KeyboardKit supports **64 locales**.
 * 🗺️ <doc:Navigation-Article> - KeyboardKit lets you open urls and apps from the keyboard.
 * 👁 <doc:Previews-Article> - KeyboardKit has extension keyboard preview support.
 * ➡️ <doc:Proxy-Article> - KeyboardKit extends the text document proxy with a lot more capabilities.

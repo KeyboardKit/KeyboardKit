@@ -83,6 +83,7 @@ public extension KeyboardLocale {
         case .turkish: "🇹🇷"
         case .ukrainian: "🇺🇦"
         case .uzbek: "🇺🇿"
+        case .welsh: "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
         }
     }
 }

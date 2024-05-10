@@ -23,7 +23,8 @@ This version makes it easier to identify the host application.
 
 * `KeyboardContext` has a new `hostApplication` property.
 * `KeyboardHostApplication` is a new enum with known applications.
-* `KeyboardInputViewController` has a new `hostApplication` property. 
+* `KeyboardInputViewController` has a new `hostApplication` property.
+* `KeyboardLayout` has a new `LatinLayoutType` enum. 
 
 ### 🌐 Locale Adjustments
 
