@@ -122,6 +122,7 @@ class KeyboardLocale_DirectionTests: XCTestCase {
             .finnish: (true, false),
             .french: (true, false),
             .french_belgium: (true, false),
+            .french_canada: (true, false),
             .french_switzerland: (true, false),
             .georgian: (true, false),
             .german: (true, false),
@@ -163,7 +164,8 @@ class KeyboardLocale_DirectionTests: XCTestCase {
             .swedish: (true, false),
             .turkish: (true, false),
             .ukrainian: (true, false),
-            .uzbek: (true, false)
+            .uzbek: (true, false),
+            .welsh: (true, false)
         ]
 
         XCTAssertEqual(result.keys, expected.keys)

@@ -18,15 +18,17 @@ This version makes it easier to identify the host application.
 ### 💡 Adjustments
 
 * `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
+### 🌐 New Locales
+
+* French (Canada) - fr_CA
+* Welsh - cy 
 
 ### 👑 KeyboardKit Pro
 
 * `KeyboardContext` has a new `hostApplication` property.
 * `KeyboardHostApplication` is a new enum with known applications.
 * `KeyboardInputViewController` has a new `hostApplication` property.
-* `KeyboardLayout` has a new `LatinLayoutType` enum. 
-
-### 🌐 Locale Adjustments
+* `KeyboardLayout` has a new `LatinLayoutType` enum.
 
 * These locales now use iPad Pro layout:
     * Arabic

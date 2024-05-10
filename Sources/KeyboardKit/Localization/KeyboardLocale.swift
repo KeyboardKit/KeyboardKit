@@ -48,6 +48,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case filipino = "fil"
     case finnish = "fi"
     case french = "fr"
+    case french_canada = "fr_CA"
     case french_belgium = "fr_BE"
     case french_switzerland = "fr_CH"
     case georgian = "ka"
@@ -136,6 +137,7 @@ public extension KeyboardLocale {
         case .french: "french"
 
         case .french_belgium: "french_belgium"
+        case .french_canada: "french_canada"
         case .french_switzerland: "french_switzerland"
         case .georgian: "georgian"
         case .german: "german"
@@ -144,8 +146,8 @@ public extension KeyboardLocale {
         case .greek: "greek"
         case .hawaiian: "hawaiian"
         case .hebrew: "hebrew"
+            
         case .hungarian: "hungarian"
-
         case .icelandic: "icelandic"
         case .inariSami: "inariSami"
         case .indonesian: "indonesian"
@@ -155,8 +157,8 @@ public extension KeyboardLocale {
         case .kurdish_sorani: "kurdish_sorani"
         case .kurdish_sorani_arabic: "kurdish_sorani_arabic"
         case .kurdish_sorani_pc: "kurdish_sorani_pc"
-        case .latvian: "latvian"
             
+        case .latvian: "latvian"
         case .lithuanian: "lithuanian"
         case .macedonian: "macedonian"
         case .malay: "malay"
@@ -166,8 +168,8 @@ public extension KeyboardLocale {
         case .norwegian: "norwegian"
         case .persian: "persian"
         case .polish: "polish"
-        case .portuguese: "portuguese"
             
+        case .portuguese: "portuguese"
         case .portuguese_brazil: "portuguese_brazil"
         case .romanian: "romanian"
         case .russian: "russian"
@@ -177,8 +179,8 @@ public extension KeyboardLocale {
         case .slovak: "slovak"
         case .spanish: "spanish"
         case .swedish: "swedish"
-        case .swahili: "swahili"
             
+        case .swahili: "swahili"
         case .turkish: "turkish"
         case .ukrainian: "ukrainian"
         case .uzbek: "uzbek"

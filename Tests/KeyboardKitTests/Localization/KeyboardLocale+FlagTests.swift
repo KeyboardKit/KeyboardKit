@@ -36,6 +36,7 @@ class KeyboardLocale_FlagTests: XCTestCase {
             .finnish: "🇫🇮",
             .french: "🇫🇷",
             .french_belgium: "🇧🇪",
+            .french_canada: "🇨🇦",
             .french_switzerland: "🇨🇭",
             .georgian: "🇬🇪",
             .german: "🇩🇪",
@@ -77,7 +78,8 @@ class KeyboardLocale_FlagTests: XCTestCase {
             .swahili: "🇰🇪",
             .turkish: "🇹🇷",
             .ukrainian: "🇺🇦",
-            .uzbek: "🇺🇿"
+            .uzbek: "🇺🇿",
+            .welsh: "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
         ]
 
         XCTAssertEqual(result.keys, expected.keys)

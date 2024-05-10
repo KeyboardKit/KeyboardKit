@@ -82,15 +82,15 @@ For more information, please see the [getting started guide][Getting-Started].
 
 ## Supported Locales
 
-KeyboardKit supports [64 keyboard-specific locales][Localization]:
+KeyboardKit supports [65 keyboard-specific locales][Localization]:
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
-🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 <br />
-🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 <br />
-🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 🇵🇹 <br />
-🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 🇸🇪 <br />
-🇹🇷 🇺🇦 🇺🇿 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
+🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 <br />
+🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 <br />
+🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🇳🇴 🏳️ 🇮🇷 🇵🇱 <br />
+🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇰🇪 <br />
+🇸🇪 🇹🇷 🇺🇦 🇺🇿 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
 
 KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] provides localized layouts, callouts and behaviors for all supported locales.
 
@@ -115,7 +115,7 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 🏠 [Host][Host] - KeyboardKit can identify the host application.
 * 🖼️ [Images][Images] - KeyboardKit defines keyboard-specific images.
 * 🔣 [Layout][Layout] - KeyboardKit has customizable input sets & keyboard layouts.
-* 🌐 [Localization][Localization] - KeyboardKit supports **64 locales**.
+* 🌐 [Localization][Localization] - KeyboardKit supports **65 locales**.
 * 🗺️ [Navigation][Navigation] - KeyboardKit lets you open urls and apps from the keyboard.
 * 👁 [Previews][Previews] - KeyboardKit has extension keyboard preview support.
 * ➡️ [Proxy][Proxy] - KeyboardKit extends the text document proxy with a lot more capabilities.

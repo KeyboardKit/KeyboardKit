@@ -16,7 +16,7 @@ class KeyboardLocaleTests: XCTestCase {
     func locale(_ locale: KeyboardLocale) -> KeyboardLocale { locale }
 
     func testLocaleIdentifierIsValidForAllCases() {
-        XCTAssertEqual(KeyboardLocale.allCases.count, 64)
+        XCTAssertEqual(KeyboardLocale.allCases.count, 65)
 
         let map = locales.map { ($0, $0.locale.identifier) }
         let result = Dictionary(uniqueKeysWithValues: map)
@@ -42,6 +42,7 @@ class KeyboardLocaleTests: XCTestCase {
             .finnish: "fi",
             .french: "fr",
             .french_belgium: "fr_BE",
+            .french_canada: "fr_CA",
             .french_switzerland: "fr_CH",
             .georgian: "ka",
             .german: "de",
@@ -83,7 +84,8 @@ class KeyboardLocaleTests: XCTestCase {
             .swedish: "sv",
             .turkish: "tr",
             .ukrainian: "uk",
-            .uzbek: "uz"
+            .uzbek: "uz",
+            .welsh: "cy"
         ]
 
         XCTAssertEqual(result.keys, expected.keys)

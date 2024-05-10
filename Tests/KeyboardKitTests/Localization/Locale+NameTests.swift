@@ -56,6 +56,7 @@ class Locale_NameTests: XCTestCase {
             .finnish: "suomi",
             .french: "français",
             .french_belgium: "français (Belgique)",
+            .french_canada: "français (Canada)",
             .french_switzerland: "français (Suisse)",
             .georgian: "ქართული",
             .german: "Deutsch",
@@ -97,7 +98,9 @@ class Locale_NameTests: XCTestCase {
             .swedish: "svenska",
             .turkish: "Türkçe",
             .ukrainian: "українська",
-            .uzbek: "o‘zbek"]
+            .uzbek: "o‘zbek",
+            .welsh: "Cymraeg"
+        ]
 
         XCTAssertEqual(result.keys, expected.keys)
         result.keys.forEach {
