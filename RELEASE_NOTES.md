@@ -15,6 +15,10 @@ These release notes only cover the current major version.
 
 This version adds support for diacritics and makes it easier to identify the host application.
 
+This version also reduces memory allocation in KeyboardKit Pro, by lazily resolving certain services.
+
+KeyboardKit Pro also no longer overwrites any custom services that you may have created before registering KeyboardKit Pro, and will only adjust compatible services with your license's default configuration.
+
 ### ✨ Features
 
 * `Keyboard.Accent` is a new typealias for diacritics.
@@ -36,10 +40,15 @@ This version adds support for diacritics and makes it easier to identify the hos
 
 ### 👑 KeyboardKit Pro
 
+* `Callouts.StandardActionProvider` now allocates license services lazily, on demand.
 * `KeyboardContext` has a new `hostApplication` property.
 * `KeyboardHostApplication` is a new enum with known applications.
 * `KeyboardInputViewController` has a new `hostApplication` property.
+* `KeyboardInputViewController` `setupPro` no longer creates a new callout provider.
+* `KeyboardInputViewController` `setupPro` no longer creates a new layout provider.
 * `KeyboardLayout` has a new `LatinLayoutType` enum.
+* `KeyboardLayout.ProProvider.Czech` now uses proper diacritic keys on iPhone & iPad.
+* `KeyboardLayout.StandardProvider` now allocates license services lazily, on demand.
 
 * These locales now use iPad Pro layout:
     * Arabic

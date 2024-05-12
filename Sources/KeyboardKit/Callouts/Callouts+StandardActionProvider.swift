@@ -59,6 +59,9 @@ extension Callouts {
         /// This is used to resolve the a provider for the context.
         public var localizedProviders: KeyboardLocale.Dictionary<CalloutActionProvider>
         
+        /// This is an optional resolver that is used by Pro to lazily resolve providers.
+        public var localizedProviderResolver: ((Locale) -> CalloutActionProvider?)? = nil
+        
         
         /// Get callout actions for the provided action.
         open func calloutActions(
@@ -79,7 +82,12 @@ extension Callouts {
         open func calloutActionProvider(
             for locale: Locale
         ) -> CalloutActionProvider {
-            localizedProviders.value(for: locale) ?? baseProvider
+            if let provider = localizedProviders.value(for: locale) { return provider }
+            if let provider = localizedProviderResolver?(locale) {
+                localizedProviders.dictionary[locale.identifier] = provider
+                return provider
+            }
+            return baseProvider
         }
         
         /// Register a new localized provider.

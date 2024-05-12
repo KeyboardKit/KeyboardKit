@@ -139,12 +139,11 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for every locale in your license, and automatically injects them into the ``Callouts/StandardActionProvider`` when a valid license key is registered.
+[KeyboardKit Pro][Pro] unlocks a localized ``CalloutActionProvider`` for every locale in your license
 
-You can access all localized providers in your license, or access a specific provider for a specific ``KeyboardLocale``, like this:
+You can access any provider in your license like this:
 
 ```swift
-let providers = License.current.localizedCalloutActionProviders
 let provider = try Callouts.ProActionProvider.Swedish()
 ```
 

@@ -115,11 +115,12 @@ KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProProvider`` that can be used t
 
 ### Localized layout providers
 
-KeyboardKit Pro unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license. You can access all providers in your license, or any specific one, like this:
+KeyboardKit Pro unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license. 
+
+You can access any provider in your license like this:
 
 ```swift
-let providers = License.current.localizedKeyboardLayoutProviders
-let provider = try KeyboardLayout.ProProvider.Swedish()
+let swedish = try KeyboardLayout.ProProvider.Swedish()
 ```
 
 > Important: These providers will throw a license error if their locale is not included in the license.
