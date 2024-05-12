@@ -233,6 +233,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func deleteBackward(times: Int) {
         textDocumentProxy.deleteBackward(times: times)
     }
+    
+    open func insertDiacritic(_ diacritic: Keyboard.Diacritic) {
+        textDocumentProxy.insertDiacritic(diacritic)
+    }
 
     open func insertText(_ text: String) {
         textDocumentProxy.insertText(text)

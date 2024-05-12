@@ -25,11 +25,41 @@ KeyboardKit also has a ``SystemKeyboard`` view that mimics the native iOS keyboa
 
 ## Keyboard namespace
 
-KeyboardKit has a ``Keyboard`` namespace with a lot of keyboard-related types, such as ``Keyboard/AutocapitalizationType``, ``Keyboard/BackspaceRange``, ``Keyboard/Case``, ``Keyboard/KeyboardType``, ``Keyboard/ReturnKeyType``, etc. 
+KeyboardKit has a ``Keyboard`` namespace with a lot of keyboard-related types, such as ``Keyboard/AutocapitalizationType``, ``Keyboard/BackspaceRange``, ``Keyboard/Case``, ``Keyboard/Diacritic``, ``Keyboard/KeyboardType``, ``Keyboard/ReturnKeyType``, etc.
 
-Namespaces are used to make the surface API smaller, by nesting types together in logical groups. By typing ``Keyboard`` and `.`, Xcode will provide you with a convenient list of types that are included in this essential namespace.
+KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. By typing ``Keyboard`` and `.`, Xcode will provide you with a list of all types in this essential namespace.
 
 The same goes for other namespaces, like ``KeyboardAction``, ``KeyboardLayout``, ``Callouts``, ``Feedback``, etc. Most related types are nested in each namespace, except for protocols and important top-level types. 
+
+
+
+## Essential types
+
+Most types in the ``Keyboard`` namespace are essential to the core keyboard model, while the other namespaces extend it with more-specific features. The ``SystemKeyboard`` is also placed here, since it's a core (but optional) SDK component.
+
+Here's a list of some essential types that can be of interest when creating your own custom keyboard with KeyboardKit:
+
+* ``Keyboard/AutocapitalizationType`` - Can be used to control auto-capitalization in a keyboard.
+* ``Keyboard/BackspaceRange`` - Can be used to control how much to delete with the backspace key.
+* ``Keyboard/Button`` - A styleable button view that can be used to mimic a native keyboard key.
+* ``Keyboard/Case`` - Can be used to control the casing of an alphabetic keyboard.
+* ``Keyboard/Diacritic`` - Can be used to trigger ``KeyboardAction/diacritic(_:)`` actions to apply diacritics.
+* ``Keyboard/InputToolbarDisplayMode`` - Can be used to add an input toolbar on top of a ``SystemKeyboard``.
+* ``Keyboard/KeyboardType`` - Defines all keyboard types that are supported by the SDK.
+* ``Keyboard/NextKeyboardButton`` - Can be used to trigger the native keyboard switcher.
+* ``Keyboard/ReturnKeyType`` - Defines all return (primary) key types that are supported by the SDK.
+* ``Keyboard/Services`` - Is used to nest all services that are used by a KeyboardKit keyboard.
+* ``Keyboard/SpaceContent`` - Can be used to render the standard space button content.
+* ``Keyboard/StandardBehavior`` - The standard keyboard behavior, which defines how a keyboard behaves.
+* ``Keyboard/State`` - Is used to nest all observable state that is used by a KeyboardKit keyboard.
+* ``Keyboard/Toolbar`` - Can be used to render any content as a keyboard toolbar.
+
+There are also more essential types that are not wrapped in the ``Keyboard`` namespace:
+
+* ``KeyboardBehavior`` - Can be used to model the core behavior of a KeyboardKit keyboard.
+* ``KeyboardContext`` - Provides core observable state for a KeyboardKit keyboard.
+* ``KeyboardInputViewController`` - The most central type in KeyboardKit, used to add more features to the controller.
+* ``SystemKeyboard`` - A view that can be used to mimic the native iOS keyboard. Can be customized to great extent.
 
 
 

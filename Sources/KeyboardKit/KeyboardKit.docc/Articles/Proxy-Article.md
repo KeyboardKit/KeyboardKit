@@ -13,7 +13,7 @@ This article describes the KeyboardKit proxy engine and its utilities.
     @PageColor(blue)
 }
 
-iOS keyboard extensions use a **UITextDocumentProxy** to integrate with the currently selected text field. The proxy lets you insert and delete text, get the currently selected text, move the input cursor, etc.
+iOS keyboards use a `UITextDocumentProxy` to integrate with the currently selected text field. The proxy lets you insert and delete text, get the currently selected text, move the input cursor, etc.
 
 The native APIs are however quite limited, and make it hard to get detailed text information and to perform many standard operations. For instance, you have to write code to get the current word or sentence, understand where the cursor is, etc.
 
@@ -31,7 +31,40 @@ KeyboardKit has a ``Proxy`` namespace with proxy-related types. It currently onl
 
 ## Extensions
 
-KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional capabilities, such as the ability to get more content from the document, analyze words, sentences & quotations, end the current sentence, etc. Tap the link for more information.
+KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional capabilities, such as the ability to get more content from the document, analyze words, sentences & quotations, end the current sentence, etc.
+
+Here's a list of extensions that are automatically applied to the text document proxy when you import KeyboardKit:
+
+* ``UIKit/UITextDocumentProxy/currentWord``
+* ``UIKit/UITextDocumentProxy/currentWordPreCursorPart``
+* ``UIKit/UITextDocumentProxy/currentWordPostCursorPart``
+* ``UIKit/UITextDocumentProxy/deleteBackward(range:)``
+* ``UIKit/UITextDocumentProxy/deleteBackward(times:)``
+* ``UIKit/UITextDocumentProxy/documentContext``
+* ``UIKit/UITextDocumentProxy/endSentence()``
+* ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)``
+* ``UIKit/UITextDocumentProxy/hasAutocompleteInsertedSpace``
+* ``UIKit/UITextDocumentProxy/hasAutocompleteRemovedSpace``
+* ``UIKit/UITextDocumentProxy/hasCurrentWord``
+* ``UIKit/UITextDocumentProxy/hasUnclosedAlternateQuotationBeforeInput(for:)``
+* ``UIKit/UITextDocumentProxy/hasUnclosedQuotationBeforeInput(for:)``
+* ``UIKit/UITextDocumentProxy/insertAutocompleteSuggestion(_:tryInsertSpace:)``
+* ``UIKit/UITextDocumentProxy/insertDiacritic(_:)``
+* ``UIKit/UITextDocumentProxy/isCursorAtNewSentence``
+* ``UIKit/UITextDocumentProxy/isCursorAtNewSentenceWithTrailingWhitespace``
+* ``UIKit/UITextDocumentProxy/isCursorAtNewWord``
+* ``UIKit/UITextDocumentProxy/isCursorAtTheEndOfTheCurrentWord``
+* ``UIKit/UITextDocumentProxy/isReadingFullDocumentContext``
+* ``UIKit/UITextDocumentProxy/preferredQuotationReplacement(whenInserting:for:)``
+* ``UIKit/UITextDocumentProxy/replaceCurrentWord(with:)``
+* ``UIKit/UITextDocumentProxy/sentenceBeforeInput``
+* ``UIKit/UITextDocumentProxy/sentenceDelimiters``
+* ``UIKit/UITextDocumentProxy/tryInsertSpaceAfterAutocomplete()``
+* ``UIKit/UITextDocumentProxy/tryRemoveAutocompleteInsertedSpace()``
+* ``UIKit/UITextDocumentProxy/tryReinsertAutocompleteRemovedSpace()``
+* ``UIKit/UITextDocumentProxy/wordBeforeInput``
+
+See the ``UIKit/UITextDocumentProxy`` documentation for more information and a complete list of extension.
 
 
 

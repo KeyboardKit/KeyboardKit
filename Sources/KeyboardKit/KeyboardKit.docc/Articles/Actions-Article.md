@@ -26,6 +26,7 @@ The ``KeyboardAction`` enum defines many keyboard-specific actions, for instance
 * ``KeyboardAction/character(_:)`` - triggers a character text insertion.
 * ``KeyboardAction/backspace`` - triggers a backspace deletion.
 * ``KeyboardAction/dismissKeyboard`` - dismisses the keyboard.
+* ``KeyboardAction/diacritic(_:)`` - trigger a diacritic text insertion.
 * ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type.
 * ``KeyboardAction/nextKeyboard`` - triggers the system keyboard switcher.
 * ``KeyboardAction/nextLocale`` - triggers the locale switcher action.

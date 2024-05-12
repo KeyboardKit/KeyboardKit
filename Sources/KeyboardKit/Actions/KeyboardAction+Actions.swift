@@ -69,6 +69,7 @@ public extension KeyboardAction {
         switch self {
         case .character(let char): { $0?.insertText(char) }
         case .characterMargin(let char): { $0?.insertText(char) }
+        case .diacritic(let dia): { $0?.insertDiacritic(dia) }
         case .dictation: { $0?.performDictation() }
         case .dismissKeyboard: { $0?.dismissKeyboard() }
         case .emoji(let emoji): { $0?.insertText(emoji.char) }

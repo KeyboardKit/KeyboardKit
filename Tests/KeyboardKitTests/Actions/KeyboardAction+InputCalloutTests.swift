@@ -14,7 +14,9 @@ final class KeyboardAction_InputCalloutTests: XCTestCase {
     func testInputCalloutTextIsOnlySpecifiedForCharacterActions() {
         let char = KeyboardAction.character("foo")
         let emoji = KeyboardAction.emoji(Emoji("😀"))
-        let others = KeyboardAction.testActions.filter { !$0.isCharacterAction && !$0.isEmojiAction }
+        let others = KeyboardAction.testActions.filter {
+            $0 != .character("") && !$0.isEmojiAction
+        }
         XCTAssertEqual(char.inputCalloutText, "foo")
         XCTAssertEqual(emoji.inputCalloutText, "😀")
         others.forEach {

@@ -21,20 +21,23 @@ import Foundation
 /// trigger actions with a ``KeyboardActionHandler``.
 ///
 /// The documentation for each action describes the standard
-/// behavior, if any. Types that without a standard behavior
-/// require a custom ``KeyboardActionHandler`` to be handled.
+/// behavior when using a ``KeyboardAction/StandardHandler``,
+/// with a ``Keyboard/StandardBehavior``.
+///
+/// Types that don't define any standard behaviors require a
+/// custom ``KeyboardActionHandler`` to be handled.
 public enum KeyboardAction: Codable, Equatable {
 
     /// Deletes backwards when pressed, and repeats until released.
     case backspace
     
-    /// Switch to a caps-lock keyboard.
+    /// Switch to a caps-lock keyboard when pressed.
     case capsLock
     
     /// Inserts a text character when released.
     case character(String)
     
-    /// Inserts a text character when released, but is rendered as empty space.
+    /// Inserts a text character when released, rendered as empty space.
     case characterMargin(String)
     
     /// Represents a command (⌘) key.
@@ -43,10 +46,13 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents a control (⌃) key.
     case control
 
-    /// A custom action that you can handle in any way you want.
+    /// A custom action that you can handle in any custom way.
     case custom(named: String)
     
-    /// Represents a dictation key, which are not included by the standard layouts.
+    /// A diacritic action, that will replace any previous match when release.
+    case diacritic(_ diacritic: Keyboard.Diacritic)
+    
+    /// Represents a dictation key.
     case dictation
     
     /// Dismisses the keyboard when released.
@@ -73,28 +79,28 @@ public enum KeyboardAction: Codable, Equatable {
     /// Moves the input cursor forward one step when released.
     case moveCursorForward
     
-    /// Represents a keyboard switcher (🌐) button and triggers the keyboard switch action when long pressed and released.
+    /// A system keyboard switcher that triggers on release and long press.
     case nextKeyboard
     
-    /// Triggers the locale switcher action when long pressed and released.
+    /// Triggers a locale switcher action on release and menu on long press.
     case nextLocale
     
-    /// A placeholder action that does nothing and should not be rendered.
+    /// A placeholder action that does nothing and should be rendered as empty space.
     case none
     
     /// Represents an option (⌥) key.
     case option
     
-    /// Represents a primary return button, e.g. `return`, `go`, `search` etc.
+    /// A primary key, e.g. `return`, `search` etc. that inserts a new line on release.
     case primary(Keyboard.ReturnKeyType)
     
-    /// A custom action that can be used to e.g. show a settings screen.
+    /// Represents a settings (⚙️) key.
     case settings
     
-    /// Changes the keyboard type to `.alphabetic(.uppercased)` when released and `.capslocked` when double tapped.
+    /// Changes keyboard to `.alphabetic(.uppercased)` when released and `.capslocked` when double tapped.
     case shift(currentCasing: Keyboard.Case)
     
-    /// Inserts a space when released and moves the cursor when long pressed.
+    /// Inserts a space when released and can perform custom actions when long pressed.
     case space
     
     /// Can be used to refer to a system image (SF Symbol).
@@ -115,8 +121,22 @@ public enum KeyboardAction: Codable, Equatable {
 
 public extension KeyboardAction {
     
-    /// Inserts an emoji when released.
-    static func emoji(_ char: String) -> KeyboardAction {
+    /// An `.emoji(_:)` shorthand that inserts an emoji when
+    /// released.
+    ///
+    /// > Note: This typealias is meant to make it easier to
+    /// find the ``KeyboardAction/diacritic(_:)`` action.
+    static func accent(
+        _ accent: Keyboard.Accent
+    ) -> KeyboardAction {
+        .diacritic(accent)
+    }
+    
+    /// An `.emoji(_:)` shorthand that inserts an emoji when
+    /// released.
+    static func emoji(
+        _ char: String
+    ) -> KeyboardAction {
         .emoji(.init(char))
     }
 }
@@ -158,6 +178,7 @@ public extension KeyboardAction {
         switch self {
         case .character: true
         case .characterMargin: true
+        case .diacritic: true
         case .emoji: true
         case .image: true
         case .space: true
@@ -253,6 +274,7 @@ public extension KeyboardAction {
         case .command: "Command"
         case .control: "Control"
         case .custom(let name): name
+        case .diacritic(let val): val.char
         case .dictation: "Dictation"
         case .dismissKeyboard: "Dismiss Keyboard"
         case .emoji(let emoji): "Emoji - \(emoji)"

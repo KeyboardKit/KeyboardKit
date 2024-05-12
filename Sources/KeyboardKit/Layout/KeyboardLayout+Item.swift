@@ -53,6 +53,15 @@ public extension KeyboardLayout {
 
 public extension KeyboardLayout.Item {
     
+    /// Create a copy by replacing the item keyboard action.
+    func copy(
+        withAction action: KeyboardAction
+    ) -> Self {
+        var result = self
+        result.action = action
+        return result
+    }
+    
     /// Get an item width in points, given a total row width
     /// (most often the screen width) and an input width.
     func width(
@@ -85,10 +94,10 @@ public extension KeyboardLayout.Item {
 
 public extension KeyboardLayout {
     
-    /// This is a typealias for a layout item array.
+    /// This is a typealias for an array of layout items.
     typealias ItemRow = [Item]
 
-    /// This is a typealias for a layout item row array.
+    /// This is a typealias for an array of layout item rows.
     typealias ItemRows = [ItemRow]
     
     /// A size with point-based height and declarative width.
@@ -131,6 +140,22 @@ public extension KeyboardLayout {
 }
 
 public extension KeyboardLayout {
+    
+    /// Get the layout item with a certain action, if any.
+    func firstCharacterItem() -> Item? {
+        itemRows.compactMap { row in
+            row.first { $0.action.isCharacterAction }
+        }.first
+    }
+    
+    /// Get the layout item with a certain action, if any.
+    func firstItem(
+        with action: KeyboardAction
+    ) -> Item? {
+        itemRows.compactMap { row in
+            row.first { $0.action == action }
+        }.first
+    }
     
     /// Get the item row, if any at a certain row index.
     func itemRow(at rowIndex: Int) -> ItemRow? {

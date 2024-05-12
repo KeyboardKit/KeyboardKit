@@ -10,7 +10,11 @@ import Foundation
 
 public extension Keyboard {
  
-    /// This enum defines various autocapitalization types.
+    /// This enum defines keyboard auto-capitalization types.
+    ///
+    /// The ``KeyboardContext/autocapitalizationTypeOverride``
+    /// property can be set to override the default behavior
+    /// defined by the currently active text-field.
     enum AutocapitalizationType: String, CaseIterable {
 
         // All characters should be auto-capitalized.

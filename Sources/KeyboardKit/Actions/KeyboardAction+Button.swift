@@ -27,6 +27,7 @@ public extension KeyboardAction {
     ) -> String? {
         switch self {
         case .character(let char): standardButtonText(for: char)
+        case .diacritic(let dia): dia.char
         case .emoji(let emoji): emoji.char
         case .keyboardType(let type): type.standardButtonText(for: context)
         case .nextLocale: context.locale.languageCode?.uppercased()

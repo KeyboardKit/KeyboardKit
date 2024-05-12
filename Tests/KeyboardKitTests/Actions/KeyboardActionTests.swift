@@ -23,12 +23,22 @@ final class KeyboardActionTests: XCTestCase {
         expected = []
         unexpected = []
     }
-
+    
     func testIsCharacterActionIsTrueForCharacterActions() {
         actions.forEach { action in
             let result = action.isCharacterAction
             switch action {
             case .character: XCTAssertTrue(result)
+            default: XCTAssertFalse(result)
+            }
+        }
+    }
+    
+    func testIsEmojiActionIsTrueForEmojiActions() {
+        actions.forEach { action in
+            let result = action.isEmojiAction
+            switch action {
+            case .emoji: XCTAssertTrue(result)
             default: XCTAssertFalse(result)
             }
         }
@@ -50,7 +60,7 @@ final class KeyboardActionTests: XCTestCase {
         }
     }
 
-    func testIsPrimaryActionIsTrueForCharacterActions() {
+    func testIsPrimaryActionIsTrueForPrimaryActions() {
         actions.forEach { action in
             let result = action.isPrimaryAction
             switch action {

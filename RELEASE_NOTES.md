@@ -13,11 +13,22 @@ These release notes only cover the current major version.
 
 ## 8.6
 
-This version makes it easier to identify the host application.
+This version adds support for diacritics and makes it easier to identify the host application.
+
+### ✨ Features
+
+* `Keyboard.Accent` is a new typealias for diacritics.
+* `Keyboard.Diacritic` is a new type that lets you model diacritics.
+* `KeyboardAction.accent` is a new typealias for the `.diacritic` action.
+* `KeyboardAction.diacritic` is a new action that lets you insert diacritics.
+* `KeyboardLayout` and its `Item` has much new functionality.
+* `KeyboardController` has a new `insertDiacritic(_:)` function.
+* `UITextDocumentProxy` has a new `insertDiacritic(_:)` function.
 
 ### 💡 Adjustments
 
 * `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
+
 ### 🌐 New Locales
 
 * French (Canada) - fr_CA
