@@ -105,6 +105,41 @@ class KeyboardLocaleTests: XCTestCase {
         let result = Dictionary(uniqueKeysWithValues: map)
         XCTAssertTrue(result.allSatisfy { $0.value == true })
     }
+    
+    
+    func testCanResolveLocaleWithFuzzyName() {
+        let locale = KeyboardLocale(fuzzyName: "Swedish")
+        XCTAssertEqual(locale?.localeIdentifier, "sv")
+    }
+    
+    func testCanResolveLocaleWithMatchingLocale() {
+        let matching = Locale(identifier: "sv")
+        let locale = KeyboardLocale(locale: matching)
+        XCTAssertEqual(locale?.localeIdentifier, "sv")
+    }
+    
+    func testCanResolveLocaleWithFuzzyLocale() {
+        let matching = Locale(identifier: "sv_SE")
+        let locale = KeyboardLocale(locale: matching)
+        XCTAssertEqual(locale?.localeIdentifier, "sv")
+    }
+    
+    
+    func testKeyboardLocaleCanMatchLocaleExactly() {
+        let exact = Locale(identifier: "sv")
+        let fuzzy = Locale(identifier: "sv_SE")
+        let locale = KeyboardLocale.swedish
+        XCTAssertTrue(locale.matches(exact))
+        XCTAssertFalse(locale.matches(fuzzy))
+    }
+    
+    func testKeyboardLocaleCanMatchLocaleLanguage() {
+        let exact = Locale(identifier: "sv")
+        let fuzzy = Locale(identifier: "sv_SE")
+        let locale = KeyboardLocale.swedish
+        XCTAssertTrue(locale.matchesLanguage(in: exact))
+        XCTAssertTrue(locale.matchesLanguage(in: fuzzy))
+    }
 
 
     func testInsertingFirstReturnsValidArray() {

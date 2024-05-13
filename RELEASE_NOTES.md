@@ -25,8 +25,9 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 * `Keyboard.Diacritic` is a new type that lets you model diacritics.
 * `KeyboardAction.accent` is a new typealias for the `.diacritic` action.
 * `KeyboardAction.diacritic` is a new action that lets you insert diacritics.
-* `KeyboardLayout` and its `Item` has much new functionality.
 * `KeyboardController` has a new `insertDiacritic(_:)` function.
+* `KeyboardLayout` and its `Item` has much new functionality.
+* `KeyboardLocale` has new locale-based initializers and matching functions.
 * `UITextDocumentProxy` has a new `insertDiacritic(_:)` function.
 
 ### 💡 Adjustments

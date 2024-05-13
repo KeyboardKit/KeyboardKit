@@ -27,6 +27,22 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
         self = match
     }
     
+    /// Try to get a matching keyboard locale for a locale.
+    ///
+    /// If no exact match was found, the first locale with a
+    /// matching language code is returned.
+    public init?(
+        locale: Locale
+    ) {
+        let exact = KeyboardLocale.all.first { $0.matches(locale) }
+        let fuzzy = KeyboardLocale.all.first { $0.matchesLanguage(in: locale) }
+        if let match = (exact ?? fuzzy) {
+            self = match
+        } else {
+            return nil
+        }
+    }
+    
     case english = "en"
     
     case albanian = "sq"
@@ -187,10 +203,15 @@ public extension KeyboardLocale {
         case .welsh: "welsh"
         }
     }
-
-    /// Whether or not the locale matches a certain locale.
+    
+    /// Whether the locale matches a certain locale.
     func matches(_ locale: Locale) -> Bool {
         self.locale == locale
+    }
+    
+    /// Whether the locale language matches a certain locale.
+    func matchesLanguage(in locale: Locale) -> Bool {
+        self.locale.languageCode == locale.languageCode
     }
 }
 
