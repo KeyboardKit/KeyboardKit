@@ -312,7 +312,6 @@ extension KeyboardStyle {
         open func buttonFontWeight(
             for action: KeyboardAction
         ) -> KeyboardFont.FontWeight? {
-            if isGregorianAlpha { return .regular }
             switch action {
             case .backspace: return .light
             case .character(let char): return char.isLowercasedWithUppercaseVariant ? .light : nil
