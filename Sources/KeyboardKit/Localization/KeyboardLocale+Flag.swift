@@ -80,8 +80,10 @@ public extension KeyboardLocale {
         case .slovak: "🇸🇰"
         case .spanish: "🇪🇸"
             
+        case .spanish_latinAmerica: "🇦🇷"
+        case .spanish_mexico: "🇲🇽"
         case .swedish: "🇸🇪"
-        case .swahili: "🇰🇪"            
+        case .swahili: "🇰🇪"
         case .turkish: "🇹🇷"
         case .ukrainian: "🇺🇦"
         case .uzbek: "🇺🇿"

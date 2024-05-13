@@ -95,6 +95,8 @@ class Locale_NameTests: XCTestCase {
             .slovenian: "slovenščina",
             .slovak: "slovenčina",
             .spanish: "español",
+            .spanish_latinAmerica: "español (Latinoamérica)",
+            .spanish_mexico: "español (México)",
             .swahili: "Kiswahili",
             .swedish: "svenska",
             .turkish: "Türkçe",

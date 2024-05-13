@@ -75,6 +75,8 @@ class KeyboardLocale_FlagTests: XCTestCase {
             .slovenian: "🇸🇮",
             .slovak: "🇸🇰",
             .spanish: "🇪🇸",
+            .spanish_latinAmerica: "🇦🇷",
+            .spanish_mexico: "🇲🇽",
             .swedish: "🇸🇪",
             .swahili: "🇰🇪",
             .turkish: "🇹🇷",

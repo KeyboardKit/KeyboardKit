@@ -9,17 +9,17 @@
 "locale" = "es";
 
 "capsLock" = "";
-"continue" = "continue";
+"continue" = "continuar";
 "done" = "aceptar";
 "emergencyCall" = "Emergency Call";
 "go" = "ir";
-"join" = "join";
-"next" = "next";
+"join" = "conectar";
+"next" = "siguiente";
 "ok" = "OK";
 "return" = "intro";
-"route" = "route";
+"route" = "ruta";
 "search" = "buscar";
-"send" = "send";
+"send" = "enviar";
 "space" = "espacio";
 "switcherAlphabetic" = "ABC";
 "switcherNumeric" = "123";

@@ -37,7 +37,9 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 ### 🌐 New Locales
 
 * French (Canada) - fr_CA
-* Norwegian - Nynorsk - nn
+* Norwegian (Nynorsk) - nn
+* Spanish (Latin America) - es_419
+* Spanish (Mexico) - es_MX
 * Welsh - cy 
 
 ### 👑 KeyboardKit Pro

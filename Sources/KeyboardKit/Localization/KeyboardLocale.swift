@@ -104,6 +104,8 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     case slovak = "sk"
     case slovenian = "sl"
     case spanish = "es"
+    case spanish_latinAmerica = "es_419"
+    case spanish_mexico = "es_MX"
     case swedish = "sv"
     case swahili = "sw"
     case turkish = "tr"
@@ -197,6 +199,8 @@ public extension KeyboardLocale {
         case .slovak: "slovak"
         case .spanish: "spanish"
             
+        case .spanish_latinAmerica: "spanish_latinAmerica"
+        case .spanish_mexico: "spanish_mexico"
         case .swedish: "swedish"
         case .swahili: "swahili"
         case .turkish: "turkish"

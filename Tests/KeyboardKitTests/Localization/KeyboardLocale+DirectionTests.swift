@@ -161,6 +161,8 @@ class KeyboardLocale_DirectionTests: XCTestCase {
             .slovenian: (true, false),
             .slovak: (true, false),
             .spanish: (true, false),
+            .spanish_latinAmerica: (true, false),
+            .spanish_mexico: (true, false),
             .swahili: (true, false),
             .swedish: (true, false),
             .turkish: (true, false),
