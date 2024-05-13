@@ -32,7 +32,7 @@ public enum KeyboardLocale: String, CaseIterable, Codable, Identifiable {
     /// If no exact match was found, the first locale with a
     /// matching language code is returned.
     public init?(
-        locale: Locale
+        for locale: Locale
     ) {
         let exact = KeyboardLocale.all.first { $0.matches(locale) }
         let fuzzy = KeyboardLocale.all.first { $0.matchesLanguage(in: locale) }

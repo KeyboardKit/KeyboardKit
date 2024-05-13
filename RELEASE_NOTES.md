@@ -77,6 +77,7 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 ### 🐛 Bug fixes
 
 * `KeyboardAction.tab` now uses an LTR/RTL supporting icon.
+* `KeyboardContext` now matches `keyboardLocale` on language code as well, to work around system bug.
 
 
 

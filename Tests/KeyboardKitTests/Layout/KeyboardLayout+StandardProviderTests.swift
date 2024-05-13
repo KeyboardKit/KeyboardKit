@@ -21,12 +21,17 @@ class KeyboardLayout_StandardProviderTests: XCTestCase {
             localizedProviders: [TestProvider()]
         )
     }
+    
+    override func tearDown() {
+        KeyboardLayout.StandardProvider.localizedProviderResolver = nil
+    }
 
     func testUsesLocalizedProviderIfOneMatchesContext() {
-        context.locale = .init(identifier: "sv-SE")
+        context.locale = .init(identifier: "sv")
         let layout = provider.keyboardLayout(for: context)
         let firstItem = layout.itemRows[0].first
         let result = provider.keyboardLayoutProvider(for: context)
+        XCTAssertNotNil(result)
         XCTAssertTrue(result is TestProvider)
         XCTAssertEqual(firstItem?.action, .character("a"))
     }
@@ -47,11 +52,24 @@ class KeyboardLayout_StandardProviderTests: XCTestCase {
         provider.registerLocalizedProvider(new)
         XCTAssertIdentical(provider.localizedProviders.value(for: locale.locale), new)
     }
+    
+    
+    func testCanResolveLayoutProviderWithStaticResolver() {
+        KeyboardLayout.StandardProvider.localizedProviderResolver = { locale in
+            if locale == .albanian { return TestProvider(localeKey: "apa") }
+            return nil
+        }
+        context.setLocale(KeyboardLocale.albanian)
+        XCTAssertNil(provider.localizedProviders.value(for: .albanian))
+        let result = provider.keyboardLayoutProvider(for: context)
+        XCTAssertEqual((result as? TestProvider)?.localeKey, "apa")
+        XCTAssertTrue(provider.localizedProviders.value(for: .albanian) is TestProvider)
+    }
 }
 
 private class TestProvider: KeyboardLayout.BaseProvider, LocalizedService {
 
-    init(localeKey: String = "sv-SE") {
+    init(localeKey: String = "sv") {
         self.localeKey = localeKey
         super.init(
             alphabeticInputSet: .init(rows: [.init(chars: "abcdefghij")]),

@@ -213,7 +213,9 @@ public extension KeyboardContext {
 
     /// Map the current ``locale`` to a ``KeyboardLocale``.
     var keyboardLocale: KeyboardLocale? {
-        KeyboardLocale.allCases.first { $0.localeIdentifier == locale.identifier }
+        let match = KeyboardLocale.allCases.first { $0.matches(locale) }
+        let fuzzy = KeyboardLocale.allCases.first { $0.matchesLanguage(in: locale) }
+        return match ?? fuzzy
     }
 }
 

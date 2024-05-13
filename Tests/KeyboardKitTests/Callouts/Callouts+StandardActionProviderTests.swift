@@ -19,6 +19,10 @@ class Callouts_StandardActionProviderTests: XCTestCase {
         provider = .init(keyboardContext: context)
     }
     
+    override func tearDown() {
+        Callouts.StandardActionProvider.localizedProviderResolver = nil
+    }
+    
     func testLocalizedProvidersHaveNoDefaultProviders() {
         let providers = provider.localizedProviders.dictionary
         XCTAssertEqual(providers.keys.count, 0)
@@ -69,6 +73,19 @@ class Callouts_StandardActionProviderTests: XCTestCase {
         XCTAssertNil(provider.localizedProviders.value(for: locale.locale))
         provider.registerLocalizedProvider(new)
         XCTAssertIdentical(provider.localizedProviders.value(for: locale.locale), new)
+    }
+    
+    
+    func testCanResolveLayoutProviderWithStaticResolver() {
+        Callouts.StandardActionProvider.localizedProviderResolver = { locale in
+            if locale == .albanian { return TestProvider(localeKey: "apa") }
+            return nil
+        }
+        context.setLocale(KeyboardLocale.albanian)
+        XCTAssertNil(provider.localizedProviders.value(for: .albanian))
+        let result = provider.calloutActionProvider(for: context)
+        XCTAssertEqual((result as? TestProvider)?.localeKey, "apa")
+        XCTAssertTrue(provider.localizedProviders.value(for: .albanian) is TestProvider)
     }
 }
 

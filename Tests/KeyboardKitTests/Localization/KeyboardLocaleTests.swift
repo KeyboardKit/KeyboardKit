@@ -114,13 +114,13 @@ class KeyboardLocaleTests: XCTestCase {
     
     func testCanResolveLocaleWithMatchingLocale() {
         let matching = Locale(identifier: "sv")
-        let locale = KeyboardLocale(locale: matching)
+        let locale = KeyboardLocale(for: matching)
         XCTAssertEqual(locale?.localeIdentifier, "sv")
     }
     
     func testCanResolveLocaleWithFuzzyLocale() {
         let matching = Locale(identifier: "sv_SE")
-        let locale = KeyboardLocale(locale: matching)
+        let locale = KeyboardLocale(for: matching)
         XCTAssertEqual(locale?.localeIdentifier, "sv")
     }
     

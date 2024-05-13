@@ -54,7 +54,7 @@ extension KeyboardLayout {
         public var localizedProviders: KeyboardLocale.Dictionary<KeyboardLayoutProvider>
         
         /// This is an optional resolver that is used by Pro to lazily resolve providers.
-        public var localizedProviderResolver: ((Locale) -> KeyboardLayoutProvider?)? = nil
+        public static var localizedProviderResolver: ((KeyboardLocale) -> KeyboardLayoutProvider?)? = nil
         
         
         /// The keyboard layout to use for a certain context.
@@ -69,10 +69,10 @@ extension KeyboardLayout {
         open func keyboardLayoutProvider(
             for context: KeyboardContext
         ) -> KeyboardLayoutProvider {
-            let locale = context.locale
+            let locale = context.keyboardLocale ?? .english
             if let provider = localizedProviders.value(for: locale) { return provider }
-            if let provider = localizedProviderResolver?(locale) {
-                localizedProviders.dictionary[locale.identifier] = provider
+            if let provider = Self.localizedProviderResolver?(locale) {
+                localizedProviders.dictionary[locale.localeIdentifier] = provider
                 return provider
             }
             return baseProvider
