@@ -65,10 +65,11 @@ public extension KeyboardLocale {
         case .maltese: "🇲🇹"
         case .mongolian: "🇲🇳"
         case .norwegian: "🇳🇴"
+        case .norwegian_nynorsk: "🇳🇴"
         case .northernSami: "🏳️"
         case .persian: "🇮🇷"
-        case .polish: "🇵🇱"
             
+        case .polish: "🇵🇱"
         case .portuguese: "🇵🇹"
         case .portuguese_brazil: "🇧🇷"
         case .romanian: "🇷🇴"
@@ -78,8 +79,8 @@ public extension KeyboardLocale {
         case .slovenian: "🇸🇮"
         case .slovak: "🇸🇰"
         case .spanish: "🇪🇸"
+            
         case .swedish: "🇸🇪"
-
         case .swahili: "🇰🇪"            
         case .turkish: "🇹🇷"
         case .ukrainian: "🇺🇦"

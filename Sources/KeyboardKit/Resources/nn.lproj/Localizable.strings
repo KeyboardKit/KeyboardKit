@@ -2,25 +2,25 @@
  Localizable.strings
  KeyboardKit
  
- Created by Daniel Saidi on 2021-02-15.
- Copyright © 2021-2024 Daniel Saidi. All rights reserved.
+ Created by Daniel Saidi on 2024-05-13.
+ Copyright © 2024 Daniel Saidi. All rights reserved.
  */
 
-"locale" = "ro";
+"locale" = "nn";
 
 "capsLock" = "";
-"continue" = "continue";
-"done" = "OK";
+"continue" = "fortsett";
+"done" = "ferdig";
 "emergencyCall" = "Emergency Call";
-"go" = "Acces";
-"join" = "join";
-"next" = "next";
+"go" = "gå";
+"join" = "kople til";
+"next" = "neste";
 "ok" = "OK";
-"return" = "↵";
-"route" = "route";
-"search" = "Căutare";
+"return" = "retur";
+"route" = "rute";
+"search" = "søk";
 "send" = "send";
-"space" = "Spațiu";
+"space" = "mellomrom";
 "switcherAlphabetic" = "ABC";
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";

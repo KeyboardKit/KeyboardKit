@@ -63,6 +63,7 @@ class KeyboardLocale_FlagTests: XCTestCase {
             .mongolian: "🇲🇳",
             .northernSami: "🏳️",
             .norwegian: "🇳🇴",
+            .norwegian_nynorsk: "🇳🇴",
             .persian: "🇮🇷",
             .polish: "🇵🇱",
             .portuguese: "🇵🇹",

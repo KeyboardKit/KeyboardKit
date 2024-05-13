@@ -37,6 +37,7 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 ### 🌐 New Locales
 
 * French (Canada) - fr_CA
+* Norwegian - Nynorsk - nn
 * Welsh - cy 
 
 ### 👑 KeyboardKit Pro
@@ -51,6 +52,7 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 * `KeyboardLayout.ProProvider.Czech` now uses proper diacritic keys on iPhone & iPad.
 * `KeyboardLayout.StandardProvider` now allocates license services lazily, on demand.
 * `KeyboardLocale.georgian` no longer uses regular font weight in alphabetic keyboard.
+* `KeyboardLocale.norwegian` has adjusted callout actions.
 
 * These locales now use iPad Pro layout:
     * Arabic

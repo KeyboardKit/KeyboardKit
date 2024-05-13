@@ -3,21 +3,21 @@
  KeyboardKit
  
  Created by Daniel Saidi on 2021-03-20.
- Copyright © 2021 Daniel Saidi. All rights reserved.
+ Copyright © 2021-2024 Daniel Saidi. All rights reserved.
  */
 
 "locale" = "nb";
 
 "capsLock" = "";
-"continue" = "continue";
-"done" = "klar";
+"continue" = "fortsett";
+"done" = "ferdig";
 "emergencyCall" = "Emergency Call";
 "go" = "gå";
-"join" = "join";
-"next" = "next";
+"join" = "koble til";
+"next" = "neste";
 "ok" = "OK";
 "return" = "retur";
-"route" = "route";
+"route" = "rute";
 "search" = "søk";
 "send" = "send";
 "space" = "mellomrom";

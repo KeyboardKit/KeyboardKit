@@ -83,6 +83,7 @@ class Locale_NameTests: XCTestCase {
             .mongolian: "монгол",
             .northernSami: "davvisámegiella",
             .norwegian: "norsk bokmål",
+            .norwegian_nynorsk: "norsk nynorsk",
             .persian: "فارسی",
             .polish: "polski",
             .portuguese: "português (Portugal)",

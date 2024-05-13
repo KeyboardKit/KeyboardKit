@@ -149,6 +149,7 @@ class KeyboardLocale_DirectionTests: XCTestCase {
             .mongolian: (true, false),
             .northernSami: (true, false),
             .norwegian: (true, false),
+            .norwegian_nynorsk: (true, false),
             .persian: (false, true),
             .polish: (true, false),
             .portuguese: (true, false),

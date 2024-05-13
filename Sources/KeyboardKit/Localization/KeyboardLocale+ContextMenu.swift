@@ -10,18 +10,17 @@ import SwiftUI
 
 public extension KeyboardLocale {
     
-    /**
-     This view modifier can be used to apply keyboard locale
-     context menus to any view.
-     
-     The easiest way to apply this view modifier is to apply 
-     the `.keyboardLocaleContextMenu(for:)` view modifier to
-     any view. The menu will sort and localize locales using
-     the ``KeyboardContext/localePresentationLocale``.
-     
-     Note that this context menu will only be applied if the
-     platform supports it and the context has many locales.
-     */
+    /// This view modifier can apply keyboard locale context
+    /// menus to any view.
+    ///
+    /// The easiest way to apply this modifier is to use the
+    /// ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)``
+    /// modifier, which the ``SystemKeyboard`` automatically
+    /// applies for the ``KeyboardAction/nextLocale`` action,
+    /// if the keyboard context has many locales.
+    ///
+    /// The menu sorts and localizes the listed locales with
+    /// the ``KeyboardContext/localePresentationLocale``.
     struct ContextMenu<MenuItem: View>: ViewModifier {
         
         /// Create a menu that lists locales as `Text` views
