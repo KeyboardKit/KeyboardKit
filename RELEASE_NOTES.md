@@ -15,9 +15,11 @@ These release notes only cover the current major version.
 
 This version adds support for diacritics and makes it easier to identify the host application.
 
-This version also reduces memory allocation in KeyboardKit Pro, by lazily resolving certain services.
+This version also changes the `KeyboardInputViewController` to only use the pre-cursor part of the current word for autocomplete, which is how the native keyboard behaves. 
 
-KeyboardKit Pro also no longer overwrites any custom services that you may have created before registering KeyboardKit Pro, and will only adjust compatible services with your license's default configuration.
+This version also makes KeyboardKit Pro no longer overwrite custom services that are set before registering a license, which means that you can now apply custom services at any time.
+
+This version also reduces memory allocation in KeyboardKit Pro, by lazily resolving localized callout action providers and layout providers.
 
 ### ✨ Features
 
@@ -34,6 +36,7 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 
 * `KeyboardLocale.inariSami` has been renamed to `sami_inari`.
 * `KeyboardLocale.northernSami` has been renamed to `sami_northern`.
+* `KeyboardInputViewController` `autocompleteText` now uses the pre-cursor part of the current word, instead of the full word.
 * `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
 
 ### 🌐 New Locales

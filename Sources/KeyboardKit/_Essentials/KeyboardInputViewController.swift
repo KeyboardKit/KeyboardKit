@@ -283,8 +283,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - Autocomplete
 
     /// The text to use when performing autocomplete.
+    ///
+    /// ``UIKit/UITextDocumentProxy/currentWordPreCursorPart``
+    /// is used by default. You can override the function to
+    /// change which text to use.
     open var autocompleteText: String? {
-        textDocumentProxy.currentWord
+        textDocumentProxy.currentWordPreCursorPart
     }
 
     /// Whether or not autocomple is enabled.
