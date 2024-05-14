@@ -32,6 +32,8 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 
 ### 💡 Adjustments
 
+* `KeyboardLocale.inariSami` has been renamed to `sami_inari`.
+* `KeyboardLocale.northernSami` has been renamed to `sami_northern`.
 * `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
 
 ### 🌐 New Locales

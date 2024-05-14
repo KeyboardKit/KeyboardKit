@@ -49,7 +49,6 @@ public extension KeyboardLocale {
             
         case .hungarian: "🇭🇺"
         case .icelandic: "🇮🇸"
-        case .inariSami: "🏳️"
         case .indonesian: "🇮🇩"
         case .irish: "🇮🇪"
         case .italian: "🇮🇹"
@@ -57,8 +56,8 @@ public extension KeyboardLocale {
         case .kurdish_sorani: "🇹🇯"
         case .kurdish_sorani_arabic: "🇹🇯"
         case .kurdish_sorani_pc: "🇹🇯"
-            
         case .latvian: "🇱🇻"
+            
         case .lithuanian: "🇱🇹"
         case .macedonian: "🇲🇰"
         case .malay: "🇲🇾"
@@ -66,14 +65,15 @@ public extension KeyboardLocale {
         case .mongolian: "🇲🇳"
         case .norwegian: "🇳🇴"
         case .norwegian_nynorsk: "🇳🇴"
-        case .northernSami: "🏳️"
         case .persian: "🇮🇷"
-            
         case .polish: "🇵🇱"
         case .portuguese: "🇵🇹"
+            
         case .portuguese_brazil: "🇧🇷"
         case .romanian: "🇷🇴"
         case .russian: "🇷🇺"
+        case .sami_inari: "🏳️"
+        case .sami_northern: "🏳️"
         case .serbian: "🇷🇸"
         case .serbian_latin: "🇷🇸"
         case .slovenian: "🇸🇮"

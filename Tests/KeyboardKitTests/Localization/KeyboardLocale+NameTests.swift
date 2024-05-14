@@ -1,5 +1,5 @@
 //
-//  Locale+NameTests.swift
+//  KeyboardLocale+NameTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class Locale_NameTests: XCTestCase {
+class KeyboardLocale_NameTests: XCTestCase {
 
     func locale(_ localeId: String) -> Locale {
         Locale(identifier: localeId)
@@ -67,7 +67,6 @@ class Locale_NameTests: XCTestCase {
             .hebrew: "עברית (ישראל)",
             .hungarian: "magyar",
             .icelandic: "íslenska",
-            .inariSami: "anarâškielâ",
             .indonesian: "Indonesia",
             .irish: "Gaeilge (Éire)",
             .italian: "italiano",
@@ -81,7 +80,6 @@ class Locale_NameTests: XCTestCase {
             .malay: "Bahasa Melayu",
             .maltese: "Malti",
             .mongolian: "монгол",
-            .northernSami: "davvisámegiella",
             .norwegian: "norsk bokmål",
             .norwegian_nynorsk: "norsk nynorsk",
             .persian: "فارسی",
@@ -90,6 +88,8 @@ class Locale_NameTests: XCTestCase {
             .portuguese_brazil: "português (Brasil)",
             .romanian: "română",
             .russian: "русский",
+            .sami_inari: "anarâškielâ",
+            .sami_northern: "davvisámegiella",
             .serbian: "српски",
             .serbian_latin: "srpski (latinica)",
             .slovenian: "slovenščina",
