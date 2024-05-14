@@ -47,6 +47,9 @@ KeyboardKit Pro also no longer overwrites any custom services that you may have 
 ### 👑 KeyboardKit Pro
 
 * `Callouts.StandardActionProvider` now allocates license services lazily, on demand.
+* `Keyboard.ToggleToolbar` can now use an external toggle binding.
+* `Keyboard.ToggleToolbar` no longer relies on a standard `AnyView`.
+* `Keyboard.ToggleToolbarToggle` is a new, customizable toolbar toggle.
 * `KeyboardContext` has a new `hostApplication` property.
 * `KeyboardHostApplication` is a new enum with known applications.
 * `KeyboardInputViewController` has a new `hostApplication` property.
