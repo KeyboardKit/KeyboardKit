@@ -758,8 +758,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.5.6;
+				branch = "8.6-rc1";
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

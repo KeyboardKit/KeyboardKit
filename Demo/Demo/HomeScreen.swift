@@ -94,9 +94,9 @@ extension HomeScreen {
             Toggle(isOn: $isAppearanceDark) {
                 Text("Dark appearance")
             }
-            Toggle(isOn: $isNumberPad) {
-                Text("Number Pad")
-            }
+            // Toggle(isOn: $isNumberPad) {
+            //     Text("Number Pad")
+            // }
         }
     }
 }
