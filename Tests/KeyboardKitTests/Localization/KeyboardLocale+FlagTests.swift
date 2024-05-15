@@ -92,13 +92,54 @@ class KeyboardLocale_FlagTests: XCTestCase {
     }
 
     @available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
-    func testFlags() {
-        let doPrint = false
+    func testFlagDifferences() throws {
+        try XCTSkipIf(true)
         KeyboardLocale.allCases.forEach { locale in
-            let isEqual = locale.flag == locale.locale.flag
-            if !isEqual && doPrint {
-                print("*** \(locale.locale.localizedName): \(locale.flag) vs \(locale.locale.flag ?? "-")")
+            XCTAssertEqual(
+                locale.flag,
+                locale.locale.flag,
+                locale.locale.localizedName
+            )
+        }
+    }
+    
+    func testPrintFlagGrid() throws {
+        var count = 0
+        var text = ""
+        print("")
+        printLine("Flag Grid")
+        KeyboardLocale.allCases.forEach { locale in
+            count += 1
+            text += "\(locale.flag) "
+            if count == 10 {
+                printLine(text)
+                count = 0
+                text = ""
             }
         }
+        if !text.isEmpty {
+            printLine(text)
+        }
+    }
+    
+    func testPrintFlagNameList() throws {
+        print("")
+        printLine("Flag Names")
+        KeyboardLocale.allCases.forEach { locale in
+            printLine("\(locale.flag) \(locale.locale.localizedName(in: KeyboardLocale.english.locale))")
+        }
+    }
+    
+    func testPrintFlagText() throws {
+        print("")
+        printLine("Flag List")
+        let text = KeyboardLocale.allCases
+            .map { $0.flag }
+            .joined(separator: " ")
+        printLine(text)
+    }
+    
+    func printLine(_ string: String) {
+        print("*** \(string) <br />")
     }
 }

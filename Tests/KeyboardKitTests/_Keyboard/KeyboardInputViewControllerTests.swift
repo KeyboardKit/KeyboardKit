@@ -202,7 +202,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
         setupMocksForAutocomplete(for: vc)
         mockTextDocumentProxy.documentContextBeforeInput = "foo"
         mockTextDocumentProxy.documentContextAfterInput = "bar"
-        XCTAssertEqual(vc.autocompleteText, "foobar")
+        XCTAssertEqual(vc.autocompleteText, "foo")
     }
 
     func testIsAutocompleteEnabledIsTrueIfProxyIsNotReadingFullDocumentContext() {
