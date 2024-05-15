@@ -115,9 +115,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// The demo provider adds a "next locale" button if
         /// needed, as well as a dictation button.
-        services.layoutProvider = DemoLayoutProvider(
-            localizedProviders: license.localizedKeyboardLayoutProviders
-        )
+        services.layoutProvider = DemoLayoutProvider()
         
         /// 💡 Setup a theme-based style provider.
         ///
