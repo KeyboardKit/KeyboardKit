@@ -13,13 +13,13 @@ These release notes only cover the current major version.
 
 ## 8.6
 
-This version adds support for diacritics and makes it easier to identify the host application.
+This version adds support for 5 new locales, support for diacritics, and makes it easier to identify the host application. It also improves many of the localized system keyboards that are provided by Pro.
 
-This version also changes the `KeyboardInputViewController` to only use the pre-cursor part of the current word for autocomplete, which is how the native keyboard behaves. 
+This version also changes the default autocomplete behavior, by making `KeyboardInputViewController` only use the pre-cursor part of the current word for autocomplete, which is how the native keyboard behaves. 
 
-This version also makes KeyboardKit Pro no longer overwrite custom services that are set before registering a license, which means that you can now apply custom services at any time.
+This version also makes KeyboardKit Pro no longer overwrite custom services that are set before registering a license. This means that you can now apply custom services at any time, without it being overwritten. 
 
-This version also reduces memory allocation in KeyboardKit Pro, by lazily resolving localized callout action providers and layout providers.
+This version also reduces load times and memory usage in KeyboardKit Pro, by lazily resolving localized callout action providers and layout providers, and makes all supported locales use the iPad Pro layout.
 
 ### ✨ Features
 
