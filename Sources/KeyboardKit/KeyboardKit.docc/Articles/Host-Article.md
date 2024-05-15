@@ -31,12 +31,9 @@ KeyboardKit provides ways to easily identify the host application, which may be 
 
 [KeyboardKit Pro][Pro] unlocks more ways to identify the current host application.
 
-KeyboardKit Pro unlocks a ``KeyboardHostApplication`` enum that defines a bunch of commonly used applications. This enum will be expanded over time, so please reach out if you're missing a certain app.
+KeyboardKit Pro Gold unlocks a ``KeyboardHostApplication`` enum that defines many commonly used applications. This enum will be expanded over time, so please reach out if you're missing a certain app.
 
 KeyboardKit Pro also extends ``KeyboardInputViewController`` and ``KeyboardContext`` with a `hostApplication` property, that tries to map the raw bundle identifier to a ``KeyboardHostApplication`` value.
-
-Any failure to map the identifier will return an unknown case with the raw identifier.
-
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

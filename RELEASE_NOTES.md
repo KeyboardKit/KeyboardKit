@@ -34,8 +34,6 @@ This version also reduces memory allocation in KeyboardKit Pro, by lazily resolv
 
 ### 💡 Adjustments
 
-* `KeyboardLocale.inariSami` has been renamed to `sami_inari`.
-* `KeyboardLocale.northernSami` has been renamed to `sami_northern`.
 * `KeyboardInputViewController` `autocompleteText` now uses the pre-cursor part of the current word, instead of the full word.
 * `KeyboardInputViewController` `hostBundleId` has been renamed to `hostApplicationBundleId`.
 
