@@ -17,9 +17,7 @@ class UITextDocumentProxy_DiacriticsTests: XCTestCase {
     
     let diacritic = Keyboard.Diacritic(
         char: "*",
-        replacements: [
-            "r" : "r!"
-        ]
+        replacements: ["r": "r!"]
     )
 
     override func setUp() {

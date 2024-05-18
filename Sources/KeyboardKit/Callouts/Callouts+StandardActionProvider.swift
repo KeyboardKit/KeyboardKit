@@ -60,7 +60,7 @@ extension Callouts {
         public var localizedProviders: KeyboardLocale.Dictionary<CalloutActionProvider>
         
         /// This is an optional resolver that is used by Pro to lazily resolve providers.
-        public static var localizedProviderResolver: ((KeyboardLocale) -> CalloutActionProvider?)? = nil
+        public static var localizedProviderResolver: ((KeyboardLocale) -> CalloutActionProvider?)?
         
         
         /// Get callout actions for the provided action.

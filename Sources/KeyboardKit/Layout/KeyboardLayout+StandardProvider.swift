@@ -54,7 +54,7 @@ extension KeyboardLayout {
         public var localizedProviders: KeyboardLocale.Dictionary<KeyboardLayoutProvider>
         
         /// This is an optional resolver that is used by Pro to lazily resolve providers.
-        public static var localizedProviderResolver: ((KeyboardLocale) -> KeyboardLayoutProvider?)? = nil
+        public static var localizedProviderResolver: ((KeyboardLocale) -> KeyboardLayoutProvider?)?
         
         
         /// The keyboard layout to use for a certain context.
