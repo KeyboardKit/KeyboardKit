@@ -104,6 +104,7 @@ class KeyboardLocale_FlagTests: XCTestCase {
     }
     
     func testPrintFlagGrid() throws {
+        try XCTSkipIf(true)
         var count = 0
         var text = ""
         print("")
@@ -123,6 +124,7 @@ class KeyboardLocale_FlagTests: XCTestCase {
     }
     
     func testPrintFlagNameList() throws {
+        try XCTSkipIf(true)
         print("")
         printLine("Flag Names")
         KeyboardLocale.allCases.forEach { locale in
@@ -131,11 +133,22 @@ class KeyboardLocale_FlagTests: XCTestCase {
     }
     
     func testPrintFlagText() throws {
+        try XCTSkipIf(true)
         print("")
         printLine("Flag List")
         let text = KeyboardLocale.allCases
             .map { $0.flag }
             .joined(separator: " ")
+        printLine(text)
+    }
+    
+    func testPrintNameText() throws {
+        try XCTSkipIf(true)
+        print("")
+        printLine("Name List")
+        let text = KeyboardLocale.allCases
+            .map { $0.locale.localizedName(in: KeyboardLocale.english.locale) }
+            .joined(separator: ", ")
         printLine(text)
     }
     

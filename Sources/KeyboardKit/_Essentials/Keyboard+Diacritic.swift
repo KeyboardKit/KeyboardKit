@@ -14,8 +14,9 @@ public extension Keyboard {
     /// keyboard and locale.
     ///
     /// The ``KeyboardAction/StandardHandler`` will handle a
-    /// ``KeyboardAction/di``
-    /// that lets a keyboard automatically replace any previous
+    /// ``KeyboardAction/diacritic(_:)`` action by replacing
+    /// the last character that matches any of the diacritic
+    /// matches, with the specified replacement.
     struct Diacritic: Codable, Equatable {
         
         /// Create a custom diacritic value.
