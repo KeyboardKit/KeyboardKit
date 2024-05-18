@@ -161,6 +161,28 @@ public extension Keyboard.Background {
     }
 }
 
+public extension Keyboard.Background {
+    
+    /// The background color to use to an accesory view that
+    /// is docked just above this background.
+    var topAccessoryBackgroundColor: some View {
+        ZStack {
+            backgroundColor
+            backgroundGradient?.first
+        }
+    }
+    
+    /// The background color to use to an accesory view that
+    /// is docked just below this background.
+    var bottomAccessoryBackgroundColor: some View {
+        ZStack {
+            backgroundColor
+            backgroundGradient?.last
+        }
+    }
+}
+
+
 private extension View {
     
     @ViewBuilder
