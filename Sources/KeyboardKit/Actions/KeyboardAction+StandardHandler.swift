@@ -39,6 +39,7 @@ extension KeyboardAction {
                 keyboardContext: controller.state.keyboardContext,
                 keyboardBehavior: controller.services.keyboardBehavior,
                 autocompleteContext: controller.state.autocompleteContext,
+                autocompleteProvider: controller.services.autocompleteProvider,
                 feedbackContext: controller.state.feedbackContext,
                 spaceDragGestureHandler: controller.services.spaceDragGestureHandler
             )
@@ -53,6 +54,7 @@ extension KeyboardAction {
         ///   - keyboardContext: The keyboard context to use.
         ///   - keyboardBehavior: The keyboard behavior to use.
         ///   - autocompleteContext: The autocomplete context to use.
+        ///   - autocompleteProvider: The autocomplete provider to use.
         ///   - feedbackContext: The feedback configuration to use.
         ///   - spaceDragGestureHandler: The space gesture handler to use.
         public init(
@@ -60,6 +62,7 @@ extension KeyboardAction {
             keyboardContext: KeyboardContext,
             keyboardBehavior: KeyboardBehavior,
             autocompleteContext: AutocompleteContext,
+            autocompleteProvider: AutocompleteProvider? = nil,
             feedbackContext: FeedbackContext,
             spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
         ) {
@@ -68,6 +71,7 @@ extension KeyboardAction {
             self.keyboardContext = keyboardContext
             self.keyboardBehavior = keyboardBehavior
             self.autocompleteContext = autocompleteContext
+            self.autocompleteProvider = autocompleteProvider
             self.feedbackContext = feedbackContext
             self.spaceDragGestureHandler = spaceDragGestureHandler
         }
@@ -81,6 +85,9 @@ extension KeyboardAction {
         
         /// The autocomplete context to use.
         public var autocompleteContext: AutocompleteContext
+        
+        /// The autocomplete provider to use.
+        public var autocompleteProvider: AutocompleteProvider?
         
         /// The keyboard behavior to use.
         public var keyboardBehavior: KeyboardBehavior
@@ -132,6 +139,9 @@ extension KeyboardAction {
         open func handle(
             _ suggestion: Autocomplete.Suggestion
         ) {
+            if suggestion.isUnknown, autocompleteContext.isAutoLearnEnabled {
+                autocompleteProvider?.learn(suggestion)
+            }
             keyboardContext.insertAutocompleteSuggestion(suggestion)
             handle(.release, on: .character(""))
         }

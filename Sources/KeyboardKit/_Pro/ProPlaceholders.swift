@@ -131,6 +131,13 @@ public extension KeyboardApp {
 /// 👑 This is unlocked by KeyboardKit Pro.
 public enum KeyboardHostApplication {}
 
+/// 👑 This is unlocked by KeyboardKit Pro.
+public protocol KeyboardHostApplicationProvider {
+
+    var hostApplicationBundleId: String? { get }
+    var hostApplication: KeyboardHostApplication? { get }
+}
+
 public extension KeyboardLayout {
     
     /// 👑 This is unlocked by KeyboardKit Pro.

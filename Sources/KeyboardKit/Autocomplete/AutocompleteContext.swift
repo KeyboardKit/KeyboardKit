@@ -31,6 +31,11 @@ public class AutocompleteContext: ObservableObject {
     /// Whether or not autocomplete is enabled.
     @Published
     public var isAutocompleteEnabled = true
+    
+    /// Whether or not unknown suggestions are automatically
+    /// learned when they're applied.
+    @Published
+    public var isAutoLearnEnabled = true
 
     /// Whether or not suggestions are being fetched.
     @Published

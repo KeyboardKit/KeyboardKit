@@ -15,13 +15,18 @@ These release notes only cover the current major version.
 
 This version improves the local autocomplete provider.
 
-The `Autocomplete.ToolbarItem` component no longer adds quotations around unknown suggestions, since it's rather the first suggestion that should have them. So this responsibility has been moved to the autocomplete provider. The toolbar item will just display what it receives.  
+First, the local autocomplete provider returns proper unknown statuses for the leading suggestions, which by default show the currently typed text. The standard action handler then automatically asks the provider to learn unknown suggestions that are applied, if the autocomplete context has the new auto-learn property set to true, which is on by default.
+
+This way to auto-learn applied suggestions is a pretty big update, that will solve many frustrations involved with local autocomplete. Please provide any feedback that you may have, in case these adjustments don't behave properly or as expected.    
+
+Another change worth knowing, is that `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility has been moved to the autocomplete provider. The item view will just show the item titles it receives.  
 
 ### ✨ Features
 
 * `Autocomplete.Suggestion` has new functions.
-* `AutocompleteProvider` has a new `ignoreWords` function.
-* `AutocompleteProvider` has a new `Autocomplete.Suggestion`-based functions.
+* `AutocompleteContext` has a new `isAutoLearnEnabled` property.
+* `AutocompleteProvider` has new `ignoreWords(_:)` and suggestion functions.
+* `KeyboardAction.StandardProvider` can now automatically learn unknown suggestions.
 * `UserDefaults` has a new `.keyboardSettings` value that can be used to persist data.
 
 ### 💡 Adjustments
@@ -31,6 +36,10 @@ The `Autocomplete.ToolbarItem` component no longer adds quotations around unknow
 ### 👑 KeyboardKit Pro
 
 * `Autocomplete.LocalProvider` will now return proper unknown state for suggestions.
+* `Dictation.ProKeyboardService` uses an action handler to open app and navigate back.
+* `KeyboardHostApplication` now implements `Identifiable` and has a new `name` property.
+* `KeyboardHostApplication` now defines even more applications and has a `url` property.
+* `KeyboardHostApplicationProvider` is a new protocol that is implemented by some types.
 
 
 

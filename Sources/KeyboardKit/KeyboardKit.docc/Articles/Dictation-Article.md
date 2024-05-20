@@ -40,7 +40,7 @@ Dictation works differently in apps, where microphone access is available, and i
 
 ### How to perform dictation in an app
 
-You can use a ``DictationService`` to perform dictation where microphone access is available.
+You can use a ``DictationService`` to perform dictation where microphone access is available, e.g. a KeyboardKit Pro ``Dictation/ProService``. 
 
 To start dictation in an app, just call ``DictationService/startDictation(with:)`` and observe the ``KeyboardContext`` to see if dictation is started, to get and show the dictated text, to detect any errors, etc.
 
@@ -51,13 +51,13 @@ Since dictation may stop at any time, e.g. due to silence, a ``DictationService`
 
 ### How to perform dictation in a keyboard extension
 
-You can use a ``KeyboardDictationService`` to perform dictation in a keyboard extension, where the microphone is unavailable.
+You can use a ``KeyboardDictationService`` to perform dictation in a keyboard extension, where the microphone is unavailable, e.g. a KeyboardKit Pro ``Dictation/ProKeyboardService``.
 
 Keyboard-based dictation must open the app to start dictation or open an audio bridge, then write the dictated text to shared storage and return to the keyboard to process the result. 
 
-This can be tricky to set up, but KeyboardKit Pro lets you configure this in a few, simple steps.
+This can be tricky to set up, but KeyboardKit Pro lets you configure this in a few simple steps, as described further down in this article.
 
-> Important: iOS 17 caused a way to return to the keyboard from the main app to stop working. There's another way to achieve this, but Apple rejects any apps that use it. Until a workaround is found, you must ask your users to tap the back arrow to return to the keyboard.
+> Important: iOS 17 caused a way to return to the keyboard from the main app to stop working. KeyboardKit replaced this with a new approach that however was also rejected due to the APIs being deprecated. Until a native way to handle back nacigation is found, the ``Dictation/ProKeyboardService`` will try to use the ``DictationContext`` ``KeyboardHostApplicationProvider/hostApplication`` property to identify and open the previous application. If this fails, your UI should tell the user how to return to the keyboard, by swiping back.
 
 
 
@@ -356,9 +356,11 @@ You can override the controller ``KeyboardInputViewController/viewWillHandleDict
 
 Once dictation is done, the app should return to the keyboard to let it handle the dictated text.
 
-KeyboardKit Pro used to have a `PreviousAppNavigator` to automatically navigate back to the keyboard, but this stopped working in iOS 17. A new implementation that worked great was then rejected by Apple, due to using private APIs.
+KeyboardKit Pro used to automatically navigate back to the keyboard, but this stopped working in iOS 17. A new implementation that worked great was then rejected by Apple, due to using private APIs.
 
-KeyboardKit can't add this code, since it would cause *all* apps to be rejected. To add a custom back navigation implementation, you can inherit ``Dictation/ProKeyboardService`` and override ``Dictation/ProKeyboardService/tryToReturnToKeyboard()``:
+For now, KeyboardKit Pro tries to work around this limitation by using the ``DictationContext``'s ``KeyboardHostApplicationProvider/hostApplication`` property to identify and open the previoysly active app. Since this approach only supports the most popular apps, it may fail in many cases.
+
+If the back navigation fails, your dictation screen should inform the user how to return to the keyboard, which is done by swiping back. You can also override ``Dictation/ProKeyboardService/tryToReturnToKeyboard()`` to customize the back navigation, using a custom dictation service:
 
 ```swift
 class CustomDictationService: Dictation.ProKeyboardService {
