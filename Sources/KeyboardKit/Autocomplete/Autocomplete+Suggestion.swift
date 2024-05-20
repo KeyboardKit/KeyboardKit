@@ -15,12 +15,19 @@ public extension Autocomplete {
      an ``AutocompleteProvider``.
      
      Autocomplete suggestions can be standard suggestions or
-     autocorrecting ones that are automatically applies when
-     a user taps space.
+     autocorrecting ones that are automatically applied when
+     a user taps a word delimiter.
      
      Autocorrecting suggestions are typically presented with
-     a white background, while ``isUnknown`` suggestions are
-     wrapped in locale-specific quotation marks.
+     a white background, but this can be customized with the
+     ``Autocomplete/ToolbarItemStyle``, when you present the
+     suggestion in an ``AutocompleteToolbar``.
+     
+     The currently typed word is natively shown as a leading
+     suggestion, wrapped in a locale-specific quotation. The
+     ``Autocomplete/Suggestion/isUnknown`` is `true` when it
+     wasn't included in any data sources that is used by the
+     autocomplete engine.
      */
     struct Suggestion {
         

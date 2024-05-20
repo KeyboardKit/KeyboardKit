@@ -11,6 +11,17 @@ These release notes only cover the current major version.
 
 
 
+## 8.7
+
+This version improves the local autocomplete provider.
+
+### ✨ Features
+
+* `AutocompleteProvider` has a new `ignoreWords` function.
+* `AutocompleteProvider` has a new `Autocomplete.Suggestion`-based functions.
+
+
+
 ## 8.6
 
 This version adds support for 5 new locales, support for diacritics, and makes it easier to identify the host application. It also improves many of the localized system keyboards that are provided by Pro.
