@@ -71,18 +71,11 @@ public extension Autocomplete {
 private extension Autocomplete.ToolbarItem {
     
     var title: some View {
-        Text(titleText)
+        Text(suggestion.title)
             .lineLimit(1)
             .font(style.titleFont.font)
             .foregroundColor(style.titleColor)
             .frame(maxWidth: .infinity)
-    }
-    
-    var titleText: String {
-        if !suggestion.isUnknown { return suggestion.title }
-        let beginDelimiter = locale.quotationBeginDelimiter ?? "\""
-        let endDelimiter = locale.quotationEndDelimiter ?? "\""
-        return "\(beginDelimiter)\(suggestion.title)\(endDelimiter)"
     }
     
     @ViewBuilder

@@ -39,18 +39,11 @@ public extension Autocomplete {
         }
         
         public var body: some View {
-            Text(displayTitle)
+            Text(suggestion.title)
                 .lineLimit(1)
                 .font(style.item.titleFont.font)
                 .foregroundColor(style.item.titleColor)
                 .frame(maxWidth: .infinity)
-        }
-        
-        var displayTitle: String {
-            if !suggestion.isUnknown { return suggestion.title }
-            let beginDelimiter = locale.quotationBeginDelimiter ?? "\""
-            let endDelimiter = locale.quotationEndDelimiter ?? "\""
-            return "\(beginDelimiter)\(suggestion.title)\(endDelimiter)"
         }
     }
 }

@@ -26,8 +26,7 @@ public extension Autocomplete {
      The currently typed word is natively shown as a leading
      suggestion, wrapped in a locale-specific quotation. The
      ``Autocomplete/Suggestion/isUnknown`` is `true` when it
-     wasn't included in any data sources that is used by the
-     autocomplete engine.
+     wasn't found by the autocomplete engine.
      */
     struct Suggestion {
         
