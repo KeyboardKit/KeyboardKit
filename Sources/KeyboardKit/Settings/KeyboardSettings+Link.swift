@@ -87,3 +87,11 @@ public extension KeyboardSettings.Link where Content == Label<Text, Image> {
         }
     }
 }
+
+#Preview {
+
+    VStack {
+        KeyboardSettings.Link()
+        KeyboardSettings.Link(title: "Foo bar", url: .init(string: "https://danielsaidi.com"))
+    }
+}

@@ -19,6 +19,7 @@ This version improves the local autocomplete provider.
 
 * `AutocompleteProvider` has a new `ignoreWords` function.
 * `AutocompleteProvider` has a new `Autocomplete.Suggestion`-based functions.
+* `UserDefaults` has a new `.keyboardSettings` value that can be used to persist data.
 
 
 
