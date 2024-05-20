@@ -75,3 +75,10 @@ public extension Autocomplete {
         public var additionalInfo: [String: Any]
     }
 }
+
+public extension Collection where Element == Autocomplete.Suggestion {
+    
+    func contains(_ word: String) -> Bool {
+        contains { $0.text.caseInsensitiveCompare(word) == .orderedSame }
+    }
+}
