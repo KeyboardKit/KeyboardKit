@@ -8,7 +8,7 @@
 
 public extension Keyboard.ReturnKeyType {
 
-    /// Whether or not this type prefers autocomplete.
+    @available(*, deprecated, message: "Use Keyboard.KeyboardType.prefersAutocomplete instead")
     var prefersAutocomplete: Bool {
         switch self {
         case .return: true
@@ -33,7 +33,7 @@ import UIKit
 
 public extension UIReturnKeyType {
 
-    /// Whether or not this type prefers autocomplete.
+    @available(*, deprecated, message: "Use Keyboard.KeyboardType.prefersAutocomplete instead")
     var prefersAutocomplete: Bool {
         keyboardReturnKeyType.prefersAutocomplete
     }

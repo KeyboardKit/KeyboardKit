@@ -115,6 +115,8 @@ public class KeyboardContext: ObservableObject {
     public var needsInputModeSwitchKey = false
 
     /// Whether or not the context prefers autocomplete.
+    ///
+    /// > Note: This will become a computed property in 9.0.
     @Published
     public var prefersAutocomplete = true
 
@@ -332,9 +334,9 @@ extension KeyboardContext {
             needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         }
         
-        let keyboardPrefersAutocomplete = textDocumentProxy.keyboardType?.prefersAutocomplete ?? true
-        let returnKeyPrefersAutocomplete = textDocumentProxy.returnKeyType?.prefersAutocomplete ?? true
-        let newPrefersAutocomplete = keyboardType.prefersAutocomplete && keyboardPrefersAutocomplete && returnKeyPrefersAutocomplete
+        let sdkAutocomplete = keyboardType.prefersAutocomplete
+        let rawAutocomplete = textDocumentProxy.keyboardType?.prefersAutocomplete ?? true
+        let newPrefersAutocomplete = sdkAutocomplete && rawAutocomplete
         if prefersAutocomplete != newPrefersAutocomplete {
             prefersAutocomplete = newPrefersAutocomplete
         }

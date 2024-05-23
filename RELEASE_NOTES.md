@@ -13,13 +13,15 @@ These release notes only cover the current major version.
 
 ## 8.7
 
-This version improves the local autocomplete provider.
+This version improves the overall autocomplete behavior.
 
-First, the local autocomplete provider returns proper unknown statuses for the leading suggestions, which by default show the currently typed text. The standard action handler then automatically asks the provider to learn unknown suggestions that are applied, if the autocomplete context has the new auto-learn property set to true, which is on by default.
+The local autocomplete provider now returns proper unknown statuses for the leading suggestion, which by default shows the current text in quotations. If an unknown suggestion is applied, the standard action handler will then automatically asks the provider to learn it, if the new `isAutoLearnEnabled` property is `true`.
 
-This way to auto-learn applied suggestions is a pretty big update, that will solve many frustrations involved with local autocomplete. Please provide any feedback that you may have, in case these adjustments don't behave properly or as expected.    
+This way to auto-learn applied suggestions will hopefully solve many frustrations involved with local autocomplete. Please provide any feedback that you may have, in case these adjustments don't behave properly or as expected.
 
-Another change worth knowing, is that `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility has been moved to the autocomplete provider. The item view will just show the item titles it receives.  
+Another autocomplete update is that the `KeyboardInputViewController` will check more autocomplete configurations before performing autocomplete. This means that the keyboard context's `prefersAutocomplete` will also be used as decision. 
+
+Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no longer adds quotations around unknown suggestions. That responsibility has been moved to the autocomplete provider. The view will just show the titles it receives.  
 
 ### ✨ Features
 
@@ -32,6 +34,8 @@ Another change worth knowing, is that `Autocomplete.ToolbarItem` no longer adds 
 ### 💡 Adjustments
 
 * `Autocomplete.ToolbarItem` no longer adds quotations to unknown suggestions.
+* `KeyboardContex` `prefersAutocomplete` is now computed and no longer synced.
+* `KeyboardInputViewController` checks the keyboard context `prefersAutocomplete` before performing autocomplete.
  
 ### 👑 KeyboardKit Pro
 
@@ -40,6 +44,10 @@ Another change worth knowing, is that `Autocomplete.ToolbarItem` no longer adds 
 * `KeyboardHostApplication` now implements `Identifiable` and has a new `name` property.
 * `KeyboardHostApplication` now defines even more applications and has a `url` property.
 * `KeyboardHostApplicationProvider` is a new protocol that is implemented by some types.
+
+### 🗑️ Deprecations
+
+* `Keyboard.ReturnKeyType` `prefersAutocomplete` has been deprecated, since the keyboard type should determine this.
 
 
 

@@ -292,8 +292,16 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     /// Whether or not autocomple is enabled.
+    ///
+    /// This property will by default base its value on both
+    /// ``AutocompleteContext/isAutocompleteEnabled`` and on
+    /// ``KeyboardContext/prefersAutocomplete``, where these
+    /// must both be true for this to be true.
     open var isAutocompleteEnabled: Bool {
-        guard state.autocompleteContext.isAutocompleteEnabled else { return false }
+        guard
+            state.keyboardContext.prefersAutocomplete,
+            state.autocompleteContext.isAutocompleteEnabled
+        else { return false }
         return !textDocumentProxy.isReadingFullDocumentContext
     }
 
