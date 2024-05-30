@@ -329,7 +329,7 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) {
             guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
-            keyboardContext.endSentence()
+            keyboardContext.endSentence(symbolic: keyboardBehavior.endSentenceSymbolic)
         }
         
         /// Try to perform autocomplete after a gesture.
