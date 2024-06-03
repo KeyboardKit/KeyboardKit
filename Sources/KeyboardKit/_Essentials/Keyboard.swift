@@ -10,5 +10,6 @@ import Foundation
 
 /// This namespace contains essential keyboard-related types.
 ///
-/// The namespace doesn't contain protocols or context types.
+/// The namespace doesn't contain protocols, nor any context
+/// or settings types that should be top-level types.
 public struct Keyboard {}
