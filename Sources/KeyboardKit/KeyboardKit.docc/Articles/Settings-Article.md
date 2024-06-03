@@ -13,11 +13,37 @@
 
 This article describes the KeyboardKit settings engine.
 
-Great keyboard apps use the main app to show the current state of the keyboard, if the keyboard is enabled in System Settings, if Full Access is enabled, etc.
+Great keyboard apps use the main app to show the current state of the keyboard, if the keyboard is enabled in System Settings, if Full Access is enabled, etc. 
 
-To provide a great user experience, apps can also navigate to System Settings to enable the keyboard extension, enable full access etc.
+Apps and keyboards can also navigate to System Settings to enable the keyboard extension, enable full access etc. Reading settings from the system is however strictly limited by iOS, due to privacy reasons.
 
 KeyboardKit provides tools to make this easier, such as ``Foundation/URL`` extensions and custom navigation links.
+
+
+
+## Keyboard settings types
+
+KeyboardKit has an observable ``KeyboardSettings`` class that defines common, observable settings properties, as well as ways to define which ``KeyboardSettings/store`` and ``KeyboardSettings/storeKeyPrefix`` to use when persisting settings within the library.
+
+Besides ``KeyboardSettings``, other namespaces have their own settings types, such as ``AutocompleteSettings``, ``DictationSettings``, ``FeedbackSettings``, etc.
+
+The various context classes has functions that can be used to sync the context with various settings types. This is used by KeyboardKit to automatically sync the non-persistent contexts with the persistent settings, when a keyboard extension launches. 
+
+
+
+## How to sync settings between the app and the keyboard
+
+You can use the ``KeyboardSettings/registerKeyboardSettingsStore(_:keyPrefix:)`` function to register a custom settings store, for instance to sync user settings between the main app and the keyboard using an App Group:
+
+```swift
+KeyboardSettings.registerStore(.init(suiteName: "group.com.myapp"))
+```
+
+You can access this shared store with the static ``KeyboardSettings/store`` property, or use the computed user defaults ``Foundation/UserDefaults/keyboardSettings`` property.
+
+The app will always write data to an App Group, in a way that makes it instantly available to the keyboard. The keyboard must however have Full Access for changes to be immediately synced to the app. When Full Access is disabled, your keyboard will sync less reliably.
+
+> Important: Since `@AppStorage` properties will use the store instance that is available when they are first called, you must register a custom store as soon as possible, before setting up KeyboardKit or reading these values. 
 
 
 
@@ -31,30 +57,19 @@ if let url = URL.keyboardSettings {
 }
 ```
 
-You can also use the convenient, configurable ``KeyboardSettings/Link``:
+You can also use the convenient ``Keyboard/SettingsLink`` link to link to System Settings. It will default use the ``Foundation/URL/keyboardSettings`` URL with an English text, but you can customize both the text and the entire content view:
 
-```swift
-KeyboardSettings.Link {
-    Text("Open System Settings")
+@Row {
+    @Column {}
+    @Column(size: 2) {
+        ![KeyboardStatus.Label](keyboardstatuslabel)
+    }
+    @Column {}
 }
-```
 
 To trigger a URL from the keyboard, you can trigger a ``KeyboardAction/url(_:id:)`` action to make the ``KeyboardActionHandler`` open the URL.
 
 > Note: If your app randomly navigates to the System Settings root instead of your app, try adding an empty settings bundle to your app.
-
-
-
-## How to share settings between the app and the keyboard
-
-Many keyboard extensions open the main app to let users configure the keyboard. The larger UI is great for app and keyboard settings.
-See the <doc:Navigation-Article> article for information on how to open the main app from the keyboard.
-
-To share data between the app and the keyboard, you can use an **App Group** to persist data in a way that allows it to be shared by the app and its keyboard extension.
-
-The app will always write data to the App Group, in a way that makes it instantly available to the keyboard. The keyboard must however have **Full Access** enabled for changes to be immediately synced to the app. 
-
-> Important: When Full Access is disabled, any shared data that your keyboard modifies will sync less reliably, and may require an app restart for the app to see the updated result.
 
 
 
@@ -68,12 +83,12 @@ This is not possible, at least not with the public APIs. This is most probably d
 
 ## Views
 
-The ``KeyboardSettings`` namespace has settings-specific views, that can be used to link to System Settings:
+The ``Keyboard`` namespace has settings-specific views, that can be used to link to System Settings:
 
 @TabNavigator {
     
-    @Tab("Link") {
-        A keyboard status ``KeyboardSettings/Link`` can be used to link to System Settings.
+    @Tab("Keyboard.SettingsLink") {
+        A keyboard ``Keyboard/SettingsLink`` can be used to link to System Settings, or any other custom URL:
         
         @Row {
             @Column {}
@@ -83,7 +98,7 @@ The ``KeyboardSettings`` namespace has settings-specific views, that can be used
             @Column {}
         }
         
-        The view can wrap any content, and is used by the <doc:Status-Article> views, to link the user to SystemSettings.
+        This view can use any content view, and is used by the <doc:Status-Article> views to link users to System Settings while displaying keyboard statuses.
     }
 }
 

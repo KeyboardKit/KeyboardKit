@@ -8,12 +8,11 @@
 
 import Foundation
 
-/// This type is a namespace for settings-related types.
+/// This observable class can be used to manage settings for
+/// the ``Keyboard`` namespace.
 ///
 /// This type also contains some utility functions and state
-/// that are shared by various settings-related types. Other
-/// namespaces define namespace-specific settings types that
-/// depend on types in this namespace.
+/// that are shared by settings-related types in the library.
 ///
 /// The static ``registerKeyboardSettingsStore(_:keyPrefix:)``
 /// can be used to setup a shared keyboard settings instance.
@@ -21,8 +20,7 @@ import Foundation
 /// within the library. You can also set this store directly.
 ///
 /// This is how you replace this default store with a custom
-/// store that syncs changes between an app and its keyboard
-/// extension, using an App Group:
+/// store that syncs changes between an app and its keyboard:
 ///
 /// ```swift
 /// KeyboardSettings.registerStore(.init(suiteName: "app-group-id"))
@@ -30,33 +28,39 @@ import Foundation
 ///
 /// You can also specify a custom key prefix, that will then
 /// be added before the persisted data. The default value is
-/// "com.keyboardkit.settings.".
+/// `"com.keyboardkit.settings."`. The various namespaces in
+/// the library then use ``storeKeyPrefix(for:)`` to setup a
+/// unique prefix for that namespace.
 ///
 /// > Important: Since `@AppStorage` properties will use the
-/// `store` instance that is available on the first call, do
-/// make sure to register any custom store before setting up
-/// KeyboardKit, since that will also setup settings-related
-/// types that will read these values.
+/// ``store`` instance that's available when a first call to
+/// the property is made, you must register any custom store
+/// BEFORE setting up KeyboardKit.
 public struct KeyboardSettings {
 
-    /// A prefix that will be added to all keyboard settings
-    /// related keys.
+    /// The store that will be used by library settings.
     public static var store: UserDefaults? = .standard
 
-    /// A prefix that will be added to all keyboard settings
-    /// related keys.
+    /// The key prefix that will be used by library settings.
     public static var storeKeyPrefix = "com.keyboardkit.settings."
 }
 
 public extension KeyboardSettings {
 
     /// Setup a custom keyboard settings store.
-    func registerKeyboardSettingsStore(
+    static func registerKeyboardSettingsStore(
         _ store: UserDefaults?,
         keyPrefix: String? = nil
     ) {
         Self.store = store
         Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
+    }
+
+    /// Get the store key prefix for a certain namespace.
+    static func storeKeyPrefix(
+        for namespace: String
+    ) -> String {
+        "\(Self.storeKeyPrefix).\(namespace)"
     }
 }
 
@@ -68,6 +72,7 @@ public extension UserDefaults {
     /// See ``KeyboardSettings`` for more information on how
     /// to register a custom store.
     static var keyboardSettings: UserDefaults? {
-        KeyboardSettings.store
+        get { KeyboardSettings.store }
+        set { KeyboardSettings.store = newValue }
     }
 }

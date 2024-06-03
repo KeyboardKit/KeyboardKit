@@ -9,6 +9,12 @@ public extension Keyboard {
     typealias KeyboardState = State
 }
 
+public extension KeyboardSettings {
+
+    @available(*, deprecated, renamed: "Keyboard.SettingsLink")
+    typealias Link = Keyboard.SettingsLink
+}
+
 public extension View {
     
     @available(*, deprecated, renamed: "keyboardState(_:)")

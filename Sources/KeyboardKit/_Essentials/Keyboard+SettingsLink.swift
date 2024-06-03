@@ -1,5 +1,5 @@
 //
-//  KeyboardSettings+Link.swift
+//  Keyboard+SettingsLink.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-09.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension KeyboardSettings {
+public extension Keyboard {
     
     /// This link can navigate to the app in System Settings.
     ///
@@ -23,8 +23,8 @@ extension KeyboardSettings {
     ///
     /// You can customize the `url` if you want this link to
     /// open another screen.
-    public struct Link<Content: View>: View {
-        
+    struct SettingsLink<Content: View>: View {
+
         /// Create a settings link with a custom label.
         ///
         /// - Parameters:
@@ -63,7 +63,7 @@ extension KeyboardSettings {
     }
 }
 
-public extension KeyboardSettings.Link where Content == Label<Text, Image> {
+public extension Keyboard.SettingsLink where Content == Label<Text, Image> {
 
     /// Create a settings link with a title and icon.
     ///
@@ -91,7 +91,7 @@ public extension KeyboardSettings.Link where Content == Label<Text, Image> {
 #Preview {
 
     VStack {
-        KeyboardSettings.Link()
-        KeyboardSettings.Link(title: "Foo bar", url: .init(string: "https://danielsaidi.com"))
+        Keyboard.SettingsLink()
+        Keyboard.SettingsLink(title: "Foo bar", url: .init(string: "https://danielsaidi.com"))
     }
 }

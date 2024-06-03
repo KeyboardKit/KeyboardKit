@@ -36,7 +36,8 @@ Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no lon
 
 * `Autocomplete.ToolbarItem` no longer adds quotations to unknown suggestions.
 * `KeyboardContex` `prefersAutocomplete` is now computed and no longer synced.
-* `KeyboardInputViewController` checks the keyboard context `prefersAutocomplete` before performing autocomplete.
+* `KeyboardInputViewController` now checks `KeyboardContext.prefersAutocomplete`.
+* `KeyboardSettings` have been converted from a namespace to being a part of `Keyboard`.
  
 ### 👑 KeyboardKit Pro
 
