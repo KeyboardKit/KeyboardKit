@@ -1,5 +1,5 @@
 //
-//  Keyboard+States.swift
+//  Keyboard+State.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-10-02.
