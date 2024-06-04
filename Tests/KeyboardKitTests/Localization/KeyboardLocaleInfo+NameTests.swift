@@ -1,5 +1,5 @@
 //
-//  KeyboardLocale+NameTests.swift
+//  KeyboardLocaleInfo+NameTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -9,7 +9,7 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardLocale_NameTests: XCTestCase {
+class KeyboardLocaleInfo_NameTests: XCTestCase {
 
     func locale(_ localeId: String) -> Locale {
         Locale(identifier: localeId)
@@ -22,6 +22,7 @@ class KeyboardLocale_NameTests: XCTestCase {
     func localizedName(of localeId: String) -> String? {
         locale(localeId).localizedName
     }
+
 
     func testLocalizedNameIsValid() {
         XCTAssertEqual(localizedName(of: "en"), "English")

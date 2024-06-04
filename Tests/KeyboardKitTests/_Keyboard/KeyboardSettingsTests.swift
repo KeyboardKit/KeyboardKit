@@ -14,6 +14,6 @@ final class KeyboardSettingsTests: XCTestCase {
 
     func testHasValidDefaultPrefix() {
         let prefix = KeyboardSettings.prefix
-        XCTAssertEqual(prefix, "com.keyboardkit.settings.keyboard.x")
+        XCTAssertEqual(prefix, "com.keyboardkit.settings.keyboard.")
     }
 }

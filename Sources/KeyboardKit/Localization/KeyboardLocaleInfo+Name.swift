@@ -1,5 +1,5 @@
 //
-//  Locale+Name.swift
+//  KeyboardLocaleInfo+Name.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-04-13.
@@ -8,34 +8,34 @@
 
 import Foundation
 
-public extension Locale {
+public extension KeyboardLocaleInfo {
 
     /// The full name of this locale in its own language.
     var localizedName: String {
-        localizedName(in: self)
+        localizedName(in: locale)
     }
 
     /// The full name of this locale in another locale.
     func localizedName(in locale: Locale) -> String {
-        if identifier == "ckb_PC" {
-            let locale = KeyboardLocale.kurdish_sorani.locale
-            return locale.localizedName(in: locale) + " (PC)"
+        if self.locale.identifier == "ckb_PC" {
+            let sorani = KeyboardLocale.kurdish_sorani.locale
+            return sorani.localizedName(in: locale) + " (PC)"
         }
-        return locale.localizedString(forIdentifier: identifier) ?? ""
+        return locale.localizedString(forIdentifier: self.locale.identifier) ?? ""
     }
 
     /// The language name of this locale in its own language.
     var localizedLanguageName: String {
-        localizedLanguageName(in: self)
+        localizedLanguageName(in: locale)
     }
 
     /// The language name of this locale in another locale.
     func localizedLanguageName(in locale: Locale) -> String {
-        locale.localizedString(forLanguageCode: languageCode ?? "") ?? ""
+        locale.localizedString(forLanguageCode: self.locale.languageCode ?? "") ?? ""
     }
 }
 
-public extension Collection where Element == Locale {
+public extension Collection where Element: KeyboardLocaleInfo {
 
     /// Sort the collection by the localized item name, then
     /// optionally place a locale first.
@@ -74,12 +74,12 @@ public extension Collection where Element == Locale {
     ///   - comparator: The sort comparator to use.
     ///   - insertFirst: The locale to place first, by default `nil`.
     func sorted(
-        by comparator: (Locale, Locale) -> Bool,
+        by comparator: (Element, Element) -> Bool,
         insertFirst first: Element?
     ) -> [Element] {
         let sorted = self.sorted(by: comparator)
         guard let first = first else { return sorted }
-        var filtered = sorted.filter { $0 != first }
+        var filtered = sorted.filter { $0.locale.identifier != first.locale.identifier }
         filtered.insert(first, at: 0)
         return filtered
     }

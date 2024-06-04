@@ -15,13 +15,15 @@ These release notes only cover the current major version.
 
 This version improves the overall autocomplete behavior.
 
-The local autocomplete provider now returns proper unknown statuses for the leading suggestion, which by default shows the current text in quotations. If an unknown suggestion is applied, the standard action handler will then automatically asks the provider to learn it, if the new `isAutoLearnEnabled` property is `true`.
+The local autocomplete provider now returns proper unknown statuses for the leading quotation suggestion. The standard action handler will automatically ask the autocomplete provider to learn applied unknown suggestions, if `isAutoLearnEnabled` is `true`.
 
-This way to auto-learn applied suggestions will hopefully solve many frustrations involved with local autocomplete. Please provide any feedback that you may have, in case these adjustments don't behave properly or as expected.
+This way to learn unknown suggestions will hopefully solve many frustrations involved with autocomplete, where the provider will behave better over time. Please provide feedback if these adjustments don't behave properly, or as expected.
 
-Another autocomplete update is that the `KeyboardInputViewController` will check more autocomplete configurations before performing autocomplete. This means that the keyboard context's `prefersAutocomplete` will also be used as decision. 
+Another change is that the `KeyboardInputViewController` will check more configurations before performing autocomplete. The keyboard context's `prefersAutocomplete` property will now also be used to make this decision. 
 
 Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no longer adds quotations around unknown suggestions. That responsibility has been moved to the autocomplete provider. The view will just show the titles it receives.  
+
+Furthermore, this version adds brand new persistent settings types, adds a `KeyboardLocaleInfo` protocol that makes `KeyboardLocale` and `Locale` share many properties, and makes it possible to define which text to use when ending the current sentence. 
 
 ### 🆕 New Settings Types
  
@@ -40,6 +42,7 @@ Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no lon
 * `KeyboardAction.StandardProvider` can now automatically learn unknown suggestions.
 * `KeyboardController` has a new `endSentence(withText:)` function to end sentences.
 * `KeyboardInputViewController` has a new `settings` property with setting instances.
+* `KeyboardLocaleInfo` is a new protocol that is shared by KeyboardLocale and Locale.
 * `KeyboardSettings` has new ways to register a custom store and settings key prefix.
 * `UserDefaults` has a new `.keyboardSettings` value that can be used to persist data.
 

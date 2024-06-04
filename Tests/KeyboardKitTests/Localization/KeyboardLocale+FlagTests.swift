@@ -90,18 +90,6 @@ class KeyboardLocale_FlagTests: XCTestCase {
             XCTAssertEqual(result[$0], expected[$0])
         }
     }
-
-    @available(iOS 16, macOS 13, tvOS 16, watchOS 9, *)
-    func testFlagDifferences() throws {
-        try XCTSkipIf(true)
-        KeyboardLocale.allCases.forEach { locale in
-            XCTAssertEqual(
-                locale.flag,
-                locale.locale.flag,
-                locale.locale.localizedName
-            )
-        }
-    }
     
     func testPrintFlagGrid() throws {
         try XCTSkipIf(true)
