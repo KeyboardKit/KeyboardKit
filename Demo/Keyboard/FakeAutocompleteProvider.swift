@@ -49,10 +49,13 @@ class FakeAutocompleteProvider: AutocompleteProvider {
 private extension FakeAutocompleteProvider {
     
     func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
-        [
+        let suggestions: [Autocomplete.Suggestion] = [
             .init(text: text, isUnknown: true),
             .init(text: text, isAutocorrect: true),
-            .init(text: text, subtitle: "Subtitle")
+            .init(text: text, subtitle: "Subtitle"),
+            .init(text: "4th Suggestion"),
+            .init(text: "5th Suggestion")
         ]
+        return Array(suggestions.prefix(context.preferredSuggestionCount))
     }
 }
