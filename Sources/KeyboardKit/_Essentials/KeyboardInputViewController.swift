@@ -170,19 +170,25 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - Keyboard Properties
-    
+
     /// The default set of keyboard-specific services.
     public lazy var services: Keyboard.Services = {
-        let services = Keyboard.Services(state: state)
-        services.setup(for: self)
-        return services
+        let instance = Keyboard.Services(state: state)
+        instance.setup(for: self)
+        return instance
     }()
-    
+
+    /// The default set of keyboard-specific settings.
+    public lazy var settings: Keyboard.Settings = {
+        let instance = Keyboard.Settings()
+        return instance
+    }()
+
     /// The default set of keyboard-specific state.
     public lazy var state: Keyboard.State = {
-        let state = Keyboard.State()
-        state.setup(for: self)
-        return state
+        let instance = Keyboard.State()
+        instance.setup(for: self)
+        return instance
     }()
 
 

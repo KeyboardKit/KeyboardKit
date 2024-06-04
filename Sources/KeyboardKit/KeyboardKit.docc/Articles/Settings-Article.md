@@ -13,7 +13,7 @@
 
 This article describes the KeyboardKit settings engine.
 
-Great keyboard apps use the main app to show the current state of the keyboard, if the keyboard is enabled in System Settings, if Full Access is enabled, etc. 
+Great keyboard apps use the main app to show the current state of the keyboard, if the keyboard is enabled in System Settings, if Full Access is enabled, etc.
 
 Apps and keyboards can also navigate to System Settings to enable the keyboard extension, enable full access etc. Reading settings from the system is however strictly limited by iOS, due to privacy reasons.
 
@@ -21,13 +21,13 @@ KeyboardKit provides tools to make this easier, such as ``Foundation/URL`` exten
 
 
 
-## Keyboard settings types
+## Keyboard settings
 
-KeyboardKit has an observable ``KeyboardSettings`` class that defines common, observable settings properties, as well as ways to define which ``KeyboardSettings/store`` and ``KeyboardSettings/storeKeyPrefix`` to use when persisting settings within the library.
+KeyboardKit has an observable ``KeyboardSettings`` class that defines common keyboard settings, as well as ways to define which ``KeyboardSettings/store`` and ``KeyboardSettings/storeKeyPrefix`` to use when persisting settings within the library.
 
-Besides ``KeyboardSettings``, other namespaces have their own settings types, such as ``AutocompleteSettings``, ``DictationSettings``, ``FeedbackSettings``, etc.
+Other namespaces have their own settings types, like ``AutocompleteSettings``, ``DictationSettings``, ``FeedbackSettings``, etc. These types will automatically persist changes and can sync changes between the app and keyboard (see further down).
 
-The various context classes has functions that can be used to sync the context with various settings types. This is used by KeyboardKit to automatically sync the non-persistent contexts with the persistent settings, when a keyboard extension launches. 
+The ``KeyboardInputViewController`` has a ``KeyboardInputViewController/settings`` property for shared settings and will automatically sync its ``KeyboardInputViewController/state`` with ``KeyboardInputViewController/settings`` when the keyboard is launched, and when any settings changes are made.
 
 
 
@@ -36,12 +36,12 @@ The various context classes has functions that can be used to sync the context w
 You can use the ``KeyboardSettings/registerKeyboardSettingsStore(_:keyPrefix:)`` function to register a custom settings store, for instance to sync user settings between the main app and the keyboard using an App Group:
 
 ```swift
-KeyboardSettings.registerStore(.init(suiteName: "group.com.myapp"))
+KeyboardSettings.registerKeyboardSettingsStore(.init(suiteName: "group.com.myapp"))
 ```
 
 You can access this shared store with the static ``KeyboardSettings/store`` property, or use the computed user defaults ``Foundation/UserDefaults/keyboardSettings`` property.
 
-The app will always write data to an App Group, in a way that makes it instantly available to the keyboard. The keyboard must however have Full Access for changes to be immediately synced to the app. When Full Access is disabled, your keyboard will sync less reliably.
+Apps will always write data to an App Group, in a way that is instantly available to the keyboard. The keyboard must however have Full Access for changes to be immediately synced to the app. When Full Access is disabled, your keyboard will sync changes less reliably.
 
 > Important: Since `@AppStorage` properties will use the store instance that is available when they are first called, you must register a custom store as soon as possible, before setting up KeyboardKit or reading these values. 
 

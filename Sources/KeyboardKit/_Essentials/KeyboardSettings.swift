@@ -6,7 +6,7 @@
 //  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 /// This observable class can be used to manage settings for
 /// the ``Keyboard`` namespace.
@@ -36,16 +36,22 @@ import Foundation
 /// ``store`` instance that's available when a first call to
 /// the property is made, you must register any custom store
 /// BEFORE setting up KeyboardKit.
-public struct KeyboardSettings {
+public class KeyboardSettings: ObservableObject {
 
-    /// The store that will be used by library settings.
-    public static var store: UserDefaults? = .standard
+    static let prefix = KeyboardSettings.storeKeyPrefix(for: "keyboard")
 
-    /// The key prefix that will be used by library settings.
-    public static var storeKeyPrefix = "com.keyboardkit.settings."
+    @AppStorage("\(prefix)isAutocapitalizationEnabled", store: .keyboardSettings)
+    public var isAutocapitalizationEnabled = true
 }
 
 public extension KeyboardSettings {
+
+    /// The store that will be used by library settings.
+    static var store: UserDefaults? = .standard
+
+    /// The key prefix that will be used by library settings.
+    static var storeKeyPrefix = "com.keyboardkit.settings."
+
 
     /// Setup a custom keyboard settings store.
     static func registerKeyboardSettingsStore(
@@ -60,7 +66,7 @@ public extension KeyboardSettings {
     static func storeKeyPrefix(
         for namespace: String
     ) -> String {
-        "\(Self.storeKeyPrefix).\(namespace)"
+        "\(Self.storeKeyPrefix)\(namespace)."
     }
 }
 

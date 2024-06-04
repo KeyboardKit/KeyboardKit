@@ -25,41 +25,13 @@ KeyboardKit also has a ``SystemKeyboard`` view that mimics the native iOS keyboa
 
 ## Keyboard namespace
 
-KeyboardKit has a ``Keyboard`` namespace with a lot of keyboard-related types, such as ``Keyboard/AutocapitalizationType``, ``Keyboard/BackspaceRange``, ``Keyboard/Case``, ``Keyboard/Diacritic``, ``Keyboard/KeyboardType``, ``Keyboard/ReturnKeyType``, etc.
-
 KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. By typing ``Keyboard`` and `.`, Xcode will provide you with a list of all types in this essential namespace.
 
-The same goes for other namespaces, like ``KeyboardAction``, ``KeyboardLayout``, ``Callouts``, ``Feedback``, etc. Most related types are nested in each namespace, except for protocols and important top-level types. 
+KeyboardKit has other namespaces as well, that extend the library with more specific capabilities, like ``KeyboardAction``, ``KeyboardLayout``, ``Callouts``, ``Dictation``, ``Feedback``, etc.
 
+The ``Keyboard`` namespace has a lot of essential types, like ``Keyboard/KeyboardType``, ``Keyboard/Button``, ``Keyboard/Diacritic``, etc. that are essential when for creating a custom keyboard. It also contains common views, styles, etc. 
 
-
-## Essential types
-
-Most types in the ``Keyboard`` namespace are essential to the core keyboard model, while the other namespaces extend it with more-specific features. The ``SystemKeyboard`` is also placed here, since it's a core (but optional) SDK component.
-
-Here's a list of some essential types that can be of interest when creating your own custom keyboard with KeyboardKit:
-
-* ``Keyboard/AutocapitalizationType`` - Can be used to control auto-capitalization in a keyboard.
-* ``Keyboard/BackspaceRange`` - Can be used to control how much to delete with the backspace key.
-* ``Keyboard/Button`` - A styleable button view that can be used to mimic a native keyboard key.
-* ``Keyboard/Case`` - Can be used to control the casing of an alphabetic keyboard.
-* ``Keyboard/Diacritic`` - Can be used to trigger ``KeyboardAction/diacritic(_:)`` actions to apply diacritics.
-* ``Keyboard/InputToolbarDisplayMode`` - Can be used to add an input toolbar on top of a ``SystemKeyboard``.
-* ``Keyboard/KeyboardType`` - Defines all keyboard types that are supported by the SDK.
-* ``Keyboard/NextKeyboardButton`` - Can be used to trigger the native keyboard switcher.
-* ``Keyboard/ReturnKeyType`` - Defines all return (primary) key types that are supported by the SDK.
-* ``Keyboard/Services`` - Is used to nest all services that are used by a KeyboardKit keyboard.
-* ``Keyboard/SpaceContent`` - Can be used to render the standard space button content.
-* ``Keyboard/StandardBehavior`` - The standard keyboard behavior, which defines how a keyboard behaves.
-* ``Keyboard/State`` - Is used to nest all observable state that is used by a KeyboardKit keyboard.
-* ``Keyboard/Toolbar`` - Can be used to render any content as a keyboard toolbar.
-
-There are also more essential types that are not wrapped in the ``Keyboard`` namespace:
-
-* ``KeyboardBehavior`` - Can be used to model the core behavior of a KeyboardKit keyboard.
-* ``KeyboardContext`` - Provides core observable state for a KeyboardKit keyboard.
-* ``KeyboardInputViewController`` - The most central type in KeyboardKit, used to add more features to the controller.
-* ``SystemKeyboard`` - A view that can be used to mimic the native iOS keyboard. Can be customized to great extent.
+Namespaces will not contain protocols, nor important types that are meant to be exposed as top-level types. This includes observable context and settings types, the ``KeyboardInputViewController`` and important components like the ``SystemKeyboard``.
 
 
 
@@ -67,17 +39,31 @@ There are also more essential types that are not wrapped in the ``Keyboard`` nam
 
 ``KeyboardInputViewController`` is the most essential type in the library. Just make your **KeyboardController** inherit this class to get access to a bunch of additional capabilities and view lifecycle functions.
 
+The ``KeyboardInputViewController`` defines shared ``KeyboardInputViewController/services``, ``KeyboardInputViewController/settings`` properties, and ``KeyboardInputViewController/state``, that can be used to avoid relying on the controller within your code.
+
 KeyboardKit also has a ``KeyboardController`` protocol that aims to make it easier to use KeyboardKit in platforms that don't support UIKit. This is however not fully implemented yet, although many types use it.
 
 
 
 ## Keyboard context
 
-KeyboardKit has an ``KeyboardContext`` class that provides observable keyboard state that keeps the keyboard UI up to date with its current state. It has a ``KeyboardContext/textDocumentProxy`` reference and lets you get and set ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc.
+KeyboardKit has a ``KeyboardContext`` class that provides observable keyboard state that keeps the keyboard UI up to date with its current state. It has a ``KeyboardContext/textDocumentProxy`` reference, lets you get and set ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc.
 
-You can use this type control the keyboard. For instance, setting the ``KeyboardContext/keyboardType`` will update the ``SystemKeyboard`` accordingly.
+You can use this to update the keyboard. For instance, setting the ``KeyboardContext/keyboardType`` will update the ``SystemKeyboard`` accordingly.
 
-KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``, and syncs it with the controller whenever needed.
+Other namespaces have their own context types, like ``AutocompleteContext``, ``CalloutContext``, ``DictationContext``, etc. They will all automatically update the keyboard, provided that the keyboard view observes them,  
+
+KeyboardKit automatically creates instances of these classes and injects them into ``KeyboardInputViewController/state``, and syncs with the controller when needed.
+
+
+
+## Keyboard settings
+
+KeyboardKit has an ``KeyboardSettings`` class that provides observable keyboard settings that are automatically persisted when they are changed. It has a ``KeyboardSettings/isAutocapitalizationEnabled`` property and will be extended with more settings over time. 
+
+Other namespaces have their own setting types, like ``AutocompleteSettings``, ``DictationSettings``, ``FeedbackSettings``, etc. KeyboardKit will observe any changes made to these types and update the keyboard accordingly.
+
+KeyboardKit automatically creates instances of these classes, injects them into ``KeyboardInputViewController/settings``, and syncs with the controller when needed.
 
 
 
@@ -89,9 +75,11 @@ KeyboardKit automatically creates an instance of ``Keyboard/StandardBehavior`` a
 
 
 
-## Keyboard appearance
+## Keyboard styling
 
-A keyboard appearance is used to determine if a keyboard is light or dark. This is not the same thing as the *color scheme*. A keyboard can be defined as "dark" even in light mode, and will render slightly darker than the default keyboard.
+The <doc:Styling-Article> article describes how you can use a ``KeyboardStyleProvider`` to style your keyboard in a dynamic and flexible way. Various views have their own styles as well, that can be applied with view modifiers.
+
+The keyboard appearance model can be used to define if a keyboard is light or dark. This is not the same thing as the color scheme. A keyboard can be defined as "dark" even in light mode, and will render slightly darker than the default appearance.
 
 KeyboardKit has an ``Keyboard/AppearanceViewModifier`` that can be applied with the ``SwiftUI/View/keyboardAppearance(_:)`` view modifier:
 

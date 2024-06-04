@@ -29,6 +29,7 @@ Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no lon
 * `AutocompleteContext` has a new `isAutoLearnEnabled` property.
 * `AutocompleteProvider` has new `ignoreWords(_:)` and suggestion functions.
 * `KeyboardAction.StandardProvider` can now automatically learn unknown suggestions.
+* `KeyboardInputViewController` has a new `settings` property with setting instances.
 * `KeyboardSettings` has new ways to register a custom store and settings key prefix.
 * `UserDefaults` has a new `.keyboardSettings` value that can be used to persist data.
 

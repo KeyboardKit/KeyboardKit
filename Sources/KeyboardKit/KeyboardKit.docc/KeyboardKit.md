@@ -142,6 +142,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``KeyboardInputViewController``
+- ``KeyboardSettings``
 - ``SystemKeyboard``
 - ``SystemKeyboardBottomRow``
 - ``SystemKeyboardComponent``
@@ -159,6 +160,7 @@ KeyboardKit is available under the MIT license.
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteProvider``
+- ``AutocompleteSettings``
 
 ### App
 
@@ -180,6 +182,7 @@ KeyboardKit is available under the MIT license.
 - ``Dictation``
 - ``DictationContext``
 - ``DictationService``
+- ``DictationSettings``
 - ``KeyboardDictationService``
 - ``SpeechRecognizer``
 
@@ -201,6 +204,7 @@ KeyboardKit is available under the MIT license.
 
 - ``Feedback``
 - ``FeedbackContext``
+- ``FeedbackSettings``
 
 ### Gestures
 
@@ -234,10 +238,6 @@ KeyboardKit is available under the MIT license.
 
 - ``Proxy``
 - ``TextInputProxy``
-
-### Settings
-
-- ``KeyboardSettings``
 
 ### Status
 
