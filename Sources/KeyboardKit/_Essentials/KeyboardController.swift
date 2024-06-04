@@ -26,7 +26,10 @@ public protocol KeyboardController: AnyObject {
 
     /// Dismiss the keyboard.
     func dismissKeyboard()
-    
+
+    /// End the current sentence with the provided text.
+    func endSentence(withText text: String)
+
     /// Insert the provided diacritic.
     func insertDiacritic(_ diacritic: Keyboard.Diacritic)
     

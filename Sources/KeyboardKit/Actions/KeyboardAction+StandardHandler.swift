@@ -339,7 +339,8 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) {
             guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
-            keyboardContext.endSentence(symbolic: keyboardBehavior.endSentenceSymbolic)
+            let text = keyboardBehavior.endSentenceText
+            keyboardController?.endSentence(withText: text)
         }
         
         /// Try to perform autocomplete after a gesture.

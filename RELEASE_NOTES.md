@@ -23,12 +23,12 @@ Another autocomplete update is that the `KeyboardInputViewController` will check
 
 Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no longer adds quotations around unknown suggestions. That responsibility has been moved to the autocomplete provider. The view will just show the titles it receives.  
 
-### 🆕 Settings
+### 🆕 New Settings Types
  
 * `AutocompleteSettings` is a new observable settings type.
 * `DictationSettings` is a new observable settings type.
 * `FeedbackSettings` is a new observable settings type.
-* `Keyboard.Settings` is a new settings container type.
+* `Keyboard.Settings` is a new settings type container.
 
 ### ✨ Features
 
@@ -36,7 +36,9 @@ Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no lon
 * `AutocompleteContext` has a new `isAutoLearnEnabled` property.
 * `AutocompleteContext` has a new `preferredSuggestionCount` property.
 * `AutocompleteProvider` has new `ignoreWords(_:)` and suggestion functions.
+* `KeyboardBehavior` and its implementations have a new `endSentenceText` property.
 * `KeyboardAction.StandardProvider` can now automatically learn unknown suggestions.
+* `KeyboardController` has a new `endSentence(withText:)` function to end sentences.
 * `KeyboardInputViewController` has a new `settings` property with setting instances.
 * `KeyboardSettings` has new ways to register a custom store and settings key prefix.
 * `UserDefaults` has a new `.keyboardSettings` value that can be used to persist data.

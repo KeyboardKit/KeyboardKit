@@ -15,12 +15,6 @@ import Foundation
 /// e.g. macOS and watchOS, make sure to replace them later.
 extension KeyboardContext {
     
-    func endSentence(symbolic: String) {
-        #if os(iOS) || os(tvOS) || os(visionOS)
-        textDocumentProxy.endSentence(symbolic: symbolic)
-        #endif
-    }
-    
     func insertAutocompleteSuggestion(
         _ suggestion: Autocomplete.Suggestion,
         tryInsertSpace: Bool = true
@@ -30,8 +24,6 @@ extension KeyboardContext {
             suggestion,
             tryInsertSpace: tryInsertSpace
         )
-        #else
-        return
         #endif
     }
     

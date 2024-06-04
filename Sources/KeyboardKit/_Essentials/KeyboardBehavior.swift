@@ -28,7 +28,7 @@ public protocol KeyboardBehavior {
     var backspaceRange: Keyboard.BackspaceRange { get }
     
     /// The  symbolic that  end the sentence after a gesture action should  inject.
-    var endSentenceSymbolic: String { get set }
+    var endSentenceText: String { get set }
     
     /// The preferred keyboard type after an action gesture.
     func preferredKeyboardType(

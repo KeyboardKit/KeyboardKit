@@ -37,12 +37,17 @@ public extension UITextDocumentProxy {
 
     /// End the current sentence by removing trailing spaces,
     /// then injecting a dot and a space.
-    func endSentence(symbolic: String) {
+    ///
+    /// - Parameters:
+    ///   - text: The text to end the sentence with, by default `. `.
+    func endSentence(
+        withText text: String = ". "
+    ) {
         guard isCursorAtTheEndOfTheCurrentWord else { return }
         while (documentContextBeforeInput ?? "").hasSuffix(" ") {
             deleteBackward(times: 1)
         }
-        insertText(symbolic)
+        insertText(text)
     }
 }
 #endif
