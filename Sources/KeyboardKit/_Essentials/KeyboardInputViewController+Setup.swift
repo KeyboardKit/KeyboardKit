@@ -26,10 +26,19 @@ extension KeyboardInputViewController {
     
     /// Setup the controller when it has loaded.
     func setupController() {
+        setupContexts()
         setupInitialWidth()
         setupLocaleObservation()
     }
-    
+
+    /// Set up contexts based on the current settings values.
+    func setupContexts() {
+        state.autocompleteContext.sync(with: settings.autocompleteSettings)
+        state.dictationContext.sync(with: settings.dictationSettings)
+        state.feedbackContext.sync(with: settings.feedbackSettings)
+        state.keyboardContext.sync(with: settings.keyboardSettings)
+    }
+
     /// Set up an initial width to avoid SwiftUI layout bugs.
     func setupInitialWidth() {
         #if os(iOS) || os(tvOS)
