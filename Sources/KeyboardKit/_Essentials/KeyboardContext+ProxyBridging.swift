@@ -15,9 +15,9 @@ import Foundation
 /// e.g. macOS and watchOS, make sure to replace them later.
 extension KeyboardContext {
     
-    func endSentence() {
+    func endSentence(symbolic: String) {
         #if os(iOS) || os(tvOS) || os(visionOS)
-        textDocumentProxy.endSentence()
+        textDocumentProxy.endSentence(symbolic: symbolic)
         #endif
     }
     

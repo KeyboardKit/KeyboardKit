@@ -35,12 +35,14 @@ extension Keyboard {
             keyboardContext: KeyboardContext,
             doubleTapThreshold: TimeInterval = 0.5,
             endSentenceThreshold: TimeInterval = 3.0,
-            repeatGestureTimer: Gestures.RepeatTimer = .shared
+            repeatGestureTimer: Gestures.RepeatTimer = .shared,
+            endSentenceSymbolic: String = ". "
         ) {
             self.keyboardContext = keyboardContext
             self.doubleTapThreshold = doubleTapThreshold
             self.endSentenceThreshold = endSentenceThreshold
             self.repeatGestureTimer = repeatGestureTimer
+            self.endSentenceSymbolic = endSentenceSymbolic
         }
         
         
@@ -71,6 +73,9 @@ extension Keyboard {
             let duration = repeatGestureTimer.duration ?? 0
             return duration > 3 ? .word : .character
         }
+        
+        /// The  symbolic that  end the sentence after a gesture action should  inject.
+        public var endSentenceSymbolic: String
         
         /// The preferred keyboard type after an action gesture.
         open func preferredKeyboardType(
