@@ -21,4 +21,18 @@ public extension View {
     func withEnvironment(fromState state: Keyboard.State) -> some View {
         self.keyboardState(state)
     }
+
+    @available(*, deprecated, message: "Use the non-controller based modifier instead.")
+    func keyboardState(
+        from controller: KeyboardInputViewController
+    ) -> some View {
+        self.keyboardState(controller.state)
+    }
+
+    @available(*, deprecated, renamed: "keyboardState(from:)")
+    func withEnvironment(
+        fromController controller: KeyboardInputViewController
+    ) -> some View {
+        self.keyboardState(from: controller)
+    }
 }

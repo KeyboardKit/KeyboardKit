@@ -376,20 +376,4 @@ private extension KeyboardInputViewController {
         }
     }
 }
-
-public extension View {
-    
-    func keyboardState(
-        from controller: KeyboardInputViewController
-    ) -> some View {
-        self.keyboardState(controller.state)
-    }
-    
-    @available(*, deprecated, renamed: "keyboardState(from:)")
-    func withEnvironment(
-        fromController controller: KeyboardInputViewController
-    ) -> some View {
-        self.keyboardState(from: controller)
-    }
-}
 #endif

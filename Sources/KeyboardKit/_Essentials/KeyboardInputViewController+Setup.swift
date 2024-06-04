@@ -17,7 +17,9 @@ extension KeyboardInputViewController {
     ) {
         self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = view.keyboardState(from: self)
+        let view = view
+            .keyboardSettings(self.settings)
+            .keyboardState(self.state)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
@@ -44,7 +46,8 @@ extension KeyboardInputViewController {
             let locale = $0
             self.primaryLanguage = locale.identifier
             self.services.autocompleteProvider.locale = locale
-        }.store(in: &cancellables)
+        }
+        .store(in: &cancellables)
     }
 }
 #endif
