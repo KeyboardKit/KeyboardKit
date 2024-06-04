@@ -19,4 +19,14 @@ public class FeedbackSettings: ObservableObject {
 
     @AppStorage("\(prefix)isHapticFeedbackEnabled", store: .keyboardSettings)
     var isHapticFeedbackEnabled = false
+
+    @Published
+    var lastChanged = Date()
+}
+
+private extension FeedbackSettings {
+
+    func triggerChange() {
+        lastChanged = Date()
+    }
 }

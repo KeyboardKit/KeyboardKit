@@ -41,7 +41,19 @@ public class KeyboardSettings: ObservableObject {
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "keyboard")
 
     @AppStorage("\(prefix)isAutocapitalizationEnabled", store: .keyboardSettings)
-    public var isAutocapitalizationEnabled = true
+    public var isAutocapitalizationEnabled = true {
+        didSet { triggerChange() }
+    }
+
+    @Published
+    var lastChanged = Date()
+}
+
+private extension KeyboardSettings {
+
+    func triggerChange() {
+        lastChanged = Date()
+    }
 }
 
 public extension KeyboardSettings {

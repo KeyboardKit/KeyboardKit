@@ -20,17 +20,50 @@ extension Keyboard {
         
         var view: () -> ViewType
         
+
         @EnvironmentObject
         private var autocompleteContext: AutocompleteContext
-        
+
         @EnvironmentObject
         private var calloutContext: CalloutContext
-        
+
+        @EnvironmentObject
+        private var dictationContext: DictationContext
+
+        @EnvironmentObject
+        private var feedbackContext: FeedbackContext
+
         @EnvironmentObject
         private var keyboardContext: KeyboardContext
-        
+
+
+        @EnvironmentObject
+        private var autocompleteSettings: AutocompleteSettings
+
+        @EnvironmentObject
+        private var dictationSettings: DictationSettings
+
+        @EnvironmentObject
+        private var feedbackSettings: FeedbackSettings
+
+        @EnvironmentObject
+        private var keyboardSettings: KeyboardSettings
+
+
         var body: some View {
             view()
+                .onChange(of: autocompleteSettings.lastChanged) { _ in
+                    autocompleteContext.sync(with: autocompleteSettings)
+                }
+                .onChange(of: dictationSettings.lastChanged) { _ in
+                    dictationContext.sync(with: dictationSettings)
+                }
+                .onChange(of: feedbackSettings.lastChanged) { _ in
+                    feedbackContext.sync(with: feedbackSettings)
+                }
+                .onChange(of: keyboardSettings.lastChanged) { _ in
+                    keyboardContext.sync(with: keyboardSettings)
+                }
         }
     }
 }

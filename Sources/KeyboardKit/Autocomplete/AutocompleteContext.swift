@@ -44,7 +44,11 @@ public class AutocompleteContext: ObservableObject {
     /// The last received autocomplete error.
     @Published
     public var lastError: Error?
-    
+
+    /// The preferred suggestion count.
+    @Published
+    public var preferredSuggestionCount: Int = 3
+
     /// The last received autocomplete suggestions.
     @Published
     public var suggestions: [Autocomplete.Suggestion] = []
@@ -56,3 +60,4 @@ public class AutocompleteContext: ObservableObject {
         suggestions = []
     }
 }
+

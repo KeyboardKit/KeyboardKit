@@ -15,5 +15,17 @@ public class DictationSettings: ObservableObject {
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "dictation")
 
     @AppStorage("\(prefix)silenceLimit", store: .keyboardSettings)
-    var silenceLimit = 5.0
+    public var silenceLimit = 5.0 {
+        didSet { triggerChange() }
+    }
+
+    @Published
+    var lastChanged = Date()
+}
+
+private extension DictationSettings {
+
+    func triggerChange() {
+        lastChanged = Date()
+    }
 }

@@ -15,11 +15,27 @@ public class AutocompleteSettings: ObservableObject {
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "autocomplete")
 
     @AppStorage("\(prefix)autocompleteSuggestionCount", store: .keyboardSettings)
-    var autocompleteSuggestionCount = 3
+    public var autocompleteSuggestionCount = 3 {
+        didSet { triggerChange() }
+    }
 
     @AppStorage("\(prefix)isAutocompleteEnabled", store: .keyboardSettings)
-    var isAutocompleteEnabled = true
+    public var isAutocompleteEnabled = true {
+        didSet { triggerChange() }
+    }
 
     @AppStorage("\(prefix)isAutocorrectEnabled", store: .keyboardSettings)
-    var isAutocorrectEnabled = true
+    public var isAutocorrectEnabled = true {
+        didSet { triggerChange() }
+    }
+
+    @Published
+    var lastChanged = Date()
+}
+
+private extension AutocompleteSettings {
+
+    func triggerChange() {
+        lastChanged = Date()
+    }
 }
