@@ -44,6 +44,12 @@ public extension KeyboardContext {
         }
     }
 
+    /// Sync the ``keyboardType`` with the provided proxy.
+    func syncKeyboardType(with proxy: UITextDocumentProxy) {
+        guard let type = proxy.keyboardType?.keyboardType else { return }
+        keyboardType = type
+    }
+
     /// Sync the ``originalTextDocumentProxy``.
     func syncTextDocumentProxy(with controller: KeyboardInputViewController) {
         if originalTextDocumentProxy === controller.originalTextDocumentProxy { return }

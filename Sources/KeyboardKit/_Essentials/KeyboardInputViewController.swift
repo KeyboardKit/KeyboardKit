@@ -50,6 +50,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         viewWillSetupKeyboard()
+        viewWillSetupInitialKeyboardType()
         viewWillSyncWithContext()
     }
 
@@ -88,6 +89,12 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func viewWillRegisterSharedController() {
         KeyboardUrlOpenerInternal.controller = self         // Remore in KeyboardKit 9.0
         Keyboard.NextKeyboardController.shared = self
+    }
+
+    /// This function is called when the controller is about
+    /// to sync the initial keyboard type at launch.
+    open func viewWillSetupInitialKeyboardType() {
+        setupInitialKeyboardType()
     }
 
     /// This function is called when a keyboard view must be

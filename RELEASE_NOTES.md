@@ -40,8 +40,10 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 * `AutocompleteProvider` has new `ignoreWords(_:)` and suggestion functions.
 * `KeyboardBehavior` and its implementations have a new `endSentenceText` property.
 * `KeyboardAction.StandardProvider` can now automatically learn unknown suggestions.
+* `KeyboardContext` has a new `syncKeyboardType(with:)` to sync type with the proxy.
 * `KeyboardController` has a new `endSentence(withText:)` function to end sentences.
-* `KeyboardInputViewController` has a new `settings` property with setting instances.
+* `KeyboardInputViewController` has a new `settings` property for setting instances.
+* `KeyboardInputViewController` has a new `viewWillSetupInitialKeyboardType` method.
 * `KeyboardLocaleInfo` is a new protocol that is shared by KeyboardLocale and Locale.
 * `KeyboardSettings` has new ways to register a custom store and settings key prefix.
 * `UserDefaults` has a new `.keyboardSettings` value that can be used to persist data.
@@ -57,9 +59,14 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 
 * `Autocomplete.LocalProvider` will now return proper unknown state for suggestions.
 * `Dictation.ProKeyboardService` uses an action handler to open app and navigate back.
+* `Emoji.KeyboardMenu` will now trigger haptic feedback when tapping an emoji category.
 * `KeyboardHostApplication` now implements `Identifiable` and has a new `name` property.
 * `KeyboardHostApplication` now defines even more applications and has a `url` property.
 * `KeyboardHostApplicationProvider` is a new protocol that is implemented by some types.
+
+### 🐛 Bug fixes
+
+* `KeyboardInputViewController` now defers setting the initial keyboard type until that information is available.
 
 ### 🗑️ Deprecations
 
