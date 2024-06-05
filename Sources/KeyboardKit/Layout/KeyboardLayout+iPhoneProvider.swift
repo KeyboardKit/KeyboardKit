@@ -21,7 +21,7 @@ extension KeyboardLayout {
     ///
     /// See <doc:Layout-Article> for more information.
     open class iPhoneProvider: KeyboardLayout.BaseProvider {
-        
+
         
         // MARK: - Overrides
         
@@ -63,7 +63,9 @@ extension KeyboardLayout {
             index: Int,
             context: KeyboardContext
         ) -> KeyboardLayout.ItemWidth {
+            #if os(iOS) || os(tvOS) || os(visionOS)
             if isBottomRowIndex(row) && context.textDocumentProxy.keyboardType == .URL { return .available }
+            #endif
             if isLastNumericInputRow(row, for: context) { return lastSymbolicInputWidth(for: context) }
             return .input
         }
@@ -141,7 +143,6 @@ extension KeyboardLayout {
         ) -> KeyboardAction.Row {
             var result = KeyboardAction.Row()
 
-            let keyboardType = context.textDocumentProxy.keyboardType
             let needsInputSwitch = context.needsInputModeSwitchKey
             let needsDictation = context.needsInputModeSwitchKey
 
@@ -152,7 +153,7 @@ extension KeyboardLayout {
             if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
             
             #if os(iOS) || os(tvOS) || os(visionOS)
-            switch keyboardType {
+            switch context.textDocumentProxy.keyboardType {
             case .emailAddress:
                 result.append(.space)
                 result.append(.character("@"))

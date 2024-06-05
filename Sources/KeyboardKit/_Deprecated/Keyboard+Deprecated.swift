@@ -22,6 +22,7 @@ public extension View {
         self.keyboardState(state)
     }
 
+    #if os(iOS) || os(tvOS) || os(visionOS)
     @available(*, deprecated, message: "Use the non-controller based modifier instead.")
     func keyboardState(
         from controller: KeyboardInputViewController
@@ -35,4 +36,5 @@ public extension View {
     ) -> some View {
         self.keyboardState(from: controller)
     }
+    #endif
 }

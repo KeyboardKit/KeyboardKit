@@ -73,4 +73,3 @@ public class AutocompleteContext: ObservableObject {
         suggestions = []
     }
 }
-
