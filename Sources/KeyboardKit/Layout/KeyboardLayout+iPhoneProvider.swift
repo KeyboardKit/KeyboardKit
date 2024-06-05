@@ -47,7 +47,7 @@ extension KeyboardLayout {
         ) -> KeyboardLayout.ItemWidth {
             switch action {
             case context.keyboardDictationReplacement: bottomSystemButtonWidth(for: context)
-            case .character: isLastNumericInputRow(row, for: context) ? lastSymbolicInputWidth(for: context) : .input
+            case .character: characterItemSizeWidth(for: action, row: row, index: index, context: context)
             case .backspace: lowerSystemButtonWidth(for: context)
             case .keyboardType: bottomSystemButtonWidth(for: context)
             case .nextKeyboard: bottomSystemButtonWidth(for: context)
@@ -56,8 +56,18 @@ extension KeyboardLayout {
             default: .available
             }
         }
-        
-        
+
+        open func characterItemSizeWidth(
+            for action: KeyboardAction,
+            row: Int,
+            index: Int,
+            context: KeyboardContext
+        ) -> KeyboardLayout.ItemWidth {
+            if isBottomRowIndex(row) && context.textDocumentProxy.keyboardType == .URL { return .available }
+            if isLastNumericInputRow(row, for: context) { return lastSymbolicInputWidth(for: context) }
+            return .input
+        }
+
         // MARK: - iPhone Specific
         
         /// The leading actions to add to the top input row.
@@ -130,21 +140,32 @@ extension KeyboardLayout {
             for context: KeyboardContext
         ) -> KeyboardAction.Row {
             var result = KeyboardAction.Row()
+
+            let keyboardType = context.textDocumentProxy.keyboardType
             let needsInputSwitch = context.needsInputModeSwitchKey
             let needsDictation = context.needsInputModeSwitchKey
+
             if let action = keyboardSwitchActionForBottomRow(for: context) { result.append(action) }
             if needsInputSwitch { result.append(.nextKeyboard) }
             if !needsInputSwitch { result.append(.keyboardType(.emojis)) }
             let dictationReplacement = context.keyboardDictationReplacement
             if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
-            result.append(.space)
             
             #if os(iOS) || os(tvOS) || os(visionOS)
-            if context.textDocumentProxy.keyboardType == .emailAddress {
+            switch keyboardType {
+            case .emailAddress:
+                result.append(.space)
                 result.append(.character("@"))
                 result.append(.character("."))
-            } else if context.textDocumentProxy.returnKeyType == .go {
+            case .URL:
                 result.append(.character("."))
+                result.append(.character("/"))
+                result.append(.text(".com"))
+            case .webSearch:
+                result.append(.space)
+                result.append(.character("."))
+            default:
+                result.append(.space)
             }
             #endif
             

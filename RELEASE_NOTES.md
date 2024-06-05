@@ -53,7 +53,9 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 * `Autocomplete.ToolbarItem` no longer adds quotations to unknown suggestions.
 * `KeyboardContex` `prefersAutocomplete` is now computed and no longer synced.
 * `KeyboardInputViewController` now checks `KeyboardContext.prefersAutocomplete`.
+* `KeyboardLayout.iPhoneProvider` now handles more keyboard types in a better way.
 * `KeyboardSettings` have been converted from a namespace to being a part of `Keyboard`.
+* `KeyboardStyle.StandardProvider` now sets a smaller font size for the `.text` action type.
  
 ### 👑 KeyboardKit Pro
 
@@ -66,8 +68,9 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 
 ### 🐛 Bug fixes
 
-* `KeyboardInputViewController` now defers setting the initial keyboard type until that information is available.
-* `KeyboardLayout.iPhoneProvider` will no longer insert two . keys if the keyboard type is email and the return key is go.
+* `KeyboardAction.text` now properly renders its texts.
+* `KeyboardInputViewController` now sets the initial keyboard type when the native type is ready.
+* `KeyboardLayout.iPhoneProvider` no longer inserts two . keys for email keyboards with a go key.
 
 ### 🗑️ Deprecations
 

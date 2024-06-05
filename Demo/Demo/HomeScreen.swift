@@ -21,12 +21,18 @@ struct HomeScreen: View {
 
     @State
     private var isAppearanceDark = false
-    
-    @State
-    private var isNumberPad = false
 
-    @AppStorage("com.keyboardkit.demo.text")
+    @State
     private var text = ""
+
+    @State
+    private var textEmail = ""
+
+    @State
+    private var textURL = ""
+
+    @State
+    private var textWebSearch = ""
 
     @StateObject
     private var dictationContext = DictationContext(
@@ -87,16 +93,21 @@ extension HomeScreen {
     }
     
     func textFieldSection() -> some View {
-        Section(header: Text("Text Field")) {
-            TextField("Type here...", text: $text)
-                .keyboardAppearance(appearance)
-                .keyboardType(isNumberPad ? .numberPad : .alphabet)
+        Section("Text Fields") {
             Toggle(isOn: $isAppearanceDark) {
-                Text("Dark appearance")
+                Text("Enable Dark Appearance")
             }
-            // Toggle(isOn: $isNumberPad) {
-            //     Text("Number Pad")
-            // }
+            Group {
+                TextField("Plain Text...", text: $text)
+                    .keyboardType(.default)
+                TextField("Email...", text: $textEmail)
+                    .keyboardType(.emailAddress)
+                TextField("URL...", text: $textURL)
+                    .keyboardType(.URL)
+                TextField("Web Search...", text: $textWebSearch)
+                    .keyboardType(.webSearch)
+            }
+            .keyboardAppearance(appearance)
         }
     }
 }
