@@ -33,7 +33,7 @@ public extension View {
         self.background(Keyboard.ButtonKey())
             .keyboardButtonStyle(style)
             .foregroundColor(style.foregroundColor)
-            .font(style.font?.font)
+            .font(style.font)
     }
 }
 

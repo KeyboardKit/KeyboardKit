@@ -40,7 +40,7 @@ public extension View {
             .background(Keyboard.ButtonKey())
             .keyboardButtonStyle(style)
             .foregroundColor(style.foregroundColor)
-            .font(style.font?.font)
+            .font(style.font)
             .padding(edgeInsets)
             .contentShape(Rectangle())
             .keyboardButtonGestures(

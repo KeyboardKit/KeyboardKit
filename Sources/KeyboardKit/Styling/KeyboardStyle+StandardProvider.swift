@@ -170,6 +170,7 @@ extension KeyboardStyle {
                 backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
                 foregroundColor: buttonForegroundColor(for: action, isPressed: isPressed),
                 font: buttonFont(for: action),
+                keyboardFont: buttonKeyboardFont(for: action),
                 cornerRadius: buttonCornerRadius(for: action),
                 border: buttonBorderStyle(for: action),
                 shadow: buttonShadowStyle(for: action)
@@ -261,17 +262,14 @@ extension KeyboardStyle {
         ) -> CGFloat {
             keyboardLayoutConfiguration.buttonCornerRadius
         }
-        
+
         /// The font to use for a certain action.
         open func buttonFont(
             for action: KeyboardAction
-        ) -> KeyboardFont {
-            let size = buttonFontSize(for: action)
-            let font = KeyboardFont.system(size: size)
-            guard let weight = buttonFontWeight(for: action) else { return font }
-            return font.weight(weight)
+        ) -> Font {
+            buttonKeyboardFont(for: action).font
         }
-        
+
         /// The font size to use for a certain action.
         open func buttonFontSize(
             for action: KeyboardAction
@@ -327,7 +325,17 @@ extension KeyboardStyle {
         ) -> Color {
             action.buttonForegroundColor(for: keyboardContext, isPressed: isPressed)
         }
-        
+
+        /// The keyboard font to use for a certain action.
+        open func buttonKeyboardFont(
+            for action: KeyboardAction
+        ) -> KeyboardFont {
+            let size = buttonFontSize(for: action)
+            let font = KeyboardFont.system(size: size)
+            guard let weight = buttonFontWeight(for: action) else { return font }
+            return font.weight(weight)
+        }
+
         /// The shadow style to use for a certain action.
         open func buttonShadowStyle(
             for action: KeyboardAction

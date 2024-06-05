@@ -18,26 +18,33 @@ public extension Keyboard {
     ///
     /// Unlike most other styles, the style doesn't yet have
     /// a standard style, due to the complexities of how the
-    /// button looks on different platforms. Standard styles
-    /// will be added in KeyboardKit 9 (TODO).
+    /// button looks on different platforms.
     struct ButtonStyle: Codable, Equatable {
         
         /// Create a custom keyboard button style.
         ///
+        /// If you provide both a keyboard font and a native
+        /// one, the native one will be applied. 
+        ///
+        /// Note that any native fonts that are applied will
+        /// be excluded from the `Codable` data.
+        ///
         /// - Parameters:
-        ///   - background: The background to apply to the button, by default `nil`.
-        ///   - backgroundColor: The background color to apply to the button, by default `nil`.
-        ///   - foregroundColor: The border color to apply to the button, by default `nil`.
-        ///   - font: The font to apply to the button, by default `nil`.
-        ///   - cornerRadius: The corner radius to apply to the button, by default `nil`.
-        ///   - border: The border style to apply to the button, by default `nil`.
-        ///   - shadow: The shadow style to apply to the button, by default `nil`.
-        ///   - pressedOverlayColor: The color to overlay the background color when pressed, by default `nil`.
+        ///   - background: The background to apply, by default `nil`.
+        ///   - backgroundColor: The background color to apply, by default `nil`.
+        ///   - foregroundColor: The border color to apply, by default `nil`.
+        ///   - font: The native font to apply, by default `nil`.
+        ///   - keyboardFont: The keyboard font to apply, by default `nil`.
+        ///   - cornerRadius: The corner radius to apply, by default `nil`.
+        ///   - border: The border style to apply, by default `nil`.
+        ///   - shadow: The shadow style to apply, by default `nil`.
+        ///   - pressedOverlayColor: The color to overlay the background with when the button is pressed, by default `nil`.
         public init(
             background: Keyboard.Background? = nil,
             backgroundColor: Color? = nil,
             foregroundColor: Color? = nil,
-            font: KeyboardFont? = nil,
+            font: Font? = nil,
+            keyboardFont: KeyboardFont? = nil,
             cornerRadius: CGFloat? = nil,
             border: BorderStyle? = nil,
             shadow: ShadowStyle? = nil,
@@ -46,7 +53,8 @@ public extension Keyboard {
             self.background = background
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
-            self.font = font
+            self.keyboardFont = keyboardFont
+            self.nativeFont = font
             self.cornerRadius = cornerRadius
             self.borderColor = border?.color
             self.borderSize = border?.size
@@ -66,21 +74,21 @@ public extension Keyboard {
         
         /// The border color to apply to the button.
         public var foregroundColor: Color?
-        
+
         /// The font to apply to the button.
-        public var font: KeyboardFont?
-        
+        public var font: Font? {
+            keyboardFont?.font ?? nativeFont
+        }
+
+        /// The native font to apply to the button.
+        public var nativeFont: Font?
+
+        /// The keyboard font to apply to the button.
+        public var keyboardFont: KeyboardFont?
+
         /// The corner radius to apply to the button.
         public var cornerRadius: CGFloat?
-        
-        /// The border color to apply to the button.
-        public var borderColor: Color? {
-            didSet {
-                guard borderColor != nil, borderSize == nil else { return }
-                borderSize = 1
-            }
-        }
-        
+
         /// The border style to apply to the button.
         public var border: BorderStyle? {
             get {
@@ -91,7 +99,14 @@ public extension Keyboard {
                 borderSize = newValue?.size
             }
         }
-        
+
+        /// The border color to apply to the button.
+        public var borderColor: Color? {
+            didSet {
+                guard borderColor != nil, borderSize == nil else { return }
+                borderSize = 1
+            }
+        }
         /// The border size to apply to the button.
         public var borderSize: CGFloat? {
             didSet {
@@ -99,7 +114,18 @@ public extension Keyboard {
                 borderColor = .black
             }
         }
-        
+
+        /// The shadow style to apply to the button.
+        public var shadow: ShadowStyle? {
+            get {
+                guard let shadowSize, let shadowColor else { return nil }
+                return .init(color: shadowColor, size: shadowSize)
+            } set {
+                shadowColor = newValue?.color
+                shadowSize = newValue?.size
+            }
+        }
+
         /// The shadow color to apply to the button.
         public var shadowColor: Color? {
             didSet {
@@ -113,17 +139,6 @@ public extension Keyboard {
             didSet {
                 guard shadowSize != nil, shadowColor == nil else { return }
                 shadowColor = .keyboardButtonShadow
-            }
-        }
-        
-        /// The shadow style to apply to the button.
-        public var shadow: ShadowStyle? {
-            get {
-                guard let shadowSize, let shadowColor else { return nil }
-                return .init(color: shadowColor, size: shadowSize)
-            } set {
-                shadowColor = newValue?.color
-                shadowSize = newValue?.size
             }
         }
         
@@ -192,7 +207,7 @@ public extension Keyboard.ButtonStyle {
         var result = self
         result.backgroundColor = style.backgroundColor ?? backgroundColor
         result.foregroundColor = style.foregroundColor ?? foregroundColor
-        result.font = style.font ?? font
+        result.keyboardFont = style.keyboardFont ?? keyboardFont
         result.cornerRadius = style.cornerRadius ?? cornerRadius
         result.border = style.border ?? border
         result.shadow = style.shadow ?? shadow
@@ -293,6 +308,20 @@ public extension View {
 }
 
 private extension Keyboard.ButtonStyle {
+
+    enum CodingKeys: String, CodingKey {
+        case 
+        background,
+        backgroundColor,
+        foregroundColor,
+        keyboardFont,
+        cornerRadius,
+        borderColor,
+        borderSize,
+        shadowColor,
+        shadowSize,
+        pressedOverlayColor
+    }
 
     struct Key: EnvironmentKey {
 

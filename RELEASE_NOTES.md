@@ -25,6 +25,10 @@ Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no lon
 
 Furthermore, this version adds brand new persistent settings types, adds a `KeyboardLocaleInfo` protocol that makes `KeyboardLocale` and `Locale` share many properties, and makes it possible to define which text to use when ending the current sentence. 
 
+### 🚨 Important Information
+
+`KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports defining native `Font`s, to give you more freedom when designing custom keyboards. This may result in breaking changes, if you use have overridden the style provider font or access the style font, but these should be easy to fix.
+
 ### 🆕 New Settings Types
  
 * `AutocompleteSettings` is a new observable settings type.
@@ -46,6 +50,7 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 * `KeyboardInputViewController` has a new `viewWillSetupInitialKeyboardType` method.
 * `KeyboardLocaleInfo` is a new protocol that is shared by KeyboardLocale and Locale.
 * `KeyboardSettings` has new ways to register a custom store and settings key prefix.
+* `KeyboardStyleProvioder` has new ways to register a custom store and settings key prefix.
 * `UserDefaults` has a new `.keyboardSettings` value that can be used to persist data.
 
 ### 💡 Adjustments
