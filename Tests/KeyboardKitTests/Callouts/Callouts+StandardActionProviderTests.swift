@@ -82,10 +82,10 @@ class Callouts_StandardActionProviderTests: XCTestCase {
             return nil
         }
         context.setLocale(KeyboardLocale.albanian)
-        XCTAssertNil(provider.localizedProviders.value(for: .albanian))
+        XCTAssertNil(provider.localizedProviders.value(for: KeyboardLocale.albanian))
         let result = provider.calloutActionProvider(for: context)
         XCTAssertEqual((result as? TestProvider)?.localeKey, "apa")
-        XCTAssertTrue(provider.localizedProviders.value(for: .albanian) is TestProvider)
+        XCTAssertTrue(provider.localizedProviders.value(for: KeyboardLocale.albanian) is TestProvider)
     }
 }
 

@@ -39,6 +39,8 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 ### ✨ Features
 
 * `Autocomplete.Suggestion` has new functions.
+* `Autocomplete.TextReplacementDictionary` is new type.
+* `AutocompleteContext` has a new `autocorrectDictionary` value.
 * `AutocompleteContext` has a new `isAutoLearnEnabled` property.
 * `AutocompleteContext` has a new `preferredSuggestionCount` property.
 * `AutocompleteProvider` has new `ignoreWords(_:)` and suggestion functions.

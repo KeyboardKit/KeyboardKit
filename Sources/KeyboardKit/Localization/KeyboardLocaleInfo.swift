@@ -30,6 +30,12 @@ public protocol KeyboardLocaleInfo {
     /// The native ``Foundation/Locale`` type implements the
     /// property by returning itself.
     var locale: Locale { get }
+
+    /// The locale identifier.
+    var localeIdentifier: String { get }
+
+    /// The locale language code.
+    var localeLanguageCode: String { get }
 }
 
 public extension KeyboardLocaleInfo {
@@ -78,7 +84,14 @@ public extension KeyboardLocaleInfo {
 extension Locale: KeyboardLocaleInfo {}
 extension KeyboardLocale: KeyboardLocaleInfo {}
 
+public extension KeyboardLocale {
+
+    var localeLanguageCode: String { locale.localeLanguageCode }
+}
+
 public extension Locale {
 
     var locale: Locale { self }
+    var localeIdentifier: String { identifier }
+    var localeLanguageCode: String { languageCode ?? "" }
 }

@@ -23,7 +23,20 @@ import Combine
 public class AutocompleteContext: ObservableObject {
     
     public init() {}
-    
+
+    /// This localized dictionary can be used to define your
+    /// own custom autocorrections for various locales.
+    ///
+    /// Note that the collection is already initialized with
+    /// a set of well-known autocorrections, so make sure to
+    /// append to it instead of replacing what's in it.
+    ///
+    /// This dictionary is used by the standard autocomplete
+    /// provider in KeyboardKit Pro, to match a current text
+    /// with an autocorrect suggestion.
+    @Published
+    public var autocorrectDictionary = Autocomplete.TextReplacementDictionary.additionalAutocorrections
+
     /// Whether or not autocorrect is enabled.
     @Published
     public var isAutocorrectEnabled = true
@@ -49,7 +62,7 @@ public class AutocompleteContext: ObservableObject {
     @Published
     public var preferredSuggestionCount: Int = 3
 
-    /// The last received autocomplete suggestions.
+    /// The list of suggestions to present to the user.
     @Published
     public var suggestions: [Autocomplete.Suggestion] = []
 

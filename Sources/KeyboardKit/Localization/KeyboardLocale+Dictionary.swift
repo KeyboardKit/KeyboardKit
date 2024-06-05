@@ -17,7 +17,7 @@ public extension KeyboardLocale {
     /// to find value for the locale's `identifier` then the
     /// locale's `languageCode`.
     struct Dictionary<ItemType> {
-        
+
         /// Create a dictionary with locale entries.
         public init(_ dict: [KeyboardLocale: ItemType]) {
             self.dictionary = .init(
@@ -27,9 +27,19 @@ public extension KeyboardLocale {
                 }
             )
         }
-        
+
         /// Create a dictionary with locale entries.
-        public init(_ dict: [LocaleIdentifier: ItemType]) {
+        public init(_ dict: [Locale: ItemType]) {
+            self.dictionary = .init(
+                uniqueKeysWithValues: dict.keys.compactMap {
+                    guard let value = dict[$0] else { return nil }
+                    return ($0.identifier, value)
+                }
+            )
+        }
+
+        /// Create a dictionary with locale entries.
+        public init(_ dict: [LocaleIdentifier: ItemType] = [:]) {
             self.dictionary = dict
         }
         
@@ -42,34 +52,26 @@ public extension KeyboardLocale {
 }
 
 public extension KeyboardLocale.Dictionary {
-    
-    /// Get a certain value for the provided locale.
-    func value(for locale: Locale) -> ItemType? {
-        if let item = dictionary[locale.identifier] { return item }
-        if let item = dictionary[locale.languageCode ?? ""] { return item }
-        return nil
+
+    /// Check if the dictionary has a certain locale value.
+    func hasValue(for locale: KeyboardLocaleInfo) -> Bool {
+        value(for: locale) != nil
     }
-    
+
     /// Insert a value into the dictionary.
-    mutating func set(_ value: ItemType, for locale: Locale) {
-        set(value, for: locale.identifier)
+    mutating func set(_ value: ItemType, for locale: KeyboardLocaleInfo) {
+        set(value, for: locale.localeIdentifier)
     }
     
     /// Insert a value into the dictionary.
     mutating func set(_ value: ItemType, for localeIdentifier: String) {
         dictionary[localeIdentifier] = value
     }
-}
 
-public extension KeyboardLocale.Dictionary {
-    
     /// Get a certain value for the provided locale.
-    func value(for locale: KeyboardLocale) -> ItemType? {
-        value(for: locale.locale)
-    }
-    
-    /// Insert a value into the dictionary.
-    mutating func set(_ value: ItemType, for locale: KeyboardLocale) {
-        set(value, for: locale.locale)
+    func value(for locale: KeyboardLocaleInfo) -> ItemType? {
+        if let item = dictionary[locale.localeIdentifier] { return item }
+        if let item = dictionary[locale.localeLanguageCode] { return item }
+        return nil
     }
 }

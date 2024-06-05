@@ -60,10 +60,10 @@ class KeyboardLayout_StandardProviderTests: XCTestCase {
             return nil
         }
         context.setLocale(KeyboardLocale.albanian)
-        XCTAssertNil(provider.localizedProviders.value(for: .albanian))
+        XCTAssertNil(provider.localizedProviders.value(for: KeyboardLocale.albanian))
         let result = provider.keyboardLayoutProvider(for: context)
         XCTAssertEqual((result as? TestProvider)?.localeKey, "apa")
-        XCTAssertTrue(provider.localizedProviders.value(for: .albanian) is TestProvider)
+        XCTAssertTrue(provider.localizedProviders.value(for: KeyboardLocale.albanian) is TestProvider)
     }
 }
 
