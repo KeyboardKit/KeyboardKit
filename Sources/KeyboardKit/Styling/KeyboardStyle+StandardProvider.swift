@@ -284,12 +284,13 @@ extension KeyboardStyle {
             if action.isSystemAction || action.isPrimaryAction { return 16 }
             return 23
         }
-        
+
         /// The font size to override for a certain action.
         func buttonFontSizeActionOverride(
             for action: KeyboardAction
         ) -> CGFloat? {
             switch action {
+            case .text: 16
             case .keyboardType(let type): buttonFontSize(for: type)
             case .space: 16
             default: nil

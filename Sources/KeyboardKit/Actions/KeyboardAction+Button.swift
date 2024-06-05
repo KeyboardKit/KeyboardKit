@@ -33,6 +33,7 @@ public extension KeyboardAction {
         case .nextLocale: context.locale.languageCode?.uppercased()
         case .primary(let type): type.standardButtonText(for: context.locale)
         case .space: KKL10n.space.text(for: context)
+        case .text(let char): standardButtonText(for: char)
         default: nil
         }
     }
