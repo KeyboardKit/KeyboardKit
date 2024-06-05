@@ -67,6 +67,7 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 ### 🐛 Bug fixes
 
 * `KeyboardInputViewController` now defers setting the initial keyboard type until that information is available.
+* `KeyboardLayout.iPhoneProvider` will no longer insert two . keys if the keyboard type is email and the return key is go.
 
 ### 🗑️ Deprecations
 

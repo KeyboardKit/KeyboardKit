@@ -143,8 +143,7 @@ extension KeyboardLayout {
             if context.textDocumentProxy.keyboardType == .emailAddress {
                 result.append(.character("@"))
                 result.append(.character("."))
-            }
-            if context.textDocumentProxy.returnKeyType == .go {
+            } else if context.textDocumentProxy.returnKeyType == .go {
                 result.append(.character("."))
             }
             #endif
