@@ -37,11 +37,21 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 
 
 
+## Autocomplete settings
+
+KeyboardKit has an observable ``AutocompleteSettings`` that handles autocomplete settings, such as how many suggestions to display, whether or not autocomplete and autocorrect is enabled, etc.
+
+KeyboardKit's settings types are observable and will automatically persist any changes made. KeyboardKit will observe these types and sync any changes made to them to their respective contexts, which will automatically update the affected views.
+
+KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/settings``. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
+
+
+
 ## Autocomplete providers
 
 In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions when the user types or the text input cursor moves in the text.
 
-KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with a custom provider or activate KeyboardKit Pro.
+KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with your own provider implementation or activate [KeyboardKit Pro][pro].
 
 
 
@@ -49,21 +59,28 @@ KeyboardKit doesn't have a standard autocomplete provider implementation. Instea
 
 KeyboardKit will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the ``KeyboardInputViewController/services`` autocomplete provider.
 
+``KeyboardInputViewController`` has many open autocomplete-related functions that can be used to configure how it performs autocomplete, which text it uses, etc. You can also use the ``AutocompleteContext`` to configure how autocomplete behaves.
+
+However, ieverything eventually comes down to which ``AutocompleteProvider`` you use. The ``Autocomplete/LocalProvider`` in [KeyboardKit Pro][pro] will honor all supported configurations, while ``Autocomplete/RemoteProvider`` will not.
+
 Views like the autocomplete ``Autocomplete/Toolbar`` can list these suggestions and handle suggestion with the main ``KeyboardActionHandler``.
 
 
 
-## How to disable autocomplete and autocorrect
+## How to configure autocomplete
 
-You can use ``AutocompleteContext/isAutocorrectEnabled`` to disable autocorrection, and ``AutocompleteContext/isAutocompleteEnabled`` to disable autocomplete. You can also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` modifier to the keyboard view.
+You can override any autocomplete-related property or function in ``KeyboardInputViewController``, such as ``KeyboardInputViewController/autocompleteText`` or ``KeyboardInputViewController/performAutocomplete()``, to customize how autocomplete is handled by the controller.
 
+You can use the ``AutocompleteContext`` to perform in-memory changes that are not persisted, such as using ``AutocompleteContext/isAutocorrectEnabled`` & ``AutocompleteContext/isAutocompleteEnabled`` to enable or disable autocomplete & autocorrect. 
 
+You can also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` view modifier to the keyboard view.
 
-## How to customize the autocomplete behavior
+``AutocompleteContext`` also has an ``AutocompleteContext/autocorrectDictionary`` that can be used to add custom autocorrect text replacements, which for instance will be used by the ``Autocomplete/LocalProvider``.
 
-You can customize the autocomplete behavior by replacing the ``AutocompleteProvider`` in ``KeyboardInputViewController/services`` with a custom provider. You can also customize the ``KeyboardInputViewController`` to change the autocomplete behavior.
+``AutocompleteContext`` also has an ``AutocompleteContext/preferredSuggestionCount`` that can be used to tell the provider how many suggestions to return. This is just a preferred value, which isn't guaranteed to be honored by the provider.
 
-For instance, the controller's ``KeyboardInputViewController/autocompleteText`` property is used to determine which text to use for autocomplete. You can override it to customize which text to use, without having to create a custom autocomplete provider.
+Finally, you can use the ``AutocompleteSettings`` to perform persistent changes, that can sync between the main app and keyboard extensions, and will be automatically restored the next time the app or keyboard is launched. See <doc:Settings-Article> for more information.
+
 
 
 

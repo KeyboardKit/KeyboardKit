@@ -17,20 +17,20 @@ final class Autocomplete_TextReplacementDictionaryTests: XCTestCase {
 
     func testCanAddSingleReplacement() {
         var dictionary = Autocomplete.TextReplacementDictionary()
-        XCTAssertNil(dictionary.wordReplacement(for: "foo", locale: swedish))
-        dictionary.addWordReplacement("bar", for: "foo", locale: swedish)
-        XCTAssertNil(dictionary.wordReplacement(for: "foo", locale: english))
-        XCTAssertEqual(dictionary.wordReplacements(for: swedish), ["foo": "bar"])
-        XCTAssertEqual(dictionary.wordReplacement(for: "foo", locale: swedish), "bar")
+        XCTAssertNil(dictionary.textReplacement(for: "foo", locale: swedish))
+        dictionary.addTextReplacement(for: "foo", with: "bar", locale: swedish)
+        XCTAssertNil(dictionary.textReplacement(for: "foo", locale: english))
+        XCTAssertEqual(dictionary.textReplacements(for: swedish), ["foo": "bar"])
+        XCTAssertEqual(dictionary.textReplacement(for: "foo", locale: swedish), "bar")
     }
 
     func testCanAddMultipleReplacements() {
         var dictionary = Autocomplete.TextReplacementDictionary()
-        XCTAssertNil(dictionary.wordReplacement(for: "foo", locale: danish))
-        dictionary.addWordReplacements(["foo": "bar", "bar": "baz"], for: danish)
-        XCTAssertNil(dictionary.wordReplacement(for: "foo", locale: english))
-        XCTAssertEqual(dictionary.wordReplacements(for: danish), ["foo": "bar", "bar": "baz"])
-        XCTAssertEqual(dictionary.wordReplacement(for: "foo", locale: danish), "bar")
-        XCTAssertEqual(dictionary.wordReplacement(for: "bar", locale: danish), "baz")
+        XCTAssertNil(dictionary.textReplacement(for: "foo", locale: danish))
+        dictionary.addTextReplacements(["foo": "bar", "bar": "baz"], for: danish)
+        XCTAssertNil(dictionary.textReplacement(for: "foo", locale: english))
+        XCTAssertEqual(dictionary.textReplacements(for: danish), ["foo": "bar", "bar": "baz"])
+        XCTAssertEqual(dictionary.textReplacement(for: "foo", locale: danish), "bar")
+        XCTAssertEqual(dictionary.textReplacement(for: "bar", locale: danish), "baz")
     }
 }

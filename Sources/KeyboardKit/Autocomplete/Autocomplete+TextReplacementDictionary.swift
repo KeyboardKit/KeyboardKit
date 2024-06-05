@@ -40,17 +40,17 @@ public extension Autocomplete.TextReplacementDictionary {
 
 public extension Autocomplete.TextReplacementDictionary {
 
-    /// Insert a word replacement for a certain locale.
-    mutating func addWordReplacement(
-        _ replacement: String,
-        for word: String,
+    /// Insert a text replacement for a certain locale.
+    mutating func addTextReplacement(
+        for text: String,
+        with replacement: String,
         locale: KeyboardLocaleInfo
     ) {
-        addWordReplacements([word: replacement], for: locale)
+        addTextReplacements([text: replacement], for: locale)
     }
 
-    /// Insert a word replacement for a certain locale.
-    mutating func addWordReplacements(
+    /// Insert a text replacement for a certain locale.
+    mutating func addTextReplacements(
         _ dict: [String: String],
         for locale: KeyboardLocaleInfo
     ) {
@@ -58,27 +58,27 @@ public extension Autocomplete.TextReplacementDictionary {
         dict.forEach {
             val[$0.key] = $0.value
         }
-        setWordReplacements(val, for: locale)
+        setTextReplacements(val, for: locale)
     }
 
-    /// Set word replacement for a certain locale.
-    mutating func setWordReplacements(
+    /// Set the text replacements for a certain locale.
+    mutating func setTextReplacements(
         _ dict: [String: String],
         for locale: KeyboardLocaleInfo
     ) {
         dictionary.set(dict, for: locale)
     }
 
-    /// Set word replacement for a certain locale.
-    func wordReplacement(
-        for word: String,
+    /// Get a text replacement for a certain text and locale.
+    func textReplacement(
+        for text: String,
         locale: KeyboardLocaleInfo
     ) -> String? {
-        wordReplacements(for: locale)?[word]
+        textReplacements(for: locale)?[text]
     }
 
-    /// Get word replacement for a certain locale.
-    func wordReplacements(
+    /// Get all text replacements for a certain locale.
+    func textReplacements(
         for locale: KeyboardLocaleInfo
     ) -> [String: String]? {
         dictionary.value(for: locale)

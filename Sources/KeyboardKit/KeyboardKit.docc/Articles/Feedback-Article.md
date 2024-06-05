@@ -27,25 +27,42 @@ KeyboardKit has a ``Feedback`` namespace with feedback-related types, like ``Fee
 
 
 
-## Audio feedback
+## Feedback context
 
-KeyboardKit has an ``Feedback/Audio`` feedback enum that defines various standard audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc.
+KeyboardKit has an observable ``FeedbackContext`` class that can be used to configure feedback for various actions, such as which configuration to use for audio and haptic feedback. 
 
-This enum also serves as a namespace for other audio feedback-related types like ``Feedback/AudioConfiguration`` and ``Feedback/AudioEngine``.
+KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``. You can use this instance to configure feedback
 
 
 
-## Haptic feedback
+## Feedback settings
 
-KeyboardKit has an ``Feedback/Haptic`` feedback enum that defines various standard haptic feedback types, like ``Feedback/Haptic/success``, ``Feedback/Haptic/warning``, etc.
+KeyboardKit has an observable ``FeedbackSettings`` that handles feedback-related settings, such as if audio and haptic feedback is enabled. This can be used to easily toggle haptic feedback on and off.
 
-This enum also serves as a namespace for other haptic feedback-related types like ``Feedback/HapticConfiguration`` and ``Feedback/HapticEngine``.
+KeyboardKit's settings types are observable and will automatically persist any changes made. KeyboardKit will observe these types and sync any changes made to them to their respective contexts, which will automatically update the affected views.
+
+KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/settings``. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
+
+
+
+## Feedback Types
+
+KeyboardKit has support for both audio and haptic feedback, which can both be triggered directly, or by using various types in the SDK, such as a ``KeyboardActionHandler``.
+
+
+### Audio feedback
+
+KeyboardKit has an ``Feedback/Audio`` feedback enum that defines various audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc. The ``Feedback`` namespace also has other audio-related types like ``Feedback/AudioConfiguration`` and ``Feedback/AudioEngine``.
+
+### Haptic feedback
+
+KeyboardKit has an ``Feedback/Haptic`` feedback enum that defines various haptic feedbacks, like ``Feedback/Haptic/success``, ``Feedback/Haptic/warning``, etc. The ``Feedback`` namespace also has other haptic-related types like ``Feedback/HapticConfiguration`` and ``Feedback/HapticEngine``.
 
 
 
 ## How to trigger feedback
 
-You can trigger any ``Feedback/Audio`` and ``Feedback/Haptic`` feedback with the ``Feedback/Audio/trigger()`` enum functions:
+You can trigger any ``Feedback/Audio`` and ``Feedback/Haptic`` feedback directly with their respective ``Feedback/Audio/trigger()`` functions:
 
 ```swift
 Feedback.Audio.input.trigger()
@@ -58,9 +75,7 @@ You can also trigger feedback with a ``KeyboardActionHandler``, using ``Keyboard
 
 ## How to configure feedback
 
-KeyboardKit has an observable ``FeedbackContext`` that can be used to configure feedback for various actions. 
-
-KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``. You can use this instance to configure feedback:
+You can use the ``FeedbackContext`` in ``KeyboardInputViewController/state`` to configure the global feedback behavior. For instance, this code would enable audio and haptic feedback, and customize the audio feedback for pressing an input key:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -95,15 +110,15 @@ Since the configuration is observable, any changes will automatically cause the 
 
 ## How to define custom audio feedback
 
-Since ``Feedback/Audio`` uses **AudioServices** to play audio, you can use any system audio ID (see [this website](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback. 
-
-For instance, this is a way to define a custom sound:
+Since ``Feedback/Audio`` uses **AudioServices** to play audio, you can use any system audio ID (see [this website](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback. For instance, this is a way to define a custom sound, which can then be triggered with the ``Feedback/Audio/trigger()`` function:
 
 ```swift
 extension Feedback.Audio {
 
     static let sentMessage = .custom(id: 1004)
 }
+
+Feedback.Audio.sentMessage.trigger()
 ```
 
 You can also use the ``Feedback/Audio/customUrl(_:)`` enum case to define custom audio feedback that loads the sound effect from an audio file.
