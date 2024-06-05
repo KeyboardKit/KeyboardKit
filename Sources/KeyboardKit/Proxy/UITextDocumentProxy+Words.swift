@@ -67,17 +67,16 @@ public extension UITextDocumentProxy {
     
     /// Replace the current word with a text.
     func replaceCurrentWord(with replacement: String) {
-        guard let text = currentWord else { return }
         let offset = currentWordPostCursorPart?.count ?? 0
         adjustTextPosition(byCharacterOffset: offset)
-        deleteBackward(times: (text as NSString).length)    // Casting to NSString to handle diacritics
-        insertText(replacement)
+        replaceCurrentWordPreCursorPart(with: replacement)
     }
     
     /// Replace the current word pre cursor part with a text.
     func replaceCurrentWordPreCursorPart(with replacement: String) {
-        guard let text = currentWordPreCursorPart else { return }
-        deleteBackward(times: (text as NSString).length)    // Casting to NSString to handle diacritics
+        if let text = currentWordPreCursorPart {
+            deleteBackward(times: (text as NSString).length)    // Casting to NSString to handle diacritics
+        }
         insertText(replacement)
     }
 }

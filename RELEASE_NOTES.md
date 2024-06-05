@@ -71,6 +71,7 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 * `KeyboardAction.text` now properly renders its texts.
 * `KeyboardInputViewController` now sets the initial keyboard type when the native type is ready.
 * `KeyboardLayout.iPhoneProvider` no longer inserts two . keys for email keyboards with a go key.
+* `UITextDocumentProxy` now proceeds inserting a word replacement even if there's no current word.
 
 ### 🗑️ Deprecations
 
