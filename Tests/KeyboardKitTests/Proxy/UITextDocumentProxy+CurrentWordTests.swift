@@ -141,14 +141,14 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
     }
 
 
-    func testReplacingCurrentWordAbortsIfCurrentWordIsMissing() {
+    func testReplacingCurrentWordProceedsIfCurrentWordIsMissing() {
         proxy.replaceCurrentWord(with: "another text")
         let adjust = proxy.calls(to: \.adjustTextPositionRef)
         let delete = proxy.calls(to: \.deleteBackwardRef)
         let insert = proxy.calls(to: \.insertTextRef)
-        XCTAssertEqual(adjust.count, 0)
+        XCTAssertEqual(adjust.count, 1)
         XCTAssertEqual(delete.count, 0)
-        XCTAssertEqual(insert.count, 0)
+        XCTAssertEqual(insert.count, 1)
     }
 
 
@@ -190,7 +190,7 @@ class UITextDocumentProxy_CurrentWordTests: XCTestCase {
         XCTAssertEqual(calls[0].arguments, 11)
     }
 
-    func testReplacingCurrentWordWithNoPrePardDeletesBackwardsCurrentWordCountTimes() {
+    func testReplacingCurrentWordWithNoPrePartDeletesBackwardsCurrentWordCountTimes() {
         prepareNoPreCursorPart()
         let calls = proxy.calls(to: \.deleteBackwardRef)
         XCTAssertEqual(calls.count, 11)

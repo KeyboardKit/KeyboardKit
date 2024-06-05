@@ -34,6 +34,15 @@ open class MockTextDocumentProxy: NSObject, UITextDocumentProxy, Mockable {
     public var selectedText: String?
     
     public func adjustTextPosition(byCharacterOffset offset: Int) {
+        if offset > 0 {
+            let change = String(documentContextAfterInput?.prefix(offset) ?? "")
+            documentContextAfterInput = String(documentContextAfterInput?.dropFirst(offset) ?? "")
+            documentContextBeforeInput = "\(documentContextBeforeInput ?? "")\(change)"
+        } else {
+            let change = String(documentContextAfterInput?.prefix(offset) ?? "")
+            documentContextBeforeInput = String(documentContextBeforeInput?.dropLast(offset) ?? "")
+            documentContextAfterInput = "\(change)\(documentContextAfterInput ?? "")"
+        }
         call(adjustTextPositionRef, args: (offset))
     }
     
