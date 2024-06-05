@@ -44,7 +44,7 @@ public extension Autocomplete.TextReplacementDictionary {
     mutating func addWordReplacement(
         _ replacement: String,
         for word: String,
-        locale: KeyboardLocale
+        locale: KeyboardLocaleInfo
     ) {
         addWordReplacements([word: replacement], for: locale)
     }
@@ -52,7 +52,7 @@ public extension Autocomplete.TextReplacementDictionary {
     /// Insert a word replacement for a certain locale.
     mutating func addWordReplacements(
         _ dict: [String: String],
-        for locale: KeyboardLocale
+        for locale: KeyboardLocaleInfo
     ) {
         var val = dictionary.value(for: locale) ?? [:]
         dict.forEach {
@@ -64,7 +64,7 @@ public extension Autocomplete.TextReplacementDictionary {
     /// Set word replacement for a certain locale.
     mutating func setWordReplacements(
         _ dict: [String: String],
-        for locale: KeyboardLocale
+        for locale: KeyboardLocaleInfo
     ) {
         dictionary.set(dict, for: locale)
     }
@@ -72,14 +72,14 @@ public extension Autocomplete.TextReplacementDictionary {
     /// Set word replacement for a certain locale.
     func wordReplacement(
         for word: String,
-        locale: KeyboardLocale
+        locale: KeyboardLocaleInfo
     ) -> String? {
         wordReplacements(for: locale)?[word]
     }
 
     /// Get word replacement for a certain locale.
     func wordReplacements(
-        for locale: KeyboardLocale
+        for locale: KeyboardLocaleInfo
     ) -> [String: String]? {
         dictionary.value(for: locale)
     }
