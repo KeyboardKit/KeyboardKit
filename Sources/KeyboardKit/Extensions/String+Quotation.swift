@@ -10,30 +10,21 @@ import Foundation
 
 public extension String {
 
-    /**
-     Check whether or not the last trailing quotation in the
-     string is an alternate quotation begin delimiter.
-     */
+    /// Check if the string contains any unclosed quotations.
     func hasUnclosedAlternateQuotation(for locale: Locale) -> Bool {
         guard let begin = locale.alternateQuotationBeginDelimiter else { return false}
         guard let end = locale.alternateQuotationEndDelimiter else { return false}
         return hasUnclosedQuotation(beginDelimiter: begin, endDelimiter: end)
     }
 
-    /**
-     Check whether or not the last trailing quotation in the
-     string is a quotation begin delimiter.
-     */
+    /// Check if the string contains any unclosed quotations.
     func hasUnclosedQuotation(for locale: Locale) -> Bool {
         guard let begin = locale.quotationBeginDelimiter else { return false}
         guard let end = locale.quotationEndDelimiter else { return false}
         return hasUnclosedQuotation(beginDelimiter: begin, endDelimiter: end)
     }
 
-    /**
-     Whether or not the last trailing quotation character is
-     a begin delimiter for the provided locale.
-     */
+    /// Check if the string contains any unclosed quotations.
     func hasUnclosedQuotation(
         beginDelimiter begin: String,
         endDelimiter end: String
@@ -44,10 +35,8 @@ public extension String {
         return beginIndex < endIndex
     }
 
-    /**
-     Check if a certain text that is about to be appended to
-     the string should be replaced with something else.
-     */
+    /// Check if a certain text that is about to be appended
+    /// to the string should be replaced with something else.
     func preferredQuotationReplacement(
         whenAppending text: String,
         for locale: Locale
@@ -57,19 +46,14 @@ public extension String {
         return nil
     }
 
-    /**
-     Wrap the string in quotation delimiters for a `locale`.
-     */
+    /// Wrap the string in quotation delimiters.
     func quoted(for locale: Locale) -> String {
         guard let begin = locale.quotationBeginDelimiter else { return self }
         guard let end = locale.quotationEndDelimiter else { return self }
         return "\(begin)\(self)\(end)"
     }
 
-    /**
-     Wrap the string in alternate quotation delimiters for a
-     `locale`.
-     */
+    /// Wrap the string in alternate quotation delimiters.
     func alternateQuoted(for locale: Locale) -> String {
         guard let begin = locale.alternateQuotationBeginDelimiter else { return self }
         guard let end = locale.alternateQuotationEndDelimiter else { return self }
