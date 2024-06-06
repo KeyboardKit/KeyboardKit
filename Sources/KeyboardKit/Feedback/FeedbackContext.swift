@@ -92,14 +92,14 @@ public extension FeedbackContext {
     }
     
     /// Register custom audio feedback for a certain action.
-    func register(
+    func registerCustomFeedback(
         _ feedback: Feedback.AudioConfiguration.CustomFeedback
     ) {
         audioConfiguration.registerCustomFeedback(feedback)
     }
     
     /// Register custom haptic feedback for a certain action.
-    func register(
+    func registerCustomFeedback(
         _ feedback: Feedback.HapticConfiguration.CustomFeedback
     ) {
         hapticConfiguration.registerCustomFeedback(feedback)
@@ -114,4 +114,22 @@ public extension FeedbackContext {
     func toggleIsHapticFeedbackEnabled() {
         isHapticFeedbackEnabled.toggle()
     }
+}
+
+public extension FeedbackContext {
+
+    @available(*, deprecated, renamed: "registerCustomFeedback(_:)")
+    func register(
+        _ feedback: Feedback.AudioConfiguration.CustomFeedback
+    ) {
+        registerCustomFeedback(feedback)
+    }
+
+    @available(*, deprecated, renamed: "registerCustomFeedback(_:)")
+    func register(
+        _ feedback: Feedback.HapticConfiguration.CustomFeedback
+    ) {
+        registerCustomFeedback(feedback)
+    }
+
 }

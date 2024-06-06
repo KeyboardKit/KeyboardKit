@@ -96,10 +96,11 @@ You can also use use the context or its underlying configurations to register cu
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        ...
-        feedback.register(.audio(.rocketFuse, for: .press, on: .rocket))
-        feedback.register(.audio(.rocketLaunch, for: .release, on: .rocket))
-        feedback.register(.haptic(.selection, for: .repeat, on: .rocket))
+        super.viewDidLoad()
+        let feedback = state.feedbackContext
+        feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
+        feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
+        feedback.registerCustomFeedback(.haptic(.selection, for: .repeat, on: .rocket))
     }
 }
 ```
