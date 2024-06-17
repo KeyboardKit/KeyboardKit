@@ -19,11 +19,13 @@ The local autocomplete provider now returns proper unknown statuses for the lead
 
 This way to learn unknown suggestions will hopefully solve many frustrations involved with autocomplete, where the provider will behave better over time. Please provide feedback if these adjustments don't behave as expected.
 
+The local autocomplete provider will also now use any lexicon match as the primary autocorrecting word.
+
 Furthermore, this version adds brand new persistent settings types, adds a `KeyboardLocaleInfo` protocol that makes `KeyboardLocale` and `Locale` share many properties, and makes it possible to define which text to use when ending the current sentence. 
 
 ### 🚨 Important Information
 
-* `Autocomplete.LocalProvider` no longer caps suggestions to the preferred count. That responsibility has been moved to the `Autocomplete.Toolbar`.
+* `Autocomplete.LocalProvider` no longer caps suggestions by default. That responsibility has been moved to the `Autocomplete.Toolbar`.
 * `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility has been moved to the `AutocompleteProvider`. 
 * `KeyboardInputViewController` will check more configurations before performing autocomplete. The keyboard context's `prefersAutocomplete` will now also be used to make this decision.
 * `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s, to give you more design freedom. This may result in breaking changes, but these should be easy to fix.
@@ -66,6 +68,7 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
  
 ### 👑 KeyboardKit Pro
 
+* `Autocomplete.LocalProvider` no longer takes a `maxCount` parameter.
 * `Autocomplete.LocalProvider` will now return proper unknown state for suggestions.
 * `Dictation.ProKeyboardService` uses an action handler to open app and navigate back.
 * `Emoji.KeyboardMenu` will now trigger haptic feedback when tapping an emoji category.
