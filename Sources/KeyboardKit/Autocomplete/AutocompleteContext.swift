@@ -62,7 +62,10 @@ public class AutocompleteContext: ObservableObject {
     @Published
     public var preferredSuggestionCount: Int = 3
 
-    /// The list of suggestions to present to the user.
+    /// The complete list of autocomplete suggestions.
+    ///
+    /// Use ``suggestionToDisplay`` when displaying the list,
+    /// since it caps it to the ``preferredSuggestionCount``.
     @Published
     public var suggestions: [Autocomplete.Suggestion] = []
 
@@ -71,5 +74,14 @@ public class AutocompleteContext: ObservableObject {
         isLoading = false
         lastError = nil
         suggestions = []
+    }
+}
+
+public extension AutocompleteContext {
+
+    /// The list of current autocomplete suggestions, capped
+    /// to the ``preferredSuggestionCount``.
+    var suggestionToDisplay: [Autocomplete.Suggestion] {
+        Array(suggestions.prefix(preferredSuggestionCount))
     }
 }

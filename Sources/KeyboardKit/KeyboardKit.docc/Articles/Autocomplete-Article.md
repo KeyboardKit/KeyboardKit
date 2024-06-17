@@ -71,16 +71,13 @@ Views like the autocomplete ``Autocomplete/Toolbar`` can list these suggestions 
 
 You can override any autocomplete-related property or function in ``KeyboardInputViewController``, such as ``KeyboardInputViewController/autocompleteText`` or ``KeyboardInputViewController/performAutocomplete()``, to customize how autocomplete is handled by the controller.
 
-You can use the ``AutocompleteContext`` to perform in-memory changes that are not persisted, such as using ``AutocompleteContext/isAutocorrectEnabled`` & ``AutocompleteContext/isAutocompleteEnabled`` to enable or disable autocomplete & autocorrect. 
-
 You can also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` view modifier to the keyboard view.
+
+You can use the ``AutocompleteContext`` to perform changes that are not persisted, such as using ``AutocompleteContext/isAutocorrectEnabled`` & ``AutocompleteContext/isAutocompleteEnabled`` to enable or disable autocomplete & autocorrect, ``AutocompleteContext/preferredSuggestionCount``, etc. 
 
 ``AutocompleteContext`` also has an ``AutocompleteContext/autocorrectDictionary`` that can be used to add custom autocorrect text replacements, which for instance will be used by the ``Autocomplete/LocalProvider``.
 
-``AutocompleteContext`` also has an ``AutocompleteContext/preferredSuggestionCount`` that can be used to tell the provider how many suggestions to return. This is just a preferred value, which isn't guaranteed to be honored by the provider.
-
-Finally, you can use the ``AutocompleteSettings`` to perform persistent changes, that can sync between the main app and keyboard extensions, and will be automatically restored the next time the app or keyboard is launched. See <doc:Settings-Article> for more information.
-
+You can use the ``AutocompleteSettings`` to perform changes that will automatically persist, and  automatically update the context. Settings can also sync between the main app and keyboard extensions. See <doc:Settings-Article> for more information.
 
 
 

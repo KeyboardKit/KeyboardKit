@@ -17,17 +17,16 @@ This version improves the overall autocomplete behavior.
 
 The local autocomplete provider now returns proper unknown statuses for the leading quotation suggestion. The standard action handler will automatically ask the autocomplete provider to learn applied unknown suggestions, if `isAutoLearnEnabled` is `true`.
 
-This way to learn unknown suggestions will hopefully solve many frustrations involved with autocomplete, where the provider will behave better over time. Please provide feedback if these adjustments don't behave properly, or as expected.
-
-Another change is that the `KeyboardInputViewController` will check more configurations before performing autocomplete. The keyboard context's `prefersAutocomplete` property will now also be used to make this decision. 
-
-Another change worth knowing, is that the `Autocomplete.ToolbarItem` view no longer adds quotations around unknown suggestions. That responsibility has been moved to the autocomplete provider. The view will just show the titles it receives.  
+This way to learn unknown suggestions will hopefully solve many frustrations involved with autocomplete, where the provider will behave better over time. Please provide feedback if these adjustments don't behave as expected.
 
 Furthermore, this version adds brand new persistent settings types, adds a `KeyboardLocaleInfo` protocol that makes `KeyboardLocale` and `Locale` share many properties, and makes it possible to define which text to use when ending the current sentence. 
 
 ### 🚨 Important Information
 
-`KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports defining native `Font`s, to give you more freedom when designing custom keyboards. This may result in breaking changes, if you use have overridden the style provider font or access the style font, but these should be easy to fix.
+* `Autocomplete.LocalProvider` no longer caps suggestions to the preferred count. That responsibility has been moved to the `Autocomplete.Toolbar`.
+* `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility has been moved to the `AutocompleteProvider`. 
+* `KeyboardInputViewController` will check more configurations before performing autocomplete. The keyboard context's `prefersAutocomplete` will now also be used to make this decision.
+* `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s, to give you more design freedom. This may result in breaking changes, but these should be easy to fix.
 
 ### 🆕 New Settings Types
  
@@ -43,6 +42,7 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 * `AutocompleteContext` has a new `autocorrectDictionary` value.
 * `AutocompleteContext` has a new `isAutoLearnEnabled` property.
 * `AutocompleteContext` has a new `preferredSuggestionCount` property.
+* `AutocompleteContext` has a new `suggestionsToDisplay` property.
 * `AutocompleteProvider` has new `ignoreWords(_:)` and suggestion functions.
 * `KeyboardBehavior` and its implementations have a new `endSentenceText` property.
 * `KeyboardAction.StandardProvider` can now automatically learn unknown suggestions.
