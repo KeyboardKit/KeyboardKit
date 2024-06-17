@@ -63,9 +63,9 @@ class KeyboardViewController: KeyboardInputViewController {
         let feedback = state.feedbackContext
         feedback.audioConfiguration = .enabled
         feedback.hapticConfiguration = .enabled
-        feedback.register(.haptic(.selection, for: .repeat, on: .rocket))
-        feedback.register(.audio(.rocketFuse, for: .press, on: .rocket))
-        feedback.register(.audio(.rocketLaunch, for: .release, on: .rocket))
+        feedback.registerCustomFeedback(.haptic(.selection, for: .repeat, on: .rocket))
+        feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
+        feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
         
         /// 💡 Disable autocorrect.
         // state.autocompleteContext.isAutocorrectEnabled = false

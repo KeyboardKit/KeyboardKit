@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
       "state" : {
-        "branch" : "8.7-rc1",
-        "revision" : "7d86d311a0def87afe9a966bcc632a8afc1b6ee8"
+        "branch" : "8.7-rc2",
+        "revision" : "d496cc82986c4ecc1b00179358a2366f129accbe"
       }
     },
     {
