@@ -237,7 +237,7 @@ private extension SystemKeyboard {
             autocompleteAction: actionHandler.handle(_:),
             style: styleProvider.autocompleteToolbarStyle,
             view: Autocomplete.Toolbar(
-                suggestions: autocompleteContext.suggestionToDisplay,
+                suggestions: autocompleteContext.suggestions,
                 locale: keyboardContext.locale,
                 style: styleProvider.autocompleteToolbarStyle,
                 suggestionAction: actionHandler.handle(_:)

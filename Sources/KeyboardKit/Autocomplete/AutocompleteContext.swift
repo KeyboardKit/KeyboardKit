@@ -62,26 +62,27 @@ public class AutocompleteContext: ObservableObject {
     @Published
     public var preferredSuggestionCount: Int = 3
 
-    /// The complete list of autocomplete suggestions.
-    ///
-    /// Use ``suggestionToDisplay`` when displaying the list,
-    /// since it caps it to the ``preferredSuggestionCount``.
+    /// The suggestions to present to the user.
     @Published
     public var suggestions: [Autocomplete.Suggestion] = []
+
+    /// The suggestions returned by an autocomplete provider.
+    ///
+    /// This is the raw result, while ``suggestions`` is the
+    /// capped result that should be presented, based on the
+    /// ``preferredSuggestionCount``.
+    @Published
+    public var suggestionsFromProvider: [Autocomplete.Suggestion] = [] {
+        didSet {
+            let value = suggestionsFromProvider
+            suggestions = Array(value.prefix(preferredSuggestionCount))
+        }
+    }
 
     /// Reset the autocomplete contexts.
     public func reset() {
         isLoading = false
         lastError = nil
         suggestions = []
-    }
-}
-
-public extension AutocompleteContext {
-
-    /// The list of current autocomplete suggestions, capped
-    /// to the ``preferredSuggestionCount``.
-    var suggestionToDisplay: [Autocomplete.Suggestion] {
-        Array(suggestions.prefix(preferredSuggestionCount))
     }
 }

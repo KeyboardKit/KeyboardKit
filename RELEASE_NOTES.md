@@ -15,11 +15,11 @@ These release notes only cover the current major version.
 
 This version improves the overall autocomplete behavior.
 
-The local autocomplete provider now returns proper unknown statuses for the leading quotation suggestion. The standard action handler will automatically ask the autocomplete provider to learn applied unknown suggestions, if `isAutoLearnEnabled` is `true`.
+The local autocomplete provider will now return proper unknown statuses and suggest any lexicon matches as autocorrections. The standard action handler will automatically ask the autocomplete provider to learn any applied unknown suggestions, if `isAutoLearnEnabled` is `true`.
 
 This way to learn unknown suggestions will hopefully solve many frustrations involved with autocomplete, where the provider will behave better over time. Please provide feedback if these adjustments don't behave as expected.
 
-The local autocomplete provider will also now use any lexicon match as the primary autocorrecting word.
+The autocomplete context also has new ways of registering your own custom autocorrections for any locale, in case you find the default behavior to be lacking in some areas.
 
 Furthermore, this version adds brand new persistent settings types, adds a `KeyboardLocaleInfo` protocol that makes `KeyboardLocale` and `Locale` share many properties, and makes it possible to define which text to use when ending the current sentence. 
 
@@ -27,8 +27,8 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 
 * `Autocomplete.LocalProvider` no longer caps suggestions by default. That responsibility is moved to `Autocomplete.Toolbar`.
 * `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility is moved to `AutocompleteProvider`. 
-* `KeyboardInputViewController` now checks more things before performing autocomplete. The keyboard context `prefersAutocomplete` is now also used.
-* `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s for more design freedom. This may cause breaking changes that should be easy to fix.
+* `KeyboardInputViewController` now checks more things before performing autocomplete, for instance the keyboard context `prefersAutocomplete`.
+* `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s. This may cause some breaking changes that should be easy to fix.
 
 ### 🆕 New Settings Types
  
@@ -71,6 +71,7 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 ### 👑 KeyboardKit Pro
 
 * `Autocomplete.LocalProvider` no longer takes a `maxCount` parameter.
+* `Autocomplete.LocalProvider` will now return lexicon matches as autocorrections.
 * `Autocomplete.LocalProvider` will now return proper unknown state for suggestions.
 * `Dictation.ProKeyboardService` uses an action handler to open app and navigate back.
 * `Emoji.KeyboardMenu` will now trigger haptic feedback when tapping an emoji category.

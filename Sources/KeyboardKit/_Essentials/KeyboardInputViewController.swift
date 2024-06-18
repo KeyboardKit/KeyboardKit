@@ -377,10 +377,11 @@ private extension KeyboardInputViewController {
     /// Update the autocomplete context with new suggestions.
     func updateAutocompleteContext(with result: [Autocomplete.Suggestion]) {
         DispatchQueue.main.async { [weak self] in
-            self?.state.autocompleteContext.suggestions = result
+            self?.state.autocompleteContext.suggestionsFromProvider = result
         }
     }
     
+    /// Update the last received dictation error.
     func updateLastDictationError(_ error: Error) async {
         await MainActor.run {
             state.dictationContext.lastError = error
