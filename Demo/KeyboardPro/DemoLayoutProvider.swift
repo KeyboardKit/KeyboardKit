@@ -25,7 +25,9 @@ class DemoLayoutProvider: KeyboardLayout.StandardProvider {
         let layout = super.keyboardLayout(for: context)
         // layout.tryInsertDictationButton()
         guard context.locales.count > 1 else { return layout }
-        layout.tryInsertLocaleSwitcher()
+        let lastRow = layout.itemRows.last ?? []
+        let lastRowInputs = lastRow.filter { $0.action.isInputAction }
+        layout.tryInsertLocaleSwitcher(if: lastRowInputs.count < 2)
         return layout
     }
 }
@@ -37,7 +39,8 @@ private extension KeyboardLayout {
         itemRows.insert(item, after: .space, atRow: bottomRowIndex)
     }
 
-    func tryInsertLocaleSwitcher() {
+    func tryInsertLocaleSwitcher(if condition: Bool) {
+        guard condition else { return }
         guard let item = tryCreateBottomRowItem(for: .nextLocale) else { return }
         itemRows.insert(item, after: .space, atRow: bottomRowIndex)
     }
