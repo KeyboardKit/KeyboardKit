@@ -20,18 +20,14 @@ public extension Autocomplete {
         ///
         /// - Parameters:
         ///   - suggestion: The suggestion to display.
-        ///   - locale: The locale to use, by default `.current`.
         public init(
-            suggestion: Autocomplete.Suggestion,
-            locale: Locale = .current
+            suggestion: Autocomplete.Suggestion
         ) {
             self.suggestion = suggestion
-            self.locale = locale
             self.initStyle = nil
         }
         
         private let suggestion: Suggestion
-        private let locale: Locale
         
         @Environment(\.autocompleteToolbarItemStyle)
         private var envStyle
@@ -58,10 +54,18 @@ public extension Autocomplete {
             style: Autocomplete.ToolbarItemStyle
         ) {
             self.suggestion = suggestion
-            self.locale = locale
             self.initStyle = style
         }
-        
+
+        @available(*, deprecated, message: "This view no longer uses the locale.")
+        public init(
+            suggestion: Autocomplete.Suggestion,
+            locale: Locale
+        ) {
+            self.suggestion = suggestion
+            self.initStyle = nil
+        }
+
         private typealias Style = Autocomplete.ToolbarItemStyle
         private let initStyle: Style?
         private var style: Style { initStyle ?? envStyle }

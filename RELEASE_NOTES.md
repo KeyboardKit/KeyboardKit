@@ -25,17 +25,17 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 
 ### 🚨 Important Information
 
-* `Autocomplete.LocalProvider` no longer caps suggestions by default. That responsibility has been moved to the `Autocomplete.Toolbar`.
-* `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility has been moved to the `AutocompleteProvider`. 
-* `KeyboardInputViewController` will check more configurations before performing autocomplete. The keyboard context's `prefersAutocomplete` will now also be used to make this decision.
-* `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s, to give you more design freedom. This may result in breaking changes, but these should be easy to fix.
+* `Autocomplete.LocalProvider` no longer caps suggestions by default. That responsibility is moved to `Autocomplete.Toolbar`.
+* `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility is moved to `AutocompleteProvider`. 
+* `KeyboardInputViewController` now checks more things before performing autocomplete. The keyboard context `prefersAutocomplete` is now also used.
+* `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s for more design freedom. This may cause breaking changes that should be easy to fix.
 
 ### 🆕 New Settings Types
  
 * `AutocompleteSettings` is a new observable settings type.
 * `DictationSettings` is a new observable settings type.
 * `FeedbackSettings` is a new observable settings type.
-* `Keyboard.Settings` is a new settings type container.
+* `Keyboard.Settings` is a new settings wrapper.
 
 ### ✨ Features
 
@@ -59,6 +59,8 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 
 ### 💡 Adjustments
 
+* `Autocomplete.Toolbar` no longer needs an injected locale.
+* `Autocomplete.ToolbarItem` no longer needs an injected locale.
 * `Autocomplete.ToolbarItem` no longer adds quotations to unknown suggestions.
 * `KeyboardContex` `prefersAutocomplete` is now computed and no longer synced.
 * `KeyboardInputViewController` now checks `KeyboardContext.prefersAutocomplete`.
