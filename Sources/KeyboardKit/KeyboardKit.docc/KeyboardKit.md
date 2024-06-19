@@ -226,6 +226,7 @@ KeyboardKit is available under the MIT license.
 ### Localization
 
 - ``KeyboardLocale``
+- ``KeyboardLocaleInfo``
 - ``KKL10n``
 - ``Localizable``
 - ``LocalizedService``

@@ -41,7 +41,7 @@ Here's a list of extensions that are automatically applied to the text document 
 * ``UIKit/UITextDocumentProxy/deleteBackward(range:)``
 * ``UIKit/UITextDocumentProxy/deleteBackward(times:)``
 * ``UIKit/UITextDocumentProxy/documentContext``
-* ``UIKit/UITextDocumentProxy/endSentence()``
+* ``UIKit/UITextDocumentProxy/endSentence(withText:)``
 * ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)``
 * ``UIKit/UITextDocumentProxy/hasAutocompleteInsertedSpace``
 * ``UIKit/UITextDocumentProxy/hasAutocompleteRemovedSpace``

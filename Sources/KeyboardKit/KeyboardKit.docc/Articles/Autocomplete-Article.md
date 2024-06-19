@@ -73,7 +73,7 @@ You can override any autocomplete-related property or function in ``KeyboardInpu
 
 You can also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` view modifier to the keyboard view.
 
-You can use the ``AutocompleteContext`` to perform changes that are not persisted, such as using ``AutocompleteContext/isAutocorrectEnabled`` & ``AutocompleteContext/isAutocompleteEnabled`` to enable or disable autocomplete & autocorrect, ``AutocompleteContext/preferredSuggestionCount``, etc. 
+You can use the ``AutocompleteContext`` to perform changes that are not persisted, such as using ``AutocompleteContext/isAutocorrectEnabled`` & ``AutocompleteContext/isAutocompleteEnabled`` to enable or disable autocomplete & autocorrect, ``AutocompleteContext/suggestionsDisplayCount``, etc. 
 
 ``AutocompleteContext`` also has an ``AutocompleteContext/autocorrectDictionary`` that can be used to add custom autocorrect text replacements, which for instance will be used by the ``Autocomplete/LocalProvider``.
 

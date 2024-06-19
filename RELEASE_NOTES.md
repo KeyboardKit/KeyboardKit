@@ -27,8 +27,8 @@ Furthermore, this version adds new persistent settings types, adds a `KeyboardLo
 
 ### 🚨 Important Information
 
-* `AutocompleteProvider` and all implementations have been renamed to use the new `Service` name.
-* `Autocomplete.LocalProvider` no longer caps suggestions by default. That responsibility is moved to `Autocomplete.Toolbar`.
+* `AutocompleteService` and all implementations have been renamed to use the new `Service` name.
+* `Autocomplete.LocalService` no longer caps suggestions by default. That responsibility is moved to the context.
 * `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility is moved to `AutocompleteService`. 
 * `KeyboardInputViewController` now checks more things before performing autocomplete, for instance the keyboard context `prefersAutocomplete`.
 * `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s. This may cause some breaking changes that should be easy to fix.
@@ -74,9 +74,9 @@ Furthermore, this version adds new persistent settings types, adds a `KeyboardLo
  
 ### 👑 KeyboardKit Pro
 
-* `Autocomplete.LocalProvider` no longer takes a `maxCount` parameter.
-* `Autocomplete.LocalProvider` will now return lexicon matches as autocorrections.
-* `Autocomplete.LocalProvider` will now return proper unknown state for suggestions.
+* `Autocomplete.LocalService` no longer takes a `maxCount` parameter.
+* `Autocomplete.LocalService` will now return lexicon matches as autocorrections.
+* `Autocomplete.LocalService` will now return proper unknown state for suggestions.
 * `Dictation.ProKeyboardService` uses an action handler to open app and navigate back.
 * `Emoji.KeyboardMenu` will now trigger haptic feedback when tapping an emoji category.
 * `KeyboardHostApplication` now implements `Identifiable` and has a new `name` property.

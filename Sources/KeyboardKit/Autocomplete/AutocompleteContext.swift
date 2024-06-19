@@ -16,9 +16,10 @@ import Combine
 /// this class automatically, using an ``AutocompleteService``
 /// to perform autocomplete.
 ///
-/// There's also a ``suggestionsFromService``, which can be
-/// used to provide a full set of suggestions, of which only
-/// a few are shown, defined by ``preferredSuggestionCount``.
+/// There's also a ``suggestionsFromService`` property, that
+/// can be used to provide a full suggestion result of which
+/// only a few will be included in ``suggestions``, which is
+/// defined by ``suggestionsDisplayCount``.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
@@ -71,10 +72,6 @@ public class AutocompleteContext: ObservableObject {
     public var suggestions: [Autocomplete.Suggestion] = []
 
     /// The suggestions returned by an autocomplete service.
-    ///
-    /// This is the raw result, while ``suggestions`` is the
-    /// capped result that should be presented, based on the
-    /// ``preferredSuggestionCount``.
     @Published
     public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
         didSet {
