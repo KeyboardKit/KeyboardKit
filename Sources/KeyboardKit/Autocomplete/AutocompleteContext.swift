@@ -14,7 +14,10 @@ import Combine
 /// user types on the keyboard or the current text selection
 /// changes. The ``KeyboardInputViewController`` will handle
 /// this automatically, with the ``AutocompleteProvider`` in
-/// ``KeyboardInputViewController/services``.
+/// ``KeyboardInputViewController/services``. There's also a
+/// ``suggestionsFromProvider`` which can be used to provide
+/// a full set of suggestions, of which ``suggestions`` will
+/// only display the first ``preferredSuggestionCount`` ones.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use

@@ -31,7 +31,14 @@ public extension Autocomplete {
         ) async throws -> [Autocomplete.Suggestion] {
             suggestions
         }
-        
+
+        public func nextCharacterPredictions(
+            forText text: String,
+            suggestions: [Autocomplete.Suggestion]
+        ) async throws -> [String : Double] {
+            [:]
+        }
+
         public var canIgnoreWords: Bool { false }
         public var canLearnWords: Bool { false }
         public var ignoredWords: [String] = []

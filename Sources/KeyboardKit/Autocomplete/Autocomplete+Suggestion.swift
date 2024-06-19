@@ -10,24 +10,17 @@ import Foundation
 
 public extension Autocomplete {
  
-    /**
-     This struct represents a suggestion that is returned by
-     an ``AutocompleteProvider``.
-     
-     Autocomplete suggestions can be standard suggestions or
-     autocorrecting ones that are automatically applied when
-     a user taps a word delimiter.
-     
-     Autocorrecting suggestions are typically presented with
-     a white background, but this can be customized with the
-     ``Autocomplete/ToolbarItemStyle``, when you present the
-     suggestion in an ``AutocompleteToolbar``.
-     
-     The currently typed word is natively shown as a leading
-     suggestion, wrapped in a locale-specific quotation. The
-     ``Autocomplete/Suggestion/isUnknown`` is `true` when it
-     wasn't found by the autocomplete engine.
-     */
+    /// This struct represents a suggestion that is returned
+    /// by an ``AutocompleteProvider``.
+    ///
+    /// Autocomplete suggestions can be standard suggestions
+    /// or autocorrecting suggestions that are automatically
+    /// applied when the user taps a word delimiter.
+    ///
+    /// Native keyboards typically present an autocorrecting
+    /// suggestion with a semi-white background, and unknown
+    /// or current words with locale-specific quotation, but
+    /// you can customize this as you see fit.
     struct Suggestion {
         
         /// Create an autocomplete suggestion.

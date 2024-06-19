@@ -13,19 +13,24 @@ import Foundation
 ///
 /// Simply call ``autocompleteSuggestions(for:)`` to perform
 /// an autocomplete operation that returns suggestions for a
-/// text in the current ``locale``.
+/// certain text in the current ``locale``. 
+///
+/// Once you have a list of suggestions, you can use them to
+/// perform ``nextCharacterPredictions(forText:suggestions:)``
+/// that returns a dictionary with character keys and values
+/// that represent the probability that the character is the
+/// next character the user will type.
 ///
 /// Words can be learned using ``learnWord(_:)`` and ignored
-/// using ``ignoreWord(_:)``. Learned words are persisted in
-/// the system, and will be considered as new words from the
-/// point they are learned, while ignored words will just be
-/// ignored by the autocomplete provider.
+/// with ``ignoreWord(_:)``. Learned words are persisted and
+/// will be considered in any subsequent calculations, while
+/// ignored words are just ignored by this provider instance.
 ///
 /// Not all autocomplete providers support ignoring/learning
 /// words. Check ``canLearnWords`` and ``canIgnoreWords`` to
-/// check whether or not a provider supports it. Also, while
-/// a provider may support ignoring and learning, it may not
-/// be able to provide ``ignoredWords`` and ``learnedWords``.
+/// check whether a provider supports it. Also note that the
+/// provider may support it while not being able to return a
+/// list of ``ignoredWords`` and ``learnedWords``.
 ///
 /// KeyboardKit does not have a standard provider, as it has
 /// for other services. Instead, a disabled provider will be
@@ -43,7 +48,14 @@ public protocol AutocompleteProvider: AnyObject {
     func autocompleteSuggestions(
         for text: String
     ) async throws -> [Autocomplete.Suggestion]
-    
+
+    /// Get next character predictions for the provided text
+    /// and a list of suggestions.
+    func nextCharacterPredictions(
+        forText text: String,
+        suggestions: [Autocomplete.Suggestion]
+    ) async throws -> [String: Double]
+
     
     /// Whether or not the provider can ignore words.
     var canIgnoreWords: Bool { get }
