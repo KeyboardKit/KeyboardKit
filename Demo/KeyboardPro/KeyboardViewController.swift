@@ -16,19 +16,16 @@ import SwiftUI
 /// then switch to it when you type in the demo (or any) app.
 ///
 /// This keyboard uses KeyboardKit Pro-based autocomplete to
-/// provide localized suggestions for every supported locale.
-/// It also uses a Pro toggle toolbar, to add a menu "behind"
-/// the main autocomplete toolbar.
+/// provide real suggestions. It also uses a KeyboardKit Pro
+/// `ToggleToolbar`, to add a menu "behind" the main toolbar.
+/// Check it out for some fun features.
+///
+/// This keyboard will also persist the current locale, then
+/// restore it the next time it launches.
 ///
 /// > Important: This keyboard needs full access to use some
 /// features, like haptic feedback.
 class KeyboardViewController: KeyboardInputViewController {
-
-    /// This demo will persist the current locale so that it
-    /// can restore it the next time the keyboard is created.
-    deinit {
-        persistedLocaleId = state.keyboardContext.locale.identifier
-    }
 
     /// This function is called when the controller launches.
     ///
@@ -84,13 +81,22 @@ class KeyboardViewController: KeyboardInputViewController {
         
         /// 💡 Make the demo use a ``DemoKeyboardView``.
         ///
+        /// "299B33C6-061C-4285-8189-90525BCAF098" is a demo
+        /// specific license key. If you want to insert your
+        /// own license key, you must also change the bundle
+        /// identifier of the demo app and keyboard to match
+        /// the identifiers you've specified for the license.
+        ///
         /// We get an `unowned` controller reference that we
         /// can use to help us avoid memory leaks.
         setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             licenseConfiguration: setup   // Specified below
         ) { controller in
-            DemoKeyboardView(controller: controller)
+            DemoKeyboardView(
+                controller: controller,
+                onLocaleChanged: { [weak self] in self?.persistLocale() }
+            )
         }
     }
 
@@ -147,5 +153,10 @@ class KeyboardViewController: KeyboardInputViewController {
     var persistedLocaleId: String? {
         get { defaults.string(forKey: persistedLocaleKey) }
         set { defaults.set(newValue, forKey: persistedLocaleKey) }
+    }
+
+    /// Persist the current locale in user defaults.
+    func persistLocale() {
+        persistedLocaleId = state.keyboardContext.locale.identifier
     }
 }

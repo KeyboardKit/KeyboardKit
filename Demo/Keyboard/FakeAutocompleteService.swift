@@ -1,5 +1,5 @@
 //
-//  FakeAutocompleteProvider.swift
+//  FakeAutocompleteService.swift
 //  Keyboard
 //
 //  Created by Daniel Saidi on 2022-02-07.
@@ -9,9 +9,8 @@
 import Foundation
 import KeyboardKit
 
-/// This fake provider is used in the non-pro demo, and will
-/// show fake suggestions while typing.
-class FakeAutocompleteProvider: AutocompleteProvider {
+/// This fake service returns fake suggestions while typing.
+class FakeAutocompleteService: AutocompleteService {
 
     init(context: AutocompleteContext) {
         self.context = context
@@ -44,10 +43,17 @@ class FakeAutocompleteProvider: AutocompleteProvider {
                 return suggestion
             }
     }
+
+    func nextCharacterPredictions(
+        forText text: String,
+        suggestions: [Autocomplete.Suggestion]
+    ) async throws -> [Character : Double] {
+        [:]
+    }
 }
 
-private extension FakeAutocompleteProvider {
-    
+private extension FakeAutocompleteService {
+
     func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
         let suggestions: [Autocomplete.Suggestion] = [
             .init(text: text, isUnknown: true),
@@ -56,6 +62,6 @@ private extension FakeAutocompleteProvider {
             .init(text: "4th Suggestion"),
             .init(text: "5th Suggestion")
         ]
-        return Array(suggestions.prefix(context.preferredSuggestionCount))
+        return Array(suggestions.prefix(context.suggestionsDisplayCount))
     }
 }

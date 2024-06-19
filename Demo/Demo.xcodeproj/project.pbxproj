@@ -17,7 +17,7 @@
 		A921152A25D58A96003510D9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A921152925D58A96003510D9 /* Assets.xcassets */; };
 		A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921153B25D58AC7003510D9 /* KeyboardViewController.swift */; };
 		A921154025D58AC7003510D9 /* Keyboard.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A921153925D58AC7003510D9 /* Keyboard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */; };
+		A921156F25D5902F003510D9 /* FakeAutocompleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A921156D25D5902F003510D9 /* FakeAutocompleteService.swift */; };
 		A92E4A1E2B15101500F957C6 /* DemoToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A92E4A1D2B15101500F957C6 /* DemoToolbar.swift */; };
 		A93342D0299A855F008FAA95 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93342CF299A855F008FAA95 /* KeyboardViewController.swift */; };
 		A93342D4299A855F008FAA95 /* KeyboardPro.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = A93342CD299A855F008FAA95 /* KeyboardPro.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -81,7 +81,7 @@
 		A921153925D58AC7003510D9 /* Keyboard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Keyboard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A921153B25D58AC7003510D9 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		A921153D25D58AC7003510D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAutocompleteProvider.swift; sourceTree = "<group>"; };
+		A921156D25D5902F003510D9 /* FakeAutocompleteService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAutocompleteService.swift; sourceTree = "<group>"; };
 		A92E4A1D2B15101500F957C6 /* DemoToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoToolbar.swift; sourceTree = "<group>"; };
 		A93342CD299A855F008FAA95 /* KeyboardPro.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = KeyboardPro.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		A93342CF299A855F008FAA95 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
@@ -211,7 +211,7 @@
 				A91322642AB9C5BE00780625 /* DemoCalloutActionProvider.swift */,
 				A9EAA6F227B165B600BC9376 /* DemoLayoutProvider.swift */,
 				A9C672642A7BCE37004A5721 /* DemoStyleProvider.swift */,
-				A921156D25D5902F003510D9 /* FakeAutocompleteProvider.swift */,
+				A921156D25D5902F003510D9 /* FakeAutocompleteService.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -415,7 +415,7 @@
 				A91322652AB9C5BE00780625 /* DemoCalloutActionProvider.swift in Sources */,
 				A9EAA6F627B165B600BC9376 /* DemoLayoutProvider.swift in Sources */,
 				A9EAA6F727B165B600BC9376 /* DemoActionHandler.swift in Sources */,
-				A921156F25D5902F003510D9 /* FakeAutocompleteProvider.swift in Sources */,
+				A921156F25D5902F003510D9 /* FakeAutocompleteService.swift in Sources */,
 				A9155CF42BC45081008C360F /* KeyboardKit+Demo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,8 +754,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
-				branch = "8.7-rc3";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.7.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

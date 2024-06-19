@@ -19,7 +19,9 @@ import SwiftUI
 struct DemoKeyboardView: View {
     
     unowned var controller: KeyboardInputViewController
-    
+
+    let onLocaleChanged: () -> Void
+
     @State
     private var theme: KeyboardTheme?
     
@@ -45,6 +47,7 @@ struct DemoKeyboardView: View {
                 .foregroundColor(params.style.item.titleColor)
             }
         )
+        .onChange(of: keyboardContext.locale) { _ in onLocaleChanged() }
     }
 }
 

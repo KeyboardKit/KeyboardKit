@@ -177,7 +177,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 
 
-[Email]: mailto:info@getkeyboardkit.com
+[Email]: mailto:info@keyboardkit.com
 [Website]: https://keyboardkit.com
 [Twitter]: http://twitter.com/getkeyboardkit
 [Mastodon]: https://techhub.social/@keyboardkit

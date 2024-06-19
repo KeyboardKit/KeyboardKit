@@ -38,9 +38,8 @@ class KeyboardViewController: KeyboardInputViewController {
         
         /// 💡 Setup a fake autocomplete service.
         ///
-        /// This fake provider will provide fake suggestions.
-        /// Try the Pro demo for real suggestions.
-        services.autocompleteProvider = FakeAutocompleteProvider(
+        /// The Pro demo uses real, on-device autocompletion.
+        services.autocompleteService = FakeAutocompleteService(
             context: state.autocompleteContext
         )
         
