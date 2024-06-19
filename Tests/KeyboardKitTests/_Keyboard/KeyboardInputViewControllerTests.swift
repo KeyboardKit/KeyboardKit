@@ -17,7 +17,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     
     private var vc: TestClass!
 
-    private let mockAutocompleteProvider = Autocomplete.DisabledProvider()
+    private let mockAutocompleteService = Autocomplete.DisabledService()
     private let mockTextDocumentProxy = MockTextDocumentProxy()
 
     override func setUp() {
@@ -26,7 +26,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func setupMocksForAutocomplete(for vc: KeyboardInputViewController) {
         let vc = vc as? TestClass
-        vc?.services.autocompleteProvider = mockAutocompleteProvider
+        vc?.services.autocompleteService = mockAutocompleteService
         vc?.textDocumentProxyValue = mockTextDocumentProxy
     }
 
@@ -123,7 +123,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func servicesHaveStandardInstancesByDefault() {
         XCTAssertNotNil(vc.services.actionHandler as? KeyboardAction.StandardHandler)
-        XCTAssertNotNil(vc.services.autocompleteProvider as? Autocomplete.DisabledProvider)
+        XCTAssertNotNil(vc.services.autocompleteService as? Autocomplete.DisabledService)
         XCTAssertNotNil(vc.services.calloutActionProvider as? Callouts.StandardActionProvider)
         XCTAssertNotNil(vc.services.dictationService as? Dictation.DisabledKeyboardService)
         XCTAssertNotNil(vc.services.keyboardBehavior as? Keyboard.StandardBehavior)
@@ -190,7 +190,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
         vc.viewDidLoad()
         vc.state.keyboardContext.locale = locale.locale
         eventually {
-            XCTAssertEqual(vc.services.autocompleteProvider.locale, locale.locale)
+            XCTAssertEqual(vc.services.autocompleteService.locale, locale.locale)
         }
     }
 
@@ -243,7 +243,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testPerformingAutocompleteWritesResultToAutocompleteContext() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
-        mockAutocompleteProvider.suggestions = [.init(text: "")]
+        mockAutocompleteService.suggestions = [.init(text: "")]
         vc.performAutocomplete()
         eventually {
             let suggestions = vc.state.autocompleteContext.suggestions

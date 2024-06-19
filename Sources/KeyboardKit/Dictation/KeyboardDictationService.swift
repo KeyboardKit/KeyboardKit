@@ -19,19 +19,19 @@ import Foundation
 ///
 /// KeyboardKit doesn't have a standard dictation service as
 /// it has for other services. Instead, a disabled dictation
-/// service will be used until you register a custom service,
-/// or register a valid KeyboardKit Pro license key.
+/// service will be used until you setup KeyboardKit Pro, or
+/// register a custom service.
 ///
 /// See <doc:Dictation-Article> for more information.
 public protocol KeyboardDictationService: AnyObject {
 
     /// The current dictation authorization status.
     var authorizationStatus: Dictation.AuthorizationStatus { get }
-    
+
     /// A list of supported locales.
     var supportedLocales: [KeyboardLocale] { get }
 
-    
+
     /// Request dictation authorization.
     func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus
 

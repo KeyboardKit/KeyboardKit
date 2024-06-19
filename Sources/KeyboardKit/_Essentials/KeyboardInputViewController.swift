@@ -327,7 +327,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         guard isAutocompleteEnabled else { return }
         Task {
             do {
-                let suggestions = try await services.autocompleteProvider
+                let suggestions = try await services.autocompleteService
                     .autocompleteSuggestions(for: autocompleteText ?? "")
                 updateAutocompleteContext(with: suggestions)
             } catch {
@@ -377,7 +377,7 @@ private extension KeyboardInputViewController {
     /// Update the autocomplete context with new suggestions.
     func updateAutocompleteContext(with result: [Autocomplete.Suggestion]) {
         DispatchQueue.main.async { [weak self] in
-            self?.state.autocompleteContext.suggestionsFromProvider = result
+            self?.state.autocompleteContext.suggestionsFromService = result
         }
     }
     

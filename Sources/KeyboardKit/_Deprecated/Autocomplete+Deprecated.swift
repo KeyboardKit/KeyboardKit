@@ -1,5 +1,5 @@
 //
-//  AutocompleteContext+Deprecated.swift
+//  Autocomplete+Deprecated.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-12-06.
@@ -8,11 +8,20 @@
 
 import Foundation
 
+@available(*, deprecated, renamed: "AutocompleteService")
+public typealias AutocompleteProvider = AutocompleteService
+
+public extension Autocomplete {
+
+    @available(*, deprecated, renamed: "DisabledService")
+    typealias DisabledProvider = DisabledService
+}
+
 @available(*, deprecated, renamed: "Autocomplete.Toolbar")
 public typealias AutocompleteToolbar = Autocomplete.Toolbar
 
 public extension AutocompleteContext {
-    
+
     @available(*, deprecated, renamed: "isAutocompleteEnabled")
     var isEnabled: Bool {
         isAutocompleteEnabled

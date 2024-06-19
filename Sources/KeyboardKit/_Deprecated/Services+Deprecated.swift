@@ -44,11 +44,20 @@ public extension Keyboard.AppearanceViewModifier {
 }
 
 
-@available(*, deprecated, renamed: "Autocomplete.LocalProvider")
-public typealias LocalAutocompleteProvider = Autocomplete.LocalProvider
+@available(*, deprecated, renamed: "Autocomplete.LocalService")
+public typealias LocalAutocompleteProvider = Autocomplete.LocalService
 
-@available(*, deprecated, renamed: "Autocomplete.RemoteProvider")
-public typealias RemoteAutocompleteProvider = Autocomplete.RemoteProvider
+@available(*, deprecated, renamed: "Autocomplete.RemoteService")
+public typealias RemoteAutocompleteProvider = Autocomplete.RemoteService
+
+public extension Autocomplete {
+
+    @available(*, deprecated, renamed: "Autocomplete.LocalService")
+    class LocalProvider {}
+
+    @available(*, deprecated, renamed: "Autocomplete.RemoteService")
+    class RemoteProvider {}
+}
 
 
 @available(*, deprecated, renamed: "Callouts.BaseActionProvider")

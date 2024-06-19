@@ -159,7 +159,7 @@ KeyboardKit is available under the MIT license.
 
 - ``Autocomplete``
 - ``AutocompleteContext``
-- ``AutocompleteProvider``
+- ``AutocompleteService``
 - ``AutocompleteSettings``
 
 ### App

@@ -23,8 +23,8 @@ extension AutocompleteContext {
 
     /// Perform a settings sync after an async delay.
     func syncAfterAsync(with settings: AutocompleteSettings) {
-        if preferredSuggestionCount != settings.autocompleteSuggestionCount {
-            preferredSuggestionCount = settings.autocompleteSuggestionCount
+        if suggestionsDisplayCount != settings.suggestionsDisplayCount {
+            suggestionsDisplayCount = settings.suggestionsDisplayCount
         }
         if isAutocompleteEnabled != settings.isAutocompleteEnabled {
             isAutocompleteEnabled = settings.isAutocompleteEnabled

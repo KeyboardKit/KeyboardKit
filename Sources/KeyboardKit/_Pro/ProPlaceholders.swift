@@ -32,10 +32,10 @@ enum ProPlaceholderError: LocalizedError, View {
 public extension Autocomplete {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class LocalProvider {}
+    class LocalService {}
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class RemoteProvider {}
+    class RemoteService {}
 }
 
 public extension Dictation {

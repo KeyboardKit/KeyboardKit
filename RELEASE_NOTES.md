@@ -15,18 +15,21 @@ These release notes only cover the current major version.
 
 This version improves the overall autocomplete behavior.
 
-The local autocomplete provider will now return proper unknown statuses and suggest any lexicon matches as autocorrections. The standard action handler will automatically ask the autocomplete provider to learn any applied unknown suggestions, if `isAutoLearnEnabled` is `true`.
+The local autocomplete service will now return proper unknown statuses and suggest any lexicon matches as autocorrections. The standard action handler will automatically ask the autocomplete provider to learn any applied unknown suggestions, if `isAutoLearnEnabled` is `true`.
 
 This way to learn unknown suggestions will hopefully solve many frustrations involved with autocomplete, where the provider will behave better over time. Please provide feedback if these adjustments don't behave as expected.
 
+The local autocomplete service can also perform next character prediction, by providing it with the typed text and a list of suggestions. This will be merged with the autocomplete operation in version 9.0.
+
 The autocomplete context also has new ways of registering your own custom autocorrections for any locale, in case you find the default behavior to be lacking in some areas.
 
-Furthermore, this version adds brand new persistent settings types, adds a `KeyboardLocaleInfo` protocol that makes `KeyboardLocale` and `Locale` share many properties, and makes it possible to define which text to use when ending the current sentence. 
+Furthermore, this version adds new persistent settings types, adds a `KeyboardLocaleInfo` protocol to make `KeyboardLocale` and `Locale` share many properties, and makes it possible to define which text to use when ending the current sentence. 
 
 ### 🚨 Important Information
 
+* `AutocompleteProvider` and all implementations have been renamed to use the new `Service` name.
 * `Autocomplete.LocalProvider` no longer caps suggestions by default. That responsibility is moved to `Autocomplete.Toolbar`.
-* `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility is moved to `AutocompleteProvider`. 
+* `Autocomplete.ToolbarItem` no longer adds quotations around unknown suggestions. That responsibility is moved to `AutocompleteService`. 
 * `KeyboardInputViewController` now checks more things before performing autocomplete, for instance the keyboard context `prefersAutocomplete`.
 * `KeyboardStyleProvider` and `Keyboard.ButtonStyle` now supports native `Font`s. This may cause some breaking changes that should be easy to fix.
 
@@ -43,9 +46,10 @@ Furthermore, this version adds brand new persistent settings types, adds a `Keyb
 * `Autocomplete.TextReplacementDictionary` is new type.
 * `AutocompleteContext` has a new `autocorrectDictionary` value.
 * `AutocompleteContext` has a new `isAutoLearnEnabled` property.
-* `AutocompleteContext` has a new `preferredSuggestionCount` property.
-* `AutocompleteContext` has a new `suggestionsToDisplay` property.
-* `AutocompleteProvider` has new `ignoreWords(_:)` and suggestion functions.
+* `AutocompleteContext` has a new `suggestionDisplayCount` property.
+* `AutocompleteContext` has a new `suggestionsFromService` property.
+* `AutocompleteService` has a new `nextCharacterPredictions` function.
+* `AutocompleteService` has new `ignoreWords(_:)` and suggestion functions.
 * `KeyboardBehavior` and its implementations have a new `endSentenceText` property.
 * `KeyboardAction.StandardProvider` can now automatically learn unknown suggestions.
 * `KeyboardContext` has a new `syncKeyboardType(with:)` to sync type with the proxy.

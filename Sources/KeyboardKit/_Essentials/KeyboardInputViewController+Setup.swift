@@ -60,7 +60,7 @@ extension KeyboardInputViewController {
             guard let self = self else { return }
             let locale = $0
             self.primaryLanguage = locale.identifier
-            self.services.autocompleteProvider.locale = locale
+            self.services.autocompleteService.locale = locale
         }
         .store(in: &cancellables)
     }

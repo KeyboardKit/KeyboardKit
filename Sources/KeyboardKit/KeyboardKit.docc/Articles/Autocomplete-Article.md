@@ -15,7 +15,7 @@ This article describes the KeyboardKit autocomplete engine.
 
 Autocomplete is an important part of the typing experience, where suggestions are shown as the user types.
 
-In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``AutocompleteContext`` whenever the user types. Unlike other service types, there is no open-source implementation of this protocol.
+In KeyboardKit, an ``AutocompleteService`` can provide suggestions to an ``AutocompleteContext`` whenever the user types. Unlike other service types, there is no open-source implementation of this protocol.
 
 👑 [KeyboardKit Pro][Pro] unlocks local and remote autocomplete. Information about Pro features can be found at the end of this article.
 
@@ -23,13 +23,13 @@ In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions to an ``Auto
 
 
 
-## Autocomplete namespace
+## Namespace
 
 KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types, models and views.
 
 
 
-## Autocomplete context
+## Context
 
 KeyboardKit has an observable ``AutocompleteContext`` that handles autocomplete state, such as if autocomplete is enabled, which suggestions to present, etc.
 
@@ -37,7 +37,7 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 
 
 
-## Autocomplete settings
+## Settings
 
 KeyboardKit has an observable ``AutocompleteSettings`` that handles autocomplete settings, such as how many suggestions to display, whether or not autocomplete and autocorrect is enabled, etc.
 
@@ -47,21 +47,21 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 
 
-## Autocomplete providers
+## Services
 
-In KeyboardKit, an ``AutocompleteProvider`` can provide suggestions when the user types or the text input cursor moves in the text.
+In KeyboardKit, an ``AutocompleteService`` can provide suggestions when the user types or the text input cursor moves in the text.
 
-KeyboardKit doesn't have a standard autocomplete provider implementation. Instead, it injects a disabled provider into ``KeyboardInputViewController/services`` until you replace it with your own provider implementation or activate [KeyboardKit Pro][pro].
+KeyboardKit doesn't have a standard autocomplete service implementation. Instead, it injects a disabled service into ``KeyboardInputViewController/services`` until you replace it with your own implementation or register [KeyboardKit Pro][pro].
 
 
 
 ## How to perform autocomplete
 
-KeyboardKit will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the ``KeyboardInputViewController/services`` autocomplete provider.
+KeyboardKit will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``KeyboardInputViewController/state`` context with suggestions from the ``KeyboardInputViewController/services`` ``Keyboard/Services/autocompleteService``.
 
 ``KeyboardInputViewController`` has many open autocomplete-related functions that can be used to configure how it performs autocomplete, which text it uses, etc. You can also use the ``AutocompleteContext`` to configure how autocomplete behaves.
 
-However, ieverything eventually comes down to which ``AutocompleteProvider`` you use. The ``Autocomplete/LocalProvider`` in [KeyboardKit Pro][pro] will honor all supported configurations, while ``Autocomplete/RemoteProvider`` will not.
+However, ieverything eventually comes down to which ``AutocompleteService`` you use. The ``Autocomplete/LocalService`` in [KeyboardKit Pro][pro] will honor all supported configurations, while ``Autocomplete/RemoteService`` will not.
 
 Views like the autocomplete ``Autocomplete/Toolbar`` can list these suggestions and handle suggestion with the main ``KeyboardActionHandler``.
 
@@ -81,14 +81,14 @@ You can use the ``AutocompleteSettings`` to perform changes that will automatica
 
 
 
-## How to create a custom autocomplete provider
+## How to create a custom service
 
-You can create a custom autocomplete provider to customize the autocomplete behavior, to integrate with 3rd party tools, etc. You can implement ``AutocompleteProvider`` from scratch, or inherit and customize any of the [KeyboardKit Pro][Pro] providers. 
+You can create a custom autocomplete service to customize the autocomplete behavior, to integrate with 3rd party tools, etc. You can implement ``AutocompleteService`` from scratch, or inherit and customize any of the [KeyboardKit Pro][Pro] services. 
 
-For instance, here's a custom provider that just adds a suffix to the provided text's current word:
+For instance, here's a custom service that just adds a suffix to the current word:
 
 ```swift
-class CustomAutocompleteProvider: AutocompleteProvider {
+class CustomAutocompleteService: AutocompleteService {
 
     init(match: String = "match") {
         self.match = match
@@ -122,7 +122,7 @@ class CustomAutocompleteProvider: AutocompleteProvider {
     }
 }
 
-private extension CustomAutocompleteProvider {
+private extension CustomAutocompleteService {
     
     func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
         [
@@ -146,7 +146,7 @@ private extension CustomAutocompleteProvider {
 }
 ```
 
-To use this handler instead of the standard one, just inject it into ``KeyboardInputViewController/services``:
+To use this service instead of the standard one, just inject it into ``KeyboardInputViewController/services``:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -158,7 +158,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom implementation instead of the standard one.
+This will make KeyboardKit use your custom service instead of the standard one.
 
 
 
@@ -202,28 +202,28 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks additional autocomplete providers and injects a ``Autocomplete/LocalProvider`` into ``KeyboardInputViewController/services`` when you register a valid license key. These providers are open to inheritance, so you can inherit and customize them to fit your needs.
+[KeyboardKit Pro][Pro] unlocks additional autocomplete services and injects a ``Autocomplete/LocalService`` into ``KeyboardInputViewController/services`` when you register a valid license key. The pro services are all open to inheritance, so you can inherit and customize them to fit your needs.
 
 
 ### Local Autocomplete
 
-The ``Autocomplete/LocalProvider`` performs autocomplete operations locally, on-device. It supporst most keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
+The ``Autocomplete/LocalService`` performs autocomplete operations locally, on-device. It supporst most keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
 
-> Important: This provider currently doesn't provide next word prediction, since Apple removed these capabilities in iOS 16. 
+> Important: This service currently doesn't provide next word prediction, since Apple removed these capabilities in iOS 16. 
 
 
 ### Remote Autocomplete
 
-The ``Autocomplete/RemoteProvider`` can be used to perform autocomplete by integrating with an external API. It requires that the device is online, and requires that Full Access is enabled, to allow it to make network requests.
+The ``Autocomplete/RemoteService`` can be used to perform autocomplete by integrating with an external API. It requires that the device is online, and requires that Full Access is enabled, to allow it to make network requests.
 
 
 ### Supported Locales
 
-The ``Autocomplete/LocalProvider`` that is unlocked by KeyboardKit Pro supports the following locales:
+The ``Autocomplete/LocalService`` supports the following locales:
 
 ``KeyboardLocale/arabic``, ``KeyboardLocale/bulgarian``, ``KeyboardLocale/czech``, ``KeyboardLocale/danish``, ``KeyboardLocale/dutch``, ``KeyboardLocale/dutch_belgium``, ``KeyboardLocale/english``, ``KeyboardLocale/english_gb``, ``KeyboardLocale/english_us``, ``KeyboardLocale/filipino``, ``KeyboardLocale/finnish``, ``KeyboardLocale/french``, ``KeyboardLocale/french_belgium``, ``KeyboardLocale/french_switzerland``, ``KeyboardLocale/german``, ``KeyboardLocale/german_austria``, ``KeyboardLocale/german_switzerland``, ``KeyboardLocale/greek``, ``KeyboardLocale/hebrew``, ``KeyboardLocale/hungarian``, ``KeyboardLocale/irish``, ``KeyboardLocale/italian``, ``KeyboardLocale/norwegian``, ``KeyboardLocale/polish``, ``KeyboardLocale/portuguese_brazil``, ``KeyboardLocale/portuguese``, ``KeyboardLocale/romanian``, ``KeyboardLocale/russian``, ``KeyboardLocale/spanish``, ``KeyboardLocale/swedish``, ``KeyboardLocale/turkish``, ``KeyboardLocale/ukrainian``.
 
-If you want to use autocomplete with other locales, you must use remote autocomplete or implement a custom recognizer.
+To support other locales, you must use a remote autocomplete service or create a custom service implementation.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

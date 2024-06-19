@@ -36,7 +36,7 @@ class KeyboardViewController: KeyboardInputViewController {
             feedbackContext: state.feedbackContext,
             spaceDragGestureHandler: services.spaceDragGestureHandler)
         
-        /// 💡 Setup a fake autocomplete provider.
+        /// 💡 Setup a fake autocomplete service.
         ///
         /// This fake provider will provide fake suggestions.
         /// Try the Pro demo for real suggestions.

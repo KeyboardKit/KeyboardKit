@@ -15,7 +15,7 @@ import Foundation
  protocols, types and observable, such as:
  
  - ``AutocompleteContext``.``AutocompleteContext/preview``
- - ``AutocompleteProvider``.``AutocompleteProvider/preview``
+ - ``AutocompleteService``.``AutocompleteService/preview``
  - ``CalloutContext``.``CalloutContext/preview``
  - ``CalloutActionProvider``.``CalloutActionProvider/preview``
  - ``KeyboardActionHandler``.``KeyboardActionHandler/preview``

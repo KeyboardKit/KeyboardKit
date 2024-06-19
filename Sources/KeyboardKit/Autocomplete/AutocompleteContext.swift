@@ -12,19 +12,20 @@ import Combine
 ///
 /// The ``suggestions`` property can be updated whenever the
 /// user types on the keyboard or the current text selection
-/// changes. The ``KeyboardInputViewController`` will handle
-/// this automatically, with the ``AutocompleteProvider`` in
-/// ``KeyboardInputViewController/services``. There's also a
-/// ``suggestionsFromProvider`` which can be used to provide
-/// a full set of suggestions, of which ``suggestions`` will
-/// only display the first ``preferredSuggestionCount`` ones.
+/// changes. The ``KeyboardInputViewController`` will update
+/// this class automatically, using an ``AutocompleteService``
+/// to perform autocomplete.
+///
+/// There's also a ``suggestionsFromService``, which can be
+/// used to provide a full set of suggestions, of which only
+/// a few are shown, defined by ``preferredSuggestionCount``.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value
-/// into the view hierarchy. 
+/// into the view hierarchy.
 public class AutocompleteContext: ObservableObject {
-    
+
     public init() {}
 
     /// This localized dictionary can be used to define your
@@ -43,11 +44,11 @@ public class AutocompleteContext: ObservableObject {
     /// Whether or not autocorrect is enabled.
     @Published
     public var isAutocorrectEnabled = true
-    
+
     /// Whether or not autocomplete is enabled.
     @Published
     public var isAutocompleteEnabled = true
-    
+
     /// Whether or not unknown suggestions are automatically
     /// learned when they're applied.
     @Published
@@ -61,24 +62,24 @@ public class AutocompleteContext: ObservableObject {
     @Published
     public var lastError: Error?
 
-    /// The preferred suggestion count.
+    /// The preferred number of suggestions to show.
     @Published
-    public var preferredSuggestionCount: Int = 3
+    public var suggestionsDisplayCount: Int = 3
 
     /// The suggestions to present to the user.
     @Published
     public var suggestions: [Autocomplete.Suggestion] = []
 
-    /// The suggestions returned by an autocomplete provider.
+    /// The suggestions returned by an autocomplete service.
     ///
     /// This is the raw result, while ``suggestions`` is the
     /// capped result that should be presented, based on the
     /// ``preferredSuggestionCount``.
     @Published
-    public var suggestionsFromProvider: [Autocomplete.Suggestion] = [] {
+    public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
         didSet {
-            let value = suggestionsFromProvider
-            suggestions = Array(value.prefix(preferredSuggestionCount))
+            let value = suggestionsFromService
+            suggestions = Array(value.prefix(suggestionsDisplayCount))
         }
     }
 

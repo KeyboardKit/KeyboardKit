@@ -17,22 +17,22 @@ public extension AutocompleteContext {
     }()
 }
 
-public extension AutocompleteProvider where Self == KeyboardPreviews.PreviewAutocompleteProvider {
+public extension AutocompleteService where Self == KeyboardPreviews.PreviewAutocompleteService {
 
-    static var preview: AutocompleteProvider {
+    static var preview: AutocompleteService {
         preview()
     }
 
     static func preview(
         suggestions: [Autocomplete.Suggestion] = .preview
-    ) -> AutocompleteProvider {
-        KeyboardPreviews.PreviewAutocompleteProvider(suggestions: suggestions)
+    ) -> AutocompleteService {
+        KeyboardPreviews.PreviewAutocompleteService(suggestions: suggestions)
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewAutocompleteProvider: Autocomplete.DisabledProvider {}
+    class PreviewAutocompleteService: Autocomplete.DisabledService {}
 }
 
 public extension Collection where Element == Autocomplete.Suggestion {
