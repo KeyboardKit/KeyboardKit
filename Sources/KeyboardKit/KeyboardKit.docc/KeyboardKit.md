@@ -7,9 +7,11 @@ KeyboardKit is a Swift SDK that lets you create fully customizable keyboards in 
 
 ![KeyboardKit logo](Logo.png)
 
-KeyboardKit is a Swift SDK that lets you create fully customizable keyboards in a few lines of code, using SwiftUI.
+KeyboardKit is a Swift SDK that lets you create fully customizable [keyboard extensions][About] in a few lines of code, using SwiftUI. It extends Apple's limited keyboard APIs and provides you with a lot more functionality.
 
-KeyboardKit extends Apple's native APIs and provides you with a lot more functionality. It lets you mimic the native iOS keyboard and tweak its style and behavior, or create completely custom keyboards.
+KeyboardKit is open-source and completely free to use. It can be extended with [KeyboardKit Pro][Pro], which unlocks a bunch of pro features, like fully localized keyboards, autocomplete, AI-enabling features, and much more.  
+
+Keyboard extensions can be used within all other apps on iOS, whever text input is supported. It's the only way for your company, product, or technology to directly interact with other apps on iOS. Don't miss out!
 
 
 
@@ -22,8 +24,6 @@ https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
 After installing KeyboardKit, make sure to link it to all targets that need it.
-
-> Important: If you're a KeyboardKit Pro user, please note that unlike KeyboardKit, it's a binary target and must thus ONLY be added to the app target. If you add it to any other target, it may crash at runtime. 
 
 
 
@@ -49,9 +49,9 @@ KeyboardKit provides a basic keyboard layout with basic callout actions. [Keybo
 
 
 
-## Features
+## Open-Source Features
 
-KeyboardKit comes packed features to help you build amazing keyboard extensions:
+KeyboardKit comes packed with features to help you build amazing keyboard extensions:
 
 * ⌨️ <doc:Essentials> - KeyboardKit provides essential utilities, types & views.
 * 💥 <doc:Actions-Article> - KeyboardKit makes it easy to trigger keyboard-related actions.
@@ -79,7 +79,28 @@ KeyboardKit comes packed features to help you build amazing keyboard extensions:
 * 📝 <doc:Text-Input-Article> - KeyboardKit can route text to input fields within the keyboard.
 * 🍭 <doc:Themes-Article> - KeyboardKit can use themes to style keyboards in flexible ways.
 
-Many features are open-source and free to use. You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
+
+
+## Pro Features
+
+You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
+
+* ⌨️ <doc:Essentials> - KeyboardKit Pro unlocks more essential tools, system keyboard previews, etc.
+* 🤖 <doc:AI-Article> - KeyboardKit Pro unlocks features that are needed for AI.
+* 📱 <doc:App-Article> - KeyboardKit Pro unlocks app-specific screens & views.
+* 💡 <doc:Autocomplete-Article> - KeyboardKit Pro unlocks on-device & remote autocomplete.
+* 🗯 <doc:Callouts-Article> - KeyboardKit Pro unlocks localized callouts for all **68** locales.
+* 🎤 <doc:Dictation-Article> - KeyboardKit Pro can perform dictation from the keyboard.
+* 😀 <doc:Emojis-Article> - KeyboardKit Pro unlocks a powerful emoji keyboard.
+* ⌨️ <doc:External-Keyboards-Article> - KeyboardKit Pro can detect if an external keyboard is connected. 
+* 🔉 <doc:Feedback-Article> - KeyboardKit Pro unlocks tools for toogling feedback on & off.
+* 🏠 <doc:Host-Article> - KeyboardKit Pro can identify specific host applications.
+* 🔣 <doc:Layout-Article> - KeyboardKit Pro unlocks localized layouts for all **68** locales.
+* 🌐 <doc:Localization-Article> - KeyboardKit Pro unlocks **68** locale-specific services and system keyboards.
+* 👁 <doc:Previews-Article> - KeyboardKit Pro unlocks system keyboard and theme previews.
+* ➡️ <doc:Proxy-Article> - KeyboardKit Pro unlocks ways for `UITextDocumentProxy` to read the full document.
+* 📝 <doc:Text-Input-Article> - KeyboardKit Pro unlocks tools to let you type within the keyboard.
+* 🍭 <doc:Themes-Article> - KeyboardKit Pro unlocks a theme engine with many pre-defined themes.
 
 
 
@@ -94,6 +115,7 @@ The demo app in the [KeyboardKit repository][SDK] lets you try out both Keyboard
 KeyboardKit is available under the MIT license.
 
 
+[About]: https://keyboardkit.com/about
 [App]: https://keyboardkit.com/app
 [SDK]: https://github.com/KeyboardKit/KeyboardKit
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
