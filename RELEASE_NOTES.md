@@ -11,6 +11,15 @@ These release notes only cover the current major version.
 
 
 
+## 8.8
+
+### ✨ Features
+
+* `Callouts.DisabledActionProvider` is a new, disabled action provider.
+* `KeyboardLayout.DisabledProvider` is a new, disabled layout provider.
+
+
+
 ## 8.7
 
 This version improves the overall autocomplete behavior.
