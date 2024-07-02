@@ -81,24 +81,33 @@ class KeyboardViewController: KeyboardInputViewController {
         
         /// 💡 Make the demo use a ``DemoKeyboardView``.
         ///
-        /// "299B33C6-061C-4285-8189-90525BCAF098" is a demo
-        /// specific license key. If you want to insert your
-        /// own license key, you must also change the bundle
-        /// identifier of the demo app and keyboard to match
-        /// the identifiers you've specified for the license.
+        /// This passes the `unowned` controller to the view,
+        /// since it will be used by an input text field. If
+        /// you must do this, the view must keep it `unowned`.
         ///
-        /// We get an `unowned` controller reference that we
-        /// can use to help us avoid memory leaks.
+        /// This license key is a demo-specific key. You can
+        /// use your own license key, but if you do you must
+        /// also change the bundle IDs of the app & keyboard.
         setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             licenseConfiguration: setup   // Specified below
         ) { controller in
-            DemoKeyboardView(
-                controller: controller,
-                onLocaleChanged: { [weak self] in self?.persistLocale() }
-            )
+            DemoKeyboardView(controller: controller)
         }
     }
+
+    /// This function is called when the controller switches.
+    ///
+    /// Here, we save the currently selected locale when the
+    /// keyboard is unloaded, to automatically restore it on
+    /// the next launch.
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        persistLocale()
+    }
+
+
+    // MARK: - Setup
 
     /// This function is called by the `licenseConfiguration`
     /// to set up the keyboard with the registered license.

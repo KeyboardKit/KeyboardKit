@@ -9,21 +9,26 @@
 import KeyboardKitPro
 import SwiftUI
 
-/// This demo-specific toolbar uses a Pro `ToggleToolbar` to
-/// toggle between a main autocomplete toolbar and this one.
+/// This demo-specific toolbar is used as toggled toolbar in
+/// the keyboard that is set up in ``DemoKeyboardView``.
 ///
-/// This view has text fields that let you test routing text
-/// fields, as well as buttons to trigger certain operations
-/// like picking themes, open settings, etc.
+/// This toolbar has a textfield to let you type, as well as
+/// buttons to trigger certain actions, like picking a theme,
+/// open settings, etc.
 struct DemoToolbar: View {
     
+    /// This is (for now) required by the `KeyboardTextField`.
     unowned var controller: KeyboardInputViewController
-    
+
     @Binding
     var theme: KeyboardTheme?
-    
-    var proxy: UITextDocumentProxy
-    
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
+
+    @FocusState
+    private var isTextFieldFocused
+
     @State
     private var fullDocumentContext = ""
     
@@ -32,9 +37,6 @@ struct DemoToolbar: View {
     
     @State
     private var isFullDocumentContextActive = false
-    
-    @FocusState
-    private var isTextFieldFocused
     
     @State
     private var text = ""
@@ -59,7 +61,7 @@ private extension DemoToolbar {
     
     @ViewBuilder
     var textFieldIfFullAccess: some View {
-        if controller.hasFullAccess {
+        if keyboardContext.hasFullAccess {
             KeyboardTextField(text: $text, controller: controller) {
                 $0.placeholder = "Type here..."
             }
@@ -117,7 +119,7 @@ private extension DemoToolbar {
         isFullDocumentContextActive = true
         fullDocumentContext = "Reading..."
         Task {
-            let result = try await proxy.fullDocumentContext()
+            let result = try await keyboardContext.textDocumentProxy.fullDocumentContext()
             await MainActor.run { self.fullDocumentContext = result.fullDocumentContext }
         }
     }

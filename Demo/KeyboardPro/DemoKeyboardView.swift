@@ -17,17 +17,16 @@ import SwiftUI
 /// used, or return custom views. This view will replace the
 /// default toolbar with a Pro toggle toolbar.
 struct DemoKeyboardView: View {
-    
-    unowned var controller: KeyboardInputViewController
 
-    let onLocaleChanged: () -> Void
+    /// This is (for now) required by the ``DemoToolbar``.
+    unowned var controller: KeyboardInputViewController
 
     @State
     private var theme: KeyboardTheme?
-    
+
     @EnvironmentObject
     private var keyboardContext: KeyboardContext
-    
+
     var body: some View {
         SystemKeyboard(
             state: controller.state,
@@ -40,14 +39,12 @@ struct DemoKeyboardView: View {
                     toolbar: params.view,
                     toggledToolbar: DemoToolbar(
                         controller: controller,
-                        theme: $theme,
-                        proxy: controller.state.keyboardContext.textDocumentProxy
+                        theme: $theme
                     )
                 )
                 .foregroundColor(params.style.item.titleColor)
             }
         )
-        .onChange(of: keyboardContext.locale) { _ in onLocaleChanged() }
     }
 }
 
@@ -58,7 +55,7 @@ private extension DemoKeyboardView {
         if let theme {
             if let provider = try? KeyboardStyle.ThemeBasedProvider(
                 theme: theme,
-                keyboardContext: controller.state.keyboardContext
+                keyboardContext: keyboardContext
             ) {
                 services.styleProvider = provider
             }
