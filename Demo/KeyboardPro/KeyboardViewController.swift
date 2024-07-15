@@ -90,10 +90,9 @@ class KeyboardViewController: KeyboardInputViewController {
         /// also change the bundle IDs of the app & keyboard.
         setupPro(
             withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            licenseConfiguration: setup   // Specified below
-        ) { controller in
-            DemoKeyboardView(controller: controller)
-        }
+            licenseConfiguration: setup,  // Specified below
+            view: DemoKeyboardView.init
+        )
     }
 
     /// This function is called when the controller switches.
