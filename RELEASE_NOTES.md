@@ -34,6 +34,10 @@ This memory issue is a top priority, that must be fixed in the upcoming 8.8.
 
 * `SystemKeyboard` only loads the emoji keyboard when the keyboard type is `.emojis`.
 
+### 🐛 Bug fixes
+
+* `Keyboard.Services` now properly applies an inverse offset for RTL locales.
+
 
 
 ## 8.7

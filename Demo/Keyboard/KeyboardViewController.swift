@@ -23,7 +23,7 @@ class KeyboardViewController: KeyboardInputViewController {
     ///
     /// Here, we make demo-specific service keyboard configs.
     override func viewDidLoad() {
-        
+
         /// 💡 Setup a demo-specific action handler.
         ///
         /// The demo handler has custom code for tapping and
@@ -77,7 +77,7 @@ class KeyboardViewController: KeyboardInputViewController {
         /// button if you have more than one locale.
         state.keyboardContext.localePresentationLocale = .current
         state.keyboardContext.locales = [] // KeyboardLocale.all.locales
-        
+
         /// 💡 Setup a custom dictation key replacement.
         ///
         /// Since dictation is not available by default, the
