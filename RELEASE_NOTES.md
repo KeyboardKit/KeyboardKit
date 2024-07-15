@@ -11,12 +11,25 @@ These release notes only cover the current major version.
 
 
 
-## 8.8
+## 8.7.2
+
+This patch defers some heavy memory allocations that is unintentionally caused by the emoji keyboard, by only loading the keyboard when it's requested.
+
+While the emoji keyboard may still cause memory pressure in keyboard extensions that load other heavy components into memory, it will not affect these keyboards on load.
+
+The memory issues are described in a GitHub issue, and seems to be caused by SwiftUI. You can reproduce it by just adding the emoji keyboard to the extension and scroll through the categories.
+
+This memory issue is a top priority, that must be fixed in the upcoming 8.8.
 
 ### ✨ Features
 
 * `Callouts.DisabledActionProvider` is a new, disabled action provider.
 * `KeyboardLayout.DisabledProvider` is a new, disabled layout provider.
+
+
+### 💡 Adjustments
+
+* `SystemKeyboard` only loads the emoji keyboard when the keyboard type is `.emojis`.
 
 
 

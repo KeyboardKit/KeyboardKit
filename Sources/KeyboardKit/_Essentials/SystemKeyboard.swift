@@ -218,20 +218,30 @@ private extension SystemKeyboard {
         .id(keyboardContext.locale.identifier)
     }
     
+    @ViewBuilder
     var emojiKeyboard: some View {
-        emojiKeyboardBuilder((
-            style: EmojiKeyboardStyle.standard(for: keyboardContext),
-            view: Emoji.KeyboardWrapper(
-                actionHandler: actionHandler,
-                keyboardContext: keyboardContext,
-                calloutContext: calloutContext,
-                styleProvider: styleProvider
-            )
-        ))
-        .id(keyboardContext.interfaceOrientation)           // TODO: Temp orientation fix
-        .opacity(shouldShowEmojiKeyboard ? 1 : 0)
+        emojiKeyboardContent
+            .id(keyboardContext.interfaceOrientation)           // TODO: Temp orientation fix
+            .opacity(shouldShowEmojiKeyboard ? 1 : 0)
     }
-    
+
+    @ViewBuilder
+    var emojiKeyboardContent: some View {
+        if keyboardContext.keyboardType == .emojis {
+            emojiKeyboardBuilder((
+                style: EmojiKeyboardStyle.standard(for: keyboardContext),
+                view: Emoji.KeyboardWrapper(
+                    actionHandler: actionHandler,
+                    keyboardContext: keyboardContext,
+                    calloutContext: calloutContext,
+                    styleProvider: styleProvider
+                )
+            ))
+        } else {
+            Color.clear
+        }
+    }
+
     var toolbar: some View {
         toolbarBuilder((
             autocompleteAction: actionHandler.handle(_:),
