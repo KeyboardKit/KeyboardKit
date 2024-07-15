@@ -26,6 +26,9 @@ This memory issue is a top priority, that must be fixed in the upcoming 8.8.
 * `Callouts.DisabledActionProvider` is a new, disabled action provider.
 * `KeyboardLayout.DisabledProvider` is a new, disabled layout provider.
 
+### 🌐 Localization
+
+* Hebrew now uses a newline arrow instead of text.
 
 ### 💡 Adjustments
 

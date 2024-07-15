@@ -15,7 +15,7 @@
 "join" = "join";
 "next" = "next";
 "ok" = "OK";
-"return" = "חזור";
+"return" = "↳";
 "route" = "route";
 "search" = "חפש";
 "send" = "send";
