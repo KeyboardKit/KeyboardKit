@@ -24,9 +24,6 @@ struct DemoKeyboardView: View {
     @State
     private var theme: KeyboardTheme?
 
-    @EnvironmentObject
-    private var keyboardContext: KeyboardContext
-
     var body: some View {
         SystemKeyboard(
             state: controller.state,
@@ -55,7 +52,7 @@ private extension DemoKeyboardView {
         if let theme {
             if let provider = try? KeyboardStyle.ThemeBasedProvider(
                 theme: theme,
-                keyboardContext: keyboardContext
+                keyboardContext: controller.state.keyboardContext
             ) {
                 services.styleProvider = provider
             }
