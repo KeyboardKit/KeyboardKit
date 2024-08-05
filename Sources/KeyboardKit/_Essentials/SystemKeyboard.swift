@@ -153,7 +153,7 @@ public struct SystemKeyboard<
     private var keyboardContext: KeyboardContext
     
     @Environment(\.keyboardInputToolbarDisplayMode)
-    private var inputToolbarDisplayMode
+    private var rawInputToolbarDisplayMode
 
     public var body: some View {
         KeyboardStyle.StandardProvider.iPadProRenderingModeActive = layout.ipadProLayout
@@ -177,7 +177,19 @@ public struct SystemKeyboard<
 }
 
 private extension SystemKeyboard {
-    
+
+    var isLargePad: Bool {
+        let size = keyboardContext.screenSize
+        return size.isScreenSize(.iPadProLargeScreenPortrait, withTolerance: 50)
+    }
+
+    var inputToolbarDisplayMode: Keyboard.InputToolbarDisplayMode {
+        switch rawInputToolbarDisplayMode {
+        case .automatic: isLargePad ? .hidden : .numbers
+        default: rawInputToolbarDisplayMode
+        }
+    }
+
     var layout: KeyboardLayout {
         rawLayout.adjusted(
             for: inputToolbarDisplayMode,

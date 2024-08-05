@@ -13,11 +13,11 @@ These release notes only cover the current major version.
 
 ## 8.8
 
-This patch adds memory optimized emoji keyboard styles.
+This patch adds memory optimized emoji keyboard styles and tweaks the rendering on all device types.
 
 ### ✨ Features
 
-* `EmojiKeyboardStyle` has new `.optimized` styles.
+* `EmojiKeyboardStyle` has new `.optimized` styles, which are applied by default.
 
 ### 💡 Adjustments
 
@@ -26,10 +26,12 @@ This patch adds memory optimized emoji keyboard styles.
 * `EmojiKeyboard` adds an extra row if an input toolbar is displayed.
 * `EmojiKeyboardStyle` has been adjusted to conform to the new capabilities.
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
+* `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
 
 ### 🐛 Bug fixes
 
-* `EmojiKeyboard` now renders correctly on the latest 13" iPads.
+* `EmojiKeyboard` now renders correctly on 13" iPads.
+* `SystemKeyboard` now renders correctly on 13" iPads.
 
 
 

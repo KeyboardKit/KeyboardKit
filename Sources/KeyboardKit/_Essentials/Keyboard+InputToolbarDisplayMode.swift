@@ -16,8 +16,12 @@ public extension Keyboard {
     ///
     /// You can apply a display mode using the view modifier
     /// ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)``.
-    enum InputToolbarDisplayMode {
-        
+    enum InputToolbarDisplayMode: Equatable {
+
+        /// This mode renders an input toolbar when it makes
+        /// sense given the current device and configuration.
+        case automatic
+
         /// This mode can be used to display a set of inputs.
         case inputs(_ inputs: String)
         
@@ -27,9 +31,6 @@ public extension Keyboard {
 }
 
 public extension Keyboard.InputToolbarDisplayMode {
-    
-    /// This mode can be used to apply the default mode.
-    static let automatic = Self.hidden
     
     /// This mode can be used to display 1-0 as inputs.
     static let numbers = Self.inputs("1234567890")
