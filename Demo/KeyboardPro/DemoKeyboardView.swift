@@ -42,6 +42,7 @@ struct DemoKeyboardView: View {
                 .foregroundColor(params.style.item.titleColor)
             }
         )
+        .keyboardInputToolbarDisplayMode(.automatic)
     }
 }
 

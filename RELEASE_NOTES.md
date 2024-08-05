@@ -26,13 +26,13 @@ This patch adds memory optimized emoji keyboard styles and tweaks the rendering 
 * `EmojiKeyboard` adds an extra row if an input toolbar is displayed.
 * `EmojiKeyboardStyle` has been adjusted to conform to the new capabilities.
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
+* `KeyboardInputViewController` now checks if self is nil when setting up a view.
 * `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
 
 ### 🐛 Bug fixes
 
 * `EmojiKeyboard` now renders correctly on 13" iPads.
 * `SystemKeyboard` now renders correctly on 13" iPads.
-
 
 
 

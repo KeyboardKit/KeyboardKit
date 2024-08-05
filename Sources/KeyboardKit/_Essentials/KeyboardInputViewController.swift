@@ -147,8 +147,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func setup<Content: View>(
         with view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {
-        setup(withRootView: Keyboard.RootView { [unowned self] in
-            view(self)
+        setup(withRootView: Keyboard.RootView { [weak self] in
+            guard let self else { return view(.preview) }
+            unowned let controller = self
+            return view(controller)
         })
     }
 
