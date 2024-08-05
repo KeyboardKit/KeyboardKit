@@ -18,6 +18,7 @@ This patch adds memory optimized emoji keyboard styles and tweaks the rendering 
 ### ✨ Features
 
 * `EmojiKeyboardStyle` has new `.optimized` styles, which are applied by default.
+* `Keyboard+StorageValue` is a new type that is used to persist codable types in storage.
 
 ### 💡 Adjustments
 

@@ -13,8 +13,8 @@ public extension Keyboard {
     /// This type specifies global keyboard state.
     ///
     /// This lets us decouple the input view controller from
-    /// any views that require its states and services. This
-    /// reduces the risk of memory leaks.
+    /// any views that require settings, services, and state
+    /// from the controller.
     ///
     /// You can adjust any state value at any time to adjust
     /// the global behavior of the keyboard.

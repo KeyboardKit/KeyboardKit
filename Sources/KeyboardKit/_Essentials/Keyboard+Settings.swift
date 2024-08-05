@@ -12,10 +12,13 @@ public extension Keyboard {
 
     /// This type specifies global keyboard settings.
     ///
+    /// This lets us decouple the input view controller from
+    /// any views that require settings, services, and state
+    /// from the controller.
+    ///
     /// Do not confuse this with ``KeyboardSettings``, which
-    /// is an observable class for general keyboard settings.
-    /// This type gathers all those kind of settings classes
-    /// to let you access all of them from one place.
+    /// is an observable class for general keyboard settings
+    /// that you can access via ``keyboardSettings``.
     ///
     /// Unlike the ``Keyboard/State`` properties, these will
     /// persist any changes that are made to them. Make sure
