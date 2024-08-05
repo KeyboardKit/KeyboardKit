@@ -90,24 +90,36 @@ public extension Callouts {
 private extension Callouts.ActionCallout {
     
     var backgroundColor: Color { calloutStyle.backgroundColor }
+
     var buttonFrame: CGRect { isEmojiCallout ? buttonFrameForEmojis : buttonFrameForCharacters }
+    
     var buttonFrameSize: CGSize { buttonFrame.size }
+    
     var buttonFrameForCharacters: CGRect { calloutContext.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
+    
     var buttonFrameForEmojis: CGRect { calloutContext.buttonFrame }
+    
     var buttonInset: CGSize { calloutStyle.buttonInset }
+    
     var calloutActions: [KeyboardAction] { calloutContext.actions }
+    
     var calloutButtonSize: CGSize {
         let frameSize = buttonFrame.size
         let widthScale = (calloutActions.count == 1) ? 1.2 : 1
         let buttonSize = CGSize(width: frameSize.width * widthScale, height: frameSize.height)
         return buttonSize.limited(to: style.maxButtonSize)
     }
-    var calloutStyle: Callouts.CalloutStyle { style.callout }
-    var cornerRadius: CGFloat { calloutStyle.cornerRadius }
-    var curveSize: CGSize { calloutStyle.curveSize }
-    var isLeading: Bool { calloutContext.isLeading }
-    var isTrailing: Bool { calloutContext.isTrailing }
     
+    var calloutStyle: Callouts.CalloutStyle { style.callout }
+    
+    var cornerRadius: CGFloat { calloutStyle.cornerRadius }
+    
+    var curveSize: CGSize { calloutStyle.curveSize }
+    
+    var isLeading: Bool { calloutContext.isLeading }
+    
+    var isTrailing: Bool { calloutContext.isTrailing }
+
     var buttonArea: some View {
         ButtonArea(frame: buttonFrame)
             .opacity(isPad ? 0 : 1)
@@ -156,6 +168,12 @@ private extension Callouts.ActionCallout {
     func calloutView(for emoji: Emoji) -> some View {
         Text(emoji.char)
             .font(emojiStyle.itemFont)
+            .scaleEffect(emojiStyle.itemScaleFactor)
+            .frame(
+                width: emojiStyle.itemSize,
+                height: emojiStyle.itemSize,
+                alignment: .center
+            )
     }
     
     var positionX: CGFloat {

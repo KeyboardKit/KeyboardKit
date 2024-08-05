@@ -70,7 +70,13 @@ public struct EmojiKeyboardStyle {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     public var itemFont: Font { .body }
-    
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public var itemScaleFactor: Double { 1.0 }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public var itemSize: Double { 1.0 }
+
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func standard(for context: KeyboardContext) -> Self {
         .init()
