@@ -28,10 +28,6 @@ public extension Keyboard {
             actionContext: .disabled,
             inputContext: .disabled)
         
-        /// The dictation configuration to use.
-        public lazy var dictationConfig = Dictation.KeyboardConfiguration(
-            context: dictationContext)
-        
         /// The dictation context to use.
         public lazy var dictationContext = DictationContext()
         

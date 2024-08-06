@@ -35,6 +35,10 @@ This patch adds memory optimized emoji keyboard styles and tweaks the rendering 
 * `EmojiKeyboard` now renders correctly on 13" iPads.
 * `SystemKeyboard` now renders correctly on 13" iPads.
 
+### 🗑️ Deprecations
+
+* `Keyboard.State` has deprecated `dictationConfig` which has been moved into `dictationContext`.
+
 
 
 ## 8.7.2

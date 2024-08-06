@@ -15,6 +15,14 @@ public extension KeyboardSettings {
     typealias Link = Keyboard.SettingsLink
 }
 
+public extension Keyboard.State {
+
+    @available(*, deprecated, message: "Use the dictation context's keyboardConfiguration instead.")
+    var dictationConfig: Dictation.KeyboardConfiguration {
+        dictationContext.keyboardConfiguration
+    }
+}
+
 public extension View {
     
     @available(*, deprecated, renamed: "keyboardState(_:)")

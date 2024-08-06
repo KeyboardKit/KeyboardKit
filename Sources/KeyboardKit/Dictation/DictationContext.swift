@@ -123,6 +123,14 @@ public class DictationContext: ObservableObject {
 
 public extension DictationContext {
 
+    /// The keyboard configuration to use for the context.
+    var keyboardConfiguration: Dictation.KeyboardConfiguration {
+        .init(
+            appGroupId: self.appGroupId ?? "",
+            appDeepLink: self.appDeepLink ?? ""
+        )
+    }
+
     /// Reset the context.
     func reset() {
         isDictating = false
