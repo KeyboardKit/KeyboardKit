@@ -37,7 +37,8 @@ This patch adds memory optimized emoji keyboard styles and tweaks the rendering 
 
 ### 🗑️ Deprecations
 
-* `Keyboard.State` has deprecated `dictationConfig` which has been moved into `dictationContext`.
+* `Keyboard.State`'s `dictationConfig` has been moved into `dictationContext`.
+* `KeyboardAppearanceViewModifier` has been deprecated.
 
 
 

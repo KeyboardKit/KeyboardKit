@@ -77,18 +77,9 @@ KeyboardKit automatically creates an instance of ``Keyboard/StandardBehavior`` a
 
 ## Keyboard styling
 
-The <doc:Styling-Article> article describes how you can use a ``KeyboardStyleProvider`` to style your keyboard in a dynamic and flexible way. Various views have their own styles as well, that can be applied with view modifiers.
+The <doc:Styling-Article> article describes how to use a ``KeyboardStyleProvider`` to style the ``SystemKeyboard`` in very flexible ways.
 
-The keyboard appearance model can be used to define if a keyboard is light or dark. This is not the same thing as the color scheme. A keyboard can be defined as "dark" even in light mode, and will render slightly darker than the default appearance.
-
-KeyboardKit has an ``Keyboard/AppearanceViewModifier`` that can be applied with the ``SwiftUI/View/keyboardAppearance(_:)`` view modifier:
-
-```
-TextField("Enter text", text: $text)
-    .keyboardAppearance(.dark)
-```
-
-Note that applying a dark appearances will make iOS tell the extension that the *color scheme* is dark, while this may in fact not be true. This will lead to visual bugs, that require workarounds. See the <doc:Colors-Article> article for more information.
+Various views have separate styles as well, that can be applied with specific view modifiers.
 
 
 
