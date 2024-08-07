@@ -17,21 +17,29 @@ KeyboardKit extends Apple's native APIs and provides you with a lot more functio
 
 KeyboardKit also has a ``SystemKeyboard`` view that mimics the native iOS keyboard and can be customized & styled to great extent. Many of the tools and views in the SDK are used by the system keyboard.
 
-👑 [KeyboardKit Pro][Pro] unlocks a lot of essential Pro features, such as a toggle toolbar, a system keyboard input toolbar, additional system keyboard views, previews, etc. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a lot of essential Pro features. Information about Pro features can be found at the end of this article.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
 
-## Keyboard namespace
+## Namespaces
 
-KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. By typing ``Keyboard`` and `.`, Xcode will provide you with a list of all types in this essential namespace.
+KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. 
 
-KeyboardKit has other namespaces as well, that extend the library with more specific capabilities, like ``KeyboardAction``, ``KeyboardLayout``, ``Callouts``, ``Dictation``, ``Feedback``, etc.
-
-The ``Keyboard`` namespace has a lot of essential types, like ``Keyboard/KeyboardType``, ``Keyboard/Button``, ``Keyboard/Diacritic``, etc. that are essential when for creating a custom keyboard. It also contains common views, styles, etc. 
+KeyboardKit has other namespaces as well, for more specific capabilities, like ``KeyboardAction``, ``KeyboardLayout``, ``Callouts``, ``Dictation``, ``Feedback``, ``Settings``, etc.
 
 Namespaces will not contain protocols, nor important types that are meant to be exposed as top-level types. This includes observable context and settings types, the ``KeyboardInputViewController`` and important components like the ``SystemKeyboard``.
+
+
+
+## Keyboard namespace
+
+The ``Keyboard`` namespace contains a lot of essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will provide you with a list of all essential types.
+
+The namespace has a lot of essential model types, like ``Keyboard/Accent``, ``Keyboard/AutocapitalizationType``, ``Keyboard/BackspaceRange``, ``Keyboard/Case``, ``Keyboard/Diacritic``, ``Keyboard/InputToolbarDisplayMode``, ``Keyboard/KeyboardType``, etc.
+
+The namespace also has a lot of views and view-related types, like ``Keyboard/Background``, ``Keyboard/Button``, ``Keyboard/ButtonStyle``, ``Keyboard/NextKeyboardButton``, ``Keyboard/SpaceContent``, ``Keyboard/Toolbar``, etc.
 
 
 

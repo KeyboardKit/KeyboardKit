@@ -10,27 +10,9 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /// This link can navigate to the app in System Settings.
-    ///
-    /// The link's behavior can be a bit inconsistent. While
-    /// it *should* always navigate to the app, it sometimes
-    /// just opens the System Settings root screen.
-    ///
-    /// The reason for this behavior is unknown, but you can
-    /// improve the behavior by adding an Settings Bundle to
-    /// your app. This will make it more likely for the link
-    /// to behave as expected.
-    ///
-    /// You can customize the `url` if you want this link to
-    /// open another screen.
+    @available(*, deprecated, message: "Use a regular SwiftUI Link with the .keyboardSettings URL instead.")
     struct SettingsLink<Content: View>: View {
 
-        /// Create a settings link with a custom label.
-        ///
-        /// - Parameters:
-        ///   - url: The url to navigate to, by default ``Foundation/URL/keyboardSettings``.
-        ///   - addNavigationArrow: Whether to add a trailing disclosure arrow, by default `false`.
-        ///   - label: A label view builder.
         public init(
             url: URL? = .keyboardSettings,
             addNavigationArrow: Bool = false,
@@ -63,6 +45,7 @@ public extension Keyboard {
     }
 }
 
+@available(*, deprecated, message: "Use a regular SwiftUI Link with the .keyboardSettings URL instead.")
 public extension Keyboard.SettingsLink where Content == Label<Text, Image> {
 
     /// Create a settings link with a title and icon.
@@ -85,13 +68,5 @@ public extension Keyboard.SettingsLink where Content == Label<Text, Image> {
                 icon
             }
         }
-    }
-}
-
-#Preview {
-
-    VStack {
-        Keyboard.SettingsLink()
-        Keyboard.SettingsLink(title: "Foo bar", url: .init(string: "https://danielsaidi.com"))
     }
 }

@@ -49,7 +49,9 @@ Apps will always write data to an App Group, in a way that is instantly availabl
 
 ## How to open System Settings
 
-KeyboardKit defines a ``Foundation/URL/keyboardSettings`` URL that can be used to open your app's keyboard settings in System Settings. You can use a standard SwiftUI link to open this URL from your app or your keyboard:
+KeyboardKit defines a ``Foundation/URL/keyboardSettings`` URL that can be used to open your app's keyboard settings screen in System Settings, where users can enable your keyboard, enable Full Access, etc. 
+
+You can use a standard SwiftUI `Link` to open this URL from both your app and its keyboard extension:
 
 ```swift
 if let url = URL.keyboardSettings {
@@ -57,19 +59,9 @@ if let url = URL.keyboardSettings {
 }
 ```
 
-You can also use the convenient ``Keyboard/SettingsLink`` link to link to System Settings. It will default use the ``Foundation/URL/keyboardSettings`` URL with an English text, but you can customize both the text and the entire content view:
+You can also open System Settings with a ``KeyboardActionHandler``, by triggering ``KeyboardActionHandler/handle(_:)-35vwk`` with a ``KeyboardAction/url(_:id:)`` action and the ``Foundation/URL/keyboardSettings`` URL.
 
-@Row {
-    @Column {}
-    @Column(size: 2) {
-        ![KeyboardStatus.Label](keyboardstatuslabel)
-    }
-    @Column {}
-}
-
-To trigger a URL from the keyboard, you can trigger a ``KeyboardAction/url(_:id:)`` action to make the ``KeyboardActionHandler`` open the URL.
-
-> Note: If your app randomly navigates to the System Settings root instead of your app, try adding an empty settings bundle to your app.
+> Note: If your app randomly navigates to the Settings root instead of your app, try adding an empty settings bundle to your app.
 
 
 
@@ -78,28 +70,3 @@ To trigger a URL from the keyboard, you can trigger a ``KeyboardAction/url(_:id:
 A common feature request is to be able to access various settings from System Settings, for instance autocapitalization & autocorrect preferences that the user has configured.
 
 This is not possible, at least not with the public APIs. This is most probably due to privacy concerns, and unfortunately means that your app must provide its own keyboard settings.
-
-
-
-## Views
-
-The ``Keyboard`` namespace has settings-specific views, that can be used to link to System Settings:
-
-@TabNavigator {
-    
-    @Tab("Keyboard.SettingsLink") {
-        A keyboard ``Keyboard/SettingsLink`` can be used to link to System Settings, or any other custom URL:
-        
-        @Row {
-            @Column {}
-            @Column(size: 2) {
-                ![KeyboardStatus.Label](keyboardstatuslabel)
-            }
-            @Column {}
-        }
-        
-        This view can use any content view, and is used by the <doc:Status-Article> views to link users to System Settings while displaying keyboard statuses.
-    }
-}
-
-See the <doc:Styling-Article> article for more information about KeyboardKit view styling.
