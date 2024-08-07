@@ -17,6 +17,9 @@ public extension Keyboard {
     /// ``KeyboardInputViewController`` will register itself
     /// as the ``shared`` controller on load, and unregister
     /// itself when it unloads.
+    ///
+    /// > Important: This has been soft-deprecated, and will
+    /// be made internal in KeyboardKit 9.
     final class NextKeyboardController {
         
         private init() {}
