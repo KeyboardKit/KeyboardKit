@@ -19,10 +19,10 @@ public extension Autocomplete {
     /// views in the view builders.
     ///
     /// > Note: This view will be rebuilt in KeyboardKit 9.0,
-    /// to work like SystemKeyboard, where the view builders
-    /// provide you with the standard view. This will reduce
-    /// the number of initializers needed and make it easier
-    /// to work with this component.
+    /// to work like ``KeyboardView`` where view builders do
+    /// provide you with standard views and parameters. This
+    /// will reduce the number of required initializers, and
+    /// make it easier to work with this component.
     struct Toolbar<ItemView: View, SeparatorView: View>: View {
 
         /// Create a toolbar with custom views.

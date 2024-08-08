@@ -10,7 +10,7 @@ import CoreGraphics
 import SwiftUI
 
 extension EdgeInsets {
-    
+
     init(
         all value: CGFloat
     ) {
@@ -19,7 +19,7 @@ extension EdgeInsets {
             vertical: value
         )
     }
-    
+
     init(
         horizontal: CGFloat,
         vertical: CGFloat
@@ -31,7 +31,32 @@ extension EdgeInsets {
             trailing: horizontal
         )
     }
-    
+
+
+    init(
+        top: CGFloat,
+        bottom: CGFloat = 0
+    ) {
+        self.init(
+            top: top,
+            leading: 0,
+            bottom: bottom,
+            trailing: 0
+        )
+    }
+
+    init(
+        leading: CGFloat,
+        trailing: CGFloat = 0
+    ) {
+        self.init(
+            top: 0,
+            leading: leading,
+            bottom: 0,
+            trailing: trailing
+        )
+    }
+
     init(
         optionalTop top: CGFloat = 0,
         leading: CGFloat = 0,

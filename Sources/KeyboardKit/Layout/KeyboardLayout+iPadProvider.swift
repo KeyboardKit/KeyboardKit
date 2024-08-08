@@ -187,7 +187,7 @@ extension KeyboardLayout.iPadProvider {
         .keyboardLayout(for: .preview)
     }
     
-    return SystemKeyboard(
+    return KeyboardView(
         layout: layout(),
         actionHandler: .preview,
         styleProvider: .preview,

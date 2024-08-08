@@ -23,6 +23,15 @@ public extension Keyboard.State {
     }
 }
 
+@available(*, deprecated, renamed: "KeyboardView")
+public typealias SystemKeyboard = KeyboardView
+
+@available(*, deprecated, renamed: "KeyboardViewComponent")
+public typealias SystemKeyboardComponent = KeyboardViewComponent
+
+@available(*, deprecated, renamed: "KeyboardViewItem")
+public typealias SystemKeyboardItem = KeyboardViewItem
+
 public extension View {
     
     @available(*, deprecated, renamed: "keyboardState(_:)")

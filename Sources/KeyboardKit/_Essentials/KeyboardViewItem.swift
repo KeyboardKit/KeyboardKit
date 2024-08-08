@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardItem.swift
+//  KeyboardViewItem.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-02.
@@ -8,10 +8,10 @@
 
 import SwiftUI
 
-/// This view renders button item for a ``SystemKeyboard``.
-public struct SystemKeyboardItem<Content: View>: View {
-    
-    /// Create a system keyboard item.
+/// This view renders button item for a ``KeyboardView``.
+public struct KeyboardViewItem<Content: View>: View {
+
+    /// Create a keyboard view item.
     ///
     /// - Parameters:
     ///   - item: The layout item to use within the item.
@@ -89,7 +89,7 @@ public struct SystemKeyboardItem<Content: View>: View {
 
 #Preview {
     
-    SystemKeyboardItem(
+    KeyboardViewItem(
         item: .init(
             action: .backspace,
             size: .init(width: .points(100), height: 100),
@@ -104,4 +104,5 @@ public struct SystemKeyboardItem<Content: View>: View {
         inputWidth: 100,
         content: Text("HEJ")
     )
+    .background(Color.red)
 }

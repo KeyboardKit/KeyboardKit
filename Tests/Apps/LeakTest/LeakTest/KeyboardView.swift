@@ -14,7 +14,7 @@ struct KeyboardView: View {
 
     var body: some View {
         VStack {
-            SystemKeyboard(
+            KeyboardView(
                 controller: controller,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },

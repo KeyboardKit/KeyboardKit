@@ -1,5 +1,5 @@
 //
-//  SystemKeyboard.swift
+//  KeyboardView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-02.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-/// This keyboard can be used to mimic a native iOS keyboard.
+/// This view can be used to mimic a native iOS keyboard.
 ///
 /// This view can render any ``KeyboardLayout`` and supports
 /// alphabetic, numeric and symbolic keyboard types, as well
@@ -22,13 +22,13 @@ import SwiftUI
 ///
 /// See the <doc:Essentials> article for more information on
 /// how you can customize this and other system views.
-public struct SystemKeyboard<
+public struct KeyboardView<
     ButtonContent: View,
     ButtonView: View,
     EmojiKeyboard: View,
-    Toolbar: View>: SystemKeyboardComponent {
-    
-    /// Create a system keyboard based on state and services.
+    Toolbar: View>: KeyboardViewComponent {
+
+    /// Create a keyboard based on state and services.
     ///
     /// - Parameters:
     ///   - layout: A custom keyboard layout, if any.
@@ -66,7 +66,7 @@ public struct SystemKeyboard<
         )
     }
     
-    /// Create a system keyboard based on raw properties.
+    /// Create a keyboard based on raw properties.
     ///
     /// - Parameters:
     ///   - layout: The layout to use.
@@ -160,7 +160,7 @@ public struct SystemKeyboard<
         
         return VStack(spacing: 0) {
             toolbar
-            systemKeyboard
+            keyboardView
         }
         .autocorrectionDisabled(with: autocompleteContext)
         .opacity(shouldShowEmojiKeyboard ? 0 : 1)
@@ -176,7 +176,7 @@ public struct SystemKeyboard<
     }
 }
 
-private extension SystemKeyboard {
+private extension KeyboardView {
 
     var isLargePad: Bool {
         let size = keyboardContext.screenSize
@@ -205,9 +205,9 @@ private extension SystemKeyboard {
     }
 }
 
-private extension SystemKeyboard {
+private extension KeyboardView {
 
-    var systemKeyboard: some View {
+    var keyboardView: some View {
         GeometryReader { geo in
             let inputWidth = layout.inputWidth(for: geo.size.width)
             VStack(spacing: 0) {
@@ -269,8 +269,8 @@ private extension SystemKeyboard {
     }
 }
 
-private extension SystemKeyboard {
-    
+private extension KeyboardView {
+
     func buttonContent(
         for item: KeyboardLayout.Item
     ) -> ButtonContent {
@@ -291,7 +291,7 @@ private extension SystemKeyboard {
     ) -> ButtonView {
         buttonViewBuilder((
             item: item,
-            view: SystemKeyboardItem(
+            view: KeyboardViewItem(
                 item: item,
                 actionHandler: actionHandler,
                 styleProvider: styleProvider,
@@ -324,7 +324,7 @@ private extension SystemKeyboard {
         }()
         
         var keyboard: some View {
-            SystemKeyboard(
+            KeyboardView(
                 state: controller.state,
                 services: controller.services,
                 renderBackground: true,
@@ -343,7 +343,7 @@ private extension SystemKeyboard {
                         
                         keyboard.frame(width: 250)
                         
-                        SystemKeyboard(
+                        KeyboardView(
                             layout: controller.services
                                 .layoutProvider
                                 .keyboardLayout(for: .preview)
@@ -356,7 +356,7 @@ private extension SystemKeyboard {
                             toolbar: { _ in EmptyView() }
                         )
                         
-                        SystemKeyboard(
+                        KeyboardView(
                             state: controller.state,
                             services: controller.services,
                             buttonContent: { param in

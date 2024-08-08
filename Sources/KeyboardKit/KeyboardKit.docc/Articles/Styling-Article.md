@@ -39,11 +39,11 @@ KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 
 In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc. 
 
-More complex components, like ``SystemKeyboard``, does not yet use view modifiers, but instead use a ``KeyboardStyleProvider`` to apply dynamic, contextual, styles based on internal and external state.
+More complex components, like ``KeyboardView``, does not yet use view modifiers, but instead use a ``KeyboardStyleProvider`` to apply dynamic, contextual, styles based on internal and external state.
 
 KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
-> Important: Views like ``SystemKeyboard`` will apply style modifiers to any view that it renders. This means that you can't apply these view modifiers to the ``SystemKeyboard``. You can however apply style modifiers to views that you create in view builders.
+> Important: Views like ``KeyboardView`` will apply style modifiers to any view that it renders. This means that you can't apply these view modifiers to the ``KeyboardView``. You can however apply style modifiers to views that you create in view builders.
 
 
 

@@ -1,9 +1,9 @@
 //
-//  Keyboard+inputToolbarDisplayMode.swift
+//  Keyboard+InputToolbarDisplayMode.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-11.
-//  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
+//  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -11,8 +11,7 @@ import SwiftUI
 public extension Keyboard {
     
     /// This enum defines input toolbar display modes, which
-    /// can be used to add an input toolbar to e.g. a system
-    /// keyboard component.
+    /// can be used to set how an input toolbar is displayed.
     ///
     /// You can apply a display mode using the view modifier
     /// ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)``.
@@ -40,11 +39,6 @@ public extension View {
 
     /// Apply an ``Keyboard/InputToolbarDisplayMode`` to the
     /// view hierarchy.
-    ///
-    /// 👑 KeyboardKit Pro automatically adds the toolbar to
-    /// ``SystemKeyboard`` when this is applied using inputs.
-    /// If you don't use KeyboardKit Pro, you can check this
-    /// value and manually add a toolbar.
     func keyboardInputToolbarDisplayMode(
         _ style: Keyboard.InputToolbarDisplayMode
     ) -> some View {

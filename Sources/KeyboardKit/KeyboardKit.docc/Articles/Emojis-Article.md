@@ -15,7 +15,7 @@ This article describes the KeyboardKit emoji engine.
 
 KeyboardKit has an ``Emoji`` struct that represents an emoji value, and defines available ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.
 
-👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that is automatically added to ``SystemKeyboard`` when a valid license is registered. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that is automatically added to ``KeyboardView`` when a valid license is registered. Information about Pro features can be found at the end of this article.
 
 
 
@@ -153,7 +153,7 @@ version.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] adds more types to ``Emoji`` and unlocks an ``EmojiKeyboard`` that is automatically added to the ``SystemKeyboard`` when a valid license is registered.
+[KeyboardKit Pro][Pro] adds more types to ``Emoji`` and unlocks an ``EmojiKeyboard`` that is automatically added to the ``KeyboardView`` when a valid license is registered.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 

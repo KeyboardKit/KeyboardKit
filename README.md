@@ -15,7 +15,9 @@
 
 ## About KeyboardKit
 
-KeyboardKit is a Swift SDK that lets you create fully customizable [keyboard extensions][About] in a few lines of code, using SwiftUI. It extends Apple's limited keyboard APIs and provides you with a lot more functionality.
+KeyboardKit is a SwiftUI SDK that lets you create fully customizable [keyboard extensions][About] with just a few lines of code.
+
+KeyboardKit extends Apple's limited keyboard APIs, extends the text document proxy and input controller with a lot more capabilities, and provides you with additional functionality, services, states and views, to let you build an outstanding, custom keyboard with ease.
 
 <p align="center">
     <img src ="Resources/Demo.gif" width=450 />
@@ -51,9 +53,9 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives your controller access to new lifecycle functions like `viewWillSetupKeyboard`, observable state like `state.keyboardContext`, services like `services.actionHandler`, and much more.
 
-If you just want to use the default `SystemKeyboard` view, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything.
+If you just want to use the standard `KeyboardView`, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything for you.
 
-To replace or customize the default `SystemKeyboard`, just override `viewWillSetupKeyboard` and call `setup` with a `view` builder:
+To replace or customize the standard `KeyboardView`, just override `viewWillSetupKeyboard` and call `setup` with a `view` builder:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -61,7 +63,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setup { [weak self] controller in // <-- Use [weak self] or [unowned self] if you need self here.
-            SystemKeyboard(
+            KeyboardView(
                 state: controller.state,
                 services: controller.services,
                 buttonContent: { $0.view },
@@ -124,7 +126,7 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 
 You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
-* ⌨️ [Essentials][Essentials] - KeyboardKit Pro unlocks more essential tools, system keyboard previews, etc.
+* ⌨️ [Essentials][Essentials] - KeyboardKit Pro unlocks more essential tools, keyboard previews, etc.
 * 🤖 [AI][AI] - KeyboardKit Pro unlocks features that are needed for AI.
 * 📱 [App][App] - KeyboardKit Pro unlocks app-specific screens & views.
 * 💡 [Autocomplete][Autocomplete] - KeyboardKit Pro unlocks on-device & remote autocomplete.
@@ -135,8 +137,8 @@ You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 * 🔉 [Feedback][Feedback] - KeyboardKit Pro unlocks tools for toogling feedback on & off.
 * 🏠 [Host][Host] - KeyboardKit Pro can identify specific host applications.
 * 🔣 [Layout][Layout] - KeyboardKit Pro unlocks localized layouts for all **68** locales.
-* 🌐 [Localization][Localization] - KeyboardKit Pro unlocks **68** locale-specific services and system keyboards.
-* 👁 [Previews][Previews] - KeyboardKit Pro unlocks system keyboard and theme previews.
+* 🌐 [Localization][Localization] - KeyboardKit Pro unlocks **68** locale-specific services and keyboard views.
+* 👁 [Previews][Previews] - KeyboardKit Pro unlocks keyboard and theme previews.
 * ➡️ [Proxy][Proxy] - KeyboardKit Pro unlocks ways for `UITextDocumentProxy` to read the full document.
 * 📝 [Text][Text-Input] - KeyboardKit Pro unlocks tools to let you type within the keyboard.
 * 🍭 [Themes][Themes] - KeyboardKit Pro unlocks a theme engine with many pre-defined themes.
@@ -155,7 +157,7 @@ The demo app shows how to display keyboard state, link to system settings, etc.
 
 The demo app has two demo keyboards: 
 
-* `Keyboard` uses KeyboardKit and a customized `SystemKeyboard`.
+* `Keyboard` uses KeyboardKit and a customized `KeyboardView`.
 * `KeyboardPro` uses KeyboardKit Pro and enables all locales, autocomplete, themes, etc.
 
 Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. Note that you need to enable full access for some features to work.

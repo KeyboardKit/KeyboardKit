@@ -13,11 +13,13 @@ These release notes only cover the current major version.
 
 ## 8.8
 
-This patch adds memory optimized emoji keyboard styles and tweaks the rendering on all device types.
+This version continues renaming types for the 9.0 name convention change, which will make things make a bit more sense. For instance, `SystemKeyboard` is renamed to `KeyboardView`, toghether with all its related types.
+
+This version also adds memory optimized emoji keyboard styles, which makes the emoji keyboard consume a lot less memory, and tweaks the rendering on all device types to make the emoji keyboard look closer to the one in the native keyboards.
 
 ### ✨ Features
 
-* `EmojiKeyboardStyle` has new `.optimized` styles, which are applied by default.
+* `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
 * `Keyboard+StorageValue` is a new type that is used to persist codable types in storage.
 
 ### 💡 Adjustments
@@ -25,15 +27,18 @@ This patch adds memory optimized emoji keyboard styles and tweaks the rendering 
 * `EmojiKeyboard` renders better on iPad devices.
 * `EmojiKeyboard` displays a dismiss button on iPad devices.
 * `EmojiKeyboard` adds an extra row if an input toolbar is displayed.
+* `EmojiKeyboardStyle` now uses the new `.optimized` styles by default.
 * `EmojiKeyboardStyle` has been adjusted to conform to the new capabilities.
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
 * `KeyboardInputViewController` now checks if self is nil when setting up a view.
+* `SystemKeyboard` and all its related types have been renamed to `KeyboardView`.
 * `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
 
 ### 🐛 Bug fixes
 
-* `EmojiKeyboard` now renders correctly on 13" iPads.
-* `SystemKeyboard` now renders correctly on 13" iPads.
+* `Autocomplete.LocalProvider` is now a typealias.
+* `Autocomplete.RemoteProvider` is now a typealias. 
+* `EmojiKeyboard` and `KeyboardView` now render correctly on 13" iPads.
 
 ### 🗑️ Deprecations
 

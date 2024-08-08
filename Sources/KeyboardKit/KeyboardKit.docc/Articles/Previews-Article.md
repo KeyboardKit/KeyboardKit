@@ -17,7 +17,7 @@ SwiftUI previews are a great way to work on your project in Xcode without having
 
 KeyboardKit has preview-specific services and state, that can be used in your previews. This makes it easy to set up and preview your keyboard-specific views directly in Xcode.
 
-[KeyboardKit Pro][Pro] unlocks system keyboard and theme previews. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks keyboard and theme previews. Information about Pro features can be found at the end of this article.
 
 
 
@@ -76,38 +76,38 @@ You can take a look at the source code of the various views in the library for i
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks powerful system keyboard previews, that can be used to preview different locales, configurations and themes.
+[KeyboardKit Pro][Pro] unlocks powerful keyboard previews that can be used to preview different locales, configurations and themes.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 @TabNavigator {
     
-    @Tab("SystemKeyboardPreview") {
+    @Tab("KeyboardViewPreview") {
         
-        KeyboardKit Pro unlocks a ``SystemKeyboardPreview`` that can be used to preview a full ``SystemKeyboard`` in many different ways, for instance by passing in a custom locale or theme
+        KeyboardKit Pro unlocks a ``KeyboardViewPreview`` that can be used to preview a full ``KeyboardView`` in many different ways, for instance by passing in a custom locale or theme
         
         @Row {
             @Column {
-                ![System Keyboard Preview - Turkish](systemkeyboardpreview)
+                ![KeyboardView Preview - Turkish](keyboardviewpreview)
             }
             @Column {
-                ![System Keyboard Preview - Theme](systemkeyboardpreview-theme)
+                ![KeyboardView Preview - Theme](keyboardviewpreview-theme)
             }
         }
         
         This preview is intended to be used in the main app, to for instance provide interactive previews in a settings screen. Since it draws a full keyboard with all interactions enabled, avoid displaying more one at a time.
         
-        If you want to display several previews at once, consider using the  more lightweight ``SystemKeyboardButtonPreview`` instead:
+        If you want to display several previews at once, consider using the  more lightweight ``KeyboardViewButtonPreview`` instead:
         
         @Row {
             @Column {}
             @Column(size: 2) {
-                ![System Keyboard Button Preview](systemkeyboardbuttonpreview)
+                ![Keyboard View Button Preview](keyboardviewbuttonpreview)
             }
             @Column {}
         }
         
-        Unlike ``SystemKeyboardPreview``, this view renders a very lightweight button preview. It's for instance used in the theme ``KeyboardTheme/Shelf``, to display a button preview for all available themes:
+        Unlike ``KeyboardViewPreview``, this view renders a very lightweight button preview. It's for instance used in the theme ``KeyboardTheme/Shelf``, to display a button preview for all available themes:
         
         @Row {
             @Column {}
@@ -116,8 +116,5 @@ You can take a look at the source code of the various views in the library for i
             }
             @Column {}
         }
-        
-        
-
     }
 }

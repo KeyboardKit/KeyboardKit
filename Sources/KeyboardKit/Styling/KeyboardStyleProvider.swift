@@ -14,9 +14,14 @@ import SwiftUI
 ///
 /// While most views in the library have view modifiers that
 /// apply their specific styles, some views are more complex
-/// and require more dynamic styling, at least for now. This
-/// protocol lets us register a global style provider, which
-/// then is used to style e.g. the ``SystemKeyboard``.
+/// and require more dynamic styling.
+///
+/// For instance, the ``KeyboardView`` embeds many different
+/// components like the ``EmojiKeyboard`` which define their
+/// own styles. For now, this style provider generates these
+/// styles based on how it's implemented, which means that a
+/// view that is rendered within a ``KeyboardView`` can't be
+/// styled with their dedicated view modifiers.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``

@@ -79,7 +79,7 @@ public enum KeyboardAction: Codable, Equatable {
     /// Moves the input cursor forward one step when released.
     case moveCursorForward
     
-    /// A system keyboard switcher that triggers on release and long press.
+    /// Triggers the system keyboard switcher on release and long press.
     case nextKeyboard
     
     /// Triggers a locale switcher action on release and menu on long press.

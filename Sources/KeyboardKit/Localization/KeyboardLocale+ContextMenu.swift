@@ -15,9 +15,9 @@ public extension KeyboardLocale {
     ///
     /// The easiest way to apply this modifier is to use the
     /// ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)``
-    /// modifier, which the ``SystemKeyboard`` automatically
-    /// applies for the ``KeyboardAction/nextLocale`` action,
-    /// if the keyboard context has many locales.
+    /// modifier. The ``KeyboardView`` automatically applies
+    /// it to the ``KeyboardAction/nextLocale`` action, when
+    /// the keyboard context has many locales.
     ///
     /// The menu sorts and localizes the listed locales with
     /// the ``KeyboardContext/localePresentationLocale``.

@@ -9,13 +9,16 @@
 import KeyboardKitPro
 import SwiftUI
 
-/// This demo-specific keyboard view uses a `SystemKeyboard`
+/// This demo-specific keyboard view sets up a `KeyboardView`
 /// as the keyboard view and customizes it with Pro features.
 ///
-/// This view shows you how to customize the system keyboard,
-/// by returning `$0.view` where the default views should be
-/// used, or return custom views. This view will replace the
-/// default toolbar with a Pro toggle toolbar.
+/// The view shows how to customize the keyboard view, where
+/// you return `$0.view` (or `params in params.view`) to use
+/// the default component view, or return a custom view that
+/// you want to replace the default one with.
+///
+/// This view replaces the default toolbar with a Pro toggle
+/// toolbar that lets users toggle between two toolbars.
 struct DemoKeyboardView: View {
 
     /// This is (for now) required by the ``DemoToolbar``.

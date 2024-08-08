@@ -30,6 +30,7 @@ The ``KeyboardAction`` enum defines many keyboard-specific actions, for instance
 * ``KeyboardAction/keyboardType(_:)`` - changes the keyboard type.
 * ``KeyboardAction/nextKeyboard`` - triggers the system keyboard switcher.
 * ``KeyboardAction/nextLocale`` - triggers the locale switcher action.
+* ...and many more.
 
 See the ``KeyboardAction`` for a list of all available action types.
 
@@ -64,7 +65,7 @@ Text("Button")
     .keyboardButton(...)
 ```
 
-``SystemKeyboard`` applies this modifier to all its buttons, to make them support gestures for press, release, long press, repeat, etc.
+``KeyboardView`` applies this modifier to all its buttons, to make them support gestures for press, release, long press, repeat, etc.
 
 
 

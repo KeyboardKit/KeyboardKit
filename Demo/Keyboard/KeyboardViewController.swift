@@ -109,15 +109,15 @@ class KeyboardViewController: KeyboardInputViewController {
     /// This function is called whenever the keyboard should
     /// be created or updated.
     ///
-    /// Here, we just create a standard system keyboard like
-    /// the library does it, just to show how it's done. You
-    /// can customize anything you want.
+    /// Below, we just create a standard keyboard view, just
+    /// to show you how to do it. You can customize anything
+    /// you want, and replace any views within this keyboard.
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
 
-        /// 💡 Make the demo use a standard ``SystemKeyboard``.
+        /// 💡 Make the demo use a standard ``KeyboardView``.
         setup { controller in
-            SystemKeyboard(
+            KeyboardView(
                 state: controller.state,
                 services: controller.services,
                 buttonContent: { $0.view },

@@ -22,7 +22,7 @@ This article describes the KeyboardKit theme engine.
 
 A ``KeyboardTheme`` can provide keyboard-related styles in a way that can be easily used and modified. A theme can also define style variations that can be used to customize a constrained set of theme properties.
 
-KeyboardKit Pro also unlocks a ``KeyboardStyle/ThemeBasedProvider``, which can be used to apply a theme with the ``KeyboardStyleProvider`` concept that is used by some views, like the ``SystemKeyboard``.
+KeyboardKit Pro also unlocks a ``KeyboardStyle/ThemeBasedProvider``, which can be used to apply a theme with the ``KeyboardStyleProvider`` concept that is used by some views, like the ``KeyboardView``.
 
 
 ## Predefined themes

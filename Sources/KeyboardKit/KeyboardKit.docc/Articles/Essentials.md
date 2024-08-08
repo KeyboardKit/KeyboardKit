@@ -15,7 +15,7 @@ This article describes the essential parts of KeyboardKit.
 
 KeyboardKit extends Apple's native APIs and provides you with a lot more functionality. It lets you mimic the native iOS keyboard and tweak its style and behavior, or create completely custom keyboards.
 
-KeyboardKit also has a ``SystemKeyboard`` view that mimics the native iOS keyboard and can be customized & styled to great extent. Many of the tools and views in the SDK are used by the system keyboard.
+KeyboardKit also has a ``KeyboardView`` view that mimics the native iOS keyboard. It can be customized and styled to great extent, and be customized with any views you like.
 
 👑 [KeyboardKit Pro][Pro] unlocks a lot of essential Pro features. Information about Pro features can be found at the end of this article.
 
@@ -29,7 +29,7 @@ KeyboardKit uses namespaces to make the API surface smaller, by nesting types in
 
 KeyboardKit has other namespaces as well, for more specific capabilities, like ``KeyboardAction``, ``KeyboardLayout``, ``Callouts``, ``Dictation``, ``Feedback``, etc.
 
-Namespaces will not contain protocols, nor important types that are meant to be exposed as top-level types. This includes observable context and settings types, the ``KeyboardInputViewController`` and important components like ``SystemKeyboard``.
+Namespaces will not contain protocols, nor important types that are meant to be exposed as top-level types. This includes essential types like ``KeyboardInputViewController``, context and settings types like ``KeyboardContext`` and ``KeyboardSettings``, and important components like ``KeyboardView``.
 
 
 
@@ -84,7 +84,7 @@ KeyboardKit automatically creates an instance of ``Keyboard/StandardBehavior`` a
 
 ## Keyboard styling
 
-The <doc:Styling-Article> article describes how to use a ``KeyboardStyleProvider`` to style the ``SystemKeyboard`` in very flexible ways.
+The <doc:Styling-Article> article describes how to use a ``KeyboardStyleProvider`` to style the ``KeyboardView`` in flexible ways.
 
 Various views have separate styles as well, that can be applied with specific view modifiers.
 
@@ -96,34 +96,34 @@ KeyboardKit extends native types with keyboard-specific functionality like autoc
 
 
 
-## System Keyboard
+## Keyboard View
 
-KeyboardKit has a ``SystemKeyboard`` that mimics a native iOS keyboard. It can be used for alphabetic, numeric & symbolic keyboards, supports all supported locales, layouts, callouts, etc., and can be styled to great extent with styles & themes:
+KeyboardKit has a ``KeyboardView`` that mimics a native iOS keyboard. It can be used for alphabetic, numeric & symbolic keyboards, supports all supported locales, layouts, callouts, etc., and can be styled to great extent with styles & themes:
 
 @Row {
     
     @Column {
-        ![SystemKeyboard](systemkeyboard-english)
+        ![KeyboardView](keyboardview-english)
     }
     
     @Column {
-        ![SystemKeyboard](systemkeyboard-swedish)
+        ![KeyboardView](keyboardview-swedish)
     }
     
     @Column {
-        ![SystemKeyboard](systemkeyboard-styled)
+        ![KeyboardView](keyboardview-styled)
     }
 }
 
-``SystemKeyboard`` can be customized to great extent. You can pass in custom services & state, replace any part of the keyboard, and enable additional components:
+``KeyboardView`` can be customized to great extent. You can pass in custom services & state, replace any part of the keyboard with custom views, and enable additional components:
 
 ```swift
-SystemKeyboard(
-    controller: controller,             // You can setup the view with a controller instance 
-    buttonContent: { $0.view },         // Can be used to customize the content view of any button
-    buttonView: { $0.view },            // Can be used to customize the entire view of any button
-    emojiKeyboard: { $0.view },         // Can be used to customize the emoji keyboard, if any
-    toolbar: { params in params.view }  // Can be used to customize the toolbar above the keyboard
+KeyboardView(
+    controller: controller,             // You can setup the view with a controller 
+    buttonContent: { $0.view },         // You can customize the content view of any button
+    buttonView: { $0.view },            // You can customize the entire view of any button
+    emojiKeyboard: { $0.view },         // You can customize the emoji keyboard, if any
+    toolbar: { params in params.view }  // You can customize the toolbar above the keyboard
 )
 ```
 
@@ -140,7 +140,7 @@ The ``Keyboard`` namespace has a lot of views and view-related types, like ``Key
         
         KeyboardKit has a collection of keyboard ``Keyboard/Button`` views and styles that can be used to mimic all parts of a native keyboard, as well as their gestures. The ``Keyboard/Button`` renders the full button, while other views like ``Keyboard/ButtonShadow`` renders parts of it. 
         
-        ![Keyboard Button](systemkeyboardbuttonpreview)
+        ![Keyboard Button](keyboardviewbuttonpreview)
 
         Most of the views can be styled with a ``Keyboard/ButtonStyle``, which can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier. This is however not yet true for the ``Keyboard/Button`` itself, which uses a ``KeyboardStyleProvider`` to support more complex styling.
     }
@@ -183,7 +183,7 @@ The ``Keyboard`` namespace has a lot of views and view-related types, like ``Key
 
 KeyboardKit uses view modifier-based styling to great extent. This lets you style most KeyboardKit views just like regular SwiftUI views, like how a SwiftUI `Button` can be styled with `.buttonStyle`.
 
-This is however not (yet) implemented for more complex views, like ``SystemKeyboard``, which uses the ``KeyboardStyleProvider`` concept to provide dynamic styles to any part of the view hieararchy.
+This is however not (yet) implemented for more complex views, like ``KeyboardView``, which uses the ``KeyboardStyleProvider`` concept to provide dynamic styles to any part of the view hieararchy.
     
 See the <doc:Styling-Article> article for more information.
     
@@ -191,27 +191,27 @@ See the <doc:Styling-Article> article for more information.
     
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks additional, powerful ``SystemKeyboard`` capabilities, including full support for all ``KeyboardLocale``s, a full-blown ``EmojiKeyboard``, input toolbars, powerful ``SystemKeyboardPreview``s, etc.
+[KeyboardKit Pro][Pro] unlocks additional, powerful ``KeyboardView`` capabilities, including full support for all ``KeyboardLocale``s, a full-blown ``EmojiKeyboard``, input toolbars, powerful ``KeyboardViewPreview``s, etc.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
-### System Keyboard
+### Keyboard View
 
-KeyboardKit Pro unlocks additional ``SystemKeyboard``-related views and utils, that make it easier to create more powerful keyboards:
+KeyboardKit Pro unlocks additional ``KeyboardView``-related views and utils, that make it easier to create more powerful keyboards:
 
 @TabNavigator {
     
     @Tab("Bottom Row") {
-        KeyboardKit Pro unlocks a ``SystemKeyboardBottomRow`` component that can be used to just render a system keyboard bottom row that by default uses the same layout configuration as the full system keyboard.  
+        KeyboardKit Pro unlocks a ``KeyboardViewBottomRow`` component that renders a keyboard bottom row, which by default uses the same layout configuration as the full keyboard.  
 
-        ![System Keyboard Bottom Row](systemkeyboardbottomrow)
+        ![Keyboard View Bottom Row](keyboardviewbottomrow)
         
-        This view is convenient if you want to replace the system keyboard with another view, but keep a bottom button row with some actions. 
+        This view is convenient if you want to replace the keyboard view, but keep the bottom button row.
     }
     
     @Tab("Emoji Keyboard") {
-        KeyboardKit Pro unlocks an ``EmojiKeyboard``, which is automatically added to ``SystemKeyboard`` when a valid license is registered.
+        KeyboardKit Pro unlocks an ``EmojiKeyboard``, which is automatically added to ``KeyboardView`` when a valid license is registered.
 
         @Row {
             @Column { }
@@ -225,7 +225,7 @@ KeyboardKit Pro unlocks additional ``SystemKeyboard``-related views and utils, t
     }
     
     @Tab("Input Toolbar") {
-        KeyboardKit Pro will automatically add an input toolbar to ``SystemKeyboard`` if ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)`` is applied to the view hierarchy, with an ``Keyboard/InputToolbarDisplayMode/automatic`` or ``Keyboard/InputToolbarDisplayMode/inputs(_:)`` configuration.
+        KeyboardKit Pro will automatically add an input toolbar to ``KeyboardView`` if ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)`` is applied to the view hierarchy, with an ``Keyboard/InputToolbarDisplayMode/automatic`` or ``Keyboard/InputToolbarDisplayMode/inputs(_:)`` configuration.
 
         @Row {
             @Column {
@@ -236,7 +236,7 @@ KeyboardKit Pro unlocks additional ``SystemKeyboard``-related views and utils, t
             }
         }
         
-        The toolbar is added between the autocomplete toolbar and the system keyboard, and by default uses a slightly smaller button height.
+        The toolbar is added between the autocomplete toolbar and the keyboard, and by default uses a slightly smaller button height.
     }
     
     @Tab("Localization") {
@@ -245,7 +245,7 @@ KeyboardKit Pro unlocks additional ``SystemKeyboard``-related views and utils, t
         @Row {
             @Column { }
             @Column(size: 2) {
-                ![System Keyboard in Swedish](systemkeyboard-swedish)
+                ![KeyboardView in Swedish](keyboardview-swedish)
             }
             @Column { }
         }
@@ -254,12 +254,12 @@ KeyboardKit Pro unlocks additional ``SystemKeyboard``-related views and utils, t
     }
     
     @Tab("Previews") {
-        KeyboardKit Pro unlocks a ``SystemKeyboardPreview``, which can be used to preview various configurations, locales, themes, etc.
+        KeyboardKit Pro unlocks a ``KeyboardViewPreview``, which can be used to preview various configurations, locales, themes, etc.
 
         @Row {
             @Column { }
             @Column(size: 2) {
-                ![System Keyboard Preview](systemkeyboardpreview-theme)
+                ![KeyboardView Preview](keyboardviewpreview-theme)
             }
             @Column { }
         }

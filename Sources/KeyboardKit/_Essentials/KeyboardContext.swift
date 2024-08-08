@@ -17,15 +17,12 @@ import UIKit
 /// This class has observable, keyboard-related state.
 ///
 /// This class syncs with ``KeyboardInputViewController`` to
-/// keep itself up to date. It's extensively used within the
-/// library to make state-based decisions. For instance, you
-/// can check the current device type, interface orientation,
-/// full access state, etc.
+/// keep up to date. It's extensively used in the library to
+/// make state-based decisions.
 ///
-/// This class also has properties that you can actively set
-/// to affect the keyboard. For instance, the ``keyboardType``
-/// can be used to change what kind of keyboard to use. This
-/// is e.g. automatically used by ``SystemKeyboard``.
+/// The class can actively affect the keyboard. For instance,
+/// setting the ``keyboardType`` will cause a ``KeyboardView``
+/// to automatically rendered supported keyboard types.
 ///
 /// You can use ``locale`` to get and set the current locale
 /// or use ``KeyboardLocale``-based properties and functions

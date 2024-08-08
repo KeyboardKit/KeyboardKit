@@ -34,9 +34,11 @@ import KeyboardKit // or KeyboardKitPro
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, and more. 
+This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, and more.
 
-If you want to use the default ``SystemKeyboard``, which mimics a native iOS keyboard, you don't have to do anything else. To replace or customize the default view, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any setup function:
+If you just want to use the standard ``KeyboardView``, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything for you.
+
+To replace or customize the standard ``KeyboardView``, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any setup function, for instance:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -44,7 +46,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setup { [weak self] controller in // <-- Use [weak self] or [unowned self] if you need self here.
-            SystemKeyboard(
+            KeyboardView(
                 state: controller.state,
                 services: controller.services,
                 buttonContent: { $0.view },
@@ -66,7 +68,7 @@ You can use the view builder `controller` parameter to access ``KeyboardInputVie
 
 Unlike KeyboardKit, KeyboardKit Pro has a setup function that lets you register a license key, after which KeyboardKit Pro automatically sets up your license and unlocks all included features.
 
-To use KeyboardKit Pro with the default ``SystemKeyboard`` view, just call **setupPro** without a view in **viewDidLoad**:
+To use KeyboardKit Pro with the default ``KeyboardView``, just call **setupPro** without a view in **viewDidLoad**:
 
 ```swift
 import KeyboardKitPro
@@ -106,7 +108,7 @@ class KeyboardViewController: KeyboardInputViewController {
             licenseError: { error in ... }
             licenseConfiguration: { license in ... }
             view: { controller in
-                SystemKeyboard(
+                KeyboardView(
                     state: controller.state,
                     services: controller.services,
                     buttonContent: { $0.view },

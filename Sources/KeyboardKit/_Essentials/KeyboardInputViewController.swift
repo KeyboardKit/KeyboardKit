@@ -97,11 +97,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         setupInitialKeyboardType()
     }
 
-    /// This function is called when a keyboard view must be
-    /// created. It will by default setup a ``SystemKeyboard``.
+    /// This function is called when the controller is about
+    /// to create or update the keyboard view.
+    ///
+    /// If this function is not overridden, it will create a
+    /// ``KeyboardView`` by default.
     open func viewWillSetupKeyboard() {
         setup { controller in
-            SystemKeyboard(
+            KeyboardView(
                 state: controller.state,
                 services: controller.services,
                 buttonContent: { $0.view },

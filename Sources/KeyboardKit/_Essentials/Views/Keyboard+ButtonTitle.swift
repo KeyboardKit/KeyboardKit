@@ -16,7 +16,7 @@ public extension Keyboard {
     /// offset for input actions with lowercased text.
     struct ButtonTitle: View {
         
-        /// Create a system keyboard button text view.
+        /// Create a keyboard button title view.
         ///
         /// - Parameters:
         ///   - text: The text to display.

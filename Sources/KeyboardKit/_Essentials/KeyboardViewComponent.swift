@@ -1,5 +1,5 @@
 //
-//  SystemKeyboardComponent.swift
+//  KeyboardViewComponent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-18.
@@ -9,12 +9,12 @@
 import SwiftUI
 
 /// This protocol can be implemented by view components that
-/// can render a whole or parts of a system keyboard.
+/// can render parts of a ``KeyboardView``.
 ///
 /// Views can implement the protocol to get access to shared
-/// typealiases and system keyboard functionality.
-public protocol SystemKeyboardComponent: View {
-    
+/// typealiases and keyboard view functionality.
+public protocol KeyboardViewComponent: View {
+
     /// The view type to  button content view to use.
     associatedtype ButtonContent: View
     
@@ -22,8 +22,8 @@ public protocol SystemKeyboardComponent: View {
     associatedtype ButtonView: View
 }
 
-public extension SystemKeyboardComponent {
-    
+public extension KeyboardViewComponent {
+
     /// A button content builder typalias.
     typealias ButtonContentBuilder = (ButtonContentParams) -> ButtonContent
     
@@ -55,7 +55,7 @@ public extension SystemKeyboardComponent {
     typealias StandardButtonContent = Keyboard.ButtonContent
     
     /// The standard button view type.
-    typealias StandardButtonView = SystemKeyboardItem<ButtonContent>
+    typealias StandardButtonView = KeyboardViewItem<ButtonContent>
     
     /// The standard emoji keyboard view type.
     typealias StandardEmojiKeyboard = Emoji.KeyboardWrapper

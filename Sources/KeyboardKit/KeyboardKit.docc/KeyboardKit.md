@@ -85,7 +85,7 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 
 You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
-* ⌨️ <doc:Essentials> - KeyboardKit Pro unlocks more essential tools, system keyboard previews, etc.
+* ⌨️ <doc:Essentials> - KeyboardKit Pro unlocks more essential tools, keyboard previews, etc.
 * 🤖 <doc:AI-Article> - KeyboardKit Pro unlocks features that are needed for AI.
 * 📱 <doc:App-Article> - KeyboardKit Pro unlocks app-specific screens & views.
 * 💡 <doc:Autocomplete-Article> - KeyboardKit Pro unlocks on-device & remote autocomplete.
@@ -96,8 +96,8 @@ You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 * 🔉 <doc:Feedback-Article> - KeyboardKit Pro unlocks tools for toogling feedback on & off.
 * 🏠 <doc:Host-Article> - KeyboardKit Pro can identify specific host applications.
 * 🔣 <doc:Layout-Article> - KeyboardKit Pro unlocks localized layouts for all **68** locales.
-* 🌐 <doc:Localization-Article> - KeyboardKit Pro unlocks **68** locale-specific services and system keyboards.
-* 👁 <doc:Previews-Article> - KeyboardKit Pro unlocks system keyboard and theme previews.
+* 🌐 <doc:Localization-Article> - KeyboardKit Pro unlocks **68** locale-specific services and keyboard views.
+* 👁 <doc:Previews-Article> - KeyboardKit Pro unlocks keyboard and theme previews.
 * ➡️ <doc:Proxy-Article> - KeyboardKit Pro unlocks ways for `UITextDocumentProxy` to read the full document.
 * 📝 <doc:Text-Input-Article> - KeyboardKit Pro unlocks tools to let you type within the keyboard.
 * 🍭 <doc:Themes-Article> - KeyboardKit Pro unlocks a theme engine with many pre-defined themes.
@@ -165,12 +165,12 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardController``
 - ``KeyboardInputViewController``
 - ``KeyboardSettings``
-- ``SystemKeyboard``
-- ``SystemKeyboardBottomRow``
-- ``SystemKeyboardComponent``
-- ``SystemKeyboardItem``
-- ``SystemKeyboardPreview``
-- ``SystemKeyboardButtonPreview``
+- ``KeyboardView``
+- ``KeyboardViewBottomRow``
+- ``KeyboardViewComponent``
+- ``KeyboardViewItem``
+- ``KeyboardViewPreview``
+- ``KeyboardViewButtonPreview``
 
 ### Actions
 

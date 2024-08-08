@@ -35,6 +35,7 @@ public extension KeyboardStyle {
     typealias KeyboardAppearanceViewModifier = Keyboard.AppearanceViewModifier
 }
 
+@available(*, deprecated, message: "This will be removed in KeyboardKit 9")
 public extension Keyboard.AppearanceViewModifier {
     
     @available(*, deprecated, renamed: "init(_:)")

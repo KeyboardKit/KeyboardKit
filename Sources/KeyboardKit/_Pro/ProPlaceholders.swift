@@ -293,13 +293,13 @@ public extension Proxy {
 public protocol SpeechRecognizer {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public struct SystemKeyboardBottomRow {}
+public struct KeyboardViewBottomRow {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public struct SystemKeyboardPreview {}
+public struct KeyboardViewPreview {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public struct SystemKeyboardButtonPreview {}
+public struct KeyboardViewButtonPreview {}
 
 @available(*, deprecated, renamed: "KeyboardStyle.ThemeBasedProvider")
 public typealias ThemeBasedKeyboardStyleProvider = KeyboardStyle.StandardProvider
