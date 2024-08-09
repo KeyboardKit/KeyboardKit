@@ -45,6 +45,7 @@ This version also adds memory optimized emoji keyboard styles, which makes the e
 * `Autocomplete.LocalProvider` is now a typealias.
 * `Autocomplete.RemoteProvider` is now a typealias. 
 * `EmojiKeyboard` and `KeyboardView` now render correctly on 13" iPads.
+* `View+KeyboardButton` explicitly applies an interactable background color.
 
 ### 🗑️ Deprecations
 

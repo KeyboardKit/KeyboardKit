@@ -42,7 +42,7 @@ public extension View {
             .foregroundColor(style.foregroundColor)
             .font(style.font)
             .padding(edgeInsets)
-            .contentShape(Rectangle())
+            .background(Color.clearInteractable)
             .keyboardButtonGestures(
                 for: action,
                 actionHandler: actionHandler,
