@@ -20,6 +20,7 @@ This version also adds memory optimized emoji keyboard styles, which makes the e
 ### ✨ Features
 
 * `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
+* `Keyboard+BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard+StorageValue` is a new type that is used to persist codable types in storage.
 
 ### 💡 Renamings

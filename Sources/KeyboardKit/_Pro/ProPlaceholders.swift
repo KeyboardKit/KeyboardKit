@@ -122,9 +122,6 @@ public extension InputSet {
 public extension Keyboard {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct BottomRow {}
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
     struct ButtonPreview {}
 
     /// 👑 This is unlocked by KeyboardKit Pro.
