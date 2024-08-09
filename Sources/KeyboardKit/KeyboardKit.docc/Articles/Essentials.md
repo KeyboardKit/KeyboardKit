@@ -140,7 +140,7 @@ The ``Keyboard`` namespace has a lot of views and view-related types, like ``Key
         
         KeyboardKit has a collection of keyboard ``Keyboard/Button`` views and styles that can be used to mimic all parts of a native keyboard, as well as their gestures. The ``Keyboard/Button`` renders the full button, while other views like ``Keyboard/ButtonShadow`` renders parts of it. 
         
-        ![Keyboard Button](keyboardviewbuttonpreview)
+        ![Keyboard Button](keyboardbuttonpreview)
 
         Most of the views can be styled with a ``Keyboard/ButtonStyle``, which can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier. This is however not yet true for the ``Keyboard/Button`` itself, which uses a ``KeyboardStyleProvider`` to support more complex styling.
     }
@@ -203,9 +203,9 @@ KeyboardKit Pro unlocks additional ``KeyboardView``-related views and utils, tha
 @TabNavigator {
     
     @Tab("Bottom Row") {
-        KeyboardKit Pro unlocks a ``KeyboardViewBottomRow`` component that renders a keyboard bottom row, which by default uses the same layout configuration as the full keyboard.  
+        KeyboardKit Pro unlocks a ``Keyboard/BottomRow`` that renders a keyboard bottom row.
 
-        ![Keyboard View Bottom Row](keyboardviewbottomrow)
+        ![Keyboard View Bottom Row](keyboardbottomrow)
         
         This view is convenient if you want to replace the keyboard view, but keep the bottom button row.
     }

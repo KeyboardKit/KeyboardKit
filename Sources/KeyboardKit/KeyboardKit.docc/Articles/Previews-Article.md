@@ -97,12 +97,12 @@ You can take a look at the source code of the various views in the library for i
         
         This preview is intended to be used in the main app, to for instance provide interactive previews in a settings screen. Since it draws a full keyboard with all interactions enabled, avoid displaying more one at a time.
         
-        If you want to display several previews at once, consider using the  more lightweight ``KeyboardViewButtonPreview`` instead:
+        If you want to display several previews at once, consider using the  more lightweight ``Keyboard/ButtonPreview`` instead:
         
         @Row {
             @Column {}
             @Column(size: 2) {
-                ![Keyboard View Button Preview](keyboardviewbuttonpreview)
+                ![Keyboard View Button Preview](keyboardbuttonpreview)
             }
             @Column {}
         }

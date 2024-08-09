@@ -23,6 +23,12 @@ public extension Keyboard.State {
     }
 }
 
+@available(*, deprecated, renamed: "Keyboard.BottomRow")
+public struct KeyboardViewBottomRow {}
+
+@available(*, deprecated, renamed: "Keyboard.ButtonPreview")
+public struct KeyboardViewButtonPreview {}
+
 @available(*, deprecated, renamed: "KeyboardView")
 public typealias SystemKeyboard = KeyboardView
 

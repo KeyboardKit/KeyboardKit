@@ -120,7 +120,13 @@ public extension InputSet {
 }
 
 public extension Keyboard {
-    
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct BottomRow {}
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct ButtonPreview {}
+
     /// 👑 This is unlocked by KeyboardKit Pro.
     struct ToggleToolbar {}
 }
@@ -293,13 +299,7 @@ public extension Proxy {
 public protocol SpeechRecognizer {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public struct KeyboardViewBottomRow {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
 public struct KeyboardViewPreview {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
-public struct KeyboardViewButtonPreview {}
 
 @available(*, deprecated, renamed: "KeyboardStyle.ThemeBasedProvider")
 public typealias ThemeBasedKeyboardStyleProvider = KeyboardStyle.StandardProvider

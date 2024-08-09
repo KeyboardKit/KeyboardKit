@@ -12,23 +12,11 @@ import Foundation
 /// used to get certain locale-specific information.
 ///
 /// The protocol is implemented by both the ``KeyboardLocale``
-/// enum and the native ``Foundation/Locale`` type and makes
-/// both types able to provide much of the same information.
-///
-/// This removes the need to know whether to get information
-/// from the ``KeyboardLocale`` or the ``Foundation/Locale``
-/// for the most cases.
-///
-/// However, ``KeyboardLocale`` has more KeyboardKit-related
-/// information that ``Foundation/Locale`` doesn't know, and
-/// the native locale still has much more native information
-/// that you can use ``KeyboardLocale/locale`` to access.
+/// enum and ``Foundation/Locale`` and makes both types able
+/// to provide much of the same information.
 public protocol KeyboardLocaleInfo {
 
-    /// The native locale.
-    ///
-    /// The native ``Foundation/Locale`` type implements the
-    /// property by returning itself.
+    /// The native ``Foundation/Locale`` value.
     var locale: Locale { get }
 
     /// The locale identifier.

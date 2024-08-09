@@ -166,11 +166,9 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardInputViewController``
 - ``KeyboardSettings``
 - ``KeyboardView``
-- ``KeyboardViewBottomRow``
 - ``KeyboardViewComponent``
 - ``KeyboardViewItem``
 - ``KeyboardViewPreview``
-- ``KeyboardViewButtonPreview``
 
 ### Actions
 
