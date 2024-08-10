@@ -33,7 +33,11 @@ extension KeyboardInputViewController {
 
     /// Set up contexts based on the current settings values.
     func setupContexts() {
-        state.autocompleteContext.sync(with: settings.autocompleteSettings)
+        if settings.autocompleteSettings.lastSynced.value < settings.autocompleteSettings.lastChanged {
+            state.autocompleteContext.sync(with: settings.autocompleteSettings)
+            settings.autocompleteSettings.lastSynced.value = Date()
+        }
+
         state.dictationContext.sync(with: settings.dictationSettings)
         state.feedbackContext.sync(with: settings.feedbackSettings)
         state.keyboardContext.sync(with: settings.keyboardSettings)

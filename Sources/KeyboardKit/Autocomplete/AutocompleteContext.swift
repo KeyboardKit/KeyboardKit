@@ -7,19 +7,21 @@
 //
 
 import Combine
+import SwiftUI
 
-/// This class has observable, autocomplete-related state.
+/// This class has observable states and persistent settings.
 ///
-/// The ``suggestions`` property can be updated whenever the
-/// user types on the keyboard or the current text selection
-/// changes. The ``KeyboardInputViewController`` will update
-/// this class automatically, using an ``AutocompleteService``
-/// to perform autocomplete.
+/// The ``suggestions`` property is automatically updated as
+/// the user types or the current text changes. The property
+/// honors ``suggestionsDisplayCount`` by capping the number
+/// of suggestions in ``suggestionsFromService``.
 ///
-/// There's also a ``suggestionsFromService`` property, that
-/// can be used to provide a full suggestion result of which
-/// only a few will be included in ``suggestions``, which is
-/// defined by ``suggestionsDisplayCount``.
+/// The ``isAutocompleteEnabled`` and ``isAutocorrectEnabled``
+/// settings can be used to control whether autocomplete and
+/// autocorrect are enabled, while ``isAutoLearnEnabled`` is
+/// used to control if a keyboard should automatically learn
+/// any unknown suggestions that it applies.
+///
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
@@ -29,8 +31,37 @@ public class AutocompleteContext: ObservableObject {
 
     public init() {}
 
-    /// This localized dictionary can be used to define your
-    /// own custom autocorrections for various locales.
+
+    // MARK: - Settings
+
+    /// The settings key prefix to use for this namespace.
+    public static var settingsPrefix: String {
+        KeyboardSettings.storeKeyPrefix(for: "autocomplete")
+    }
+
+    /// Whether autocomplete is enabled.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)isAutocompleteEnabled", store: .keyboardSettings)
+    public var isAutocompleteEnabled = true
+
+    /// Whether autocorrect is enabled.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)isAutocorrectEnabled", store: .keyboardSettings)
+    public var isAutocorrectEnabled = true
+
+    /// The number of autocomplete suggestions to display.
+    ///
+    /// This is stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)suggestionsDisplayCount", store: .keyboardSettings)
+    public var suggestionsDisplayCount = 3
+
+
+    // MARK: - Properties
+
+    /// This localized dictionary can be used to define more,
+    /// custom autocorrections for the various locales.
     ///
     /// Note that the collection is already initialized with
     /// a set of well-known autocorrections, so make sure to
@@ -42,16 +73,7 @@ public class AutocompleteContext: ObservableObject {
     @Published
     public var autocorrectDictionary = Autocomplete.TextReplacementDictionary.additionalAutocorrections
 
-    /// Whether or not autocorrect is enabled.
-    @Published
-    public var isAutocorrectEnabled = true
-
-    /// Whether or not autocomplete is enabled.
-    @Published
-    public var isAutocompleteEnabled = true
-
-    /// Whether or not unknown suggestions are automatically
-    /// learned when they're applied.
+    /// Whether or not to auto-learn unknown suggestions.
     @Published
     public var isAutoLearnEnabled = true
 
@@ -62,10 +84,6 @@ public class AutocompleteContext: ObservableObject {
     /// The last received autocomplete error.
     @Published
     public var lastError: Error?
-
-    /// The preferred number of suggestions to show.
-    @Published
-    public var suggestionsDisplayCount: Int = 3
 
     /// The suggestions to present to the user.
     @Published

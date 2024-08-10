@@ -11,7 +11,9 @@ import SwiftUI
 
 public extension AutocompleteContext {
 
-    /// Sync the context with the provided settings.
+    /// DEPRECATED!
+    ///
+    /// > Warning: Settings has been moved to ``AutocompleteContext``. This function will be removed in KeyboardKit 9.0.
     func sync(with settings: AutocompleteSettings) {
         DispatchQueue.main.async {
             self.syncAfterAsync(with: settings)

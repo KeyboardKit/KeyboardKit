@@ -8,26 +8,24 @@
 
 import Foundation
 
-/// This protocol can be implemented by any classes that can
-/// perform autocomplete as the user types.
+/// This protocol can be implemented by any type that can be
+/// used perform autocomplete as the user types.
 ///
 /// Simply call ``autocompleteSuggestions(for:)`` to perform
-/// an autocomplete operation that returns suggestions for a
-/// certain text in the current ``locale``.
-///
-/// Once you have a list of suggestions, you can use them to
-/// perform ``nextCharacterPredictions(forText:suggestions:)``
-/// to get a dictionary of character that are most likely to
-/// be typed next, with a percentage probability.
+/// autocomplete and return suggestions for a provided text.
 ///
 /// Words can be learned using ``learnWord(_:)`` and ignored
-/// with ``ignoreWord(_:)``. Although it's up to the service
-/// implementation, learned words should be persisted, while
-/// ignored words should only apply to an instance.
+/// with ``ignoreWord(_:)``. Although it's up to the service,
+/// learned words should be persisted and ignored words only
+/// apply to the current service instance.
 ///
 /// Not every service supports ignoring/learning words. Make
 /// sure to check the ``canLearnWords`` and ``canIgnoreWords``
 /// properties before exposing any such features to the user.
+///
+/// Once you have a list of suggestions, you can use them to
+/// perform ``nextCharacterPredictions(forText:suggestions:)``
+/// to predict which characters the user will type next.
 ///
 /// KeyboardKit doesn't have a standard autocomplete service
 /// as it has for other services. Instead, a disabled one is

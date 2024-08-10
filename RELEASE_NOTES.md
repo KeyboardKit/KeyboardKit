@@ -13,9 +13,15 @@ These release notes only cover the current major version.
 
 ## 8.8
 
-This version continues renaming types for the 9.0 name convention change, which will make things make a bit more sense. For instance, `SystemKeyboard` is renamed to `KeyboardView`, toghether with all its related types.
+This version continues renaming types to make things make a bit more sense. For instance, `SystemKeyboard` is renamed to `KeyboardView`, toghether with all its related types.
 
-This version also adds memory optimized emoji keyboard styles, which makes the emoji keyboard consume a lot less memory, and tweaks the rendering on all device types to make the emoji keyboard look closer to the one in the native keyboards.
+This version deprecates the recently added settings types, and instead adds peristency directly to the contexts. This removes the need to keep contexts and settings in sync. 
+
+In order to avoid compile-time warnings, these settings types are only soft deprecated with a code comment. They will be removed in KeyboardKit 9.0.
+
+This version also adds memory optimized emoji keyboard styles that make the emoji keyboard consume a LOT less memory than before.
+
+This version also tweaks the emoji keyboard rendering on all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard for all device types.
 
 ### ✨ Features
 
@@ -23,7 +29,12 @@ This version also adds memory optimized emoji keyboard styles, which makes the e
 * `Keyboard+BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard+StorageValue` is a new type that is used to persist codable types in storage.
 
-### 💡 Renamings
+### 👑 KeyboardKit Pro
+
+* `Autocomplete.LocalService` now lets you override next character prediction.
+* `Autocomplete.RemoteService` can now also perform next character prediction.
+
+### 🪪 Renamings
 
 * `SystemKeyboard` has been renamed to `KeyboardView`.
 * `SystemKeyboardBottomRow` has been renamed to `Keyboard.BottomRow`.
@@ -31,14 +42,14 @@ This version also adds memory optimized emoji keyboard styles, which makes the e
 
 ### 💡 Adjustments
 
-* `EmojiKeyboard` renders better on iPad devices.
-* `EmojiKeyboard` displays a dismiss button on iPad devices.
-* `EmojiKeyboard` adds an extra row if an input toolbar is displayed.
+* `AutocompleteContext` now stores many properties.
+* `EmojiKeyboard` now renders better on iPad devices.
+* `EmojiKeyboard` now displays a dismiss button on iPad devices.
+* `EmojiKeyboard` now adds an extra row if an input toolbar is used.
 * `EmojiKeyboardStyle` now uses the new `.optimized` styles by default.
 * `EmojiKeyboardStyle` has been adjusted to conform to the new capabilities.
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
 * `KeyboardInputViewController` now checks if self is nil when setting up a view.
-* `SystemKeyboard` and all its related types have been renamed to `KeyboardView`.
 * `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
 
 ### 🐛 Bug fixes
@@ -50,9 +61,10 @@ This version also adds memory optimized emoji keyboard styles, which makes the e
 
 ### 🗑️ Deprecations
 
-* `Keyboard+SettingsLink` has been deprecated, since a regular `Link` works as well.
-* `Keyboard.State`'s `dictationConfig` has been moved into `dictationContext`.
-* `KeyboardAppearanceViewModifier` has been deprecated.
+* `AutocompleteSettings` has been deprecated since settings are note in the context.
+* `Keyboard+SettingsLink` has been deprecated, since a SwiftUI `Link` works as well.
+* `Keyboard.State`'s `dictationConfig` is now defined within the `dictationContext`.
+* `KeyboardAppearanceViewModifier` has been deprecated, since it didn't behave well.
 
 
 

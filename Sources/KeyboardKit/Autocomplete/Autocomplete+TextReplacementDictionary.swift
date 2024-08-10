@@ -14,11 +14,15 @@ public extension Autocomplete {
     /// e.g. define custom autocorrections.
     struct TextReplacementDictionary {
 
-        public init(_ initialValue: KeyboardLocale.Dictionary<[String: String]> = .init()) {
+        public init(
+            _ initialValue: Dictionary = .init()
+        ) {
             self.dictionary = initialValue
         }
 
-        private var dictionary: KeyboardLocale.Dictionary<[String: String]> = .init()
+        public typealias Dictionary = KeyboardLocale.Dictionary<[String: String]>
+
+        private var dictionary: Dictionary = .init()
     }
 }
 

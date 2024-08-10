@@ -8,8 +8,10 @@
 
 import SwiftUI
 
-/// This observable class can be used to manage settings for
-/// the ``Autocomplete`` namespace.
+/// DEPRECATED!
+///
+/// > Warning: Settings are moved to ``AutocompleteContext``.
+/// This type will be removed in KeyboardKit 9.0.
 public class AutocompleteSettings: ObservableObject {
 
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "autocomplete")
@@ -31,6 +33,9 @@ public class AutocompleteSettings: ObservableObject {
 
     @Published
     var lastChanged = Date()
+
+    @AppStorage("\(prefix)lastSynced", store: .keyboardSettings)
+    var lastSynced = Keyboard.StorageValue(Date())
 }
 
 private extension AutocompleteSettings {

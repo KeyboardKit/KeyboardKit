@@ -23,13 +23,13 @@ KeyboardKit has ways to automatically show an ``Callouts/InputCallout`` when the
 
 
 
-## Callout namespace
+## Callout Namespace
 
 KeyboardKit has a ``Callouts`` namespace that has callout-related types and views. For instance, an ``Callouts/InputCallout`` can present the currently pressed character while an ``Callouts/ActionCallout`` can present secondary actions while long pressing a key.
 
 
 
-## Callout context
+## Callout Context
 
 KeyboardKit has an observable ``CalloutContext`` class that provides observable input and action callout state, such as the currently pressed key or the callout actions to present.
 
@@ -37,7 +37,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 
 
-## Callout action providers
+## Callout Action Providers
 
 In KeyboardKit, a ``CalloutActionProvider`` can be used to provide dynamic callout actions, which are then presented when a key that has actions defined in the provider is long pressed.
 

@@ -10,19 +10,15 @@ import SwiftUI
 
 public extension Autocomplete {
     
-    /// This view mimics a native autocomplete toolbar.
+    /// This toolbar can be added above the keyboard to show
+    /// autocomplete suggestions as the user types.
     ///
     /// You can style this component with the style modifier
-    /// ``autocompleteToolbarStyle(_:)``.
-    ///
-    /// You can also customize this view by returning custom
-    /// views in the view builders.
+    /// ``autocompleteToolbarStyle(_:)`` and customize views
+    /// in the toolbar with various view builders.
     ///
     /// > Note: This view will be rebuilt in KeyboardKit 9.0,
-    /// to work like ``KeyboardView`` where view builders do
-    /// provide you with standard views and parameters. This
-    /// will reduce the number of required initializers, and
-    /// make it easier to work with this component.
+    /// to let the view builders provide you with parameters.
     struct Toolbar<ItemView: View, SeparatorView: View>: View {
 
         /// Create a toolbar with custom views.

@@ -25,7 +25,7 @@ public extension Keyboard {
 
     struct StorageValue<Value: Codable>: RawRepresentable {
 
-        public let value: Value
+        public var value: Value
     }
 }
 

@@ -8,7 +8,8 @@
 
 import Foundation
 
-/// This namespace contains keyboard app-related types.
+/// This namespace contains keyboard app-related types, like
+/// screen templates for the main app.
 ///
 /// For now, this namespace only has nested types when it is
 /// a part of a KeyboardKit Pro build.

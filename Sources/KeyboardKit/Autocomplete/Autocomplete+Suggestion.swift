@@ -10,8 +10,8 @@ import Foundation
 
 public extension Autocomplete {
  
-    /// This struct represents a suggestion that is returned
-    /// by an ``AutocompleteService``.
+    /// This type represents an autocomplete suggestion that
+    /// is returned by an ``AutocompleteService``.
     ///
     /// Autocomplete suggestions can be standard suggestions
     /// or autocorrecting suggestions that are automatically
