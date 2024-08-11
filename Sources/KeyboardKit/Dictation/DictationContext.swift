@@ -10,16 +10,23 @@ import Combine
 import Foundation
 import SwiftUI
 
-/// This class has observable, dictation-related state.
+/// This class has observable states and persistent settings.
 ///
 /// The context is used by both ``DictationService`` as well
 /// as ``KeyboardDictationService``. Use an initializer that
-/// fits your use-case, as described in the documentation.
+/// fits your needs, as described in <doc:Dictation-Article>.
+///
+/// The ``dictatedText`` property is updated while dictation
+/// is performed, together with many other properties, which
+/// are used by the dictation services.
+///
+/// The ``silenceLimit`` settings can be used to control how
+/// long time a user can be silent before the dictation will
+/// automatically wrap up.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value
-/// into the view hierarchy. 
+/// it as global state and inject it as an environment value.
 public class DictationContext: ObservableObject {
 
     /// Create a keyboard dictation context for a keyboard.
@@ -42,6 +49,10 @@ public class DictationContext: ObservableObject {
 
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "dictation")
 
+    /// The max number of seconds of silence after which the
+    /// dictation operation will automatically finish.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
     @AppStorage("\(prefix)silenceLimit", store: .keyboardSettings)
     public var silenceLimit: TimeInterval = 5.0
 

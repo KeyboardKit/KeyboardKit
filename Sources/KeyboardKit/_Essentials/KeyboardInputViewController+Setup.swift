@@ -40,9 +40,10 @@ extension KeyboardInputViewController {
             .syncToContextIfNeeded(state.autocompleteContext)
         settings.keyboardSettings
             .syncToContextIfNeeded(state.keyboardContext)
-
-        state.dictationContext.sync(with: settings.dictationSettings)
-        state.feedbackContext.sync(with: settings.feedbackSettings)
+        settings.dictationSettings
+            .syncToContextIfNeeded(state.dictationContext)
+        settings.feedbackSettings
+            .syncToContextIfNeeded(state.feedbackContext)
     }
 
     /// Set up the initial keyboard type.

@@ -33,10 +33,10 @@ import SwiftUI
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value
-/// into the view hierarchy.
+/// it as global state and inject it as an environment value.
 public class AutocompleteContext: ObservableObject {
 
+    /// Create an autocomplete context instance.
     public init() {}
 
 

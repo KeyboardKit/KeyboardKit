@@ -14,7 +14,7 @@ import SwiftUI
 import UIKit
 #endif
 
-/// This class has observable, keyboard-related state.
+/// This class has observable states and persistent settings.
 ///
 /// This class syncs with ``KeyboardInputViewController`` to
 /// keep up to date. It's extensively used in the library to

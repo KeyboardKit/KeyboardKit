@@ -8,8 +8,10 @@
 
 import SwiftUI
 
-/// This observable class can be used to manage settings for
-/// the ``Feedback`` namespace.
+/// DEPRECATED!
+///
+/// > Warning: Settings have been moved to the context. This
+/// type will be removed in KeyboardKit 9.0.
 public class FeedbackSettings: ObservableObject {
 
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "feedback")
@@ -22,6 +24,20 @@ public class FeedbackSettings: ObservableObject {
 
     @Published
     var lastChanged = Date()
+
+    @AppStorage("\(prefix)lastSynced", store: .keyboardSettings)
+    var lastSynced = Keyboard.StorageValue(Date().addingTimeInterval(-3600))
+}
+
+extension FeedbackSettings {
+
+    func syncToContextIfNeeded(
+        _ context: FeedbackContext
+    ) {
+        guard lastSynced.value < lastChanged else { return }
+        context.sync(with: self)
+        lastSynced.value = Date()
+    }
 }
 
 private extension FeedbackSettings {
