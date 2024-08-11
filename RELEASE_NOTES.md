@@ -94,6 +94,7 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 * `Keyboard.State`'s `dictationConfig` is now defined within the `dictationContext`.
 * `KeyboardAppearanceViewModifier` has been deprecated, since it didn't behave well.
 * `KeyboardSettings` settings properties have been deprecated and moved to the context.
+* `SpeechRecognizer` has been renamed to `DictationSpeechRecognizer`.
 
 
 

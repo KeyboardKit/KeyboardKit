@@ -244,7 +244,7 @@ Instead, just add this speech recognizer code to your app, then inject an instan
 import Speech
 import KeyboardKitPro
 
-public class StandardSpeechRecognizer: SpeechRecognizer {
+public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
     public init() {}
 

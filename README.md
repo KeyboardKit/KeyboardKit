@@ -15,9 +15,9 @@
 
 ## About KeyboardKit
 
-KeyboardKit is a SwiftUI SDK that lets you create fully customizable [keyboard extensions][About] with just a few lines of code.
+KeyboardKit is a SwiftUI SDK that lets you create fully customizable [keyboard extensions][About] with a few lines of code.
 
-KeyboardKit extends Apple's limited keyboard APIs, extends the text document proxy and input controller with a lot more capabilities, and provides you with additional functionality, services, states and views, to let you build an outstanding, custom keyboard with ease.
+KeyboardKit extends Apple's limited keyboard APIs, extends the input controller and proxy with more capabilities, and provides you with additional functionality, states and views, to let you build an outstanding, custom keyboards.
 
 <p align="center">
     <img src ="Resources/Demo.gif" width=450 />
@@ -153,14 +153,14 @@ The [online documentation][Documentation] has more information, articles, code e
 
 ## Demo App
 
-The demo app shows how to display keyboard state, link to system settings, etc. 
+The demo app shows you how to customize the keyboard, display keyboard state, link to system settings, apply custom styles and themes, etc. 
 
 The demo app has two demo keyboards: 
 
 * `Keyboard` uses KeyboardKit and a customized `KeyboardView`.
 * `KeyboardPro` uses KeyboardKit Pro and enables all locales, autocomplete, themes, etc.
 
-Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. Note that you need to enable full access for some features to work.
+Just open and run the demo app in the `Demo` folder, then enable the keyboards under System Settings. Note that you need to enable Full Access for some features to work, like haptic feedback.
 
 
 
