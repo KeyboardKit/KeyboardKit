@@ -18,10 +18,18 @@ import SwiftUI
 ///
 /// The ``isAutocompleteEnabled`` and ``isAutocorrectEnabled``
 /// settings can be used to control whether autocomplete and
-/// autocorrect are enabled, while ``isAutoLearnEnabled`` is
-/// used to control if a keyboard should automatically learn
-/// any unknown suggestions that it applies.
+/// autocorrect are enabled. A ``KeyboardInputViewController``
+/// will however check even more places before performing it.
 ///
+/// The ``isAutoLearnEnabled`` settings property can be used
+/// to control if the keyboard should auto-learn any unknown
+/// suggestions that are applied, provided that your service
+/// supports learning suggestions.
+///
+/// The ``isNextCharacterPredictionEnabled`` settings can be
+/// used to control if the keyboard should perform character
+/// predictions after the main autocomplete operation, which
+/// will then be written to ``nextCharacterPredictions``.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
@@ -51,6 +59,18 @@ public class AutocompleteContext: ObservableObject {
     @AppStorage("\(settingsPrefix)isAutocorrectEnabled", store: .keyboardSettings)
     public var isAutocorrectEnabled = true
 
+    /// Whether to applied unknown suggestions that are used.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)isAutoLearnEnabled", store: .keyboardSettings)
+    public var isAutoLearnEnabled = true
+
+    /// Whether next character prediction is enabled.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)isNextWordPrediction", store: .keyboardSettings)
+    public var isNextCharacterPredictionEnabled = true
+
     /// The number of autocomplete suggestions to display.
     ///
     /// This is stored in ``Foundation/UserDefaults/keyboardSettings``.
@@ -63,19 +83,10 @@ public class AutocompleteContext: ObservableObject {
     /// This localized dictionary can be used to define more,
     /// custom autocorrections for the various locales.
     ///
-    /// Note that the collection is already initialized with
-    /// a set of well-known autocorrections, so make sure to
-    /// append to it instead of replacing what's in it.
-    ///
-    /// This dictionary is used by the standard autocomplete
-    /// provider in KeyboardKit Pro, to match a current text
-    /// with an autocorrect suggestion.
+    /// Note that it's already initialized with a well-known
+    /// set of autocorrections, so make sure to append to it.
     @Published
     public var autocorrectDictionary = Autocomplete.TextReplacementDictionary.additionalAutocorrections
-
-    /// Whether or not to auto-learn unknown suggestions.
-    @Published
-    public var isAutoLearnEnabled = true
 
     /// Whether or not suggestions are being fetched.
     @Published
@@ -84,6 +95,10 @@ public class AutocompleteContext: ObservableObject {
     /// The last received autocomplete error.
     @Published
     public var lastError: Error?
+
+    /// The characters that are more likely to be typed next.
+    @Published
+    public var nextCharacterPredictions: [Character: Double] = [:]
 
     /// The suggestions to present to the user.
     @Published
@@ -94,7 +109,8 @@ public class AutocompleteContext: ObservableObject {
     public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
         didSet {
             let value = suggestionsFromService
-            suggestions = Array(value.prefix(suggestionsDisplayCount))
+            let capped = value.prefix(suggestionsDisplayCount)
+            suggestions = Array(capped)
         }
     }
 
