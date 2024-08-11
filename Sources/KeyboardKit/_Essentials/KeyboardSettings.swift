@@ -8,36 +8,64 @@
 
 import SwiftUI
 
-/// This observable class can be used to manage settings for
-/// the ``Keyboard`` namespace, and to set up a custom store
-/// for all settings classes.
+/// This class can be used to setup a custom value store for
+/// all settings types in the library.
 ///
 /// The static ``store`` is used to persist changes for each
 /// settings type. Use ``setupStore(_:keyPrefix:)`` to setup
-/// a custom store for all settings data.
+/// a custom store, or ``setupStore(withAppGroup:keyPrefix:)``
+/// to setup a store that syncs data between the app and its
+/// keyboard extension, using an App Group.
 ///
-/// Settings data is by default isolated to each target, but
-/// you can use ``setupStore(withAppGroup:keyPrefix:)`` when
-/// you want to automatically sync data between your app and
-/// its keyboard extension, using an App Group.
-///
-/// You can also provide a custom key prefix. The default is
+/// You can also provide a custom ``storeKeyPrefix`` that is
+/// added before each persisted value. The default prefix is
 /// `"com.keyboardkit.settings."`.
 ///
 /// > Important: `@AppStorage` properties will use the store
-/// that's available on the first access. Make sure to setup
-/// a custom store BEFORE accessing any settings properties.
+/// that's available when a property is first accessed. Make
+/// sure to run ``setupStore(_:keyPrefix:)`` BEFORE your app
+/// or keyboard extension accesses these settings properties.
 public class KeyboardSettings: ObservableObject {
 
+    /// DEPRECATED!
+    ///
+    /// > Warning: Settings are moved to ``KeyboardContext``.
+    /// This will be removed in KeyboardKit 9.0.
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "keyboard")
 
+    /// DEPRECATED!
+    ///
+    /// > Warning: Settings are moved to ``KeyboardContext``.
+    /// This will be removed in KeyboardKit 9.0.
     @AppStorage("\(prefix)isAutocapitalizationEnabled", store: .keyboardSettings)
     public var isAutocapitalizationEnabled = true {
         didSet { triggerChange() }
     }
 
+    /// DEPRECATED!
+    ///
+    /// > Warning: Settings are moved to ``KeyboardContext``.
+    /// This will be removed in KeyboardKit 9.0.
     @Published
     var lastChanged = Date()
+
+    /// DEPRECATED!
+    ///
+    /// > Warning: Settings are moved to ``KeyboardContext``.
+    /// This will be removed in KeyboardKit 9.0.
+    @AppStorage("\(prefix)lastSynced", store: .keyboardSettings)
+    var lastSynced = Keyboard.StorageValue(Date().addingTimeInterval(-3600))
+}
+
+extension KeyboardSettings {
+
+    func syncToContextIfNeeded(
+        _ context: KeyboardContext
+    ) {
+        guard lastSynced.value < lastChanged else { return }
+        context.sync(with: self)
+        lastSynced.value = Date()
+    }
 }
 
 private extension KeyboardSettings {

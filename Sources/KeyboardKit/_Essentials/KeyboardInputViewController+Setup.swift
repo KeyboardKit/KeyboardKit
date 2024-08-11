@@ -31,16 +31,18 @@ extension KeyboardInputViewController {
         setupLocaleObservation()
     }
 
-    /// Set up contexts based on the current settings values.
+    /// DEPRECATED!
+    ///
+    /// > Warning: Settings are moved to the various context
+    /// classes. This will be removed in KeyboardKit 9.0.
     func setupContexts() {
-        if settings.autocompleteSettings.lastSynced.value < settings.autocompleteSettings.lastChanged {
-            state.autocompleteContext.sync(with: settings.autocompleteSettings)
-            settings.autocompleteSettings.lastSynced.value = Date()
-        }
+        settings.autocompleteSettings
+            .syncToContextIfNeeded(state.autocompleteContext)
+        settings.keyboardSettings
+            .syncToContextIfNeeded(state.keyboardContext)
 
         state.dictationContext.sync(with: settings.dictationSettings)
         state.feedbackContext.sync(with: settings.feedbackSettings)
-        state.keyboardContext.sync(with: settings.keyboardSettings)
     }
 
     /// Set up the initial keyboard type.

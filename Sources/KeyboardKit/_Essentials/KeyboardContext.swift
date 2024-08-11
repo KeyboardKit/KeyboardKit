@@ -35,7 +35,35 @@ import UIKit
 /// into the view hierarchy.
 public class KeyboardContext: ObservableObject {
 
-    public init() {}
+    public init() {
+        updateAutocapitalizationWithSetting()
+    }
+
+
+    // MARK: - Settings
+
+    /// The settings key prefix to use for this namespace.
+    public static var settingsPrefix: String {
+        KeyboardSettings.storeKeyPrefix(for: "keyboard")
+    }
+
+    /// Whether autocapitalization is enabled.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)isAutocapitalizationEnabled", store: .keyboardSettings)
+    public var isAutocapitalizationEnabled = true {
+        didSet { updateAutocapitalizationWithSetting() }
+    }
+
+    /// A temp function to update autocapitalization for the
+    /// current ``isAutocapitalizationEnabled`` value.
+    func updateAutocapitalizationWithSetting() {
+        let noAutocap = Keyboard.AutocapitalizationType.none
+        let value = isAutocapitalizationEnabled ? nil : noAutocap
+        if autocapitalizationTypeOverride != value {
+            autocapitalizationTypeOverride = value
+        }
+    }
 
     
     // MARK: - Published Properties

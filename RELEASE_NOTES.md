@@ -30,6 +30,7 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 ### ✨ Features
 
 * `AutocompleteContext` has a new `isNextCharacterPredictionEnabled` settings property.
+* `AutocompleteContext` has new settings that replace the ``AutocompleteSettings`` type.
 * `Bundle` has an `isExtension` property to help you check if code runs in an extension. 
 * `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
 * `Keyboard.BottomRow` is no longer a Pro feature, but is available in the core library.
@@ -72,11 +73,12 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 
 ### 🗑️ Deprecations
 
-* `AutocompleteSettings` has been deprecated since settings are note in the context.
+* `AutocompleteSettings` has been deprecated since settings are now in the context.
 * `Keyboard+SettingsLink` has been deprecated, since a SwiftUI `Link` works as well.
 * `Keyboard.State`'s `dictationConfig` is now defined within the `dictationContext`.
 * `KeyboardAppearanceViewModifier` has been deprecated, since it didn't behave well.
-
+* `KeyboardSettings` settings properties have been deprecated and moved to the context.
+* `Keyboard.Settings` has been deprecated, since the contexts will now manage settings.
 
 
 ## 8.7.2

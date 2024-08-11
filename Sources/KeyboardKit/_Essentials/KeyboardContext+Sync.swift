@@ -13,27 +13,6 @@ import SwiftUI
 import UIKit
 #endif
 
-public extension KeyboardContext {
-
-    /// Sync the context with the provided settings.
-    func sync(with settings: KeyboardSettings) {
-        DispatchQueue.main.async {
-            self.syncAfterAsync(with: settings)
-        }
-    }
-}
-
-extension KeyboardContext {
-
-    /// Perform a settings sync after an async delay.
-    func syncAfterAsync(with settings: KeyboardSettings) {
-        let autocap = settings.isAutocapitalizationEnabled ? nil : Keyboard.AutocapitalizationType.none
-        if autocapitalizationTypeOverride != autocap {
-            autocapitalizationTypeOverride = autocap
-        }
-    }
-}
-
 #if os(iOS) || os(tvOS) || os(visionOS)
 public extension KeyboardContext {
 

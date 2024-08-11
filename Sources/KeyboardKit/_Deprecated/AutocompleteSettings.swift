@@ -35,7 +35,18 @@ public class AutocompleteSettings: ObservableObject {
     var lastChanged = Date()
 
     @AppStorage("\(prefix)lastSynced", store: .keyboardSettings)
-    var lastSynced = Keyboard.StorageValue(Date())
+    var lastSynced = Keyboard.StorageValue(Date().addingTimeInterval(-3600))
+}
+
+extension AutocompleteSettings {
+
+    func syncToContextIfNeeded(
+        _ context: AutocompleteContext
+    ) {
+        guard lastSynced.value < lastChanged else { return }
+        context.sync(with: self)
+        lastSynced.value = Date()
+    }
 }
 
 private extension AutocompleteSettings {
