@@ -102,8 +102,6 @@ public extension Keyboard {
 public extension Keyboard.Background {
 
     /// The standard keyboard background style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 
     /// A background style with a single color.

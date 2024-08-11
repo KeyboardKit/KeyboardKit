@@ -13,28 +13,35 @@ These release notes only cover the current major version.
 
 ## 8.8
 
-This version continues renaming types to make things make a bit more sense. For instance, `SystemKeyboard` is renamed to `KeyboardView`, toghether with all its related types.
+This version continues renaming types to make things make more sense. For instance, `SystemKeyboard` is renamed to `KeyboardView`, toghether with all its related types.
 
-This version deprecates the recently added settings types, and instead adds peristency directly to the contexts. This removes the need to keep contexts and settings in sync. 
+This version deprecates the recently added settings types, and replaces them by adding persistency to the various contexts, to avoid having to keep the contexts in sync.
 
-In order to avoid compile-time warnings, these settings types are only soft deprecated with a code comment. They will be removed in KeyboardKit 9.0.
+To avoid annoying compile-time warnings, these deprecated settings types are only soft deprecated with a code comment. They will be completely removed in KeyboardKit 9.0.
 
-This version also adds memory optimized emoji keyboard styles that make the emoji keyboard consume a LOT less memory than before.
+This version also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory than before by rendering lower resolution grid items.
 
-This version also tweaks the emoji keyboard rendering on all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard for all device types.
+This version also tweaks the emoji keyboard configuration for all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard on all device types.
+
+KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen`, which makes it easy to add keyboard settings to the main app target, as well as to the keyboard.
+
+KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboard section, to avoid breaking UI behavior. This will be visible by default in KeyboardKit 9.0. 
 
 ### ✨ Features
 
 * `AutocompleteContext` has a new `isNextCharacterPredictionEnabled` settings property.
 * `Bundle` has an `isExtension` property to help you check if code runs in an extension. 
 * `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
-* `Keyboard+BottomRow` is no longer a Pro feature, but is available in the core library.
-* `Keyboard+StorageValue` is a new type that is used to persist codable types in storage.
+* `Keyboard.BottomRow` is no longer a Pro feature, but is available in the core library.
+* `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
 
 ### 👑 KeyboardKit Pro
 
 * `Autocomplete.LocalService` now lets you override next character prediction.
 * `Autocomplete.RemoteService` can now also perform next character prediction.
+* `KeyboardApp.HomeScreen` can now be configured to display a keyboard section.
+* `KeyboardApp.HomeScreen` has several new visibility and style configurations.
+* `KeyboardApp.SettingsScreen` is a new screen view that can manage various settings.
 
 ### 🪪 Renamings
 

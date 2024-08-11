@@ -35,8 +35,6 @@ public extension Keyboard {
 public extension Keyboard.ToolbarStyle {
     
     /// The standard keyboard toolbar style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 }
 

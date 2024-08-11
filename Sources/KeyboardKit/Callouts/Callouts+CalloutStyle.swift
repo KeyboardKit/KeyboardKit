@@ -94,8 +94,6 @@ public extension Callouts {
 public extension Callouts.CalloutStyle {
     
     /// The standard callout style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 }
 

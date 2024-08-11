@@ -53,11 +53,13 @@ KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which performs on-devic
 
 KeyboardKit will automatically call the ``KeyboardInputViewController``'s ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the context ``AutocompleteContext/suggestions`` with the suggestions that are returned from the current autocomplete service.
 
-You can configure the ``AutocompleteContext`` and override the ``KeyboardInputViewController``'s autocomplete properties and functions, such as ``KeyboardInputViewController/autocompleteText`` or ``KeyboardInputViewController/performAutocomplete()``, to customize how autocomplete behaves. 
+You can configure the ``AutocompleteContext`` and override the ``KeyboardInputViewController``'s autocomplete properties and functions, such as ``KeyboardInputViewController/autocompleteText`` or ``KeyboardInputViewController/performAutocomplete()``, to customize how autocomplete behaves.
 
-You can also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` view modifier to the keyboard view.
+You can disable autocomplete and autocorrect with ``AutocompleteContext/isAutocompleteEnabled`` and ``AutocompleteContext/isAutocorrectEnabled``, and also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` view modifier to the view hierarchy.
 
-Views like the ``Autocomplete``.``Autocomplete/Toolbar`` can list suggestions and handle them with a ``KeyboardActionHandler``. Set ``AutocompleteContext/isAutoLearnEnabled`` to `true` to make the action handler automatically ask the service to learn all unknown suggestions that it handles.
+You can set ``AutocompleteContext/isAutolearnEnabled`` to `true` to make a ``KeyboardActionHandler``  automatically tell ``AutocompleteService`` to learn all unknown suggestions that the action handler applies.
+
+The ``KeyboardView`` will automatically add an ``Autocomplete``.``Autocomplete/Toolbar`` that lists the autocomplete context ``AutocompleteContext/suggestions`` and also gives the keyboard some additional top space for callouts to render without being clipped.
 
 
 

@@ -139,7 +139,7 @@ extension KeyboardAction {
         open func handle(
             _ suggestion: Autocomplete.Suggestion
         ) {
-            if suggestion.isUnknown, autocompleteContext.isAutoLearnEnabled {
+            if suggestion.isUnknown, autocompleteContext.isAutolearnEnabled {
                 autocompleteService?.learn(suggestion)
             }
             keyboardContext.insertAutocompleteSuggestion(suggestion)

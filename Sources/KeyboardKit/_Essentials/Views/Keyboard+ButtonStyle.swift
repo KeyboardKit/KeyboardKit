@@ -235,8 +235,6 @@ public extension Keyboard.ButtonBorderStyle {
     static var noBorder = Self()
     
     /// The standard button border style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 }
 
@@ -246,8 +244,6 @@ public extension Keyboard.ButtonShadowStyle {
     static var noShadow = Self(color: .clear)
     
     /// The standard button shadow style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 }
 

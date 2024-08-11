@@ -71,8 +71,6 @@ public extension Autocomplete {
 public extension Autocomplete.ToolbarStyle {
     
     /// The standard autocomplete toolbar style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 }
 

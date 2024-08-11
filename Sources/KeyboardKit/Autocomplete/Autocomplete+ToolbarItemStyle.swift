@@ -79,13 +79,9 @@ public extension Autocomplete {
 public extension Autocomplete.ToolbarItemStyle {
     
     /// The standard autocomplete toolbar item style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
     
     /// The standard autocomplete toolbar autocorrect style.
-    ///
-    /// You can set this style to change the global default.
     static var standardAutocorrect = Self(
         backgroundColor: .white.opacity(0.5)
     )

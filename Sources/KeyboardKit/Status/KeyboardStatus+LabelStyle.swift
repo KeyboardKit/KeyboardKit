@@ -107,8 +107,6 @@ public extension KeyboardStatus {
 public extension KeyboardStatus.LabelStyle {
 
     /// The standard status label style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 }
 

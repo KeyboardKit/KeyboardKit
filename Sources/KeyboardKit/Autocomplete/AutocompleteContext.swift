@@ -21,7 +21,7 @@ import SwiftUI
 /// autocorrect are enabled. A ``KeyboardInputViewController``
 /// will however check even more places before performing it.
 ///
-/// The ``isAutoLearnEnabled`` settings property can be used
+/// The ``isAutolearnEnabled`` settings property can be used
 /// to control if the keyboard should auto-learn any unknown
 /// suggestions that are applied, provided that your service
 /// supports learning suggestions.
@@ -62,8 +62,8 @@ public class AutocompleteContext: ObservableObject {
     /// Whether to applied unknown suggestions that are used.
     ///
     /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isAutoLearnEnabled", store: .keyboardSettings)
-    public var isAutoLearnEnabled = true
+    @AppStorage("\(settingsPrefix)isAutolearnEnabled", store: .keyboardSettings)
+    public var isAutolearnEnabled = true
 
     /// Whether next character prediction is enabled.
     ///

@@ -49,8 +49,6 @@ public extension Autocomplete {
 public extension Autocomplete.ToolbarSeparatorStyle {
     
     /// The standard autocomplete toolbar separator style.
-    ///
-    /// You can set this style to change the global default.
     static var standard = Self()
 }
 
