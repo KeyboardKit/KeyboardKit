@@ -9,7 +9,11 @@
 import Foundation
 
 extension Bundle {
-    
+
+    func bundle(for locale: KeyboardLocale) -> Bundle? {
+        bundle(for: locale.locale)
+    }
+
     func bundle(for locale: Locale) -> Bundle? {
         guard let bundlePath = bundlePath(for: locale) else { return nil }
         return Bundle(path: bundlePath)

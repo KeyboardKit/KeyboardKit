@@ -25,7 +25,8 @@ This version also tweaks the emoji keyboard rendering on all device types, to ma
 
 ### ✨ Features
 
-* `AutocompleteContext` has a new `isNextCharacterPredictionEnabled` settings property. 
+* `AutocompleteContext` has a new `isNextCharacterPredictionEnabled` settings property.
+* `Bundle` has an `isExtension` property to help you check if code runs in an extension. 
 * `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
 * `Keyboard+BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard+StorageValue` is a new type that is used to persist codable types in storage.

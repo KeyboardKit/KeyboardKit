@@ -14,27 +14,17 @@ extension Bundle {
     static var library = Bundle.keyboardKit
 }
 
-extension Bundle {
+public extension Bundle {
 
-    /// The name of the package bundle.
-    ///
-    /// This may change in any new Xcode version. If Xcode's
-    /// name convention changes, you can print the path like
-    /// this and look for the bundle name in the text:
-    ///
-    /// ```
-    /// Bundle(for: BundleFinder.self)
-    ///     .resourceURL?
-    ///     .deletingLastPathComponent()
-    ///     .deletingLastPathComponent()
-    /// ```
-    static let keyboardKitBundleName = "KeyboardKit_KeyboardKit"
-
-    /// This bundle lets us use resources from KeyboardKit.
+    /// The KeyboardKit bundle.
     ///
     /// We can't use .module, since KeyboardKit Pro is built
     /// from an Xcode Project.
-    public static let keyboardKit: Bundle = {
+    ///
+    /// Inspiration:
+    /// https://developer.apple.com/forums/thread/664295
+    /// https://dev.jeremygale.com/swiftui-how-to-use-custom-fonts-and-images-in-a-swift-package-cl0k9bv52013h6bnvhw76alid 
+    static let keyboardKit: Bundle = {
         let candidates = [
             // Bundle should be present here when the package is linked into an App.
             Bundle.main.resourceURL,
@@ -64,6 +54,22 @@ extension Bundle {
         
         return Bundle(for: BundleFinder.self)
     }()
+
+    /// The name of the KeyboardKit bundle.
+    ///
+    /// This may change in any new Xcode version, which will
+    /// make any bundle resource usage fail.
+    ///
+    /// If this happens, you can print the bundle's path and
+    /// look for the bundle name in the print output:
+    ///
+    /// ```
+    /// Bundle(for: BundleFinder.self)
+    ///     .resourceURL?
+    ///     .deletingLastPathComponent()
+    ///     .deletingLastPathComponent()
+    /// ```
+    static let keyboardKitBundleName = "KeyboardKit_KeyboardKit"
 }
 
 private extension Bundle {
