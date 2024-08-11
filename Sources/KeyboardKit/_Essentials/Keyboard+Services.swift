@@ -49,14 +49,8 @@ public extension Keyboard {
         /// The autocomplete service to use.
         public lazy var autocompleteService: AutocompleteService = .disabled
 
-        @available(*, deprecated, renamed: "autocompleteService")
-        public var autocompleteProvider: AutocompleteService {
-            get { autocompleteService }
-            set { autocompleteService = newValue }
-        }
-
-        /// The callout action provider to use.
-        public lazy var calloutActionProvider: CalloutActionProvider = Callouts.StandardActionProvider(
+        /// The callout service to use.
+        public lazy var calloutService: CalloutService = Callouts.StandardService(
             keyboardContext: state.keyboardContext
         ) {
             didSet { setupCalloutContextForServices() }
@@ -84,6 +78,22 @@ public extension Keyboard {
         public lazy var styleProvider: KeyboardStyleProvider = KeyboardStyle.StandardProvider(
             keyboardContext: state.keyboardContext
         )
+
+
+        // MARK: - Deprecated
+
+        @available(*, deprecated, renamed: "autocompleteService")
+        public var autocompleteProvider: AutocompleteService {
+            get { autocompleteService }
+            set { autocompleteService = newValue }
+        }
+
+
+        @available(*, deprecated, renamed: "calloutService")
+        public var calloutActionProvider: CalloutService {
+            get { calloutService }
+            set { calloutService = newValue }
+        }
     }
 }
 
@@ -120,7 +130,7 @@ private extension Keyboard.Services {
 
     func setupCalloutContextForServices() {
         let context = state.calloutContext.actionContext
-        context.actionProvider = calloutActionProvider
+        context.service = calloutService
         context.tapAction = { [weak self] action in
             self?.actionHandler.handle(.release, on: action)
         }

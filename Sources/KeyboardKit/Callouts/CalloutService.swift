@@ -1,5 +1,5 @@
 //
-//  CalloutActionProvider.swift
+//  CalloutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,20 +8,20 @@
 
 import Foundation
 
-/// This protocol can be implemented by any classes that can
-/// provide secondary keyboard callout actions.
+/// This protocol can be implemented by any type that can be
+/// used perform callout-related actions.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
-/// it at any time to customize the keyboard callout actions.
+/// it at any time to customize the callout behavior.
 ///
-/// KeyboardKit Pro can be used to unlock localized provider
-/// implementations for each ``KeyboardLocale``.
+/// KeyboardKit Pro can be used to unlock localized services
+/// for each ``KeyboardLocale``.
 ///
 /// See <doc:Callouts-Article> for more information.
-public protocol CalloutActionProvider: AnyObject {
-    
+public protocol CalloutService: AnyObject {
+
     /// Get callout actions for the provided keyboard action.
     func calloutActions(
         for action: KeyboardAction

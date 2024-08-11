@@ -220,12 +220,12 @@ private extension KeyboardAction {
 #Preview {
 
     let actionContext1 = Callouts.ActionCallout.Context(
-        actionProvider: .preview,
+        service: .preview,
         tapAction: { _ in }
     )
 
     let actionContext2 = Callouts.ActionCallout.Context(
-        actionProvider: .preview,
+        service: .preview,
         tapAction: { _ in }
     )
 

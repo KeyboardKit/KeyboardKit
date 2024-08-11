@@ -17,14 +17,14 @@ import Foundation
  - ``AutocompleteContext``.``AutocompleteContext/preview``
  - ``AutocompleteService``.``AutocompleteService/preview``
  - ``CalloutContext``.``CalloutContext/preview``
- - ``CalloutActionProvider``.``CalloutActionProvider/preview``
+ - ``CalloutService``.``CalloutService/preview``
  - ``KeyboardActionHandler``.``KeyboardActionHandler/preview``
  - ``KeyboardContext``.``KeyboardContext/preview``.
  - ``KeyboardInputViewController``.``KeyboardInputViewController/preview``
  - ``KeyboardLayout``.``KeyboardLayout/preview``
  - ``KeyboardLayoutProvider``.``KeyboardLayoutProvider/preview``
  - ``KeyboardStyleProvider``.``KeyboardStyleProvider/preview``
- - **UITextDocumentProxy.UITextDocumentProxy**
+ - ``UIKit/UITextDocumentProxy``.``UIKit/UITextDocumentProxy/preview``
  
  These preview implementations make it easier to use SwiftUI
  previews with KeyboardKit types.

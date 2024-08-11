@@ -45,6 +45,7 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 
 ### 🪪 Renamings
 
+* `CalloutActionProvider` has been renamed to `CalloutService`.
 * `SystemKeyboard` has been renamed to `KeyboardView`.
 * `SystemKeyboardBottomRow` has been renamed to `Keyboard.BottomRow`.
 * `SystemKeyboardButtonPreview` has been renamed to `Keyboard.ButtonPreview`.

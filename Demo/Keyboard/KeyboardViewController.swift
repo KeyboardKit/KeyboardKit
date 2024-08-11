@@ -43,13 +43,13 @@ class KeyboardViewController: KeyboardInputViewController {
             context: state.autocompleteContext
         )
         
-        /// 💡 Setup a demo-specific callout action provider.
+        /// 💡 Setup a demo-specific callout service.
         ///
         /// The demo provider adds "keyboard" callout action
         /// buttons to the "k" key.
-        services.calloutActionProvider = Callouts.StandardActionProvider(
+        services.calloutService = Callouts.StandardService(
             keyboardContext: state.keyboardContext,
-            baseProvider: DemoCalloutActionProvider())
+            baseProvider: DemoCalloutService())
         
         /// 💡 Setup a demo-specific layout provider.
         ///

@@ -19,7 +19,7 @@ public extension CalloutContext {
 public extension CalloutContext.ActionContext {
 
     static var preview = CalloutContext.ActionContext(
-        actionProvider: .preview,
+        service: .preview,
         tapAction: { _ in }
     )
 }
@@ -31,17 +31,17 @@ public extension CalloutContext.InputContext {
     )
 }
 
-public extension CalloutActionProvider where Self == KeyboardPreviews.PreviewCalloutActionProvider {
-    
-    static var preview: CalloutActionProvider {
-        KeyboardPreviews.PreviewCalloutActionProvider()
+public extension CalloutService where Self == KeyboardPreviews.PreviewCalloutService {
+
+    static var preview: CalloutService {
+        KeyboardPreviews.PreviewCalloutService()
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewCalloutActionProvider: CalloutActionProvider {
-        
+    class PreviewCalloutService: CalloutService {
+
         public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
             switch action {
             case .character(let char):

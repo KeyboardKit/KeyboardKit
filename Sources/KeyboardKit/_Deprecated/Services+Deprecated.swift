@@ -61,13 +61,6 @@ public extension Autocomplete {
 }
 
 
-@available(*, deprecated, renamed: "Callouts.BaseActionProvider")
-public typealias BaseCalloutActionProvider = Callouts.BaseActionProvider
-
-@available(*, deprecated, renamed: "Callouts.StandardActionProvider")
-public typealias StandardCalloutActionProvider = Callouts.StandardActionProvider
-
-
 @available(*, deprecated, renamed: "Dictation.ProService")
 public typealias ProDictationService = Dictation.ProService
 

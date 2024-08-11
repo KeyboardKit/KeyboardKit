@@ -17,27 +17,26 @@ public extension CalloutContext {
         /// Create an action callout context instance.
         ///
         /// - Parameters:
-        ///   - actionProvider: The action provider to use, if any.
+        ///   - service: The action service to use, if any.
         ///   - tapAction: The action to perform when tapping an action.
         public init(
-            actionProvider: CalloutActionProvider?,
+            service: CalloutService?,
             tapAction: @escaping (KeyboardAction) -> Void
         ) {
-            self.actionProvider = actionProvider
+            self.service = service
             self.tapAction = tapAction
         }
         
         
         /// The coordinate space to use for callout.
         public let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
-        
-        
+
+        /// The service to use for resolving callout actions.
+        public var service: CalloutService?
+
         /// The action handler to use when tapping buttons.
         public var tapAction: (KeyboardAction) -> Void
-        
-        /// The action provider to use for resolving actions.
-        public var actionProvider: CalloutActionProvider?
-        
+
         
         /// The currently active actions.
         @Published
@@ -54,6 +53,23 @@ public extension CalloutContext {
         /// The currently selected action index.
         @Published
         public private(set) var selectedIndex: Int = -1
+
+
+        // MARK: - Deprecated
+
+        @available(*, deprecated, renamed: "init(service:tapAction:)")
+        public convenience init(
+            actionProvider: CalloutActionProvider?,
+            tapAction: @escaping (KeyboardAction) -> Void
+        ) {
+            self.init(service: actionProvider, tapAction: tapAction)
+        }
+
+        @available(*, deprecated, renamed: "service")
+        public var actionProvider: CalloutService? {
+            get { service }
+            set { service = newValue }
+        }
     }
 }
 
@@ -107,7 +123,7 @@ public extension CalloutContext.ActionContext {
     /// Update the input actions for a certain action.
     func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: HorizontalAlignment? = nil) {
         guard let action = action else { return reset() }
-        guard let actions = actionProvider?.calloutActions(for: action) else { return }
+        guard let actions = service?.calloutActions(for: action) else { return }
         self.buttonFrame = geo.frame(in: .named(coordinateSpace))
         self.alignment = alignment ?? getAlignment(for: geo)
         self.actions = isLeading ? actions : actions.reversed()
@@ -143,7 +159,7 @@ public extension CalloutContext.ActionContext {
     /// This context can be used to disable action callouts.
     static var disabled: CalloutContext.ActionContext {
         .init(
-            actionProvider: nil,
+            service: nil,
             tapAction: { _ in }
         )
     }

@@ -1,5 +1,5 @@
 //
-//  Callouts+StandardActionProviderTests.swift
+//  Callouts+StandardServiceTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -9,34 +9,34 @@
 import KeyboardKit
 import XCTest
 
-class Callouts_StandardActionProviderTests: XCTestCase {
-    
-    var provider: Callouts.StandardActionProvider!
+class Callouts_StandardServiceTests: XCTestCase {
+
+    var service: Callouts.StandardService!
     var context: KeyboardContext!
     
     override func setUp() {
         context = KeyboardContext()
-        provider = .init(keyboardContext: context)
+        service = .init(keyboardContext: context)
     }
     
     override func tearDown() {
-        Callouts.StandardActionProvider.localizedProviderResolver = nil
+        Callouts.StandardService.localizedServiceResolver = nil
     }
     
-    func testLocalizedProvidersHaveNoDefaultProviders() {
-        let providers = provider.localizedProviders.dictionary
+    func testLocalizedServicesHaveNoDefaultProviders() {
+        let providers = service.localizedServices.dictionary
         XCTAssertEqual(providers.keys.count, 0)
     }
     
-    func testLocalizedProvidersAcceptCustomProviders() {
-        provider = .init(
+    func testLocalizedServicesAcceptCustomProviders() {
+        service = .init(
             keyboardContext: context,
-            localizedProviders: [
+            localizedServices: [
                 TestProvider(localeKey: "en"),
                 TestProvider(localeKey: "sv")
             ]
         )
-        let providers = provider.localizedProviders.dictionary
+        let providers = service.localizedServices.dictionary
         XCTAssertEqual(providers.keys.count, 2)
         XCTAssertTrue(providers["en"] is TestProvider)
         XCTAssertTrue(providers["sv"] is TestProvider)
@@ -45,51 +45,51 @@ class Callouts_StandardActionProviderTests: XCTestCase {
     
     func testCalloutActionsMapsContextLocaleToProvider() {
         context.locale = Locale(identifier: KeyboardLocale.english.id)
-        provider = .init(
+        service = .init(
             keyboardContext: context,
-            localizedProviders: [TestProvider(localeKey: "en")]
+            localizedServices: [TestProvider(localeKey: "en")]
         )
         let action = KeyboardAction.character("a")
-        let actions = provider.calloutActions(for: action)
+        let actions = service.calloutActions(for: action)
         let expected = "en".map { KeyboardAction.character(String($0)) }
         XCTAssertEqual(actions, expected)
     }
     
     func testCalloutActionsReturnsEmptyResultForMissingLocale() {
         context.locale = Locale(identifier: KeyboardLocale.swedish.id)
-        provider = .init(
+        service = .init(
             keyboardContext: context,
-            localizedProviders: [TestProvider(localeKey: "en")]
+            localizedServices: [TestProvider(localeKey: "en")]
         )
-        let nonEmptyActions = provider.calloutActions(for: .character("a"))
-        let emptyActions = provider.calloutActions(for: .character("k"))
+        let nonEmptyActions = service.calloutActions(for: .character("a"))
+        let emptyActions = service.calloutActions(for: .character("k"))
         XCTAssertNotEqual(nonEmptyActions, [])
         XCTAssertEqual(emptyActions, [])
     }
     
-    func testCanRegisterLocalizedProvider() {
+    func testCanRegisterLocalizedService() {
         let locale = KeyboardLocale.albanian
         let new = TestProvider(localeKey: locale.localeIdentifier)
-        XCTAssertNil(provider.localizedProviders.value(for: locale.locale))
-        provider.registerLocalizedProvider(new)
-        XCTAssertIdentical(provider.localizedProviders.value(for: locale.locale), new)
+        XCTAssertNil(service.localizedServices.value(for: locale.locale))
+        service.registerLocalizedService(new)
+        XCTAssertIdentical(service.localizedServices.value(for: locale.locale), new)
     }
     
     
     func testCanResolveLayoutProviderWithStaticResolver() {
-        Callouts.StandardActionProvider.localizedProviderResolver = { locale in
+        Callouts.StandardService.localizedServiceResolver = { locale in
             if locale == .albanian { return TestProvider(localeKey: "apa") }
             return nil
         }
         context.setLocale(KeyboardLocale.albanian)
-        XCTAssertNil(provider.localizedProviders.value(for: KeyboardLocale.albanian))
-        let result = provider.calloutActionProvider(for: context)
+        XCTAssertNil(service.localizedServices.value(for: KeyboardLocale.albanian))
+        let result = service.service(for: context)
         XCTAssertEqual((result as? TestProvider)?.localeKey, "apa")
-        XCTAssertTrue(provider.localizedProviders.value(for: KeyboardLocale.albanian) is TestProvider)
+        XCTAssertTrue(service.localizedServices.value(for: KeyboardLocale.albanian) is TestProvider)
     }
 }
 
-private class TestProvider: CalloutActionProvider, LocalizedService {
+private class TestProvider: CalloutService, LocalizedService {
     
     init(localeKey: String) {
         self.localeKey = localeKey

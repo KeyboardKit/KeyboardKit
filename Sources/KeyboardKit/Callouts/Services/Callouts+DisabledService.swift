@@ -1,5 +1,5 @@
 //
-//  Callouts+DisabledActionProvider.swift
+//  Callouts+DisabledService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-07-01.
@@ -13,12 +13,11 @@ extension Callouts {
     /// This service can be used to disable callout actions.
     ///
     /// See <doc:Callouts-Article> for more information.
-    open class DisabledActionProvider: CalloutActionProvider {
+    open class DisabledService: CalloutService {
 
-        /// Create a disabled callout action provider.
+        /// Create a disabled callout service.
         public init() {}
 
-        /// Get callout actions for the provided action.
         public func calloutActions(
             for action: KeyboardAction
         ) -> [KeyboardAction] {
