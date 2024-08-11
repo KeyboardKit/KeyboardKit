@@ -65,7 +65,8 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 ### 🐛 Bug fixes
 
 * `Autocomplete.LocalProvider` is now a typealias.
-* `Autocomplete.RemoteProvider` is now a typealias. 
+* `Autocomplete.RemoteProvider` is now a typealias.
+* `CGSize.isScreenSize` now automatically adds 50 points tolerance. 
 * `EmojiKeyboard` and `KeyboardView` now render correctly on 13" iPads.
 * `View+KeyboardButton` explicitly applies an interactable background color.
 

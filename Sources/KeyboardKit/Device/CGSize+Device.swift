@@ -40,14 +40,12 @@ public extension CGSize {
     }
 
     /// Whether the size matches a size in any orientation.
-    func isScreenSize(_ size: CGSize) -> Bool {
-        self == size || self == size.flipped()
-    }
-
-    /// Whether the size matches a size in any orientation.
+    ///
+    /// To handle small variations when new devices come out,
+    /// this function automatically adds 50 points tolerance.
     func isScreenSize(
         _ size: CGSize,
-        withTolerance points: CGFloat
+        withTolerance points: CGFloat = 50
     ) -> Bool {
         self.isEqual(to: size, withTolerance: points) ||
         self.isEqual(to: size.flipped(), withTolerance: points)
