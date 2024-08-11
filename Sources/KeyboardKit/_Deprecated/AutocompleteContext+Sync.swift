@@ -5,9 +5,8 @@ public extension AutocompleteContext {
 
     /// DEPRECATED!
     ///
-    /// > Warning: Settings has been moved to this type.
-    ///
-    /// This function will be removed in KeyboardKit 9.0.
+    /// > Warning: Settings have been moved into the context.
+    /// This will be removed in KeyboardKit 9.0.
     func sync(with settings: AutocompleteSettings) {
         DispatchQueue.main.async {
             self.syncAfterAsync(with: settings)
@@ -17,7 +16,6 @@ public extension AutocompleteContext {
 
 extension AutocompleteContext {
 
-    /// Perform a settings sync after an async delay.
     func syncAfterAsync(with settings: AutocompleteSettings) {
         if suggestionsDisplayCount != settings.suggestionsDisplayCount {
             suggestionsDisplayCount = settings.suggestionsDisplayCount

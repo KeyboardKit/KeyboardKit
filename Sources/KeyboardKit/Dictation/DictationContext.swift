@@ -38,8 +38,17 @@ public class DictationContext: ObservableObject {
     }
 
 
-    private var userDefaults: UserDefaults?
+    // MARK: - Settings
 
+    static let prefix = KeyboardSettings.storeKeyPrefix(for: "dictation")
+
+    @AppStorage("\(prefix)silenceLimit", store: .keyboardSettings)
+    public var silenceLimit: TimeInterval = 5.0
+
+
+    // MARK: - Properties
+
+    private var userDefaults: UserDefaults?
 
     /// This enum defines keys that are used to persist data.
     public enum PersistedKey: String {
@@ -110,15 +119,7 @@ public class DictationContext: ObservableObject {
     }
 
     /// A strong reference to the current dictation service.
-    @Published
     public var service: KeyboardDictationService?
-
-    /// The seconds of silence to allow before automatically
-    /// ending an ongoing dictation operation.
-    @Published
-    public var silenceLimit: TimeInterval = 10 {
-        didSet { persistedSilenceLimit = silenceLimit }
-    }
 }
 
 public extension DictationContext {

@@ -1,17 +1,12 @@
-//
-//  DictationContext+Sync.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2024-06-04.
-//  Copyright © 2024 Daniel Saidi. All rights reserved.
-//
-
 import Foundation
 import SwiftUI
 
 public extension DictationContext {
 
-    /// Sync the context with the provided settings.
+    /// DEPRECATED!
+    ///
+    /// > Warning: Settings have been moved into the context.
+    /// This will be removed in KeyboardKit 9.0.
     func sync(with settings: DictationSettings) {
         DispatchQueue.main.async {
             self.syncAfterAsync(with: settings)
@@ -21,7 +16,6 @@ public extension DictationContext {
 
 extension DictationContext {
 
-    /// Perform a settings sync after an async delay.
     func syncAfterAsync(with settings: DictationSettings) {
         if silenceLimit != settings.silenceLimit {
             silenceLimit = settings.silenceLimit

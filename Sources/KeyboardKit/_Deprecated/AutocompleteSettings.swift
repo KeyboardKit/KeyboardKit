@@ -10,8 +10,8 @@ import SwiftUI
 
 /// DEPRECATED!
 ///
-/// > Warning: Settings are moved to ``AutocompleteContext``.
-/// This type will be removed in KeyboardKit 9.0.
+/// > Warning: Settings have been moved to the context. This
+/// type will be removed in KeyboardKit 9.0.
 public class AutocompleteSettings: ObservableObject {
 
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "autocomplete")

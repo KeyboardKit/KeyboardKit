@@ -5,7 +5,7 @@ public extension KeyboardContext {
 
     /// DEPRECATED!
     ///
-    /// > Warning: Settings are moved to ``KeyboardContext``.
+    /// > Warning: Settings have been moved into the context.
     /// This will be removed in KeyboardKit 9.0.
     func sync(with settings: KeyboardSettings) {
         DispatchQueue.main.async {

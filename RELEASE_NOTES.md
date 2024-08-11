@@ -10,14 +10,22 @@ KeyboardKit tries to honor semantic versioning:
 These release notes only cover the current major version. 
 
 
+### ‼️ Important information
+
+Since KeyboardKit 8 now has a lot of deprecated types, it becomes increasingly hard to manage the SDK, which is why the bump to KeyboardKit 9 will involve a major code cleanup.
+
+KeyboardKit 9 is planned to be released shortly after the public release of iOS 18 and all corresponding OS versions. It will also bump the deployment target to iOS 15.
+
+
 
 ## 8.8
 
 This version continues renaming types to make things make more sense. For instance, `SystemKeyboard` is renamed to `KeyboardView`, toghether with all its related types.
 
-This version deprecates the recently added settings types, and replaces them by adding persistency to the various contexts, to avoid having to keep the contexts in sync.
+This version deprecates the recently added settings types, and replaces them by adding persistency to the various contexts. This avoids having to keep the contexts in sync.
 
 To avoid annoying compile-time warnings, these deprecated settings types are only soft deprecated with a code comment. They will be completely removed in KeyboardKit 9.0.
+
 
 This version also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory than before by rendering lower resolution grid items.
 
@@ -29,9 +37,9 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 
 ### ✨ Features
 
-* `AutocompleteContext` has a new `isNextCharacterPredictionEnabled` settings property.
 * `AutocompleteContext` has new settings that replace the ``AutocompleteSettings`` type.
 * `Bundle` has an `isExtension` property to help you check if code runs in an extension. 
+* `DictationContext` has new settings that replace the ``DictationSettings`` type.
 * `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
 * `Keyboard.BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
@@ -73,12 +81,14 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 
 ### 🗑️ Deprecations
 
-* `AutocompleteSettings` has been deprecated since settings are now in the context.
-* `Keyboard+SettingsLink` has been deprecated, since a SwiftUI `Link` works as well.
+* `AutocompleteSettings` has been deprecated since settings have been moved to the context.
+* `DictationSettings` has been deprecated since settings have been moved to the context.
+* `Keyboard.Settings` has been deprecated, since settings have been moved to the contexts.
+* `Keyboard.SettingsLink` has been deprecated, since a SwiftUI `Link` works as well.
 * `Keyboard.State`'s `dictationConfig` is now defined within the `dictationContext`.
 * `KeyboardAppearanceViewModifier` has been deprecated, since it didn't behave well.
-* `KeyboardSettings` settings properties have been deprecated and moved to the context.
-* `Keyboard.Settings` has been deprecated, since the contexts will now manage settings.
+* `KeyboardSettings` settings properties have been deprecated since they have been moved to the context.
+
 
 
 ## 8.7.2
