@@ -90,6 +90,16 @@ public extension Feedback.HapticConfiguration {
         get { custom }
         set { custom = newValue }
     }
+    
+    @available(*, deprecated, renamed: "disabled")
+    static let minimal = Self(
+        press: .none,
+        release: .none,
+        doubleTap: .none,
+        longPress: .none,
+        longPressOnSpace: .mediumImpact,
+        repeat: .none
+    )
 }
 
 public extension Keyboard.State {

@@ -19,7 +19,10 @@ public extension Keyboard {
     /// You can adjust any state value at any time to adjust
     /// the global behavior of the keyboard.
     class State {
-        
+
+        /// Create state instances.
+        public init() {}
+
         /// The autocomplete context to use.
         public lazy var autocompleteContext = AutocompleteContext()
         

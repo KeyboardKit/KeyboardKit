@@ -33,18 +33,8 @@ class Feedback_HapticConfigurationTests: XCTestCase {
         XCTAssertEqual(config.repeat, .selectionChanged)
     }
 
-    func testDisabledConfigurationUsesDisabledFeedback() {
+    func testDisabledConfigurationUsesMinimalFeedback() {
         let config = Config.disabled
-        XCTAssertEqual(config.press, .none)
-        XCTAssertEqual(config.release, .none)
-        XCTAssertEqual(config.doubleTap, .none)
-        XCTAssertEqual(config.longPress, .none)
-        XCTAssertEqual(config.longPressOnSpace, .none)
-        XCTAssertEqual(config.repeat, .none)
-    }
-
-    func testMinimalConfigurationUsesMinimalFeedback() {
-        let config = Config.minimal
         XCTAssertEqual(config.press, .none)
         XCTAssertEqual(config.release, .none)
         XCTAssertEqual(config.doubleTap, .none)

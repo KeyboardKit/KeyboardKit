@@ -33,7 +33,7 @@ public class FeedbackContext: ObservableObject {
     ///   - haptic: The haptic configuration to use, by deafult `.minimal`.
     public init(
         audioConfiguration: Feedback.AudioConfiguration = .enabled,
-        hapticConfiguration: Feedback.HapticConfiguration = .minimal
+        hapticConfiguration: Feedback.HapticConfiguration = .disabled
     ) {
         self.audioConfiguration = audioConfiguration
         self.hapticConfiguration = hapticConfiguration

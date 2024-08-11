@@ -67,6 +67,7 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 * `EmojiKeyboard` now adds an extra row if an input toolbar is used.
 * `EmojiKeyboardStyle` now uses the new `.optimized` styles by default.
 * `EmojiKeyboardStyle` has been adjusted to conform to the new capabilities.
+* `Feedback.HapticConfiguration.disabled` now triggers `.longPressOnSpace`.
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
 * `KeyboardInputViewController` now checks if self is nil when setting up a view.
 * `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
@@ -83,11 +84,12 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 
 * `AutocompleteSettings` has been deprecated since settings have been moved to the context.
 * `DictationSettings` has been deprecated since settings have been moved to the context.
+* `Feedback.HapticConfiguration.minimal` has now been replaced by `.disabled`.
 * `Keyboard.Settings` has been deprecated, since settings have been moved to the contexts.
 * `Keyboard.SettingsLink` has been deprecated, since a SwiftUI `Link` works as well.
 * `Keyboard.State`'s `dictationConfig` is now defined within the `dictationContext`.
 * `KeyboardAppearanceViewModifier` has been deprecated, since it didn't behave well.
-* `KeyboardSettings` settings properties have been deprecated since they have been moved to the context.
+* `KeyboardSettings` settings properties have been deprecated and moved to the context.
 
 
 

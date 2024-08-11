@@ -144,7 +144,7 @@ public extension Feedback.HapticConfiguration {
 
 public extension Feedback.HapticConfiguration {
     
-    /// This configuration enables all audio feedback.
+    /// This configuration enables all haptic feedback.
     static let enabled = Self(
         press: .lightImpact,
         release: .lightImpact,
@@ -154,18 +154,8 @@ public extension Feedback.HapticConfiguration {
         repeat: .selectionChanged
     )
     
-    /// This configuration disables all audio feedback.
+    /// This configuration disables all haptic feedback.
     static let disabled = Self(
-        press: .none,
-        release: .none,
-        doubleTap: .none,
-        longPress: .none,
-        longPressOnSpace: .none,
-        repeat: .none
-    )
-    
-    /// This configuration only enables long press on space.
-    static let minimal = Self(
         press: .none,
         release: .none,
         doubleTap: .none,
