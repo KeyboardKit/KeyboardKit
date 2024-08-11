@@ -22,33 +22,33 @@ public extension Autocomplete {
             self.suggestions = suggestions
         }
 
-        public var locale: Locale = .current
-        public internal(set) var suggestions: [Autocomplete.Suggestion]
+        open var locale: Locale = .current
+        open internal(set) var suggestions: [Autocomplete.Suggestion]
 
-        public func autocompleteSuggestions(
+        open func autocompleteSuggestions(
             for text: String
         ) async throws -> [Autocomplete.Suggestion] {
             suggestions
         }
 
-        public func nextCharacterPredictions(
+        open func nextCharacterPredictions(
             forText text: String,
             suggestions: [Autocomplete.Suggestion]
         ) async throws -> [Character: Double] {
             [:]
         }
 
-        public var canIgnoreWords: Bool { false }
-        public var canLearnWords: Bool { false }
-        public var ignoredWords: [String] = []
-        public var learnedWords: [String] = []
+        open var canIgnoreWords: Bool { false }
+        open var canLearnWords: Bool { false }
+        open var ignoredWords: [String] = []
+        open var learnedWords: [String] = []
 
-        public func hasIgnoredWord(_ word: String) -> Bool { false }
-        public func hasLearnedWord(_ word: String) -> Bool { false }
-        public func ignoreWord(_ word: String) {}
-        public func learnWord(_ word: String) {}
-        public func removeIgnoredWord(_ word: String) {}
-        public func unlearnWord(_ word: String) {}
+        open func hasIgnoredWord(_ word: String) -> Bool { false }
+        open func hasLearnedWord(_ word: String) -> Bool { false }
+        open func ignoreWord(_ word: String) {}
+        open func learnWord(_ word: String) {}
+        open func removeIgnoredWord(_ word: String) {}
+        open func unlearnWord(_ word: String) {}
     }
 }
 

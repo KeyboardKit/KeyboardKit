@@ -107,4 +107,6 @@ private class TestProvider: CalloutService, LocalizedService {
         default: return []
         }
     }
+
+    func triggerFeedbackForSelectionChange() {}
 }

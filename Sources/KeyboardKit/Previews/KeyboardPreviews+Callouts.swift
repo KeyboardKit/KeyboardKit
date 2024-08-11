@@ -53,5 +53,7 @@ public extension KeyboardPreviews {
             }
             return []
         }
+
+        public func triggerFeedbackForSelectionChange() {}
     }
 }

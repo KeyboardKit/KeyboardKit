@@ -54,9 +54,4 @@ public extension Feedback.Audio {
         case .none: 0
         }
     }
-    
-    /// Trigger the feedback with the shared feedback engine.
-    func trigger() {
-        Feedback.AudioEngine.shared.trigger(self)
-    }
 }

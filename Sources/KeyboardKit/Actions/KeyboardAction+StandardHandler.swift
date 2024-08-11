@@ -41,6 +41,7 @@ extension KeyboardAction {
                 autocompleteContext: controller.state.autocompleteContext,
                 autocompleteService: controller.services.autocompleteService,
                 feedbackContext: controller.state.feedbackContext,
+                feedbackService: controller.services.feedbackService,
                 spaceDragGestureHandler: controller.services.spaceDragGestureHandler
             )
         }
@@ -55,7 +56,8 @@ extension KeyboardAction {
         ///   - keyboardBehavior: The keyboard behavior to use.
         ///   - autocompleteContext: The autocomplete context to use.
         ///   - autocompleteService: The autocomplete service to use.
-        ///   - feedbackContext: The feedback configuration to use.
+        ///   - feedbackContext: The feedback context to use.
+        ///   - feedbackService: The feedback service to use.
         ///   - spaceDragGestureHandler: The space gesture handler to use.
         public init(
             controller: KeyboardController?,
@@ -64,6 +66,7 @@ extension KeyboardAction {
             autocompleteContext: AutocompleteContext,
             autocompleteService: AutocompleteService? = nil,
             feedbackContext: FeedbackContext,
+            feedbackService: FeedbackService,
             spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
         ) {
             weak var weakController = controller
@@ -73,6 +76,7 @@ extension KeyboardAction {
             self.autocompleteContext = autocompleteContext
             self.autocompleteService = autocompleteService
             self.feedbackContext = feedbackContext
+            self.feedbackService = feedbackService
             self.spaceDragGestureHandler = spaceDragGestureHandler
         }
 
@@ -95,8 +99,11 @@ extension KeyboardAction {
         /// The keyboard context to use.
         public var keyboardContext: KeyboardContext
 
-        /// The feedback configuration to use.
+        /// The feedback context to use.
         public var feedbackContext: FeedbackContext
+
+        /// The feedback service to use.
+        public var feedbackService: FeedbackService
 
         /// The space drag gesture handler to use.
         public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
@@ -256,8 +263,8 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) {
             if !shouldTriggerAudioFeedback(for: gesture, on: action) { return }
-            let feedback = audioFeedback(for: gesture, on: action)
-            feedback?.trigger()
+            guard let feedback = audioFeedback(for: gesture, on: action) else { return }
+            feedbackService.triggerAudioFeedback(feedback)
         }
 
         /// Trigger feedback for a certain action gesture.
@@ -266,8 +273,8 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) {
             if !shouldTriggerHapticFeedback(for: gesture, on: action) { return }
-            let feedback = hapticFeedback(for: gesture, on: action)
-            feedback?.trigger()
+            guard let feedback = hapticFeedback(for: gesture, on: action) else { return }
+            feedbackService.triggerHapticFeedback(feedback)
         }
 
 

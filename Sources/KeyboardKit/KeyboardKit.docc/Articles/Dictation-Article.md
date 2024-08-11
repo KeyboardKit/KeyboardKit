@@ -12,31 +12,23 @@ In KeyboardKit, a ``KeyboardDictationService`` can be used to perform autocomple
 
 
 
-## Dictation namespace
+## Dictation Namespace
 
 KeyboardKit has a ``Dictation`` namespace that contains dictation-related types.
 
 
 
-## Dictation context
+## Dictation Context
 
-KeyboardKit has an observable ``DictationContext`` class that handles dictation state, such as the currently dictated text, in which application dictation was started, etc. as well as observable properties to visualize an ongoing dictation.
+KeyboardKit has an observable ``DictationContext`` that provides observable autocomplete state, such as the ``DictationContext/dictatedText``. The state properties are modified as dictation is performed by the keyboard and the main app.
 
-KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``, then keeps the context updated during dictation.
+The context also has persistent, observable settings, such as  ``DictationContext/silenceLimit``, etc. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
 
-
-
-## Dictation settings
-
-KeyboardKit has an observable ``DictationSettings`` that handles dictation settings, such as how long many seconds of silence that should pass until dictation automatically finishes.
-
-KeyboardKit's settings types are observable and will automatically persist any changes made. KeyboardKit will observe these types and sync any changes made to them to their respective contexts, which will automatically update the affected views.
-
-KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/settings``. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
+KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state`` and updates it whenever dictation is performed.
 
 
 
-## Dictation services
+## Dictation Services
 
 In KeyboardKit, a ``DictationService`` can perform dictation where microphone access is available, while a ``KeyboardDictationService`` can initialize a dictation operation from a keyboard extension, by opening the main app.
 

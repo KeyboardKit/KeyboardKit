@@ -1,11 +1,3 @@
-//
-//  Feedback+AudioEngine.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2021-10-15.
-//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
-//
-
 #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
 import AudioToolbox
 #else
@@ -14,18 +6,13 @@ typealias SystemSoundID = Int
 
 import Foundation
 
+@available(*, deprecated, message: "Use a feedback service or action handler instead")
 public extension Feedback {
     
-    /// This engine can be used to trigger audio feedback.
-    ///
-    /// The engine uses `AudioToolbox`, which is unavailable
-    /// on watchOS. Therefore, watchOS has no audio feedback.
     class AudioEngine {
-        
-        /// Create an audio feedback engine instance.
+
         public init() {}
         
-        /// Trigger a certain audio feedback type.
         func trigger(_ audio: Feedback.Audio) {
             switch audio {
             case .none: return
@@ -33,15 +20,12 @@ public extension Feedback {
             default: play(audio)
             }
         }
+
+        static var shared = Feedback.AudioEngine()
     }
 }
 
-public extension Feedback.AudioEngine {
-    
-    /// This shared instance can be used from anywhere.
-    static var shared = Feedback.AudioEngine()
-}
-
+@available(*, deprecated, message: "Use a feedback service or action handler instead")
 private extension Feedback.AudioEngine {
     
     static var systemSoundIDs: [URL: SystemSoundID] = [:]

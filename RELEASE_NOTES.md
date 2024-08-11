@@ -26,6 +26,7 @@ This version deprecates the recently added settings types, and replaces them by 
 
 To avoid annoying compile-time warnings, these deprecated settings types are only soft deprecated with a code comment. They will be completely removed in KeyboardKit 9.0.
 
+This version also starts preparing for Swift 6, by deprecating a bunch of static classes and properties, since this pattern doesn't work well with strict concurrency. 
 
 This version also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory than before by rendering lower resolution grid items.
 
@@ -38,11 +39,15 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 ### ✨ Features
 
 * `AutocompleteContext` has new settings that replace the ``AutocompleteSettings`` type.
-* `Bundle` has an `isExtension` property to help you check if code runs in an extension. 
+* `Bundle` has an `isExtension` property to help you check if code runs in an extension.
+* `CalloutService` has a new `triggerFeedbackForSelectionChange` function to trigger feedback.
+* `Callouts.StandardService` triggers feedback with a new, nested feedback service.
 * `DictationContext` has new settings that replace the ``DictationSettings`` type.
 * `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
+* `FeedbackService` is a new service type that can trigger audio and haptic feedback.
 * `Keyboard.BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
+* `KeyboardAction.StandardHandler` now triggers audio and haptic feedback with a service.
 
 ### 👑 KeyboardKit Pro
 
@@ -84,6 +89,8 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 
 * `AutocompleteSettings` has been deprecated since settings have been moved to the context.
 * `DictationSettings` has been deprecated since settings have been moved to the context.
+* `Feedback.Audio` and `Feedback.Haptic` should no longer be used to trigger themselves.
+* `Feedback.AudioEngine` and `Feedback.HapticEngine` are deprecated and should no longer be used.
 * `Feedback.HapticConfiguration.minimal` has now been replaced by `.disabled`.
 * `Keyboard.Settings` has been deprecated, since settings have been moved to the contexts.
 * `Keyboard.SettingsLink` has been deprecated, since a SwiftUI `Link` works as well.

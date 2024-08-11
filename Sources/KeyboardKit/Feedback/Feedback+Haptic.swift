@@ -55,14 +55,4 @@ public extension Feedback.Haptic {
     
     /// The unique feedback identifier.
     var id: String { rawValue }
-
-    /// Prepare the feedback with the shared feedback engine.
-    func prepare() {
-        Feedback.HapticEngine.shared.prepare(self)
-    }
-    
-    /// Trigger the feedback with the shared feedback engine.
-    func trigger() {
-        Feedback.HapticEngine.shared.trigger(self)
-    }
 }

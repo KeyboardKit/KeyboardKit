@@ -33,16 +33,19 @@ extension Callouts {
         /// - Parameters:
         ///   - keyboardContext: The keyboard context to use.
         ///   - baseService: The base service to use, by default a ``Callouts/BaseService``.
-        ///   - localizedProviders: A list of localized layout providers, by default `empty`.
+        ///   - localizedServices: A list of localized services, by default `empty`.
+        ///   - feedbackService: The feedback service to use.
         public init(
             keyboardContext: KeyboardContext,
             baseService: CalloutService = Callouts.BaseService(),
-            localizedServices: [LocalizedCalloutService] = []
+            localizedServices: [LocalizedCalloutService] = [],
+            feedbackService: FeedbackService? = nil
         ) {
             self.keyboardContext = keyboardContext
             self.baseService = baseService
             let dict = Dictionary(uniqueKeysWithValues: localizedServices.map { ($0.localeKey, $0) })
             self.localizedServices = .init(dict)
+            self.feedbackService = feedbackService
         }
 
 
@@ -52,6 +55,9 @@ extension Callouts {
         
         /// The keyboard context to use.
         public let keyboardContext: KeyboardContext
+
+        /// The feedback service to use.
+        public var feedbackService: FeedbackService?
 
 
         /// The base service to use.
@@ -64,12 +70,29 @@ extension Callouts {
         public static var localizedServiceResolver: ((KeyboardLocale) -> CalloutService?)?
 
         
+        // MARK: - CalloutService
+
         /// Get callout actions for the provided action.
         open func calloutActions(
             for action: KeyboardAction
         ) -> [KeyboardAction] {
             service(for: keyboardContext)
                 .calloutActions(for: action)
+        }
+
+        /// Trigger feedback for callout selection change.
+        open func triggerFeedbackForSelectionChange() {
+            feedbackService?.triggerHapticFeedback(.selectionChanged)
+        }
+
+
+        // MARK: - Overridable Functions
+
+        /// Register a new localized service.
+        open func registerLocalizedService(
+            _ service: LocalizedCalloutService
+        ) {
+            localizedServices.set(service, for: service.localeKey)
         }
 
         /// Get the service to use for the provided context.
@@ -90,13 +113,6 @@ extension Callouts {
                 return service
             }
             return baseService
-        }
-
-        /// Register a new localized service.
-        open func registerLocalizedService(
-            _ service: LocalizedCalloutService
-        ) {
-            localizedServices.set(service, for: service.localeKey)
         }
 
 

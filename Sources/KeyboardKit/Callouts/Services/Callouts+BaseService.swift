@@ -85,5 +85,8 @@ extension Callouts {
             default: ""
             }
         }
+
+        /// The base service doesn't trigger any feedback.
+        open func triggerFeedbackForSelectionChange() {}
     }
 }

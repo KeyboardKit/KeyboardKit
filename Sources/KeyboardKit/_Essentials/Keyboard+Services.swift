@@ -17,7 +17,9 @@ public extension Keyboard {
     /// reduces the risk of memory leaks.
     ///
     /// You can adjust or replace any service at any time to
-    /// adjust the global behavior of the keyboard.
+    /// adjust your global keyboard behavior. Just make sure
+    /// to replace a service before other services that have
+    /// a dependency to that service are resolved.
     class Services {
 
         /// Create service instances based on keyboard state.
@@ -41,6 +43,7 @@ public extension Keyboard {
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
             feedbackContext: state.feedbackContext,
+            feedbackService: feedbackService,
             spaceDragGestureHandler: spaceDragGestureHandler
         ) {
             didSet { setupCalloutContextForServices() }
@@ -51,7 +54,8 @@ public extension Keyboard {
 
         /// The callout service to use.
         public lazy var calloutService: CalloutService = Callouts.StandardService(
-            keyboardContext: state.keyboardContext
+            keyboardContext: state.keyboardContext,
+            feedbackService: feedbackService
         ) {
             didSet { setupCalloutContextForServices() }
         }
@@ -60,6 +64,9 @@ public extension Keyboard {
         public lazy var dictationService: KeyboardDictationService = .disabled(
             context: state.dictationContext
         )
+        
+        /// The feedback service to use.
+        public lazy var feedbackService: FeedbackService = Feedback.StandardService()
 
         /// The keyboard behavior to use.
         public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(

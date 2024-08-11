@@ -31,9 +31,9 @@ KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related
 
 ## Autocomplete Context
 
-KeyboardKit has an observable ``AutocompleteContext`` that handles autocomplete state, such as ``AutocompleteContext/isAutocompleteEnabled``, ``AutocompleteContext/isAutocorrectEnabled``, which ``AutocompleteContext/suggestions`` to present, etc.
+KeyboardKit has an observable ``AutocompleteContext`` that provides observable autocomplete state, such as the ``AutocompleteContext/suggestions`` to present. The state properties are modified as the keyboard performs autocomplete.
 
-``AutocompleteContext`` also has persistent, observable settings, such as how many suggestions to display. You can read more on how to sync settings between the main app and the keyboard extension in the <doc:Essentials> and <doc:Settings-Article> articles.
+The context also has persistent, observable settings, such as  ``AutocompleteContext/isAutocompleteEnabled``, ``AutocompleteContext/suggestionsDisplayCount``, etc. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
 

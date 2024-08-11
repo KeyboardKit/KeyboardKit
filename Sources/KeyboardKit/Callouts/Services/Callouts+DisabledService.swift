@@ -18,10 +18,12 @@ extension Callouts {
         /// Create a disabled callout service.
         public init() {}
 
-        public func calloutActions(
+        open func calloutActions(
             for action: KeyboardAction
         ) -> [KeyboardAction] {
             []
         }
+
+        open func triggerFeedbackForSelectionChange() {}
     }
 }

@@ -24,6 +24,7 @@ public extension KeyboardAction.StandardHandler {
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: autocompleteContext,
             feedbackContext: feedbackConfiguration,
+            feedbackService: Feedback.StandardService(),
             spaceDragGestureHandler: spaceDragGestureHandler
         )
     }

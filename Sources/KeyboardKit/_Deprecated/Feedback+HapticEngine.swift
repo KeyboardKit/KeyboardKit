@@ -1,24 +1,12 @@
-//
-//  Feedback+HapticEngine.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2021-04-01.
-//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
-//
-
 #if os(iOS)
 import UIKit
 #endif
 
+@available(*, deprecated, message: "Use a feedback service or action handler instead")
 public extension Feedback {
     
-    /// This engine can be used to trigger haptic feedback.
-    ///
-    /// The engine uses UIKit functionality that require iOS.
-    /// Other platforms have no haptic feedback.
     class HapticEngine {
         
-        /// Create a haptic feedback engine instance.
         public init() {}
         
         #if os(iOS)
@@ -58,16 +46,13 @@ public extension Feedback {
             }
             #endif
         }
+
+        static var shared = Feedback.HapticEngine()
     }
 }
 
-public extension Feedback.HapticEngine {
-    
-    /// This shared instance can be used from anywhere.
-    static var shared = Feedback.HapticEngine()
-}
-
 #if os(iOS)
+@available(*, deprecated, message: "Use a feedback service or action handler instead")
 private extension Feedback.HapticEngine {
     
     func triggerNotification(_ notification: UINotificationFeedbackGenerator.FeedbackType) {

@@ -15,53 +15,40 @@ public extension Dictation {
     /// KeyboardKit Pro license key.
     ///
     /// See <doc:Dictation-Article> for more information.
-    class DisabledKeyboardService: KeyboardDictationService {
-        
+    class DisabledKeyboardService: DisabledService, KeyboardDictationService {
+
         public init(context: DictationContext) {
             self.context = context
         }
         
         private let context: DictationContext
+
+        open func startDictationFromKeyboard(
+            with config: Dictation.KeyboardConfiguration
+        ) async throws {
+            resetContext()
+        }
+
+        open func performDictationInApp(
+            with config: Dictation.KeyboardConfiguration
+        ) async throws {
+            resetContext()
+        }
+
+        open func abortDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func finishDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func handleDictationResultInKeyboard() async throws {
+            resetContext()
+        }
+
+        open func undoLastDictation() {}
     }
-}
-
-public extension Dictation.DisabledKeyboardService {
-
-    var authorizationStatus: Dictation.AuthorizationStatus {
-        .disabledService
-    }
-    
-    var supportedLocales: [KeyboardLocale] { [] }
-
-    func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
-        authorizationStatus
-    }
-
-    func startDictationFromKeyboard(
-        with config: Dictation.KeyboardConfiguration
-    ) async throws {
-        resetContext()
-    }
-
-    func performDictationInApp(
-        with config: Dictation.KeyboardConfiguration
-    ) async throws {
-        resetContext()
-    }
-
-    func abortDictationInApp() async throws {
-        resetContext()
-    }
-
-    func finishDictationInApp() async throws {
-        resetContext()
-    }
-
-    func handleDictationResultInKeyboard() async throws {
-        resetContext()
-    }
-
-    func undoLastDictation() {}
 }
 
 public extension KeyboardDictationService where Self == Dictation.DisabledKeyboardService {

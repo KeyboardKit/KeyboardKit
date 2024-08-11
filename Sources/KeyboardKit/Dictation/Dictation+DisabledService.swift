@@ -18,40 +18,35 @@ public extension Dictation {
     class DisabledService: DictationService {
         
         public init() {}
-    }
-}
 
-public extension Dictation.DisabledService {
+        open var authorizationStatus: Dictation.AuthorizationStatus {
+            .disabledService
+        }
 
-    var authorizationStatus: Dictation.AuthorizationStatus {
-        .disabledService
-    }
-    
-    var supportedLocales: [KeyboardLocale] { [] }
+        open var supportedLocales: [KeyboardLocale] { [] }
 
-    func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
-        authorizationStatus
-    }
+        open func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
+            authorizationStatus
+        }
 
-    func resetDictationResult() async throws {}
+        open func resetDictationResult() async throws {}
 
-    func startDictation(
-        with config: Dictation.Configuration
-    ) async throws {
-        throw Dictation.ServiceError.disabledService
-    }
+        open func startDictation(
+            with config: Dictation.Configuration
+        ) async throws {
+            throw Dictation.ServiceError.disabledService
+        }
 
-    func stopDictation() async throws {
-        throw Dictation.ServiceError.disabledService
+        open func stopDictation() async throws {
+            throw Dictation.ServiceError.disabledService
+        }
     }
 }
 
 public extension DictationService where Self == Dictation.DisabledService {
     
     /// This service can be used to disable dictation.
-    static func disabled(
-        context: DictationContext
-    ) -> DictationService {
+    static var disabled: DictationService {
         Dictation.DisabledService()
     }
 }

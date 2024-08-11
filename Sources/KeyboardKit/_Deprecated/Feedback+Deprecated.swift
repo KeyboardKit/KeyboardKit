@@ -21,6 +21,11 @@ public extension Feedback.Audio {
     static func custom(id: UInt32) -> AudioFeedback {
         customId(id)
     }
+
+    @available(*, deprecated, message: "Use a FeedbackService or KeyboardActionHandler instead")
+    func trigger() {
+        Feedback.AudioEngine.shared.trigger(self)
+    }
 }
 
 public extension Feedback.Haptic {
@@ -30,6 +35,16 @@ public extension Feedback.Haptic {
     
     @available(*, deprecated, renamed: "Feedback.HapticEngine")
     typealias Engine = Feedback.HapticEngine
+
+    @available(*, deprecated, message: "Use a FeedbackService or KeyboardActionHandler instead")
+    func trigger() {
+        Feedback.HapticEngine.shared.trigger(self)
+    }
+    
+    @available(*, deprecated, message: "Use a FeedbackService or KeyboardActionHandler instead")
+    func prepare() {
+        Feedback.HapticEngine.shared.prepare(self)
+    }
 }
 
 public extension Feedback.AudioConfiguration {

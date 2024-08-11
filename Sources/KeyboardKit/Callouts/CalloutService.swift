@@ -9,7 +9,7 @@
 import Foundation
 
 /// This protocol can be implemented by any type that can be
-/// used perform callout-related actions.
+/// used to perform callout-related actions.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
@@ -26,4 +26,7 @@ public protocol CalloutService: AnyObject {
     func calloutActions(
         for action: KeyboardAction
     ) -> [KeyboardAction]
+
+    /// Trigger feedback for callout selection change.
+    func triggerFeedbackForSelectionChange()
 }
