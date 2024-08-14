@@ -18,8 +18,8 @@ public extension Image {
     static var keyboardArrowDown = symbol("arrow.down")
     static var keyboardArrowLeft = symbol("arrow.left")
     static var keyboardArrowRight = symbol("arrow.right")
-    static var keyboardAudioFeedbackEnabled = symbol("speaker.fill")
     static var keyboardAudioFeedbackDisabled = symbol("speaker")
+    static var keyboardAudioFeedbackEnabled = symbol("speaker.wave.3.fill")
     static var keyboardBackspace = symbol("delete.left")
     static var keyboardBackspaceRtl = symbol("delete.right")
     static var keyboardBrightnessDown = symbol("sun.min")
@@ -31,8 +31,8 @@ public extension Image {
     static var keyboardEmail = symbol("envelope")
     static var keyboardEmojiSymbol = symbol("face.smiling")
     static var keyboardGlobe = symbol("globe")
-    static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
     static var keyboardHapticFeedbackDisabled = symbol("hand.tap")
+    static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
     static var keyboardImages = symbol("photo")
     static var keyboardNewline = symbol("arrow.turn.down.left")
     static var keyboardNewlineRtl = symbol("arrow.turn.down.right")
@@ -52,18 +52,38 @@ public extension Image {
     static var keyboardUndo = symbol("arrow.uturn.left")
     static var keyboardZeroWidthSpace = symbol("circle.dotted")
     
+    static func keyboardAudioFeedback(enabled: Bool) -> Image {
+        enabled ? keyboardAudioFeedbackEnabled : keyboardAudioFeedbackDisabled
+    }
+
     static func keyboardBackspace(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardBackspace : .keyboardBackspaceRtl
     }
-    
+
+    static func keyboardBackspace(for locale: KeyboardLocale) -> Image {
+        keyboardBackspace(for: locale.locale)
+    }
+
+    static func keyboardHapticFeedback(enabled: Bool) -> Image {
+        enabled ? keyboardHapticFeedbackEnabled : keyboardHapticFeedbackDisabled
+    }
+
     static func keyboardNewline(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
     }
-    
+
+    static func keyboardNewline(for locale: KeyboardLocale) -> Image {
+        keyboardNewline(for: locale.locale)
+    }
+
     static func keyboardTab(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardTab : .keyboardTabRtl
     }
-    
+
+    static func keyboardTab(for locale: KeyboardLocale) -> Image {
+        keyboardTab(for: locale.locale)
+    }
+
     static func keyboardShift(_ casing: Keyboard.Case) -> Image {
         switch casing {
         case .auto: .keyboardShiftLowercased
@@ -94,8 +114,8 @@ extension Image {
             .keyboardArrowDown,
             .keyboardArrowLeft,
             .keyboardArrowRight,
-            .keyboardAudioFeedbackEnabled,
             .keyboardAudioFeedbackDisabled,
+            .keyboardAudioFeedbackEnabled,
             .keyboardBackspace,
             .keyboardBackspaceRtl,
             .keyboardBrightnessDown,
@@ -107,8 +127,8 @@ extension Image {
             .keyboardEmail,
             .keyboardEmojiSymbol,
             .keyboardGlobe,
-            .keyboardHapticFeedbackEnabled,
             .keyboardHapticFeedbackDisabled,
+            .keyboardHapticFeedbackEnabled,
             .keyboardImages,
             .keyboardNewline,
             .keyboardNewlineRtl,
@@ -124,29 +144,51 @@ extension Image {
             .keyboardSpeakerDown,
             .keyboardSpeakerUp,
             .keyboardTab,
+            .keyboardTabRtl,
             .keyboardUndo,
             .keyboardZeroWidthSpace,
-            .keyboardEmoji,
-            .keyboardKit
+            .keyboardEmoji
         ]
     }
     
-    func listItem(for image: Image) -> some View {
-        image
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(height: 30)
-            .background(Color.primary.colorInvert())
-    }
-    
     return ScrollView(.vertical) {
-        LazyVGrid(
-            columns: [.init(.adaptive(minimum: 40, maximum: 50), spacing: 20)],
-            spacing: 20
-        ) {
-            ForEach(Array(images().enumerated()), id: \.0) { img in
-                listItem(for: img.1)
+        VStack(spacing: 20) {
+            Image.keyboardKit
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 100)
+
+            Divider()
+
+            LazyVGrid(columns: .preview, spacing: 20) {
+                ForEach(Array(images().enumerated()), id: \.0) {
+                    $0.1
+                }
             }
-        }.padding()
+
+            Divider()
+
+            LazyVGrid(columns: .preview, spacing: 20) {
+                Image.keyboardAudioFeedback(enabled: false)
+                Image.keyboardAudioFeedback(enabled: true)
+                Image.keyboardBackspace(for: .english)
+                Image.keyboardBackspace(for: .arabic)
+                Image.keyboardHapticFeedback(enabled: false)
+                Image.keyboardHapticFeedback(enabled: true)
+                Image.keyboardNewline(for: .english)
+                Image.keyboardNewline(for: .arabic)
+                Image.keyboardTab(for: .english)
+                Image.keyboardTab(for: .arabic)
+            }
+        }
+        .padding()
+        .font(.title.weight(.regular))
+    }
+}
+
+extension Array where Element == GridItem {
+
+    static var preview: Self {
+        [.init(.adaptive(minimum: 40, maximum: 50), spacing: 20)]
     }
 }

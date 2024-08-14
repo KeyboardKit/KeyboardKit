@@ -38,6 +38,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `EmojiKeyboardStyle` has memory `.optimized` styles that are used by default.
 * `FeedbackContext` has new settings that replace the ``FeedbackSettings`` type.
 * `FeedbackService` is a new service type that can trigger audio and haptic feedback.
+* `Image` has many new utility functions to make it easier to resolve keyboard icons.
 * `Keyboard.BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
 * `KeyboardContext` has new settings that replace the ``KeyboardSettings`` settings properties.
