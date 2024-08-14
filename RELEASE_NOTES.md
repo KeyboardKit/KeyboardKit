@@ -12,56 +12,39 @@ These release notes only cover the current major version.
 
 ### ‼️ Important information
 
-Since KeyboardKit 8 now has a lot of deprecated types, it becomes increasingly hard to manage the SDK, which is why the bump to KeyboardKit 9 will involve a major code cleanup.
-
 KeyboardKit 9 is planned to be released shortly after the public release of iOS 18 and all corresponding OS versions. It will also bump the deployment target to iOS 15.
 
 
 
 ## 8.8
 
-This version continues renaming types to make things make more sense. For instance, `SystemKeyboard` is renamed to `KeyboardView`, toghether with all its related types.
+This version continues to rename types to make things better in the upcoming 9.0 release. This means that there are currently many deprecated names (which may be confusing), but it's all in service for a clean 9.0.
 
-This version deprecates the recently added settings types, and replaces them by adding persistency to the various contexts. This avoids having to keep the contexts in sync.
+This version deprecates the recently added settings types, and replaces them with adding persistency to the various context properties instead. This avoids having to keep the contexts in sync with the settings.
 
-To avoid annoying compile-time warnings, these deprecated settings types are only soft deprecated with a code comment. They will be completely removed in KeyboardKit 9.0.
+To avoid compile-time warnings, these deprecated settings are currently only soft deprecated with a code comment. They will however be completely removed in KeyboardKit 9.0, so make sure to start using the contexts instead.
 
+This version also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory, by rendering lower resolution grid items. Please reach out if you find the rendered quality insufficient. 
 
-This version also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory than before by rendering lower resolution grid items.
+This version also tweaks the emoji keyboard configuration for all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard on all device types, including larger iPads in both portrait and landscape.
 
-This version also tweaks the emoji keyboard configuration for all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard on all device types.
-
-KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen`, which makes it easy to add keyboard settings to the main app target, as well as to the keyboard.
-
-KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboard section, to avoid breaking UI behavior. This will be visible by default in KeyboardKit 9.0. 
+KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and `KeyboardApp.LanguageSettingsScreen`, which makes it a lot easier than before to add keyboard settings to the main app target, as well as to the keyboard.
 
 ### ✨ Features
 
-* `AutocompleteContext` has new settings that replace the ``AutocompleteSettings`` type.
-* `Bundle` has an `isExtension` property to help you check if code runs in an extension. 
-* `DictationContext` has new settings that replace the ``DictationSettings`` type.
-* `EmojiKeyboardStyle` has new memory `.optimized` styles, which are applied by default.
+* `AutocompleteContext` has new settings that replace ``AutocompleteSettings``.
+* `Bundle` has an `isExtension` to help you check if code runs in an extension. 
+* `DictationContext` has new setting values that replace ``DictationSettings``.
+* `EmojiKeyboardStyle` has memory `.optimized` styles that are used by default.
 * `FeedbackContext` has new settings that replace the ``FeedbackSettings`` type.
 * `FeedbackService` is a new service type that can trigger audio and haptic feedback.
 * `Keyboard.BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
 * `KeyboardContext` has new settings that replace the ``KeyboardSettings`` settings properties.
+* `KeyboardContext` has a new ``addedLocales`` settings that can be used to "activate" certain locales.
 * `KeyboardContext` now persists the `keyboardLocaleIdentifier` and restores the locale on next launch.
-
-### 👑 KeyboardKit Pro
-
-* `Autocomplete.LocalService` now lets you override next character prediction.
-* `Autocomplete.RemoteService` can now also perform next character prediction.
-* `KeyboardApp.HomeScreen` can now be configured to display a keyboard section.
-* `KeyboardApp.HomeScreen` has several new visibility and style configurations.
-* `KeyboardApp.SettingsScreen` is a new screen view that can manage various settings.
-
-### 🪪 Renamings
-
-* `CalloutActionProvider` has been renamed to `CalloutService`.
-* `SystemKeyboard` has been renamed to `KeyboardView`.
-* `SystemKeyboardBottomRow` has been renamed to `Keyboard.BottomRow`.
-* `SystemKeyboardButtonPreview` has been renamed to `Keyboard.ButtonPreview`.
+* `KeyboardContext` now has even more `KeyboardLocale`-based versions of some `Locale`-based functions.
+* `KeyboardLocale.ContextMenu` now supports providing custom locales instead of using the context ones.
 
 ### 💡 Adjustments
 
@@ -77,25 +60,37 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 * `KeyboardInputViewController` now checks if self is nil when setting up a view.
 * `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
 
+### 👑 KeyboardKit Pro
+
+* `Autocomplete.LocalService` now lets you override next character prediction.
+* `Autocomplete.RemoteService` can now also perform next character prediction.
+* `KeyboardApp.HomeScreen` can now be configured to display a keyboard section.
+* `KeyboardApp.HomeScreen` has several new visibility and style configurations.
+* `KeyboardApp.SettingsScreen` is a new screen view that can manage various settings.
+
 ### 🐛 Bug fixes
 
 * `Autocomplete.LocalProvider` is now a typealias.
 * `Autocomplete.RemoteProvider` is now a typealias.
-* `CGSize.isScreenSize` now automatically adds 50 points tolerance. 
+* `CGSize.isScreenSize` now uses 50 points tolerance. 
 * `EmojiKeyboard` and `KeyboardView` now render correctly on 13" iPads.
 * `View+KeyboardButton` explicitly applies an interactable background color.
 
-### 🗑️ Deprecations
+### 🗑️ Deprecations & Renamings
 
-* `AutocompleteSettings` has been deprecated since settings have been moved to the context.
-* `DictationSettings` has been deprecated since settings have been moved to the context.
-* `Feedback.HapticConfiguration.minimal` has now been replaced by `.disabled`.
-* `Keyboard.Settings` has been deprecated, since settings have been moved to the contexts.
-* `Keyboard.SettingsLink` has been deprecated, since a SwiftUI `Link` works as well.
+* All settings types have been deprecated since settings have been moved to each context.
+
+* `CalloutActionProvider` has been renamed to `CalloutService`.
+* `SpeechRecognizer` is renamed to `DictationSpeechRecognizer`.
+* `SystemKeyboard` has been renamed to the shorter `KeyboardView`.
+* `SystemKeyboardBottomRow` has been renamed to `Keyboard.BottomRow`.
+* `SystemKeyboardButtonPreview` has been renamed to `Keyboard.ButtonPreview`.
+
+* `Feedback.HapticConfiguration.minimal` has been replaced by `.disabled`.
+* `Keyboard.SettingsLink` has been deprecated, since a `Link` works as well.
 * `Keyboard.State`'s `dictationConfig` is now defined within the `dictationContext`.
 * `KeyboardAppearanceViewModifier` has been deprecated, since it didn't behave well.
 * `KeyboardSettings` settings properties have been deprecated and moved to the context.
-* `SpeechRecognizer` has been renamed to `DictationSpeechRecognizer`.
 
 
 

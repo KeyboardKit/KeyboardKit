@@ -21,6 +21,11 @@ public extension KeyboardContext {
         if let type = preferredTypeAfterNonAlphaSpaceOrReturn { return type }
         return keyboardType
     }
+
+    /// Whether a certain keyboard type is selected.
+    func hasKeyboardType(_ type: Keyboard.KeyboardType) -> Bool {
+        keyboardType == type
+    }
 }
 
 private extension KeyboardContext {
@@ -33,7 +38,7 @@ private extension KeyboardContext {
         requiresAlphabetic: Bool
     ) -> Keyboard.KeyboardType? {
         #if os(iOS) || os(tvOS) || os(visionOS)
-        guard isAutoCapitalizationEnabled else { return nil }
+        guard isAutocapitalizationEnabled else { return nil }
         guard let proxyType = autocapitalizationType else { return nil }
         if requiresAlphabetic && !keyboardType.isAlphabetic { return nil }
         let uppercased = Keyboard.KeyboardType.alphabetic(.uppercased)

@@ -27,24 +27,25 @@ KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types, tha
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks views in the ``KeyboardApp`` namespace, that let you quickly add keyboard-related features to your main app:
+[KeyboardKit Pro][Pro] unlocks views in the ``KeyboardApp`` namespace, that let you quickly add keyboard-related features to your main app.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 @TabNavigator {
     
     @Tab("HomeScreen") {
-        
-        KeyboardKit Pro unlocks a ``KeyboardApp/HomeScreen`` that can be used as the home screen of a keyboard app. It renders an app icon header, then adds a keyboard status section that can be surrounded by a custom top and bottom content.
+        The ``KeyboardApp``.``KeyboardApp/HomeScreen`` can be used as the main home screen of a keyboard app. It renders an app icon, keyboard status, and a list of links and options that can be hidden, styled and localized to fit your needs. 
     
-        @Row {
-            @Column {}
-            @Column {
-                ![Keyboard App Home Screen](keyboardapp-homescreen)
-            }
-            @Column {}
-        }
-        
-        This screen can be styled with the ``SwiftUI/View/keyboardStateLabelStyle(_:)`` modifier, to style things like the icon and the status labels.
+        ![KeyboardApp.HomeScreen](keyboardapp-homescreen)
+    }
+    
+    @Tab("SettingsScreen") {
+        The ``KeyboardApp``.``KeyboardApp/SettingsScreen`` can be used as the main settings screen of your keyboard app. It renders a list of links and options, that can be hidden, styled and localized to fit your needs.
+    
+        ![KeyboardApp.SettingsScreen](keyboardapp-settingsscreen)
     }
 }
+
+Check out the type documentation in the KeyboardKit Pro documentation, or the demo app for some examples on how to use this view.
+
+> Important: Note that for settings to sync between the main app and the keyboard extension, you must replace ``KeyboardSettings/store`` with an App Group-based store. You can use ``KeyboardSettings/setupStore(withAppGroup:keyPrefix:)`` to easily do this on app and keyboard launch. 

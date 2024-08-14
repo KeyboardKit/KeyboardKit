@@ -16,6 +16,11 @@ public extension KeyboardLocaleInfo {
     }
 
     /// The full name of this locale in another locale.
+    func localizedName(in locale: KeyboardLocale) -> String {
+        localizedName(in: locale.locale)
+    }
+
+    /// The full name of this locale in another locale.
     func localizedName(in locale: Locale) -> String {
         if self.locale.identifier == "ckb_PC" {
             let sorani = KeyboardLocale.kurdish_sorani.locale
@@ -27,6 +32,11 @@ public extension KeyboardLocaleInfo {
     /// The language name of this locale in its own language.
     var localizedLanguageName: String {
         localizedLanguageName(in: locale)
+    }
+
+    /// The language name of this locale in another locale.
+    func localizedLanguageName(in locale: KeyboardLocale) -> String {
+        localizedLanguageName(in: locale.locale)
     }
 
     /// The language name of this locale in another locale.

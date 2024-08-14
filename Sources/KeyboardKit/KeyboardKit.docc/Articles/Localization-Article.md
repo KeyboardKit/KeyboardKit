@@ -13,9 +13,9 @@ This article describes the KeyboardKit localization engine.
     @PageColor(blue)
 }
 
-A flexible localization engine is an important part of a keyboard, where every supported locale should be able to localize the keyboard.
+A flexible localization engine is an important part of a keyboard, where every supported locale should be able to localize the keyboard and its texts, keys and secondary callout actions.
 
-In KeyboardKit, each ``KeyboardLocale`` defines localized strings, assets, and locale-specific information. KeyboardKit also extends the native ``Foundation/Locale`` type with a bunch of additional capabilities.
+In KeyboardKit, each ``KeyboardLocale`` defines localized strings, assets, and locale-specific information. KeyboardKit also extends the native ``Foundation/Locale`` type with additional capabilities.
 
 👑 [KeyboardKit Pro][Pro] unlocks localized keyboards and services for all the locales in your license. Information about Pro features can be found at the end of this article.
 
@@ -39,34 +39,35 @@ A keyboard locale refers to a native ``KeyboardLocale/locale`` and has localized
 Many extensions are applied to `Locale` instead of ``KeyboardLocale``, whenever the base locale has enough information. ``KeyboardLocale`` will for the most cases not mirror these extensions, so use the ``KeyboardLocale/locale`` property to access them. 
 
 
+## How to get and set locales 
 
-## How to get and set the current keyboard locale 
+The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and available ``KeyboardContext/locales``. These properties are raw ``Foundation/Locale`` values, since a keyboard isn't limited to ``KeyboardLocale``, but there are enum-based alternatives as well.  
 
-The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and available ``KeyboardContext/locales``. These properties are raw ``Foundation/Locale`` values, since a keyboard isn't limited to ``KeyboardLocale``.  The context also has ``KeyboardLocale``-specific variants.
+You can also use the ``KeyboardContext``'s ``KeyboardContext/addedLocales`` settings property to define which of the available ``KeyboardContext/locales`` that have been "added", which is meant to be an active choice by the user.
 
-If the context ``KeyboardContext/locales`` has multiple values, you can switch locale with ``KeyboardContext/selectNextLocale()`` or a ``KeyboardLocale/ContextMenu`` that lets the user select a locale. You can apply a locale context menu with ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)``.
+If the context ``KeyboardContext/locales`` or ``KeyboardContext/addedLocales`` has multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user do it with a ``KeyboardLocale/ContextMenu``. They will use ``KeyboardContext/addedLocales`` if it contains any locales, else use ``KeyboardContext/locales``.
+
+You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` action, or add a context menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)`` view modifier.
 
 
 ## How to change the primary language  
 
-Setting the ``KeyboardContext/locale`` will update the controller's **primaryLanguage**, which controls things like spell checking and text direction. This also sets the keyboard locale name in the keyboard switcher.
+Setting the ``KeyboardContext/locale`` will update the controller's **primaryLanguage**, which controls things like spell checking and text direction. This also sets the keyboard's language subtitle in the keyboard switcher.
 
-> Note: The `primaryLanguage` property always returns `nil`, even after being set in a way that actually works, which can be confusing.
+> Note: The `primaryLanguage` property seems to always return `nil`, even after it has been set properly (and works). This can be a bit confusing, but just check that the proper language is displayed in the system keyboard switcher.
 
 
 
 ## How to use LTR and RTL locales
 
-KeyboardKit supports LTR (Left-To-Right) and RTL (Right-To-Left) locales.
+KeyboardKit supports LTR (Left-To-Right) and RTL (Right-To-Left) locales if you use the ``KeyboardContext``. Just change the locale as explained above, and KeyboardKit will automatically adjust the text direction, spell checking, etc.
 
-You don't need to configure your keyboard to support RTL. Just change the keyboard locale as explained above, and KeyboardKit will automatically adjust the text direction.
-
-If you want to use a single RTL locale, you can adjust the keyboard extension **Info.plist**:
+If you want to use a single RTL ``Foundation/Locale`` without using KeyboardKit, you can adjust the **Info.plist** file in your keyboard extension like this:
 
 * Set **PrefersRightToLeft** to **1**.
 * Set **PrimaryLanguage** to the language code of your locale, e.g. **fa** for Perian (Farsi).
 
-Just be aware that setting the primary language may affect external keyboard key mappings.
+Just be aware that setting the primary language like this may affect external keyboard mappings if you don't set the primary language.
 
 
 
@@ -90,9 +91,24 @@ Besides localized strings, you can use the context ``KeyboardContext/localePrese
 
 
 
-## How to add a new keyboard locale
+## How to support more locales
 
-For information on how to add new keyboard locales, see **Instructions.md** in **Resources**.
+If you need to use a locale (language) that KeyboardKit doesn't support yet, like Japanese or Simplified Chinese, you can either create a custom ``KeyboardView`` configuration to support it, or reach out to implement a new ``KeyboardLocale``.
+
+To change the keys of the keyboard to fit an unsupported locale, you must implement a custom ``InputSet`` and ``KeyboardLayout``, where an input set defines the input keys and a layout defines the full layout. See the <doc:KeyboardLayout>  article for more information.
+
+To change the texts of the system keys, you must create a custom ``KeyboardStyleProvider`` (although this will change to be easier in KeyboardKit 9). See the <doc:Styling-Article> article for more information.
+
+To change the secondary callout actions that show when long pressing certain keys, you must create a custom ``CalloutService``. See the <doc:Callouts-Article> article for more information.
+
+Finally, you must also implement your own ``AutocompleteService``, which most probably will involve integrating with a lightweight model that doesn't take up too much memory, since keyboard extensions are limited to ~70MB.
+
+
+## How to help KeyboardKit Pro support more locales
+
+If you have expertise on a certain locale that you want KeyboardKit to support, you can reach out to help adding it to KeyboardKit Pro.
+
+If a locale gets added as a result of your contribution, you will get a free Basic license or a discount on higher plans. See the website for more infromation on how to get in touch.   
 
 
 
@@ -102,9 +118,9 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
 
 @TabNavigator {
     
-    @Tab("ContextMenu") {
+    @Tab("KeyboardLocale.ContextMenu") {
         
-        KeyboardKit has a ``KeyboardLocale/ContextMenu`` that can be used to change the main ``KeyboardContext`` ``KeyboardContext/locale`` from a callout context menu: 
+        ``KeyboardLocale`` has a ``KeyboardLocale/ContextMenu`` that can be used to change the ``KeyboardContext`` ``KeyboardContext/locale`` from a callout context menu: 
         
         @Row {
             @Column {}
@@ -114,17 +130,19 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
             @Column {}
         }
         
-        This menu can be applied to any view. ``KeyboardView`` applies it to every key that triggers the ``KeyboardAction/nextLocale`` action, as well as to the space bar, if the ``Gestures/SpaceLongPressBehavior`` is set to ``Gestures/SpaceLongPressBehavior/openLocaleContextMenu``.
+        ``KeyboardView`` applies this menu to every key that triggers the ``KeyboardAction/nextLocale`` action, as well as to the space bar, if the ``Gestures/SpaceLongPressBehavior`` is set to ``Gestures/SpaceLongPressBehavior/openLocaleContextMenu``.
+        
+        You can also add this menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)`` view modifier.
     }
 }
 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks fully localized ``InputSet``, ``KeyboardLayoutProvider`` & ``CalloutService`` implementations for every locale in your license. 
+[KeyboardKit Pro][Pro] unlocks an ``InputSet``, a ``KeyboardLayoutProvider`` and a ``CalloutService`` for every locale in your license. 
 
-This lets KeyboardKit Pro create fully localized ``KeyboardView`` for every supported locale, with no additional code needed. You can customize any input set or provider for any locale at any time, whenever needed.
+This lets KeyboardKit create a fully localized ``KeyboardView`` for every supported locale, with no additional code needed. You can customize any part for any locale at any time, whenever needed.
 
-After setting up KeyboardKit Pro with your license key, as described in the <doc:Getting-Started> article, you can just change the ``KeyboardContext/locale`` to automatically update the keyboard view.
+After setting up KeyboardKit Pro with your license key, as described in the <doc:Getting-Started> article, you can just change the ``KeyboardContext/locale`` to automatically update the keyboard view for any locale in your license.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

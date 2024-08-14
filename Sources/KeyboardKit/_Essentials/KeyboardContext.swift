@@ -50,9 +50,11 @@ public class KeyboardContext: ObservableObject {
 
     /// The manually added locale identifiers.
     ///
+    /// The ``selectNextLocale()`` function and context menu
+    /// will use this list if it has locales, else ``locales``.
+    ///
     /// This is a settings value that should not be mixed up
-    /// with ``locales``, which defines all locales that are
-    /// currently available to the keyboard.
+    /// with ``locales`` which defines all available locales.
     ///
     /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
     @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
@@ -74,15 +76,6 @@ public class KeyboardContext: ObservableObject {
         didSet { syncLocaleWithSetting() }
     }
 
-    /// The next locale mode to use for ``selectNextLocale()``.
-    ///
-    /// This value defaults to `.allLocales` but will change
-    /// to `.addedLocales` whenever ``addedLocales`` changes.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)nextLocaleMode", store: .keyboardSettings)
-    public var nextLocaleMode = Keyboard.NextLocaleMode.allLocales
-
 
     // MARK: - Settings Sync
 
@@ -95,8 +88,9 @@ public class KeyboardContext: ObservableObject {
     }
 
     func syncLocaleWithSetting() {
-        let locale = Locale(identifier: localeIdentifier)
-        setLocale(locale)
+        if locale.localeIdentifier == localeIdentifier { return }
+        let newLocale = Locale(identifier: localeIdentifier)
+        setLocale(newLocale)
     }
 
     

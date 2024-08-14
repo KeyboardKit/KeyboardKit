@@ -10,29 +10,28 @@ import Foundation
 
 public extension KeyboardContext {
 
-    /// The locale identifiers that have manually been added
-    /// by the user, if any.
+    /// The locales that have been added by the user, if any.
     ///
-    /// This is a settings value that should not be mixed up
-    /// with ``locales``, which defines all locales that are
-    /// currently available to the keyboard.
+    /// The ``selectNextLocale()`` function and context menu
+    /// will use this list if it has locales, else ``locales``.
     ///
-    /// > Note: Use ``addedLocaleIdentifiersValue`` when you
-    /// want to bind this value to a picker.
+    /// > Note: Use ``addedLocaleIdentifiersValue`` whenever
+    /// you want to bind this value to a picker.
     var addedLocales: [Locale] {
         get { addedLocaleIdentifiersValue.value.map(Locale.init) }
         set {
             let ids = newValue.map { $0.identifier }
             addedLocaleIdentifiersValue.value = Array(Set(ids))
-            nextLocaleMode = .addedLocales
         }
     }
 
-    /// The locale identifiers that have manually been added
-    /// by the user, if any.
+    /// The locales that have been added by the user, if any.
     ///
-    /// > Note: Use ``addedLocaleIdentifiersValue`` when you
-    /// want to bind this value to a picker.
+    /// The ``selectNextLocale()`` function and context menu
+    /// will use this list if it has locales, else ``locales``.
+    ///
+    /// > Note: Use ``addedLocaleIdentifiersValue`` whenever
+    /// you want to bind this value to a picker.
     var addedLocaleIdentifiers: [String] {
         get { addedLocaleIdentifiersValue.value }
         set { addedLocaleIdentifiersValue.value = newValue }
@@ -45,23 +44,20 @@ public extension KeyboardContext {
         return match ?? fuzzy
     }
 
-    /// Whether or not the context has a certain locale.
+    /// Whether a certain locale is selected.
     func hasKeyboardLocale(_ locale: KeyboardLocale) -> Bool {
         self.locale.identifier == locale.localeIdentifier
-    }
-
-    /// Whether or not a certain keyboard type is selected.
-    func hasKeyboardType(_ type: Keyboard.KeyboardType) -> Bool {
-        keyboardType == type
     }
 
     /// Select the next locale in ``locales``.
     ///
     /// This will loop through all locales in ``locales``.
     func selectNextLocale() {
+        let locales = selectableLocales
         let fallback = locales.first ?? locale
-        guard let currentIndex = locales.firstIndex(of: locale) else { return locale = fallback }
-        let nextIndex = currentIndex.advanced(by: 1)
+        let firstIndex = locales.firstIndex(of: locale)
+        guard let index = firstIndex else { return locale = fallback }
+        let nextIndex = index.advanced(by: 1)
         guard locales.count > nextIndex else { return locale = fallback }
         locale = locales[nextIndex]
     }
@@ -89,5 +85,14 @@ public extension KeyboardContext {
     /// Set ``locales`` to the provided keyboard locales.
     func setLocales(_ locales: [KeyboardLocale]) {
         self.locales = locales.map { $0.locale }
+    }
+}
+
+extension KeyboardContext {
+
+    /// This is internal until we find a better name for it.
+    var selectableLocales: [Locale] {
+        let hasAddedLocales = addedLocales.count > 1
+        return hasAddedLocales ? addedLocales : locales
     }
 }

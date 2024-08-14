@@ -129,12 +129,16 @@ public extension Keyboard {
 }
 
 public extension KeyboardApp {
-    
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    struct HomeScreen {}
-    
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    struct HomeScreenStyle {}
+
+    /// 👑 This view is unlocked by KeyboardKit Pro.
+    struct HomeScreen: View {
+        public var body: some View { EmptyView() }
+    }
+
+    /// 👑 This view is unlocked by KeyboardKit Pro.
+    struct SettingsScreen: View {
+        public var body: some View { EmptyView() }
+    }
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.
@@ -338,13 +342,6 @@ public extension View {
         _ value: FocusState<Bool>.Binding,
         @ViewBuilder doneButton: @escaping () -> DoneButton
     ) -> some View { self }
-    
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    func keyboardAppHomeScreenStyle(
-        _ style: KeyboardApp.HomeScreenStyle
-    ) -> some View {
-        self
-    }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
     func keyboardDictation<Overlay: View>() -> some View {
