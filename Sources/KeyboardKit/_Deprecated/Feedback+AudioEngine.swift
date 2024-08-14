@@ -1,10 +1,8 @@
+import Foundation
+
 #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
 import AudioToolbox
-#else
-typealias SystemSoundID = Int
 #endif
-
-import Foundation
 
 @available(*, deprecated, message: "Use a feedback service or action handler instead")
 public extension Feedback {

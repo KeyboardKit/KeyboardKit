@@ -6,6 +6,8 @@
 //  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
+import Foundation
+
 #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
 import AudioToolbox
 #else
