@@ -34,6 +34,7 @@ class KeyboardViewController: KeyboardInputViewController {
             keyboardBehavior: services.keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
             feedbackContext: state.feedbackContext,
+            feedbackService: services.feedbackService,
             spaceDragGestureHandler: services.spaceDragGestureHandler)
         
         /// 💡 Setup a fake autocomplete service.

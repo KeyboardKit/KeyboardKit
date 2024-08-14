@@ -24,6 +24,12 @@ struct DemoToolbar: View {
     var theme: KeyboardTheme?
 
     @EnvironmentObject
+    private var autocompleteContext: AutocompleteContext
+
+    @EnvironmentObject
+    private var feedbackContext: FeedbackContext
+
+    @EnvironmentObject
     private var keyboardContext: KeyboardContext
 
     @FocusState
@@ -42,29 +48,67 @@ struct DemoToolbar: View {
     private var text = ""
     
     var body: some View {
-        HStack {
-            textFieldIfFullAccess
-            toolbarButton(toggleThemePicker, "paintpalette")
-            toolbarButton(readFullDocumentContext, "doc.text.magnifyingglass")
-            toolbarButton(startDictation, "mic")
-            toolbarButton(openSettings, "gearshape")
+        ScrollView(.horizontal) {
+            HStack {
+                Group {
+                    textFieldIfFullAccess
+                    Divider()
+                    toggle($autocompleteContext.isAutocorrectEnabled, "textformat.abc.dottedunderline")
+                    Divider()
+                    toggle($feedbackContext.isAudioFeedbackEnabled, "speaker.wave.2.fill")
+                    toggle($feedbackContext.isHapticFeedbackEnabled, "hand.tap.fill")
+                    Divider()
+                    button(toggleThemePicker, "paintpalette")
+                    button(readDocument, "doc.text.magnifyingglass")
+                    button(startDictation, "mic")
+                    button(openSettings, "gearshape")
+                }
+                .frame(maxHeight: .infinity)
+            }
+            .padding([.trailing, .vertical], 10)
+            .background(Color.clearInteractable)
         }
-        .padding(10)
         .font(.headline)
         .buttonStyle(.bordered)
+        .toggleStyle(.button)
         .sheet(isPresented: $isFullDocumentContextActive, content: fullDocumentContextSheet)
         .sheet(isPresented: $isThemePickerPresented, content: themePickerSheet)
     }
 }
 
 private extension DemoToolbar {
-    
+
+    func button(
+        _ action: @escaping () -> Void,
+        _ imageName: String
+    ) -> some View {
+        Button(action: action) {
+            image(imageName)
+        }
+    }
+
+    func toggle(
+        _ isOn: Binding<Bool>,
+        _ imageName: String
+    ) -> some View {
+        Toggle(isOn: isOn) {
+            image(imageName)
+        }
+    }
+
+    func image(_ name: String) -> some View {
+        Color.clear
+            .overlay(Image(systemName: name))
+            .frame(maxHeight: .infinity)
+    }
+
     @ViewBuilder
     var textFieldIfFullAccess: some View {
         if keyboardContext.hasFullAccess {
             KeyboardTextField(text: $text, controller: controller) {
                 $0.placeholder = "Type here..."
             }
+            .frame(width: 150)
             .focused($isTextFieldFocused) {
                 Image(systemName: "xmark.circle.fill")
             }
@@ -97,16 +141,6 @@ private extension DemoToolbar {
         }
         .demoSheet("Theme Picker")
     }
-    
-    func toolbarButton(
-        _ action: @escaping () -> Void,
-        _ imageName: String
-    ) -> some View {
-        Button(action: action) {
-            Image(systemName: imageName)
-                .frame(maxHeight: .infinity)
-        }
-    }
 }
 
 private extension DemoToolbar {
@@ -115,7 +149,7 @@ private extension DemoToolbar {
         controller.openUrl(.keyboardSettings)
     }
     
-    func readFullDocumentContext() {
+    func readDocument() {
         isFullDocumentContextActive = true
         fullDocumentContext = "Reading..."
         Task {
@@ -132,7 +166,7 @@ private extension DemoToolbar {
     func startDictation() {
         controller.performDictation()
     }
-    
+
     func toggleThemePicker() {
         isThemePickerPresented.toggle()
     }
