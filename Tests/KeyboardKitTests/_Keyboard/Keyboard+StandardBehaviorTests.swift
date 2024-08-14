@@ -27,6 +27,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
         timer = Gestures.RepeatTimer.shared
         proxy = MockTextDocumentProxy()
         keyboardContext = .init()
+        keyboardContext.setLocale(.english)
         keyboardContext.sync(with: MockKeyboardInputViewController())
         keyboardContext.originalTextDocumentProxy = proxy
         behavior = .init(keyboardContext: keyboardContext)

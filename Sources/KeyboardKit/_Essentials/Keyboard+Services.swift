@@ -64,9 +64,12 @@ public extension Keyboard {
         public lazy var dictationService: KeyboardDictationService = .disabled(
             context: state.dictationContext
         )
-        
+
         /// The feedback service to use.
         public lazy var feedbackService: FeedbackService = Feedback.StandardService()
+
+        /// The frequent emoji provider to use.
+        public lazy var frequentEmojiProvider: EmojiProvider = EmojiProviders.MostRecentProvider()
 
         /// The keyboard behavior to use.
         public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(
