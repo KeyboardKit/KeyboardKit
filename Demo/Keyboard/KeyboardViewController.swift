@@ -50,8 +50,9 @@ class KeyboardViewController: KeyboardInputViewController {
         /// buttons to the "k" key.
         services.calloutService = Callouts.StandardService(
             keyboardContext: state.keyboardContext,
-            baseProvider: DemoCalloutService())
-        
+            baseService: DemoCalloutService()
+        )
+
         /// 💡 Setup a demo-specific layout provider.
         ///
         /// The demo provider adds a "next locale" button if
@@ -63,8 +64,9 @@ class KeyboardViewController: KeyboardInputViewController {
         /// The demo provider styles the rocket emoji button
         /// and has some commented out code that you can try.
         services.styleProvider = DemoStyleProvider(
-            keyboardContext: state.keyboardContext)
-        
+            keyboardContext: state.keyboardContext
+        )
+
 
         /// 💡 Setup a custom keyboard locale.
         ///

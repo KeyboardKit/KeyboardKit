@@ -8,11 +8,9 @@
 
 import Foundation
 
-/**
- This type represents an emoji and serves as a namespace for
- emoji-related types and functionality.
- */
-public struct Emoji: Equatable, Codable, Identifiable {
+/// This type represents an emoji character and is used as a
+/// namespace for emoji-related types and functionality.
+public struct Emoji: Equatable, Codable, Hashable, Identifiable, Sendable {
     
     /// Create an emoji from a certain character.
     public init(_ char: Character) {
@@ -32,4 +30,21 @@ public extension Emoji {
     
     /// The emoji's unique identifier.
     var id: String { char }
+}
+
+
+public extension Array where Element == Emoji {
+
+    /// Get the emoji at a certain index, if any.
+    func emoji(at index: Int) -> Emoji? {
+        let isValid = index >= 0 && index < count
+        return isValid ? self[index] : nil
+    }
+
+    /// The first index of a certain emoji, if any.
+    func firstIndex(of emoji: Emoji) -> Int? {
+        firstIndex {
+            $0.neutralSkinToneVariant == emoji.neutralSkinToneVariant
+        }
+    }
 }

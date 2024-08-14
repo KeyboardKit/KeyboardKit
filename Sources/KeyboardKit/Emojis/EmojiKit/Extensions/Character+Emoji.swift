@@ -10,20 +10,20 @@ import Foundation
 
 public extension Character {
 
-    /// Whether or not the character is a an emoji.
+    /// Whether the character is a an emoji.
     var isEmoji: Bool {
         let v15 = "🫨🫸🫷🪿🫎🪼🫏🪽🪻🫛🫚🪇🪈🪮🪭🩷🩵🩶🪯🛜"
         return isCombinedEmoji || isSimpleEmoji || v15.contains(self)
     }
 
-    /// Whether or not the character is a multi-scalar emoji.
+    /// Whether the character is a multi-scalar emoji.
     var isCombinedEmoji: Bool {
         let scalars = unicodeScalars
         guard scalars.count > 1 else { return false }
         return scalars.first?.properties.isEmoji ?? false
     }
 
-    /// Whether or not the character is a one-scalar emoji.
+    /// Whether the character is a one-scalar emoji.
     var isSimpleEmoji: Bool {
         guard let scalar = unicodeScalars.first else { return false }
         return scalar.properties.isEmoji && scalar.value > 0x238C

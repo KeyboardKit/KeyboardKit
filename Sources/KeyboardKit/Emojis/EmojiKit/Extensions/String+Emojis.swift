@@ -10,12 +10,12 @@ import Foundation
 
 public extension String {
 
-    /// Whether or not the string contains an emoji.
+    /// Whether the string contains an emoji.
     var containsEmoji: Bool {
         contains { $0.isEmoji }
     }
 
-    /// Whether or not the string only contains emojis.
+    /// Whether the string only contains emojis.
     var containsOnlyEmojis: Bool {
         !isEmpty && !contains { !$0.isEmoji }
     }
@@ -35,7 +35,7 @@ public extension String {
         emojis.map { String($0) }.reduce("", +)
     }
 
-    /// Whether or not the string is a single emoji.
+    /// Whether the string is a single emoji.
     var isSingleEmoji: Bool {
         count == 1 && containsEmoji
     }

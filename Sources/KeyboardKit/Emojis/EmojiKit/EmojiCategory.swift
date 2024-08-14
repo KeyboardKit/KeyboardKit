@@ -8,15 +8,21 @@
 
 import SwiftUI
 
-/**
- This enum defines the standard emoji categories, as well as
- their emojis.
- 
- The static ``EmojiCategory/all`` property provides you with
- all standard emoji categories. The ``EmojiCategory/frequent``
- category uses ``Emoji/frequentEmojiProvider`` to get a list
- of the most frequently used emojis to list in that category.
- */
+/// This enum defines the standard emoji categories, as well
+/// as their emojis.
+///
+/// The static ``EmojiCategory/all`` property can be used to
+/// get all standard categories.
+///
+/// The ``EmojiCategory/frequent`` category is a placeholder
+/// category that doesn't contain any emojis from start. Use
+/// an ``EmojiProvider`` to provide the category with emojis
+/// and call ``EmojiProvider/addEmoji(_:)`` when an emoji is
+/// used, to add it to the category.
+///
+/// Various EmojiKit views, like the ``EmojiGrid``, lets you
+/// pass in a custom provider, and will automatically use it
+/// to register emojis when the user interacts with an emoji.
 public enum EmojiCategory: Codable, Equatable, Hashable, Identifiable {
     
     case frequent
@@ -28,7 +34,10 @@ public enum EmojiCategory: Codable, Equatable, Hashable, Identifiable {
     case objects
     case symbols
     case flags
-    
+
+    case favorites
+    case search(query: String)
+
     case custom(
         id: String,
         name: String,
@@ -40,6 +49,10 @@ public enum EmojiCategory: Codable, Equatable, Hashable, Identifiable {
 public extension EmojiCategory {
 
     /// Get an ordered list of all standard categories.
+    ///
+    /// There are more emojis in this enum, but this returns
+    /// a list of all emojis that are by default listed in a
+    /// keyboard or picker.
     static var all: [EmojiCategory] {
         [
             .frequent,
@@ -52,6 +65,23 @@ public extension EmojiCategory {
             .symbols,
             .flags
         ]
+    }
+}
+
+public extension Array where Element == EmojiCategory {
+
+    /// Get the category after the provided category.
+    func category(after category: Element) -> Element? {
+        guard let index = firstIndex(of: category) else { return nil }
+        let newIndex = index + 1
+        return newIndex < count ? self[newIndex] : nil
+    }
+
+    /// Get the category before the provided category.
+    func category(before category: Element) -> Element? {
+        guard let index = firstIndex(of: category) else { return nil }
+        let newIndex = index - 1
+        return newIndex >= 0 ? self[newIndex] : nil
     }
 }
 
@@ -81,7 +111,8 @@ public extension Emoji {
     /// category, e.g. when listing multiple categories that
     /// can contain the same emoji.
     func id(in category: EmojiCategory) -> String {
-        "\(category.id).\(id)"
+        if category.id.isEmpty { return id }
+        return "\(category.id).\(id)"
     }
 }
 
@@ -99,6 +130,10 @@ public extension EmojiCategory {
         case .objects: "objects"
         case .symbols: "symbols"
         case .flags: "flags"
+
+        case .favorites: "favorites"
+        case .search: "search"
+
         case .custom(let id, _, _, _): id
         }
     }
@@ -115,32 +150,32 @@ public extension EmojiCategory {
         case .objects: "💡"
         case .symbols: "💱"
         case .flags: "🏳️"
+
+        case .favorites: "❤️"
+        case .search: "🔍"
+
         case .custom: "-"
-        }
-    }
-    
-    /// An emoji-based label that represents the category.
-    var emojiIconLabel: some View {
-        Label {
-            Text(localizedName)
-        } icon: {
-            Text(emojiIcon)
         }
     }
     
     /// A list of all available emojis in the category.
     var emojis: [Emoji] {
-        if let cached = Self.emojisCache[self] { return cached }
-        let emojis = emojisString
-            .replacingOccurrences(of: "\n", with: "")
-            .compactMap {
-                let emoji = Emoji(String($0))
-                return emoji.isAvailableInCurrentRuntime ? emoji : nil
-            }
-        if self != .frequent {
-            Self.emojisCache[self] = emojis
+        switch self {
+        case .frequent: []
+        case .smileysAndPeople: Self.emojisForSmileysAndPeople
+        case .animalsAndNature: Self.emojisForAnimalsAndNature
+        case .foodAndDrink: Self.emojisForFoodAndDrink
+        case .activity: Self.emojisForActivity
+        case .travelAndPlaces: Self.emojisForTravelAndPlaces
+        case .objects: Self.emojisForObjects
+        case .symbols: Self.emojisForSymbols
+        case .flags: Self.emojisForFlags
+
+        case .favorites: []
+        case .search(let query): Emoji.all.matching(query)
+
+        case .custom: emojiStringEmojis
         }
-        return emojis
     }
     
     /// Whether or not the category has any emojis.
@@ -151,32 +186,9 @@ public extension EmojiCategory {
 
 extension EmojiCategory {
     
-    /// Get the emoji at a certain index, if any.
-    func emoji(at index: Int) -> Emoji? {
-        let isValid = index >= 0 && index < emojis.count
-        return isValid ? emojis[index] : nil
-    }
-    
-    /// The first index of a certain emoji, if any.
-    func firstIndex(of emoji: Emoji) -> Int? {
-        emojis.firstIndex {
-            $0.neutralSkinToneVariant == emoji.neutralSkinToneVariant
-        }
-    }
-    
-    /// Whether or not the category contains a certain emoji.
-    func hasEmoji(_ emoji: Emoji) -> Bool {
-        firstIndex(of: emoji) != nil
-    }
-}
-
-extension EmojiCategory {
-    
-    static var emojisCache = [EmojiCategory: [Emoji]]()
-    
-    var emojisString: String {
+    var emojiString: String {
         switch self {
-        case .frequent: Self.frequentChars
+        case .frequent: ""
         case .smileysAndPeople: Self.smileysAndPeopleChars
         case .animalsAndNature: Self.animalsAndNatureChars
         case .foodAndDrink: Self.foodAndDrinkChars
@@ -185,15 +197,66 @@ extension EmojiCategory {
         case .objects: Self.objectsChars
         case .symbols: Self.symbolsChars
         case .flags: Self.flagsChars
+
+        case .favorites: ""
+        case .search: ""
+
         case .custom(_, _, let emojis, _): emojis
         }
     }
     
-    static var frequentChars: String {
-        Emoji.frequentEmojiProvider.emojis
-            .map { $0.char }
-            .joined(separator: "")
+    var emojiStringEmojis: [Emoji] {
+        emojiString
+            .replacingOccurrences(of: "\n", with: "")
+            .compactMap {
+                let emoji = Emoji(String($0))
+                return emoji.isAvailableInCurrentRuntime ? emoji : nil
+            }
     }
+    
+    /// Whether or not the category contains a certain emoji.
+    func hasEmoji(_ emoji: Emoji) -> Bool {
+        emojis.firstIndex(of: emoji) != nil
+    }
+}
+
+extension EmojiCategory {
+    
+    static let emojisForSmileysAndPeople: [Emoji] = {
+        EmojiCategory.smileysAndPeople.emojiStringEmojis
+    }()
+
+    static let emojisForAnimalsAndNature: [Emoji] = {
+        EmojiCategory.animalsAndNature.emojiStringEmojis
+    }()
+
+    static let emojisForFoodAndDrink: [Emoji] = {
+        EmojiCategory.foodAndDrink.emojiStringEmojis
+    }()
+
+    static let emojisForActivity: [Emoji] = {
+        EmojiCategory.activity.emojiStringEmojis
+    }()
+
+    static let emojisForTravelAndPlaces: [Emoji] = {
+        EmojiCategory.travelAndPlaces.emojiStringEmojis
+    }()
+
+    static let emojisForObjects: [Emoji] = {
+        EmojiCategory.objects.emojiStringEmojis
+    }()
+
+    static let emojisForSymbols: [Emoji] = {
+        EmojiCategory.symbols.emojiStringEmojis
+    }()
+
+    static let emojisForFlags: [Emoji] = {
+        EmojiCategory.flags.emojiStringEmojis
+    }()
+
+    static let emojisForSmileys: [Emoji] = {
+        EmojiCategory.smileysAndPeople.emojiStringEmojis
+    }()
 }
 
 #if os(iOS) || os(macOS)
@@ -205,26 +268,26 @@ extension EmojiCategory {
         
         var body: some View {
             NavigationView {
-#if os(macOS)
+                #if os(macOS)
                 Color.clear
-#endif
+                #endif
                 
                 ScrollView(.vertical) {
                     VStack {
                         ForEach(EmojiCategory.all) { cat in
                             DisclosureGroup {
-                                LazyVGrid(
-                                    columns: columns,
-                                    spacing: 10
-                                ) {
-                                    ForEach(cat.emojis) {
-                                        Text($0.char)
-                                            .font(.title)
-                                    }
-                                }
+                                EmojiGrid(
+                                    emojis: cat.emojis,
+                                    section: { $0.view },
+                                    item: { $0.view }
+                                )
                                 .padding(.top)
                             } label: {
-                                cat.emojiIconLabel
+                                Label {
+                                    Text(cat.localizedName)
+                                } icon: {
+                                    Text(cat.emojiIcon)
+                                }
                             }
                             
                             Divider()

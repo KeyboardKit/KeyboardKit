@@ -23,6 +23,7 @@ platform :ios do
     sh("cd .. && cp -r " + ek_source + " " + ek_target)
     sh("cd .. && rm -rf " + ek_target + "/Bundle")
     sh("cd .. && rm -rf " + ek_target + "/EmojiKit.docc")
+    sh("cd .. && rm -rf " + ek_target + "/Extensions/GeometryProxy+Grid.swift")
     sh("cd .. && rm -rf " + ek_target + "/Resources")
     sh("cd .. && rm -rf " + ek_target + "/Views")
     sh("cd .. && git add .")

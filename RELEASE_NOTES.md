@@ -24,7 +24,7 @@ This version deprecates the recently added settings types, and replaces them wit
 
 To avoid compile-time warnings, these deprecated settings are currently only soft deprecated with a code comment. They will however be completely removed in KeyboardKit 9.0, so make sure to start using the contexts instead.
 
-This version also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory, by rendering lower resolution grid items. Please reach out if you find the rendered quality insufficient. 
+This version adds support for Emoji 15.1, which adds a bunch of new emojis, and also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory, by rendering lower resolution grid items. 
 
 This version also tweaks the emoji keyboard configuration for all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard on all device types, including larger iPads in both portrait and landscape.
 
@@ -35,7 +35,6 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `AutocompleteContext` has new settings that replace ``AutocompleteSettings``.
 * `Bundle` has an `isExtension` to help you check if code runs in an extension. 
 * `DictationContext` has new setting values that replace ``DictationSettings``.
-* `EmojiKeyboardStyle` has memory `.optimized` styles that are used by default.
 * `FeedbackContext` has new settings that replace the ``FeedbackSettings`` type.
 * `FeedbackService` is a new service type that can trigger audio and haptic feedback.
 * `Image` has many new utility functions to make it easier to resolve keyboard icons.
@@ -47,18 +46,24 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `KeyboardContext` now has even more `KeyboardLocale`-based versions of some `Locale`-based functions.
 * `KeyboardLocale.ContextMenu` now supports providing custom locales instead of using the context ones.
 
+### 😀 Emojis
+
+* `EmojiKeyboard` now renders better on 13" iPad devices.
+* `EmojiKeyboard` now displays a dismiss button on iPad devices.
+* `EmojiKeyboard` now adds an extra row if an input toolbar is used.
+* `EmojiKeyboardStyle` has memory `.optimized` emoji keyboard styles.
+* `EmojiKeyboardStyle` now uses the new `.optimized` styles by default.
+* `EmojiKeyboardStyle` has been adjusted to conform to new capabilities.
+* `EmojiVersion` supports Emoji 15.1 and adds new emojis to the keyboard.
+
 ### 💡 Adjustments
 
 * `AutocompleteContext` now stores many properties.
-* `EmojiKeyboard` now renders better on iPad devices.
-* `EmojiKeyboard` now displays a dismiss button on iPad devices.
-* `EmojiKeyboard` now adds an extra row if an input toolbar is used.
-* `EmojiKeyboardStyle` now uses the new `.optimized` styles by default.
-* `EmojiKeyboardStyle` has been adjusted to conform to new capabilities.
 * `Feedback.HapticConfiguration.disabled` now triggers `.longPressOnSpace`.
 * `FeedbackContext` has changed the way it calculates its feedback configs.
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
 * `KeyboardInputViewController` now checks if self is nil when setting up a view.
+* `KeyboardView` now renders better on 13" iPad devices, due to more size tolerance.
 * `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
 
 ### 👑 KeyboardKit Pro
@@ -74,7 +79,6 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `Autocomplete.LocalProvider` is now a typealias.
 * `Autocomplete.RemoteProvider` is now a typealias.
 * `CGSize.isScreenSize` now uses 50 points tolerance. 
-* `EmojiKeyboard` and `KeyboardView` now render correctly on 13" iPads.
 * `View+KeyboardButton` explicitly applies an interactable background color.
 
 ### 🗑️ Deprecations & Renamings

@@ -7,18 +7,16 @@
 //
 
 import Foundation
+import SwiftUI
 
-/**
- This enum defines all the Emoji versions that are currently
- supported by macOS.
- 
- You can use ``all`` to get all available emoji versions, or
- use any of the platform- or OS-based ones to get the latest
- version supported by that runtime.
- 
- ``EmojiCategory`` will automatically remove all emojis that
- are not available for the current runtime.
- */
+/// This enum defines all supported Emoji versions, that are
+/// currently available to macOS.
+///
+/// The static ``EmojiVersion/all`` property will return all
+/// versions while ``EmojiVersion/allAvailable`` will return
+/// all versions available to the current runtime. This will
+/// be used to let ``EmojiCategory`` just return emojis that
+/// are available to the current runtime.
 public struct EmojiVersion: Equatable {
     
     init(
@@ -27,7 +25,8 @@ public struct EmojiVersion: Equatable {
         iOS: Double,
         macOS: Double,
         tvOS: Double,
-        watchOS: Double
+        watchOS: Double,
+        comment: String = ""
     ) {
         let allEmojis = emojis.map(String.init).flatMap {
             let emoji = Emoji($0)
@@ -41,6 +40,7 @@ public struct EmojiVersion: Equatable {
         self.macOS = macOS
         self.tvOS = tvOS
         self.watchOS = watchOS
+        self.comment = comment
     }
     
     init?(
@@ -92,16 +92,33 @@ public struct EmojiVersion: Equatable {
     
     /// The tvOS version in which emojis became available.
     public let tvOS: Double
-    
+
     /// The watchOS version in which emojis became available.
     public let watchOS: Double
+
+    /// An optional comment, which can be used to discuss if
+    /// the version made any changes that isn't reflected in
+    /// the emojis it provides.
+    public let comment: String?
 }
 
 
 // MARK: - Public functions
 
 public extension EmojiVersion {
-    
+
+    static var v15_1: Self {
+        .init(
+            version: 15.1,
+            emojis: "🙂‍↕️🙂‍↔️👩‍🦽‍➡️🧑‍🦽‍➡️👨‍🦽‍➡️👩‍🦼‍➡️🧑‍🦼‍➡️👨‍🦼‍➡️🚶‍♀️‍➡️🚶‍➡️🚶‍♂️‍➡️👩‍🦯‍➡️🧑‍🦯‍➡️👨‍🦯‍➡️🧎‍♀️‍➡️🧎‍➡️🧎‍♂️‍➡️🏃‍♀️‍➡️🏃‍➡️🏃‍♂️‍➡️🐦‍🔥🍋‍🟩🍄‍🟫⛓️‍💥",
+            iOS: 17.4,
+            macOS: 14.4,
+            tvOS: 17.4,
+            watchOS: 10.4,
+            comment: "In this version, Apple removed the illustrated family emojis. Since they can't be rendered from this version and forward, the raw family badges have been added to their new location in the symbols category."
+        )
+    }
+
     static var v15: Self {
         .init(
             version: 15.0,
@@ -181,6 +198,9 @@ public extension EmojiVersion {
     
     /// The ``EmojiVersion`` that is used by the current OS.
     static var current: Self {
+        if #available(iOS 17.4, macOS 14.4, tvOS 17.4, watchOS 10.4, *) {
+            return .v15_1
+        }
         if #available(iOS 16.4, macOS 13.3, tvOS 16.4, watchOS 9.4, *) {
             return .v15
         } 
@@ -191,32 +211,21 @@ public extension EmojiVersion {
     }
     
     /// All currently unavailable emojis.
-    static var currentUnavailableEmojis: [Emoji] {
-        if let emojis = _currentUnavailableEmojis { return emojis }
-        let emojis = current.unavailableEmojis
-        _currentUnavailableEmojis = emojis
-        return emojis
-    }
+    static let currentUnavailableEmojis: [Emoji] = {
+        current.unavailableEmojis
+    }()
     
     /// All currently unavailable emojis, performance cached.
-    static var _currentUnavailableEmojis: [Emoji]?
-    
-    /// All currently unavailable emojis.
-    static var currentUnavailableEmojisDictionary: [String: Emoji] {
-        if let dict = _currentUnavailableEmojisDictionary { return dict }
+    static let currentUnavailableEmojisDictionary: [String: Emoji] = {
         let emojis = currentUnavailableEmojis
         let values = emojis.map { ($0.char, $0) }
         let dict = Dictionary(uniqueKeysWithValues: values)
-        _currentUnavailableEmojisDictionary = dict
         return dict
-    }
-    
-    /// All currently unavailable emojis, performance cached.
-    static var _currentUnavailableEmojisDictionary: [String: Emoji]?
+    }()
 
     /// All emoji versions that are defined in the library.
     static var all: [Self] {
-        [.v11, .v12, .v12_1, .v13, .v13_1, .v14, .v15]
+        [.v11, .v12, .v12_1, .v13, .v13_1, .v14, .v15, .v15_1]
     }
     
     /// All emoji versions that are available to the runtime.
