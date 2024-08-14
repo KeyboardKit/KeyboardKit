@@ -212,9 +212,9 @@ KeyboardKit is available under the MIT license.
 - ``EmojiCategory``
 - ``EmojiKeyboard``
 - ``EmojiKeyboardStyle``
+- ``EmojiProvider``
+- ``EmojiProviders``
 - ``EmojiVersion``
-- ``FrequentEmojiProvider``
-- ``MostRecentEmojiProvider``
 
 ### External
 
@@ -224,6 +224,7 @@ KeyboardKit is available under the MIT license.
 
 - ``Feedback``
 - ``FeedbackContext``
+- ``FeedbackService``
 - ``FeedbackSettings``
 
 ### Gestures
@@ -234,6 +235,7 @@ KeyboardKit is available under the MIT license.
 ### Host
 
 - ``KeyboardHostApplication``
+- ``KeyboardHostApplicationProvider``
 
 ### Layout
 

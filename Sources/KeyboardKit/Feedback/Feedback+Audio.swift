@@ -12,13 +12,13 @@ public extension Feedback {
     
     /// This enum defines standard audio feedback types.
     ///
-    /// You can call ``trigger()`` to play any feedback type.
+    /// Use a ``FeedbackService`` or ``KeyboardActionHandler``
+    /// to trigger audio feedback.
     ///
     /// Audio feedback has a unique system id that refers to
     /// system sounds. You can use ``customId(_:)`` to add a
     /// custom ID-based feedback type, and ``customUrl(_:)``
-    /// to add custom audio feedback types that play a local
-    /// audio resource from any URL.
+    /// to add custom audio feedback from any URL-based file.
     enum Audio: Codable, Equatable, Identifiable {
         
         /// Represents the sound of an input key.

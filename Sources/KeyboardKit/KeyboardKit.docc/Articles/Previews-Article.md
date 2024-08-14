@@ -72,7 +72,7 @@ You can take a look at the source code of the various views in the library for i
 
 ### Preview Components
 
-[KeyboardKit Pro][Pro] unlocks powerful keyboard previews that can be used to preview different locales, configurations and themes, like the ``KeyboardViewPreview``, the ``Keyboard``.``ButtonPreview``, etc.
+[KeyboardKit Pro][Pro] unlocks powerful keyboard previews that can be used to preview different locales, configurations and themes, like the ``KeyboardViewPreview``, the ``Keyboard``.``Keyboard/ButtonPreview``, etc.
 
 See the <doc:Essentials> article for more information about these preview components, screenshots, etc.
 

@@ -12,8 +12,8 @@ public extension Feedback {
     
     /// This enum defines standard haptic feedback types.
     ///
-    /// You can call ``trigger()`` to trigger a feedback, or
-    /// use the ``Feedback/HapticEngine/shared`` engine.
+    /// Use a ``FeedbackService`` or ``KeyboardActionHandler``
+    /// to trigger haptic feedback.
     enum Haptic: String, CaseIterable, Codable, Equatable, Identifiable {
         
         /// Represents feedback for an error event.

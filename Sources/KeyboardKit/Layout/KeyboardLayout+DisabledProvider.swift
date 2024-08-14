@@ -13,7 +13,7 @@ extension KeyboardLayout {
     /// This service can be used to disable keyboard layouts
     /// and just use a standard ``BaseProvider``.
     ///
-    /// See <doc:Layouts-Article> for more information.
+    /// See <doc:Layout-Article> for more information.
     open class DisabledProvider: KeyboardLayout.BaseProvider {
 
         public init() {

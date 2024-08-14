@@ -47,7 +47,7 @@ You can also use the ``KeyboardContext``'s ``KeyboardContext/addedLocales`` sett
 
 If the context ``KeyboardContext/locales`` or ``KeyboardContext/addedLocales`` has multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user do it with a ``KeyboardLocale/ContextMenu``. They will use ``KeyboardContext/addedLocales`` if it contains any locales, else use ``KeyboardContext/locales``.
 
-You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` action, or add a context menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)`` view modifier.
+You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` action, or add a context menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:locales:tapAction:)`` view modifier.
 
 
 ## How to change the primary language  
@@ -132,7 +132,7 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
         
         ``KeyboardView`` applies this menu to every key that triggers the ``KeyboardAction/nextLocale`` action, as well as to the space bar, if the ``Gestures/SpaceLongPressBehavior`` is set to ``Gestures/SpaceLongPressBehavior/openLocaleContextMenu``.
         
-        You can also add this menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:tapAction:)`` view modifier.
+        You can also add this menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:locales:tapAction:)`` view modifier.
     }
 }
 
