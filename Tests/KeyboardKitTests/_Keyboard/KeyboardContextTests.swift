@@ -30,6 +30,11 @@ class KeyboardContextTests: XCTestCase {
         #endif
     }
 
+    override func tearDown() {
+        context.isAutocapitalizationEnabled = true
+        context.localeIdentifier = "en"
+    }
+
     
     func locale(for id: String) -> Locale {
         Locale(identifier: id)
@@ -65,7 +70,7 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertFalse(context.hasFullAccess)
         XCTAssertNil(context.keyboardDictationReplacement)
         XCTAssertEqual(context.keyboardType, .alphabetic(.lowercased))
-        XCTAssertEqual(context.locale, .current)
+        XCTAssertEqual(context.locale, Locale(identifier: context.localeIdentifier))
         XCTAssertEqual(context.locales, [.current])
         XCTAssertFalse(context.needsInputModeSwitchKey)
         XCTAssertTrue(context.prefersAutocomplete)
@@ -118,6 +123,19 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertFalse(hasKeyboardTypeResult(for: .images))
         XCTAssertFalse(hasKeyboardTypeResult(for: .numeric))
         XCTAssertFalse(hasKeyboardTypeResult(for: .symbolic))
+    }
+
+    func testLocaleIdentifierSettingProperlyUpdatesLocales() {
+        context.localeIdentifier = "da"
+        XCTAssertEqual(context.locale.identifier, "da")
+        XCTAssertEqual(context.keyboardLocale, .danish)
+    }
+
+    func testLocaleIdentifierSettingProperlyRestores() {
+        context.localeIdentifier = "da"
+        let newContext = KeyboardContext()
+        XCTAssertEqual(newContext.locale.identifier, "da")
+        XCTAssertEqual(newContext.keyboardLocale, .danish)
     }
 
     func testSelectingNextLocaleSelectsFirstItemIfTheCurrentLocaleIsNotInLocales() {

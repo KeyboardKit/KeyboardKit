@@ -46,6 +46,7 @@ KeyboardKit Pro's KeyboardApp.HomeScreen will by default not show the new keyboa
 * `Keyboard.BottomRow` is no longer a Pro feature, but is available in the core library.
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
 * `KeyboardContext` has new settings that replace the ``KeyboardSettings`` settings properties.
+* `KeyboardContext` now persists the `keyboardLocaleIdentifier` and restores the locale on next launch.
 
 ### 👑 KeyboardKit Pro
 

@@ -36,7 +36,8 @@ import UIKit
 public class KeyboardContext: ObservableObject {
 
     public init() {
-        updateAutocapitalizationWithSetting()
+        syncAutocapitalizationWithSetting()
+        syncLocaleWithSetting()
     }
 
 
@@ -47,17 +48,45 @@ public class KeyboardContext: ObservableObject {
         KeyboardSettings.storeKeyPrefix(for: "keyboard")
     }
 
+    /// The manually added locale identifiers.
+    ///
+    /// This is a settings value that should not be mixed up
+    /// with ``locales``, which defines all locales that are
+    /// currently available to the keyboard.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
+    public var addedLocaleIdentifiersValue: Keyboard.StorageValue<[String]> = .init(value: [])
+
     /// Whether autocapitalization is enabled.
     ///
     /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
     @AppStorage("\(settingsPrefix)isAutocapitalizationEnabled", store: .keyboardSettings)
     public var isAutocapitalizationEnabled = true {
-        didSet { updateAutocapitalizationWithSetting() }
+        didSet { syncAutocapitalizationWithSetting() }
     }
 
-    /// A temp function to update autocapitalization for the
-    /// current ``isAutocapitalizationEnabled`` value.
-    func updateAutocapitalizationWithSetting() {
+    /// The locale identifier that is currently being used.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
+    public var localeIdentifier = Locale.current.identifier {
+        didSet { syncLocaleWithSetting() }
+    }
+
+    /// The next locale mode to use for ``selectNextLocale()``.
+    ///
+    /// This value defaults to `.allLocales` but will change
+    /// to `.addedLocales` whenever ``addedLocales`` changes.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)nextLocaleMode", store: .keyboardSettings)
+    public var nextLocaleMode = Keyboard.NextLocaleMode.allLocales
+
+
+    // MARK: - Settings Sync
+
+    func syncAutocapitalizationWithSetting() {
         let noAutocap = Keyboard.AutocapitalizationType.none
         let value = isAutocapitalizationEnabled ? nil : noAutocap
         if autocapitalizationTypeOverride != value {
@@ -65,9 +94,14 @@ public class KeyboardContext: ObservableObject {
         }
     }
 
+    func syncLocaleWithSetting() {
+        let locale = Locale(identifier: localeIdentifier)
+        setLocale(locale)
+    }
+
     
     // MARK: - Published Properties
-    
+
     /// Set this to override the ``autocapitalizationType``.
     @Published
     public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
@@ -92,9 +126,11 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
-    /// Whether or not autocapitalization is enabled.
-    @Published
-    public var isAutoCapitalizationEnabled = true
+    @available(*, deprecated, renamed: "isAutocapitalizationEnabled")
+    public var isAutoCapitalizationEnabled: Bool {
+        get { isAutocapitalizationEnabled }
+        set { isAutocapitalizationEnabled = newValue }
+    }
 
     /// Whether or not the keyboard is in floating mode.
     @Published
@@ -124,8 +160,13 @@ public class KeyboardContext: ObservableObject {
     public var keyboardType = Keyboard.KeyboardType.alphabetic(.lowercased)
 
     /// The locale that is currently being used.
+    ///
+    /// > Note: Settings this will update ``localeIdentifier``
+    /// and cause it to persist.
     @Published
-    public var locale = Locale.current
+    public var locale = Locale.current {
+        didSet { localeIdentifier = locale.identifier }
+    }
 
     /// The locales that are currently available.
     @Published
@@ -236,68 +277,5 @@ public extension KeyboardContext {
     /// Whether or not the context has multiple locales.
     var hasMultipleLocales: Bool {
         locales.count > 1
-    }
-
-    /// Map the current ``locale`` to a ``KeyboardLocale``.
-    var keyboardLocale: KeyboardLocale? {
-        let match = KeyboardLocale.allCases.first { $0.matches(locale) }
-        let fuzzy = KeyboardLocale.allCases.first { $0.matchesLanguage(in: locale) }
-        return match ?? fuzzy
-    }
-}
-
-
-// MARK: - Public Functions
-
-public extension KeyboardContext {
-
-    /// Whether or not the context has a certain locale.
-    func hasKeyboardLocale(
-        _ locale: KeyboardLocale
-    ) -> Bool {
-        self.locale.identifier == locale.localeIdentifier
-    }
-
-    /// Whether or not a certain keyboard type is selected.
-    func hasKeyboardType(
-        _ type: Keyboard.KeyboardType
-    ) -> Bool {
-        keyboardType == type
-    }
-
-    /// Select the next locale in ``locales``.
-    ///
-    /// This will loop through all locales in ``locales``.
-    func selectNextLocale() {
-        let fallback = locales.first ?? locale
-        guard let currentIndex = locales.firstIndex(of: locale) else { return locale = fallback }
-        let nextIndex = currentIndex.advanced(by: 1)
-        guard locales.count > nextIndex else { return locale = fallback }
-        locale = locales[nextIndex]
-    }
-
-    /// Set ``keyboardType`` to the provided type.
-    func setKeyboardType(_ type: Keyboard.KeyboardType) {
-        keyboardType = type
-    }
-
-    /// Set ``locale`` to the provided locale.
-    func setLocale(_ locale: Locale) {
-        self.locale = locale
-    }
-
-    /// Set ``locale`` to the provided keyboard locale.
-    func setLocale(_ locale: KeyboardLocale) {
-        self.locale = locale.locale
-    }
-
-    /// Set ``locales`` to the provided locales.
-    func setLocales(_ locales: [Locale]) {
-        self.locales = locales
-    }
-
-    /// Set ``locales`` to the provided keyboard locales.
-    func setLocales(_ locales: [KeyboardLocale]) {
-        self.locales = locales.map { $0.locale }
     }
 }

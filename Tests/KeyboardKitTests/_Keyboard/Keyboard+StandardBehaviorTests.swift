@@ -56,8 +56,10 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
     func testPreferredKeyboardTypeAfterGestureOnActionIsByDefaultContextPreferredType() {
         proxy.documentContextBeforeInput = "Hello!"
         proxy.autocapitalizationType = .allCharacters
+        keyboardContext.isAutocapitalizationEnabled = true
         keyboardContext.keyboardType = .alphabetic(.lowercased)
         let result = preferredKeyboardTypeResult(after: .release, on: .character("i"))
+        XCTAssertEqual(keyboardContext.keyboardLocale, .english)
         XCTAssertEqual(result, .alphabetic(.uppercased))
     }
 
