@@ -13,10 +13,10 @@ extension Callouts {
     /// This service class provides a standard way to handle
     /// keyboard callouts.
     ///
-    /// The class can register ``localizedProviders``, which
+    /// This class can register ``localizedServices``, which
     /// will then be used to resolve actions for the locales
     /// they specify. If a ``KeyboardLocale`` is not handled
-    /// by these locales the ``baseProvider`` is used.
+    /// by these locales the ``baseService`` is used.
     ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it
@@ -143,7 +143,6 @@ extension Callouts {
                 localizedServices: localizedProviders
             )
         }
-
 
         @available(*, deprecated, renamed: "LocalizedCalloutService")
         public typealias LocalizedProvider = CalloutService & LocalizedService

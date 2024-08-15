@@ -23,31 +23,31 @@ class Callouts_StandardServiceTests: XCTestCase {
         Callouts.StandardService.localizedServiceResolver = nil
     }
     
-    func testLocalizedServicesHaveNoDefaultProviders() {
-        let providers = service.localizedServices.dictionary
-        XCTAssertEqual(providers.keys.count, 0)
+    func testLocalizedServicesHaveNoDefaultServices() {
+        let services = service.localizedServices.dictionary
+        XCTAssertEqual(services.keys.count, 0)
     }
     
-    func testLocalizedServicesAcceptCustomProviders() {
+    func testLocalizedServicesAcceptCustomServices() {
         service = .init(
             keyboardContext: context,
             localizedServices: [
-                TestProvider(localeKey: "en"),
-                TestProvider(localeKey: "sv")
+                TestService(localeKey: "en"),
+                TestService(localeKey: "sv")
             ]
         )
-        let providers = service.localizedServices.dictionary
-        XCTAssertEqual(providers.keys.count, 2)
-        XCTAssertTrue(providers["en"] is TestProvider)
-        XCTAssertTrue(providers["sv"] is TestProvider)
+        let services = service.localizedServices.dictionary
+        XCTAssertEqual(services.keys.count, 2)
+        XCTAssertTrue(services["en"] is TestService)
+        XCTAssertTrue(services["sv"] is TestService)
     }
     
     
-    func testCalloutActionsMapsContextLocaleToProvider() {
+    func testCalloutActionsMapsContextLocaleToService() {
         context.locale = Locale(identifier: KeyboardLocale.english.id)
         service = .init(
             keyboardContext: context,
-            localizedServices: [TestProvider(localeKey: "en")]
+            localizedServices: [TestService(localeKey: "en")]
         )
         let action = KeyboardAction.character("a")
         let actions = service.calloutActions(for: action)
@@ -59,7 +59,7 @@ class Callouts_StandardServiceTests: XCTestCase {
         context.locale = Locale(identifier: KeyboardLocale.swedish.id)
         service = .init(
             keyboardContext: context,
-            localizedServices: [TestProvider(localeKey: "en")]
+            localizedServices: [TestService(localeKey: "en")]
         )
         let nonEmptyActions = service.calloutActions(for: .character("a"))
         let emptyActions = service.calloutActions(for: .character("k"))
@@ -69,28 +69,28 @@ class Callouts_StandardServiceTests: XCTestCase {
     
     func testCanRegisterLocalizedService() {
         let locale = KeyboardLocale.albanian
-        let new = TestProvider(localeKey: locale.localeIdentifier)
+        let new = TestService(localeKey: locale.localeIdentifier)
         XCTAssertNil(service.localizedServices.value(for: locale.locale))
         service.registerLocalizedService(new)
         XCTAssertIdentical(service.localizedServices.value(for: locale.locale), new)
     }
     
     
-    func testCanResolveLayoutProviderWithStaticResolver() {
+    func testCanResolveLayoutServiceWithStaticResolver() {
         Callouts.StandardService.localizedServiceResolver = { locale in
-            if locale == .albanian { return TestProvider(localeKey: "apa") }
+            if locale == .albanian { return TestService(localeKey: "apa") }
             return nil
         }
         context.setLocale(KeyboardLocale.albanian)
         XCTAssertNil(service.localizedServices.value(for: KeyboardLocale.albanian))
         let result = service.service(for: context)
-        XCTAssertEqual((result as? TestProvider)?.localeKey, "apa")
-        XCTAssertTrue(service.localizedServices.value(for: KeyboardLocale.albanian) is TestProvider)
+        XCTAssertEqual((result as? TestService)?.localeKey, "apa")
+        XCTAssertTrue(service.localizedServices.value(for: KeyboardLocale.albanian) is TestService)
     }
 }
 
-private class TestProvider: CalloutService, LocalizedService {
-    
+private class TestService: CalloutService, LocalizedService {
+
     init(localeKey: String) {
         self.localeKey = localeKey
     }

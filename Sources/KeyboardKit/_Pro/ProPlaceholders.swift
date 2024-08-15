@@ -143,7 +143,8 @@ public extension KeyboardApp {
 
     /// 👑 This view is unlocked by KeyboardKit Pro.
     struct SettingsScreen: View {
-        public var body: some View { EmptyView() }
+        public var body: some View {
+            EmptyView() }
     }
 }
 
@@ -160,11 +161,13 @@ public protocol KeyboardHostApplicationProvider {
 public extension KeyboardLayout {
 
     /// 👑 This is unlocked by KeyboardKit Pro
-    struct ProProvider {}
+    struct ProService {}
+
+    struct Test {}
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class iPadProProvider: iPadProvider {}
-    
+    class iPadProService: iPadService {}
+
     /// 👑 This is unlocked by KeyboardKit Pro.
     func adjusted(
         for displayMode: Keyboard.InputToolbarDisplayMode,

@@ -78,7 +78,7 @@ The ``KeyboardStatus`` namespace has status-specific views, that can be used to 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks additional keyboard status views and utilities, like a keyboard status section that can be added to the home or settings screen in an app that provider a custom keyboard.
+[KeyboardKit Pro][Pro] unlocks additional keyboard status views and utilities, like a keyboard status section that can be added to the home or settings screen in an app that has a custom keyboard.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 

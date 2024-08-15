@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+StandardProvider.swift
+//  KeyboardLayout+DisabledService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -11,10 +11,10 @@ import Foundation
 extension KeyboardLayout {
     
     /// This service can be used to disable keyboard layouts
-    /// and just use a standard ``BaseProvider``.
+    /// and just use a standard ``BaseService``.
     ///
     /// See <doc:Layout-Article> for more information.
-    open class DisabledProvider: KeyboardLayout.BaseProvider {
+    open class DisabledService: KeyboardLayout.BaseService {
 
         public init() {
             super.init(

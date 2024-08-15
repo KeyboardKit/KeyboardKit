@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+iPhoneProvider.swift
+//  KeyboardLayout+iPhoneService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-02.
@@ -11,16 +11,16 @@ import SwiftUI
 extension KeyboardLayout {
     
     /// This base class provides a foundation for generating
-    /// iPad-specific layouts.
+    /// iPhone-specific layouts.
     ///
-    /// The class will use the ``KeyboardLayout/BaseProvider``
-    /// layout, then apply iPad-specific adjustments.
+    /// This class will use the ``KeyboardLayout/BaseService``
+    /// layout, then apply iPhone-specific adjustments.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
     /// See <doc:Layout-Article> for more information.
-    open class iPhoneProvider: KeyboardLayout.BaseProvider {
+    open class iPhoneService: KeyboardLayout.BaseService {
 
         
         // MARK: - Overrides
@@ -201,7 +201,7 @@ extension KeyboardLayout {
     }
 }
 
-private extension KeyboardLayout.iPhoneProvider {
+private extension KeyboardLayout.iPhoneService {
 
     func isExpectedActionSet(
         _ actions: KeyboardAction.Rows

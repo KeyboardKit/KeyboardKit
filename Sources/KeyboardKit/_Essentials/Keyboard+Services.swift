@@ -75,8 +75,8 @@ public extension Keyboard {
         public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(
             keyboardContext: state.keyboardContext)
 
-        /// The keyboard layout provider to use.
-        public lazy var layoutProvider: KeyboardLayoutProvider = KeyboardLayout.StandardProvider()
+        /// The keyboard layout service to use.
+        public lazy var layoutService: KeyboardLayoutService = KeyboardLayout.StandardService()
 
         /// The space drag gesture handler to use.
         public lazy var spaceDragGestureHandler = Gestures.SpaceDragGestureHandler(
@@ -98,11 +98,16 @@ public extension Keyboard {
             set { autocompleteService = newValue }
         }
 
-
         @available(*, deprecated, renamed: "calloutService")
         public var calloutActionProvider: CalloutService {
             get { calloutService }
             set { calloutService = newValue }
+        }
+
+        @available(*, deprecated, renamed: "layoutService")
+        public var layoutProvider: KeyboardLayoutService {
+            get { layoutService }
+            set { layoutService = newValue }
         }
     }
 }

@@ -1,5 +1,5 @@
 //
-//  DemoLayoutProvider.swift
+//  DemoLayoutService.swift
 //  Keyboard
 //
 //  Created by Daniel Saidi on 2022-12-21.
@@ -8,17 +8,15 @@
 
 import KeyboardKit
 
-/// This provider inherits the standard provider, then makes
-/// demo-specific adjustments to the standard layout.
+/// This service inherits the standard service, then makes a
+/// few demo-specific adjustments to the standard layout.
 ///
-/// The provider will inject a rocket button into the layout.
-///
-/// You can play around with the class to see how it affects
-/// the demo keyboard.
+/// This service will inject a rocket button into the layout.
+/// You can fiddle it to see how it affects the layout.
 ///
 /// The ``KeyboardViewController`` shows how you can replace
-/// the standard provider with this custom one.
-class DemoLayoutProvider: KeyboardLayout.StandardProvider {
+/// the standard service with this custom one.
+class DemoLayoutService: KeyboardLayout.StandardService {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)

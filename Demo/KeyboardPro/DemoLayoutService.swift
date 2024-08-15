@@ -1,5 +1,5 @@
 //
-//  DemoLayoutProvider.swift
+//  DemoLayoutService.swift
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2022-12-21.
@@ -8,7 +8,7 @@
 
 import KeyboardKitPro
 
-/// This provider inherits the standard provider, then makes
+/// This service inherits the standard service, then makes
 /// demo-specific adjustments to the standard layout.
 ///
 /// The provider will inject a locale switcher to the layout,
@@ -19,7 +19,7 @@ import KeyboardKitPro
 ///
 /// The ``KeyboardViewController`` shows how you can replace
 /// the standard provider with this custom one.
-class DemoLayoutProvider: KeyboardLayout.StandardProvider {
+class DemoLayoutService: KeyboardLayout.StandardProvider {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)

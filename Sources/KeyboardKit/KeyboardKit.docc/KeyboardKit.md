@@ -242,8 +242,8 @@ KeyboardKit is available under the MIT license.
 - ``InputSet``
 - ``KeyboardLayout``
 - ``KeyboardLayoutIdentifiable``
-- ``KeyboardLayoutProvider``
-- ``KeyboardLayoutProviderProxy``
+- ``KeyboardLayoutService``
+- ``KeyboardLayoutServiceProxy``
 
 ### Localization
 

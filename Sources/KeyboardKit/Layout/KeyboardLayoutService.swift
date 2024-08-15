@@ -1,5 +1,5 @@
 //
-//  KeyboardLayoutProvider.swift
+//  KeyboardLayoutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// This protocol can be implemented by any classes that can
-/// provide dynamic keyboard layouts.
+/// generate keyboard layouts in various ways.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
@@ -20,8 +20,8 @@ import Foundation
 /// for each ``KeyboardLocale``.
 ///
 /// See <doc:Layout-Article> for more information.
-public protocol KeyboardLayoutProvider: AnyObject {
-    
+public protocol KeyboardLayoutService: AnyObject {
+
     /// Get a keyboard layout for the provided context.
     func keyboardLayout(
         for context: KeyboardContext

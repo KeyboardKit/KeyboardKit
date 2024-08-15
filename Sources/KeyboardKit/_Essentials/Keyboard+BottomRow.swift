@@ -40,7 +40,7 @@ public extension Keyboard {
                 leadingActions: leadingActions,
                 trailingActions: trailingActions,
                 actionHandler: services.actionHandler,
-                layoutProvider: services.layoutProvider,
+                layoutService: services.layoutService,
                 styleProvider: services.styleProvider,
                 keyboardContext: state.keyboardContext,
                 buttonContent: buttonContent,
@@ -54,6 +54,7 @@ public extension Keyboard {
         ///   - leadingActions: The actions to add before the space bar.
         ///   - trailingActions: The actions to add after the space bar.
         ///   - actionHandler: The action handler to use.
+        ///   - layoutService: The layout service to use.
         ///   - styleProvider: The style provider to use.
         ///   - keyboardContext: The keyboard context to use.
         ///   - buttonContent: The content view to use for buttons.
@@ -62,13 +63,13 @@ public extension Keyboard {
             leadingActions leading: [KeyboardAction],
             trailingActions trailing: [KeyboardAction],
             actionHandler: KeyboardActionHandler,
-            layoutProvider: KeyboardLayoutProvider,
+            layoutService: KeyboardLayoutService,
             styleProvider: KeyboardStyleProvider,
             keyboardContext: KeyboardContext,
             @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
             @ViewBuilder buttonView: @escaping ButtonViewBuilder
         ) {
-            let layout = layoutProvider.keyboardLayout(for: keyboardContext)
+            let layout = layoutService.keyboardLayout(for: keyboardContext)
             let width = layout.bottomRowSystemItemWidth ?? .percentage(0.15)
             let leading = leading.map { layout.createIdealItem(for: $0, width: width) }
             let space = layout.createIdealItem(for: .space, width: .available)
@@ -107,6 +108,33 @@ public extension Keyboard {
                 toolbar: { _ in EmptyView() }
             )
             .keyboardInputToolbarDisplayMode(.hidden)
+        }
+
+
+
+        // MARK: - Deprecated
+
+        @available(*, deprecated, message: "Use the layoutService initializer instead")
+        public init(
+            leadingActions leading: [KeyboardAction],
+            trailingActions trailing: [KeyboardAction],
+            actionHandler: KeyboardActionHandler,
+            layoutProvider: KeyboardLayoutProvider,
+            styleProvider: KeyboardStyleProvider,
+            keyboardContext: KeyboardContext,
+            @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
+            @ViewBuilder buttonView: @escaping ButtonViewBuilder
+        ) {
+            self.init(
+                leadingActions: leading,
+                trailingActions: trailing,
+                actionHandler: actionHandler,
+                layoutService: layoutProvider,
+                styleProvider: styleProvider,
+                keyboardContext: keyboardContext,
+                buttonContent: buttonContent,
+                buttonView: buttonView
+            )
         }
     }
 }

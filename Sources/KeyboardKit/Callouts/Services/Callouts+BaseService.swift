@@ -15,7 +15,7 @@ extension Callouts {
     /// This class only provides alphabetic, English callout
     /// actions. For localized, as well as symbolic, numeric
     /// and emoji-based callout actions, you must either use
-    /// KeyboardKit Pro or create your own providers.
+    /// KeyboardKit Pro or create your own services.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.

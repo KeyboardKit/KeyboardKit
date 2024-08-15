@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+BaseProvider.swift
+//  KeyboardLayout+BaseService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-02.
@@ -22,9 +22,9 @@ extension KeyboardLayout {
     /// then override any open parts that you want to change.
     ///
     /// See <doc:Layout-Article> for more information.
-    open class BaseProvider: KeyboardLayoutProvider {
-        
-        /// Create a base layout provider with input sets.
+    open class BaseService: KeyboardLayoutService {
+
+        /// Create a base layout service with input sets.
         ///
         /// - Parameters:
         ///   - alphabeticInputSet: The alphabetic input set to use.

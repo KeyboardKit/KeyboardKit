@@ -85,10 +85,9 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 
 ### 🗑️ Deprecations & Renamings
 
-* All settings types have been deprecated since settings have been moved to each context.
+* All settings types have been deprecated since settings have moved to contexts.
+* Most service types have been renamed to `*Service` for a more consistent naming.
 
-* `CalloutActionProvider` has been renamed to `CalloutService`.
-* `SpeechRecognizer` is renamed to `DictationSpeechRecognizer`.
 * `SystemKeyboard` has been renamed to the shorter `KeyboardView`.
 * `SystemKeyboardBottomRow` has been renamed to `Keyboard.BottomRow`.
 * `SystemKeyboardButtonPreview` has been renamed to `Keyboard.ButtonPreview`.

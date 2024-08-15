@@ -49,7 +49,7 @@ public struct KeyboardView<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
-        let serviceLayout = services.layoutProvider
+        let serviceLayout = services.layoutService
             .keyboardLayout(for: state.keyboardContext)
         self.init(
             layout: layout ?? serviceLayout,
@@ -345,7 +345,7 @@ private extension KeyboardView {
                         
                         KeyboardView(
                             layout: controller.services
-                                .layoutProvider
+                                .layoutService
                                 .keyboardLayout(for: .preview)
                                 .bottomRowLayout,
                             state: controller.state,

@@ -25,9 +25,6 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
 
         /// 💡 Setup a demo-specific action handler.
-        ///
-        /// The demo handler has custom code for tapping and
-        /// long pressing image actions.
         services.actionHandler = DemoActionHandler(
             controller: self,
             keyboardContext: state.keyboardContext,
@@ -38,31 +35,20 @@ class KeyboardViewController: KeyboardInputViewController {
             spaceDragGestureHandler: services.spaceDragGestureHandler)
         
         /// 💡 Setup a fake autocomplete service.
-        ///
-        /// The Pro demo uses real, on-device autocompletion.
         services.autocompleteService = FakeAutocompleteService(
             context: state.autocompleteContext
         )
         
         /// 💡 Setup a demo-specific callout service.
-        ///
-        /// The demo provider adds "keyboard" callout action
-        /// buttons to the "k" key.
         services.calloutService = Callouts.StandardService(
             keyboardContext: state.keyboardContext,
             baseService: DemoCalloutService()
         )
 
-        /// 💡 Setup a demo-specific layout provider.
-        ///
-        /// The demo provider adds a "next locale" button if
-        /// needed, as well as a rocket emoji button.
-        services.layoutProvider = DemoLayoutProvider()
-        
-        /// 💡 Setup a demo-specific style provider.
-        ///
-        /// The demo provider styles the rocket emoji button
-        /// and has some commented out code that you can try.
+        /// 💡 Setup a demo-specific layout service.
+        services.layoutService = DemoLayoutService()
+
+        /// 💡 Setup a demo-specific style service.
         services.styleProvider = DemoStyleProvider(
             keyboardContext: state.keyboardContext
         )
@@ -76,7 +62,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Add more locales to the keyboard.
         ///
-        /// The demo layout provider will add a "next locale"
+        /// The demo layout service will add a "next locale"
         /// button if you have more than one locale.
         state.keyboardContext.localePresentationLocale = .current
         state.keyboardContext.locales = [] // KeyboardLocale.all.locales

@@ -35,8 +35,8 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Add more locales to the keyboard.
         ///
-        /// ``DemoLayoutProvider`` adds a next locale button
-        /// if you have more than one locale.
+        /// The ``DemoLayoutService`` inserts a "next locale"
+        /// button if you have more than one locale.
         state.keyboardContext.localePresentationLocale = .current
         // state.keyboardContext.locales = This is set to the license locales
         
@@ -125,12 +125,12 @@ class KeyboardViewController: KeyboardInputViewController {
         /// the main app requires a code signed app group.
         state.dictationContext.setup(with: .app)
         
-        /// 💡 Setup a demo-specific layout provider.
+        /// 💡 Setup a demo-specific layout service.
         ///
-        /// The demo provider adds a "next locale" button if
+        /// This service adds a "next locale" button if it's
         /// needed, as well as a dictation button.
-        services.layoutProvider = DemoLayoutProvider()
-        
+        services.layoutService = DemoLayoutService()
+
         /// 💡 Setup a theme-based style provider.
         ///
         /// Themes are powerful ways to specify styles for a

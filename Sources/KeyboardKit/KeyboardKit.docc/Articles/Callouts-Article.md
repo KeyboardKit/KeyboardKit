@@ -17,7 +17,7 @@ Callouts are an important part of the typing experience, where input callouts ca
 
 KeyboardKit has ways to automatically show an ``Callouts/InputCallout`` when the user types, and has a ``CalloutService`` protocol that can provide actions to present in an ``Callouts/ActionCallout`` when long pressing certain keys.
 
-👑 [KeyboardKit Pro][Pro] unlocks localized providers for all locales. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks localized services for all locales. Information about Pro features can be found at the end of this article.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -39,7 +39,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 ## Callout Services
 
-In KeyboardKit, a ``CalloutService`` can be used to provide callout actions for any key, which are then presented when a key with actions is long pressed.
+In KeyboardKit, a ``CalloutService`` can be used to provide secondary callout actions for any key, which are then presented when a key with actions is long pressed.
 
 KeyboardKit automatically creates an instance of ``Callouts/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it.
 
@@ -140,15 +140,20 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``CalloutService`` for every locale in your license, which will be injected as localized services into the main ``Keyboard/Services/calloutService``.
+[KeyboardKit Pro][Pro] unlocks a localized ``CalloutService`` for every locale in your license, which will be injected as localized services into the main ``Keyboard/Services/calloutService`` when a valid license is registered.
 
-You can access any localized provider in your license like this:
+
+### Pro Callout Services
+
+KeyboardKit Pro unlocks a localized ``Callouts/ProService`` for every locale in your license.
+
+You can access any service in your license like this:
 
 ```swift
-let provider = try Callouts.ProService.Swedish()
+let service = try Callouts.ProService.Swedish()
 ```
 
-> Important: These Pro providers will throw a license error if the locale is not included in the license.
+> Important: These services will throw a license error if their locales are not included in the license.
 
 
 ### How to customize a Pro service
@@ -172,13 +177,13 @@ class KeyboardController: KeyboardInputViewController {
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
         setupPro(withLicenseKey: "...") { license in
-            setupCustomCalloutService()
+            setupCustomService()
         } view: { controller in
             // Return your keyboard view here
         }
     }
 
-    func setupCustomCalloutService() {
+    func setupCustomService() {
         do {
             let service = try CustomService()
             let standard = services.calloutService as? Callouts.StandardService

@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+DeviceBasedProvider.swift
+//  KeyboardLayout+DeviceBasedService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-12-29.
@@ -13,17 +13,17 @@ extension KeyboardLayout {
     /// This base class provides a foundation for generating
     /// layouts that are based on an ``InputSet`` and device.
     ///
-    /// This class will use either the ``iPhoneProvider`` or
-    /// ``iPadProvider``, based on the current device that's
+    /// The class will either use an ``iPhoneService`` or an
+    /// ``iPadService``, based on the current device that is
     /// specified by the ``KeyboardContext/deviceType``.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
     /// See <doc:Layout-Article> for more information.
-    open class DeviceBasedProvider: KeyboardLayout.BaseProvider, LocalizedService {
-        
-        /// Create an device-based keyboard layout provider.
+    open class DeviceBasedService: KeyboardLayout.BaseService, LocalizedService {
+
+        /// Create an device-based keyboard layout service.
         ///
         /// - Parameters:
         ///   - alphabeticInputSet: The alphabetic input set to use, by default ``InputSet/qwerty``.
@@ -44,15 +44,15 @@ extension KeyboardLayout {
         /// The locale identifier.
         public var localeKey = KeyboardLocale.english.id
         
-        /// The layout provider to use for iPad devices.
-        public lazy var iPadProvider: KeyboardLayoutProvider = KeyboardLayout.iPadProvider(
+        /// The layout service to use for iPad devices.
+        public lazy var iPadService: KeyboardLayoutService = KeyboardLayout.iPadService(
             alphabeticInputSet: alphabeticInputSet,
             numericInputSet: numericInputSet,
             symbolicInputSet: symbolicInputSet
         )
         
-        /// The layout provider to use for iPhone devices.
-        public lazy var iPhoneProvider: KeyboardLayoutProvider = KeyboardLayout.iPhoneProvider(
+        /// The layout service to use for iPhone devices.
+        public lazy var iPhoneService: KeyboardLayoutService = KeyboardLayout.iPhoneService(
             alphabeticInputSet: alphabeticInputSet,
             numericInputSet: numericInputSet,
             symbolicInputSet: symbolicInputSet
@@ -62,20 +62,27 @@ extension KeyboardLayout {
         open override func keyboardLayout(
             for context: KeyboardContext
         ) -> KeyboardLayout {
-            let provider = keyboardLayoutProvider(for: context)
-            let layout = provider.keyboardLayout(for: context)
+            let service = keyboardLayoutService(for: context)
+            let layout = service.keyboardLayout(for: context)
             return layout
         }
         
-        /// The provider to use for the provided context.
+        /// The layout service to use for a certain context.
+        open func keyboardLayoutService(
+            for context: KeyboardContext
+        ) -> KeyboardLayoutService {
+            switch context.deviceType {
+            case .phone: iPhoneService
+            case .pad: iPadService
+            default: iPhoneService
+            }
+        }
+
+        @available(*, deprecated, renamed: "keyboardLayoutService")
         open func keyboardLayoutProvider(
             for context: KeyboardContext
-        ) -> KeyboardLayoutProvider {
-            switch context.deviceType {
-            case .phone: iPhoneProvider
-            case .pad: iPadProvider
-            default: iPhoneProvider
-            }
+        ) -> KeyboardLayoutService {
+            keyboardLayoutService(for: context)
         }
     }
 }

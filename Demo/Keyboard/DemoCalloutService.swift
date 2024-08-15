@@ -16,7 +16,7 @@ import UIKit
 /// to see how it affects the demo keyboard.
 ///
 /// The ``KeyboardViewController`` shows how you can replace
-/// the standard provider with this custom one. 
+/// the standard service with this custom one. 
 class DemoCalloutService: Callouts.BaseService {
 
     override func calloutActionString(for char: String) -> String {

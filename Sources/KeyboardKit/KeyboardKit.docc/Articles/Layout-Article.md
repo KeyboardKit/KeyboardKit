@@ -17,9 +17,9 @@ A flexible keyboard layout is an important part of a software keyboard, and must
 
 In KeyboardKit, an ``InputSet`` is used to create a ``KeyboardLayout``, where the input set specifies input keys and the layout specifies the full keyboard layout.
 
-KeyboardKit has a ``KeyboardLayoutProvider`` protocol that is implemented by classes that can provide dynamic layouts, as well as many base classes that provide standard layouts that can be customized.
+KeyboardKit has a ``KeyboardLayoutService`` protocol that is implemented by classes that can create keyboard layouts, as well as many base classes that create standard layouts that can then be customized.
 
-👑 [KeyboardKit Pro][Pro] unlocks localized input sets and layout providers for all locales, as well as additional input sets like ``InputSet/qwertz`` and ``InputSet/azerty``, and support for iPad Pro. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks localized input sets and layout services for all locales, as well as additional sets like ``InputSet/qwertz`` and ``InputSet/azerty``, and support for iPad Pro. Information about Pro features can be found at the end of this article.
 
 
 
@@ -31,7 +31,7 @@ KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``
 
 
 
-## Keyboard layouts
+## Keyboard Layouts
 
 A ``KeyboardLayout`` specifies the full set of keys om a keyboard. Layouts vary greatly for different device types, screen orientations, locales, keyboard configurations, etc.
 
@@ -41,24 +41,24 @@ This is however not always true. Most layouts are different on iPhone and iPad, 
 
 
 
-## Keyboard layout providers
+## Keyboard Layout Services
 
-Given all this, the layout engine has to be flexible. KeyboardKit has a ``KeyboardLayoutProvider`` that generates layouts at runtime, based on many different factors. Layout providers can use any information to tweak any part of a layout at any time.
+Given all this, the layout engine has to be flexible. KeyboardKit has a ``KeyboardLayoutService`` that generates layouts at runtime, based on many different factors. Layout services can use any information to tweak any part of a layout at any time.
 
-KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized providers into it.
+KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it.
 
 
 
-## How to create a custom provider
+## How to create a custom layout service
 
-You can create a custom layout provider to customize the layout for certain locales or devices, or to provide a completely custom layout.
+You can create a custom layout service to customize the layout for certain locales or devices, or to provide a completely custom layout.
 
-You can implement ``KeyboardLayoutProvider`` from scratch, or inherit and customize any of the ``KeyboardLayout/StandardProvider``, ``KeyboardLayout/BaseProvider``, ``KeyboardLayout/DeviceBasedProvider``, ``KeyboardLayout/iPadProvider``, ``KeyboardLayout/iPadProProvider``, or ``KeyboardLayout/iPhoneProvider`` base classes. 
+You can implement the ``KeyboardLayoutService`` protocol from scratch, or inherit and customize any of the ``KeyboardLayout/StandardService``, ``KeyboardLayout/BaseService``, ``KeyboardLayout/DeviceBasedService``, ``KeyboardLayout/iPadService``, ``KeyboardLayout/iPadProService``, or ``KeyboardLayout/iPhoneService`` base classes. 
 
-For instance, here's a custom provider that inherits ``KeyboardLayout/StandardProvider``, then injects a ``KeyboardAction/tab`` key into the layout:
+For instance, here's a custom service that inherits ``KeyboardLayout/StandardService``, then injects a ``KeyboardAction/tab`` key into the layout:
 
 ```swift
-class CustomKeyboardLayoutProvider: KeyboardLayout.StandardProvider {
+class CustomKeyboardLayoutService: KeyboardLayout.StandardService {
     
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
@@ -74,13 +74,13 @@ class CustomKeyboardLayoutProvider: KeyboardLayout.StandardProvider {
     }
 }
 ```
-To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/layoutProvider`` property:
+To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/layoutService`` property:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        services.layoutProvider = CustomKeyboardLayoutProvider()
+        services.layoutService = CustomKeyboardLayoutService()
         super.viewDidLoad()
     }
 }
@@ -92,7 +92,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license, and automatically injects them into the ``KeyboardLayout/StandardProvider`` when a valid license key is registered.
+[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutService`` for every locale in your license, which are injected as localized services into the main ``Keyboard/Services/calloutService`` when a valid license is registered.
 
 KeyboardKit Pro also unlocks more standard input sets, like QWERTZ and AZERTY, adds more capabilities to the ``KeyboardLayout`` and in general makes it a lot easier to work with layouts
 
@@ -107,34 +107,34 @@ KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` and ``InputSet
 KeyboardKit Pro unlocks more ``KeyboardLayout`` capabilities, like ``KeyboardLayout/adjusted(for:layoutConfiguration:)``, ``KeyboardLayout/copy()``, and ``KeyboardLayout/createIdealItem(for:width:alignment:)``, which are used by some other Pro features.
 
 
-### iPad Pro layout support
+### iPad Pro Layout Service
 
-KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProProvider`` that can be used to generate iPad Pro-specific layouts. It's used by some locales, and will be added to more locales over time. 
+KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProService`` that can be used to generate iPad Pro-specific layouts. It's used by some locales, and will be added to more locales over time. 
 
 
-### Localized layout providers
+### Pro Layout Services
 
-KeyboardKit Pro unlocks a localized ``KeyboardLayoutProvider`` for every locale in your license. 
+KeyboardKit Pro unlocks a localized ``KeyboardLocale/ProService`` for every locale in your license. 
 
-You can access any provider in your license like this:
+You can access any service in your license like this:
 
 ```swift
-let swedish = try KeyboardLayout.ProProvider.Swedish()
+let swedish = try KeyboardLayout.ProService.Swedish()
 ```
 
-> Important: These providers will throw a license error if their locale is not included in the license.
+> Important: These services will throw a license error if their locales are not included in the license.
 
 
-### How to customize a localized provider
+### How to customize a Pro service
 
-You can inherit and customize any localized provider, then manually register your provider *after* registering your license key:
+You can inherit and customize any ``KeyboardLocale/ProService``, then manually register your service *after* registering your license key:
 
 ```swift
-class CustomProvider: KeyboardLayout.ProProvider.Swedish {
+class CustomService: KeyboardLayout.ProService.Swedish {
 
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let provider = keyboardLayoutProvider(for: context)
-        var layout = provider.keyboardLayout(for: context)
+        let service = keyboardLayoutService(for: context)
+        var layout = service.keyboardLayout(for: context)
         guard let item = layout.tryCreateBottomRowItem(
             for: .character("🇸🇪")
         ) else { return layout }
@@ -149,17 +149,17 @@ class KeyboardController: KeyboardInputViewController {
         super.viewWillSetupKeyboard()
 
         setupPro(withLicenseKey: "...") { license in
-            setupCustomProvider()
+            setupCustomService()
         } view: { controller in
             // Return your keyboard view here
         }
     }
 
-    func setupCustomProvider() {
+    func setupCustomService() {
         do {
-            let provider = try CustomProvider()
-            let standard = services.layoutProvider as? KeyboardLayout.StandardProvider
-            standard?.registerLocalizedProvider(provider)
+            let service = try CustomService()
+            let standard = services.layoutService as? KeyboardLayout.StandardService
+            standard?.registerLocalizedService(service)
         } catch {
             print(error)
         }
@@ -167,7 +167,7 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-This is useful for the cases when you want to make modifications to a single locale, but keep all other locales unaffected.
+This is useful for when you want to make modifications to a single locale's layout, but keep all other locales the same.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

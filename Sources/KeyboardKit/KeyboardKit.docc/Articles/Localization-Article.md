@@ -139,9 +139,9 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks an ``InputSet``, a ``KeyboardLayoutProvider`` and a ``CalloutService`` for every locale in your license. 
+[KeyboardKit Pro][Pro] unlocks more ``InputSet``s, a ``KeyboardLayoutService`` and a ``CalloutService`` for every locale in your license. 
 
-This lets KeyboardKit create a fully localized ``KeyboardView`` for every supported locale, with no additional code needed. You can customize any part for any locale at any time, whenever needed.
+This lets KeyboardKit create a fully localized ``KeyboardView`` for every locale, with no additional code needed. You can customize any part for any locale at any time, whenever needed.
 
 After setting up KeyboardKit Pro with your license key, as described in the <doc:Getting-Started> article, you can just change the ``KeyboardContext/locale`` to automatically update the keyboard view for any locale in your license.
 
