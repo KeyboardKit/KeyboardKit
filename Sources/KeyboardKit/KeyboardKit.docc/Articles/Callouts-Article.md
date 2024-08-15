@@ -47,26 +47,26 @@ KeyboardKit automatically creates an instance of ``Callouts/StandardService`` an
 
 ## How to show input and action callouts
 
-You can apply a ``SwiftUI/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view extension to make any view act as the container of input and action callouts:
+The ``KeyboardView`` and ``Keyboard/Button`` will automatically apply the proper view extensions to make input and action callouts work, so you don't have to do anything to make action and input callouts work.
+
+For other views, you can apply the ``SwiftUI/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view extension to make any view act as the container of input and action callouts:
 
 ```swift
 MyKeyboard()
     .keyboardCalloutContainer(...)
 ```
 
-This will bind a ``CalloutContext`` to the view, then apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that show as this context changes. There are also separate input and action-specific container extensions.
-
-There are also individual extensions for ``SwiftUI/View/keyboardActionCalloutContainer(calloutContext:keyboardContext:)`` and ``SwiftUI/View/keyboardInputCalloutContainer(calloutContext:keyboardContext:)``. 
-
-The ``KeyboardView`` and ``Keyboard/Button`` will automatically apply the proper extensions and update the context as you interact with them.
+This will bind a ``CalloutContext`` to the view and apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as it changes. 
 
 
 
 ## How to create a custom callout service
 
-You can create a custom ``CalloutService`` to customize which secondary callout actions to show for certain ``KeyboardAction``s.
+You can create a custom ``CalloutService`` to customize which secondary callout actions to show for different ``KeyboardAction``s.
 
-You can implement the ``CalloutService`` protocol from scratch, or inherit and customize ``Callouts/BaseService`` or ``Callouts/StandardService``. For instance, here's a custom service that inherits ``Callouts/StandardService`` and customizes the actions for the $ key:
+You can implement the ``CalloutService`` protocol from scratch, or inherit and customize ``Callouts/BaseService`` or ``Callouts/StandardService`` to get a lot of stuff for free. 
+
+For instance, here's a custom service that inherits ``Callouts/StandardService`` and customizes the actions for the `$` key:
 
 ```swift
 class CustomCalloutService: Callout.StandardService {
@@ -85,7 +85,8 @@ class CustomCalloutService: Callout.StandardService {
 }
 ```
 
-To use this provider instead of the standard one, just inject it into ``KeyboardInputViewController/services``:
+
+To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/calloutService`` property:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -107,26 +108,26 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
 
 @TabNavigator {
     
-    @Tab("Action Callout") {
+    @Tab("Callouts.ActionCallout") {
         
         The ``Callouts/ActionCallout`` view mimics a native action callout, and can present secondary actions when a keyboard key is long-pressed:
         
         @Row {
             @Column { }
-            @Column(size: 2) { ![ActionCallout](actioncallout) }
+            @Column(size: 3) { ![ActionCallout](actioncallout) }
             @Column { }
         }
         
         The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUI/View/actionCalloutStyle(_:)`` view modifier.
     }
     
-    @Tab("Input Callout") {
+    @Tab("Callouts.InputCallout") {
         
-        The ``Callouts/InputCallout`` view mimics a native input callout, and can be used to show the currently pressed key as the user types:
+        The ``Callouts/InputCallout`` view mimics a native input callout, which can be used to show the currently pressed key as the user types:
         
         @Row {
             @Column { }
-            @Column(size: 2) { ![InputCallout](inputcallout) }
+            @Column(size: 3) { ![InputCallout](inputcallout) }
             @Column { }
         }  
         
@@ -139,28 +140,29 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``CalloutService`` for every locale in your license
+[KeyboardKit Pro][Pro] unlocks a localized ``CalloutService`` for every locale in your license, which will be injected as localized services into the main ``Keyboard/Services/calloutService``.
 
-You can access any provider in your license like this:
+You can access any localized provider in your license like this:
 
 ```swift
 let provider = try Callouts.ProService.Swedish()
 ```
 
-> Important: These providers will throw a license error if their locale is not included in the license.
+> Important: These Pro providers will throw a license error if the locale is not included in the license.
 
 
-### How to customize a Pro callout service
+### How to customize a Pro service
 
-You can inherit and customize any localized callout service, then manually register your service *after* registering your license key:
+You can inherit and customize any ``Callouts/ProService``, then manually register your service *after* registering your license key:
 
 ```swift
 class CustomService: Callouts.ProService.Swedish {
 
+    /// This string will be converted to a list of keyboard actions
     override func calloutActionString(for char: String) -> String {
         switch char {
-        case "s": return "sweden"
-        default: return ""
+        case "s": "sweden"
+        default: ""
         }
     }
 }
@@ -169,15 +171,14 @@ class KeyboardController: KeyboardInputViewController {
 
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
-
         setupPro(withLicenseKey: "...") { license in
-            setupCustomProvider()
+            setupCustomCalloutService()
         } view: { controller in
             // Return your keyboard view here
         }
     }
 
-    func setupCustomProvider() {
+    func setupCustomCalloutService() {
         do {
             let service = try CustomService()
             let standard = services.calloutService as? Callouts.StandardService
@@ -189,7 +190,7 @@ class KeyboardController: KeyboardInputViewController {
 }
 ```
 
-This is useful for the cases when you want to make modifications to a single locale, but keep all other locales unaffected.
+This is useful for when you want to make modifications to a single locale's callout actions, but keep all other locales the same.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

@@ -19,13 +19,13 @@ These gestures can be complicated to set up, but KeyboardKit provides you with h
 
 
 
-## Gestures namespace
+## Gestures Namespace
 
 KeyboardKit has a ``Gestures`` namespace with gesture-related types, like ``Gestures/GestureButton``, ``Gestures/ScrollViewGestureButton``, etc.
 
 
 
-## Keyboard gestures
+## Keyboard Gestures
 
 KeyboardKit has a ``Gestures/KeyboardGesture`` enum that defines supported keyboard gestures, like ``Gestures/KeyboardGesture/press``, ``Gestures/KeyboardGesture/release``, ``Gestures/KeyboardGesture/doubleTap``, etc.
 

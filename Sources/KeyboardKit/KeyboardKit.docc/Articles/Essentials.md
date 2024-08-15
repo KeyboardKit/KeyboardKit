@@ -142,7 +142,7 @@ The ``Keyboard`` namespace has a lot of views, styles, and view-related types:
         
         @Row {
             @Column {}
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![Keyboard View](keyboardview-english)
             }
             @Column {}
@@ -155,7 +155,7 @@ The ``Keyboard`` namespace has a lot of views, styles, and view-related types:
         
         @Row {
             @Column {}
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![Keyboard Button](keyboardbuttonpreview)
             }
             @Column {}
@@ -221,7 +221,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
 
         @Row {
             @Column { }
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![KeyboardView in Swedish](keyboardview-swedish)
             }
             @Column { }
@@ -235,7 +235,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
 
         @Row {
             @Column { }
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![Emoji Keyboard](emojikeyboard)
             }
             @Column { }
@@ -249,7 +249,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
 
         @Row {
             @Column { }
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![Input Row in iPad](inputtoolbar-ipad)
             }
             @Column { }
@@ -296,7 +296,7 @@ KeyboardKit Pro also unlocks ``Keyboard``-related previews, that can be used to 
 
         @Row {
             @Column { }
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![Keyboard Button Preview](keyboardbuttonpreview)
             }
             @Column { }

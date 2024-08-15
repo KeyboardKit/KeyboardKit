@@ -19,11 +19,11 @@ KeyboardKit provides additional, keyboard-specific colors that make it easy to a
 
 ## Color Extensions
 
-KeyboardKit has additional colors that aim to match native iOS system colors, for instance ``SwiftUI/Color/keyboardBackground``. See ``SwiftUI/Color`` for a full list of additional colors that are provided by the library.
+KeyboardKit defines additional colors that aim to match native iOS system colors, like ``SwiftUI/Color/keyboardBackground``. See ``SwiftUI/Color`` for a full list of additional colors that are provided by the library.
 
 Colors without the **ForDarkAppearance** name suffix support both light & dark mode, while colors with the suffix are meant to be used for dark appearance keyboards in light mode.
 
-KeyboardKit also has contextual color functions that take a ``KeyboardContext``, for instance ``SwiftUI/Color/keyboardBackground(for:)`` and base the color on the context. It's recommended to use these functions instead of the raw color values. 
+KeyboardKit also has contextual color functions that take a ``KeyboardContext``, for instance ``SwiftUI/Color/keyboardBackground(for:)`` and base the result on the context. Use these functions instead of the raw color values whenever possible. 
 
 
 
@@ -35,9 +35,7 @@ iOS namely provide keyboard extensions with an invalid color scheme when it's us
 
 Since dark appearance keyboards in light mode look quite different from keyboards in dark mode, this bug makes it impossible to apply the correct style, since it's impossible to determine if the system uses light or dark mode.
 
-To work around this bug, some colors use a semi-transparent color with an opacity that aims to look good in both light and dark mode.
-
-This has been [reported to Apple][Bug].
+To work around this bug, which has been [reported to Apple][Bug], some colors use a semi-transparent color with an opacity that aims to look good in both light and dark mode.
 
 
 

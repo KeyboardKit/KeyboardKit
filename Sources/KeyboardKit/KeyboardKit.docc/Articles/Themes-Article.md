@@ -219,7 +219,7 @@ KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it e
         
         @Row {
             @Column {}
-            @Column(size: 2) { ![ThemeShelf](themeshelf) }
+            @Column(size: 3) { ![ThemeShelf](themeshelf) }
             @Column {}
         }
         

@@ -38,6 +38,12 @@ public extension Autocomplete {
     class RemoteService {}
 }
 
+public extension Callouts {
+
+    /// 👑 This is unlocked by KeyboardKit Pro
+    struct ProService {}
+}
+
 public extension Dictation {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -152,7 +158,10 @@ public protocol KeyboardHostApplicationProvider {
 }
 
 public extension KeyboardLayout {
-    
+
+    /// 👑 This is unlocked by KeyboardKit Pro
+    struct ProProvider {}
+
     /// 👑 This is unlocked by KeyboardKit Pro.
     class iPadProProvider: iPadProvider {}
     

@@ -124,7 +124,7 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
         
         @Row {
             @Column {}
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![Locale Context Menu](localecontextmenu)
             }
             @Column {}

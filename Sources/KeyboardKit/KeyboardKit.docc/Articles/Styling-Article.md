@@ -15,7 +15,7 @@ This article describes the KeyboardKit styling engine.
 
 While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit keyboards can be customized to great extent.
 
-[KeyboardKit Pro][Pro] unlocks a theme engine and many themes. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a theme engine and many themes. Information about Pro features can be found at the end of this article.
 
 
 
@@ -95,7 +95,7 @@ class CustomKeyboardStyleProvider: KeyboardStyle.StandardProvider {
 }
 ```
 
-To use this provider instead of the standard one, just inject it into ``KeyboardInputViewController/services``:
+To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/styleProvider`` property:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

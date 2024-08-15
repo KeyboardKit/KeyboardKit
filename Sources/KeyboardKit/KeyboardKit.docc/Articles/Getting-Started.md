@@ -14,7 +14,7 @@ This article describes how to get started with KeyboardKit.
 }
 
 
-This article describes how to get started with both KeyboardKit & KeyboardKit Pro. Each section will first show you how to do something for KeyboardKit, then for KeyboardKit Pro.
+This article describes how to get started with KeyboardKit and KeyboardKit Pro. Each section will first show you how to do something specific for KeyboardKit, then for KeyboardKit Pro.
 
 
 
@@ -26,7 +26,7 @@ Keyboard extensions can use KeyboardKit to create custom keyboards, while the ma
 
 ## How to set up KeyboardKit for a keyboard extension
 
-To set up KeyboardKit for a keyboard extension, import KeyboardKit and let `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+To set up KeyboardKit for a keyboard extension, import KeyboardKit and let `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of ``UIInputViewController``:
 
 ```swift
 import KeyboardKit // or KeyboardKitPro
@@ -36,9 +36,9 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, and more.
 
-If you just want to use the standard ``KeyboardView``, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything for you.
+To use the standard ``KeyboardView``, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything for you.
 
-To replace or customize the standard ``KeyboardView``, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any setup function, for instance:
+To replace or customize the ``KeyboardView``, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any setup function, for instance:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -61,12 +61,12 @@ class KeyboardViewController: KeyboardInputViewController {
 
 You can use the view builder `controller` parameter to access ``KeyboardInputViewController/state``, ``KeyboardInputViewController/services`` and any other properties and functions you need.
 
-> Warning: A very important thing that you MUST consider when you use `setup` or `setupPro` with a `view` builder, is that the `view` builder provides you with an `unowned` controller reference, since referring to `self` from the view builder can cause memory leaks. However, since this reference is a ``KeyboardInputViewController``, you must still use `self` when you have to refer to your specific controller class. If you do, it is VERY important to add `[weak self]` or `[unowned self]` to the builder. If you don't, the `self` reference will cause a memory leak.
+> Warning: A very important thing to consider when you use `setup` or `setupPro` with a `view` builder, is that the `view` builder provides you with an `unowned` controller reference, since referring to `self` from the view builder can cause memory leaks. However, since this reference is a ``KeyboardInputViewController``, you must still use `self` if you must refer to a specific controller class. If you do, it is VERY important to add `[weak self]` or `[unowned self]` to the builder, otherwise `self` will cause a memory leak.
 
 
 ### 👑 KeyboardKit Pro
 
-Unlike KeyboardKit, KeyboardKit Pro has a setup function that lets you register a license key, after which KeyboardKit Pro automatically sets up your license and unlocks all included features.
+Unlike KeyboardKit, KeyboardKit Pro has a setup function that lets you register a license key, after which KeyboardKit Pro automatically sets up your license and unlocks all included locales and features.
 
 To use KeyboardKit Pro with the default ``KeyboardView``, just call **setupPro** without a view in **viewDidLoad**:
 
@@ -85,8 +85,6 @@ class KeyboardViewController: KeyboardInputViewController {
             }
             licenseConfiguration: { license in
                 // This is called if the license registration succeeds.
-                // You can use this license to configure your keyboard.
-                // You can now also access all KeyboardKit Pro features.
             }
         )
     }
@@ -108,31 +106,22 @@ class KeyboardViewController: KeyboardInputViewController {
             licenseError: { error in ... }
             licenseConfiguration: { license in ... }
             view: { controller in
-                KeyboardView(
-                    state: controller.state,
-                    services: controller.services,
-                    buttonContent: { $0.view },
-                    buttonView: { $0.view },
-                    emojiKeyboard: { $0.view },
-                    toolbar: { _ in MyCustomToolbar() }
-                )
+                // Return a customized KeyboardView or a custom view here
             }
         )
     }
 }
 ```
 
-Since Basic, Silver, and monthly Gold licenses validate licenses over the Internet, your keyboard extension must enable Full Access to be able to make network requests. This is not needed for yearly Gold and custom licenses, which are validated on-device.  
+The Basic license unlocks 1 locale, Silver unlocks 5 and Gold unlocks all supported locales. You can change locales once for each new version of your app, after which the locales will be persisted for that app version.
 
-> Important: A Basic license unlocks 1 locale, Silver unlocks 5 and Gold unlocks all supported locales. You can change which locales to use for each new version of your app, after which the locales will be persisted for that app version.
+> Important: Since Basic, Silver, & monthly Gold licenses validate licenses over the Internet, your keyboard extension must enable Full Access to be able to make network requests. This is not needed for yearly Gold and custom licenses, which are validated on-device.  
  
 
 
 ## How to set up KeyboardKit for an app
 
-You can use KeyboardKit in your main app, to check the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place to provide app settings, since it has more available space than the keyboard extension.
-
-You don't have to set up KeyboardKit in your app. Just import KeyboardKit in any file where you want to use it, and you're good to go.
+You can use KeyboardKit in your main app, to check the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place for app settings, since it has more space. 
 
 
 ### 👑 KeyboardKit Pro
@@ -191,9 +180,11 @@ Failing to set the search paths will cause a runtime crash when you try to use K
 
 ## How to use KeyboardKit state & services
 
-The KeyboardKit ``KeyboardInputViewController`` provides you with keyboard-specific observable ``KeyboardInputViewController/state`` and ``KeyboardInputViewController/services``, that let you build powerful keyboards.
+The main ``KeyboardInputViewController`` provides you with keyboard-specific observable ``KeyboardInputViewController/state`` and ``KeyboardInputViewController/services``, that let you build powerful keyboards. 
 
-KeyboardKit injects all these observable state types into the view hierarchy as environment objects, to let you access them like this:
+### State
+
+KeyboardKit injects all the observable state into the view hierarchy as environment objects when you set it up, which lets you access the various state types like this:
 
 ```swift
 struct CustomKeyboard: View {
@@ -215,8 +206,11 @@ struct CustomKeyboard: View {
 }
 ```
 
-Services are not injected into the view hierarchy, and must be passed around. KeyboardKit uses init injection for both state and services.
+The observable state types lets you configure the keyboard and its various features. They provide both observable properties and auto-persisted ones, based on how each property should work.
 
+### Services
+
+Services are not injected into the view hierarchy, and must be passed around. KeyboardKit uses init injection for both state and services. Examples of services are the ``KeyboardActionHandler`` which handles ``KeyboardAction``s, ``FeedbackService``, etc.
 
 You can easily modify any state and replace any service with custom implementations. For instance, here we disable autocomplete with the shared ``AutocompleteContext`` and replace the standard ``KeyboardActionHandler`` with a custom one:
 

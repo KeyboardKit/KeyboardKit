@@ -74,8 +74,7 @@ class CustomKeyboardLayoutProvider: KeyboardLayout.StandardProvider {
     }
 }
 ```
-
-To use this provider instead of the standard one, just inject it into ``KeyboardInputViewController/services``:
+To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/layoutProvider`` property:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

@@ -2,11 +2,9 @@
 
 This article describes the KeyboardKit dictation engine.
 
-Dictation can be used to let users enter text by speaking instead of typing on the keyboard.
+Dictation can be used to let users enter text by speaking instead of typing on the keyboard. Since keyboard extensions have no access to the microphone, KeyboardKit provides tools that let you perform dictation in both the app and trigger it from the keyboard extension.
 
-Dictation can be hard to implement in keyboards, where no microphone access is available. KeyboardKit therefore provides dictation-specific tools that lets you perform dictation in both the app and keyboard extension.
-
-In KeyboardKit, a ``KeyboardDictationService`` can be used to perform autocomplete from the keyboard. Unlike other service types, there is no open-source implementation of this protocol.
+In KeyboardKit, a ``KeyboardDictationService`` can be used to perform autocomplete from the keyboard, by triggering the main app and then (try to) return to the keyboard once dictation ends.
 
 👑 [KeyboardKit Pro][Pro] unlocks dictation services for app- and keyboard-based dictation. Information about Pro features can be found at the end of this article.
 
@@ -77,32 +75,32 @@ KeyboardKit Pro unlocks views in the ``Dictation`` namespace, that let you quick
 
 @TabNavigator {
     
-    @Tab("Screen") {
-        KeyboardKit Pro unlocks a dictation ``Dictation/Screen`` that lets you overlay your main app with a custom dictation view while dictation is active:
+    @Tab("Dictation.Screen") {
+        KeyboardKit Pro unlocks a ``Dictation``.``Dictation/Screen`` that lets you overlay your app with a custom dictation view while dictation is active. It will automatically fade in when dictation is started, if you use the Pro keyboard dictation view modifiers.
 
         @Row {
             @Column {}
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![DictationScreen](dictationscreen)
             }
             @Column {}
         }
         
-        This screen will automatically fade in when a dictation is started, if you use the Pro keyboard dictation view modifiers. It can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
+        This view can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
     
-    @Tab("BarVisualizer") {
-        KeyboardKit Pro unlocks a ``Dictation/BarVisualizer`` that can be used to visualize an ongoing dictation with a collection of animating bars.
+    @Tab("Dictation.BarVisualizer") {
+        KeyboardKit Pro unlocks a ``Dictation``.``Dictation/BarVisualizer`` that can be used to visualize ongoing dictations with a set of animated bars. You can change the number of bars, the colors & thickness of each bar, etc.
 
         @Row {
             @Column {}
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![DictationScreen](dictationscreen)
             }
             @Column {}
         }
         
-        You can change the number of bars, the colors & thickness of the bars, etc. The view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
+        This view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
     }
 }
 

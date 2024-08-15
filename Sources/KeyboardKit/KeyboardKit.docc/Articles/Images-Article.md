@@ -25,7 +25,7 @@ KeyboardKit has additional images that aim to match native iOS system images, fo
 
 @Row {
     @Column {}
-    @Column(size: 2) {
+    @Column(size: 3) {
         ![SF Symbol Images](images)
     }
     @Column {}
@@ -45,14 +45,14 @@ These images are prefixed with **keyboard** to make them easy to find, and scale
 
 ### Emojis
 
-KeyboardKit Pro unlocks vectorized assets for the emoji key and all ``EmojiCategory``s, for instance ``SwiftUI/Image/keyboardEmoji`` and ``SwiftUI/Image/emojiCategory(_:)``:
+KeyboardKit Pro unlocks vectorized emoji assets for all ``EmojiCategory``s, for instance ``SwiftUI/Image/keyboardEmoji`` & ``SwiftUI/Image/emojiCategory(_:)``:
 
 @Row {
     @Column {}
-    @Column(size: 2) {
+    @Column(size: 3) {
         ![Asset-based Images](images-emojis)
     }
     @Column {}
 }
 
-Since these images are vectorized, they scale well when they are resized.
+Since these images are vectorized, they scale well when they are resized. They however do not support different font weights, so do not render them alongside SF Symbols that support such features.

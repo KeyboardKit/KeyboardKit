@@ -156,7 +156,7 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
         
         @Row {
             @Column {}
-            @Column(size: 2) {
+            @Column(size: 3) {
                 ![AutocompleteToolbar](autocompletetoolbar)
             }
             @Column {}

@@ -2,9 +2,9 @@
 
 This article describes the KeyboardKit device utilities.
 
-KeyboardKit has device-related features that can help customize your keyboard for various devices.
+KeyboardKit has device-related features that can help customize your keyboard for various device types, orientations and screen sizes.
 
-Although you should avoid designing for a specific device, orientation, or screen size, some features do need these considerations.
+Although you should avoid targeting a specific device, orientation, or screen size, some keyboard features require these considerations.
 
 
 
@@ -34,9 +34,9 @@ let isPortrait = InterfaceOrientation.current.portrait
 
 ## Screen sizes
 
-KeyboardKit has CGSize extensions for detecting which kind of hardware you're on, for instance to define and compare various device screen sizes. Tap the link for more information.
+KeyboardKit has ``CoreGraphics/CGSize`` extensions for detecting which kind of hardware you're on, for instance to define and compare various device screen sizes. Tap the link for a complete list of sizes.
 
-It's important to avoid designing for a specific screen size, since apps can run in split screen, a keyboard can be floating, etc. However, the screen size may provide you with information about the device.
+You can use ``CoreGraphics/CGSize/isScreenSize(_:withTolerance:)`` to check if a certain size matches a screen size in any orientation. It uses a low tolerance by default to support slight variations between model changes of the same device type.
 
 
 

@@ -47,7 +47,7 @@ KeyboardKit automatically creates a ``Feedback/StandardService``  instance and i
 
 ## Feedback Types
 
-KeyboardKit supports audio & haptic feedback, which can be triggered with a ``FeedbackService`` or ``KeyboardActionHandler``.
+KeyboardKit supports audio & haptic feedback that can be triggered with a ``FeedbackService`` or a ``KeyboardActionHandler``.
 
 The ``Feedback/Audio`` enum defines audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc. The ``Feedback`` namespace also has other audio-related types like ``Feedback/AudioConfiguration``, which can be used to define many different types of audio feedback.
 
@@ -63,9 +63,7 @@ You can trigger any ``Feedback/Audio`` and ``Feedback/Haptic`` feedback with a `
 
 ## How to configure feedback
 
-You can use the ``FeedbackContext`` in ``KeyboardInputViewController/state`` to configure the global feedback behavior. 
-
-For instance, this code would enable and customize audio feedback, then disable haptic feedback:
+You can configure the ``Keyboard/State/dictationContext``  in the main ``KeyboardInputViewController/state`` to configure the global feedback behavior. For instance, this would enable and customize audio feedback, then disable haptic feedback:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
