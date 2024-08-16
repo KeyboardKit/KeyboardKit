@@ -34,9 +34,6 @@ public extension KeyboardLayout {
     @available(*, deprecated, renamed: "KeyboardLayout.iPadService")
     typealias iPadProvider = KeyboardLayout.iPadService
 
-    @available(*, deprecated, renamed: "KeyboardLayout.iPadProService")
-    typealias iPadProProvider = KeyboardLayout.iPadProService
-
     @available(*, deprecated, renamed: "KeyboardLayout.iPhoneService")
     typealias iPhoneProvider = KeyboardLayout.iPhoneService
 

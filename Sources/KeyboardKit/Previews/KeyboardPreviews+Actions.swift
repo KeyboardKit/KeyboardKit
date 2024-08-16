@@ -27,5 +27,7 @@ public extension KeyboardPreviews {
         public func handle(_ gesture: Gesture, on action: KeyboardAction) {}
         public func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}
         public func triggerFeedback(for gesture: Gesture, on action: KeyboardAction) {}
+        public func triggerAudioFeedback(_ feedback: Feedback.Audio) {}
+        public func triggerHapticFeedback(_ feedback: Feedback.Haptic) {}
     }
 }

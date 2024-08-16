@@ -12,6 +12,8 @@ These release notes only cover the current major version.
 
 ### ‼️ Important information
 
+KeyboardKit 8.8 currently has a lot of deprecations, since the structure is being changed and types being renamed to make the upcoming 9.0 a lot cleaner. 
+
 KeyboardKit 9 is planned to be released shortly after the public release of iOS 18 and all corresponding OS versions. It will also bump the deployment target to iOS 15.
 
 
@@ -42,6 +44,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `Keyboard.Services` has a new `frequentEmojiProvider` and removes the static instance.
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
 * `KeyboardAction.StandardHandler` uses an emoji provider instead of an injected handler.
+* `KeyboardAction.StandardHandler` has new functions to trigger audio and haptic feedback.
 * `KeyboardContext` has new settings that replace the ``KeyboardSettings`` settings properties.
 * `KeyboardContext` has a new ``addedLocales`` settings that can be used to "activate" certain locales.
 * `KeyboardContext` now persists the `keyboardLocaleIdentifier` and restores the locale on next launch.

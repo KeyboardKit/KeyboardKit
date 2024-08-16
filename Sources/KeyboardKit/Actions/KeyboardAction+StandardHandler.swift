@@ -242,8 +242,6 @@ extension KeyboardAction {
         }
 
         /// Whether to trigger haptic feedback for an action.
-        ///
-        /// This code is a bit
         open func shouldTriggerHapticFeedback(
             for gesture: Gesture,
             on action: KeyboardAction
@@ -254,6 +252,22 @@ extension KeyboardAction {
             if gesture != .release && hasAction { return true }
             let config = feedbackContext.hapticConfiguration
             return config.hasCustomFeedback(for: gesture, on: action)
+        }
+
+        /// Trigger a certain audio feedback.
+        ///
+        /// The service just uses the ``feedbackService`` to
+        /// trigger the provided feedback.
+        open func triggerAudioFeedback(_ feedback: Feedback.Audio) {
+            feedbackService.triggerAudioFeedback(feedback)
+        }
+
+        /// Trigger a certain haptic feedback.
+        ///
+        /// The service just uses the ``feedbackService`` to
+        /// trigger the provided feedback.
+        open func triggerHapticFeedback(_ feedback: Feedback.Haptic) {
+            feedbackService.triggerHapticFeedback(feedback)
         }
 
         /// Trigger feedback for a certain action gesture.
@@ -273,7 +287,7 @@ extension KeyboardAction {
         ) {
             if !shouldTriggerAudioFeedback(for: gesture, on: action) { return }
             guard let feedback = audioFeedback(for: gesture, on: action) else { return }
-            feedbackService.triggerAudioFeedback(feedback)
+            triggerAudioFeedback(feedback)
         }
 
         /// Trigger feedback for a certain action gesture.
@@ -283,7 +297,7 @@ extension KeyboardAction {
         ) {
             if !shouldTriggerHapticFeedback(for: gesture, on: action) { return }
             guard let feedback = hapticFeedback(for: gesture, on: action) else { return }
-            feedbackService.triggerHapticFeedback(feedback)
+            triggerHapticFeedback(feedback)
         }
 
 

@@ -22,7 +22,7 @@ import CoreGraphics
 /// it at any time to customize the keyboard action behavior.
 ///
 /// See <doc:Actions-Article> for more information.
-public protocol KeyboardActionHandler: AnyObject {
+public protocol KeyboardActionHandler: AnyObject, FeedbackService {
     
     /// This typealias resolves to a keyboard gesture
     typealias Gesture = Gestures.KeyboardGesture
