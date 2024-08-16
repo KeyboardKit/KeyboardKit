@@ -240,12 +240,7 @@ private extension KeyboardLayout.iPhoneService {
 private extension KeyboardContext {
 
     /// This function makes the context checks above shorter.
-    func `is`(_ locale: KeyboardLocale) -> Bool {
-        hasKeyboardLocale(locale)
-    }
-
-    /// This function makes the context checks above shorter.
     func isAlphabetic(_ locale: KeyboardLocale) -> Bool {
-        hasKeyboardLocale(locale) && keyboardType.isAlphabetic
+        isLocaleSelected(locale) && keyboardType.isAlphabetic
     }
 }

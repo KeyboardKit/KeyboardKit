@@ -41,7 +41,7 @@ class KeyboardContextTests: XCTestCase {
     }
 
     func hasKeyboardLocaleResult(for locale: KeyboardLocale) -> Bool {
-        context.hasKeyboardLocale(locale)
+        context.isLocaleSelected(locale)
     }
 
     func hasKeyboardTypeResult(for type: Keyboard.KeyboardType) -> Bool {

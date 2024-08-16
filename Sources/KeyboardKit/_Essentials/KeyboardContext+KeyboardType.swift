@@ -26,6 +26,11 @@ public extension KeyboardContext {
     func hasKeyboardType(_ type: Keyboard.KeyboardType) -> Bool {
         keyboardType == type
     }
+
+    /// Set ``keyboardType`` to the provided type.
+    func setKeyboardType(_ type: Keyboard.KeyboardType) {
+        keyboardType = type
+    }
 }
 
 private extension KeyboardContext {
