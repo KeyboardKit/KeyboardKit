@@ -49,6 +49,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `KeyboardContext` has a new ``addedLocales`` settings that can be used to "activate" certain locales.
 * `KeyboardContext` now persists the `keyboardLocaleIdentifier` and restores the locale on next launch.
 * `KeyboardContext` now has even more `KeyboardLocale`-based versions of some `Locale`-based functions.
+* `KeyboardLocale` has new `ListItem` & `ListDragHandle` views to simplify building locale-based lists.
 * `KeyboardLocale.ContextMenu` now supports providing custom locales instead of using the context ones.
 
 ### 😀 Emojis
@@ -69,7 +70,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
 * `KeyboardInputViewController` now checks if self is nil when setting up a view.
 * `KeyboardView` now renders better on 13" iPad devices, due to more size tolerance.
-* `SystemKeyboard` will by default show a numeric input toolbar on iPad Pro devices.
+* `SystemKeyboard` will by default show a numeric input toolbar on large iPad devices.
 
 ### 👑 KeyboardKit Pro
 
