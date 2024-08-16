@@ -47,26 +47,11 @@ public extension KeyboardContext {
         addedLocales.contains(locale.locale) && !isLocaleSelected(locale)
     }
 
-    /// Move locales in ``addedLocales``.
-    func moveAddedLocales(
-        fromOffsets source: IndexSet,
-        toOffset destination: Int
-    ) {
-        addedLocales.move(fromOffsets: source, toOffset: destination)
-        setLocale(addedLocales.first ?? KeyboardLocale.english.locale)
-    }
-
     /// Move the current ``locale`` first in ``addedLocales``.
-    func moveCurrentLocaleFirst() {
+    func moveCurrentLocaleFirstInAddedLocales() {
         guard let first = addedLocales.first else { return }
-        if first == locale { return }
-        addedLocales = [locale] + addedLocales.filter { $0 != locale }
-    }
-
-    /// Remove locales from ``addedLocales``.
-    func removeLocale(at offsets: IndexSet) {
-        addedLocales.remove(atOffsets: offsets)
-        moveCurrentLocaleFirst()
+        if locale == first.locale { return }
+        addedLocales = [locale] + addedLocales.filter { $0.locale != locale }
     }
 
     /// Set ``locales`` to the provided locales.

@@ -51,6 +51,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `KeyboardContext` now has even more `KeyboardLocale`-based versions of some `Locale`-based functions.
 * `KeyboardLocale` has new `ListItem` & `ListDragHandle` views to simplify building locale-based lists.
 * `KeyboardLocale.ContextMenu` now supports providing custom locales instead of using the context ones.
+* `KeyboardLocaleInfo` has new `matches(query:in:)` functionality to match locales on free-text queries.
 
 ### 😀 Emojis
 

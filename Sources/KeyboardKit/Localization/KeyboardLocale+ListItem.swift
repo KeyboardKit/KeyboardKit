@@ -47,7 +47,7 @@ public extension KeyboardLocale {
         public var body: some View {
             Label {
                 HStack {
-                    Text(locale.localizedName(in: locale))
+                    Text(locale.localizedName(in: displayLocale))
                     Spacer()
                     if dragHandle {
                         ListHandle()
