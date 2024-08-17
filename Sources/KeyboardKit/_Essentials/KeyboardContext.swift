@@ -77,28 +77,18 @@ public class KeyboardContext: ObservableObject {
     }
 
 
-    // MARK: - Settings Sync
+    // MARK: - Temporary overrides
 
-    func syncAutocapitalizationWithSetting() {
-        let noAutocap = Keyboard.AutocapitalizationType.none
-        let value = isAutocapitalizationEnabled ? nil : noAutocap
-        if autocapitalizationTypeOverride != value {
-            autocapitalizationTypeOverride = value
-        }
-    }
-
-    func syncLocaleWithSetting() {
-        if locale.localeIdentifier == localeIdentifier { return }
-        let newLocale = Locale(identifier: localeIdentifier)
-        setLocale(newLocale)
-    }
-
-    
-    // MARK: - Published Properties
-
-    /// Set this to override the ``autocapitalizationType``.
+    /// Set this to override ``autocapitalizationType``.
     @Published
     public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
+
+    /// Set this to override ``returnKey``.
+    @Published
+    public var returnKeyTypeOverride: Keyboard.ReturnKeyType?
+
+
+    // MARK: - Published Properties
 
     /// The current device type.
     @Published
@@ -248,9 +238,8 @@ public extension KeyboardContext {
 
     /// The autocapitalization type to use.
     ///
-    /// This value comes from the ``textDocumentProxy``. The
-    /// ``autocapitalizationTypeOverride`` value can be used
-    /// to overrides this property.
+    /// This value comes from the ``textDocumentProxy``, but
+    /// ``autocapitalizationTypeOverride`` can override it.
     var autocapitalizationType: Keyboard.AutocapitalizationType? {
         #if os(iOS) || os(tvOS) || os(visionOS)
         autocapitalizationTypeOverride ?? textDocumentProxy.autocapitalizationType?.keyboardType
@@ -271,5 +260,17 @@ public extension KeyboardContext {
     /// Whether or not the context has multiple locales.
     var hasMultipleLocales: Bool {
         locales.count > 1
+    }
+
+    /// The return key type type to use.
+    ///
+    /// This value comes from the ``textDocumentProxy``, but
+    /// ``returnKeyTypeOverride`` can override it.
+    var returnKeyType: Keyboard.ReturnKeyType? {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        returnKeyTypeOverride ?? textDocumentProxy.returnKeyType?.keyboardType
+        #else
+        returnKeyTypeOverride ?? nil
+        #endif
     }
 }

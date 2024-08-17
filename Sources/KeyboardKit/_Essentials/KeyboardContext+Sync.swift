@@ -13,6 +13,30 @@ import SwiftUI
 import UIKit
 #endif
 
+extension KeyboardContext {
+
+    /// Sync ``autocapitalizationTypeOverride`` with settings.
+    func syncAutocapitalizationWithSetting() {
+        let noAutocap = Keyboard.AutocapitalizationType.none
+        let value = isAutocapitalizationEnabled ? nil : noAutocap
+        if autocapitalizationTypeOverride != value {
+            autocapitalizationTypeOverride = value
+        }
+    }
+
+    /// Sync ``locale`` with settings.
+    func syncLocaleWithSetting() {
+        if locale.localeIdentifier == localeIdentifier { return }
+        let newLocale = Locale(identifier: localeIdentifier)
+        setLocale(newLocale)
+    }
+
+    /// Make the context trigger a keyboard view refresh.
+    func triggerKeyboardViewRefresh() {
+        setLocale(locale)
+    }
+}
+
 #if os(iOS) || os(tvOS) || os(visionOS)
 public extension KeyboardContext {
 
@@ -43,11 +67,6 @@ public extension KeyboardContext {
         DispatchQueue.main.async {
             self.textInputProxy = controller.textInputProxy
         }
-    }
-
-    /// Make the context trigger a keyboard view refresh.
-    func triggerKeyboardViewRefresh() {
-        setLocale(locale)
     }
 }
 

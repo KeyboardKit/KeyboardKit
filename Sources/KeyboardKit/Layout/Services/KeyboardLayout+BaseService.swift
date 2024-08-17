@@ -202,9 +202,8 @@ extension KeyboardLayout {
             for context: KeyboardContext
         ) -> KeyboardAction {
             #if os(iOS) || os(tvOS) || os(visionOS)
-            let proxy = context.textDocumentProxy
-            let returnType = proxy.returnKeyType?.keyboardReturnKeyType
-            if let returnType { return .primary(returnType) }
+            let type = context.returnKeyType
+            if let type { return .primary(type) }
             #endif
             return .primary(.return)
         }

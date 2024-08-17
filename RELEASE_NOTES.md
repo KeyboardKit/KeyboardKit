@@ -49,7 +49,9 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
 * `KeyboardAction.StandardHandler` uses an emoji provider instead of an injected handler.
 * `KeyboardAction.StandardHandler` has new functions to trigger audio and haptic feedback.
+* `KeyboardContext` has a computed `returnKeyType` property, which can also be overridden.
 * `KeyboardContext` has new settings that replace the ``KeyboardSettings`` settings properties.
+* `KeyboardContext` has a new `returnKeyTypeOverride` that can override which return key to use.
 * `KeyboardContext` has a new ``addedLocales`` settings that can be used to "activate" certain locales.
 * `KeyboardContext` now persists the `keyboardLocaleIdentifier` and restores the locale on next launch.
 * `KeyboardContext` now has even more `KeyboardLocale`-based versions of some `Locale`-based functions.
