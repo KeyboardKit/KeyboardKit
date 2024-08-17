@@ -137,15 +137,13 @@ public extension Keyboard {
 public extension KeyboardApp {
 
     /// 👑 This view is unlocked by KeyboardKit Pro.
-    struct HomeScreen: View {
-        public var body: some View { EmptyView() }
-    }
+    struct HomeScreen {}
 
     /// 👑 This view is unlocked by KeyboardKit Pro.
-    struct SettingsScreen: View {
-        public var body: some View {
-            EmptyView() }
-    }
+    struct LocaleScreen {}
+
+    /// 👑 This view is unlocked by KeyboardKit Pro.
+    struct SettingsScreen {}
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.

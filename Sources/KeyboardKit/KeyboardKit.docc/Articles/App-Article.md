@@ -34,13 +34,19 @@ KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types, tha
 @TabNavigator {
     
     @Tab("HomeScreen") {
-        The ``KeyboardApp``.``KeyboardApp/HomeScreen`` can be used as the main home screen of a keyboard app. It renders an app icon, keyboard status, and a list of links and options that can be hidden, styled and localized to fit your needs. 
+        The ``KeyboardApp``.``KeyboardApp/HomeScreen`` can be used as the main home screen in a keyboard app. It can renders an app icon, keyboard statuses, settings links, and any  and a list of links and options that can be hidden, styled and localized to fit your needs. 
     
         ![KeyboardApp.HomeScreen](keyboardapp-homescreen)
     }
     
+    @Tab("LocaleScreen") {
+        The ``KeyboardApp``.``KeyboardApp/LocaleScreen`` can be used as the main language screen in your keyboard app. It renders a list of all added and available locales, and automatically syncs with the keyboard context's ``KeyboardContext/locale`` and ``KeyboardContext/addedLocales`` properties.
+    
+        ![KeyboardApp.SettingsScreen](keyboardapp-localescreen)
+    }
+    
     @Tab("SettingsScreen") {
-        The ``KeyboardApp``.``KeyboardApp/SettingsScreen`` can be used as the main settings screen of your keyboard app. It renders a list of links and options, that can be hidden, styled and localized to fit your needs.
+        The ``KeyboardApp``.``KeyboardApp/SettingsScreen`` can be used as the main settings screen in your keyboard app. It renders a list of links and options, that can be hidden, styled and localized to fit your needs.
     
         ![KeyboardApp.SettingsScreen](keyboardapp-settingsscreen)
     }
