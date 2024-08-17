@@ -39,8 +39,8 @@ public extension Collection where Element == Autocomplete.Suggestion {
     
     static var preview: [Autocomplete.Suggestion] {
         [
-            .init(text: "One", isUnknown: true),
-            .init(text: "Two", isAutocorrect: true),
+            .init(text: "One", type: .unknown),
+            .init(text: "Two", type: .autocorrect),
             .init(text: "Three")
         ]
     }

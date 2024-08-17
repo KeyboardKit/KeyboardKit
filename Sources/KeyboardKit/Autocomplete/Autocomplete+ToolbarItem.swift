@@ -96,8 +96,8 @@ private extension Autocomplete.ToolbarItem {
 #Preview {
     
     let suggestions: [Autocomplete.Suggestion] = [
-        .init(text: "Foo", isUnknown: true),
-        .init(text: "Bar", isAutocorrect: true),
+        .init(text: "Foo", type: .unknown),
+        .init(text: "Bar", type: .autocorrect),
         .init(text: "", title: "Baz", subtitle: "Recommended")]
     
     return HStack {

@@ -315,7 +315,7 @@ private extension KeyboardView {
             let controller = KeyboardInputViewController.preview
             controller.state.autocompleteContext.suggestions = [
                 .init(text: "Foo"),
-                .init(text: "Bar", isAutocorrect: true),
+                .init(text: "Bar", type: .autocorrect),
                 .init(text: "Baz")
             ]
             // controller.services.styleProvider = .crazy

@@ -172,7 +172,12 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
 
     func testTryApplyCorrectSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
         let ref = textDocumentProxy.deleteBackwardRef
-        let autocompleteSuggestions = [Autocomplete.Suggestion(text: "", isAutocorrect: true, isUnknown: false)]
+        let autocompleteSuggestions = [
+            Autocomplete.Suggestion(
+                text: "",
+                type: .autocorrect
+            )
+        ]
 
         textDocumentProxy.documentContextBeforeInput = "abc"
         handler.autocompleteContext.suggestions = autocompleteSuggestions

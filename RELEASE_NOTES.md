@@ -37,6 +37,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 ### ✨ Features
 
 * `AutocompleteContext` has new settings that replace ``AutocompleteSettings``.
+* `Autocomplete.Suggestion` has a new `type` property which replaces the bools.
 * `Autocomplete.Suggestion` has a new `source` property to indicate its source.
 * `Bundle` has an `isExtension` to help you check if code runs in an extension. 
 * `DictationContext` has new setting values that replace ``DictationSettings``.

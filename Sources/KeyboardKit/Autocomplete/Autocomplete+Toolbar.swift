@@ -285,7 +285,11 @@ public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == S
 #Preview {
     
     let additional = [
-        Autocomplete.Suggestion(text: "", title: "Foo", subtitle: "Recommended")
+        Autocomplete.Suggestion(
+            text: "",
+            title: "Foo",
+            subtitle: "Recommended"
+        )
     ]
     
     func previewItem(
@@ -297,8 +301,8 @@ public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == S
     }
     
     let previewSuggestions: [Autocomplete.Suggestion] = [
-        .init(text: "Baz", isUnknown: true),
-        .init(text: "Bar", isAutocorrect: true),
+        .init(text: "Baz", type: .unknown),
+        .init(text: "Bar", type: .autocorrect),
         .init(text: "", title: "Foo", subtitle: "Recommended")]
     
     return VStack {

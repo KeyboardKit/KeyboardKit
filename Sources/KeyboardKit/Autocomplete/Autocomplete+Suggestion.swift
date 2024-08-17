@@ -27,25 +27,22 @@ public extension Autocomplete {
         ///
         /// - Parameters:
         ///   - text: The text that should be sent to the proxy.
+        ///   - type: The type of suggestion this is, by default `.regular`.
         ///   - title: The text that should be displayed, by default `text`.
-        ///   - isAutocorrect: Whether or the suggestion is autocorrecting, by default `false`.
-        ///   - isUnknown: Whether or the suggestion is unknown, by default `false`.
         ///   - subtitle: An optional subtitle that can complete the title, by default `nil`.
         ///   - source: An optional source to describe where the suggestion is from, by default `nil`.
         ///   - additionalInfo: An optional info dictionary, by default `empty`.
         public init(
             text: String,
+            type: SuggestionType = .regular,
             title: String? = nil,
-            isAutocorrect: Bool = false,
-            isUnknown: Bool = false,
             subtitle: String? = nil,
             source: String? = nil,
             additionalInfo: [String: Any] = [:]
         ) {
             self.text = text
+            self.type = type
             self.title = title ?? text
-            self.isAutocorrect = isAutocorrect
-            self.isUnknown = isUnknown
             self.subtitle = subtitle
             self.source = source
             self.additionalInfo = additionalInfo
@@ -54,14 +51,27 @@ public extension Autocomplete {
         /// The text that should be sent to the proxy.
         public var text: String
 
+        /// The type of suggestion this is.
+        public var type: SuggestionType
+
         /// The text that should be displayed.
         public var title: String
 
-        /// Whether or the suggestion is autocorrecting.
-        public var isAutocorrect: Bool
+        /// Whether the suggestion is autocorrecting.
+        public var isAutocorrect: Bool {
+            get { type == .autocorrect }
 
-        /// Whether or the suggestion is unknown.
-        public var isUnknown: Bool
+            @available(*, deprecated, message: "Use type instead.")
+            set { type = newValue ? .autocorrect : .regular }
+        }
+
+        /// Whether the suggestion is unknown.
+        public var isUnknown: Bool {
+            get { type == .unknown }
+
+            @available(*, deprecated, message: "Use type instead.")
+            set { type = newValue ? .unknown : .regular }
+        }
 
         /// An optional subtitle that can complete the title.
         public var subtitle: String?
