@@ -12,7 +12,9 @@ These release notes only cover the current major version.
 
 ### ‼️ Important information
 
-KeyboardKit 8.8 currently has a lot of deprecations, since the structure is being changed and types being renamed to make the upcoming 9.0 a lot cleaner. 
+KeyboardKit 8.8 currently has a lot of deprecations, since the structure is being changed and types being renamed to make the upcoming 9.0 a lot cleaner.
+
+These changes don't affect `KeyboardActionHandler` (where handler is a better name than service) and `KeyboardStyleProvider` which is most probably removed in 9.0. 
 
 KeyboardKit 9 is planned to be released shortly after the public release of iOS 18 and all corresponding OS versions. It will also bump the deployment target to iOS 15.
 

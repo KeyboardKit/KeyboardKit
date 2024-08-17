@@ -8,16 +8,6 @@
 
 import Foundation
 
-#if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
-import AudioToolbox
-#else
-typealias SystemSoundID = Int
-#endif
-
-#if os(iOS)
-import UIKit
-#endif
-
 extension Feedback {
 
     /// This standard service can be used to trigger various
@@ -36,81 +26,18 @@ extension Feedback {
         /// Create a standard feedback service.
         public init() {}
 
-        #if os(iOS)
-        public let notificationGenerator = UINotificationFeedbackGenerator()
-        public let lightImpactGenerator = UIImpactFeedbackGenerator(style: .light)
-        public let mediumImpactGenerator = UIImpactFeedbackGenerator(style: .medium)
-        public let heavyImpactGenerator = UIImpactFeedbackGenerator(style: .heavy)
-        public let selectionGenerator = UISelectionFeedbackGenerator()
-        #endif
+        /// The audio feedback engine to use.
+        public lazy var audioEngine = Feedback.AudioEngine()
 
-        open func triggerAudioFeedback(_ audio: Feedback.Audio) {
-            switch audio {
-            case .none: return
-            case .customUrl(let url): playAudio(at: url)
-            default: play(audio)
-            }
+        /// The haptic feedback engine to use.
+        public lazy var hapticEngine = Feedback.HapticEngine()
+
+        open func triggerAudioFeedback(_ feedback: Feedback.Audio) {
+            audioEngine.trigger(feedback)
         }
 
         open func triggerHapticFeedback(_ feedback: Feedback.Haptic) {
-            #if os(iOS)
-            switch feedback {
-            case .error: triggerNotification(.error)
-            case .success: triggerNotification(.success)
-            case .warning: triggerNotification(.warning)
-            case .lightImpact: lightImpactGenerator.impactOccurred()
-            case .mediumImpact: mediumImpactGenerator.impactOccurred()
-            case .heavyImpact: heavyImpactGenerator.impactOccurred()
-            case .selectionChanged: selectionGenerator.selectionChanged()
-            case .none: return
-            }
-            #endif
+            hapticEngine.trigger(feedback)
         }
     }
 }
-
-
-// MARK: - Audio
-
-private extension Feedback.StandardService {
-
-    static var systemSoundIDs: [URL: SystemSoundID] = [:]
-
-    func play(_ audio: Feedback.Audio) {
-        guard let id = audio.id else { return }
-        #if os(iOS) || os(macOS) || os(tvOS)
-        AudioServicesPlaySystemSound(id)
-        #endif
-    }
-
-    func playAudio(at url: URL?) {
-        guard let url else { return }
-        #if os(iOS) || os(macOS) || os(tvOS)
-        registerAudio(at: url)
-        guard let id = Self.systemSoundIDs[url] else { return }
-        AudioServicesPlaySystemSound(id)
-        #endif
-    }
-
-    func registerAudio(at url: URL?) {
-        guard let url else { return }
-        #if os(iOS) || os(macOS) || os(tvOS)
-        if Self.systemSoundIDs[url] != nil { return }
-        var soundId: SystemSoundID = .init()
-        AudioServicesCreateSystemSoundID(url as CFURL, &soundId)
-        Self.systemSoundIDs[url] = soundId
-        #endif
-    }
-}
-
-
-// MARK: - Haptic
-
-#if os(iOS)
-private extension Feedback.StandardService {
-
-    func triggerNotification(_ notification: UINotificationFeedbackGenerator.FeedbackType) {
-        notificationGenerator.notificationOccurred(notification)
-    }
-}
-#endif

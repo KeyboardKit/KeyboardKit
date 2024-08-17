@@ -2,11 +2,16 @@ import Foundation
 
 #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
 import AudioToolbox
+#else
+typealias SystemSoundID = Int
 #endif
 
-@available(*, deprecated, message: "Use a feedback service or action handler instead")
 public extension Feedback {
-    
+
+    /// This engine can be used to trigger audio feedback.
+    ///
+    /// The engine uses `AudioToolbox`, which is unavailable
+    /// on watchOS. Therefore, watchOS has no audio feedback.
     class AudioEngine {
 
         public init() {}
@@ -19,11 +24,11 @@ public extension Feedback {
             }
         }
 
+        @available(*, deprecated, message: "Use a feedback service or action handler instead")
         static var shared = Feedback.AudioEngine()
     }
 }
 
-@available(*, deprecated, message: "Use a feedback service or action handler instead")
 private extension Feedback.AudioEngine {
     
     static var systemSoundIDs: [URL: SystemSoundID] = [:]

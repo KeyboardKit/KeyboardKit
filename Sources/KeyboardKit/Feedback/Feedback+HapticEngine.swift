@@ -2,9 +2,12 @@
 import UIKit
 #endif
 
-@available(*, deprecated, message: "Use a feedback service or action handler instead")
 public extension Feedback {
-    
+
+    /// This engine can be used to trigger haptic feedback.
+    ///
+    /// The engine uses UIKit functionality that require iOS.
+    /// Other platforms have no haptic feedback.
     class HapticEngine {
         
         public init() {}
@@ -47,12 +50,12 @@ public extension Feedback {
             #endif
         }
 
+        @available(*, deprecated, message: "Use a feedback service or action handler instead")
         static var shared = Feedback.HapticEngine()
     }
 }
 
 #if os(iOS)
-@available(*, deprecated, message: "Use a feedback service or action handler instead")
 private extension Feedback.HapticEngine {
     
     func triggerNotification(_ notification: UINotificationFeedbackGenerator.FeedbackType) {

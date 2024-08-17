@@ -8,10 +8,8 @@
 
 import CoreGraphics
 
-/**
- This protocol can be implemented by classes that can handle
- drag gestures from a start position to a current one.
- */
+/// This protocol can be implemented by any type that can be
+/// used to handle drag gestures from one point to another.
 public protocol DragGestureHandler {
     
     /// Handle a drag gesture from start to current location.
