@@ -21,7 +21,7 @@ public extension KeyboardContext {
         get { addedLocaleIdentifiersValue.value.map(Locale.init) }
         set {
             let ids = newValue.map { $0.identifier }
-            addedLocaleIdentifiersValue.value = Array(Set(ids))
+            addedLocaleIdentifiersValue.value = ids
         }
     }
 

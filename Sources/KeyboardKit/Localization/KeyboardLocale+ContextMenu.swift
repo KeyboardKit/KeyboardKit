@@ -214,7 +214,7 @@ public extension View {
                 Text("🌐 \(localeName)")
                     .keyboardLocaleContextMenu(
                     for: context,
-                    //locales: [.swedish],
+                    // locales: [.swedish],
                     tapAction: { }
                 )
                 Button("Print locale") {
