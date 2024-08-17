@@ -229,7 +229,7 @@ class KeyboardViewController: KeyboardInputViewController {
 class CustomActionHandler: StandardActionHandler {
 
     open override func handle(
-        _ gesture: KeyboardGesture, 
+        _ gesture: Keyboard.Gesture, 
         on action: KeyboardAction
     ) {
         if gesture == .press && action == .space {

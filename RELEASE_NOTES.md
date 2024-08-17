@@ -95,14 +95,15 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 
 ### 🗑️ Deprecations & Renamings
 
-* All settings types have been deprecated since settings have moved to contexts.
-* Most service types have been renamed to `*Service` for a more consistent naming.
+* Most service types are renamed to `*Service` for a more consistent naming.
+* All `*Settings` types are deprecated since settings have moved to contexts.
 
 * `SystemKeyboard` has been renamed to the shorter `KeyboardView`.
 * `SystemKeyboardBottomRow` has been renamed to `Keyboard.BottomRow`.
 * `SystemKeyboardButtonPreview` has been renamed to `Keyboard.ButtonPreview`.
 
 * `Feedback.HapticConfiguration.minimal` has been replaced by `.disabled`.
+* `Gestures.KeyboardGesture` has been moved & renamed to `Keyboard.Gesture.`
 * `Keyboard.SettingsLink` has been deprecated, since a `Link` works as well.
 * `Keyboard.State`'s `dictationConfig` is now defined within the `dictationContext`.
 * `KeyboardAppearanceViewModifier` has been deprecated, since it didn't behave well.

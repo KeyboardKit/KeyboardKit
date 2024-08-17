@@ -1,5 +1,5 @@
 //
-//  Gestures+KeyboardGesture.swift
+//  Keyboard+Gesture.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public extension Gestures {
- 
+public extension Keyboard {
+
     /// This enum defines various keyboard gestures that can
     /// be used to interact with a keyboard.
-    enum KeyboardGesture: String, CaseIterable, Codable, Equatable, Identifiable {
+    enum Gesture: String, CaseIterable, Codable, Equatable, Identifiable {
 
         /// Triggers when a button is double tapped.
         case doubleTap
@@ -26,7 +26,7 @@ public extension Gestures {
         /// Triggers when a button is long pressed.
         case longPress
         
-        /// Triggers repeatedly when a button is pressed & held.
+        /// Triggers repeatedly while a button is pressed.
         case repeatPress
         
         /// Triggers when a button gesture ends.
@@ -34,14 +34,14 @@ public extension Gestures {
     }
 }
 
-public extension Gestures.KeyboardGesture {
-    
-    /// A ``Gestures/KeyboardGesture/repeatPress`` shorthand.
+public extension Keyboard.Gesture {
+
+    /// A ``Keyboard/Gesture/repeatPress`` shorthand.
     static let `repeat` = repeatPress
 }
 
-public extension Gestures.KeyboardGesture {
-    
+public extension Keyboard.Gesture {
+
     /// The gesture's unique identifier.
     var id: String { rawValue }
 }

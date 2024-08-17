@@ -13,9 +13,9 @@ This article describes the KeyboardKit gesture engine.
     @PageColor(blue)
 }
 
-Native iOS keyboards use more gestures than you probably realize at first. For instance, keys can be pressed, released, long pressed, etc., space can be dragged to move the cursor, shift can be double tapped to toggle caps-lock, etc.
+Native iOS keyboards use more gestures than you may think. For instance, keys can be pressed, released, long pressed, etc. Space can be dragged to move the cursor, shift can be double tapped to toggle caps-lock, etc.
 
-These gestures can be complicated to set up, but KeyboardKit provides you with handy views and extensions to easily be able to define rich gesture actions that are handled by the ``KeyboardActionHandler``, or any custom actions that you specify.
+These gestures can be complicated to set up, but KeyboardKit provides you with a ``Keyboard/Gesture`` enum that defines all supported gestures, as well as views and extensions that trigger rich gesture actions that can be handled by a ``KeyboardActionHandler``.
 
 
 
@@ -23,19 +23,13 @@ These gestures can be complicated to set up, but KeyboardKit provides you with h
 
 KeyboardKit has a ``Gestures`` namespace with gesture-related types, like ``Gestures/GestureButton``, ``Gestures/ScrollViewGestureButton``, etc.
 
-
-
-## Keyboard Gestures
-
-KeyboardKit has a ``Gestures/KeyboardGesture`` enum that defines supported keyboard gestures, like ``Gestures/KeyboardGesture/press``, ``Gestures/KeyboardGesture/release``, ``Gestures/KeyboardGesture/doubleTap``, etc.
-
-These gestures are used within the library, e.g. to handle ``KeyboardAction``s in various ways. The built in gestures can also provide drag information when a user presses and drags a view.
+This namespace does not contain the ``Keyboard/Gesture`` enum, which is an essential type that is instead defined in the ``Keyboard`` namespace. 
 
 
 
 ## Keyboard gestures view modifier
 
-You can use the ``SwiftUI/View/keyboardButtonGestures(for:actionHandler:calloutContext:isPressed:isInScrollView:releaseOutsideTolerance:)`` view modifier to apply keyboard gestures:
+You can use the ``SwiftUI/View/keyboardButtonGestures(for:actionHandler:calloutContext:isPressed:isInScrollView:releaseOutsideTolerance:)`` view modifier to apply keyboard gesture to any view:
 
 ```swift
 Text("😀")

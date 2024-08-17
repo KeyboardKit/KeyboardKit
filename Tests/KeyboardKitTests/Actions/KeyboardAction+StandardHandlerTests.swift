@@ -14,7 +14,7 @@ import XCTest
 
 final class KeyboardAction_StandardHandlerTests: XCTestCase {
     
-    typealias Gesture = Gestures.KeyboardGesture
+    typealias Gesture = Keyboard.Gesture
 
     private var handler: TestClass!
     var controller: MockKeyboardInputViewController!
@@ -241,39 +241,39 @@ private class TestClass: KeyboardAction.StandardHandler, Mockable {
 
     var mock = Mock()
 
-    lazy var handleGestureOnActionRef = MockReference(handle as (Gesture, KeyboardAction) -> Void)
+    lazy var handleGestureOnActionRef = MockReference(handle as (Keyboard.Gesture, KeyboardAction) -> Void)
     lazy var tryApplyAutocorrectSuggestionRef = MockReference(tryApplyAutocorrectSuggestion)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
     lazy var tryEndSentenceRef = MockReference(tryEndSentence)
     lazy var tryReinsertAutocompleteRemovedSpaceRef = MockReference(tryReinsertAutocompleteRemovedSpace)
     lazy var tryRemoveAutocompleteInsertedSpaceRef = MockReference(tryRemoveAutocompleteInsertedSpace)
 
-    override func handle(_ gesture: Gesture, on action: KeyboardAction) {
+    override func handle(_ gesture: Keyboard.Gesture, on action: KeyboardAction) {
         super.handle(gesture, on: action)
         call(handleGestureOnActionRef, args: (gesture, action))
     }
 
-    override func tryApplyAutocorrectSuggestion(before gesture: Gesture, on action: KeyboardAction) {
+    override func tryApplyAutocorrectSuggestion(before gesture: Keyboard.Gesture, on action: KeyboardAction) {
         super.tryApplyAutocorrectSuggestion(before: gesture, on: action)
         call(tryApplyAutocorrectSuggestionRef, args: (gesture, action))
     }
     
-    override func tryChangeKeyboardType(after gesture: Gesture, on action: KeyboardAction) {
+    override func tryChangeKeyboardType(after gesture: Keyboard.Gesture, on action: KeyboardAction) {
         super.tryChangeKeyboardType(after: gesture, on: action)
         call(tryChangeKeyboardTypeRef, args: (gesture, action))
     }
 
-    override func tryEndSentence(after gesture: Gesture, on action: KeyboardAction) {
+    override func tryEndSentence(after gesture: Keyboard.Gesture, on action: KeyboardAction) {
         super.tryEndSentence(after: gesture, on: action)
         call(tryEndSentenceRef, args: (gesture, action))
     }
 
-    override func tryReinsertAutocompleteRemovedSpace(after gesture: Gesture, on action: KeyboardAction) {
+    override func tryReinsertAutocompleteRemovedSpace(after gesture: Keyboard.Gesture, on action: KeyboardAction) {
         super.tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
         call(tryReinsertAutocompleteRemovedSpaceRef, args: (gesture, action))
     }
 
-    override func tryRemoveAutocompleteInsertedSpace(before gesture: Gesture, on action: KeyboardAction) {
+    override func tryRemoveAutocompleteInsertedSpace(before gesture: Keyboard.Gesture, on action: KeyboardAction) {
         super.tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
         call(tryRemoveAutocompleteInsertedSpaceRef, args: (gesture, action))
     }

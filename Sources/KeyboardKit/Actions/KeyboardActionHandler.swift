@@ -24,12 +24,12 @@ import CoreGraphics
 /// See <doc:Actions-Article> for more information.
 public protocol KeyboardActionHandler: AnyObject, FeedbackService {
     
-    /// This typealias resolves to a keyboard gesture
-    typealias Gesture = Gestures.KeyboardGesture
+    @available(*, deprecated, message: "Just use Keyboard.Gesture from now on")
+    typealias Gesture = Keyboard.Gesture
     
     /// Whether the handler can handle an action gesture.
     func canHandle(
-        _ gesture: Gesture,
+        _ gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool
     
@@ -40,7 +40,7 @@ public protocol KeyboardActionHandler: AnyObject, FeedbackService {
     
     /// Handle a certain keyboard action gesture.
     func handle(
-        _ gesture: Gesture,
+        _ gesture: Keyboard.Gesture,
         on action: KeyboardAction
     )
     
@@ -58,7 +58,7 @@ public protocol KeyboardActionHandler: AnyObject, FeedbackService {
     
     /// Trigger feedback for a certain action gesture.
     func triggerFeedback(
-        for gesture: Gesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     )
 }

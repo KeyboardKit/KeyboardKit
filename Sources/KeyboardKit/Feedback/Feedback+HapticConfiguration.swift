@@ -79,7 +79,7 @@ public extension Feedback.HapticConfiguration {
         
         public init(
             action: KeyboardAction,
-            gesture: Gestures.KeyboardGesture,
+            gesture: Keyboard.Gesture,
             feedback: Feedback.Haptic
         ) {
             self.action = action
@@ -88,7 +88,7 @@ public extension Feedback.HapticConfiguration {
         }
         
         public let action: KeyboardAction
-        public let gesture: Gestures.KeyboardGesture
+        public let gesture: Keyboard.Gesture
         public let feedback: Feedback.Haptic
     }
 }
@@ -98,7 +98,7 @@ public extension Feedback.HapticConfiguration.CustomFeedback {
     /// Create a custom haptic feedback configuration.
     static func haptic(
         _ feedback: Feedback.Haptic,
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Self {
         .init(action: action, gesture: gesture, feedback: feedback)
@@ -109,7 +109,7 @@ public extension Feedback.HapticConfiguration {
     
     /// Get a custom registered feedback, if any.
     func customFeedback(
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Feedback.Haptic? {
         custom.first {
@@ -119,7 +119,7 @@ public extension Feedback.HapticConfiguration {
     
     /// Whether a custom feedback has been registered.
     func hasCustomFeedback(
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool {
         customFeedback(for: gesture, on: action) != nil
@@ -127,7 +127,7 @@ public extension Feedback.HapticConfiguration {
     
     /// Get the feedback to use for a certain action.
     func feedback(
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Feedback.Haptic? {
         let custom = customFeedback(for: gesture, on: action)
@@ -169,7 +169,7 @@ private extension Feedback.HapticConfiguration {
     
     /// Get the feedback to use for a certain gesture.
     func feedback(
-        for gesture: Gestures.KeyboardGesture
+        for gesture: Keyboard.Gesture
     ) -> Feedback.Haptic? {
         switch gesture {
         case .doubleTap: doubleTap

@@ -42,7 +42,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
 
         func result(
             for action: KeyboardAction,
-            gesture: Gestures.KeyboardGesture,
+            gesture: Keyboard.Gesture,
             expected: KeyboardAction.GestureAction?
         ) -> Bool {
             let result = action.standardAction(for: gesture)

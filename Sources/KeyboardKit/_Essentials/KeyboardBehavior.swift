@@ -22,7 +22,8 @@ import Foundation
 /// See the <doc:Essentials> for more information.
 public protocol KeyboardBehavior {
     
-    typealias Gesture = Gestures.KeyboardGesture
+    @available(*, deprecated, message: "Just use Keyboard.Gesture from now on")
+    typealias Gesture = Keyboard.Gesture
     
     /// The range that backspace should delete.
     var backspaceRange: Keyboard.BackspaceRange { get }
@@ -32,26 +33,26 @@ public protocol KeyboardBehavior {
     
     /// The preferred keyboard type after an action gesture.
     func preferredKeyboardType(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType
     
     /// Whether to end the sentence after a gesture action.
     func shouldEndSentence(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool
     
     /// Whether to switch to capslock after a gesture action.
     func shouldSwitchToCapsLock(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool
     
     /// Whether to switch to the preferred keyboard type after
     /// a gesture action.
     func shouldSwitchToPreferredKeyboardType(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool
 

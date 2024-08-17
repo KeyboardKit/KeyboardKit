@@ -56,7 +56,7 @@ public extension Feedback.AudioConfiguration {
         
         public init(
             action: KeyboardAction,
-            gesture: Gestures.KeyboardGesture,
+            gesture: Keyboard.Gesture,
             feedback: Feedback.Audio
         ) {
             self.action = action
@@ -65,7 +65,7 @@ public extension Feedback.AudioConfiguration {
         }
         
         public let action: KeyboardAction
-        public let gesture: Gestures.KeyboardGesture
+        public let gesture: Keyboard.Gesture
         public let feedback: Feedback.Audio
     }
 }
@@ -75,7 +75,7 @@ public extension Feedback.AudioConfiguration.CustomFeedback {
     /// Create a custom audio feedback configuration.
     static func audio(
         _ feedback: Feedback.Audio,
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Self {
         .init(action: action, gesture: gesture, feedback: feedback)
@@ -86,7 +86,7 @@ public extension Feedback.AudioConfiguration {
     
     /// Get a custom registered feedback, if any.
     func customFeedback(
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Feedback.Audio? {
         custom.first {
@@ -96,7 +96,7 @@ public extension Feedback.AudioConfiguration {
     
     /// Whether a custom feedback has been registered.
     func hasCustomFeedback(
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool {
         customFeedback(for: gesture, on: action) != nil
@@ -104,7 +104,7 @@ public extension Feedback.AudioConfiguration {
     
     /// Get the feedback to use for a certain action.
     func feedback(
-        for gesture: Gestures.KeyboardGesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Feedback.Audio? {
         customFeedback(for: gesture, on: action)

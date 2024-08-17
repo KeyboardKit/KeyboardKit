@@ -11,7 +11,6 @@ import Foundation
 /// This extension defines standard gestures for the various
 /// keyboard actions.
 ///
-///
 /// The ``KeyboardAction/GestureAction`` typealias signature
 /// uses an optional ``KeyboardController`` since some types
 /// will use this with a weak controller reference.
@@ -28,7 +27,7 @@ public extension KeyboardAction {
     
     /// The controller action to trigger when this action is
     /// triggered with a certain gesture.
-    func standardAction(for gesture: Gestures.KeyboardGesture) -> GestureAction? {
+    func standardAction(for gesture: Keyboard.Gesture) -> GestureAction? {
         switch gesture {
         case .doubleTap: standardDoubleTapAction
         case .longPress: standardLongPressAction

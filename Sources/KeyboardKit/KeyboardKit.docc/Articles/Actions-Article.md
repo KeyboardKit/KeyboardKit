@@ -13,7 +13,9 @@ This article describes the KeyboardKit action engine.
     @PageColor(blue)
 }
 
-In KeyboardKit, the ``KeyboardAction`` enum defines keyboard-specific actions that can be triggered by the keyboard or by code, and then handled with a ``KeyboardActionHandler``.
+Triggering and handling ``KeyboardAction`` is a central concept in KeyboardKit, where an action can be triggered by the keyboard or by code, then handled with a ``KeyboardActionHandler``.
+
+A ``KeyboardActionHandler`` can either handle an action in a default way, or handle it based on a certain ``Keyboard/Gesture``.
 
 
 
@@ -94,7 +96,7 @@ For instance, here's a custom action handler that inherits ``KeyboardAction/Stan
 class CustomActionHandler: StandardActionHandler {
 
     open override func handle(
-        _ gesture: KeyboardGesture, 
+        _ gesture: Keyboard.Gesture, 
         on action: KeyboardAction
     ) {
         if gesture == .press && action == .space {

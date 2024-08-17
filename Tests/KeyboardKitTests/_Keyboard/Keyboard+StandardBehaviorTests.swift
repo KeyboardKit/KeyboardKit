@@ -15,8 +15,8 @@ import XCTest
 
 class Keyboard_StandardBehaviorTests: XCTestCase {
     
-    typealias Gesture = Gestures.KeyboardGesture
-    
+    typealias Gesture = Keyboard.Gesture
+
     var behavior: Keyboard.StandardBehavior!
     var keyboardContext: KeyboardContext!
     var proxy: MockTextDocumentProxy!
@@ -48,7 +48,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
 
 
     func preferredKeyboardTypeResult(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType {
         behavior.preferredKeyboardType(after: gesture, on: action)
@@ -99,7 +99,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
 
 
     func shouldEndSentenceResult(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool {
         behavior.shouldEndSentence(after: gesture, on: action)
@@ -120,7 +120,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
 
 
     func shouldSwitchToCapsLockResult(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool {
         behavior.shouldSwitchToCapsLock(after: gesture, on: action)
@@ -145,7 +145,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
 
 
     func shouldSwitchToPreferredKeyboardTypeResult(
-        after gesture: Gesture,
+        after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool {
         behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)

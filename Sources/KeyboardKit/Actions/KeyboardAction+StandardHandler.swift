@@ -130,7 +130,7 @@ extension KeyboardAction {
 
         /// Whether the handler can handle an action gesture.
         open func canHandle(
-            _ gesture: Gesture,
+            _ gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
             self.action(for: gesture, on: action) != nil
@@ -145,7 +145,7 @@ extension KeyboardAction {
 
         /// Handle a certain keyboard action gesture.
         open func handle(
-            _ gesture: Gesture,
+            _ gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             handle(gesture, on: action, replaced: false)
@@ -164,7 +164,7 @@ extension KeyboardAction {
 
         /// Handle a certain action gesture, with replace logic.
         open func handle(
-            _ gesture: Gesture,
+            _ gesture: Keyboard.Gesture,
             on action: KeyboardAction,
             replaced: Bool
         ) {
@@ -202,7 +202,7 @@ extension KeyboardAction {
 
         /// The feedback to use for a certain action gesture.
         open func audioFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Feedback.Audio? {
             let config = feedbackContext.audioConfiguration
@@ -218,7 +218,7 @@ extension KeyboardAction {
 
         /// The feedback to use for a certain action gesture.
         open func hapticFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Feedback.Haptic? {
             let config = feedbackContext.hapticConfiguration
@@ -227,7 +227,7 @@ extension KeyboardAction {
 
         /// Whether to trigger feedback for an action.
         open func shouldTriggerFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
             return true
@@ -235,7 +235,7 @@ extension KeyboardAction {
 
         /// Whether to trigger audio feedback for an action.
         open func shouldTriggerAudioFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
             return true
@@ -243,7 +243,7 @@ extension KeyboardAction {
 
         /// Whether to trigger haptic feedback for an action.
         open func shouldTriggerHapticFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
             let hasRelease = self.action(for: .release, on: action) != nil
@@ -272,7 +272,7 @@ extension KeyboardAction {
 
         /// Trigger feedback for a certain action gesture.
         open func triggerFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             guard shouldTriggerFeedback(for: gesture, on: action) else { return }
@@ -282,7 +282,7 @@ extension KeyboardAction {
 
         /// Trigger feedback for a certain action gesture.
         open func triggerAudioFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             if !shouldTriggerAudioFeedback(for: gesture, on: action) { return }
@@ -292,7 +292,7 @@ extension KeyboardAction {
 
         /// Trigger feedback for a certain action gesture.
         open func triggerHapticFeedback(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             if !shouldTriggerHapticFeedback(for: gesture, on: action) { return }
@@ -305,7 +305,7 @@ extension KeyboardAction {
 
         /// The standard action to use for a gesture action.
         open func action(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> KeyboardAction.GestureAction? {
             let standard = action.standardAction(for: gesture)
@@ -316,7 +316,7 @@ extension KeyboardAction {
 
         /// An optional keyboard action gesture replacement.
         open func replacementAction(
-            for gesture: Gesture,
+            for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> KeyboardAction? {
             guard gesture == .release else { return nil }
@@ -340,7 +340,7 @@ extension KeyboardAction {
 
         /// Whether to apply autocorrect before an action.
         open func tryApplyAutocorrectSuggestion(
-            before gesture: Gesture,
+            before gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             if isSpaceCursorDrag(action) { return }
@@ -355,7 +355,7 @@ extension KeyboardAction {
 
         /// Try to change keyboard type after a gesture.
         open func tryChangeKeyboardType(
-            after gesture: Gesture,
+            after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
@@ -365,7 +365,7 @@ extension KeyboardAction {
 
         /// Try to end the current sentence after a gesture.
         open func tryEndSentence(
-            after gesture: Gesture,
+            after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
@@ -375,7 +375,7 @@ extension KeyboardAction {
 
         /// Try to perform autocomplete after a gesture.
         open func tryPerformAutocomplete(
-            after gesture: Gestures.KeyboardGesture,
+            after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             keyboardController?.performAutocomplete()
@@ -383,7 +383,7 @@ extension KeyboardAction {
 
         /// Try to register an emoji after a gesture.
         open func tryRegisterEmoji(
-            after gesture: Gestures.KeyboardGesture,
+            after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             guard gesture == .release else { return }
@@ -398,7 +398,7 @@ extension KeyboardAction {
         /// The caller shouldn't handle the action when this
         /// function returns `true`.
         open func tryHandleReplacementAction(
-            before gesture: Gesture,
+            before gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
             guard let action = replacementAction(for: gesture, on: action) else { return false }
@@ -409,7 +409,10 @@ extension KeyboardAction {
         /// Try to reinsert removed space after a gesture.
         ///
         /// This is used to handle autocomplete space insert.
-        open func tryReinsertAutocompleteRemovedSpace(after gesture: Gesture, on action: KeyboardAction) {
+        open func tryReinsertAutocompleteRemovedSpace(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
             guard gesture == .release else { return }
             guard action.shouldReinsertAutocompleteInsertedSpace else { return }
             keyboardContext.tryReinsertAutocompleteRemovedSpace()
@@ -418,7 +421,10 @@ extension KeyboardAction {
         /// Try to remove inserted space before a gesture.
         ///
         /// This is used to handle autocomplete space insert.
-        open func tryRemoveAutocompleteInsertedSpace(before gesture: Gesture, on action: KeyboardAction) {
+        open func tryRemoveAutocompleteInsertedSpace(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
             guard gesture == .release else { return }
             guard action.shouldRemoveAutocompleteInsertedSpace else { return }
             keyboardContext.tryRemoveAutocompleteInsertedSpace()
@@ -451,7 +457,7 @@ private extension KeyboardAction.StandardHandler {
     }
 
     func tryUpdateSpaceDragState(
-        for gesture: Gesture,
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) {
         guard action == .space else { return }
