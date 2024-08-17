@@ -15,7 +15,7 @@ public extension Autocomplete {
     ///
     /// Autocomplete suggestions can be standard suggestions
     /// or autocorrecting suggestions that are automatically
-    /// applied when the user taps a word delimiter.
+    /// applied when a word delimiter is applied.
     ///
     /// Native keyboards typically present an autocorrecting
     /// suggestion with a semi-white background, and unknown
@@ -31,6 +31,7 @@ public extension Autocomplete {
         ///   - isAutocorrect: Whether or the suggestion is autocorrecting, by default `false`.
         ///   - isUnknown: Whether or the suggestion is unknown, by default `false`.
         ///   - subtitle: An optional subtitle that can complete the title, by default `nil`.
+        ///   - source: An optional source to describe where the suggestion is from, by default `nil`.
         ///   - additionalInfo: An optional info dictionary, by default `empty`.
         public init(
             text: String,
@@ -38,6 +39,7 @@ public extension Autocomplete {
             isAutocorrect: Bool = false,
             isUnknown: Bool = false,
             subtitle: String? = nil,
+            source: String? = nil,
             additionalInfo: [String: Any] = [:]
         ) {
             self.text = text
@@ -45,6 +47,7 @@ public extension Autocomplete {
             self.isAutocorrect = isAutocorrect
             self.isUnknown = isUnknown
             self.subtitle = subtitle
+            self.source = source
             self.additionalInfo = additionalInfo
         }
         
@@ -62,7 +65,10 @@ public extension Autocomplete {
         
         /// An optional subtitle that can complete the title.
         public var subtitle: String?
-        
+
+        /// An optional source to describe where the suggestion is from.
+        public var source: String?
+
         /// An optional info dictionary.
         public var additionalInfo: [String: Any]
     }
