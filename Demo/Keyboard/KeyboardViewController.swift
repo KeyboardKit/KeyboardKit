@@ -13,16 +13,23 @@ import SwiftUI
 /// customize the standard configuration.
 ///
 /// To use the keyboard, simply enable it in System Settings,
-/// then switch to it when you type in the demo (or any) app.
-///
-/// > Important: This keyboard needs full access to use some
-/// features, like haptic feedback.
+/// then switch to it with the 🌐 key when typing in any app.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
     ///
-    /// Here, we make demo-specific service keyboard configs.
+    /// Below, we make demo-specific keyboard configurations.
+    /// Play around with them to see how it affects the demo.
     override func viewDidLoad() {
+
+        // MARK: - App Group Synced Settings
+
+        // Call this as early as possible to set up keyboard
+        // settings to sync between the app and its keyboard.
+        // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
+
+
+        // MARK: - Services
 
         /// 💡 Setup a demo-specific action handler.
         services.actionHandler = DemoActionHandler(
@@ -39,51 +46,43 @@ class KeyboardViewController: KeyboardInputViewController {
             context: state.autocompleteContext
         )
         
-        /// 💡 Setup a demo-specific callout service.
+        /// 💡 Setup a demo-specific callout service that by
+        /// default changes the `k` callout actions.
         services.calloutService = Callouts.StandardService(
             keyboardContext: state.keyboardContext,
             baseService: DemoCalloutService()
         )
 
-        /// 💡 Setup a demo-specific layout service.
-        services.layoutService = DemoLayoutService()
+        /// 💡 Setup a demo-specific keyboard layout service
+        /// that inserts an additional key into the keyboard.
+        services.layoutService = DemoLayoutService(.rocket)
 
-        /// 💡 Setup a demo-specific style service.
+        /// 💡 Setup a demo-specific keyboard style that can
+        /// change the design of any keys in a keyboard view.
         services.styleProvider = DemoStyleProvider(
             keyboardContext: state.keyboardContext
         )
 
+        // MARK: - State
 
-        /// 💡 Setup a custom keyboard locale.
-        ///
-        /// Without KeyboardKit Pro, changing locale will by
-        /// default only affects localized texts.
+        /// 💡 Select a custom keyboard locale, although the
+        /// open-source keyboard will only localize the keys.
         state.keyboardContext.setLocale(.english)
 
-        /// 💡 Add more locales to the keyboard.
-        ///
-        /// The demo layout service will add a "next locale"
-        /// button if you have more than one locale.
+        /// 💡 Add more locales to the keyboard context. The
+        /// locales are only used in the locale context menu
+        /// if a user hasn't used a language settings screen.
+        state.keyboardContext.setLocales(.all)
         state.keyboardContext.localePresentationLocale = .current
-        state.keyboardContext.locales = [] // KeyboardLocale.all.locales
 
-        /// 💡 Setup a custom dictation key replacement.
-        ///
-        /// Since dictation is not available by default, the
-        /// dictation button is removed if we don't set this.
-        state.keyboardContext.keyboardDictationReplacement = .character("😀")
-        
-        /// 💡 Configure the space long press behavior.
-        ///
-        /// The locale context menu will only open up if the
-        /// keyboard has multiple locales.
+        /// 💡 Configure the space long press behavior. This
+        /// can either be used to move the text input cursor
+        /// or to show the locale context menu.
         state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
         // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
         
-        /// 💡 Setup haptic and audio feedback.
-        ///
-        /// The code below enables audio and haptic feedback,
-        /// then sets up custom audio for the rocket button.
+        /// 💡 Setup haptic and audio feedback, and register
+        /// a custom audio sound for the rocket button.
         let feedback = state.feedbackContext
         feedback.audioConfiguration = .enabled
         feedback.hapticConfiguration = .enabled
@@ -98,9 +97,9 @@ class KeyboardViewController: KeyboardInputViewController {
     /// This function is called whenever the keyboard should
     /// be created or updated.
     ///
-    /// Below, we just create a standard keyboard view, just
-    /// to show you how to do it. You can customize anything
-    /// you want, and replace any views within this keyboard.
+    /// Here, we just setup a standard keyboard view to show
+    /// to do it. You can customize any part of this view or
+    /// replace it with a completely custom view if you want.
     override func viewWillSetupKeyboard() {
         super.viewWillSetupKeyboard()
 

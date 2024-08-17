@@ -28,7 +28,7 @@ struct DemoKeyboardView: View {
     private var theme: KeyboardTheme?
 
     var body: some View {
-        SystemKeyboard(
+        KeyboardView(
             state: controller.state,
             services: keyboardServices,
             buttonContent: { $0.view },
@@ -45,7 +45,7 @@ struct DemoKeyboardView: View {
                 .foregroundColor(params.style.item.titleColor)
             }
         )
-        .keyboardInputToolbarDisplayMode(.automatic)
+
     }
 }
 

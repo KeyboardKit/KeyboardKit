@@ -9,7 +9,7 @@
 import Foundation
 import KeyboardKit
 
-/// This fake service returns fake suggestions while typing.
+/// This fake service provides fake suggestions while typing.
 class FakeAutocompleteService: AutocompleteService {
 
     init(context: AutocompleteContext) {
@@ -38,8 +38,9 @@ class FakeAutocompleteService: AutocompleteService {
         guard text.count > 0 else { return [] }
         return fakeSuggestions(for: text)
             .map {
+                let autocorrect = $0.isAutocorrect && context.isAutocorrectEnabled
                 var suggestion = $0
-                suggestion.isAutocorrect = $0.isAutocorrect && context.isAutocorrectEnabled
+                suggestion.type = autocorrect ? .autocorrect : $0.type
                 return suggestion
             }
     }
@@ -56,8 +57,8 @@ private extension FakeAutocompleteService {
 
     func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
         let suggestions: [Autocomplete.Suggestion] = [
-            .init(text: text, isUnknown: true),
-            .init(text: text, isAutocorrect: true),
+            .init(text: text, type: .unknown),
+            .init(text: text, type: .autocorrect),
             .init(text: text, subtitle: "Subtitle"),
             .init(text: "4th Suggestion"),
             .init(text: "5th Suggestion")

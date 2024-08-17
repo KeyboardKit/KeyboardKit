@@ -9,19 +9,11 @@
 import KeyboardKit
 import UIKit
 
-/// This action handler inherits the standard one, and makes
-/// demo-specific adjustments to the standard handling.
-///
-/// You can play around with the class and customize it more,
-/// to see how it affects the demo keyboard.
-///
-/// The ``KeyboardViewController`` shows how you can replace
-/// the standard handler with this custom one.
+/// This action handler inherits the standard action handler
+/// and makes demo-specific adjustments to it.
 class DemoActionHandler: KeyboardAction.StandardHandler {
 
-
-    // MARK: - Overrides
-    
+    /// Trigger custom actions for `.image` keyboard actions.
     override func action(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
@@ -34,9 +26,7 @@ class DemoActionHandler: KeyboardAction.StandardHandler {
         }
     }
     
-    
-    // MARK: - Custom actions
-    
+    /// Save an image to Photos when you long press it.
     func longPressAction(
         for action: KeyboardAction
     ) -> KeyboardAction.GestureAction? {
@@ -45,7 +35,8 @@ class DemoActionHandler: KeyboardAction.StandardHandler {
         default: nil
         }
     }
-    
+
+    /// Copy an image to the pasteboard when you tap it.
     func releaseAction(
         for action: KeyboardAction
     ) -> KeyboardAction.GestureAction? {
@@ -54,34 +45,30 @@ class DemoActionHandler: KeyboardAction.StandardHandler {
         default: nil
         }
     }
-    
-    
-    // MARK: - Functions
-    
+}
+
+private extension DemoActionHandler {
+
     func alert(_ message: String) {
         print("Implement alert functionality if you want.")
     }
-    
+
     func copyImage(named imageName: String) {
         guard let image = UIImage(named: imageName) else { return }
         guard keyboardContext.hasFullAccess else { return alert("You must enable full access to copy images.") }
         guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
         alert("Copied to pasteboard!")
     }
-    
+    func handleImageDidSave(withError error: Error?) {
+        if error == nil { alert("Saved!") }
+        else { alert("Failed!") }
+    }
+
     func saveImage(named imageName: String) {
         guard let image = UIImage(named: imageName) else { return }
         guard keyboardContext.hasFullAccess else { return alert("You must enable full access to save images.") }
         image.saveToPhotos(completion: handleImageDidSave)
         alert("Saved to photos!")
-    }
-}
-
-private extension DemoActionHandler {
-    
-    func handleImageDidSave(withError error: Error?) {
-        if error == nil { alert("Saved!") }
-        else { alert("Failed!") }
     }
 }
 

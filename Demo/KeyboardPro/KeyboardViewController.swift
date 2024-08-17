@@ -13,50 +13,48 @@ import SwiftUI
 /// and customize the standard configuration.
 ///
 /// To use the keyboard, simply enable it in System Settings,
-/// then switch to it when you type in the demo (or any) app.
+/// then switch to it with the 🌐 key when typing in any app.
 ///
-/// This keyboard uses KeyboardKit Pro-based autocomplete to
-/// provide real suggestions. It also uses a KeyboardKit Pro
-/// `ToggleToolbar`, to add a menu "behind" the main toolbar.
-/// Check it out for some fun features.
+/// This keyboard uses KeyboardKit Pro `KeyboardApp` screens
+/// to open keyboard and language settings as sheet overlays.
+/// This is not needed when an app can setup an App Group to
+/// sync data between itself and its keyboard. In such cases,
+/// settings can be managed in the main app.
 ///
-/// This keyboard will also persist the current locale, then
-/// restore it the next time it launches.
-///
-/// > Important: This keyboard needs full access to use some
-/// features, like haptic feedback.
+/// The `viewDidLoad` function below has sample code to show
+/// you how you can setup App Group synced keyboard settings
+/// in apps that support it.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
     ///
-    /// Here, we make demo-specific configurations, that are
-    /// not overwritten when KeyboardKit Pro is registered.
+    /// Below, we make demo-specific keyboard configurations.
+    /// Play around with them to see how it affects the demo.
     override func viewDidLoad() {
 
-        /// 💡 Add more locales to the keyboard.
-        ///
-        /// The ``DemoLayoutService`` inserts a "next locale"
-        /// button if you have more than one locale.
+        // MARK: - App Group Synced Settings
+
+        // Call this as early as possible to set up keyboard
+        // settings to sync between the app and its keyboard.
+        // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
+
+
+        // MARK: - State
+
+        /// 💡 Add more locales to the keyboard context. The
+        /// locales are only used in the locale context menu
+        /// if a user hasn't used a language settings screen.
         state.keyboardContext.localePresentationLocale = .current
         // state.keyboardContext.locales = This is set to the license locales
         
-        /// 💡 Setup a custom dictation key replacement.
-        ///
-        /// Since dictation is not available by default, the
-        /// dictation button is removed if we don't set this.
-        state.keyboardContext.keyboardDictationReplacement = .keyboardType(.emojis)
-        
-        /// 💡 Change the space long press behavior.
-        ///
-        /// The locale context menu will only open up if the
-        /// keyboard has multiple locales.
+        /// 💡 Configure the space long press behavior. This
+        /// can either be used to move the text input cursor
+        /// or to show the locale context menu.
         state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
         // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
         
-        /// 💡 Setup haptic and audio feedback.
-        ///
-        /// The code below enables audio and haptic feedback,
-        /// then sets up custom audio for the rocket button.
+        /// 💡 Setup haptic and audio feedback, and register
+        /// a custom audio sound for the rocket button.
         let feedback = state.feedbackContext
         feedback.audioConfiguration = .enabled
         feedback.hapticConfiguration = .enabled
@@ -64,7 +62,8 @@ class KeyboardViewController: KeyboardInputViewController {
         feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
         feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
         
-        /// 💡 Disable autocorrect.
+        /// 💡 Disable autocorrection. We can also apply the
+        /// ``autocorrectionDisabled(with:)`` view modifier.
         // state.autocompleteContext.isAutocorrectEnabled = false
 
         /// 💡 Call super to perform the base initialization.
@@ -129,7 +128,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// This service adds a "next locale" button if it's
         /// needed, as well as a dictation button.
-        services.layoutService = DemoLayoutService()
+        services.layoutService = DemoLayoutService(.rocket)
 
         /// 💡 Setup a theme-based style provider.
         ///

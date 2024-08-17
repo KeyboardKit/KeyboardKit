@@ -12,15 +12,12 @@ import SwiftUI
 /// This is the main demo app screen.
 ///
 /// This view uses a KeyboardKit Pro `KeyboardApp.HomeScreen`
-/// to show keyboard-specific statuses with a few additional
-/// views above and below the statuses.
+/// to present keyboard-specific statuses and settings links,
+/// with some additional views added below the standard list.
+///
+/// See ``DemoApp`` for important information regarding some
+/// limitations that this app has since it's not signed.
 struct HomeScreen: View {
-
-    @State
-    private var appearance = ColorScheme.light
-
-    @State
-    private var isAppearanceDark = false
 
     @State
     private var text = ""
@@ -39,28 +36,22 @@ struct HomeScreen: View {
         config: .app
     )
 
-    @StateObject
-    private var keyboardStatus = KeyboardStatusContext(
-        bundleId: "com.keyboardkit.demo.*"
-    )
-
     var body: some View {
         NavigationView {
             KeyboardApp.HomeScreen(
                 appIcon: Image(.icon),
                 keyboardBundleId: "com.keyboardkit.demo.*",
-                topListContent: {},
-                bottomListContent: textFieldSection
+                header: {},
+                footer: textFieldSection
             )
             .navigationTitle("KeyboardKit")
-            .onChange(of: isAppearanceDark) { newValue in
-                appearance = isAppearanceDark ? .dark : .light
-            }
         }
-        .navigationViewStyle(.stack)
         .keyboardAppHomeScreenStyle(
-            .init(appIconSize: 120)
+            .init(appIconSize: 150)
         )
+//        .keyboardAppHomeScreenVisibility(
+//            .init(keyboardSection: true)
+//        )
         .keyboardDictation(
             context: dictationContext,
             config: .app,
@@ -70,6 +61,7 @@ struct HomeScreen: View {
         .keyboardStatusSectionStyle(
             .init(systemSettingsLink: .always)
         )
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -94,20 +86,14 @@ extension HomeScreen {
     
     func textFieldSection() -> some View {
         Section("Text Fields") {
-            Toggle(isOn: $isAppearanceDark) {
-                Text("Enable Dark Appearance")
-            }
-            Group {
-                TextField("Plain Text...", text: $text)
-                    .keyboardType(.default)
-                TextField("Email...", text: $textEmail)
-                    .keyboardType(.emailAddress)
-                TextField("URL...", text: $textURL)
-                    .keyboardType(.URL)
-                TextField("Web Search...", text: $textWebSearch)
-                    .keyboardType(.webSearch)
-            }
-            .keyboardAppearance(appearance)
+            TextField("Plain Text...", text: $text)
+                .keyboardType(.default)
+            TextField("Email...", text: $textEmail)
+                .keyboardType(.emailAddress)
+            TextField("URL...", text: $textURL)
+                .keyboardType(.URL)
+            TextField("Web Search...", text: $textWebSearch)
+                .keyboardType(.webSearch)
         }
     }
 }

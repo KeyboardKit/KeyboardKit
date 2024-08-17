@@ -9,14 +9,8 @@
 import KeyboardKit
 import UIKit
 
-/// This demo-specific callout service modifies some callout
-/// actions, to show "keyboard" actions for the "k" key.
-///
-/// You can play around with the class and customize it more,
-/// to see how it affects the demo keyboard.
-///
-/// The ``KeyboardViewController`` shows how you can replace
-/// the standard service with this custom one. 
+/// This demo-specific callout service shows "keyboard" when
+/// a "k" key is long pressed. 
 class DemoCalloutService: Callouts.BaseService {
 
     override func calloutActionString(for char: String) -> String {

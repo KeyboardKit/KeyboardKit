@@ -9,12 +9,11 @@
 import KeyboardKitPro
 import SwiftUI
 
-/// This demo-specific toolbar is used as toggled toolbar in
-/// the keyboard that is set up in ``DemoKeyboardView``.
+/// This demo-specific toolbar is used as the `ToggleToolbar`
+/// toggled view in ``DemoKeyboardView``.
 ///
-/// This toolbar has a textfield to let you type, as well as
-/// buttons to trigger certain actions, like picking a theme,
-/// open settings, etc.
+/// This toolbar has a textfield to let you type and buttons
+/// to toggle state, trigger actions, etc.
 struct DemoToolbar: View {
     
     /// This is (for now) required by the `KeyboardTextField`.

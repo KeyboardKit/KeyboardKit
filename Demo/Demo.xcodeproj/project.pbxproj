@@ -25,14 +25,14 @@
 		A9521CF329A3941400C62ECE /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9521CF229A3941400C62ECE /* Settings.bundle */; };
 		A96AA3632B28AE0C00A6F6E8 /* DictationConfig+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C9395029FD514E00EFFCD7 /* DictationConfig+App.swift */; };
 		A96AA3652B28B09700A6F6E8 /* StandardSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96AA3642B28B09700A6F6E8 /* StandardSpeechRecognizer.swift */; };
+		A96F3FD72C70D827007344D2 /* DemoLayoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96F3FD62C70D827007344D2 /* DemoLayoutService.swift */; };
+		A96F3FD92C70D830007344D2 /* DemoLayoutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96F3FD82C70D830007344D2 /* DemoLayoutService.swift */; };
 		A9A7E077299B721B00713F2A /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7E076299B721600713F2A /* DemoKeyboardView.swift */; };
-		A9A7E07A299B72BF00713F2A /* DemoLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A7E079299B72BC00713F2A /* DemoLayoutProvider.swift */; };
 		A9B233A02C6C575D00C96961 /* DemoCalloutService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9B2339F2C6C575D00C96961 /* DemoCalloutService.swift */; };
 		A9C672652A7BCE37004A5721 /* DemoStyleProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C672642A7BCE37004A5721 /* DemoStyleProvider.swift */; };
 		A9C9395129FD514E00EFFCD7 /* DictationConfig+App.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C9395029FD514E00EFFCD7 /* DictationConfig+App.swift */; };
 		A9EAA6C927B1526500BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6C827B1526500BC9376 /* KeyboardKit */; };
 		A9EAA6CB27B1527300BC9376 /* KeyboardKit in Frameworks */ = {isa = PBXBuildFile; productRef = A9EAA6CA27B1527300BC9376 /* KeyboardKit */; };
-		A9EAA6F627B165B600BC9376 /* DemoLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F227B165B600BC9376 /* DemoLayoutProvider.swift */; };
 		A9EAA6F727B165B600BC9376 /* DemoActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9EAA6F327B165B600BC9376 /* DemoActionHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -88,14 +88,14 @@
 		A93342D1299A855F008FAA95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A9521CF229A3941400C62ECE /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		A96AA3642B28B09700A6F6E8 /* StandardSpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardSpeechRecognizer.swift; sourceTree = "<group>"; };
+		A96F3FD62C70D827007344D2 /* DemoLayoutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoLayoutService.swift; sourceTree = "<group>"; };
+		A96F3FD82C70D830007344D2 /* DemoLayoutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoLayoutService.swift; sourceTree = "<group>"; };
 		A9A7E01B299B6CD800713F2A /* KeyboardKitPro */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = KeyboardKitPro; path = "/Users/danielsaidi/Library/Developer/Xcode/DerivedData/Demo-cuccbkfkotoujlbkuaswjdgjknfd/SourcePackages/checkouts/KeyboardKitPro"; sourceTree = "<absolute>"; };
 		A9A7E076299B721600713F2A /* DemoKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
-		A9A7E079299B72BC00713F2A /* DemoLayoutProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoLayoutProvider.swift; sourceTree = "<group>"; };
 		A9B2339F2C6C575D00C96961 /* DemoCalloutService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoCalloutService.swift; sourceTree = "<group>"; };
 		A9C672642A7BCE37004A5721 /* DemoStyleProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoStyleProvider.swift; sourceTree = "<group>"; };
 		A9C9395029FD514E00EFFCD7 /* DictationConfig+App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DictationConfig+App.swift"; sourceTree = "<group>"; };
 		A9EAA6C727B1523C00BC9376 /* keyboardkit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = keyboardkit; path = ../; sourceTree = "<group>"; };
-		A9EAA6F227B165B600BC9376 /* DemoLayoutProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoLayoutProvider.swift; sourceTree = "<group>"; };
 		A9EAA6F327B165B600BC9376 /* DemoActionHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoActionHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -193,11 +193,11 @@
 		A921152425D58A94003510D9 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				A9C9394F29FD514200EFFCD7 /* Dictation */,
-				A921155925D58E39003510D9 /* Supporting Files */,
-				A921152925D58A96003510D9 /* Assets.xcassets */,
 				A921152525D58A94003510D9 /* DemoApp.swift */,
 				A921152725D58A94003510D9 /* HomeScreen.swift */,
+				A96F3FDA2C70E04A007344D2 /* Assets */,
+				A9C9394F29FD514200EFFCD7 /* Dictation */,
+				A921155925D58E39003510D9 /* Supporting Files */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -205,15 +205,11 @@
 		A921153A25D58AC7003510D9 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
-				A9155CFA2BC450DA008C360F /* Assets */,
-				A9155CFC2BC450DD008C360F /* Supporting Files */,
 				A921153B25D58AC7003510D9 /* KeyboardViewController.swift */,
 				A9155CF12BC45081008C360F /* KeyboardKit+Demo.swift */,
-				A9EAA6F327B165B600BC9376 /* DemoActionHandler.swift */,
-				A9B2339F2C6C575D00C96961 /* DemoCalloutService.swift */,
-				A9EAA6F227B165B600BC9376 /* DemoLayoutProvider.swift */,
-				A9C672642A7BCE37004A5721 /* DemoStyleProvider.swift */,
-				A921156D25D5902F003510D9 /* FakeAutocompleteService.swift */,
+				A9155CFA2BC450DA008C360F /* Assets */,
+				A96F3FDB2C70E6EA007344D2 /* Services */,
+				A9155CFC2BC450DD008C360F /* Supporting Files */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -238,15 +234,51 @@
 		A93342CE299A855F008FAA95 /* KeyboardPro */ = {
 			isa = PBXGroup;
 			children = (
-				A9155D002BC49350008C360F /* Assets */,
-				A9155CFE2BC4933F008C360F /* Supporting Files */,
 				A93342CF299A855F008FAA95 /* KeyboardViewController.swift */,
 				A9155D022BC49356008C360F /* KeyboardKit+Demo.swift */,
-				A92E4A1D2B15101500F957C6 /* DemoToolbar.swift */,
-				A9A7E079299B72BC00713F2A /* DemoLayoutProvider.swift */,
-				A9A7E076299B721600713F2A /* DemoKeyboardView.swift */,
+				A9155D002BC49350008C360F /* Assets */,
+				A96F3FDC2C70E6F9007344D2 /* Services */,
+				A9155CFE2BC4933F008C360F /* Supporting Files */,
+				A96F3FDD2C70E709007344D2 /* Views */,
 			);
 			path = KeyboardPro;
+			sourceTree = "<group>";
+		};
+		A96F3FDA2C70E04A007344D2 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				A921152925D58A96003510D9 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		A96F3FDB2C70E6EA007344D2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A9EAA6F327B165B600BC9376 /* DemoActionHandler.swift */,
+				A9B2339F2C6C575D00C96961 /* DemoCalloutService.swift */,
+				A96F3FD62C70D827007344D2 /* DemoLayoutService.swift */,
+				A9C672642A7BCE37004A5721 /* DemoStyleProvider.swift */,
+				A921156D25D5902F003510D9 /* FakeAutocompleteService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A96F3FDC2C70E6F9007344D2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A96F3FD82C70D830007344D2 /* DemoLayoutService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		A96F3FDD2C70E709007344D2 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A92E4A1D2B15101500F957C6 /* DemoToolbar.swift */,
+				A9A7E076299B721600713F2A /* DemoKeyboardView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A9C9394F29FD514200EFFCD7 /* Dictation */ = {
@@ -413,9 +445,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A96F3FD72C70D827007344D2 /* DemoLayoutService.swift in Sources */,
 				A921153C25D58AC7003510D9 /* KeyboardViewController.swift in Sources */,
 				A9C672652A7BCE37004A5721 /* DemoStyleProvider.swift in Sources */,
-				A9EAA6F627B165B600BC9376 /* DemoLayoutProvider.swift in Sources */,
 				A9EAA6F727B165B600BC9376 /* DemoActionHandler.swift in Sources */,
 				A921156F25D5902F003510D9 /* FakeAutocompleteService.swift in Sources */,
 				A9155CF42BC45081008C360F /* KeyboardKit+Demo.swift in Sources */,
@@ -427,7 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A9A7E07A299B72BF00713F2A /* DemoLayoutProvider.swift in Sources */,
+				A96F3FD92C70D830007344D2 /* DemoLayoutService.swift in Sources */,
 				A93342D0299A855F008FAA95 /* KeyboardViewController.swift in Sources */,
 				A92E4A1E2B15101500F957C6 /* DemoToolbar.swift in Sources */,
 				A9155D032BC49356008C360F /* KeyboardKit+Demo.swift in Sources */,
@@ -757,8 +789,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/KeyboardKit/KeyboardKitPro.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.7.2;
+				branch = 8.8_rc1;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
