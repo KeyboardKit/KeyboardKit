@@ -71,6 +71,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `AutocompleteContext` now stores many properties.
 * `Feedback.HapticConfiguration.disabled` now triggers `.longPressOnSpace`.
 * `FeedbackContext` has changed the way it calculates its feedback configs.
+* `Keyboard.Services` `layoutService` will now refresh the keyboard when set.
 * `KeyboardLayout.Configuration` uses a marginally taller input toolbar height.
 * `KeyboardInputViewController` now checks if self is nil when setting up a view.
 * `KeyboardView` now renders better on 13" iPad devices, due to more size tolerance.

@@ -44,6 +44,11 @@ public extension KeyboardContext {
             self.textInputProxy = controller.textInputProxy
         }
     }
+
+    /// Make the context trigger a keyboard view refresh.
+    func triggerKeyboardViewRefresh() {
+        setLocale(locale)
+    }
 }
 
 extension KeyboardContext {

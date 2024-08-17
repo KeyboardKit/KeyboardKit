@@ -76,7 +76,9 @@ public extension Keyboard {
             keyboardContext: state.keyboardContext)
 
         /// The keyboard layout service to use.
-        public lazy var layoutService: KeyboardLayoutService = KeyboardLayout.StandardService()
+        public lazy var layoutService: KeyboardLayoutService = KeyboardLayout.StandardService() {
+            didSet { state.keyboardContext.triggerKeyboardViewRefresh() }
+        }
 
         /// The space drag gesture handler to use.
         public lazy var spaceDragGestureHandler = Gestures.SpaceDragGestureHandler(
