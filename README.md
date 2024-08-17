@@ -23,9 +23,7 @@ KeyboardKit extends Apple's limited keyboard APIs, extends the input controller 
     <img src ="Resources/Demo.gif" width=450 />
 </p>
 
-KeyboardKit is open-source and completely free to use. It can be extended with [KeyboardKit Pro][Pro], which unlocks a bunch of pro features, like fully localized keyboards, autocomplete, AI-enabling features, and much more.
-
-Keyboard extensions can be used within all other apps on iOS, whever text input is supported. It's the only way for your company, product, or brand to directly interact with other apps on iOS. Don't miss out!
+KeyboardKit is open-source and completely free. It can be extended with [KeyboardKit Pro][Pro] to unlock Pro features like 68 locales, autocomplete & autocorrect, an emoji keyboard, AI support, themes, dictation and much more.
 
 
 
