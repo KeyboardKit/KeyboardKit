@@ -35,6 +35,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 ### ✨ Features
 
 * `AutocompleteContext` has new settings that replace ``AutocompleteSettings``.
+* `Autocomplete.Suggestion` has a new `source` property to indicate its source.
 * `Bundle` has an `isExtension` to help you check if code runs in an extension. 
 * `DictationContext` has new setting values that replace ``DictationSettings``.
 * `FeedbackContext` has new settings that replace the ``FeedbackSettings`` type.
@@ -75,6 +76,8 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 
 ### 👑 KeyboardKit Pro
 
+* `Autocomplete.LocalService` now applies a source to its suggestions.
+* `Autocomplete.LocalService` now is now less aggressive with autocorrect.
 * `Autocomplete.LocalService` now lets you override next character prediction.
 * `Autocomplete.RemoteService` can now also perform next character prediction.
 * `KeyboardApp.HomeScreen` can now be configured to display a keyboard section.

@@ -9,7 +9,7 @@
 import Foundation
 
 public extension Autocomplete {
- 
+
     /// This type represents an autocomplete suggestion that
     /// is returned by an ``AutocompleteService``.
     ///
@@ -22,7 +22,7 @@ public extension Autocomplete {
     /// or current words with locale-specific quotation, but
     /// you can customize this as you see fit.
     struct Suggestion {
-        
+
         /// Create an autocomplete suggestion.
         ///
         /// - Parameters:
@@ -50,19 +50,19 @@ public extension Autocomplete {
             self.source = source
             self.additionalInfo = additionalInfo
         }
-        
+
         /// The text that should be sent to the proxy.
         public var text: String
-        
+
         /// The text that should be displayed.
         public var title: String
-        
+
         /// Whether or the suggestion is autocorrecting.
         public var isAutocorrect: Bool
-        
+
         /// Whether or the suggestion is unknown.
         public var isUnknown: Bool
-        
+
         /// An optional subtitle that can complete the title.
         public var subtitle: String?
 
@@ -74,8 +74,28 @@ public extension Autocomplete {
     }
 }
 
+private extension String {
+
+    func withAutocompleteCasing(for word: String) -> String {
+        let isUppercased = word.count > 1 && word == word.uppercased()
+        return isUppercased ? uppercased() : self
+    }
+}
+
+public extension Autocomplete.Suggestion {
+
+    /// Adjust the ``text`` casing to match a certain word.
+    func withAutocompleteCasing(
+        for word: String
+    ) -> Autocomplete.Suggestion {
+        var result = self
+        result.text = result.text.withAutocompleteCasing(for: word)
+        return result
+    }
+}
+
 public extension Collection where Element == Autocomplete.Suggestion {
-    
+
     func contains(_ word: String) -> Bool {
         contains { $0.text.caseInsensitiveCompare(word) == .orderedSame }
     }
