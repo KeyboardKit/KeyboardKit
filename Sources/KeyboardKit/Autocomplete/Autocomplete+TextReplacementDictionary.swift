@@ -34,6 +34,7 @@ public extension Autocomplete.TextReplacementDictionary {
         .init(.init(
             [
                 KeyboardLocale.english: [
+                    "i": "I",
                     "ill": "I'll",
                     "Ill": "I'll"
                 ]
