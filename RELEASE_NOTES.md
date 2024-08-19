@@ -26,6 +26,8 @@ This version continues to rename types to make things more consistent in the 9.0
 
 This version also adds a new `KeyboardApp` type that can be used to define all information for your app. This makes it easy to keep all app-specific information in one place, and to setup the main app target.
 
+This version also adds a new `KeyboardAppView` view that can be used to set up all your main app target, register your KeyboardKit Pro license (if any) and setup everything. This removes a lot of manyal work.
+
 This version deprecates the recently added settings types, and replaces them with adding persistency to the various context properties instead. This avoids having to keep the contexts in sync with the settings.
 
 To avoid compile-time warnings, these deprecated settings are currently only soft deprecated with a code comment. They will however be completely removed in KeyboardKit 9.0, so make sure to start using the contexts instead.
@@ -52,6 +54,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `KeyboardAction.StandardHandler` uses an emoji provider instead of an injected handler.
 * `KeyboardAction.StandardHandler` has new functions to trigger audio and haptic feedback.
 * `KeyboardApp` is a new type that can be used to setup information for your keyboard app.
+* `KeyboardAppView` is a new view that can be used to setup your main keyboard app target.
 * `KeyboardContext` has a computed `returnKeyType` property, which can also be overridden.
 * `KeyboardContext` has new settings that replace the ``KeyboardSettings`` settings properties.
 * `KeyboardContext` has a new `returnKeyTypeOverride` that can override which return key to use.

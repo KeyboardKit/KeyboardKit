@@ -15,7 +15,7 @@ This article describes the KeyboardKit app-specific utilities.
 
 KeyboardKit provides many utilities for the main app target, that simplifies building a great keyboard app.
 
-👑 [KeyboardKit Pro][Pro] unlocks app views for the main app target. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks app screens for the main app target. Information about Pro features can be found at the end of this article.
 
 
 
@@ -49,10 +49,50 @@ The app value can also resolve other properties that you may need, such as a ``d
 > Important: The ``KeyboardApp/locales`` collection is only meant to describe which locales you *want* to use in your app and keyboard. It will be capped to the number of locales that your KeyboardKit Pro license includes.
 
 
+## Keyboard App View
+
+The ``KeyboardAppView`` view can be used as the root view of a keyboard app target, to set up everything it needs to use KeyboardKit.
+
+To use this view, just create a ``KeyboardApp`` value as above and pass it into the initializer with your root view:
+
+```swift
+@main
+struct MyApp: App {
+    var body: some Scene {
+        WindowGroup {
+            KeyboardAppView(for: .myApp) {
+                ContentView()
+            }
+        }
+    }
+}
+```
+
+This will inject all ``Keyboard/State`` types into the view hierarchy, setup App Group synced settings with ``KeyboardSettings/setupStore(withAppGroup:keyPrefix:)`` (if you have an ``KeyboardApp/appGroupId``) and register your KeyboardKit Pro license key (if any) to unlock all included pro features.
+
+This means that you will be able resolve any state value like this, without having to set up anything else:
+
+```swift
+struct MyView: View {
+
+    @EnvironmentObject
+    var keyboardContext: KeyboardContext
+
+    var body: View {
+        ...
+    }
+}
+```
+
+You can then change any states from any view within your app, to customize them to fit your need.
+
+
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks views in the ``KeyboardApp`` namespace, that let you quickly add keyboard-related features to your main app.
+[KeyboardKit Pro][Pro] unlocks screens in the ``KeyboardApp`` namespace, to let you quickly add keyboard-related features to the main app.
+
+These apps currently require you to either use a ``KeyboardAppView`` to set up your app, as above, or to pass in a properly configured ``Keyboard/State`` value into the various screens to override the environment. If neither is passed in, the views will crash. 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
