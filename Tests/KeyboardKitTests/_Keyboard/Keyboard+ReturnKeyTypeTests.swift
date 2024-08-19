@@ -69,7 +69,7 @@ final class Keyboard_ReturnKeyTypeTests: XCTestCase {
         for type: UIReturnKeyType,
         _ expected: Keyboard.ReturnKeyType
     ) {
-        XCTAssertEqual(type.keyboardReturnKeyType, expected)
+        XCTAssertEqual(type.keyboardType, expected)
     }
 
     func testCanMapNativeReturnKeyType() {

@@ -10,17 +10,23 @@ import Foundation
 
 public extension KeyboardContext {
 
-    /// The locales that have been added by the user, if any.
+    /// A list of explicitly added locales, which should not
+    /// be confused with all available ``locales``.
     ///
     /// The ``selectNextLocale()`` function and context menu
     /// will use this list if it has locales, else ``locales``.
     ///
     /// > Note: Use ``addedLocaleIdentifiersValue`` whenever
     /// you want to bind this value to a picker.
-    var addedLocales: [Locale] {
-        get { addedLocaleIdentifiersValue.value.map(Locale.init) }
+    var addedLocales: [KeyboardLocale] {
+        get {
+            addedLocaleIdentifiersValue.value
+                .compactMap { KeyboardLocale(rawValue: $0) }
+        }
         set {
-            let ids = newValue.map { $0.identifier }
+            let ids = newValue
+                .unique()
+                .map { $0.localeIdentifier }
             addedLocaleIdentifiersValue.value = ids
         }
     }
@@ -37,21 +43,19 @@ public extension KeyboardContext {
         set { addedLocaleIdentifiersValue.value = newValue }
     }
 
-    /// Whether a locale can be added to ``addedLocales``.
-    func canAddLocaleToAddedLocales(_ locale: KeyboardLocale) -> Bool {
-        !addedLocales.contains(locale.locale)
-    }
-
-    /// Whether a locale can be removed from ``addedLocales``.
-    func canRemoveLocaleFromAddedLocales(_ locale: KeyboardLocale) -> Bool {
-        addedLocales.contains(locale.locale) && !isLocaleSelected(locale)
+    /// Whether a locale has been added to ``addedLocales``.
+    func hasAddedLocale(_ locale: KeyboardLocale) -> Bool {
+        addedLocales.contains(locale)
     }
 
     /// Move the current ``locale`` first in ``addedLocales``.
+    ///
+    /// This will only be performed if the current locale is
+    /// among the ``addedLocales``.
     func moveCurrentLocaleFirstInAddedLocales() {
-        guard let first = addedLocales.first else { return }
-        if locale == first.locale { return }
-        addedLocales = [locale] + addedLocales.filter { $0.locale != locale }
+        guard let keyboardLocale else { return }
+        if keyboardLocale == addedLocales.first { return }
+        addedLocales = [keyboardLocale] + addedLocales.filter { $0 != keyboardLocale }
     }
 
     /// Set ``locales`` to the provided locales.
@@ -70,6 +74,6 @@ extension KeyboardContext {
     /// This is internal until we find a better name for it.
     var selectableLocales: [Locale] {
         let hasAddedLocales = addedLocales.count > 1
-        return hasAddedLocales ? addedLocales : locales
+        return hasAddedLocales ? addedLocales.map { $0.locale } : locales
     }
 }

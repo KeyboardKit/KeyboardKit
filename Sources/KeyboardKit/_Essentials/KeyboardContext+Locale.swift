@@ -17,13 +17,13 @@ public extension KeyboardContext {
         return match ?? fuzzy
     }
 
-    @available(*, deprecated, renamed: "isLocaleSelected")
+    @available(*, deprecated, renamed: "hasCurrentLocale")
     func hasKeyboardLocale(_ locale: KeyboardLocale) -> Bool {
         self.locale.identifier == locale.localeIdentifier
     }
 
     /// Whether a certain locale is the current ``locale``.
-    func isLocaleSelected(_ locale: KeyboardLocale) -> Bool {
+    func hasCurrentLocale(_ locale: KeyboardLocale) -> Bool {
         self.locale.identifier == locale.localeIdentifier
     }
 

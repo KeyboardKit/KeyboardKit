@@ -40,8 +40,8 @@ class KeyboardContextTests: XCTestCase {
         Locale(identifier: id)
     }
 
-    func hasKeyboardLocaleResult(for locale: KeyboardLocale) -> Bool {
-        context.isLocaleSelected(locale)
+    func hasCurrentLocaleResult(for locale: KeyboardLocale) -> Bool {
+        context.hasCurrentLocale(locale)
     }
 
     func hasKeyboardTypeResult(for type: Keyboard.KeyboardType) -> Bool {
@@ -108,10 +108,10 @@ class KeyboardContextTests: XCTestCase {
 
     func testHasKeyboardLocaleReturnsTrueForMatchingType() {
         context.setLocale(.swedish)
-        XCTAssertTrue(hasKeyboardLocaleResult(for: .swedish))
-        XCTAssertFalse(hasKeyboardLocaleResult(for: .finnish))
-        XCTAssertFalse(hasKeyboardLocaleResult(for: .german))
-        XCTAssertFalse(hasKeyboardLocaleResult(for: .norwegian))
+        XCTAssertTrue(hasCurrentLocaleResult(for: .swedish))
+        XCTAssertFalse(hasCurrentLocaleResult(for: .finnish))
+        XCTAssertFalse(hasCurrentLocaleResult(for: .german))
+        XCTAssertFalse(hasCurrentLocaleResult(for: .norwegian))
     }
 
     func testHasKeyboardTypeReturnsTrueForMatchingType() {

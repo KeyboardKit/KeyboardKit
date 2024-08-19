@@ -241,6 +241,6 @@ private extension KeyboardContext {
 
     /// This function makes the context checks above shorter.
     func isAlphabetic(_ locale: KeyboardLocale) -> Bool {
-        isLocaleSelected(locale) && keyboardType.isAlphabetic
+        hasCurrentLocale(locale) && keyboardType.isAlphabetic
     }
 }

@@ -48,13 +48,11 @@ public class KeyboardContext: ObservableObject {
         KeyboardSettings.storeKeyPrefix(for: "keyboard")
     }
 
-    /// The manually added locale identifiers.
+    /// A list of explicitly added locale identifiers, which
+    /// shouldn't be confused with all available ``locales``.
     ///
     /// The ``selectNextLocale()`` function and context menu
     /// will use this list if it has locales, else ``locales``.
-    ///
-    /// This is a settings value that should not be mixed up
-    /// with ``locales`` which defines all available locales.
     ///
     /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
     @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
@@ -105,7 +103,7 @@ public class KeyboardContext: ObservableObject {
     /// The bundle ID of the keyboard host application.
     @Published
     public var hostApplicationBundleId: String?
-    
+
     /// The current interface orientation.
     @Published
     public var interfaceOrientation: InterfaceOrientation = .portrait
@@ -119,11 +117,11 @@ public class KeyboardContext: ObservableObject {
     /// Whether or not the keyboard is in floating mode.
     @Published
     public var isKeyboardFloating = false
-    
+
     /// Whether or not a space drag gesture is active.
     @Published
     public var isSpaceDragGestureActive = false
-    
+
     func setIsSpaceDragGestureActive(
         _ value: Bool,
         animated: Bool
@@ -181,12 +179,12 @@ public class KeyboardContext: ObservableObject {
     /// The space long press behavior to use.
     @Published
     public var spaceLongPressBehavior = Gestures.SpaceLongPressBehavior.moveInputCursor
-    
-    
+
+
     #if os(iOS) || os(tvOS) || os(visionOS)
-    
+
     // MARK: - iOS/tvOS proxy properties
-    
+
     /// The original text document proxy.
     @Published
     public var originalTextDocumentProxy: UITextDocumentProxy = .preview
@@ -195,12 +193,12 @@ public class KeyboardContext: ObservableObject {
     public var textDocumentProxy: UITextDocumentProxy {
         textInputProxy ?? originalTextDocumentProxy
     }
-    
+
     /// A custom text proxy to which text can be routed.
     @Published
     public var textInputProxy: TextInputProxy?
-    
-    
+
+
     // MARK: - iOS/tvOS properties
 
     /// The text input mode of the input controller.
@@ -256,7 +254,7 @@ public extension KeyboardContext {
         false
         #endif
     }
-    
+
     /// Whether or not the context has multiple locales.
     var hasMultipleLocales: Bool {
         locales.count > 1
