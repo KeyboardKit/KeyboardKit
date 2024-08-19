@@ -26,24 +26,23 @@ Keyboard extensions can use KeyboardKit to create custom keyboards, while the ma
 
 ## How to define app-specific information
 
-KeyboardKit has a ``KeyboardApp`` type that can be used to define important properties for your app, such as bundle ID, App Group ID (which can be used to sync data between the app and keyboard), deep links, etc.
+KeyboardKit has a ``KeyboardApp`` type can be used to define properties for your app, such as name, bundle ID, App Group ID (which can be used to sync data between the app and keyboard), your KeyboardKit Pro license, deep links, etc:
 
-You can create a static ``KeyboardApp`` value in a file that you add to both the main app target and the keyboard extension target, to be able to easily refer to your app from both targets:
+You can create a static ``KeyboardApp`` value in a file that you add to both your main app target and keyboard extension, to be able to easily refer to your app information from both targets:
 
 ```swift
-extension KeyboardApp {
-    static var keyboardKitDemo: Self {
-        .init(
-            name: "KeyboardKit",
-            bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo"
-            dictationDeepLink: "keyboardkit://dictation"
-        )
-    }
+static var keyboardKitDemo: Self {
+    .init(
+        name: "KeyboardKit",
+        bundleId: "com.keyboardkit.demo",
+        appGroupId: "group.com.keyboardkit.demo",
+        licenseKey: "299-061C-4285-8189-90525BC",
+        dictationDeepLink: "keyboardkit://dictation"
+    )
 }
-```
+```  
 
-The ``KeyboardApp`` can also provide other information, like a ``KeyboardApp/dictationConfiguration``, if you pass in all required information. This makes it easy to keep all app-specific information in a single place.
+You can read more about app-specific utilities in the <doc:App-Article> article.
 
 
 

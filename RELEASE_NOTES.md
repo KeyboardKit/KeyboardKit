@@ -22,7 +22,9 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.8
 
-This version continues to rename types to make things better in the upcoming 9.0 release. This means that there are currently many deprecated names (which may be confusing), but it's all in service for a clean 9.0.
+This version continues to rename types to make things more consistent in the 9.0 release. This means that are currently many deprecated names (which may be confusing), but it's all in service for a clean 9.0.
+
+This version also adds a new `KeyboardApp` type that can be used to define all information for your app. This makes it easy to keep all app-specific information in one place, and to setup the main app target.
 
 This version deprecates the recently added settings types, and replaces them with adding persistency to the various context properties instead. This avoids having to keep the contexts in sync with the settings.
 
@@ -49,6 +51,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `Keyboard.StorageValue` is a new type that is used to persist codable types in storage.
 * `KeyboardAction.StandardHandler` uses an emoji provider instead of an injected handler.
 * `KeyboardAction.StandardHandler` has new functions to trigger audio and haptic feedback.
+* `KeyboardApp` is a new type that can be used to setup information for your keyboard app.
 * `KeyboardContext` has a computed `returnKeyType` property, which can also be overridden.
 * `KeyboardContext` has new settings that replace the ``KeyboardSettings`` settings properties.
 * `KeyboardContext` has a new `returnKeyTypeOverride` that can override which return key to use.
