@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import KeyboardKitPro
 
 /// This is the main demo app.
 ///
@@ -14,28 +15,31 @@ import SwiftUI
 /// be enabled from System Settings. Full Access is required
 /// for certain features, like haptic feedback.
 ///
+/// This main app uses a `KeyboardAppView` to set up the app.
+/// It will register the KeyboardKit Pro license, set up any
+/// state that are required, etc.
+///
 /// `IMPORTANT` Although this app lets you test the keyboard
-/// and language settings screens, as well as dictation, the
-/// app does NOT sync settings between the app and keyboards.
-/// This requires an App Group, which requires the app to be
-/// code signed. This is why these keyboards must have their
-/// own settings, which is otherwise not needed. Furthermore,
-/// while the Pro keyboard *can* open this demo app to start
-/// dictation, and the demo app *can* perform dictation then
-/// return to *some* apps, the dictated text isn't available
-/// to the keyboard since no App Group can be created.
+/// app screens, as well as dictation, the app does NOT sync
+/// settings between the main app and its keyboards since it
+/// is not code signed, and therefore can't use an App Group.
+/// This is why the keyboard extensions use the keyboard and
+/// locale setting screens as sheets, since they cannot read
+/// settings from the main app. If your app has an App Group,
+/// you only have to manage settings in the main app.
+///
+/// `ALSO` While the Pro keyboard *can* open the demo app to
+/// start dictation, and the app *can* perform dictation and
+/// return to *some* (supported) apps, the app can NOT write
+/// dictated text to an App Group to share with the keyboard.
 @main
 struct DemoApp: App {
 
-    init() {
-        // Call this as early as possible to set up keyboard
-        // settings to sync between the app and its keyboard.
-        // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
-    }
-
     var body: some Scene {
         WindowGroup {
-            HomeScreen()
+            KeyboardAppView(for: .demoApp) {
+                HomeScreen()
+            }
         }
     }
 }

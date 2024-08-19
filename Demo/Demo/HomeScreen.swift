@@ -15,6 +15,8 @@ import SwiftUI
 /// to present keyboard-specific statuses and settings links,
 /// with some additional views added below the standard list.
 ///
+/// The ``dic``
+///
 /// See ``DemoApp`` for important information regarding some
 /// limitations that this app has since it's not signed.
 struct HomeScreen: View {
@@ -31,35 +33,34 @@ struct HomeScreen: View {
     @State
     private var textWebSearch = ""
 
-    @StateObject
-    private var dictationContext = DictationContext(
-        config: .app
-    )
+    @EnvironmentObject
+    private var dictationContext: DictationContext
 
     var body: some View {
         NavigationView {
             KeyboardApp.HomeScreen(
+                app: .demoApp,
                 appIcon: Image(.icon),
-                keyboardBundleId: "com.keyboardkit.demo.*",
                 header: {},
                 footer: textFieldSection
             )
             .navigationTitle("KeyboardKit")
         }
+        .keyboardAppHomeScreenLocalization(
+            .init(
+                keyboardSectionFooter: "WARNING! This demo app does not sync settings to its keyboard extensions!"
+            )
+        )
         .keyboardAppHomeScreenStyle(
             .init(appIconSize: 150)
         )
-//        .keyboardAppHomeScreenVisibility(
-//            .init(keyboardSection: true)
-//        )
+        .keyboardAppHomeScreenVisibility(
+            .init(keyboardSection: true)
+        )
         .keyboardDictation(
             context: dictationContext,
-            config: .app,
             speechRecognizer: StandardSpeechRecognizer(),
             overlay: dictationScreen
-        )
-        .keyboardStatusSectionStyle(
-            .init(systemSettingsLink: .always)
         )
         .navigationViewStyle(.stack)
     }

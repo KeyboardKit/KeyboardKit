@@ -18,8 +18,7 @@ import SwiftUI
 /// This keyboard uses KeyboardKit Pro `KeyboardApp` screens
 /// to open keyboard and language settings as sheet overlays.
 /// This is not needed when an app can setup an App Group to
-/// sync data between itself and its keyboard. In such cases,
-/// settings can be managed in the main app.
+/// sync data between itself and its keyboard.
 ///
 /// The `viewDidLoad` function below has sample code to show
 /// you how you can setup App Group synced keyboard settings
@@ -38,33 +37,8 @@ class KeyboardViewController: KeyboardInputViewController {
         // settings to sync between the app and its keyboard.
         // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
 
-
-        // MARK: - State
-
-        /// 💡 Add more locales to the keyboard context. The
-        /// locales are only used in the locale context menu
-        /// if a user hasn't used a language settings screen.
-        state.keyboardContext.localePresentationLocale = .current
-        // state.keyboardContext.locales = This is set to the license locales
-        
-        /// 💡 Configure the space long press behavior. This
-        /// can either be used to move the text input cursor
-        /// or to show the locale context menu.
-        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
-        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
-        
-        /// 💡 Setup haptic and audio feedback, and register
-        /// a custom audio sound for the rocket button.
-        let feedback = state.feedbackContext
-        feedback.audioConfiguration = .enabled
-        feedback.hapticConfiguration = .enabled
-        feedback.registerCustomFeedback(.haptic(.selection, for: .repeat, on: .rocket))
-        feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
-        feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
-        
-        /// 💡 Disable autocorrection. We can also apply the
-        /// ``autocorrectionDisabled(with:)`` view modifier.
-        // state.autocompleteContext.isAutocorrectEnabled = false
+        // 💡 Set up state for the keyboard.
+        setupState()
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
@@ -76,7 +50,9 @@ class KeyboardViewController: KeyboardInputViewController {
     /// Here, we register a KeyboardKit Pro license key then
     /// use a ``DemoKeyboardView`` as the main keyboard view.
     override func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()        
+
+        /// 💡 Call `super` to perform any fundamental setup.
+        super.viewWillSetupKeyboard()
         
         /// 💡 Make the demo use a ``DemoKeyboardView``.
         ///
@@ -88,36 +64,18 @@ class KeyboardViewController: KeyboardInputViewController {
         /// use your own license key, but if you do you must
         /// also change the bundle IDs of the app & keyboard.
         setupPro(
-            withLicenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
-            licenseConfiguration: setup,  // Specified below
+            withLicenseKey: KeyboardApp.demoApp.licenseKey ?? "",
+            licenseConfiguration: setupServices,  // Specified below
             view: DemoKeyboardView.init
         )
-    }
-
-    /// This function is called when the controller switches.
-    ///
-    /// Here, we save the currently selected locale when the
-    /// keyboard is unloaded, to automatically restore it on
-    /// the next launch.
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        persistLocale()
     }
 
 
     // MARK: - Setup
 
-    /// This function is called by the `licenseConfiguration`
-    /// to set up the keyboard with the registered license.
-    func setup(with license: License) {
-        
-        /// 💡 Restore the last persisted locale.
-        ///
-        /// The demo will fall back to English, if it hasn't
-        /// persisted a locale.
-        let english = KeyboardLocale.english.locale
-        state.keyboardContext.locale = persistedLocale ?? english
-        
+    /// This function is called to set up keyboard services.
+    func setupServices(with license: License) {
+
         /// 💡 Setup semi-working dictation.
         ///
         /// Dictation doesn't fully work for this demo since
@@ -128,7 +86,7 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// This service adds a "next locale" button if it's
         /// needed, as well as a dictation button.
-        services.layoutService = DemoLayoutService(.rocket)
+        services.layoutService = DemoLayoutService(.localeSwitcher)
 
         /// 💡 Setup a theme-based style provider.
         ///
@@ -141,29 +99,32 @@ class KeyboardViewController: KeyboardInputViewController {
         )
     }
 
+    /// This function is called to set up keyboard state.
+    func setupState() {
 
-    // MARK: - Locale Persistency
+        /// 💡 Add more locales to the keyboard context. The
+        /// locales are only used in the locale context menu
+        /// if a user hasn't used a language settings screen.
+        state.keyboardContext.localePresentationLocale = .current
+        // state.keyboardContext.locales = This is set to the license locales
 
-    /// The defaults instance in which we store locale id
-    var defaults: UserDefaults { .standard }
+        /// 💡 Configure the space long press behavior. This
+        /// can either be used to move the text input cursor
+        /// or to show the locale context menu.
+        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
+        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
-    /// The key used when persisting locales
-    let persistedLocaleKey = "com.keyboardkit.demo.locale"
+        /// 💡 Setup haptic and audio feedback, and register
+        /// a custom audio sound for the rocket button.
+        let feedback = state.feedbackContext
+        feedback.audioConfiguration = .enabled
+        feedback.hapticConfiguration = .enabled
+        feedback.registerCustomFeedback(.haptic(.selection, for: .repeat, on: .rocket))
+        feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
+        feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
 
-    /// The last locale used by the keyboard, if any.
-    var persistedLocale: Locale? {
-        guard let id = persistedLocaleId else { return nil }
-        return Locale(identifier: id)
-    }
-
-    /// The last locale ID used by the keyboard, if any.
-    var persistedLocaleId: String? {
-        get { defaults.string(forKey: persistedLocaleKey) }
-        set { defaults.set(newValue, forKey: persistedLocaleKey) }
-    }
-
-    /// Persist the current locale in user defaults.
-    func persistLocale() {
-        persistedLocaleId = state.keyboardContext.locale.identifier
+        /// 💡 Disable autocorrection. We can also apply the
+        /// ``autocorrectionDisabled(with:)`` view modifier.
+        // state.autocompleteContext.isAutocorrectEnabled = false
     }
 }
