@@ -9,7 +9,7 @@
 import Foundation
 
 /// This enum defines keyboard-specific actions, and is also
-/// serving as a namespace for keyboard action-related types.
+/// a namespace for keyboard action-related types.
 ///
 /// Some actions are ``KeyboardAction/character(_:)``, which
 /// inserts text, ``KeyboardAction/keyboardType(_:)``, which

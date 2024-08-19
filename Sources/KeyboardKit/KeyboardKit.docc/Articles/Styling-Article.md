@@ -17,6 +17,8 @@ While native iOS keyboards provide few ways to customize the look and feel, Keyb
 
 👑 [KeyboardKit Pro][Pro] unlocks a theme engine and many themes. Information about Pro features can be found at the end of this article.
 
+> Important: The ``KeyboardStyle`` namespace will probably be removed in KeyboardKit 9.0, together with the ``KeyboardStyleProvider``. Keyboard styles will then be applied with SwiftUI view modifiers.
+
 
 
 ## Terminology
@@ -29,13 +31,13 @@ KeyboardKit uses different names for different ways to style keyboards.
 
 
 
-## KeyboardStyle namespace
+## Keyboard Style Namespace
 
 KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 
 
 
-## Keyboard style providers
+## Keyboard Style Providers
 
 In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc. 
 

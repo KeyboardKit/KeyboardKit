@@ -113,15 +113,6 @@ public extension KeyboardSettings {
     ) -> String {
         "\(Self.storeKeyPrefix)\(namespace)."
     }
-
-    @available(*, deprecated, message: "Use the ID-based function instead.")
-    static func setupStore(
-        withAppGroup appGroup: UserDefaults?,
-        keyPrefix: String? = nil
-    ) {
-        Self.store = store
-        Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
-    }
 }
 
 public extension UserDefaults {

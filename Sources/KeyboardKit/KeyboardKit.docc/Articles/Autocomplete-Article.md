@@ -25,7 +25,7 @@ In KeyboardKit, an ``AutocompleteService`` can provide autocomplete suggestions 
 
 ## Autocomplete Namespace
 
-KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types, models and views.
+KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types and views, like the ``Autocomplete/Suggestion`` model that is returned by an ``AutocompleteService`` when performing autocomplete.
 
 
 

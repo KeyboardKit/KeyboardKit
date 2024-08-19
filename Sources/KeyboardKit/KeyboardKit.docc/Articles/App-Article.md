@@ -19,9 +19,32 @@ KeyboardKit provides many utilities for the main app target, that simplifies bui
 
 
 
-## KeyboardApp namespace
+## Keyboard App namespace
 
-KeyboardKit has a ``KeyboardApp`` namespace that contains app-related types, that are meant to be used in the main app. It currently only contains utilities when it's part of a KeyboardKit Pro build.
+KeyboardKit has a ``KeyboardApp`` struct that is also a namespace for app-related types and views, like the ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen`` and ``KeyboardApp/LocaleScreen`` views that are unlocked with KeyboardKit Pro.
+
+
+
+## Keyboard App
+
+The ``KeyboardApp`` type can be used to define important properties for your app, such as bundle ID, App Group ID (which can be used to sync data between the app and keyboard), dictation configurations, etc.
+
+You can create a static ``KeyboardApp`` value in a file that you add to both the main app target and the keyboard extension target, to be able to easily refer to your app from both targets:
+
+```swift
+extension KeyboardApp {
+    static var keyboardKitDemo: Self {
+        .init(
+            name: "KeyboardKit",
+            bundleId: "com.keyboardkit.demo",
+            appGroupId: "group.com.keyboardkit.demo"
+            dictationDeepLink: "keyboardkit://dictation"
+        )
+    }
+}
+```
+
+The ``KeyboardApp`` can also provide other information, like a ``KeyboardApp/dictationConfiguration``, if you pass in all required information. This makes it easy to keep all app-specific information in a single place.
 
 
 

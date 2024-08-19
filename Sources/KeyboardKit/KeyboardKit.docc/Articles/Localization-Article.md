@@ -22,12 +22,18 @@ In KeyboardKit, each ``KeyboardLocale`` defines localized strings, assets, and l
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
+## Keyboard Locale namespace
+
+KeyboardKit has a ``KeyboardLocale`` enum that defines all supported keyboard locales. It's also a namespace for locale-related types and views, like the ``KeyboardLocale/ContextMenu``.
+
+
 
 ## Supported locales
 
 KeyboardKit supports **68** keyboard-specific ``KeyboardLocale``s, like ``KeyboardLocale/english``, ``KeyboardLocale/swedish``, and ``KeyboardLocale/persian``:
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️ 🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇿 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
+
 
 
 ## Locale capabilities
@@ -39,15 +45,17 @@ A keyboard locale refers to a native ``KeyboardLocale/locale`` and has localized
 Many extensions are applied to `Locale` instead of ``KeyboardLocale``, whenever the base locale has enough information. ``KeyboardLocale`` will for the most cases not mirror these extensions, so use the ``KeyboardLocale/locale`` property to access them. 
 
 
+
 ## How to get and set locales 
 
-The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and available ``KeyboardContext/locales``. These properties are raw ``Foundation/Locale`` values, since a keyboard isn't limited to ``KeyboardLocale``, but there are enum-based alternatives as well.  
+The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and available ``KeyboardContext/locales``. These properties are raw ``Foundation/Locale`` values, since a keyboard isn't limited to ``KeyboardLocale``. There are enum-based alternatives as well.
 
-You can also use the ``KeyboardContext``'s ``KeyboardContext/addedLocales`` settings property to define which of the available ``KeyboardContext/locales`` that have been "added", which is meant to be an active choice by the user.
+You can also use ``KeyboardContext``'s ``KeyboardContext/addedLocales`` settings property to define which of the available ``KeyboardContext/locales`` to explicitly add to the keyboard, for instance after being actively picked by the user.
 
-If the context ``KeyboardContext/locales`` or ``KeyboardContext/addedLocales`` has multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user do it with a ``KeyboardLocale/ContextMenu``. They will use ``KeyboardContext/addedLocales`` if it contains any locales, else use ``KeyboardContext/locales``.
+If the context ``KeyboardContext/locales`` or ``KeyboardContext/addedLocales`` has multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user do it with a ``KeyboardLocale/ContextMenu``. They will use ``KeyboardContext/addedLocales`` if it has been set, otherwise ``KeyboardContext/locales``.
 
 You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` action, or add a context menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:locales:tapAction:)`` view modifier.
+
 
 
 ## How to change the primary language  

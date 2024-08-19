@@ -14,7 +14,7 @@ This article describes how to get started with KeyboardKit.
 }
 
 
-This article describes how to get started with KeyboardKit and KeyboardKit Pro. Each section will first show you how to do something specific for KeyboardKit, then for KeyboardKit Pro.
+This article describes how to get started with KeyboardKit and KeyboardKit Pro. Each section will first show you how to do something for KeyboardKit, then for KeyboardKit Pro.
 
 
 
@@ -24,9 +24,37 @@ Keyboard extensions can use KeyboardKit to create custom keyboards, while the ma
 
 
 
-## How to set up KeyboardKit for a keyboard extension
+## How to define app-specific information
 
-To set up KeyboardKit for a keyboard extension, import KeyboardKit and let `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of ``UIInputViewController``:
+KeyboardKit has a ``KeyboardApp`` type that can be used to define important properties for your app, such as bundle ID, App Group ID (which can be used to sync data between the app and keyboard), deep links, etc.
+
+You can create a static ``KeyboardApp`` value in a file that you add to both the main app target and the keyboard extension target, to be able to easily refer to your app from both targets:
+
+```swift
+extension KeyboardApp {
+    static var keyboardKitDemo: Self {
+        .init(
+            name: "KeyboardKit",
+            bundleId: "com.keyboardkit.demo",
+            appGroupId: "group.com.keyboardkit.demo"
+            dictationDeepLink: "keyboardkit://dictation"
+        )
+    }
+}
+```
+
+The ``KeyboardApp`` can also provide other information, like a ``KeyboardApp/dictationConfiguration``, if you pass in all required information. This makes it easy to keep all app-specific information in a single place.
+
+
+
+## How to set up KeyboardKit
+
+You need to set up KeybordKit a bit differently when you intend to use it within a keyboard extension, where it will be used to manage typing, than from within the main app target, where it will be used for settings and configurations.
+
+
+### Keyboard extension
+
+To set up KeyboardKit for a keyboard extension, import `KeyboardKit` and let `KeyboardViewController` inherit the ``KeyboardInputViewController`` base class instead of ``UIInputViewController``:
 
 ```swift
 import KeyboardKit // or KeyboardKitPro
@@ -36,9 +64,7 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboard()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, and more.
 
-To use the standard ``KeyboardView``, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything for you.
-
-To replace or customize the ``KeyboardView``, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any setup function, for instance:
+To use the standard ``KeyboardView``, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up everything for you. To customize it or replace it, just override ``KeyboardInputViewController/viewWillSetupKeyboard()`` and call any setup function, for instance:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -61,14 +87,14 @@ class KeyboardViewController: KeyboardInputViewController {
 
 You can use the view builder `controller` parameter to access ``KeyboardInputViewController/state``, ``KeyboardInputViewController/services`` and any other properties and functions you need.
 
-> Warning: A very important thing to consider when you use `setup` or `setupPro` with a `view` builder, is that the `view` builder provides you with an `unowned` controller reference, since referring to `self` from the view builder can cause memory leaks. However, since this reference is a ``KeyboardInputViewController``, you must still use `self` if you must refer to a specific controller class. If you do, it is VERY important to add `[weak self]` or `[unowned self]` to the builder, otherwise `self` will cause a memory leak.
+> Warning: A VERY important thing to consider, is that the setup function's view builder provides you with an `unowned` controller reference, since referring to `self` can otherwise cause memory leaks. However, since that is a ``KeyboardInputViewController``, you still need to use `self` to refer to your specific controller. If so, you MUST use `[weak self]` or `[unowned self]`, otherwise the `self` reference will cause a memory leak.
 
 
-### 👑 KeyboardKit Pro
+#### 👑 KeyboardKit Pro
 
-Unlike KeyboardKit, KeyboardKit Pro has a setup function that lets you register a license key, after which KeyboardKit Pro automatically sets up your license and unlocks all included locales and features.
+KeyboardKit Pro has a `setupPro` function that lets you pass in your KeyboardKit license key. After validating the license, KeyboardKit Pro automatically sets up your license and unlocks all included locales and features.
 
-To use KeyboardKit Pro with the default ``KeyboardView``, just call **setupPro** without a view in **viewDidLoad**:
+To use KeyboardKit Pro with a standard ``KeyboardView``, just call `setupPro` without a view in `viewDidLoad`:
 
 ```swift
 import KeyboardKitPro
@@ -79,19 +105,15 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
         setupPro(
             withLicenseKey: "your-license-key",
-            locales: [...], // Define which locales to use (Basic & Silver licenses)  
-            licenseError: { error in
-                // This is called if the license registration fails.
-            }
-            licenseConfiguration: { license in
-                // This is called if the license registration succeeds.
-            }
+            locales: [...], // Define which locales to use (for Basic & Silver)  
+            licenseError: { error in } // Called if the license validation fails.
+            licenseConfiguration: { license in } // Called if the license validation succeeds.
         )
     }
 }
 ```
 
-To use KeyboardKit Pro with a custom view, just call **setupPro** and provide it with any custom view in ``KeyboardInputViewController/viewWillSetupKeyboard()``:
+To customize the ``KeyboardView`` or to use a custom view, just call `setupPro` with a view in ``KeyboardInputViewController/viewWillSetupKeyboard()``:
 
 ```swift
 import KeyboardKitPro
@@ -102,9 +124,9 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewWillSetupKeyboard()
         setupPro(
             withLicenseKey: "your-license-key",
-            locales: [...],
-            licenseError: { error in ... }
-            licenseConfiguration: { license in ... }
+            locales: [...], // Define which locales to use (for Basic & Silver)  
+            licenseError: { error in } // Called if the license validation fails.
+            licenseConfiguration: { license in }, // Called if the license validation succeeds.
             view: { controller in
                 // Return a customized KeyboardView or a custom view here
             }
@@ -113,18 +135,17 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-The Basic license unlocks 1 locale, Silver unlocks 5 and Gold unlocks all supported locales. You can change locales once for each new version of your app, after which the locales will be persisted for that app version.
-
 > Important: Since Basic, Silver, & monthly Gold licenses validate licenses over the Internet, your keyboard extension must enable Full Access to be able to make network requests. This is not needed for yearly Gold and custom licenses, which are validated on-device.  
- 
 
 
-## How to set up KeyboardKit for an app
+### How to set up KeyboardKit for an app
 
-You can use KeyboardKit in your main app, to check the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place for app settings, since it has more space. 
+You can use KeyboardKit in your main app, to check the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place for app settings, since it has more space.
+
+Make sure to call ``KeyboardSettings/setupStore(withAppGroup:keyPrefix:)`` in ``KeyboardSettings`` as early as possible in both your app and your keyboard extension, if you want the persisted properties in the various context to automatically sync between all targets.   
 
 
-### 👑 KeyboardKit Pro
+#### 👑 KeyboardKit Pro
 
 To set up KeyboardKit Pro in your main app, just register your license key as soon as the the application launches: 
 
@@ -178,9 +199,9 @@ Failing to set the search paths will cause a runtime crash when you try to use K
 
 
 
-## How to use KeyboardKit state & services
+## How to use State & Services
 
-The main ``KeyboardInputViewController`` provides you with keyboard-specific observable ``KeyboardInputViewController/state`` and ``KeyboardInputViewController/services``, that let you build powerful keyboards. 
+The main ``KeyboardInputViewController`` provides you with keyboard ``KeyboardInputViewController/state`` and ``KeyboardInputViewController/services``, to let you build great keyboards. 
 
 ### State
 
@@ -188,14 +209,6 @@ KeyboardKit injects all the observable state into the view hierarchy as environm
 
 ```swift
 struct CustomKeyboard: View {
-
-    init(
-        actionHandler: KeyboardActionHandler
-    ) {
-        self.actionHandler = actionHandler
-    }
-
-    let actionHandler: KeyboardActionHandler
 
     @EnvironmentObject
     private var context: KeyboardContext
@@ -212,7 +225,7 @@ The observable state types lets you configure the keyboard and its various featu
 
 Services are not injected into the view hierarchy, and must be passed around. KeyboardKit uses init injection for both state and services. Examples of services are the ``KeyboardActionHandler`` which handles ``KeyboardAction``s, ``FeedbackService``, etc.
 
-You can easily modify any state and replace any service with custom implementations. For instance, here we disable autocomplete with the shared ``AutocompleteContext`` and replace the standard ``KeyboardActionHandler`` with a custom one:
+You can replace any services with custom implementations. For instance, here we replace the standard ``KeyboardActionHandler``:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -222,17 +235,13 @@ class KeyboardViewController: KeyboardInputViewController {
             inputViewController: self
         )
         super.viewDidLoad()
-        state.autocompleteContext.isAutocompleteEnabled = false
     }
 }
 
 class CustomActionHandler: StandardActionHandler {
 
-    open override func handle(
-        _ gesture: Keyboard.Gesture, 
-        on action: KeyboardAction
-    ) {
-        if gesture == .press && action == .space {
+    open override func handle(_ action: KeyboardAction) {
+        if action == .space {
             print("Pressed space!")
         }
         super.handle(gesture, on: action) 

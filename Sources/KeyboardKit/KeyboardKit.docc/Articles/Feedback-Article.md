@@ -15,7 +15,7 @@ This article describes the KeyboardKit feedback engine.
 
 Feedback is an important part of the typing experience, where a keyboard can trigger audio and haptic feedback when a user taps on a key or performs certain actions.
 
-In KeyboardKit, audio and haptic feedback can be triggered with a ``KeyboardActionHandler`` or by using the ``Feedback/Audio`` and ``Feedback/Haptic`` ``Feedback/Audio/trigger()`` functions directly.
+In KeyboardKit, audio & haptic feedback can be triggered with a ``FeedbackService``, a ``KeyboardActionHandler`` or by using the ``Feedback/AudioEngine`` and ``Feedback/HapticEngine`` engines directly.
 
 👑 [KeyboardKit Pro][Pro] unlocks a convenient feedback toggle view, that lets you toggle between the last enabled feedback and a disabled configuration. Information about Pro features can be found at the end of this article.
 
@@ -23,7 +23,17 @@ In KeyboardKit, audio and haptic feedback can be triggered with a ``KeyboardActi
 
 ## Feedback Namespace
 
-KeyboardKit has a ``Feedback`` namespace with feedback-related types, like ``Feedback/Audio``, ``Feedback/Haptic``, etc.
+KeyboardKit has a ``Feedback`` namespace that contains feedback-related types, like ``Feedback/Audio`` and ``Feedback/Haptic`` enums that define available feedback types, ``Feedback/AudioEngine`` and ``Feedback/HapticEngine``, that can trigger feedback, etc. 
+
+
+
+## Feedback Types
+
+KeyboardKit defines audio and haptic feedback that can be triggered with a ``FeedbackService`` or a ``KeyboardActionHandler``.
+
+The ``Feedback/Audio`` enum defines audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc. The ``Feedback`` namespace also has other audio-related types like ``Feedback/AudioConfiguration``, which can be used to define many different types of audio feedback.
+
+The ``Feedback/Haptic`` enum defines haptic feedback types, like ``Feedback/Haptic/success``, ``Feedback/Haptic/warning``, etc. The ``Feedback`` namespace also has other haptic-related types like ``Feedback/HapticConfiguration``, which can be used to define many different types of haptic feedback.
 
 
 
@@ -39,19 +49,9 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 ## Feedback Services
 
-In KeyboardKit, a ``FeedbackService`` can be used to trigger audio and haptic feedback as the user interacts with the keyboard.
+In KeyboardKit, a ``FeedbackService`` can be used to trigger audio and haptic feedback as the user interacts with the keyboard. The ``KeyboardActionHandler`` protocol also implements this protocol.
 
 KeyboardKit automatically creates a ``Feedback/StandardService``  instance and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, to customize how feedback is triggered.
-
-
-
-## Feedback Types
-
-KeyboardKit supports audio & haptic feedback that can be triggered with a ``FeedbackService`` or a ``KeyboardActionHandler``.
-
-The ``Feedback/Audio`` enum defines audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc. The ``Feedback`` namespace also has other audio-related types like ``Feedback/AudioConfiguration``, which can be used to define many different types of audio feedback.
-
-The ``Feedback/Haptic`` enum defines haptic feedback types, like ``Feedback/Haptic/success``, ``Feedback/Haptic/warning``, etc. The ``Feedback`` namespace also has other haptic-related types like ``Feedback/HapticConfiguration``, which can be used to define many different types of haptic feedback.
 
 
 

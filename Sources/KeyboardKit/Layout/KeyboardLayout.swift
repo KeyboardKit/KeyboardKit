@@ -10,7 +10,7 @@ import CoreGraphics
 import SwiftUI
 
 /// This type defines the full set of keys on a keyboard and
-/// serves as a namespace for layout-related types.
+/// is also a namespace for layout-related types.
 ///
 /// A layout also specifies sizes, alignments, etc. which is
 /// required information when rendering a keyboard.

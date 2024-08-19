@@ -15,7 +15,13 @@ This article describes the KeyboardKit action engine.
 
 Triggering and handling ``KeyboardAction`` is a central concept in KeyboardKit, where an action can be triggered by the keyboard or by code, then handled with a ``KeyboardActionHandler``.
 
-A ``KeyboardActionHandler`` can either handle an action in a default way, or handle it based on a certain ``Keyboard/Gesture``.
+A ``KeyboardActionHandler`` can either handle a ``KeyboardAction`` in a standard way, or handle it based on a certain ``Keyboard/Gesture``.
+
+
+
+## Keyboard Action Namespace
+
+KeyboardKit has a ``KeyboardAction`` enum that defines all supported keyboard actions. It's also a namespace for action-related types and views, like a ``KeyboardAction/StandardHandler`` that provides you with the standard way of handling actions.
 
 
 

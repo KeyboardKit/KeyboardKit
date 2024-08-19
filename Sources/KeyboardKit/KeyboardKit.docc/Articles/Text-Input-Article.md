@@ -19,17 +19,16 @@ Keyboard extensions will by default *only* send text to this text field, and wil
 
 These limitations make it hard to implement features that require text input in the keyboard, like emoji search, and AI-based features.
 
+
+
+## How to route text with KeyboardKit 
+
 KeyboardKit adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to automatically route text to any other text field or custom proxy.
+
+Just set ``KeyboardInputViewController/textInputProxy`` to nil to restore the original proxy and resume routing text to the main application. You can always access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.
 
 👑 [KeyboardKit Pro][Pro] unlocks a ``KeyboardTextField`` that automatically registers and unregisters as the input proxy when it gets and loses focus. Information about Pro features can be found at the end of this article.
 
-
-
-## How to route text with KeyboardKit
-
-``KeyboardInputViewController`` has a ``KeyboardInputViewController/textInputProxy`` that can be set to override ``KeyboardInputViewController/textDocumentProxy`` as the main text document proxy. Setting it will cause any text you type to be sent to that proxy instead of the original one. 
-
-Just set ``KeyboardInputViewController/textInputProxy`` to nil to restore the original proxy and resume routing text to the main application. You can always access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.  
 
 
 

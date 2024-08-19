@@ -23,9 +23,9 @@ KeyboardKit has ways to automatically show an ``Callouts/InputCallout`` when the
 
 
 
-## Callout Namespace
+## Callouts Namespace
 
-KeyboardKit has a ``Callouts`` namespace that has callout-related types and views. For instance, an ``Callouts/InputCallout`` can present the currently pressed character while an ``Callouts/ActionCallout`` can present secondary actions while long pressing a key.
+KeyboardKit has a ``Callouts`` namespace that contains callout-related types and views. For instance, an ``Callouts/InputCallout`` can present the currently pressed character while an ``Callouts/ActionCallout`` can present secondary actions when long pressing a key.
 
 
 
@@ -145,9 +145,9 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
 
 ### Pro Callout Services
 
-KeyboardKit Pro unlocks a localized ``Callouts/ProService`` for every locale in your license.
+KeyboardKit Pro unlocks a localized ``Callouts/ProService`` for every locale in your license. They are injected into the main ``Keyboard/Services/calloutService`` when a valid license is registered.
 
-You can access any service in your license like this:
+You can access any localized service in your license like this, after successfully registering your license key:
 
 ```swift
 let service = try Callouts.ProService.Swedish()
@@ -158,7 +158,7 @@ let service = try Callouts.ProService.Swedish()
 
 ### How to customize a Pro service
 
-You can inherit and customize any ``Callouts/ProService``, then manually register your service *after* registering your license key:
+You can inherit and customize any ``Callouts/ProService`` in your license, then manually register your service *after* registering your license key:
 
 ```swift
 class CustomService: Callouts.ProService.Swedish {

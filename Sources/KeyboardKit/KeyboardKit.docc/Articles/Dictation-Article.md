@@ -12,7 +12,7 @@ In KeyboardKit, a ``KeyboardDictationService`` can be used to perform autocomple
 
 ## Dictation Namespace
 
-KeyboardKit has a ``Dictation`` namespace that contains dictation-related types.
+KeyboardKit has a ``Dictation`` namespace that contains dictation-related types and views like the ``Dictation/KeyboardConfiguration``, as well as the ``Dictation/Screen`` and ``Dictation/BarVisualizer`` views that are unlocked by KeyboardKit Pro. 
 
 
 

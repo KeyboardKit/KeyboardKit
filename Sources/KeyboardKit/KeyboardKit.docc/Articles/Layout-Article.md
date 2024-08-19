@@ -23,6 +23,11 @@ KeyboardKit has a ``KeyboardLayoutService`` protocol that is implemented by clas
 
 
 
+## KeyboardLayout namespace
+
+KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for layout-related types like ``InputSet`` and ``KeyboardLayout``.
+
+
 ## Input Sets
 
 An ``InputSet`` set specifies the input keys of a keyboard. It makes it easy to define different input keys for the same keyboard layout.
@@ -35,9 +40,9 @@ KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``
 
 A ``KeyboardLayout`` specifies the full set of keys om a keyboard. Layouts vary greatly for different device types, screen orientations, locales, keyboard configurations, etc.
 
-For instance, most iOS keyboards have 3 input key rows, where the input keys are surrounded by actions, as well as a bottom row with a space key and contextual action and input keys.
+For instance, most iOS keyboards have 3 input key rows, where the input keys are surrounded by system keys, as well as a bottom row with a space bar that is surrounded by contextual input and system keys.
 
-This is however not always true. Most layouts are different on iPhone and iPad, and many locales make changes to the entire layout, not just inputs. For instance, Armenian keyboards use 4 rows, Arabic keyboards remove some action buttons, etc.
+This is however not always true. Most layouts are different on iPhone and iPad, and many locales make changes to the entire layout, not just the input keys. For instance, Armenian uses 4 rows, Arabic removes some system keys, etc.
 
 
 
@@ -92,9 +97,9 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutService`` for every locale in your license, which are injected as localized services into the main ``Keyboard/Services/calloutService`` when a valid license is registered.
+[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardLayoutService`` for every locale in your license, which are then injected into the main ``Keyboard/Services/layoutService`` when a valid license is registered.
 
-KeyboardKit Pro also unlocks more standard input sets, like QWERTZ and AZERTY, adds more capabilities to the ``KeyboardLayout`` and in general makes it a lot easier to work with layouts
+KeyboardKit Pro also unlocks more input sets, adds more capabilities to the ``KeyboardLayout`` and makes it easier to handle layouts.
 
 
 ### More Input Sets
@@ -104,19 +109,19 @@ KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` and ``InputSet
 
 ### More KeyboardLayout functionality
 
-KeyboardKit Pro unlocks more ``KeyboardLayout`` capabilities, like ``KeyboardLayout/adjusted(for:layoutConfiguration:)``, ``KeyboardLayout/copy()``, and ``KeyboardLayout/createIdealItem(for:width:alignment:)``, which are used by some other Pro features.
+KeyboardKit Pro unlocks more ``KeyboardLayout`` capabilities, like ``KeyboardLayout/adjusted(for:layoutConfiguration:)``, ``KeyboardLayout/copy()``, and ``KeyboardLayout/createIdealItem(for:width:alignment:)``, which are used by some Pro features as well.
 
 
-### iPad Pro Layout Service
+### iPad Pro Support
 
-KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProService`` that can be used to generate iPad Pro-specific layouts. It's used by some locales, and will be added to more locales over time. 
+KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProService`` that can be used to generate iPad Pro-specific layouts. It's used by most locales, and will be added to more over time. 
 
 
 ### Pro Layout Services
 
-KeyboardKit Pro unlocks a localized ``KeyboardLocale/ProService`` for every locale in your license. 
+KeyboardKit Pro unlocks a localized ``KeyboardLayout/ProService`` for every locale in your license. They are injected into the main ``Keyboard/Services/layoutService`` when a valid license is registered.
 
-You can access any service in your license like this:
+You can access any localized service in your license like this, after successfully registering your license key:
 
 ```swift
 let swedish = try KeyboardLayout.ProService.Swedish()
@@ -127,7 +132,7 @@ let swedish = try KeyboardLayout.ProService.Swedish()
 
 ### How to customize a Pro service
 
-You can inherit and customize any ``KeyboardLocale/ProService``, then manually register your service *after* registering your license key:
+You can inherit and customize any ``KeyboardLayout/ProService`` in your license, then manually register your service *after* registering your license key:
 
 ```swift
 class CustomService: KeyboardLayout.ProService.Swedish {

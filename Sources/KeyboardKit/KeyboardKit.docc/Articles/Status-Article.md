@@ -22,6 +22,13 @@ This information can be used to make an app help users to set up their keyboard 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
+
+## Keyboard Status Namespace
+
+KeyboardKit has a ``KeyboardStatus`` namespace that contains status-related types and views, like the ``KeyboardStatus/Label`` that can be used to visualize a certain status value, as well as the ``KeyboardStatus/Section`` which is unlocked by KeyboardKit Pro.
+
+
+
 ## Keyboard Status Context
 
 The observable ``KeyboardStatusContext`` can be used to observe the state of any keyboard:
