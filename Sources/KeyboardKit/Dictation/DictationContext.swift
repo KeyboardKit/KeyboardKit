@@ -171,13 +171,16 @@ private extension DictationContext {
         guard let id = appGroupId else { return }
         guard let store = UserDefaults(suiteName: id) else { return }
         userDefaults = store
+        DispatchQueue.main.async(execute: setupAppGroupProperties)
+    }
+
+    func setupAppGroupProperties() {
         dictatedText = persistedDictatedText ?? dictatedText
         hostApplicationBundleId = persistedHostApplicationBundleId ?? hostApplicationBundleId
         isDictationStartedByKeyboard = persistedIsDictationStartedByKeyboard ?? isDictationStartedByKeyboard
         localeId = persistedLocaleId ?? localeId
         silenceLimit = persistedSilenceLimit
     }
-
 
     func bool(for key: PersistedKey) -> Bool? {
         userDefaults?.bool(forKey: key.key)
