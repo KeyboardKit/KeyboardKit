@@ -83,7 +83,7 @@ public extension KeyboardSettings {
     /// The key prefix that will be used by library settings.
     static var storeKeyPrefix = "com.keyboardkit.settings."
 
-    /// Setup a custom keyboard settings store.
+    /// Set up a custom keyboard settings store.
     static func setupStore(
         _ store: UserDefaults?,
         keyPrefix: String? = nil
@@ -92,12 +92,18 @@ public extension KeyboardSettings {
         Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
     }
 
-    /// Setup a custom keyboard settings store.
+    /// Set up a custom keyboard settings store that uses an
+    /// app group to sync settings between your main app and
+    /// its keyboard extension.
+    ///
+    /// > Important: For this to work, you must first set up
+    /// an App Group, then register it for both your app and
+    /// the keyboard.
     static func setupStore(
-        withAppGroup appGroup: UserDefaults?,
+        withAppGroup id: String,
         keyPrefix: String? = nil
     ) {
-        Self.store = store
+        Self.store = .init(suiteName: id)
         Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
     }
 
@@ -106,6 +112,15 @@ public extension KeyboardSettings {
         for namespace: String
     ) -> String {
         "\(Self.storeKeyPrefix)\(namespace)."
+    }
+
+    @available(*, deprecated, message: "Use the ID-based function instead.")
+    static func setupStore(
+        withAppGroup appGroup: UserDefaults?,
+        keyPrefix: String? = nil
+    ) {
+        Self.store = store
+        Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
     }
 }
 
