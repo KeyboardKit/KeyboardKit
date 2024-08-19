@@ -185,7 +185,7 @@ private extension KeyboardView {
 
     var inputToolbarDisplayMode: Keyboard.InputToolbarDisplayMode {
         switch rawInputToolbarDisplayMode {
-        case .automatic: isLargePad ? .hidden : .numbers
+        case .automatic: isLargePad ? .numbers : .hidden
         default: rawInputToolbarDisplayMode
         }
     }
