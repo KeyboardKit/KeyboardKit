@@ -10,7 +10,10 @@ import Combine
 import Foundation
 import SwiftUI
 
-/// This class has observable states and persistent settings.
+/// This class has observable states and persistent settings,
+/// as well as a couple of persisted properties that are not
+/// considered settings, but carry state between the app and
+/// its keyboard extension.
 ///
 /// The context is used by both ``DictationService`` as well
 /// as ``KeyboardDictationService``. Use an initializer that
@@ -27,6 +30,9 @@ import SwiftUI
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value.
+///
+/// > Important: KeyboardKit 9.0 will remove the manual data
+/// persistency and replace it with @AppStorage.
 public class DictationContext: ObservableObject {
 
     /// Create a keyboard dictation context for a keyboard.
@@ -179,7 +185,6 @@ private extension DictationContext {
         hostApplicationBundleId = persistedHostApplicationBundleId ?? hostApplicationBundleId
         isDictationStartedByKeyboard = persistedIsDictationStartedByKeyboard ?? isDictationStartedByKeyboard
         localeId = persistedLocaleId ?? localeId
-        silenceLimit = persistedSilenceLimit
     }
 
     func bool(for key: PersistedKey) -> Bool? {
@@ -239,14 +244,5 @@ private extension DictationContext {
     var persistedHostApplicationBundleId: String? {
         get { string(for: .hostApplicationBundleId) }
         set { set(newValue, for: .hostApplicationBundleId) }
-    }
-
-    var persistedSilenceLimit: TimeInterval {
-        get {
-            let value = double(for: .silenceLimit) ?? 0
-            let hasValue = value > 0
-            return hasValue ? value : 30
-        }
-        set { set(newValue, for: .silenceLimit) }
     }
 }
