@@ -24,28 +24,22 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 This version continues to rename types to make things more consistent in the 9.0 release. This means that are currently many deprecated names (which may be confusing), but it's all in service for a clean 9.0.
 
-This version also adds a new `KeyboardApp` type that can be used to define all information for your app. This makes it easy to keep all app-specific information in one place, and to setup the main app target.
+This version also adds a new `KeyboardApp` type that can be used to define all information for your app. This makes it easy to keep all app-specific information in one place, set up the main app target, etc.
 
-This version also adds a new `KeyboardAppView` view that can be used to set up all your main app target, register your KeyboardKit Pro license (if any) and setup everything. This removes a lot of manyal work.
+This version also adds a new `KeyboardAppView` view that can automatically set up main app to use App Group synced settings, register your KeyboardKit Pro license (if any), etc. This removes a lot of manual work.
 
 This version deprecates the recently added settings types, and replaces them with adding persistency to the various context properties instead. This avoids having to keep the contexts in sync with the settings.
 
-To avoid compile-time warnings, these deprecated settings are currently only soft deprecated with a code comment. They will however be completely removed in KeyboardKit 9.0, so make sure to start using the contexts instead.
-
 This version adds support for Emoji 15.1, which adds a bunch of new emojis, and also adds memory optimized emoji keyboard styles, which make the emoji keyboard consume a LOT less memory, by rendering lower resolution grid items. 
 
-This version also tweaks the emoji keyboard configuration for all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard on all device types, including larger iPads in both portrait and landscape.
+This version also tweaks the emoji keyboard configuration for all device types, to make the emoji keyboard look a lot closer to the native emoji keyboard on all device types, including 13" iPads, in both portrait and landscape.
 
-KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and `KeyboardApp.LanguageSettingsScreen`, which makes it a lot easier than before to add keyboard settings to the main app target, as well as to the keyboard.
+KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and `KeyboardApp.LocaleScreen`, which makes it a lot easier than before to add keyboard settings to the main app target, as well as to the keyboard.
 
 
 ### 💥 Breaking changes 
 
-This version has one breaking change, that you should be aware of.
-
-Due to how settings are now handled, the `KeyboardSettings.store` and its functions no longer accept optional values, since this is only confusing. You can now only replace this store with another valid store, and have a new `isStoreSynced` property that is set to `true` whenever you successfully call the app group setup function.
-
-This will probably make it easier to understand when the store has been properly replaced with a group-synced one.   
+This version has one breaking change. Due to how settings are now handled, the `KeyboardSettings.store` no longer accept optional values. You can only replace this store with another valid store, and have a new `isStoreSynced` property to see if you've successfully set up an app group-synced store.   
 
 ### ✨ Features
 
