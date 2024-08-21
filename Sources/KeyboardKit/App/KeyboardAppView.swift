@@ -8,11 +8,11 @@
 
 import SwiftUI
 
-/// This view can be used as the root view of a keyboard app
-/// target, to set up everything it needs to use KeyboardKit.
+/// This view can be used as the root view of a keyboard app,
+/// to set up KeyboardKit for the provided ``KeyboardApp``.
 ///
 /// To use this view, just create a ``KeyboardApp`` for your
-/// app and pass it into the initializer with your root view:
+/// app and use it to create a ``KeyboardAppView`` root view:
 ///
 /// ```swift
 /// @main
@@ -28,15 +28,10 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// This will set up and inject all ``Keyboard/State`` types
-/// into the view hierarchy, setup App Group synced settings
-/// with ``KeyboardSettings/setupStore(withAppGroup:keyPrefix:)``
-/// if you define an ``KeyboardApp/appGroupId`` and register
-/// your KeyboardKit Pro license key (if any) and unlock all
-/// pro features that you should have access to.
-///
-/// This means that you will be able resolve any state value
-/// like this, without having to set up anything else:
+/// This view will set up ``KeyboardSettings`` to use an App
+/// Group, register your KeyboardKit Pro license key, if any,
+/// and inject ``Keyboard/State`` types into the view, which
+/// means that you can access any state value like this:
 ///
 /// ```swift
 /// struct MyView: View {
@@ -60,9 +55,11 @@ public struct KeyboardAppView<Content: View>: View {
         for app: KeyboardApp,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.app = app
+        KeyboardSettings.setup(for: app)
         let state = Keyboard.State()
-        state.setupDictationContext(for: app)
+        state.setup(for: app)
+
+        self.app = app
         self._autocompleteContext = .init(wrappedValue: state.autocompleteContext)
         self._calloutContext = .init(wrappedValue: state.calloutContext)
         self._dictationContext = .init(wrappedValue: state.dictationContext)
@@ -100,24 +97,23 @@ public struct KeyboardAppView<Content: View>: View {
         .environmentObject(dictationContext)
         .environmentObject(feedbackContext)
         .environmentObject(keyboardContext)
-        .onAppear(perform: setupApp)
         // TODO: This will be replaced by `task` in KeyboardKit 9.0.
     }
 }
 
-private extension KeyboardAppView {
+private extension KeyboardSettings {
 
-    func setupApp() {
-        setupAppSettings()
-    }
-
-    func setupAppSettings() {
+    static func setup(for app: KeyboardApp) {
         guard let appGroupId = app.appGroupId else { return }
-        KeyboardSettings.setupStore(withAppGroup: appGroupId)
+        setupStore(withAppGroup: appGroupId)
     }
 }
 
 private extension Keyboard.State {
+
+    func setup(for app: KeyboardApp) {
+        setupDictationContext(for: app)
+    }
 
     func setupDictationContext(
         for app: KeyboardApp

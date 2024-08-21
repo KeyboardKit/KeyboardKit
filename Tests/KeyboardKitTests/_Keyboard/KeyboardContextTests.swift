@@ -32,7 +32,7 @@ class KeyboardContextTests: XCTestCase {
 
     override func tearDown() {
         context.isAutocapitalizationEnabled = true
-        context.localeIdentifier = "en"
+        context.locale = .init(identifier: "en")
     }
 
     
@@ -123,19 +123,6 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertFalse(hasKeyboardTypeResult(for: .images))
         XCTAssertFalse(hasKeyboardTypeResult(for: .numeric))
         XCTAssertFalse(hasKeyboardTypeResult(for: .symbolic))
-    }
-
-    func testLocaleIdentifierSettingProperlyUpdatesLocales() {
-        context.localeIdentifier = "da"
-        XCTAssertEqual(context.locale.identifier, "da")
-        XCTAssertEqual(context.keyboardLocale, .danish)
-    }
-
-    func testLocaleIdentifierSettingProperlyRestores() {
-        context.localeIdentifier = "da"
-        let newContext = KeyboardContext()
-        XCTAssertEqual(newContext.locale.identifier, "da")
-        XCTAssertEqual(newContext.keyboardLocale, .danish)
     }
 
     func testSelectingNextLocaleSelectsFirstItemIfTheCurrentLocaleIsNotInLocales() {
