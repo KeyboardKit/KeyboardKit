@@ -24,13 +24,6 @@ extension KeyboardContext {
         }
     }
 
-    /// Sync ``locale`` with settings.
-    func syncLocaleWithSetting() {
-        if locale.localeIdentifier == localeIdentifier { return }
-        let newLocale = Locale(identifier: localeIdentifier)
-        setLocale(newLocale)
-    }
-
     /// Make the context trigger a keyboard view refresh.
     func triggerKeyboardViewRefresh() {
         setLocale(locale)

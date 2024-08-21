@@ -37,7 +37,7 @@ public class KeyboardContext: ObservableObject {
 
     public init() {
         syncAutocapitalizationWithSetting()
-        syncLocaleWithSetting()
+        locale = .init(identifier: localeIdentifier)
     }
 
 
@@ -68,11 +68,11 @@ public class KeyboardContext: ObservableObject {
 
     /// The locale identifier that is currently being used.
     ///
+    /// Use ``locale`` or any locale setter to set this.
+    ///
     /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
     @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
-    public var localeIdentifier = Locale.current.identifier {
-        didSet { syncLocaleWithSetting() }
-    }
+    public private(set) var localeIdentifier = Locale.current.identifier
 
 
     // MARK: - Temporary overrides
@@ -147,7 +147,10 @@ public class KeyboardContext: ObservableObject {
     /// and cause it to persist.
     @Published
     public var locale = Locale.current {
-        didSet { localeIdentifier = locale.identifier }
+        didSet {
+            guard localeIdentifier != locale.identifier else { return }
+            localeIdentifier = locale.identifier
+        }
     }
 
     /// The locales that are currently available.
