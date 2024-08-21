@@ -6,13 +6,14 @@
 //  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 
 /// DEPRECATED!
 ///
 /// > Warning: Settings have been moved to the context. This
 /// type will be removed in KeyboardKit 9.0.
-public class DictationSettings: ObservableObject {
+public class DictationSettings: ObservableObject, LegacySettings {
 
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "dictation")
 
@@ -23,9 +24,6 @@ public class DictationSettings: ObservableObject {
 
     @Published
     var lastChanged = Date()
-
-    @AppStorage("\(prefix)lastSynced", store: .keyboardSettings)
-    var lastSynced = Keyboard.StorageValue(Date().addingTimeInterval(-3600))
 }
 
 extension DictationSettings {
@@ -33,15 +31,8 @@ extension DictationSettings {
     func syncToContextIfNeeded(
         _ context: DictationContext
     ) {
-        guard lastSynced.value < lastChanged else { return }
+        guard shouldSyncToContext else { return }
         context.sync(with: self)
-        lastSynced.value = Date()
-    }
-}
-
-private extension DictationSettings {
-
-    func triggerChange() {
-        lastChanged = Date()
+        updateLastSynced()
     }
 }

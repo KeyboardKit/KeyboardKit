@@ -12,7 +12,7 @@ import SwiftUI
 ///
 /// > Warning: Settings have been moved to the context. This
 /// type will be removed in KeyboardKit 9.0.
-public class AutocompleteSettings: ObservableObject {
+public class AutocompleteSettings: ObservableObject, LegacySettings {
 
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "autocomplete")
 
@@ -33,9 +33,6 @@ public class AutocompleteSettings: ObservableObject {
 
     @Published
     var lastChanged = Date()
-
-    @AppStorage("\(prefix)lastSynced", store: .keyboardSettings)
-    var lastSynced = Keyboard.StorageValue(Date().addingTimeInterval(-3600))
 }
 
 extension AutocompleteSettings {
@@ -43,15 +40,51 @@ extension AutocompleteSettings {
     func syncToContextIfNeeded(
         _ context: AutocompleteContext
     ) {
-        guard lastSynced.value < lastChanged else { return }
+        guard shouldSyncToContext else { return }
         context.sync(with: self)
-        lastSynced.value = Date()
+        updateLastSynced()
     }
 }
 
-private extension AutocompleteSettings {
+protocol LegacySettings: AnyObject {
+
+    static var prefix: String { get }
+
+    var lastChanged: Date { get set }
+}
+
+extension LegacySettings {
+
+    var legacySettingsStore: UserDefaults {
+        KeyboardSettings.store
+    }
+
+    var lastChangedKey: String { "\(Self.prefix)legacySettingsLastChanged" }
+
+    var lastChangedValue: TimeInterval {
+        get { KeyboardSettings.store.double(forKey: lastChangedKey) }
+        set { KeyboardSettings.store.set(newValue, forKey: lastChangedKey) }
+    }
+
+    var lastSyncedKey: String { "\(Self.prefix)legacySettingsLastSynced" }
+
+    var lastSyncedValue: TimeInterval {
+        get { KeyboardSettings.store.double(forKey: lastSyncedKey) - 1 }
+        set { KeyboardSettings.store.set(newValue, forKey: lastSyncedKey) }
+    }
+
+    var shouldSyncToContext: Bool {
+        lastSyncedValue < lastChangedValue
+    }
 
     func triggerChange() {
         lastChanged = Date()
+        lastChangedValue = Date().timeIntervalSince1970
+        UserDefaults.keyboardSettings.synchronize()
+    }
+
+    func updateLastSynced() {
+        lastSyncedValue = Date().timeIntervalSince1970
+        UserDefaults.keyboardSettings.synchronize()
     }
 }

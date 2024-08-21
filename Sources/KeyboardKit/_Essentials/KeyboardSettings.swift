@@ -25,36 +25,21 @@ import SwiftUI
 /// that's available when a property is first accessed. Make
 /// sure to run ``setupStore(_:keyPrefix:)`` BEFORE your app
 /// or keyboard extension accesses these settings properties.
-public class KeyboardSettings: ObservableObject {
+public class KeyboardSettings: ObservableObject, LegacySettings {
 
-    /// DEPRECATED!
-    ///
-    /// > Warning: Settings are moved to ``KeyboardContext``.
-    /// This will be removed in KeyboardKit 9.0.
+    // MARK: - Deprecated: Settings are moved to the context.
+
+    /// DEPRECATED - Settings are moved to the context.
     static let prefix = KeyboardSettings.storeKeyPrefix(for: "keyboard")
 
-    /// DEPRECATED!
-    ///
-    /// > Warning: Settings are moved to ``KeyboardContext``.
-    /// This will be removed in KeyboardKit 9.0.
+    /// DEPRECATED - Settings are moved to the context.
     @AppStorage("\(prefix)isAutocapitalizationEnabled", store: .keyboardSettings)
     public var isAutocapitalizationEnabled = true {
         didSet { triggerChange() }
     }
 
-    /// DEPRECATED!
-    ///
-    /// > Warning: Settings are moved to ``KeyboardContext``.
-    /// This will be removed in KeyboardKit 9.0.
     @Published
     var lastChanged = Date()
-
-    /// DEPRECATED!
-    ///
-    /// > Warning: Settings are moved to ``KeyboardContext``.
-    /// This will be removed in KeyboardKit 9.0.
-    @AppStorage("\(prefix)lastSynced", store: .keyboardSettings)
-    var lastSynced = Keyboard.StorageValue(Date().addingTimeInterval(-3600))
 }
 
 extension KeyboardSettings {
@@ -62,16 +47,9 @@ extension KeyboardSettings {
     func syncToContextIfNeeded(
         _ context: KeyboardContext
     ) {
-        guard lastSynced.value < lastChanged else { return }
+        guard shouldSyncToContext else { return }
         context.sync(with: self)
-        lastSynced.value = Date()
-    }
-}
-
-private extension KeyboardSettings {
-
-    func triggerChange() {
-        lastChanged = Date()
+        updateLastSynced()
     }
 }
 
