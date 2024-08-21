@@ -38,6 +38,15 @@ This version also tweaks the emoji keyboard configuration for all device types, 
 
 KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and `KeyboardApp.LanguageSettingsScreen`, which makes it a lot easier than before to add keyboard settings to the main app target, as well as to the keyboard.
 
+
+### 💥 Breaking changes 
+
+This version has one breaking change, that you should be aware of.
+
+Due to how settings are now handled, the `KeyboardSettings.store` and its functions no longer accept optional values, since this is only confusing. You can now only replace this store with another valid store, and have a new `isStoreSynced` property that is set to `true` whenever you successfully call the app group setup function.
+
+This will probably make it easier to understand when the store has been properly replaced with a group-synced one.   
+
 ### ✨ Features
 
 * `AutocompleteContext` has new settings that replace ``AutocompleteSettings``.
@@ -64,6 +73,7 @@ KeyboardKit Pro adds new settings screens, like `KeyboardApp.SettingsScreen` and
 * `KeyboardLocale` has new `ListItem` & `ListDragHandle` views to simplify building locale-based lists.
 * `KeyboardLocale.ContextMenu` now supports providing custom locales instead of using the context ones.
 * `KeyboardLocaleInfo` has new `matches(query:in:)` functionality to match locales on free-text queries.
+* `KeyboardSettings` has a new `setup` function for App Group-syncing and a new `isAppGroupSynced` property.
 
 ### 😀 Emojis
 

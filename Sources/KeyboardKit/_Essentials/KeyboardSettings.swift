@@ -78,33 +78,48 @@ private extension KeyboardSettings {
 public extension KeyboardSettings {
 
     /// The store that will be used by library settings.
-    static var store: UserDefaults? = .standard
+    static var store: UserDefaults = .standard
 
     /// The key prefix that will be used by library settings.
     static var storeKeyPrefix = "com.keyboardkit.settings."
 
-    /// Set up a custom keyboard settings store.
+    /// Whether or not ``setupStore(withAppGroup:keyPrefix:)``
+    /// has been used to replace ``store`` with an App Group
+    /// synced store.
+    static private(set) var storeisAppGroupSynced = false
+
+    @available(*, deprecated, message: "Setting an optional store is no longer allowed.")
     static func setupStore(
         _ store: UserDefaults?,
         keyPrefix: String? = nil
     ) {
+        setupStore(store ?? .standard, keyPrefix: keyPrefix)
+    }
+
+    /// Set up a custom keyboard settings store.
+    static func setupStore(
+        _ store: UserDefaults,
+        keyPrefix: String? = nil,
+        isAppGroupSynced: Bool = false
+    ) {
         Self.store = store
         Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
+        Self.storeisAppGroupSynced = isAppGroupSynced
     }
 
     /// Set up a custom keyboard settings store that uses an
-    /// app group to sync settings between your main app and
-    /// its keyboard extension.
+    /// App Group to sync settings between multiple targets.
     ///
-    /// > Important: For this to work, you must first set up
-    /// an App Group, then register it for both your app and
-    /// the keyboard.
+    /// > Important: For this function to work, you must set
+    /// up an App Group for your app and register it for all
+    /// targets. The function will throw an error if the App
+    /// Group synced store could not be created.
     static func setupStore(
         withAppGroup id: String,
         keyPrefix: String? = nil
     ) {
-        Self.store = .init(suiteName: id)
-        Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
+        guard let store = UserDefaults(suiteName: id) else { return }
+        setupStore(store, keyPrefix: keyPrefix, isAppGroupSynced: true)
     }
 
     /// Get the store key prefix for a certain namespace.
@@ -122,8 +137,10 @@ public extension UserDefaults {
     ///
     /// See ``KeyboardSettings`` for more information on how
     /// to register a custom store.
-    static var keyboardSettings: UserDefaults? {
+    static var keyboardSettings: UserDefaults {
         get { KeyboardSettings.store }
+
+        @available(*, deprecated, message: "Use KeyboardSettings.setupStore(...) instead")
         set { KeyboardSettings.store = newValue }
     }
 }
