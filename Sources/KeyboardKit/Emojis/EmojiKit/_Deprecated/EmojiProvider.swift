@@ -11,12 +11,7 @@ import Foundation
 @available(*, deprecated, renamed: "EmojiProvider")
 public typealias FrequentEmojiProvider = EmojiProvider
 
-/// This protocol can be implemented by any type that can be
-/// used to get a list of emojis.
-///
-/// If an emoji provider's ``canAddEmojis`` property returns
-/// `true`, you can use ``addEmoji(_:)`` to add emojis to it,
-/// and ``reset()`` to remove all emojis from it.
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public protocol EmojiProvider {
 
     /// Whether the provider can add custom emojis.
@@ -32,9 +27,9 @@ public protocol EmojiProvider {
     func reset()
 }
 
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public extension EmojiProvider {
 
-    @available(*, deprecated, renamed: "addEmoji")
     func registerEmoji(_ emoji: Emoji) {
         addEmoji(emoji)
     }

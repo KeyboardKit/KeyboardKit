@@ -8,5 +8,5 @@
 
 import Foundation
 
-/// This is a namespace for various ``EmojiProvider`` types.
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public final class EmojiProviders {}

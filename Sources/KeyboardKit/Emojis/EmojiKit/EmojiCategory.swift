@@ -14,13 +14,19 @@ import SwiftUI
 /// The static ``EmojiCategory/all`` property can be used to
 /// get all standard categories.
 ///
-/// The ``EmojiCategory/frequent`` category is a placeholder
+/// The ``EmojiCategory/frequent`` category will return
+///
+///
 /// category that doesn't contain any emojis from start. Use
 /// an ``EmojiProvider`` to provide the category with emojis
 /// and call ``EmojiProvider/addEmoji(_:)`` when an emoji is
 /// used, to add it to the category.
-public enum EmojiCategory: Codable, Equatable, Hashable, Identifiable {
-    
+///
+/// Various EmojiKit views, like the ``EmojiGrid``, lets you
+/// pass in a custom provider, and will automatically use it
+/// to register emojis when the user interacts with an emoji.
+public enum EmojiCategory: CaseIterable, Codable, Equatable, Hashable, Identifiable {
+
     case frequent
     case smileysAndPeople
     case animalsAndNature
@@ -32,26 +38,55 @@ public enum EmojiCategory: Codable, Equatable, Hashable, Identifiable {
     case flags
 
     case favorites
-    case search(query: String)
 
     case custom(
         id: String,
         name: String,
-        emojis: String = "",
+        emojis: [Emoji],
         iconName: String = ""
     )
 }
 
 public extension EmojiCategory {
 
-    /// Get an ordered list of all standard categories.
-    ///
-    /// There are more emojis in this enum, but this returns
-    /// a list of all emojis that are by default listed in a
-    /// keyboard or picker.
-    static var all: [EmojiCategory] {
+    /// A custom category with an emoji search result.
+    static func search(
+        query: String
+    ) -> EmojiCategory {
+        .custom(
+            id: "search",
+            name: "Search",
+            emojis: Emoji.all.matching(query),
+            iconName: "search"
+        )
+    }
+}
+
+public extension EmojiCategory {
+
+    static var allCases: [EmojiCategory] {
         [
             .frequent,
+            .smileysAndPeople,
+            .animalsAndNature,
+            .foodAndDrink,
+            .activity,
+            .travelAndPlaces,
+            .objects,
+            .symbols,
+            .flags,
+            .favorites
+        ]
+    }
+
+    /// Get an ordered list of all standard categories.
+    static var standard: [EmojiCategory] {
+        [.frequent] + standardWithoutFrequent
+    }
+
+    /// Get an ordered list of all standard categories.
+    static var standardWithoutFrequent: [EmojiCategory] {
+        [
             .smileysAndPeople,
             .animalsAndNature,
             .foodAndDrink,
@@ -62,6 +97,9 @@ public extension EmojiCategory {
             .flags
         ]
     }
+
+    @available(*, deprecated, renamed: "standard")
+    static var all: [EmojiCategory] { standard }
 }
 
 public extension Array where Element == EmojiCategory {
@@ -84,8 +122,11 @@ public extension Array where Element == EmojiCategory {
 public extension Collection where Element == EmojiCategory {
 
     /// Get an ordered list of all standard categories.
-    static var all: [Element] { Element.all }
-    
+    static var standard: [Element] { Element.standard }
+
+    @available(*, deprecated, renamed: "standard")
+    static var all: [Element] { Element.standard }
+
     /// Get the first category with a certain ID.
     func category(withId id: Element.ID?) -> Element? {
         guard let id else { return nil }
@@ -128,7 +169,6 @@ public extension EmojiCategory {
         case .flags: "flags"
 
         case .favorites: "favorites"
-        case .search: "search"
 
         case .custom(let id, _, _, _): id
         }
@@ -148,7 +188,6 @@ public extension EmojiCategory {
         case .flags: "🏳️"
 
         case .favorites: "❤️"
-        case .search: "🔍"
 
         case .custom: "-"
         }
@@ -157,7 +196,7 @@ public extension EmojiCategory {
     /// A list of all available emojis in the category.
     var emojis: [Emoji] {
         switch self {
-        case .frequent: []
+        case .frequent: Self.frequentEmojis
         case .smileysAndPeople: Self.emojisForSmileysAndPeople
         case .animalsAndNature: Self.emojisForAnimalsAndNature
         case .foodAndDrink: Self.emojisForFoodAndDrink
@@ -167,10 +206,9 @@ public extension EmojiCategory {
         case .symbols: Self.emojisForSymbols
         case .flags: Self.emojisForFlags
 
-        case .favorites: []
-        case .search(let query): Emoji.all.matching(query)
+        case .favorites: Self.favoriteEmojis
 
-        case .custom: emojiStringEmojis
+        case .custom(_, _, let emojis, _): emojis
         }
     }
     
@@ -184,7 +222,6 @@ extension EmojiCategory {
     
     var emojiString: String {
         switch self {
-        case .frequent: ""
         case .smileysAndPeople: Self.smileysAndPeopleChars
         case .animalsAndNature: Self.animalsAndNatureChars
         case .foodAndDrink: Self.foodAndDrinkChars
@@ -193,11 +230,7 @@ extension EmojiCategory {
         case .objects: Self.objectsChars
         case .symbols: Self.symbolsChars
         case .flags: Self.flagsChars
-
-        case .favorites: ""
-        case .search: ""
-
-        case .custom(_, _, let emojis, _): emojis
+        default: ""
         }
     }
     

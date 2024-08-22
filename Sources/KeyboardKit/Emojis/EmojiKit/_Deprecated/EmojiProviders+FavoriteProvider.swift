@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public extension EmojiProviders {
 
     /// This emoji provider provides favorite emojis.
@@ -33,6 +34,7 @@ public extension EmojiProviders {
     }
 }
 
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public extension EmojiProvider where Self == EmojiProviders.FavoriteProvider {
 
     /// Create a favorite emoji provider.

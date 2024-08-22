@@ -12,7 +12,7 @@ public extension Emoji {
 
     /// Get all available emojis from all categories.
     static var all: [Emoji] {
-        EmojiCategory.all.flatMap {
+        EmojiCategory.standardWithoutFrequent.flatMap {
             $0.emojis
         }
     }

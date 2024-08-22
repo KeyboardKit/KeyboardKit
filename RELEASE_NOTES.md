@@ -71,6 +71,7 @@ This version has one breaking change. Due to how settings are now handled, the `
 
 ### 😀 Emojis
 
+* `EmojiCategory` has improved support for persistency.
 * `EmojiKeyboard` now renders better on 13" iPad devices.
 * `EmojiKeyboard` now displays a dismiss button on iPad devices.
 * `EmojiKeyboard` now adds an extra row if an input toolbar is used.
@@ -116,6 +117,7 @@ This version has one breaking change. Due to how settings are now handled, the `
 * `SystemKeyboardBottomRow` has been renamed to `Keyboard.BottomRow`.
 * `SystemKeyboardButtonPreview` has been renamed to `Keyboard.ButtonPreview`.
 
+* `EmojiProvider` has been deprecated and is no more used by KeyboardKit.
 * `Feedback.HapticConfiguration.minimal` has been replaced by `.disabled`.
 * `Gestures.KeyboardGesture` has been moved & renamed to `Keyboard.Gesture.`
 * `Keyboard.SettingsLink` has been deprecated, since a `Link` works as well.

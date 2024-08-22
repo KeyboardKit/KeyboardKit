@@ -44,7 +44,6 @@ extension KeyboardAction {
                 autocompleteService: services.autocompleteService,
                 feedbackContext: state.feedbackContext,
                 feedbackService: services.feedbackService,
-                frequentEmojiProvider: services.frequentEmojiProvider,
                 spaceDragGestureHandler: services.spaceDragGestureHandler
             )
         }
@@ -71,7 +70,6 @@ extension KeyboardAction {
             autocompleteService: AutocompleteService? = nil,
             feedbackContext: FeedbackContext,
             feedbackService: FeedbackService,
-            frequentEmojiProvider: EmojiProvider = EmojiProviders.MostRecentProvider(),
             spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
         ) {
             weak var weakController = controller
@@ -82,7 +80,6 @@ extension KeyboardAction {
             self.autocompleteService = autocompleteService
             self.feedbackContext = feedbackContext
             self.feedbackService = feedbackService
-            self.frequentEmojiProvider = frequentEmojiProvider
             self.spaceDragGestureHandler = spaceDragGestureHandler
         }
 
@@ -110,9 +107,6 @@ extension KeyboardAction {
 
         /// The feedback service to use.
         public var feedbackService: FeedbackService
-
-        /// The frequent emoji provider to use.
-        public var frequentEmojiProvider: EmojiProvider
 
         /// The space drag gesture handler to use.
         public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
@@ -388,7 +382,7 @@ extension KeyboardAction {
         ) {
             guard gesture == .release else { return }
             switch action {
-            case .emoji(let emoji): frequentEmojiProvider.addEmoji(emoji)
+            case .emoji(let emoji): EmojiCategory.addEmoji(emoji, to: .frequent, maxCount: 30)
             default: return
             }
         }

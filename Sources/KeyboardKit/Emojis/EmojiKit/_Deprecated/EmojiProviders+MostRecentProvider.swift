@@ -11,6 +11,7 @@ import SwiftUI
 @available(*, deprecated, renamed: "EmojiProviders.MostRecentProvider")
 public typealias MostRecentEmojiProvider = EmojiProviders.MostRecentProvider
 
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public extension EmojiProviders {
 
     /// This emoji provider provides the most recent emojis.
@@ -36,6 +37,7 @@ public extension EmojiProviders {
     }
 }
 
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public extension EmojiProvider where Self == EmojiProviders.MostRecentProvider {
 
     /// Create a most recent emoji provider.

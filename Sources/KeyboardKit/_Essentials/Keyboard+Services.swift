@@ -68,9 +68,6 @@ public extension Keyboard {
         /// The feedback service to use.
         public lazy var feedbackService: FeedbackService = Feedback.StandardService()
 
-        /// The frequent emoji provider to use.
-        public lazy var frequentEmojiProvider: EmojiProvider = EmojiProviders.MostRecentProvider()
-
         /// The keyboard behavior to use.
         public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(
             keyboardContext: state.keyboardContext)

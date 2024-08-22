@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public extension EmojiProviders {
 
     /// This is an emoji provider base class.
@@ -40,6 +41,7 @@ public extension EmojiProviders {
     }
 }
 
+@available(*, deprecated, message: "The EmojiProvider concept will be removed in EmojiKit 1.0.")
 public extension EmojiProviders.BaseProvider {
 
     var canAddEmojis: Bool { true }
