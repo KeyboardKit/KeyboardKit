@@ -86,7 +86,9 @@ class KeyboardViewController: KeyboardInputViewController {
         ///
         /// This service adds a "next locale" button if it's
         /// needed, as well as a dictation button.
-        services.layoutService = DemoLayoutService(.localeSwitcher)
+        services.layoutService = DemoLayoutService(
+            extraKey: .emojiIfNeeded
+        )
 
         /// 💡 Setup a theme-based style provider.
         ///

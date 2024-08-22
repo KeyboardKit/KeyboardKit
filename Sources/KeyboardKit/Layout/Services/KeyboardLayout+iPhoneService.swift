@@ -21,7 +21,6 @@ extension KeyboardLayout {
     ///
     /// See <doc:Layout-Article> for more information.
     open class iPhoneService: KeyboardLayout.BaseService {
-
         
         // MARK: - Overrides
         

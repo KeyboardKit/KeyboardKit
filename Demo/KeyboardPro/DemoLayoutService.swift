@@ -12,14 +12,17 @@ import KeyboardKitPro
 /// few demo-specific adjustments to the standard layout.
 class DemoLayoutService: KeyboardLayout.StandardService {
 
-    init(_ extraKey: ExtraKey) {
+    init(extraKey: ExtraKey) {
         self.extraKey = extraKey
     }
 
     let extraKey: ExtraKey
 
     enum ExtraKey {
-        case none, rocket, localeSwitcher
+        case none
+        case emojiIfNeeded
+        case rocket
+        case localeSwitcher
     }
 
     /// Insert a locale switcher action or a rocket button.
@@ -27,6 +30,7 @@ class DemoLayoutService: KeyboardLayout.StandardService {
         let layout = super.keyboardLayout(for: context)
         switch extraKey {
         case .none: break
+        case .emojiIfNeeded: layout.tryInsertEmojiButton()
         case .rocket: layout.tryInsertRocketButton()
         case .localeSwitcher: layout.tryInsertLocaleSwitcher()
         }
@@ -35,6 +39,14 @@ class DemoLayoutService: KeyboardLayout.StandardService {
 }
 
 private extension KeyboardLayout {
+
+    func tryInsertEmojiButton() {
+        guard let row = bottomRow else { return }
+        let hasEmoji = row.contains(where: { $0.action == .keyboardType(.emojis) })
+        if hasEmoji { return }
+        guard let button = tryCreateBottomRowItem(for: .keyboardType(.emojis)) else { return }
+        itemRows.insert(button, after: .space, atRow: bottomRowIndex)
+    }
 
     func tryInsertLocaleSwitcher() {
         guard let item = tryCreateBottomRowItem(for: .nextLocale) else { return }
