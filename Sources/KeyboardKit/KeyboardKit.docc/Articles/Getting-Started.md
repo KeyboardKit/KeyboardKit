@@ -53,7 +53,7 @@ You need to set up KeybordKit a bit differently when you intend to use it within
 
 ### Keyboard extension
 
-To set up KeyboardKit for a keyboard extension, import `KeyboardKit` and let `KeyboardViewController` inherit the ``KeyboardInputViewController`` base class instead of ``UIInputViewController``:
+To set up KeyboardKit for a keyboard extension, import `KeyboardKit` and let `KeyboardViewController` inherit the ``KeyboardInputViewController`` base class instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit // or KeyboardKitPro

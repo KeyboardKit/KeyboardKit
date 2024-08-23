@@ -21,10 +21,6 @@ import SwiftUI
 /// an ``EmojiProvider`` to provide the category with emojis
 /// and call ``EmojiProvider/addEmoji(_:)`` when an emoji is
 /// used, to add it to the category.
-///
-/// Various EmojiKit views, like the ``EmojiGrid``, lets you
-/// pass in a custom provider, and will automatically use it
-/// to register emojis when the user interacts with an emoji.
 public enum EmojiCategory: CaseIterable, Codable, Equatable, Hashable, Identifiable {
 
     case frequent

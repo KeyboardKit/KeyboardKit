@@ -81,7 +81,7 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
 
-    /// Set this to override ``returnKey``.
+    /// Set this to override ``returnKeyType``.
     @Published
     public var returnKeyTypeOverride: Keyboard.ReturnKeyType?
 

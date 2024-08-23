@@ -77,8 +77,6 @@ EmojiVersion.v14.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 
 ``EmojiCategory`` uses ``EmojiVersion`` to filter out emojis that are unavailable to the current runtime, to only include available emojis.
 
-> Note: The ``EmojiCategory/frequent`` category is automatically populated by the main ``Keyboard/Services/actionHandler``, which adds any emojis that it handles to the main ``Keyboard/Services/frequentEmojiProvider``.
-
 
 
 ## Unicode Information

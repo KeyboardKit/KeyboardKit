@@ -27,7 +27,7 @@ public extension KeyboardContext {
         self.locale.identifier == locale.localeIdentifier
     }
 
-    /// Select the next locale in ``selectableLocales``.
+    /// Select the next locale in the selectable locales.
     func selectNextLocale() {
         let locales = selectableLocales
         let fallback = locales.first ?? locale
