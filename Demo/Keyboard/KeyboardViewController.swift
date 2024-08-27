@@ -28,62 +28,11 @@ class KeyboardViewController: KeyboardInputViewController {
         // settings to sync between the app and its keyboard.
         // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
 
+        /// 💡 Set up demo-specific services.
+        setupDemoServices()
 
-        // MARK: - Services
-
-        /// 💡 Setup a demo-specific action handler.
-        services.actionHandler = DemoActionHandler(
-            controller: self
-        )
-
-        /// 💡 Setup a fake autocomplete service.
-        services.autocompleteService = FakeAutocompleteService(
-            context: state.autocompleteContext
-        )
-        
-        /// 💡 Setup a demo-specific callout service that by
-        /// default changes the `k` callout actions.
-        services.calloutService = Callouts.StandardService(
-            keyboardContext: state.keyboardContext,
-            baseService: DemoCalloutService()
-        )
-
-        /// 💡 Setup a demo-specific keyboard layout service
-        /// that inserts an additional key into the keyboard.
-        services.layoutService = DemoLayoutService(.rocket)
-
-        /// 💡 Setup a demo-specific keyboard style that can
-        /// change the design of any keys in a keyboard view.
-        services.styleProvider = DemoStyleProvider(
-            keyboardContext: state.keyboardContext
-        )
-
-        // MARK: - State
-
-        /// 💡 Select a custom keyboard locale, although the
-        /// open-source keyboard will only localize the keys.
-        state.keyboardContext.setLocale(.english)
-
-        /// 💡 Add more locales to the keyboard context. The
-        /// locales are only used in the locale context menu
-        /// if a user hasn't used a language settings screen.
-        state.keyboardContext.setLocales(.all)
-        state.keyboardContext.localePresentationLocale = .current
-
-        /// 💡 Configure the space long press behavior. This
-        /// can either be used to move the text input cursor
-        /// or to show the locale context menu.
-        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
-        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
-        
-        /// 💡 Setup haptic and audio feedback, and register
-        /// a custom audio sound for the rocket button.
-        let feedback = state.feedbackContext
-        feedback.audioConfiguration = .enabled
-        feedback.hapticConfiguration = .enabled
-        feedback.registerCustomFeedback(.haptic(.selection, for: .repeat, on: .rocket))
-        feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
-        feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
+        /// 💡 Set up demo-specific state.
+        setupDemoState()
         
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
@@ -108,6 +57,7 @@ class KeyboardViewController: KeyboardInputViewController {
                 emojiKeyboard: { $0.view },
                 toolbar: { $0.view }
             )
+            /// 💡 You can disable autocorrection like this.
             // .autocorrectionDisabled()
         }
     }

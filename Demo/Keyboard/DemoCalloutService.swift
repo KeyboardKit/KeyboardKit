@@ -6,8 +6,11 @@
 //  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
+#if IS_KEYBOARDKIT
 import KeyboardKit
-import UIKit
+#elseif IS_KEYBOARDKITPRO
+import KeyboardKitPro
+#endif
 
 /// This demo-specific callout service shows "keyboard" when
 /// a "k" key is long pressed. 

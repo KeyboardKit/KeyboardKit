@@ -6,7 +6,12 @@
 //  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
+#if IS_KEYBOARDKIT
 import KeyboardKit
+#elseif IS_KEYBOARDKITPRO
+import KeyboardKitPro
+#endif
+
 import UIKit
 
 /// This action handler inherits the standard action handler

@@ -6,7 +6,11 @@
 //  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
+#if IS_KEYBOARDKIT
+import KeyboardKit
+#else
 import KeyboardKitPro
+#endif
 
 public extension KeyboardApp {
 

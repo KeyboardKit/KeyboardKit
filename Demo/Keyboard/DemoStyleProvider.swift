@@ -6,7 +6,12 @@
 //  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
+#if IS_KEYBOARDKIT
 import KeyboardKit
+#elseif IS_KEYBOARDKITPRO
+import KeyboardKitPro
+#endif
+
 import SwiftUI
 
 /// This provider inherits the standard provider, then makes

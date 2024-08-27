@@ -29,6 +29,12 @@ import KeyboardKitPro
 /// as a closed-source binary dependency, but you can adjust
 /// it with the `KeyboardPro` source code.
 ///
+/// `NOTE` To avoid having to duplicate services between the
+/// two keyboard targets, they define preprocessor macros to
+/// let the files conditionally import KeyboardKit or KK Pro.
+/// This is only a demo detail. You don't have to do this in
+/// your own app, since you'll either use KeyboardKit or Pro. 
+///
 /// `IMPORTANT` Although this app lets you test the keyboard
 /// settings screens and start dictation, the app can't sync
 /// data between itself and its keyboards, since it does not
