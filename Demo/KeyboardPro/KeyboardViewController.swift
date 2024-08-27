@@ -17,12 +17,6 @@ import SwiftUI
 ///
 /// This keyboard uses KeyboardKit Pro `KeyboardApp` screens
 /// to open keyboard and language settings as sheet overlays.
-/// This is not needed when an app can setup an App Group to
-/// sync data between itself and its keyboard.
-///
-/// The `viewDidLoad` function below has sample code to show
-/// you how you can setup App Group synced keyboard settings
-/// in apps that support it.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.

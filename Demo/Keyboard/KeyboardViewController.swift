@@ -33,14 +33,9 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Setup a demo-specific action handler.
         services.actionHandler = DemoActionHandler(
-            controller: self,
-            keyboardContext: state.keyboardContext,
-            keyboardBehavior: services.keyboardBehavior,
-            autocompleteContext: state.autocompleteContext,
-            feedbackContext: state.feedbackContext,
-            feedbackService: services.feedbackService,
-            spaceDragGestureHandler: services.spaceDragGestureHandler)
-        
+            controller: self
+        )
+
         /// 💡 Setup a fake autocomplete service.
         services.autocompleteService = FakeAutocompleteService(
             context: state.autocompleteContext

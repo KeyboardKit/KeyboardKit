@@ -9,29 +9,31 @@
 import SwiftUI
 import KeyboardKitPro
 
-/// This is the main demo app.
+/// This is the KeyboardKit demo app.
 ///
-/// This app contains two keyboard extensions, that can both
-/// be enabled from System Settings. Full Access is required
-/// for certain features, like haptic feedback.
+/// The app has two keyboard extensions. They can be enabled
+/// from System Settings and require Full Access to use some
+/// features, like haptic feedback.
 ///
-/// This main app uses a `KeyboardAppView` to set up the app.
-/// It will register the KeyboardKit Pro license, set up any
-/// state that are required, etc.
+/// The app uses a `KeyboardAppView` to set up the app while
+/// the keyboard extensions use `setup` and `setupPro`. This
+/// will register the KeyboardKit Pro license, sets up state
+/// and services, etc.
+///
+/// Use the `Keyboard` keyboard to play around with the open
+/// source SDK. It adds KeyboardKit as a local dependency to
+/// let you change any code and immediately see the result.
+///
+/// Use the `KeyboardPro` keyboard to test the closed-source
+/// SDK and many of the features it provides. It adds KK Pro
+/// as a closed-source binary dependency, but you can adjust
+/// it with the `KeyboardPro` source code.
 ///
 /// `IMPORTANT` Although this app lets you test the keyboard
-/// app screens, as well as dictation, the app does NOT sync
-/// settings between the main app and its keyboards since it
-/// is not code signed, and therefore can't use an App Group.
-/// This is why the keyboard extensions use the keyboard and
-/// locale setting screens as sheets, since they cannot read
-/// settings from the main app. If your app has an App Group,
-/// you only have to manage settings in the main app.
-///
-/// `ALSO` While the Pro keyboard *can* open the demo app to
-/// start dictation, and the app *can* perform dictation and
-/// return to *some* (supported) apps, the app can NOT write
-/// dictated text to an App Group to share with the keyboard.
+/// settings screens and start dictation, the app can't sync
+/// data between itself and its keyboards, since it does not
+/// use code signing. To make syncing work in your app, just
+/// create an App Group and link it to your app and keyboard.
 @main
 struct DemoApp: App {
 

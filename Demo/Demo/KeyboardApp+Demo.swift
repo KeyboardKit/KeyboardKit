@@ -12,11 +12,9 @@ public extension KeyboardApp {
 
     /// This value defines properties for the demo app.
     ///
-    /// This demo app doesn't support App Groups, since it's
-    /// not code signed, but it still defines one below just
-    /// to show you how it's done. Make sure to setup an App
-    /// Group in your app to let keyboard settings auto-sync
-    /// between your main app target and keyboard extensions.
+    /// The app doesn't support syncing data with App Groups,
+    /// since it's not code signed, but it still defines one
+    /// below, just to show you how it's done.
     ///
     /// The license key is demo-specific, and only works for
     /// this particular demo app. The bundle ID is used when
@@ -41,7 +39,7 @@ public extension Dictation.KeyboardConfiguration {
     /// This configuration is derived from the demo app, but
     /// has a fallback in case that one doesn't work.
     static var app: Self {
-        return KeyboardApp.demoApp.dictationConfiguration ??
-            .init(appGroupId: "", appDeepLink: "")
+        let config = KeyboardApp.demoApp.dictationConfiguration
+        return config ?? .init(appGroupId: "", appDeepLink: "")
     }
 }
