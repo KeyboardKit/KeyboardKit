@@ -20,6 +20,20 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 8.8.1
+
+This version fixes a few inconsistencies and bugs.
+
+### 💡 Adjustments
+
+* `Autocomplete.ToolbarStyle` adjusts the minimum height from `50` to `48` to align closer with the native keyboards, while still leaving room for the standard callouts.
+
+### 👑 KeyboardKit Pro
+
+* `Autocomplete.LocalService` now correctly regards lexicon suggestions as pure complementary, since they (as they should) ignore the current casing, and therefore can mess up capitalization when typing.  
+
+
+
 ## 8.8
 
 This version continues to rename types to make things more consistent in the 9.0 release. This means that are currently many deprecated names (which may be confusing), but it's all in service for a clean 9.0.
