@@ -26,6 +26,7 @@ public extension Gestures {
         /// - Parameters:
         ///   - isPressed: A custom, optional binding to track pressed state, by default `nil`.
         ///   - pressAction: The action to trigger when the button is pressed, by default `nil`.
+        ///   - canceDelay: The time it takes for a cancelled press to cancel itself.
         ///   - releaseInsideAction: The action to trigger when the button is released inside, by default `nil`.
         ///   - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, by default `nil`.
         ///   - longPressDelay: The time it takes for a press to count as a long press.
@@ -43,6 +44,7 @@ public extension Gestures {
         public init(
             isPressed: Binding<Bool>? = nil,
             pressAction: Action? = nil,
+            cancelDelay: TimeInterval = Defaults.cancelDelay,
             releaseInsideAction: Action? = nil,
             releaseOutsideAction: Action? = nil,
             longPressDelay: TimeInterval = Defaults.longPressDelay,
@@ -60,6 +62,7 @@ public extension Gestures {
         ) {
             self.isPressedBinding = isPressed ?? .constant(false)
             self.pressAction = pressAction
+            self.cancelDelay = cancelDelay
             self.releaseInsideAction = releaseInsideAction
             self.releaseOutsideAction = releaseOutsideAction
             self.longPressDelay = longPressDelay
@@ -83,6 +86,7 @@ public extension Gestures {
         var isPressedBinding: Binding<Bool>
         
         let pressAction: Action?
+        let cancelDelay: TimeInterval
         let releaseInsideAction: Action?
         let releaseOutsideAction: Action?
         let longPressDelay: TimeInterval
@@ -103,16 +107,10 @@ public extension Gestures {
         
         @State
         private var isRemoved = false
-        
-        @State
-        private var longPressDate = Date()
-        
-        @State
-        private var releaseDate = Date()
-        
-        @State
-        private var repeatDate = Date()
-        
+
+        @StateObject
+        private var dates = DateStorage()
+
         public var body: some View {
             label(isPressed)
                 .overlay(gestureView)
@@ -121,6 +119,15 @@ public extension Gestures {
                 .accessibilityAddTraits(.isButton)
         }
     }
+}
+
+/// This class is used for mutable, non-observed state.
+private class DateStorage: ObservableObject {
+
+    var lastGestureDate = Date()
+    var longPressDate = Date()
+    var releaseDate = Date()
+    var repeatDate = Date()
 }
 
 private extension Gestures.GestureButton {
@@ -145,22 +152,35 @@ private extension Gestures.GestureButton {
 
 private extension Gestures.GestureButton {
 
+    /// We should always reset the state when a gesture ends.
+    func reset() {
+        isPressed = false
+        dates.longPressDate = Date()    // Why reset?
+        dates.repeatDate = Date()
+        repeatTimer.stop()
+
+    }
+
+    /// A press should trigger some actions and set up a few
+    /// delays for other things to be handled.
     func tryHandlePress(_ value: DragGesture.Value) {
+        dates.lastGestureDate = Date()
         if isPressed { return }
         isPressed = true
         pressAction?()
         dragStartAction?(value)
+        tryTriggerCancelAfterDelay()
         tryTriggerLongPressAfterDelay()
         tryTriggerRepeatAfterDelay()
     }
 
+    /// A release should always reset the pressed state, but
+    /// should only proceed if the button is pressed.
     func tryHandleRelease(_ value: DragGesture.Value, in geo: GeometryProxy) {
+        let isPressed = self.isPressed
+        reset()
         if !isPressed { return }
-        isPressed = false
-        longPressDate = Date()
-        repeatDate = Date()
-        repeatTimer.stop()
-        releaseDate = tryTriggerDoubleTap() ? .distantPast : Date()
+        dates.releaseDate = tryTriggerDoubleTap() ? .distantPast : Date()
         dragEndAction?(value)
         if geo.contains(value.location) {
             releaseInsideAction?()
@@ -170,14 +190,32 @@ private extension Gestures.GestureButton {
         endAction?()
     }
 
+    /// A button that's accidentally triggered when flicking
+    /// a scroll view won't receive a drag gesture end event.
+    /// This will cause the button to get stuck in a pressed
+    /// state, with the callout still showing and the button
+    /// being gray. This initial delay will try to fix those
+    /// errors by cancelling the gesture if a single gesture
+    /// event has been received when the delay triggers.
+    func tryTriggerCancelAfterDelay() {
+        let date = Date()
+        dates.lastGestureDate = date
+        let delay = cancelDelay
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            guard dates.lastGestureDate == date else { return }
+            reset()
+            endAction?()
+        }
+    }
+
     func tryTriggerLongPressAfterDelay() {
         guard let action = longPressAction else { return }
         let date = Date()
-        longPressDate = date
+        dates.longPressDate = date
         let delay = longPressDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             if isRemoved { return }
-            guard self.longPressDate == date else { return }
+            guard dates.longPressDate == date else { return }
             action()
         }
     }
@@ -185,17 +223,17 @@ private extension Gestures.GestureButton {
     func tryTriggerRepeatAfterDelay() {
         guard let action = repeatAction else { return }
         let date = Date()
-        repeatDate = date
+        dates.repeatDate = date
         let delay = repeatDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             if isRemoved { return }
-            guard self.repeatDate == date else { return }
+            guard dates.repeatDate == date else { return }
             repeatTimer.start(action: action)
         }
     }
 
     func tryTriggerDoubleTap() -> Bool {
-        let interval = Date().timeIntervalSince(releaseDate)
+        let interval = Date().timeIntervalSince(dates.releaseDate)
         let isDoubleTap = interval < doubleTapTimeout
         if isDoubleTap { doubleTapAction?() }
         return isDoubleTap

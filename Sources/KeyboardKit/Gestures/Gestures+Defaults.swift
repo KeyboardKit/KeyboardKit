@@ -13,6 +13,9 @@ public extension Gestures {
     /// This type defines default gesture values.
     struct Defaults {
 
+        /// The time it takes for a press to count as accidentally cancelled by the system, by default `3`.
+        public static var cancelDelay = 3.0
+
         /// The max time between two taps for them to count as a double tap, by default `0.2`.
         public static var doubleTapTimeout = 0.2
         

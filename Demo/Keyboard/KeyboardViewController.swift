@@ -33,7 +33,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Set up demo-specific state.
         setupDemoState()
-        
+
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
     }
@@ -55,10 +55,33 @@ class KeyboardViewController: KeyboardInputViewController {
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },
-                toolbar: { $0.view }
+                toolbar: { params in
+                    // params.view
+                    TempScrollToolbar()
+                }
             )
             /// 💡 You can disable autocorrection like this.
             // .autocorrectionDisabled()
         }
+    }
+}
+
+private struct TempScrollToolbar: View {
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            ZStack {
+                Color.yellow
+                HStack {
+                    ForEach((0...30), id: \.self) { index in
+                        Button {} label: {
+                            Text("Button \(index)")
+                                .frame(maxHeight: .infinity)
+                        }
+                    }
+                }
+            }
+        }
+        .buttonStyle(.bordered)
     }
 }

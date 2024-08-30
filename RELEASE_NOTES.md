@@ -20,6 +20,16 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 8.8.2
+
+This version fixes a keyboard button gesture bug.
+
+### 🐛 Bug fixes
+
+* `Gestures.GestureButton` will now automatically cancel its pressed state if it hasn't received a second gesture event within 3 seconds. 
+
+
+
 ## 8.8.1
 
 This version fixes a few inconsistencies and bugs.
