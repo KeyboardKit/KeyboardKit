@@ -33,12 +33,45 @@ import UIKit
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value
 /// into the view hierarchy.
+
+public enum CustomView {
+
+    case selectEmoji
+    case checkGrammar
+    case askai
+    case toneChanger
+    case translate
+    case reply
+    case continueText
+    case paraphrase
+    case findSynonyms
+    case emojify
+}
+
+
+
+
 public class KeyboardContext: ObservableObject {
 
     public init() {
         syncAutocapitalizationWithSetting()
         locale = .init(identifier: localeIdentifier)
     }
+
+
+    // MARK: = Custom Properties
+    @Published
+    public var showKeyboard : Bool = true
+
+    @Published
+    public var currentCustomView : CustomView = .toneChanger
+
+    @Published
+    public var selectedButton : Int?
+
+    @Published
+    public var isUserSubscribed : Bool = false
+
 
 
     // MARK: - Settings
