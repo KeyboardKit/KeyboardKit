@@ -106,32 +106,8 @@ private extension View {
 
 private extension Gestures.KeyboardButtonGestures {
 
-    @ViewBuilder
     func button(for geo: GeometryProxy) -> some View {
-        if isInScrollView {
-            scrollButton(for: geo)
-        } else {
-            gestureButton(for: geo)
-        }
-    }
-
-    func gestureButton(for geo: GeometryProxy) -> some View {
-        Gestures.GestureButton(
-            isPressed: isPressed,
-            pressAction: { handlePress(in: geo) },
-            releaseInsideAction: { handleReleaseInside(in: geo) },
-            releaseOutsideAction: { handleReleaseOutside(in: geo) },
-            longPressAction: { handleLongPress(in: geo) },
-            doubleTapAction: { handleDoubleTap(in: geo) },
-            repeatAction: { handleRepeat(in: geo) },
-            dragAction: { handleDrag(in: geo, value: $0) },
-            endAction: { handleGestureEnded(in: geo) },
-            label: { _ in Color.clearInteractable }
-        )
-    }
-
-    func scrollButton(for geo: GeometryProxy) -> some View {
-        Gestures.ScrollViewGestureButton(
+        GestureButton(
             isPressed: isPressed,
             pressAction: { handlePress(in: geo) },
             releaseInsideAction: { handleReleaseInside(in: geo) },

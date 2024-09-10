@@ -10,7 +10,7 @@ import Foundation
 
 public extension Gestures {
 
-    /// This type defines default gesture values.
+    @available(*, deprecated, message: "This is no longer used and will be removed in KeyboardKit 9.0")
     struct Defaults {
 
         /// The time it takes for a press to count as accidentally cancelled by the system, by default `3`.

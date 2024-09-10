@@ -175,7 +175,7 @@ private extension Callouts.InputCallout {
 
         func button(for context: CalloutContext.InputContext) -> some View {
             GeometryReader { geo in
-                Gestures.GestureButton(
+                GestureButton(
                     pressAction: { showCallout(for: geo) },
                     endAction: context.resetWithDelay,
                     label: { _ in Color.red.cornerRadius(5) }
