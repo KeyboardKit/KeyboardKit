@@ -56,8 +56,8 @@ class KeyboardViewController: KeyboardInputViewController {
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },
                 toolbar: { params in
-                    // params.view
-                    TempScrollToolbar()
+                    params.view
+                    // TempScrollToolbar()
                 }
             )
             /// 💡 You can disable autocorrection like this.
