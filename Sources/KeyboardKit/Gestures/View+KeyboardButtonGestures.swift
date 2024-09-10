@@ -9,7 +9,7 @@
 import SwiftUI
 
 public extension View {
-    
+
     typealias KeyboardGestureAction = () -> Void
     typealias KeyboardDragGestureAction = (_ startLocation: CGPoint, _ location: CGPoint) -> Void
 
@@ -22,23 +22,26 @@ public extension View {
     /// - Parameters:
     ///   - action: The keyboard action to trigger.
     ///   - actionHandler: The keyboard action handler to use.
+    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - isPressed: An optional binding that can be used to observe the button pressed state.
-    ///   - isInScrollView: Whether or not the gestures are used in a scroll view, by default `false`.
+    ///   - scrollState: The scroll state to use, if any.
     ///   - releaseOutsideTolerance: A custom percentage of the button size outside its bounds to count as a release, if any.
     func keyboardButtonGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
+        repeatGestureTimer: GestureButtonTimer? = nil,
         calloutContext: CalloutContext?,
         isPressed: Binding<Bool> = .constant(false),
-        isInScrollView: Bool = false,
+        scrollState: GestureButtonScrollState? = nil,
         releaseOutsideTolerance: Double = 1
     ) -> some View {
         self.keyboardButtonGestures(
             action: action,
+            repeatGestureTimer: repeatGestureTimer,
             calloutContext: calloutContext,
             isPressed: isPressed,
-            isInScrollView: isInScrollView,
+            scrollState: scrollState,
             releaseOutsideTolerance: releaseOutsideTolerance,
             doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
             longPressAction: { actionHandler.handle(.longPress, on: action) },
@@ -49,7 +52,7 @@ public extension View {
             endAction: { actionHandler.handle(.end, on: action) }
         )
     }
-    
+
     /// Apply keyboard button gestures that will trigger the
     /// provided actions.
     ///
@@ -58,9 +61,10 @@ public extension View {
     ///
     /// - Parameters:
     ///   - action: The keyboard action to trigger, if any.
+    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - isPressed: An optional binding that can be used to observe the button pressed state, if any.
-    ///   - isInScrollView: Whether or not the gestures are used in a scroll view, by default `false`.
+    ///   - scrollState: The scroll state to use, if any.
     ///   - releaseOutsideTolerance: A custom percentage of the button size outside its bounds to count as a release, if any.
     ///   - doubleTapAction: The action to trigger when the button is double tapped, if any.
     ///   - longPressAction: The action to trigger when the button is long pressed, if any.
@@ -71,9 +75,10 @@ public extension View {
     @ViewBuilder
     func keyboardButtonGestures(
         action: KeyboardAction? = nil,
+        repeatGestureTimer: GestureButtonTimer? = nil,
         calloutContext: CalloutContext? = nil,
         isPressed: Binding<Bool> = .constant(false),
-        isInScrollView: Bool = false,
+        scrollState: GestureButtonScrollState? = nil,
         releaseOutsideTolerance: Double? = nil,
         doubleTapAction: KeyboardGestureAction? = nil,
         longPressAction: KeyboardGestureAction? = nil,
@@ -87,9 +92,10 @@ public extension View {
         let gestures = Gestures.KeyboardButtonGestures(
             view: self,
             action: action,
+            repeatGestureTimer: repeatGestureTimer,
             calloutContext: calloutContext,
             isPressed: isPressed,
-            isInScrollView: isInScrollView,
+            scrollState: scrollState,
             releaseOutsideTolerance: releaseOutsideTolerance,
             doubleTapAction: doubleTapAction,
             longPressAction: longPressAction,

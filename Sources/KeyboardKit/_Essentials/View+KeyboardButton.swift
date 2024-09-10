@@ -19,21 +19,23 @@ public extension View {
     ///   - action: The keyboard action to trigger.
     ///   - style: The keyboard style to apply.
     ///   - actionHandler: The keyboard action handler to use.
+    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
     ///   - keyboardContext: The keyboard context to use.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - edgeInsets: The edge insets to apply to the interactable area, if any.
     ///   - isPressed: An optional binding that can observe the button pressed state.
-    ///   - isInScrollView: Whether the gestures are used in a scroll view, by default `false`.
+    ///   - scrollState: The scroll state to use, if any.
     ///   - releaseOutsideTolerance: The percentage of the button size that spans outside the button and still counts as a release, by default `1`.
     func keyboardButton(
         for action: KeyboardAction,
         style: Keyboard.ButtonStyle,
         actionHandler: KeyboardActionHandler,
+        repeatGestureTimer: GestureButtonTimer? = nil,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
         edgeInsets: EdgeInsets = .init(),
         isPressed: Binding<Bool> = .constant(false),
-        isInScrollView: Bool = false,
+        scrollState: GestureButtonScrollState? = nil,
         releaseOutsideTolerance: Double = 1
     ) -> some View {
         self
@@ -46,9 +48,10 @@ public extension View {
             .keyboardButtonGestures(
                 for: action,
                 actionHandler: actionHandler,
+                repeatGestureTimer: repeatGestureTimer,
                 calloutContext: calloutContext,
                 isPressed: isPressed,
-                isInScrollView: isInScrollView,
+                scrollState: scrollState,
                 releaseOutsideTolerance: releaseOutsideTolerance
             )
             .localeContextMenu(
