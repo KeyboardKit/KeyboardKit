@@ -6,7 +6,7 @@
 //  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(watchOS)
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
 import SwiftUI
 
 /// This class can be used to coordinate gesture state for a
@@ -49,7 +49,7 @@ public extension View {
             self
         }
 #else
-    if #available(iOS 16.0, macOS 13.0, watchOS 9.0, *) {
+        if #available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *) {
         self.scrollDisabled(state.isScrollGestureDisabled)
     } else {
         self
