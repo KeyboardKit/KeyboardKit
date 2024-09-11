@@ -272,6 +272,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         state.keyboardContext.keyboardType = type
     }
 
+    /// Try to open a URL from the keyboard extension.
+    ///
+    /// > Warning: This has stopped working in iOS 18. Until
+    /// we make `openURL:options:completionHandler:` work, a
+    /// workaround is using regular SwiftUI Links.
     open func openUrl(_ url: URL?) {
         let selector = sel_registerName("openURL:")
         var responder = self as UIResponder?
