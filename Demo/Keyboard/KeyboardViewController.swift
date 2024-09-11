@@ -29,7 +29,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
 
         /// 💡 Set up demo-specific services.
-        setupDemoServices()
+        setupDemoServices(extraKey: .rocket)
 
         /// 💡 Set up demo-specific state.
         setupDemoState()

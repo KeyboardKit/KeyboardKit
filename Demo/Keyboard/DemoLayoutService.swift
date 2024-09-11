@@ -25,8 +25,9 @@ class DemoLayoutService: KeyboardLayout.StandardService {
     enum ExtraKey {
         case none
         case emojiIfNeeded
-        case rocket
         case localeSwitcher
+        case rocket
+        case url
     }
 
     /// Insert a locale switcher action or a rocket button.
@@ -35,8 +36,9 @@ class DemoLayoutService: KeyboardLayout.StandardService {
         switch extraKey {
         case .none: break
         case .emojiIfNeeded: layout.tryInsertEmojiButton()
-        case .rocket: layout.tryInsertRocketButton()
         case .localeSwitcher: layout.tryInsertLocaleSwitcher()
+        case .rocket: layout.tryInsertRocketButton()
+        case .url: layout.tryInsertUrlButton()
         }
         return layout
     }
@@ -59,6 +61,12 @@ private extension KeyboardLayout {
 
     func tryInsertRocketButton() {
         guard let button = tryCreateBottomRowItem(for: .rocket) else { return }
+        itemRows.insert(button, before: .space, atRow: bottomRowIndex)
+    }
+
+    func tryInsertUrlButton() {
+        let action = KeyboardAction.url(.init(string: "https://keyboardkit.com"), id: nil)
+        guard let button = tryCreateBottomRowItem(for: action) else { return }
         itemRows.insert(button, before: .space, atRow: bottomRowIndex)
     }
 }
