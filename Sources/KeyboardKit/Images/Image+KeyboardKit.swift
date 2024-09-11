@@ -50,6 +50,7 @@ public extension Image {
     static var keyboardTab = symbol("arrow.right.to.line")
     static var keyboardTabRtl = symbol("arrow.left.to.line")
     static var keyboardUndo = symbol("arrow.uturn.left")
+    static var keyboardUrl = symbol("safari")
     static var keyboardZeroWidthSpace = symbol("circle.dotted")
     
     static func keyboardAudioFeedback(enabled: Bool) -> Image {
