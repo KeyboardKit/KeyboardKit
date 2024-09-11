@@ -88,7 +88,7 @@ public extension View {
         dragAction: KeyboardDragGestureAction? = nil,
         endAction: KeyboardGestureAction? = nil
     ) -> some View {
-        #if os(iOS) || os(macOS) || os(watchOS)
+        #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
         let gestures = Gestures.KeyboardButtonGestures(
             view: self,
             action: action,
@@ -107,12 +107,19 @@ public extension View {
         )
         #endif
 
-        #if os(iOS)
-        if action == .nextKeyboard {
+        #if os(iOS) || os(visionOS)
+        switch action {
+        case .nextKeyboard:
             Keyboard.NextKeyboardButton {
                 self
             }
-        } else {
+        case .url(let url, _):
+            if let url {
+                Link(destination: url) {
+                    self
+                }
+            }
+        default:
             gestures
         }
         #elseif os(macOS) || os(watchOS)
