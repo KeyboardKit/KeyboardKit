@@ -22,7 +22,11 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.8.6
 
-This version fixes things that break in Xcode 16 and iOS 18. 
+This version fixes things that break in Xcode 16 and iOS 18.
+
+First of all, it makes multi-gesture buttons work in scroll views, when building from Xcode 16 and running on iOS 18. This is required for the KeyboardKit Pro emoji keyboard to work.
+ 
+Second, this version makes `.url` keyboard actions render as SwiftUI `Link`s, since iOS 18 can no longer open URLs using the selector-based approach.
 
 ### ✨ Features
 
@@ -31,12 +35,13 @@ This version fixes things that break in Xcode 16 and iOS 18.
 
 ### 💡 Adjustments
 
+* `GestureButton` is used for all buttons instead of the deprecated one.
 * `KeyboardAction.url` will by default use the new `.keyboardUrl` image.
+* `KeyboardAction.url` will by default render as a plain `SwiftUI` `Link`.
 
 ### 🐛 Bug fixes
 
-* This version makes multi-gesture buttons work in scroll views, when building from Xcode 16 and running on iOS 18.
-* This version makes `.url` keyboard actions render as SwiftUI `Link`s, since iOS 18 can no longer open URLs using the selector-based approach.
+* `Dictation.DisabledKeyboardService` now resets its context on the main queue, which silences a background thread warning. 
 
 ### 🗑️ Deprecations
 

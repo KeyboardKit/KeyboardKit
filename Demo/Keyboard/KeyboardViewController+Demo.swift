@@ -77,7 +77,7 @@ extension KeyboardViewController {
         /// 💡 Setup semi-working dictation. It will trigger
         /// the app, but dictation result will not be synced.
         state.dictationContext.setup(with: .app)
-
+        
         /// 💡 Set up demo-specific haptic & audio feedback.
         let feedback = state.feedbackContext
         feedback.audioConfiguration = .enabled

@@ -66,8 +66,8 @@ public extension KeyboardDictationService where Self == Dictation.DisabledKeyboa
 private extension Dictation.DisabledKeyboardService {
 
     func resetContext() {
-        withAnimation {
-            context.reset()
+        DispatchQueue.main.async { [weak self] in
+            self?.context.reset()
         }
     }
 }
