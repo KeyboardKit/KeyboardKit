@@ -53,7 +53,8 @@ final class KeyboardAction_ImagesTests: XCTestCase {
             .shift(currentCasing: .capsLocked),
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .systemSettings,
-            .tab
+            .tab,
+            .url(URL(string: ""))
         ]
 
         expected.forEach { XCTAssertNotNil(result(for: $0)) }
