@@ -26,6 +26,17 @@ This version re-adds the old way of opening URLs, with iOS 18 support.
 
 This version makes the dictation service use an `OpenURLAction` to return to the previous app, since a keyboard action handler can't resolve a proper controller within the main app.
 
+### 🧪 Experimental
+
+`NextKeyboardButtonControllerMode` is a new, temporary type that lets us try alternate ways to create next keyboard buttons.
+
+* `.classic` is the current mode that requires us to pass in a controller or use the shared one.
+* `.experimental` is a new test more that makes the button create an internal controller instead.
+* `.experimentalNilTarget` is a new test more that makes the button use `nil` as the action target.
+
+Make sure to test this and report the result in the 
+
+
 ### ✨ Features
 
 * `UrlOpener` is a new protocol with a default way to open a URL.

@@ -38,8 +38,8 @@ class DemoLayoutService: KeyboardLayout.StandardService {
         case .none: break
         case .emojiIfNeeded: layout.tryInsert(.keyboardType(.emojis))
         case .keyboardSwitcher: layout.tryInsert(.nextKeyboard)
-        case .localeSwitcher: layout.tryInsert(.nextKeyboard)
-        case .rocket: layout.tryInsert(.nextKeyboard)
+        case .localeSwitcher: layout.tryInsert(.nextLocale)
+        case .rocket: layout.tryInsert(.rocket)
         case .url(let string): layout.tryInsert(.url(.init(string: string), id: nil))
         }
         return layout
