@@ -8,9 +8,8 @@
 
 import Foundation
 
-#if os(iOS) || os(tvOS) || os(visionOS)
+#if os(iOS) || os(visionOS)
 import UIKit
-#endif
 
 /// This protocol can be implemented by any type that can be
 /// used to open URLs from anywhere.
@@ -22,6 +21,18 @@ public protocol UrlOpener: UIResponder {
     /// Try to open a URL.
     func openUrl(_ url: URL?)
 }
+#else
+/// This protocol can be implemented by any type that can be
+/// used to open URLs from anywhere.
+///
+/// While you must implement ``openUrl(_:)`` it can call the
+/// ``openUrlDefault(_:)`` function internally.
+public protocol UrlOpener {
+
+    /// Try to open a URL.
+    func openUrl(_ url: URL?)
+}
+#endif
 
 public extension UrlOpener {
 
@@ -32,7 +43,7 @@ public extension UrlOpener {
     /// of opening URLs.
     func openUrlDefault(_ url: URL?) {
         guard let url else { return }
-        #if os(iOS) || os(tvOS) || os(visionOS)
+        #if os(iOS) || os(visionOS)
         if #available(iOS 18.0, tvOS 18.0, visionOS 2.0, *) {
             let selector = sel_registerName("openURL:options:completionHandler:")
             let responder = findResponder(for: selector)
@@ -52,7 +63,8 @@ public extension UrlOpener {
     }
 }
 
-private extension UrlOpener {
+#if os(iOS) || os(visionOS)
+private extension UrlOpener where Self: UIResponder {
 
     func findResponder(for selector: Selector) -> UIResponder? {
         var responder = self as UIResponder?
@@ -62,3 +74,4 @@ private extension UrlOpener {
         return responder
     }
 }
+#endif
