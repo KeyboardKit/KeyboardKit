@@ -20,6 +20,16 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 8.8.7
+
+This version re-adds the old way of opening URLs, with iOS 18 support.
+
+### ✨ Features
+
+* `UrlOpener` is a new protocol with a default way to open a URL.
+
+
+
 ## 8.8.6
 
 This version fixes things that break in Xcode 16 and iOS 18.
