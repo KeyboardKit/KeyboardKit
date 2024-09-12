@@ -24,6 +24,8 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 This version re-adds the old way of opening URLs, with iOS 18 support.
 
+This version makes the dictation service use an `OpenURLAction` to return to the previous app, since a keyboard action handler can't resolve a proper controller within the main app.
+
 ### ✨ Features
 
 * `UrlOpener` is a new protocol with a default way to open a URL.
@@ -31,6 +33,18 @@ This version re-adds the old way of opening URLs, with iOS 18 support.
 ### 💡 Adjustments
 
 * `KeyboardAction.url` will once again render as full gesture views.
+
+### 👑 KeyboardKit Pro
+
+* `Dictation+ProKeyboardService` now logs when the App Group configuration seems wrong.
+* `Dictation+ProKeyboardService` now lets you provide a `OpenURLAction` in the main app.
+* `KeyboardHostApplicationProvider` has a new `hostApplicationBundleIdIsKnown` property.
+* `View+Dictation` now lets provide a `OpenURLAction` to use to return to the previous app.
+
+### 🐛 Bug fixes
+
+* `Dictation.ProKeyboardService` has now sets the dictation locale more reliably.
+* `Dictation.ProKeyboardService` has now handle background thread state updates better. 
 
 
 
