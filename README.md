@@ -158,7 +158,7 @@ Just open and run the demo app in the `Demo` folder, then enable the keyboards u
 
 ## KeyboardKit App
 
-If you want to try KeyboardKit without having to write any code or build the demo app from Xcode, the [KeyboardKit app][KeyboardKit-App] lets you try out many features.
+If you want to try KeyboardKit without having to write any code or build the demo app from Xcode, the [KeyboardKit app][KeyboardKit-App] lets you try out many features by just downloading it from the App Store.
 
 
 

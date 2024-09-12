@@ -230,6 +230,9 @@ KeyboardKit is available under the MIT license.
 ### Gestures
 
 - ``Gestures``
+- ``GestureButton``
+- ``GestureButtonTimer``
+- ``GestureButtonScrollState``
 - ``DragGestureHandler``
 
 ### Host
@@ -252,6 +255,10 @@ KeyboardKit is available under the MIT license.
 - ``KKL10n``
 - ``Localizable``
 - ``LocalizedService``
+
+### Navigation
+
+- ``UrlOpener``
 
 ### Previews
 

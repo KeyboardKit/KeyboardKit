@@ -36,7 +36,7 @@ import UIKit
 /// See the <doc:Getting-Started> guide and <doc:Essentials>
 /// article for more information about how to set up and use
 /// this keyboard controller class.
-open class KeyboardInputViewController: UIInputViewController, KeyboardController {
+open class KeyboardInputViewController: UIInputViewController, KeyboardController, UrlOpener {
 
 
     // MARK: - View Controller Lifecycle
@@ -278,12 +278,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// we make `openURL:options:completionHandler:` work, a
     /// workaround is using regular SwiftUI Links.
     open func openUrl(_ url: URL?) {
-        let selector = sel_registerName("openURL:")
-        var responder = self as UIResponder?
-        while let r = responder, !r.responds(to: selector) {
-            responder = r.next
-        }
-        _ = responder?.perform(selector, with: url)
+        openUrlDefault(url)
     }
 
 
