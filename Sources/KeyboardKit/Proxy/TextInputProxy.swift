@@ -15,11 +15,9 @@ import UIKit
 /// This class can be used to route typed text from the main
 /// app to text fields within the keyboard extension.
 ///
-/// This class implements `UITextDocumentProxy` and provides
-/// `open` functions to let us customize it when needed.
-///
-/// This class also implements `UITextInputTraits` to let us
-/// apply customizations, like which return type to use.
+/// This class implements the `UITextDocumentProxy` protocol
+/// and has `open` functions that can be customized. It also
+/// implements the `UITextInputTraits` protocol to let us apply customizations, like which return type to use.
 ///
 /// Finally, this class also implements `UIKeyInput`, to let
 /// us handle text insert and delete behavior.
@@ -67,8 +65,8 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
     open func deleteBackward() {
         input?.deleteBackward()
     }
-    
-    
+
+
     // MARK: - UITextDocumentProxy
     
     open var documentContextAfterInput: String? {
@@ -125,14 +123,14 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
     
     
     // MARK: - UITextInputTraits
-    
+
     public var autocapitalizationType: UITextAutocapitalizationType
     public var autocorrectionType: UITextAutocorrectionType
     public var enablesReturnKeyAutomatically: Bool
+    public var isSecureTextEntry: Bool
     public var keyboardAppearance: UIKeyboardAppearance
     public var keyboardType: UIKeyboardType
     public var returnKeyType: UIReturnKeyType
-    public var isSecureTextEntry: Bool
     public var spellCheckingType: UITextSpellCheckingType
     public var smartDashesType: UITextSmartDashesType
     public var smartInsertDeleteType: UITextSmartInsertDeleteType

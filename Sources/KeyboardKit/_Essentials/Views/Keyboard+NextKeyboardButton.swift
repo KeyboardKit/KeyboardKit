@@ -12,29 +12,39 @@ import UIKit
 
 public extension Keyboard {
     
-    /// This view can be used to make any view behave as the
-    /// native next keyboard button.
+    /// This view makes any view behave as a native keyboard
+    /// switcher button, which switches to the next keyboard
+    /// when tapped, and opens a switcher menu on long press.
     ///
-    /// The native next keyboard button switches to the next
-    /// keyboard on tap and opens a menu on press.
+    /// Use ``NextKeyboardButtonControllerMode`` to define a
+    /// mode to run in. The classic mode requires us to pass
+    /// in a `UIInputViewController` into the initializer or
+    /// fallback to ``NextKeyboardController/shared``, while
+    /// the experimental mode creates a controller for every
+    /// new button, then uses that instance as action target.
     ///
-    /// You must provide a `UIInputViewController`, or setup
-    /// ``NextKeyboardController/shared`` in advance, before
-    /// using the view. This is automatically handled by the
-    /// ``KeyboardInputViewController``.
+    /// If this experimental mode proves successful, it will
+    /// replace the classic mode in KeyboardKit 9.
     struct NextKeyboardButton<Content: View>: View {
         
         public init(
             controller: UIInputViewController? = nil,
-            throwAssertionForMissingController: Bool = false,
             @ViewBuilder content: @escaping () -> Content
         ) {
             self.overlay = NextKeyboardButtonOverlay(
-                controller: controller ?? Keyboard.NextKeyboardController.shared,
-                throwAssertionForMissingController: throwAssertionForMissingController
-            )
+                controller: controller ?? Keyboard.NextKeyboardController.shared
+                )
             self.content = content
-            self.throwAssertionForMissingController = throwAssertionForMissingController
+            self.throwAssertionForMissingController = false
+        }
+
+        @available(*, deprecated, message: "throwAssertionForMissingController is no longer used. Use the other initializer.")
+        public init(
+            controller: UIInputViewController? = nil,
+            throwAssertionForMissingController: Bool,
+            @ViewBuilder content: @escaping () -> Content
+        ) {
+            self.init(controller: controller, content: content)
         }
         
         private let content: () -> Content
@@ -42,8 +52,53 @@ public extension Keyboard {
         private let throwAssertionForMissingController: Bool
         
         public var body: some View {
-            content().overlay(overlay)
+            content()
+                .overlay(overlay)
         }
+    }
+}
+
+public extension Keyboard {
+
+    /// This TEMPORARY mode can be used to test a new way to
+    /// create a ``NextKeyboardButton`` without a controller.
+    ///
+    /// Set ``current`` to ``classic`` for the standard mode
+    /// that requires us to provide a controller, or use the
+    /// ``Keyboard/NextKeyboardController/shared`` instance.
+    ///
+    /// Set ``current`` to ``experimental`` to configure the
+    /// ``NextKeyboardButton`` to create a controller itself.
+    ///
+    /// Set ``current`` to ``experimentalNilTarget`` to make
+    /// the ``NextKeyboardButton`` use a `nil` action target.
+    /// If this works, we do not need a controller reference,
+    /// which would be absolutely amazing.
+    ///
+    /// The reason for trying the experimental modes is that
+    /// the ``NextKeyboardButton`` randomly stops working in
+    /// some cases, then doesn't trigger the switcher action.
+    /// The only way this can happen, is that the controller
+    /// reference becomes `nil`. My hope is that by creating
+    /// a strong controller reference within the button, the
+    /// controller will never be deallocated.
+    ///
+    /// If the experimental mode work, we don't have to keep
+    /// a reference to the current controller. This would be
+    /// amazing since we can deprecate the shared controller.
+    enum NextKeyboardButtonControllerMode {
+
+        /// We must pass in a controller or use the shared one.
+        case classic
+
+        /// The button will create its own controller instance.
+        case experimental
+
+        /// The button will use a nil selector action target.
+        case experimentalNilTarget
+
+        /// The next keyboard button controller mode to use.
+        public static var current = Self.classic
     }
 }
 
@@ -60,26 +115,45 @@ public extension Keyboard {
 private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 
     init(
-        controller: UIInputViewController?,
-        throwAssertionForMissingController: Bool
+        controller: UIInputViewController?
     ) {
+        switch Keyboard.NextKeyboardButtonControllerMode.current {
+        case .classic: self.controller = controller
+        case .experimental: experimentalController = .init()
+        case .experimentalNilTarget: break
+        }
         button = UIButton()
-        if controller == nil && throwAssertionForMissingController && !ProcessInfo.isSwiftUIPreview { assertionFailure("Input view controller is nil") }
-        controller?.setupNextKeyboardButton(button)
     }
 
+    unowned var controller: UIInputViewController!
+    var experimentalController: UIInputViewController!
     let button: UIButton
 
-    func makeUIView(context: Context) -> UIButton { button }
+    func makeUIView(context: Context) -> UIButton {
+        setupButtonTarget()
+        return button
+    }
 
     func updateUIView(_ uiView: UIButton, context: Context) {}
+
+    func setupButtonTarget() {
+        if ProcessInfo.isSwiftUIPreview { return }
+        switch Keyboard.NextKeyboardButtonControllerMode.current {
+        case .classic: controller.setupButton(button)
+        case .experimental: experimentalController.setupButton(button)
+        case .experimentalNilTarget: UIInputViewController().setupButton(button)
+        }
+    }
 }
 
 private extension UIInputViewController {
 
-    func setupNextKeyboardButton(_ button: UIButton) {
+    func setupButton(_ button: UIButton) {
         let action = #selector(handleInputModeList(from:with:))
-        button.addTarget(self, action: action, for: .allTouchEvents)
+        switch Keyboard.NextKeyboardButtonControllerMode.current {
+        case .experimentalNilTarget: button.addTarget(nil, action: action, for: .allTouchEvents)
+        default: button.addTarget(self, action: action, for: .allTouchEvents)
+        }
     }
 }
 
