@@ -28,6 +28,10 @@ This version re-adds the old way of opening URLs, with iOS 18 support.
 
 * `UrlOpener` is a new protocol with a default way to open a URL.
 
+### 💡 Adjustments
+
+* `KeyboardAction.url` will once again render as full gesture views.
+
 
 
 ## 8.8.6
