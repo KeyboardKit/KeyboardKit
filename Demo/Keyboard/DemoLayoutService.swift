@@ -12,8 +12,8 @@ import KeyboardKit
 import KeyboardKitPro
 #endif
 
-/// This service inherits the standard service, then makes a
-/// few demo-specific adjustments to the standard layout.
+/// This service inherits the standard service, and can then
+/// add one extra button before the spacebar.
 class DemoLayoutService: KeyboardLayout.StandardService {
 
     init(extraKey: ExtraKey) {
@@ -25,9 +25,10 @@ class DemoLayoutService: KeyboardLayout.StandardService {
     enum ExtraKey {
         case none
         case emojiIfNeeded
+        case keyboardSwitcher
         case localeSwitcher
         case rocket
-        case url
+        case url(String)
     }
 
     /// Insert a locale switcher action or a rocket button.
@@ -36,9 +37,10 @@ class DemoLayoutService: KeyboardLayout.StandardService {
         switch extraKey {
         case .none: break
         case .emojiIfNeeded: layout.tryInsertEmojiButton()
-        case .localeSwitcher: layout.tryInsertLocaleSwitcher()
-        case .rocket: layout.tryInsertRocketButton()
-        case .url: layout.tryInsertUrlButton()
+        case .keyboardSwitcher: layout.tryInsert(.nextKeyboard)
+        case .localeSwitcher: layout.tryInsert(.nextKeyboard)
+        case .rocket: layout.tryInsert(.nextKeyboard)
+        case .url(let string): layout.tryInsert(.url(.init(string: string), id: nil))
         }
         return layout
     }
@@ -46,27 +48,16 @@ class DemoLayoutService: KeyboardLayout.StandardService {
 
 private extension KeyboardLayout {
 
+    func tryInsert(_ action: KeyboardAction) {
+        guard let item = tryCreateBottomRowItem(for: action) else { return }
+        itemRows.insert(item, before: .space, atRow: bottomRowIndex)
+    }
+
     func tryInsertEmojiButton() {
         guard let row = bottomRow else { return }
         let hasEmoji = row.contains(where: { $0.action == .keyboardType(.emojis) })
         if hasEmoji { return }
         guard let button = tryCreateBottomRowItem(for: .keyboardType(.emojis)) else { return }
         itemRows.insert(button, after: .space, atRow: bottomRowIndex)
-    }
-
-    func tryInsertLocaleSwitcher() {
-        guard let item = tryCreateBottomRowItem(for: .nextLocale) else { return }
-        itemRows.insert(item, after: .space, atRow: bottomRowIndex)
-    }
-
-    func tryInsertRocketButton() {
-        guard let button = tryCreateBottomRowItem(for: .rocket) else { return }
-        itemRows.insert(button, before: .space, atRow: bottomRowIndex)
-    }
-
-    func tryInsertUrlButton() {
-        let action = KeyboardAction.url(.init(string: "https://keyboardkit.com"), id: nil)
-        guard let button = tryCreateBottomRowItem(for: action) else { return }
-        itemRows.insert(button, before: .space, atRow: bottomRowIndex)
     }
 }

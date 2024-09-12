@@ -48,7 +48,7 @@ struct HomeScreen: View {
         }
         .keyboardAppHomeScreenLocalization(
             .init(
-                keyboardSectionFooter: "WARNING! This demo app does not sync settings to its keyboard extensions!"
+                keyboardSectionFooter: "OBS! This demo app doesn't sync any settings between the app and the keyboard!"
             )
         )
         .keyboardAppHomeScreenStyle(

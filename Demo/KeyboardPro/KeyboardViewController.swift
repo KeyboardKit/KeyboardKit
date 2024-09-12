@@ -67,7 +67,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Set up demo-specific services.
         setupDemoServices(extraKey: .emojiIfNeeded)
-        
+
         /// 💡 Set up a KeyboardKit Pro theme-based service.
         ///
         /// Themes are powerful ways to specify styles for a

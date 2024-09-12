@@ -34,23 +34,19 @@ struct DemoKeyboardView: View {
             buttonContent: { $0.view },
             buttonView: { $0.view },
             emojiKeyboard: { $0.view },
-            toolbar: { params in
-                try? Keyboard.ToggleToolbar(
+            toolbar: { params in    // <- All view builders has parameters with more information
+                DemoToolbar(
+                    controller: controller,
                     toolbar: params.view,
-                    toggledToolbar: DemoToolbar(
-                        controller: controller,
-                        theme: $theme
-                    )
+                    theme: $theme
                 )
-                .foregroundColor(params.style.item.titleColor)
             }
         )
-
     }
 }
 
 private extension DemoKeyboardView {
-    
+
     var keyboardServices: Keyboard.Services {
         let services = controller.services
         if let theme {
