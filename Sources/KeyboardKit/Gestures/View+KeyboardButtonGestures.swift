@@ -113,12 +113,6 @@ public extension View {
             Keyboard.NextKeyboardButton {
                 self
             }
-        case .url(let url, _):
-            if let url {
-                Link(destination: url) {
-                    self
-                }
-            }
         default:
             gestures
         }
