@@ -175,8 +175,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         textInputProxy ?? originalTextDocumentProxy
     }
 
-    /// A custom text proxy to which text can be routed.
-    public var textInputProxy: TextInputProxy? {
+    /// A custom text input proxy that can be set to replace
+    /// the ``textDocumentProxy``.
+    public var textInputProxy: UITextDocumentProxy? {
         didSet { viewWillSyncWithContext() }
     }
 

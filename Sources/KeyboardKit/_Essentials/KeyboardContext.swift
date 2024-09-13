@@ -199,7 +199,7 @@ public class KeyboardContext: ObservableObject {
 
     /// A custom text proxy to which text can be routed.
     @Published
-    public var textInputProxy: TextInputProxy?
+    public var textInputProxy: UITextDocumentProxy?
 
 
     // MARK: - iOS/tvOS properties

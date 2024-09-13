@@ -1,4 +1,4 @@
-# Text Input Support
+# Text Input
 
 @Metadata {
 
@@ -11,11 +11,11 @@
     @PageColor(blue)
 }
 
-This article describes the KeyboardKit text input engine.
+This article describes the KeyboardKit text input engine, which lets you type within the keyboard extension.
 
-iOS keyboard extensions use a ``UIKit/UITextDocumentProxy`` to interact with the currently selected text field, e.g. to insert or delete text, move the input cursor, etc. This proxy by default points to the currently selected text field in the *currently active app*.
+iOS keyboard extensions use a ``UIKit/UITextDocumentProxy`` to insert and delete text, move the text input cursor, etc. This proxy will by default point to the currently selected text field in the currently active app.
 
-Keyboard extensions will by default *only* send text to this text field, and will *not* detect if you select a text field within the keyboard. Even if you focus on a text field within the keyboard extension, text will still be sent to the currently active app.
+Keyboard extensions will by default only send text to this proxy, and will *not* detect if you select a text field inside the keyboard. Even if you focus on a text field within the keyboard, text will still be sent to the text document proxy.
 
 These limitations make it hard to implement features that require text input in the keyboard, like emoji search, and AI-based features.
 
@@ -25,9 +25,9 @@ These limitations make it hard to implement features that require text input in 
 
 KeyboardKit adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to automatically route text to any other text field or custom proxy.
 
-Just set ``KeyboardInputViewController/textInputProxy`` to nil to restore the original proxy and resume routing text to the main application. You can always access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.
+Just set ``KeyboardInputViewController/textInputProxy`` to start routing text to that proxy, and set it to nil to resume routing text to the active application. You can always access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.
 
-👑 [KeyboardKit Pro][Pro] unlocks a ``KeyboardTextField`` that automatically registers and unregisters as the input proxy when it gets and loses focus. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a ``KeyboardTextField`` and a ``KeyboardTextView`` that both automatically register and unregister as input proxy when they get and lose focus. Information about Pro features can be found at the end of this article.
 
 
 
@@ -45,15 +45,13 @@ Just set ``KeyboardInputViewController/textInputProxy`` to nil to restore the or
 @TabNavigator {
     
     @Tab("KeyboardTextField") {
-        The ``KeyboardTextField`` component wraps a native text field and can be used for single-line text inputs.
+        The ``KeyboardTextField`` component wraps a native text field and can be used for single-line text input inside a keyboard extension.
     }
     
     @Tab("KeyboardTextView") {
-        The ``KeyboardTextView`` component wraps a native text view and can be used for multi-line text inputs.
+        The ``KeyboardTextView`` component wraps a native text view and can be used for multi-line text input inside a keyboard extension.
     }
 }
-
-Note that you can use ``KeyboardTextField`` for both single- & multi-line text inputs in later versions of iOS. ``KeyboardTextView`` will be deprecated in a future version of KeyboardKit. 
 
 Both views support `@FocusState`, and have a custom ``SwiftUI/View/focused(_:doneButton:)`` view modifier that lets you provide a custom done button that slides in when the view is focused, and can be tapped to end editing:
 
@@ -93,6 +91,6 @@ struct CustomKeyboardToolbar: View {
 }
 ```
 
-> Note: The default `.onSubmit { ... }` view modifier doesn't work for these text views. If you want to detect when the return key is pressed, you can instead pass in `onSubmit:` in the initializer.
+> Tip: The default `.onSubmit { ... }` view modifier doesn't work for these text views. If you want to detect when the return key is pressed, you can instead pass in `onSubmit:` in the initializer.
 
-> Important: This view requires Full Access and will automatically disable itself when it's disabled, due to an iOS bug that causes a crash when using text field while Full Access is disabled.
+> Important: These views require at least a `Silver` license. They also require Full Access, due to an iOS bug that causes a crash when using them while Full Access is disabled. They will automatically disable themselves when Full Access is disabled.

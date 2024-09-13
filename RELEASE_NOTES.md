@@ -36,7 +36,6 @@ This version makes the dictation service use an `OpenURLAction` to return to the
 
 Make sure to test this and report the result in the 
 
-
 ### ✨ Features
 
 * `UrlOpener` is a new protocol with a default way to open a URL.
@@ -44,6 +43,8 @@ Make sure to test this and report the result in the
 ### 💡 Adjustments
 
 * `KeyboardAction.url` will once again render as full gesture views.
+* `KeyboardContext.textInputProxy` is now a regular `UITextDocumentProxy`.
+* `KeyboardInputViewController.textInputProxy` is now a regular `UITextDocumentProxy`.
 
 ### 👑 KeyboardKit Pro
 
