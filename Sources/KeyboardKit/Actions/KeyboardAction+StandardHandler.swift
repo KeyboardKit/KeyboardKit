@@ -324,6 +324,17 @@ extension KeyboardAction {
             return action.shouldApplyAutocorrectSuggestion
         }
 
+        /// Whether to ignore autocorrections for the current word before a certain gesture action.
+        open func shouldIgnoreAutocompleteForCurrentWord(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            guard gesture == .press, action == .backspace else { return false }
+            let proxy = keyboardContext.textDocumentProxy
+            guard let word = proxy.currentWordPreCursorPart, !word.isEmpty else { return false }
+            return autocompleteContext.suggestions.contains { $0.isAutocorrect }
+        }
+
         /// Whether to perform autocomplete after a certain gesture action.
         open func shouldPerformAutocomplete(
             after gesture: Keyboard.Gesture,
@@ -358,6 +369,17 @@ extension KeyboardAction {
             let autocorrect = suggestions.first { $0.isAutocorrect }
             guard let suggestion = autocorrect else { return }
             keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
+        }
+
+        /// Try to ignore autocorrections for the current word before a certain gesture action.
+        open func tryIgnoreAutocompleteForCurrentWord(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldIgnoreAutocompleteForCurrentWord(before: gesture, on: action) else { return }
+            let proxy = keyboardContext.textDocumentProxy
+            guard let word = proxy.currentWordPreCursorPart else { return }
+            autocompleteService?.ignoreWord(word)
         }
 
         /// Try to perform autocomplete after a certain gesture action.
