@@ -17,16 +17,12 @@ import UIKit
 ///
 /// This class implements the `UITextDocumentProxy` protocol
 /// and has `open` functions that can be customized. It also
-/// implements the `UITextInputTraits` protocol to let us apply customizations, like which return type to use.
-///
-/// Finally, this class also implements `UIKeyInput`, to let
-/// us handle text insert and delete behavior.
-///
-/// The **KeyboardTextField** and **KeyboardTextView** views
-/// in KeyboardKit Pro automatically registers themselves as
-/// the main text proxy when they receive focus.
+/// implements the `UITextInputTraits` protocol and lets you
+/// customize the initial values from the provided input. It
+/// also implements the `UIKeyInput` protocol to handle text
+/// operations, like text insertion and deletion.
 open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
-    
+
     /// Create a text input proxy instance.
     ///
     /// - Parameters:
@@ -46,29 +42,29 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
         self.smartQuotesType = input.smartQuotesType ?? .default
         super.init()
     }
-    
+
     public typealias TextInput = UIResponder & UITextInput
-    
+
     private weak var input: TextInput?
-    
-    
+
+
     // MARK: - UIKeyInput
-    
+
     open var hasText: Bool {
         input?.hasText ?? false
     }
-    
+
     open func insertText(_ text: String) {
         input?.insertText(text)
     }
-    
+
     open func deleteBackward() {
         input?.deleteBackward()
     }
 
 
     // MARK: - UITextDocumentProxy
-    
+
     open var documentContextAfterInput: String? {
         guard
             let input = input,
@@ -77,7 +73,7 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
         else { return nil }
         return input.text(in: rangeAfterInput)
     }
-    
+
     open var documentContextBeforeInput: String? {
         guard
             let input = input,
@@ -86,11 +82,11 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
         else { return nil }
         return input.text(in: rangeBeforeInput)
     }
-    
+
     public let documentIdentifier = UUID()
-    
+
     open var documentInputMode: UITextInputMode? { input?.textInputMode }
-    
+
     open var selectedText: String? {
         guard
             let input = input,
@@ -98,7 +94,7 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
         else { return nil }
         return input.text(in: selectedTextRange)
     }
-    
+
     /// Adjust the text position by a certain offset.
     ///
     /// https://stackoverflow.com/a/41023439/495611 suggests
@@ -112,16 +108,16 @@ open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
         else { return }
         input.selectedTextRange = input.textRange(from: newPosition, to: newPosition)
     }
-    
+
     open func setMarkedText(_ markedText: String, selectedRange: NSRange) {
         input?.setMarkedText(markedText, selectedRange: selectedRange)
     }
-    
+
     open func unmarkText() {
         input?.unmarkText()
     }
-    
-    
+
+
     // MARK: - UITextInputTraits
 
     public var autocapitalizationType: UITextAutocapitalizationType

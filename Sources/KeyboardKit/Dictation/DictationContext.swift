@@ -171,6 +171,29 @@ public extension DictationContext {
     }
 }
 
+extension DictationContext {
+
+    var persistedDictatedText: String? {
+        get { string(for: .text) }
+        set { set(newValue, for: .text) }
+    }
+
+    var persistedIsDictationStartedByKeyboard: Bool? {
+        get { bool(for: .isDictationStartedByKeyboard) }
+        set { set(newValue, for: .isDictationStartedByKeyboard) }
+    }
+
+    var persistedLocaleId: String? {
+        get { string(for: .localeId) }
+        set { set(newValue, for: .localeId) }
+    }
+
+    var persistedHostApplicationBundleId: String? {
+        get { string(for: .hostApplicationBundleId) }
+        set { set(newValue, for: .hostApplicationBundleId) }
+    }
+}
+
 private extension DictationContext {
 
     func setupAppGroup() {
@@ -223,26 +246,5 @@ private extension DictationContext {
 
     func hasValue(for key: PersistedKey) -> Bool {
         userDefaults?.object(forKey: key.key) != nil
-    }
-    
-
-    var persistedDictatedText: String? {
-        get { string(for: .text) }
-        set { set(newValue, for: .text) }
-    }
-
-    var persistedIsDictationStartedByKeyboard: Bool? {
-        get { bool(for: .isDictationStartedByKeyboard) }
-        set { set(newValue, for: .isDictationStartedByKeyboard) }
-    }
-
-    var persistedLocaleId: String? {
-        get { string(for: .localeId) }
-        set { set(newValue, for: .localeId) }
-    }
-    
-    var persistedHostApplicationBundleId: String? {
-        get { string(for: .hostApplicationBundleId) }
-        set { set(newValue, for: .hostApplicationBundleId) }
     }
 }
