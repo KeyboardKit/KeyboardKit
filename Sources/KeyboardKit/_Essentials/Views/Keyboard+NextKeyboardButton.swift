@@ -11,22 +11,32 @@ import SwiftUI
 import UIKit
 
 public extension Keyboard {
-    
+
     /// This view makes any view behave as a native keyboard
     /// switcher button, which switches to the next keyboard
     /// when tapped, and opens a switcher menu on long press.
     ///
     /// Use ``NextKeyboardButtonControllerMode`` to define a
-    /// mode to run in. The classic mode requires us to pass
-    /// in a `UIInputViewController` into the initializer or
-    /// fallback to ``NextKeyboardController/shared``, while
-    /// the experimental mode creates a controller for every
-    /// new button, then uses that instance as action target.
+    /// controller mode to run in. The classic mode requires
+    /// us to pass in a `UIInputViewController`, or fallback
+    /// to the ``NextKeyboardController/shared``, which will
+    /// be removed in KeyboardKit 9. Both experimental modes
+    /// let us triggering the switcher action without having
+    /// to pass in a controller.
+    ///
+    /// Use ``NextKeyboardButtonProxyMode`` to define how to
+    /// handle any active text input proxy. The classic mode
+    /// doesn't do anything, which causes an active proxy to
+    /// stop the input switcher action from working. Use the
+    /// experimental mode to automatically disable an active
+    /// proxy for the duration of the switcher gesture. This
+    /// makes the input switcher work, after which the proxy
+    /// is restored.
     ///
     /// If this experimental mode proves successful, it will
     /// replace the classic mode in KeyboardKit 9.
     struct NextKeyboardButton<Content: View>: View {
-        
+
         public init(
             controller: UIInputViewController? = nil,
             @ViewBuilder content: @escaping () -> Content
@@ -46,11 +56,11 @@ public extension Keyboard {
         ) {
             self.init(controller: controller, content: content)
         }
-        
+
         private let content: () -> Content
         private let overlay: NextKeyboardButtonOverlay
         private let throwAssertionForMissingController: Bool
-        
+
         public var body: some View {
             content()
                 .overlay(overlay)
@@ -86,16 +96,39 @@ public extension Keyboard {
     /// If the experimental mode work, we don't have to keep
     /// a reference to the current controller. This would be
     /// amazing since we can deprecate the shared controller.
-    enum NextKeyboardButtonControllerMode {
+    enum NextKeyboardButtonControllerMode: Equatable {
 
-        /// We must pass in a controller or use the shared one.
+        /// We must provide a controller or use a shared one.
         case classic
 
-        /// The button will create its own controller instance.
+        /// The button will create a new controller instance.
         case experimental
 
         /// The button will use a nil selector action target.
         case experimentalNilTarget
+
+        /// The next keyboard button controller mode to use.
+        public static var current = Self.classic
+    }
+
+    /// This TEMPORARY mode can be used to test a new way to
+    /// make the ``NextKeyboardButton`` work when text input
+    /// is being made inside the keyboard extension, using a
+    /// ``KeyboardInputViewController/textInputProxy``.
+    ///
+    /// Set ``current`` to ``classic`` for the standard mode,
+    /// where the button is disabled while a proxy is active.
+    ///
+    /// Set ``current`` to ``experimental`` to configure the
+    /// ``NextKeyboardButton`` to temp reset the proxy. This
+    /// seems to allow the keyboard switcher to be presented.
+    enum NextKeyboardButtonProxyMode: Equatable {
+
+        /// The button will not affect a current input proxy.
+        case classic
+
+        /// The button will temp reset a current input proxy.
+        case experimental
 
         /// The next keyboard button controller mode to use.
         public static var current = Self.classic
@@ -148,11 +181,35 @@ private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 
 private extension UIInputViewController {
 
+    var shouldApplyProxyAction: Bool {
+        Keyboard.NextKeyboardButtonProxyMode.current == .experimental
+    }
+
     func setupButton(_ button: UIButton) {
-        let action = #selector(handleInputModeList(from:with:))
+        let proxyAction = #selector(handleInputProxy(from:with:))
+        let inputAction = #selector(handleInputModeList(from:with:))
         switch Keyboard.NextKeyboardButtonControllerMode.current {
-        case .experimentalNilTarget: button.addTarget(nil, action: action, for: .allTouchEvents)
-        default: button.addTarget(self, action: action, for: .allTouchEvents)
+        case .experimentalNilTarget:
+            if shouldApplyProxyAction {
+                button.addTarget(nil, action: proxyAction, for: .allTouchEvents)
+            }
+            button.addTarget(nil, action: inputAction, for: .allTouchEvents)
+        default:
+            if shouldApplyProxyAction {
+                button.addTarget(self, action: proxyAction, for: .allTouchEvents)
+            }
+            button.addTarget(self, action: inputAction, for: .allTouchEvents)
+        }
+    }
+
+    @objc func handleInputProxy(from view: UIView, with event: UIEvent) {
+        guard let vc = self as? KeyboardInputViewController else { return }
+        if vc.textInputProxy == nil { return }
+        let input = vc.textInputProxy
+        vc.textInputProxy = nil
+        handleInputModeList(from: view, with: event)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            vc.textInputProxy = input
         }
     }
 }

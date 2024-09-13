@@ -28,13 +28,22 @@ This version makes the dictation service use an `OpenURLAction` to return to the
 
 ### 🧪 Experimental
 
-`NextKeyboardButtonControllerMode` is a new, temporary type that lets us try alternate ways to create next keyboard buttons.
+`NextKeyboardButtonControllerMode` is a temporary type that lets us test if we can create a next keyboard button without having to pass in a controller.
+
+Set `.current` to any of these values to try them out:
 
 * `.classic` is the current mode that requires us to pass in a controller or use the shared one.
-* `.experimental` is a new test more that makes the button create an internal controller instead.
-* `.experimentalNilTarget` is a new test more that makes the button use `nil` as the action target.
+* `.experimental` is a new test mode that makes the button create an internal controller instead.
+* `.experimentalNilTarget` is a new test mode that makes the button use `nil` as the action target.
 
-Make sure to test this and report the result in the 
+`NextKeyboardButtonProxyMode` is a temporary type that lets us test if we can unregister an active `textInputProxy` to let the user switch keyboard while typing in a text field within the keyboard.
+
+Set `.current` to any of these values to try them out:
+
+* `.classic` doesn't reset the input controller and therefore doesn't let you switch keyboard while editing.
+* `.experimental` is a new test more that temporarily disables the text input proxy, which makes the switcher work.
+
+Make sure to test these experimental features and report any findings in the KeyboardKit issue tracker. 
 
 ### ✨ Features
 
@@ -55,6 +64,7 @@ Make sure to test this and report the result in the
 
 ### 🐛 Bug fixes
 
+* `Dictation.ProKeyboardService` now corrently returns to any known host app.
 * `Dictation.ProKeyboardService` has now sets the dictation locale more reliably.
 * `Dictation.ProKeyboardService` has now handle background thread state updates better. 
 

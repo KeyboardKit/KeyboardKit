@@ -15,8 +15,8 @@ import SwiftUI
 /// To use the keyboard, simply enable it in System Settings,
 /// then switch to it with the 🌐 key when typing in any app.
 ///
-/// This keyboard uses KeyboardKit Pro `KeyboardApp` screens
-/// to open keyboard and language settings as sheet overlays.
+/// This keyboard uses some types from the `Keyboard` target,
+/// so have a look there if you don't find what you look for.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
@@ -33,6 +33,18 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Set up demo-specific state.
         setupDemoState()
+
+        /// 🧪 Enable this to test the experimental next keyboard controller mode.
+        /// To try it, just set up a `.keyboardSwitcher` as extra key further down.
+        /// The switch should work without crashes when using the experimental mode.
+        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/799
+        // Keyboard.NextKeyboardButtonControllerMode.current = .experimentalNilTarget
+
+        /// 🧪 Enable this to test the experimental next keyboard input proxy mode.
+        /// To try it, just set up a `.keyboardSwitcher` as extra key further down.
+        /// The switch should work without crashes when editing text in the keyboard.
+        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/671
+        // Keyboard.NextKeyboardButtonProxyMode.current = .experimental
 
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()

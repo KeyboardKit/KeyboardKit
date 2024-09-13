@@ -28,17 +28,14 @@ class KeyboardViewController: KeyboardInputViewController {
         // settings to sync between the app and its keyboard.
         // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
 
-        /// 💡 Set up demo-specific services.
-        setupDemoServices(extraKey: .rocket)
-
-        /// 💡 Enable these two lines to test the experimental keyboard switcher modes.
+        /// 🧪 Enable this to test the experimental next keyboard controller mode.
+        /// To try it, just set up a `.keyboardSwitcher` as extra key further down.
+        /// The switch should work without crashes when using the experimental mode.
         /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/799
-        // setupDemoServices(extraKey: .keyboardSwitcher)
         // Keyboard.NextKeyboardButtonControllerMode.current = .experimentalNilTarget
 
-        /// ‼️ Enable this line to reproduce a bug where the keyboard switcher stops working.
-        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/671
-        // self.textInputProxy = TextInputProxy(input: UITextField())
+        /// 💡 Set up demo-specific services.
+        setupDemoServices(extraKey: .rocket)
 
         /// 💡 Set up demo-specific state.
         setupDemoState()
