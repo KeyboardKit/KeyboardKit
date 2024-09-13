@@ -10,7 +10,7 @@ import Foundation
 
 public extension Gestures {
     
-    /// This class can be used to handle repeating actions.
+    @available(*, deprecated, message: "This is no longer used and will be removed in KeyboardKit 9.0")
     class RepeatTimer {
         
         public init() {}
@@ -26,12 +26,14 @@ public extension Gestures {
     }
 }
 
+@available(*, deprecated, message: "This is no longer used")
 public extension Gestures.RepeatTimer {
 
     /// This is a shared timer instance.
     static let shared = Gestures.RepeatTimer()
 }
 
+@available(*, deprecated, message: "This is no longer used")
 public extension Gestures.RepeatTimer {
 
     /// The time for how long the timer has been active.
@@ -63,6 +65,7 @@ public extension Gestures.RepeatTimer {
     }
 }
 
+@available(*, deprecated, message: "This is no longer used")
 extension Gestures.RepeatTimer {
     
     func modifyStartDate(to date: Date) {

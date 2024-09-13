@@ -20,6 +20,82 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 8.8.7
+
+This version re-adds the old way of opening URLs, with iOS 18 support.
+
+This version makes the dictation service use an `OpenURLAction` to return to the previous app, since a keyboard action handler can't resolve a proper controller within the main app.
+
+### 🧪 Experimental
+
+`NextKeyboardButtonControllerMode` is a new, temporary type that lets us try alternate ways to create next keyboard buttons.
+
+* `.classic` is the current mode that requires us to pass in a controller or use the shared one.
+* `.experimental` is a new test more that makes the button create an internal controller instead.
+* `.experimentalNilTarget` is a new test more that makes the button use `nil` as the action target.
+
+Make sure to test this and report the result in the 
+
+
+### ✨ Features
+
+* `UrlOpener` is a new protocol with a default way to open a URL.
+
+### 💡 Adjustments
+
+* `KeyboardAction.url` will once again render as full gesture views.
+
+### 👑 KeyboardKit Pro
+
+* `Dictation+ProKeyboardService` now logs when the App Group configuration seems wrong.
+* `Dictation+ProKeyboardService` now lets you provide a `OpenURLAction` in the main app.
+* `KeyboardHostApplicationProvider` has a new `hostApplicationBundleIdIsKnown` property.
+* `View+Dictation` now lets provide a `OpenURLAction` to use to return to the previous app.
+
+### 🐛 Bug fixes
+
+* `Dictation.ProKeyboardService` has now sets the dictation locale more reliably.
+* `Dictation.ProKeyboardService` has now handle background thread state updates better. 
+
+
+
+## 8.8.6
+
+This version fixes things that break in Xcode 16 and iOS 18.
+
+First of all, it makes multi-gesture buttons work in scroll views, when building from Xcode 16 and running on iOS 18. This is required for the KeyboardKit Pro emoji keyboard to work.
+ 
+Second, this version makes `.url` keyboard actions render as SwiftUI `Link`s, since iOS 18 can no longer open URLs using the selector-based approach.
+
+### ✨ Features
+
+* `GestureButton` is a new inline dependency.
+* `Image` has a new `.keyboardUrl` extension.
+
+### 💡 Adjustments
+
+* `GestureButton` is used for all buttons instead of the deprecated one.
+* `KeyboardAction.url` will by default use the new `.keyboardUrl` image.
+* `KeyboardAction.url` will by default render as a plain `SwiftUI` `Link`.
+
+### 🐛 Bug fixes
+
+* `Dictation.DisabledKeyboardService` now resets its context on the main queue, which silences a background thread warning. 
+
+### 🗑️ Deprecations
+
+* `Gestures.GestureButton` and some related types have been deprecated.
+
+
+
+## 8.8.4
+
+### 🐛 Bug fixes
+
+* This patch fixes a `KeyboardAppView` bug that caused the locale to be strictly set to the first locale in the license, which did reset any manual changes. 
+
+
+
 ## 8.8.2
 
 This version fixes a keyboard button gesture bug.

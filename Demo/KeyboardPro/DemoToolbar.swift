@@ -14,10 +14,12 @@ import SwiftUI
 ///
 /// This toolbar has a textfield to let you type and buttons
 /// to toggle state, trigger actions, etc.
-struct DemoToolbar: View {
-    
+struct DemoToolbar<Toolbar: View>: View {
+
     /// This is (for now) required by the `KeyboardTextField`.
     unowned var controller: KeyboardInputViewController
+
+    var toolbar: Toolbar
 
     @Binding
     var theme: KeyboardTheme?
@@ -45,8 +47,26 @@ struct DemoToolbar: View {
     
     @State
     private var text = ""
-    
+
     var body: some View {
+        try? Keyboard.ToggleToolbar(
+            toolbar: autocompleteToolbar,
+            toggledToolbar: menuToolbar
+        )
+        .tint(.primary)
+    }
+}
+
+private extension DemoToolbar {
+
+    var autocompleteToolbar: some View {
+        HStack {
+            toolbar.frame(maxWidth: .infinity)
+            localeSwitcher
+        }
+    }
+
+    var menuToolbar: some View {
         ScrollView(.horizontal) {
             HStack {
                 Group {
@@ -99,6 +119,16 @@ private extension DemoToolbar {
         Color.clear
             .overlay(Image(systemName: name))
             .frame(maxHeight: .infinity)
+    }
+
+    var localeSwitcher: some View {
+        Image.keyboardGlobe
+            .scaleEffect(1.2)
+            .padding()
+            .background(Color.clearInteractable)
+            .keyboardLocaleContextMenu(for: keyboardContext) {
+                controller.services.actionHandler.handle(.nextLocale)
+            }
     }
 
     @ViewBuilder

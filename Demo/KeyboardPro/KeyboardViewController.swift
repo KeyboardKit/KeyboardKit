@@ -66,7 +66,7 @@ class KeyboardViewController: KeyboardInputViewController {
     func setupServices(with license: License) {
 
         /// 💡 Set up demo-specific services.
-        setupDemoServices()
+        setupDemoServices(extraKey: .emojiIfNeeded)
         
         /// 💡 Set up a KeyboardKit Pro theme-based service.
         ///

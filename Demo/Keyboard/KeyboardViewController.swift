@@ -29,7 +29,16 @@ class KeyboardViewController: KeyboardInputViewController {
         // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
 
         /// 💡 Set up demo-specific services.
-        setupDemoServices()
+        setupDemoServices(extraKey: .rocket)
+
+        /// 💡 Enable these two lines to test the experimental keyboard switcher modes.
+        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/799
+        // setupDemoServices(extraKey: .keyboardSwitcher)
+        // Keyboard.NextKeyboardButtonControllerMode.current = .experimentalNilTarget
+
+        /// ‼️ Enable this line to reproduce a bug where the keyboard switcher stops working.
+        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/671
+        // self.textInputProxy = TextInputProxy(input: UITextField())
 
         /// 💡 Set up demo-specific state.
         setupDemoState()
@@ -56,8 +65,8 @@ class KeyboardViewController: KeyboardInputViewController {
                 buttonView: { $0.view },
                 emojiKeyboard: { $0.view },
                 toolbar: { params in
-                    // params.view
-                    TempScrollToolbar()
+                    params.view
+                    // TempScrollToolbar()
                 }
             )
             /// 💡 You can disable autocorrection like this.
@@ -66,6 +75,10 @@ class KeyboardViewController: KeyboardInputViewController {
     }
 }
 
+/// This toolbar can be used to test a bug where buttons can
+/// get stuck in a pressed state if you touch them while you
+/// also scroll the scroll view. The buttons now restore any
+/// corrupt state, but it would be nice to reduce that delay.
 private struct TempScrollToolbar: View {
     
     var body: some View {

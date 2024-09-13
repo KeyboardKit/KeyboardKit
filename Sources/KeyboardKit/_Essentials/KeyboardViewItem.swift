@@ -16,6 +16,7 @@ public struct KeyboardViewItem<Content: View>: View {
     /// - Parameters:
     ///   - item: The layout item to use within the item.
     ///   - actionHandler: The button style to apply.
+    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
     ///   - styleProvider: The style provider to use.
     ///   - keyboardContext: The keyboard context to which the item should apply.,
     ///   - calloutContext: The callout context to affect, if any.
@@ -25,6 +26,7 @@ public struct KeyboardViewItem<Content: View>: View {
     init(
         item: KeyboardLayout.Item,
         actionHandler: KeyboardActionHandler,
+        repeatGestureTimer: GestureButtonTimer? = nil,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
@@ -34,6 +36,7 @@ public struct KeyboardViewItem<Content: View>: View {
     ) {
         self.item = item
         self.actionHandler = actionHandler
+        self.repeatGestureTimer = repeatGestureTimer
         self.styleProvider = styleProvider
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.calloutContext = calloutContext
@@ -44,6 +47,7 @@ public struct KeyboardViewItem<Content: View>: View {
     
     private let item: KeyboardLayout.Item
     private let actionHandler: KeyboardActionHandler
+    private let repeatGestureTimer: GestureButtonTimer?
     private let styleProvider: KeyboardStyleProvider
     private let calloutContext: CalloutContext?
     private let keyboardWidth: CGFloat
@@ -71,6 +75,7 @@ public struct KeyboardViewItem<Content: View>: View {
             for: item.action,
             style: buttonStyle,
             actionHandler: actionHandler,
+            repeatGestureTimer: repeatGestureTimer,
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
             edgeInsets: item.edgeInsets,

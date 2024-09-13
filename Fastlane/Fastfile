@@ -8,34 +8,31 @@ platform :ios do
   main_branch = "master"
 
 
-  # EmojiKit ===================
-    
-  ek_source = "../emojikit/Sources/EmojiKit/"
-  ek_target = "Sources/" + name + "/Emojis/EmojiKit/"
+  # GestureButton ==============
 
-  desc "Remove EmojiKit"
-  lane :ekremove do
-    sh("cd .. && rm -rf " + ek_target)
+  gb_source = "../gesturebutton/Sources/GestureButton/"
+  gb_target = "Sources/" + name + "/_GestureButton/"
+
+  desc "Remove GestureButton"
+  lane :gbremove do
+    sh("cd .. && rm -rf " + gb_target)
   end
 
-  desc "Add EmojiKit"
-  lane :ekadd do
-    sh("cd .. && cp -r " + ek_source + " " + ek_target)
-    sh("cd .. && rm -rf " + ek_target + "/Bundle")
-    sh("cd .. && rm -rf " + ek_target + "/EmojiKit.docc")
-    sh("cd .. && rm -rf " + ek_target + "/Extensions/GeometryProxy+Grid.swift")
-    sh("cd .. && rm -rf " + ek_target + "/Resources")
-    sh("cd .. && rm -rf " + ek_target + "/Views")
+  desc "Add GestureButton"
+  lane :gbadd do
+    sh("cd .. && cp -r " + gb_source + " " + gb_target)
+    sh("cd .. && rm -rf " + gb_target + "/GestureButton.docc")
     sh("cd .. && git add .")
   end
 
-  desc "Update EmojiKit"
-  lane :ekupdate do
+  desc "Update GestureButton"
+  lane :gbupdate do
     ensure_git_status_clean
-    ekremove
-    ekadd
-    git_commit(path: "*", message: "Update EmojiKit")
+    gbremove
+    gbadd
+    git_commit(path: "*", message: "Update GestureButton")
   end
+
 
 
   # Build ==================
@@ -50,7 +47,7 @@ platform :ios do
     build(platform: "OS X")
     build(platform: "tvOS")
     build(platform: "watchOS")
-    build(platform: "xrOS")
+    # build(platform: "xrOS")
   end
 
 

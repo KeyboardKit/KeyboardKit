@@ -27,6 +27,7 @@ public extension Keyboard {
         /// - Parameters:
         ///   - action: The keyboard action to apply.
         ///   - actionHandler: The action handler to use.
+        ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
         ///   - styleProvider: The style provider to use.
         ///   - keyboardContext: The keyboard context to which the button should apply.
         ///   - calloutContext: The callout context to affect, if any.
@@ -36,6 +37,7 @@ public extension Keyboard {
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
+            repeatGestureTimer: GestureButtonTimer? = nil,
             styleProvider: KeyboardStyleProvider,
             keyboardContext: KeyboardContext,
             calloutContext: CalloutContext?,
@@ -45,6 +47,7 @@ public extension Keyboard {
         ) {
             self.action = action
             self.actionHandler = actionHandler
+            self.repeatGestureTimer = repeatGestureTimer
             self.styleProvider = styleProvider
             self.keyboardContext = keyboardContext
             self.calloutContext = calloutContext
@@ -58,6 +61,7 @@ public extension Keyboard {
         /// - Parameters:
         ///   - action: The keyboard action to apply.
         ///   - actionHandler: The action handler to use.
+        ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
         ///   - styleProvider: The style provider to use.
         ///   - keyboardContext: The keyboard context to which the button should apply.
         ///   - calloutContext: The callout context to affect, if any.
@@ -66,6 +70,7 @@ public extension Keyboard {
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
+            repeatGestureTimer: GestureButtonTimer? = nil,
             styleProvider: KeyboardStyleProvider,
             keyboardContext: KeyboardContext,
             calloutContext: CalloutContext?,
@@ -75,6 +80,7 @@ public extension Keyboard {
             self.init(
                 action: action,
                 actionHandler: actionHandler,
+                repeatGestureTimer: repeatGestureTimer,
                 styleProvider: styleProvider,
                 keyboardContext: keyboardContext,
                 calloutContext: calloutContext,
@@ -86,6 +92,7 @@ public extension Keyboard {
         
         private let action: KeyboardAction
         private let actionHandler: KeyboardActionHandler
+        private let repeatGestureTimer: GestureButtonTimer?
         private let styleProvider: KeyboardStyleProvider
         private let keyboardContext: KeyboardContext
         private let calloutContext: CalloutContext?
@@ -104,6 +111,7 @@ public extension Keyboard {
                     for: action,
                     style: style,
                     actionHandler: actionHandler,
+                    repeatGestureTimer: repeatGestureTimer,
                     keyboardContext: keyboardContext,
                     calloutContext: calloutContext,
                     edgeInsets: edgeInsets,

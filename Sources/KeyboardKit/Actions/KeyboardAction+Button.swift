@@ -63,6 +63,7 @@ private extension KeyboardAction {
         case .systemImage(_, let imageName, _): Image(systemName: imageName)
         case .systemSettings: .keyboardSettings
         case .tab: .keyboardTab
+        case .url: .keyboardUrl
         default: nil
         }
     }
