@@ -311,6 +311,83 @@ extension KeyboardAction {
         }
 
 
+        // MARK: - Autocomplete
+
+        /// Whether to apply autocorrect before a certain gesture action.
+        open func shouldApplyAutocorrectSuggestion(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            if isSpaceCursorDrag(action) { return false }
+            if keyboardContext.isCursorAtNewWord { return false }
+            guard gesture == .release else { return false }
+            return action.shouldApplyAutocorrectSuggestion
+        }
+
+        /// Whether to perform autocomplete after a certain gesture action.
+        open func shouldPerformAutocomplete(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            return true
+        }
+
+        /// Whether to reinsert an autocomplete removed space after a certain gesture action.
+        open func shouldReinsertAutocompleteRemovedSpace(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            gesture == .release && action.shouldReinsertAutocompleteInsertedSpace
+        }
+
+        /// Whether to remove an autocomplete inserted space after a certain gesture action.
+        open func shouldRemoveAutocompleteInsertedSpace(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            gesture == .release && action.shouldRemoveAutocompleteInsertedSpace
+        }
+
+        /// Try to apply autocorrect before a certain gesture action.
+        open func tryApplyAutocorrectSuggestion(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldApplyAutocorrectSuggestion(before: gesture, on: action) else { return }
+            let suggestions = autocompleteContext.suggestions
+            let autocorrect = suggestions.first { $0.isAutocorrect }
+            guard let suggestion = autocorrect else { return }
+            keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
+        }
+
+        /// Try to perform autocomplete after a certain gesture action.
+        open func tryPerformAutocomplete(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldPerformAutocomplete(after: gesture, on: action) else { return }
+            keyboardController?.performAutocomplete()
+        }
+
+        /// Try to reinsert an autocomplete removed space after a certain gesture action.
+        open func tryReinsertAutocompleteRemovedSpace(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldReinsertAutocompleteRemovedSpace(after: gesture, on: action) else { return }
+            keyboardContext.tryReinsertAutocompleteRemovedSpace()
+        }
+
+        /// Try to remove inserted space before a certain gesture action.
+        open func tryRemoveAutocompleteInsertedSpace(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldRemoveAutocompleteInsertedSpace(before: gesture, on: action) else { return }
+            keyboardContext.tryRemoveAutocompleteInsertedSpace()
+        }
+
+
         // MARK: - Feedback
 
         /// The audio feedback to use for an action gesture.
@@ -439,64 +516,6 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) {
             tryTriggerHapticFeedback(for: gesture, on: action)
-        }
-
-
-        // MARK: - Autocomplete
-
-        /// Whether to apply autocorrect before an action.
-        open func shouldApplyAutocorrectSuggestion(
-            before gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            if isSpaceCursorDrag(action) { return false }
-            if keyboardContext.isCursorAtNewWord { return false }
-            guard gesture == .release else { return false }
-            return action.shouldApplyAutocorrectSuggestion
-        }
-
-        /// Try to apply autocorrect before a gesture action.
-        open func tryApplyAutocorrectSuggestion(
-            before gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            guard shouldApplyAutocorrectSuggestion(before: gesture, on: action) else { return }
-            let suggestions = autocompleteContext.suggestions
-            let autocorrect = suggestions.first { $0.isAutocorrect }
-            guard let suggestion = autocorrect else { return }
-            keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
-        }
-
-        /// Try to perform autocomplete after a gesture.
-        open func tryPerformAutocomplete(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            keyboardController?.performAutocomplete()
-        }
-
-        /// Try to reinsert removed space after a gesture.
-        ///
-        /// This is used to handle autocomplete space insert.
-        open func tryReinsertAutocompleteRemovedSpace(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            guard gesture == .release else { return }
-            guard action.shouldReinsertAutocompleteInsertedSpace else { return }
-            keyboardContext.tryReinsertAutocompleteRemovedSpace()
-        }
-
-        /// Try to remove inserted space before a gesture.
-        ///
-        /// This is used to handle autocomplete space insert.
-        open func tryRemoveAutocompleteInsertedSpace(
-            before gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            guard gesture == .release else { return }
-            guard action.shouldRemoveAutocompleteInsertedSpace else { return }
-            keyboardContext.tryRemoveAutocompleteInsertedSpace()
         }
     }
 }

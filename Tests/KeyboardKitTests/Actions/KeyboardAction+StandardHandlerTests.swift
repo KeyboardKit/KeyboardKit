@@ -161,7 +161,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
 
     // MARK: - Autocomplete
 
-    func testShouldApplyAutocorrectSuggestionReturnsTrueForValidActionAndGestureContext() {
+    func testShouldApplyAutocorrectSuggestionAfterGestureActionReturnsTrueForReleaseOnValidActionWithValidGestureContext() {
         spaceDragHandler.currentDragTextPositionOffset = 100
         XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
         spaceDragHandler.currentDragTextPositionOffset = 0
@@ -171,6 +171,24 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .press, on: .space))
         XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
         XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .character(".")))
+    }
+
+    func testShouldPerformAutocompleteAfterGestureActionReturnsTrueForReleaseGesture() {
+        XCTAssertTrue(handler.shouldPerformAutocomplete(after: .press, on: .backspace))
+        XCTAssertTrue(handler.shouldPerformAutocomplete(after: .release, on: .backspace))
+        XCTAssertTrue(handler.shouldPerformAutocomplete(after: .release, on: .space))
+    }
+
+    func testShouldReinsertAutocompleteRemovedSpaceAfterGestureActionReturnsTrueForReleaseOnValidAction() {
+        XCTAssertFalse(handler.shouldReinsertAutocompleteRemovedSpace(after: .press, on: .character(".")))
+        XCTAssertTrue(handler.shouldReinsertAutocompleteRemovedSpace(after: .release, on: .character(".")))
+        XCTAssertFalse(handler.shouldReinsertAutocompleteRemovedSpace(after: .release, on: .space))
+    }
+
+    func testShouldRemoveAutocompleteInsertedSpaceAfterGestureActionReturnsTrueForReleaseOnValidAction() {
+        XCTAssertFalse(handler.shouldRemoveAutocompleteInsertedSpace(before: .press, on: .character(".")))
+        XCTAssertTrue(handler.shouldRemoveAutocompleteInsertedSpace(before: .release, on: .character(".")))
+        XCTAssertFalse(handler.shouldRemoveAutocompleteInsertedSpace(before: .release, on: .space))
     }
 
     func testTryApplyCorrectSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
