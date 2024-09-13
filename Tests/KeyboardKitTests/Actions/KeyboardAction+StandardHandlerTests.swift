@@ -179,45 +179,33 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
 
 
     // MARK: - Autocomplete
-    
-    func testTryApplyCorrectSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
-        let ref = textDocumentProxy.deleteBackwardRef
-        let autocompleteSuggestions = [
-            Autocomplete.Suggestion(
-                text: "",
-                type: .autocorrect
-            )
-        ]
 
+    func testShouldApplyAutocorrectSuggestionReturnsTrueForValidActionAndGestureContext() {
+        spaceDragHandler.currentDragTextPositionOffset = 100
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
+        spaceDragHandler.currentDragTextPositionOffset = 0
+        textDocumentProxy.documentContextBeforeInput = "abc."
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
         textDocumentProxy.documentContextBeforeInput = "abc"
-        handler.autocompleteContext.suggestions = autocompleteSuggestions
-
-        handler.tryApplyAutocorrectSuggestion(before: .press, on: .space)
-        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-
-        handler.tryApplyAutocorrectSuggestion(before: .release, on: .backspace)
-        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-
-        handler.autocompleteContext.suggestions = []
-        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space)
-        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-
-        handler.autocompleteContext.suggestions = autocompleteSuggestions
-        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space)
-        XCTAssertTrue(textDocumentProxy.hasCalled(ref))
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .press, on: .space))
+        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
+        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .character(".")))
     }
 
-    func testTryingToEndSentenceAfterGestureOnActionIsOnlyCalledIfBehaviorSaysYes() {
-        // TODO: Test this by making these functions inspectable in the mock controller.
-        // textDocumentProxy.documentContextBeforeInput = ""
-        // handler.tryEndSentence(after: .release, on: .character("a"))
-        // XCTAssertFalse(textDocumentProxy.hasCalled(\.deleteBackwardRef))
-        // XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
-
-        // textDocumentProxy.documentContextBeforeInput = "foo  "
-        // handler.tryEndSentence(after: .release, on: .space)
-        // XCTAssertTrue(textDocumentProxy.hasCalled(\.deleteBackwardRef, numberOfTimes: 2))
-        // XCTAssertTrue(textDocumentProxy.hasCalled(\.insertTextRef, numberOfTimes: 1))
+    func testTryApplyCorrectSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
+        let ref = textDocumentProxy.deleteBackwardRef
+        textDocumentProxy.documentContextBeforeInput = "abc"
+        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.tryApplyAutocorrectSuggestion(before: .press, on: .space) // Must be release
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+        handler.tryApplyAutocorrectSuggestion(before: .release, on: .backspace) // Must be valid action
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+        handler.autocompleteContext.suggestions = []
+        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Must have actions
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Valid
+        XCTAssertTrue(textDocumentProxy.hasCalled(ref))
     }
 
     func testTryToHandleReplacementActionBeforeGestureOnActionReturnsTrueForReleaseOnValidCharAction() {

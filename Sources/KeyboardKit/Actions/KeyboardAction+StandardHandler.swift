@@ -366,14 +366,22 @@ extension KeyboardAction {
         // MARK: - Autocomplete
 
         /// Whether to apply autocorrect before an action.
+        open func shouldApplyAutocorrectSuggestion(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            if isSpaceCursorDrag(action) { return false }
+            if keyboardContext.isCursorAtNewWord { return false }
+            guard gesture == .release else { return false }
+            return action.shouldApplyAutocorrectSuggestion
+        }
+
+        /// Try to apply autocorrect before a gesture action.
         open func tryApplyAutocorrectSuggestion(
             before gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
-            if isSpaceCursorDrag(action) { return }
-            if keyboardContext.isCursorAtNewWord { return }
-            guard gesture == .release else { return }
-            guard action.shouldApplyAutocorrectSuggestion else { return }
+            guard shouldApplyAutocorrectSuggestion(before: gesture, on: action) else { return }
             let suggestions = autocompleteContext.suggestions
             let autocorrect = suggestions.first { $0.isAutocorrect }
             guard let suggestion = autocorrect else { return }
