@@ -22,13 +22,17 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.8.7
 
-This version re-adds the old way of opening URLs, with iOS 18 support.
+This version re-adds the old way of opening URLs, but makes it work with iOS 18. This means that url actions are once again rendered as full-gesture buttons.
 
 This version makes the dictation service use an `OpenURLAction` to return to the previous app, since a keyboard action handler can't resolve a proper controller within the main app.
 
+This version also adds support to the standard action handler and autocomplete context, for auto-ignoring words that have an autocorrection when pressing backspace. This will improve the typing experience a great deal.
+
+The `Keyboard.NextKeyboardButton` has two new experimental modes, that will hopefully remove the need to pass in a controller or use the shared one, and also keep the switcher working when typing within the keyboard.
+
 ### 🧪 Experimental
 
-`NextKeyboardButtonControllerMode` is a temporary type that lets us test if we can create a next keyboard button without having to pass in a controller.
+`Keyboard.NextKeyboardButtonControllerMode` is a temporary type that lets us test if we can create a next keyboard button without having to pass in a controller.
 
 Set `.current` to any of these values to try them out:
 
