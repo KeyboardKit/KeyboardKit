@@ -12,15 +12,7 @@
 #if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 
-/// This class can be used to route typed text from the main
-/// app to text fields within the keyboard extension.
-///
-/// This class implements the `UITextDocumentProxy` protocol
-/// and has `open` functions that can be customized. It also
-/// implements the `UITextInputTraits` protocol and lets you
-/// customize the initial values from the provided input. It
-/// also implements the `UIKeyInput` protocol to handle text
-/// operations, like text insertion and deletion.
+@available(*, deprecated, message: "This is no longer used and will be removed in KeyboardKit 9.")
 open class TextInputProxy: NSObject, UITextDocumentProxy, UITextInputTraits {
 
     /// Create a text input proxy instance.

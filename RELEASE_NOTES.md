@@ -58,6 +58,10 @@ Make sure to test this and report the result in the
 * `Dictation.ProKeyboardService` has now sets the dictation locale more reliably.
 * `Dictation.ProKeyboardService` has now handle background thread state updates better. 
 
+### 🗑️ Deprecations
+
+* `TextInputProxy` is no longer needed and has been deprecated.
+
 
 
 ## 8.8.6
