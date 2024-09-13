@@ -174,9 +174,7 @@ extension KeyboardAction {
         open func handle(
             _ suggestion: Autocomplete.Suggestion
         ) {
-            if suggestion.isUnknown, autocompleteContext.isAutolearnEnabled {
-                autocompleteService?.learn(suggestion)
-            }
+            tryAutolearnSuggestion(suggestion)
             keyboardContext.insertAutocompleteSuggestion(suggestion)
             handle(.release, on: .character(""))
         }
@@ -324,6 +322,13 @@ extension KeyboardAction {
             return action.shouldApplyAutocorrectSuggestion
         }
 
+        /// Whether to auto-learn a certain suggestion.
+        open func shouldAutolearnSuggestion(
+            _ suggestion: Autocomplete.Suggestion
+        ) -> Bool {
+            suggestion.isUnknown && !suggestion.text.isEmpty && autocompleteContext.isAutolearnEnabled
+        }
+
         /// Whether to ignore autocorrections for the current word before a certain gesture action.
         open func shouldIgnoreAutocompleteForCurrentWord(
             before gesture: Keyboard.Gesture,
@@ -369,6 +374,14 @@ extension KeyboardAction {
             let autocorrect = suggestions.first { $0.isAutocorrect }
             guard let suggestion = autocorrect else { return }
             keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
+        }
+
+        /// Try to auto-learn a certain suggestion.
+        open func tryAutolearnSuggestion(
+            _ suggestion: Autocomplete.Suggestion
+        ) {
+            guard shouldAutolearnSuggestion(suggestion) else { return }
+            autocompleteService?.learn(suggestion)
         }
 
         /// Try to ignore autocorrections for the current word before a certain gesture action.

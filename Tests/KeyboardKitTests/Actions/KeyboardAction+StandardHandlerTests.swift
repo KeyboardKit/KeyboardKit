@@ -163,14 +163,25 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
 
     func testShouldApplyAutocorrectSuggestionReturnsTrueForReleaseOnValidActionWithValidGestureContext() {
         spaceDragHandler.currentDragTextPositionOffset = 100
-        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space)) // Invalid drag gesture
         spaceDragHandler.currentDragTextPositionOffset = 0
         textDocumentProxy.documentContextBeforeInput = "abc."
-        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space)) // Completed word
         textDocumentProxy.documentContextBeforeInput = "abc"
-        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .press, on: .space))
-        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
-        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .character(".")))
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .press, on: .space)) // Invalid gesture
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .press, on: .backspace)) // Invalid action
+        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space)) // Valid
+        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .character("."))) // Valid
+    }
+
+    func testShouldAutolearnSuggestionReturnsTrueForUnknownSuggestionWhenAutolearnIsEnabled() {
+        handler.autocompleteContext.isAutolearnEnabled = true
+        XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .regular))) // Invalid type
+        XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "", type: .autocorrect))) // Empty text
+        handler.autocompleteContext.isAutolearnEnabled = false
+        XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .autocorrect))) // Disabled
+        handler.autocompleteContext.isAutolearnEnabled = true
+        XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .autocorrect))) // Valid
     }
 
     func testShouldIgnoreAutocompleteForCurrentWordReturnsTrueWhenPressingBackspaceWithExistingWordAndAutocorrection() {
@@ -219,6 +230,10 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
         handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Valid
         XCTAssertTrue(textDocumentProxy.hasCalled(ref))
+    }
+
+    func testTryAutolearnSuggestionTriggersWhenItShould() {
+        // TODO
     }
 
     func testTryIgnoreAutocompleteForCurrentWordTriggersWhenItShould() {
