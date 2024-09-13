@@ -47,7 +47,10 @@ Make sure to test these experimental features and report any findings in the Key
 
 ### ✨ Features
 
-* `UrlOpener` is a new protocol with a default way to open a URL.
+* `AutocompleteContext` has a new `isAutoIgnoreEnabled` property.
+* `KeyboardAction.StandardHandler` has many more functions for more granular control.
+* `KeyboardAction.StandardHandler` can now autocomplete ignore words when pressing backspace.
+* `UrlOpener` is a new protocol with a new default way to open a URL that also works in iOS 18.
 
 ### 💡 Adjustments
 

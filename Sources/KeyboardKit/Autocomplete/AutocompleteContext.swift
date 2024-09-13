@@ -59,11 +59,17 @@ public class AutocompleteContext: ObservableObject {
     @AppStorage("\(settingsPrefix)isAutocorrectEnabled", store: .keyboardSettings)
     public var isAutocorrectEnabled = true
 
-    /// Whether to applied unknown suggestions that are used.
+    /// Whether to autolearn applied unknown suggestions.
     ///
     /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
     @AppStorage("\(settingsPrefix)isAutolearnEnabled", store: .keyboardSettings)
     public var isAutolearnEnabled = true
+
+    /// Whether to automatically ignore certain suggestions.
+    ///
+    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
+    @AppStorage("\(settingsPrefix)isAutoIgnoreEnabled", store: .keyboardSettings)
+    public var isAutoIgnoreEnabled = true
 
     /// Whether next character prediction is enabled.
     ///
