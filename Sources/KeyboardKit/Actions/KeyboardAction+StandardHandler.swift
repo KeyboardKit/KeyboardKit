@@ -164,7 +164,7 @@ extension KeyboardAction {
             tryApplyAutocorrectSuggestion(before: gesture, on: action)
             gestureAction(keyboardController)
             tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
-            tryEndSentence(after: gesture, on: action)
+            tryEndCurrentSentence(after: gesture, on: action)
             tryChangeKeyboardType(after: gesture, on: action)
             tryPerformAutocomplete(after: gesture, on: action)
             tryRegisterEmoji(after: gesture, on: action)
@@ -192,6 +192,73 @@ extension KeyboardAction {
                 from: startLocation,
                 to: currentLocation
             )
+        }
+
+
+        // MARK: - Core Keyboard Logic
+
+        /// Whether to change keyboard type after a certain action gesture.
+        open func shouldChangeKeyboardType(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
+        }
+
+        /// Whether to end the current sentence after a certain action gesture.
+        open func shouldEndCurrentSentence(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            keyboardBehavior.shouldEndSentence(after: gesture, on: action)
+        }
+
+        /// Whether to register an emoji after a certain action gesture.
+        open func shouldRegisterEmoji(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            gesture == .release && action.isEmojiAction
+        }
+
+        /// Try to change keyboard type after a certain action gesture.
+        open func tryChangeKeyboardType(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldChangeKeyboardType(after: gesture, on: action) else { return }
+            let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
+            keyboardContext.keyboardType = newType
+        }
+
+        /// Try to end the current sentence after a certain action gesture.
+        open func tryEndCurrentSentence(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
+            let text = keyboardBehavior.endSentenceText
+            keyboardController?.endSentence(withText: text)
+        }
+
+        /// Try to register an emoji after a certain action gesture.
+        open func tryRegisterEmoji(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldRegisterEmoji(after: gesture, on: action) else { return }
+            switch action {
+            case .emoji(let emoji): EmojiCategory.addEmoji(emoji, to: .frequent, maxCount: 30)
+            default: return
+            }
+        }
+
+        @available(*, deprecated, renamed: "tryEndCurrentSentence(after:on:)")
+        open func tryEndSentence(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            tryEndCurrentSentence(after: gesture, on: action)
         }
 
 
@@ -229,6 +296,18 @@ extension KeyboardAction {
             }
 
             return nil
+        }
+
+        /// Try to handle a replacement action before a certain action gesture.
+        ///
+        /// The caller shouldn't handle the action when this returns `true`.
+        open func tryHandleReplacementAction(
+            before gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            guard let action = replacementAction(for: gesture, on: action) else { return false }
+            handle(.release, on: action, replaced: true)
+            return true
         }
 
 
@@ -388,57 +467,12 @@ extension KeyboardAction {
             keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
         }
 
-        /// Try to change keyboard type after a gesture.
-        open func tryChangeKeyboardType(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            guard keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action) else { return }
-            let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
-            keyboardContext.keyboardType = newType
-        }
-
-        /// Try to end the current sentence after a gesture.
-        open func tryEndSentence(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
-            let text = keyboardBehavior.endSentenceText
-            keyboardController?.endSentence(withText: text)
-        }
-
         /// Try to perform autocomplete after a gesture.
         open func tryPerformAutocomplete(
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             keyboardController?.performAutocomplete()
-        }
-
-        /// Try to register an emoji after a gesture.
-        open func tryRegisterEmoji(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            guard gesture == .release else { return }
-            switch action {
-            case .emoji(let emoji): EmojiCategory.addEmoji(emoji, to: .frequent, maxCount: 30)
-            default: return
-            }
-        }
-
-        /// Handle a replacement action before a gesture.
-        ///
-        /// The caller shouldn't handle the action when this
-        /// function returns `true`.
-        open func tryHandleReplacementAction(
-            before gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            guard let action = replacementAction(for: gesture, on: action) else { return false }
-            handle(.release, on: action, replaced: true)
-            return true
         }
 
         /// Try to reinsert removed space after a gesture.

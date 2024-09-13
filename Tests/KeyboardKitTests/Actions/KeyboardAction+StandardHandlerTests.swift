@@ -60,7 +60,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         XCTAssertTrue(handler.hasCalled(\.tryRemoveAutocompleteInsertedSpaceRef))
         XCTAssertTrue(handler.hasCalled(\.tryApplyAutocorrectSuggestionRef))
         XCTAssertTrue(handler.hasCalled(\.tryReinsertAutocompleteRemovedSpaceRef))
-        XCTAssertTrue(handler.hasCalled(\.tryEndSentenceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryEndCurrentSentenceRef))
         XCTAssertTrue(handler.hasCalled(\.tryChangeKeyboardTypeRef))
         XCTAssertTrue(controller.hasCalled(\.performAutocompleteRef))
         XCTAssertEqual(registeredEmojis, [])
@@ -72,7 +72,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         XCTAssertTrue(handler.hasCalled(\.tryRemoveAutocompleteInsertedSpaceRef))
         XCTAssertTrue(handler.hasCalled(\.tryApplyAutocorrectSuggestionRef))
         XCTAssertTrue(handler.hasCalled(\.tryReinsertAutocompleteRemovedSpaceRef))
-        XCTAssertTrue(handler.hasCalled(\.tryEndSentenceRef))
+        XCTAssertTrue(handler.hasCalled(\.tryEndCurrentSentenceRef))
         XCTAssertTrue(handler.hasCalled(\.tryChangeKeyboardTypeRef))
         XCTAssertTrue(controller.hasCalled(\.performAutocompleteRef))
         // XCTAssertEqual(registeredEmojis.map { $0.char }, ["👍", "🤩"]) TODO: Use a mock!
@@ -85,6 +85,35 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
             handler.handleDrag(on: $0, from: .zero, to: .zero)
         }
         XCTAssertFalse(spaceDragHandler.hasCalled(\.handleDragGestureRef))
+    }
+
+
+    // MARK: - Core Keyboard Logic
+
+    func testShouldChangeKeyboardTypeAfterGestureActionUsesShouldBeTested() {
+        // TODO
+    }
+
+    func testShouldEndCurrentSentenceAfterGestureActionUsesShouldBeTested() {
+        // TODO
+    }
+
+    func testShouldRegisterEmojiAfterGestureActionRequiresReleaseOnEmoji() {
+        XCTAssertFalse(handler.shouldRegisterEmoji(after: .press, on: .emoji("")))
+        XCTAssertFalse(handler.shouldRegisterEmoji(after: .release, on: .space))
+        XCTAssertTrue(handler.shouldRegisterEmoji(after: .release, on: .emoji("")))
+    }
+
+    func testTryChangeKeyboardTypeAfterGestureActionShouldBeTested() {
+        // TODO
+    }
+
+    func testTryEndCurrentSentenceAfterGestureActionShouldBeTested() {
+        // TODO
+    }
+
+    func testTryRegisterEmojiAfterGestureActionShouldBeTested() {
+        // TODO
     }
 
 
@@ -114,6 +143,68 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         controller.state.keyboardContext.locale = KeyboardLocale.english.locale
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNil(result)
+    }
+
+    func testTryHandleReplacementActionBeforeGestureOnActionReturnsTrueForReleaseOnValidCharAction() {
+        var result = handler.tryHandleReplacementAction(before: .release, on: .character("A"))
+        XCTAssertFalse(result)
+        result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
+        XCTAssertFalse(result)
+        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
+        result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
+        XCTAssertTrue(result)
+        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
+        result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
+        XCTAssertFalse(result)
+    }
+
+
+    // MARK: - Autocomplete
+
+    func testShouldApplyAutocorrectSuggestionReturnsTrueForValidActionAndGestureContext() {
+        spaceDragHandler.currentDragTextPositionOffset = 100
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
+        spaceDragHandler.currentDragTextPositionOffset = 0
+        textDocumentProxy.documentContextBeforeInput = "abc."
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
+        textDocumentProxy.documentContextBeforeInput = "abc"
+        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .press, on: .space))
+        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
+        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .character(".")))
+    }
+
+    func testTryApplyCorrectSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
+        let ref = textDocumentProxy.deleteBackwardRef
+        textDocumentProxy.documentContextBeforeInput = "abc"
+        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.tryApplyAutocorrectSuggestion(before: .press, on: .space) // Must be release
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+        handler.tryApplyAutocorrectSuggestion(before: .release, on: .backspace) // Must be valid action
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+        handler.autocompleteContext.suggestions = []
+        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Must have actions
+        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
+        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Valid
+        XCTAssertTrue(textDocumentProxy.hasCalled(ref))
+    }
+
+    func testTryToReinsertAutocompleteRemovedSpaceAfterGestureOnActionProceedsForReleaseOnSomeActions() {
+        textDocumentProxy.documentContextBeforeInput = "hi"
+        textDocumentProxy.documentContextAfterInput = "you"
+        textDocumentProxy.tryInsertSpaceAfterAutocomplete()
+        textDocumentProxy.documentContextBeforeInput = "hi "
+        textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
+        textDocumentProxy.resetCalls()
+
+        handler.tryReinsertAutocompleteRemovedSpace(after: .press, on: .character(","))
+        XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
+        handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character("A"))
+        XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
+        handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character(","))
+        XCTAssertTrue(textDocumentProxy.hasCalled(\.insertTextRef))
+
+        textDocumentProxy.resetCalls()
     }
 
 
@@ -176,68 +267,6 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         validateHapticFeedback(for: .repeatPress, on: char, expected: config.repeat)
         
     }
-
-
-    // MARK: - Autocomplete
-
-    func testShouldApplyAutocorrectSuggestionReturnsTrueForValidActionAndGestureContext() {
-        spaceDragHandler.currentDragTextPositionOffset = 100
-        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
-        spaceDragHandler.currentDragTextPositionOffset = 0
-        textDocumentProxy.documentContextBeforeInput = "abc."
-        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
-        textDocumentProxy.documentContextBeforeInput = "abc"
-        XCTAssertFalse(handler.shouldApplyAutocorrectSuggestion(before: .press, on: .space))
-        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .space))
-        XCTAssertTrue(handler.shouldApplyAutocorrectSuggestion(before: .release, on: .character(".")))
-    }
-
-    func testTryApplyCorrectSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
-        let ref = textDocumentProxy.deleteBackwardRef
-        textDocumentProxy.documentContextBeforeInput = "abc"
-        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
-        handler.tryApplyAutocorrectSuggestion(before: .press, on: .space) // Must be release
-        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-        handler.tryApplyAutocorrectSuggestion(before: .release, on: .backspace) // Must be valid action
-        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-        handler.autocompleteContext.suggestions = []
-        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Must have actions
-        XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
-        handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Valid
-        XCTAssertTrue(textDocumentProxy.hasCalled(ref))
-    }
-
-    func testTryToHandleReplacementActionBeforeGestureOnActionReturnsTrueForReleaseOnValidCharAction() {
-        var result = handler.tryHandleReplacementAction(before: .release, on: .character("A"))
-        XCTAssertFalse(result)
-        result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
-        XCTAssertFalse(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
-        result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
-        XCTAssertTrue(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
-        result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
-        XCTAssertFalse(result)
-    }
-
-    func testTryToReinsertAutocompleteRemovedSpaceAfterGestureOnActionProceedsForReleaseOnSomeActions() {
-        textDocumentProxy.documentContextBeforeInput = "hi"
-        textDocumentProxy.documentContextAfterInput = "you"
-        textDocumentProxy.tryInsertSpaceAfterAutocomplete()
-        textDocumentProxy.documentContextBeforeInput = "hi "
-        textDocumentProxy.tryRemoveAutocompleteInsertedSpace()
-        textDocumentProxy.resetCalls()
-
-        handler.tryReinsertAutocompleteRemovedSpace(after: .press, on: .character(","))
-        XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
-        handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character("A"))
-        XCTAssertFalse(textDocumentProxy.hasCalled(\.insertTextRef))
-        handler.tryReinsertAutocompleteRemovedSpace(after: .release, on: .character(","))
-        XCTAssertTrue(textDocumentProxy.hasCalled(\.insertTextRef))
-
-        textDocumentProxy.resetCalls()
-    }
 }
 
 private class TestClass: KeyboardAction.StandardHandler, Mockable {
@@ -247,7 +276,7 @@ private class TestClass: KeyboardAction.StandardHandler, Mockable {
     lazy var handleGestureOnActionRef = MockReference(handle as (Keyboard.Gesture, KeyboardAction) -> Void)
     lazy var tryApplyAutocorrectSuggestionRef = MockReference(tryApplyAutocorrectSuggestion)
     lazy var tryChangeKeyboardTypeRef = MockReference(tryChangeKeyboardType)
-    lazy var tryEndSentenceRef = MockReference(tryEndSentence)
+    lazy var tryEndCurrentSentenceRef = MockReference(tryEndCurrentSentence)
     lazy var tryReinsertAutocompleteRemovedSpaceRef = MockReference(tryReinsertAutocompleteRemovedSpace)
     lazy var tryRemoveAutocompleteInsertedSpaceRef = MockReference(tryRemoveAutocompleteInsertedSpace)
 
@@ -266,9 +295,9 @@ private class TestClass: KeyboardAction.StandardHandler, Mockable {
         call(tryChangeKeyboardTypeRef, args: (gesture, action))
     }
 
-    override func tryEndSentence(after gesture: Keyboard.Gesture, on action: KeyboardAction) {
-        super.tryEndSentence(after: gesture, on: action)
-        call(tryEndSentenceRef, args: (gesture, action))
+    override func tryEndCurrentSentence(after gesture: Keyboard.Gesture, on action: KeyboardAction) {
+        super.tryEndCurrentSentence(after: gesture, on: action)
+        call(tryEndCurrentSentenceRef, args: (gesture, action))
     }
 
     override func tryReinsertAutocompleteRemovedSpace(after gesture: Keyboard.Gesture, on action: KeyboardAction) {
