@@ -83,7 +83,6 @@ class KeyboardInputViewControllerTests: XCTestCase {
     }
 
     func testTextDocumentProxyReturnsTheInputProxyIfOneIsSet() {
-        let input = MockTextInput()
         let proxy = MockTextDocumentProxy()
         vc.textInputProxy = proxy
         XCTAssertTrue(vc.textDocumentProxy === proxy)
@@ -92,7 +91,6 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testTextInputProxyMakesVcSyncWithProxy() {
         let vc = TestClass()
         vc.mock.resetCalls()
-        let input = MockTextInput()
         let proxy = MockTextDocumentProxy()
         vc.textInputProxy = proxy
         eventually {

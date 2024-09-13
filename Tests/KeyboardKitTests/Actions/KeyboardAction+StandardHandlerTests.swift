@@ -48,6 +48,8 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
 
+    // MARK: - KeyboardActionHandler
+
     func testCanHandleGestureOnActionThatIsNotNil() {
         XCTAssertTrue(handler.canHandle(.press, on: .backspace))
         XCTAssertFalse(handler.canHandle(.doubleTap, on: .backspace))
@@ -86,7 +88,9 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
 
-    func testActionForGestureOnActionIsNotForAllActionsWithStandardAction() {
+    // MARK: - Actions
+
+    func testActionForGestureOnActionIsNotDefinedForAllActionsWithStandardAction() {
         KeyboardAction.testActions.forEach { action in
             Gesture.allCases.forEach { gesture in
                 let result = handler.action(for: gesture, on: action)
@@ -111,6 +115,9 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNil(result)
     }
+
+
+    // MARK: - Feedback
 
     func testShouldTriggerHapticFeedbackInSomeCases() {
         var result = handler.shouldTriggerHapticFeedback(for: .press, on: .control)
@@ -170,6 +177,9 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         
     }
 
+
+    // MARK: - Autocomplete
+    
     func testTryApplyCorrectSuggestionOnlyProceedsForReleaseOnSomeActionsWhenSuggestionsExist() {
         let ref = textDocumentProxy.deleteBackwardRef
         let autocompleteSuggestions = [

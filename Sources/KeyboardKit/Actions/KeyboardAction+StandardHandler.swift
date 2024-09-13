@@ -20,6 +20,10 @@ extension KeyboardAction {
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
+    /// Most functionality has a `should` and `try` function
+    /// tuple. This lets you easily override if an operation
+    /// should be performed, and how to perform it.
+    ///
     /// See <doc:Actions-Article> for more information.
     open class StandardHandler: NSObject, KeyboardActionHandler {
 
@@ -145,17 +149,6 @@ extension KeyboardAction {
             handle(gesture, on: action, replaced: false)
         }
 
-        /// Handle a certain autocomplete suggestion.
-        open func handle(
-            _ suggestion: Autocomplete.Suggestion
-        ) {
-            if suggestion.isUnknown, autocompleteContext.isAutolearnEnabled {
-                autocompleteService?.learn(suggestion)
-            }
-            keyboardContext.insertAutocompleteSuggestion(suggestion)
-            handle(.release, on: .character(""))
-        }
-
         /// Handle a certain action gesture, with replace logic.
         open func handle(
             _ gesture: Keyboard.Gesture,
@@ -164,7 +157,7 @@ extension KeyboardAction {
         ) {
             if !replaced && tryHandleReplacementAction(before: gesture, on: action) { return }
             let gestureAction = self.action(for: gesture, on: action)
-            triggerFeedback(for: gesture, on: action)
+            tryTriggerFeedback(for: gesture, on: action)
             tryUpdateSpaceDragState(for: gesture, on: action)
             guard let gestureAction else { return }
             tryRemoveAutocompleteInsertedSpace(before: gesture, on: action)
@@ -175,6 +168,17 @@ extension KeyboardAction {
             tryChangeKeyboardType(after: gesture, on: action)
             tryPerformAutocomplete(after: gesture, on: action)
             tryRegisterEmoji(after: gesture, on: action)
+        }
+
+        /// Handle a certain autocomplete suggestion.
+        open func handle(
+            _ suggestion: Autocomplete.Suggestion
+        ) {
+            if suggestion.isUnknown, autocompleteContext.isAutolearnEnabled {
+                autocompleteService?.learn(suggestion)
+            }
+            keyboardContext.insertAutocompleteSuggestion(suggestion)
+            handle(.release, on: .character(""))
         }
 
         /// Handle a certain keyboard action drag gesture.
@@ -191,111 +195,7 @@ extension KeyboardAction {
         }
 
 
-
-        // MARK: - Feedback
-
-        /// The feedback to use for a certain action gesture.
-        open func audioFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Feedback.Audio? {
-            let config = feedbackContext.audioConfiguration
-            let custom = config.customFeedback(for: gesture, on: action)
-            if let custom = custom { return custom }
-            if action == .space && gesture == .longPress { return nil }
-            if action == .backspace && gesture == .press { return config.delete }
-            if action == .backspace && gesture == .repeatPress { return config.delete }
-            if action.isInputAction && gesture == .press { return config.input }
-            if action.isSystemAction && gesture == .press { return config.system }
-            return nil
-        }
-
-        /// The feedback to use for a certain action gesture.
-        open func hapticFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Feedback.Haptic? {
-            let config = feedbackContext.hapticConfiguration
-            return config.feedback(for: gesture, on: action)
-        }
-
-        /// Whether to trigger feedback for an action.
-        open func shouldTriggerFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            return true
-        }
-
-        /// Whether to trigger audio feedback for an action.
-        open func shouldTriggerAudioFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            return true
-        }
-
-        /// Whether to trigger haptic feedback for an action.
-        open func shouldTriggerHapticFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            let hasRelease = self.action(for: .release, on: action) != nil
-            if gesture == .press && hasRelease { return true }
-            let hasAction = self.action(for: gesture, on: action) != nil
-            if gesture != .release && hasAction { return true }
-            let config = feedbackContext.hapticConfiguration
-            return config.hasCustomFeedback(for: gesture, on: action)
-        }
-
-        /// Trigger a certain audio feedback.
-        ///
-        /// The service just uses the ``feedbackService`` to
-        /// trigger the provided feedback.
-        open func triggerAudioFeedback(_ feedback: Feedback.Audio) {
-            feedbackService.triggerAudioFeedback(feedback)
-        }
-
-        /// Trigger a certain haptic feedback.
-        ///
-        /// The service just uses the ``feedbackService`` to
-        /// trigger the provided feedback.
-        open func triggerHapticFeedback(_ feedback: Feedback.Haptic) {
-            feedbackService.triggerHapticFeedback(feedback)
-        }
-
-        /// Trigger feedback for a certain action gesture.
-        open func triggerFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            guard shouldTriggerFeedback(for: gesture, on: action) else { return }
-            triggerAudioFeedback(for: gesture, on: action)
-            triggerHapticFeedback(for: gesture, on: action)
-        }
-
-        /// Trigger feedback for a certain action gesture.
-        open func triggerAudioFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            if !shouldTriggerAudioFeedback(for: gesture, on: action) { return }
-            guard let feedback = audioFeedback(for: gesture, on: action) else { return }
-            triggerAudioFeedback(feedback)
-        }
-
-        /// Trigger feedback for a certain action gesture.
-        open func triggerHapticFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            if !shouldTriggerHapticFeedback(for: gesture, on: action) { return }
-            guard let feedback = hapticFeedback(for: gesture, on: action) else { return }
-            triggerHapticFeedback(feedback)
-        }
-
-
-        // MARK: - Open Functions
+        // MARK: - Actions
 
         /// The standard action to use for a gesture action.
         open func action(
@@ -331,6 +231,139 @@ extension KeyboardAction {
             return nil
         }
 
+
+        // MARK: - Feedback
+
+        /// The audio feedback to use for an action gesture.
+        open func audioFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Feedback.Audio? {
+            let config = feedbackContext.audioConfiguration
+            let custom = config.customFeedback(for: gesture, on: action)
+            if let custom = custom { return custom }
+            if action == .space && gesture == .longPress { return nil }
+            if action == .backspace && gesture == .press { return config.delete }
+            if action == .backspace && gesture == .repeatPress { return config.delete }
+            if action.isInputAction && gesture == .press { return config.input }
+            if action.isSystemAction && gesture == .press { return config.system }
+            return nil
+        }
+
+        /// The haptic feedback to use for an action gesture.
+        open func hapticFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Feedback.Haptic? {
+            let config = feedbackContext.hapticConfiguration
+            return config.feedback(for: gesture, on: action)
+        }
+
+        /// Whether to trigger feedback for an action.
+        ///
+        /// This always returns `true` by default. It causes
+        /// this class to perform more granular checks later.
+        open func shouldTriggerFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            return true
+        }
+
+        /// Whether to trigger audio feedback for an action.
+        ///
+        /// This always returns `true` by default. It causes
+        /// this class to perform more granular checks later.
+        open func shouldTriggerAudioFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            return true
+        }
+
+        /// Whether to trigger haptic feedback for an action.
+        ///
+        /// This checks various gesture actions to determine
+        /// if the feedback should be triggered.
+        open func shouldTriggerHapticFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            let hasRelease = self.action(for: .release, on: action) != nil
+            if gesture == .press && hasRelease { return true }
+            let hasAction = self.action(for: gesture, on: action) != nil
+            if gesture != .release && hasAction { return true }
+            let config = feedbackContext.hapticConfiguration
+            return config.hasCustomFeedback(for: gesture, on: action)
+        }
+
+        /// Trigger a certain audio feedback.
+        open func triggerAudioFeedback(_ feedback: Feedback.Audio) {
+            feedbackService.triggerAudioFeedback(feedback)
+        }
+
+        /// Trigger a certain haptic feedback.
+        open func triggerHapticFeedback(_ feedback: Feedback.Haptic) {
+            feedbackService.triggerHapticFeedback(feedback)
+        }
+
+        /// Try to trigger audio and haptic feedback for the
+        /// provided gesture action.
+        open func tryTriggerFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            guard shouldTriggerFeedback(for: gesture, on: action) else { return }
+            tryTriggerAudioFeedback(for: gesture, on: action)
+            tryTriggerHapticFeedback(for: gesture, on: action)
+        }
+
+        /// Try to trigger audio feedback for the action.
+        open func tryTriggerAudioFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            if !shouldTriggerAudioFeedback(for: gesture, on: action) { return }
+            guard let feedback = audioFeedback(for: gesture, on: action) else { return }
+            triggerAudioFeedback(feedback)
+        }
+
+        /// Try to trigger haptic feedback for the action.
+        open func tryTriggerHapticFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            if !shouldTriggerHapticFeedback(for: gesture, on: action) { return }
+            guard let feedback = hapticFeedback(for: gesture, on: action) else { return }
+            triggerHapticFeedback(feedback)
+        }
+
+        @available(*, deprecated, renamed: "tryTriggerFeedback(for:on:)")
+        open func triggerFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            tryTriggerFeedback(for: gesture, on: action)
+        }
+
+        @available(*, deprecated, renamed: "tryTriggerAudioFeedback(for:on:)")
+        open func triggerAudioFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            tryTriggerAudioFeedback(for: gesture, on: action)
+        }
+
+        @available(*, deprecated, renamed: "tryTriggeHapticFeedback(for:on:)")
+        open func triggerHapticFeedback(
+            for gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            tryTriggerHapticFeedback(for: gesture, on: action)
+        }
+
+
+        // MARK: - Autocomplete
 
         /// Whether to apply autocorrect before an action.
         open func tryApplyAutocorrectSuggestion(
