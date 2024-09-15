@@ -323,7 +323,9 @@ private extension KeyboardView {
         totalWidth width: Double,
         inputWidth: Double
     ) -> ButtonView {
-        buttonViewBuilder((
+        let action = item.action
+        let prediction = autocompleteContext.nextCharacterPrediction(for: action)
+        return buttonViewBuilder((
             item: item,
             view: KeyboardViewItem(
                 item: item,
@@ -334,6 +336,7 @@ private extension KeyboardView {
                 calloutContext: calloutContext,
                 keyboardWidth: width,
                 inputWidth: inputWidth,
+                isNextProbability: prediction,
                 content: buttonContent(for: item)
             )
         ))

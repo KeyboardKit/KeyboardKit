@@ -22,6 +22,12 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.9
 
+### ✨ Features
+
+* `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
+* `KeyboardView` now applies next character probabilities to its items. 
+* `View+KeyboardButton` now supports applying extended tap areas to more probable keys.
+
 ### 💡 Adjustments
 
 * `Color` and `Image` extensions have been moved to the `Styling` namespace.

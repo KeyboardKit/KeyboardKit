@@ -27,9 +27,10 @@ import SwiftUI
 /// supports learning suggestions.
 ///
 /// The ``isNextCharacterPredictionEnabled`` settings can be
-/// used to control if the keyboard should perform character
-/// predictions after the main autocomplete operation, which
-/// will then be written to ``nextCharacterPredictions``.
+/// used to control if next character predictions is enabled.
+/// The ``nextCharacterProbabilities`` property will then be
+/// set (today by the controller) after which it can be used
+/// by the ``nextCharacterPrediction(for:)-5h4gq`` function.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
@@ -125,5 +126,25 @@ public class AutocompleteContext: ObservableObject {
         isLoading = false
         lastError = nil
         suggestions = []
+    }
+}
+
+public extension AutocompleteContext {
+
+    /// Get a 0-1 next character percentage prediction for a certain char.
+    func nextCharacterPrediction(for char: String) -> Double {
+        guard
+            let first = char.first,
+            let value = nextCharacterPredictions[first]
+        else { return 0 }
+        return value
+    }
+
+    /// Get a 0-1 next character percentage prediction for a certain action.
+    func nextCharacterPrediction(for action: KeyboardAction) -> Double {
+        switch action {
+        case .character(let char): nextCharacterPrediction(for: char)
+        default: 0
+        }
     }
 }

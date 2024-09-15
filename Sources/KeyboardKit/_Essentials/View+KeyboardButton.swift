@@ -11,9 +11,13 @@ import SwiftUI
 public extension View {
 
     /// Bind keyboard button styles and gestures to the view.
-    /// 
+    ///
     /// The `edgeInsets` init parameter can be used to apply
     /// intrinsic insets within the interactable button area.
+    ///
+    /// > Note: ``Keyboard/Button`` view should replace this
+    /// modifier, and use environment values to apply styles
+    /// and features. This will be done in KeyboardKit 9.0.
     ///
     /// - Parameters:
     ///   - action: The keyboard action to trigger.
@@ -22,6 +26,7 @@ public extension View {
     ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
     ///   - keyboardContext: The keyboard context to use.
     ///   - calloutContext: The callout context to affect, if any.
+    ///   - additionalTapArea: An additional tap area in point to add outside the button.
     ///   - edgeInsets: The edge insets to apply to the interactable area, if any.
     ///   - isPressed: An optional binding that can observe the button pressed state.
     ///   - scrollState: The scroll state to use, if any.
@@ -33,6 +38,7 @@ public extension View {
         repeatGestureTimer: GestureButtonTimer? = nil,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
+        additionalTapArea: Double = 0,
         edgeInsets: EdgeInsets = .init(),
         isPressed: Binding<Bool> = .constant(false),
         scrollState: GestureButtonScrollState? = nil,
@@ -45,6 +51,11 @@ public extension View {
             .font(style.font)
             .padding(edgeInsets)
             .background(Color.clearInteractable)
+            .additionalTapArea(
+                additionalTapArea,
+                for: action,
+                actionHandler: actionHandler
+            )
             .keyboardButtonGestures(
                 for: action,
                 actionHandler: actionHandler,
@@ -61,7 +72,7 @@ public extension View {
             )
             .keyboardButtonAccessibility(for: action)
     }
-    
+
     /// Apply keyboard accessibility for the provided action.
     @ViewBuilder
     func keyboardButtonAccessibility(
@@ -78,7 +89,24 @@ public extension View {
 }
 
 private extension View {
-    
+
+    @ViewBuilder
+    func additionalTapArea(
+        _ points: Double,
+        for action: KeyboardAction,
+        actionHandler: KeyboardActionHandler
+    ) -> some View {
+        self.zIndex(points)
+            .background(
+                Color.clearInteractable
+                    .padding(-points)
+                    .onTapGesture {
+                        actionHandler.handle(.press, on: action)
+                        actionHandler.handle(.release, on: action)
+                    }
+            )
+    }
+
     @ViewBuilder
     func localeContextMenu(
         for action: KeyboardAction,
@@ -94,7 +122,7 @@ private extension View {
             self
         }
     }
-    
+
     func shouldApplyLocaleContextMenu(
         for action: KeyboardAction,
         context: KeyboardContext
@@ -108,12 +136,12 @@ private extension View {
 }
 
 #Preview {
-    
+
     struct Preview: View {
-        
+
         @State
         var isPressed = false
-        
+
         @State
         var context: KeyboardContext = {
             let context = KeyboardContext()
@@ -122,7 +150,7 @@ private extension View {
             context.spaceLongPressBehavior = .openLocaleContextMenu
             return context
         }()
-        
+
         var body: some View {
             VStack {
                 VStack(spacing: 20) {
@@ -142,11 +170,11 @@ private extension View {
                 .padding()
                 .background(Color.gray.opacity(0.5))
                 .cornerRadius(20)
-                
+
                 Text("\(isPressed ? "Pressed": "Not Pressed")")
             }
         }
-        
+
         func button<Content: View>(
             for content: Content,
             action: KeyboardAction = .backspace,

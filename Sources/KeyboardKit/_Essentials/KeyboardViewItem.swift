@@ -9,6 +9,14 @@
 import SwiftUI
 
 /// This view renders button item for a ``KeyboardView``.
+/// 
+/// The reason why the ``KeyboardView`` doesn't just use the
+/// ``Keyboard/Button`` view, is that this view applies more
+/// insets and configurations to the content.
+///
+/// `TODO` KeyboardKit 9.0 should change ``KeyboardView`` to
+/// not use this view, but rather uses a ``Keyboard/Button``
+/// with the proper styles, insets, etc.
 public struct KeyboardViewItem<Content: View>: View {
 
     /// Create a keyboard view item.
@@ -22,6 +30,7 @@ public struct KeyboardViewItem<Content: View>: View {
     ///   - calloutContext: The callout context to affect, if any.
     ///   - keyboardWidth: The total width of the keyboard.
     ///   - inputWidth: The input width within the keyboard.
+    ///   - isNextProbability: The probability (0-1) that the button will be tapped next.
     ///   - content: The content view to use within the item.
     init(
         item: KeyboardLayout.Item,
@@ -32,6 +41,7 @@ public struct KeyboardViewItem<Content: View>: View {
         calloutContext: CalloutContext?,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
+        isNextProbability: Double = 0,
         content: Content
     ) {
         self.item = item
@@ -42,6 +52,7 @@ public struct KeyboardViewItem<Content: View>: View {
         self.calloutContext = calloutContext
         self.keyboardWidth = keyboardWidth
         self.inputWidth = inputWidth
+        self.isNextProbability = isNextProbability
         self.content = content
     }
 
@@ -65,6 +76,7 @@ public struct KeyboardViewItem<Content: View>: View {
         self.calloutContext = calloutContext
         self.keyboardWidth = keyboardWidth
         self.inputWidth = inputWidth
+        self.isNextProbability = 0
         self.content = content
     }
 
@@ -76,6 +88,7 @@ public struct KeyboardViewItem<Content: View>: View {
     private let calloutContext: CalloutContext?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
+    private let isNextProbability: Double
     private let content: Content
     
     @ObservedObject
@@ -86,7 +99,7 @@ public struct KeyboardViewItem<Content: View>: View {
     
     public var body: some View {
         ZStack(alignment: item.alignment) {
-            Color.clear
+            Color.clearInteractable
             content
         }
         .opacity(contentOpacity)
@@ -94,7 +107,8 @@ public struct KeyboardViewItem<Content: View>: View {
         .keyboardLayoutItemSize(
             for: item,
             rowWidth: keyboardWidth,
-            inputWidth: inputWidth)
+            inputWidth: inputWidth
+        )
         .keyboardButton(
             for: item.action,
             style: buttonStyle,
@@ -102,6 +116,7 @@ public struct KeyboardViewItem<Content: View>: View {
             repeatGestureTimer: repeatGestureTimer,
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
+            additionalTapArea: isNextProbability * 5,
             edgeInsets: item.edgeInsets,
             isPressed: $isPressed
         )
