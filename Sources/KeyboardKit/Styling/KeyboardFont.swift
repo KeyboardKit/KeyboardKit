@@ -8,13 +8,11 @@
 
 import SwiftUI
 
-/**
- This codable struct represents a font and is used to define
- fonts in `Codable` types.
- 
- This type is complex for its simple use. Consider replacing
- it together with ``FontType`` and ``FontWeight`` in 9.0.
- */
+/// This codable struct represents a keyboard-supported font
+/// and is used to support fonts in `Codable` types.
+///
+/// This is for instance needed for a keyboard theme persist
+/// a custom font.
 public struct KeyboardFont: Codable, Equatable {
 
     public init(
@@ -27,6 +25,105 @@ public struct KeyboardFont: Codable, Equatable {
 
     public var type: FontType
     public var weight: FontWeight?
+}
+
+public extension KeyboardFont {
+
+    /// This enum defines various keyboard font types.
+    enum FontType: Codable, Equatable {
+
+        case body
+        case callout
+        case caption
+        case caption2
+        case custom(_ name: String, size: CGFloat)
+        case customFixed(_ name: String, size: CGFloat)
+        case footnote
+        case headline
+        case largeTitle
+        case subheadline
+        case system(size: CGFloat)
+        case title
+        case title2
+        case title3
+    }
+}
+
+public extension KeyboardFont.FontType {
+
+    /// Get the native font.
+    var font: Font {
+        switch self {
+        case .body: .body
+        case .callout: .callout
+        case .caption: .caption
+        case .caption2: .caption2
+        case .custom(let name, let size): .custom(name, size: size)
+        case .customFixed(let name, let size): .custom(name, fixedSize: size)
+        case .footnote: .footnote
+        case .headline: .headline
+        case .largeTitle: .largeTitle
+        case .subheadline: .subheadline
+        case .system(let size): .system(size: size)
+        case .title: .title
+        case .title2: .title2
+        case .title3: .title3
+        }
+    }
+}
+
+public extension KeyboardFont {
+
+    /// This enum defines various keyboard font weights.
+    enum FontWeight: Codable, Equatable {
+
+        case black
+        case bold
+        case heavy
+        case light
+        case medium
+        case regular
+        case semibold
+        case thin
+        case ultraLight
+    }
+}
+
+public extension KeyboardFont.FontWeight {
+
+    /// Get the native font weight.
+    var fontWeight: Font.Weight {
+        switch self {
+        case .black: .black
+        case .bold: .bold
+        case .heavy: .heavy
+        case .light: .light
+        case .medium: .medium
+        case .regular: .regular
+        case .semibold: .semibold
+        case .thin: .thin
+        case .ultraLight: .ultraLight
+        }
+    }
+}
+
+public extension Font.Weight {
+
+    /// Get the keyboard font weight for the weight.
+    var keyboardWeight: KeyboardFont.FontWeight {
+        switch self {
+        case .black: .black
+        case .bold: .bold
+        case .heavy: .heavy
+        case .light: .light
+        case .medium: .medium
+        case .regular: .regular
+        case .semibold: .semibold
+        case .thin: .thin
+        case .ultraLight: .ultraLight
+        default: .regular
+        }
+    }
 }
 
 public extension KeyboardFont {

@@ -20,6 +20,18 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 8.9
+
+### 💡 Adjustments
+
+* `Color` and `Image` extensions have been moved to the `Styling` namespace.
+
+### 🐛 Bug Fixes
+
+* This protect against an undefined key error when instantiating a KeyboardInputViewController in an app.
+
+
+
 ## 8.8.7
 
 This version re-adds the old way of opening URLs, but makes it work with iOS 18. This means that url actions are once again rendered as full-gesture buttons.

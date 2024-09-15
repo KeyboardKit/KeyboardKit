@@ -13,21 +13,11 @@
 
 This article describes the KeyboardKit styling engine.
 
-While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit keyboards can be customized to great extent.
+While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit keyboards can be to great extent.
+
+Most KeyboardKit views have a corresponding ``SwiftUI/View`` extension that lets you apply a custom style. This is however not yet supported by ``KeyboardView``, since its styles need to be dynamic. KeyboardKit 9. will aim to fix this, to make styling easier.
 
 👑 [KeyboardKit Pro][Pro] unlocks a theme engine and many themes. Information about Pro features can be found at the end of this article.
-
-> Important: The ``KeyboardStyle`` namespace will probably be removed in KeyboardKit 9.0, together with the ``KeyboardStyleProvider``. Keyboard styles will then be applied with SwiftUI view modifiers.
-
-
-
-## Terminology
-
-KeyboardKit uses different names for different ways to style keyboards. 
-
-* A ``KeyboardStyle`` style is *static* and can be applied to certain views, using view modifiers with the same name prefix as the view.
-* A ``KeyboardStyleProvider`` is *dynamic* and provides context-based styles, which is currently required for more complex views.
-* A ``KeyboardTheme`` is a *static* style provider that can define, reuse and share styles.
 
 
 
@@ -35,26 +25,52 @@ KeyboardKit uses different names for different ways to style keyboards.
 
 KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 
+This namespace will probably be removed in KeyboardKit 9.0, together with the ``KeyboardStyleProvider``. Keyboard styles will then be applied with SwiftUI view modifiers.
+
 
 
 ## Keyboard Style Providers
 
-In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc. 
-
-More complex components, like ``KeyboardView``, does not yet use view modifiers, but instead use a ``KeyboardStyleProvider`` to apply dynamic, contextual, styles based on internal and external state.
+In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
 
 KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
-> Important: Views like ``KeyboardView`` will apply style modifiers to any view that it renders. This means that you can't apply these view modifiers to the ``KeyboardView``. You can however apply style modifiers to views that you create in view builders.
+
+
+## Color Extensions
+
+KeyboardKit defines additional colors that aim to match native iOS system colors, like ``SwiftUI/Color/keyboardBackground``. See ``SwiftUI/Color`` for a full list of additional colors that are provided by the library.
+
+KeyboardKit also has contextual color functions like ``SwiftUI/Color/keyboardBackground(for:)``, which vary the result on the context. Use these functions instead of the raw color values whenever possible.
+
+> Important: Some keyboard colors are semi-transparent to work around a system bug in iOS, where iOS defines an invalid color scheme when a keyboard is used with a dark appearance text field in light mode. iOS will say that the color scheme is `.dark`, even if the system color scheme is light. Since dark appearance keyboards in light mode look quite different from keyboards in dark mode, this makes it impossible to apply the correct style. This has been [reported to Apple][Bug], but until it's fixes, thse colors will stay semi-transparent.
+
+
+[Bug]: https://github.com/KeyboardKit/KeyboardKit/issues/305
 
 
 
-## Resources & Assets
+## Image Extensions
 
-KeyboardKit comes with colors and assets that can be used to create native-looking keyboards.
+KeyboardKit provides additional image extensions that mimic system keyboard icons, and [KeyboardKit Pro][Pro] provides vectorized assets for e.g. ``EmojiCategory``. Information about Pro features can be found at the end of this article.
 
-* ``SwiftUI/Color`` has a bunch of keyboard-specific colors, like ``SwiftUI/Color/keyboardBackground``.
-* ``SwiftUI/Image`` has a bunch of keyboard-specific images, like ``SwiftUI/Image/keyboard``.
+KeyboardKit has additional images that aim to match native iOS system images, like ``SwiftUI/Image/keyboard``. See ``SwiftUI/Image`` for a full list of images that are provided by the library.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+@Row {
+    @Column {}
+    @Column(size: 3) {
+        ![SF Symbol Images](images)
+    }
+    @Column {}
+}
+
+These images are prefixed with **keyboard** to make them easy to find, and scale well when resized with the **.frame** and **.font** modifiers.
+
+
+
+## Type Extensions
 
 Many types in the library define standard images, texts & colors. For instance you can get the standard image and text for a ``KeyboardAction`` with the ``KeyboardAction/standardButtonImage(for:)`` and ``KeyboardAction/standardButtonText(for:)``:
 
@@ -64,7 +80,7 @@ let image = KeyboardAction.command.standardButtonImage(for: context) // Command 
 let text = KeyboardAction.space.standardButtonText(for: context)     // KKL10n.space
 ```
 
-Have a look at the <doc:Colors-Article> and <doc:Images-Article> articles for more information about colors and images.
+These values can be overridden at any time, e.g. with the various view styles, by defining a custom ``KeyboardStyleProvider``, etc.
 
 
 
@@ -115,9 +131,28 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a theme engine and a ``KeyboardTheme``, that makes it a lot easier to style your keyboard with themes.
+[KeyboardKit Pro][Pro] unlocks additional image assets, and a ``KeyboardTheme`` engine that makes easier to style keyboards with themes.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+
+### Emoji Icons
+
+KeyboardKit Pro unlocks vectorized emoji assets for all ``EmojiCategory``s, for instance ``SwiftUI/Image/keyboardEmoji`` & ``SwiftUI/Image/emojiCategory(_:)``:
+
+@Row {
+    @Column {}
+    @Column(size: 3) {
+        ![Asset-based Images](images-emojis)
+    }
+    @Column {}
+}
+
+Since these images are vectorized, they scale well when they are resized. They however do not support different font weights, so do not render them alongside SF Symbols that support such features.
+
+### Themes
+
+KeyboardKit Pro unlocks a ``KeyboardTheme`` engine that makes easier to style keyboards with themes, as well as a bunch of themes:
 
 @Row {
     @Column { ![Standard Green Theme](standard-green) }

@@ -59,7 +59,6 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 * 📱 <doc:App-Article> - KeyboardKit has app-specific screens & views.
 * 💡 <doc:Autocomplete-Article> - KeyboardKit can perform autocomplete.
 * 🗯 <doc:Callouts-Article> - KeyboardKit can show input & secondary action callouts.
-* 🌈 <doc:Colors-Article> - KeyboardKit defines keyboard-specific colors.
 * 🖥️ <doc:Device-Article> - KeyboardKit has device-specific utilities.
 * 🎤 <doc:Dictation-Article> - KeyboardKit can perform dictation from the keyboard.
 * 😀 <doc:Emojis-Article> - KeyboardKit defines emojis, categories, versions, skin tones, etc.
@@ -67,7 +66,6 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 * 🔉 <doc:Feedback-Article> - KeyboardKit can trigger audio & haptic feedback.
 * 👆 <doc:Gestures-Article> - KeyboardKit has a customizable keyboard gesture engine.
 * 🏠 <doc:Host-Article> - KeyboardKit can identify the host application.
-* 🖼️ <doc:Images-Article> - KeyboardKit defines keyboard-specific images.
 * 🔣 <doc:Layout-Article> - KeyboardKit has customizable input sets & keyboard layouts.
 * 🌐 <doc:Localization-Article> - KeyboardKit supports **64 locales**.
 * 🗺️ <doc:Navigation-Article> - KeyboardKit lets you open urls and apps from the keyboard.
@@ -137,7 +135,6 @@ KeyboardKit is available under the MIT license.
 - <doc:App-Article>
 - <doc:Autocomplete-Article>
 - <doc:Callouts-Article>
-- <doc:Colors-Article>
 - <doc:Device-Article>
 - <doc:Dictation-Article>
 - <doc:Emojis-Article>
@@ -145,7 +142,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Feedback-Article>
 - <doc:Gestures-Article>
 - <doc:Host-Article>
-- <doc:Images-Article>
 - <doc:Layout-Article>
 - <doc:Localization-Article>
 - <doc:Navigation-Article>

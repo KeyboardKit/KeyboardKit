@@ -209,7 +209,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete-article
 [Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/buttons-article
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts-article
-[Colors]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/colors-article
 [Device]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/device-article
 [Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation-article
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis-article
@@ -217,7 +216,6 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback-article
 [Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures-article
 [Host]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/host-article
-[Images]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/images-article
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout-article
 [Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization-article
 [Navigation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/navigation-article
