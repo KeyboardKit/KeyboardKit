@@ -12,15 +12,21 @@ import UIKit
 
 public extension KeyboardInputViewController {
     
-    /// The bundle ID of the host application, if any.
+    /// The bundle ID of the host application, if any, or if the view
+    /// is instantiated directly within a host app, the bundle id
+    /// of the main bundle.
     ///
     /// The property uses technologies that may stop working
     /// in any future iOS version. Do not rely solely on the
     /// function, and design the app to be able to work even
     /// if this feature suddenly stops working.
     var hostApplicationBundleId: String? {
-        if let id = hostBundleIdValueBefore16 { return id }
-        return hostBundleIdValueFor16
+        if Bundle.main.isExtension {
+            if let id = hostBundleIdValueBefore16 { return id }
+            return hostBundleIdValueFor16
+        } else {
+            return Bundle.main.bundleIdentifier
+        }
     }
     
     @available(*, deprecated, renamed: "hostApplicationBundleId")
