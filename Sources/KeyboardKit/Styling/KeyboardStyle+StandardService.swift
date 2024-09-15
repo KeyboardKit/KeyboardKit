@@ -1,5 +1,5 @@
 //
-//  KeyboardStyle+StandardProvider.swift
+//  KeyboardStyle+StandardService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -14,8 +14,8 @@ extension KeyboardStyle {
     /// This class provides a standard way to create dynamic
     /// keyboard styles.
     ///
-    /// This provider returns styles that mimic the standard
-    /// style of an iOS keyboard on iPhone and iPad.
+    /// The service will by default mimic the standard style
+    /// of an iOS keyboard on iPhone and iPad.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
@@ -24,7 +24,7 @@ extension KeyboardStyle {
     /// of every input key:
     ///
     /// ```swift
-    /// class CustomKeyboardStyleProvider: KeyboardStyle.StandardProvider {
+    /// class CustomKeyboardStyleService: KeyboardStyle.StandardService {
     ///
     ///     override func buttonStyle(
     ///         for action: KeyboardAction,
@@ -39,9 +39,9 @@ extension KeyboardStyle {
     /// ```
     ///
     /// See <doc:Styling-Article> for more information.
-    open class StandardProvider: KeyboardStyleProvider {
-        
-        /// Create a standard keyboard style provider.
+    open class StandardService: KeyboardStyleService {
+
+        /// Create a standard keyboard style service.
         ///
         /// - Parameters:
         ///   - keyboardContext: The keyboard context to use.
@@ -354,8 +354,8 @@ extension KeyboardStyle {
 
 // MARK: - Internal, Testable Extensions
 
-extension KeyboardStyle.StandardProvider {
-    
+extension KeyboardStyle.StandardService {
+
     var isGregorianAlpha: Bool {
         keyboardType.isAlphabetic && locale.matches(.georgian)
     }

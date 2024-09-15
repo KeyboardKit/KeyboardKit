@@ -11,6 +11,9 @@ import Foundation
 public extension Dictation {
     
     /// This type can configure a ``DictationService``.
+    ///
+    /// > Note: These two configurations types will probably
+    /// be merged in KeyboardKit 9.0.
     struct Configuration: Codable, Equatable {
         
         /// Create a dictation configuration.

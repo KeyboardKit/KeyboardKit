@@ -105,7 +105,7 @@ If you need to use a locale (language) that KeyboardKit doesn't support yet, lik
 
 To change the keys of the keyboard to fit an unsupported locale, you must implement a custom ``InputSet`` and ``KeyboardLayout``, where an input set defines the input keys and a layout defines the full layout. See the <doc:KeyboardLayout>  article for more information.
 
-To change the texts of the system keys, you must create a custom ``KeyboardStyleProvider`` (although this will change to be easier in KeyboardKit 9). See the <doc:Styling-Article> article for more information.
+To change the texts of the system keys, you must create a custom ``KeyboardStyleService`` (although this will change to be easier in KeyboardKit 9). See the <doc:Styling-Article> article for more information.
 
 To change the secondary callout actions that show when long pressing certain keys, you must create a custom ``CalloutService``. See the <doc:Callouts-Article> article for more information.
 

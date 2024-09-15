@@ -18,9 +18,17 @@ public extension Emoji {
             actionHandler: KeyboardActionHandler,
             keyboardContext: KeyboardContext,
             calloutContext: CalloutContext?,
-            styleProvider: KeyboardStyleProvider
+            styleService: KeyboardStyleService
         ) {}
-        
+
+        @available(*, deprecated, message: "Use the style service initializer instead.")
+        init(
+            actionHandler: KeyboardActionHandler,
+            keyboardContext: KeyboardContext,
+            calloutContext: CalloutContext?,
+            styleProvider: KeyboardStyleService
+        ) {}
+
         public var body: some View {
             EmptyView()
         }

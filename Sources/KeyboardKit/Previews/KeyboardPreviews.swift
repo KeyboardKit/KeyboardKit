@@ -22,7 +22,7 @@ import Foundation
 /// - ``KeyboardInputViewController``.``KeyboardInputViewController/preview``
 /// - ``KeyboardLayout``.``KeyboardLayout/preview``
 /// - ``KeyboardLayoutService``.``KeyboardLayoutService/preview``
-/// - ``KeyboardStyleProvider``.``KeyboardStyleProvider/preview``
+/// - ``KeyboardStyleService``.``KeyboardStyleService/preview``
 /// - ``UIKit/UITextDocumentProxy``.``UIKit/UITextDocumentProxy/preview``
 ///
 /// These preview implementations make it easier to use SwiftUI

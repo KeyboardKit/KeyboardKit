@@ -12,6 +12,9 @@ public extension Dictation {
     
     /// This type can configure a ``KeyboardDictationService``
     /// by describing how to perform keyboard dictation.
+    ///
+    /// > Note: These two configurations types will probably
+    /// be merged in KeyboardKit 9.0.
     struct KeyboardConfiguration: Codable, Equatable {
         
         /// Create a keyboard dictation configuration.

@@ -25,13 +25,13 @@ Most KeyboardKit views have a corresponding ``SwiftUI/View`` extension that lets
 
 KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 
-This namespace will probably be removed in KeyboardKit 9.0, together with the ``KeyboardStyleProvider``. Keyboard styles will then be applied with SwiftUI view modifiers.
+This namespace will probably be removed in KeyboardKit 9.0, together with the ``KeyboardStyleService``. Keyboard styles will then be applied with SwiftUI view modifiers.
 
 
 
-## Keyboard Style Providers
+## Keyboard Style Services
 
-In KeyboardKit, a ``KeyboardStyleProvider`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
+In KeyboardKit, a ``KeyboardStyleService`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
 
 KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
@@ -80,7 +80,7 @@ let image = KeyboardAction.command.standardButtonImage(for: context) // Command 
 let text = KeyboardAction.space.standardButtonText(for: context)     // KKL10n.space
 ```
 
-These values can be overridden at any time, e.g. with the various view styles, by defining a custom ``KeyboardStyleProvider``, etc.
+These values can be overridden at any time, e.g. with the various view styles, by defining a custom ``KeyboardStyleService``, etc.
 
 
 
@@ -94,12 +94,12 @@ Most views have static, standard styles that can be replaced by custom styles to
 
 ## How to create a custom style provider
 
-You can create a custom style provider to customize any style in any way you want. You can implement ``KeyboardStyleProvider`` from scratch, or inherit and customize ``KeyboardStyle/StandardProvider``.
+You can create a custom style provider to customize any style in any way you want. You can implement ``KeyboardStyleService`` from scratch, or inherit and customize ``KeyboardStyle/StandardProvider``.
 
 For instance, here's a custom provider that inherits ``KeyboardStyle/StandardProvider`` and makes all input buttons red:
 
 ```swift
-class CustomKeyboardStyleProvider: KeyboardStyle.StandardProvider {
+class CustomKeyboardStyleService: KeyboardStyle.StandardProvider {
     
     override func buttonStyle(
         for action: KeyboardAction,
@@ -113,13 +113,13 @@ class CustomKeyboardStyleProvider: KeyboardStyle.StandardProvider {
 }
 ```
 
-To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/styleProvider`` property:
+To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/styleService`` property:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        keyboardStyleProvider = CustomKeyboardStyleProvider()
+        keyboardStyleService = CustomKeyboardStyleService()
         super.viewDidLoad()
     }
 }

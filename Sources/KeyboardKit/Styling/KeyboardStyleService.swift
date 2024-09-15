@@ -1,5 +1,5 @@
 //
-//  KeyboardStyleProvider.swift
+//  KeyboardStyleService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -18,10 +18,9 @@ import SwiftUI
 ///
 /// For instance, the ``KeyboardView`` embeds many different
 /// components like the ``EmojiKeyboard`` which define their
-/// own styles. For now, this style provider generates these
-/// styles based on how it's implemented, which means that a
-/// view that is rendered within a ``KeyboardView`` can't be
-/// styled with their dedicated view modifiers.
+/// own styles. For now, this service generates these styles,
+/// which means that a view rendered within a ``KeyboardView``
+/// can't be styled with their dedicated view modifiers.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
@@ -29,7 +28,7 @@ import SwiftUI
 /// it at any time to customize the keyboard action behavior.
 ///
 /// See <doc:Styling-Article> for more information.
-public protocol KeyboardStyleProvider: AnyObject {
+public protocol KeyboardStyleService: AnyObject {
 
     /// The background style to apply to the entire keyboard.
     var backgroundStyle: Keyboard.Background { get }

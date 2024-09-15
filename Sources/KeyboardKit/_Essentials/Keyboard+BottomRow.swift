@@ -41,7 +41,7 @@ public extension Keyboard {
                 trailingActions: trailingActions,
                 actionHandler: services.actionHandler,
                 layoutService: services.layoutService,
-                styleProvider: services.styleProvider,
+                styleService: services.styleService,
                 keyboardContext: state.keyboardContext,
                 buttonContent: buttonContent,
                 buttonView: buttonView
@@ -55,7 +55,7 @@ public extension Keyboard {
         ///   - trailingActions: The actions to add after the space bar.
         ///   - actionHandler: The action handler to use.
         ///   - layoutService: The layout service to use.
-        ///   - styleProvider: The style provider to use.
+        ///   - styleService: The style service to use.
         ///   - keyboardContext: The keyboard context to use.
         ///   - buttonContent: The content view to use for buttons.
         ///   - buttonView: The button view to use for an buttons.
@@ -64,7 +64,7 @@ public extension Keyboard {
             trailingActions trailing: [KeyboardAction],
             actionHandler: KeyboardActionHandler,
             layoutService: KeyboardLayoutService,
-            styleProvider: KeyboardStyleProvider,
+            styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext,
             @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
             @ViewBuilder buttonView: @escaping ButtonViewBuilder
@@ -78,7 +78,7 @@ public extension Keyboard {
             self.layout = layout
 
             self.actionHandler = actionHandler
-            self.styleProvider = styleProvider
+            self.styleService = styleService
             self.buttonContentBuilder = buttonContent
             self.buttonViewBuilder = buttonView
             _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
@@ -86,7 +86,7 @@ public extension Keyboard {
 
         private let actionHandler: KeyboardActionHandler
         private let layout: KeyboardLayout
-        private let styleProvider: KeyboardStyleProvider
+        private let styleService: KeyboardStyleService
 
         private let buttonContentBuilder: ButtonContentBuilder
         private let buttonViewBuilder: ButtonViewBuilder
@@ -98,7 +98,7 @@ public extension Keyboard {
             KeyboardView(
                 layout: layout,
                 actionHandler: actionHandler,
-                styleProvider: styleProvider,
+                styleService: styleService,
                 keyboardContext: keyboardContext,
                 autocompleteContext: .preview,
                 calloutContext: nil,
@@ -113,6 +113,29 @@ public extension Keyboard {
 
 
         // MARK: - Deprecated
+        
+        @available(*, deprecated, message: "Use the styleService initializer instead")
+        public init(
+            leadingActions leading: [KeyboardAction],
+            trailingActions trailing: [KeyboardAction],
+            actionHandler: KeyboardActionHandler,
+            layoutService: KeyboardLayoutService,
+            styleProvider: KeyboardStyleProvider,
+            keyboardContext: KeyboardContext,
+            @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
+            @ViewBuilder buttonView: @escaping ButtonViewBuilder
+        ) {
+            self.init(
+                leadingActions: leading,
+                trailingActions: trailing,
+                actionHandler: actionHandler,
+                layoutService: layoutService,
+                styleService: styleProvider,
+                keyboardContext: keyboardContext,
+                buttonContent: buttonContent,
+                buttonView: buttonView
+            )
+        }
 
         @available(*, deprecated, message: "Use the layoutService initializer instead")
         public init(

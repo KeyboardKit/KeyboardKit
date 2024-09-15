@@ -85,7 +85,7 @@ KeyboardKit automatically creates an instance of ``Keyboard/StandardBehavior`` a
 
 ## Keyboard Styling
 
-The <doc:Styling-Article> article describes how to use a ``KeyboardStyleProvider`` to style the ``KeyboardView`` in flexible ways.
+The <doc:Styling-Article> article describes how to use a ``KeyboardStyleService`` to style the ``KeyboardView`` in flexible ways.
 
 Various views have separate styles as well, that can be applied with specific view modifiers.
 
@@ -197,7 +197,7 @@ Most views have a corresponding style, which can be used to style it, much like 
 
 In KeyboardKit, a ``Keyboard``.``Keyboard/Button`` has a ``Keyboard/ButtonStyle`` that can be applied with a ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier. The ``Keyboard/Toolbar`` has a ``Keyboard/ToolbarStyle`` and a ``SwiftUI/View/keyboardToolbarStyle(_:)`` view modifier, etc.
 
-When you use a ``KeyboardView``, you must however use the ``KeyboardStyleProvider`` concept instead, since the keyboard view is so complex. You can however apply explicit styles within the ``KeyboardView``'s various view builder parameters.
+When you use a ``KeyboardView``, you must however use the ``KeyboardStyleService`` concept instead, since the keyboard view is so complex. You can however apply explicit styles within the ``KeyboardView``'s various view builder parameters.
     
 See the <doc:Styling-Article> article for more information.
     

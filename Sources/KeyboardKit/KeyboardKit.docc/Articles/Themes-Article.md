@@ -22,7 +22,7 @@ This article describes the KeyboardKit theme engine.
 
 A ``KeyboardTheme`` can provide keyboard-related styles in a way that can be easily used and modified. A theme can also define style variations that can be used to customize a constrained set of theme properties.
 
-KeyboardKit Pro also unlocks a ``KeyboardStyle/ThemeBasedProvider``, which can be used to apply a theme with the ``KeyboardStyleProvider`` concept that is used by some views, like the ``KeyboardView``.
+KeyboardKit Pro also unlocks a ``KeyboardStyle/ThemeBasedService``, which can be used to apply a theme with the ``KeyboardStyleService`` concept that is used by some views, like the ``KeyboardView``.
 
 
 ## Predefined themes
@@ -136,7 +136,7 @@ You can get a list of all predefined themes, as well as all pre-defined style va
 
 ## How to apply a theme
 
-You can apply theme with the ``KeyboardStyle/ThemeBasedProvider`` style provider, or the ``KeyboardStyleProvider/themed(with:keyboardContext:)`` shorthand:
+You can apply theme with the ``KeyboardStyle/ThemeBasedService`` service, or the ``KeyboardStyleService/themed(with:keyboardContext:)`` shorthand:
 
 ```swift
 override func viewWillSetupKeyboard() {
@@ -144,10 +144,10 @@ override func viewWillSetupKeyboard() {
 
     // Setup KeyboardKit Pro with a license
     setupPro(withLicenseKey: "...") { license in
-        services.styleProvider = .themed(
+        services.styleService = .themed(
             with: .standard,
             keyboardContext: state.keyboardContext,
-            fallback: services.styleProvider
+            fallback: services.styleService
         )
     } view: { controller in
         // Return your keyboard view here
@@ -155,7 +155,7 @@ override func viewWillSetupKeyboard() {
 }
 ```
 
-You can inherit ``KeyboardStyle/ThemeBasedProvider`` to customize the theme even further, which lets you mix the benefits of themes and styles.
+You can inherit ``KeyboardStyle/ThemeBasedService`` to customize the theme even further, which lets you mix the benefits of themes and styles.
 
 
 ## How to create a custom theme

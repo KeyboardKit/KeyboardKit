@@ -11,7 +11,7 @@ import Foundation
 import Combine
 import UIKit
 
-/// This class has observable, keybpard status-related state.
+/// This class has observable, keyboard status-related state.
 ///
 /// This class can be used to check if a keyboard is enabled
 /// in System Settings, if Full Access is enabled, etc.

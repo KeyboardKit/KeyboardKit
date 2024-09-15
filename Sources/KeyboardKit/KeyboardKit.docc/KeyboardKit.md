@@ -275,7 +275,7 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardFont``
 - ``KeyboardStyle``
-- ``KeyboardStyleProvider``
+- ``KeyboardStyleService``
 
 ### Text Input
 

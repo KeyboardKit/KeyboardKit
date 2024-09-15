@@ -190,7 +190,7 @@ extension KeyboardLayout.iPadService {
     return KeyboardView(
         layout: layout(),
         actionHandler: .preview,
-        styleProvider: .preview,
+        styleService: .preview,
         keyboardContext: .preview,
         autocompleteContext: .preview,
         calloutContext: .preview,

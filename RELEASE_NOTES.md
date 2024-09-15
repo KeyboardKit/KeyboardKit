@@ -30,6 +30,10 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 * This protect against an undefined key error when instantiating a KeyboardInputViewController in an app.
 
+### 🗑️ Deprecations & Renamings
+
+* `KeyboardStyleProvider` and its related types are renamed to `KeyboardStyleService`.
+
 
 
 ## 8.8.7

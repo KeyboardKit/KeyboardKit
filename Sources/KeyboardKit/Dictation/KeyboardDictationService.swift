@@ -23,6 +23,9 @@ import Foundation
 /// register a custom service.
 ///
 /// See <doc:Dictation-Article> for more information.
+///
+/// > Note: The two dictation service types will probably be
+/// merged in KeyboardKit 9.0.
 public protocol KeyboardDictationService: AnyObject {
 
     /// The current dictation authorization status.

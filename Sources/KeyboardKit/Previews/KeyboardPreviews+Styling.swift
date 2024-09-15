@@ -8,24 +8,24 @@
 
 import SwiftUI
 
-public extension KeyboardStyleProvider where Self == KeyboardPreviews.PreviewKeyboardStyleProvider {
-    
-    static var preview: KeyboardStyleProvider {
-        KeyboardPreviews.PreviewKeyboardStyleProvider()
+public extension KeyboardStyleService where Self == KeyboardPreviews.PreviewKeyboardStyleService {
+
+    static var preview: KeyboardStyleService {
+        KeyboardPreviews.PreviewKeyboardStyleService()
     }
 }
 
-extension KeyboardStyleProvider where Self == KeyboardPreviews.CrazyStyleProvider {
-    
-    static var crazy: KeyboardStyleProvider {
-        KeyboardPreviews.CrazyStyleProvider()
+extension KeyboardStyleService where Self == KeyboardPreviews.CrazyStyleService {
+
+    static var crazy: KeyboardStyleService {
+        KeyboardPreviews.CrazyStyleService()
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewKeyboardStyleProvider: KeyboardStyle.StandardProvider {
-        
+    class PreviewKeyboardStyleService: KeyboardStyle.StandardService {
+
         init() {
             super.init(keyboardContext: .preview)
         }
@@ -35,8 +35,8 @@ public extension KeyboardPreviews {
 extension KeyboardPreviews {
 
     /// This style provider can be used in SwiftUI KeyboardPreviews.
-    class CrazyStyleProvider: KeyboardPreviews.PreviewKeyboardStyleProvider {
-        
+    class CrazyStyleService: KeyboardPreviews.PreviewKeyboardStyleService {
+
         override func buttonStyle(
             for action: KeyboardAction,
             isPressed: Bool

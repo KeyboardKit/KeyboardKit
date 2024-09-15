@@ -28,7 +28,7 @@ public protocol KeyboardBehavior {
     /// The range that backspace should delete.
     var backspaceRange: Keyboard.BackspaceRange { get }
     
-    /// The  symbolic that  end the sentence after a gesture action should  inject.
+    /// The text to use to end sentences with.
     var endSentenceText: String { get set }
     
     /// The preferred keyboard type after an action gesture.

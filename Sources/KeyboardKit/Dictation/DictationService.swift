@@ -21,6 +21,9 @@ import SwiftUI
 /// or register a valid KeyboardKit Pro license key.
 ///
 /// See <doc:Dictation-Article> for more information.
+///
+/// > Note: The two dictation service types will probably be
+/// merged in KeyboardKit 9.0.
 public protocol DictationService: AnyObject {
     
     /// The current dictation authorization status.

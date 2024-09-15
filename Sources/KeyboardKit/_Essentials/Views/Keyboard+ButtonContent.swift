@@ -16,34 +16,49 @@ public extension Keyboard {
     /// and services that are passed in.
     ///
     /// The view sets up gestures, line limits, offset, etc.
-    /// according to the provided `styleProvider`.
+    /// according to the `styleService`.
     struct ButtonContent: View {
         
         /// Create a keyboard button content view.
         ///
         /// - Parameters:
         ///   - action: The keyboard action to use.
-        ///   - styleProvider: The style provider to use.
+        ///   - styleService: The style service to use.
         ///   - keyboardContext: The keyboard context to use.
         public init(
             action: KeyboardAction,
-            styleProvider: KeyboardStyleProvider,
+            styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext
         ) {
             self.action = action
-            self.styleProvider = styleProvider
+            self.styleService = styleService
             self.keyboardContext = keyboardContext
         }
         
         private let action: KeyboardAction
-        private let styleProvider: KeyboardStyleProvider
+        private let styleService: KeyboardStyleService
         private let keyboardContext: KeyboardContext
         
         public var body: some View {
             bodyContent
-                .padding(styleProvider.buttonContentInsets(for: action))
+                .padding(styleService.buttonContentInsets(for: action))
                 .contentShape(Rectangle())
         }
+
+
+        // MARK: - Deprecated
+
+        @available(*, deprecated, message: "Use the styleService initializer instead.")
+        public init(
+            action: KeyboardAction,
+            styleProvider: KeyboardStyleService,
+            keyboardContext: KeyboardContext
+        ) {
+            self.action = action
+            self.styleService = styleProvider
+            self.keyboardContext = keyboardContext
+        }
+
     }
 }
 
@@ -51,11 +66,11 @@ private extension Keyboard.ButtonContent {
 
     @ViewBuilder
     var bodyContent: some View {
-        if let image = styleProvider.buttonImage(for: action) {
-            image.scaleEffect(styleProvider.buttonImageScaleFactor(for: action))
+        if let image = styleService.buttonImage(for: action) {
+            image.scaleEffect(styleService.buttonImageScaleFactor(for: action))
         } else if action == .space {
             spaceView
-        } else if let text = styleProvider.buttonText(for: action) {
+        } else if let text = styleService.buttonText(for: action) {
             textView(for: action, text: text)
         } else {
             Text("")
@@ -63,11 +78,11 @@ private extension Keyboard.ButtonContent {
     }
     
     var spaceImage: Image? {
-        styleProvider.buttonImage(for: .space)
+        styleService.buttonImage(for: .space)
     }
     
     var spaceView: some View {
-        let text = styleProvider.buttonText(for: action) ?? ""
+        let text = styleService.buttonText(for: action) ?? ""
         let showLocale = keyboardContext.locales.count > 1
         let localeName = keyboardContext.locale.localizedLanguageName
         return Keyboard.SpaceContent(
@@ -101,7 +116,7 @@ private extension Keyboard.ButtonContent {
     ) -> some View {
         Keyboard.ButtonContent(
             action: action,
-            styleProvider: .preview,
+            styleService: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview
         )
         .background(Color.gray)
