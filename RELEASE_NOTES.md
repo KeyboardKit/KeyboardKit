@@ -25,12 +25,14 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 ### ✨ Features
 
 * `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
+* `Keyboard.NumberPad` is a new number pad keyboard component view.
 * `KeyboardView` now applies next character probabilities to its items. 
 * `View+KeyboardButton` now supports applying extended tap areas to more probable keys.
 
 ### 💡 Adjustments
 
 * `Color` and `Image` extensions have been moved to the `Styling` namespace.
+* `KeyboardView` will show a `Keyboard.NumberPad` if the `.keyboardStyle` is `.numberPad`.
 
 ### 🐛 Bug Fixes
 

@@ -18,7 +18,12 @@ public extension KeyboardAction {
 }
 
 public extension KeyboardAction.Row {
-    
+
+    /// Map a string's characters to a keyboard action row.
+    init(characters: String) {
+        self = characters.map { .character(String($0)) }
+    }
+
     /// Map a string array to a keyboard action row.
     init(characters: [String]) {
         self = characters.map { .character($0) }
