@@ -31,7 +31,6 @@ Just set ``KeyboardInputViewController/textInputProxy`` to start routing text to
 
 
 
-
 ## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus.

@@ -9,7 +9,8 @@
 import Combine
 import SwiftUI
 
-/// This class has observable states and persistent settings.
+/// This class has observable states and persistent settings
+/// for keyboard-related autocomplete.
 ///
 /// The ``suggestions`` property is automatically updated as
 /// the user types or the current text changes. The property

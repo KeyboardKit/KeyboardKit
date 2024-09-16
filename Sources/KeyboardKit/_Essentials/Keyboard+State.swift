@@ -39,6 +39,9 @@ public extension Keyboard {
         
         /// The keyboard context to use.
         public lazy var keyboardContext = KeyboardContext()
+
+        /// The keyboard theme context to use.
+        public lazy var themeContext = KeyboardThemeContext()
     }
 }
 

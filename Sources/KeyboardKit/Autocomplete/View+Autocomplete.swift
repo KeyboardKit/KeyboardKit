@@ -10,11 +10,8 @@ import SwiftUI
 
 public extension Autocomplete {
     
-    /**
-     This view modifier can be applied to any view, to honor
-     `.autocorrectionDisabled()` by disabling autocorrect in
-     the provided context.
-     */
+    /// This view modifier can be applied to a view, to make
+    /// it honor `.autocorrectionDisabled()`.
     struct AutocorrectionDisabledToContextModifer: ViewModifier {
         
         /// Create a modifier instance for a certain context.

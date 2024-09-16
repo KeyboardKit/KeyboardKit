@@ -141,7 +141,7 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var keyboardType = Keyboard.KeyboardType.alphabetic(.lowercased)
 
-    /// The locale that is currently being used.
+    /// The current locale.
     ///
     /// > Note: Settings this will update ``localeIdentifier``
     /// and cause it to persist.

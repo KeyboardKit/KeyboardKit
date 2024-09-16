@@ -21,7 +21,7 @@ KeyboardKit has an ``Emoji`` struct that represents an emoji value, and defines 
 
 ## Emojis
 
-The ``Emoji`` struct represents a structured emoji model, that lets you work with emojis and their information in a more structured way:
+The ``Emoji`` struct represents a structured emoji model that lets you work with emojis and their information in a more structured way:
 
 ```swift
 let emoji = Emoji("😀")
