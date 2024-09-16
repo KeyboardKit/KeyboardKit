@@ -11,9 +11,9 @@
     @PageColor(blue)
 }
 
-This article describes the KeyboardKit theme engine.
+This article describes the KeyboardKit Pro theme engine.
 
-👑 [KeyboardKit Pro][Pro] unlocks a theme engine and a ``KeyboardTheme`` type that makes it easier to style your keyboard, as well as many predefined themes and theme-based views. You can easily create your own themes as well.
+👑 [KeyboardKit Pro][Pro] unlocks a theme engine that makes it easier to style your keyboard, as well as many predefined themes and theme-based views. You can easily create your own themes as well.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -22,12 +22,12 @@ This article describes the KeyboardKit theme engine.
 
 A ``KeyboardTheme`` can provide keyboard-related styles in a way that can be easily used and modified. A theme can also define style variations that can be used to customize a constrained set of theme properties.
 
-KeyboardKit Pro also unlocks a ``KeyboardStyle/ThemeBasedService``, which can be used to apply a theme with the ``KeyboardStyleService`` concept that is used by some views, like the ``KeyboardView``.
+KeyboardKit Pro unlocks a bunch of themes and style variations, as well as a ``KeyboardStyle/ThemeBasedService`` ``KeyboardStyleService`` that lets you apply themes with the style service concept that is used by some views, like the ``KeyboardView``.
 
 
 ## Predefined themes
 
-KeyboardKit has many predefined themes, like ``KeyboardTheme/standard``, ``KeyboardTheme/swifty`` and ``KeyboardTheme/minimal``. These themes also have style variations, that lets you vary their appearance, like the standard theme's ``KeyboardTheme/StandardStyle/blue`` and ``KeyboardTheme/StandardStyle/green`` variations:
+KeyboardKit Pro unlocks many standard themes, like ``KeyboardTheme/standard``, ``KeyboardTheme/swifty`` and ``KeyboardTheme/minimal``. These themes also have style variations, that lets you vary their appearance, like the standard theme's ``KeyboardTheme/StandardStyle/blue`` and ``KeyboardTheme/StandardStyle/green`` variations:
 
 @TabNavigator {
     @Tab(".standard") {
@@ -71,7 +71,7 @@ KeyboardKit has many predefined themes, like ``KeyboardTheme/standard``, ``Keybo
     }
 }
 
-KeyboardKit Pro also unlocks other, more expressive, themes, which provide their own unique visual baseline:
+KeyboardKit Pro also unlocks other more expressive themes, which provide their own unique visual baseline:
 
 @TabNavigator {
     @Tab(".aesthetic") {

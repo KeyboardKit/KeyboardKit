@@ -285,4 +285,5 @@ KeyboardKit is available under the MIT license.
 ### Themes
 
 - ``KeyboardTheme``
+- ``KeyboardThemeCopyable``
 - ``KeyboardThemeStyleVariation``

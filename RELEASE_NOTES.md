@@ -22,6 +22,8 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.9
 
+This version adds `KeyboardTheme` models from Pro to make it possible to add a new theme context to the SDK.
+
 ### ✨ Features
 
 * `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
@@ -32,6 +34,7 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 ### 💡 Adjustments
 
 * `Color` and `Image` extensions have been moved to the `Styling` namespace.
+* `KeyboardInputViewController.host` now handles the host bundle ID within the main app.
 * `KeyboardView` will show a `Keyboard.NumberPad` if the `.keyboardStyle` is `.numberPad`.
 
 ### 🐛 Bug Fixes

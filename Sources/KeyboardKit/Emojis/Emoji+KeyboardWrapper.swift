@@ -21,7 +21,7 @@ public extension Emoji {
             styleService: KeyboardStyleService
         ) {}
 
-        @available(*, deprecated, message: "Use the style service initializer instead.")
+        @available(*, deprecated, message: "Use the styleService initializer instead.")
         init(
             actionHandler: KeyboardActionHandler,
             keyboardContext: KeyboardContext,

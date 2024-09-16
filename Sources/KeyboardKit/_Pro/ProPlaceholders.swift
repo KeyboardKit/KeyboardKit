@@ -245,30 +245,30 @@ public struct KeyboardTextField {}
 public struct KeyboardTextView {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public struct KeyboardTheme {
-    
+public extension KeyboardTheme {
+
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public static var allPredefined: [KeyboardTheme] {
+    static var allPredefined: [KeyboardTheme] {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public static var standard: KeyboardTheme {
+    static var standard: KeyboardTheme {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public static var swifty: KeyboardTheme {
+    static var swifty: KeyboardTheme {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public static var minimal: KeyboardTheme {
+    static var minimal: KeyboardTheme {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public struct StandardStyle: KeyboardThemeStyleVariation {
+    struct StandardStyle: KeyboardThemeStyleVariation {
     
         /// 👑 This is unlocked by KeyboardKit Pro.
         public static let standard = Self()
@@ -281,10 +281,10 @@ public struct KeyboardTheme {
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public struct Shelf {}
+    struct Shelf {}
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public struct ShelfItem {}
+    struct ShelfItem {}
 }
     
 /// 👑 This is unlocked by KeyboardKit Pro.
