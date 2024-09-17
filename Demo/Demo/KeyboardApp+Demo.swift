@@ -33,7 +33,7 @@ public extension KeyboardApp {
             bundleId: "com.keyboardkit.demo",
             appGroupId: "group.com.keyboardkit.demo",
             locales: .all,
-            dictationDeepLink: "kkdemo://dictation"
+            deepLinks: "kkdemo://dictation"
         )
     }
 }

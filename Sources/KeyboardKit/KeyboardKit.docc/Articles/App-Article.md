@@ -32,15 +32,17 @@ The ``KeyboardApp`` type can be used to define important properties for your app
 You can create a static app value and add it to both the main app target and its keyboard extension target, to easily refer to it from both:
 
 ```swift
-static var keyboardKitDemo: Self {
-    .init(
-        name: "KeyboardKit",
-        licenseKey: "abc123",
-        bundleId: "com.keyboardkit.demo",
-        appGroupId: "group.com.keyboardkit.demo",
-        locales: [.english, .swedish, .persian],
-        dictationDeepLink: "keyboardkit://dictation"
-    )
+extension KeyboardApp {
+
+    static var keyboardKitDemo: Self {
+        .init(
+            name: "KeyboardKit",
+            licenseKey: "abc123",
+            bundleId: "com.keyboardkit.demo",
+            appGroupId: "group.com.keyboardkit.demo",
+            locales: [.english, .swedish, .persian]
+        )
+    }
 }
 ```
 
