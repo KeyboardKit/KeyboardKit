@@ -32,6 +32,8 @@ This version adds `KeyboardTheme` models from Pro to make it possible to add a n
 * `Keyboard.NumberPad` is a new number pad component.
 * `Keyboard.State` has a new `themeContext` property.
 * `KeyboardApp` has new `deepLinks` and `keyboardBundleId` properties.
+* `KeyboardContext` no longer syncs keyboard type for the same value.
+* `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.
 * `KeyboardSettings` can now be set up for a `KeyboardApp`.
 * `KeyboardView` now applies next character probabilities to its items.
 * `KeyboardThemeContext` is a new context type for theme-related state. 

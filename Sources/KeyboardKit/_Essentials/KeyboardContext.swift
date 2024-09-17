@@ -139,7 +139,7 @@ public class KeyboardContext: ObservableObject {
 
     /// The keyboard type that is currently used.
     @Published
-    public var keyboardType = Keyboard.KeyboardType.alphabetic(.lowercased)
+    public var keyboardType = Keyboard.KeyboardType.alphabetic(.auto)
 
     /// The current locale.
     ///
