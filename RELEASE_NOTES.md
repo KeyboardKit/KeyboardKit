@@ -22,7 +22,7 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.9
 
-This version adds `KeyboardTheme` models from Pro to make it possible to add a new theme context to the SDK.
+This version adds a new `Keyboard.NumberPad` view, predition-based tap area sizes for keyboard keys, `KeyboardTheme` models from Pro, and a new `KeyboardThemeContext`. It also lets you set up the main app and its keyboard extension with a `KeyboardApp`.
 
 ### ✨ Features
 
@@ -34,6 +34,7 @@ This version adds `KeyboardTheme` models from Pro to make it possible to add a n
 * `KeyboardApp` has new `deepLinks` and `keyboardBundleId` properties.
 * `KeyboardContext` no longer syncs keyboard type for the same value.
 * `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.
+* `KeyboardInputController` can now be set up for a `KeyboardApp`.
 * `KeyboardSettings` can now be set up for a `KeyboardApp`.
 * `KeyboardView` now applies next character probabilities to its items.
 * `KeyboardThemeContext` is a new context type for theme-related state. 
@@ -84,8 +85,8 @@ Set `.current` to any of these values to try them out:
 
 Set `.current` to any of these values to try them out:
 
-* `.classic` doesn't reset the input controller and therefore doesn't let you switch keyboard while editing.
-* `.experimental` is a new test more that temporarily disables the text input proxy, which makes the switcher work.
+* `.classic` doesn't reset the proxy and therefore doesn't let you switch keyboard while editing.
+* `.experimental` is a new test mode that temporarily disables the proxy, which makes the switcher work.
 
 Make sure to test these experimental features and report any findings in the KeyboardKit issue tracker. 
 

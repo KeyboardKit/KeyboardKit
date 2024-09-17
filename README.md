@@ -100,13 +100,14 @@ KeyboardKit comes packed with free, open-source features to help you build amazi
 
 * ⌨️ [Essentials][Essentials] - Essential utilities, models, services & views.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
+* 📱 [App][App] - Define and set up things for your app.
 * 💡 [Autocomplete][Autocomplete] - Perform autocomplete as the user types.
 * 🗯 [Callouts][Callouts] - Show input & secondary action callouts as the user types.
 * 🖥️ [Device][Device] - Identify the device type, device capabilities, etc.
 * 😀 [Emojis][Emojis] - Emojis, categories, versions, skin tones, etc.
 * 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback with ease.
 * 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
-* 🏠 [Host][Host] - Easily can identify the host application.
+* 🏠 [Host][Host] - Easily identify the host application.
 * 🔣 [Layout][Layout] - Easily define and customize the keyboard layout.
 * 🌐 [Localization][Localization] - Localize your keyboard in all supported locales.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
