@@ -46,13 +46,15 @@ public struct KeyboardApp {
     ///   - name: The name of the app.
     ///   - licenseKey: Your license key, if any.
     ///   - bundleId: The app's bundle identifier.
+    ///   - keyboardBundleId: The app's keyboard bundle identifier, by default `<bundleId>.keyboard`.
     ///   - appGroupId: The app's App Group identifier, if any.
     ///   - locales: The locales to use in the app, by default `.all`.
     ///   - dictationDeepLink: The app's dictation deep link, if any.
     public init(
         name: String,
-        licenseKey: String? = "",
+        licenseKey: String? = nil,
         bundleId: String,
+        keyboardBundleId: String? = nil,
         appGroupId: String? = "",
         locales: [KeyboardLocale] = .all,
         dictationDeepLink: String? = ""
@@ -60,6 +62,7 @@ public struct KeyboardApp {
         self.name = name
         self.bundleId = bundleId
         self.appGroupId = appGroupId
+        self.keyboardBundleId = keyboardBundleId ?? "\(bundleId).keyboard"
         self.locales = locales
         self.licenseKey = licenseKey
         if let appGroupId, let dictationDeepLink {
@@ -81,6 +84,9 @@ public struct KeyboardApp {
     /// The app's bundle identifier.
     public let bundleId: String
 
+    /// The app's keyboard bundle identifier
+    public let keyboardBundleId: String
+
     /// The app's App Group identifier, if any.
     public let appGroupId: String?
 
@@ -89,6 +95,16 @@ public struct KeyboardApp {
 
     /// The app's dictation deep link, if any.
     public let dictationConfiguration: Dictation.KeyboardConfiguration?
+}
+
+public extension KeyboardApp {
+
+    /// The keyboard extension bundle ID wildcard, which can
+    /// be used to see if any keyboard extension in this app
+    /// has been enabled.
+    var keyboardExtensionBundleIdWildcard: String {
+        "\(bundleId).*"
+    }
 }
 
 private extension KeyboardApp {
