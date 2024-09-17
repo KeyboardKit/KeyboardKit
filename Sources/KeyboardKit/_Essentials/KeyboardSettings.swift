@@ -11,20 +11,20 @@ import SwiftUI
 /// This class can be used to setup a custom value store for
 /// all settings types in the library.
 ///
-/// The static ``store`` is used to persist changes for each
-/// settings type. Use ``setupStore(_:keyPrefix:)`` to setup
-/// a custom store, or ``setupStore(withAppGroup:keyPrefix:)``
-/// to setup a store that syncs data between the app and its
-/// keyboard extension, using an App Group.
+/// The static ``store`` is used to persist settings. It has
+/// a ``Foundation/UserDefaults/keyboardSettings`` shorthand
+/// for convenient access.
 ///
-/// You can also provide a custom ``storeKeyPrefix`` that is
-/// added before each persisted value. The default prefix is
-/// `"com.keyboardkit.settings."`.
+/// You can use ``setupStore(_:keyPrefix:)`` to register any
+/// custom store, ``setupStore(withAppGroup:keyPrefix:)`` to
+/// register a store that syncs settings between the app and
+/// its keyboard extension (make sure to set up an App Group
+/// first) or ``setupStore(for:)`` to use your ``KeyboardApp``.
 ///
 /// > Important: `@AppStorage` properties will use the store
 /// that's available when a property is first accessed. Make
-/// sure to run ``setupStore(_:keyPrefix:)`` BEFORE your app
-/// or keyboard extension accesses these settings properties.
+/// sure to set up a custom store BEFORE the app or keyboard
+/// extension accesses any settings.
 public class KeyboardSettings: ObservableObject, LegacySettings {
 
     // MARK: - Deprecated: Settings are moved to the context.
@@ -61,20 +61,15 @@ public extension KeyboardSettings {
     /// The key prefix that will be used by library settings.
     static var storeKeyPrefix = "com.keyboardkit.settings."
 
-    /// Whether or not ``setupStore(withAppGroup:keyPrefix:)``
-    /// has been used to replace ``store`` with an App Group
-    /// synced store.
-    static private(set) var storeisAppGroupSynced = false
+    /// Whether the ``store`` is synced with an App Group.
+    static private(set) var storeIsAppGroupSynced = false
 
-    @available(*, deprecated, message: "Setting an optional store is no longer allowed.")
-    static func setupStore(
-        _ store: UserDefaults?,
-        keyPrefix: String? = nil
-    ) {
-        setupStore(store ?? .standard, keyPrefix: keyPrefix)
-    }
-
-    /// Set up a custom keyboard settings store.
+    /// Set up a custom settings store.
+    ///
+    /// - Parameters:
+    ///   - store: The store instance to use.
+    ///   - keyPrefix: A custom prefix to use for all store keys, if any.
+    ///   - isAppGroupSynced: Whether the store syncs with an App Group, by default `nil`.
     static func setupStore(
         _ store: UserDefaults,
         keyPrefix: String? = nil,
@@ -82,22 +77,51 @@ public extension KeyboardSettings {
     ) {
         Self.store = store
         Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
-        Self.storeisAppGroupSynced = isAppGroupSynced
+        Self.storeIsAppGroupSynced = isAppGroupSynced
     }
 
-    /// Set up a custom keyboard settings store that uses an
-    /// App Group to sync settings between multiple targets.
+    /// Set up a custom settings store for the provided `app`.
     ///
-    /// > Important: For this function to work, you must set
-    /// up an App Group for your app and register it for all
-    /// targets. The function will throw an error if the App
-    /// Group synced store could not be created.
+    /// This will set up App Group syncing if the app has an
+    /// ``KeyboardApp/appGroupId`` specified.
     static func setupStore(
-        withAppGroup id: String,
+        for app: KeyboardApp
+    ) {
+        let prefix = app.keyboardSettingsKeyPrefix
+        if let appGroup = app.appGroupId {
+            setupStore(forAppGroup: appGroup, keyPrefix: prefix)
+        } else {
+            setupStore(.keyboardSettings, keyPrefix: prefix, isAppGroupSynced: false)
+        }
+    }
+
+    /// Set up a custom settings store for a given App Group.
+    ///
+    /// - Parameters:
+    ///   - appGroup: The ID of the App Group to use.
+    ///   - keyPrefix: A custom prefix to use for all store keys, if any.
+    static func setupStore(
+        forAppGroup appGroup: String,
         keyPrefix: String? = nil
     ) {
-        guard let store = UserDefaults(suiteName: id) else { return }
+        guard let store = UserDefaults(suiteName: appGroup) else { return }
         setupStore(store, keyPrefix: keyPrefix, isAppGroupSynced: true)
+    }
+
+    @available(*, deprecated, renamed: "setupStore(forAppGroup:keyPrefix:)")
+    static func setupStore(
+        withAppGroup appGroup: String,
+        keyPrefix: String? = nil
+    ) {
+        setupStore(forAppGroup: appGroup, keyPrefix: keyPrefix)
+    }
+
+    @available(*, deprecated, message: "Setting an optional store is no longer allowed.")
+    static func setupStore(
+        _ store: UserDefaults?,
+        keyPrefix: String? = nil
+    ) {
+        setupStore(store ?? .standard, keyPrefix: keyPrefix)
     }
 
     /// Get the store key prefix for a certain namespace.

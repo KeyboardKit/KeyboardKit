@@ -9,10 +9,10 @@
 import SwiftUI
 
 /// This view can be used as the root view of a keyboard app,
-/// to set up KeyboardKit for the provided ``KeyboardApp``.
+/// to set up KeyboardKit for a ``KeyboardApp``.
 ///
 /// To use this view, just create a ``KeyboardApp`` for your
-/// app and use it to create a ``KeyboardAppView`` root view:
+/// app and use it to setup this view as the app's root view:
 ///
 /// ```swift
 /// @main
@@ -29,9 +29,8 @@ import SwiftUI
 /// ```
 ///
 /// This view will set up ``KeyboardSettings`` to use an App
-/// Group, register your KeyboardKit Pro license key, if any,
-/// and inject ``Keyboard/State`` types into the view, which
-/// means that you can access any state value like this:
+/// Group, set up a ``Keyboard/State`` and inject state into
+/// the view, after which you can access any state like this:
 ///
 /// ```swift
 /// struct MyView: View {
@@ -55,7 +54,7 @@ public struct KeyboardAppView<Content: View>: View {
         for app: KeyboardApp,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        KeyboardSettings.setup(for: app)
+        KeyboardSettings.setupStore(for: app)
         let state = Keyboard.State()
         state.setup(for: app)
 
@@ -97,28 +96,5 @@ public struct KeyboardAppView<Content: View>: View {
         .environmentObject(dictationContext)
         .environmentObject(feedbackContext)
         .environmentObject(keyboardContext)
-        // TODO: This will be replaced by `task` in KeyboardKit 9.0.
-    }
-}
-
-private extension KeyboardSettings {
-
-    static func setup(for app: KeyboardApp) {
-        guard let appGroupId = app.appGroupId else { return }
-        setupStore(withAppGroup: appGroupId)
-    }
-}
-
-private extension Keyboard.State {
-
-    func setup(for app: KeyboardApp) {
-        setupDictationContext(for: app)
-    }
-
-    func setupDictationContext(
-        for app: KeyboardApp
-    ) {
-        guard let config = app.dictationConfiguration else { return }
-        self.dictationContext = .init(config: config)
     }
 }

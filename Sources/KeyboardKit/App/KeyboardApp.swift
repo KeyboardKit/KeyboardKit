@@ -50,6 +50,7 @@ public struct KeyboardApp {
     ///   - appGroupId: The app's App Group identifier, if any.
     ///   - locales: The locales to use in the app, by default `.all`.
     ///   - dictationDeepLink: The app's dictation deep link, if any.
+    ///   - keyboardSettingsKeyPrefix: A custom keyboard settings key prefix, if any.
     public init(
         name: String,
         licenseKey: String? = nil,
@@ -57,7 +58,8 @@ public struct KeyboardApp {
         keyboardBundleId: String? = nil,
         appGroupId: String? = "",
         locales: [KeyboardLocale] = .all,
-        dictationDeepLink: String? = ""
+        dictationDeepLink: String? = "",
+        keyboardSettingsKeyPrefix: String? = nil
     ) {
         self.name = name
         self.bundleId = bundleId
@@ -65,6 +67,7 @@ public struct KeyboardApp {
         self.keyboardBundleId = keyboardBundleId ?? "\(bundleId).keyboard"
         self.locales = locales
         self.licenseKey = licenseKey
+        self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
         if let appGroupId, let dictationDeepLink {
             dictationConfiguration = .init(
                 appGroupId: appGroupId,
@@ -95,6 +98,9 @@ public struct KeyboardApp {
 
     /// The app's dictation deep link, if any.
     public let dictationConfiguration: Dictation.KeyboardConfiguration?
+
+    /// A custom keyboard settings key prefix, if any.
+    public let keyboardSettingsKeyPrefix: String?
 }
 
 public extension KeyboardApp {

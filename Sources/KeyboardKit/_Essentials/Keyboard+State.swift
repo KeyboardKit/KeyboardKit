@@ -47,7 +47,13 @@ public extension Keyboard {
 
 #if os(iOS) || os(tvOS) || os(visionOS)
 public extension Keyboard.State {
-    
+
+    // Setup the state instance for the provided app.
+    func setup(for app: KeyboardApp) {
+        guard let config = app.dictationConfiguration else { return }
+        self.dictationContext = .init(config: config)
+    }
+
     // Setup the state instance for the provided controller.
     func setup(for controller: KeyboardInputViewController) {
         let isPhone = UIDevice.current.userInterfaceIdiom == .phone

@@ -27,10 +27,12 @@ This version adds `KeyboardTheme` models from Pro to make it possible to add a n
 ### ✨ Features
 
 * `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
-* `Image` has a new `keyboardTheme` value.
+* `DictationContext` can now be set up for a `KeyboardApp`.
+* `Image` has a new `keyboardTheme` image value.
 * `Keyboard.NumberPad` is a new number pad component.
 * `Keyboard.State` has a new `themeContext` property.
 * `KeyboardApp` has new `keyboardBundleId` properties.
+* `KeyboardSettings` can now be set up for a `KeyboardApp`.
 * `KeyboardView` now applies next character probabilities to its items.
 * `KeyboardThemeContext` is a new context type for theme-related state. 
 * `View+KeyboardButton` now supports applying extended tap areas to more probable keys.
