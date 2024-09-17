@@ -136,14 +136,17 @@ public extension Keyboard {
 
 public extension KeyboardApp {
 
-    /// 👑 This view is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     struct HomeScreen {}
 
-    /// 👑 This view is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     struct LocaleScreen {}
 
-    /// 👑 This view is unlocked by KeyboardKit Pro.
+    /// 👑 This is unlocked by KeyboardKit Pro.
     struct SettingsScreen {}
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct ThemeScreen {}
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.

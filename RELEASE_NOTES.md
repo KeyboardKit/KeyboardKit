@@ -33,6 +33,11 @@ This version adds `KeyboardTheme` models from Pro to make it possible to add a n
 * `KeyboardThemeContext` is a new context type for theme-related state. 
 * `View+KeyboardButton` now supports applying extended tap areas to more probable keys.
 
+### 👑 Pro Features
+
+* `KeyboardApp.HomeScreen` can now opt-in to link to the themes screen.
+* `KeyboardApp.ThemeScreen` is a new screen that can be used as a theme picker.
+
 ### 💡 Adjustments
 
 * `Color` and `Image` extensions have been moved to the `Styling` namespace.
