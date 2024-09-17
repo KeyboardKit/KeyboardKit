@@ -49,6 +49,7 @@ public extension Image {
     static var keyboardSpeakerUp = symbol("speaker.wave.1")
     static var keyboardTab = symbol("arrow.right.to.line")
     static var keyboardTabRtl = symbol("arrow.left.to.line")
+    static var keyboardTheme = symbol("paintpalette")
     static var keyboardUndo = symbol("arrow.uturn.left")
     static var keyboardUrl = symbol("safari")
     static var keyboardZeroWidthSpace = symbol("circle.dotted")
@@ -107,87 +108,70 @@ extension Image {
 }
 
 #Preview {
-    
-    func images() -> [Image] {
-        [
-            .keyboard,
-            .keyboardArrowUp,
-            .keyboardArrowDown,
-            .keyboardArrowLeft,
-            .keyboardArrowRight,
-            .keyboardAudioFeedbackDisabled,
-            .keyboardAudioFeedbackEnabled,
-            .keyboardBackspace,
-            .keyboardBackspaceRtl,
-            .keyboardBrightnessDown,
-            .keyboardBrightnessUp,
-            .keyboardCommand,
-            .keyboardControl,
-            .keyboardDictation,
-            .keyboardDismiss,
-            .keyboardEmail,
-            .keyboardEmojiSymbol,
-            .keyboardGlobe,
-            .keyboardHapticFeedbackDisabled,
-            .keyboardHapticFeedbackEnabled,
-            .keyboardImages,
-            .keyboardNewline,
-            .keyboardNewlineRtl,
-            .keyboardOption,
-            .keyboardRedo,
-            .keyboardSearch,
-            .keyboardSettings,
-            .keyboardShiftCapslocked,
-            .keyboardShiftCapslockInactive,
-            .keyboardShiftLowercased,
-            .keyboardShiftUppercased,
-            .keyboardSpeaker,
-            .keyboardSpeakerDown,
-            .keyboardSpeakerUp,
-            .keyboardTab,
-            .keyboardTabRtl,
-            .keyboardUndo,
-            .keyboardZeroWidthSpace,
-            .keyboardEmoji
-        ]
-    }
-    
+
     return ScrollView(.vertical) {
-        VStack(spacing: 20) {
-            Image.keyboardKit
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(height: 100)
-
-            Divider()
+        VStack(spacing: 40) {
+            StylePreviewHeader(title: "KeyboardKit Images")
 
             LazyVGrid(columns: .preview, spacing: 20) {
-                ForEach(Array(images().enumerated()), id: \.0) {
-                    $0.1
-                }
-            }
-
-            Divider()
-
-            LazyVGrid(columns: .preview, spacing: 20) {
-                Image.keyboardAudioFeedback(enabled: false)
-                Image.keyboardAudioFeedback(enabled: true)
-                Image.keyboardBackspace(for: .english)
-                Image.keyboardBackspace(for: .arabic)
-                Image.keyboardHapticFeedback(enabled: false)
-                Image.keyboardHapticFeedback(enabled: true)
-                Image.keyboardNewline(for: .english)
-                Image.keyboardNewline(for: .arabic)
-                Image.keyboardTab(for: .english)
-                Image.keyboardTab(for: .arabic)
+                preview(for: .keyboard, "keyboard")
+                preview(for: .keyboardArrowUp, "keyboardArrowUp")
+                preview(for: .keyboardArrowDown, "keyboardArrowDown")
+                preview(for: .keyboardArrowLeft, "keyboardArrowLeft")
+                preview(for: .keyboardArrowRight, "keyboardArrowRight")
+                preview(for: .keyboardAudioFeedback(enabled: true), "keyboardAudioFeedback")
+                preview(for: .keyboardAudioFeedback(enabled: false), "keyboardAudioFeedback")
+                preview(for: .keyboardBackspace(for: .english), "keyboardBackspace")
+                preview(for: .keyboardBackspace(for: .arabic), "keyboardBackspace")
+                preview(for: .keyboardBackspaceRtl, "keyboardBackspaceRtl")
+                preview(for: .keyboardBrightnessDown, "keyboardBrightnessDown")
+                preview(for: .keyboardBrightnessUp, "keyboardBrightnessUp")
+                preview(for: .keyboardCommand, "keyboardCommand")
+                preview(for: .keyboardControl, "keyboardControl")
+                preview(for: .keyboardDictation, "keyboardDictation")
+                preview(for: .keyboardDismiss, "keyboardDismiss")
+                preview(for: .keyboardEmail, "keyboardEmail")
+                preview(for: .keyboardEmojiSymbol, "keyboardEmojiSymbol")
+                preview(for: .keyboardGlobe, "keyboardGlobe")
+                preview(for: .keyboardHapticFeedback(enabled: true), "keyboardHapticFeedback")
+                preview(for: .keyboardHapticFeedback(enabled: false), "keyboardHapticFeedback")
+                preview(for: .keyboardImages, "keyboardImages")
+                preview(for: .keyboardNewline(for: .english), "keyboardNewline")
+                preview(for: .keyboardNewline(for: .arabic), "keyboardNewline")
+                preview(for: .keyboardOption, "keyboardOption")
+                preview(for: .keyboardRedo, "keyboardRedo")
+                preview(for: .keyboardSearch, "keyboardSearch")
+                preview(for: .keyboardSettings, "keyboardSettings")
+                preview(for: .keyboardShiftCapslocked, "keyboardShiftCapslocked")
+                preview(for: .keyboardShiftCapslockInactive, "keyboardShiftCapslockInactive")
+                preview(for: .keyboardShiftLowercased, "keyboardShiftLowercased")
+                preview(for: .keyboardShiftUppercased, "keyboardShiftUppercased")
+                preview(for: .keyboardSpeaker, "keyboardSpeaker")
+                preview(for: .keyboardSpeakerDown, "keyboardSpeakerDown")
+                preview(for: .keyboardSpeakerUp, "keyboardSpeakerUp")
+                preview(for: .keyboardTab(for: .english), "keyboardTab")
+                preview(for: .keyboardTab(for: .arabic), "keyboardTab")
+                preview(for: .keyboardTheme, "keyboardTheme")
+                preview(for: .keyboardUndo, "keyboardUndo")
+                preview(for: .keyboardZeroWidthSpace, "keyboardZeroWidthSpace")
+                preview(for: .keyboardEmoji, "keyboardEmoji")
             }
         }
         .padding()
+        .buttonStyle(.plain)
         .font(.title.weight(.regular))
+    }
+
+    func preview(for image: Image, _ title: String) -> some View {
+        Button {
+            print(title)
+        } label: {
+            image
+        }
     }
 }
 
-extension Array where Element == GridItem {
+private extension Array where Element == GridItem {
 
     static var preview: Self {
         [.init(.adaptive(minimum: 40, maximum: 50), spacing: 20)]

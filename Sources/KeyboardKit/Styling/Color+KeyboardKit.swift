@@ -140,42 +140,70 @@ private extension Color {
 }
 
 #Preview {
-    
-    func preview(for color: Color, name: String) -> some View {
-        VStack(alignment: .leading) {
-            Text(name).font(.footnote)
+
+    return ScrollView(.vertical) {
+        VStack(spacing: 40) {
+            StylePreviewHeader(title: "KeyboardKit Colors")
+
+            LazyVGrid(columns: .preview, spacing: 20) {
+                preview(for: .keyboardBackground, "keyboardBackground")
+                preview(for: .keyboardBackgroundForDarkAppearance, "keyboardBackgroundForDarkAppearance")
+                preview(for: .keyboardButtonBackground, "keyboardButtonBackground")
+                preview(for: .keyboardButtonBackgroundForColorSchemeBug, "keyboardButtonBackgroundForColorSchemeBug")
+                preview(for: .keyboardButtonBackgroundForDarkAppearance, "keyboardButtonBackgroundForDarkAppearance")
+                preview(for: .keyboardButtonForeground, "keyboardButtonForeground")
+                preview(for: .keyboardButtonForegroundForDarkAppearance, "keyboardButtonForegroundForDarkAppearance")
+                preview(for: .keyboardButtonShadow, "keyboardButtonShadow")
+                preview(for: .keyboardDarkButtonBackground, "keyboardDarkButtonBackground")
+                preview(for: .keyboardDarkButtonBackgroundForColorSchemeBug, "keyboardDarkButtonBackgroundForColorSchemeBug")
+                preview(for: .keyboardDarkButtonBackgroundForDarkAppearance, "keyboardDarkButtonBackgroundForDarkAppearance")
+                preview(for: .keyboardDarkButtonForeground, "keyboardDarkButtonForeground")
+                preview(for: .keyboardDarkButtonForegroundForDarkAppearance, "keyboardDarkButtonForegroundForDarkAppearance")
+            }
+        }
+        .padding()
+        .font(.title.weight(.regular))
+    }
+
+    func preview(for color: Color, _ name: String) -> some View {
+        Button {
+            print(name)
+        } label: {
             HStack(spacing: 0) {
                 color
                 color.colorScheme(.dark)
             }
-            .frame(height: 100)
-            .cornerRadius(10)
         }
+        .background(Color.keyboardBackground)
+        .aspectRatio(1, contentMode: .fill)
+        .cornerRadius(10)
+        .shadow(radius: 1, y: 1)
     }
-    
-    return ScrollView {
+}
+
+struct StylePreviewHeader: View {
+
+    let title: String
+
+    var body: some View {
         VStack {
-            Group {
-                preview(for: .keyboardBackground, name: "keyboardBackground")
-                preview(for: .keyboardBackgroundForDarkAppearance, name: "keyboardBackgroundForDarkAppearance")
-            }
-            Group {
-                preview(for: .keyboardButtonBackground, name: "keyboardButtonBackground")
-                preview(for: .keyboardButtonBackgroundForColorSchemeBug, name: "keyboardButtonBackgroundForColorSchemeBug")
-                preview(for: .keyboardButtonBackgroundForDarkAppearance, name: "keyboardButtonBackgroundForDarkAppearance")
-                preview(for: .keyboardButtonForeground, name: "keyboardButtonForeground")
-                preview(for: .keyboardButtonForegroundForDarkAppearance, name: "keyboardButtonForegroundForDarkAppearance")
-                preview(for: .keyboardButtonShadow, name: "keyboardButtonShadow")
-            }
-            Group {
-                preview(for: .keyboardDarkButtonBackground, name: "keyboardDarkButtonBackground")
-                preview(for: .keyboardDarkButtonBackgroundForColorSchemeBug, name: "keyboardDarkButtonBackgroundForColorSchemeBug")
-                preview(for: .keyboardDarkButtonBackgroundForDarkAppearance, name: "keyboardDarkButtonBackgroundForDarkAppearance")
-                preview(for: .keyboardDarkButtonForeground, name: "keyboardDarkButtonForeground")
-                preview(for: .keyboardDarkButtonForegroundForDarkAppearance, name: "keyboardDarkButtonForegroundForDarkAppearance")
-            }
+            Image.keyboardKit
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 100)
+            Text(title)
         }
-        .padding()
+        .padding(20)
+        .frame(maxWidth: .infinity)
+        .background(Color.keyboardBackground)
+        .clipShape(.rect(cornerRadius: 5))
+        .shadow(radius: 1, y: 1)
     }
-    .background(Color.black.opacity(0.1).edgesIgnoringSafeArea(.all))
+}
+
+private extension Array where Element == GridItem {
+
+    static var preview: Self {
+        [.init(.adaptive(minimum: 100, maximum: 120), spacing: 20)]
+    }
 }

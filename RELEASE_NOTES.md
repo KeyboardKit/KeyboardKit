@@ -27,6 +27,7 @@ This version adds `KeyboardTheme` models from Pro to make it possible to add a n
 ### ✨ Features
 
 * `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
+* `Image` has a new `keyboardTheme` value.
 * `Keyboard.NumberPad` is a new number pad keyboard component view.
 * `Keyboard.State` has a new `themeContext` property.
 * `KeyboardView` now applies next character probabilities to its items.

@@ -31,42 +31,32 @@ This namespace will probably be removed in KeyboardKit 9.0, together with the ``
 
 ## Keyboard Style Services
 
-In KeyboardKit, a ``KeyboardStyleService`` is used to return dynamic styles for different parts of the keyboard. Unlike static styles, a style provider can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
+In KeyboardKit, a ``KeyboardStyleService`` can provide dynamic styles for different parts of a keyboard. Unlike static styles, a style service can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
 
 KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
 
 
-## Color Extensions
+## Color & Image Extensions 
 
-KeyboardKit defines additional colors that aim to match native iOS system colors, like ``SwiftUI/Color/keyboardBackground``. See ``SwiftUI/Color`` for a full list of additional colors that are provided by the library.
+KeyboardKit defines additional, keyboard-specific ``SwiftUI/Color`` and ``SwiftUI/Image`` extensions, like ``SwiftUI/Color/keyboardBackground``, ``SwiftUI/Image/keyboard``, etc. to make it easy to create keyboards that look like a native iOS keyboard.
 
-KeyboardKit also has contextual color functions like ``SwiftUI/Color/keyboardBackground(for:)``, which vary the result on the context. Use these functions instead of the raw color values whenever possible.
+@Row {
+    @Column {
+        ![Image Extensions](styling-images)
+    }
+    @Column {
+        ![Color Extensions](styling-colors)
+    }
+}
+
+KeyboardKit defines contextual colors that take a ``KeyboardContext``, like ``SwiftUI/Color/keyboardBackground(for:)``, and then vary the color result based on the context. Prefer these context-based colors whenever possible.
+
+KeyboardKit defines variable-based icons like ``SwiftUI/Image/keyboardNewline(for:)-4a8j6``, which make it easy to use them as toggles and indicators.
 
 > Important: Some keyboard colors are semi-transparent to work around a system bug in iOS, where iOS defines an invalid color scheme when a keyboard is used with a dark appearance text field in light mode. iOS will say that the color scheme is `.dark`, even if the system color scheme is light. Since dark appearance keyboards in light mode look quite different from keyboards in dark mode, this makes it impossible to apply the correct style. This has been [reported to Apple][Bug], but until it's fixes, thse colors will stay semi-transparent.
 
-
 [Bug]: https://github.com/KeyboardKit/KeyboardKit/issues/305
-
-
-
-## Image Extensions
-
-KeyboardKit provides additional image extensions that mimic system keyboard icons, and [KeyboardKit Pro][Pro] provides vectorized assets for e.g. ``EmojiCategory``. Information about Pro features can be found at the end of this article.
-
-KeyboardKit has additional images that aim to match native iOS system images, like ``SwiftUI/Image/keyboard``. See ``SwiftUI/Image`` for a full list of images that are provided by the library.
-
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
-
-@Row {
-    @Column {}
-    @Column(size: 3) {
-        ![SF Symbol Images](images)
-    }
-    @Column {}
-}
-
-These images are prefixed with **keyboard** to make them easy to find, and scale well when resized with the **.frame** and **.font** modifiers.
 
 
 
