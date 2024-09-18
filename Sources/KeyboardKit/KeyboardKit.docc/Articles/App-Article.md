@@ -27,7 +27,7 @@ KeyboardKit has a ``KeyboardApp`` struct that is also a namespace for app-relate
 
 ## Keyboard App
 
-The ``KeyboardApp`` type can be used to define important properties for your app, such as ``KeyboardApp/name``, ``KeyboardApp/licenseKey`` (for KeyboardKit Pro), ``KeyboardApp/bundleId`` (for keyboard status inspection), ``KeyboardApp/appGroupId`` (sync data between the app and keyboard), deep links, etc.
+The easiest way to set up KeyboardKit is to use a ``KeyboardApp``, which can be used to define things like ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey`` and ``KeyboardApp/locales`` for KeyboardKit Pro, ``KeyboardApp/deepLinks-swift.property``, etc.
 
 You can create a static app value and add it to both the main app target and its keyboard extension target, to easily refer to it from both:
 
@@ -39,8 +39,7 @@ extension KeyboardApp {
             name: "KeyboardKit",
             licenseKey: "abc123",
             bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",
-            locales: [.english, .swedish, .persian]
+            appGroupId: "group.com.keyboardkit.demo"
         )
     }
 }

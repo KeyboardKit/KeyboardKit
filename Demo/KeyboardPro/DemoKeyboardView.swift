@@ -50,11 +50,11 @@ private extension DemoKeyboardView {
     var keyboardServices: Keyboard.Services {
         let services = controller.services
         if let theme {
-            if let provider = try? KeyboardStyle.ThemeBasedProvider(
+            if let service = try? KeyboardStyle.ThemeBasedService(
                 theme: theme,
                 keyboardContext: controller.state.keyboardContext
             ) {
-                services.styleProvider = provider
+                services.styleService = service
             }
         }
         return services

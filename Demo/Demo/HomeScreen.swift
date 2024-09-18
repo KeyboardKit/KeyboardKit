@@ -13,12 +13,9 @@ import SwiftUI
 ///
 /// This view uses a KeyboardKit Pro `KeyboardApp.HomeScreen`
 /// to present keyboard-specific statuses and settings links,
-/// with some additional views added below the standard list.
+/// with some demo-specific modifications.
 ///
-/// The ``dic``
-///
-/// See ``DemoApp`` for important information regarding some
-/// limitations that this app has since it's not signed.
+/// See ``DemoApp`` for important, demo-specific information.
 struct HomeScreen: View {
 
     @State

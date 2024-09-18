@@ -9,8 +9,8 @@
 import Speech
 import KeyboardKitPro
 
-/// This code is copied from the documentation, to implement
-/// a speech recognizer that's required to perform dictation.
+/// This class is copied from the documentation, and used to
+/// perform dictation.
 public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
     public init() {}

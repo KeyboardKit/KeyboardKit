@@ -53,7 +53,7 @@ extension KeyboardViewController {
 
         /// 💡 Setup a demo-specific keyboard style that can
         /// change the design of any keys in a keyboard view.
-        services.styleProvider = DemoStyleProvider(
+        services.styleService = DemoStyleService(
             keyboardContext: state.keyboardContext
         )
     }

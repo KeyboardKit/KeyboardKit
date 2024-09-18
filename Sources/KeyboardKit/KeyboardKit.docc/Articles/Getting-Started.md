@@ -26,7 +26,7 @@ Keyboard extensions can use KeyboardKit to create custom keyboards, while the ma
 
 ## How to define app-specific information
 
-The easiest way to set up KeyboardKit is to use a ``KeyboardApp``, which can be used to define things like ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, ``KeyboardApp/licenseKey`` and ``KeyboardApp/locales`` for [KeyboardKit Pro][Pro], ``KeyboardApp/deepLinks-swift.property``, etc.
+The easiest way to set up KeyboardKit is to use a ``KeyboardApp``, which can be used to define things like ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey`` and ``KeyboardApp/locales`` for KeyboardKit Pro, ``KeyboardApp/deepLinks-swift.property``, etc.
 
 You can create a static ``KeyboardApp`` value in a file that you add to both your main app target and keyboard extension, to be able to easily refer to your app information from both targets:
 
@@ -36,9 +36,9 @@ extension KeyboardApp {
     static var keyboardKitDemo: Self {
         .init(
             name: "KeyboardKit",
+            licenseKey: "abc123",
             bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",
-            licenseKey: "299-061C-4285-8189-90525BC" // Required for KeyboardKit Pro!
+            appGroupId: "group.com.keyboardkit.demo"
         )
     }
 }

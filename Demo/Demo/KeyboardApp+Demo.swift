@@ -14,18 +14,19 @@ import KeyboardKitPro
 
 public extension KeyboardApp {
 
-    /// This value defines properties for the demo app.
-    ///
-    /// The app doesn't support syncing data with App Groups,
-    /// since it's not code signed, but it still defines one
-    /// below, just to show you how it's done.
+    /// This static app property defines the demo app.
     ///
     /// The license key is demo-specific, and only works for
     /// this particular demo app. The bundle ID is used when
     /// presenting the keyboard status on the home screen.
     ///
-    /// Note how this file is added to this main app and the
-    /// `Pro` keyboard, to make it available in both targets.
+    /// The App Group ID is only to show you how you can use
+    /// a `KeyboardApp` to set up App Group data syncing for
+    /// an app and its keyboard. It doesn't work in the demo,
+    /// since the demo isn't code signed.
+    ///
+    /// See ``DemoApp`` for mode important information about
+    /// this demo.
     static var demoApp: Self {
         .init(
             name: "KeyboardKit Demo",
@@ -33,7 +34,7 @@ public extension KeyboardApp {
             bundleId: "com.keyboardkit.demo",
             appGroupId: "group.com.keyboardkit.demo",
             locales: .all,
-            deepLinks: "kkdemo://dictation"
+            deepLinks: .init(app: "kkdemo://")
         )
     }
 }

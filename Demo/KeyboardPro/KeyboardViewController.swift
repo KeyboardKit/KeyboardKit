@@ -10,84 +10,66 @@ import KeyboardKitPro
 import SwiftUI
 
 /// This keyboard demonstrates how to set up KeyboardKit Pro
-/// and customize the standard configuration.
+/// with a `KeyboardApp`, then customize the standard config.
 ///
 /// To use the keyboard, simply enable it in System Settings,
 /// then switch to it with the 🌐 key when typing in any app.
 ///
-/// This keyboard uses some types from the `Keyboard` target,
-/// so have a look there if you don't find what you look for.
+/// See ``DemoApp`` for important, demo-specific information.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
+    /// Use it to set up your keyboard.
     ///
     /// Below, we make demo-specific keyboard configurations.
     /// Play around with them to see how it affects the demo.
     override func viewDidLoad() {
 
-        // MARK: - App Group Synced Settings
-
-        // Call this as early as possible to set up keyboard
-        // settings to sync between the app and its keyboard.
-        // KeyboardSettings.setupStore(withAppGroup: "group.com.your-app-id")
-
-        /// 💡 Set up demo-specific state.
-        setupDemoState()
-
-        /// 🧪 Enable this to test the experimental next keyboard controller mode.
-        /// To try it, just set up a `.keyboardSwitcher` as extra key further down.
-        /// The switch should work without crashes when using the experimental mode.
-        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/799
-        // Keyboard.NextKeyboardButtonControllerMode.current = .experimentalNilTarget
-
-        /// 🧪 Enable this to test the experimental next keyboard input proxy mode.
-        /// To try it, just set up a `.keyboardSwitcher` as extra key further down.
-        /// The switch should work without crashes when editing text in the keyboard.
-        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/671
-        // Keyboard.NextKeyboardButtonProxyMode.current = .experimental
-
         /// 💡 Call super to perform the base initialization.
         super.viewDidLoad()
+
+        /// ‼️ Set up keyboard features like settings, dictation, etc.
+        super.setupPro(for: .demoApp) { result in
+
+            /// 💡 Make demo-specific configurations.
+            self.setupDemoServices(extraKey: .emojiIfNeeded)
+            self.setupDemoState()
+
+            /// 💡 Set up a theme-based style service.
+            ///
+            /// This is throwing since themes need a license.
+            self.services.styleService = (try? .themeBased(
+                theme: .standard,
+                keyboardContext: self.state.keyboardContext
+            )) ?? self.services.styleService
+        }
+
+        /// 🧪 Enable this to test the experimental keyboard
+        /// switcher mode. To try it, use `.keyboardSwitcher`
+        /// as extra key above.
+        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/799
+        // Keyboard.NextKeyboardButtonControllerMode.current = .experimentalNilTarget
+        // Keyboard.NextKeyboardButtonProxyMode.current = .experimental
     }
 
-    /// This function is called whenever the keyboard should
-    /// be created or updated.
+    /// This function is called when the controller needs to
+    /// create or update the keyboard view.
     ///
-    /// Here, we pass in the demo app's license key then use
-    /// the custom ``DemoKeyboardView`` as the keyboard view.
-    override func viewWillSetupKeyboard() {
+    /// Below, we make demo-specific keyboard configurations.
+    /// Play around with them to see how it affects the demo.
+    ///
+    /// 💡 You don't need to override this function when you
+    /// want to use a regular `KeyboardView`.
+    override func viewWillSetupKeyboardView() {
 
-        /// 💡 Call `super` to perform any fundamental setup.
-        super.viewWillSetupKeyboard()
-        
+        /// 💡 Call super to perform base view configuration.
+        super.viewWillSetupKeyboardView()
+
         /// 💡 Make the demo use a ``DemoKeyboardView``.
         ///
         /// This passes the `unowned` controller to the view,
-        /// which must keep it unowned to avoid memory leaks!
-        setupPro(
-            withLicenseKey: KeyboardApp.demoApp.licenseKey ?? "",
-            licenseConfiguration: setupServices,  // Specified below
-            view: { controller in DemoKeyboardView(controller: controller) }
-        )
-    }
-
-
-    // MARK: - Setup
-
-    /// This function is called to set up keyboard services.
-    func setupServices(with license: License) {
-
-        /// 💡 Set up demo-specific services.
-        setupDemoServices(extraKey: .emojiIfNeeded)
-
-        /// 💡 Set up a KeyboardKit Pro theme-based service.
-        ///
-        /// Themes are powerful ways to specify styles for a
-        /// keyboard. You can insert any theme below.
-        services.styleProvider = .themed(
-            with: .standard,
-            keyboardContext: state.keyboardContext,
-            fallback: services.styleProvider
-        )
+        setupKeyboardView { controller in
+            DemoKeyboardView(controller: controller)
+        }
     }
 }

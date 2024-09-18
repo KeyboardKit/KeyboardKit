@@ -175,7 +175,7 @@ private extension DemoToolbar {
 private extension DemoToolbar {
     
     func openSettings() {
-        controller.openUrl(.keyboardSettings)
+        controller.openUrl(.systemSettings)
     }
     
     func readDocument() {
@@ -213,7 +213,7 @@ private extension View {
     }
 }
 
-extension String: Identifiable {
+extension String: @retroactive Identifiable {
     
     public var id: String { self }
 }

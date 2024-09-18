@@ -13,7 +13,7 @@ import KeyboardKitPro
 #endif
 
 /// This service inherits the standard service, and can then
-/// add one extra button before the spacebar.
+/// add one extra button before or after the spacebar.
 class DemoLayoutService: KeyboardLayout.StandardService {
 
     init(extraKey: ExtraKey) {

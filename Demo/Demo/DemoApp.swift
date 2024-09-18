@@ -11,35 +11,28 @@ import KeyboardKitPro
 
 /// This is the KeyboardKit demo app.
 ///
-/// The app has two keyboard extensions. They can be enabled
-/// from System Settings and require Full Access to use some
-/// features, like haptic feedback.
+/// This app and the `KeyboardPro` keyboard uses KeyboardKit
+/// Pro, while the `Keyboard` keyboard uses KeyboardKit as a
+/// local dependency. The keyboards can be enabled in System
+/// Settings, and require Full Access for some features.
 ///
 /// The app uses a `KeyboardAppView` to set up the app while
-/// the keyboard extensions use `setup` and `setupPro`. This
-/// will register the KeyboardKit Pro license, sets up state
-/// and services, etc.
+/// the keyboards use `setup` & `setupPro`. This will set up
+/// state & services, settings, dictation, etc. and register
+/// the KeyboardKit Pro license key.
 ///
-/// Use the `Keyboard` keyboard to play around with the open
-/// source SDK. It adds KeyboardKit as a local dependency to
-/// let you change any code and immediately see the result.
-///
-/// Use the `KeyboardPro` keyboard to test the closed-source
-/// SDK and many of the features it provides. It adds KK Pro
-/// as a closed-source binary dependency, but you can adjust
-/// it with the `KeyboardPro` source code.
-///
-/// `NOTE` To avoid having to duplicate services between the
-/// two keyboard targets, they define preprocessor macros to
-/// let the files conditionally import KeyboardKit or KK Pro.
-/// This is only a demo detail. You don't have to do this in
-/// your own app, since you'll either use KeyboardKit or Pro. 
+/// The app and its keyboards share files between targets to
+/// avoid code duplications. For instance, `KeyboardApp+Demo`
+/// is added to all targets. Since it uses both `KeyboardKit`
+/// and `KeyboardKit Pro` you will therefore see checks like
+/// `#if IS_KEYBOARDKIT`. You do NOT need it in your own app.
 ///
 /// `IMPORTANT` Although this app lets you test the keyboard
-/// settings screens and start dictation, the app can't sync
-/// data between itself and its keyboards, since it does not
-/// use code signing. To make syncing work in your app, just
-/// create an App Group and link it to your app and keyboard.
+/// settings screens and start dictation, it can't sync data
+/// between the app and its keyboards, since it's not signed
+/// and therefore can't use an App Group. To make it work in
+/// your app, just create an App Group, link it to both your
+/// app AND keyboard, then add the group ID to `KeyboardApp`.
 @main
 struct DemoApp: App {
 
