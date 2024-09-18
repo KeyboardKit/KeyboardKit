@@ -119,6 +119,7 @@ Make sure to test these experimental features and report any findings in the Key
 ### 🗑️ Deprecations
 
 * `TextInputProxy` is no longer needed and has been deprecated.
+* `URL.keyboardSettings` has been renamed to `URL.systemSettings`.
 
 
 

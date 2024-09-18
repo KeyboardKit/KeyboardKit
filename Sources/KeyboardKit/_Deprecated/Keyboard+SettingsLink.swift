@@ -10,11 +10,11 @@ import SwiftUI
 
 public extension Keyboard {
     
-    @available(*, deprecated, message: "Use a regular SwiftUI Link with the .keyboardSettings URL instead.")
+    @available(*, deprecated, message: "Use a regular SwiftUI Link with the .systemSettings URL instead.")
     struct SettingsLink<Content: View>: View {
 
         public init(
-            url: URL? = .keyboardSettings,
+            url: URL? = .systemSettings,
             addNavigationArrow: Bool = false,
             @ViewBuilder label: @escaping () -> Content
         ) {
@@ -45,7 +45,7 @@ public extension Keyboard {
     }
 }
 
-@available(*, deprecated, message: "Use a regular SwiftUI Link with the .keyboardSettings URL instead.")
+@available(*, deprecated, message: "Use a regular SwiftUI Link with the .systemSettings URL instead.")
 public extension Keyboard.SettingsLink where Content == Label<Text, Image> {
 
     /// Create a settings link with a title and icon.
@@ -58,7 +58,7 @@ public extension Keyboard.SettingsLink where Content == Label<Text, Image> {
     init(
         title: String = "System Settings",
         icon: Image = .keyboardSettings,
-        url: URL? = .keyboardSettings,
+        url: URL? = .systemSettings,
         addNavigationArrow: Bool = false
     ) {
         self.init(url: url) {

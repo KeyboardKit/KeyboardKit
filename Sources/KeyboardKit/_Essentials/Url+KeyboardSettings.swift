@@ -29,11 +29,14 @@ public extension URL {
     /// Maybe `appSettings` would be a better name, but this
     /// name was used to reduce the risk of naming conflicts
     /// with other URL extensions.
-    static var keyboardSettings: URL? {
+    static var systemSettings: URL? {
         #if os(iOS) || os(tvOS) || os(visionOS)
         URL(string: UIApplication.openSettingsURLString)
         #else
         nil
         #endif
     }
+
+    @available(*, deprecated, renamed: "systemSettings")
+    static var keyboardSettings: URL? { systemSettings }
 }

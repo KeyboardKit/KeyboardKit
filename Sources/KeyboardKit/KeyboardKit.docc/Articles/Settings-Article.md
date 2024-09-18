@@ -43,12 +43,12 @@ The main app will always write data to an App Group in a way that is instantly a
 
 ## How to open System Settings
 
-KeyboardKit defines a ``Foundation/URL/keyboardSettings`` URL that can be used to open your app's keyboard settings screen in System Settings, where users can enable your keyboard, enable Full Access, etc. 
+KeyboardKit defines a ``Foundation/URL/systemSettings`` URL that can be used to open your app's settings screen in System Settings, where users can enable your keyboard, enable Full Access, etc. 
 
 You can use a standard SwiftUI `Link` to open this URL from both your app and its keyboard extension:
 
 ```swift
-if let url = URL.keyboardSettings {
+if let url = URL.systemSettings {
     Link("Open System Settings", destination: url)
 }
 ```

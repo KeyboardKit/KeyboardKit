@@ -78,7 +78,7 @@ public extension KeyboardAction {
         case .primary: { $0?.insertText(.newline) }
         case .shift(let current): current.standardReleaseAction
         case .space: { $0?.insertText(.space) }
-        case .systemSettings: { $0?.openUrl(.keyboardSettings) }
+        case .systemSettings: { $0?.openUrl(.systemSettings) }
         case .tab: { $0?.insertText(.tab) }
         case .text(let text): { $0?.insertText(text) }
         case .url(let url, _): { $0?.openUrl(url) }
