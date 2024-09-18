@@ -208,8 +208,6 @@ KeyboardKit is available under the MIT license.
 - ``EmojiCategory``
 - ``EmojiKeyboard``
 - ``EmojiKeyboardStyle``
-- ``EmojiProvider``
-- ``EmojiProviders``
 - ``EmojiVersion``
 
 ### External

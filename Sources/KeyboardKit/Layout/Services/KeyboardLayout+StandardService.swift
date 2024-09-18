@@ -25,6 +25,9 @@ extension KeyboardLayout {
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``KeyboardLayoutService/standard(baseService:localizedServices:)``. 
+    ///
     /// See <doc:Layout-Article> for more information.
     open class StandardService: KeyboardLayoutService {
 
@@ -78,7 +81,7 @@ extension KeyboardLayout {
             return baseService
         }
         
-        /// Register a new localized service.
+        /// Register a localized service
         open func registerLocalizedService(
             _ service: LocalizedLayoutService
         ) {

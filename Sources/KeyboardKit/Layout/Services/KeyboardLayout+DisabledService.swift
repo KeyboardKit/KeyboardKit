@@ -13,6 +13,9 @@ extension KeyboardLayout {
     /// This service can be used to disable keyboard layouts
     /// and just use a standard ``BaseService``.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``KeyboardLayoutService/disabled``.
+    ///
     /// See <doc:Layout-Article> for more information.
     open class DisabledService: KeyboardLayout.BaseService {
 

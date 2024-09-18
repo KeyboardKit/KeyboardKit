@@ -22,7 +22,11 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.9
 
-This version adds a new `Keyboard.NumberPad` view, predition-based tap area sizes for keyboard keys, `KeyboardTheme` models from Pro, and a new `KeyboardThemeContext`. It also lets you set up the main app and its keyboard extension with a `KeyboardApp`.
+This version adds a new `Keyboard.NumberPad` view, predition-based tap area sizes for keyboard keys, `KeyboardTheme` models from Pro, and a new `KeyboardThemeContext`. 
+
+This version also lets you set up your keyboard extension with a `KeyboardApp`, which then handles things like setting up App Group settings, registering your license key, etc.
+
+This version also adds a service shorthands that make it easier to pass in services. For instance, instead of typing `KeyboardAction.StandardHandler(...)`, you can just type `.standard(...)`.
 
 ### ✨ Features
 
@@ -40,10 +44,36 @@ This version adds a new `Keyboard.NumberPad` view, predition-based tap area size
 * `KeyboardThemeContext` is a new context type for theme-related state. 
 * `View+KeyboardButton` now supports applying extended tap areas to more probable keys.
 
+### ⚡️ Shorthands
+
+* `Autocomplete.DisabledService` can be resolved with `.disabled(...)`.
+* `Callouts.DisabledService` can be resolved with `.disabled`.
+* `Callouts.StandardService` can be resolved with `.standard(...)`.
+* `Dictation.DisabledService` can be resolved with `.disabled`.
+* `Dictation.DisabledKeyboardService` can be resolved with `.disabled(...)`.
+* `Feedback.DisabledService` can be resolved with `.disabled`.
+* `Feedback.StandardService` can be resolved with `.standard`.
+* `Gestures.SpaceDragGestureHandler` can be resolved with `.spaceDrag`.
+* `KeyboardAction.StandardHandler` can be resolved with `.standard(...)`.
+* `KeyboardLayout.DisabledService` can be resolved with `.disabled`.
+* `KeyboardLayout.StandardService` can be resolved with `.standard(...)`.
+* `KeyboardStyle.StandardService` can be resolved with `.standard(...)`.
+
 ### 👑 Pro Features
 
 * `KeyboardApp.HomeScreen` can now opt-in to link to the themes screen.
 * `KeyboardApp.ThemeScreen` is a new screen that can be used as a theme picker.
+
+### 👑 Pro Shorthands
+
+* `Autocomplete.LocalService` can be resolved with `.local(...)`.
+* `Autocomplete.RemoteService` can be resolved with `.remote(...)`.
+* `Callouts.ProService.<Locale>` can be resolved with `.<locale>`.
+* `Dictation.ProService` can be resolved with `.pro(...)`.
+* `Dictation.ProKeyboardService` can be resolved with `.proInKeyboard(...)` and `.proInApp(...)`.
+* `KeyboardLayout.ProService.<Locale>` can be resolved with `.<locale>(...)`.
+* `KeyboardStyleService.ThemeBased` can be resolved with `.themeBased(...)`.
+
 
 ### 💡 Adjustments
 

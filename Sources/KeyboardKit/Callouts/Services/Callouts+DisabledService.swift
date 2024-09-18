@@ -10,7 +10,10 @@ import Foundation
 
 extension Callouts {
 
-    /// This service can be used to disable callout actions.
+    /// Create a disabled callout service.
+    ///
+    /// This service can also be resolved with the shorthand
+    /// ``CalloutService/disabled``.
     ///
     /// See <doc:Callouts-Article> for more information.
     open class DisabledService: CalloutService {

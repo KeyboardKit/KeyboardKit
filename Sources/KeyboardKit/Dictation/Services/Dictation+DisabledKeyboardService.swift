@@ -14,6 +14,9 @@ public extension Dictation {
     /// register a custom implementation or register a valid
     /// KeyboardKit Pro license key.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``KeyboardDictationService/disabled(context:)``.
+    ///
     /// See <doc:Dictation-Article> for more information.
     class DisabledKeyboardService: DisabledService, KeyboardDictationService {
 
@@ -48,18 +51,6 @@ public extension Dictation {
         }
 
         open func undoLastDictation() {}
-    }
-}
-
-public extension KeyboardDictationService where Self == Dictation.DisabledKeyboardService {
-    
-    /// This service can be used to disable dictation.
-    static func disabled(
-        context: DictationContext
-    ) -> KeyboardDictationService {
-        Dictation.DisabledKeyboardService(
-            context: context
-        )
     }
 }
 

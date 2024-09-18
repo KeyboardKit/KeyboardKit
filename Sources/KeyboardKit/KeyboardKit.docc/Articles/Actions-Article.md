@@ -99,7 +99,7 @@ You can implement ``KeyboardActionHandler`` from scratch, or inherit and customi
 For instance, here's a custom action handler that inherits ``KeyboardAction/StandardHandler`` and prints when space is pressed:
 
 ```swift
-class CustomActionHandler: StandardActionHandler {
+class CustomActionHandler: KeyboardAction.StandardHandler {
 
     open override func handle(
         _ gesture: Keyboard.Gesture, 

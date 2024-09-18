@@ -15,7 +15,7 @@ This article describes the KeyboardKit layout engine.
 
 A flexible keyboard layout is an important part of a software keyboard, and must consider many factors like the current locale, device, screen orientation, user preferences, etc.
 
-In KeyboardKit, an ``InputSet`` is used to create a ``KeyboardLayout``, where the input set specifies input keys and the layout specifies the full keyboard layout.
+In KeyboardKit, a ``KeyboardLayout`` describes the full keyboard layout, which can use an ``InputSet`` to define the input keys, then surround them with additional keys.
 
 KeyboardKit has a ``KeyboardLayoutService`` protocol that is implemented by classes that can create keyboard layouts, as well as many base classes that create standard layouts that can then be customized.
 
@@ -25,14 +25,14 @@ KeyboardKit has a ``KeyboardLayoutService`` protocol that is implemented by clas
 
 ## KeyboardLayout namespace
 
-KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for layout-related types like ``InputSet`` and ``KeyboardLayout``.
+KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other layout-related types like ``KeyboardLayout/Configuration``, ``KeyboardLayout/Item``, etc.
 
 
 ## Input Sets
 
 An ``InputSet`` set specifies the input keys of a keyboard. It makes it easy to define different input keys for the same keyboard layout.
 
-KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` and ``InputSet/symbolic(currencies:)``.
+KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` and ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, e.g. QWERTZ, AZERTY, and specific input sets for each locale.
 
 
 
@@ -40,9 +40,7 @@ KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``
 
 A ``KeyboardLayout`` specifies the full set of keys om a keyboard. Layouts vary greatly for different device types, screen orientations, locales, keyboard configurations, etc.
 
-For instance, most iOS keyboards have 3 input key rows, where the input keys are surrounded by system keys, as well as a bottom row with a space bar that is surrounded by contextual input and system keys.
-
-This is however not always true. Most layouts are different on iPhone and iPad, and many locales make changes to the entire layout, not just the input keys. For instance, Armenian uses 4 rows, Arabic removes some system keys, etc.
+For instance, *most* iOS keyboards have 3 input rows, with input keys that are surrounded by action keys, as well as a bottom row with a space bar and contextual action keys. This is however not true for all locales, where the layout can vary greatly.
 
 
 
@@ -50,7 +48,7 @@ This is however not always true. Most layouts are different on iPhone and iPad, 
 
 Given all this, the layout engine has to be flexible. KeyboardKit has a ``KeyboardLayoutService`` that generates layouts at runtime, based on many different factors. Layout services can use any information to tweak any part of a layout at any time.
 
-KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it.
+KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject custom services into it.
 
 
 
@@ -60,18 +58,18 @@ You can create a custom layout service to customize the layout for certain local
 
 You can implement the ``KeyboardLayoutService`` protocol from scratch, or inherit and customize any of the ``KeyboardLayout/StandardService``, ``KeyboardLayout/BaseService``, ``KeyboardLayout/DeviceBasedService``, ``KeyboardLayout/iPadService``, ``KeyboardLayout/iPadProService``, or ``KeyboardLayout/iPhoneService`` base classes. 
 
-For instance, here's a custom service that inherits ``KeyboardLayout/StandardService``, then injects a ``KeyboardAction/tab`` key into the layout:
+For instance, here's a custom service that inherits ``KeyboardLayout/StandardService``, then adds a ``KeyboardAction/tab`` key to the top leading position of the layout:
 
 ```swift
 class CustomKeyboardLayoutService: KeyboardLayout.StandardService {
     
+    // Never use array indices if it can cause a crash.
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         let layout = super.keyboardLayout(for: context)
-        var rows = layout.itemRows
-        var row = layout.itemRows[0]
-        let next = row[0]
-        let size = KeyboardLayout.ItemSize(width: .available, height: next.size.height)
-        let tab = KeyboardLayout.Item(action: .tab, size: size, insets: next.insets)
+        guard var row = layout.itemRows.first else { return layout }
+        guard let first = row.first else { return layout }
+        let size = KeyboardLayout.ItemSize(width: .available, height: first.size.height)
+        let tab = KeyboardLayout.Item(action: .tab, size: size, insets: first.insets)
         row.insert(tab, at: 0)
         rows[0] = row
         layout.itemRows = rows
@@ -91,7 +89,17 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make KeyboardKit use your custom implementation instead of the standard one.
+If you just want to change the layout service for a certain ``KeyboardLocale``, you can call the ``KeyboardLayoutService/registerLocalizedService(_:)`` function, which is however only supported by the ``KeyboardLayout/StandardService`` and its subclasses.
+
+For instance, this is how you could replace ``KeyboardLocale/german`` to use a layout provider that uses ``InputSet/qwerty`` instead of the default German input set, when using KeyboardKit Pro:
+
+```swift
+services.layoutService.registerLocalizedService(
+    try! KeyboardLayout.ProService.German(alphabeticInputSet: .qwerty) 
+)
+```
+
+This will be made easier in future versions of KeyboardKit.
 
 
 

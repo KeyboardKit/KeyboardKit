@@ -24,6 +24,9 @@ extension KeyboardAction {
     /// tuple. This lets you easily override if an operation
     /// should be performed, and how to perform it.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``KeyboardActionHandler/standard(controller:)``.
+    ///
     /// See <doc:Actions-Article> for more information.
     open class StandardHandler: NSObject, KeyboardActionHandler {
 

@@ -38,6 +38,9 @@ extension KeyboardStyle {
     ///     }
     /// ```
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``KeyboardStyleService/standard(keyboardContext:)``.
+    ///
     /// See <doc:Styling-Article> for more information.
     open class StandardService: KeyboardStyleService {
 

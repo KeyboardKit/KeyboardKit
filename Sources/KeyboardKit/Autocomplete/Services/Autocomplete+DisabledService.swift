@@ -13,9 +13,16 @@ public extension Autocomplete {
     /// This service is used as a default service, until you
     /// setup KeyboardKit Pro or register a custom service.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``AutocompleteService/disabled(suggestions:)``.
+    ///
     /// See <doc:Autocomplete-Article> for more information.
     class DisabledService: AutocompleteService {
 
+        /// Create a disabled autocomplete service.
+        ///
+        /// - Parameters:
+        ///   - suggestions: The suggestions to present.
         public init(
             suggestions: [Autocomplete.Suggestion] = []
         ) {
@@ -49,13 +56,5 @@ public extension Autocomplete {
         open func learnWord(_ word: String) {}
         open func removeIgnoredWord(_ word: String) {}
         open func unlearnWord(_ word: String) {}
-    }
-}
-
-public extension AutocompleteService where Self == Autocomplete.DisabledService {
-
-    /// This service can be used to disable autocomplete.
-    static var disabled: AutocompleteService {
-        Autocomplete.DisabledService()
     }
 }

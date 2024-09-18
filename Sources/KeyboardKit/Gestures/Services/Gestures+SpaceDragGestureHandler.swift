@@ -15,6 +15,9 @@ public extension Gestures {
     ///
     /// KeyboardKit will create an instance of the class and
     /// inject it into ``KeyboardInputViewController/state``.
+    ///
+    /// This service can also be resolved with the shorthand
+    /// ``DragGestureHandler/spaceDrag(sensitivity:verticalThreshold:action:)``.
     class SpaceDragGestureHandler: DragGestureHandler {
         
         /// Create a space drag gesture handler instance.

@@ -25,6 +25,9 @@ extension Callouts {
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``CalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``.
+    ///
     /// See <doc:Callouts-Article> for more information.
     open class StandardService: CalloutService {
 

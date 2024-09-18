@@ -14,6 +14,9 @@ public extension Dictation {
     /// register a custom implementation or register a valid
     /// KeyboardKit Pro license key.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``DictationService/disabled``.
+    ///
     /// See <doc:Dictation-Article> for more information.
     class DisabledService: DictationService {
         
@@ -40,13 +43,5 @@ public extension Dictation {
         open func stopDictation() async throws {
             throw Dictation.ServiceError.disabledService
         }
-    }
-}
-
-public extension DictationService where Self == Dictation.DisabledService {
-    
-    /// This service can be used to disable dictation.
-    static var disabled: DictationService {
-        Dictation.DisabledService()
     }
 }

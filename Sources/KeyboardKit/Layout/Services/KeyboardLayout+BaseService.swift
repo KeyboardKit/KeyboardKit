@@ -58,7 +58,7 @@ extension KeyboardLayout {
             let items = items(for: actions, context: context)
             return KeyboardLayout(itemRows: items)
         }
-        
+
         
         // MARK: - Open helper functions
         

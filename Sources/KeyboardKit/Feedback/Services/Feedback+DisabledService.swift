@@ -12,6 +12,9 @@ extension Feedback {
 
     /// This service can be used to disable all feedback.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``FeedbackService/disabled``.
+    ///
     /// See <doc:Feedback-Article> for more information.
     open class DisabledService: FeedbackService {
 

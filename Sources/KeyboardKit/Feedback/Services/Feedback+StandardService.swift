@@ -20,6 +20,9 @@ extension Feedback {
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
+    /// This service can also be resolved with the shorthand
+    /// ``FeedbackService/standard``.
+    ///
     /// See <doc:Feedback-Article> for more information.
     open class StandardService: FeedbackService {
 
