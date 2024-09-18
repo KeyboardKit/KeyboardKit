@@ -153,10 +153,10 @@ public extension KeyboardApp {
             themeSettings: String? = nil
         ) {
             self.app = app
-            self.dictation = dictation ?? "\(app)/dictation"
-            self.keyboardSettings = keyboardSettings ?? "\(app)/keyboardSettings"
-            self.languageSettings = languageSettings ?? "\(app)/languageSettings"
-            self.themeSettings = themeSettings ?? "\(app)/themeSettings"
+            self.dictation = dictation ?? "\(app)dictation"
+            self.keyboardSettings = keyboardSettings ?? "\(app)keyboardSettings"
+            self.languageSettings = languageSettings ?? "\(app)languageSettings"
+            self.themeSettings = themeSettings ?? "\(app)themeSettings"
         }
 
         public let app: String
