@@ -44,6 +44,12 @@ public extension Callouts {
     struct ProService {}
 }
 
+public extension Callouts.ProService {
+
+    /// 👑 This is unlocked by KeyboardKit Pro
+    struct Swedish {}
+}
+
 public extension Dictation {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -200,6 +206,12 @@ public extension KeyboardLayout {
             edgeInsets: idealItemInsets
         )
     }
+}
+
+public extension KeyboardLayout.ProService {
+
+    /// 👑 This is unlocked by KeyboardKit Pro
+    struct Swedish {}
 }
 
 public extension KeyboardStatus {

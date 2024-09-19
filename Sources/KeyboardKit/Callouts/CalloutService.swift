@@ -30,3 +30,39 @@ public protocol CalloutService: AnyObject {
     /// Trigger feedback for callout selection change.
     func triggerFeedbackForSelectionChange()
 }
+
+public extension Callouts {
+
+    /// This error can be thrown by ``CalloutService/tryRegisterLocalizedLayoutService(_:)``.
+    enum TryRegisterLocalizedLayoutServiceError: Error {
+
+        /// The service doesn't support localized layout service registrations.
+        case serviceDoesNotSupportLocalizedServiceRegistration
+
+        /// The provided service doesn't implement the ``LocalizedService`` protocol.
+        case providedServiceDoesNotImplementLocalizedServiceProtocol
+    }
+}
+
+public extension CalloutService {
+
+    /// Try to register a localized service, which will then
+    /// be used for the locale it specifies.
+    ///
+    /// - Parameters:
+    ///   - service: The service to register.
+    ///
+    /// - Throws: ``Callouts/TryRegisterLocalizedLayoutServiceError``
+    /// if the current service can't be cast to a ``Callouts/StandardService``
+    /// or the provided `service` doesn't implement ``LocalizedService``.
+    func tryRegisterLocalizedService(
+        _ service: CalloutService
+    ) throws {
+        typealias ErrorType = KeyboardLayout.TryRegisterLocalizedLayoutServiceError
+        let selfError = ErrorType.serviceDoesNotSupportLocalizedServiceRegistration
+        let serviceError = ErrorType.providedServiceDoesNotImplementLocalizedServiceProtocol
+        guard let _self = self as? KeyboardLayout.StandardService else { throw selfError }
+        guard let service = service as? KeyboardLayoutService & LocalizedService else { throw serviceError }
+        _self.registerLocalizedService(service)
+    }
+}

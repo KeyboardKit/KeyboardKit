@@ -122,6 +122,42 @@ public extension Keyboard {
     }
 }
 
+public extension Keyboard.Services {
+
+    /// Try to register a localized service, which will then
+    /// be used for the locale it specifies.
+    ///
+    /// - Parameters:
+    ///   - service: The service to register.
+    ///
+    /// - Throws: ``Callouts/TryRegisterLocalizedLayoutServiceError``
+    /// if the current ``calloutService`` can't be cast to a
+    /// ``Callouts/StandardService`` or the provided `service`
+    /// doesn't implement the ``LocalizedService`` protocol.
+    func tryRegisterLocalizedCalloutService(
+        _ service: CalloutService
+    ) throws {
+        try calloutService.tryRegisterLocalizedService(service)
+    }
+
+    /// Try to register a localized service, which will then
+    /// be used for the locale it specifies.
+    ///
+    /// - Parameters:
+    ///   - service: The service to register.
+    ///
+    /// - Throws: ``KeyboardLayout/TryRegisterLocalizedLayoutServiceError``
+    /// if the current ``layoutService`` can't be cast to a
+    /// ``KeyboardLayout/StandardService`` or the provided `service`
+    /// doesn't implement the ``LocalizedService`` protocol.
+    func tryRegisterLocalizedLayoutService(
+        _ service: CalloutService
+    ) throws {
+        try calloutService.tryRegisterLocalizedService(service)
+    }
+}
+
+
 #if os(iOS) || os(tvOS) || os(visionOS)
 public extension Keyboard.Services {
 

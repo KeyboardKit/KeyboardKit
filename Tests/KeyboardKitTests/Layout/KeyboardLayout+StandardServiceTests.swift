@@ -49,7 +49,7 @@ class KeyboardLayout_StandardServiceTests: XCTestCase {
         let locale = KeyboardLocale.albanian
         let new = TestService(localeKey: locale.localeIdentifier)
         XCTAssertNil(service.localizedServices.value(for: locale.locale))
-        try? service.registerLocalizedService(new)
+        service.registerLocalizedService(new)
         XCTAssertIdentical(service.localizedServices.value(for: locale.locale), new)
     }
     

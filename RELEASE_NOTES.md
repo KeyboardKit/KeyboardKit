@@ -31,14 +31,18 @@ This version also adds a service shorthands that make it easier to pass in servi
 ### ✨ Features
 
 * `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
+* `CalloutService` has a new `tryRegisterLocalizedService` function.
 * `DictationContext` can now be set up for a `KeyboardApp`.
 * `Image` has a new `keyboardTheme` image value.
 * `Keyboard.NumberPad` is a new number pad component.
 * `Keyboard.State` has a new `themeContext` property.
+* `Keyboard.Services` has a new `tryRegisterLocalizedCalloutService` function.
+* `Keyboard.Services` has a new `tryRegisterLocalizedLayoutService` function.
 * `KeyboardApp` has new `deepLinks` and `keyboardBundleId` properties.
 * `KeyboardContext` no longer syncs keyboard type for the same value.
 * `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.
 * `KeyboardInputController` can now be set up for a `KeyboardApp`.
+* `KeyboardLayoutService` has a new `tryRegisterLocalizedService` function.
 * `KeyboardSettings` can now be set up for a `KeyboardApp`.
 * `KeyboardView` now applies next character probabilities to its items.
 * `KeyboardThemeContext` is a new context type for theme-related state. 

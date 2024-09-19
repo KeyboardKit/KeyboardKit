@@ -64,27 +64,20 @@ This will bind a ``CalloutContext`` to the view and apply ``Callouts/ActionCallo
 
 You can create a custom ``CalloutService`` to customize which secondary callout actions to show for different ``KeyboardAction``s.
 
-You can implement the ``CalloutService`` protocol from scratch, or inherit and customize ``Callouts/BaseService`` or ``Callouts/StandardService`` to get a lot of stuff for free. 
-
-For instance, here's a custom service that inherits ``Callouts/StandardService`` and customizes the actions for the `$` key:
+You can implement the ``CalloutService`` protocol from scratch, or inherit and customize ``Callouts/BaseService`` or ``Callouts/StandardService`` to get a lot of functionality for free, for instance:
 
 ```swift
-class CustomCalloutService: Callout.StandardService {
+class CustomCalloutService: Callouts.StandardService {
     
     override func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-        switch action {
-        case .character(let char):
-            switch char {
-            case "$": return "$₽¥€¢£₩".chars.map { KeyboardAction.character($0) }
-            default: break
-            }
-        default: break
-        }
-        return super.calloutActions(for: action)
+        var actions = super.calloutActions(for: action)
+        // Perform any modifications here
+        return actions
     }
 }
 ```
 
+The ``Callouts/StandardService`` and ``Callouts/ProService`` base classes have different functions that you can override, and the ``KeyboardAction`` model also provodes ways to define actions.
 
 To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/calloutService`` property:
 
@@ -92,13 +85,37 @@ To use your custom service instead of the standard one, just inject it into ``Ke
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        services.calloutService = CustomCalloutService()
         super.viewDidLoad()
+        services.calloutService = CustomCalloutService()
     }
 }
 ```
 
 This will make KeyboardKit use your custom implementation instead of the standard one.
+
+
+
+## How to customize the callouts for a specific locale
+
+If a service inherits ``Callouts/StandardService``, you can use ``CalloutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)`` to register a custom service for a certain ``KeyboardLocale``.
+
+For instance, this is how you could make KeyboardKit Pro use  a custom service for ``KeyboardLocale/german``:
+
+```swift
+class MyCustomGermanService: KeyboardLayout.ProService.German { ... } 
+
+class KeyboardViewController: KeyboardInputViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        services.tryRegisterLocalizedCalloutService(
+            try! MyCustomGermanService() 
+        )
+    }
+}
+```
+
+This makes it easy to replace the default service for a certain locale in KeyboardKit Pro, where you can subclass ``Callouts/ProService`` or any localized Pro service, and make customizations to it.
 
 
 

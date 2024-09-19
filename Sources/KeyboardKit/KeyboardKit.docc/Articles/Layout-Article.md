@@ -54,52 +54,59 @@ KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardServic
 
 ## How to create a custom layout service
 
-You can create a custom layout service to customize the layout for certain locales or devices, or to provide a completely custom layout.
+You can create a custom layout service to customize the layout for certain locales or devices, or define a completely custom layout.
 
-You can implement the ``KeyboardLayoutService`` protocol from scratch, or inherit and customize any of the ``KeyboardLayout/StandardService``, ``KeyboardLayout/BaseService``, ``KeyboardLayout/DeviceBasedService``, ``KeyboardLayout/iPadService``, ``KeyboardLayout/iPadProService``, or ``KeyboardLayout/iPhoneService`` base classes. 
-
-For instance, here's a custom service that inherits ``KeyboardLayout/StandardService``, then adds a ``KeyboardAction/tab`` key to the top leading position of the layout:
+You can implement the ``KeyboardLayoutService`` protocol from scratch, or inherit and customize any of the ``KeyboardLayout/StandardService``, ``KeyboardLayout/BaseService``, ``KeyboardLayout/iPadService``, ``KeyboardLayout/iPadProService``, or ``KeyboardLayout/iPhoneService`` base classes, for instance:
 
 ```swift
 class CustomKeyboardLayoutService: KeyboardLayout.StandardService {
     
     // Never use array indices if it can cause a crash.
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let layout = super.keyboardLayout(for: context)
-        guard var row = layout.itemRows.first else { return layout }
-        guard let first = row.first else { return layout }
-        let size = KeyboardLayout.ItemSize(width: .available, height: first.size.height)
-        let tab = KeyboardLayout.Item(action: .tab, size: size, insets: first.insets)
-        row.insert(tab, at: 0)
-        rows[0] = row
-        layout.itemRows = rows
+        var layout = super.keyboardLayout(for: context)
+        // Perform any modifications here
         return layout
     }
 }
 ```
+
+The ``KeyboardLayout/StandardService`` and ``KeyboardLayout/ProService`` base classes have different functions that you can override, and the ``KeyboardLayout`` model also provodes ways to modify the layout, although they are a bit complicated at the moment.
+
 To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/layoutService`` property:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
-        services.layoutService = CustomKeyboardLayoutService()
         super.viewDidLoad()
+        services.layoutService = CustomKeyboardLayoutService()
     }
 }
 ```
 
-If you just want to change the layout service for a certain ``KeyboardLocale``, you can call the ``KeyboardLayoutService/registerLocalizedService(_:)`` function, which is however only supported by the ``KeyboardLayout/StandardService`` and its subclasses.
+This will make KeyboardKit use your custom implementation instead of the standard one.
 
-For instance, this is how you could replace ``KeyboardLocale/german`` to use a layout provider that uses ``InputSet/qwerty`` instead of the default German input set, when using KeyboardKit Pro:
+
+
+## How to customize the layout for a specific locale
+
+If a service inherits ``KeyboardLayout/StandardService``, you can use ``KeyboardLayoutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedLayoutService(_:)`` to register a custom service for a certain ``KeyboardLocale``.
+
+For instance, this is how you could make KeyboardKit Pro use the QWERTY layout for ``KeyboardLocale/german``:
 
 ```swift
-services.layoutService.registerLocalizedService(
-    try! KeyboardLayout.ProService.German(alphabeticInputSet: .qwerty) 
-)
+class KeyboardViewController: KeyboardInputViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        services.tryRegisterLocalizedLayoutService(
+            try! KeyboardLayout.ProService.German(alphabeticInputSet: .qwerty) 
+        )
+    }
+}
 ```
 
-This will be made easier in future versions of KeyboardKit.
+This makes it easy to replace the default service for a certain locale in KeyboardKit Pro, where you can subclass ``KeyboardLayout/ProService`` or any localized Pro service, and make customizations to it.
 
 
 

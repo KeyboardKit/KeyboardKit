@@ -9,8 +9,8 @@
 #if os(iOS) || os(tvOS)
 import UIKit
 
-class MockTraitCollection: UITraitCollection {
-    
+class MockTraitCollection: UITraitCollection, @unchecked Sendable {
+
     var userInterfaceStyleValue: UIUserInterfaceStyle = .light
     
     override var userInterfaceStyle: UIUserInterfaceStyle { userInterfaceStyleValue }
