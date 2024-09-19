@@ -19,7 +19,7 @@ extension Gestures {
         /// - Parameters:
         ///   - view: The view to apply the gestures to.
         ///   - action: The keyboard action to trigger.
-        ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+        ///   - repeatTimer: The repeat gesture timer to use, if any.
         ///   - calloutContext: The callout context to affect, if any.
         ///   - isPressed: An optional binding that can be used to observe the button pressed state.
         ///   - scrollState: The scroll state to use, if any.
@@ -34,7 +34,7 @@ extension Gestures {
         init(
             view: Content,
             action: KeyboardAction?,
-            repeatGestureTimer: GestureButtonTimer?,
+            repeatTimer: GestureButtonTimer?,
             calloutContext: CalloutContext?,
             isPressed: Binding<Bool>,
             scrollState: GestureButtonScrollState?,
@@ -49,7 +49,7 @@ extension Gestures {
         ) {
             self.view = view
             self.action = action
-            self.repeatGestureTimer = repeatGestureTimer
+            self.repeatTimer = repeatTimer
             self.calloutContext = calloutContext
             self.isPressed = isPressed
             self.scrollState = scrollState
@@ -65,7 +65,7 @@ extension Gestures {
 
         private let view: Content
         private let action: KeyboardAction?
-        private let repeatGestureTimer: GestureButtonTimer?
+        private let repeatTimer: GestureButtonTimer?
         private let calloutContext: CalloutContext?
         private let isPressed: Binding<Bool>
         private let scrollState: GestureButtonScrollState?
@@ -119,7 +119,7 @@ private extension Gestures.KeyboardButtonGestures {
             releaseOutsideAction: { handleReleaseOutside(in: geo) },
             longPressAction: { handleLongPress(in: geo) },
             doubleTapAction: { handleDoubleTap(in: geo) },
-            repeatTimer: repeatGestureTimer,
+            repeatTimer: repeatTimer,
             repeatAction: { handleRepeat(in: geo) },
             dragAction: { handleDrag(in: geo, value: $0) },
             endAction: { handleGestureEnded(in: geo) },

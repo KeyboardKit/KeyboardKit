@@ -29,7 +29,7 @@ public extension Keyboard {
         /// - Parameters:
         ///   - action: The keyboard action to apply.
         ///   - actionHandler: The action handler to use.
-        ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+        ///   - repeatTimer: The repeat gesture timer to use, if any.
         ///   - styleService: The style service to use.
         ///   - keyboardContext: The keyboard context to which the button should apply.
         ///   - calloutContext: The callout context to affect, if any.
@@ -39,7 +39,7 @@ public extension Keyboard {
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
-            repeatGestureTimer: GestureButtonTimer? = nil,
+            repeatTimer: GestureButtonTimer? = nil,
             styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext,
             calloutContext: CalloutContext?,
@@ -49,7 +49,7 @@ public extension Keyboard {
         ) {
             self.action = action
             self.actionHandler = actionHandler
-            self.repeatGestureTimer = repeatGestureTimer
+            self.repeatTimer = repeatTimer
             self.styleService = styleService
             self.keyboardContext = keyboardContext
             self.calloutContext = calloutContext
@@ -63,7 +63,7 @@ public extension Keyboard {
         /// - Parameters:
         ///   - action: The keyboard action to apply.
         ///   - actionHandler: The action handler to use.
-        ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+        ///   - repeatTimer: The repeat gesture timer to use, if any.
         ///   - styleService: The style service to use.
         ///   - keyboardContext: The keyboard context to which the button should apply.
         ///   - calloutContext: The callout context to affect, if any.
@@ -72,7 +72,7 @@ public extension Keyboard {
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
-            repeatGestureTimer: GestureButtonTimer? = nil,
+            repeatTimer: GestureButtonTimer? = nil,
             styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext,
             calloutContext: CalloutContext?,
@@ -82,7 +82,7 @@ public extension Keyboard {
             self.init(
                 action: action,
                 actionHandler: actionHandler,
-                repeatGestureTimer: repeatGestureTimer,
+                repeatTimer: repeatTimer,
                 styleService: styleService,
                 keyboardContext: keyboardContext,
                 calloutContext: calloutContext,
@@ -94,7 +94,7 @@ public extension Keyboard {
         
         private let action: KeyboardAction
         private let actionHandler: KeyboardActionHandler
-        private let repeatGestureTimer: GestureButtonTimer?
+        private let repeatTimer: GestureButtonTimer?
         private let styleService: KeyboardStyleService
         private let keyboardContext: KeyboardContext
         private let calloutContext: CalloutContext?
@@ -113,7 +113,7 @@ public extension Keyboard {
                     for: action,
                     style: style,
                     actionHandler: actionHandler,
-                    repeatGestureTimer: repeatGestureTimer,
+                    repeatTimer: repeatTimer,
                     keyboardContext: keyboardContext,
                     calloutContext: calloutContext,
                     edgeInsets: edgeInsets,
@@ -128,7 +128,7 @@ public extension Keyboard {
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
-            repeatGestureTimer: GestureButtonTimer? = nil,
+            repeatTimer: GestureButtonTimer? = nil,
             styleProvider: KeyboardStyleService,
             keyboardContext: KeyboardContext,
             calloutContext: CalloutContext?,
@@ -138,7 +138,7 @@ public extension Keyboard {
         ) {
             self.action = action
             self.actionHandler = actionHandler
-            self.repeatGestureTimer = repeatGestureTimer
+            self.repeatTimer = repeatTimer
             self.styleService = styleProvider
             self.keyboardContext = keyboardContext
             self.calloutContext = calloutContext
@@ -151,7 +151,7 @@ public extension Keyboard {
         public init(
             action: KeyboardAction,
             actionHandler: KeyboardActionHandler,
-            repeatGestureTimer: GestureButtonTimer? = nil,
+            repeatTimer: GestureButtonTimer? = nil,
             styleProvider: KeyboardStyleService,
             keyboardContext: KeyboardContext,
             calloutContext: CalloutContext?,

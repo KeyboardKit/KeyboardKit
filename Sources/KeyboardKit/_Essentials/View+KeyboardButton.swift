@@ -23,7 +23,7 @@ public extension View {
     ///   - action: The keyboard action to trigger.
     ///   - style: The keyboard style to apply.
     ///   - actionHandler: The keyboard action handler to use.
-    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+    ///   - repeatTimer: The repeat gesture timer to use, if any.
     ///   - keyboardContext: The keyboard context to use.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - additionalTapArea: An additional tap area in point to add outside the button.
@@ -35,7 +35,7 @@ public extension View {
         for action: KeyboardAction,
         style: Keyboard.ButtonStyle,
         actionHandler: KeyboardActionHandler,
-        repeatGestureTimer: GestureButtonTimer? = nil,
+        repeatTimer: GestureButtonTimer? = nil,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
         additionalTapArea: Double = 0,
@@ -59,7 +59,7 @@ public extension View {
             .keyboardButtonGestures(
                 for: action,
                 actionHandler: actionHandler,
-                repeatGestureTimer: repeatGestureTimer,
+                repeatTimer: repeatTimer,
                 calloutContext: calloutContext,
                 isPressed: isPressed,
                 scrollState: scrollState,

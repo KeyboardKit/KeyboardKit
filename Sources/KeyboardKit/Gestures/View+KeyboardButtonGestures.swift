@@ -22,7 +22,7 @@ public extension View {
     /// - Parameters:
     ///   - action: The keyboard action to trigger.
     ///   - actionHandler: The keyboard action handler to use.
-    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+    ///   - repeatTimer: The repeat gesture timer to use, if any.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - isPressed: An optional binding that can be used to observe the button pressed state.
     ///   - scrollState: The scroll state to use, if any.
@@ -30,7 +30,7 @@ public extension View {
     func keyboardButtonGestures(
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
-        repeatGestureTimer: GestureButtonTimer? = nil,
+        repeatTimer: GestureButtonTimer? = nil,
         calloutContext: CalloutContext?,
         isPressed: Binding<Bool> = .constant(false),
         scrollState: GestureButtonScrollState? = nil,
@@ -38,7 +38,7 @@ public extension View {
     ) -> some View {
         self.keyboardButtonGestures(
             action: action,
-            repeatGestureTimer: repeatGestureTimer,
+            repeatTimer: repeatTimer,
             calloutContext: calloutContext,
             isPressed: isPressed,
             scrollState: scrollState,
@@ -61,7 +61,7 @@ public extension View {
     ///
     /// - Parameters:
     ///   - action: The keyboard action to trigger, if any.
-    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+    ///   - repeatTimer: The repeat gesture timer to use, if any.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - isPressed: An optional binding that can be used to observe the button pressed state, if any.
     ///   - scrollState: The scroll state to use, if any.
@@ -75,7 +75,7 @@ public extension View {
     @ViewBuilder
     func keyboardButtonGestures(
         action: KeyboardAction? = nil,
-        repeatGestureTimer: GestureButtonTimer? = nil,
+        repeatTimer: GestureButtonTimer? = nil,
         calloutContext: CalloutContext? = nil,
         isPressed: Binding<Bool> = .constant(false),
         scrollState: GestureButtonScrollState? = nil,
@@ -92,7 +92,7 @@ public extension View {
         let gestures = Gestures.KeyboardButtonGestures(
             view: self,
             action: action,
-            repeatGestureTimer: repeatGestureTimer,
+            repeatTimer: repeatTimer,
             calloutContext: calloutContext,
             isPressed: isPressed,
             scrollState: scrollState,

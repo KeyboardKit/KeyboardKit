@@ -54,7 +54,7 @@ public struct KeyboardView<
         self.init(
             layout: layout ?? serviceLayout,
             actionHandler: services.actionHandler,
-            repeatGestureTimer: services.repeatGestureTimer,
+            repeatTimer: services.repeatGestureTimer,
             styleService: services.styleService,
             keyboardContext: state.keyboardContext,
             autocompleteContext: state.autocompleteContext,
@@ -72,7 +72,7 @@ public struct KeyboardView<
     /// - Parameters:
     ///   - layout: The layout to use.
     ///   - actionHandler: The action handler to use.
-    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+    ///   - repeatTimer: The repeat gesture timer to use, if any.
     ///   - styleService: The style service to use.
     ///   - keyboardContext: The keyboard context to use.
     ///   - autocompleteContext: The autocomplete context to use.
@@ -85,7 +85,7 @@ public struct KeyboardView<
     public init(
         layout: KeyboardLayout,
         actionHandler: KeyboardActionHandler,
-        repeatGestureTimer: GestureButtonTimer? = nil,
+        repeatTimer: GestureButtonTimer? = nil,
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
@@ -102,7 +102,7 @@ public struct KeyboardView<
         self.rawLayout = layout
         self.layoutConfig = .standard(for: keyboardContext)
         self.actionHandler = actionHandler
-        self.repeatGestureTimer = repeatGestureTimer
+        self.repeatTimer = repeatTimer
         self.styleService = styleService
         self.renderBackground = renderBackground
         self.buttonContentBuilder = buttonContent
@@ -144,7 +144,7 @@ public struct KeyboardView<
     }
 
     private let actionHandler: KeyboardActionHandler
-    private let repeatGestureTimer: GestureButtonTimer?
+    private let repeatTimer: GestureButtonTimer?
     private let rawLayout: KeyboardLayout
     private let layoutConfig: KeyboardLayout.Configuration
     private let styleService: KeyboardStyleService
@@ -343,7 +343,7 @@ private extension KeyboardView {
             view: KeyboardViewItem(
                 item: item,
                 actionHandler: actionHandler,
-                repeatGestureTimer: repeatGestureTimer,
+                repeatTimer: repeatTimer,
                 styleService: styleService,
                 keyboardContext: keyboardContext,
                 calloutContext: calloutContext,

@@ -24,7 +24,7 @@ public struct KeyboardViewItem<Content: View>: View {
     /// - Parameters:
     ///   - item: The layout item to use within the item.
     ///   - actionHandler: The button style to apply.
-    ///   - repeatGestureTimer: The repeat gesture timer to use, if any.
+    ///   - repeatTimer: The repeat gesture timer to use, if any.
     ///   - styleService: The style service to use.
     ///   - keyboardContext: The keyboard context to which the item should apply.,
     ///   - calloutContext: The callout context to affect, if any.
@@ -35,7 +35,7 @@ public struct KeyboardViewItem<Content: View>: View {
     init(
         item: KeyboardLayout.Item,
         actionHandler: KeyboardActionHandler,
-        repeatGestureTimer: GestureButtonTimer? = nil,
+        repeatTimer: GestureButtonTimer? = nil,
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
@@ -46,7 +46,7 @@ public struct KeyboardViewItem<Content: View>: View {
     ) {
         self.item = item
         self.actionHandler = actionHandler
-        self.repeatGestureTimer = repeatGestureTimer
+        self.repeatTimer = repeatTimer
         self.styleService = styleService
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.calloutContext = calloutContext
@@ -60,7 +60,7 @@ public struct KeyboardViewItem<Content: View>: View {
     init(
         item: KeyboardLayout.Item,
         actionHandler: KeyboardActionHandler,
-        repeatGestureTimer: GestureButtonTimer? = nil,
+        repeatTimer: GestureButtonTimer? = nil,
         styleProvider: KeyboardStyleProvider,
         keyboardContext: KeyboardContext,
         calloutContext: CalloutContext?,
@@ -70,7 +70,7 @@ public struct KeyboardViewItem<Content: View>: View {
     ) {
         self.item = item
         self.actionHandler = actionHandler
-        self.repeatGestureTimer = repeatGestureTimer
+        self.repeatTimer = repeatTimer
         self.styleService = styleProvider
         self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         self.calloutContext = calloutContext
@@ -83,7 +83,7 @@ public struct KeyboardViewItem<Content: View>: View {
 
     private let item: KeyboardLayout.Item
     private let actionHandler: KeyboardActionHandler
-    private let repeatGestureTimer: GestureButtonTimer?
+    private let repeatTimer: GestureButtonTimer?
     private let styleService: KeyboardStyleService
     private let calloutContext: CalloutContext?
     private let keyboardWidth: CGFloat
@@ -113,7 +113,7 @@ public struct KeyboardViewItem<Content: View>: View {
             for: item.action,
             style: buttonStyle,
             actionHandler: actionHandler,
-            repeatGestureTimer: repeatGestureTimer,
+            repeatTimer: repeatTimer,
             keyboardContext: keyboardContext,
             calloutContext: calloutContext,
             additionalTapArea: isNextProbability * 5,
