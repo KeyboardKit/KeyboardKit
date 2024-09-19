@@ -48,6 +48,11 @@ A ``KeyboardActionHandler`` can be used to handle actions, autocomplete suggesti
 
 KeyboardKit automatically creates an instance of ``KeyboardAction/StandardHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
+You can easily resolve various ``KeyboardActionHandler`` implementations with these shorthands, sorted by relevance:
+
+* ``KeyboardActionHandler/standard(controller:)``
+* ``KeyboardActionHandler/preview``
+
 
 
 ## How to handle keyboard actions 

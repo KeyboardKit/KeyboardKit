@@ -53,6 +53,12 @@ In KeyboardKit, a ``FeedbackService`` can be used to trigger audio and haptic fe
 
 KeyboardKit automatically creates a ``Feedback/StandardService``  instance and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, to customize how feedback is triggered.
 
+You can easily resolve various ``FeedbackService`` implementations with these shorthands, sorted by relevance:
+
+* ``FeedbackService/standard``
+* ``FeedbackService/disabled``
+* ``FeedbackService/preview``
+
 
 
 ## How to trigger feedback

@@ -43,9 +43,16 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 
 In KeyboardKit, an ``AutocompleteService`` can provide suggestions when the user types or the text input cursor moves in the text.
 
-KeyboardKit doesn't have a standard autocomplete service implementation. Instead, it injects a disabled service into ``KeyboardInputViewController/services`` until you replace it with your own implementation or register [KeyboardKit Pro][pro].
+KeyboardKit doesn't have a standard autocomplete service. Instead, it injects a ``AutocompleteService/disabled`` service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
 
 KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which performs on-device autocomplete, and a ``Autocomplete/RemoteService``, which can be used to integrate with any remote, REST-based API.
+
+You can easily resolve various ``AutocompleteService`` implementations with these shorthands, sorted by relevance:
+
+* ``AutocompleteService/local(context:locale:)`` (👑 KeyboardKit Pro)
+* ``AutocompleteService/disabled``
+* ``AutocompleteService/disabled(suggestions:)``
+* ``AutocompleteService/preview``
 
 
 

@@ -30,7 +30,20 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 In KeyboardKit, a ``DictationService`` can perform dictation where microphone access is available, while a ``KeyboardDictationService`` can initialize a dictation operation from a keyboard extension, by opening the main app.
 
-KeyboardKit doesn't have standard service  implementations. Instead, it injects a disabled service into ``KeyboardInputViewController/services`` until you replace it with a custom service or activate KeyboardKit Pro.
+KeyboardKit doesn't have standard dictation services. Instead, it injects a disabled keyboard service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
+
+You can easily resolve various ``KeyboardDictationService`` implementations with these shorthands, sorted by relevance:
+
+* ``KeyboardDictationService/proInApp(dictationContext:openUrl:speechRecognizer:)`` (👑 KeyboardKit Pro)
+* ``KeyboardDictationService/proInKeyboard(keyboardContext:dictationContext:actionHandler:)`` (👑 KeyboardKit Pro)
+* ``KeyboardDictationService/disabled(context:)``
+* ``KeyboardDictationService/preview``
+
+The ``DictationService`` protocol also has a couple of shorthands:
+
+* ``DictationService/pro(context:speechRecognizer:result:)`` (👑 KeyboardKit Pro)
+* ``DictationService/disabled``
+* ``DictationService/preview``
 
 
 

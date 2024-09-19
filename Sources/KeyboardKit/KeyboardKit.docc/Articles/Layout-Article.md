@@ -50,6 +50,13 @@ Given all this, the layout engine has to be flexible. KeyboardKit has a ``Keyboa
 
 KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject custom services into it.
 
+You can easily resolve various ``KeyboardLayoutService`` implementations with these shorthands, sorted by relevance:
+
+* ``KeyboardLayoutService/standard(baseService:localizedServices:)``
+* ``KeyboardLayoutService/localized(for:)`` (👑 KeyboardKit Pro)
+* ``KeyboardLayoutService/disabled``
+* ``KeyboardLayoutService/preview``
+
 
 
 ## How to create a custom layout service

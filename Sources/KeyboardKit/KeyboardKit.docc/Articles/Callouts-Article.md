@@ -43,6 +43,13 @@ In KeyboardKit, a ``CalloutService`` can be used to provide secondary callout ac
 
 KeyboardKit automatically creates an instance of ``Callouts/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it.
 
+You can easily resolve various ``CalloutService`` implementations with these shorthands, sorted by relevance:
+
+* ``CalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``
+* ``CalloutService/localized(for:)`` (👑 KeyboardKit Pro)
+* ``CalloutService/disabled``
+* ``CalloutService/preview``
+
 
 
 ## How to show input and action callouts
