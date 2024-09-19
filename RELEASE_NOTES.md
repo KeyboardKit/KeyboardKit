@@ -12,15 +12,15 @@ These release notes only cover the current major version.
 
 ### ‼️ Important information
 
-KeyboardKit 8.8 currently has a lot of deprecations, since the structure is being changed and types being renamed to make the upcoming 9.0 a lot cleaner.
-
-These changes don't affect `KeyboardActionHandler` (where handler is a better name than service) and `KeyboardStyleProvider` which is most probably removed in 9.0. 
+KeyboardKit 8.9 currently has a lot of deprecations, since the structure is being changed and types renamed to make the upcoming 9.0 cleaner.
 
 KeyboardKit 9 is planned to be released shortly after the public release of iOS 18 and all corresponding OS versions. It will also bump the deployment target to iOS 15.
 
 
 
 ## 8.9
+
+This version continues to rename types to make things more consistent in the 9.0 release. This means that are currently many deprecated names (which may be confusing), but it's all in service for a clean 9.0.
 
 This version adds a new `Keyboard.NumberPad` view, predition-based tap area sizes for keyboard keys, `KeyboardTheme` models from Pro, and a new `KeyboardThemeContext`. 
 
@@ -31,7 +31,6 @@ This version also adds a service shorthands that make it easier to pass in servi
 ### ✨ Features
 
 * `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
-* `CalloutService` has a new `tryRegisterLocalizedService` function.
 * `DictationContext` can now be set up for a `KeyboardApp`.
 * `Image` has a new `keyboardTheme` image value.
 * `Keyboard.NumberPad` is a new number pad component.
@@ -39,6 +38,7 @@ This version also adds a service shorthands that make it easier to pass in servi
 * `Keyboard.Services` has a new `tryRegisterLocalizedCalloutService` function.
 * `Keyboard.Services` has a new `tryRegisterLocalizedLayoutService` function.
 * `KeyboardApp` has new `deepLinks` and `keyboardBundleId` properties.
+* `KeyboardCalloutService` has a new `tryRegisterLocalizedService` function.
 * `KeyboardContext` no longer syncs keyboard type for the same value.
 * `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.
 * `KeyboardInputController` can now be set up for a `KeyboardApp`.
@@ -91,6 +91,8 @@ This version also adds a service shorthands that make it easier to pass in servi
 
 ### 🗑️ Deprecations & Renamings
 
+* `Callout` types have been renamed to use `KeyboardCallout` as prefix.
+* `Callouts` and its related types have been renamed to `KeyboardCallouts`.
 * `KeyboardStyleProvider` and its related types are renamed to `KeyboardStyleService`.
 
 
