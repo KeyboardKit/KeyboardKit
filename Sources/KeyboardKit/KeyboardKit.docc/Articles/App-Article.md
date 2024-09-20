@@ -46,7 +46,7 @@ extension KeyboardApp {
 }
 ```
 
-Your app-specific ``KeyboardApp`` can also resolve other properties that you may need, such as a ``KeyboardApp/dictationConfiguration``. It will be even more used in future versions of KeyboardKit, so make sure to start using it today.
+Your app-specific ``KeyboardApp`` can also resolve other properties that you may need, such as a ``KeyboardApp/dictationConfiguration``. This will be used even more in future versions of KeyboardKit, so make sure to start using it today.
 
 > Important: The ``KeyboardApp``'s ``KeyboardApp/locales`` collection is only meant to describe which locales you *want* to use in your app and keyboard. It will be capped to the number of locales that your KeyboardKit Pro license includes.
 

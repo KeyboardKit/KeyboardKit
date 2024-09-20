@@ -41,7 +41,7 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 ## Getting Started
 
-To use KeyboardKit in a keyboard extension, just inherit the KeyboardKit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+To use KeyboardKit in a keyboard, inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
@@ -49,18 +49,30 @@ import KeyboardKit
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives your controller access to new lifecycle functions like `viewWillSetupKeyboard`, observable state like `state.keyboardContext`, services like `services.actionHandler`, and much more.
+This gives your controller access to new lifecycle functions like `viewWillSetupKeyboardView`, observable state like `state.keyboardContext`, services like `services.actionHandler`, and much more.
 
-If you just want to use the standard `KeyboardView`, which mimics a native iOS keyboard, you don't have to do anything else. KeyboardKit will set up an English keyboard for you.
-
-To replace or customize the standard `KeyboardView`, just override `viewWillSetupKeyboard` and call `setup` with the view you want to use:
+To set up the keyboard for your app, just override `viewDidLoad` and call `setup(for:)` with a `KeyboardApp` value:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
-    override func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()
-        setup { [weak self] controller in // <-- Use [weak self] or [unowned self] if you need self here.
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup(for: .myApp)
+    }
+}
+```
+
+This will set up things like App Group-syncing between the main app and its keyboard, dictation, deep links, etc.
+
+To replace or customize the standard, English `KeyboardView`, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
+
+```swift
+class KeyboardViewController: KeyboardInputViewController {
+
+    override func viewWillSetupKeyboardView() {
+        super.viewWillSetupKeyboardView()
+        setupKeyboardView { [weak self] controller in // <-- Use weak or unknowned self!
             KeyboardView(
                 state: controller.state,
                 services: controller.services,
@@ -69,6 +81,25 @@ class KeyboardViewController: KeyboardInputViewController {
                 emojiKeyboard: { $0.view },
                 toolbar: { _ in MyCustomToolbar() }
             )
+        }
+    }
+}
+```
+
+To set up the main app with the same configuration as the keyboard extension, the easiest way is to wrap the main content view in a `KeyboardAppView`:
+
+```swift
+import SwiftUI
+import KeyboardKitPro
+
+@main
+struct MyApp: App {
+
+    var body: some Scene {
+        WindowGroup {
+            KeyboardAppView(for: .myApp) {
+                ContentView()
+            }
         }
     }
 }

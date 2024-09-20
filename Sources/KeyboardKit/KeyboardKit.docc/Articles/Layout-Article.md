@@ -154,39 +154,27 @@ let swedish = try KeyboardLayout.ProService.Swedish()
 
 ### How to customize a Pro service
 
-You can inherit and customize any ``KeyboardLayout/ProService`` in your license, then manually register your service *after* registering your license key:
+You can inherit and customize any ``KeyboardLayout/ProService`` in your license, then manually register your service after setting up KeyboardKit Pro for your ``KeyboardApp``, or with a license key:
 
 ```swift
 class CustomService: KeyboardLayout.ProService.Swedish {
 
-    override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let service = keyboardLayoutService(for: context)
-        var layout = service.keyboardLayout(for: context)
-        guard let item = layout.tryCreateBottomRowItem(
-            for: .character("🇸🇪")
-        ) else { return layout }
-        layout.itemRows.insert(item, after: .space, atRow: layout.bottomRowIndex)
-        return layout
-    }
+    // Override any functions you want here...
 }
 
 class KeyboardController: KeyboardInputViewController {
 
-    override func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()
-
-        setupPro(withLicenseKey: "...") { license in
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPro(for: .myApp) { license in
             setupCustomService()
-        } view: { controller in
-            // Return your keyboard view here
-        }
+        } 
     }
 
     func setupCustomService() {
         do {
             let service = try CustomService()
-            let standard = services.layoutService as? KeyboardLayout.StandardService
-            standard?.registerLocalizedService(service)
+            try services.layoutService.tryRegisterLocalizedService(service)
         } catch {
             print(error)
         }

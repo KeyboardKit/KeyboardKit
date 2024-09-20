@@ -29,6 +29,21 @@ enum ProPlaceholderError: LocalizedError, View {
     }
 }
 
+/// 👑 This is unlocked by KeyboardKit Pro.
+public struct License {}
+
+public extension KeyboardInputViewController {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    typealias LicenseRegistrationResult = Result<License, Error>
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func setupPro(
+        for app: KeyboardApp,
+        completion: @escaping (LicenseRegistrationResult) -> Void
+    ) {}
+}
+
 public extension Autocomplete {
 
     /// 👑 This is unlocked by KeyboardKit Pro.

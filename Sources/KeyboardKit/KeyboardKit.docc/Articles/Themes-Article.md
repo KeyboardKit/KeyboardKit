@@ -153,22 +153,17 @@ You can get a list of all predefined themes, as well as all pre-defined style va
 
 ## How to apply a theme
 
-You can apply theme with the ``KeyboardStyle/ThemeBasedService`` service, or the ``KeyboardStyleService/themed(with:keyboardContext:)`` shorthand:
+You can apply theme with the ``KeyboardStyle/ThemeBasedService`` service, or the ``KeyboardStyleService/themeBased(theme:keyboardContext:)`` shorthand:
 
 ```swift
-override func viewWillSetupKeyboard() {
-    super.viewWillSetupKeyboard()
-
-    // Setup KeyboardKit Pro with a license
-    setupPro(withLicenseKey: "...") { license in
-        services.styleService = .themed(
-            with: .standard,
-            keyboardContext: state.keyboardContext,
-            fallback: services.styleService
+override func viewDidLoad() {
+    super.viewDidLoad()
+    setupPro(for: .myApp) { license in
+        self.services.styleService = .themeBased(
+            theme: .standard,
+            keyboardContext: state.keyboardContext
         )
-    } view: { controller in
-        // Return your keyboard view here
-    }
+    } 
 }
 ```
 

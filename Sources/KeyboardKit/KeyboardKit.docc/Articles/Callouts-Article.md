@@ -182,36 +182,27 @@ let service = try Callouts.ProService.Swedish()
 
 ### How to customize a Pro service
 
-You can inherit and customize any ``Callouts/ProService`` in your license, then manually register your service *after* registering your license key:
+You can inherit and customize any ``Callouts/ProService`` in your license, then manually register your service after setting up KeyboardKit Pro for your ``KeyboardApp``, or with a license key:
 
 ```swift
 class CustomService: Callouts.ProService.Swedish {
 
-    /// This string will be converted to a list of keyboard actions
-    override func calloutActionString(for char: String) -> String {
-        switch char {
-        case "s": "sweden"
-        default: ""
-        }
-    }
+    // Override any functions you want here...
 }
 
 class KeyboardController: KeyboardInputViewController {
 
-    override func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()
-        setupPro(withLicenseKey: "...") { license in
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPro(for: .myApp) { license in
             setupCustomService()
-        } view: { controller in
-            // Return your keyboard view here
-        }
+        } 
     }
 
     func setupCustomService() {
         do {
             let service = try CustomService()
-            let standard = services.calloutService as? Callouts.StandardService
-            standard?.registerLocalizedService(service)
+            try services.calloutService.tryRegisterLocalizedService(service)
         } catch {
             print(error)
         }

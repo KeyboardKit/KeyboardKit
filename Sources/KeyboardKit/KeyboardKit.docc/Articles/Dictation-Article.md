@@ -175,7 +175,7 @@ To make it possible for the keyboard to open the app, you must set up a deep lin
 
 #### Step 4. Create a keyboard dictation configuration
 
-The next step is to create an app-specific ``Dictation/KeyboardConfiguration``, using the App Group ID and deep link that we just set up.
+If you use ``KeyboardInputViewController/setup(for:)`` to set up your keyboard extension for a ``KeyboardApp``, you can skip this step. Otherwise, you must create a ``Dictation/KeyboardConfiguration`` with your app-specific information:
 
 ```swift
 extension KeyboardDictationConfiguration {
@@ -192,18 +192,15 @@ Make sure to add this configuration file to both the main app target and the key
 
 #### Step 5. Set up dictation in the keyboard extension
 
-To configure dictation for the *keyboard extension*, set up the global ``Keyboard/State/dictationConfig`` with the app-specific config we just set up:
+If you use ``KeyboardInputViewController/setup(for:)`` to set up your keyboard extension with a ``KeyboardApp``, you can skip this step. Otherwise, you must set up the global ``Keyboard/State/dictationConfig`` with the app-specific config we just created:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
-    override func viewWillSetupKeyboard() {
-        super.viewWillSetupKeyboard()
-        let keyboardSettings = keyboardSettings
+    override func viewDidLoad() {
+        super.viewDidLoad()
         setupPro(withLicenseKey: "...") { license in
-            state.dictationContext.setup(with: .app)   // <-- Here
-        } view: { controller in
-            // Return your keyboard view here
+            self.state.dictationContext.setup(with: .app)   // <-- Here
         }
     }
 } 
@@ -212,7 +209,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
 #### Step 6. Set up dictation in the main application
 
-To configure dictation for the *main app*, first register your KeyboardKit Pro license key, as described in the <doc:Getting-Started> article, then create a ``DictationContext`` with the app-specific config and apply it to the app's root view:
+To configure dictation for the *main app*, first register your KeyboardKit Pro license key, as described in the <doc:Getting-Started> article, then apply a dictation view modifier to the app's root view:
 
 ```swift
 struct ContentView: View {

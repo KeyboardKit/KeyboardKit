@@ -13,10 +13,8 @@ extension KeyboardInputViewController {
     
     /// Setup KeyboardKit with a custom root view.
     func setup<Content: View>(
-        for app: KeyboardApp?,
         withRootView view: Keyboard.RootView<Content>
     ) {
-        if let app { setup(for: app) }
         self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
         let view = view

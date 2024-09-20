@@ -49,7 +49,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        viewWillSetupKeyboard()
+        viewWillSetupKeyboardView()
         viewWillSetupInitialKeyboardType()
         viewWillSyncWithContext()
     }
@@ -84,11 +84,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         }
     }
 
-    /// This function is called when the controller is about
-    /// to register itself as the shared controller.
+    /// DEPRECATED: This will be removed in KeyboardKit 9.0.
     open func viewWillRegisterSharedController() {
-        KeyboardUrlOpenerInternal.controller = self         // Remore in KeyboardKit 9.0
-        Keyboard.NextKeyboardController.shared = self
+        KeyboardUrlOpenerInternal.controller = self         // TODO: Remove in KeyboardKit 9.0
+        Keyboard.NextKeyboardController.shared = self       // TODO: Remove in KeyboardKit 9.0
     }
 
     /// This function is called when the controller is about
@@ -102,8 +101,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     ///
     /// If this function is not overridden, it will create a
     /// ``KeyboardView`` by default.
-    open func viewWillSetupKeyboard() {
-        setup { controller in
+    open func viewWillSetupKeyboardView() {
+        setupKeyboardView { controller in
             KeyboardView(
                 state: controller.state,
                 services: controller.services,
@@ -123,11 +122,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - Setup
-    
-    @available(*, deprecated, message: "Use the setupPro licenseError parameter instead.")
-    public var setupProError: Error?
 
-    /// Setup KeyboardKit for a ``KeyboardApp``.
+    /// Set up KeyboardKit for a ``KeyboardApp``.
+    ///
+    /// This will configure ``KeyboardSettings`` with an App
+    /// Group-synced ``KeyboardSettings/store``, if the `app`
+    /// is configured with an ``KeyboardApp/appGroupId``.
+    ///
+    /// This will also set up ``Keyboard/State`` for the app.
+    ///
+    /// Call this in ``viewDidLoad()`` to make sure that the
+    /// keyboard is properly configured as early as possible.
     open func setup(
         for app: KeyboardApp
     ) {
@@ -135,33 +140,61 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         Keyboard.State().setup(for: app)
     }
 
-    /// Setup KeyboardKit with a custom keyboard view and an
-    /// optional ``KeyboardApp``.
+    // Used to let KeyboardKit Pro show license error alerts.
+    var setupKeyboardViewIsEnabled = true
+
+    /// Set up KeyboardKit with a custom keyboard view.
     ///
-    /// > Important: ``<doc:Getting-Started>`` has important
-    /// information on how to set up KeyboardKit.
-    open func setup<Content: View>(
-        for app: KeyboardApp? = nil,
-        with view: @autoclosure @escaping () -> Content
+    /// Call this in ``viewWillSetupKeyboardView()`` to make
+    /// the controller use the `view` as keyboard view.
+    open func setupKeyboardView<Content: View>(
+        _ view: @autoclosure @escaping () -> Content
     ) {
-        setup(for: app, withRootView: Keyboard.RootView(view))
+        guard setupKeyboardViewIsEnabled else { return }
+        setup(withRootView: Keyboard.RootView(view))
     }
-    
-    /// Setup KeyboardKit with a custom keyboard view and an
-    /// optional ``KeyboardApp``.
+
+    /// Set up KeyboardKit with a custom keyboard view.
+    ///
+    /// Call this in ``viewWillSetupKeyboardView()`` to make
+    /// the controller use the `view` as keyboard view.
     ///
     /// > Important: ``<doc:Getting-Started>`` has important
     /// information on how to set up KeyboardKit, and how to
     /// use weak or unowned self to avoid memory leaks.
-    open func setup<Content: View>(
-        for app: KeyboardApp? = nil,
-        with view: @escaping (_ controller: KeyboardInputViewController) -> Content
+    open func setupKeyboardView<Content: View>(
+        _ view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {
-        setup(for: app, withRootView: Keyboard.RootView { [weak self] in
+        setup(withRootView: Keyboard.RootView { [weak self] in
             guard let self else { return view(.preview) }
             unowned let controller = self
             return view(controller)
         })
+    }
+
+
+    // MARK: - Deprecated
+
+    @available(*, deprecated, message: "Use the setupPro licenseError parameter instead.")
+    public var setupProError: Error?
+
+    @available(*, deprecated, renamed: "viewWillSetupKeyboardView()")
+    open func viewWillSetupKeyboard() {
+        viewWillSetupKeyboardView()
+    }
+
+    @available(*, deprecated, renamed: "setupKeyboardView(_:)")
+    open func setup<Content: View>(
+        with view: @autoclosure @escaping () -> Content
+    ) {
+        setup(withRootView: Keyboard.RootView(view))
+    }
+
+    @available(*, deprecated, renamed: "setupKeyboardView(_:)")
+    open func setup<Content: View>(
+        with view: @escaping (_ controller: KeyboardInputViewController) -> Content
+    ) {
+        setupKeyboardView(view)
     }
 
 
