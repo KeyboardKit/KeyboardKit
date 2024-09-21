@@ -78,5 +78,6 @@ public extension View {
             .environmentObject(state.dictationContext)
             .environmentObject(state.feedbackContext)
             .environmentObject(state.keyboardContext)
+            .environmentObject(state.themeContext)
     }
 }

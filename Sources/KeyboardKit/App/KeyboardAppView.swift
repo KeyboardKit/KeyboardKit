@@ -64,6 +64,8 @@ public struct KeyboardAppView<Content: View>: View {
         self._dictationContext = .init(wrappedValue: state.dictationContext)
         self._feedbackContext = .init(wrappedValue: state.feedbackContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
+        self._keyboardContext = .init(wrappedValue: state.keyboardContext)
+        self._themeContext = .init(wrappedValue: state.themeContext)
         self.content = content
     }
 
@@ -86,6 +88,9 @@ public struct KeyboardAppView<Content: View>: View {
     @StateObject
     private var keyboardContext: KeyboardContext
 
+    @StateObject
+    private var themeContext: KeyboardThemeContext
+
     public var body: some View {
         ZStack {
             RegistrationView(app: app)
@@ -96,5 +101,6 @@ public struct KeyboardAppView<Content: View>: View {
         .environmentObject(dictationContext)
         .environmentObject(feedbackContext)
         .environmentObject(keyboardContext)
+        .environmentObject(themeContext)
     }
 }
