@@ -100,10 +100,12 @@ private extension View {
             .background(
                 Color.clearInteractable
                     .padding(-points)
+                    #if os(iOS)
                     .onTapGesture {
                         actionHandler.handle(.press, on: action)
                         actionHandler.handle(.release, on: action)
                     }
+                    #endif
             )
     }
 

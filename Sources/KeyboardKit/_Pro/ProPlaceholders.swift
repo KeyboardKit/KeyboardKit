@@ -32,6 +32,7 @@ enum ProPlaceholderError: LocalizedError, View {
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct License {}
 
+#if os(iOS)
 public extension KeyboardInputViewController {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -43,6 +44,7 @@ public extension KeyboardInputViewController {
         completion: @escaping (LicenseRegistrationResult) -> Void
     ) {}
 }
+#endif
 
 public extension Autocomplete {
 

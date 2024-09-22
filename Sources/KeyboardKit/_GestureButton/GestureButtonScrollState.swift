@@ -39,8 +39,8 @@ public extension View {
     func scrollGestureState(
         _ state: GestureButtonScrollState
     ) -> some View {
-#if compiler(>=6)
-        if #available(iOS 18.0, macOS 15.0, watchOS 11.0, visionOS 2.0, *) {
+        #if compiler(>=6)
+        if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
             self.scrollDisabled(state.isScrollGestureDisabled)
                 .onScrollPhaseChange { _, newPhase in
                     state.isScrolling = newPhase != .idle
@@ -48,13 +48,13 @@ public extension View {
         } else {
             self
         }
-#else
+        #else
         if #available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *) {
-        self.scrollDisabled(state.isScrollGestureDisabled)
-    } else {
-        self
-    }
-#endif
+            self.scrollDisabled(state.isScrollGestureDisabled)
+        } else {
+            self
+        }
+        #endif
     }
 }
 #endif

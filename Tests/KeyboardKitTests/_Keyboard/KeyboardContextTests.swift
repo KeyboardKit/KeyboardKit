@@ -69,7 +69,7 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertFalse(context.hasDictationKey)
         XCTAssertFalse(context.hasFullAccess)
         XCTAssertNil(context.keyboardDictationReplacement)
-        XCTAssertEqual(context.keyboardType, .alphabetic(.lowercased))
+        XCTAssertEqual(context.keyboardType, .alphabetic(.auto))
         XCTAssertEqual(context.locale, Locale(identifier: context.localeIdentifier))
         XCTAssertEqual(context.locales, [.current])
         XCTAssertFalse(context.needsInputModeSwitchKey)
