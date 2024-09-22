@@ -53,29 +53,24 @@ KeyboardKit provides a basic keyboard layout with basic callout actions. [Keybo
 
 KeyboardKit comes packed with features to help you build amazing keyboard extensions:
 
-* ⌨️ <doc:Essentials> - KeyboardKit provides essential utilities, types & views.
-* 💥 <doc:Actions-Article> - KeyboardKit makes it easy to trigger keyboard-related actions.
-* 🤖 <doc:AI-Article> - KeyboardKit has features that are needed for AI.
-* 📱 <doc:App-Article> - KeyboardKit has app-specific screens & views.
-* 💡 <doc:Autocomplete-Article> - KeyboardKit can perform autocomplete.
-* 🗯 <doc:Callouts-Article> - KeyboardKit can show input & secondary action callouts.
-* 🖥️ <doc:Device-Article> - KeyboardKit has device-specific utilities.
-* 🎤 <doc:Dictation-Article> - KeyboardKit can perform dictation from the keyboard.
-* 😀 <doc:Emojis-Article> - KeyboardKit defines emojis, categories, versions, skin tones, etc.
-* ⌨️ <doc:External-Keyboards-Article> - KeyboardKit can detect defines emojis, categories, versions, skin tones, etc.
-* 🔉 <doc:Feedback-Article> - KeyboardKit can trigger audio & haptic feedback.
-* 👆 <doc:Gestures-Article> - KeyboardKit has a customizable keyboard gesture engine.
-* 🏠 <doc:Host-Article> - KeyboardKit can identify the host application.
-* 🔣 <doc:Layout-Article> - KeyboardKit has customizable input sets & keyboard layouts.
-* 🌐 <doc:Localization-Article> - KeyboardKit supports **64 locales**.
-* 🗺️ <doc:Navigation-Article> - KeyboardKit lets you open urls and apps from the keyboard.
-* 👁 <doc:Previews-Article> - KeyboardKit has extension keyboard preview support.
-* ➡️ <doc:Proxy-Article> - KeyboardKit extends the text document proxy with a lot more capabilities.
-* ⚙️ <doc:Settings-Article> - KeyboardKit has tools for in-app settings & System Settings.
-* 🩺 <doc:Status-Article> - KeyboardKit can detect if a keyboard is enabled, has full access, etc.
-* 🎨 <doc:Styling-Article> - KeyboardKit lets you style your keyboards to great extent.
-* 📝 <doc:Text-Input-Article> - KeyboardKit can route text to input fields within the keyboard.
-* 🍭 <doc:Themes-Article> - KeyboardKit can use themes to style keyboards in flexible ways.
+* ⌨️ <doc:Essentials> - Essential utilities, models, services & views.
+* 💥 <doc:Actions-Article> - Trigger & handle keyboard-related actions.
+* 📱 <doc:App-Article> - Define and set up your app, settings, etc.
+* 💡 <doc:Autocomplete-Article> - Perform autocomplete as the user types.
+* 🗯 <doc:Callouts-Article> - Show input & secondary action callouts.
+* 🖥️ <doc:Device-Article> - Identify device type, device capabilities, etc.
+* 😀 <doc:Emojis-Article> - Emojis, categories, versions, skin tones, etc.
+* 🔉 <doc:Feedback-Article> - Trigger audio & haptic feedback with ease.
+* 👆 <doc:Gestures-Article> - Handle a rich set of gestures on any key.
+* 🏠 <doc:Host-Article> - Identify the host application.
+* 🔣 <doc:Layout-Article> - Define and customize dynamic keyboard layouts.
+* 🌐 <doc:Localization-Article> - Localize your keyboard in **68+ locales**.
+* 🗺️ <doc:Navigation-Article> - Open urls and other apps from the keyboard.
+* 👁 <doc:Previews-Article> - Extensive SwiftUI preview support.
+* ➡️ <doc:Proxy-Article> - Extend the text document proxy with more capabilities.
+* ⚙️ <doc:Settings-Article> - Provide keyboard settings & link to System Settings.
+* 🩺 <doc:Status-Article> - Detect if a keyboard is enabled, has full access, etc.
+* 🎨 <doc:Styling-Article> - Style your keyboard to great extent.
 
 
 
@@ -83,22 +78,21 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 
 You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
-* ⌨️ <doc:Essentials> - KeyboardKit Pro unlocks more essential tools, keyboard previews, etc.
-* 🤖 <doc:AI-Article> - KeyboardKit Pro unlocks features that are needed for AI.
-* 📱 <doc:App-Article> - KeyboardKit Pro unlocks app-specific screens & views.
-* 💡 <doc:Autocomplete-Article> - KeyboardKit Pro unlocks on-device & remote autocomplete.
-* 🗯 <doc:Callouts-Article> - KeyboardKit Pro unlocks localized callouts for all **68** locales.
-* 🎤 <doc:Dictation-Article> - KeyboardKit Pro can perform dictation from the keyboard.
-* 😀 <doc:Emojis-Article> - KeyboardKit Pro unlocks a powerful emoji keyboard.
-* ⌨️ <doc:External-Keyboards-Article> - KeyboardKit Pro can detect if an external keyboard is connected. 
-* 🔉 <doc:Feedback-Article> - KeyboardKit Pro unlocks tools for toogling feedback on & off.
-* 🏠 <doc:Host-Article> - KeyboardKit Pro can identify specific host applications.
-* 🔣 <doc:Layout-Article> - KeyboardKit Pro unlocks localized layouts for all **68** locales.
-* 🌐 <doc:Localization-Article> - KeyboardKit Pro unlocks **68** locale-specific services and keyboard views.
-* 👁 <doc:Previews-Article> - KeyboardKit Pro unlocks keyboard and theme previews.
-* ➡️ <doc:Proxy-Article> - KeyboardKit Pro unlocks ways for `UITextDocumentProxy` to read the full document.
-* 📝 <doc:Text-Input-Article> - KeyboardKit Pro unlocks tools to let you type within the keyboard.
-* 🍭 <doc:Themes-Article> - KeyboardKit Pro unlocks a theme engine with many pre-defined themes.
+* ⌨️ <doc:Essentials> - More essential tools, keyboard previews, etc.
+* 🤖 <doc:AI-Article> - Features that are needed for AI.
+* 📱 <doc:App-Article> - App-specific screens & views.
+* 💡 <doc:Autocomplete-Article> - On-device & remote autocomplete.
+* 🗯 <doc:Callouts-Article> - Localized callouts for **68 locales**.
+* 🎤 <doc:Dictation-Article> - Trigger dictation from the keyboard.
+* 😀 <doc:Emojis-Article> - A powerful emoji keyboard.
+* ⌨️ <doc:External-Keyboards-Article> - Detect if an external keyboard is connected.
+* 🏠 <doc:Host-Article> - Identify and open specific host applications.
+* 🔣 <doc:Layout-Article> - Localized layouts for **68 locales**.
+* 🌐 <doc:Localization-Article> - Services & views for **68 locales**.
+* 👁 <doc:Previews-Article> - Keyboard & theme previews for in-app use.
+* ➡️ <doc:Proxy-Article> - Let `UITextDocumentProxy` read the full document.
+* 📝 <doc:Text-Input-Article> - Let users type within the keyboard.
+* 🍭 <doc:Themes-Article> - A theme engine with many pre-defined themes.
 
 
 

@@ -20,19 +20,19 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.9
 
-This version continues to rename types to make things more consistent in the 9.0 release. This means that are currently many deprecated names (which may be confusing), but it's all in service for a clean 9.0.
+This version continues to rename types to make things more consistent. This means that are now many deprecations, which is all in service for a clean 9.0 transition.
 
-This version lets you set up your keyboard extension with a `KeyboardApp`, which handles things like setting up App Group settings, registering your license key, etc.
+This version now lets you set up your keyboard extension with a `KeyboardApp`, and separates setting up the keyboard from setting up the keyboard view. Read more below.
 
-This version adds a new `Keyboard.NumberPad` view, prediction-based tap area sizes for keyboard keys, and a new `KeyboardThemeContext` to let you easily persist themes. 
+This version adds a new `Keyboard.NumberPad` view, prediction-based tap area sizes for keyboard input keys, and a new `KeyboardThemeContext` to let you easily persist themes. 
 
-This version also adds a service shorthands that make it easier to pass in services. For instance, instead of typing `KeyboardAction.StandardHandler(...)`, you can just type `.standard(...)`.
+This version also adds service shorthands that make it easier to refer to services. For instance, instead of `KeyboardAction.StandardHandler(...)`, you can just type `.standard(...)`.
 
 ### ‼️ Set up changes
 
-This version separates setting up the keyboard extension and its view, and uses the new `KeyboardApp` to make things easy.
+This version lets you use a `KeyboardApp` to set up your keyboard extension, andseparates setting up the keyboard from setting up the keyboard view.
 
-You can use the new `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit Pro) to set up the keyboard for a `KeyboardApp`, then use the new `setupKeyboardView(_:)` to use a custom keyboard view, regardless of if you're using KeyboardKit or KeyboardKit Pro. 
+You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit Pro) in `viewDidLoad()` to set up things like App Group syncing, register your KeyboardKit Pro license key, etc. with a `KeyboardApp` value, then use the new `setupKeyboardView(_:)` to set up a custom keyboard view in both KeyboardKit or KeyboardKit Pro. 
 
 ### ✨ Features
 

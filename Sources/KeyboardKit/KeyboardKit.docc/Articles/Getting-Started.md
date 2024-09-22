@@ -26,9 +26,9 @@ Keyboard extensions can use KeyboardKit to create custom keyboards, while the ma
 
 ## How to define app-specific information
 
-The easiest way to set up KeyboardKit is to use a ``KeyboardApp``, which can be used to define things like ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey`` and ``KeyboardApp/locales`` for KeyboardKit Pro, ``KeyboardApp/deepLinks-swift.property``, etc.
+The easiest way to set up KeyboardKit is to use a ``KeyboardApp``, which can define ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey`` and ``KeyboardApp/locales`` for KeyboardKit Pro, ``KeyboardApp/deepLinks-swift.property``, etc.
 
-You can create a static ``KeyboardApp`` value in a file that you add to both your main app target and keyboard extension, to be able to easily refer to your app information from both targets:
+If you define your app in a file that you add to both your app target and keyboard extension, you can easily refer to it from both targets:
 
 ```swift
 extension KeyboardApp {
@@ -36,9 +36,10 @@ extension KeyboardApp {
     static var keyboardKitDemo: Self {
         .init(
             name: "KeyboardKit",
-            licenseKey: "abc123",
+            licenseKey: "keyboardkitpro-license-key",
             bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo"
+            appGroupId: "group.com.keyboardkit.demo",
+            deepLinks: .init(app: "kkdemo://")
         )
     }
 }
@@ -55,7 +56,7 @@ You need to set up KeybordKit a bit differently for a keyboard extension, a main
 
 ### How to set up KeyboardKit for a Keyboard extension
 
-To set up KeyboardKit for a keyboard, first inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+To set up KeyboardKit in a keyboard, first inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 class KeyboardController: KeyboardInputViewController {}
@@ -63,7 +64,7 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, etc.
 
-To set up the keyboard for your app, just override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:)``, or ``KeyboardInputViewController/setupPro(for:completion:)`` if you use [KeyboardKit Pro][KeyboardKitPro]:
+To set up the keyboard for your app, just override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:)`` (or ``KeyboardInputViewController/setupPro(for:completion:)`` if you use [KeyboardKit Pro][KeyboardKitPro]) with your ``KeyboardApp`` value:
 
 
 [KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
@@ -114,7 +115,7 @@ To set up the keyboard for your app, just override ``KeyboardInputViewController
     }
 }
 
-This will make the ``KeyboardSettings`` ``KeyboardSettings/store`` use App Group-syncing between the main app and its keyboard if an ``KeyboardApp/appGroupId`` is defined, register a KeyboardKit Pro license if a ``KeyboardApp/licenseKey`` is defined, and also set up dictation, deep links, etc.
+This will make the ``KeyboardSettings`` ``KeyboardSettings/store`` sync data between the app and its keyboard if an ``KeyboardApp/appGroupId`` is defined, register a KeyboardKit Pro license if a ``KeyboardApp/licenseKey`` is defined, and set up dictation, deep links, etc.
 
 To replace or customize the standard, English ``KeyboardView``, just override ``KeyboardInputViewController/viewWillSetupKeyboardView()`` and call ``KeyboardInputViewController/setupKeyboardView(_:)-1b18j`` with the view you want to use:
 
@@ -137,18 +138,15 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-You can use the view builder `controller` parameter to access ``KeyboardInputViewController/state``, ``KeyboardInputViewController/services`` and any other properties and functions you need.
-
 > Warning: The ``KeyboardInputViewController/setupKeyboardView(_:)-qfea`` view builder provides you with an unowned controller reference, since referring to self may cause memory leaks. However, since it's a ``KeyboardInputViewController`` you still need self to refer to your specific controller. If so, you MUST use `[weak self]` or `[unowned self]`, otherwise the self reference will cause a memory leak.
 
 
 
 ### How to set up KeyboardKit for the main app target
 
-You can use KeyboardKit in your main app, to check the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place for app settings, since it has more space.
+You can use KeyboardKit in your main app, to manage the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place for app settings, since it has more space.
 
-The easiest way to set up KeyboardKit for your app is to use the ``KeyboardAppView`` as root view, which takes a ``KeyboardApp`` and sets up everything it needs, including app group syncing, registering your [KeyboardKit Pro][KeyboardKitPro] license key, etc.   
-
+The easiest way to set up an app is to use a ``KeyboardAppView`` root view, which uses a ``KeyboardApp`` to set up everything it needs:
 
 ```swift
 @main
@@ -165,6 +163,10 @@ struct MyApp: App {
     }
 }
 ```
+
+This will make the ``KeyboardSettings`` ``KeyboardSettings/store`` sync data between the app and its keyboard if an ``KeyboardApp/appGroupId`` is defined, register a KeyboardKit Pro license if a ``KeyboardApp/licenseKey`` is defined, and set up dictation, deep links, etc.
+
+#### Setting up KeyboardKit Pro before 8.9
 
 If you have not yet started using the new ``KeyboardApp`` approach, you must manually register your KeyboardKit Pro license key:
 
@@ -194,7 +196,7 @@ extension MyApp {
 }
 ```
 
-KeyboardKit 9 will exclusively use the ``KeyboardApp`` approach, since it is much easier and lets you set up everything you need with a single line of code.
+KeyboardKit 9 will exclusively use the ``KeyboardApp`` approach, since it is easier and sets up all you need with a single line of code.
 
 
 

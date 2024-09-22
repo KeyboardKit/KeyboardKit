@@ -49,21 +49,38 @@ import KeyboardKit
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives your controller access to new lifecycle functions like `viewWillSetupKeyboardView`, observable state like `state.keyboardContext`, services like `services.actionHandler`, and much more.
+This gives you access to lifecycle functions like `viewWillSetupKeyboardView`, observable state, services, etc.
 
-To set up the keyboard for your app, just override `viewDidLoad` and call `setup(for:)` with a `KeyboardApp` value:
+The easiest way to set up KeyboardKit is to use create a `KeyboardApp` value to define information for your app:
+
+```swift
+extension KeyboardApp {
+
+    static var keyboardKitDemo: Self {
+        .init(
+            name: "KeyboardKit",
+            licenseKey: "keyboardkitpro-license-key",
+            bundleId: "com.keyboardkit.demo",
+            appGroupId: "group.com.keyboardkit.demo",
+            deepLinks: .init(app: "kkdemo://")
+        )
+    }
+}
+```  
+
+To set up your keyboard, just override `viewDidLoad` and call `setup(for:)` with this `KeyboardApp` value:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setup(for: .myApp)
+        setup(for: .keyboardKitDemo)
     }
 }
 ```
 
-This will set up things like App Group-syncing between the main app and its keyboard, dictation, deep links, etc.
+This will make `KeyboardSettings` sync data between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, and also set up dictation, deep links, etc.
 
 To replace or customize the standard, English `KeyboardView`, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
 
@@ -86,7 +103,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-To set up the main app with the same configuration as the keyboard extension, the easiest way is to wrap the main content view in a `KeyboardAppView`:
+To set up the main app with the same configuration as the keyboard extension, just wrap the main content view in a `KeyboardAppView` and provide it with the same app information:
 
 ```swift
 import SwiftUI
@@ -97,13 +114,15 @@ struct MyApp: App {
 
     var body: some Scene {
         WindowGroup {
-            KeyboardAppView(for: .myApp) {
+            KeyboardAppView(for: .keyboardKitDemo) {
                 ContentView()
             }
         }
     }
 }
 ```
+
+This will make `KeyboardSettings` sync data between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, and also set up dictation, deep links, etc.
 
 For more information, please see the [getting started guide][Getting-Started].
 
@@ -131,20 +150,20 @@ KeyboardKit comes packed with free, open-source features to help you build amazi
 
 * ⌨️ [Essentials][Essentials] - Essential utilities, models, services & views.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
-* 📱 [App][App] - Define and set up things for your app.
+* 📱 [App][App] - Define and set up your app, settings, etc.
 * 💡 [Autocomplete][Autocomplete] - Perform autocomplete as the user types.
-* 🗯 [Callouts][Callouts] - Show input & secondary action callouts as the user types.
-* 🖥️ [Device][Device] - Identify the device type, device capabilities, etc.
+* 🗯 [Callouts][Callouts] - Show input & secondary action callouts.
+* 🖥️ [Device][Device] - Identify device type, device capabilities, etc.
 * 😀 [Emojis][Emojis] - Emojis, categories, versions, skin tones, etc.
 * 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback with ease.
 * 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
-* 🏠 [Host][Host] - Easily identify the host application.
-* 🔣 [Layout][Layout] - Easily define and customize the keyboard layout.
-* 🌐 [Localization][Localization] - Localize your keyboard in all supported locales.
+* 🏠 [Host][Host] - Identify the host application.
+* 🔣 [Layout][Layout] - Define and customize dynamic keyboard layouts.
+* 🌐 [Localization][Localization] - Localize your keyboard in **68+ locales**.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
-* 👁 [Previews][Previews] - Extensive keyboard preview support.
-* ➡️ [Proxy][Proxy] - Extend the text document proxy with a lot more capabilities.
-* ⚙️ [Settings][Settings] - Easily provide in-app settings & link to System Settings.
+* 👁 [Previews][Previews] - Extensive SwiftUI preview support.
+* ➡️ [Proxy][Proxy] - Extend the text document proxy with more capabilities.
+* ⚙️ [Settings][Settings] - Provide keyboard settings & link to System Settings.
 * 🩺 [Status][Status] - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - Style your keyboard to great extent.
 
@@ -154,21 +173,21 @@ KeyboardKit comes packed with free, open-source features to help you build amazi
 
 [KeyboardKit Pro][Pro] extends KeyboardKit with Pro features:
 
-* ⌨️ [Essentials][Essentials] - Unlock more essential tools, keyboard previews, etc.
-* 🤖 [AI][AI] - Unlock features that are needed for AI.
-* 📱 [App][App] - Unlock app-specific screens & views.
-* 💡 [Autocomplete][Autocomplete] - Unlock on-device & remote autocomplete for many locales.
-* 🗯 [Callouts][Callouts] - Unlock localized callouts for all locales.
-* 🎤 [Dictation][Dictation] - Make your keyboard perform dictation via the main app.
-* 😀 [Emojis][Emojis] - Unlock a powerful emoji keyboard.
+* ⌨️ [Essentials][Essentials] - More essential tools, keyboard previews, etc.
+* 🤖 [AI][AI] - Features that are needed for AI.
+* 📱 [App][App] - App-specific screens & views.
+* 💡 [Autocomplete][Autocomplete] - On-device & remote autocomplete.
+* 🗯 [Callouts][Callouts] - Localized callouts for **68 locales**.
+* 🎤 [Dictation][Dictation] - Trigger dictation from the keyboard.
+* 😀 [Emojis][Emojis] - A powerful emoji keyboard.
 * ⌨️ [External][External] - Detect if an external keyboard is connected. 
-* 🏠 [Host][Host] - Easily identify and open specific host applications.
-* 🔣 [Layout][Layout] - Unlock localized layouts for all locales.
-* 🌐 [Localization][Localization] - Unlock locale-specific services & views.
-* 👁 [Previews][Previews] - Unlock keyboard & theme previews.
-* ➡️ [Proxy][Proxy] - Unlock ways for `UITextDocumentProxy` to read the full document.
-* 📝 [Text][Text-Input] - Unlock tools to let users type within the keyboard.
-* 🍭 [Themes][Themes] - Unlock a theme engine with many pre-defined themes.
+* 🏠 [Host][Host] - Identify and open specific host applications.
+* 🔣 [Layout][Layout] - Localized layouts for **68 locales**.
+* 🌐 [Localization][Localization] - Services & views for **68 locales**.
+* 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
+* ➡️ [Proxy][Proxy] - Let `UITextDocumentProxy` read the full document.
+* 📝 [Text][Text-Input] - Let users type within the keyboard.
+* 🍭 [Themes][Themes] - A theme engine with many pre-defined themes.
 
 
 
