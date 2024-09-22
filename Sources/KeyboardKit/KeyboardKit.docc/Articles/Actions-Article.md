@@ -69,7 +69,7 @@ func doStuff(with handler: KeyboardActionHandler) {
 }
 ```
 
-Keyboard actions can also be triggered by a ``Keyboard``.``Keyboard/Button`` or by applying a ``SwiftUI/View/keyboardButton(_:)`` view modifier to any view:
+Keyboard actions can also be triggered by a ``Keyboard``.``Keyboard/Button`` or by applying a ``SwiftUICore/View/keyboardButton(_:)`` view modifier to any view:
 
 ```swift
 Text("Button")

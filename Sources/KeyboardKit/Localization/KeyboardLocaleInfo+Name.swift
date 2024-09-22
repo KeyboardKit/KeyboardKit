@@ -51,7 +51,7 @@ public extension Collection where Element: KeyboardLocaleInfo {
     /// optionally place a locale first.
     ///
     /// - Parameters:
-    ///   - insertFirst: The locale to place first, by default `nil`.
+    ///   - first: The locale to place first, by default `nil`.
     func sorted(
         insertFirst first: Element? = nil
     ) -> [Element] {
@@ -66,7 +66,7 @@ public extension Collection where Element: KeyboardLocaleInfo {
     ///
     /// - Parameters:
     ///   - locale: The locale to use to get the localized name.
-    ///   - insertFirst: The locale to place first, by default `nil`.
+    ///   - first: The locale to place first, by default `nil`.
     func sorted(
         in locale: Locale,
         insertFirst first: Element? = nil
@@ -82,7 +82,7 @@ public extension Collection where Element: KeyboardLocaleInfo {
     ///
     /// - Parameters:
     ///   - comparator: The sort comparator to use.
-    ///   - insertFirst: The locale to place first, by default `nil`.
+    ///   - first: The locale to place first, by default `nil`.
     func sorted(
         by comparator: (Element, Element) -> Bool,
         insertFirst first: Element?

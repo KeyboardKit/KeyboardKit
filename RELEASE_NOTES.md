@@ -55,6 +55,17 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 * `KeyboardThemeContext` is a new context type for theme-related state. 
 * `View+KeyboardButton` now supports applying extended tap areas to more probable keys.
 
+### 👑 Pro Features
+
+* `KeyboardApp.HomeScreen` can now opt-in to link to the themes screen.
+* `KeyboardApp.ThemeScreen` is a new screen that can be used as a theme picker.
+
+### 💡 Adjustments
+
+* `Color` and `Image` extensions have been moved to the `Styling` namespace.
+* `KeyboardInputViewController.host` now handles the host bundle ID within the main app.
+* `KeyboardView` will show a `Keyboard.NumberPad` if the `.keyboardStyle` is `.numberPad`.
+
 ### ⚡️ Shorthands
 
 * `Autocomplete.DisabledService` can be resolved with `.disabled(...)`.
@@ -70,12 +81,7 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 * `KeyboardLayout.StandardService` can be resolved with `.standard(...)`.
 * `KeyboardStyle.StandardService` can be resolved with `.standard(...)`.
 
-### 👑 Pro Features
-
-* `KeyboardApp.HomeScreen` can now opt-in to link to the themes screen.
-* `KeyboardApp.ThemeScreen` is a new screen that can be used as a theme picker.
-
-### 👑 Pro Shorthands
+### ⚡️ Shorthands (KeyboardKit Pro)
 
 * `Autocomplete.LocalService` can be resolved with `.local(...)`.
 * `Autocomplete.RemoteService` can be resolved with `.remote(...)`.
@@ -85,12 +91,9 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 * `KeyboardLayout.ProService.<Locale>` can be resolved with `.<locale>(...)`.
 * `KeyboardStyleService.ThemeBased` can be resolved with `.themeBased(...)`.
 
+### 📖 Documentation
 
-### 💡 Adjustments
-
-* `Color` and `Image` extensions have been moved to the `Styling` namespace.
-* `KeyboardInputViewController.host` now handles the host bundle ID within the main app.
-* `KeyboardView` will show a `Keyboard.NumberPad` if the `.keyboardStyle` is `.numberPad`.
+* The documentation has been adjusted for Xcode 16.
 
 ### 🐛 Bug Fixes
 

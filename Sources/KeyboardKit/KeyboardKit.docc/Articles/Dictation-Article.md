@@ -20,7 +20,7 @@ KeyboardKit has a ``Dictation`` namespace that contains dictation-related types 
 
 KeyboardKit has an observable ``DictationContext`` that provides observable autocomplete state, such as the ``DictationContext/dictatedText``. The state properties are modified as dictation is performed by the keyboard and the main app.
 
-The context also has persistent, observable settings, such as  ``DictationContext/silenceLimit``, etc. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
+The context also has persistent, observable settings, such as  ``DictationContext/silenceLimit``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state`` and updates it whenever dictation is performed.
 
@@ -99,7 +99,7 @@ KeyboardKit Pro unlocks views in the ``Dictation`` namespace, that let you quick
             @Column {}
         }
         
-        This view can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
+        This view can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUICore/View/dictationScreenStyle(_:)`` view modifier.
     }
     
     @Tab("Dictation.BarVisualizer") {
@@ -113,7 +113,7 @@ KeyboardKit Pro unlocks views in the ``Dictation`` namespace, that let you quick
             @Column {}
         }
         
-        This view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUI/View/dictationScreenStyle(_:)`` view modifier.
+        This view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUICore/View/dictationScreenStyle(_:)`` view modifier.
     }
 }
 
@@ -209,7 +209,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
 #### Step 6. Set up dictation in the main application
 
-To configure dictation for the *main app*, first register your KeyboardKit Pro license key, as described in the <doc:Getting-Started> article, then apply a dictation view modifier to the app's root view:
+To configure dictation for the *main app*, first register your KeyboardKit Pro license key, as described in the <doc:Getting-Started-Article> article, then apply a dictation view modifier to the app's root view:
 
 ```swift
 struct ContentView: View {
@@ -371,7 +371,7 @@ KeyboardKit Pro used to automatically navigate back to the keyboard, but this st
 
 For now, KeyboardKit Pro tries to work around this limitation by using the ``DictationContext``'s ``KeyboardHostApplicationProvider/hostApplication`` property to identify and open the previoysly active app. Since this approach only supports the most popular apps, it may fail in many cases.
 
-If the back navigation fails, your dictation screen should inform the user how to return to the keyboard, which is done by swiping back. You can also override ``Dictation/ProKeyboardService/tryToReturnToKeyboard()`` to customize the back navigation, using a custom dictation service:
+If the back navigation fails, your dictation screen should inform the user how to return to the keyboard, which is done by swiping back or tapping the top-trailing back arrow.
 
 ```swift
 class CustomDictationService: Dictation.ProKeyboardService {

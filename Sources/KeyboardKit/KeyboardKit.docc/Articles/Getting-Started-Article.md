@@ -272,7 +272,7 @@ Since services are lazy and resolved when they're used for the first time, you s
 
 ## Going further
 
-You should now have a basic understanding of how to set up KeyboardKit and KeyboardKit Pro. For more information & examples, see the <doc:Essentials> article, as well as the other articles. Also, take a look at the demo app.
+You should now have a basic understanding of how to set up KeyboardKit and KeyboardKit Pro. For more information & examples, see the <doc:Essentials-Article> article, as well as the other articles. Also, take a look at the demo app.
 
 
 

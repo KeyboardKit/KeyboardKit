@@ -33,7 +33,7 @@ KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related
 
 KeyboardKit has an observable ``AutocompleteContext`` that provides observable autocomplete state, such as the ``AutocompleteContext/suggestions`` to present. The state properties are modified as the keyboard performs autocomplete.
 
-The context also has persistent, observable settings, such as  ``AutocompleteContext/isAutocompleteEnabled``, ``AutocompleteContext/suggestionsDisplayCount``, etc. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
+The context also has persistent, observable settings, such as  ``AutocompleteContext/isAutocompleteEnabled``, ``AutocompleteContext/suggestionsDisplayCount``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
 
@@ -62,7 +62,7 @@ KeyboardKit will automatically call the ``KeyboardInputViewController``'s ``Keyb
 
 You can configure the ``AutocompleteContext`` and override the ``KeyboardInputViewController``'s autocomplete properties and functions, such as ``KeyboardInputViewController/autocompleteText`` or ``KeyboardInputViewController/performAutocomplete()``, to customize how autocomplete behaves.
 
-You can disable autocomplete and autocorrect with ``AutocompleteContext/isAutocompleteEnabled`` and ``AutocompleteContext/isAutocorrectEnabled``, and also disable autocorrection by applying a ``SwiftUI/View/autocorrectionDisabled(with:)`` view modifier to the view hierarchy.
+You can disable autocomplete and autocorrect with ``AutocompleteContext/isAutocompleteEnabled`` and ``AutocompleteContext/isAutocorrectEnabled``, and also disable autocorrection by applying a ``SwiftUICore/View/autocorrectionDisabled(with:)`` view modifier to the view hierarchy.
 
 You can set ``AutocompleteContext/isAutolearnEnabled`` to `true` to make a ``KeyboardActionHandler``  automatically tell ``AutocompleteService`` to learn all unknown suggestions that the action handler applies.
 
@@ -169,7 +169,7 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
             @Column {}
         }
         
-        This view can be styled with ``Autocomplete``.``Autocomplete/ToolbarStyle``, which can be applied with ``SwiftUI/View/autocompleteToolbarStyle(_:)``. It can also use custom ``Autocomplete``.``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator`` views.
+        This view can be styled with ``Autocomplete``.``Autocomplete/ToolbarStyle``, which can be applied with ``SwiftUICore/View/autocompleteToolbarStyle(_:)``. It can also use custom ``Autocomplete``.``Autocomplete/ToolbarItem`` & ``Autocomplete/ToolbarSeparator`` views.
     }
 }
 

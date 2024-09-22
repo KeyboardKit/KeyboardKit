@@ -33,7 +33,7 @@ public protocol CalloutService: AnyObject {
 
 public extension Callouts {
 
-    /// This error can be thrown by ``CalloutService/tryRegisterLocalizedLayoutService(_:)``.
+    /// This error can be thrown by ``CalloutService/tryRegisterLocalizedService(_:)``.
     enum TryRegisterLocalizedLayoutServiceError: Error {
 
         /// The service doesn't support localized layout service registrations.

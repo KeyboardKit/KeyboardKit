@@ -14,7 +14,7 @@ public extension Callouts {
     /// the ``Callouts/ActionCallout`` component.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUI/View/actionCalloutStyle(_:)``.
+    /// ``SwiftUICore/View/actionCalloutStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct ActionCalloutStyle: Codable, Equatable {

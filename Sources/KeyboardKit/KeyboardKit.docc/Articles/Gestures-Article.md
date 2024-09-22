@@ -29,7 +29,7 @@ This namespace does not contain the ``Keyboard/Gesture`` enum, which is an essen
 
 ## Keyboard gestures view modifier
 
-You can use the ``SwiftUI/View/keyboardButtonGestures(for:actionHandler:calloutContext:isPressed:isInScrollView:releaseOutsideTolerance:)`` view modifier to apply keyboard gesture to any view:
+You can use the ``SwiftUICore/View/keyboardButtonGestures(for:actionHandler:repeatTimer:calloutContext:isPressed:scrollState:releaseOutsideTolerance:)`` view modifier to apply keyboard gesture to any view:
 
 ```swift
 Text("😀")

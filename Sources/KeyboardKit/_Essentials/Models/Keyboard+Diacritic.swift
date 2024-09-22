@@ -23,7 +23,7 @@ public extension Keyboard {
         ///
         /// - Parameters:
         ///   - char: The character to display.
-        ///   - repacements: All possible replacements.
+        ///   - replacements: All possible replacements.
         public init(
             char: String,
             replacements: [String: String]

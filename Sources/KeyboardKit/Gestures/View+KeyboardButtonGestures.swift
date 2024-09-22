@@ -72,6 +72,7 @@ public extension View {
     ///   - releaseAction: The action to trigger when the button is released, regardless of where the gesture ends, if any.
     ///   - repeatAction: The action to trigger when the button is pressed and held, if any.
     ///   - dragAction: The action to trigger when the button is dragged, if any.
+    ///   - endAction: The action to trigger when the button gesture ends.
     @ViewBuilder
     func keyboardButtonGestures(
         action: KeyboardAction? = nil,

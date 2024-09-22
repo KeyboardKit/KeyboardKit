@@ -19,7 +19,7 @@ import Foundation
 /// when the keyboard is launched. You can change or replace
 /// it at any time to customize the keyboard behavior.
 ///
-/// See the <doc:Essentials> for more information.
+/// See the <doc:Essentials-Article> for more information.
 public protocol KeyboardBehavior {
     
     @available(*, deprecated, message: "Just use Keyboard.Gesture from now on")

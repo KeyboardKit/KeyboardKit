@@ -112,7 +112,7 @@ public extension KeyboardThemeCopyable {
     /// random generated, unique ID.
     ///
     /// - Parameters:
-    ///   - newId: An optional, explicit ID.
+    ///   - id: An optional, explicit ID.
     ///   - newName: An optional new name.
     func copy(
         newId id: UUID? = nil,

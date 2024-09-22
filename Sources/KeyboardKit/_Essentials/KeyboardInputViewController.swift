@@ -33,9 +33,8 @@ import UIKit
 /// `[weak self]` or `[unowned self]` to the builder. If you
 /// don't, the `self` reference will cause a memory leak.
 ///
-/// See the <doc:Getting-Started> guide and <doc:Essentials>
-/// article for more information about how to set up and use
-/// this keyboard controller class.
+/// See <doc:Getting-Started-Article> and <doc:Essentials-Article>
+/// for more information about how to use this class.
 open class KeyboardInputViewController: UIInputViewController, KeyboardController, UrlOpener {
 
 
@@ -157,9 +156,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// Set up KeyboardKit with a custom keyboard view.
     ///
     /// Call this in ``viewWillSetupKeyboardView()`` to make
-    /// the controller use the `view` as keyboard view.
+    /// the controller use the view as the keyboard view.
     ///
-    /// > Important: ``<doc:Getting-Started>`` has important
+    /// See <doc:Getting-Started-Article> for more important
     /// information on how to set up KeyboardKit, and how to
     /// use weak or unowned self to avoid memory leaks.
     open func setupKeyboardView<Content: View>(

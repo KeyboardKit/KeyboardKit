@@ -29,7 +29,7 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 ## Gettings Started
 
-The <doc:Getting-Started> article helps you get started with KeyboardKit.
+The <doc:Getting-Started-Article> article helps you get started with KeyboardKit.
 
 
 
@@ -53,7 +53,7 @@ KeyboardKit provides a basic keyboard layout with basic callout actions. [Keybo
 
 KeyboardKit comes packed with features to help you build amazing keyboard extensions:
 
-* ⌨️ <doc:Essentials> - Essential utilities, models, services & views.
+* ⌨️ <doc:Essentials-Article> - Essential utilities, models, services & views.
 * 💥 <doc:Actions-Article> - Trigger & handle keyboard-related actions.
 * 📱 <doc:App-Article> - Define and set up your app, settings, etc.
 * 💡 <doc:Autocomplete-Article> - Perform autocomplete as the user types.
@@ -78,7 +78,7 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 
 You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
-* ⌨️ <doc:Essentials> - More essential tools, keyboard previews, etc.
+* ⌨️ <doc:Essentials-Article> - More essential tools, keyboard previews, etc.
 * 🤖 <doc:AI-Article> - Features that are needed for AI.
 * 📱 <doc:App-Article> - App-specific screens & views.
 * 💡 <doc:Autocomplete-Article> - On-device & remote autocomplete.
@@ -119,11 +119,11 @@ KeyboardKit is available under the MIT license.
 
 ### Getting Started
 
-- <doc:Getting-Started>
+- <doc:Getting-Started-Article>
 
 ### Features
 
-- <doc:Essentials>
+- <doc:Essentials-Article>
 - <doc:Actions-Article>
 - <doc:AI-Article>
 - <doc:App-Article>
@@ -170,7 +170,6 @@ KeyboardKit is available under the MIT license.
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteService``
-- ``AutocompleteSettings``
 
 ### App
 
@@ -192,7 +191,6 @@ KeyboardKit is available under the MIT license.
 - ``Dictation``
 - ``DictationContext``
 - ``DictationService``
-- ``DictationSettings``
 - ``KeyboardDictationService``
 - ``SpeechRecognizer``
 
@@ -213,7 +211,6 @@ KeyboardKit is available under the MIT license.
 - ``Feedback``
 - ``FeedbackContext``
 - ``FeedbackService``
-- ``FeedbackSettings``
 
 ### Gestures
 
@@ -255,7 +252,6 @@ KeyboardKit is available under the MIT license.
 ### Proxy
 
 - ``Proxy``
-- ``TextInputProxy``
 
 ### Status
 

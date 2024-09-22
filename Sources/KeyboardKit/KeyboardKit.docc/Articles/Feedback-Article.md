@@ -41,7 +41,7 @@ The ``Feedback/Haptic`` enum defines haptic feedback types, like ``Feedback/Hapt
 
 KeyboardKit has an observable ``FeedbackContext`` class that can be used to configure feedback for various actions, such as which configuration to use for audio and haptic feedback. 
 
-The context also has persistent, observable settings, such as  ``FeedbackContext/isAudioFeedbackEnabled``, ``FeedbackContext/isHapticFeedbackEnabled``, etc. You can read more about how settings are handled in the <doc:Essentials> and <doc:Settings-Article> articles.
+The context also has persistent, observable settings, such as  ``FeedbackContext/isAudioFeedbackEnabled``, ``FeedbackContext/isHapticFeedbackEnabled``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``. You can use this instance to configure feedback.
 

@@ -208,7 +208,7 @@ The ``Keyboard`` namespace has a lot of views, styles, and view-related types:
 
 Most views have a corresponding style, which can be used to style it, much like SwiftUI's `Button` has a `ButtonStyle` and `.buttonStyle(...)` view modifier, that can be applied to an individual button, or an entire view hierarchy.
 
-In KeyboardKit, a ``Keyboard``.``Keyboard/Button`` has a ``Keyboard/ButtonStyle`` that can be applied with a ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier. The ``Keyboard/Toolbar`` has a ``Keyboard/ToolbarStyle`` and a ``SwiftUI/View/keyboardToolbarStyle(_:)`` view modifier, etc.
+In KeyboardKit, a ``Keyboard``.``Keyboard/Button`` has a ``Keyboard/ButtonStyle`` that can be applied with a ``SwiftUICore/View/keyboardButtonStyle(_:)`` view modifier. The ``Keyboard/Toolbar`` has a ``Keyboard/ToolbarStyle`` and a ``SwiftUICore/View/keyboardToolbarStyle(_:)`` view modifier, etc.
 
 When you use a ``KeyboardView``, you must however use the ``KeyboardStyleService`` concept instead, since the keyboard view is so complex. You can however apply explicit styles within the ``KeyboardView``'s various view builder parameters.
     
@@ -268,7 +268,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
             @Column { }
         }
         
-        You can apply a ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)`` modifier to the keyboard view to control whether to show or hide the toolbar on all device types, or to customize the buttons on the input keyboard.
+        You can apply a ``SwiftUICore/View/keyboardInputToolbarDisplayMode(_:)`` modifier to the keyboard view to control whether to show or hide the toolbar on all device types, or to customize the buttons on the input keyboard.
     }
     
     @Tab("Toggle Toolbar") {
@@ -277,7 +277,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
         
         ![ToggleToolbar](keyboardtoggletoolbar)
         
-        This view wraps itself in a ``Keyboard/Toolbar``, which means that it can also be styled with the ``SwiftUI/View/keyboardToolbarStyle(_:)`` modifier.
+        This view wraps itself in a ``Keyboard/Toolbar``, which means that it can also be styled with the ``SwiftUICore/View/keyboardToolbarStyle(_:)`` modifier.
     }
 }
 

@@ -29,9 +29,9 @@ import SwiftUI
 ///
 /// The ``isNextCharacterPredictionEnabled`` settings can be
 /// used to control if next character predictions is enabled.
-/// The ``nextCharacterProbabilities`` property will then be
-/// set (today by the controller) after which it can be used
-/// by the ``nextCharacterPrediction(for:)-5h4gq`` function.
+/// The ``nextCharacterPredictions`` property is then set by
+/// the controller after which these predictions can be used
+/// by ``nextCharacterPrediction(for:)-5h4gq``.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use

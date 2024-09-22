@@ -52,7 +52,7 @@ Just set ``KeyboardInputViewController/textInputProxy`` to start routing text to
     }
 }
 
-Both views support `@FocusState`, and have a custom ``SwiftUI/View/focused(_:doneButton:)`` view modifier that lets you provide a custom done button that slides in when the view is focused, and can be tapped to end editing:
+Both views support `@FocusState`, and have a custom ``SwiftUICore/View/focused(_:doneButton:)`` view modifier that lets you provide a custom done button that slides in when the view is focused, and can be tapped to end editing:
 
 ```swift
 struct CustomKeyboardToolbar: View {

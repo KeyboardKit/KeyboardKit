@@ -30,7 +30,7 @@ public protocol KeyboardLayoutService: AnyObject {
 
 public extension KeyboardLayout {
 
-    /// This error can be thrown by ``KeyboardLayoutService/tryRegisterLocalizedLayoutService(_:)``.
+    /// This error can be thrown by ``KeyboardLayoutService/tryRegisterLocalizedService(_:)``.
     enum TryRegisterLocalizedLayoutServiceError: Error {
 
         /// The service doesn't support localized layout service registrations.

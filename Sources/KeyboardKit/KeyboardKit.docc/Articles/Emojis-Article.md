@@ -153,6 +153,6 @@ There are String & Character extensions that can be used to detect and handle em
             @Column {}
         }
         
-        The view can be styled with an ``EmojiKeyboardStyle``, which can be applied with the ``SwiftUI/View/emojiKeyboardStyle(_:)`` view modifier.
+        The view can be styled with an ``EmojiKeyboardStyle``, which can be applied with the ``SwiftUICore/View/emojiKeyboardStyle(_:)`` view modifier.
     }
 }

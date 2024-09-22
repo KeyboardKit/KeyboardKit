@@ -54,7 +54,7 @@ You can also use ``KeyboardContext``'s ``KeyboardContext/addedLocales`` settings
 
 If the context ``KeyboardContext/locales`` or ``KeyboardContext/addedLocales`` has multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user do it with a ``KeyboardLocale/ContextMenu``. They will use ``KeyboardContext/addedLocales`` if it has been set, otherwise ``KeyboardContext/locales``.
 
-You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` action, or add a context menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:locales:tapAction:)`` view modifier.
+You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` action, or add a context menu to any view with the ``SwiftUICore/View/keyboardLocaleContextMenu(for:locales:tapAction:)`` view modifier.
 
 
 
@@ -140,7 +140,7 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
         
         ``KeyboardView`` applies this menu to every key that triggers the ``KeyboardAction/nextLocale`` action, as well as to the space bar, if the ``Gestures/SpaceLongPressBehavior`` is set to ``Gestures/SpaceLongPressBehavior/openLocaleContextMenu``.
         
-        You can also add this menu to any view with the ``SwiftUI/View/keyboardLocaleContextMenu(for:locales:tapAction:)`` view modifier.
+        You can also add this menu to any view with the ``SwiftUICore/View/keyboardLocaleContextMenu(for:locales:tapAction:)`` view modifier.
     }
 }
 
@@ -151,6 +151,6 @@ The ``KeyboardLocale`` namespace has locale-specific views, that can be used to 
 
 This lets KeyboardKit create a fully localized ``KeyboardView`` for every locale, with no additional code needed. You can customize any part for any locale at any time, whenever needed.
 
-After setting up KeyboardKit Pro with your license key, as described in the <doc:Getting-Started> article, you can just change the ``KeyboardContext/locale`` to automatically update the keyboard view for any locale in your license.
+After setting up KeyboardKit Pro with your license key, as described in the <doc:Getting-Started-Article> article, you can just change the ``KeyboardContext/locale`` to automatically update the keyboard view for any locale in your license.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

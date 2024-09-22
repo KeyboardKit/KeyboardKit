@@ -14,7 +14,7 @@ public extension Keyboard {
     /// can be used to set how an input toolbar is displayed.
     ///
     /// You can apply a display mode using the view modifier
-    /// ``SwiftUI/View/keyboardInputToolbarDisplayMode(_:)``.
+    /// ``SwiftUICore/View/keyboardInputToolbarDisplayMode(_:)``.
     enum InputToolbarDisplayMode: Equatable {
 
         /// This mode renders an input toolbar when it makes

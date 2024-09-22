@@ -14,7 +14,7 @@ public extension Keyboard {
     /// the ``Keyboard/Toolbar`` component.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUI/View/keyboardToolbarStyle(_:)``.
+    /// ``SwiftUICore/View/keyboardToolbarStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct ToolbarStyle {

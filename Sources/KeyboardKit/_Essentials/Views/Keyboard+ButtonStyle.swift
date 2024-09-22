@@ -14,7 +14,7 @@ public extension Keyboard {
     /// the various ``Keyboard/Button`` components.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUI/View/keyboardButtonStyle(_:)``.
+    /// ``SwiftUICore/View/keyboardButtonStyle(_:)``.
     ///
     /// Unlike most other styles, the style doesn't yet have
     /// a standard style, due to the complexities of how the

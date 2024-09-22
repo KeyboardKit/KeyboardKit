@@ -20,7 +20,7 @@ import SwiftUI
 /// and the ``KeyboardInputViewController/services`` service
 /// instances to customize it, you don't have to do anything.
 ///
-/// See the <doc:Essentials> article for more information on
+/// See the <doc:Essentials-Article> article for more information on
 /// how you can customize this and other system views.
 public struct KeyboardView<
     ButtonContent: View,

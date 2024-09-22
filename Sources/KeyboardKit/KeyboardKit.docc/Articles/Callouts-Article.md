@@ -56,7 +56,7 @@ You can easily resolve various ``CalloutService`` implementations with these sho
 
 The ``KeyboardView`` and ``Keyboard/Button`` will automatically apply the proper view extensions to make input and action callouts work, so you don't have to do anything to make action and input callouts work.
 
-For other views, you can apply the ``SwiftUI/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view extension to make any view act as the container of input and action callouts:
+For other views, you can apply the ``SwiftUICore/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view extension to make any view act as the container of input and action callouts:
 
 ```swift
 MyKeyboard()
@@ -142,7 +142,7 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
             @Column { }
         }
         
-        The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUI/View/actionCalloutStyle(_:)`` view modifier.
+        The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUICore/View/actionCalloutStyle(_:)`` view modifier.
     }
     
     @Tab("Callouts.InputCallout") {
@@ -155,7 +155,7 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
             @Column { }
         }  
         
-        The view can be styled with a ``Callouts/InputCalloutStyle``, which can be applied with the ``SwiftUI/View/inputCalloutStyle(_:)`` view modifier.
+        The view can be styled with a ``Callouts/InputCalloutStyle``, which can be applied with the ``SwiftUICore/View/inputCalloutStyle(_:)`` view modifier.
     }
 }
 

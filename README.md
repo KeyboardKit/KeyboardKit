@@ -195,6 +195,9 @@ KeyboardKit comes packed with free, open-source features to help you build amazi
 
 The [online documentation][Documentation] has more information, articles, code examples, etc.
 
+> [!NOTE]  
+> The documentation is updated for KeyboardKit 8.9. This also adjusts it for Xcode 16, which makes native type extension links fail to resolve for GitHub Actions, which currently uses Xcode 15.
+
 
 
 ## Demo App
@@ -251,8 +254,8 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/
-[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
-[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
+[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started-article
+[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-article
 
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions-article
 [AI]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/ai-article

@@ -14,7 +14,7 @@ public extension KeyboardLocale {
     /// menus to any view.
     ///
     /// The easiest way to apply this modifier is to use the
-    /// ``SwiftUI/View/keyboardLocaleContextMenu(for:locales:tapAction:)``
+    /// ``SwiftUICore/View/keyboardLocaleContextMenu(for:locales:tapAction:)``
     /// modifier. The ``KeyboardView`` automatically applies
     /// it to the ``KeyboardAction/nextLocale`` action.
     ///
@@ -152,7 +152,7 @@ public extension View {
     /// else ``KeyboardContext/locales``.
     ///
     /// - Parameters:
-    ///   - keyboardContext: The keyboard context to use.
+    ///   - context: The keyboard context to use.
     ///   - locales: The explicit locales to list, if any.
     ///   - tapAction: The action to trigger when the view is tapped.
     func keyboardLocaleContextMenu(
@@ -177,7 +177,7 @@ public extension View {
     /// else ``KeyboardContext/locales``.
     ///
     /// - Parameters:
-    ///   - keyboardContext: The keyboard context to use.
+    ///   - context: The keyboard context to use.
     ///   - locales: The explicit locales to list, if any.
     ///   - tapAction: The action to trigger when the view is tapped.
     ///   - menuItem: A menu item view builder.

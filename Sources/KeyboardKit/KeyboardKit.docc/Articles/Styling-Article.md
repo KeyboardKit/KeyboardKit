@@ -15,7 +15,7 @@ This article describes the KeyboardKit styling engine.
 
 While native iOS keyboards provide few ways to customize the look and feel, KeyboardKit keyboards can be to great extent.
 
-Most KeyboardKit views have a corresponding ``SwiftUI/View`` extension that lets you apply a custom style. This is however not yet supported by ``KeyboardView``, since its styles need to be dynamic. KeyboardKit 9. will aim to fix this, to make styling easier.
+Most KeyboardKit views have a corresponding ``SwiftUICore/View`` extension that lets you apply a custom style. This is however not yet supported by ``KeyboardView``, since its styles need to be dynamic. KeyboardKit 9. will aim to fix this, to make styling easier.
 
 👑 [KeyboardKit Pro][Pro] unlocks a theme engine and many themes. Information about Pro features can be found at the end of this article.
 
@@ -45,7 +45,7 @@ You can easily resolve various ``KeyboardStyleService`` implementations with the
 
 ## Color & Image Extensions 
 
-KeyboardKit defines additional, keyboard-specific ``SwiftUI/Color`` and ``SwiftUI/Image`` extensions, like ``SwiftUI/Color/keyboardBackground``, ``SwiftUI/Image/keyboard``, etc. to make it easy to create keyboards that look like a native iOS keyboard.
+KeyboardKit defines additional, keyboard-specific ``SwiftUICore/Color`` and ``SwiftUICore/Image`` extensions, like ``SwiftUICore/Color/keyboardBackground``, ``SwiftUICore/Image/keyboard``, etc. to make it easy to create keyboards that look like a native iOS keyboard.
 
 @Row {
     @Column {
@@ -56,9 +56,9 @@ KeyboardKit defines additional, keyboard-specific ``SwiftUI/Color`` and ``SwiftU
     }
 }
 
-KeyboardKit defines contextual colors that take a ``KeyboardContext``, like ``SwiftUI/Color/keyboardBackground(for:)``, and then vary the color result based on the context. Prefer these context-based colors whenever possible.
+KeyboardKit defines contextual colors that take a ``KeyboardContext``, like ``SwiftUICore/Color/keyboardBackground(for:)``, and then vary the color result based on the context. Prefer these context-based colors whenever possible.
 
-KeyboardKit defines variable-based icons like ``SwiftUI/Image/keyboardNewline(for:)-4a8j6``, which make it easy to use them as toggles and indicators.
+KeyboardKit defines variable-based icons like ``SwiftUICore/Image/keyboardNewline(for:)-4a8j6``, which make it easy to use them as toggles and indicators.
 
 > Important: Some keyboard colors are semi-transparent to work around a system bug in iOS, where iOS defines an invalid color scheme when a keyboard is used with a dark appearance text field in light mode. iOS will say that the color scheme is `.dark`, even if the system color scheme is light. Since dark appearance keyboards in light mode look quite different from keyboards in dark mode, this makes it impossible to apply the correct style. This has been [reported to Apple][Bug], but until it's fixes, thse colors will stay semi-transparent.
 
@@ -82,7 +82,7 @@ These values can be overridden at any time, e.g. with the various view styles, b
 
 ## View styles
 
-KeyboardKit defines custom styles for its various view. For instance, the ``Keyboard`` ``Keyboard/Button`` view has a ``Keyboard/ButtonStyle`` that can be applied with the ``SwiftUI/View/keyboardButtonStyle(_:)`` view modifier.
+KeyboardKit defines custom styles for its various view. For instance, the ``Keyboard`` ``Keyboard/Button`` view has a ``Keyboard/ButtonStyle`` that can be applied with the ``SwiftUICore/View/keyboardButtonStyle(_:)`` view modifier.
 
 Most views have static, standard styles that can be replaced by custom styles to change the global default style for that particular view. 
 
@@ -134,7 +134,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ### Emoji Icons
 
-KeyboardKit Pro unlocks vectorized emoji assets for all ``EmojiCategory``s, for instance ``SwiftUI/Image/keyboardEmoji`` & ``SwiftUI/Image/emojiCategory(_:)``:
+KeyboardKit Pro unlocks vectorized emoji assets for all ``EmojiCategory``s, for instance ``SwiftUICore/Image/keyboardEmoji`` & ``SwiftUICore/Image/emojiCategory(_:)``:
 
 @Row {
     @Column {}

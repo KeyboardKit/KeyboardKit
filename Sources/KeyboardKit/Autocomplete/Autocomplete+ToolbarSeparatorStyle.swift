@@ -14,7 +14,7 @@ public extension Autocomplete {
     /// the ``Autocomplete/ToolbarSeparator`` component.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUI/View/autocompleteToolbarSeparatorStyle(_:)``.
+    /// ``SwiftUICore/View/autocompleteToolbarSeparatorStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct ToolbarSeparatorStyle: Codable, Equatable {

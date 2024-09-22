@@ -14,7 +14,7 @@ public extension Callouts {
     /// the ``Callouts`` components callout shape.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUI/View/calloutStyle(_:)``.
+    /// ``SwiftUICore/View/calloutStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct CalloutStyle: Codable, Equatable {

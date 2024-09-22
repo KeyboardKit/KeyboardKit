@@ -52,7 +52,7 @@ public extension Keyboard.SettingsLink where Content == Label<Text, Image> {
     ///
     /// - Parameters:
     ///   - title: The button text, by default `System Settings`.
-    ///   - icon: The button icon, by default ``SwiftUI/Image/keyboardSettings``.
+    ///   - icon: The button icon, by default ``SwiftUICore/Image/keyboardSettings``.
     ///   - url: The url to navigate to, by default ``Foundation/URL/keyboardSettings``.
     ///   - addNavigationArrow: Whether to add a trailing disclosure arrow, by default `false`.   
     init(

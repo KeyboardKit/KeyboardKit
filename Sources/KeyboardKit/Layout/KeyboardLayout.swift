@@ -22,10 +22,10 @@ public class KeyboardLayout {
     /// Create a new layout with the provided items.
     ///
     /// - Parameters:
-    ///   - itemRows: The items to add to the keyboard.
+    ///   - rows: The items to add to the keyboard.
     ///   - iPadProLayout: Whether the layout is iPad Pro specific.
-    ///   - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
-    ///   - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
+    ///   - height: An optional, ideal item height, otherwise picked from the first item.
+    ///   - insets: An optional, ideal item inset value, otherwise picked from the first item.
     public init(
         itemRows rows: ItemRows,
         iPadProLayout: Bool = false,

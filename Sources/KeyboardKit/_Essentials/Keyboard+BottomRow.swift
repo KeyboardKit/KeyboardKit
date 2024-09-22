@@ -51,8 +51,8 @@ public extension Keyboard {
         /// Create a bottom row based on raw properties.
         ///
         /// - Parameters:
-        ///   - leadingActions: The actions to add before the space bar.
-        ///   - trailingActions: The actions to add after the space bar.
+        ///   - leading: The actions to add before the space bar.
+        ///   - trailing: The actions to add after the space bar.
         ///   - actionHandler: The action handler to use.
         ///   - layoutService: The layout service to use.
         ///   - styleService: The style service to use.

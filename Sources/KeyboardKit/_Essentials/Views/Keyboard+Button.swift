@@ -19,9 +19,7 @@ public extension Keyboard {
     /// to customize or replace the button content view.
     ///
     /// > Note: You can turn any view into a keyboard button
-    /// by applying ``SwiftUI/View/keyboardButton(_:)``. The
-    /// `styleService` parameter is removed in KeyboardKit 9
-    /// and replaced by ``SwiftUI/View/keyboardButtonStyle(_:)``.
+    /// with ``SwiftUICore/View/keyboardButton(_:)``.
     struct Button<Content: View>: View {
         
         /// Create a keyboard button.

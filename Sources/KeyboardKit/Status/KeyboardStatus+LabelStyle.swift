@@ -14,7 +14,7 @@ public extension KeyboardStatus {
     /// the ``KeyboardStatus/Label`` component.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUI/View/keyboardStatusLabelStyle(_:)``.
+    /// ``SwiftUICore/View/keyboardStatusLabelStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct LabelStyle {
