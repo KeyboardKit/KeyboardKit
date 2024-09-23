@@ -30,7 +30,7 @@ This version also adds service shorthands that make it easier to refer to servic
 
 ### ‼️ Set up changes
 
-This version lets you use a `KeyboardApp` to set up your keyboard extension, andseparates setting up the keyboard from setting up the keyboard view.
+This version lets you use a `KeyboardApp` to set up your keyboard extension, and separates setting up the keyboard from setting up the keyboard view.
 
 You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit Pro) in `viewDidLoad()` to set up things like App Group syncing, register your KeyboardKit Pro license key, etc. with a `KeyboardApp` value, then use the new `setupKeyboardView(_:)` to set up a custom keyboard view in both KeyboardKit or KeyboardKit Pro. 
 
@@ -45,8 +45,6 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 * `Keyboard.Services` has a new `tryRegisterLocalizedLayoutService` function.
 * `KeyboardApp` has new `deepLinks` and `keyboardBundleId` properties.
 * `KeyboardCalloutService` has a new `tryRegisterLocalizedService` function.
-* `KeyboardContext` no longer syncs keyboard type for the same value.
-* `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.
 * `KeyboardController` has a new `setup(for:)` to setup the keyboad for a `KeyboardApp`.
 * `KeyboardInputController` can now be set up for a `KeyboardApp`.
 * `KeyboardLayoutService` has a new `tryRegisterLocalizedService` function.
@@ -63,6 +61,8 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 ### 💡 Adjustments
 
 * `Color` and `Image` extensions have been moved to the `Styling` namespace.
+* `KeyboardContext` no longer syncs keyboard type for the same value.
+* `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.
 * `KeyboardInputViewController.host` now handles the host bundle ID within the main app.
 * `KeyboardView` will show a `Keyboard.NumberPad` if the `.keyboardStyle` is `.numberPad`.
 
