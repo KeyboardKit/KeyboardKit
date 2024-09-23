@@ -1,6 +1,6 @@
 import SwiftUI
 
-#if os(iOS) || os(macOS) || os(watchOS)
+#if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 struct ContentView: View {
 
     @State private var isPressed = false

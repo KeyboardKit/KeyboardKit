@@ -6,7 +6,7 @@
 //  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
+#if os(iOS) || os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)
 import SwiftUI
 
 /// This class can be used to coordinate gesture state for a
@@ -32,15 +32,17 @@ public class GestureButtonScrollState: ObservableObject {
     @Published
     public var isScrollGestureDisabled = false
 }
+#endif
 
+#if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 public extension View {
     
     @ViewBuilder
     func scrollGestureState(
         _ state: GestureButtonScrollState
     ) -> some View {
-        #if compiler(>=6)
-        if #available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0, visionOS 2.0, *) {
+#if compiler(>=6)
+        if #available(iOS 18.0, macOS 15.0, watchOS 11.0, visionOS 2.0, *) {
             self.scrollDisabled(state.isScrollGestureDisabled)
                 .onScrollPhaseChange { _, newPhase in
                     state.isScrolling = newPhase != .idle
@@ -48,13 +50,13 @@ public extension View {
         } else {
             self
         }
-        #else
-        if #available(iOS 16.0, macOS 13.0, watchOS 9.0, tvOS 16.0, *) {
-            self.scrollDisabled(state.isScrollGestureDisabled)
-        } else {
-            self
-        }
-        #endif
+#else
+    if #available(iOS 16.0, macOS 13.0, watchOS 9.0, *) {
+        self.scrollDisabled(state.isScrollGestureDisabled)
+    } else {
+        self
+    }
+#endif
     }
 }
 #endif

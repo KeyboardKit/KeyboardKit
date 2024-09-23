@@ -6,7 +6,7 @@
 //  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(watchOS)
+#if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 import SwiftUI
 
 /// This state is used to manage values for a gesture button,

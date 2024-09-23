@@ -6,7 +6,7 @@
 //  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(macOS) || os(watchOS)
+#if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 import SwiftUI
 
 /// This button can be used to trigger gesture-based actions
