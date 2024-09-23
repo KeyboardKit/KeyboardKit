@@ -50,7 +50,12 @@ public extension Keyboard {
         }
 
         /// The autocomplete service to use.
-        public lazy var autocompleteService: AutocompleteService = .disabled
+        public lazy var autocompleteService: AutocompleteService = .disabled {
+            didSet {
+                guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
+                handler.autocompleteService = autocompleteService
+            }
+        }
 
         /// The callout service to use.
         public lazy var calloutService: CalloutService = Callouts.StandardService(
@@ -72,7 +77,12 @@ public extension Keyboard {
         public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(
             keyboardContext: state.keyboardContext,
             repeatGestureTimer: repeatGestureTimer
-        )
+        ) {
+            didSet {
+                guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
+                handler.keyboardBehavior = keyboardBehavior
+            }
+        }
 
         /// The keyboard layout service to use.
         public lazy var layoutService: KeyboardLayoutService = KeyboardLayout.StandardService() {
