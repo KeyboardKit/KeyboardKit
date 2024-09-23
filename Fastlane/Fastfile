@@ -41,7 +41,7 @@ platform :ios do
     build_platform(platform: "OS X")
     build_platform(platform: "tvOS")
     build_platform(platform: "watchOS")
-    build_platform(platform: "xrOS")
+    # build_platform(platform: "xrOS")
   end
   
   lane :build_platform do |options|

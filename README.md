@@ -41,7 +41,7 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 ## Getting Started
 
-To use KeyboardKit in a keyboard, inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+To use KeyboardKit in a keyboard extension, just import KeyboardKit Pro and let your controller inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
@@ -68,7 +68,7 @@ extension KeyboardApp {
 }
 ```  
 
-To set up your keyboard, just override `viewDidLoad` and call `setup(for:)` with this `KeyboardApp` value:
+To set up your keyboard, just override `viewDidLoad` and call `setup(for:)` with your `KeyboardApp`:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -107,7 +107,7 @@ To set up the main app with the same configuration as the keyboard extension, ju
 
 ```swift
 import SwiftUI
-import KeyboardKitPro
+import KeyboardKit
 
 @main
 struct MyApp: App {

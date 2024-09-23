@@ -191,8 +191,8 @@ KeyboardKit is available under the MIT license.
 - ``Dictation``
 - ``DictationContext``
 - ``DictationService``
+- ``DictationSpeechRecognizer``
 - ``KeyboardDictationService``
-- ``SpeechRecognizer``
 
 ### Emojis
 

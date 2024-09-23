@@ -394,7 +394,7 @@ public extension Proxy {
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public protocol SpeechRecognizer {}
+public protocol DictationSpeechRecognizer {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct KeyboardViewPreview {}
