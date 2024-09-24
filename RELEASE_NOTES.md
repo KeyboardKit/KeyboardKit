@@ -107,6 +107,18 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 
 
 
+## 8.8.9
+
+This version builds KeyboardKit Pro with Xcode 16 and Swift 6, to make the EmojiKeyboard scrolling work in iOS 18.
+
+
+
+## 8.8.8
+
+This version makes `Keyboard.Services` sync service changes to the action handler, if possible. 
+
+
+
 ## 8.8.7
 
 This version re-adds the old way of opening URLs, but makes it work with iOS 18. This means that url actions are once again rendered as full-gesture buttons.
