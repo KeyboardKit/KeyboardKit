@@ -42,7 +42,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        setupController()
+        setupContexts()
+        setupInitialWidth()
+        setupLocaleObservation()
         viewWillRegisterSharedController()
     }
 
@@ -126,9 +128,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     ///
     /// This will configure ``KeyboardSettings`` with an App
     /// Group-synced ``KeyboardSettings/store``, if the `app`
-    /// is configured with an ``KeyboardApp/appGroupId``.
-    ///
-    /// This will also set up ``Keyboard/State`` for the app.
+    /// is configured with an ``KeyboardApp/appGroupId``. It
+    /// will also set up the controller ``state``.
     ///
     /// Call this in ``viewDidLoad()`` to make sure that the
     /// keyboard is properly configured as early as possible.
@@ -136,7 +137,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         for app: KeyboardApp
     ) {
         KeyboardSettings.setupStore(for: app)
-        Keyboard.State().setup(for: app)
+        state.setup(for: app)
     }
 
     // Used to let KeyboardKit Pro show license error alerts.
@@ -159,8 +160,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// the controller use the view as the keyboard view.
     ///
     /// See <doc:Getting-Started-Article> for more important
-    /// information on how to set up KeyboardKit, and how to
-    /// use weak or unowned self to avoid memory leaks.
+    /// information on how to use an weak or unowned self to
+    /// avoid memory leaks when you must refer to a specific
+    /// controller class.
     open func setupKeyboardView<Content: View>(
         _ view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {

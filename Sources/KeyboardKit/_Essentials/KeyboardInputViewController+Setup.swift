@@ -11,7 +11,7 @@ import SwiftUI
 
 extension KeyboardInputViewController {
     
-    /// Setup KeyboardKit with a custom root view.
+    /// Set up KeyboardKit with a ``Keyboard.RootView``.
     func setup<Content: View>(
         withRootView view: Keyboard.RootView<Content>
     ) {
@@ -24,17 +24,7 @@ extension KeyboardInputViewController {
         host.add(to: self)
     }
 
-    /// Setup the controller when it has loaded.
-    func setupController() {
-        setupContexts()
-        setupInitialWidth()
-        setupLocaleObservation()
-    }
-
-    /// DEPRECATED!
-    ///
-    /// > Warning: Settings are moved to the various context
-    /// classes. This will be removed in KeyboardKit 9.0.
+    /// DEPRECATED
     func setupContexts() {
         settings.autocompleteSettings
             .syncToContextIfNeeded(state.autocompleteContext)

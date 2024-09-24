@@ -49,6 +49,11 @@ public extension Keyboard.State {
 
     // Setup the state instance for the provided app.
     func setup(for app: KeyboardApp) {
+        setupDictation(for: app)
+    }
+
+    // Setup the state instance for the provided app.
+    func setupDictation(for app: KeyboardApp) {
         guard let config = app.dictationConfiguration else { return }
         self.dictationContext = .init(config: config)
     }
