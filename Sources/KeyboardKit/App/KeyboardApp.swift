@@ -56,7 +56,7 @@ public struct KeyboardApp {
         licenseKey: String? = nil,
         bundleId: String,
         keyboardBundleId: String? = nil,
-        appGroupId: String? = "",
+        appGroupId: String?,
         locales: [KeyboardLocale] = .all,
         deepLinks: DeepLinks? = nil,
         keyboardSettingsKeyPrefix: String? = nil
