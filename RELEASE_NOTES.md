@@ -61,6 +61,7 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 ### 💡 Adjustments
 
 * `Color` and `Image` extensions have been moved to the `Styling` namespace.
+* `KeyboardApp` marks the old initializer as `@_disfavoredOverload`.
 * `KeyboardContext` no longer syncs keyboard type for the same value.
 * `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.
 * `KeyboardInputViewController.host` now handles the host bundle ID within the main app.

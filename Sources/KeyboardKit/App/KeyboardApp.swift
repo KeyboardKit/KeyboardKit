@@ -56,7 +56,7 @@ public struct KeyboardApp {
         licenseKey: String? = nil,
         bundleId: String,
         keyboardBundleId: String? = nil,
-        appGroupId: String?,
+        appGroupId: String? = nil,
         locales: [KeyboardLocale] = .all,
         deepLinks: DeepLinks? = nil,
         keyboardSettingsKeyPrefix: String? = nil
@@ -107,6 +107,7 @@ public struct KeyboardApp {
     public let keyboardSettingsKeyPrefix: String?
 
     @available(*, deprecated, message: "Use the deepLinks initializer instead.")
+    @_disfavoredOverload
     public init(
         name: String,
         licenseKey: String = "",
