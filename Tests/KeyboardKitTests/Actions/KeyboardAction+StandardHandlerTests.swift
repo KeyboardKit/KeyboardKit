@@ -187,15 +187,15 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     func testShouldAutocompleteIgnoreCurrentWordReturnsTrueWhenPressingBackspaceWithExistingWordAndAutocorrection() {
         textDocumentProxy.documentContextBeforeInput = "abc"
         handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
-        XCTAssertFalse(handler.shouldAutocompleteIgnoreCurrentWord(before: .release, on: .backspace)) // Invalid gesture
-        XCTAssertFalse(handler.shouldAutocompleteIgnoreCurrentWord(before: .press, on: .space)) // Invalid action
+        XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .release, on: .backspace)) // Invalid gesture
+        XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .space)) // Invalid action
         textDocumentProxy.documentContextBeforeInput = ""
-        XCTAssertFalse(handler.shouldAutocompleteIgnoreCurrentWord(before: .press, on: .backspace)) // Missing word
+        XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .backspace)) // Missing word
         textDocumentProxy.documentContextBeforeInput = "abc"
         handler.autocompleteContext.suggestions = [.init(text: "", type: .unknown)]
-        XCTAssertFalse(handler.shouldAutocompleteIgnoreCurrentWord(before: .press, on: .backspace)) // Missing autocorrection
+        XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .backspace)) // Missing autocorrection
         handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
-        XCTAssertTrue(handler.shouldAutocompleteIgnoreCurrentWord(before: .press, on: .backspace)) // Valid
+        XCTAssertTrue(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .backspace)) // Valid
     }
 
     func testShouldPerformAutocompleteReturnsTrueForReleaseGesture() {

@@ -61,6 +61,7 @@ You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit P
 ### 💡 Adjustments
 
 * `Color` and `Image` extensions have been moved to the `Styling` namespace.
+* `KeyboardAction.StandardHandler` improves auto-ignore to behave better.
 * `KeyboardApp` marks the old initializer as `@_disfavoredOverload`.
 * `KeyboardContext` no longer syncs keyboard type for the same value.
 * `KeyboardContext` now starts with `KeyboardType.alphabetic(.auto)`.

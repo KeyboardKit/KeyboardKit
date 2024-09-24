@@ -326,7 +326,7 @@ extension KeyboardAction {
         }
 
         /// Whether to ignore autocorrections for the current word before a certain gesture action.
-        open func shouldAutocompleteIgnoreCurrentWord(
+        open func shouldAutoIgnoreCurrentWord(
             before gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
@@ -335,6 +335,9 @@ extension KeyboardAction {
             #if os(iOS) || os(tvOS) || os(visionOS)
             let proxy = keyboardContext.textDocumentProxy
             guard let word = proxy.currentWordPreCursorPart, !word.isEmpty else { return false }
+            let isDeletingAutocorrection = word == lastAutocorrectedWord
+            lastAutocorrectedWord = nil
+            if isDeletingAutocorrection { return true }
             #endif
             return autocompleteContext.suggestions.contains { $0.isAutocorrect }
         }
@@ -343,7 +346,8 @@ extension KeyboardAction {
         open func shouldAutolearnSuggestion(
             _ suggestion: Autocomplete.Suggestion
         ) -> Bool {
-            suggestion.isUnknown && !suggestion.text.isEmpty && autocompleteContext.isAutolearnEnabled
+            guard autocompleteContext.isAutolearnEnabled else { return false }
+            return suggestion.isUnknown && !suggestion.text.isEmpty
         }
 
         /// Whether to perform autocomplete after a certain gesture action.
@@ -370,6 +374,9 @@ extension KeyboardAction {
             gesture == .release && action.shouldRemoveAutocompleteInsertedSpace
         }
 
+        /// Temporary state used to auto-ignore when correcting an autocompleted word.
+        private var lastAutocorrectedWord: String?
+
         /// Try to apply autocorrect before a certain gesture action.
         open func tryApplyAutocorrectSuggestion(
             before gesture: Keyboard.Gesture,
@@ -379,6 +386,7 @@ extension KeyboardAction {
             let suggestions = autocompleteContext.suggestions
             let autocorrect = suggestions.first { $0.isAutocorrect }
             guard let suggestion = autocorrect else { return }
+            lastAutocorrectedWord = suggestion.text
             keyboardContext.insertAutocompleteSuggestion(suggestion, tryInsertSpace: false)
         }
 
@@ -387,7 +395,7 @@ extension KeyboardAction {
             before gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
-            guard shouldAutocompleteIgnoreCurrentWord(before: gesture, on: action) else { return }
+            guard shouldAutoIgnoreCurrentWord(before: gesture, on: action) else { return }
             #if os(iOS) || os(tvOS) || os(visionOS)
             let proxy = keyboardContext.textDocumentProxy
             guard let word = proxy.currentWordPreCursorPart else { return }
