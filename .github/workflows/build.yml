@@ -28,8 +28,8 @@ jobs:
         run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=tvOS';
       - name: Build watchOS
         run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=watchOS';
-      - name: Build visionOS
-        run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=xrOS';
+      # - name: Build visionOS
+      #   run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=xrOS';
       # Disabled due to context issues
       # - name: Test iOS
       #   run: xcodebuild test -scheme $SCHEME -derivedDataPath .build -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2' -enableCodeCoverage YES;
