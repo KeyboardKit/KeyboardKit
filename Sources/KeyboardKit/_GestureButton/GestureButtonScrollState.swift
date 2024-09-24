@@ -34,14 +34,15 @@ public class GestureButtonScrollState: ObservableObject {
 }
 #endif
 
-#if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
 public extension View {
     
     @ViewBuilder
     func scrollGestureState(
         _ state: GestureButtonScrollState
     ) -> some View {
-#if compiler(>=6)
+#if os(tvOS)
+        self
+#elseif compiler(>=6)
         if #available(iOS 18.0, macOS 15.0, watchOS 11.0, visionOS 2.0, *) {
             self.scrollDisabled(state.isScrollGestureDisabled)
                 .onScrollPhaseChange { _, newPhase in
@@ -59,4 +60,9 @@ public extension View {
 #endif
     }
 }
-#endif
+
+#Preview {
+
+    Text("Hello")
+        .scrollGestureState(.init())
+}
