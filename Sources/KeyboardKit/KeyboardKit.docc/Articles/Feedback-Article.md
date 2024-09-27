@@ -17,8 +17,6 @@ Feedback is an important part of the typing experience, where a keyboard can tri
 
 In KeyboardKit, audio & haptic feedback can be triggered with a ``FeedbackService``, a ``KeyboardActionHandler`` or by using the ``Feedback/AudioEngine`` and ``Feedback/HapticEngine`` engines directly.
 
-👑 [KeyboardKit Pro][Pro] unlocks a convenient feedback toggle view, that lets you toggle between the last enabled feedback and a disabled configuration. Information about Pro features can be found at the end of this article.
-
 
 
 ## Feedback Namespace
@@ -118,29 +116,3 @@ Feedback.Audio.sentMessage.trigger()
 You can also use the ``Feedback/Audio/customUrl(_:)`` enum case to define custom audio feedback that loads the sound effect from an audio file.
 
 You can also implement a custom action handler to trigger feedback in a different ways. See the <doc:Actions-Article> article for more information.
-
-
-
-## 👑 KeyboardKit Pro
-
-[KeyboardKit Pro][Pro] unlocks a convenient feedback toggle that can be added to a keyboard toolbar to toggle audio or haptic feedback.
-
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
-
-### Views
-
-KeyboardKit Pro unlocks views in the ``FeedbackConfiguration`` namespace, that let you easily toggle audio and haptic feedback:
-
-@TabNavigator {
-    
-    @Tab("Toggle") {
-        
-        The feedback ``Feedback/Toggle`` can be used to toggle audio & haptic feedback on and off. It can be added to a toolbar, or anywhere you want it.
-        
-        ![FeedbackToggle](feedbackconfigurationtoggle)
-        
-        The view can be customized with other icons, and be further styled with native accent colors, fonts, etc. It's currently not style-based.
-        
-        Note that this toggle will use ``FeedbackContext/toggleIsAudioFeedbackEnabled()`` and ``FeedbackContext/toggleIsHapticFeedbackEnabled()``, which will toggle between a disabled configuration and the *last enabled* configuration. Haptic feedback uses a minimal configuration by default. 
-    }
-}

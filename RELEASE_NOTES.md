@@ -24,6 +24,10 @@ This version adds a new `Keyboard.NumberPad`, next character prediction-based ta
 
 This version also continues to rename types to make things more consistent. This means that are now many deprecations, which may be confusing, but it's all in service for a clean 9.0 transition.
 
+### 🛠️ Xcode 16
+
+KeyboardKit and KeyboardKit Pro are now built with Xcode 16, using the Swift 6 compiler.
+
 ### ‼️ New ways to set up KeyboardKit!
 
 This version lets you use a `KeyboardApp` to set up your keyboard extension, and separates setting up the keyboard from setting up the keyboard view.

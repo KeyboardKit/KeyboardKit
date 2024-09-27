@@ -29,7 +29,7 @@ KeyboardKit has a ``Proxy`` namespace with proxy-related types. It currently onl
 
 
 
-## Extensions
+## Proxy extensions
 
 KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional capabilities, such as the ability to get more content from the document, analyze words, sentences & quotations, end the current sentence, etc.
 

@@ -65,11 +65,7 @@ KeyboardKit automatically creates instances of these classes and injects them in
 
 ## Keyboard Settings
 
-KeyboardKit has an ``KeyboardSettings`` class that provides observable keyboard settings that are automatically persisted when they are changed. Other namespaces have their own setting types, like ``AutocompleteSettings``.
-
-KeyboardKit automatically creates instances of these classes, injects them into ``KeyboardInputViewController/settings``, and syncs any changes with the controller and its various contexts when needed.
-
-Settings data is by default isolated to each target, but you can use ``KeyboardSettings/setupStore(withAppGroup:keyPrefix:)`` to automatically sync data between your app and its keyboard extension, using an App Group.
+KeyboardKit has a ``KeyboardSettings`` class that has a ``KeyboardSettings/store`` that is used to persist all persisted properties in all contexts. When you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, the store will automatically be set up to sync data between your app and its keyboard extension.
 
 > Important: `@AppStorage` properties use the store that's available when they're first accessed. Make sure to set up a custom store BEFORE accessing any of these settings properties.
 

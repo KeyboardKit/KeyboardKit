@@ -27,7 +27,7 @@ This namespace does not contain the ``Keyboard/Gesture`` enum, which is an essen
 
 
 
-## Keyboard gestures view modifier
+## Gesture view modifiers
 
 You can use the ``SwiftUICore/View/keyboardButtonGestures(for:actionHandler:repeatTimer:calloutContext:isPressed:scrollState:releaseOutsideTolerance:)`` view modifier to apply keyboard gesture to any view:
 
@@ -39,6 +39,8 @@ Text("😀")
         ...
     )
 ```
+
+This will automatically apply all standard gestures for the provided action. You can also set up completely custom actions with this modifier as well.
 
 
 

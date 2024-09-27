@@ -159,6 +159,7 @@ The ``Callouts`` namespace has callout-specific views, that can be used to mimic
     }
 }
 
+The ``KeyboardView`` automatically registers everything needed to automatically show these callouts.
 
 
 

@@ -28,9 +28,10 @@ KeyboardKit has a ``KeyboardLayoutService`` protocol that is implemented by clas
 KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other layout-related types like ``KeyboardLayout/Configuration``, ``KeyboardLayout/Item``, etc.
 
 
+
 ## Input Sets
 
-An ``InputSet`` set specifies the input keys of a keyboard. It makes it easy to define different input keys for the same keyboard layout.
+An ``InputSet`` specifies the input keys of a keyboard. It makes it easy to define different input keys for the same keyboard layout.
 
 KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` and ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, e.g. QWERTZ, AZERTY, and specific input sets for each locale.
 
@@ -38,7 +39,7 @@ KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``
 
 ## Keyboard Layouts
 
-A ``KeyboardLayout`` specifies the full set of keys om a keyboard. Layouts vary greatly for different device types, screen orientations, locales, keyboard configurations, etc.
+A ``KeyboardLayout`` specifies the full set of keys on a keyboard. Layouts vary greatly for different device types, screen orientations, locales, keyboard configurations, etc.
 
 For instance, *most* iOS keyboards have 3 input rows, with input keys that are surrounded by action keys, as well as a bottom row with a space bar and contextual action keys. This is however not true for all locales, where the layout can vary greatly.
 

@@ -77,8 +77,7 @@ The ``KeyboardStatus`` namespace has status-specific views, that can be used to 
             @Column {}
         }
         
-        The view can be wrapped in a SwiftUI or ``KeyboardSettings`` ``KeyboardSettings/Link`` to link to System Settings. It supports custom texts, icons, etc.
-        and can be styled with a ``KeyboardStatus/LabelStyle`` or by applying a ``SwiftUICore/View/keyboardStatusLabelStyle(_:)`` view modifier.
+        The view can be wrapped in a SwiftUI `Link` to System Settings. It supports custom texts, icons, etc. and can be styled with the ``SwiftUICore/View/keyboardStatusLabelStyle(_:)`` view modifier.
     }
 }
 
@@ -100,6 +99,6 @@ The ``KeyboardStatus`` namespace has status-specific views, that can be used to 
             @Column {}
         }
         
-        The view is used by the ``KeyboardApp/HomeScreen`` component, and can be added as a standalone section, in e.g. an app's settings screen. It can be styled by applying a ``SwiftUICore/View/keyboardStatusSectionStyle(_:)`` view modifier.
+        The view is used by the ``KeyboardApp/HomeScreen`` component, and can be added as a standalone section, in e.g. an app's settings screen. It can be styled with the ``SwiftUICore/View/keyboardStatusSectionStyle(_:)`` view modifier.
     }
 }
