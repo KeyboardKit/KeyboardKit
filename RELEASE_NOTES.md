@@ -20,26 +20,33 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.9
 
-This version continues to rename types to make things more consistent. This means that are now many deprecations, which is all in service for a clean 9.0 transition.
+This version adds a new `Keyboard.NumberPad`, next character prediction-based tap area sizes, and a `KeyboardThemeContext` that let you persist themes. It also adds service shorthands, so that you can type `.standard(...)` instead of `KeyboardAction.StandardHandler(...)`.
 
-This version now lets you set up your keyboard extension with a `KeyboardApp`, and separates setting up the keyboard from setting up the keyboard view. Read more below.
+This version also continues to rename types to make things more consistent. This means that are now many deprecations, which may be confusing, but it's all in service for a clean 9.0 transition.
 
-This version adds a new `Keyboard.NumberPad` view, prediction-based tap area sizes for keyboard input keys, and a new `KeyboardThemeContext` to let you easily persist themes. 
-
-This version also adds service shorthands that make it easier to refer to services. For instance, instead of `KeyboardAction.StandardHandler(...)`, you can just type `.standard(...)`.
-
-### ‼️ Set up changes
+### ‼️ New ways to set up KeyboardKit!
 
 This version lets you use a `KeyboardApp` to set up your keyboard extension, and separates setting up the keyboard from setting up the keyboard view.
 
-You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit Pro) in `viewDidLoad()` to set up things like App Group syncing, register your KeyboardKit Pro license key, etc. with a `KeyboardApp` value, then use the new `setupKeyboardView(_:)` to set up a custom keyboard view in both KeyboardKit or KeyboardKit Pro. 
+You can now call `setup(for:)` (or `setupPro(for:completion:)` for KeyboardKit Pro) in `viewDidLoad()`, to set up App Group syncing, dictation, register your KeyboardKit Pro license key, etc., then use `setupKeyboardView(_:)` in `viewWillSetupKeyboardView()`.
+
+This change means that you can set up KeyboardKit and KeyboardKit Pro earlier, and that setting up the view is identical for both SDKs. As a bonus, we can add more information to the `KeyboardApp` over time, to let the setup function do more than it does today.
+
+### 🧪 Experiments
+
+The two experimental modes for the next keyboard button have been reported to work well, and are now enabled by default:
+
+* `Keyboard.NextKeyboardButtonControllerMode.current` now uses `.experimentalNilTarget`
+* `Keyboard.NextKeyboardButtonProxyMode.current` now uses `.experimental`
+
+If you experiment any problems with these new experimental modes, you can set each to `.classic` to revert back. Make sure to report any problems, since these experimental modes are planned to replace the classic modes in KeyboardKit 9.0.
 
 ### ✨ Features
 
 * `AutocompleteContext` has new `nextCharacterPrediction(for:)` functions.
 * `DictationContext` can now be set up for a `KeyboardApp`.
 * `Image` has a new `keyboardTheme` image value.
-* `Keyboard.NumberPad` is a new number pad component.
+* `Keyboard.NumberPad` is a new keyboard component.
 * `Keyboard.State` has a new `themeContext` property.
 * `Keyboard.Services` has a new `tryRegisterLocalizedCalloutService` function.
 * `Keyboard.Services` has a new `tryRegisterLocalizedLayoutService` function.
@@ -131,7 +138,7 @@ This version also adds support to the standard action handler and autocomplete c
 
 The `Keyboard.NextKeyboardButton` has two new experimental modes, that will hopefully remove the need to pass in a controller or use the shared one, and also keep the switcher working when typing within the keyboard.
 
-### 🧪 Experimental
+### 🧪 Experiments
 
 `Keyboard.NextKeyboardButtonControllerMode` is a temporary type that lets us test if we can create a next keyboard button without having to pass in a controller.
 

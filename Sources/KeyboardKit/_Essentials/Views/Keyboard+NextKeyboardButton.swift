@@ -73,25 +73,9 @@ public extension Keyboard {
     /// This TEMPORARY mode can be used to test a new way to
     /// create a ``NextKeyboardButton`` without a controller.
     ///
-    /// Set ``current`` to ``classic`` for the standard mode
-    /// that requires us to provide a controller, or use the
-    /// ``Keyboard/NextKeyboardController/shared`` instance.
-    ///
-    /// Set ``current`` to ``experimental`` to configure the
-    /// ``NextKeyboardButton`` to create a controller itself.
-    ///
-    /// Set ``current`` to ``experimentalNilTarget`` to make
-    /// the ``NextKeyboardButton`` use a `nil` action target.
-    /// If this works, we do not need a controller reference,
-    /// which would be absolutely amazing.
-    ///
-    /// The reason for trying the experimental modes is that
-    /// the ``NextKeyboardButton`` randomly stops working in
-    /// some cases, then doesn't trigger the switcher action.
-    /// The only way this can happen, is that the controller
-    /// reference becomes `nil`. My hope is that by creating
-    /// a strong controller reference within the button, the
-    /// controller will never be deallocated.
+    /// The ``current`` mode is ``experimentalNilTarget`` by
+    /// default from KeyboardKit 8.9. You can revert this if
+    /// you experience problems, by setting it to  ``classic``.
     ///
     /// If the experimental mode work, we don't have to keep
     /// a reference to the current controller. This would be
@@ -107,8 +91,8 @@ public extension Keyboard {
         /// The button will use a nil selector action target.
         case experimentalNilTarget
 
-        /// The next keyboard button controller mode to use.
-        public static var current = Self.classic
+        /// The current proxy mode, by default ``experimentalNilTarget``.
+        public static var current = Self.experimentalNilTarget
     }
 
     /// This TEMPORARY mode can be used to test a new way to
@@ -116,22 +100,21 @@ public extension Keyboard {
     /// is being made inside the keyboard extension, using a
     /// ``KeyboardInputViewController/textInputProxy``.
     ///
-    /// Set ``current`` to ``classic`` for the standard mode,
-    /// where the button is disabled while a proxy is active.
-    ///
-    /// Set ``current`` to ``experimental`` to configure the
-    /// ``NextKeyboardButton`` to temp reset the proxy. This
-    /// seems to allow the keyboard switcher to be presented.
+    /// The ``current`` value is ``experimental`` by default
+    /// from KeyboardKit 8.9. You can revert it if you start
+    /// to experience problems, by setting it to  ``classic``.
     enum NextKeyboardButtonProxyMode: Equatable {
 
         /// The button will not affect a current input proxy.
         case classic
 
-        /// The button will temp reset a current input proxy.
+        /// The button will temp reset a current input proxy,
+        /// which should make it possible to switch keyboard
+        /// while typing.
         case experimental
 
-        /// The next keyboard button controller mode to use.
-        public static var current = Self.classic
+        /// The current proxy mode, by default ``experimental``.
+        public static var current = Self.experimental
     }
 }
 
