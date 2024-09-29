@@ -14,14 +14,11 @@ import KeyboardKitPro
 
 extension KeyboardViewController {
 
-    /// This function is used by the keyboard controller, to
-    /// set up demo-specific keyboard services.
+    /// This is used by both keyboard controllers, to set up
+    /// demo-specific keyboard services.
     ///
-    /// The `Keyboard` keyboard will use a fake autocomplete
-    /// service, since it can't use KeyboardKit Pro services,
-    /// and a demo callout service that returns `keyboardkit`
-    /// actions for `k`. The `KeyboardPro` keyboard uses Pro
-    /// services, but can be customized below.
+    /// You can play around with these services and register
+    /// your own services to see how it affects the keyboard.
     func setupDemoServices(
         extraKey: DemoLayoutService.ExtraKey
     ) {
@@ -32,13 +29,14 @@ extension KeyboardViewController {
         )
 
         #if IS_KEYBOARDKIT
-        /// 💡 Set up a fake autocomplete service.
+        /// 💡 Setup a demo-specific autocomplete service to
+        /// provide the `Keyboard` keyboard with dummy words.
         services.autocompleteService = FakeAutocompleteService(
             context: state.autocompleteContext
         )
         
-        /// 💡 Set up a demo-specific callout service that by
-        /// default changes the `k` callout actions.
+        /// 💡 Setup a demo-specific callout service that is
+        /// adding some dummy actions to the `k` key.
         services.calloutService = Callouts.StandardService(
             keyboardContext: state.keyboardContext,
             baseService: DemoCalloutService()
@@ -58,14 +56,15 @@ extension KeyboardViewController {
         )
     }
 
-    /// This function is used by the keyboard controller, to
-    /// set up demo-specific keyboard state.
+    /// This is used by both keyboard controllers, to set up
+    /// demo-specific keyboard state.
+    ///
+    /// You can play around with the various state types, to
+    /// see how it affects the keyboard.
     func setupDemoState() {
 
-        /// 💡 Set up which locale to use to present locales,
-        /// for instance in the locale switcher context menu.
+        /// 💡 Set up which locale to use to present locales.
         state.keyboardContext.localePresentationLocale = .current
-        // state.keyboardContext.locales = This is set to the license locales
 
         /// 💡 Configure the space key's long press behavior.
         state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
@@ -74,14 +73,12 @@ extension KeyboardViewController {
         /// 💡 Disable autocorrection.
         // state.autocompleteContext.isAutocorrectEnabled = false
 
-        /// 💡 Setup semi-working dictation. It will trigger
-        /// the app, but dictation result will not be synced.
+        /// 💡 Setup dictation. It will trigger the app, but
+        /// data is not synced as the demo isn't code signed.
         state.dictationContext.setup(with: .app)
         
-        /// 💡 Set up demo-specific haptic & audio feedback.
+        /// 💡 Setup demo-specific haptic & audio feedback.
         let feedback = state.feedbackContext
-        feedback.audioConfiguration = .enabled
-        feedback.hapticConfiguration = .enabled
         feedback.registerCustomFeedback(.haptic(.selection, for: .repeat, on: .rocket))
         feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
         feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))

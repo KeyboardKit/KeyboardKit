@@ -25,35 +25,32 @@ class KeyboardViewController: KeyboardInputViewController {
     /// Play around with them to see how it affects the demo.
     override func viewDidLoad() {
 
-        /// 💡 Call super to perform the base initialization.
+        /// 💡 Always call super :)
         super.viewDidLoad()
 
-        /// ‼️ Set up keyboard features like settings, dictation, etc.
+        /// ‼️ Set up the keyboard for the demo app.
         super.setup(for: .demoApp)
 
-        /// 💡 Make demo-specific configurations.
+        /// 💡 These demo-specific configurations are placed
+        /// in a file that is shared by the two keyboards.
         setupDemoServices(extraKey: .rocket)
         setupDemoState()
 
-        /// 🧪 Enable this to test the experimental keyboard
-        /// switcher mode. To try it, use `.keyboardSwitcher`
-        /// as extra key further down.
-        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/799
-        // Keyboard.NextKeyboardButtonControllerMode.current = .experimentalNilTarget
+        /// 🧪 Uncomment the lines if you want to revert the
+        /// experimental next keyboard key modes that aim to
+        /// improve the next keyboard key behavior.
+        // Keyboard.NextKeyboardButtonControllerMode.current = .classic
     }
 
     /// This function is called when the controller needs to
     /// create or update the keyboard view.
-    ///
-    /// Below, we make demo-specific keyboard configurations.
-    /// Play around with them to see how it affects the demo.
     ///
     /// 💡 You don't need to override this function when you
     /// want to use a regular `KeyboardView`. This demo just
     /// overrides it to show you how you can do it if needed.
     override func viewWillSetupKeyboardView() {
 
-        /// 💡 Call super to perform base view configuration.
+        /// 💡 Always call super :)
         super.viewWillSetupKeyboardView()
 
         /// 💡 You can play around with this view or replace

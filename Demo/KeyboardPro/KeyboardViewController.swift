@@ -25,13 +25,14 @@ class KeyboardViewController: KeyboardInputViewController {
     /// Play around with them to see how it affects the demo.
     override func viewDidLoad() {
 
-        /// 💡 Call super to perform the base initialization.
+        /// 💡 Always call super :)
         super.viewDidLoad()
 
-        /// ‼️ Set up keyboard features like settings, dictation, etc.
+        /// ‼️ Set up the keyboard for the demo app.
         super.setupPro(for: .demoApp) { result in
 
-            /// 💡 Make demo-specific configurations.
+            /// 💡 These demo-specific configurations are in
+            /// a file that is shared by the two keyboards.
             self.setupDemoServices(extraKey: .emojiIfNeeded)
             self.setupDemoState()
 
@@ -44,25 +45,23 @@ class KeyboardViewController: KeyboardInputViewController {
             )) ?? self.services.styleService
         }
 
-        /// 🧪 Enable this to test the experimental keyboard
-        /// switcher mode. To try it, use `.keyboardSwitcher`
-        /// as extra key above.
-        /// Read more at https://github.com/KeyboardKit/KeyboardKit/issues/799
-        // Keyboard.NextKeyboardButtonControllerMode.current = .experimentalNilTarget
-        // Keyboard.NextKeyboardButtonProxyMode.current = .experimental
+        /// 🧪 Uncomment the lines if you want to revert the
+        /// experimental next keyboard key modes that aim to
+        /// improve the next keyboard key behavior.
+        // Keyboard.NextKeyboardButtonControllerMode.current = .classic
+        // Keyboard.NextKeyboardButtonProxyMode.current = .classic
     }
 
     /// This function is called when the controller needs to
     /// create or update the keyboard view.
     ///
-    /// Below, we make demo-specific keyboard configurations.
-    /// Play around with them to see how it affects the demo.
-    ///
     /// 💡 You don't need to override this function when you
-    /// want to use a regular `KeyboardView`.
+    /// want to use a regular `KeyboardView`. This demo will
+    /// however replace it with a custom view that adds more
+    /// behavior to the reugular view.
     override func viewWillSetupKeyboardView() {
 
-        /// 💡 Call super to perform base view configuration.
+        /// 💡 Always call super :)
         super.viewWillSetupKeyboardView()
 
         /// 💡 Make the demo use a ``DemoKeyboardView``.
