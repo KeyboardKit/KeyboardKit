@@ -20,6 +20,16 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 ## 8.9
 
+This version fixes a few bugs. 
+
+### 🐛 Bug Fixes
+
+* `Keyboard.Services` `.tryRegisterLocalizedLayoutService` now expects the correct argument type.
+
+
+
+## 8.9
+
 This version adds a new `Keyboard.NumberPad`, next character prediction-based tap area sizes, and a `KeyboardThemeContext` that let you persist themes. It also adds service shorthands, so that you can type `.standard(...)` instead of `KeyboardAction.StandardHandler(...)`.
 
 This version also continues to rename types to make things more consistent. This means that are now many deprecations, which may be confusing, but it's all in service for a clean 9.0 transition.

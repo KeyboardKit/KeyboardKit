@@ -161,9 +161,9 @@ public extension Keyboard.Services {
     /// ``KeyboardLayout/StandardService`` or the provided `service`
     /// doesn't implement the ``LocalizedService`` protocol.
     func tryRegisterLocalizedLayoutService(
-        _ service: CalloutService
+        _ service: KeyboardLayoutService
     ) throws {
-        try calloutService.tryRegisterLocalizedService(service)
+        try layoutService.tryRegisterLocalizedService(service)
     }
 }
 
