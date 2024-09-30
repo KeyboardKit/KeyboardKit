@@ -81,9 +81,6 @@ extension Gestures {
         @State
         private var lastDragValue: DragGesture.Value?
 
-        @State
-        private var shouldApplyReleaseAction = true
-
         var body: some View {
             view.overlay(
                 GeometryReader { geo in
@@ -144,7 +141,6 @@ private extension Gestures.KeyboardButtonGestures {
     }
 
     func handleGestureEnded(in geo: GeometryProxy) {
-        endActionCallout()
         calloutContext?.inputContext.resetWithDelay()
         calloutContext?.actionContext.reset()
         resetGestureState()
@@ -162,12 +158,12 @@ private extension Gestures.KeyboardButtonGestures {
     }
 
     func handleReleaseInside(in geo: GeometryProxy) {
-        updateShouldApplyReleaseAction()
-        guard shouldApplyReleaseAction else { return }
+        if tryHandleCalloutAction() { return }
         releaseAction?()
     }
 
     func handleReleaseOutside(in geo: GeometryProxy) {
+        if tryHandleCalloutAction() { return }
         guard shouldApplyReleaseOutsize(for: geo) else { return }
         handleReleaseInside(in: geo)
     }
@@ -183,25 +179,22 @@ private extension Gestures.KeyboardButtonGestures {
         calloutContext?.inputContext.reset()
     }
 
-    func endActionCallout() {
-        calloutContext?.actionContext.endDragGesture()
-    }
-
     func resetGestureState() {
         lastDragValue = nil
-        shouldApplyReleaseAction = true
     }
 
     func shouldApplyReleaseOutsize(for geo: GeometryProxy) -> Bool {
         guard let dragValue = lastDragValue else { return false }
         let rect = CGRect.releaseOutsideToleranceArea(for: geo, tolerance: releaseOutsideTolerance)
-        let isInsideRect = rect.contains(dragValue.location)
-        return isInsideRect
+        let isInsideTolerance = rect.contains(dragValue.location)
+        return isInsideTolerance
     }
 
-    func updateShouldApplyReleaseAction() {
-        guard let context = calloutContext?.actionContext else { return }
-        shouldApplyReleaseAction = shouldApplyReleaseAction && !context.hasSelectedAction
+    func tryHandleCalloutAction() -> Bool {
+        guard
+            let context = calloutContext?.actionContext
+        else { return false }
+        return context.handleSelectedAction()
     }
 }
 

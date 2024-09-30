@@ -13,8 +13,7 @@
 
 This article describes the KeyboardKit external keyboard engine.
 
-A keyboard extension should be able to detect if an external keyboard is connected, since it will causes it to stop working as expected. 
-For instance, the text document proxy will not update while you type on an external keyboard.
+A keyboard extension should be able to detect if an external keyboard is connected, since it will causes it to stop working as expected. For instance, the text document proxy will not update while you type on an external keyboard.
 
 Keyboard extensions have little native support for this. It's pretty tricky to detect external keyboards and involves other frameworks.
 

@@ -18,7 +18,7 @@ KeyboardKit has a ``Dictation`` namespace that contains dictation-related types 
 
 ## Dictation Context
 
-KeyboardKit has an observable ``DictationContext`` that provides observable autocomplete state, such as the ``DictationContext/dictatedText``. The state properties are modified as dictation is performed by the keyboard and the main app.
+KeyboardKit has an observable ``DictationContext`` that provides observable dictation state, such as the ``DictationContext/dictatedText``. The state properties are modified as dictation is performed by the keyboard and the main app.
 
 The context also has persistent, observable settings, such as  ``DictationContext/silenceLimit``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
 

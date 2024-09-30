@@ -18,13 +18,20 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
-## 8.9
+## 8.9.1
 
-This version fixes a few bugs. 
+This version fixes a few bugs.
+
+The keyboard button gestures bug fix results in one less observable state.
 
 ### 🐛 Bug Fixes
 
 * `Keyboard.Services` `.tryRegisterLocalizedLayoutService` now expects the correct argument type.
+* The `.keyboardButtonGestures` modifier now correctly ignores secondary actions for cancelled gestures.
+
+### 🗑️ Deprecations & Renamings
+
+* `CalloutContext.ActionContext` `endDragGesture()` has been replaced by `handleSelectedAction()`.
 
 
 
