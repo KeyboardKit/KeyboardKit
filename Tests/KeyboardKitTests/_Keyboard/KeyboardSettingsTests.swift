@@ -10,10 +10,4 @@ import XCTest
 
 @testable import KeyboardKit
 
-final class KeyboardSettingsTests: XCTestCase {
-
-    func testHasValidDefaultPrefix() {
-        let prefix = KeyboardSettings.prefix
-        XCTAssertEqual(prefix, "com.keyboardkit.settings.keyboard.")
-    }
-}
+final class KeyboardSettingsTests: XCTestCase {}

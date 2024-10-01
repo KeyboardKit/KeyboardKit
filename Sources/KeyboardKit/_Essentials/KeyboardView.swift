@@ -114,35 +114,6 @@ public struct KeyboardView<
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
     }
 
-    @available(*, deprecated, message: "Use the styleService initializer instead.")
-    public init(
-        layout: KeyboardLayout,
-        actionHandler: KeyboardActionHandler,
-        styleProvider: KeyboardStyleProvider,
-        keyboardContext: KeyboardContext,
-        autocompleteContext: AutocompleteContext,
-        calloutContext: CalloutContext?,
-        renderBackground: Bool = true,
-        @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
-        @ViewBuilder buttonView: @escaping ButtonViewBuilder,
-        @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
-        @ViewBuilder toolbar: @escaping ToolbarBuilder
-    ) {
-        self.init(
-            layout: layout,
-            actionHandler: actionHandler,
-            styleService: styleProvider,
-            keyboardContext: keyboardContext,
-            autocompleteContext: autocompleteContext,
-            calloutContext: calloutContext,
-            renderBackground: renderBackground,
-            buttonContent: buttonContent,
-            buttonView: buttonView,
-            emojiKeyboard: emojiKeyboard,
-            toolbar: toolbar
-        )
-    }
-
     private let actionHandler: KeyboardActionHandler
     private let repeatTimer: GestureButtonTimer?
     private let rawLayout: KeyboardLayout
@@ -308,10 +279,10 @@ private extension KeyboardView {
             view: Autocomplete.Toolbar(
                 suggestions: autocompleteContext.suggestions,
                 locale: keyboardContext.locale,
-                style: styleService.autocompleteToolbarStyle,
                 suggestionAction: actionHandler.handle(_:)
             )
         ))
+        .autocompleteToolbarStyle(styleService.autocompleteToolbarStyle)
         .frame(minHeight: styleService.autocompleteToolbarStyle.height)
     }
 }

@@ -87,52 +87,5 @@ extension KeyboardLayout {
         ) {
             localizedServices.set(service, for: service.localeKey)
         }
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, renamed: "init(baseService:localizedServices:)")
-        @_disfavoredOverload
-        public convenience init(
-            baseProvider: KeyboardLayoutService = KeyboardLayout.DeviceBasedService(),
-            localizedProviders: [LocalizedLayoutService] = []
-        ) {
-            self.init(baseService: baseProvider, localizedServices: localizedProviders)
-        }
-
-        @available(*, deprecated, renamed: "LocalizedLayoutService")
-        public typealias LocalizedProvider = LocalizedLayoutService
-
-        @available(*, deprecated, renamed: "baseService")
-        public private(set) var baseProvider: KeyboardLayoutService {
-            get { baseService }
-            set { baseService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "localizedServices")
-        public var localizedProviders: KeyboardLocale.Dictionary<KeyboardLayoutService> {
-            get { localizedServices }
-            set { localizedServices = newValue }
-        }
-
-        @available(*, deprecated, renamed: "localizedServiceResolver")
-        public static var localizedProviderResolver: ((KeyboardLocale) -> KeyboardLayoutService?)? {
-            get { localizedServiceResolver }
-            set { localizedServiceResolver = newValue }
-        }
-
-        @available(*, deprecated, renamed: "keyboardLayoutService(for:)")
-        open func keyboardLayoutProvider(
-            for context: KeyboardContext
-        ) -> KeyboardLayoutService {
-            keyboardLayoutService(for: context)
-        }
-
-        @available(*, deprecated, renamed: "registerLocalizedService")
-        open func registerLocalizedProvider(
-            _ service: LocalizedLayoutService
-        ) {
-            localizedServices.set(service, for: service.localeKey)
-        }
     }
 }

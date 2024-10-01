@@ -23,9 +23,6 @@ public extension Feedback {
             default: play(audio)
             }
         }
-
-        @available(*, deprecated, message: "Use a feedback service or action handler instead")
-        static var shared = Feedback.AudioEngine()
     }
 }
 

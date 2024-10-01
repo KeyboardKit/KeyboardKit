@@ -134,10 +134,4 @@ public extension EnvironmentValues {
         get { self [KeyboardStatus.LabelStyle.Key.self] }
         set { self [KeyboardStatus.LabelStyle.Key.self] = newValue }
     }
-
-    @available(*, deprecated, renamed: "keyboardStatusLabelStyle")
-    var keyboardStateLabelStyle: KeyboardStatus.LabelStyle {
-        get { self [KeyboardStatus.LabelStyle.Key.self] }
-        set { self [KeyboardStatus.LabelStyle.Key.self] = newValue }
-    }
 }

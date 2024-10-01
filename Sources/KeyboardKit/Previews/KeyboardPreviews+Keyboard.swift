@@ -19,10 +19,7 @@ public extension KeyboardInputViewController {
 
 public extension KeyboardPreviews {
     
-    class PreviewKeyboardInputViewController: KeyboardInputViewController {
-        
-        open override func viewWillRegisterSharedController() {}
-    }
+    class PreviewKeyboardInputViewController: KeyboardInputViewController {}
 }
 #endif
 

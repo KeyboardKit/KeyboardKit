@@ -42,10 +42,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func viewDidLoad() {
         super.viewDidLoad()
-        setupContexts()
         setupInitialWidth()
         setupLocaleObservation()
-        viewWillRegisterSharedController()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -83,12 +81,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
                 await updateLastDictationError(error)
             }
         }
-    }
-
-    /// DEPRECATED: This will be removed in KeyboardKit 9.0.
-    open func viewWillRegisterSharedController() {
-        KeyboardUrlOpenerInternal.controller = self         // TODO: Remove in KeyboardKit 9.0
-        Keyboard.NextKeyboardController.shared = self       // TODO: Remove in KeyboardKit 9.0
     }
 
     /// This function is called when the controller is about
@@ -174,31 +166,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
 
-    // MARK: - Deprecated
-
-    @available(*, deprecated, message: "Use the setupPro licenseError parameter instead.")
-    public var setupProError: Error?
-
-    @available(*, deprecated, renamed: "viewWillSetupKeyboardView()")
-    open func viewWillSetupKeyboard() {
-        viewWillSetupKeyboardView()
-    }
-
-    @available(*, deprecated, renamed: "setupKeyboardView(_:)")
-    open func setup<Content: View>(
-        with view: @autoclosure @escaping () -> Content
-    ) {
-        setup(withRootView: Keyboard.RootView(view))
-    }
-
-    @available(*, deprecated, renamed: "setupKeyboardView(_:)")
-    open func setup<Content: View>(
-        with view: @escaping (_ controller: KeyboardInputViewController) -> Content
-    ) {
-        setupKeyboardView(view)
-    }
-
-
     // MARK: - Combine
 
     var cancellables = Set<AnyCancellable>()
@@ -229,12 +196,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public lazy var services: Keyboard.Services = {
         let instance = Keyboard.Services(state: state)
         instance.setup(for: self)
-        return instance
-    }()
-
-    /// The default set of keyboard-specific settings.
-    public lazy var settings: Keyboard.Settings = {
-        let instance = Keyboard.Settings()
         return instance
     }()
 

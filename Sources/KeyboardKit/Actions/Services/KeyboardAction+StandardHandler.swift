@@ -118,12 +118,7 @@ extension KeyboardAction {
         public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
 
 
-        @available(*, deprecated, message: "This is no longer used.")
-        public var emojiRegistrationAction: ((Emoji) -> Void)?
-
-
         private var spaceDragActivationLocation: CGPoint?
-
 
 
         // MARK: - KeyboardActionHandler
@@ -252,14 +247,6 @@ extension KeyboardAction {
             case .emoji(let emoji): EmojiCategory.addEmoji(emoji, to: .frequent, maxCount: 30)
             default: return
             }
-        }
-
-        @available(*, deprecated, renamed: "tryEndCurrentSentence(after:on:)")
-        open func tryEndSentence(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            tryEndCurrentSentence(after: gesture, on: action)
         }
 
 
@@ -545,28 +532,12 @@ extension KeyboardAction {
             triggerHapticFeedback(feedback)
         }
 
-        @available(*, deprecated, renamed: "tryTriggerFeedback(for:on:)")
+        /// Trigger feedback for a certain action gesture.
         open func triggerFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             tryTriggerFeedback(for: gesture, on: action)
-        }
-
-        @available(*, deprecated, renamed: "tryTriggerAudioFeedback(for:on:)")
-        open func triggerAudioFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            tryTriggerAudioFeedback(for: gesture, on: action)
-        }
-
-        @available(*, deprecated, renamed: "tryTriggeHapticFeedback(for:on:)")
-        open func triggerHapticFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            tryTriggerHapticFeedback(for: gesture, on: action)
         }
     }
 }

@@ -18,6 +18,20 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 9.0
+
+This version removes all deprecated code.
+
+### 🗑️ Deprecations
+
+* All previously deprecated code has been removed.
+
+### ‼️ Breaking changes
+
+* `KeyboardInputViewController` `viewWillRegisterSharedController` has been removed.
+
+
+
 ## 8.9.3
 
 This version adjusts the access scope for Pro callout and layout services.

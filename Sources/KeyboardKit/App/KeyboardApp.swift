@@ -105,29 +105,6 @@ public struct KeyboardApp {
 
     /// A custom keyboard settings key prefix, if any.
     public let keyboardSettingsKeyPrefix: String?
-
-    @available(*, deprecated, message: "Use the deepLinks initializer instead.")
-    @_disfavoredOverload
-    public init(
-        name: String,
-        licenseKey: String = "",
-        bundleId: String,
-        keyboardExtensionBundleId: String? = nil,
-        appGroupId: String? = nil,
-        locales: [KeyboardLocale] = .all,
-        dictationDeepLink: String
-    ) {
-        self.init(
-            name: name,
-            licenseKey: licenseKey,
-            bundleId: bundleId,
-            keyboardBundleId: keyboardExtensionBundleId,
-            appGroupId: appGroupId,
-            locales: locales,
-            deepLinks: .init(app: "", dictation: dictationDeepLink)
-        )
-    }
-
 }
 
 public extension KeyboardApp {
@@ -175,11 +152,6 @@ public extension KeyboardApp {
     /// extensions for the app.
     var keyboardBundleIdWildcard: String {
         "\(bundleId).*"
-    }
-
-    @available(*, deprecated, renamed: "keyboardBundleIdWildcard")
-    var keyboardExtensionBundleIdWildcard: String {
-        keyboardBundleIdWildcard
     }
 }
 

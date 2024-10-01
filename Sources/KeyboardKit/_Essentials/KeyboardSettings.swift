@@ -25,33 +25,7 @@ import SwiftUI
 /// that's available when a property is first accessed. Make
 /// sure to set up a custom store BEFORE the app or keyboard
 /// extension accesses any settings.
-public class KeyboardSettings: ObservableObject, LegacySettings {
-
-    // MARK: - Deprecated: Settings are moved to the context.
-
-    /// DEPRECATED - Settings are moved to the context.
-    static let prefix = KeyboardSettings.storeKeyPrefix(for: "keyboard")
-
-    /// DEPRECATED - Settings are moved to the context.
-    @AppStorage("\(prefix)isAutocapitalizationEnabled", store: .keyboardSettings)
-    public var isAutocapitalizationEnabled = true {
-        didSet { triggerChange() }
-    }
-
-    @Published
-    var lastChanged = Date()
-}
-
-extension KeyboardSettings {
-
-    func syncToContextIfNeeded(
-        _ context: KeyboardContext
-    ) {
-        guard shouldSyncToContext else { return }
-        context.sync(with: self)
-        updateLastSynced()
-    }
-}
+public class KeyboardSettings: ObservableObject {}
 
 public extension KeyboardSettings {
 
@@ -108,22 +82,6 @@ public extension KeyboardSettings {
         setupStore(store, keyPrefix: keyPrefix, isAppGroupSynced: true)
     }
 
-    @available(*, deprecated, renamed: "setupStore(forAppGroup:keyPrefix:)")
-    static func setupStore(
-        withAppGroup appGroup: String,
-        keyPrefix: String? = nil
-    ) {
-        setupStore(forAppGroup: appGroup, keyPrefix: keyPrefix)
-    }
-
-    @available(*, deprecated, message: "Setting an optional store is no longer allowed.")
-    static func setupStore(
-        _ store: UserDefaults?,
-        keyPrefix: String? = nil
-    ) {
-        setupStore(store ?? .standard, keyPrefix: keyPrefix)
-    }
-
     /// Get the store key prefix for a certain namespace.
     static func storeKeyPrefix(
         for namespace: String
@@ -140,9 +98,6 @@ public extension UserDefaults {
     /// See ``KeyboardSettings`` for more information on how
     /// to register a custom store.
     static var keyboardSettings: UserDefaults {
-        get { KeyboardSettings.store }
-
-        @available(*, deprecated, message: "Use KeyboardSettings.setupStore(...) instead")
-        set { KeyboardSettings.store = newValue }
+        KeyboardSettings.store
     }
 }

@@ -17,31 +17,18 @@ public extension Autocomplete {
     struct ToolbarSeparator: View {
         
         /// Create an autocomplete toolbar item separator.
-        public init() {
-            self.initStyle = nil
-        }
+        public init() {}
         
         @Environment(\.autocompleteToolbarSeparatorStyle)
-        private var envStyle
-        
+        private var style
+
+        private typealias Style = Autocomplete.ToolbarSeparatorStyle
+
         public var body: some View {
             style.color
                 .frame(width: style.width)
                 .frame(height: style.height)
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .autocompleteToolbarSeparatorStyle to apply the style instead.")
-        public init(
-            style: Autocomplete.ToolbarSeparatorStyle
-        ) {
-            self.initStyle = style
-        }
-        
-        private typealias Style = Autocomplete.ToolbarSeparatorStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

@@ -75,7 +75,7 @@ Keyboard-based dictation must open the app to start dictation or open an audio b
 
 This can be tricky to set up, but KeyboardKit Pro lets you configure this in a few simple steps, as described further down in this article.
 
-> Important: iOS 17 caused a way to return to the keyboard from the main app to stop working. KeyboardKit replaced this with a new approach that however was also rejected due to the APIs being deprecated. Until a native way to handle back nacigation is found, the ``Dictation/ProKeyboardService`` will try to use the ``DictationContext`` ``KeyboardHostApplicationProvider/hostApplication`` property to identify and open the previous application. If this fails, your UI should tell the user how to return to the keyboard, by swiping back.
+> Important: iOS 17 caused a way to return to the keyboard from the main app to stop working. KeyboardKit replaced this with a new approach that however was also rejected due to the APIs being deprecated. Until a native way to handle back navigation is found, the pro dictation service will try to use the host application information to try to open the previous application. If this fails, your UI should tell the user how to return to the keyboard, by swiping back.
 
 
 

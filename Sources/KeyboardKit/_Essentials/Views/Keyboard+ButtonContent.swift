@@ -44,21 +44,6 @@ public extension Keyboard {
                 .padding(styleService.buttonContentInsets(for: action))
                 .contentShape(Rectangle())
         }
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, message: "Use the styleService initializer instead.")
-        public init(
-            action: KeyboardAction,
-            styleProvider: KeyboardStyleService,
-            keyboardContext: KeyboardContext
-        ) {
-            self.action = action
-            self.styleService = styleProvider
-            self.keyboardContext = keyboardContext
-        }
-
     }
 }
 

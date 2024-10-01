@@ -27,11 +27,11 @@ public extension Callouts {
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.initStyle = nil
         }
         
         public typealias Context = CalloutContext.InputContext
-        
+        private typealias Style = Callouts.InputCalloutStyle
+
         @ObservedObject
         private var calloutContext: Context
         
@@ -39,8 +39,8 @@ public extension Callouts {
         private var keyboardContext: KeyboardContext
         
         @Environment(\.inputCalloutStyle)
-        private var envStyle
-        
+        private var style
+
         public var body: some View {
             callout
                 .transition(.opacity)
@@ -49,23 +49,6 @@ public extension Callouts {
                 .position(position)
                 .allowsHitTesting(false)
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .inputCalloutStyle to apply the style instead.")
-        public init(
-            calloutContext: Context,
-            keyboardContext: KeyboardContext,
-            style: Callouts.InputCalloutStyle = .standard
-        ) {
-            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.initStyle = style
-        }
-        
-        private typealias Style = Callouts.InputCalloutStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

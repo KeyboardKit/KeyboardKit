@@ -22,9 +22,6 @@ import Foundation
 /// See the <doc:Essentials-Article> for more information.
 public protocol KeyboardBehavior {
     
-    @available(*, deprecated, message: "Just use Keyboard.Gesture from now on")
-    typealias Gesture = Keyboard.Gesture
-    
     /// The range that backspace should delete.
     var backspaceRange: Keyboard.BackspaceRange { get }
     

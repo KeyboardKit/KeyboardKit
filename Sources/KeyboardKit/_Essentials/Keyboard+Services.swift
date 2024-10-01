@@ -102,33 +102,6 @@ public extension Keyboard {
         public lazy var styleService: KeyboardStyleService = KeyboardStyle.StandardService(
             keyboardContext: state.keyboardContext
         )
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, renamed: "autocompleteService")
-        public var autocompleteProvider: AutocompleteService {
-            get { autocompleteService }
-            set { autocompleteService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "calloutService")
-        public var calloutActionProvider: CalloutService {
-            get { calloutService }
-            set { calloutService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "layoutService")
-        public var layoutProvider: KeyboardLayoutService {
-            get { layoutService }
-            set { layoutService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "styleService")
-        public var styleProvider: KeyboardStyleService {
-            get { styleService }
-            set { styleService = newValue }
-        }
     }
 }
 

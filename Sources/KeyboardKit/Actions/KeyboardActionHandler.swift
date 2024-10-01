@@ -23,10 +23,8 @@ import CoreGraphics
 ///
 /// See <doc:Actions-Article> for more information.
 public protocol KeyboardActionHandler: AnyObject, FeedbackService {
-    
-    @available(*, deprecated, message: "Just use Keyboard.Gesture from now on")
-    typealias Gesture = Keyboard.Gesture
-    
+
+
     /// Whether the handler can handle an action gesture.
     func canHandle(
         _ gesture: Keyboard.Gesture,

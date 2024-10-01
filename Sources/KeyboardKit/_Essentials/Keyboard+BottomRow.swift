@@ -109,56 +109,6 @@ public extension Keyboard {
             )
             .keyboardInputToolbarDisplayMode(.hidden)
         }
-
-
-
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use the styleService initializer instead")
-        public init(
-            leadingActions leading: [KeyboardAction],
-            trailingActions trailing: [KeyboardAction],
-            actionHandler: KeyboardActionHandler,
-            layoutService: KeyboardLayoutService,
-            styleProvider: KeyboardStyleProvider,
-            keyboardContext: KeyboardContext,
-            @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
-            @ViewBuilder buttonView: @escaping ButtonViewBuilder
-        ) {
-            self.init(
-                leadingActions: leading,
-                trailingActions: trailing,
-                actionHandler: actionHandler,
-                layoutService: layoutService,
-                styleService: styleProvider,
-                keyboardContext: keyboardContext,
-                buttonContent: buttonContent,
-                buttonView: buttonView
-            )
-        }
-
-        @available(*, deprecated, message: "Use the layoutService initializer instead")
-        public init(
-            leadingActions leading: [KeyboardAction],
-            trailingActions trailing: [KeyboardAction],
-            actionHandler: KeyboardActionHandler,
-            layoutProvider: KeyboardLayoutProvider,
-            styleProvider: KeyboardStyleProvider,
-            keyboardContext: KeyboardContext,
-            @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
-            @ViewBuilder buttonView: @escaping ButtonViewBuilder
-        ) {
-            self.init(
-                leadingActions: leading,
-                trailingActions: trailing,
-                actionHandler: actionHandler,
-                layoutService: layoutProvider,
-                styleProvider: styleProvider,
-                keyboardContext: keyboardContext,
-                buttonContent: buttonContent,
-                buttonView: buttonView
-            )
-        }
     }
 }
 

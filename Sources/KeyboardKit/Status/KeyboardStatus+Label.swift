@@ -35,7 +35,6 @@ public extension KeyboardStatus {
             self.isEnabled = isEnabled
             self.enabledText = enabledText
             self.disabledText = disabledText
-            self.initStyle = nil
         }
         
         private let isEnabled: Bool
@@ -43,8 +42,8 @@ public extension KeyboardStatus {
         private let disabledText: String
         
         @Environment(\.keyboardStatusLabelStyle)
-        private var envStyle
-        
+        private var style
+
         public var body: some View {
             SwiftUI.Label {
                 text.foregroundColor(textColor).font(textFont)
@@ -52,41 +51,6 @@ public extension KeyboardStatus {
                 icon.foregroundColor(iconColor).font(iconFont)
             }
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .keyboardStateLabelStyle to change icons.")
-        public init<EnabledIcon: View, DisabledIcon: View>(
-            isEnabled: Bool,
-            enabledIcon: EnabledIcon,
-            enabledText: String,
-            disabledIcon: DisabledIcon,
-            disabledText: String
-        ) {
-            self.isEnabled = isEnabled
-            self.enabledText = enabledText
-            self.disabledText = disabledText
-            self.initStyle = nil
-        }
-        
-        @available(*, deprecated, message: "Use .keyboardStateLabelStyle to apply the style instead.")
-        public init<EnabledIcon: View, DisabledIcon: View>(
-            isEnabled: Bool,
-            enabledIcon: EnabledIcon,
-            enabledText: String,
-            disabledIcon: DisabledIcon,
-            disabledText: String,
-            style: KeyboardStatus.LabelStyle = .standard
-        ) {
-            self.isEnabled = isEnabled
-            self.enabledText = enabledText
-            self.disabledText = disabledText
-            self.initStyle = style
-        }
-        
-        private typealias Style = KeyboardStatus.LabelStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

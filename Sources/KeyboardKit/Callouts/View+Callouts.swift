@@ -28,25 +28,6 @@ public extension View {
                 keyboardContext: keyboardContext
             )
     }
-    
-    @available(*, deprecated, message: "Apply style with .actionCalloutStyle and  .inputCalloutStyle instead.")
-    func keyboardCalloutContainer(
-        calloutContext: CalloutContext,
-        keyboardContext: KeyboardContext,
-        actionCalloutStyle: Callouts.ActionCalloutStyle = .standard,
-        inputCalloutStyle: Callouts.InputCalloutStyle = .standard
-    ) -> some View {
-        self.keyboardActionCalloutContainer(
-                calloutContext: calloutContext.actionContext,
-                keyboardContext: keyboardContext,
-                style: actionCalloutStyle
-            )
-            .keyboardInputCalloutContainer(
-                calloutContext: calloutContext.inputContext,
-                keyboardContext: keyboardContext,
-                style: inputCalloutStyle
-            )
-    }
 
     /// Setup the view as an action callout container.
     ///
@@ -61,22 +42,6 @@ public extension View {
             Callouts.ActionCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
-            )
-        )
-        .coordinateSpace(name: calloutContext.coordinateSpace)
-    }
-    
-    @available(*, deprecated, message: "Apply a style with .actionCalloutStyle instead.")
-    func keyboardActionCalloutContainer(
-        calloutContext: CalloutContext.ActionContext,
-        keyboardContext: KeyboardContext,
-        style: Callouts.ActionCalloutStyle = .standard
-    ) -> some View {
-        self.overlay(
-            Callouts.ActionCallout(
-                calloutContext: calloutContext,
-                keyboardContext: keyboardContext,
-                style: style
             )
         )
         .coordinateSpace(name: calloutContext.coordinateSpace)
@@ -106,22 +71,6 @@ public extension View {
             Callouts.InputCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
-            )
-        )
-        .coordinateSpace(name: calloutContext.coordinateSpace)
-    }
-    
-    @available(*, deprecated, message: "Apply a style with .inputCalloutStyle instead.")
-    func keyboardInputCalloutContainer(
-        calloutContext: CalloutContext.InputContext,
-        keyboardContext: KeyboardContext,
-        style: Callouts.InputCalloutStyle = .standard
-    ) -> some View {
-        self.overlay(
-            Callouts.InputCallout(
-                calloutContext: calloutContext,
-                keyboardContext: keyboardContext,
-                style: style
             )
         )
         .coordinateSpace(name: calloutContext.coordinateSpace)

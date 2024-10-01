@@ -153,11 +153,6 @@ extension UIReturnKeyType {}
 
 public extension UIReturnKeyType {
 
-    @available(*, deprecated, renamed: "keyboardType")
-    var keyboardReturnKeyType: Keyboard.ReturnKeyType {
-        keyboardType
-    }
-
     /// The ``Keyboard/ReturnKeyType`` this type represents.
     var keyboardType: Keyboard.ReturnKeyType {
         switch self {

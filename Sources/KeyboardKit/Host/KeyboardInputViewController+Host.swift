@@ -28,11 +28,6 @@ public extension KeyboardInputViewController {
             return Bundle.main.bundleIdentifier
         }
     }
-    
-    @available(*, deprecated, renamed: "hostApplicationBundleId")
-    var hostBundleId: String? {
-        hostApplicationBundleId
-    }
 }
 
 private extension KeyboardInputViewController {

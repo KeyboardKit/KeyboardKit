@@ -118,56 +118,6 @@ public extension Keyboard {
                     isPressed: isPressed ?? $isPressedInternal
                 )
         }
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, message: "Use the styleService initializer instead.")
-        public init(
-            action: KeyboardAction,
-            actionHandler: KeyboardActionHandler,
-            repeatTimer: GestureButtonTimer? = nil,
-            styleProvider: KeyboardStyleService,
-            keyboardContext: KeyboardContext,
-            calloutContext: CalloutContext?,
-            edgeInsets: EdgeInsets = .init(),
-            isPressed: Binding<Bool>? = nil,
-            @ViewBuilder content: @escaping ContentBuilder
-        ) {
-            self.action = action
-            self.actionHandler = actionHandler
-            self.repeatTimer = repeatTimer
-            self.styleService = styleProvider
-            self.keyboardContext = keyboardContext
-            self.calloutContext = calloutContext
-            self.edgeInsets = edgeInsets
-            self.isPressed = isPressed
-            self.content = content
-        }
-
-        @available(*, deprecated, message: "Use the styleService initializer instead.")
-        public init(
-            action: KeyboardAction,
-            actionHandler: KeyboardActionHandler,
-            repeatTimer: GestureButtonTimer? = nil,
-            styleProvider: KeyboardStyleService,
-            keyboardContext: KeyboardContext,
-            calloutContext: CalloutContext?,
-            edgeInsets: EdgeInsets = .init(),
-            isPressed: Binding<Bool>? = nil
-        ) where Content == Keyboard.ButtonContent {
-            self.init(
-                action: action,
-                actionHandler: actionHandler,
-                styleService: styleProvider,
-                keyboardContext: keyboardContext,
-                calloutContext: calloutContext,
-                edgeInsets: edgeInsets,
-                isPressed: isPressed,
-                content: { $0 }
-            )
-        }
-
     }
 }
 

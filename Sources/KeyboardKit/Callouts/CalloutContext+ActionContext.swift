@@ -53,23 +53,6 @@ public extension CalloutContext {
         /// The currently selected action index.
         @Published
         public private(set) var selectedIndex: Int = -1
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, renamed: "init(service:tapAction:)")
-        public convenience init(
-            actionProvider: CalloutActionProvider?,
-            tapAction: @escaping (KeyboardAction) -> Void
-        ) {
-            self.init(service: actionProvider, tapAction: tapAction)
-        }
-
-        @available(*, deprecated, renamed: "service")
-        public var actionProvider: CalloutService? {
-            get { service }
-            set { service = newValue }
-        }
     }
 }
 
@@ -93,12 +76,6 @@ public extension CalloutContext.ActionContext {
     /// The currently selected callout action, if any.
     var selectedAction: KeyboardAction? {
         isIndexValid(selectedIndex) ? actions[selectedIndex] : nil
-    }
-
-    @available(*, deprecated, renamed: "handleSelectedAction")
-    func endDragGesture() {
-        handleSelectedAction()
-        reset()
     }
 
     /// Handle the currently selected action, if any.

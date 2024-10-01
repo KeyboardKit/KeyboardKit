@@ -26,15 +26,14 @@ public extension Keyboard {
         public init(
             isPressed: Bool = false
         ) {
-            self.initStyle = nil
             self.isPressed = isPressed
         }
         
         private let isPressed: Bool
         
         @Environment(\.keyboardButtonStyle)
-        private var envStyle
-        
+        private var style
+
         public var body: some View {
             RoundedRectangle(cornerRadius: cornerRadius)
                 .strokeBorder(borderColor, lineWidth: borderLineWidth)
@@ -45,21 +44,6 @@ public extension Keyboard {
                 .overlay(Keyboard.ButtonShadow())
                 .keyboardButtonStyle(style)  // Not needed in 9.0
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .keyboardButtonStyle to apply the style instead.")
-        public init(
-            style: Keyboard.ButtonStyle,
-            isPressed: Bool = false
-        ) {
-            self.initStyle = style
-            self.isPressed = isPressed
-        }
-        
-        private typealias Style = Keyboard.ButtonStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

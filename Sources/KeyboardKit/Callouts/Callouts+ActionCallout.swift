@@ -29,13 +29,13 @@ public extension Callouts {
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.initStyle = nil
             self.emojiStyle = emojiStyle ?? EmojiStyle.standard(for: keyboardContext)
         }
         
         public typealias Context = CalloutContext.ActionContext
         public typealias EmojiStyle = EmojiKeyboardStyle
-        
+        private typealias Style = Callouts.ActionCalloutStyle
+
         @ObservedObject
         private var calloutContext: Context
         
@@ -45,8 +45,8 @@ public extension Callouts {
         private let emojiStyle: EmojiStyle
         
         @Environment(\.actionCalloutStyle)
-        private var envStyle
-        
+        private var style
+
         public var body: some View {
             Button(action: calloutContext.reset) {
                 VStack(alignment: calloutContext.alignment, spacing: 0) {
@@ -62,25 +62,6 @@ public extension Callouts {
             .position(x: positionX, y: positionY)
             .offset(y: style.verticalOffset)
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .actionCalloutStyle to apply the style instead.")
-        public init(
-            calloutContext: CalloutContext.ActionContext,
-            keyboardContext: KeyboardContext,
-            style: Callouts.ActionCalloutStyle,
-            emojiStyle: EmojiKeyboardStyle? = nil
-        ) {
-            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.initStyle = style
-            self.emojiStyle = emojiStyle ?? EmojiKeyboardStyle.standard(for: keyboardContext)
-        }
-        
-        private typealias Style = Callouts.ActionCalloutStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

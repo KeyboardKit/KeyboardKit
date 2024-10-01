@@ -45,21 +45,10 @@ public extension Keyboard {
                 controller: controller ?? Keyboard.NextKeyboardController.shared
                 )
             self.content = content
-            self.throwAssertionForMissingController = false
-        }
-
-        @available(*, deprecated, message: "throwAssertionForMissingController is no longer used. Use the other initializer.")
-        public init(
-            controller: UIInputViewController? = nil,
-            throwAssertionForMissingController: Bool,
-            @ViewBuilder content: @escaping () -> Content
-        ) {
-            self.init(controller: controller, content: content)
         }
 
         private let content: () -> Content
         private let overlay: NextKeyboardButtonOverlay
-        private let throwAssertionForMissingController: Bool
 
         public var body: some View {
             content()

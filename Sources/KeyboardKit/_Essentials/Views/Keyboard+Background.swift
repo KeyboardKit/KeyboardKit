@@ -152,11 +152,6 @@ public extension Keyboard.Background {
     ) -> Self {
         .init(backgroundGradient: colors)
     }
-
-    @available(*, deprecated, renamed: "body", message: "This style now implements View and can be used right away")
-    var backgroundView: some View {
-        body
-    }
 }
 
 public extension Keyboard.Background {

@@ -24,14 +24,15 @@ public extension Autocomplete {
             suggestion: Autocomplete.Suggestion
         ) {
             self.suggestion = suggestion
-            self.initStyle = nil
         }
-        
+
+        private typealias Style = Autocomplete.ToolbarItemStyle
+
         private let suggestion: Suggestion
         
         @Environment(\.autocompleteToolbarItemStyle)
-        private var envStyle
-        
+        private var style
+
         public var body: some View {
             VStack(spacing: 0) {
                 title
@@ -42,33 +43,7 @@ public extension Autocomplete {
             .background(style.backgroundColor)
             .background(Color.clearInteractable)
             .cornerRadius(style.backgroundCornerRadius)
-            .autocompleteToolbarItemStyle(style)    // Deprecated: Remove in 9.0
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .autocompleteToolbarItemStyle to apply the style instead.")
-        public init(
-            suggestion: Autocomplete.Suggestion,
-            locale: Locale = .current,
-            style: Autocomplete.ToolbarItemStyle
-        ) {
-            self.suggestion = suggestion
-            self.initStyle = style
-        }
-
-        @available(*, deprecated, message: "This view no longer uses the locale.")
-        public init(
-            suggestion: Autocomplete.Suggestion,
-            locale: Locale
-        ) {
-            self.suggestion = suggestion
-            self.initStyle = nil
-        }
-
-        private typealias Style = Autocomplete.ToolbarItemStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

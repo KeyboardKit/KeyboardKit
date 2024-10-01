@@ -29,24 +29,6 @@ public class FeedbackContext: ObservableObject {
     
     public init() {}
 
-    @available(*, deprecated, renamed: "init()")
-    public convenience init(audioConfiguration: Feedback.AudioConfiguration) {
-        self.init()
-    }
-
-    @available(*, deprecated, renamed: "init()")
-    public convenience init(hapticConfiguration: Feedback.HapticConfiguration) {
-        self.init()
-    }
-
-    @available(*, deprecated, renamed: "init()")
-    public convenience init(
-        audioConfiguration: Feedback.AudioConfiguration,
-        hapticConfiguration: Feedback.HapticConfiguration
-    ) {
-        self.init()
-    }
-
 
     // MARK: - Settings
 
@@ -91,12 +73,6 @@ public class FeedbackContext: ObservableObject {
 
 public extension FeedbackContext {
     
-    @available(*, deprecated, message: "This is no longer used.")
-    static let standard = FeedbackContext()
-}
-
-public extension FeedbackContext {
-    
     /// Register custom audio feedback.
     func registerCustomFeedback(
         _ feedback: Feedback.AudioConfiguration.CustomFeedback
@@ -120,22 +96,4 @@ public extension FeedbackContext {
     func toggleIsHapticFeedbackEnabled() {
         isHapticFeedbackEnabled.toggle()
     }
-}
-
-public extension FeedbackContext {
-
-    @available(*, deprecated, renamed: "registerCustomFeedback(_:)")
-    func register(
-        _ feedback: Feedback.AudioConfiguration.CustomFeedback
-    ) {
-        registerCustomFeedback(feedback)
-    }
-
-    @available(*, deprecated, renamed: "registerCustomFeedback(_:)")
-    func register(
-        _ feedback: Feedback.HapticConfiguration.CustomFeedback
-    ) {
-        registerCustomFeedback(feedback)
-    }
-
 }

@@ -38,24 +38,6 @@ public extension Autocomplete {
             self.separator = separator ?? .standard
         }
 
-        @available(*, deprecated, message: "Use the autocorrectItem initializer instead.")
-        public init(
-            height: CGFloat? = nil,
-            item: Autocomplete.ToolbarItemStyle = .standard,
-            separator: Autocomplete.ToolbarSeparatorStyle = .standard,
-            autocorrectBackground: KeyboardStyle.AutocompleteToolbarItemBackground
-        ) {
-            self.init(
-                height: height,
-                item: item,
-                autocorrectItem: .init(
-                    backgroundColor: autocorrectBackground.color,
-                    backgroundCornerRadius: autocorrectBackground.cornerRadius
-                ),
-                separator: separator
-            )
-        }
-
         /// An optional, fixed toolbar height.
         public var height: CGFloat?
 

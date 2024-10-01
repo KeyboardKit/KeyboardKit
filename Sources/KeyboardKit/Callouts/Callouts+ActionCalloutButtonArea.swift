@@ -22,13 +22,14 @@ public extension Callouts.ActionCallout {
             frame: CGRect
         ) {
             self.frame = frame
-            self.initStyle = nil
         }
         
         private let frame: CGRect
-        
+
+        private typealias Style = Callouts.CalloutStyle
+
         @Environment(\.calloutStyle)
-        private var envStyle
+        private var style
         
         public var body: some View {
             HStack(alignment: .top, spacing: 0) {
@@ -37,21 +38,6 @@ public extension Callouts.ActionCallout {
                 calloutCurveTrailing
             }
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .calloutStyle to apply the style instead.")
-        public init(
-            frame: CGRect,
-            style: Callouts.CalloutStyle = .standard
-        ) {
-            self.frame = frame
-            self.initStyle = style
-        }
-        
-        private typealias Style = Callouts.CalloutStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

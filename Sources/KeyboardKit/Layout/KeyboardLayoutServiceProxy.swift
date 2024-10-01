@@ -34,11 +34,4 @@ public extension KeyboardLayoutServiceProxy {
         default: iPhoneService
         }
     }
-
-    @available(*, deprecated, renamed: "keyboardLayoutService(for:)")
-    func keyboardLayoutProvider(
-        for context: KeyboardContext
-    ) -> KeyboardLayoutService {
-        keyboardLayoutService(for: context)
-    }
 }

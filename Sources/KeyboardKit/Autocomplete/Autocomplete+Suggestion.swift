@@ -57,22 +57,6 @@ public extension Autocomplete {
         /// The text that should be displayed.
         public var title: String
 
-        /// Whether the suggestion is autocorrecting.
-        public var isAutocorrect: Bool {
-            get { type == .autocorrect }
-
-            @available(*, deprecated, message: "Use type instead.")
-            set { type = newValue ? .autocorrect : .regular }
-        }
-
-        /// Whether the suggestion is unknown.
-        public var isUnknown: Bool {
-            get { type == .unknown }
-
-            @available(*, deprecated, message: "Use type instead.")
-            set { type = newValue ? .unknown : .regular }
-        }
-
         /// An optional subtitle that can complete the title.
         public var subtitle: String?
 
@@ -84,15 +68,17 @@ public extension Autocomplete {
     }
 }
 
-private extension String {
-
-    func withAutocompleteCasing(for word: String) -> String {
-        let isUppercased = word.count > 1 && word == word.uppercased()
-        return isUppercased ? uppercased() : self
-    }
-}
-
 public extension Autocomplete.Suggestion {
+
+    /// Whether the suggestion is autocorrecting.
+    var isAutocorrect: Bool {
+        type == .autocorrect
+    }
+
+    /// Whether the suggestion is unknown.
+    var isUnknown: Bool {
+        type == .unknown
+    }
 
     /// Adjust the ``text`` casing to match a certain word.
     func withAutocompleteCasing(
@@ -101,6 +87,14 @@ public extension Autocomplete.Suggestion {
         var result = self
         result.text = result.text.withAutocompleteCasing(for: word)
         return result
+    }
+}
+
+private extension String {
+
+    func withAutocompleteCasing(for word: String) -> String {
+        let isUppercased = word.count > 1 && word == word.uppercased()
+        return isUppercased ? uppercased() : self
     }
 }
 

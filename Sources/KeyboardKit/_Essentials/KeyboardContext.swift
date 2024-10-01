@@ -108,12 +108,6 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
-    @available(*, deprecated, renamed: "isAutocapitalizationEnabled")
-    public var isAutoCapitalizationEnabled: Bool {
-        get { isAutocapitalizationEnabled }
-        set { isAutocapitalizationEnabled = newValue }
-    }
-
     /// Whether or not the keyboard is in floating mode.
     @Published
     public var isKeyboardFloating = false

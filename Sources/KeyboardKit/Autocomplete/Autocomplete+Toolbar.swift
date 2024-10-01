@@ -36,30 +36,14 @@ public extension Autocomplete {
         ) {
             self.items = suggestions.map { BarItem($0) }
             self.itemView = itemView
-            self.initStyle = nil
-            self.separatorView = separatorView
-            self.suggestionAction = suggestionAction
-        }
-
-        @available(*, deprecated, message: "This view no longer uses the locale.")
-        public init(
-            suggestions: [Autocomplete.Suggestion],
-            locale: Locale,
-            itemView: @escaping ItemViewBuilder,
-            separatorView: @escaping SeparatorViewBuilder,
-            suggestionAction: @escaping SuggestionAction
-        ) {
-            self.items = suggestions.map { BarItem($0) }
-            self.itemView = itemView
-            self.initStyle = nil
             self.separatorView = separatorView
             self.suggestionAction = suggestionAction
         }
 
         public typealias Item = Autocomplete.ToolbarItem
-        public typealias ItemViewBuilder = (Suggestion, Style, Locale) -> ItemView      // Deprecated: The locale and style will be removed in KeyboardKit 9
+        public typealias ItemViewBuilder = (Suggestion, Style, Locale) -> ItemView
         public typealias Separator = Autocomplete.ToolbarSeparator
-        public typealias SeparatorViewBuilder = (Suggestion, Style) -> SeparatorView    // Deprecated: The style will be removed in KeyboardKit 9
+        public typealias SeparatorViewBuilder = (Suggestion, Style) -> SeparatorView
         public typealias Suggestion = Autocomplete.Suggestion
         public typealias SuggestionAction = (Suggestion) -> Void
         
@@ -67,10 +51,12 @@ public extension Autocomplete {
         private let suggestionAction: SuggestionAction
         private let itemView: ItemViewBuilder
         private let separatorView: SeparatorViewBuilder
-        
+
+        public typealias Style = Autocomplete.ToolbarStyle
+
         @Environment(\.autocompleteToolbarStyle)
-        private var envStyle
-        
+        private var style
+
         /// This internal struct is used to wrap item data.
         struct BarItem: Identifiable {
             
@@ -94,29 +80,6 @@ public extension Autocomplete {
             }
             .frame(height: style.height)
         }
-        
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .autocompleteToolbarStyle to apply the style instead.")
-        public init(
-            suggestions: [Autocomplete.Suggestion],
-            locale: Locale = .current,
-            style: Style,
-            itemView: @escaping ItemViewBuilder,
-            separatorView: @escaping SeparatorViewBuilder,
-            suggestionAction: @escaping SuggestionAction
-        ) {
-            self.items = suggestions.map { BarItem($0) }
-            self.itemView = itemView
-            self.initStyle = style
-            self.separatorView = separatorView
-            self.suggestionAction = suggestionAction
-        }
-        
-        public typealias Style = Autocomplete.ToolbarStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 
@@ -171,22 +134,6 @@ public extension Autocomplete.Toolbar where ItemView == Item {
         suggestionAction: @escaping SuggestionAction
     ) {
         self.items = suggestions.map { BarItem($0) }
-        self.initStyle = nil
-        self.suggestionAction = suggestionAction
-        self.itemView = Self.standardItemView
-        self.separatorView = separatorView
-    }
-    
-    @available(*, deprecated, message: "Use .autocompleteToolbarStyle to apply the style instead.")
-    init(
-        suggestions: [Suggestion],
-        locale: Locale = .current,
-        style: Style,
-        separatorView: @escaping SeparatorViewBuilder,
-        suggestionAction: @escaping SuggestionAction
-    ) {
-        self.items = suggestions.map { BarItem($0) }
-        self.initStyle = style
         self.suggestionAction = suggestionAction
         self.itemView = Self.standardItemView
         self.separatorView = separatorView
@@ -218,22 +165,6 @@ public extension Autocomplete.Toolbar where SeparatorView == Separator {
         suggestionAction: @escaping SuggestionAction
     ) {
         self.items = suggestions.map { BarItem($0) }
-        self.initStyle = nil
-        self.suggestionAction = suggestionAction
-        self.itemView = itemView
-        self.separatorView = Self.standardSeparatorView
-    }
-    
-    @available(*, deprecated, message: "Use .autocompleteToolbarStyle to apply the style instead.")
-    init(
-        suggestions: [Suggestion],
-        locale: Locale = .current,
-        style: Style,
-        itemView: @escaping ItemViewBuilder,
-        suggestionAction: @escaping SuggestionAction
-    ) {
-        self.items = suggestions.map { BarItem($0) }
-        self.initStyle = style
         self.suggestionAction = suggestionAction
         self.itemView = itemView
         self.separatorView = Self.standardSeparatorView
@@ -262,20 +193,6 @@ public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == S
         suggestionAction: @escaping SuggestionAction
     ) {
         self.items = suggestions.map { BarItem($0) }
-        self.initStyle = nil
-        self.suggestionAction = suggestionAction
-        self.itemView = Self.standardItemView
-        self.separatorView = Self.standardSeparatorView
-    }
-    
-    init(
-        suggestions: [Suggestion],
-        locale: Locale = .current,
-        style: Style,
-        suggestionAction: @escaping SuggestionAction
-    ) {
-        self.items = suggestions.map { BarItem($0) }
-        self.initStyle = style
         self.suggestionAction = suggestionAction
         self.itemView = Self.standardItemView
         self.separatorView = Self.standardSeparatorView

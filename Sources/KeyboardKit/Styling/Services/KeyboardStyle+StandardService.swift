@@ -124,28 +124,6 @@ extension KeyboardStyle {
             return insets
         }
         
-        
-        @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
-        open func buttonContentBottomMargin(
-            for action: KeyboardAction
-        ) -> CGFloat {
-            switch action {
-            case .character(let char): buttonContentBottomMargin(for: char)
-            default: 0
-            }
-        }
-        
-        @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
-        open func buttonContentBottomMargin(
-            for char: String
-        ) -> CGFloat {
-            switch char {
-            case "-", "/", ":", ";", "@", ",": 3
-            case "(", ")": 4
-            default: 0
-            }
-        }
-        
         /// The button image to use for a certain action.
         open func buttonImage(
             for action: KeyboardAction

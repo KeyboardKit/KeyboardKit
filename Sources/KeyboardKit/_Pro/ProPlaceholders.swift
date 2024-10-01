@@ -413,9 +413,6 @@ public protocol DictationSpeechRecognizer {}
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct KeyboardViewPreview {}
 
-@available(*, deprecated, renamed: "KeyboardStyle.ThemeBasedService")
-public typealias ThemeBasedKeyboardStyleProvider = KeyboardStyle.StandardService
-
 #if os(iOS) || os(tvOS) || os(visionOS)
 public extension UITextDocumentProxy {
     

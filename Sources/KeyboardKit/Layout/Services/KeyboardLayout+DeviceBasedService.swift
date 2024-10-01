@@ -77,12 +77,5 @@ extension KeyboardLayout {
             default: iPhoneService
             }
         }
-
-        @available(*, deprecated, renamed: "keyboardLayoutService")
-        open func keyboardLayoutProvider(
-            for context: KeyboardContext
-        ) -> KeyboardLayoutService {
-            keyboardLayoutService(for: context)
-        }
     }
 }
