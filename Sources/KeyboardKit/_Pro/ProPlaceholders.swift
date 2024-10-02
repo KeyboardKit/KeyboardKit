@@ -68,23 +68,30 @@ public extension AutocompleteService where Self == Autocomplete.LocalService {
 
 public extension Callouts {
 
-    /// 👑 This is unlocked by KeyboardKit Pro
+    /// 👑 This is unlocked by KeyboardKit Pro.
     class ProService: Callouts.DisabledService {}
 }
 
 public extension Callouts.ProService {
 
-    /// 👑 This is unlocked by KeyboardKit Pro
+    /// 👑 This is unlocked by KeyboardKit Pro.
     class Swedish: Callouts.ProService {}
 }
 
 public extension CalloutService where Self == Callouts.ProService {
 
-    /// 👑 This is unlocked by KeyboardKit Pro
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func localized(
+        _ service: @autoclosure () throws -> Callouts.ProService
+    ) throws -> Self {
+        throw ProPlaceholderError.proPlaceholder
+    }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
     static func localized(
         for locale: KeyboardLocale
     ) throws -> Self {
-        Callouts.ProService.Swedish()
+        throw ProPlaceholderError.proPlaceholder
     }
 }
 
@@ -287,11 +294,18 @@ public extension KeyboardLayout.ProService {
 
 public extension KeyboardLayoutService where Self == KeyboardLayout.ProService {
 
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func localized(
+        _ service: @autoclosure () throws -> KeyboardLayout.ProService
+    ) throws -> Self {
+        throw ProPlaceholderError.proPlaceholder
+    }
+
     /// 👑 This is unlocked by KeyboardKit Pro
     static func localized(
         for locale: KeyboardLocale
     ) throws -> Self {
-        KeyboardLayout.ProService.Swedish()
+        throw ProPlaceholderError.proPlaceholder
     }
 }
 

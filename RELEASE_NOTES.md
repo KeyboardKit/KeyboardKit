@@ -18,6 +18,17 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 8.9.2
+
+This version adds more KeyboardKit Pro shorthands, to make it even easier to initialize Pro services.
+
+### ⚡️ Shorthands (Pro)
+
+* `CalloutService` can resolve pro services with `.localized(...)`. e.g. `.localized(.Albanian())`
+* `KeyboardLayoutService` can resolve pro services with `.localized(...)`. e.g. `.localized(.Albanian())`
+
+
+
 ## 8.9.1
 
 This version fixes a few bugs.
@@ -115,10 +126,10 @@ If you experiment any problems with these new experimental modes, you can set ea
 
 * `Autocomplete.LocalService` can be resolved with `.local(...)`.
 * `Autocomplete.RemoteService` can be resolved with `.remote(...)`.
-* `Callouts.ProService.<Locale>` can be resolved with `.<locale>`.
+* `CalloutService` can be resolved with `.localized(for: ...)`.
 * `Dictation.ProService` can be resolved with `.pro(...)`.
 * `Dictation.ProKeyboardService` can be resolved with `.proInKeyboard(...)` and `.proInApp(...)`.
-* `KeyboardLayout.ProService.<Locale>` can be resolved with `.<locale>(...)`.
+* `KeyboardLayoutService` can be resolved with `.localized(for: ...)`.
 * `KeyboardStyleService.ThemeBased` can be resolved with `.themeBased(...)`.
 
 ### 📖 Documentation

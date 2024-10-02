@@ -47,14 +47,19 @@ For instance, *most* iOS keyboards have 3 input rows, with input keys that are s
 
 ## Keyboard Layout Services
 
-Given all this, the layout engine has to be flexible. KeyboardKit has a ``KeyboardLayoutService`` that generates layouts at runtime, based on many different factors. Layout services can use any information to tweak any part of a layout at any time.
+In KeyboardKit, a ``KeyboardLayoutService`` can generate layouts at runtime, based on different factors.
 
-KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject custom services into it.
+KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject custom services into it with ``KeyboardLayoutService/tryRegisterLocalizedService(_:)``.
 
-You can easily resolve various ``KeyboardLayoutService`` implementations with these shorthands, sorted by relevance:
+
+
+## Keyboard Layout Service Shorthands
+
+You can easily resolve various service types with these shorthands:
 
 * ``KeyboardLayoutService/standard(baseService:localizedServices:)``
-* ``KeyboardLayoutService/localized(for:)`` (👑 KeyboardKit Pro)
+* ``KeyboardLayoutService/localized(_:)``, e.g. `.localized(.German(...))` (👑 Pro)
+* ``KeyboardLayoutService/localized(for:)``, e.g. `.localized(for: .swedish)` (👑 Pro)
 * ``KeyboardLayoutService/disabled``
 * ``KeyboardLayoutService/preview``
 

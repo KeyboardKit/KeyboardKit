@@ -35,7 +35,11 @@ In KeyboardKit, a ``KeyboardStyleService`` can provide dynamic styles for differ
 
 KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
-You can easily resolve various ``KeyboardStyleService`` implementations with these shorthands, sorted by relevance:
+
+
+## Keyboard Style Service Shorthands
+
+You can easily resolve various service types with these shorthands:
 
 * ``KeyboardStyleService/standard(keyboardContext:)``
 * ``KeyboardStyleService/themeBased(theme:keyboardContext:)`` (👑 KeyboardKit Pro)

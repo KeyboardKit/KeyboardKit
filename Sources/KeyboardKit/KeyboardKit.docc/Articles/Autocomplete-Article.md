@@ -47,7 +47,11 @@ KeyboardKit doesn't have a standard autocomplete service. Instead, it injects a 
 
 KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which performs on-device autocomplete, and a ``Autocomplete/RemoteService``, which can be used to integrate with any remote, REST-based API.
 
-You can easily resolve various ``AutocompleteService`` implementations with these shorthands, sorted by relevance:
+
+
+## Autocomplete Service Shorthands
+
+You can easily resolve various service types with these shorthands:
 
 * ``AutocompleteService/local(context:locale:)`` (👑 KeyboardKit Pro)
 * ``AutocompleteService/disabled``

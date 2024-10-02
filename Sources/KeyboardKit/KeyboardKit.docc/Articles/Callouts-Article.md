@@ -39,14 +39,19 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 ## Callout Services
 
-In KeyboardKit, a ``CalloutService`` can be used to provide secondary callout actions for any key, which are then presented when a key with actions is long pressed.
+In KeyboardKit, a ``CalloutService`` can return secondary callout actions when a key is long pressed.
 
-KeyboardKit automatically creates an instance of ``Callouts/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it.
+KeyboardKit automatically creates an instance of ``Callouts/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it with ``CalloutService/tryRegisterLocalizedService(_:)``.
 
-You can easily resolve various ``CalloutService`` implementations with these shorthands, sorted by relevance:
+
+
+## Callout Service Shorthands
+
+You can easily resolve various service types with these shorthands:
 
 * ``CalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``
-* ``CalloutService/localized(for:)`` (👑 KeyboardKit Pro)
+* ``CalloutService/localized(_:)``, e.g. `.localized(.German(...))` (👑 Pro)
+* ``CalloutService/localized(for:)``, e.g. `.localized(for: .swedish)` (👑 Pro)
 * ``CalloutService/disabled``
 * ``CalloutService/preview``
 
