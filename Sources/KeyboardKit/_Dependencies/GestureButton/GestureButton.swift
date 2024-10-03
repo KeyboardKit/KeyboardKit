@@ -123,7 +123,9 @@ public struct GestureButton<Label: View>: View {
                 longPressAction: longPressAction,
                 doubleTapTimeout: state.doubleTapTimeout,
                 doubleTapAction: doubleTapAction,
+                repeatDelay: state.repeatDelay,
                 repeatAction: repeatAction,
+                repeatTimer: state.repeatTimer,
                 dragStartAction: dragStartAction,
                 dragAction: dragAction,
                 dragEndAction: dragEndAction,
@@ -205,7 +207,19 @@ private extension GestureButton {
         setScrollGestureDisabledState(false)
         tryHandleRelease(value, in: geo)
     }
-    
+
+    func handleRepeatAction() {
+        guard let repeatAction else { return }
+        repeatAction()
+    }
+
+    func reset() {
+        state.isPressed = false
+        state.longPressDate = Date()
+        state.repeatDate = Date()
+        tryStopRepeatTimer()
+    }
+
     func resetGestureWasStarted() {
         state.gestureWasStarted = false
     }
@@ -218,15 +232,6 @@ private extension GestureButton {
 
 private extension GestureButton {
 
-    /// We should always reset the state when a gesture ends.
-    func reset() {
-        state.isPressed = false
-        state.longPressDate = Date()
-        state.repeatDate = Date()
-        tryStopRepeatTimer()
-    }
-
-    /// Try to handle any new drag gestures as a press event.
     func tryHandlePress(_ value: DragGesture.Value) {
         if state.isPressed { return }
         state.isPressed = true
@@ -243,8 +248,6 @@ private extension GestureButton {
         dragAction?(value)
     }
 
-    /// Try to handle drag end gestures as a release event.
-    ///
     /// This function will trigger several actions, based on
     /// how the gesture is ended. It will always trigger the
     /// drag end and end actions, then either of the release
@@ -322,10 +325,9 @@ private extension GestureButton {
 
     /// Try to start the repeat timer.
     func tryStartRepeatTimer() {
-        guard let action = repeatAction else { return }
         if state.repeatTimer.isActive { return }
         state.repeatTimer.start {
-            action()
+            Task { await handleRepeatAction() }
         }
     }
 

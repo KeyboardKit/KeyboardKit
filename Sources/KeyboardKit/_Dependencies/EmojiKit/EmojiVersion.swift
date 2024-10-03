@@ -17,8 +17,8 @@ import SwiftUI
 /// all versions available to the current runtime. This will
 /// be used to let ``EmojiCategory`` just return emojis that
 /// are available to the current runtime.
-public struct EmojiVersion: Equatable {
-    
+public struct EmojiVersion: Equatable, Identifiable {
+
     init(
         version: Double,
         emojis: String,
@@ -77,7 +77,10 @@ public struct EmojiVersion: Equatable {
     ) {
         self.init(lastIn: Self.allAvailableIn(watchOS: version))
     }
-    
+
+    /// The unique version ID.
+    public var id: Double { version }
+
     /// The emojis to include in the information.
     public var emojis: [Emoji]
     
@@ -100,10 +103,15 @@ public struct EmojiVersion: Equatable {
     /// the version made any changes that isn't reflected in
     /// the emojis it provides.
     public let comment: String?
+
+    /// The version's display name, e.g. `15.1`.
+    public var displayName: String {
+        .init(format: "%.1f", version)
+    }
 }
 
 
-// MARK: - Public functions
+// MARK: - Version Builders
 
 public extension EmojiVersion {
 
@@ -195,7 +203,13 @@ public extension EmojiVersion {
             watchOS: 4.1
         )
     }
-    
+}
+
+
+// MARK: - Version Resolvers
+
+public extension EmojiVersion {
+
     /// The ``EmojiVersion`` that is used by the current OS.
     static var current: Self {
         if #available(iOS 17.4, macOS 14.4, tvOS 17.4, watchOS 10.4, *) {
@@ -281,5 +295,30 @@ public extension Emoji {
     /// If the emoji is unavailable in the current runtime.
     var isUnavailableInCurrentRuntime: Bool {
         EmojiVersion.currentUnavailableEmojisDictionary[char] != nil
+    }
+}
+
+#Preview {
+
+    /// This preview limits each line to 5 emojis to make it
+    /// easy to compare columns with the native iOS keyboard.
+    NavigationView {
+        List {
+            ForEach(EmojiVersion.all.reversed()) { version in
+                NavigationLink {
+                    ScrollView(.vertical) {
+                        LazyVGrid(columns: [GridItem].init(repeating: .init(.fixed(45)), count: 5)) {
+                            ForEach(version.emojis) {
+                                Text($0.char)
+                                    .font(.largeTitle)
+                            }
+                        }
+                    }
+                } label: {
+                    Text(version.displayName)
+                }
+            }
+        }
+        .navigationTitle("Emoji Versions")
     }
 }

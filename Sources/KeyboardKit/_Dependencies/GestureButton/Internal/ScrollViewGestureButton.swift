@@ -25,6 +25,7 @@ struct ScrollViewGestureButton<Label: View>: View {
         longPressAction: Action? = nil,
         doubleTapTimeout: TimeInterval? = nil,
         doubleTapAction: Action? = nil,
+        repeatDelay: TimeInterval? = nil,
         repeatAction: Action? = nil,
         repeatTimer: GestureButtonTimer? = nil,
         dragStartAction: DragAction? = nil,
@@ -43,6 +44,7 @@ struct ScrollViewGestureButton<Label: View>: View {
             longPressAction: longPressAction ?? {},
             doubleTapTimeout: doubleTapTimeout ?? GestureButtonDefaults.doubleTapTimeout,
             doubleTapAction: doubleTapAction ?? {},
+            repeatDelay: repeatDelay ?? GestureButtonDefaults.repeatDelay,
             repeatTimer: repeatTimer ?? .init(),
             repeatAction: repeatAction,
             dragStartAction: dragStartAction,
@@ -102,6 +104,7 @@ extension ScrollViewGestureButton {
         var doubleTapDate = Date()
     }
 
+    @MainActor
     struct GestureConfiguration {
         let state: GestureState
         let pressAction: Action
@@ -111,6 +114,7 @@ extension ScrollViewGestureButton {
         let longPressAction: Action
         let doubleTapTimeout: TimeInterval
         let doubleTapAction: Action
+        let repeatDelay: TimeInterval
         let repeatTimer: GestureButtonTimer
         let repeatAction: Action?
         let dragStartAction: DragAction?
@@ -119,10 +123,16 @@ extension ScrollViewGestureButton {
         let endAction: Action
         let label: LabelBuilder
 
+        func handleRepeatAction() {
+            guard let repeatAction else { return }
+            repeatAction()
+        }
+
         func tryStartRepeatTimer() {
             if repeatTimer.isActive { return }
-            guard let action = repeatAction else { return }
-            repeatTimer.start { action() }
+            repeatTimer.start {
+                Task { await handleRepeatAction() }
+            }
         }
 
         func tryStopRepeatTimer() {
@@ -145,12 +155,12 @@ extension ScrollViewGestureButton {
         var config: GestureConfiguration
 
         @State
-        var longPressDate = Date()
+        var gestureDate = Date()
 
         func makeBody(configuration: Configuration) -> some View {
             configuration.label
                 .onChange(of: configuration.isPressed) { isPressed in
-                    longPressDate = Date()
+                    gestureDate = Date()
                     if isPressed {
                         handleIsPressed()
                     } else {
@@ -166,19 +176,28 @@ private extension ScrollViewGestureButton.Style {
     func handleIsPressed() {
         isPressed.wrappedValue = true
         config.pressAction()
-        tryTriggerLongPressAfterDelay(triggered: longPressDate)
+        tryTriggerLongPressAfterDelay(triggered: gestureDate)
+        tryTriggerRepeatAfterDelay(triggered: gestureDate)
     }
 
     func handleIsEnded() {
         if isPressedByGesture.wrappedValue { return }
         isPressed.wrappedValue = false
         config.endAction()
+        config.tryStopRepeatTimer()
     }
 
     func tryTriggerLongPressAfterDelay(triggered date: Date) {
         DispatchQueue.main.asyncAfter(deadline: .now() + config.longPressDelay) {
-            guard date == longPressDate else { return }
+            guard date == gestureDate else { return }
             config.longPressAction()
+        }
+    }
+
+    func tryTriggerRepeatAfterDelay(triggered date: Date) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + config.repeatDelay) {
+            guard date == gestureDate else { return }
+            config.tryStartRepeatTimer()
         }
     }
 }

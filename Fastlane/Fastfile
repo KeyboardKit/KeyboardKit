@@ -8,32 +8,6 @@ platform :ios do
   main_branch = "master"
 
 
-  # GestureButton ==============
-
-  gb_source = "../gesturebutton/Sources/GestureButton/"
-  gb_target = "Sources/" + name + "/_GestureButton/"
-
-  desc "Remove GestureButton"
-  lane :gbremove do
-    sh("cd .. && rm -rf " + gb_target)
-  end
-
-  desc "Add GestureButton"
-  lane :gbadd do
-    sh("cd .. && cp -r " + gb_source + " " + gb_target)
-    sh("cd .. && rm -rf " + gb_target + "/GestureButton.docc")
-    sh("cd .. && git add .")
-  end
-
-  desc "Update GestureButton"
-  lane :gbupdate do
-    ensure_git_status_clean
-    gbremove
-    gbadd
-    git_commit(path: "*", message: "Update GestureButton")
-  end
-
-
   # Build ==================
   
   lane :build do

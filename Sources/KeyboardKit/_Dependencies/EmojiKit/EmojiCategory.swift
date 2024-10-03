@@ -21,6 +21,10 @@ import SwiftUI
 /// an ``EmojiProvider`` to provide the category with emojis
 /// and call ``EmojiProvider/addEmoji(_:)`` when an emoji is
 /// used, to add it to the category.
+///
+/// Various EmojiKit views, like the ``EmojiGrid``, lets you
+/// pass in a custom provider, and will automatically use it
+/// to register emojis when the user interacts with an emoji.
 public enum EmojiCategory: CaseIterable, Codable, Equatable, Hashable, Identifiable {
 
     case frequent
@@ -276,4 +280,33 @@ extension EmojiCategory {
     static let emojisForSmileys: [Emoji] = {
         EmojiCategory.smileysAndPeople.emojiStringEmojis
     }()
+}
+
+#Preview {
+
+    /// This preview limits each line to 5 emojis to make it
+    /// easy to compare columns with the native iOS keyboard.
+    NavigationView {
+        List {
+            ForEach(EmojiCategory.allCases) { cat in
+                NavigationLink {
+                    ScrollView(.vertical) {
+                        LazyVGrid(columns: [GridItem].init(repeating: .init(.fixed(60)), count: 5)) {
+                            ForEach(cat.emojis) {
+                                Text($0.char)
+                                    .font(.largeTitle)
+                            }
+                        }
+                    }
+                } label: {
+                    Label {
+                        Text(cat.localizedName)
+                    } icon: {
+                        Text(cat.emojiIcon)
+                    }
+                }
+            }
+        }
+        .navigationTitle("Emoji Categories")
+    }
 }

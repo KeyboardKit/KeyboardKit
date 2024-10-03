@@ -15,16 +15,22 @@ public protocol Localizable {
 }
 
 public extension Localizable {
-    
-    /// The localized name for the current `Locale`.
+
+    /// The localized name for the current locale and bundle.
     var localizedName: String {
         localizedName(for: .current)
     }
-    
-    /// The localized name for a certain `Locale`.
-    func localizedName(for locale: Locale) -> String {
+
+    /// The localized name for a certain locale and bundle.
+    ///
+    /// - Parameters:
+    ///   - locale: The locale to use, by default `.current`.
+    ///   - bundle: The bundle that contains the localized content.
+    func localizedName(
+        for locale: Locale = .current,
+        in bundle: Bundle
+    ) -> String {
         let key = localizationKey
-        let bundle = Bundle.keyboardKit
         let localeBundle = bundle.bundle(for: locale) ?? bundle
         return NSLocalizedString(key, bundle: localeBundle, comment: "")
     }

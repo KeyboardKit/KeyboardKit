@@ -24,7 +24,7 @@ jobs:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: macos-13
+    runs-on: macos-15
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -34,20 +34,9 @@ jobs:
       - name: Select Xcode Version
         uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '15.2.0'
+          xcode-version: '16.0'
       - name: Build DocC
-        run: |
-          swift package resolve;
-          
-          xcodebuild docbuild -scheme KeyboardKit -derivedDataPath /tmp/docbuild -destination 'generic/platform=iOS';
-          
-          $(xcrun --find docc) process-archive \
-            transform-for-static-hosting /tmp/docbuild/Build/Products/Debug-iphoneos/KeyboardKit.doccarchive \
-            --output-path docs \
-            --hosting-base-path 'KeyboardKit';
-            
-          echo "<script>window.location.href += \"/documentation/keyboardkit\"</script>" > docs/index.html;
-          
+        run: bash scripts/docc.sh
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
