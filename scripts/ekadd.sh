@@ -1,7 +1,7 @@
 #!/bin/bash
 
 SOURCE="../../opensource/emojikit/Sources/EmojiKit/"
-TARGET="Sources/KeyboardKit/_EmojiKit/"
+TARGET="Sources/KeyboardKit/_Dependencies/EmojiKit/"
 
 cp -r "$SOURCE" "$TARGET"
 rm -rf "$TARGET/Bundle"
