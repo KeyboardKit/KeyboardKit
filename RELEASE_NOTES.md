@@ -18,6 +18,12 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 
 
+## 8.9.3
+
+This version adjusts the access scope for Pro callout and layout services.
+
+
+
 ## 8.9.2
 
 This version adds more KeyboardKit Pro shorthands, to make it even easier to initialize Pro services.
