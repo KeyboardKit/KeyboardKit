@@ -1,3 +1,5 @@
+#!/bin/bash
+
 swift package resolve;
           
 xcodebuild docbuild -scheme KeyboardKit -derivedDataPath /tmp/docbuild -destination 'generic/platform=iOS';
