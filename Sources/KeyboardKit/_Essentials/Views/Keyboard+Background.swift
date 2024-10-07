@@ -101,7 +101,7 @@ public extension Keyboard {
 public extension Keyboard.Background {
 
     /// The standard keyboard background style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 
     /// A background style with a single color.
     static func color(

@@ -14,12 +14,14 @@ These release notes only cover the current major version.
 
 This version removes all deprecated code.
 
-### 🗑️ Deprecations
+### 🧪 Experiments
 
-* All previously deprecated code has been removed.
+* The next keyboard button experiments have been made permanent.
 
 ### ‼️ Breaking changes
 
+* All previously deprecated code has been removed.
+* All previously mutable styles and configs are now computed.
 * `KeyboardInputViewController` `viewWillRegisterSharedController` has been removed.
 
 

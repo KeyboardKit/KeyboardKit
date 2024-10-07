@@ -74,7 +74,7 @@ public extension Callouts {
 public extension Callouts.ActionCalloutStyle {
     
     /// The standard action callout style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 public extension View {
@@ -91,7 +91,9 @@ private extension Callouts.ActionCalloutStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: Callouts.ActionCalloutStyle = .standard
+        static var defaultValue: Callouts.ActionCalloutStyle {
+            .standard
+        }
     }
 }
 

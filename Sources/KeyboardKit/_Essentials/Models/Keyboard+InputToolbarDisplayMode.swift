@@ -49,7 +49,9 @@ public extension View {
 private extension Keyboard.InputToolbarDisplayMode {
 
     struct KeyboardKey: EnvironmentKey {
-        static var defaultValue: Keyboard.InputToolbarDisplayMode = .automatic
+        static var defaultValue: Keyboard.InputToolbarDisplayMode {
+            .automatic
+        }
     }
 }
 

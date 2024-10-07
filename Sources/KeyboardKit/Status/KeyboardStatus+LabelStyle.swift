@@ -107,7 +107,7 @@ public extension KeyboardStatus {
 public extension KeyboardStatus.LabelStyle {
 
     /// The standard status label style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 public extension View {
@@ -124,7 +124,9 @@ private extension KeyboardStatus.LabelStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: KeyboardStatus.LabelStyle = .standard
+        static var defaultValue: KeyboardStatus.LabelStyle {
+            .standard
+        }
     }
 }
 

@@ -52,7 +52,7 @@ enum KeyboardColor: String, CaseIterable, Identifiable {
 
 extension KeyboardColor {
 
-    static var bundle: Bundle = .keyboardKit
+    static var bundle: Bundle { .keyboardKit }
 }
 
 extension KeyboardColor {

@@ -55,22 +55,26 @@ public extension Autocomplete {
 public extension Autocomplete.ToolbarStyle {
 
     /// The standard autocomplete toolbar style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 extension Autocomplete.ToolbarStyle {
 
-    static var preview1 = Self(
-        item: .preview1,
-        autocorrectItem: .preview2,
-        separator: .preview1
-    )
+    static var preview1: Self {
+        .init(
+            item: .preview1,
+            autocorrectItem: .preview2,
+            separator: .preview1
+        )
+    }
 
-    static var preview2 = Self(
-        item: .preview2,
-        autocorrectItem: .preview1,
-        separator: .preview2
-    )
+    static var preview2: Self {
+        .init(
+            item: .preview2,
+            autocorrectItem: .preview1,
+            separator: .preview2
+        )
+    }
 }
 
 public extension View {
@@ -87,7 +91,9 @@ private extension Autocomplete.ToolbarStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: Autocomplete.ToolbarStyle = .standard
+        static var defaultValue: Autocomplete.ToolbarStyle {
+            .standard
+        }
     }
 }
 

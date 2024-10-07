@@ -10,25 +10,31 @@ import Foundation
 
 public extension CalloutContext {
 
-    static var preview = CalloutContext(
-        actionContext: .preview,
-        inputContext: .preview
-    )
+    static var preview: CalloutContext {
+        CalloutContext(
+            actionContext: .preview,
+            inputContext: .preview
+        )
+    }
 }
 
 public extension CalloutContext.ActionContext {
 
-    static var preview = CalloutContext.ActionContext(
-        service: .preview,
-        tapAction: { _ in }
-    )
+    static var preview: CalloutContext.ActionContext {
+        CalloutContext.ActionContext(
+            service: .preview,
+            tapAction: { _ in }
+        )
+    }
 }
 
 public extension CalloutContext.InputContext {
     
-    static var preview = CalloutContext.InputContext(
-        isEnabled: true
-    )
+    static var preview: CalloutContext.InputContext {
+        CalloutContext.InputContext(
+            isEnabled: true
+        )
+    }
 }
 
 public extension CalloutService where Self == KeyboardPreviews.PreviewCalloutService {

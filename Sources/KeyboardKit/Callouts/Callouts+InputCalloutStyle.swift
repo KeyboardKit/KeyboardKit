@@ -55,7 +55,7 @@ public extension Callouts {
 public extension Callouts.InputCalloutStyle {
     
     /// The standard input callout style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 public extension View {
@@ -72,7 +72,9 @@ private extension Callouts.InputCalloutStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: Callouts.InputCalloutStyle = .standard
+        static var defaultValue: Callouts.InputCalloutStyle {
+            .standard
+        }
     }
 }
 

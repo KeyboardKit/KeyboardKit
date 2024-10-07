@@ -40,7 +40,7 @@ public extension Keyboard {
 public extension Keyboard.ToolbarStyle {
 
     /// The standard keyboard toolbar style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 public extension View {
@@ -57,7 +57,9 @@ private extension Keyboard.ToolbarStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: Keyboard.ToolbarStyle = .standard
+        static var defaultValue: Keyboard.ToolbarStyle {
+            .standard
+        }
     }
 }
 
