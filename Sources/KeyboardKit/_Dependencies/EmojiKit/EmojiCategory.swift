@@ -281,3 +281,32 @@ extension EmojiCategory {
         EmojiCategory.smileysAndPeople.emojiStringEmojis
     }()
 }
+
+#Preview {
+
+    /// This preview limits each line to 5 emojis to make it
+    /// easy to compare columns with the native iOS keyboard.
+    NavigationView {
+        List {
+            ForEach(EmojiCategory.allCases) { cat in
+                NavigationLink {
+                    ScrollView(.vertical) {
+                        LazyVGrid(columns: [GridItem].init(repeating: .init(.fixed(60)), count: 5)) {
+                            ForEach(cat.emojis) {
+                                Text($0.char)
+                                    .font(.largeTitle)
+                            }
+                        }
+                    }
+                } label: {
+                    Label {
+                        Text(cat.localizedName)
+                    } icon: {
+                        Text(cat.emojiIcon)
+                    }
+                }
+            }
+        }
+        .navigationTitle("Emoji Categories")
+    }
+}
