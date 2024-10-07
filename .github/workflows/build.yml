@@ -8,28 +8,16 @@ on:
     branches: ["master"]
   pull_request:
     branches: ["master"]
-    
-env:
-  SCHEME: KeyboardKit
 
 jobs:
   build:
-    runs-on: macos-14
+    runs-on: macos-15
     steps:
       - uses: actions/checkout@v3
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: latest-stable
-      - name: Build iOS
-        run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=iOS';
-      - name: Build macOS
-        run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=OS X';
-      - name: Build tvOS
-        run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=tvOS';
-      - name: Build watchOS
-        run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=watchOS';
-      # - name: Build visionOS
-      #   run: xcodebuild -scheme $SCHEME -derivedDataPath .build -destination 'generic/platform=xrOS';
-      # Disabled due to context issues
-      # - name: Test iOS
-      #   run: xcodebuild test -scheme $SCHEME -derivedDataPath .build -destination 'platform=iOS Simulator,name=iPhone 15,OS=17.2' -enableCodeCoverage YES;
+          xcode-version: '16.0'
+      - name: Build all platforms
+        run: bash scripts/build.sh ${{ github.event.repository.name }}
+      - name: Test iOS
+        run: bash scripts/test.sh ${{ github.event.repository.name }}
