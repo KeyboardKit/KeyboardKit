@@ -22,12 +22,14 @@ KeyboardKit 9 is planned to be released shortly after the public release of iOS 
 
 This version removes all deprecated code.
 
-### 🗑️ Deprecations
+### 🧪 Experiments
 
-* All previously deprecated code has been removed.
+* The next keyboard button experiments have been made permanent.
 
 ### ‼️ Breaking changes
 
+* All previously deprecated code has been removed.
+* All previously mutable styles and configs are now computed.
 * `KeyboardInputViewController` `viewWillRegisterSharedController` has been removed.
 
 

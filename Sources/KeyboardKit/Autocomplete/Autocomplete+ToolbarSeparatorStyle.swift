@@ -49,21 +49,25 @@ public extension Autocomplete {
 public extension Autocomplete.ToolbarSeparatorStyle {
     
     /// The standard autocomplete toolbar separator style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 extension Autocomplete.ToolbarSeparatorStyle {
     
-    static var preview1 = Self(
-        color: .red,
-        width: 2
-    )
-    
-    static var preview2 = Self(
-        color: .green,
-        width: 5,
-        height: 20
-    )
+    static var preview1: Self {
+        .init(
+            color: .red,
+            width: 2
+        )
+    }
+
+    static var preview2: Self {
+        .init(
+            color: .green,
+            width: 5,
+            height: 20
+        )
+    }
 }
 
 public extension View {
@@ -80,7 +84,9 @@ private extension Autocomplete.ToolbarSeparatorStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: Autocomplete.ToolbarSeparatorStyle = .standard
+        static var defaultValue: Autocomplete.ToolbarSeparatorStyle {
+            .standard
+        }
     }
 }
 

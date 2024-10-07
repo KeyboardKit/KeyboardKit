@@ -30,23 +30,3 @@ struct KeyboardView: View {
 #Preview {
     KeyboardView()
 }
-
-class KeyboardController: KeyboardInputViewController {
-
-    required init?(coder: NSCoder) {
-        Self.instances += 1
-        super.init(coder: coder)
-    }
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        Self.instances += 1
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    static var instances = 0
-
-    deinit {
-        Self.instances -= 1
-        print("DEINIT")
-    }
-}

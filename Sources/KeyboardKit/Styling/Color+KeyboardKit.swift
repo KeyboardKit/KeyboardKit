@@ -12,62 +12,62 @@ public extension Color {
 
     /// This color can be used instead of `clear` to make it
     /// register touches & gestures.
-    static var clearInteractable: Color {
+    static var clearInteractable: Self {
         Color.white.opacity(0.001)
     }
     
     /// The standard keyboard background color.
-    static var keyboardBackground: Color {
+    static var keyboardBackground: Self {
         color(for: .keyboardBackground)
     }
     
     /// The standard keyboard background color for dark appearance.
-    static var keyboardBackgroundForDarkAppearance: Color {
+    static var keyboardBackgroundForDarkAppearance: Self {
         color(for: .keyboardBackgroundForDarkAppearance)
     }
     
     /// The standard keyboard button background color.
-    static var keyboardButtonBackground: Color {
+    static var keyboardButtonBackground: Self {
         color(for: .keyboardButtonBackground)
     }
     
     /// The standard keyboard button background color for dark appearance.
-    static var keyboardButtonBackgroundForDarkAppearance: Color {
+    static var keyboardButtonBackgroundForDarkAppearance: Self {
         color(for: .keyboardButtonBackgroundForDarkAppearance)
     }
     
     /// The standard keyboard button foreground color.
-    static var keyboardButtonForeground: Color {
+    static var keyboardButtonForeground: Self {
         color(for: .keyboardButtonForeground)
     }
     
     /// The standard keyboard button foreground color for dark appearance.
-    static var keyboardButtonForegroundForDarkAppearance: Color {
+    static var keyboardButtonForegroundForDarkAppearance: Self {
         color(for: .keyboardButtonForegroundForDarkAppearance)
     }
     
     /// The standard keyboard button shadow color.
-    static var keyboardButtonShadow: Color {
+    static var keyboardButtonShadow: Self {
         color(for: .keyboardButtonShadow)
     }
     
     /// The standard dark keyboard button background color.
-    static var keyboardDarkButtonBackground: Color {
+    static var keyboardDarkButtonBackground: Self {
         color(for: .keyboardDarkButtonBackground)
     }
     
     /// The standard dark keyboard button background color for dark apperance.
-    static var keyboardDarkButtonBackgroundForDarkAppearance: Color {
+    static var keyboardDarkButtonBackgroundForDarkAppearance: Self {
         color(for: .keyboardDarkButtonBackgroundForDarkAppearance)
     }
     
     /// The standard dark keyboard button foreground color.
-    static var keyboardDarkButtonForeground: Color {
+    static var keyboardDarkButtonForeground: Self {
         color(for: .keyboardButtonForeground)
     }
     
     /// The standard dark keyboard button foreground color for dark apperance.
-    static var keyboardDarkButtonForegroundForDarkAppearance: Color {
+    static var keyboardDarkButtonForegroundForDarkAppearance: Self {
         color(for: .keyboardButtonForegroundForDarkAppearance)
     }
 }
@@ -77,38 +77,38 @@ public extension Color {
 public extension Color {
     
     /// The standard keyboard button background color.
-    static func keyboardBackground(for context: KeyboardContext) -> Color {
+    static func keyboardBackground(for context: KeyboardContext) -> Self {
         .keyboardBackground
     }
     
     /// The standard keyboard button background color.
-    static func keyboardButtonBackground(for context: KeyboardContext) -> Color {
+    static func keyboardButtonBackground(for context: KeyboardContext) -> Self {
         context.hasDarkColorScheme ?
             .keyboardButtonBackgroundForColorSchemeBug :
             .keyboardButtonBackground
     }
 
     /// The standard keyboard button foreground color.
-    static func keyboardButtonForeground(for context: KeyboardContext) -> Color {
+    static func keyboardButtonForeground(for context: KeyboardContext) -> Self {
         context.hasDarkColorScheme ?
             .keyboardButtonForegroundForDarkAppearance :
             .keyboardButtonForeground
     }
 
     /// The standard keyboard button shadow color.
-    static func keyboardButtonShadow(for context: KeyboardContext) -> Color {
+    static func keyboardButtonShadow(for context: KeyboardContext) -> Self {
         .keyboardButtonShadow
     }
 
     /// The standard dark keyboard button background color.
-    static func keyboardDarkButtonBackground(for context: KeyboardContext) -> Color {
+    static func keyboardDarkButtonBackground(for context: KeyboardContext) -> Self {
         context.hasDarkColorScheme ?
             .keyboardDarkButtonBackgroundForColorSchemeBug :
             .keyboardDarkButtonBackground
     }
 
     /// The standard dark keyboard button foreground color.
-    static func keyboardDarkButtonForeground(for context: KeyboardContext) -> Color {
+    static func keyboardDarkButtonForeground(for context: KeyboardContext) -> Self {
         context.hasDarkColorScheme ?
             .keyboardDarkButtonForegroundForDarkAppearance :
             .keyboardDarkButtonForeground

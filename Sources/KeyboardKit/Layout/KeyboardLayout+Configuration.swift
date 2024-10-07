@@ -13,9 +13,6 @@ public extension KeyboardLayout {
 
     /// This type defines layout configs for various devices
     /// and screen orientations.
-    ///
-    /// The standard configurations can be changed to affect
-    /// the global defaults.
     struct Configuration: Equatable {
 
         /// Create a new layout configuration.
@@ -106,28 +103,28 @@ public extension KeyboardLayout.Configuration {
     // MARK: - Standard Configuration Heights
 
     /// The standard iPad portait row height.
-    static var standardPadRowHeight = 64.0
+    static var standardPadRowHeight: Double { 64.0 }
 
     /// The standard iPad landscape row height.
-    static var standardPadLandscapeRowHeight = 86.0
+    static var standardPadLandscapeRowHeight: Double { 86.0 }
 
     /// The standard large iPad Pro portait row height.
-    static var standardPadProLargeRowHeight = 69.0
+    static var standardPadProLargeRowHeight: Double { 69.0 }
 
     /// The standard large iPad Pro landscape row height.
-    static var standardPadProLargeLandscapeRowHeight = 88.0
+    static var standardPadProLargeLandscapeRowHeight: Double { 88.0 }
 
     /// The standard iPhone portrait row height.
-    static var standardPhoneRowHeight = 54.0
+    static var standardPhoneRowHeight: Double { 54.0 }
 
     /// The standard iPhone portrait row height.
-    static var standardPhoneLandscapeRowHeight = 40.0
+    static var standardPhoneLandscapeRowHeight: Double { 40.0 }
 
     /// The standard iPhone Pro Max portrait row height.
-    static var standardPhoneProMaxRowHeight = 56.0
+    static var standardPhoneProMaxRowHeight: Double { 56.0 }
 
     /// The standard iPhone Pro Max portrait row height.
-    static var standardPhoneProMaxLandscapeRowHeight = 40.0
+    static var standardPhoneProMaxLandscapeRowHeight: Double { 40.0 }
 
 
     // MARK: - Standard Configuration Properties

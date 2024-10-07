@@ -10,9 +10,9 @@ import Foundation
 
 public extension String {
  
-    /// A list of mutable, western sentence delimiters.
+    /// A list of western sentence delimiters.
     static var sentenceDelimiters = ["!", ".", "?"]
-    
+
     /// Whether or not this is a western sentence delimiter.
     var isSentenceDelimiter: Bool {
         Self.sentenceDelimiters.contains(self)
@@ -22,7 +22,9 @@ public extension String {
 public extension Collection where Element == String {
 
     /// A list of mutable western sentence delimiters.
-    static var sentenceDelimiters: [String] { String.sentenceDelimiters }
+    static var sentenceDelimiters: [String] {
+        String.sentenceDelimiters
+    }
 }
 
 

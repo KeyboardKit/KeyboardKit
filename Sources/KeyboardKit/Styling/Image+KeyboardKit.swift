@@ -10,49 +10,49 @@ import SwiftUI
 
 public extension Image {
     
-    static var keyboardEmoji = asset("keyboardEmoji")
-    static var keyboardKit = asset("keyboardKitIcon")
+    static var keyboardEmoji: Self { asset("keyboardEmoji") }
+    static var keyboardKit: Self { asset("keyboardKitIcon") }
     
-    static var keyboard = symbol("keyboard")
-    static var keyboardArrowUp = symbol("arrow.up")
-    static var keyboardArrowDown = symbol("arrow.down")
-    static var keyboardArrowLeft = symbol("arrow.left")
-    static var keyboardArrowRight = symbol("arrow.right")
-    static var keyboardAudioFeedbackDisabled = symbol("speaker")
-    static var keyboardAudioFeedbackEnabled = symbol("speaker.wave.3.fill")
-    static var keyboardBackspace = symbol("delete.left")
-    static var keyboardBackspaceRtl = symbol("delete.right")
-    static var keyboardBrightnessDown = symbol("sun.min")
-    static var keyboardBrightnessUp = symbol("sun.max")
-    static var keyboardCommand = symbol("command")
-    static var keyboardControl = symbol("control")
-    static var keyboardDictation = symbol("mic")
-    static var keyboardDismiss = symbol("keyboard.chevron.compact.down")
-    static var keyboardEmail = symbol("envelope")
-    static var keyboardEmojiSymbol = symbol("face.smiling")
-    static var keyboardGlobe = symbol("globe")
-    static var keyboardHapticFeedbackDisabled = symbol("hand.tap")
-    static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
-    static var keyboardImages = symbol("photo")
-    static var keyboardNewline = symbol("arrow.turn.down.left")
-    static var keyboardNewlineRtl = symbol("arrow.turn.down.right")
-    static var keyboardOption = symbol("option")
-    static var keyboardRedo = symbol("arrow.uturn.right")
-    static var keyboardSearch = symbol("magnifyingglass")
-    static var keyboardSettings = symbol("gearshape")
-    static var keyboardShiftCapslocked = symbol("capslock.fill")
-    static var keyboardShiftCapslockInactive = symbol("capslock")
-    static var keyboardShiftLowercased = symbol("shift")
-    static var keyboardShiftUppercased = symbol("shift.fill")
-    static var keyboardSpeaker = symbol("speaker")
-    static var keyboardSpeakerDown = symbol("speaker.wave.3")
-    static var keyboardSpeakerUp = symbol("speaker.wave.1")
-    static var keyboardTab = symbol("arrow.right.to.line")
-    static var keyboardTabRtl = symbol("arrow.left.to.line")
-    static var keyboardTheme = symbol("paintpalette")
-    static var keyboardUndo = symbol("arrow.uturn.left")
-    static var keyboardUrl = symbol("safari")
-    static var keyboardZeroWidthSpace = symbol("circle.dotted")
+    static var keyboard: Self { symbol("keyboard") }
+    static var keyboardArrowUp: Self { symbol("arrow.up") }
+    static var keyboardArrowDown: Self { symbol("arrow.down") }
+    static var keyboardArrowLeft: Self { symbol("arrow.left") }
+    static var keyboardArrowRight: Self { symbol("arrow.right") }
+    static var keyboardAudioFeedbackDisabled: Self { symbol("speaker") }
+    static var keyboardAudioFeedbackEnabled: Self { symbol("speaker.wave.3.fill") }
+    static var keyboardBackspace: Self { symbol("delete.left") }
+    static var keyboardBackspaceRtl: Self { symbol("delete.right") }
+    static var keyboardBrightnessDown: Self { symbol("sun.min") }
+    static var keyboardBrightnessUp: Self { symbol("sun.max") }
+    static var keyboardCommand: Self { symbol("command") }
+    static var keyboardControl: Self { symbol("control") }
+    static var keyboardDictation: Self { symbol("mic") }
+    static var keyboardDismiss: Self { symbol("keyboard.chevron.compact.down") }
+    static var keyboardEmail: Self { symbol("envelope") }
+    static var keyboardEmojiSymbol: Self { symbol("face.smiling") }
+    static var keyboardGlobe: Self { symbol("globe") }
+    static var keyboardHapticFeedbackDisabled: Self { symbol("hand.tap") }
+    static var keyboardHapticFeedbackEnabled: Self { symbol("hand.tap.fill") }
+    static var keyboardImages: Self { symbol("photo") }
+    static var keyboardNewline: Self { symbol("arrow.turn.down.left") }
+    static var keyboardNewlineRtl: Self { symbol("arrow.turn.down.right") }
+    static var keyboardOption: Self { symbol("option") }
+    static var keyboardRedo: Self { symbol("arrow.uturn.right") }
+    static var keyboardSearch: Self { symbol("magnifyingglass") }
+    static var keyboardSettings: Self { symbol("gearshape") }
+    static var keyboardShiftCapslocked: Self { symbol("capslock.fill") }
+    static var keyboardShiftCapslockInactive: Self { symbol("capslock") }
+    static var keyboardShiftLowercased: Self { symbol("shift") }
+    static var keyboardShiftUppercased: Self { symbol("shift.fill") }
+    static var keyboardSpeaker: Self { symbol("speaker") }
+    static var keyboardSpeakerDown: Self { symbol("speaker.wave.3") }
+    static var keyboardSpeakerUp: Self { symbol("speaker.wave.1") }
+    static var keyboardTab: Self { symbol("arrow.right.to.line") }
+    static var keyboardTabRtl: Self { symbol("arrow.left.to.line") }
+    static var keyboardTheme: Self { symbol("paintpalette") }
+    static var keyboardUndo: Self { symbol("arrow.uturn.left") }
+    static var keyboardUrl: Self { symbol("safari") }
+    static var keyboardZeroWidthSpace: Self { symbol("circle.dotted") }
     
     static func keyboardAudioFeedback(enabled: Bool) -> Image {
         enabled ? keyboardAudioFeedbackEnabled : keyboardAudioFeedbackDisabled

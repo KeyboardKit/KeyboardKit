@@ -65,7 +65,7 @@ public extension Keyboard {
 }
 
 private struct KeyboardSpaceContentState {
-    
+
     static var lastLocaleText: String?
 }
 

@@ -152,15 +152,33 @@ public extension KeyboardFont {
     static func title2(weight: FontWeight) -> Self { .init(.title2, weight) }
     static func title3(weight: FontWeight) -> Self { .init(.title3, weight) }
 
-    static func custom(_ name: String, fixedSize: CGFloat) -> Self { .init(.customFixed(name, size: fixedSize)) }
-    static func custom(_ name: String, fixedSize: CGFloat, weight: FontWeight) -> Self { .init(.customFixed(name, size: fixedSize), weight) }
-    static func custom(_ name: String, size: CGFloat) -> Self { .init(.custom(name, size: size)) }
-    static func custom(_ name: String, size: CGFloat, weight: FontWeight) -> Self { .init(.custom(name, size: size), weight) }
+    static func custom(_ name: String, fixedSize: CGFloat) -> Self {
+        .init(.customFixed(name, size: fixedSize))
+    }
 
-    static func system(size: CGFloat) -> Self { .init(.system(size: size)) }
-    static func system(size: CGFloat, weight: FontWeight) -> Self { .init(.system(size: size), weight) }
+    static func custom(_ name: String, fixedSize: CGFloat, weight: FontWeight) -> Self {
+        .init(.customFixed(name, size: fixedSize), weight)
+    }
 
-    func weight(_ weight: FontWeight) -> Self { .init(type, weight) }
+    static func custom(_ name: String, size: CGFloat) -> Self {
+        .init(.custom(name, size: size))
+    }
+
+    static func custom(_ name: String, size: CGFloat, weight: FontWeight) -> Self {
+        .init(.custom(name, size: size), weight)
+    }
+
+    static func system(size: CGFloat) -> Self {
+        .init(.system(size: size))
+    }
+
+    static func system(size: CGFloat, weight: FontWeight) -> Self {
+        .init(.system(size: size), weight)
+    }
+
+    func weight(_ weight: FontWeight) -> Self {
+        .init(type, weight)
+    }
 
     /// Get the native font for the font style.
     var font: Font {

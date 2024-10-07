@@ -94,28 +94,32 @@ public extension Callouts {
 public extension Callouts.CalloutStyle {
     
     /// The standard callout style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 extension Callouts.CalloutStyle {
     
-    static var preview1 = Self(
-        backgroundColor: .red,
-        borderColor: .white,
-        buttonCornerRadius: 10,
-        shadowColor: .green,
-        shadowRadius: 3,
-        textColor: .black
-    )
+    static var preview1: Self {
+        .init(
+            backgroundColor: .red,
+            borderColor: .white,
+            buttonCornerRadius: 10,
+            shadowColor: .green,
+            shadowRadius: 3,
+            textColor: .black
+        )
+    }
     
-    static var preview2 = Self(
-        backgroundColor: .green,
-        borderColor: .white,
-        buttonCornerRadius: 20,
-        shadowColor: .black,
-        shadowRadius: 10,
-        textColor: .red
-    )
+    static var preview2: Self {
+        .init(
+            backgroundColor: .green,
+            borderColor: .white,
+            buttonCornerRadius: 20,
+            shadowColor: .black,
+            shadowRadius: 10,
+            textColor: .red
+        )
+    }
 }
 
 public extension View {
@@ -132,7 +136,9 @@ private extension Callouts.CalloutStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: Callouts.CalloutStyle = .standard
+        static var defaultValue: Callouts.CalloutStyle {
+            .standard
+        }
     }
 }
 

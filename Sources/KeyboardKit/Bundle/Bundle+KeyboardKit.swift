@@ -11,7 +11,7 @@ import Foundation
 extension Bundle {
     
     /// The main library bundle.
-    static var library = Bundle.keyboardKit
+    static var library: Bundle { .keyboardKit }
 }
 
 public extension Bundle {

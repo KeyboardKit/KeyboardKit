@@ -22,7 +22,9 @@ public extension String {
 public extension Collection where Element == String {
 
     /// A list of mutable western word delimiters.
-    static var wordDelimiters: [String] { String.wordDelimiters }
+    static var wordDelimiters: [String] {
+        String.wordDelimiters
+    }
 }
 
 public extension String {

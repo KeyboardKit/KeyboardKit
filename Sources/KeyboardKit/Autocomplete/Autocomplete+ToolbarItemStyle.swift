@@ -79,29 +79,33 @@ public extension Autocomplete {
 public extension Autocomplete.ToolbarItemStyle {
     
     /// The standard autocomplete toolbar item style.
-    static var standard = Self()
+    static var standard: Self { .init() }
     
     /// The standard autocomplete toolbar autocorrect style.
-    static var standardAutocorrect = Self(
-        backgroundColor: .white.opacity(0.5)
-    )
+    static var standardAutocorrect: Self {
+        .init(backgroundColor: .white.opacity(0.5))
+    }
 }
 
 extension Autocomplete.ToolbarItemStyle {
     
-    static var preview1 = Self(
-        titleFont: .callout,
-        titleColor: .red,
-        subtitleFont: .body,
-        subtitleColor: .yellow
-    )
+    static var preview1: Self {
+        .init(
+            titleFont: .callout,
+            titleColor: .red,
+            subtitleFont: .body,
+            subtitleColor: .yellow
+        )
+    }
     
-    static var preview2 = Self(
-        titleFont: .footnote,
-        titleColor: .blue,
-        subtitleFont: .headline,
-        subtitleColor: .purple
-    )
+    static var preview2: Self {
+        .init(
+            titleFont: .footnote,
+            titleColor: .blue,
+            subtitleFont: .headline,
+            subtitleColor: .purple
+        )
+    }
 }
 
 public extension View {
@@ -118,7 +122,9 @@ private extension Autocomplete.ToolbarItemStyle {
 
     struct Key: EnvironmentKey {
 
-        static var defaultValue: Autocomplete.ToolbarItemStyle = .standard
+        static var defaultValue: Autocomplete.ToolbarItemStyle {
+            .standard
+        }
     }
 }
 
