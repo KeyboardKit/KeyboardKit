@@ -25,9 +25,10 @@ import UIKit
 /// to automatically rendered supported keyboard types.
 ///
 /// You can use ``locale`` to get and set the current locale
-/// or use ``KeyboardLocale``-based properties and functions
-/// for more convenience. If ``locales`` has multiple values,
-/// ``selectNextLocale()`` will toggle through these locales.
+/// or use ``Locale``-based properties and functions. If the
+/// ``locales`` or ``addedLocales`` properties have multiple
+/// values, ``selectNextLocale()`` will toggle through these,
+/// where ``addedLocales`` have precedence over ``locales``.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use

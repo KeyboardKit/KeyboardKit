@@ -7,18 +7,29 @@ KeyboardKit tries to honor semantic versioning:
 * Breaking changes should not occur in `minor` and `patch` updates.
 * Breaking changes *can* occur in `minor` and `patch` updates, if needed.
 
-These release notes only cover the current major version. 
+These release notes only cover the current major version. Check out version tags for older release notes.  
 
 
 ## 9.0
 
-This version removes all deprecated code.
+This version removes all deprecated code, simplifies many concepts, and prepares for future conformance to strict concurrency.
+
+This version introduces migration deprecations, where most discontinued types remain as deprecated types until 9.1, to help you transition from KeyboardKit 8.
 
 ### 🧪 Experiments
 
-* The next keyboard button experiments have been made permanent.
+The next keyboard button experiments have been made permanent.
 
-### ‼️ Breaking changes
+### 🇸🇪 Localization
+
+This version simplifies all locale-specific features to only use `Location`. This means that you no longer need to use `KeyboardLocale` and `KeyboardLocaleInfo`. 
+
+### 🗑️ Migration Deprecations
+
+* `KeyboardLocale`
+* `KeyboardLocaleInfo`
+
+### 🚨 Breaking Changes
 
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.

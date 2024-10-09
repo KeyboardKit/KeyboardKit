@@ -10,16 +10,9 @@ import Foundation
 
 public extension KeyboardContext {
 
-    /// Map ``locale`` to a ``KeyboardLocale``, if possible.
-    var keyboardLocale: KeyboardLocale? {
-        let match = KeyboardLocale.allCases.first { $0.matches(locale) }
-        let fuzzy = KeyboardLocale.allCases.first { $0.matchesLanguage(in: locale) }
-        return match ?? fuzzy
-    }
-
-    /// Whether a certain locale is the current ``locale``.
-    func hasCurrentLocale(_ locale: KeyboardLocale) -> Bool {
-        self.locale.identifier == locale.localeIdentifier
+    /// Check if the context has a certain `locale`.
+    func hasCurrentLocale(_ locale: Locale) -> Bool {
+        self.locale == locale
     }
 
     /// Select the next locale in the selectable locales.
@@ -36,10 +29,5 @@ public extension KeyboardContext {
     /// Set ``locale`` to the provided locale.
     func setLocale(_ locale: Locale) {
         self.locale = locale
-    }
-
-    /// Set ``locale`` to the provided keyboard locale.
-    func setLocale(_ locale: KeyboardLocale) {
-        self.locale = locale.locale
     }
 }

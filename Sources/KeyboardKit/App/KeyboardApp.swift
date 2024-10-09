@@ -57,7 +57,7 @@ public struct KeyboardApp {
         bundleId: String,
         keyboardBundleId: String? = nil,
         appGroupId: String? = nil,
-        locales: [KeyboardLocale] = .all,
+        locales: [Locale] = .keyboardKitSupported,
         deepLinks: DeepLinks? = nil,
         keyboardSettingsKeyPrefix: String? = nil
     ) {
@@ -95,7 +95,7 @@ public struct KeyboardApp {
     public let appGroupId: String?
 
     /// The locales to use in the app.
-    public let locales: [KeyboardLocale]
+    public let locales: [Locale]
 
     /// App-specific deep links, if any.
     public let deepLinks: DeepLinks?

@@ -104,11 +104,11 @@ private extension Keyboard.SpaceContent {
     
     Group {
         Keyboard.SpaceContent(
-            localeText: KeyboardLocale.english.locale.localizedName,
+            localeText: Locale.english.localizedName ?? "",
             spaceText: KKL10n.space.text(for: .english)
         )
         Keyboard.SpaceContent(
-            localeText: KeyboardLocale.spanish.locale.localizedName,
+            localeText: Locale.spanish.localizedName ?? "",
             spaceView: Image.keyboardGlobe
         )
     }

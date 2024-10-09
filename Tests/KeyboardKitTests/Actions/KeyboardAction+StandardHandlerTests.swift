@@ -32,18 +32,21 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         textDocumentProxy = MockTextDocumentProxy()
         textDocumentProxy.documentContextBeforeInput = ""
 
-        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
-        controller.state.keyboardContext.originalTextDocumentProxy = textDocumentProxy
-        controller.services.spaceDragGestureHandler = spaceDragHandler
+        let state = controller.state
+        let services = controller.services
+
+        state.keyboardContext.locale = .swedish
+        state.keyboardContext.originalTextDocumentProxy = textDocumentProxy
+        services.spaceDragGestureHandler = spaceDragHandler
         
         handler = TestClass(
             controller: controller,
-            keyboardContext: controller.state.keyboardContext,
-            keyboardBehavior: controller.services.keyboardBehavior,
-            autocompleteContext: controller.state.autocompleteContext,
-            feedbackContext: controller.state.feedbackContext,
-            feedbackService: controller.services.feedbackService,
-            spaceDragGestureHandler: controller.services.spaceDragGestureHandler
+            keyboardContext: state.keyboardContext,
+            keyboardBehavior: services.keyboardBehavior,
+            autocompleteContext: state.autocompleteContext,
+            feedbackContext: state.feedbackContext,
+            feedbackService: services.feedbackService,
+            spaceDragGestureHandler: services.spaceDragGestureHandler
         )
     }
 
@@ -131,29 +134,31 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
     func testReplacementActionIsOnlyDefinedForReleaseOnCharWithProxyReplacement() {
+        let context = controller.state.keyboardContext
         var result = handler.replacementAction(for: .press, on: .character("”"))
         XCTAssertNil(result)
         result = handler.replacementAction(for: .release, on: .backspace)
         XCTAssertNil(result)
         result = handler.replacementAction(for: .release, on: .character("A"))
         XCTAssertNil(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
+        context.locale = .swedish
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNotNil(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
+        context.locale = .english
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNil(result)
     }
 
     func testTryHandleReplacementActionTriggersWhenItShould() {
+        let context = controller.state.keyboardContext
         var result = handler.tryHandleReplacementAction(before: .release, on: .character("A"))
         XCTAssertFalse(result)
         result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
         XCTAssertFalse(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
+        context.locale = .swedish
         result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertTrue(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
+        context.locale = .english
         result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertFalse(result)
     }

@@ -15,7 +15,7 @@ public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
     public init() {}
 
-    public var supportedLocales: [KeyboardLocale] {
+    public var supportedLocales: [Locale] {
         [
             .english, .arabic, .catalan, .croatian, .czech,
             .danish, .dutch, .dutch_belgium, .english_gb,

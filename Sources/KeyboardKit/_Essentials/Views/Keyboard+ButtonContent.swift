@@ -69,7 +69,7 @@ private extension Keyboard.ButtonContent {
     var spaceView: some View {
         let text = styleService.buttonText(for: action) ?? ""
         let showLocale = keyboardContext.locales.count > 1
-        let localeName = keyboardContext.locale.localizedLanguageName
+        let localeName = keyboardContext.locale.localizedLanguageName ?? ""
         return Keyboard.SpaceContent(
             localeText: showLocale ? localeName : text,
             spaceText: text
@@ -88,10 +88,7 @@ private extension Keyboard.ButtonContent {
     
     let multiLocaleContext: KeyboardContext = {
         let context = KeyboardContext.preview
-        context.locales = [
-            KeyboardLocale.english.locale,
-            KeyboardLocale.swedish.locale
-        ]
+        context.locales = [.english, .swedish]
         return context
     }()
     

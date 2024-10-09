@@ -182,13 +182,13 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     // MARK: - Observation
 
-    func testChangingKeyboardLocaleReplacesLocaleOfAllLocaleBasedDependencies() {
+    func testChangingLocaleReplacesLocaleOfAllLocaleBasedDependencies() {
         let vc = TestClass()
-        let locale = KeyboardLocale.swedish
+        let locale = Locale.swedish
         vc.viewDidLoad()
-        vc.state.keyboardContext.locale = locale.locale
+        vc.state.keyboardContext.locale = locale
         eventually {
-            XCTAssertEqual(vc.services.autocompleteService.locale, locale.locale)
+            XCTAssertEqual(vc.services.autocompleteService.locale, locale)
         }
     }
 

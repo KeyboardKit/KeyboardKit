@@ -35,7 +35,7 @@ The <doc:Getting-Started-Article> article helps you get started with KeyboardKit
 
 ## Supported Locales
 
-KeyboardKit supports **68** keyboard-specific ``KeyboardLocale``s:
+KeyboardKit supports **68** keyboard-specific ``Locale``s:
 
 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
 🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
@@ -235,9 +235,8 @@ KeyboardKit is available under the MIT license.
 
 ### Localization
 
-- ``KeyboardLocale``
-- ``KeyboardLocaleInfo``
 - ``KKL10n``
+- ``Foundation/Locale``
 - ``Localizable``
 - ``LocalizedService``
 

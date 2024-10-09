@@ -44,7 +44,7 @@ class Callouts_StandardServiceTests: XCTestCase {
     
     
     func testCalloutActionsMapsContextLocaleToService() {
-        context.locale = Locale(identifier: KeyboardLocale.english.id)
+        context.locale = Locale.english
         service = .init(
             keyboardContext: context,
             localizedServices: [TestService(localeKey: "en")]
@@ -56,7 +56,7 @@ class Callouts_StandardServiceTests: XCTestCase {
     }
     
     func testCalloutActionsReturnsEmptyResultForMissingLocale() {
-        context.locale = Locale(identifier: KeyboardLocale.swedish.id)
+        context.locale = Locale.swedish
         service = .init(
             keyboardContext: context,
             localizedServices: [TestService(localeKey: "en")]
@@ -68,11 +68,11 @@ class Callouts_StandardServiceTests: XCTestCase {
     }
     
     func testCanRegisterLocalizedService() {
-        let locale = KeyboardLocale.albanian
-        let new = TestService(localeKey: locale.localeIdentifier)
-        XCTAssertNil(service.localizedServices.value(for: locale.locale))
+        let locale = Locale.albanian
+        let new = TestService(localeKey: locale.identifier)
+        XCTAssertNil(service.localizedServices.value(for: locale))
         service.registerLocalizedService(new)
-        XCTAssertIdentical(service.localizedServices.value(for: locale.locale), new)
+        XCTAssertIdentical(service.localizedServices.value(for: locale), new)
     }
     
     
@@ -81,11 +81,11 @@ class Callouts_StandardServiceTests: XCTestCase {
             if locale == .albanian { return TestService(localeKey: "apa") }
             return nil
         }
-        context.setLocale(KeyboardLocale.albanian)
-        XCTAssertNil(service.localizedServices.value(for: KeyboardLocale.albanian))
+        context.setLocale(.albanian)
+        XCTAssertNil(service.localizedServices.value(for: Locale.albanian))
         let result = service.service(for: context)
         XCTAssertEqual((result as? TestService)?.localeKey, "apa")
-        XCTAssertTrue(service.localizedServices.value(for: KeyboardLocale.albanian) is TestService)
+        XCTAssertTrue(service.localizedServices.value(for: Locale.albanian) is TestService)
     }
 }
 

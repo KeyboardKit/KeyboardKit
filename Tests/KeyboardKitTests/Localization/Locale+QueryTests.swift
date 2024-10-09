@@ -1,5 +1,5 @@
 //
-//  KeyboardLocale+QueryTests.swift
+//  Locale+QueryTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-16.
@@ -9,10 +9,11 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardLocale_QueryTests: XCTestCase {
+class Locale_QueryTests: XCTestCase {
+
+    let locale = Locale.swedish
 
     func testLocaleQueryAlwaysMatchesLocalName() {
-        let locale = KeyboardLocale.swedish
         XCTAssertTrue(locale.matches(query: "svE", in: .swedish))
         XCTAssertTrue(locale.matches(query: "sKa", in: .swedish))
         XCTAssertTrue(locale.matches(query: "Sve", in: .english))
@@ -20,7 +21,6 @@ class KeyboardLocale_QueryTests: XCTestCase {
     }
 
     func testLocaleQueryAlwaysMatchesLocalizedName() {
-        let locale = KeyboardLocale.swedish
         XCTAssertTrue(locale.matches(query: "sWe", in: .english))
         XCTAssertTrue(locale.matches(query: "disH", in: .english))
         XCTAssertFalse(locale.matches(query: "Swe", in: .danish))

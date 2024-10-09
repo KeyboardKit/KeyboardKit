@@ -1,5 +1,5 @@
 //
-//  KeyboardLocale+Dictionary.swift
+//  Locale+Dictionary.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-01.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension KeyboardLocale {
+public extension Locale {
     
     /// This locale-based dictionary can store item types to
     /// let you resolve them based on locale.
@@ -17,16 +17,6 @@ public extension KeyboardLocale {
     /// to find value for the locale's `identifier` then the
     /// locale's `languageCode`.
     struct Dictionary<ItemType> {
-
-        /// Create a dictionary with locale entries.
-        public init(_ dict: [KeyboardLocale: ItemType]) {
-            self.dictionary = .init(
-                uniqueKeysWithValues: dict.keys.compactMap {
-                    guard let value = dict[$0] else { return nil }
-                    return ($0.localeIdentifier, value)
-                }
-            )
-        }
 
         /// Create a dictionary with locale entries.
         public init(_ dict: [Locale: ItemType]) {
@@ -51,16 +41,16 @@ public extension KeyboardLocale {
     }
 }
 
-public extension KeyboardLocale.Dictionary {
+public extension Locale.Dictionary {
 
-    /// Check if the dictionary has a certain locale value.
-    func hasValue(for locale: KeyboardLocaleInfo) -> Bool {
+    /// Check if the dictionary has a certain locale.
+    func hasValue(for locale: Locale) -> Bool {
         value(for: locale) != nil
     }
 
     /// Insert a value into the dictionary.
-    mutating func set(_ value: ItemType, for locale: KeyboardLocaleInfo) {
-        set(value, for: locale.localeIdentifier)
+    mutating func set(_ value: ItemType, for locale: Locale) {
+        set(value, for: locale.identifier)
     }
     
     /// Insert a value into the dictionary.
@@ -69,9 +59,10 @@ public extension KeyboardLocale.Dictionary {
     }
 
     /// Get a certain value for the provided locale.
-    func value(for locale: KeyboardLocaleInfo) -> ItemType? {
-        if let item = dictionary[locale.localeIdentifier] { return item }
-        if let item = dictionary[locale.localeLanguageCode] { return item }
+    func value(for locale: Locale) -> ItemType? {
+        if let item = dictionary[locale.identifier] { return item }
+        guard let languageCode = locale.languageCode else { return nil }
+        if let item = dictionary[languageCode] { return item }
         return nil
     }
 }

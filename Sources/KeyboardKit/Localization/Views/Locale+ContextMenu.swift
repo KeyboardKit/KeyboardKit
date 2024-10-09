@@ -1,5 +1,5 @@
 //
-//  KeyboardLocale+ContextMenu.swift
+//  Locale+ContextMenu.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-19.
@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-public extension KeyboardLocale {
+public extension Locale {
     
-    /// This view modifier can apply keyboard locale context
-    /// menus to any view.
+    /// This view modifier can apply locale context menus to
+    /// any view.
     ///
     /// The easiest way to apply this modifier is to use the
-    /// ``SwiftUICore/View/keyboardLocaleContextMenu(for:locales:tapAction:)``
+    /// ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)``
     /// modifier. The ``KeyboardView`` automatically applies
     /// it to the ``KeyboardAction/nextLocale`` action.
     ///
@@ -31,7 +31,7 @@ public extension KeyboardLocale {
         ///   - tapAction: The action to trigger when the view is tapped.
         public init(
             keyboardContext: KeyboardContext,
-            locales: [KeyboardLocale]? = nil,
+            locales: [Locale]? = nil,
             tapAction: @escaping () -> Void
         ) where MenuItem == Text {
             self.init(
@@ -39,7 +39,7 @@ public extension KeyboardLocale {
                 locales: locales,
                 tapAction: tapAction
             ) {
-                Text($0.localizedName(in: keyboardContext.localePresentationLocale ?? $0))
+                Text($0.localizedName(in: keyboardContext.localePresentationLocale ?? $0) ?? "")
             }
         }
         
@@ -52,7 +52,7 @@ public extension KeyboardLocale {
         ///   - menuItem: A menu item view builder.
         public init(
             keyboardContext: KeyboardContext,
-            locales: [KeyboardLocale]? = nil,
+            locales: [Locale]? = nil,
             tapAction: @escaping () -> Void,
             @ViewBuilder menuItem: @escaping (Locale) -> MenuItem
         ) {
@@ -65,7 +65,7 @@ public extension KeyboardLocale {
         @ObservedObject
         private var keyboardContext: KeyboardContext
 
-        private var locales: [KeyboardLocale]?
+        private var locales: [Locale]?
 
         private var tapAction: () -> Void
         
@@ -105,7 +105,7 @@ private extension View {
     }
 }
 
-private extension KeyboardLocale.ContextMenu {
+private extension Locale.ContextMenu {
 
     var menu: some View {
         ForEach(menuLocales, id: \.identifier) { locale in
@@ -123,7 +123,7 @@ private extension KeyboardLocale.ContextMenu {
         let context = keyboardContext
         let contextLocale = context.locale
         let contextLocales = context.selectableLocales
-        let customLocales = locales?.map { $0.locale }
+        let customLocales = self.locales
         let locales = customLocales ?? contextLocales
         var filtered = locales
             .filter { $0.identifier != contextLocale.identifier }
@@ -132,30 +132,32 @@ private extension KeyboardLocale.ContextMenu {
     }
 
     func title(for locale: Locale) -> String {
-        locale.localizedName(in: keyboardContext.localePresentationLocale ?? locale)
+        locale.localizedName(
+            in: keyboardContext.localePresentationLocale ?? locale
+        ) ?? ""
     }
 }
 
 public extension View {
 
-    /// Apply a context menu that either lists all available
-    /// locales in the ``KeyboardContext``, or a custom list.
+    /// Apply a context menu that either lists a custom list
+    /// of locales, or applicable locales from the `context`.
     ///
-    /// If you don't provide any locales, this menu will use
-    /// the context ``KeyboardContext/addedLocales``, if any,
-    /// else ``KeyboardContext/locales``.
+    /// If you don't provide locales, this menu will use the
+    /// context ``KeyboardContext/addedLocales``, if any, or
+    /// its ``KeyboardContext/locales``.
     ///
     /// - Parameters:
     ///   - context: The keyboard context to use.
     ///   - locales: The explicit locales to list, if any.
     ///   - tapAction: The action to trigger when the view is tapped.
-    func keyboardLocaleContextMenu(
+    func localeContextMenu(
         for context: KeyboardContext,
-        locales: [KeyboardLocale]? = nil,
+        locales: [Locale]? = nil,
         tapAction: @escaping () -> Void
     ) -> some View {
         self.modifier(
-            KeyboardLocale.ContextMenu(
+            Locale.ContextMenu(
                 keyboardContext: context,
                 locales: locales,
                 tapAction: tapAction
@@ -166,23 +168,23 @@ public extension View {
     /// Apply a context menu that either lists all available
     /// locales in the ``KeyboardContext``, or a custom list.
     ///
-    /// If you don't provide any locales, this menu will use
-    /// the context ``KeyboardContext/addedLocales``, if any,
-    /// else ``KeyboardContext/locales``.
+    /// If you don't provide locales, this menu will use the
+    /// context ``KeyboardContext/addedLocales``, if any, or
+    /// its ``KeyboardContext/locales``.
     ///
     /// - Parameters:
     ///   - context: The keyboard context to use.
     ///   - locales: The explicit locales to list, if any.
     ///   - tapAction: The action to trigger when the view is tapped.
     ///   - menuItem: A menu item view builder.
-    func keyboardLocaleContextMenu<ButtonView: View>(
+    func localeContextMenu<ButtonView: View>(
         for context: KeyboardContext,
-        locales: [KeyboardLocale]? = nil,
+        locales: [Locale]? = nil,
         tapAction: @escaping () -> Void,
         menuItem: @escaping (Locale) -> ButtonView
     ) -> some View {
         self.modifier(
-            KeyboardLocale.ContextMenu(
+            Locale.ContextMenu(
                 keyboardContext: context,
                 locales: locales,
                 tapAction: tapAction,
@@ -200,13 +202,13 @@ public extension View {
         var context = KeyboardContext()
 
         var localeName: String {
-            context.keyboardLocale?.localizedName(in: .english) ?? "-"
+            context.locale.localizedName(in: .english) ?? "-"
         }
 
         var body: some View {
             VStack {
                 Text("🌐 \(localeName)")
-                    .keyboardLocaleContextMenu(
+                    .localeContextMenu(
                     for: context,
                     // locales: [.swedish],
                     tapAction: { }
@@ -216,12 +218,12 @@ public extension View {
                 }
             }
             .onAppear {
-                context.locales = KeyboardLocale.allCases.map { $0.locale }
+                context.locales = .keyboardKitSupported
                 context.addedLocales = [
-                    // KeyboardLocale.arabic.locale,
-                    // KeyboardLocale.mongolian.locale
+                    // .arabic,
+                    // .mongolian
                 ]
-                context.localePresentationLocale = KeyboardLocale.danish.locale
+                context.localePresentationLocale = .danish
             }
             .id(context.locale.identifier)
         }

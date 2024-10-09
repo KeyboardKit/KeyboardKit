@@ -103,9 +103,9 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ## How to customize the layout for a specific locale
 
-If a service inherits ``KeyboardLayout/StandardService``, you can use ``KeyboardLayoutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedLayoutService(_:)`` to register a custom service for a certain ``KeyboardLocale``.
+Services that inherit ``KeyboardLayout/StandardService`` can use ``KeyboardLayoutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedLayoutService(_:)`` to register a custom service for a certain locale.
 
-For instance, this is how you could make KeyboardKit Pro use the QWERTY layout for ``KeyboardLocale/german``:
+For instance, this is how you could make KeyboardKit Pro use the QWERTY layout for ``Locale/german``:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -113,7 +113,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         services.tryRegisterLocalizedLayoutService(
-            try! KeyboardLayout.ProService.German(alphabeticInputSet: .qwerty) 
+            try! .german(alphabeticInputSet: .qwerty) 
         )
     }
 }

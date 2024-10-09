@@ -30,7 +30,7 @@ public protocol DictationService: AnyObject {
     var authorizationStatus: Dictation.AuthorizationStatus { get }
     
     /// A list of supported locales.
-    var supportedLocales: [KeyboardLocale] { get }
+    var supportedLocales: [Locale] { get }
 
 
     /// Request dictation authorization.

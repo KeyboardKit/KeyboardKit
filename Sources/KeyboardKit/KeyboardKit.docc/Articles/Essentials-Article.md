@@ -214,7 +214,7 @@ See the <doc:Styling-Article> article for more information.
     
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks additional, powerful ``KeyboardView`` capabilities, including full support for all ``KeyboardLocale``s, a full-blown ``EmojiKeyboard``, input toolbars, powerful ``KeyboardViewPreview``s, etc.
+[KeyboardKit Pro][Pro] unlocks additional, powerful ``KeyboardView`` capabilities, including full support for all ``Foundation/Locale/keyboardKitSupported`` locales, a full-blown ``EmojiKeyboard``, input toolbars, powerful ``KeyboardViewPreview``s, etc.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -226,7 +226,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
 @TabNavigator {
     
     @Tab("Localization") {
-        KeyboardKit Pro unlocks localized services for all supported ``KeyboardLocale``s, which lets you create fully localized keyboard views that automatically shows the correct buttons, autocomplete suggestions, and callout actions.
+        KeyboardKit Pro unlocks localized services for all ``Foundation/Locale/keyboardKitSupported`` locales, which lets you create fully localized keyboard views that automatically shows the correct buttons, autocomplete suggestions, and callout actions.
 
         @Row {
             @Column { }
@@ -236,7 +236,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
             @Column { }
         }
         
-        The various license tiers unlock different amount of ``KeyboardLocale``s, where Gold unlocks all. Read more in the <doc:Localization-Article> article.
+        The various license tiers unlock different amount of locales, where Gold unlocks all. See the <doc:Localization-Article> article for more informationn.
     }
     
     @Tab("Emoji Keyboard") {

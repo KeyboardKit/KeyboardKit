@@ -225,19 +225,19 @@ public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == S
     return VStack {
         Autocomplete.Toolbar(
             suggestions: previewSuggestions,
-            locale: KeyboardLocale.english.locale,
+            locale: .english,
             suggestionAction: { _ in }
         ).previewBar()
         
         Autocomplete.Toolbar(
             suggestions: previewSuggestions + additional,
-            locale: KeyboardLocale.spanish.locale,
+            locale: .spanish,
             suggestionAction: { _ in }
         ).previewBar()
         
         Autocomplete.Toolbar(
             suggestions: previewSuggestions + additional,
-            locale: KeyboardLocale.spanish.locale,
+            locale: .spanish,
             suggestionAction: { _ in }
         )
         .previewBar()
@@ -245,7 +245,7 @@ public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == S
         
         Autocomplete.Toolbar(
             suggestions: previewSuggestions + additional,
-            locale: KeyboardLocale.spanish.locale,
+            locale: .spanish,
             suggestionAction: { _ in }
         )
         .previewBar()
@@ -253,7 +253,7 @@ public extension Autocomplete.Toolbar where ItemView == Item, SeparatorView == S
         
         Autocomplete.Toolbar(
             suggestions: previewSuggestions,
-            locale: KeyboardLocale.swedish.locale,
+            locale: .swedish,
             itemView: previewItem,
             suggestionAction: { _ in }
         )

@@ -1,20 +1,20 @@
 //
-//  KeyboardLocale+FlagTests.swift
+//  Locale+FlagTests.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2021-03-17.
-//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2024-10-09.
+//  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
 import XCTest
 
-class KeyboardLocale_FlagTests: XCTestCase {
-    
-    func testFlagIsValidForAllCases() {
-        let map = KeyboardLocale.all.map { ($0, $0.flag) }
-        let result = Dictionary(uniqueKeysWithValues: map)
-        let expected: [KeyboardLocale: String] = [
+class Locale_FlagTests: XCTestCase {
+
+    let locales = Locale.keyboardKitSupported
+
+    func testFlagIsValidForAllSupportedLocales() {
+        let expected: [Locale: String] = [
             .albanian: "🇦🇱",
             .arabic: "🇦🇪",
             .armenian: "🇦🇲",
@@ -85,19 +85,21 @@ class KeyboardLocale_FlagTests: XCTestCase {
             .welsh: "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
         ]
 
-        XCTAssertEqual(result.keys, expected.keys)
-        result.keys.forEach {
-            XCTAssertEqual(result[$0], expected[$0])
+        XCTAssertEqual(expected.keys.count, locales.count)
+        expected.keys.forEach {
+            XCTAssertEqual(expected[$0], $0.flag)
         }
     }
     
-    func testPrintFlagGrid() throws {
-        try XCTSkipIf(true)
+    func testPrintHtmlForFlagGrid() throws {
         var count = 0
         var text = ""
         print("")
-        printLine("Flag Grid")
-        KeyboardLocale.allCases.forEach { locale in
+        print("************************")
+        print("*** Locale Flag Grid ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
             count += 1
             text += "\(locale.flag) "
             if count == 10 {
@@ -106,41 +108,35 @@ class KeyboardLocale_FlagTests: XCTestCase {
                 text = ""
             }
         }
-        if !text.isEmpty {
-            printLine(text)
+        print("")
+    }
+
+    func testPrintHtmlForFlagList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Flag List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            let name = locale.localizedName(in: .english) ?? ""
+            printLine("\(locale.flag) \(name)")
         }
-    }
-    
-    func testPrintFlagNameList() throws {
-        try XCTSkipIf(true)
         print("")
-        printLine("Flag Names")
-        KeyboardLocale.allCases.forEach { locale in
-            printLine("\(locale.flag) \(locale.locale.localizedName(in: KeyboardLocale.english.locale))")
+    }
+
+    func testPrintHtmlForNameList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            printLine(locale.localizedName(in: .english) ?? "")
         }
-    }
-    
-    func testPrintFlagText() throws {
-        try XCTSkipIf(true)
         print("")
-        printLine("Flag List")
-        let text = KeyboardLocale.allCases
-            .map { $0.flag }
-            .joined(separator: " ")
-        printLine(text)
-    }
-    
-    func testPrintNameText() throws {
-        try XCTSkipIf(true)
-        print("")
-        printLine("Name List")
-        let text = KeyboardLocale.allCases
-            .map { $0.locale.localizedName(in: KeyboardLocale.english.locale) }
-            .joined(separator: ", ")
-        printLine(text)
     }
     
     func printLine(_ string: String) {
-        print("*** \(string) <br />")
+        print("\(string) <br />")
     }
 }

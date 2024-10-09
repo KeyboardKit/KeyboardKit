@@ -26,7 +26,7 @@ public extension Dictation {
             .disabledService
         }
 
-        open var supportedLocales: [KeyboardLocale] { [] }
+        open var supportedLocales: [Locale] { [] }
 
         open func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
             authorizationStatus

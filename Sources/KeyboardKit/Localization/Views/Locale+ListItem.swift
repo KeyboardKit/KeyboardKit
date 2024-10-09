@@ -1,5 +1,5 @@
 //
-//  KeyboardLocale+ListItem.swift
+//  Locale+ListItem.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-16.
@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-public extension KeyboardLocale {
+public extension Locale {
 
     /// This view can be used when listing a locale.
     struct ListItem: View {
 
         public init(
-            locale: KeyboardLocale,
+            locale: Locale,
             displayLocale: Locale = .current,
             dragHandle: Bool = false,
             subtitle: String? = nil
@@ -25,21 +25,7 @@ public extension KeyboardLocale {
             self.subtitle = subtitle
         }
 
-        public init(
-            locale: KeyboardLocale,
-            displayLocale: KeyboardLocale,
-            dragHandle: Bool = false,
-            subtitle: String? = nil
-        ) {
-            self.init(
-                locale: locale,
-                displayLocale: displayLocale.locale,
-                dragHandle: dragHandle,
-                subtitle: subtitle
-            )
-        }
-
-        private let locale: KeyboardLocale
+        private let locale: Locale
         private let displayLocale: Locale
         private let dragHandle: Bool
         private let subtitle: String?
@@ -47,7 +33,7 @@ public extension KeyboardLocale {
         public var body: some View {
             Label {
                 HStack {
-                    Text(locale.localizedName(in: displayLocale))
+                    Text(locale.localizedName(in: displayLocale) ?? "-")
                     Spacer()
                     if dragHandle {
                         ListHandle()
@@ -61,7 +47,9 @@ public extension KeyboardLocale {
             }
         }
     }
+}
 
+extension Locale {
 
     /// This view can be used to reorder keyboard locales in
     /// a reorderable list.
@@ -78,9 +66,9 @@ public extension KeyboardLocale {
 #Preview {
     
     List {
-        KeyboardLocale.ListItem(locale: .swedish)
-        KeyboardLocale.ListItem(locale: .danish, displayLocale: .german)
-        KeyboardLocale.ListItem(locale: .danish, displayLocale: .german, dragHandle: false, subtitle: "foo")
-        KeyboardLocale.ListItem(locale: .danish, displayLocale: .german, dragHandle: true, subtitle: "foo")
+        Locale.ListItem(locale: .swedish)
+        Locale.ListItem(locale: .danish, displayLocale: .german)
+        Locale.ListItem(locale: .danish, displayLocale: .german, dragHandle: false, subtitle: "foo")
+        Locale.ListItem(locale: .danish, displayLocale: .german, dragHandle: true, subtitle: "foo")
     }
 }

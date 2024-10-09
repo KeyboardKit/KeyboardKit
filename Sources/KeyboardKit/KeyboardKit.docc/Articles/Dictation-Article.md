@@ -38,14 +38,14 @@ KeyboardKit doesn't have standard dictation services. Instead, it injects a disa
 
 You can easily resolve various service types with these shorthands:
 
-* ``KeyboardDictationService/proInApp(dictationContext:openUrl:speechRecognizer:)`` (👑 KeyboardKit Pro)
-* ``KeyboardDictationService/proInKeyboard(keyboardContext:dictationContext:actionHandler:)`` (👑 KeyboardKit Pro)
+* ``KeyboardDictationService/proInApp(dictationContext:openUrl:speechRecognizer:)`` 👑 Pro
+* ``KeyboardDictationService/proInKeyboard(keyboardContext:dictationContext:actionHandler:)`` 👑 Pro
 * ``KeyboardDictationService/disabled(context:)``
 * ``KeyboardDictationService/preview``
 
 The ``DictationService`` protocol also has a couple of shorthands:
 
-* ``DictationService/pro(context:speechRecognizer:result:)`` (👑 KeyboardKit Pro)
+* ``DictationService/pro(context:speechRecognizer:result:)`` 👑 Pro
 * ``DictationService/disabled``
 * ``DictationService/preview``
 
@@ -131,7 +131,7 @@ KeyboardKit Pro unlocks a ``Dictation/ProService`` that can be used in the main 
 
 The speech recognizer that is used by KeyboardKit Pro supports the following locales:
 
-``KeyboardLocale/english``, ``KeyboardLocale/english_gb``, ``KeyboardLocale/english_us``, ``KeyboardLocale/arabic``, ``KeyboardLocale/catalan``, ``KeyboardLocale/croatian``, ``KeyboardLocale/czech``, ``KeyboardLocale/danish``, ``KeyboardLocale/dutch``, ``KeyboardLocale/dutch_belgium``, ``KeyboardLocale/finnish``, ``KeyboardLocale/french``, ``KeyboardLocale/french_belgium``, ``KeyboardLocale/french_switzerland``, ``KeyboardLocale/german``, ``KeyboardLocale/german_austria``, ``KeyboardLocale/german_switzerland``, ``KeyboardLocale/greek``, ``KeyboardLocale/hebrew``, ``KeyboardLocale/hungarian``, ``KeyboardLocale/indonesian``, ``KeyboardLocale/italian``, ``KeyboardLocale/malay``, ``KeyboardLocale/norwegian``, ``KeyboardLocale/polish``, ``KeyboardLocale/portuguese``, ``KeyboardLocale/portuguese_brazil``, ``KeyboardLocale/romanian``, ``KeyboardLocale/russian``, ``KeyboardLocale/slovak``, ``KeyboardLocale/spanish``, ``KeyboardLocale/swedish``, ``KeyboardLocale/turkish``, ``KeyboardLocale/ukrainian``.
+`english`, `english_gb`, `english_us`, `arabic`, `catalan`, `croatian`, `czech`, `danish`, `dutch`, `dutch_belgium`, `finnish`, `french`, `french_belgium`, `french_switzerland`, `german`, `german_austria`, `german_switzerland`, `greek`, `hebrew`, `hungarian`, `indonesian`, `italian`, `malay`, `norwegian`, `polish`, `portuguese`, `portuguese_brazil`, `romanian`, `russian`, `slovak`, `spanish`, `swedish`, `turkish`, `ukrainian`.
 
 If you want to use dictation with other locales, you must implement a custom recognizer.
 
@@ -260,7 +260,7 @@ public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
     public init() {}
 
-    public var supportedLocales: [KeyboardLocale] {
+    public var supportedLocales: [Locale] {
         [
             .english, .arabic, .catalan, .croatian, .czech,
             .danish, .dutch, .dutch_belgium, .english_gb,

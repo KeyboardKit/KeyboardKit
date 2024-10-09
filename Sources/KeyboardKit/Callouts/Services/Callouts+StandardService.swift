@@ -14,9 +14,8 @@ extension Callouts {
     /// keyboard callouts.
     ///
     /// This class can register ``localizedServices``, which
-    /// will then be used to resolve actions for the locales
-    /// they specify. If a ``KeyboardLocale`` is not handled
-    /// by these locales the ``baseService`` is used.
+    /// will then be used instead of ``baseService`` for the
+    /// locales it specifies.
     ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it
@@ -67,10 +66,10 @@ extension Callouts {
         public private(set) var baseService: CalloutService
 
         /// This dictionary contains localized services.
-        public var localizedServices: KeyboardLocale.Dictionary<CalloutService>
+        public var localizedServices: Locale.Dictionary<CalloutService>
 
         /// This resolver is used to lazily resolve services.
-        public static var localizedServiceResolver: ((KeyboardLocale) -> CalloutService?)?
+        public static var localizedServiceResolver: ((Locale) -> CalloutService?)?
 
         
         // MARK: - CalloutService
@@ -109,10 +108,9 @@ extension Callouts {
         open func service(
             for locale: Locale
         ) -> CalloutService {
-            let locale = KeyboardLocale(for: locale) ?? .english
             if let service = localizedServices.value(for: locale) { return service }
             if let service = Self.localizedServiceResolver?(locale) {
-                localizedServices.dictionary[locale.localeIdentifier] = service
+                localizedServices.dictionary[locale.identifier] = service
                 return service
             }
             return baseService

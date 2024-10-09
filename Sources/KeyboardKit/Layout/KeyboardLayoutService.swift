@@ -17,7 +17,7 @@ import Foundation
 /// it at any time to customize the keyboard layout.
 ///
 /// KeyboardKit Pro can be used to unlock localized services
-/// for each ``KeyboardLocale``.
+/// for all ``Foundation/Locale/keyboardKitSupported``.
 ///
 /// See <doc:Layout-Article> for more information.
 public protocol KeyboardLayoutService: AnyObject {

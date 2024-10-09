@@ -13,11 +13,11 @@ This article describes the KeyboardKit autocomplete engine.
     @PageColor(blue)
 }
 
-Autocomplete is an important part of the typing experience, where word suggestions are shown above the keyboard as the user types.
+Autocomplete is an important part of the typing experience, where word suggestions can be presented in a toolbar above the keyboard.
 
-In KeyboardKit, an ``AutocompleteService`` can provide autocomplete suggestions to the main ``AutocompleteContext``. Unlike other service types, there is no open-source implementation of this service protocol.
+In KeyboardKit, an ``AutocompleteService`` can provide suggestions to the main ``AutocompleteContext``. Unlike other services, there is no open-source implementation of this service protocol.
 
-👑 [KeyboardKit Pro][Pro] unlocks local and remote autocomplete. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks local & remote autocomplete. Information about Pro features can be found at the end of this article.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -53,7 +53,7 @@ KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which performs on-devic
 
 You can easily resolve various service types with these shorthands:
 
-* ``AutocompleteService/local(context:locale:)`` (👑 KeyboardKit Pro)
+* ``AutocompleteService/local(context:locale:)`` 👑 Pro
 * ``AutocompleteService/disabled``
 * ``AutocompleteService/disabled(suggestions:)``
 * ``AutocompleteService/preview``
@@ -199,7 +199,7 @@ The ``Autocomplete/RemoteService`` can be used to perform autocomplete by integr
 
 The ``Autocomplete/LocalService`` supports the following locales:
 
-``KeyboardLocale/arabic``, ``KeyboardLocale/bulgarian``, ``KeyboardLocale/czech``, ``KeyboardLocale/danish``, ``KeyboardLocale/dutch``, ``KeyboardLocale/dutch_belgium``, ``KeyboardLocale/english``, ``KeyboardLocale/english_gb``, ``KeyboardLocale/english_us``, ``KeyboardLocale/filipino``, ``KeyboardLocale/finnish``, ``KeyboardLocale/french``, ``KeyboardLocale/french_belgium``, ``KeyboardLocale/french_switzerland``, ``KeyboardLocale/german``, ``KeyboardLocale/german_austria``, ``KeyboardLocale/german_switzerland``, ``KeyboardLocale/greek``, ``KeyboardLocale/hebrew``, ``KeyboardLocale/hungarian``, ``KeyboardLocale/irish``, ``KeyboardLocale/italian``, ``KeyboardLocale/norwegian``, ``KeyboardLocale/polish``, ``KeyboardLocale/portuguese_brazil``, ``KeyboardLocale/portuguese``, ``KeyboardLocale/romanian``, ``KeyboardLocale/russian``, ``KeyboardLocale/spanish``, ``KeyboardLocale/swedish``, ``KeyboardLocale/turkish``, ``KeyboardLocale/ukrainian``.
+`arabic`, `bulgarian`, `czech`, `danish`, `dutch`, `dutch_belgium`, `english`, `english_gb`, `english_us`, `filipino`, `finnish`, `french`, `french_belgium`, `french_switzerland`, `german`, `german_austria`, `german_switzerland`, `greek`, `hebrew`, `hungarian`, `irish`, `italian`, `norwegian`, `polish`, `portuguese_brazil`, `portuguese`, `romanian`, `russian`, `spanish`, `swedish`, `turkish`, `ukrainian`.
 
 To support other locales, you must use a remote autocomplete service or create a custom service implementation.
 

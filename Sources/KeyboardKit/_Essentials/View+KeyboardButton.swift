@@ -116,7 +116,7 @@ private extension View {
         actionHandler: KeyboardActionHandler
     ) -> some View {
         if shouldApplyLocaleContextMenu(for: action, context: context) {
-            self.keyboardLocaleContextMenu(for: context) {
+            self.localeContextMenu(for: context) {
                 actionHandler.handle(.release, on: action)
             }
             .id(context.locale.identifier)
@@ -147,8 +147,8 @@ private extension View {
         @State
         var context: KeyboardContext = {
             let context = KeyboardContext()
-            context.locales = KeyboardLocale.allCases.map { $0.locale }
-            context.localePresentationLocale = KeyboardLocale.swedish.locale
+            context.locales = .keyboardKitSupported
+            context.localePresentationLocale = .swedish
             context.spaceLongPressBehavior = .openLocaleContextMenu
             return context
         }()

@@ -119,11 +119,6 @@ public extension Keyboard.ReturnKeyType {
         case .send: KKL10n.send.text(for: locale)
         }
     }
-    
-    /// The standard button to text for a certain locale.
-    func standardButtonText(for locale: KeyboardLocale) -> String? {
-        standardButtonText(for: locale.locale)
-    }
 }
 
 #if os(iOS) || os(tvOS) || os(visionOS)

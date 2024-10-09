@@ -89,7 +89,7 @@ public extension CalloutService where Self == Callouts.ProService {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func localized(
-        for locale: KeyboardLocale
+        for locale: Locale
     ) throws -> Self {
         throw ProPlaceholderError.proPlaceholder
     }
@@ -303,7 +303,7 @@ public extension KeyboardLayoutService where Self == KeyboardLayout.ProService {
 
     /// 👑 This is unlocked by KeyboardKit Pro
     static func localized(
-        for locale: KeyboardLocale
+        for locale: Locale
     ) throws -> Self {
         throw ProPlaceholderError.proPlaceholder
     }

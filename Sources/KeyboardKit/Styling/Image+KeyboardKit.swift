@@ -62,9 +62,6 @@ public extension Image {
         locale.isLeftToRight ? .keyboardBackspace : .keyboardBackspaceRtl
     }
 
-    static func keyboardBackspace(for locale: KeyboardLocale) -> Image {
-        keyboardBackspace(for: locale.locale)
-    }
 
     static func keyboardHapticFeedback(enabled: Bool) -> Image {
         enabled ? keyboardHapticFeedbackEnabled : keyboardHapticFeedbackDisabled
@@ -74,16 +71,8 @@ public extension Image {
         locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
     }
 
-    static func keyboardNewline(for locale: KeyboardLocale) -> Image {
-        keyboardNewline(for: locale.locale)
-    }
-
     static func keyboardTab(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardTab : .keyboardTabRtl
-    }
-
-    static func keyboardTab(for locale: KeyboardLocale) -> Image {
-        keyboardTab(for: locale.locale)
     }
 
     static func keyboardShift(_ casing: Keyboard.Case) -> Image {

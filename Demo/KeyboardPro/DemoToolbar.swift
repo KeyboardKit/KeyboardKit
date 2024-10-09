@@ -126,7 +126,7 @@ private extension DemoToolbar {
             .scaleEffect(1.2)
             .padding()
             .background(Color.clearInteractable)
-            .keyboardLocaleContextMenu(for: keyboardContext) {
+            .localeContextMenu(for: keyboardContext) {
                 controller.services.actionHandler.handle(.nextLocale)
             }
     }

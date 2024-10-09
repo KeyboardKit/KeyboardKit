@@ -14,9 +14,8 @@ extension KeyboardLayout {
     /// keyboard layouts.
     ///
     /// This class can register ``localizedServices``, which
-    /// will then be used to resolve layouts for the locales
-    /// they specify. If a ``KeyboardLocale`` is not handled
-    /// by these locales the ``baseService`` is used.
+    /// will then be used instead of ``baseService`` for the
+    /// locales it specifies.
     ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it
@@ -54,10 +53,10 @@ extension KeyboardLayout {
         public private(set) var baseService: KeyboardLayoutService
 
         /// A dictionary with localized layout services.
-        public var localizedServices: KeyboardLocale.Dictionary<KeyboardLayoutService>
+        public var localizedServices: Locale.Dictionary<KeyboardLayoutService>
 
         /// This is an optional resolver that is used by Pro to lazily resolve services.
-        public static var localizedServiceResolver: ((KeyboardLocale) -> KeyboardLayoutService?)?
+        public static var localizedServiceResolver: ((Locale) -> KeyboardLayoutService?)?
 
         
         /// The keyboard layout to use for a certain context.
@@ -72,10 +71,10 @@ extension KeyboardLayout {
         open func keyboardLayoutService(
             for context: KeyboardContext
         ) -> KeyboardLayoutService {
-            let locale = context.keyboardLocale ?? .english
+            let locale = context.locale
             if let service = localizedServices.value(for: locale) { return service }
             if let service = Self.localizedServiceResolver?(locale) {
-                localizedServices.dictionary[locale.localeIdentifier] = service
+                localizedServices.dictionary[locale.identifier] = service
                 return service
             }
             return baseService

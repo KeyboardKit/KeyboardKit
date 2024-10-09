@@ -47,19 +47,9 @@ public extension KKL10n {
         text(for: context.locale)
     }
     
-    /// Get the localized text for a certain locale.
-    func text(for locale: KeyboardLocale) -> String {
-        text(for: locale.locale)
-    }
-
     /// Get the localized text for a certain `Locale`.
     func text(for locale: Locale) -> String {
         Self.text(forKey: key, locale: locale)
-    }
-
-    /// Get a localized text for a certain locale.
-    static func text(forKey key: String, locale: KeyboardLocale) -> String {
-        text(forKey: key, locale: locale.locale)
     }
 
     /// Get a localized text for a certain locale.

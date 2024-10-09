@@ -2,16 +2,20 @@
 //  Locale+Flag.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2022-10-27.
-//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2024-10-09.
+//  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
 import SwiftUI
 
-public extension KeyboardLocale {
+
+public extension Locale {
     
-    /// The corresponding flag emoji for the locale.
+    /// The locale-specific flag emoji.
+    ///
+    /// This will use a white placeholder flag if the locale
+    /// doesn't have a proper emoji flag.
     var flag: String {
         switch self {
         case .albanian: "🇦🇱"
@@ -88,6 +92,8 @@ public extension KeyboardLocale {
         case .ukrainian: "🇺🇦"
         case .uzbek: "🇺🇿"
         case .welsh: "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
+
+        default: "🏳️"
         }
     }
 }

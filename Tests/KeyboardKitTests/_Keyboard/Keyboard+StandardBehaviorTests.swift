@@ -60,7 +60,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
         keyboardContext.isAutocapitalizationEnabled = true
         keyboardContext.keyboardType = .alphabetic(.lowercased)
         let result = preferredKeyboardTypeResult(after: .release, on: .character("i"))
-        XCTAssertEqual(keyboardContext.keyboardLocale, .english)
+        XCTAssertEqual(keyboardContext.locale, .english)
         XCTAssertEqual(result, .alphabetic(.uppercased))
     }
 

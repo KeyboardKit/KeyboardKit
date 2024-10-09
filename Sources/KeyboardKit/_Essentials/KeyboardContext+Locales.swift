@@ -18,15 +18,15 @@ public extension KeyboardContext {
     ///
     /// > Note: Use ``addedLocaleIdentifiersValue`` whenever
     /// you want to bind this value to a picker.
-    var addedLocales: [KeyboardLocale] {
+    var addedLocales: [Locale] {
         get {
             addedLocaleIdentifiersValue.value
-                .compactMap { KeyboardLocale(rawValue: $0) }
+                .compactMap { Locale(identifier: $0) }
         }
         set {
             let ids = newValue
                 .unique()
-                .map { $0.localeIdentifier }
+                .map { $0.identifier }
             addedLocaleIdentifiersValue.value = ids
         }
     }
@@ -44,7 +44,7 @@ public extension KeyboardContext {
     }
 
     /// Whether a locale has been added to ``addedLocales``.
-    func hasAddedLocale(_ locale: KeyboardLocale) -> Bool {
+    func hasAddedLocale(_ locale: Locale) -> Bool {
         addedLocales.contains(locale)
     }
 
@@ -53,19 +53,13 @@ public extension KeyboardContext {
     /// This will only be performed if the current locale is
     /// among the ``addedLocales``.
     func moveCurrentLocaleFirstInAddedLocales() {
-        guard let keyboardLocale else { return }
-        if keyboardLocale == addedLocales.first { return }
-        addedLocales = [keyboardLocale] + addedLocales.filter { $0 != keyboardLocale }
+        if locale == addedLocales.first { return }
+        addedLocales = addedLocales.insertingFirst(locale)
     }
 
     /// Set ``locales`` to the provided locales.
     func setLocales(_ locales: [Locale]) {
         self.locales = locales
-    }
-
-    /// Set ``locales`` to the provided keyboard locales.
-    func setLocales(_ locales: [KeyboardLocale]) {
-        self.locales = locales.map { $0.locale }
     }
 }
 
@@ -74,6 +68,6 @@ extension KeyboardContext {
     /// This is internal until we find a better name for it.
     var selectableLocales: [Locale] {
         let hasAddedLocales = addedLocales.count > 1
-        return hasAddedLocales ? addedLocales.map { $0.locale } : locales
+        return hasAddedLocales ? addedLocales : locales
     }
 }

@@ -15,6 +15,8 @@ class UITextDocumentProxy_QuotationTests: XCTestCase {
 
     var proxy: MockTextDocumentProxy!
 
+    let locales = Locale.keyboardKitSupported
+
     override func setUp() {
         proxy = MockTextDocumentProxy()
     }
@@ -24,30 +26,30 @@ class UITextDocumentProxy_QuotationTests: XCTestCase {
 
     func hasUnclosedAlternateQuotation(
         _ text: String?,
-        locale: KeyboardLocale
+        locale: Locale
     ) -> Bool {
         proxy.documentContextBeforeInput = text
-        let result = proxy.hasUnclosedAlternateQuotationBeforeInput(for: locale.locale)
+        let result = proxy.hasUnclosedAlternateQuotationBeforeInput(for: locale)
         return result
     }
 
     func testHasUnclosedAlternateQuotationIsFalseIfNoTextExists() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             XCTAssertFalse(hasUnclosedAlternateQuotation(nil, locale: $0))
         }
     }
 
     func testHasUnclosedAlternateQuotationIsFalseIfTextDoesNotContainDelimiters() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "I love coding"
             XCTAssertFalse(hasUnclosedAlternateQuotation(text, locale: $0))
         }
     }
 
     func testHasUnclosedAlternateQuotationIsTrueIfLastDelimiterIsBeginDelimiter() {
-        KeyboardLocale.allCases.forEach {
-            let begin = $0.locale.alternateQuotationBeginDelimiter ?? ""
-            let end = $0.locale.alternateQuotationEndDelimiter ?? ""
+        locales.forEach {
+            let begin = $0.alternateQuotationBeginDelimiter ?? ""
+            let end = $0.alternateQuotationEndDelimiter ?? ""
             XCTAssertEqual(hasUnclosedAlternateQuotation("I love coding\(begin)", locale: $0), begin != end)
             XCTAssertFalse(hasUnclosedAlternateQuotation("I love coding\(end)", locale: $0))
             XCTAssertEqual(hasUnclosedAlternateQuotation("I love coding\(end)\(begin)", locale: $0), begin != end)
@@ -58,29 +60,32 @@ class UITextDocumentProxy_QuotationTests: XCTestCase {
 
     // MARK: - Unclosed quotation
 
-    func hasUnclosedQuotation(_ text: String?, locale: KeyboardLocale) -> Bool {
+    func hasUnclosedQuotation(
+        _ text: String?,
+        locale: Locale
+    ) -> Bool {
         proxy.documentContextBeforeInput = text
-        let result = proxy.hasUnclosedQuotationBeforeInput(for: locale.locale)
+        let result = proxy.hasUnclosedQuotationBeforeInput(for: locale)
         return result
     }
 
     func testHasUnclosedQuotationIsFalseIfNoTextExists() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             XCTAssertFalse(hasUnclosedQuotation(nil, locale: $0))
         }
     }
 
     func testHasUnclosedQuotationIsFalseIfTextDoesNotContainDelimiters() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "I love coding"
             XCTAssertFalse(hasUnclosedQuotation(text, locale: $0))
         }
     }
 
     func testHasUnclosedQuotationIsTrueIfLastDelimiterIsBeginDelimiter() {
-        KeyboardLocale.allCases.forEach {
-            let begin = $0.locale.quotationBeginDelimiter ?? ""
-            let end = $0.locale.quotationEndDelimiter ?? ""
+        locales.forEach {
+            let begin = $0.quotationBeginDelimiter ?? ""
+            let end = $0.quotationEndDelimiter ?? ""
             XCTAssertEqual(hasUnclosedQuotation("I love coding\(begin)", locale: $0), begin != end)
             XCTAssertFalse(hasUnclosedQuotation("I love coding\(end)", locale: $0))
             XCTAssertEqual(hasUnclosedQuotation("I love coding\(end)\(begin)", locale: $0), begin != end)
@@ -97,27 +102,27 @@ class UITextDocumentProxy_QuotationTests: XCTestCase {
 
     // MARK: - Preferred quotation replacement
 
-    func beginDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.quotationBeginDelimiter ?? ""
+    func beginDelimiter(for locale: Locale) -> String {
+        locale.quotationBeginDelimiter ?? ""
     }
 
-    func altBeginDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.alternateQuotationBeginDelimiter ?? ""
+    func altBeginDelimiter(for locale: Locale) -> String {
+        locale.alternateQuotationBeginDelimiter ?? ""
     }
 
-    func endDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.quotationEndDelimiter ?? ""
+    func endDelimiter(for locale: Locale) -> String {
+        locale.quotationEndDelimiter ?? ""
     }
 
-    func altEndDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.alternateQuotationEndDelimiter ?? ""
+    func altEndDelimiter(for locale: Locale) -> String {
+        locale.alternateQuotationEndDelimiter ?? ""
     }
 
-    func testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for locale: KeyboardLocale, delimiter: String? = nil, expected: String?) {
+    func testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for locale: Locale, delimiter: String? = nil, expected: String?) {
         let text = "before"
         proxy.documentContextBeforeInput = text
         let delimiter = delimiter ?? endDelimiter(for: locale)
-        let proxyResult = proxy.preferredQuotationReplacement(whenInserting: delimiter, for: locale.locale)
+        let proxyResult = proxy.preferredQuotationReplacement(whenInserting: delimiter, for: locale)
         XCTAssertEqual(proxyResult, expected)
     }
 
@@ -132,11 +137,15 @@ class UITextDocumentProxy_QuotationTests: XCTestCase {
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .swedish, expected: nil)
     }
 
-    func testPreferredQuotationReplacementWhenInsertingAlternateEndDelimiterWithoutUnclosedBeginDelimiter(for locale: KeyboardLocale, delimiter: String? = nil, expected: String?) {
+    func testPreferredQuotationReplacementWhenInsertingAlternateEndDelimiterWithoutUnclosedBeginDelimiter(
+        for locale: Locale,
+        delimiter: String? = nil,
+        expected: String?
+    ) {
         let text = "before"
         proxy.documentContextBeforeInput = text
         let delimiter = delimiter ?? altEndDelimiter(for: locale)
-        let proxyResult = proxy.preferredQuotationReplacement(whenInserting: delimiter, for: locale.locale)
+        let proxyResult = proxy.preferredQuotationReplacement(whenInserting: delimiter, for: locale)
         XCTAssertEqual(proxyResult, expected)
     }
 
@@ -151,20 +160,20 @@ class UITextDocumentProxy_QuotationTests: XCTestCase {
     }
 
     func testPreferredQuotationReplacementWhenInsertingEndDelimiterAfterUnclosedBeginDelimiter() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "text with some \(beginDelimiter(for: $0))quoted text"
             let insert = endDelimiter(for: $0)
             proxy.documentContextBeforeInput = text
-            XCTAssertNil(proxy.preferredQuotationReplacement(whenInserting: insert, for: $0.locale))
+            XCTAssertNil(proxy.preferredQuotationReplacement(whenInserting: insert, for: $0))
         }
     }
 
     func testPreferredQuotationReplacementWhenInsertingAlternateEndDelimiterAfterUnclosedBeginDelimiter() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "text with some \(altBeginDelimiter(for: $0))quoted text"
             let insert = altEndDelimiter(for: $0)
             proxy.documentContextBeforeInput = text
-            XCTAssertNil(proxy.preferredQuotationReplacement(whenInserting: insert, for: $0.locale))
+            XCTAssertNil(proxy.preferredQuotationReplacement(whenInserting: insert, for: $0))
         }
     }
 }

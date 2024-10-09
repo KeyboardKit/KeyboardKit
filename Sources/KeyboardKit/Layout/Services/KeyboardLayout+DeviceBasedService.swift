@@ -42,7 +42,7 @@ extension KeyboardLayout {
         }
         
         /// The locale identifier.
-        public var localeKey = KeyboardLocale.english.id
+        public var localeKey = Locale.english.identifier
         
         /// The layout service to use for iPad devices.
         public lazy var iPadService: KeyboardLayoutService = KeyboardLayout.iPadService(

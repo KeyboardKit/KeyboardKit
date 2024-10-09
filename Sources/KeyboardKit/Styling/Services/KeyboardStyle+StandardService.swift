@@ -338,7 +338,7 @@ extension KeyboardStyle {
 extension KeyboardStyle.StandardService {
 
     var isGregorianAlpha: Bool {
-        keyboardType.isAlphabetic && locale.matches(.georgian)
+        keyboardType.isAlphabetic && locale == .georgian
     }
     
     var isProMaxPhone: Bool {
