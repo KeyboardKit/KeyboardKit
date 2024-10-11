@@ -10,14 +10,6 @@ KeyboardKit tries to honor semantic versioning:
 These release notes only cover the current major version. 
 
 
-### ‼️ Important information
-
-KeyboardKit 8.9 currently has a lot of deprecations, since the structure is being changed and types renamed to make the upcoming 9.0 cleaner.
-
-KeyboardKit 9 is planned to be released shortly after the public release of iOS 18 and all corresponding OS versions. It will also bump the deployment target to iOS 15.
-
-
-
 ## 9.0
 
 This version removes all deprecated code.

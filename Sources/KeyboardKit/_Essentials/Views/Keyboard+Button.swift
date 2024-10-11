@@ -15,9 +15,6 @@ public extension Keyboard {
     /// The view adapts its content to fit the action, state
     /// and services that are passed in.
     ///
-    /// You can use an optional `contentConfig` view builder
-    /// to customize or replace the button content view.
-    ///
     /// > Note: You can turn any view into a keyboard button
     /// with ``SwiftUICore/View/keyboardButton(_:)``.
     struct Button<Content: View>: View {

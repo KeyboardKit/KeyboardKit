@@ -13,7 +13,9 @@ import Foundation
 ///
 /// Some actions are ``KeyboardAction/character(_:)``, which
 /// inserts text, ``KeyboardAction/keyboardType(_:)``, which
-/// switches keyboard type, etc.
+/// switches keyboard type, etc. You can also setup your own
+/// ``KeyboardAction/custom(named:)`` actions whenever these
+/// standard ones are insufficient for your needs.
 ///
 /// The idea with these keyboard actions is that they can be
 /// used to triggered keyboard-related operations, e.g. when

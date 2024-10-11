@@ -13,11 +13,9 @@ This article describes the KeyboardKit AI support capabilities.
     @PageColor(blue)
 }
 
-Apple's native keyboard APIs lack many features that are often needed by AI-based keyboards.
+Apple's native keyboard APIs lack many features that are needed by popular AI-based features, for instance to read an entire document to perform tasks like spellchecking & proofreading, or to let users type text prompts directly within the keyboard.
 
-For instance, AI-based keyboards may need to read the entire document to perform tasks like spellchecking and proofreading, and also let users type within the keyboard to type prompts or intents.
-
-Keyboard extensions have little native support for this. The text document proxy will not return all the text within the document, and may cancel at any time. You also can't type in text fields within the keyboard, since text is always sent to the main app.
+Apple's native text document proxy will not return all the text within the document, and may cut off the available text at any time. Users also can't type in a text field within the keyboard, since the text is always sent to the main app.
 
 👑 [KeyboardKit Pro][Pro] unlocks these capabilities to make it possible to read the full document and type in a text field within the keyboard.
 
@@ -36,9 +34,9 @@ Read more in the <doc:Proxy-Article> article.
 
 ### Text Input Support
 
-[KeyboardKit Pro][Pro] unlocks ways to let you type within a keyboard extension, by routing text input from the main app to text fields within the keyboard extension.
+[KeyboardKit Pro][Pro] unlocks ways to let users type within a keyboard extension, by routing text input from the main app to text fields within the keyboard extension, without the need for any additional code.
 
-KeyboardKit Pro has a ``KeyboardTextField`` that handles text routing automatically, by registering and unregistering itself as the ``KeyboardInputViewController/textDocumentProxy`` when it gets and loses focus. There is also a multi-line ``KeyboardTextView``.
+KeyboardKit Pro has a ``KeyboardTextField`` that handles text routing automatically, as well as a multi-line ``KeyboardTextView``. You can just add these components to your keyboard and use them like regular text fields.
 
 This lets you provide AI-based features that require user input in your keyboard, such as generating custom images with DALL·E, asking questions to an AI like ChatGPT, etc.
 

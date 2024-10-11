@@ -15,26 +15,6 @@ public extension Keyboard {
     /// This view makes any view behave as a native keyboard
     /// switcher button, which switches to the next keyboard
     /// when tapped, and opens a switcher menu on long press.
-    ///
-    /// Use ``NextKeyboardButtonControllerMode`` to define a
-    /// controller mode to run in. The classic mode requires
-    /// us to pass in a `UIInputViewController`, or fallback
-    /// to the ``NextKeyboardController/shared``, which will
-    /// be removed in KeyboardKit 9. Both experimental modes
-    /// let us triggering the switcher action without having
-    /// to pass in a controller.
-    ///
-    /// Use ``NextKeyboardButtonProxyMode`` to define how to
-    /// handle any active text input proxy. The classic mode
-    /// doesn't do anything, which causes an active proxy to
-    /// stop the input switcher action from working. Use the
-    /// experimental mode to automatically disable an active
-    /// proxy for the duration of the switcher gesture. This
-    /// makes the input switcher work, after which the proxy
-    /// is restored.
-    ///
-    /// If this experimental mode proves successful, it will
-    /// replace the classic mode in KeyboardKit 9.
     struct NextKeyboardButton<Content: View>: View {
 
         public init(

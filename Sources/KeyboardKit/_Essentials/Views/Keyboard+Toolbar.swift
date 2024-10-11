@@ -13,8 +13,8 @@ public extension Keyboard {
     /// This view can be used to render a toolbar with a min
     /// height, to ensure that callouts are not cut off.
     ///
-    /// Use a `.keyboardToolbarStyle` view modifier to apply
-    /// a keyboard toolbar style.
+    /// You can style this component with the style modifier
+    /// ``keyboardToolbarStyle(_:)``.
     struct Toolbar<Content: View>: View {
         
         public init(

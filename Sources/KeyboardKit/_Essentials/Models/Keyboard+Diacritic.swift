@@ -10,13 +10,11 @@ import Foundation
 
 public extension Keyboard {
     
-    /// This struct can be used to define diacritics for any
-    /// keyboard and locale.
+    /// This type can define character diacritic variants.
     ///
     /// The ``KeyboardAction/StandardHandler`` will handle a
     /// ``KeyboardAction/diacritic(_:)`` action by replacing
-    /// the last character that matches any of the diacritic
-    /// matches, with the specified replacement.
+    /// the last character that any diacritic match.
     struct Diacritic: Codable, Equatable {
         
         /// Create a custom diacritic value.
