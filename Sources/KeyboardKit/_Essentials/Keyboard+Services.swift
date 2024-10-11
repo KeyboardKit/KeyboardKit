@@ -80,7 +80,7 @@ public extension Keyboard {
         ) {
             didSet {
                 guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
-                handler.keyboardBehavior = keyboardBehavior
+                handler.behavior = keyboardBehavior
             }
         }
 

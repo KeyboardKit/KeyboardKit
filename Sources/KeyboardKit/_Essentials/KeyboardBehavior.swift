@@ -12,7 +12,7 @@ import Foundation
 /// define keyboard-specific behaviors.
 ///
 /// Some types, like ``KeyboardAction/StandardHandler`` will
-/// use this protocol to make certain decisions.
+/// use this protocol to make decisions.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
@@ -28,32 +28,42 @@ public protocol KeyboardBehavior {
     /// The text to use to end sentences with.
     var endSentenceText: String { get set }
     
-    /// The preferred keyboard type after an action gesture.
+    /// The preferred keyboard type after a certain action gesture.
     func preferredKeyboardType(
         after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType
-    
-    /// Whether to end the sentence after a gesture action.
-    func shouldEndSentence(
+
+    /// Whether to change keyboard type after a certain action gesture.
+    func shouldChangeKeyboardType(
         after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool
-    
-    /// Whether to switch to capslock after a gesture action.
+
+    /// Whether to end the current sentence after a certain action gesture.
+    func shouldEndCurrentSentence(
+        after gesture: Keyboard.Gesture,
+        on action: KeyboardAction
+    ) -> Bool
+
+    /// Whether to register an emoji after a certain action gesture.
+    func shouldRegisterEmoji(
+        after gesture: Keyboard.Gesture,
+        on action: KeyboardAction
+    ) -> Bool
+
+    /// Whether to switch to capslock after a certain action gesture.
     func shouldSwitchToCapsLock(
         after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool
     
-    /// Whether to switch to the preferred keyboard type after
-    /// a gesture action.
+    /// Whether to switch to the preferred keyboard after a certain action gesture.
     func shouldSwitchToPreferredKeyboardType(
         after gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Bool
 
-    /// Whether to switch to a preferred keyboard type after
-    /// the text document proxy text changes.
+    /// Whether to switch to the preferred keyboard type after the text changes.
     func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool
 }

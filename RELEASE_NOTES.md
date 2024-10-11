@@ -14,17 +14,21 @@ These release notes only cover the current major version. Check out version tags
 
 This version removes all deprecated code, simplifies many concepts, and prepares for future conformance to strict concurrency.
 
-This version introduces migration deprecations, where most discontinued types remain as deprecated types until 9.1, to help you transition from KeyboardKit 8.
+This version introduces migration deprecations that will remain until 9.1, to help you transition from KeyboardKit 8.9 to 9.0.
 
 ### 🧪 Experiments
 
 The next keyboard button experiments have been made permanent.
 
+### 💥 Actions
+
+The `KeyboardAction.StandardHandler` now implements `KeyboardBehavior`.
+
 ### 🇸🇪 Localization
 
 This version simplifies all locale-specific features to only use `Location`. This means that you no longer need to use `KeyboardLocale` and `KeyboardLocaleInfo`. 
 
-### 🗑️ Migration Deprecations
+### 🗑️ Migration Deprecated Types
 
 * `KeyboardLocale`
 * `KeyboardLocaleInfo`
@@ -33,6 +37,7 @@ This version simplifies all locale-specific features to only use `Location`. Thi
 
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
+
 * `KeyboardInputViewController` `viewWillRegisterSharedController` has been removed.
 
 

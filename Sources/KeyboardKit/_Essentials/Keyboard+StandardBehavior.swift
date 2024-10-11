@@ -71,14 +71,12 @@ extension Keyboard {
         
         
         // MARK: - KeyboardBehavior
-        
-        /// The range that backspace should delete.
+
         open var backspaceRange: Keyboard.BackspaceRange {
             let duration = repeatGestureTimer.duration ?? 0
             return duration > 3 ? .word : .character
         }
         
-        /// The preferred keyboard type after an action gesture.
         open func preferredKeyboardType(
             after gesture: Gesture,
             on action: KeyboardAction
@@ -91,9 +89,15 @@ extension Keyboard {
             default: return should ? keyboardContext.preferredKeyboardType : keyboardContext.keyboardType
             }
         }
-        
-        /// Whether to end the sentence after a gesture action.
-        open func shouldEndSentence(
+
+        open func shouldChangeKeyboardType(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
+        }
+
+        open func shouldEndCurrentSentence(
             after gesture: Gesture,
             on action: KeyboardAction
         ) -> Bool {
@@ -111,8 +115,14 @@ extension Keyboard {
             return false
 #endif
         }
-        
-        /// Whether to switch to capslock after a gesture action.
+
+        open func shouldRegisterEmoji(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Bool {
+            gesture == .release && action.isEmojiAction
+        }
+
         open func shouldSwitchToCapsLock(
             after gesture: Gesture,
             on action: KeyboardAction
@@ -122,9 +132,7 @@ extension Keyboard {
             default: false
             }
         }
-        
-        /// Whether to switch to the preferred keyboard type after
-        /// a gesture action.
+
         open func shouldSwitchToPreferredKeyboardType(
             after gesture: Gesture,
             on action: KeyboardAction
@@ -138,8 +146,6 @@ extension Keyboard {
             }
         }
         
-        /// Whether to switch to a preferred keyboard type after
-        /// the text document proxy text changes.
         public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
             isPreferredKeyboardDifferent
         }

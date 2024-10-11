@@ -19,7 +19,7 @@ import CoreGraphics
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
-/// it at any time to customize the keyboard action behavior.
+/// it at any time to customize the keyboard action handling.
 ///
 /// See <doc:Actions-Article> for more information.
 public protocol KeyboardActionHandler: AnyObject, FeedbackService {
