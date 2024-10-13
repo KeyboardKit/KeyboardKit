@@ -11,8 +11,9 @@ import Foundation
 /// This protocol can be implemented by any type that can be
 /// used perform autocomplete as the user types.
 ///
-/// Simply call ``autocompleteSuggestions(for:)`` to perform
-/// autocomplete and return suggestions for a provided text.
+/// Simply call ``autocomplete(_:)`` to perform autocomplete
+/// for the provided text. This returns a result that varies
+/// based on the type of service you use.
 ///
 /// Words can be learned using ``learnWord(_:)`` and ignored
 /// with ``ignoreWord(_:)``. Although it's up to the service,
@@ -22,10 +23,6 @@ import Foundation
 /// Not every service supports ignoring/learning words. Make
 /// sure to check the ``canLearnWords`` and ``canIgnoreWords``
 /// properties before exposing any such features to the user.
-///
-/// Once you have a list of suggestions, you can use them to
-/// perform ``nextCharacterPredictions(forText:suggestions:)``
-/// to predict which characters the user will type next.
 ///
 /// KeyboardKit doesn't have a standard autocomplete service
 /// as it has for other services. Instead, a disabled one is
@@ -39,16 +36,9 @@ public protocol AutocompleteService: AnyObject {
 
 
     /// Get autocomplete suggestions for the provided `text`.
-    func autocompleteSuggestions(
-        for text: String
-    ) async throws -> [Autocomplete.Suggestion]
-
-    /// Get next character predictions for the provided text
-    /// and a list of suggestions.
-    func nextCharacterPredictions(
-        forText text: String,
-        suggestions: [Autocomplete.Suggestion]
-    ) async throws -> [Character: Double]
+    func autocomplete(
+        _ text: String
+    ) async throws -> Autocomplete.ServiceResult
 
 
     /// Whether the service can ignore words.
@@ -70,6 +60,7 @@ public protocol AutocompleteService: AnyObject {
     /// Whether the service has learned a certain word.
     func hasLearnedWord(_ word: String) -> Bool
 
+
     /// Make the service ignore a certain word.
     func ignoreWord(_ word: String)
 
@@ -84,6 +75,22 @@ public protocol AutocompleteService: AnyObject {
 }
 
 public extension AutocompleteService {
+
+    /// Perform a background autocomplete operation and sync
+    /// the result or error to the provided context.
+    func autocomplete(
+        _ text: String,
+        updating context: AutocompleteContext
+    ) {
+        Task {
+            do {
+                let result = try await autocomplete(text)
+                context.update(with: result)
+            } catch {
+                context.update(with: error)
+            }
+        }
+    }
 
     /// Make the service ignore a certain suggestion.
     func ignore(_ suggestion: Autocomplete.Suggestion) {

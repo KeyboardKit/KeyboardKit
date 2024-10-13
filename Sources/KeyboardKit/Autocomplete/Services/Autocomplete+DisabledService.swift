@@ -32,17 +32,10 @@ public extension Autocomplete {
         open var locale: Locale = .current
         open internal(set) var suggestions: [Autocomplete.Suggestion]
 
-        open func autocompleteSuggestions(
-            for text: String
-        ) async throws -> [Autocomplete.Suggestion] {
-            suggestions
-        }
-
-        open func nextCharacterPredictions(
-            forText text: String,
-            suggestions: [Autocomplete.Suggestion]
-        ) async throws -> [Character: Double] {
-            [:]
+        open func autocomplete(
+            _ text: String
+        ) async throws -> Autocomplete.ServiceResult {
+            .init(inputText: text, suggestions: suggestions)
         }
 
         open var canIgnoreWords: Bool { false }

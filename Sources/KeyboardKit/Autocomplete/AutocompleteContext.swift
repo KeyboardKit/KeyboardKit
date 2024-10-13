@@ -12,26 +12,24 @@ import SwiftUI
 /// This class has observable states and persistent settings
 /// for keyboard-related autocomplete.
 ///
-/// The ``suggestions`` property is automatically updated as
-/// the user types or the current text changes. The property
-/// honors ``suggestionsDisplayCount`` by capping the number
-/// of suggestions in ``suggestionsFromService``.
+/// The ``suggestions`` property is automatically updated by
+/// ``KeyboardInputViewController/performAutocomplete()`` as
+/// the user types. It honors ``suggestionsDisplayCount`` by
+/// capping the raw ``suggestionsFromService`` result.
 ///
 /// The ``isAutocompleteEnabled`` and ``isAutocorrectEnabled``
 /// settings can be used to control whether autocomplete and
 /// autocorrect are enabled. A ``KeyboardInputViewController``
 /// will however check even more places before performing it.
 ///
-/// The ``isAutolearnEnabled`` settings property can be used
-/// to control if the keyboard should auto-learn any unknown
-/// suggestions that are applied, provided that your service
-/// supports learning suggestions.
+/// The ``isAutolearnEnabled`` setting defines if a keyboard
+/// should autolearn unknown suggestions that are explicitly
+/// applied by the user.
 ///
-/// The ``isNextCharacterPredictionEnabled`` settings can be
-/// used to control if next character predictions is enabled.
-/// The ``nextCharacterPredictions`` property is then set by
-/// the controller after which these predictions can be used
-/// by ``nextCharacterPrediction(for:)-5h4gq``.
+/// The ``isNextCharacterPredictionEnabled`` setting defines
+/// if next character predictions is enabled. This makes the
+/// controller update the ``nextCharacterPredictions`` value
+/// in ``KeyboardInputViewController/performAutocomplete()``.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
@@ -101,7 +99,6 @@ public class AutocompleteContext: ObservableObject {
     public var isLoading = false
 
     /// The last received autocomplete error.
-    @Published
     public var lastError: Error?
 
     /// The characters that are more likely to be typed next.
@@ -124,9 +121,23 @@ public class AutocompleteContext: ObservableObject {
 
     /// Reset the autocomplete contexts.
     public func reset() {
-        isLoading = false
-        lastError = nil
-        suggestions = []
+        update(with: .init(inputText: "", suggestions: [], nextCharacterPredictions: [:]))
+    }
+
+    public func update(with result: Autocomplete.ServiceResult) {
+        DispatchQueue.main.async {
+            self.isLoading = false
+            self.lastError = nil
+            self.suggestions = result.suggestions
+            self.nextCharacterPredictions = result.nextCharacterPredictions ?? [:]
+        }
+    }
+
+    public func update(with error: Error) {
+        reset()
+        DispatchQueue.main.async {
+            self.lastError = error
+        }
     }
 }
 

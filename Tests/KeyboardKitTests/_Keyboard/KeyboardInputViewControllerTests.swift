@@ -249,10 +249,12 @@ class KeyboardInputViewControllerTests: XCTestCase {
         }
     }
 
-    func testResettingAutocompleteWritesResultToAutocompleteContext() {
-        vc.state.autocompleteContext.suggestions = [.init(text: "")]
-        vc.resetAutocomplete()
-        XCTAssertEqual(vc.state.autocompleteContext.suggestions.count, 0)
+    func testResettingAutocompleteWritesResultToAutocompleteContext() async {
+        await vc.state.autocompleteContext.suggestions = [.init(text: "")]
+        await vc.resetAutocomplete()
+        try? await Task.sleep(nanoseconds: 1)
+        let suggestions = await vc.state.autocompleteContext.suggestions
+        XCTAssertEqual(suggestions.count, 0)
     }
 }
 

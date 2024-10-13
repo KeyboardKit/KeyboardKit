@@ -318,10 +318,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// Whether or not autocomple is enabled.
     ///
-    /// This property will by default base its value on both
-    /// ``AutocompleteContext/isAutocompleteEnabled`` and on
-    /// ``KeyboardContext/prefersAutocomplete``, where these
-    /// must both be true for this to be true.
+    /// The property aggregates several data sources such as
+    /// ``AutocompleteContext`` and ``KeyboardContext``. Set
+    /// any to false and autocomplete will be disabled.
     open var isAutocompleteEnabled: Bool {
         guard
             state.keyboardContext.prefersAutocomplete,
@@ -333,27 +332,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// Perform an autocomplete operation.
     open func performAutocomplete() {
         guard isAutocompleteEnabled else { return }
-        let text = autocompleteText
+        let text = autocompleteText ?? ""
         let context = state.autocompleteContext
         let service = services.autocompleteService
-        Task {
-            do {
-                let suggestions = try await service.autocompleteSuggestions(for: autocompleteText ?? "")
-                var nextCharacterPredictions: [Character: Double] = [:]
-                if context.isNextCharacterPredictionEnabled {
-                    nextCharacterPredictions = try await service.nextCharacterPredictions(
-                        forText: text ?? "",
-                        suggestions: suggestions
-                    )
-                }
-                updateAutocompleteContext(
-                    with: suggestions,
-                    nextCharacterPredictions: nextCharacterPredictions
-                )
-            } catch {
-                updateAutocompleteContext(with: error)
-            }
-        }
+        service.autocomplete(text, updating: context)
     }
 
     /// Reset the current autocomplete state.
@@ -386,13 +368,6 @@ private extension KeyboardInputViewController {
         let shouldSwitch = services.keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
         guard shouldSwitch else { return }
         setKeyboardType(state.keyboardContext.preferredKeyboardType)
-    }
-
-    /// Update the autocomplete context with an error.
-    func updateAutocompleteContext(with error: Error) {
-        DispatchQueue.main.async { [weak self] in
-            self?.state.autocompleteContext.lastError = error
-        }
     }
     
     /// Update the autocomplete context with new suggestions.
