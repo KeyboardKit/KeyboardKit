@@ -34,15 +34,14 @@ public extension Autocomplete {
         private var style
 
         public var body: some View {
-            VStack(spacing: 0) {
-                title
-                subtitle
-            }
-            .padding(.horizontal, style.horizontalPadding)
-            .padding(.vertical, style.verticalPadding)
-            .background(style.backgroundColor)
-            .background(Color.clearInteractable)
-            .cornerRadius(style.backgroundCornerRadius)
+            title
+                .opacity(0)
+                .overlay(titleStack) // Limit multiline height
+                .padding(.horizontal, style.horizontalPadding)
+                .padding(.vertical, style.verticalPadding)
+                .background(style.backgroundColor)
+                .background(Color.clearInteractable)
+                .cornerRadius(style.backgroundCornerRadius)
         }
     }
 }
@@ -66,6 +65,13 @@ private extension Autocomplete.ToolbarItem {
                 .foregroundColor(style.subtitleColor)
         }
     }
+
+    var titleStack: some View {
+        VStack(spacing: 0) {
+            title
+            subtitle
+        }
+    }
 }
 
 #Preview {
@@ -75,15 +81,12 @@ private extension Autocomplete.ToolbarItem {
         .init(text: "Bar", type: .autocorrect),
         .init(text: "", title: "Baz", subtitle: "Recommended")]
     
-    return HStack {
-        HStack {
-            ForEach(suggestions, id: \.text) {
-                Autocomplete.ToolbarItem(suggestion: $0)
-            }
+    HStack {
+        ForEach(suggestions, id: \.text) {
+            Autocomplete.ToolbarItem(suggestion: $0)
+                .autocompleteToolbarItemStyle($0.isAutocorrect ? .standardAutocorrect : .standard)
         }
     }
-    .padding(5)
+    .padding(4)
     .background(Color.gray.opacity(0.3))
-    .cornerRadius(10)
-    .padding()
 }

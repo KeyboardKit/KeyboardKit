@@ -28,6 +28,12 @@ The `KeyboardController` protocol now requires `services` and `state`, to make i
 
 The `KeyboardAction.StandardHandler` now implements `KeyboardBehavior`.
 
+### 💡 Autocomplete
+
+The `Autocomplete.Suggestion` type now implements `Codable` and `Equatable`, but that required additional info to constrain its values to `String`.
+
+The `Autocomplete.Toolbar` now lets you define custom views like in `KeyboardView`, with well-defined params. The toolbar views are also polished to look more like the native counterparts.
+
 ### 🇸🇪 Localization
 
 This version simplifies all locale-specific features to only use `Location`. This means that you no longer need to use `KeyboardLocale` and `KeyboardLocaleInfo`. 

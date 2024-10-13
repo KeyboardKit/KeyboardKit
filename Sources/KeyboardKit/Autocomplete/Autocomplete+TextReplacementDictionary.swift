@@ -10,8 +10,8 @@ import Foundation
 
 public extension Autocomplete {
 
-    /// This type can be used to define text replacements to
-    /// e.g. define custom autocorrections.
+    /// This dictionary can be used to define localized text
+    /// replacements, for instance custom autocorrections.
     struct TextReplacementDictionary {
 
         public init(

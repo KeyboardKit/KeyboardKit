@@ -29,13 +29,13 @@ public extension Autocomplete {
         ///   - horizontalPadding: The horizontal padding to apply, by default `4`.
         ///   - verticalPadding: The vertical padding to apply, by default `10`.
         ///   - backgroundColor: The background color to use, by default `.clear`.
-        ///   - backgroundCornerRadius: The background color to use, by default `4`.
+        ///   - backgroundCornerRadius: The background color to use, by default `6`.
         public init(
             titleFont: KeyboardFont = .body,
             titleColor: Color = .primary,
             subtitleFont: KeyboardFont = .footnote,
             subtitleColor: Color = .primary,
-            horizontalPadding: Double = 4,
+            horizontalPadding: Double = 6,
             verticalPadding: Double = 10,
             backgroundColor: Color = .clear,
             backgroundCornerRadius: CGFloat = 4

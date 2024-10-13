@@ -38,7 +38,7 @@ public extension Autocomplete {
             title: String? = nil,
             subtitle: String? = nil,
             source: String? = nil,
-            additionalInfo: [String: Any] = [:]
+            additionalInfo: [String: String] = [:]
         ) {
             self.text = text
             self.type = type
@@ -64,35 +64,69 @@ public extension Autocomplete {
         public var source: String?
 
         /// An optional info dictionary.
-        public var additionalInfo: [String: Any]
+        public var additionalInfo: [String: String]
     }
 }
 
 public extension Autocomplete.Suggestion {
 
-    /// Whether the suggestion is autocorrecting.
+    /// Whether the suggestion is an autocorrect suggestion.
     var isAutocorrect: Bool {
         type == .autocorrect
     }
 
-    /// Whether the suggestion is unknown.
+    /// Whether the suggestion is a regular suggestion.
+    var isRegular: Bool {
+        type == .regular
+    }
+
+    /// Whether the suggestion is an unknown suggestion.
     var isUnknown: Bool {
         type == .unknown
     }
 
     /// Adjust the ``text`` casing to match a certain word.
-    func withAutocompleteCasing(
+    func autocompleteCased(
         for word: String
     ) -> Autocomplete.Suggestion {
         var result = self
-        result.text = result.text.withAutocompleteCasing(for: word)
+        result.text = result.text.autocompleteCased(for: word)
         return result
+    }
+}
+
+public extension Autocomplete {
+
+    /// This enum defines every autocomplete suggestion type
+    /// that can be returned by an ``AutocompleteService``.
+    enum SuggestionType: String, CaseIterable, Codable, Equatable {
+
+        /// These suggestions are only applied when the user
+        /// taps them.
+        ///
+        /// Native keyboards display all regular suggestions
+        /// as plain text, but you can customize this.
+        case regular
+
+        /// These suggestions are automatically applied when
+        /// the user taps a word or sentence delimiter.
+        ///
+        /// Native keyboards display autocorrect suggestions
+        /// with a rounded white background.
+        case autocorrect
+
+        /// These suggestions can be used when the currently
+        /// typed word is unknown, to automatically learn it.
+        ///
+        /// Native keyboards display unknown suggestions and
+        /// the current word although known, with quotes.
+        case unknown
     }
 }
 
 private extension String {
 
-    func withAutocompleteCasing(for word: String) -> String {
+    func autocompleteCased(for word: String) -> String {
         let isUppercased = word.count > 1 && word == word.uppercased()
         return isUppercased ? uppercased() : self
     }

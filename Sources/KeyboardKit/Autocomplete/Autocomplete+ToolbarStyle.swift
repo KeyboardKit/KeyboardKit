@@ -22,24 +22,30 @@ public extension Autocomplete {
         /// Create a custom autocomplete toolbar style.
         ///
         /// - Parameters:
-        ///   - height: An optional fixed height, by default `48`.
+        ///   - height: An optional, fixed height, by default `48`.
+        ///   - height: An optional, fixed edge padding, by default `4`.
         ///   - item: The style to apply to the toolbar items, by default `.standard`.
         ///   - separator: The style to apply to autocorrect items `.standardAutocorrect`.
         ///   - autocorrectItem: The autocorrect background style, by default `.standard`.
         public init(
-            height: CGFloat? = nil,
-            item: Autocomplete.ToolbarItemStyle? = nil,
-            autocorrectItem: Autocomplete.ToolbarItemStyle? = nil,
-            separator: Autocomplete.ToolbarSeparatorStyle? = nil
+            height: CGFloat = 48,
+            padding: CGFloat = 4,
+            item: Autocomplete.ToolbarItemStyle = .standard,
+            autocorrectItem: Autocomplete.ToolbarItemStyle = .standardAutocorrect,
+            separator: Autocomplete.ToolbarSeparatorStyle = .standard
         ) {
-            self.height = height ?? 48
-            self.item = item ?? .standard
-            self.autocorrectItem = autocorrectItem ?? .standardAutocorrect
-            self.separator = separator ?? .standard
+            self.height = height
+            self.padding = padding
+            self.item = item
+            self.autocorrectItem = autocorrectItem
+            self.separator = separator
         }
 
         /// An optional, fixed toolbar height.
         public var height: CGFloat?
+
+        /// The toolbar's edge padding.
+        public var padding: CGFloat
 
         /// The style to apply to the toolbar items.
         public var item: Autocomplete.ToolbarItemStyle

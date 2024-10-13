@@ -62,7 +62,7 @@ extension KeyboardColor {
     
     /// The color value.
     var color: Color {
-        Color(resourceName, bundle: Self.bundle)
+        Color(resourceName, bundle: .keyboardKit)
     }
 
     /// The color asset name in the bundle asset catalog.
