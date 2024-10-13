@@ -33,10 +33,18 @@ public extension KeyboardSettings {
     static var store: UserDefaults = .standard
 
     /// The key prefix that will be used by library settings.
-    static var storeKeyPrefix = "com.keyboardkit.settings."
+    static var storeKeyPrefix = storeKeyPrefixDefault
+
+    /// The default key prefix that will be used by library settings.
+    static let storeKeyPrefixDefault = "com.keyboardkit.settings."
 
     /// Whether the ``store`` is synced with an App Group.
     static private(set) var storeIsAppGroupSynced = false
+
+    /// Reset the standard settings store.
+    static func resetStore() {
+        setupStore(.standard, keyPrefix: storeKeyPrefixDefault)
+    }
 
     /// Set up a custom settings store.
     ///
@@ -65,7 +73,7 @@ public extension KeyboardSettings {
         if let appGroup = app.appGroupId {
             setupStore(forAppGroup: appGroup, keyPrefix: prefix)
         } else {
-            setupStore(.keyboardSettings, keyPrefix: prefix, isAppGroupSynced: false)
+            setupStore(.standard, keyPrefix: prefix)
         }
     }
 
