@@ -445,7 +445,6 @@ public extension View {
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 9.0, *)
     func focused<DoneButton: View>(
         _ value: FocusState<Bool>.Binding,
         @ViewBuilder doneButton: @escaping () -> DoneButton
