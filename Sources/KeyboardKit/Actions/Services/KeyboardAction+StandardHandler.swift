@@ -18,12 +18,12 @@ extension KeyboardAction {
     /// into ``KeyboardInputViewController/services``.
     ///
     /// The handler implements ``KeyboardBehavior`` by using
-    /// the ``behavior`` by default, but you can override it.
-    ///
-    /// This class defines even more `should` functions that
-    /// are used by various corresponding `try` alternatives.
-    /// This lets you easily override either if an operation
-    /// should be performed, as well as how to perform it.
+    /// the ``behavior`` by default, but it can override any
+    /// of these standard behaviors. For instance, the class
+    /// defines even more `should` functions for the various
+    /// corresponding `try` functions, which lets you easily
+    /// override both *if* something should be performed and
+    /// if so, *how* to perform it.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
@@ -35,49 +35,49 @@ extension KeyboardAction {
     open class StandardHandler: NSObject, KeyboardActionHandler, KeyboardBehavior {
         
         // MARK: - Initialization
-        
-        #if os(iOS)
+
         /// Create a standard keyboard action handler for an
-        /// input controller.
+        /// explicit controller.
         ///
         /// - Parameters:
-        ///   - controller: The keyboard input controller to use.
-        public convenience init(
-            controller: KeyboardInputViewController
+        ///   - controller: The keyboard controller to use.
+        public init(
+            controller: KeyboardController
         ) {
             let state = controller.state
             let services = controller.services
-            self.init(
-                controller: controller,
-                keyboardContext: state.keyboardContext,
-                keyboardBehavior: services.keyboardBehavior,
-                autocompleteContext: state.autocompleteContext,
-                autocompleteService: services.autocompleteService,
-                feedbackContext: state.feedbackContext,
-                feedbackService: services.feedbackService,
-                spaceDragGestureHandler: services.spaceDragGestureHandler
-            )
+            weak var weakController = controller
+            self.keyboardController = weakController
+            self.keyboardContext = state.keyboardContext
+            self.behavior = services.keyboardBehavior
+            self.autocompleteContext = state.autocompleteContext
+            self.autocompleteService = services.autocompleteService
+            self.feedbackContext = state.feedbackContext
+            self.feedbackService = services.feedbackService
+            self.spaceDragGestureHandler = services.spaceDragGestureHandler
         }
-        #endif
-        
-        /// Create a standard keyboard action handler with a
-        /// separate set of services.
+
+        /// Create a standard keyboard action handler for an
+        /// optional controller and explicit dependencies.
+        ///
+        /// The `controller` parameter is optional, to allow
+        /// you to set up later.
         ///
         /// - Parameters:
         ///   - controller: The keyboard controller to use, if any.
-        ///   - keyboardContext: The keyboard context to use.
-        ///   - keyboardBehavior: The keyboard behavior to use.
-        ///   - autocompleteContext: The autocomplete context to use.
-        ///   - autocompleteService: The autocomplete service to use.
-        ///   - feedbackContext: The feedback context to use.
-        ///   - feedbackService: The feedback service to use.
-        ///   - spaceDragGestureHandler: The space gesture handler to use.
+        ///   - keyboardContext: A custom keyboard context.
+        ///   - keyboardBehavior: A custom keyboard behavior.
+        ///   - autocompleteContext: A custom autocomplete context.
+        ///   - autocompleteService: A custom autocomplete service.
+        ///   - feedbackContext: A custom feedback context.
+        ///   - feedbackService: A custom feedback service.
+        ///   - spaceDragGestureHandler: A custom space gesture handler.
         public init(
             controller: KeyboardController?,
             keyboardContext: KeyboardContext,
             keyboardBehavior: KeyboardBehavior,
             autocompleteContext: AutocompleteContext,
-            autocompleteService: AutocompleteService? = nil,
+            autocompleteService: AutocompleteService,
             feedbackContext: FeedbackContext,
             feedbackService: FeedbackService,
             spaceDragGestureHandler: Gestures.SpaceDragGestureHandler

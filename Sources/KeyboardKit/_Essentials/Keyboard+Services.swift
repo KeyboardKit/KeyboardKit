@@ -37,17 +37,19 @@ public extension Keyboard {
 
 
         /// The keyboard action handler to use.
-        public lazy var actionHandler: KeyboardActionHandler = KeyboardAction.StandardHandler(
-            controller: nil,
+        public lazy var actionHandler: KeyboardActionHandler = .standard(
+            for: nil,
             keyboardContext: state.keyboardContext,
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
+            autocompleteService: autocompleteService,
             feedbackContext: state.feedbackContext,
             feedbackService: feedbackService,
             spaceDragGestureHandler: spaceDragGestureHandler
         ) {
             didSet { setupCalloutContextForServices() }
         }
+
 
         /// The autocomplete service to use.
         public lazy var autocompleteService: AutocompleteService = .disabled {
@@ -152,8 +154,9 @@ public extension Keyboard.Services {
 
     // Setup the action handler for the provided controller.
     func setupActionHandler(for controller: KeyboardInputViewController) {
+        guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
         weak var weakController = controller
-        (actionHandler as? KeyboardAction.StandardHandler)?.keyboardController = weakController
+        handler.keyboardController = weakController
     }
 
     // Setup space gestures for the provided controller.

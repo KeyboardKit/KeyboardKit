@@ -10,7 +10,6 @@ import SwiftUI
 
 /// This class has observable states and persistent settings
 /// for keyboard-specific themes.
-///
 public class KeyboardThemeContext: ObservableObject {
 
     /// Create a keyboard theme context instance.

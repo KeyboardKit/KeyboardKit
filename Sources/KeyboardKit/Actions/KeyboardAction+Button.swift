@@ -16,7 +16,7 @@ public extension KeyboardAction {
         for context: KeyboardContext
     ) -> Image? {
         switch standardButtonText(for: context) {
-        case "↵", "↳": .keyboardNewline(for: context.locale)
+        case "↵", "↳": .keyboardNewline(for: context.locale)    // Used by localization
         default: standardButtonImageRaw(for: context)
         }
     }

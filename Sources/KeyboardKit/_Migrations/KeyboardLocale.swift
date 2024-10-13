@@ -1,10 +1,10 @@
 import Foundation
 import SwiftUI
 
-@available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Use Locale instead.")
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use Locale instead.")
 public typealias KeyboardLocale = Locale
 
-@available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Use Locale instead.")
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use Locale instead.")
 public extension KeyboardLocale {
 
     @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1.")
@@ -14,25 +14,25 @@ public extension KeyboardLocale {
         self = locale
     }
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Use identifier instead.")
+    @available(*, deprecated, renamed: "identifier", message: "Migration Deprecation, will be removed in 9.1!")
     var id: String { identifier }
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Use keyboardKitSupported instead.")
+    @available(*, deprecated, renamed: "keyboardKitSupported", message: "Migration Deprecation, will be removed in 9.1!")
     static var all: [Locale] {
         keyboardKitSupported
     }
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Use keyboardKitSupported instead.")
+    @available(*, deprecated, renamed: "keyboardKitSupported", message: "Migration Deprecation, will be removed in 9.1!")
     static var allCases: [Locale] {
         keyboardKitSupported
     }
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Filter keyboardKitSupported instead.")
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Filter keyboardKitSupported instead.")
     static var allLtr: [Locale] {
         keyboardKitSupported.filter { $0.isLeftToRight }
     }
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Filter keyboardKitSupported instead.")
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Filter keyboardKitSupported instead.")
     static var allRtl: [Locale] {
         keyboardKitSupported.filter { $0.isRightToLeft }
     }
@@ -40,24 +40,24 @@ public extension KeyboardLocale {
 
 public extension KeyboardContext {
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Use locale instead.")
+    @available(*, deprecated, renamed: "locale", message: "Migration Deprecation, will be removed in 9.1!")
     var keyboardLocale: KeyboardLocale? { self.locale }
 }
 
-@available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1.")
+@available(*, deprecated, message: "Migration Deprecation, will be removed in KeyboardKit 9.1!")
 public extension Collection where Element == KeyboardLocale {
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Use keyboardKitSupported instead.")
+    @available(*, deprecated, renamed: "keyboardKitSupported", message: "Migration Deprecation, will be removed in 9.1!")
     static var all: [KeyboardLocale] {
         KeyboardLocale.all
     }
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Filter keyboardKitSupported instead.")
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
     static var allLtr: [KeyboardLocale] {
         KeyboardLocale.allLtr
     }
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1. Filter keyboardKitSupported instead.")
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
     static var allRtl: [KeyboardLocale] {
         KeyboardLocale.allRtl
     }
@@ -66,7 +66,7 @@ public extension Collection where Element == KeyboardLocale {
 
 public extension View {
 
-    @available(*, deprecated, renamed: "localeContextMenu")
+    @available(*, deprecated, renamed: "localeContextMenu", message: "Migration Deprecation, will be removed in 9.1!")
     func keyboardLocaleContextMenu(
         for context: KeyboardContext,
         locales: [Locale]? = nil,
@@ -79,7 +79,7 @@ public extension View {
         )
     }
 
-    @available(*, deprecated, renamed: "localeContextMenu")
+    @available(*, deprecated, renamed: "localeContextMenu", message: "Migration Deprecation, will be removed in 9.1!")
     func keyboardLocaleContextMenu<ButtonView: View>(
         for context: KeyboardContext,
         locales: [Locale]? = nil,

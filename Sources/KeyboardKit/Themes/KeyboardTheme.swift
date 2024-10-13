@@ -12,12 +12,13 @@ import SwiftUI
 /// be used to define a bunch of styles at once.
 ///
 /// A theme can be copied, tweaked, styled, etc. This struct
-/// implements `Codable` and can as such be easily persisted.
+/// implements the ``KeyboardThemeCopyable`` protocol to let
+/// it share copy logic with its style variation, as well as
+/// `Codable` to make it easy to persist.
 ///
 /// KeyboardKit Pro unlocks theme initializers, capabilities,
 /// many predefined themes and style variations, and a theme
-/// based style service. You can use these predefined themes
-/// as they are, or use them as templates for new ones.
+/// based style service.
 ///
 /// See <doc:Themes-Article> for more information.
 public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifiable {

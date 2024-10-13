@@ -13,9 +13,7 @@ import Foundation
 ///
 /// Some actions are ``KeyboardAction/character(_:)``, which
 /// inserts text, ``KeyboardAction/keyboardType(_:)``, which
-/// switches keyboard type, etc. You can also setup your own
-/// ``KeyboardAction/custom(named:)`` actions whenever these
-/// standard ones are insufficient for your needs.
+/// switches keyboard type, etc.
 ///
 /// The idea with these keyboard actions is that they can be
 /// used to triggered keyboard-related operations, e.g. when
@@ -29,6 +27,9 @@ import Foundation
 /// Types that don't define any standard behaviors require a
 /// custom ``KeyboardActionHandler`` to be handled.
 public enum KeyboardAction: Codable, Equatable {
+
+    /// Handle a certain autocomplete suggestion.
+    // case autocompleteSuggestion(Autocomplete.Suggestion)
 
     /// Deletes backwards when pressed, and repeats until released.
     case backspace
@@ -257,48 +258,6 @@ public extension KeyboardAction {
         switch self {
         case .keyboardType(let type): type == keyboardType
         default: false
-        }
-    }
-}
-
-
-// MARK: - Accessibility
-
-public extension KeyboardAction {
-    
-    /// The standard accessibility label for the action.
-    var standardAccessibilityLabel: String? {
-        switch self {
-        case .backspace: "Backspace"
-        case .capsLock: "Capslock"
-        case .character(let char): char
-        case .characterMargin: nil
-        case .command: "Command"
-        case .control: "Control"
-        case .custom(let name): name
-        case .diacritic(let val): val.char
-        case .dictation: "Dictation"
-        case .dismissKeyboard: "Dismiss Keyboard"
-        case .emoji(let emoji): "Emoji - \(emoji)"
-        case .escape: "Escape"
-        case .function: "Function"
-        case .image(let desc, _, _): desc
-        case .keyboardType(let keyboardType): "Keyboard Type - \(keyboardType.id)"
-        case .moveCursorBackward: "Move Cursor Backward"
-        case .moveCursorForward: "Move Cursor Forward"
-        case .nextKeyboard: "Next Keyboard"
-        case .nextLocale: "Next Locale"
-        case .none: nil
-        case .option: "Option"
-        case .primary(let returnKeyType): returnKeyType.id
-        case .settings: "Settings"
-        case .shift: "Shift"
-        case .space: KKL10n.space.text
-        case .systemImage(let desc, _, _): desc
-        case .systemSettings: "System Settings"
-        case .tab: "Tab"
-        case .text(let text): text
-        case .url(let url, _): "Open \(url?.absoluteString ?? "invalid url")"
         }
     }
 }

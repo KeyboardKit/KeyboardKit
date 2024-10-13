@@ -20,6 +20,10 @@ This version introduces migration deprecations that will remain until 9.1, to he
 
 The next keyboard button experiments have been made permanent.
 
+### ⌨️ Essentials
+
+The `KeyboardController` protocol now requires `services` and `state`, to make it more versatile. This lets the standard `KeyboardActionHandler` completely rely on this protocol instead of the concrete, iOS only implementation.
+
 ### 💥 Actions
 
 The `KeyboardAction.StandardHandler` now implements `KeyboardBehavior`.

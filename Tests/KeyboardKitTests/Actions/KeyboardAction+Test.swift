@@ -14,6 +14,7 @@ extension KeyboardAction {
     static var testActions: [KeyboardAction] {
         [
             .none,
+            // .autocompleteSuggestion(.init(text: "a")),
             .dismissKeyboard,
             .character(""),
             .characterMargin(""),

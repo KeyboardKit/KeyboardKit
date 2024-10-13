@@ -1,6 +1,6 @@
 import Foundation
 
-@available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1.")
+@available(*, deprecated, message: "Migration Deprecation, will be removed in KeyboardKit 9.1.")
 public protocol KeyboardLocaleInfo {
 
     /// The native ``Foundation/Locale`` value.
@@ -28,10 +28,10 @@ public protocol KeyboardLocaleInfo {
 
 // MARK: - Implementing Types
 
-@available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1.")
+@available(*, deprecated, message: "Migration Deprecation, will be removed in KeyboardKit 9.1.")
 extension Locale: KeyboardLocaleInfo {}
 
-@available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1.")
+@available(*, deprecated, message: "Migration Deprecation, will be removed in KeyboardKit 9.1.")
 public extension Locale {
 
     var locale: Locale { self }

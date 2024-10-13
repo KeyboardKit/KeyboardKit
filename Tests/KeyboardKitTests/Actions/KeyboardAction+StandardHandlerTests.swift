@@ -39,15 +39,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         state.keyboardContext.originalTextDocumentProxy = textDocumentProxy
         services.spaceDragGestureHandler = spaceDragHandler
         
-        handler = TestClass(
-            controller: controller,
-            keyboardContext: state.keyboardContext,
-            keyboardBehavior: services.keyboardBehavior,
-            autocompleteContext: state.autocompleteContext,
-            feedbackContext: state.feedbackContext,
-            feedbackService: services.feedbackService,
-            spaceDragGestureHandler: services.spaceDragGestureHandler
-        )
+        handler = TestClass(controller: controller)
     }
 
 
