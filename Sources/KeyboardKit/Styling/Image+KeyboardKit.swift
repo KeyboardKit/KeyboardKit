@@ -10,9 +10,9 @@ import SwiftUI
 
 public extension Image {
     
-    static let keyboardEmoji = asset("keyboardEmoji")
-    static let keyboardKit = asset("keyboardKitIcon")
-    
+    static let keyboardEmoji = Image(.keyboardEmoji)
+    static let keyboardKit = Image(.keyboardKitIcon)
+
     static let keyboard = symbol("keyboard")
     static let keyboardArrowUp = symbol("arrow.up")
     static let keyboardArrowDown = symbol("arrow.down")
@@ -87,10 +87,6 @@ public extension Image {
 
 extension Image {
 
-    static func asset(_ name: String) -> Image {
-        Image(name, bundle: .keyboardKit)
-    }
-
     static func symbol(_ name: String) -> Image {
         Image(systemName: name)
     }
@@ -143,7 +139,10 @@ extension Image {
                 preview(for: .keyboardTheme, "keyboardTheme")
                 preview(for: .keyboardUndo, "keyboardUndo")
                 preview(for: .keyboardZeroWidthSpace, "keyboardZeroWidthSpace")
-                preview(for: .keyboardEmoji, "keyboardEmoji")
+                Image.keyboardEmoji
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(8)
             }
         }
         .padding()

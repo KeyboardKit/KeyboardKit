@@ -15,60 +15,48 @@ public extension Color {
     static var clearInteractable: Self {
         Color.white.opacity(0.001)
     }
-    
+
     /// The standard keyboard background color.
-    static var keyboardBackground: Self {
-        color(for: .keyboardBackground)
-    }
-    
+    static let keyboardBackground = Color(.keyboardBackground)
+
     /// The standard keyboard background color for dark appearance.
-    static var keyboardBackgroundForDarkAppearance: Self {
-        color(for: .keyboardBackgroundForDarkAppearance)
-    }
-    
+    static let keyboardBackgroundForDarkAppearance = Color(.keyboardBackgroundForDarkAppearance)
+
     /// The standard keyboard button background color.
-    static var keyboardButtonBackground: Self {
-        color(for: .keyboardButtonBackground)
-    }
-    
+    static let keyboardButtonBackground = Color(.keyboardButtonBackground)
+
+    /// The standard keyboard button background color, adjusted for the iOS color scheme bug.
+    static let keyboardButtonBackgroundForColorSchemeBug = Color(.keyboardButtonBackgroundForColorSchemeBug)
+
     /// The standard keyboard button background color for dark appearance.
-    static var keyboardButtonBackgroundForDarkAppearance: Self {
-        color(for: .keyboardButtonBackgroundForDarkAppearance)
-    }
-    
+    static let keyboardButtonBackgroundForDarkAppearance = Color(.keyboardButtonBackgroundForDarkAppearance)
+
     /// The standard keyboard button foreground color.
-    static var keyboardButtonForeground: Self {
-        color(for: .keyboardButtonForeground)
-    }
-    
+    static let keyboardButtonForeground = Color(.keyboardButtonForeground)
+
     /// The standard keyboard button foreground color for dark appearance.
-    static var keyboardButtonForegroundForDarkAppearance: Self {
-        color(for: .keyboardButtonForegroundForDarkAppearance)
-    }
-    
+    static let keyboardButtonForegroundForDarkAppearance = Color(.keyboardButtonForegroundForDarkAppearance)
+
     /// The standard keyboard button shadow color.
-    static var keyboardButtonShadow: Self {
-        color(for: .keyboardButtonShadow)
-    }
-    
+    static let keyboardButtonShadow = Color(.keyboardButtonShadow)
+
     /// The standard dark keyboard button background color.
-    static var keyboardDarkButtonBackground: Self {
-        color(for: .keyboardDarkButtonBackground)
-    }
-    
+    static let keyboardDarkButtonBackground = Color(.keyboardDarkButtonBackground)
+
+    /// The standard dark keyboard button background color for the iOS color scheme bug.
+    static let keyboardDarkButtonBackgroundForColorSchemeBug = Color(.keyboardDarkButtonBackgroundForColorSchemeBug)
+
     /// The standard dark keyboard button background color for dark apperance.
-    static var keyboardDarkButtonBackgroundForDarkAppearance: Self {
-        color(for: .keyboardDarkButtonBackgroundForDarkAppearance)
-    }
-    
+    static let keyboardDarkButtonBackgroundForDarkAppearance = Color(.keyboardDarkButtonBackgroundForDarkAppearance)
+
     /// The standard dark keyboard button foreground color.
     static var keyboardDarkButtonForeground: Self {
-        color(for: .keyboardButtonForeground)
+        Color(.keyboardButtonForeground)
     }
     
     /// The standard dark keyboard button foreground color for dark apperance.
     static var keyboardDarkButtonForegroundForDarkAppearance: Self {
-        color(for: .keyboardButtonForegroundForDarkAppearance)
+        Color(.keyboardButtonForegroundForDarkAppearance)
     }
 }
 
@@ -112,32 +100,6 @@ public extension Color {
         context.hasDarkColorScheme ?
             .keyboardDarkButtonForegroundForDarkAppearance :
             .keyboardDarkButtonForeground
-    }
-}
-
-
-// MARK: - Internal Functions
-
-extension Color {
-    
-    static var keyboardButtonBackgroundForColorSchemeBug: Color {
-        color(for: .keyboardButtonBackgroundForColorSchemeBug)
-    }
-    
-    static var keyboardDarkButtonBackgroundForColorSchemeBug: Color {
-        color(for: .keyboardDarkButtonBackgroundForColorSchemeBug)
-    }
-}
-
-
-// MARK: - Private Functions
-
-private extension Color {
-    
-    static func color(
-        for color: KeyboardColor
-    ) -> Color {
-        Color(color.resourceName, bundle: .keyboardKit)
     }
 }
 
