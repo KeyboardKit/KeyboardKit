@@ -134,8 +134,10 @@ extension Color {
 
 private extension Color {
     
-    static func color(for color: KeyboardColor) -> Color {
-        color.color
+    static func color(
+        for color: KeyboardColor
+    ) -> Color {
+        Color(color.resourceName, bundle: .keyboardKit)
     }
 }
 

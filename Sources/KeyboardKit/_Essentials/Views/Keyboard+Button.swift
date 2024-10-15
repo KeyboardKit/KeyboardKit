@@ -178,7 +178,7 @@ private extension Keyboard.Button {
             }
             .padding()
             .background(Color.gray)
-            .cornerRadius(10)
+            .cornerRadius(8)
             .environment(\.sizeCategory, .extraExtraLarge)
         }
     }
