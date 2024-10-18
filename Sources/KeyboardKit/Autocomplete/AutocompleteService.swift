@@ -12,8 +12,8 @@ import Foundation
 /// used perform autocomplete as the user types.
 ///
 /// Simply call ``autocomplete(_:)`` to perform autocomplete
-/// for the provided text. This returns a result that varies
-/// based on the type of service you use.
+/// for the provided `text`. Pass in as much text as you can,
+/// to give the service as much context as possible.
 ///
 /// Words can be learned using ``learnWord(_:)`` and ignored
 /// with ``ignoreWord(_:)``. Although it's up to the service,

@@ -195,12 +195,12 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     // MARK: - Autocomplete
 
-    func testAutocompleteTextIsCurrentWordInProxy() {
+    func testAutocompleteTextIsAllTextBeforeTheInputCursor() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
-        mockTextDocumentProxy.documentContextBeforeInput = "foo"
-        mockTextDocumentProxy.documentContextAfterInput = "bar"
-        XCTAssertEqual(vc.autocompleteText, "foo")
+        mockTextDocumentProxy.documentContextBeforeInput = "foo bar "
+        mockTextDocumentProxy.documentContextAfterInput = "baz"
+        XCTAssertEqual(vc.autocompleteText, "foo bar ")
     }
 
     func testIsAutocompleteEnabledIsTrueIfProxyIsNotReadingFullDocumentContext() {

@@ -66,7 +66,7 @@ The ``Autocomplete/RemoteService`` doesn't have a shorthand, since it's not comm
 
 The ``KeyboardInputViewController`` will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the context with the result that is returned from the current ``Keyboard/Services/autocompleteService``.
 
-You can configure the ``Keyboard/State/autocompleteContext`` and override the ``KeyboardInputViewController``'s autocomplete properties and functions, such as ``KeyboardInputViewController/autocompleteText`` and ``KeyboardInputViewController/performAutocomplete()``, to customize the autocomplete behavior.
+You can configure the ``Keyboard/State/autocompleteContext`` and override the ``KeyboardInputViewController``'s autocomplete properties and functions to customize the autocomplete behavior.
 
 The ``KeyboardView`` will automatically add an ``Autocomplete``.``Autocomplete/Toolbar`` that lists the autocomplete context ``AutocompleteContext/suggestions`` and also gives the keyboard some additional top space for callouts to render without being clipped.
 
