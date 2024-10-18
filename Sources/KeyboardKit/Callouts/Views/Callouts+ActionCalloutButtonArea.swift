@@ -1,5 +1,5 @@
 //
-//  Callouts+ButtonArea.swift
+//  Callouts+ActionCalloutButtonArea.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-10.
@@ -73,7 +73,7 @@ private extension Callouts.ActionCallout.ButtonArea {
         public func path(in rect: CGRect) -> Path {
             var path = Path()
             guard rect.isValidForPath else { return path }
-            let topTrailing = CGPoint(x: rect.maxX, y: rect.minY)
+            let topTrailing = CGPoint(x: rect.maxX+10, y: rect.minY)
             let topLeading = CGPoint(x: rect.minX, y: rect.minY - 20)
             let btmLeading = CGPoint(x: rect.minX, y: rect.minY - 10)
             let btmTrailing = CGPoint(x: rect.maxX, y: rect.maxY + 10)

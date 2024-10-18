@@ -11,7 +11,7 @@ import SwiftUI
 
 extension Bundle {
     
-    /// The main library bundle.
+    /// The main library bundle (for EmojiKit).
     static var library: Bundle { .keyboardKit }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 /// This protocol can be implemented by any type that can be
-/// used to perform callout-related actions.
+/// used to perform keyboard callout-related actions.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``

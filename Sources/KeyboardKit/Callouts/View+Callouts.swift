@@ -9,8 +9,8 @@
 import SwiftUI
 
 public extension View {
-    
-    /// Setup the view as an keyboard callout container.
+
+    /// Setup the view as a keyboard callout container.
     ///
     /// - Parameters:
     ///   - calloutContext: The callout context to use.
@@ -20,20 +20,30 @@ public extension View {
         keyboardContext: KeyboardContext
     ) -> some View {
         self.keyboardActionCalloutContainer(
-                calloutContext: calloutContext.actionContext,
-                keyboardContext: keyboardContext
-            )
-            .keyboardInputCalloutContainer(
-                calloutContext: calloutContext.inputContext,
-                keyboardContext: keyboardContext
-            )
+            calloutContext: calloutContext.actionContext,
+            keyboardContext: keyboardContext
+        )
+        .keyboardInputCalloutContainer(
+            calloutContext: calloutContext.inputContext,
+            keyboardContext: keyboardContext
+        )
     }
 
-    /// Setup the view as an action callout container.
+
+    /// Apply a keyboard callout shadow to the view.
     ///
     /// - Parameters:
-    ///   - calloutContext: The callout context to use.
-    ///   - keyboardContext: The keyboard context to use.
+    ///   - style: The style apply, by default `.standard`.
+    func keyboardCalloutShadow(
+        style: Callouts.CalloutStyle = .standard
+    ) -> some View {
+        self.shadow(color: style.borderColor, radius: 0.4)
+            .shadow(color: style.shadowColor, radius: style.shadowRadius)
+    }
+}
+
+extension View {
+
     func keyboardActionCalloutContainer(
         calloutContext: CalloutContext.ActionContext,
         keyboardContext: KeyboardContext
@@ -47,22 +57,6 @@ public extension View {
         .coordinateSpace(name: calloutContext.coordinateSpace)
     }
 
-    /// Apply a keyboard callout shadow to the view.
-    ///
-    /// - Parameters:
-    ///   - style: The style apply, by default `.standard`.
-    func keyboardCalloutShadow(
-        style: Callouts.CalloutStyle = .standard
-    ) -> some View {
-        self.shadow(color: style.borderColor, radius: 0.4)
-            .shadow(color: style.shadowColor, radius: style.shadowRadius)
-    }
-    
-    /// Setup the view as an input callout container.
-    ///
-    /// - Parameters:
-    ///   - calloutContext: The callout context to use.
-    ///   - keyboardContext: The keyboard context to use.
     func keyboardInputCalloutContainer(
         calloutContext: CalloutContext.InputContext,
         keyboardContext: KeyboardContext

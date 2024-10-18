@@ -231,18 +231,22 @@ private extension KeyboardAction {
             keyboardContext: .preview
         )
     }
-    
-    return VStack(spacing: 100) {
-        previewGroup(
-            view: Color.red.frame(width: 40, height: 50),
-            actionContext: actionContext1,
-            alignment: .leading
-        )
-        previewGroup(
-            view: Color.yellow.frame(width: 40, height: 50),
-            actionContext: actionContext2,
-            alignment: .trailing
-        )
+
+
+    return ZStack {
+        Color.red
+        VStack(spacing: 100) {
+            previewGroup(
+                view: Color.red.frame(width: 40, height: 50),
+                actionContext: actionContext1,
+                alignment: .leading
+            )
+            previewGroup(
+                view: Color.yellow.frame(width: 40, height: 50),
+                actionContext: actionContext2,
+                alignment: .trailing
+            )
+        }
     }
     .actionCalloutStyle(.init(
         // callout: .preview2,
