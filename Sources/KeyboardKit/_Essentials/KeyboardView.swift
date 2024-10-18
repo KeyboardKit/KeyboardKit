@@ -247,7 +247,7 @@ private extension KeyboardView {
     var emojiKeyboardContent: some View {
         if keyboardContext.keyboardType == .emojis {
             emojiKeyboardBuilder((
-                style: EmojiKeyboardStyle.standard(for: keyboardContext),
+                style: Emoji.KeyboardStyle.standard(for: keyboardContext),
                 view: Emoji.KeyboardWrapper(
                     actionHandler: actionHandler,
                     keyboardContext: keyboardContext,

@@ -25,8 +25,8 @@ public extension Callouts {
         ///   - callout: The callout style to use, by default `.standard`.
         ///   - font: The font to use in the callout, by default `.standardFont`.
         ///   - maxButtonSize: The max button size, by default a `50` point square.
-        ///   - selectedBackgroundColor: The background color of the selected item, by default `.blue`.
-        ///   - selectedForegroundColor: The foreground color of the selected item, by default `.white`.
+        ///   - selectedBackgroundColor: The selected item background, by default `.blue`.
+        ///   - selectedForegroundColor: The selected item foreground, by default `.white`.
         ///   - verticalOffset: The vertical offset of the action callout, by default `20` points on iPad devices and `0` otherwise.
         ///   - verticalTextPadding: The vertical padding to apply to text in the callout, by default `6`.
         public init(

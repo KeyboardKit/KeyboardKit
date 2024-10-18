@@ -28,7 +28,9 @@ public extension View {
             keyboardContext: keyboardContext
         )
     }
+}
 
+extension View {
 
     /// Apply a keyboard callout shadow to the view.
     ///
@@ -40,9 +42,6 @@ public extension View {
         self.shadow(color: style.borderColor, radius: 0.4)
             .shadow(color: style.shadowColor, radius: style.shadowRadius)
     }
-}
-
-extension View {
 
     func keyboardActionCalloutContainer(
         calloutContext: CalloutContext.ActionContext,
@@ -53,6 +52,7 @@ extension View {
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
             )
+            .environment(\.emojiKeyboardStyle, .standard(for: keyboardContext))
         )
         .coordinateSpace(name: calloutContext.coordinateSpace)
     }

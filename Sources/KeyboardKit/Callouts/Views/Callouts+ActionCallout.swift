@@ -21,19 +21,15 @@ public extension Callouts {
         /// - Parameters:
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
-        ///   - emojiStyle: The emoji style to apply to the view, by default the standard style for the provided context.
         public init(
             calloutContext: CalloutContext.ActionContext,
-            keyboardContext: KeyboardContext,
-            emojiStyle: EmojiStyle? = nil
+            keyboardContext: KeyboardContext
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.emojiStyle = emojiStyle ?? EmojiStyle.standard(for: keyboardContext)
         }
         
         public typealias Context = CalloutContext.ActionContext
-        public typealias EmojiStyle = EmojiKeyboardStyle
         private typealias Style = Callouts.ActionCalloutStyle
 
         @ObservedObject
@@ -41,9 +37,10 @@ public extension Callouts {
         
         @ObservedObject
         private var keyboardContext: KeyboardContext
-        
-        private let emojiStyle: EmojiStyle
-        
+
+        @Environment(\.emojiKeyboardStyle)
+        private var emojiStyle: Emoji.KeyboardStyle
+
         @Environment(\.actionCalloutStyle)
         private var style
 

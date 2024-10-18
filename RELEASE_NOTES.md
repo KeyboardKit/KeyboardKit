@@ -40,6 +40,12 @@ The `Dictation` namespace has been simplified to only use a single service that 
 
 The new `DictationService` doesn't need a configuration, but will use a `KeyboardContext` and `KeyboardApp` to determine its behavior.
 
+### 😀 Emojis
+
+The `EmojiKeyboardStyle` has been moved from KeyboardKit Pro to KeyboardKit to make it available to core features.
+
+To avoid bloating the Emoji namespace with a style for a view that isn't in the core library, the style is renamed to `Emoji.KeyboardStyle`.
+
 ### 🇸🇪 Localization
 
 This version simplifies all locale-specific features to only use `Location`. This means that you no longer need to use `KeyboardLocale` and `KeyboardLocaleInfo`.

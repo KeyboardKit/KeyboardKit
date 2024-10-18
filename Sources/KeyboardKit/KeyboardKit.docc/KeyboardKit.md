@@ -199,7 +199,6 @@ KeyboardKit is available under the MIT license.
 - ``Emoji``
 - ``EmojiCategory``
 - ``EmojiKeyboard``
-- ``EmojiKeyboardStyle``
 - ``EmojiVersion``
 
 ### External

@@ -196,16 +196,7 @@ public extension View {
 public struct EmojiKeyboard {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public struct EmojiKeyboardStyle {
-    
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    public var itemFont: Font { .body }
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    public var itemScaleFactor: Double { 1.0 }
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    public var itemSize: Double { 1.0 }
+public extension EmojiKeyboardStyle {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func standard(for context: KeyboardContext) -> Self {
@@ -220,16 +211,6 @@ public extension Image {
         _ category: EmojiCategory
     ) throws -> Image {
         throw ProPlaceholderError.proPlaceholder
-    }
-}
-
-public extension View {
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    func emojiKeyboardStyle(
-        _ style: EmojiKeyboardStyle
-    ) -> some View {
-        self
     }
 }
 

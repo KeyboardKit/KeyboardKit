@@ -46,7 +46,7 @@ public extension KeyboardViewComponent {
     
     /// An emoji keyboard builder params typalias.
     typealias EmojiKeyboardParams = (
-        style: EmojiKeyboardStyle,
+        style: Emoji.KeyboardStyle,
         view: StandardEmojiKeyboard
     )
     
