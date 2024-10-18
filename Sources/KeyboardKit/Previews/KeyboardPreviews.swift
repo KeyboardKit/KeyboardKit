@@ -25,6 +25,8 @@ import Foundation
 /// - ``KeyboardStyleService``.``KeyboardStyleService/preview``
 /// - ``UIKit/UITextDocumentProxy``.``UIKit/UITextDocumentProxy/preview``
 ///
-/// These preview implementations make it easier to use SwiftUI
-/// previews with KeyboardKit types.
+/// These previews make it easier to use SwiftUI previews in
+/// a KeyboardKit-based app.
+///
+/// See the <doc:Previews-Article> article for more information.
 public struct KeyboardPreviews {}

@@ -67,6 +67,21 @@ public extension Autocomplete {
     class RemoteService: Autocomplete.DisabledService {}
 }
 
+public extension Autocomplete.NextWordPredictionRequest {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func claude(
+        apiKey: String,
+        apiVersion: String = "2023-06-01",
+        apiUrl: String = "https://api.anthropic.com/v1/messages",
+        model: String = "claude-3-5-sonnet-20240620",
+        maxTokens: Int = 15,
+        system: String = "You are a next word predictor. ONLY return the 3 most probable next words as CSV."
+    ) throws -> Self {
+        throw ProPlaceholderError.proPlaceholder
+    }
+}
+
 public extension AutocompleteService where Self == Autocomplete.LocalService {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -196,7 +211,7 @@ public extension View {
 public struct EmojiKeyboard {}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public extension EmojiKeyboardStyle {
+public extension Emoji.KeyboardStyle {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func standard(for context: KeyboardContext) -> Self {

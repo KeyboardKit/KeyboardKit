@@ -26,6 +26,8 @@ import Foundation
 ///
 /// Types that don't define any standard behaviors require a
 /// custom ``KeyboardActionHandler`` to be handled.
+///
+/// See the <doc:Actions-Article> article for more information.
 public enum KeyboardAction: Codable, Equatable {
 
     /// Handle a certain autocomplete suggestion.

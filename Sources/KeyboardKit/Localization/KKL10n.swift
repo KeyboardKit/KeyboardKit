@@ -9,6 +9,12 @@
 import SwiftUI
 
 /// This enum defines localized keyboard texts.
+///
+/// You can use the ``text`` property to translate texts for
+/// the current locale and ``text(forLocale:)`` to translate
+/// text for a certain locale.
+///
+/// See the <doc:Localization-Article> article for more information.
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case `continue`
@@ -46,10 +52,20 @@ public extension KKL10n {
     func text(for context: KeyboardContext) -> String {
         text(for: context.locale)
     }
-    
+
+    /// Get the localized text for a certain context.
+    func text(forContext context: KeyboardContext) -> String {
+        text(for: context)
+    }
+
     /// Get the localized text for a certain `Locale`.
     func text(for locale: Locale) -> String {
         Self.text(forKey: key, locale: locale)
+    }
+
+    /// Get the localized text for a certain `Locale`.
+    func text(forLocale locale: Locale) -> String {
+        text(for: locale)
     }
 
     /// Get a localized text for a certain locale.

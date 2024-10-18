@@ -29,7 +29,7 @@ Apple's native text document proxy will not return all the text within the docum
 
 By reading the full text, you can pass in more information to your AI model or ChatGPT-powered functionality, and make your AI-based features a lot more capable.
 
-Read more in the <doc:Proxy-Article> article.
+See the <doc:Proxy-Article> article for more information.
 
 
 ### Text Input Support
@@ -40,7 +40,7 @@ KeyboardKit Pro has a ``KeyboardTextField`` that handles text routing automatica
 
 This lets you provide AI-based features that require user input in your keyboard, such as generating custom images with DALL·E, asking questions to an AI like ChatGPT, etc.
 
-Read more in the <doc:Text-Input-Article> article.
+See the <doc:Text-Input-Article> article for more information.
 
 
 

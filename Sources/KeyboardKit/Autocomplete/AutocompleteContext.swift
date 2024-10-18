@@ -128,7 +128,7 @@ public class AutocompleteContext: ObservableObject {
         DispatchQueue.main.async {
             self.isLoading = false
             self.lastError = nil
-            self.suggestions = result.suggestions
+            self.suggestionsFromService = result.suggestions
             self.nextCharacterPredictions = result.nextCharacterPredictions ?? [:]
         }
     }

@@ -53,7 +53,7 @@ KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which performs on-devic
 
 You can easily resolve various service types with these shorthands:
 
-* ``AutocompleteService/local(context:locale:)`` 👑 Pro
+* ``AutocompleteService/local(context:locale:)``
 * ``AutocompleteService/disabled``
 * ``AutocompleteService/disabled(suggestions:)``
 * ``AutocompleteService/preview``
@@ -64,11 +64,23 @@ The ``Autocomplete/RemoteService`` doesn't have a shorthand, since it's not comm
 
 ## How to perform autocomplete
 
-The ``KeyboardInputViewController`` will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the context with the result that is returned from the current ``Keyboard/Services/autocompleteService``.
+The ``KeyboardInputViewController`` will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``Keyboard/State/autocompleteContext`` with the result from the ``Keyboard/Services/autocompleteService``.
 
-You can configure the ``Keyboard/State/autocompleteContext`` and override the ``KeyboardInputViewController``'s autocomplete properties and functions to customize the autocomplete behavior.
+You can configure the ``Keyboard/State/autocompleteContext`` and override ``KeyboardInputViewController``'s autocomplete properties and functions to customize the keyboard's autocomplete behavior.
 
 The ``KeyboardView`` will automatically add an ``Autocomplete``.``Autocomplete/Toolbar`` that lists the autocomplete context ``AutocompleteContext/suggestions`` and also gives the keyboard some additional top space for callouts to render without being clipped.
+
+
+
+## How to perform next word prediction
+
+System-based next word prediction stopped working in iOS 16, but you can inject a custom ``Autocomplete/NextWordPredictionRequest`` into KeyboardKit Pro's ``Autocomplete/LocalService`` to make it perform next word prediction.
+
+KeyboardKit Pro defines different request types for different web-based services. For instance ``Autocomplete/NextWordPredictionRequest/claude(apiKey:model:)`` can be used to integrate with the remote Claude API.
+
+The easiest way to enable next word prediction is to add a ``KeyboardApp/AutocompleteConfiguration/nextWordPredictionRequest`` to your ``KeyboardApp``. KeyboardKit Pro will then inject that request when it sets up the standard ``Autocomplete/LocalService``.
+
+> Important: Next word prediction requests are only available in KeyboardKit Pro Gold, and will by default require you to use your own API keys. This means that you will get individually billed for your consumption by the service provider that you choose. Reach out if you want KeyboardKit Pro to manage this account as part of your license agreement.
 
 
 
@@ -105,7 +117,8 @@ class CustomAutocompleteService: AutocompleteService {
         for text: String
     ) async throws -> [Autocomplete.Suggestion] {
         guard text.count > 0 else { return [] }
-        if text == match {
+        let currentWord = text.wordFragmentAtEnd
+        if currentWord == match {
             return matchSuggestions()
         } else {
             return fakeSuggestions(for: text)
@@ -186,13 +199,11 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 
 The ``Autocomplete/LocalService`` performs autocomplete operations locally, on-device. It supporst most keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
 
-Supported locales:
-
-`arabic`, `bulgarian`, `czech`, `danish`, `dutch`, `dutch_belgium`, `english`, `english_gb`, `english_us`, `filipino`, `finnish`, `french`, `french_belgium`, `french_switzerland`, `german`, `german_austria`, `german_switzerland`, `greek`, `hebrew`, `hungarian`, `irish`, `italian`, `norwegian`, `polish`, `portuguese_brazil`, `portuguese`, `romanian`, `russian`, `spanish`, `swedish`, `turkish`, `ukrainian`.
+**Supported locales:** arabic, bulgarian, czech, danish, dutch, dutch_belgium, english, english_gb, english_us, filipino, finnish, french, french_belgium, french_switzerland, german, german_austria, german_switzerland, greek, hebrew, hungarian, irish, italian, norwegian, polish, portuguese_brazil, portuguese, romanian, russian, spanish, swedish, turkish, ukrainian.
 
 To support other locales, you must use a remote autocomplete service or create a custom service implementation.
 
-> Important: This service currently doesn't provide next word prediction, since Apple removed these capabilities in iOS 16.
+You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the service to make it perform next word predictions, using external AI-based services. See the next word prediction section earlier in this article.
 
 
 ### Remote Autocomplete

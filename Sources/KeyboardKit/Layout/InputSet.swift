@@ -21,6 +21,8 @@ import Foundation
 ///
 /// KeyboardKit Pro unlocks additional input sets to support
 /// more locales, like `qwertz` and `azerty`.
+///
+/// See the <doc:Layout-Article> article for more information.
 public struct InputSet: Equatable {
     
     /// Create an input set with rows.

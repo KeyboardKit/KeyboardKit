@@ -315,4 +315,4 @@ KeyboardKit Pro also unlocks ``Keyboard``-related previews, that can be used to 
 
 These previews can be used in the main application, to show users how the keyboard will look for different settings, styles, themes, etc.
 
-You can read more about previews in the <doc:Previews-Article> article.
+See the <doc:Previews-Article> article for more information.

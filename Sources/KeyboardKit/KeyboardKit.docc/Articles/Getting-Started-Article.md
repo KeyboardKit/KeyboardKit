@@ -45,7 +45,7 @@ extension KeyboardApp {
 }
 ```  
 
-You can read more about app-specific utilities in the <doc:App-Article> article.
+See the <doc:App-Article> article for more information about app-specific utilities.
 
 
 

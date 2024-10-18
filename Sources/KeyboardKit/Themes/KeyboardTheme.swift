@@ -20,7 +20,7 @@ import SwiftUI
 /// many predefined themes and style variations, and a theme
 /// based style service.
 ///
-/// See <doc:Themes-Article> for more information.
+/// See the <doc:Themes-Article> article for more information.
 public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifiable {
 
     /// This enum defines various button types.

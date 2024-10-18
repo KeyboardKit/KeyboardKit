@@ -17,6 +17,8 @@ import SwiftUI
 ///
 /// You can use the ``itemRows`` property to modify a layout,
 /// e.g. with the various insert, replace & remove functions.
+///
+/// See the <doc:Layout-Article> article for more information.
 public class KeyboardLayout {
 
     /// Create a new layout with the provided items.

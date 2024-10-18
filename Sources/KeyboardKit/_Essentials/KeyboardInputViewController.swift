@@ -369,17 +369,6 @@ private extension KeyboardInputViewController {
         setKeyboardType(state.keyboardContext.preferredKeyboardType)
     }
     
-    /// Update the autocomplete context with new suggestions.
-    func updateAutocompleteContext(
-        with result: [Autocomplete.Suggestion],
-        nextCharacterPredictions: [Character: Double]
-    ) {
-        DispatchQueue.main.async { [weak self] in
-            self?.state.autocompleteContext.nextCharacterPredictions = nextCharacterPredictions
-            self?.state.autocompleteContext.suggestionsFromService = result
-        }
-    }
-    
     /// Update the last received dictation error.
     func updateLastDictationError(_ error: Error) async {
         await MainActor.run {

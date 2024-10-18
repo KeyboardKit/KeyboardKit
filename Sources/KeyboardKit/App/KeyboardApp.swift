@@ -38,6 +38,8 @@ import SwiftUI
 /// describe which locales you *want* to use in your app. It
 /// will be capped to the number of locales your KeyboardKit
 /// Pro license includes.
+///
+/// See the <doc:App-Article> article for more information.
 public struct KeyboardApp {
 
     /// Create a custom keyboard app value.
@@ -49,6 +51,7 @@ public struct KeyboardApp {
     ///   - keyboardBundleId: The app's keyboard bundle identifier, by default `<bundleId>.keyboard`.
     ///   - appGroupId: The app's App Group identifier, if any.
     ///   - locales: The locales to use in the app, by default `.all`.
+    ///   - autocompleteConfiguration: The autocomplete configuration to use.
     ///   - deepLinks: App-specific deep links, if any.
     ///   - keyboardSettingsKeyPrefix: A custom keyboard settings key prefix, if any.
     public init(
@@ -58,6 +61,7 @@ public struct KeyboardApp {
         keyboardBundleId: String? = nil,
         appGroupId: String? = nil,
         locales: [Locale] = .keyboardKitSupported,
+        autocompleteConfiguration: AutocompleteConfiguration = .init(),
         deepLinks: DeepLinks? = nil,
         keyboardSettingsKeyPrefix: String? = nil
     ) {
@@ -67,6 +71,7 @@ public struct KeyboardApp {
         self.keyboardBundleId = keyboardBundleId ?? "\(bundleId).keyboard"
         self.locales = locales
         self.licenseKey = licenseKey
+        self.autocompleteConfiguration = autocompleteConfiguration
         self.deepLinks = deepLinks
         self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
     }
@@ -92,11 +97,34 @@ public struct KeyboardApp {
     /// App-specific deep links, if any.
     public let deepLinks: DeepLinks?
 
+    /// The autocomplete configuration to use.
+    public let autocompleteConfiguration: AutocompleteConfiguration
+
     /// A custom keyboard settings key prefix, if any.
     public let keyboardSettingsKeyPrefix: String?
 }
 
 public extension KeyboardApp {
+
+    /// This type can define app-specific deep links.
+    ///
+    /// You only have to provide an `app` url, and can leave
+    /// the rest blank to use standard URLs.
+    struct AutocompleteConfiguration {
+
+        /// Create a custom autocomplete configuration.
+        ///
+        /// - Parameters:
+        ///   - nextWordPredictionRequest: The next word prediction request to use, if any.
+        public init(
+            nextWordPredictionRequest: Autocomplete.NextWordPredictionRequest? = nil
+        ) {
+            self.nextWordPredictionRequest = nextWordPredictionRequest
+        }
+
+        /// The next word prediction request to use, if any.
+        public let nextWordPredictionRequest: Autocomplete.NextWordPredictionRequest?
+    }
 
     /// This type can define app-specific deep links.
     ///
