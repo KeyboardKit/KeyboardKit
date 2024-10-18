@@ -14,7 +14,7 @@ These release notes only cover the current major version. Check out version tags
 
 This version removes all deprecated code, simplifies many concepts, and prepares for future conformance to strict concurrency.
 
-This version introduces migration deprecations that will remain until 9.1, to help you transition from KeyboardKit 8.9 to 9.0.
+This version introduces `migration deprecations` that will help you transition from KeyboardKit 8.9 to 9.0. They will be removed in 9.1.
 
 ### 🧪 Experiments
 
@@ -34,21 +34,25 @@ The `Autocomplete.Suggestion` type now implements `Codable` and `Equatable`, but
 
 The `Autocomplete.Toolbar` now lets you define custom views like in `KeyboardView`, with well-defined params. The toolbar views are also polished to look more like the native counterparts.
 
+### 🎤 Dictation
+
+The `Dictation` namespace has been simplified to only use a single service that can handle all dictation scenarios.
+
+The new `DictationService` doesn't need a configuration, but will use a `KeyboardContext` and `KeyboardApp` to determine its behavior.
+
 ### 🇸🇪 Localization
 
-This version simplifies all locale-specific features to only use `Location`. This means that you no longer need to use `KeyboardLocale` and `KeyboardLocaleInfo`. 
-
-### 🗑️ Migration Deprecated Types
-
-* `KeyboardLocale`
-* `KeyboardLocaleInfo`
+This version simplifies all locale-specific features to only use `Location`. This means that you no longer need to use `KeyboardLocale` and `KeyboardLocaleInfo`.
 
 ### 🚨 Breaking Changes
 
+There are breaking changes in this version, but most are handled by migration deprecations that will be removed in 9.1. 
+
+Among the things that are not covered by migration deprecations are: 
+
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
-
-* `KeyboardInputViewController` `viewWillRegisterSharedController` has been removed.
+* The dictation changes can't be migrated since the new services replace the old ones. 
 
 
 

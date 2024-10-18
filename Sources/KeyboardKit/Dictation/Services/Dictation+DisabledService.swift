@@ -15,12 +15,18 @@ public extension Dictation {
     /// KeyboardKit Pro license key.
     ///
     /// This service can also be resolved with the shorthand
-    /// ``DictationService/disabled``.
+    /// ``DictationService/disabled(context:)``.
     ///
     /// See <doc:Dictation-Article> for more information.
     class DisabledService: DictationService {
         
-        public init() {}
+
+        public init(context: DictationContext) {
+            self.context = context
+        }
+
+        
+        public let context: DictationContext
 
         open var authorizationStatus: Dictation.AuthorizationStatus {
             .disabledService
@@ -28,20 +34,42 @@ public extension Dictation {
 
         open var supportedLocales: [Locale] { [] }
 
+
+        open func startDictationFromKeyboard() async throws {
+            resetContext()
+        }
+
+        open func startDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func abortDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func finishDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func returnToKeyboardFromApp() throws {}
+
+        open func handleDictationResultInKeyboard() async throws {
+            resetContext()
+        }
+
         open func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
             authorizationStatus
         }
 
-        open func resetDictationResult() async throws {}
+        open func undoLastDictation() {}
+    }
+}
 
-        open func startDictation(
-            with config: Dictation.Configuration
-        ) async throws {
-            throw Dictation.ServiceError.disabledService
-        }
+private extension Dictation.DisabledService {
 
-        open func stopDictation() async throws {
-            throw Dictation.ServiceError.disabledService
+    func resetContext() {
+        DispatchQueue.main.async { [weak self] in
+            self?.context.reset()
         }
     }
 }

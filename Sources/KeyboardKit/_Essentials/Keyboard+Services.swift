@@ -68,7 +68,7 @@ public extension Keyboard {
         }
 
         /// The dictation service to use.
-        public lazy var dictationService: KeyboardDictationService = .disabled(
+        public lazy var dictationService: DictationService = .disabled(
             context: state.dictationContext
         )
 

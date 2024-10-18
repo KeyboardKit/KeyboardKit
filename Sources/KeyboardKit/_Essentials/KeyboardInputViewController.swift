@@ -350,9 +350,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public func performDictation() {
         Task {
             do {
-                let config = state.dictationContext.keyboardConfiguration
                 try await services.dictationService
-                    .startDictationFromKeyboard(with: config)
+                    .startDictationFromKeyboard()
             } catch {
                 await updateLastDictationError(error)
             }

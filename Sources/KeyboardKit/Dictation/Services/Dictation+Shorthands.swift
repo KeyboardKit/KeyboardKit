@@ -12,17 +12,17 @@ public extension DictationService where Self == Dictation.DisabledService {
 
     /// Create a disabled dictation service.
     static var disabled: Self {
-        Dictation.DisabledService()
+        Dictation.DisabledService(context: .preview)
     }
 }
 
-public extension KeyboardDictationService where Self == Dictation.DisabledKeyboardService {
+public extension DictationService where Self == Dictation.DisabledService {
 
     /// Create a disabled dictation service.
     static func disabled(
         context: DictationContext
     ) -> Self {
-        Dictation.DisabledKeyboardService(
+        Dictation.DisabledService(
             context: context
         )
     }

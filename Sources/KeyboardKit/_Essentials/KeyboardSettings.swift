@@ -100,8 +100,7 @@ public extension KeyboardSettings {
 
 public extension UserDefaults {
 
-    /// This static instance can be used to persist keyboard
-    /// related settings.
+    /// This store to use for persisted keyboard settings.
     ///
     /// See ``KeyboardSettings`` for more information on how
     /// to register a custom store.

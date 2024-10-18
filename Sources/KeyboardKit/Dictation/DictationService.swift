@@ -6,29 +6,27 @@
 //  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
-import SwiftUI
+import Foundation
 
 /// This protocol can be implemented by any classes that can
-/// perform dictation by accessing the microphone.
+/// perform dictation from a keyboard extension or in an app.
 ///
-/// This service does not work in keyboard extensions, since
-/// extensions can't access the device microphone. Keyboards
-/// must instead use a ``KeyboardDictationService``.
+/// Since keyboard extensions can't access the microphone, a
+/// dictation service must open the main app to let it start
+/// dictation, write the dictation results to a shared state,
+/// then navigate back to the keyboard and handle the result.
 ///
 /// KeyboardKit doesn't have a standard dictation service as
 /// it has for other services. Instead, a disabled dictation
-/// service will be used until you register a custom service,
-/// or register a valid KeyboardKit Pro license key.
+/// service will be used until you setup KeyboardKit Pro, or
+/// register a custom service.
 ///
 /// See <doc:Dictation-Article> for more information.
-///
-/// > Note: The two dictation service types will probably be
-/// merged in KeyboardKit 9.0.
 public protocol DictationService: AnyObject {
-    
+
     /// The current dictation authorization status.
     var authorizationStatus: Dictation.AuthorizationStatus { get }
-    
+
     /// A list of supported locales.
     var supportedLocales: [Locale] { get }
 
@@ -36,12 +34,24 @@ public protocol DictationService: AnyObject {
     /// Request dictation authorization.
     func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus
 
-    /// Reset any previously set dictation result.
-    func resetDictationResult() async throws
+    /// Start a dictation operation from the keyboard.
+    func startDictationFromKeyboard() async throws
 
-    /// Start dictating with the provided configuration.
-    func startDictation(with config: Dictation.Configuration) async throws
+    /// Start a dictation operation in the main app.
+    func startDictationInApp() async throws
 
-    /// Stop dictating.
-    func stopDictation() async throws
+    /// Abort an active dictation operation in the main app.
+    func abortDictationInApp() async throws
+
+    /// Finish an active dictation operation in the main app.
+    func finishDictationInApp() async throws
+
+    /// Try to return to the keyboard from the main app.
+    func returnToKeyboardFromApp() throws
+
+    /// Handle any dictation result in the keyboard.
+    func handleDictationResultInKeyboard() async throws
+
+    /// Undo the last performed dictation operation, if any.
+    func undoLastDictation()
 }

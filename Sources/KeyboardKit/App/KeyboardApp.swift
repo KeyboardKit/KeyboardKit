@@ -69,14 +69,6 @@ public struct KeyboardApp {
         self.licenseKey = licenseKey
         self.deepLinks = deepLinks
         self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
-        if let appGroupId, let dictationLink = deepLinks?.dictation {
-            dictationConfiguration = .init(
-                appGroupId: appGroupId,
-                appDeepLink: dictationLink
-            )
-        } else {
-            dictationConfiguration = nil
-        }
     }
 
     /// The name of the app.
@@ -99,9 +91,6 @@ public struct KeyboardApp {
 
     /// App-specific deep links, if any.
     public let deepLinks: DeepLinks?
-
-    /// The app's dictation configuration, if any.
-    public let dictationConfiguration: Dictation.KeyboardConfiguration?
 
     /// A custom keyboard settings key prefix, if any.
     public let keyboardSettingsKeyPrefix: String?

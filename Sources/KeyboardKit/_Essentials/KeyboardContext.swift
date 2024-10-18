@@ -89,6 +89,10 @@ public class KeyboardContext: ObservableObject {
 
     // MARK: - Published Properties
 
+    /// The app for which the context is set up, if any.
+    @Published
+    public var app: KeyboardApp?
+
     /// The current device type.
     @Published
     public var deviceType: DeviceType = .current
