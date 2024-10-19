@@ -77,8 +77,9 @@ extension KeyboardLayout {
             context: KeyboardContext
         ) -> [[String]] {
             switch context.keyboardType {
-            case .alphabetic(let casing): rows.characters(for: casing)
-            default: rows.characters()
+            case .alphabetic(let casing):
+                rows.characters(for: casing, device: context.deviceType)
+            default: rows.characters(for: .lowercased, device: context.deviceType)
             }
         }
         
@@ -201,10 +202,8 @@ extension KeyboardLayout {
         open func keyboardReturnAction(
             for context: KeyboardContext
         ) -> KeyboardAction {
-            #if os(iOS) || os(tvOS) || os(visionOS)
             let type = context.returnKeyType
             if let type { return .primary(type) }
-            #endif
             return .primary(.return)
         }
         

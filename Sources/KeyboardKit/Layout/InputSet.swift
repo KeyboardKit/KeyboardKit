@@ -26,7 +26,9 @@ import Foundation
 public struct InputSet: Equatable {
     
     /// Create an input set with rows.
-    public init(rows: Rows) {
+    public init(
+        rows: Rows
+    ) {
         self.rows = rows
     }
 
@@ -35,30 +37,59 @@ public struct InputSet: Equatable {
 }
 
 public extension InputSet {
-    
+
+    func characters(
+        for case: Keyboard.Case,
+        device: DeviceType
+    ) -> [[String]] {
+        rows.map {
+            $0.characters(for: `case`, device: device)
+        }
+    }
+
+    func characterStrings(
+        for case: Keyboard.Case,
+        device: DeviceType
+    ) -> [String] {
+        characters(for: `case`, device: device)
+            .map { $0.joined() }
+    }
+}
+
+public extension InputSet {
+
+    /// A standard QWERTY input set.
     static var qwerty: InputSet {
         .init(rows: [
             .init(chars: "qwertyuiop"),
             .init(chars: "asdfghjkl"),
-            .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
+            .init(chars: "zxcvbnm", deviceVariations: [.pad: "zxcvbnm,."])
         ])
     }
-    
-    static func numeric(currency: String) -> InputSet {
+
+    /// A standard numeric input set.
+    static func numeric(
+        currency: String
+    ) -> InputSet {
         .init(rows: [
             .init(chars: "1234567890"),
-            .init(phone: "-/:;()\(currency)&@”", pad: "@#\(currency)&*()’”"),
-            .init(phone: ".,?!’", pad: "%-+=/;:!?")
+            .init(
+                chars: "-/:;()\(currency)&@”",
+                deviceVariations: [.pad: "@#\(currency)&*()’”"]
+            ),
+            .init(chars: ".,?!’", deviceVariations: [.pad: "%-+=/;:!?"])
         ])
     }
-    
+
+    /// A standard symbolic input set.
     static func symbolic(currencies: [String]) -> InputSet {
         .init(rows: [
-            .init(phone: "[]{}#%^*+=", pad: "1234567890"),
+            .init(chars: "[]{}#%^*+=", deviceVariations: [.pad: "1234567890"]),
             .init(
-                phone: "_\\|~<>\(currencies.joined())•",
-                pad: "\(currencies.joined())_^[]{}"),
-            .init(phone: ".,?!’", pad: "§|~…\\<>!?")
+                chars: "_\\|~<>\(currencies.joined())•",
+                deviceVariations: [.pad: "\(currencies.joined())_^[]{}"]
+            ),
+            .init(chars: ".,?!’", deviceVariations: [.pad: "§|~…\\<>!?"])
         ])
     }
 }

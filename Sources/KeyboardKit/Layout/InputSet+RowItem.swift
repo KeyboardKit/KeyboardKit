@@ -1,5 +1,5 @@
 //
-//  InputSet+Item.swift
+//  InputSet+RowItem.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -17,8 +17,8 @@ public extension InputSet {
     /// is the default way. You can however provide explicit
     /// casings, to fully customize the input characters for
     /// certain casings.
-    struct Item: Equatable {
-        
+    struct RowItem: Equatable {
+
         /// Create an input set item with a single character.
         ///
         /// - Parameters:
@@ -56,16 +56,18 @@ public extension InputSet {
     }
 }
 
-extension InputSet.Item: KeyboardLayoutIdentifiable {
+extension InputSet.RowItem: KeyboardLayoutIdentifiable {
 
     /// The layout ID to use for the item.
     public var rowId: Self { self }
 }
 
-public extension InputSet.Item {
+public extension InputSet.RowItem {
 
     /// Resolve the character to use for a certain case.
-    func character(for case: Keyboard.Case) -> String {
+    func character(
+        for case: Keyboard.Case
+    ) -> String {
         switch `case` {
         case .auto: lowercased
         case .lowercased: lowercased

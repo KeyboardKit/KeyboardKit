@@ -22,7 +22,7 @@ The next keyboard button experiments have been made permanent.
 
 ### ⌨️ Essentials
 
-The `KeyboardController` protocol now requires `services` and `state`, to make it more versatile. This lets the standard `KeyboardActionHandler` completely rely on this protocol instead of the concrete, iOS only implementation.
+The `KeyboardController` protocol now requires `services` and `state`, to make it more versatile and used in more places.
 
 ### 💥 Actions
 
@@ -30,31 +30,35 @@ The `KeyboardAction.StandardHandler` now implements `KeyboardBehavior`.
 
 ### 💡 Autocomplete
 
-The `Autocomplete.Suggestion` type now implements `Codable` and `Equatable`, but that required additional info to constrain its values to `String`.
+The `AutocompleteService` now returns a proper `Autocomplete.ServiceResult` instead of just a list of suggestions.
 
-The `Autocomplete.Toolbar` now lets you define custom views like in `KeyboardView`, with well-defined params. The toolbar views are also polished to look more like the native counterparts.
+The `Autocomplete.Suggestion` type implements `Codable` and `Equatable`. This required constraining additional info to `String`.
+
+The `Autocomplete.Toolbar` now lets you define custom views with builder params. The standard views are polished to look more native.
 
 ### 🎤 Dictation
 
 The `Dictation` namespace has been simplified to only use a single service that can handle all dictation scenarios.
 
-The new `DictationService` doesn't need a configuration, but will use a `KeyboardContext` and `KeyboardApp` to determine its behavior.
+The new `DictationService` doesn't need a configuration. It uses a `KeyboardContext` & `KeyboardApp` to determine its behavior.
 
 ### 😀 Emojis
 
 The `EmojiKeyboardStyle` has been moved from KeyboardKit Pro to KeyboardKit to make it available to core features.
 
-To avoid bloating the Emoji namespace with a style for a view that isn't in the core library, the style is renamed to `Emoji.KeyboardStyle`.
-
 ### 🇸🇪 Localization
 
-This version simplifies all locale-specific features to only use `Location`. This means that you no longer need to use `KeyboardLocale` and `KeyboardLocaleInfo`.
+The `KeyboardLocale` enum has been replaced with using the native `Locale` everywhere.
+
+### 🔣 Layout
+
+An `InputSet` can now be created with device variations, which allows for resolving device-specific items at runtime.
 
 ### 🚨 Breaking Changes
 
 There are breaking changes in this version, but most are handled by migration deprecations that will be removed in 9.1. 
 
-Among the things that are not covered by migration deprecations are: 
+Some things that are not covered by migration deprecations are:
 
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
