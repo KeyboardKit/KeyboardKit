@@ -9,10 +9,27 @@
 import Foundation
 
 public extension InputSet {
-    
-    /// This typealias represents a row of input set items.
-    typealias Row = [Item]
-    
+
+    /// This type represents a row of input set items.
+    struct Row: Equatable {
+
+        /// Create an input set row.
+        ///
+        /// - Parameters:
+        ///   - items: The base row items.
+        ///   - deviceVariations: Device-specific variations.
+        init(
+            items: [Item],
+            deviceVariations: [DeviceType : [Item]] = [:]
+        ) {
+            self.items = items
+            self.deviceVariations = deviceVariations
+        }
+
+        let items: [Item]
+        let deviceVariations: [DeviceType: [Item]]
+    }
+
     /// This typealias represents a list of input set rows.
     typealias Rows = [Row]
 }
@@ -26,9 +43,11 @@ public extension InputSet.Row {
     
     /// Create an input row from a character array.
     init(chars: [String]) {
-        self = chars.map {
-            InputSet.Item($0)
-        }
+        self.init(
+            items: chars.map {
+                InputSet.Item($0)
+            }
+        )
     }
 
     /// Create an input row from two cased character strings.
@@ -43,13 +62,15 @@ public extension InputSet.Row {
     init(lowercased: [String], uppercased: [String]) {
         let equal = lowercased.count == uppercased.count
         assert(equal, "lowercased and uppercased must contain the same number of characters")
-        self = lowercased.enumerated().map {
-            InputSet.Item(
-                neutral: lowercased[$0.offset],
-                uppercased: uppercased[$0.offset],
-                lowercased: lowercased[$0.offset]
-            )
-        }
+        self.init(
+            items: lowercased.enumerated().map {
+                InputSet.Item(
+                    neutral: lowercased[$0.offset],
+                    uppercased: uppercased[$0.offset],
+                    lowercased: lowercased[$0.offset]
+                )
+            }
+        )
     }
 
     /// Create an input row from device character strings.
@@ -97,12 +118,17 @@ public extension InputSet.Row {
             uppercased: deviceType == .pad ? padUppercased : phoneUppercased
         )
     }
-    
+}
+
+public extension InputSet.Row {
+
     /// Get all input characters for a certain keyboard case.
     func characters(
-        for case: Keyboard.Case = .lowercased
+        for case: Keyboard.Case,
+        device: DeviceType
     ) -> [String] {
-        map { $0.character(for: `case`) }
+        let items = deviceVariations[device] ?? items
+        return items.map { $0.character(for: `case`) }
     }
 }
 
@@ -110,8 +136,12 @@ public extension InputSet.Rows {
 
     /// Get all input characters for a certain keyboard case.
     func characters(
-        for case: Keyboard.Case = .lowercased
+        for case: Keyboard.Case,
+        device: DeviceType
     ) -> [[String]] {
-        map { $0.characters(for: `case`) }
+        map { $0.characters(
+            for: `case`,
+            device: device
+        ) }
     }
 }

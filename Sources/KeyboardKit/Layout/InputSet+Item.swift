@@ -65,7 +65,9 @@ extension InputSet.Item: KeyboardLayoutIdentifiable {
 public extension InputSet.Item {
 
     /// Resolve the character to use for a certain case.
-    func character(for case: Keyboard.Case) -> String {
+    func character(
+        for case: Keyboard.Case
+    ) -> String {
         switch `case` {
         case .auto: lowercased
         case .lowercased: lowercased

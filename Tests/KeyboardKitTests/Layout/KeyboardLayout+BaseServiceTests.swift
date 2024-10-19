@@ -58,25 +58,26 @@ class KeyboardLayout_BaseServiceTests: XCTestCase {
     func testInputsForContextCanResolveAlphabeticInputSet() {
         context.keyboardType = .alphabetic(.lowercased)
         let rows = service.inputRows(for: context)
-        XCTAssertEqual(rows.characters(), [["a", "b", "c"]])
+        XCTAssertEqual(rows.characters(for: .lowercased, device: .phone), [["a", "b", "c"]])
     }
 
     func testInputsForContextCanResolveNumericInputSet() {
         context.keyboardType = .numeric
         let rows = service.inputRows(for: context)
-        XCTAssertEqual(rows.characters(), [["1", "2", "3"]])
+        XCTAssertEqual(rows.characters(for: .lowercased, device: .phone), [["1", "2", "3"]])
     }
 
     func testInputsForContextCanResolveSymbolicInputSet() {
         context.keyboardType = .symbolic
         let rows = service.inputRows(for: context)
-        XCTAssertEqual(rows.characters(), [[",", ".", "-"]])
+        XCTAssertEqual(rows.characters(for: .lowercased, device: .phone), [[",", ".", "-"]])
     }
 
     func testInputsForContextReturnsAlphabeticInputSetForUnsupportedKeybardType() {
         context.keyboardType = .emojis
         let rows = service.inputRows(for: context)
-        XCTAssertEqual(rows.characters(), [["a", "b", "c"]])
+        let result = rows.characters(for: .lowercased, device: .phone)
+        XCTAssertEqual(result, [["a", "b", "c"]])
     }
 
 

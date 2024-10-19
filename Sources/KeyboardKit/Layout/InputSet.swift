@@ -35,7 +35,28 @@ public struct InputSet: Equatable {
 }
 
 public extension InputSet {
-    
+
+    func characters(
+        for case: Keyboard.Case,
+        device: DeviceType
+    ) -> [[String]] {
+        rows.map {
+            $0.characters(for: `case`, device: device)
+        }
+    }
+
+    func characterStrings(
+        for case: Keyboard.Case,
+        device: DeviceType
+    ) -> [String] {
+        characters(for: `case`, device: device)
+            .map { $0.joined() }
+    }
+}
+
+public extension InputSet {
+
+    /// A standard QWERTY input set.
     static var qwerty: InputSet {
         .init(rows: [
             .init(chars: "qwertyuiop"),
@@ -43,15 +64,19 @@ public extension InputSet {
             .init(phone: "zxcvbnm", pad: "zxcvbnm,.")
         ])
     }
-    
-    static func numeric(currency: String) -> InputSet {
+
+    /// A standard numeric input set.
+    static func numeric(
+        currency: String
+    ) -> InputSet {
         .init(rows: [
             .init(chars: "1234567890"),
             .init(phone: "-/:;()\(currency)&@”", pad: "@#\(currency)&*()’”"),
             .init(phone: ".,?!’", pad: "%-+=/;:!?")
         ])
     }
-    
+
+    /// A standard symbolic input set.
     static func symbolic(currencies: [String]) -> InputSet {
         .init(rows: [
             .init(phone: "[]{}#%^*+=", pad: "1234567890"),

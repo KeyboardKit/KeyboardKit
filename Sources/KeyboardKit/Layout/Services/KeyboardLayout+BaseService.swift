@@ -77,8 +77,10 @@ extension KeyboardLayout {
             context: KeyboardContext
         ) -> [[String]] {
             switch context.keyboardType {
-            case .alphabetic(let casing): rows.characters(for: casing)
-            default: rows.characters()
+            case .alphabetic(let casing): rows.characters(
+                for: casing, device: context.deviceType)
+            default: rows.characters(
+                for: .lowercased, device: context.deviceType)
             }
         }
         
