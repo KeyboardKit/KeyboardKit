@@ -8,6 +8,14 @@
 
 import Foundation
 
+public extension KeyboardLayoutService where Self == KeyboardLayout.DisabledService {
+
+    /// Create a ``KeyboardLayout/DisabledService`` intance.
+    static var disabled: Self {
+        KeyboardLayout.DisabledService()
+    }
+}
+
 extension KeyboardLayout {
     
     /// This service can be used to disable keyboard layouts

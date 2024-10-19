@@ -9,23 +9,22 @@
 import SwiftUI
 public extension Emoji {
 
-
-    /// This style can be used to modify the visual style of the
-    /// ``EmojiKeyboard`` component and its nested views.
+    /// This style can be used to modify the visual style of
+    /// the ``EmojiKeyboard`` component and its nested views.
     ///
-    /// You can apply the style by using the view style modifier
+    /// You can apply this view style with the view modifier
     /// ``SwiftUICore/View/emojiKeyboardStyle(_:)``.
     ///
-    /// The style has both an ``itemSize``, an ``itemFont``, and
-    /// an ``itemScaleFactor`` to define how emojis are rendered
-    /// for most memory efficiency, since Swift allocates memory
-    /// for each emoji without releasing it right away.
+    /// This style has an ``itemSize``, an ``itemFont``, and
+    /// an ``itemScaleFactor`` to let us define how an emoji
+    /// is best rendered for memory efficiency in a keyboard.
+    /// This is needed since the SwiftUI grid only allocates
+    /// new cells, but never deallocated them.
     ///
-    /// The ``itemSize`` defines how big an emoji view should be,
-    /// e.g. within a grid, while the ``itemFont`` defines which
-    /// font to use. Since smaller fonts require less memory, an
-    /// ``itemScaleFactor`` can be used with a smaller font size
-    /// to draw more memory efficient emojis in lower resolution.
+    /// The ``itemSize`` defines the size of each emoji view,
+    /// and ``itemFont`` the font to use. Since smaller font
+    /// sizes use less memory, an ``itemScaleFactor`` can be
+    /// used to smaller emoji views in lower resolution.
     struct KeyboardStyle {
 
         /// Create an emoji keyboard item style.

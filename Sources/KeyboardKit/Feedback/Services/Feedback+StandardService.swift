@@ -8,6 +8,14 @@
 
 import Foundation
 
+public extension FeedbackService where Self == Feedback.StandardService {
+
+    /// Create a ``Feedback/StandardService`` instance.
+    static var standard: Self {
+        Feedback.StandardService()
+    }
+}
+
 extension Feedback {
 
     /// This standard service can be used to trigger various

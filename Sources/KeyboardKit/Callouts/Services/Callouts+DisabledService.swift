@@ -8,6 +8,14 @@
 
 import Foundation
 
+public extension CalloutService where Self == Callouts.DisabledService {
+
+    /// Create a ``Callouts/DisabledService`` instance.
+    static var disabled: Self {
+        Callouts.DisabledService()
+    }
+}
+
 extension Callouts {
 
     /// Create a disabled callout service.

@@ -8,6 +8,14 @@
 
 import Foundation
 
+public extension FeedbackService where Self == Feedback.DisabledService {
+
+    /// Create a ``Feedback/DisabledService`` instance.
+    static var disabled: Self {
+        Feedback.DisabledService()
+    }
+}
+
 extension Feedback {
 
     /// This service can be used to disable all feedback.

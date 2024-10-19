@@ -8,6 +8,24 @@
 
 import Foundation
 
+public extension AutocompleteService where Self == Autocomplete.DisabledService {
+
+    /// Create a ``Autocomplete/DisabledService`` instance.
+    static var disabled: Self {
+        Autocomplete.DisabledService()
+    }
+
+    /// Create a ``Autocomplete/DisabledService`` instance.
+    ///
+    /// - Parameters:
+    ///   - suggestions: The suggestions to present.
+    static func disabled(
+        suggestions: [Autocomplete.Suggestion] = []
+    ) -> Self {
+        Autocomplete.DisabledService(suggestions: suggestions)
+    }
+}
+
 public extension Autocomplete {
 
     /// This service is used as a default service, until you

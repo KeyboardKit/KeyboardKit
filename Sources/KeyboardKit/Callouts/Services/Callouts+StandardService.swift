@@ -8,6 +8,30 @@
 
 import Foundation
 
+public extension CalloutService where Self == Callouts.StandardService {
+
+    /// Create a ``Callouts/StandardService`` instance.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - baseService: The base service to use, by default a ``Callouts/BaseService``.
+    ///   - localizedServices: A list of localized services, by default `empty`.
+    ///   - feedbackService: The feedback service to use.
+    static func standard(
+        keyboardContext: KeyboardContext,
+        baseService: CalloutService = Callouts.BaseService(),
+        localizedServices: [Self.LocalizedCalloutService] = [],
+        feedbackService: FeedbackService? = nil
+    ) -> Self {
+        Callouts.StandardService(
+            keyboardContext: keyboardContext,
+            baseService: baseService,
+            localizedServices: localizedServices,
+            feedbackService: feedbackService
+        )
+    }
+}
+
 extension Callouts {
     
     /// This service class provides a standard way to handle

@@ -9,6 +9,21 @@
 import SwiftUI
 import CoreGraphics
 
+public extension KeyboardStyleService where Self == KeyboardStyle.StandardService {
+
+    /// Create a ``KeyboardStyle/StandardService`` instance.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    static func standard(
+        keyboardContext: KeyboardContext
+    ) -> Self {
+        KeyboardStyle.StandardService(
+            keyboardContext: keyboardContext
+        )
+    }
+}
+
 extension KeyboardStyle {
     
     /// This class provides a standard way to create dynamic
@@ -20,28 +35,7 @@ extension KeyboardStyle {
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
-    /// For instance, this would change the background color
-    /// of every input key:
-    ///
-    /// ```swift
-    /// class CustomKeyboardStyleService: KeyboardStyle.StandardService {
-    ///
-    ///     override func buttonStyle(
-    ///         for action: KeyboardAction,
-    ///         isPressed: Bool
-    ///         ) -> Keyboard.ButtonStyle {
-    ///         let style = super.buttonStyle(for: action, isPressed: isPressed)
-    ///         if !action.isInputAction { return style }
-    ///         style.backgroundColor = .red
-    ///         return style
-    ///         }
-    ///     }
-    /// ```
-    ///
-    /// This service can also be resolved with the shorthand
-    /// ``KeyboardStyleService/standard(keyboardContext:)``.
-    ///
-    /// See <doc:Styling-Article> for more information.
+    /// See the <doc:Styling-Article> article for more information.
     open class StandardService: KeyboardStyleService {
 
         /// Create a standard keyboard style service.

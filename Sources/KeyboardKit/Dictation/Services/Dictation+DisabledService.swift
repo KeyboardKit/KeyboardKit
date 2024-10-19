@@ -8,6 +8,23 @@
 
 import SwiftUI
 
+public extension DictationService where Self == Dictation.DisabledService {
+
+    /// Create a ``Dictation/DisabledService`` instance.
+    static var disabled: Self {
+        Dictation.DisabledService(context: .preview)
+    }
+
+    /// Create a ``Dictation/DisabledService`` instance.
+    static func disabled(
+        context: DictationContext
+    ) -> Self {
+        Dictation.DisabledService(
+            context: context
+        )
+    }
+}
+
 public extension Dictation {
     
     /// This class is used as the default service, until you
@@ -15,11 +32,10 @@ public extension Dictation {
     /// KeyboardKit Pro license key.
     ///
     /// This service can also be resolved with the shorthand
-    /// ``DictationService/disabled(context:)``.
+    /// ``DictationService/disabled``.
     ///
     /// See <doc:Dictation-Article> for more information.
     class DisabledService: DictationService {
-        
 
         public init(context: DictationContext) {
             self.context = context

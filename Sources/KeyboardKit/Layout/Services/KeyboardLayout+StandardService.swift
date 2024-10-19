@@ -8,6 +8,24 @@
 
 import Foundation
 
+public extension KeyboardLayoutService where Self == KeyboardLayout.StandardService {
+
+    /// Create a ``KeyboardLayout/StandardService`` intance.
+    ///
+    /// - Parameters:
+    ///   - baseService: The base service to use, by default a ``Callouts/BaseService``.
+    ///   - localizedServices: A list of localized services, by default `empty`.
+    static func standard(
+        baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedService(),
+        localizedServices: [Self.LocalizedLayoutService] = []
+    ) -> Self {
+        KeyboardLayout.StandardService(
+            baseService: baseService,
+            localizedServices: localizedServices
+        )
+    }
+}
+
 extension KeyboardLayout {
     
     /// This class provides a standard way to create dynamic
