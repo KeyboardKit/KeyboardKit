@@ -23,14 +23,17 @@ public extension Autocomplete {
         ///   - inputText: The originally provided text.
         ///   - suggestions: Suggestions for the provided texts.
         ///   - nextCharacterPredictions: Next character predictions for the provided text, if any.
+        ///   - isOutdated: Whether the result is outdated and should be ignored, by default `false`.
         public init(
             inputText: String,
             suggestions: [Suggestion],
-            nextCharacterPredictions: [Character: Double]? = nil
+            nextCharacterPredictions: [Character: Double]? = nil,
+            isOutdated: Bool = false
         ) {
             self.inputText = inputText
             self.suggestions = suggestions
             self.nextCharacterPredictions = nextCharacterPredictions
+            self.isOutdated = isOutdated
         }
 
         /// The originally provided text.
@@ -41,5 +44,8 @@ public extension Autocomplete {
 
         /// Next character predictions for the provided text, if any.
         public let nextCharacterPredictions: [Character: Double]?
+
+        /// Whether the result is outdated and should be ignored.
+        public let isOutdated: Bool
     }
 }

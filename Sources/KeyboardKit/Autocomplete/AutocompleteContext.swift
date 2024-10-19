@@ -125,6 +125,7 @@ public class AutocompleteContext: ObservableObject {
     }
 
     public func update(with result: Autocomplete.ServiceResult) {
+        if result.isOutdated { return }
         DispatchQueue.main.async {
             self.isLoading = false
             self.lastError = nil
