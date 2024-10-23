@@ -25,7 +25,7 @@ class KeyboardLayoutTests_InputWidth: XCTestCase {
 
     func testInputWidthReturnsCachedResultIfOneExists() {
         let layout = KeyboardLayout(itemRows: [])
-        layout.widthCache[123] = 456
+        layout.widthCache.data[123] = 456
         XCTAssertEqual(layout.inputWidth(for: 123), 456)
     }
 

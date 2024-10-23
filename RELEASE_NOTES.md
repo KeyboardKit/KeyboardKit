@@ -54,6 +54,10 @@ The `KeyboardLocale` enum has been replaced with using the native `Locale` every
 
 An `InputSet` can now be created with device variations, which allows for resolving device-specific items at runtime.
 
+The `KeyboardLayout` type is now a `struct` instead of a `class`, to better represent the value type that it's meant to be.
+
+This change from a reference type to a value type may require you to change how you modify layouts in a custom layout service. 
+
 ### 🚨 Breaking Changes
 
 There are breaking changes in this version, but most are handled by migration deprecations that will be removed in 9.1. 
@@ -62,7 +66,8 @@ Some things that are not covered by migration deprecations are:
 
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
-* The dictation changes can't be migrated since the new services replace the old ones. 
+* The dictation changes can't be migrated since the new services replace the old ones.
+* The keyboard layout is now a struct. This may cause breaking changes in how you customize layouts. 
 
 
 

@@ -19,7 +19,7 @@ import SwiftUI
 /// e.g. with the various insert, replace & remove functions.
 ///
 /// See the <doc:Layout-Article> article for more information.
-public class KeyboardLayout {
+public struct KeyboardLayout {
 
     /// Create a new layout with the provided items.
     ///
@@ -56,7 +56,15 @@ public class KeyboardLayout {
     public typealias TotalWidth = CGFloat
 
     /// A cache used to avoid having to recalculate widths.
-    var widthCache = [TotalWidth: CGFloat]()
+    var widthCache = WidthCache()
+}
+
+extension KeyboardLayout {
+
+    class WidthCache {
+
+        var data = [TotalWidth: CGFloat]()
+    }
 }
 
 private extension KeyboardLayout {

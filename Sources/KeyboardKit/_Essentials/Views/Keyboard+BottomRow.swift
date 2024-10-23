@@ -69,7 +69,7 @@ public extension Keyboard {
             @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
             @ViewBuilder buttonView: @escaping ButtonViewBuilder
         ) {
-            let layout = layoutService.keyboardLayout(for: keyboardContext)
+            var layout = layoutService.keyboardLayout(for: keyboardContext)
             let width = layout.bottomRowSystemItemWidth ?? .percentage(0.15)
             let leading = leading.map { layout.createIdealItem(for: $0, width: width) }
             let space = layout.createIdealItem(for: .space, width: .available)

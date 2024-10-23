@@ -96,6 +96,7 @@ public struct KeyboardView<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
+        var layout = layout
         if !Emoji.KeyboardWrapper.isEmojiKeyboardAvailable {
             layout.itemRows.remove(.keyboardType(.emojis))
         }

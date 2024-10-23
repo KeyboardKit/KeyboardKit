@@ -13,10 +13,10 @@ class InputSet_RowTests: XCTestCase {
 
     func testCanCreateRowWithItemsAndDeviceVariations() {
         let row = InputSet.Row(
-            items: "abc".chars.map { InputSet.Item($0) },
+            items: "abc".chars.map { InputSet.RowItem($0) },
             deviceVariations: [
-                .pad: "def".chars.map { InputSet.Item($0) },
-                .vision: "ghi".chars.map { InputSet.Item($0) }
+                .pad: "def".chars.map { InputSet.RowItem($0) },
+                .vision: "ghi".chars.map { InputSet.RowItem($0) }
             ]
         )
 

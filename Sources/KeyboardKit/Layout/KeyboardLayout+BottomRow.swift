@@ -22,7 +22,7 @@ public extension KeyboardLayout {
     
     /// Get the bottom row-only layout.
     var bottomRowLayout: KeyboardLayout {
-        let layout = self
+        var layout = self
         layout.itemRows = layout.itemRows.suffix(1)
         return layout
     }
@@ -56,7 +56,7 @@ public extension KeyboardLayout {
     }
     
     /// Try to insert a certain action into the bottom row.
-    func tryInsertBottomRowAction(
+    mutating func tryInsertBottomRowAction(
         _ new: KeyboardAction,
         before action: KeyboardAction,
         size: KeyboardLayout.ItemSize? = nil
@@ -69,7 +69,7 @@ public extension KeyboardLayout {
     }
     
     /// Try to insert a certain action into the bottom row.
-    func tryInsertBottomRowAction(
+    mutating func tryInsertBottomRowAction(
         _ new: KeyboardAction,
         after action: KeyboardAction,
         size: KeyboardLayout.ItemSize? = nil
@@ -82,7 +82,7 @@ public extension KeyboardLayout {
     }
     
     /// Try to replace a certain action in the bottom row.
-    func tryReplaceBottomRowAction(
+    mutating func tryReplaceBottomRowAction(
         _ action: KeyboardAction,
         with newAction: KeyboardAction,
         size: KeyboardLayout.ItemSize? = nil

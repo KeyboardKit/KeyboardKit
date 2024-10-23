@@ -184,7 +184,7 @@ You can access any localized service in your license like this, after successful
 let service = try Callouts.ProService.Swedish()
 ```
 
-> Important: These services will throw a license error if their locales are not included in the license.
+> Important: Localized pro services will throw a license error if their locales are not included in the license.
 
 
 ### How to customize a Pro service
