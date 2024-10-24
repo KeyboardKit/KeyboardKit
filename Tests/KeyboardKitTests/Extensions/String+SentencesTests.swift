@@ -13,14 +13,14 @@ import XCTest
 
 class String_SentencesTests: XCTestCase {
     
-    func testStringDefinesSentenceDelimiters() {
+    func testStringDefinesDelimiters() {
         let delimiters = String.sentenceDelimiters
-        let expected = ["!", ".", "?"]
+        let expected = ".:!¡?¿".chars
         XCTAssertEqual(delimiters, expected)
         XCTAssertEqual([String].sentenceDelimiters, delimiters)
     }
 
-    func testStringCanIdentifyAsSentenceDelimiter() {
+    func testStringCanIdentifyAsDelimiter() {
         let result = String.sentenceDelimiters.map { $0.isSentenceDelimiter }
         XCTAssertTrue(result.allSatisfy { $0 })
         XCTAssertFalse("a".isSentenceDelimiter)

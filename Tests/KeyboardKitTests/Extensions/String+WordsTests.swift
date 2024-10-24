@@ -13,16 +13,15 @@ import XCTest
 
 class String_WordsTests: XCTestCase {
     
-    func testStringDefinesCharacters() {
-        let delimiters = String.wordDelimiters
-        let expected = "!.?,;:()[]{}<>".map(String.init) + [" ", .newline]
-        XCTAssertEqual(delimiters, expected)
-        XCTAssertEqual([String].wordDelimiters, delimiters)
+    func testStringDefinesDelimiters() {
+        let delimiters = String.wordDelimiters.joined()
+        let expectedPrefix = ".,:;!¡?¿()[]{}<>«»་།"
+        XCTAssertTrue(delimiters.hasPrefix(expectedPrefix))
     }
 
-    func testStringCanIdentifyAsWordDelimiter() {
-        let result = String.wordDelimiters.map { $0.isWordDelimiter }
-        XCTAssertTrue(result.allSatisfy { $0 })
+    func testStringCanIdentifyAsDelimiter() {
+        let result = String.wordDelimiters
+        XCTAssertTrue(result.allSatisfy { $0.isWordDelimiter })
         XCTAssertFalse("a".isWordDelimiter)
     }
 

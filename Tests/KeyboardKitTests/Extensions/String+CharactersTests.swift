@@ -18,9 +18,6 @@ class String_CharactersTests: XCTestCase {
         XCTAssertEqual(String.tab, "\t")
         XCTAssertEqual(String.zeroWidthSpace, "\u{200B}")
 
-        XCTAssertEqual(String.sentenceDelimiters, ["!", ".", "?"])
-        XCTAssertEqual(String.wordDelimiters, "!.?,;:()[]{}<>".chars + [" ", .newline])
-
         XCTAssertEqual([String].sentenceDelimiters, String.sentenceDelimiters)
         XCTAssertEqual([String].wordDelimiters, String.wordDelimiters)
     }

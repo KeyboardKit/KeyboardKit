@@ -10,10 +10,15 @@ import Foundation
 
 public extension String {
     
-    /// A list of mutable, western word delimiters.
-    static var wordDelimiters = "!.?,;:()[]{}<>".map(String.init) + [" ", .newline]
-    
-    /// Whether or not this is a western word delimiter.
+    /// A list of known word delimiters.
+    ///
+    /// Instead of using a character set-based way to define
+    /// delimiters, let's append missing ones as we find any.
+    static var wordDelimiters = ".,:;!¡?¿()[]{}<>«»་།"
+        .appending(CharacterSet.whitespacesAndNewlines.toString())
+        .chars
+
+    /// Whether or not this is a known word delimiter.
     var isWordDelimiter: Bool {
         Self.wordDelimiters.contains(self)
     }
@@ -21,18 +26,25 @@ public extension String {
 
 public extension Collection where Element == String {
 
-    /// A list of mutable western word delimiters.
+    /// A list of known word delimiters.
     static var wordDelimiters: [String] {
         String.wordDelimiters
     }
 }
 
+extension CharacterSet {
+
+    func toString() -> String {
+        let scalars = (0...0x10FFFF)
+            .compactMap(UnicodeScalar.init)
+            .filter(self.contains)
+        return String(String.UnicodeScalarView(scalars))
+    }
+}
+
 public extension String {
 
-    /**
-     Check whether or not the last character within a string
-     is a word delimiter.
-     */
+    /// Check if the last character is a word delimiter.
     var hasWordDelimiterSuffix: Bool {
         String(last ?? Character("")).isWordDelimiter
     }

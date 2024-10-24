@@ -20,11 +20,11 @@ final class KeyboardAction_AutocompleteTests: XCTestCase {
         return actions
     }()
 
-    func testShouldApplyAutocompleteSuggestionsForSomeActions() {
+    func testShouldApplyAutocorrectSuggestionsForSomeActions() {
         actions.forEach {
             var expected = false
             switch $0 {
-            case .character(let char): expected = char.isWordDelimiter
+            case .character(let char): expected = char.isAutocorrectTrigger
             case .primary: expected = $0.isSystemAction
             case .space: expected = true
             default: expected = false

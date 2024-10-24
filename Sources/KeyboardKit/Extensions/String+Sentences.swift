@@ -10,10 +10,13 @@ import Foundation
 
 public extension String {
  
-    /// A list of western sentence delimiters.
-    static var sentenceDelimiters = ["!", ".", "?"]
+    /// A list of known sentence delimiters.
+    ///
+    /// Instead of using a character set-based way to define
+    /// delimiters, let's append missing ones as we find any.
+    static var sentenceDelimiters = ".:!¡?¿".chars
 
-    /// Whether or not this is a western sentence delimiter.
+    /// Whether or not this is a known sentence delimiters.
     var isSentenceDelimiter: Bool {
         Self.sentenceDelimiters.contains(self)
     }
@@ -21,7 +24,7 @@ public extension String {
 
 public extension Collection where Element == String {
 
-    /// A list of mutable western sentence delimiters.
+       /// A list of known sentence delimiters.
     static var sentenceDelimiters: [String] {
         String.sentenceDelimiters
     }
@@ -30,10 +33,7 @@ public extension Collection where Element == String {
 
 public extension String {
 
-    /**
-     Check whether or not the last character within a string
-     is a sentence delimiter.
-     */
+    /// Check if the last character is a sentence delimiter.
     var hasSentenceDelimiterSuffix: Bool {
         guard let last else { return false }
         return String(last).isSentenceDelimiter
