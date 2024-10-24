@@ -31,10 +31,10 @@ public extension Keyboard {
         /// A keyboard with symbolic input keys.
         case symbolic
         
-        /// An e-mail keyboard, not currently implemented.
+        /// An e-mail keyboard.
         case email
         
-        /// An emoji keyboard, with emojis and categories.
+        /// An emoji keyboard with emojis and categories.
         case emojis
         
         /// An image keyboard, not currently implemented.
@@ -42,6 +42,9 @@ public extension Keyboard {
         
         /// A number pad keyboard.
         case numberPad
+
+        /// A URL keyboard
+        case url
         
         /// A custom keyboard type, if you need to use one.
         case custom(named: String)
@@ -60,6 +63,7 @@ public extension Keyboard.KeyboardType {
         case .emojis: "emojis"
         case .images: "images"
         case .numberPad: "numberPad"
+        case .url: "url"
         case .custom(let name): name
         }
     }
@@ -127,18 +131,18 @@ public extension UIKeyboardType {
     var keyboardType: Keyboard.KeyboardType? {
         switch self {
         case .default: .alphabetic(.auto)
-        case .asciiCapable: nil
-        case .numbersAndPunctuation: .numeric
-        case .URL: .alphabetic(.auto)
-        case .numberPad: .numberPad
-        case .phonePad: nil
-        case .namePhonePad: nil
-        case .emailAddress: .alphabetic(.auto)
-        case .decimalPad: nil
-        case .twitter: .alphabetic(.auto)
-        case .webSearch: .alphabetic(.auto)
-        case .asciiCapableNumberPad: .numberPad
         case .alphabet: .alphabetic(.auto)
+        case .asciiCapable: nil
+        case .asciiCapableNumberPad: .numberPad
+        case .decimalPad: nil
+        case .emailAddress: .email
+        case .namePhonePad: nil
+        case .numberPad: .numberPad
+        case .numbersAndPunctuation: .numeric
+        case .phonePad: nil
+        case .twitter: .alphabetic(.auto)
+        case .URL: .url
+        case .webSearch: .alphabetic(.auto)
         @unknown default: .alphabetic(.auto)
         }
     }

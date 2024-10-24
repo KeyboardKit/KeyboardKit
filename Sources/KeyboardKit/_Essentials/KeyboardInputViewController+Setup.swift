@@ -25,8 +25,9 @@ extension KeyboardInputViewController {
 
     /// Set up the initial keyboard type.
     func setupInitialKeyboardType() {
-        guard state.keyboardContext.keyboardType.isAlphabetic else { return }
-        state.keyboardContext.syncKeyboardType(with: textDocumentProxy)
+        let context = state.keyboardContext
+        guard context.keyboardType.isAlphabetic else { return }
+        context.syncKeyboardType(with: textDocumentProxy)
     }
 
     /// Set up an initial width to avoid SwiftUI layout bugs.
