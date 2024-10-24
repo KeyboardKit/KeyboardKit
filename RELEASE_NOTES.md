@@ -69,7 +69,8 @@ Some things that are not covered by migration deprecations are:
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
 * The dictation changes can't be migrated since the new services replace the old ones.
-* The keyboard layout is now a struct. This may cause breaking changes in how you customize layouts. 
+* The `KeyboardLayout` is now a struct, and must now be a `var` for you to customize it.
+* The `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.`
 
 
 

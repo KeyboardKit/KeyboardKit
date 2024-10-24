@@ -30,8 +30,14 @@ struct HomeScreen: View {
     @State
     private var textWebSearch = ""
 
+    @Environment(\.openURL)
+    private var openURL
+
     @EnvironmentObject
     private var dictationContext: DictationContext
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
 
     var body: some View {
         NavigationView {
@@ -55,8 +61,10 @@ struct HomeScreen: View {
             .init(keyboardSection: true)
         )
         .keyboardDictation(
-            context: dictationContext,
-            speechRecognizer: StandardSpeechRecognizer(),
+            dictationContext: dictationContext,
+            keyboardContext: keyboardContext,
+            openUrl: openURL,
+            speechRecognizer: .standard,
             overlay: dictationScreen
         )
         .navigationViewStyle(.stack)

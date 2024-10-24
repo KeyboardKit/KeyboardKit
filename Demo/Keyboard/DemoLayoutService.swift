@@ -33,7 +33,7 @@ class DemoLayoutService: KeyboardLayout.StandardService {
 
     /// Insert a locale switcher action or a rocket button.
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        let layout = super.keyboardLayout(for: context)
+        var layout = super.keyboardLayout(for: context)
         switch extraKey {
         case .none: break
         case .emojiIfNeeded: layout.tryInsertEmojiButton()
@@ -48,12 +48,12 @@ class DemoLayoutService: KeyboardLayout.StandardService {
 
 private extension KeyboardLayout {
 
-    func tryInsert(_ action: KeyboardAction) {
+    mutating func tryInsert(_ action: KeyboardAction) {
         guard let item = tryCreateBottomRowItem(for: action) else { return }
         itemRows.insert(item, before: .space, atRow: bottomRowIndex)
     }
 
-    func tryInsertEmojiButton() {
+    mutating func tryInsertEmojiButton() {
         guard let row = bottomRow else { return }
         let hasEmoji = row.contains(where: { $0.action == .keyboardType(.emojis) })
         if hasEmoji { return }

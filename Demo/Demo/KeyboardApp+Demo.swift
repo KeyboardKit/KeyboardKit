@@ -33,18 +33,8 @@ public extension KeyboardApp {
             licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             bundleId: "com.keyboardkit.demo",
             appGroupId: "group.com.keyboardkit.demo",
-            locales: .all,
+            locales: .keyboardKitSupported,
             deepLinks: .init(app: "kkdemo://")
         )
-    }
-}
-
-public extension Dictation.KeyboardConfiguration {
-
-    /// This configuration is derived from the demo app, but
-    /// has a fallback in case that one doesn't work.
-    static var app: Self {
-        let config = KeyboardApp.demoApp.dictationConfiguration
-        return config ?? .init(appGroupId: "", appDeepLink: "")
     }
 }

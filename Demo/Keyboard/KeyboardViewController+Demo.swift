@@ -72,10 +72,6 @@ extension KeyboardViewController {
 
         /// 💡 Disable autocorrection.
         // state.autocompleteContext.isAutocorrectEnabled = false
-
-        /// 💡 Setup dictation. It will trigger the app, but
-        /// data is not synced as the demo isn't code signed.
-        state.dictationContext.setup(with: .app)
         
         /// 💡 Setup demo-specific haptic & audio feedback.
         let feedback = state.feedbackContext

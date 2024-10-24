@@ -31,18 +31,19 @@ class FakeAutocompleteService: AutocompleteService {
     func learnWord(_ word: String) {}
     func removeIgnoredWord(_ word: String) {}
     func unlearnWord(_ word: String) {}
-    
-    func autocompleteSuggestions(
-        for text: String
-    ) async throws -> [Autocomplete.Suggestion] {
-        guard text.count > 0 else { return [] }
-        return fakeSuggestions(for: text)
+
+    func autocomplete(
+        _ text: String
+    ) async throws -> KeyboardKit.Autocomplete.ServiceResult {
+        guard text.count > 0 else { return .init(inputText: text, suggestions: []) }
+        let suggestions = fakeSuggestions(for: text)
             .map {
                 let autocorrect = $0.isAutocorrect && context.isAutocorrectEnabled
                 var suggestion = $0
                 suggestion.type = autocorrect ? .autocorrect : $0.type
                 return suggestion
             }
+        return .init(inputText: text, suggestions: suggestions)
     }
 
     func nextCharacterPredictions(
