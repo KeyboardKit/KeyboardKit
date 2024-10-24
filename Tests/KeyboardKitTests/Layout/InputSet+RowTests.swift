@@ -12,11 +12,11 @@ import XCTest
 class InputSet_RowTests: XCTestCase {
 
     func testCanCreateRowWithItemsAndDeviceVariations() {
-        let row = InputSet.Row(
-            items: "abc".chars.map { InputSet.RowItem($0) },
+        let row = InputSet.ItemRow(
+            items: "abc".chars.map { InputSet.Item($0) },
             deviceVariations: [
-                .pad: "def".chars.map { InputSet.RowItem($0) },
-                .vision: "ghi".chars.map { InputSet.RowItem($0) }
+                .pad: "def".chars.map { InputSet.Item($0) },
+                .vision: "ghi".chars.map { InputSet.Item($0) }
             ]
         )
 
@@ -29,7 +29,7 @@ class InputSet_RowTests: XCTestCase {
     }
 
     func testCanCreateRowWithStringAndDeviceVariations() {
-        let row = InputSet.Row(
+        let row = InputSet.ItemRow(
             chars: "abc",
             deviceVariations: [.pad: "def", .vision: "ghi"]
         )
@@ -43,7 +43,7 @@ class InputSet_RowTests: XCTestCase {
     }
 
     func testCanCreateRowWithStringsAndDeviceVariations() {
-        let row = InputSet.Row(
+        let row = InputSet.ItemRow(
             chars: ["a", "kr", "c"],
             deviceVariations: [.pad: ["d", "kr", "f"], .vision: ["g", "kr", "i"]]
         )
@@ -57,7 +57,7 @@ class InputSet_RowTests: XCTestCase {
     }
 
     func testCanCreateRowWithCasedStringsAndDeviceVariations() {
-        let row = InputSet.Row(
+        let row = InputSet.ItemRow(
             lowercased: "abc",
             uppercased: "def",
             deviceVariations: [.pad: (lowercased: "ghi", uppercased: "JKL")]

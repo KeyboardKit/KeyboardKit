@@ -56,6 +56,8 @@ An `InputSet` can now be created with device variations, which allows for resolv
 
 The `KeyboardLayout` type is now a `struct` instead of a `class`, to better represent the value type that it's meant to be.
 
+The `KeyboardLayout.BaseService` type has more utility functions.
+
 This change from a reference type to a value type may require you to change how you modify layouts in a custom layout service. 
 
 ### 🚨 Breaking Changes

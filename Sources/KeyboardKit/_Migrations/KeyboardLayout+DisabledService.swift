@@ -8,23 +8,17 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
 public extension KeyboardLayoutService where Self == KeyboardLayout.DisabledService {
 
-    /// Create a ``KeyboardLayout/DisabledService`` intance.
     static var disabled: Self {
         KeyboardLayout.DisabledService()
     }
 }
 
 extension KeyboardLayout {
-    
-    /// This service can be used to disable keyboard layouts
-    /// and just use a standard ``BaseService``.
-    ///
-    /// This service can also be resolved with the shorthand
-    /// ``KeyboardLayoutService/disabled``.
-    ///
-    /// See <doc:Layout-Article> for more information.
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
     open class DisabledService: KeyboardLayout.BaseService {
 
         public init() {

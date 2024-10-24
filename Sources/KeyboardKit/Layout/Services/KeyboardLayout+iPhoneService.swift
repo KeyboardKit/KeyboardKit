@@ -13,22 +13,20 @@ extension KeyboardLayout {
     /// This base class provides a foundation for generating
     /// iPhone-specific layouts.
     ///
-    /// This class will use the ``KeyboardLayout/BaseService``
-    /// layout, then apply iPhone-specific adjustments.
+    /// This class inherits the ``KeyboardLayout/BaseService``
+    /// and applies iPhone-specific adjustments to it.
     ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
+    /// You can inherit the class and override any parts that you want to change.
     ///
     /// See <doc:Layout-Article> for more information.
     open class iPhoneService: KeyboardLayout.BaseService {
         
         // MARK: - Overrides
-        
-        open override func actions(
-            for inputs: InputSet.Rows,
-            context: KeyboardContext
+
+        open override func itemActions(
+            for context: KeyboardContext
         ) -> KeyboardAction.Rows {
-            let actions = super.actions(for: inputs, context: context)
+            let actions = super.itemActions(for: context)
             guard isExpectedActionSet(actions) else { return actions }
             var result = KeyboardAction.Rows()
             result.append(topLeadingActions(for: actions, context: context) + actions[0] + topTrailingActions(for: actions, context: context))
@@ -63,7 +61,9 @@ extension KeyboardLayout {
             context: KeyboardContext
         ) -> KeyboardLayout.ItemWidth {
             #if os(iOS) || os(tvOS) || os(visionOS)
-            if isBottomRowIndex(row) && context.textDocumentProxy.keyboardType == .URL { return .available }
+            let rowCount = inputSet(for: context).rows.count
+            let isBottomRow = row == rowCount - 1
+            if isBottomRow && context.textDocumentProxy.keyboardType == .URL { return .available }
             #endif
             if isLastNumericInputRow(row, for: context) { return lastSymbolicInputWidth(for: context) }
             return .input

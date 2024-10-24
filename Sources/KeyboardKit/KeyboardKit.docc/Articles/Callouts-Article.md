@@ -50,11 +50,9 @@ KeyboardKit automatically creates an instance of ``Callouts/StandardService`` an
 You can easily resolve various service types with these shorthands:
 
 * ``CalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``
-* ``CalloutService/disabled``
+* ``CalloutService/localized(_:)``, e.g. `.localized(.German(...))`
+* ``CalloutService/localized(for:)``, e.g. `.localized(for: .swedish)`
 * ``CalloutService/preview``
-
-* ``CalloutService/localized(_:)`` - 👑 Pro
-* ``CalloutService/localized(for:)`` - 👑 Pro
 
 
 

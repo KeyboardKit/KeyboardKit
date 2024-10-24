@@ -60,7 +60,6 @@ You can easily resolve various service types with these shorthands:
 * ``KeyboardLayoutService/standard(baseService:localizedServices:)``
 * ``KeyboardLayoutService/localized(_:)``, e.g. `.localized(.German(...))`
 * ``KeyboardLayoutService/localized(for:)``, e.g. `.localized(for: .swedish)`
-* ``KeyboardLayoutService/disabled``
 * ``KeyboardLayoutService/preview``
 
 

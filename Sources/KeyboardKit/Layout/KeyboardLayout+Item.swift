@@ -13,7 +13,7 @@ public extension KeyboardLayout {
     
     /// A keyboard layout items defines an action, size, and
     /// optional insets for a key on a layout-based keyboard.
-    struct Item: Equatable, KeyboardLayoutIdentifiable {
+    struct Item: Equatable {
         
         /// Create a new layout item.
         ///
@@ -45,9 +45,6 @@ public extension KeyboardLayout {
         
         /// The edge insets to apply.
         public var edgeInsets: EdgeInsets
-        
-        /// The ID used to identify the item in a row.
-        public var rowId: KeyboardAction { action }
     }
 }
 
@@ -93,12 +90,6 @@ public extension KeyboardLayout.Item {
 }
 
 public extension KeyboardLayout {
-    
-    /// This is a typealias for an array of layout items.
-    typealias ItemRow = [Item]
-
-    /// This is a typealias for an array of layout item rows.
-    typealias ItemRows = [ItemRow]
     
     /// A size with point-based height and declarative width.
     struct ItemSize: Equatable {

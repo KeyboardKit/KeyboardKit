@@ -10,7 +10,7 @@ import Foundation
 
 public extension KeyboardLayoutService where Self == KeyboardLayout.StandardService {
 
-    /// Create a ``KeyboardLayout/StandardService`` intance.
+    /// Create a ``KeyboardLayout/StandardService`` instance.
     ///
     /// - Parameters:
     ///   - baseService: The base service to use, by default a ``Callouts/BaseService``.

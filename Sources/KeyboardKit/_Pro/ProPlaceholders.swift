@@ -117,7 +117,7 @@ public extension KeyboardApp {
 public extension Callouts {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class ProService: Callouts.DisabledService {}
+    class ProService: Callouts.BaseService {}
 }
 
 public extension Callouts.ProService {
@@ -280,9 +280,7 @@ public extension InputSet {
 public extension KeyboardLayout {
 
     /// 👑 This is unlocked by KeyboardKit Pro
-    class ProService: KeyboardLayout.DisabledService {}
-
-    struct Test {}
+    class ProService: KeyboardLayout.BaseService {}
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     class iPadProService: iPadService {}

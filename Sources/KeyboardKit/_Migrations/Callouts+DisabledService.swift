@@ -8,9 +8,9 @@
 
 import Foundation
 
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
 public extension CalloutService where Self == Callouts.DisabledService {
 
-    /// Create a ``Callouts/DisabledService`` instance.
     static var disabled: Self {
         Callouts.DisabledService()
     }
@@ -18,15 +18,9 @@ public extension CalloutService where Self == Callouts.DisabledService {
 
 extension Callouts {
 
-    /// Create a disabled callout service.
-    ///
-    /// This service can also be resolved with the shorthand
-    /// ``CalloutService/disabled``.
-    ///
-    /// See <doc:Callouts-Article> for more information.
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
     open class DisabledService: CalloutService {
 
-        /// Create a disabled callout service.
         public init() {}
 
         open func calloutActions(

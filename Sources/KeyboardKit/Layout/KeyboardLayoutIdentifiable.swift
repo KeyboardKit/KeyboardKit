@@ -8,22 +8,30 @@
 
 import Foundation
 
-/// This protocol can be implemented by types that represent
-/// an ID-based layout items.
+/// This protocol can be implemented by any type that can be
+/// used as an ID-based layout item.
 ///
 /// Implementing the protocol unlocks extensions that can be
-/// used to handle and modify layout item collections.
+/// used to handle and modify keyboard layout items.
 ///
 /// Unlike `Identifiable`, the ``rowId`` does not have to be
-/// unique, since a layout item may appear many times in the
-/// layout. The mutating collection extensions will use this
-/// identifier when looking for items.
+/// unique, since items may appear many times in a layout.
 public protocol KeyboardLayoutIdentifiable {
     
     associatedtype ID: Equatable
     
     /// The layout-specific item identifier.
     var rowId: ID { get }
+}
+
+extension InputSet.Item: KeyboardLayoutIdentifiable {
+
+    public var rowId: Self { self }
+}
+
+extension KeyboardLayout.Item: KeyboardLayoutIdentifiable {
+
+    public var rowId: KeyboardAction { action }
 }
 
 public extension RangeReplaceableCollection where Element: KeyboardLayoutIdentifiable, Index == Int {

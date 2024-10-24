@@ -3,11 +3,14 @@ import SwiftUI
 
 public extension InputSet {
 
-    @available(*, deprecated, renamed: "RowItem", message: "Migration Deprecation, will be removed in 9.1!")
-    typealias Item = RowItem
+    @available(*, deprecated, renamed: "ItemRow", message: "Migration Deprecation, will be removed in 9.1!")
+    typealias Row = ItemRow
+
+    @available(*, deprecated, renamed: "ItemRows", message: "Migration Deprecation, will be removed in 9.1!")
+    typealias Rows = ItemRows
 }
 
-public extension InputSet.Row {
+public extension InputSet.ItemRow {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! This is destructive, and can't be used to dynamically resolve a device-specific layout. Use the variations-based initializer instead.")
     init(

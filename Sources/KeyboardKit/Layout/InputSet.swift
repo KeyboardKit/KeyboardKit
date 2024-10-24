@@ -27,13 +27,13 @@ public struct InputSet: Equatable {
     
     /// Create an input set with rows.
     public init(
-        rows: Rows
+        rows: ItemRows
     ) {
         self.rows = rows
     }
 
     /// The rows in the input set.
-    public var rows: Rows
+    public var rows: ItemRows
 }
 
 public extension InputSet {

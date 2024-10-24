@@ -13,12 +13,11 @@ extension KeyboardLayout {
     /// This base class provides a foundation for generating
     /// iPad-specific layouts.
     ///
-    /// This class will use the ``KeyboardLayout/BaseService``
-    /// layout, then apply iPad-specific adjustments.
+    /// This class inherits the ``KeyboardLayout/BaseService``
+    /// and applies iPad-specific adjustments to it.
     ///
-    /// An additional ``KeyboardLayout/iPadProService`` will
-    /// be unlocked by registering a KeyboardKit Pro license
-    /// that includes that feature.
+    /// The additional ``KeyboardLayout/iPadProService`` can
+    /// be unlocked by KeyboardKit Pro.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
@@ -28,12 +27,11 @@ extension KeyboardLayout {
 
         
         // MARK: - Overrides
-        
-        open override func actions(
-            for inputs: InputSet.Rows,
-            context: KeyboardContext
+
+        open override func itemActions(
+            for context: KeyboardContext
         ) -> KeyboardAction.Rows {
-            let actions = super.actions(for: inputs, context: context)
+            let actions = super.itemActions(for: context)
             guard actions.count == 3 else { return actions }
             var result = KeyboardAction.Rows()
             result.append(topLeadingActions(for: context) + actions[0] + topTrailingActions(for: context))

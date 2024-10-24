@@ -17,7 +17,7 @@ public extension InputSet {
     /// is the default way. You can however provide explicit
     /// casings, to fully customize the input characters for
     /// certain casings.
-    struct RowItem: Equatable {
+    struct Item: Equatable {
 
         /// Create an input set item with a single character.
         ///
@@ -56,13 +56,7 @@ public extension InputSet {
     }
 }
 
-extension InputSet.RowItem: KeyboardLayoutIdentifiable {
-
-    /// The layout ID to use for the item.
-    public var rowId: Self { self }
-}
-
-public extension InputSet.RowItem {
+public extension InputSet.Item {
 
     /// Resolve the character to use for a certain case.
     func character(
