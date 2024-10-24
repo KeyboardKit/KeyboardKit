@@ -13,10 +13,10 @@ public extension Keyboard.KeyboardType {
     /// Use both ``Keyboard/KeyboardType`` & `UIKeyboardType`
     /// to compute this, since many native keyboard types do
     /// not map to a corresponding ``Keyboard/KeyboardType``.
-    /// This means that a `.URL` keyboard type (which should
-    /// not use autocomplete) is rendered as an `.alphabetic`
-    /// keyboard (which by default does). Both should prefer
-    /// autocomplete for it to be used.
+    ///
+    /// > Important: Since KeyboardKit by default always has
+    /// an autocomplete toolbar, the property is used to set
+    /// if *autocorrect* is contextually enabled.
     var prefersAutocomplete: Bool {
         switch self {
         case .alphabetic: true
@@ -41,10 +41,10 @@ public extension UIKeyboardType {
     /// Use both ``Keyboard/KeyboardType`` & `UIKeyboardType`
     /// to compute this, since many native keyboard types do
     /// not map to a corresponding ``Keyboard/KeyboardType``.
-    /// This means that a `.URL` keyboard type (which should
-    /// not use autocomplete) is rendered as an `.alphabetic`
-    /// keyboard (which by default does). Both should prefer
-    /// autocomplete for it to be used.
+    ///
+    /// > Important: Since KeyboardKit by default always has
+    /// an autocomplete toolbar, the property is used to set
+    /// if *autocorrect* is contextually enabled.
     var prefersAutocomplete: Bool {
         switch self {
         case .default: true

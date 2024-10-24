@@ -36,6 +36,8 @@ The `Autocomplete.Suggestion` type implements `Codable` and `Equatable`. This re
 
 The `Autocomplete.Toolbar` now lets you define custom views with builder params. The standard views are polished to look more native.
 
+The `KeyboardInputController` now ignores if the keyboard type prefers autocomplete and instead disables autocorrections for system suggestions.
+
 ### 🎤 Dictation
 
 The `Dictation` namespace has been simplified to only use a single service that can handle all dictation scenarios.
@@ -69,6 +71,7 @@ Some things that are not covered by migration deprecations are:
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
 * The dictation changes can't be migrated since the new services replace the old ones.
+* The `Autocomplete.LocalService` now requires a keyboard context for contextual info`
 * The `KeyboardLayout` is now a struct, and must now be a `var` for you to customize it.
 * The `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.`
 
