@@ -16,6 +16,8 @@ This version removes all deprecated code, simplifies many concepts, and prepares
 
 This version introduces `migration deprecations` that will help you transition from KeyboardKit 8.9 to 9.0. They will be removed in 9.1.
 
+This version also makes it possible to 
+
 ### 🧪 Experiments
 
 The next keyboard button experiments have been made permanent.
@@ -60,7 +62,13 @@ The `KeyboardLayout` type is now a `struct` instead of a `class`, to better repr
 
 The `KeyboardLayout.BaseService` type has more utility functions.
 
-This change from a reference type to a value type may require you to change how you modify layouts in a custom layout service. 
+This change from a reference type to a value type may require you to change how you modify layouts in a custom layout service.
+
+### 👑 Pro
+
+KeyboardKit Pro can now be activated with a license file. License files will be provided to all yearly Gold and Enterprise customers!
+
+The `License` type has new functions to retrieve a license in various ways, to make it easier for you to debug any errors with your license. 
 
 ### 🚨 Breaking Changes
 

@@ -58,7 +58,10 @@ struct HomeScreen: View {
             .init(appIconSize: 150)
         )
         .keyboardAppHomeScreenVisibility(
-            .init(keyboardSection: true)
+            .init(
+                keyboardSection: true,
+                keyboardSectionThemeSettings: true
+            )
         )
         .keyboardDictation(
             dictationContext: dictationContext,
