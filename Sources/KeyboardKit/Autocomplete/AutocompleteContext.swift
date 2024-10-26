@@ -10,26 +10,17 @@ import Combine
 import SwiftUI
 
 /// This class has observable states and persistent settings
-/// for keyboard-related autocomplete.
+/// for keyboard autocomplete.
 ///
 /// The ``suggestions`` property is automatically updated by
 /// ``KeyboardInputViewController/performAutocomplete()`` as
-/// the user types. It honors ``suggestionsDisplayCount`` by
-/// capping the raw ``suggestionsFromService`` result.
+/// users type. It honors ``Settings/suggestionsDisplayCount``
+/// by capping the ``suggestionsFromService`` result to this
+/// value, while keeping the original result for predictions.
 ///
-/// The ``isAutocompleteEnabled`` and ``isAutocorrectEnabled``
-/// settings can be used to control whether autocomplete and
-/// autocorrect are enabled. A ``KeyboardInputViewController``
-/// will however check even more places before performing it.
-///
-/// The ``isAutolearnEnabled`` setting defines if a keyboard
-/// should autolearn unknown suggestions that are explicitly
-/// applied by the user.
-///
-/// The ``isNextCharacterPredictionEnabled`` setting defines
-/// if next character predictions is enabled. This makes the
-/// controller update the ``nextCharacterPredictions`` value
-/// in ``KeyboardInputViewController/performAutocomplete()``.
+/// This class also has observable auto-persisted ``settings``
+/// that can be used to configure the behavior and presented
+/// to users in e.g. a settings screen.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
@@ -37,54 +28,19 @@ import SwiftUI
 public class AutocompleteContext: ObservableObject {
 
     /// Create an autocomplete context instance.
-    public init() {}
+    public init() {
+        settings = .init()
+    }
 
 
     // MARK: - Settings
 
-    /// The settings key prefix to use for this namespace.
-    public static var settingsPrefix: String {
-        KeyboardSettings.storeKeyPrefix(for: "autocomplete")
-    }
+    /// Autocomplete-specific, auto-persisted settings.
+    @Published
+    public var settings: Settings
+    
 
-    /// Whether autocomplete is enabled.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isAutocompleteEnabled", store: .keyboardSettings)
-    public var isAutocompleteEnabled = true
-
-    /// Whether autocorrect is enabled.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isAutocorrectEnabled", store: .keyboardSettings)
-    public var isAutocorrectEnabled = true
-
-    /// Whether to autolearn applied unknown suggestions.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isAutolearnEnabled", store: .keyboardSettings)
-    public var isAutolearnEnabled = true
-
-    /// Whether to automatically ignore certain suggestions.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isAutoIgnoreEnabled", store: .keyboardSettings)
-    public var isAutoIgnoreEnabled = true
-
-    /// Whether next character prediction is enabled.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isNextWordPrediction", store: .keyboardSettings)
-    public var isNextCharacterPredictionEnabled = true
-
-    /// The number of autocomplete suggestions to display.
-    ///
-    /// This is stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)suggestionsDisplayCount", store: .keyboardSettings)
-    public var suggestionsDisplayCount = 3
-
-
-    // MARK: - Properties
+    // MARK: - Published Properties
 
     /// This localized dictionary can be used to define more,
     /// custom autocorrections for the various locales.
@@ -114,17 +70,24 @@ public class AutocompleteContext: ObservableObject {
     public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
         didSet {
             let value = suggestionsFromService
-            let capped = value.prefix(suggestionsDisplayCount)
+            let capped = value.prefix(settings.suggestionsDisplayCount)
             suggestions = Array(capped)
         }
     }
+}
 
-    /// Reset the autocomplete contexts.
-    public func reset() {
+
+// MARK: - Public Functions
+
+public extension AutocompleteContext {
+
+    /// Reset the context.
+    func reset() {
         update(with: .init(inputText: "", suggestions: [], nextCharacterPredictions: [:]))
     }
 
-    public func update(with result: Autocomplete.ServiceResult) {
+    /// Update the context with a certain result.
+    func update(with result: Autocomplete.ServiceResult) {
         if result.isOutdated { return }
         DispatchQueue.main.async {
             self.isLoading = false
@@ -134,7 +97,8 @@ public class AutocompleteContext: ObservableObject {
         }
     }
 
-    public func update(with error: Error) {
+    /// Update the context with a certain error.
+    func update(with error: Error) {
         reset()
         DispatchQueue.main.async {
             self.lastError = error
@@ -142,9 +106,12 @@ public class AutocompleteContext: ObservableObject {
     }
 }
 
+
+// MARK: - Next Character Predictions
+
 public extension AutocompleteContext {
 
-    /// Get a 0-1 next character percentage prediction for a certain char.
+    /// Get a 0-1 next character prediction for a `char`.
     func nextCharacterPrediction(for char: String) -> Double {
         guard
             let first = char.first,
@@ -153,7 +120,7 @@ public extension AutocompleteContext {
         return value
     }
 
-    /// Get a 0-1 next character percentage prediction for a certain action.
+    /// Get a 0-1 next character prediction for an `action`.
     func nextCharacterPrediction(for action: KeyboardAction) -> Double {
         switch action {
         case .character(let char): nextCharacterPrediction(for: char)

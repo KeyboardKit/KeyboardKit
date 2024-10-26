@@ -27,7 +27,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
         timer = .init()
         proxy = MockTextDocumentProxy()
         keyboardContext = .init()
-        keyboardContext.setLocale(.english)
+        keyboardContext.locale = .english
         keyboardContext.sync(with: MockKeyboardInputViewController())
         keyboardContext.originalTextDocumentProxy = proxy
         behavior = .init(keyboardContext: keyboardContext, repeatGestureTimer: timer)
@@ -53,7 +53,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
     func testPreferredKeyboardTypeIsByDefaultContextType() {
         proxy.documentContextBeforeInput = "Hello!"
         proxy.autocapitalizationType = .allCharacters
-        keyboardContext.isAutocapitalizationEnabled = true
+        keyboardContext.settings.isAutocapitalizationEnabled = true
         keyboardContext.keyboardType = .alphabetic(.lowercased)
         let result = behavior.preferredKeyboardType(after: .release, on: .character("i"))
         XCTAssertEqual(keyboardContext.locale, .english)

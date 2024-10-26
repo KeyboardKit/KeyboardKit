@@ -12,8 +12,8 @@ import XCTest
 class FeedbackContextTests: XCTestCase {
 
     override func tearDown() {
-        FeedbackContext().isAudioFeedbackEnabled = true
-        FeedbackContext().isHapticFeedbackEnabled = false
+        FeedbackContext().settings.isAudioFeedbackEnabled = true
+        FeedbackContext().settings.isHapticFeedbackEnabled = false
     }
 
     func testContextUsesExpectedConfigurationsByDefault() {
@@ -27,17 +27,17 @@ class FeedbackContextTests: XCTestCase {
         let audio = Feedback.AudioConfiguration(input: .delete)
 
         context.audioConfiguration = audio
-        XCTAssertTrue(context.isAudioFeedbackEnabled)
+        XCTAssertTrue(context.settings.isAudioFeedbackEnabled)
         XCTAssertEqual(context.audioConfiguration, audio)
         XCTAssertNotEqual(context.audioConfiguration, .disabled)
         
-        context.toggleIsAudioFeedbackEnabled()
-        XCTAssertFalse(context.isAudioFeedbackEnabled)
+        context.settings.toggleIsAudioFeedbackEnabled()
+        XCTAssertFalse(context.settings.isAudioFeedbackEnabled)
         XCTAssertNotEqual(context.audioConfiguration, audio)
         XCTAssertEqual(context.audioConfiguration, .disabled)
         
-        context.toggleIsAudioFeedbackEnabled()
-        XCTAssertTrue(context.isAudioFeedbackEnabled)
+        context.settings.toggleIsAudioFeedbackEnabled()
+        XCTAssertTrue(context.settings.isAudioFeedbackEnabled)
         XCTAssertEqual(context.audioConfiguration, audio)
         XCTAssertNotEqual(context.audioConfiguration, .disabled)
     }
@@ -47,17 +47,17 @@ class FeedbackContextTests: XCTestCase {
         let haptic = Feedback.HapticConfiguration(press: .error)
 
         context.hapticConfiguration = haptic
-        XCTAssertFalse(context.isHapticFeedbackEnabled)
+        XCTAssertFalse(context.settings.isHapticFeedbackEnabled)
         XCTAssertNotEqual(context.hapticConfiguration, haptic)
         XCTAssertEqual(context.hapticConfiguration, .disabled)
 
-        context.toggleIsHapticFeedbackEnabled()
-        XCTAssertTrue(context.isHapticFeedbackEnabled)
+        context.settings.toggleIsHapticFeedbackEnabled()
+        XCTAssertTrue(context.settings.isHapticFeedbackEnabled)
         XCTAssertEqual(context.hapticConfiguration, haptic)
         XCTAssertNotEqual(context.hapticConfiguration, .disabled)
         
-        context.toggleIsHapticFeedbackEnabled()
-        XCTAssertFalse(context.isHapticFeedbackEnabled)
+        context.settings.toggleIsHapticFeedbackEnabled()
+        XCTAssertFalse(context.settings.isHapticFeedbackEnabled)
         XCTAssertNotEqual(context.hapticConfiguration, haptic)
         XCTAssertEqual(context.hapticConfiguration, .disabled)
     }

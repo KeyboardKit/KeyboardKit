@@ -322,7 +322,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// checking the ``AutocompleteContext`` settings and if
     /// any ongoing operations should temporarily disable it.
     open var isAutocompleteEnabled: Bool {
-        guard state.autocompleteContext.isAutocompleteEnabled else { return false }
+        let settings = state.autocompleteContext.settings
+        guard settings.isAutocompleteEnabled else { return false }
         return !textDocumentProxy.isReadingFullDocumentContext
     }
 

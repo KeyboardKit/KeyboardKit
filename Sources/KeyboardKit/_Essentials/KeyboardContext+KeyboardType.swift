@@ -43,7 +43,7 @@ private extension KeyboardContext {
         requiresAlphabetic: Bool
     ) -> Keyboard.KeyboardType? {
         #if os(iOS) || os(tvOS) || os(visionOS)
-        guard isAutocapitalizationEnabled else { return nil }
+        guard settings.isAutocapitalizationEnabled else { return nil }
         guard let proxyType = autocapitalizationType else { return nil }
         if requiresAlphabetic && !keyboardType.isAlphabetic { return nil }
         let uppercased = Keyboard.KeyboardType.alphabetic(.uppercased)

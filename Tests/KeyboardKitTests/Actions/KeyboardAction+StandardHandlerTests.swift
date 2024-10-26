@@ -172,12 +172,13 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
     func testShouldAutolearnSuggestionReturnsTrueForUnknownSuggestionWhenAutolearnIsEnabled() {
-        handler.autocompleteContext.isAutolearnEnabled = true
+        let settings = handler.autocompleteContext.settings
+        settings.isAutolearnEnabled = true
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .regular))) // Invalid type
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "", type: .autocorrect))) // Empty text
-        handler.autocompleteContext.isAutolearnEnabled = false
+        settings.isAutolearnEnabled = false
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .autocorrect))) // Disabled
-        handler.autocompleteContext.isAutolearnEnabled = true
+        settings.isAutolearnEnabled = true
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .autocorrect))) // Valid
     }
 

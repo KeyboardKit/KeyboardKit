@@ -15,7 +15,7 @@ This article describes the KeyboardKit autocomplete engine.
 
 Autocomplete is an important part of the typing experience, where word suggestions can be presented in a toolbar above the keyboard as the user types.
 
-In KeyboardKit, an ``AutocompleteService`` can provide suggestions and predictions to the main ``AutocompleteContext``. Unlike other services, there is no standard implementation of this protocol.
+In KeyboardKit, an ``AutocompleteService`` can provide suggestions and predictions to the main ``AutocompleteContext``. Unlike other services, there's no standard implementation of this protocol in the open-source SDK.
 
 👑 [KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalService`` for on-device autocomplete, as well as a ``Autocomplete/RemoteService`` for integration with remote services. Information about Pro features can be found at the end of this article.
 
@@ -31,11 +31,15 @@ KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related
 
 ## Autocomplete Context
 
-KeyboardKit has an observable ``AutocompleteContext`` that provides observable autocomplete state, such as the ``AutocompleteContext/suggestions`` to present. The ``KeyboardInputViewController`` updates these properties as it performs autocomplete.
-
-The context also has persistent, observable settings, such as  ``AutocompleteContext/isAutocompleteEnabled``, ``AutocompleteContext/suggestionsDisplayCount``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
+KeyboardKit has an ``AutocompleteContext`` that provides observable autocomplete state that is kept up to date as the user types. It also has auto-persisted ``AutocompleteContext/settings-swift.property``.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
+
+
+
+## Autocomplete Settings
+
+The ``AutocompleteContext``'s ``AutocompleteContext/settings-swift.property`` property has auto-persisted properties that can be used to customize the autocomplete behavior, and that can be bound to components in a settings screen.
 
 
 
@@ -46,19 +50,6 @@ In KeyboardKit, an ``AutocompleteService`` can provide suggestions when the user
 KeyboardKit doesn't have a standard autocomplete service. Instead, it injects a ``AutocompleteService/disabled`` service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
 
 KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which performs on-device autocomplete, and a ``Autocomplete/RemoteService``, which can be used to integrate with any remote, REST-based APIs.
-
-
-
-## Autocomplete Service Shorthands
-
-You can easily resolve various service types with these shorthands:
-
-* ``AutocompleteService/local(context:locale:)``
-* ``AutocompleteService/disabled``
-* ``AutocompleteService/disabled(suggestions:)``
-* ``AutocompleteService/preview``
-
-The ``Autocomplete/RemoteService`` doesn't have a shorthand, since it's not commonly used. Just create it by referring directly to the concrete type.
 
 
 

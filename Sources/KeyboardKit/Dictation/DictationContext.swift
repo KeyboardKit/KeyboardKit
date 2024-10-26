@@ -10,57 +10,34 @@ import Combine
 import Foundation
 import SwiftUI
 
-/// This class has observable states and persistent settings,
-/// as well as a couple of persisted properties that are not
-/// considered settings, but carry state between the app and
-/// its keyboard extension.
-///
-/// The context is used by both ``DictationService`` as well
-/// as ``KeyboardDictationService``. Use an initializer that
-/// fits your needs, as described in <doc:Dictation-Article>.
+/// This class has observable states and persistent settings
+/// for keyboard-based dictation.
 ///
 /// The ``dictatedText`` property is updated while dictation
 /// is performed, together with many other properties, which
-/// are used by the dictation services.
+/// are used by the dictation services. The ``lastError`` is
+/// set when something goes wrong. You can observe both.
 ///
-/// The ``silenceLimit`` settings can be used to control how
-/// long time a user can be silent before the dictation will
-/// automatically wrap up.
-///
-/// The ``lastError`` can be set by a dictation service when
-/// something goes wrong. You can observe this to handle any
-/// errors for the user.
-///
-/// The ``returnToKeyboardFromAppError`` should be set if an
-/// app can't navigate back to the keyboard. You can observe
-/// it to add an arrow that points to the top-leading system
-/// back button if this becomes `true`.
+/// This class also has observable auto-persisted ``settings``
+/// that can be used to configure the behavior and presented
+/// to users in e.g. a settings screen.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value.
-///
-/// > Important: KeyboardKit 9.0 will remove the manual data
-/// persistency and replace it with @AppStorage.
 public class DictationContext: ObservableObject {
 
     /// Create a dictation context instance.
-    public init() {}
+    public init() {
+        settings = .init()
+    }
 
 
     // MARK: - Settings
 
-    /// The settings key prefix to use for this namespace.
-    public static var settingsPrefix: String {
-        KeyboardSettings.storeKeyPrefix(for: "dictation")
-    }
-
-    /// The max number of seconds of silence after which the
-    /// dictation operation will automatically finish.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)silenceLimit", store: .keyboardSettings)
-    public var silenceLimit: TimeInterval = 5.0
+    /// Dictation-specific, auto-persisted settings.
+    @Published
+    public var settings: Settings
 
 
     // MARK: - Persisted State
@@ -79,21 +56,21 @@ public class DictationContext: ObservableObject {
     ///
     /// This text can be observed from your app, and will be
     /// automatically synced between an app and its keyboard.
-    @AppStorage("\(settingsPrefix)dictatedText", store: peristentStore)
+    @AppStorage("\(Settings.settingsPrefix)dictatedText", store: .keyboardSettings)
     public var dictatedText = ""
 
     /// The bundle ID of the app that is using the keyboard.
     ///
     /// This is automatically set by the keyboard to let the
     /// main app navigate back to the keyboard.
-    @AppStorage("\(settingsPrefix)hostApplicationBundleId", store: peristentStore)
+    @AppStorage("\(Settings.settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
     public var hostApplicationBundleId: String?
 
     /// Whether dictation has been started by a keyboard.
     ///
     /// This is automatically set by the keyboard to let the
     /// main app start dictation if it cannot use deep links.
-    @AppStorage("\(settingsPrefix)isDictationStartedByKeyboard", store: peristentStore)
+    @AppStorage("\(Settings.settingsPrefix)isDictationStartedByKeyboard", store: .keyboardSettings)
     public var isDictationStartedByKeyboard = false
 
 

@@ -34,7 +34,7 @@ public extension Autocomplete {
             content
                 .onAppear {
                     guard autocorrectionDisabled else { return }
-                    context.isAutocorrectEnabled = false
+                    context.settings.isAutocorrectEnabled = false
                 }
         }
     }

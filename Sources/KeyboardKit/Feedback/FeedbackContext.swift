@@ -10,57 +10,46 @@ import Combine
 import Foundation
 import SwiftUI
 
-/// This class has observable states and persistent settings.
+/// This class has observable states and persistent settings
+/// for keyboard feedback.
 ///
 /// Use the ``audioConfiguration`` and ``hapticConfiguration``
 /// properties to configure which feedback to trigger when a
 /// certain action is triggered. The configurations are only
 /// used when feedback is enabled.
 ///
-/// ``isAudioFeedbackEnabled`` and ``isHapticFeedbackEnabled``
-/// are auto-persisted and can be used to toggle feedback on
-/// and off. You can also use the handy toggle functions and.
-/// use the `register` functions to register custom feedback.
+/// This class also has observable auto-persisted ``settings``
+/// that can be used to configure the behavior and presented
+/// to users in e.g. a settings screen.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value.
 public class FeedbackContext: ObservableObject {
     
-    public init() {}
+    public init() {
+        settings = .init()
+    }
 
 
     // MARK: - Settings
 
-    /// The settings key prefix to use for this namespace.
-    public static var settingsPrefix: String {
-        KeyboardSettings.storeKeyPrefix(for: "feedback")
-    }
-
-    /// Whether audio feedback is enabled.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isAudioFeedbackEnabled", store: .keyboardSettings)
-    public var isAudioFeedbackEnabled = true
-
-    /// Whether haptic feedback is enabled.
-    ///
-    /// Stored in ``Foundation/UserDefaults/keyboardSettings``.
-    @AppStorage("\(settingsPrefix)isHapticFeedbackEnabled", store: .keyboardSettings)
-    public var isHapticFeedbackEnabled = false
+    /// Feedback-specific, auto-persisted settings.
+    @Published
+    public var settings: Settings
 
 
     // MARK: - Properties
 
     /// The configuration to use for audio feedback.
     public var audioConfiguration: Feedback.AudioConfiguration {
-        get { isAudioFeedbackEnabled ? enabledAudioConfiguration : .disabled }
+        get { settings.isAudioFeedbackEnabled ? enabledAudioConfiguration : .disabled }
         set { enabledAudioConfiguration = newValue }
     }
     
     /// The configuration to use for haptic feedback.
     public var hapticConfiguration: Feedback.HapticConfiguration {
-        get { isHapticFeedbackEnabled ? enabledHapticConfiguration : .disabled }
+        get { settings.isHapticFeedbackEnabled ? enabledHapticConfiguration : .disabled }
         set { enabledHapticConfiguration = newValue }
     }
     
@@ -85,15 +74,5 @@ public extension FeedbackContext {
         _ feedback: Feedback.HapticConfiguration.CustomFeedback
     ) {
         hapticConfiguration.registerCustomFeedback(feedback)
-    }
-
-    /// Toggle audio feedback enabled state.
-    func toggleIsAudioFeedbackEnabled() {
-        isAudioFeedbackEnabled.toggle()
-    }
-
-    /// Toggle haptic feedback enabled state.
-    func toggleIsHapticFeedbackEnabled() {
-        isHapticFeedbackEnabled.toggle()
     }
 }

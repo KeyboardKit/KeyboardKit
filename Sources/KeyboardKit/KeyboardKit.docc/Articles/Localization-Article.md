@@ -41,15 +41,15 @@ KeyboardKit supports **68** keyboard-specific ``Foundation/Locale``s, like ``Fou
 
 KeyboardKit extends ``Foundation/Locale`` with localized strings that can be translated with ``KKL10n``, as well as collection modifiers, locale-specific properties like ``Foundation/Locale/localizedName``, ``Foundation/Locale/flag`` inforamation, search & sorting capabilities, and much more.
 
-See ``Foundation/Locale`` for a complete list of available extensions. 
+See the native ``Foundation/Locale`` type's documentation for a complete list of KeyboardKit extensions. 
 
 
 
 ## How to get and set locales 
 
-The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and available ``KeyboardContext/locales``. You can also use ``KeyboardContext/addedLocales`` to set which of the available ``KeyboardContext/locales`` to explicitly add to the keyboard, for instance after being selected by the user.
+The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and the available ``KeyboardContext/locales``. You can also use the context's ``KeyboardContext/settings-swift.property`` to set which of the available locales to explicitly add to the keyboard.
 
-If the context ``KeyboardContext/locales`` or ``KeyboardContext/addedLocales`` has multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user do it with a ``Foundation/Locale/ContextMenu``. It will use ``KeyboardContext/addedLocales`` if it has been set, otherwise ``KeyboardContext/locales``.
+If ``KeyboardContext/locales`` or the ``KeyboardContext/settings-swift.property``'s added locales has multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user select locales with a ``Foundation/Locale/ContextMenu``.
 
 You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` button, or add a context menu to any view with the ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)`` view modifier.
 
@@ -57,7 +57,7 @@ You can automatically add a context menu to the keyboard by inserting a ``Keyboa
 
 ## How to change the primary language  
 
-Setting the ``KeyboardContext/locale`` will update the controller's **primaryLanguage**, which controls things like spell checking and text direction. This also sets the keyboard's language subtitle in the keyboard switcher.
+Setting the ``KeyboardContext`` ``KeyboardContext/locale`` will update the controller's **primaryLanguage**, which controls things like spell checking and text direction. This also sets the keyboard's language subtitle in the keyboard switcher.
 
 > Note: The `primaryLanguage` property seems to always return `nil`, even after it has been set properly (and works). This can be a bit confusing, but just check that the proper language is displayed in the system keyboard switcher.
 

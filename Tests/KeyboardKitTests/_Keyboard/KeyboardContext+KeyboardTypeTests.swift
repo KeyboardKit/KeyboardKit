@@ -18,7 +18,7 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
     override func setUp() {
         proxy = MockTextDocumentProxy()
         context = KeyboardContext()
-        context.isAutocapitalizationEnabled = true
+        context.settings.isAutocapitalizationEnabled = true
         context.sync(with: MockKeyboardInputViewController())
         context.originalTextDocumentProxy = proxy
         context.keyboardType = .alphabetic(.lowercased)
@@ -43,7 +43,7 @@ class KeyboardContext_KeyboardTypeTests: XCTestCase {
 
 
     func testPreferredKeyboardTypeIgnoresAutoCapitalizationIfOverrideIsSet() {
-        context.isAutocapitalizationEnabled = false
+        context.settings.isAutocapitalizationEnabled = false
         let current = Keyboard.KeyboardType.alphabetic(.lowercased)
         let type = UITextAutocapitalizationType.allCharacters
         XCTAssertEqual(result(for: current, preCursorPart: "", type: type), current)

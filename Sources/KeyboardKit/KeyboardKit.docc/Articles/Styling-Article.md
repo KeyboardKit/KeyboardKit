@@ -37,16 +37,6 @@ KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvide
 
 
 
-## Keyboard Style Service Shorthands
-
-You can easily resolve various service types with these shorthands:
-
-* ``KeyboardStyleService/standard(keyboardContext:)``
-* ``KeyboardStyleService/themeBased(theme:keyboardContext:)`` (👑 KeyboardKit Pro)
-* ``KeyboardStyleService/preview``
-
-
-
 ## Color & Image Extensions 
 
 KeyboardKit defines additional, keyboard-specific ``SwiftUICore/Color`` and ``SwiftUICore/Image`` extensions, like ``SwiftUICore/Color/keyboardBackground``, ``SwiftUICore/Image/keyboard``, etc. to make it easy to create keyboards that look like a native iOS keyboard.

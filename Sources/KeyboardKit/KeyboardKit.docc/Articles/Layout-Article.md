@@ -53,17 +53,6 @@ KeyboardKit automatically creates an instance of ``KeyboardLayout/StandardServic
 
 
 
-## Keyboard Layout Service Shorthands
-
-You can easily resolve various service types with these shorthands:
-
-* ``KeyboardLayoutService/standard(baseService:localizedServices:)``
-* ``KeyboardLayoutService/localized(_:)``, e.g. `.localized(.German(...))`
-* ``KeyboardLayoutService/localized(for:)``, e.g. `.localized(for: .swedish)`
-* ``KeyboardLayoutService/preview``
-
-
-
 ## How to create a custom layout service
 
 You can create a custom layout service to customize the layout for certain locales or devices, or define a completely custom layout.

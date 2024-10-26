@@ -23,23 +23,15 @@ KeyboardKit has a ``KeyboardView`` view that mimics the native iOS keyboard. It 
 
 
 
-## Namespaces
+## KeyboardKit Namespaces
 
-KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. 
+KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. KeyboardKit has namespaces like ``Keyboard``, ``KeyboardAction`` ``KeyboardLayout``, ``Callouts``, ``Dictation``, ``Feedback``, etc.
 
-KeyboardKit has other namespaces as well, for more specific capabilities, like ``KeyboardAction``, ``KeyboardLayout``, ``Callouts``, ``Dictation``, ``Feedback``, etc.
-
-Namespaces will not contain protocols, nor important types that are meant to be exposed as top-level types. This includes essential types like ``KeyboardInputViewController``, context and settings types like ``KeyboardContext`` and ``KeyboardSettings``, and important components like ``KeyboardView``.
-
-
-
-## Keyboard Namespace
+Namespaces will not contain protocols, nor important types that are meant to be exposed as top-level types. This includes essential types like ``KeyboardInputViewController``, ``KeyboardContext``, etc., and important view components like ``KeyboardView``.
 
 The ``Keyboard`` namespace contains a lot of essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will list all essential types within this namespace.
 
-The namespace has a lot of essential types, like ``Keyboard/Accent``, ``Keyboard/AutocapitalizationType``, ``Keyboard/BackspaceRange``, ``Keyboard/Case``, ``Keyboard/Diacritic``, ``Keyboard/Gesture``, ``Keyboard/InputToolbarDisplayMode``, ``Keyboard/KeyboardType``, ``Keyboard/ReturnKeyType``, etc.
-
-The namespace also has a lot of view-related types, like ``Keyboard/Background``, ``Keyboard/Button``, ``Keyboard/ButtonStyle``, ``Keyboard/NextKeyboardButton``, ``Keyboard/SpaceContent``, ``Keyboard/Toolbar``, etc.
+The namespace has a lot of essential types, like ``Keyboard/Accent``, ``Keyboard/AutocapitalizationType``, ``Keyboard/BackspaceRange``, ``Keyboard/Case``, ``Keyboard/Diacritic``, ``Keyboard/Gesture``, ``Keyboard/KeyboardType``, ``Keyboard/ReturnKeyType``, etc. and view-related types, like ``Keyboard/Button``, ``Keyboard/ButtonStyle``, ``Keyboard/Toolbar``, etc.
 
 
 
@@ -47,17 +39,19 @@ The namespace also has a lot of view-related types, like ``Keyboard/Background``
 
 ``KeyboardInputViewController`` is the most essential type in the library. Just make your **KeyboardController** inherit this class to get access to a bunch of additional capabilities and view lifecycle functions.
 
-The ``KeyboardInputViewController`` defines shared ``KeyboardInputViewController/services``, ``KeyboardInputViewController/settings``, and ``KeyboardInputViewController/state`` properties, that can be used to avoid relying on the controller within your code.
+The ``KeyboardInputViewController`` has namespace-specific ``KeyboardInputViewController/services``, as well as observable, namespace-specific ``KeyboardInputViewController/state``. KeyboardKit also has a ``KeyboardController`` protocol that aims to make it easier to use KeyboardKit in other platforms than UIKit.
 
-KeyboardKit also has a ``KeyboardController`` protocol that aims to make it easier to use KeyboardKit in other platforms than UIKit.
+By delegating the responsibility to perform ceratin operations to its ``KeyboardInputViewController/services``, and the state management to its ``KeyboardInputViewController/state``, you can avoid having to rely on the controller for most operations. You can however override many of its open functions to customize its behavior.
+
+See the <doc:Getting-Started-Article> article for more information on how to use the controller to set up and customize your keyboard extension.
 
 
 
 ## Keyboard Context
 
-KeyboardKit has a ``KeyboardContext`` that provides observable keyboard state that keeps the keyboard UI up to date. It has a ``KeyboardContext/textDocumentProxy`` reference, lets you get and set ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc.
+KeyboardKit has a ``KeyboardContext`` that provides observable keyboard state that keeps the keyboard UI up to date. It has a ``KeyboardContext/textDocumentProxy`` reference, lets you get and set the ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc. It also has auto-persisted ``KeyboardContext/settings-swift.property``. 
 
-Other namespaces define other context types, like ``AutocompleteContext``, ``CalloutContext``, ``DictationContext``, etc. They will all automatically update the keyboard, provided that the keyboard view observes them.  
+Other namespaces define other context types, like ``AutocompleteContext``, ``CalloutContext``, ``DictationContext``, etc. They will all automatically update the keyboard, provided that the keyboard view observes them, and provide namespace-specific settings.
 
 KeyboardKit automatically creates instances of these classes and injects them into ``KeyboardInputViewController/state``, and syncs with the controller when needed.
 
@@ -65,7 +59,9 @@ KeyboardKit automatically creates instances of these classes and injects them in
 
 ## Keyboard Settings
 
-KeyboardKit has a ``KeyboardSettings`` class that has a ``KeyboardSettings/store`` that is used to persist all persisted properties in all contexts. When you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, the store will automatically be set up to sync data between your app and its keyboard extension.
+KeyboardKit has a ``KeyboardSettings`` class that has a global ``KeyboardSettings/store`` that is used to persist all context settings properties. If you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, this store is set up to sync data between the app and its keyboard.
+
+The ``KeyboardContext``'s ``KeyboardContext/settings-swift.property`` property provides auto-persisted properties that can be used to customize the core keyboard behavior. These properties can also be used to let the user customize the keyboard, e.g. in a settings screen.   
 
 > Important: `@AppStorage` properties use the store that's available when they're first accessed. Make sure to set up a custom store BEFORE accessing any of these settings properties.
 
@@ -81,9 +77,7 @@ KeyboardKit automatically creates an instance of ``Keyboard/StandardBehavior`` a
 
 ## Keyboard Styling
 
-The <doc:Styling-Article> article describes how to use a ``KeyboardStyleService`` to style the ``KeyboardView`` in flexible ways.
-
-Various views have separate styles as well, that can be applied with specific view modifiers.
+The <doc:Styling-Article> article describes how to use a ``KeyboardStyleService`` to style the ``KeyboardView`` in flexible ways. Various views have separate styles as well, that can be applied with specific view modifiers.
 
 
 

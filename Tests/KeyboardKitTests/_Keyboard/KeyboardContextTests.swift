@@ -30,8 +30,8 @@ class KeyboardContextTests: XCTestCase {
     }
 
     override func tearDown() {
-        context.isAutocapitalizationEnabled = true
         context.locale = .init(identifier: "en")
+        context.settings.isAutocapitalizationEnabled = true
     }
 
     
@@ -69,7 +69,7 @@ class KeyboardContextTests: XCTestCase {
         XCTAssertFalse(context.hasFullAccess)
         XCTAssertNil(context.keyboardDictationReplacement)
         XCTAssertEqual(context.keyboardType, .alphabetic(.auto))
-        XCTAssertEqual(context.locale, Locale(identifier: context.localeIdentifier))
+        XCTAssertEqual(context.locale, Locale(identifier: context.settings.localeIdentifier))
         XCTAssertEqual(context.locales, [.current])
         XCTAssertFalse(context.needsInputModeSwitchKey)
         XCTAssertTrue(context.prefersAutocomplete)
@@ -106,7 +106,7 @@ class KeyboardContextTests: XCTestCase {
     #endif
 
     func testHasCurrentLocaleReturnsTrueForMatchingType() {
-        context.setLocale(.swedish)
+        context.locale = .swedish
         XCTAssertTrue(hasCurrentLocaleResult(for: .swedish))
         XCTAssertFalse(hasCurrentLocaleResult(for: .finnish))
         XCTAssertFalse(hasCurrentLocaleResult(for: .german))
@@ -150,7 +150,7 @@ class KeyboardContextTests: XCTestCase {
 
     func testSettingLocaleSetsContextLocale() {
         context.locale = locale(for: "sv")
-        context.setLocale(.catalan)
+        context.locale = .catalan
         XCTAssertEqual(context.locale.identifier, "ca")
     }
 

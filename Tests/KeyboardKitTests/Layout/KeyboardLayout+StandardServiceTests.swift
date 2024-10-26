@@ -58,7 +58,7 @@ class KeyboardLayout_StandardServiceTests: XCTestCase {
             if locale == .albanian { return TestService(localeKey: "apa") }
             return nil
         }
-        context.setLocale(.albanian)
+        context.locale = .albanian
         XCTAssertNil(service.localizedServices.value(for: .albanian))
         let result = service.keyboardLayoutService(for: context)
         XCTAssertEqual((result as? TestService)?.localeKey, "apa")

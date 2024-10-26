@@ -406,7 +406,7 @@ extension KeyboardAction {
             before gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            guard autocompleteContext.isAutolearnEnabled else { return false }
+            guard autocompleteContext.settings.isAutolearnEnabled else { return false }
             guard gesture == .press, action == .backspace else { return false }
             #if os(iOS) || os(tvOS) || os(visionOS)
             let proxy = keyboardContext.textDocumentProxy
@@ -422,7 +422,7 @@ extension KeyboardAction {
         open func shouldAutolearnSuggestion(
             _ suggestion: Autocomplete.Suggestion
         ) -> Bool {
-            guard autocompleteContext.isAutolearnEnabled else { return false }
+            guard autocompleteContext.settings.isAutolearnEnabled else { return false }
             return suggestion.isUnknown && !suggestion.text.isEmpty
         }
 

@@ -58,3 +58,27 @@ public extension InputSet.ItemRow {
         )
     }
 }
+
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
+public extension KeyboardLayoutService where Self == KeyboardLayout.DisabledService {
+
+    static var disabled: Self {
+        KeyboardLayout.DisabledService()
+    }
+}
+
+extension KeyboardLayout {
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
+    open class DisabledService: KeyboardLayout.BaseService {
+
+        public init() {
+            super.init(
+                alphabeticInputSet: .qwerty,
+                numericInputSet: .numeric(currency: "$"),
+                symbolicInputSet: .symbolic(currencies: ["€£¥"])
+            )
+        }
+    }
+}
+

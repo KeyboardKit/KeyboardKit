@@ -81,7 +81,7 @@ class Callouts_StandardServiceTests: XCTestCase {
             if locale == .albanian { return TestService(localeKey: "apa") }
             return nil
         }
-        context.setLocale(.albanian)
+        context.locale = .albanian
         XCTAssertNil(service.localizedServices.value(for: Locale.albanian))
         let result = service.service(for: context)
         XCTAssertEqual((result as? TestService)?.localeKey, "apa")

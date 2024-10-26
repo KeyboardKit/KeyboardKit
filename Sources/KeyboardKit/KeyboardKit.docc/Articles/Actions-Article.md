@@ -50,11 +50,6 @@ For instance, to customize what happens when a user double-taps space, you can o
 
 KeyboardKit automatically creates an instance of ``KeyboardAction/StandardHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
-You can easily resolve various service types with these shorthands:
-
-* ``KeyboardActionHandler/standard(for:)``
-* ``KeyboardActionHandler/preview``
-
 
 
 ## How to handle keyboard actions 

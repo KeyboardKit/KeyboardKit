@@ -18,7 +18,7 @@ extension KeyboardContext {
     /// Sync ``autocapitalizationTypeOverride`` with settings.
     func syncAutocapitalizationWithSetting() {
         let noAutocap = Keyboard.AutocapitalizationType.none
-        let value = isAutocapitalizationEnabled ? nil : noAutocap
+        let value = settings.isAutocapitalizationEnabled ? nil : noAutocap
         if autocapitalizationTypeOverride != value {
             autocapitalizationTypeOverride = value
         }
@@ -26,7 +26,7 @@ extension KeyboardContext {
 
     /// Make the context trigger a keyboard view refresh.
     func triggerKeyboardViewRefresh() {
-        setLocale(locale)
+        self.locale = locale
     }
 }
 

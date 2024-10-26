@@ -45,17 +45,6 @@ KeyboardKit automatically creates an instance of ``Callouts/StandardService`` an
 
 
 
-## Callout Service Shorthands
-
-You can easily resolve various service types with these shorthands:
-
-* ``CalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``
-* ``CalloutService/localized(_:)``, e.g. `.localized(.German(...))`
-* ``CalloutService/localized(for:)``, e.g. `.localized(for: .swedish)`
-* ``CalloutService/preview``
-
-
-
 ## How to show input and action callouts
 
 The ``KeyboardView`` and ``Keyboard/Button`` will automatically apply the proper view extensions to make input and action callouts work, so you don't have to do anything to make action and input callouts work.

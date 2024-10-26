@@ -2,11 +2,22 @@
 
 This article describes the KeyboardKit dictation engine.
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+
+    @PageColor(blue)
+}
+
 Dictation can be used to let users enter text by speaking instead of typing on the keyboard. Since keyboard extensions have no access to the microphone, KeyboardKit lets you trigger dictation from a keyboard extension and perform it in the main app.
 
 In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard extension, by opening the main app and let it perform the dictation operation, then return to the keyboard and apply the dictated text once dictation completes.
 
-👑 [KeyboardKit Pro][Pro] unlocks a standard dictation service. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a ``Dictation/StandardService``. Information about Pro features can be found at the end of this article.
 
 
 
@@ -18,11 +29,15 @@ KeyboardKit has a ``Dictation`` namespace that contains dictation-related types,
 
 ## Dictation Context
 
-KeyboardKit has an observable ``DictationContext`` that provides observable dictation state, like the ``DictationContext/dictatedText``. This context is modified as dictation is performed by the keyboard and the main app.
+KeyboardKit has a ``DictationContext`` that provides observable dictation state that is kept up to date as dictation is performed. It also has auto-persisted ``AutocompleteContext/settings-swift.property``.
 
-The context also has persistent, observable settings, such as  ``DictationContext/silenceLimit``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
+KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever dictation is performed.
 
-KeyboardKit automatically creates an instance of this context and injects it into ``KeyboardInputViewController/state``, and updates it whenever dictation is performed.
+
+
+## Dictation Settings
+
+The ``DictationContext``'s ``DictationContext/settings-swift.property`` property has auto-persisted properties that can be used to customize the dictation behavior, and that can be bound to components in a settings screen.
 
 
 
@@ -31,17 +46,6 @@ KeyboardKit automatically creates an instance of this context and injects it int
 In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard extension by opening the main app and let it perform dictation, then let the main app try to return to the keyboard and apply the dictated text once dictation completes.
 
 KeyboardKit doesn't have a standard dictation service, as it has for other services. Instead, it injects a ``DictationService/disabled`` dictation service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
-
-
-
-## Dictation Service Shorthands
-
-You can easily resolve various service types with these shorthands:
-
-* ``DictationService/standardInApp(dictationContext:keyboardContext:openUrl:speechRecognizer:)``
-* ``DictationService/standardInKeyboard(dictationContext:keyboardContext:actionHandler:)``
-* ``DictationService/disabled(context:)``
-* ``DictationService/preview``
 
 
 

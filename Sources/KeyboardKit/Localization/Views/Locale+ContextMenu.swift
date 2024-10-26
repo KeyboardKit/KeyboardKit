@@ -143,10 +143,6 @@ public extension View {
     /// Apply a context menu that either lists a custom list
     /// of locales, or applicable locales from the `context`.
     ///
-    /// If you don't provide locales, this menu will use the
-    /// context ``KeyboardContext/addedLocales``, if any, or
-    /// its ``KeyboardContext/locales``.
-    ///
     /// - Parameters:
     ///   - context: The keyboard context to use.
     ///   - locales: The explicit locales to list, if any.
@@ -165,12 +161,8 @@ public extension View {
         )
     }
 
-    /// Apply a context menu that either lists all available
-    /// locales in the ``KeyboardContext``, or a custom list.
-    ///
-    /// If you don't provide locales, this menu will use the
-    /// context ``KeyboardContext/addedLocales``, if any, or
-    /// its ``KeyboardContext/locales``.
+    /// Apply a context menu that either lists a custom list
+    /// of locales, or applicable locales from the `context`.
     ///
     /// - Parameters:
     ///   - context: The keyboard context to use.
@@ -219,7 +211,7 @@ public extension View {
             }
             .onAppear {
                 context.locales = .keyboardKitSupported
-                context.addedLocales = [
+                context.settings.addedLocales = [
                     // .arabic,
                     // .mongolian
                 ]

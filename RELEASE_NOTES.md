@@ -14,9 +14,7 @@ These release notes only cover the current major version. Check out version tags
 
 This version removes all deprecated code, simplifies many concepts, and prepares for future conformance to strict concurrency.
 
-This version introduces `migration deprecations` that will help you transition from KeyboardKit 8.9 to 9.0. They will be removed in 9.1.
-
-This version also makes it possible to 
+This version introduces `migration deprecations` that will help you transition from KeyboardKit 8.9 to 9.0. They will be removed in 9.1. 
 
 ### 🧪 Experiments
 
@@ -63,6 +61,10 @@ The `KeyboardLayout` type is now a `struct` instead of a `class`, to better repr
 The `KeyboardLayout.BaseService` type has more utility functions.
 
 This change from a reference type to a value type may require you to change how you modify layouts in a custom layout service.
+
+### 🎛️ Settings
+
+Persistent settings have moved from the various contexts to nested types, to separate contextual properties from user settings.
 
 ### 👑 Pro
 

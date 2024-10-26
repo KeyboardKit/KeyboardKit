@@ -25,9 +25,4 @@ public extension KeyboardContext {
         guard locales.count > nextIndex else { return locale = fallback }
         locale = locales[nextIndex]
     }
-
-    /// Set ``locale`` to the provided locale.
-    func setLocale(_ locale: Locale) {
-        self.locale = locale
-    }
 }

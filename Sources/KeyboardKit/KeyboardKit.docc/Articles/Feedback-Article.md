@@ -37,11 +37,15 @@ The ``Feedback/Haptic`` enum defines haptic feedback types, like ``Feedback/Hapt
 
 ## Feedback Context
 
-KeyboardKit has an observable ``FeedbackContext`` class that can be used to configure feedback for various actions, such as which configuration to use for audio and haptic feedback. 
-
-The context also has persistent, observable settings, such as  ``FeedbackContext/isAudioFeedbackEnabled``, ``FeedbackContext/isHapticFeedbackEnabled``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
+KeyboardKit has an observable ``FeedbackContext`` class that can be used to configure feedback for various actions. It also has auto-persisted ``FeedbackContext/settings-swift.property``. 
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``. You can use this instance to configure feedback.
+
+
+
+## Feedback Settings
+
+The ``FeedbackContext``'s ``FeedbackContext/settings-swift.property`` property has auto-persisted properties that can be used to customize the feedback behavior, and that can be bound to components in a settings screen.
 
 
 
@@ -50,16 +54,6 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 In KeyboardKit, a ``FeedbackService`` can be used to trigger audio and haptic feedback as the user interacts with the keyboard. The ``KeyboardActionHandler`` protocol also implements this protocol.
 
 KeyboardKit automatically creates a ``Feedback/StandardService``  instance and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, to customize how feedback is triggered.
-
-
-
-## Feedback Service Shorthands
-
-You can easily resolve various service types with these shorthands:
-
-* ``FeedbackService/standard``
-* ``FeedbackService/disabled``
-* ``FeedbackService/preview``
 
 
 
