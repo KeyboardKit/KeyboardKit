@@ -8,7 +8,6 @@
 
 #if os(iOS) || os(tvOS)
 import KeyboardKit
-import MockingKit
 import XCTest
 
 class KeyboardContext_KeyboardTypeTests: XCTestCase {

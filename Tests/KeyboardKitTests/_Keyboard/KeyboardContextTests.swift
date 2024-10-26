@@ -6,7 +6,6 @@
 //  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
-import MockingKit
 import XCTest
 
 @testable import KeyboardKit

@@ -8,7 +8,6 @@
 
 #if os(iOS) || os(tvOS)
 import CoreGraphics
-import MockingKit
 import XCTest
 
 @testable import KeyboardKit
