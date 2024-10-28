@@ -154,7 +154,7 @@ public extension KeyboardAction {
     /// Whether or not the action is an alphabetic type.
     var isAlphabeticKeyboardTypeAction: Bool {
         switch self {
-        case .keyboardType(let type): type.isAlphabetic
+        case .keyboardType(let type): type == .alphabetic
         default: false
         }
     }

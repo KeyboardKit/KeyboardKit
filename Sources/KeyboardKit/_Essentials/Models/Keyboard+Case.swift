@@ -59,9 +59,13 @@ public extension Keyboard.Case {
 extension Keyboard.Case {
     
     var standardReleaseAction: KeyboardAction.GestureAction? {
+        return { $0?.setKeyboardCase(standardReleaseCase) }
+    }
+
+    var standardReleaseCase: Keyboard.Case {
         switch self {
-        case .lowercased: { $0?.setKeyboardType(.alphabetic(.uppercased)) }
-        default: { $0?.setKeyboardType(.alphabetic(.lowercased)) }
+        case .lowercased: .uppercased
+        default: .lowercased
         }
     }
 }

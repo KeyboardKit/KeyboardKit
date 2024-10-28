@@ -77,9 +77,7 @@ final class KeyboardAction_ActionsTests: XCTestCase {
         expected = [
             .backspace,
             .capsLock,
-            .keyboardType(.alphabetic(.lowercased)),
-            .keyboardType(.alphabetic(.uppercased)),
-            .keyboardType(.alphabetic(.capsLocked)),
+            .keyboardType(.alphabetic),
             .keyboardType(.numeric),
             .keyboardType(.symbolic),
             .keyboardType(.email),

@@ -38,7 +38,7 @@ class FakeAutocompleteService: AutocompleteService {
         guard text.count > 0 else { return .init(inputText: text, suggestions: []) }
         let suggestions = fakeSuggestions(for: text)
             .map {
-                let autocorrect = $0.isAutocorrect && context.isAutocorrectEnabled
+                let autocorrect = $0.isAutocorrect && context.settings.isAutocorrectEnabled
                 var suggestion = $0
                 suggestion.type = autocorrect ? .autocorrect : $0.type
                 return suggestion
@@ -64,6 +64,6 @@ private extension FakeAutocompleteService {
             .init(text: "4th Suggestion"),
             .init(text: "5th Suggestion")
         ]
-        return Array(suggestions.prefix(context.suggestionsDisplayCount))
+        return Array(suggestions.prefix(context.settings.suggestionsDisplayCount))
     }
 }

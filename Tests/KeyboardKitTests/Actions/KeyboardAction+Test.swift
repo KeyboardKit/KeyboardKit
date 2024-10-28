@@ -29,9 +29,7 @@ extension KeyboardAction {
             .image(description: "", keyboardImageName: "", imageName: ""),
             .text(""),
             
-            .keyboardType(.alphabetic(.lowercased)),
-            .keyboardType(.alphabetic(.uppercased)),
-            .keyboardType(.alphabetic(.capsLocked)),
+            .keyboardType(.alphabetic),
             .keyboardType(.numeric),
             .keyboardType(.symbolic),
             .keyboardType(.email),

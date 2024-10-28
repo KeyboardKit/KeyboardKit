@@ -3,6 +3,26 @@ import SwiftUI
 
 public extension KeyboardContext {
 
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Just use an equality check instead.")
+    func hasCurrentLocale(_ locale: Locale) -> Bool {
+        self.locale == locale
+    }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Just use an equality check instead.")
+    func hasKeyboardType(_ type: Keyboard.KeyboardType) -> Bool {
+        keyboardType == type
+    }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Just set the property instead.")
+    func setKeyboardType(_ type: Keyboard.KeyboardType) {
+        keyboardType = type
+    }
+
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use the behavior instead.")
+    var preferredKeyboardType: Keyboard.KeyboardType { keyboardType }
+
+
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .settings instead.")
     static var settingsPrefix: String { Settings.settingsPrefix }
 

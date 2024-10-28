@@ -60,9 +60,9 @@ public extension Keyboard.State {
     func setup(for controller: KeyboardInputViewController) {
         let isPhone = UIDevice.current.userInterfaceIdiom == .phone
         let keyboardType = controller.textDocumentProxy.keyboardType
-        let contextType = keyboardType?.keyboardType ?? .alphabetic(.auto)
         keyboardContext.sync(with: controller)
-        keyboardContext.keyboardType = contextType
+        keyboardContext.keyboardCase = .auto
+        keyboardContext.keyboardType = keyboardType?.keyboardType ?? .alphabetic
         calloutContext.inputContext.isEnabled = isPhone
     }
 }

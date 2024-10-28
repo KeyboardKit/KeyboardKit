@@ -109,7 +109,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
             XCTAssertTrue(vc.state.autocompleteContext.suggestions.isEmpty)
             XCTAssertEqual(vc.state.calloutContext.inputContext.buttonFrame, .zero)
             XCTAssertFalse(vc.state.keyboardContext.hasFullAccess)
-            XCTAssertEqual(vc.state.keyboardContext.keyboardType, .alphabetic(.auto))
+            XCTAssertEqual(vc.state.keyboardContext.keyboardType, .alphabetic)
             XCTAssertFalse(vc.state.keyboardContext.needsInputModeSwitchKey)
             XCTAssertEqual(vc.state.feedbackContext.audioConfiguration, .enabled)
             XCTAssertEqual(vc.state.feedbackContext.hapticConfiguration, .disabled)
@@ -174,9 +174,9 @@ class KeyboardInputViewControllerTests: XCTestCase {
     }
 
     func testTextDidChangeTriesToChangeKeyboardType() {
-        vc.state.keyboardContext.keyboardType = .alphabetic(.lowercased)
+        vc.state.keyboardContext.keyboardType = .numeric
         vc.textDidChange(nil)
-        vc.state.keyboardContext.keyboardType = .alphabetic(.uppercased)
+        vc.state.keyboardContext.keyboardType = .alphabetic
     }
 
 

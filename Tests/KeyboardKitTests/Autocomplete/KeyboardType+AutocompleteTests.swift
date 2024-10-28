@@ -20,7 +20,7 @@ class KeyboardType_AutocompleteTests: XCTestCase {
             type.prefersAutocomplete
         }
         
-        XCTAssertTrue(prefersAutocompleteResult(for: .alphabetic(.lowercased)))
+        XCTAssertTrue(prefersAutocompleteResult(for: .alphabetic))
         XCTAssertTrue(prefersAutocompleteResult(for: .numeric))
         XCTAssertTrue(prefersAutocompleteResult(for: .symbolic))
         XCTAssertFalse(prefersAutocompleteResult(for: .email))

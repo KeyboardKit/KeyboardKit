@@ -218,6 +218,7 @@ extension KeyboardAction {
             gestureAction(keyboardController)
             tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
             tryEndCurrentSentence(after: gesture, on: action)
+            tryChangeKeyboardCase(after: gesture, on: action)
             tryChangeKeyboardType(after: gesture, on: action)
             tryPerformAutocomplete(after: gesture, on: action)
             tryRegisterEmoji(after: gesture, on: action)
@@ -257,6 +258,13 @@ extension KeyboardAction {
             set { behavior.endSentenceText = newValue }
         }
 
+        open func preferredKeyboardCase(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Keyboard.Case {
+            behavior.preferredKeyboardCase(after: gesture, on: action)
+        }
+
         open func preferredKeyboardType(
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
@@ -264,13 +272,6 @@ extension KeyboardAction {
             behavior.preferredKeyboardType(after: gesture, on: action)
         }
 
-        open func shouldChangeKeyboardType(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            behavior.shouldChangeKeyboardType(after: gesture, on: action)
-        }
-        
         open func shouldEndCurrentSentence(
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
@@ -284,36 +285,28 @@ extension KeyboardAction {
         ) -> Bool {
             behavior.shouldRegisterEmoji(after: gesture, on: action)
         }
-        
-        open func shouldSwitchToCapsLock(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            behavior.shouldSwitchToCapsLock(after: gesture, on: action)
-        }
-
-        open func shouldSwitchToPreferredKeyboardType(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
-        }
-
-        open func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
-            behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
-        }
 
 
         // MARK: - Try Functionality
+
+        /// Try to change keyboard case after a certain action gesture.
+        open func tryChangeKeyboardCase(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            let new = preferredKeyboardCase(after: gesture, on: action)
+            guard keyboardContext.keyboardCase != new else { return }
+            keyboardContext.keyboardCase = new
+        }
 
         /// Try to change keyboard type after a certain action gesture.
         open func tryChangeKeyboardType(
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
-            guard shouldChangeKeyboardType(after: gesture, on: action) else { return }
-            let newType = behavior.preferredKeyboardType(after: gesture, on: action)
-            keyboardContext.keyboardType = newType
+            let new = preferredKeyboardType(after: gesture, on: action)
+            guard keyboardContext.keyboardType != new else { return }
+            keyboardContext.keyboardType = new
         }
 
         /// Try to end the current sentence after a certain action gesture.

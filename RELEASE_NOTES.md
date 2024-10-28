@@ -22,6 +22,8 @@ The next keyboard button experiments have been made permanent.
 
 ### ⌨️ Essentials
 
+The `KeyboardContext` has a new `keyboardCase` property, and the `.alphabetic` keyboard type is decoupled from the case.
+
 The `KeyboardController` protocol now requires `services` and `state`, to make it more versatile and used in more places.
 
 ### 💥 Actions

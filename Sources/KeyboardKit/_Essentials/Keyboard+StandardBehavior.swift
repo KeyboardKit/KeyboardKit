@@ -76,32 +76,51 @@ extension Keyboard {
             let duration = repeatGestureTimer.duration ?? 0
             return duration > 3 ? .word : .character
         }
-        
+
+        open func preferredKeyboardCase(
+            after gesture: Gesture,
+            on action: KeyboardAction
+        ) -> Keyboard.Case {
+            let current = keyboardContext.keyboardCase
+            switch action {
+            case .shift:
+                let standard = current.standardReleaseCase
+                return gesture == .release && isDoubleShiftTap ? .capsLocked : current
+            default: return keyboardContext.preferredKeyboardCase
+            }
+        }
+
         open func preferredKeyboardType(
             after gesture: Gesture,
             on action: KeyboardAction
         ) -> Keyboard.KeyboardType {
-            if shouldSwitchToCapsLock(after: gesture, on: action) { return .alphabetic(.capsLocked) }
-            if action.isAlternateQuotationDelimiter(for: keyboardContext) { return .alphabetic(.lowercased) }
-            let should = shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
-            switch action {
-            case .shift: return keyboardContext.keyboardType
-            default: return should ? keyboardContext.preferredKeyboardType : keyboardContext.keyboardType
-            }
+            if let type = preferredKeyboardTypeForNumericOrSymbolicKeyboardGesture(gesture, on: action) { return type }
+            return keyboardContext.keyboardType
         }
 
-        open func shouldChangeKeyboardType(
-            after gesture: Keyboard.Gesture,
+        open func preferredKeyboardTypeForNumericOrSymbolicKeyboardGesture(
+            _ gesture: Gesture,
             on action: KeyboardAction
-        ) -> Bool {
-            shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
+        ) -> Keyboard.KeyboardType? {
+            let type = keyboardContext.keyboardType
+            guard type == .numeric || type == .symbolic else { return nil }
+            guard gesture == .release else { return nil }
+            if action.isAlternateQuotationDelimiter(for: keyboardContext) { return .alphabetic }
+            #if os(iOS) || os(tvOS) || os(visionOS)
+            guard let before = keyboardContext.textDocumentProxy.documentContextBeforeInput else { return nil }
+            if action == .space && !before.hasSuffix("  ") { return .alphabetic }
+            if action.isPrimaryAction && before.isLastSentenceEnded { return .alphabetic }
+            return nil
+            #else
+            nil
+            #endif
         }
 
         open func shouldEndCurrentSentence(
             after gesture: Gesture,
             on action: KeyboardAction
         ) -> Bool {
-#if os(iOS) || os(tvOS) || os(visionOS)
+            #if os(iOS) || os(tvOS) || os(visionOS)
             guard gesture == .release, action == .space else { return false }
             let proxy = keyboardContext.textDocumentProxy
             let isNewWord = proxy.isCursorAtNewWord
@@ -111,9 +130,9 @@ extension Keyboard {
             let shouldClose = isEndingTap && isNewWord && !isNewSentence && isClosable
             lastSpaceTap = Date()
             return shouldClose
-#else
+            #else
             return false
-#endif
+            #endif
         }
 
         open func shouldRegisterEmoji(
@@ -122,48 +141,13 @@ extension Keyboard {
         ) -> Bool {
             gesture == .release && action.isEmojiAction
         }
-
-        open func shouldSwitchToCapsLock(
-            after gesture: Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            switch action {
-            case .shift: isDoubleShiftTap
-            default: false
-            }
-        }
-
-        open func shouldSwitchToPreferredKeyboardType(
-            after gesture: Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            // if action.isAlternateQuotationDelimiter(for: context) { return true }
-            switch action {
-            case .backspace: isPreferredKeyboardDifferent
-            case .keyboardType(let type): type.shouldSwitchToPreferredKeyboardType
-            case .shift: true
-            default: gesture == .release && isPreferredKeyboardDifferent
-            }
-        }
-        
-        public func shouldSwitchToPreferredKeyboardTypeAfterTextDidChange() -> Bool {
-            isPreferredKeyboardDifferent
-        }
     }
 }
 
 public extension Keyboard.StandardBehavior {
-    
-    /// Is the preferred keyboard different from the current.
-    var isPreferredKeyboardDifferent: Bool {
-        let current = keyboardContext.keyboardType
-        let preferred = keyboardContext.preferredKeyboardType
-        return current != preferred
-    }
-    
+
     /// Is the type currently registering a double shift tap.
     var isDoubleShiftTap: Bool {
-        guard keyboardContext.keyboardType.isAlphabetic else { return false }
         let date = Date().timeIntervalSinceReferenceDate
         let lastDate = lastShiftCheck.timeIntervalSinceReferenceDate
         let isDoubleTap = (date - lastDate) < doubleTapThreshold
@@ -187,25 +171,5 @@ private extension String {
     func isAlternateQuotationDelimiter(for context: KeyboardContext) -> Bool {
         let locale = context.locale
         return self == locale.alternateQuotationBeginDelimiter || self == locale.alternateQuotationEndDelimiter
-    }
-}
-
-private extension Keyboard.KeyboardType {
-    
-    var shouldSwitchToPreferredKeyboardType: Bool {
-        switch self {
-        case .alphabetic(let state): state.shouldSwitchToPreferredKeyboardType
-        default: false
-        }
-    }
-}
-
-private extension Keyboard.Case {
-    
-    var shouldSwitchToPreferredKeyboardType: Bool {
-        switch self {
-        case .auto: true
-        default: false
-        }
     }
 }

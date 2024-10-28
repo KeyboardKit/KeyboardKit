@@ -237,7 +237,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// give the text document proxy time to update itself.
     open func textDidChangeAsync(_ textInput: UITextInput?) {
         performAutocomplete()
-        tryChangeToPreferredKeyboardTypeAfterTextDidChange()
+        setKeyboardCase(state.keyboardContext.preferredKeyboardCase)
     }
 
 
@@ -271,7 +271,13 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         state.keyboardContext.selectNextLocale()
     }
 
+    open func setKeyboardCase(_ case: Keyboard.Case) {
+        guard `case` != state.keyboardContext.keyboardCase else { return }
+        state.keyboardContext.keyboardCase = `case`
+    }
+
     open func setKeyboardType(_ type: Keyboard.KeyboardType) {
+        guard type != state.keyboardContext.keyboardType else { return }
         state.keyboardContext.keyboardType = type
     }
 
@@ -360,12 +366,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 // MARK: - Private Functions
 
 private extension KeyboardInputViewController {
-
-    func tryChangeToPreferredKeyboardTypeAfterTextDidChange() {
-        let shouldSwitch = services.keyboardBehavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
-        guard shouldSwitch else { return }
-        setKeyboardType(state.keyboardContext.preferredKeyboardType)
-    }
     
     /// Update the last received dictation error.
     func updateLastDictationError(_ error: Error) async {

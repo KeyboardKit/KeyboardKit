@@ -235,7 +235,6 @@ private extension KeyboardView {
             .environment(\.layoutDirection, .leftToRight)
         }
         .frame(height: layout.totalHeight)
-        .id(keyboardContext.locale.identifier)
     }
     
     @ViewBuilder
@@ -401,7 +400,7 @@ private extension KeyboardView {
                             },
                             emojiKeyboard: { _ in
                                 Button {
-                                    controller.state.keyboardContext.keyboardType = .alphabetic(.lowercased)
+                                    controller.state.keyboardContext.keyboardType = .alphabetic
                                 } label: {
                                     Color.red
                                         .overlay(Text("Not implemented"))

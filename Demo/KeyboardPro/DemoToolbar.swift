@@ -72,10 +72,10 @@ private extension DemoToolbar {
                 Group {
                     textFieldIfFullAccess
                     Divider()
-                    toggle($autocompleteContext.isAutocorrectEnabled, "textformat.abc.dottedunderline")
+                    toggle($autocompleteContext.settings.isAutocorrectEnabled, "textformat.abc.dottedunderline")
                     Divider()
-                    toggle($feedbackContext.isAudioFeedbackEnabled, "speaker.wave.2.fill")
-                    toggle($feedbackContext.isHapticFeedbackEnabled, "hand.tap.fill")
+                    toggle($feedbackContext.settings.isAudioFeedbackEnabled, "speaker.wave.2.fill")
+                    toggle($feedbackContext.settings.isHapticFeedbackEnabled, "hand.tap.fill")
                     Divider()
                     button(toggleThemePicker, "paintpalette")
                     button(readDocument, "doc.text.magnifyingglass")

@@ -27,7 +27,7 @@ public extension Keyboard {
                 .init(characters: "123"),
                 .init(characters: "456"),
                 .init(characters: "789"),
-                [.keyboardType(.alphabetic(.auto)), .character("0"), .backspace]
+                [.keyboardType(.alphabetic), .character("0"), .backspace]
             ],
             actionHandler: KeyboardActionHandler,
             styleService: KeyboardStyleService,

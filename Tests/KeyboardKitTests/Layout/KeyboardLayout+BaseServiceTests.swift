@@ -52,7 +52,8 @@ class KeyboardLayout_BaseServiceTests: XCTestCase {
     }
 
     func testItemActionsCanBeCased() {
-        context.keyboardType = .alphabetic(.uppercased)
+        context.keyboardCase = .uppercased
+        context.keyboardType = .alphabetic
         let chars = alphaSet.rows.characters(for: .uppercased, device: .phone)
         let expected = KeyboardAction.Rows(characters: chars)
         let actions = service.itemActions(for: context)
@@ -60,7 +61,7 @@ class KeyboardLayout_BaseServiceTests: XCTestCase {
     }
 
     func testServiceCanResolveAlphabeticInputSet() {
-        context.keyboardType = .alphabetic(.lowercased)
+        context.keyboardType = .alphabetic
         let set = service.inputSet(for: context)
         XCTAssertEqual(set, alphaSet)
     }
@@ -93,14 +94,16 @@ class KeyboardLayout_BaseServiceTests: XCTestCase {
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForLowercasedAlphabetic() {
-        context.keyboardType = .alphabetic(.lowercased)
+        context.keyboardCase = .lowercased
+        context.keyboardType = .alphabetic
         let expected = KeyboardAction.shift(currentCasing: .lowercased)
         let result = service.keyboardSwitchActionForBottomInputRow(for: context)
         XCTAssertEqual(result, expected)
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForUppercasedAlphabetic() {
-        context.keyboardType = .alphabetic(.uppercased)
+        context.keyboardCase = .uppercased
+        context.keyboardType = .alphabetic
         let expected = KeyboardAction.shift(currentCasing: .uppercased)
         let result = service.keyboardSwitchActionForBottomInputRow(for: context)
         XCTAssertEqual(result, expected)
@@ -128,29 +131,31 @@ class KeyboardLayout_BaseServiceTests: XCTestCase {
     }
 
     func testKeyboardSwitcherActionForBottomRowIsShiftForLowercasedAlphabetic() {
-        context.keyboardType = .alphabetic(.lowercased)
+        context.keyboardCase = .lowercased
+        context.keyboardType = .alphabetic
         let expected = KeyboardAction.keyboardType(.numeric)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, expected)
     }
 
     func testKeyboardSwitcherActionForBottomRowIsShiftForUppercasedAlphabetic() {
-        context.keyboardType = .alphabetic(.uppercased)
+        context.keyboardCase = .uppercased
+        context.keyboardType = .alphabetic
         let expected = KeyboardAction.keyboardType(.numeric)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, expected)
     }
 
-    func testKeyboardSwitcherActionForBottomRowIsShiftForNumeric() {
+    func testKeyboardSwitcherActionForBottomRowIsAlphabeticForMumeric() {
         context.keyboardType = .numeric
-        let expected = KeyboardAction.keyboardType(.alphabetic(.auto))
+        let expected = KeyboardAction.keyboardType(.alphabetic)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, expected)
     }
 
-    func testKeyboardSwitcherActionForBottomRowIsShiftForSymbolic() {
+    func testKeyboardSwitcherActionForBottomRowIsAlphabeticForSymbolic() {
         context.keyboardType = .symbolic
-        let expected = KeyboardAction.keyboardType(.alphabetic(.auto))
+        let expected = KeyboardAction.keyboardType(.alphabetic)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
         XCTAssertEqual(result, expected)
     }

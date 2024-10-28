@@ -107,13 +107,17 @@ public class KeyboardContext: ObservableObject {
         }
     }
 
+    /// The keyboard case that is currently used.
+    @Published
+    public var keyboardCase = Keyboard.Case.auto
+
     /// An optional dictation replacement action.
     @Published
     public var keyboardDictationReplacement: KeyboardAction?
 
     /// The keyboard type that is currently used.
     @Published
-    public var keyboardType = Keyboard.KeyboardType.alphabetic(.auto)
+    public var keyboardType = Keyboard.KeyboardType.alphabetic
 
     /// The current locale.
     ///

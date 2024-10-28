@@ -18,7 +18,7 @@ extension KeyboardStyle.StandardService {
     }
     
     func buttonColorPadProOverride(for action: KeyboardAction) -> Color? {
-        let isCapsLock = keyboardType.isAlphabeticCapsLocked
+        let isCapsLock = keyboardContext.keyboardCase == .capsLocked
         switch action {
         case .capsLock: return isCapsLock ? buttonBackgroundColor(for: .backspace, isPressed: true) : nil
         case .shift: return isCapsLock ? buttonBackgroundColor(for: .backspace, isPressed: false) : nil
@@ -41,7 +41,7 @@ extension KeyboardStyle.StandardService {
     
     func buttonImagePadOverride(for action: KeyboardAction) -> Image? {
         guard iPadProRenderingModeActive else { return nil }
-        let isCapsLock = keyboardType.isAlphabeticCapsLocked
+        let isCapsLock = keyboardContext.keyboardCase == .capsLocked
         switch action {
         case .capsLock: return isCapsLock ? .keyboardShiftCapslocked : .keyboardShiftCapslockInactive
         case .shift: return isCapsLock ? .keyboardShiftLowercased : nil

@@ -20,10 +20,10 @@ public extension Keyboard {
     /// ``KeyboardView`` automatically renders some of these
     /// keyboard types. All other types require that you add
     /// your own custom view to visualize them.
-    enum KeyboardType: Codable, Equatable, Identifiable {
-        
+    enum KeyboardType: CaseIterable, Codable, Equatable, Identifiable {
+
         /// A keyboard with alphabetic input keys.
-        case alphabetic(Keyboard.Case)
+        case alphabetic
         
         /// A keyboard with numeric input keys.
         case numeric
@@ -53,10 +53,27 @@ public extension Keyboard {
 
 public extension Keyboard.KeyboardType {
 
+    /// Get a list of all standard available keyboard types.
+    static var allCases: [Self] {
+        [
+            .alphabetic,
+            .numeric,
+            .symbolic,
+            .email,
+            .emojis,
+            .images,
+            .numberPad,
+            .url
+        ]
+    }
+}
+
+public extension Keyboard.KeyboardType {
+
     /// The type's unique identifier.
     var id: String {
         switch self {
-        case .alphabetic(let casing): casing.id
+        case .alphabetic: "alphabetic"
         case .numeric: "numeric"
         case .symbolic: "symbolic"
         case .email: "email"
@@ -65,38 +82,6 @@ public extension Keyboard.KeyboardType {
         case .numberPad: "numberPad"
         case .url: "url"
         case .custom(let name): name
-        }
-    }
-
-    /// Whether or not the type is alphabetic.
-    var isAlphabetic: Bool {
-        switch self {
-        case .alphabetic: true
-        default: false
-        }
-    }
-    
-    /// Whether or not the type is caps locked.
-    var isAlphabeticCapsLocked: Bool {
-        switch self {
-        case .alphabetic(let current): current.isCapsLocked
-        default: false
-        }
-    }
-
-    /// Whether or not the type is uppercased alphabetic.
-    var isAlphabeticUppercased: Bool {
-        switch self {
-        case .alphabetic(let current): current.isUppercased
-        default: false
-        }
-    }
-
-    /// Whether or not the type is an alphabetic state type.
-    func isAlphabetic(_ case: Keyboard.Case) -> Bool {
-        switch self {
-        case .alphabetic(let current): current == `case`
-        default: false
         }
     }
 }
@@ -130,8 +115,8 @@ public extension UIKeyboardType {
     /// The ``Keyboard/KeyboardType`` this type represents.
     var keyboardType: Keyboard.KeyboardType? {
         switch self {
-        case .default: .alphabetic(.auto)
-        case .alphabet: .alphabetic(.auto)
+        case .default: .alphabetic
+        case .alphabet: .alphabetic
         case .asciiCapable: nil
         case .asciiCapableNumberPad: .numberPad
         case .decimalPad: nil
@@ -140,10 +125,10 @@ public extension UIKeyboardType {
         case .numberPad: .numberPad
         case .numbersAndPunctuation: .numeric
         case .phonePad: nil
-        case .twitter: .alphabetic(.auto)
+        case .twitter: .alphabetic
         case .URL: .url
-        case .webSearch: .alphabetic(.auto)
-        @unknown default: .alphabetic(.auto)
+        case .webSearch: .alphabetic
+        @unknown default: .alphabetic
         }
     }
 }

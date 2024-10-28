@@ -117,11 +117,7 @@ extension KeyboardLayout {
             for context: KeyboardContext
         ) -> [[String]] {
             let rows = inputSet(for: context).rows
-            switch context.keyboardType {
-            case .alphabetic(let casing):
-                return rows.characters(for: casing, device: context.deviceType)
-            default: return rows.characters(for: .lowercased, device: context.deviceType)
-            }
+            return rows.characters(for: context.keyboardCase, device: context.deviceType)
         }
 
         /// The actions to convert to layout items.
@@ -248,7 +244,7 @@ extension KeyboardLayout {
             for context: KeyboardContext
         ) -> KeyboardAction? {
             switch context.keyboardType {
-            case .alphabetic(let casing): .shift(currentCasing: casing)
+            case .alphabetic: .shift(currentCasing: context.keyboardCase)
             case .numeric: .keyboardType(.symbolic)
             case .symbolic: .keyboardType(.numeric)
             default: .shift(currentCasing: .lowercased)
@@ -259,8 +255,8 @@ extension KeyboardLayout {
         open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
             switch context.keyboardType {
             case .alphabetic: .keyboardType(.numeric)
-            case .numeric: .keyboardType(.alphabetic(.auto))
-            case .symbolic: .keyboardType(.alphabetic(.auto))
+            case .numeric: .keyboardType(.alphabetic)
+            case .symbolic: .keyboardType(.alphabetic)
             default: .keyboardType(.numeric)
             }
         }
