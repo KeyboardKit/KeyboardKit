@@ -75,7 +75,7 @@ public extension Image {
         locale.isLeftToRight ? .keyboardTab : .keyboardTabRtl
     }
 
-    static func keyboardShift(_ casing: Keyboard.Case) -> Image {
+    static func keyboardShift(_ casing: Keyboard.KeyboardCase) -> Image {
         switch casing {
         case .auto: .keyboardShiftLowercased
         case .capsLocked: .keyboardShiftCapslocked

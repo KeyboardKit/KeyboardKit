@@ -53,7 +53,7 @@ public protocol KeyboardController: AnyObject {
     func selectNextLocale()
 
     /// Set a certain keyboard case.
-    func setKeyboardCase(_ case: Keyboard.Case)
+    func setKeyboardCase(_ case: Keyboard.KeyboardCase)
 
     /// Set a certain keyboard type.
     func setKeyboardType(_ type: Keyboard.KeyboardType)

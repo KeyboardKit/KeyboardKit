@@ -39,7 +39,7 @@ public struct InputSet: Equatable {
 public extension InputSet {
 
     func characters(
-        for case: Keyboard.Case,
+        for case: Keyboard.KeyboardCase,
         device: DeviceType
     ) -> [[String]] {
         rows.map {
@@ -48,7 +48,7 @@ public extension InputSet {
     }
 
     func characterStrings(
-        for case: Keyboard.Case,
+        for case: Keyboard.KeyboardCase,
         device: DeviceType
     ) -> [String] {
         characters(for: `case`, device: device)

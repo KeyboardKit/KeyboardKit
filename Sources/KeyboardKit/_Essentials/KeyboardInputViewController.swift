@@ -271,7 +271,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         state.keyboardContext.selectNextLocale()
     }
 
-    open func setKeyboardCase(_ case: Keyboard.Case) {
+    open func setKeyboardCase(_ case: Keyboard.KeyboardCase) {
         guard `case` != state.keyboardContext.keyboardCase else { return }
         state.keyboardContext.keyboardCase = `case`
     }

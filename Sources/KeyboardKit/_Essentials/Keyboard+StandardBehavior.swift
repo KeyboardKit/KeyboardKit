@@ -14,7 +14,7 @@ extension Keyboard {
     /// a standard western keyboard, with some locale tweaks.
     ///
     /// Note that this class handles `shift` a bit different,
-    /// since it must handle double taps for caps lock.
+    /// since it must handle double taps to enable caps lock.
     ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it
@@ -80,11 +80,10 @@ extension Keyboard {
         open func preferredKeyboardCase(
             after gesture: Gesture,
             on action: KeyboardAction
-        ) -> Keyboard.Case {
+        ) -> Keyboard.KeyboardCase {
             let current = keyboardContext.keyboardCase
             switch action {
             case .shift:
-                let standard = current.standardReleaseCase
                 return gesture == .release && isDoubleShiftTap ? .capsLocked : current
             default: return keyboardContext.preferredKeyboardCase
             }

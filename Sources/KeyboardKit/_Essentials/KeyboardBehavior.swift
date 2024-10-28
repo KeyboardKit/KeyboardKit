@@ -32,7 +32,7 @@ public protocol KeyboardBehavior {
     func preferredKeyboardCase(
         after gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> Keyboard.Case
+    ) -> Keyboard.KeyboardCase
 
     /// The preferred keyboard type after a certain action gesture.
     func preferredKeyboardType(

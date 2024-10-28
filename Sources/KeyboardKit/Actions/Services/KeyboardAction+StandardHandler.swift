@@ -261,7 +261,7 @@ extension KeyboardAction {
         open func preferredKeyboardCase(
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
-        ) -> Keyboard.Case {
+        ) -> Keyboard.KeyboardCase {
             behavior.preferredKeyboardCase(after: gesture, on: action)
         }
 

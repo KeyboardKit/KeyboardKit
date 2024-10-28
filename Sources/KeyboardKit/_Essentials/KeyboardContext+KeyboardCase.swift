@@ -11,7 +11,7 @@ import Foundation
 public extension KeyboardContext {
 
     /// The currently preferred keyboard case.
-    var preferredKeyboardCase: Keyboard.Case {
+    var preferredKeyboardCase: Keyboard.KeyboardCase {
         if keyboardCase == .capsLocked { return .capsLocked }
         if let val = preferredAutocapitalizedCase { return val }
         return keyboardCase
@@ -20,7 +20,7 @@ public extension KeyboardContext {
 
 private extension KeyboardContext {
     
-    var preferredAutocapitalizedCase: Keyboard.Case? {
+    var preferredAutocapitalizedCase: Keyboard.KeyboardCase? {
         #if os(iOS) || os(tvOS) || os(visionOS)
         guard settings.isAutocapitalizationEnabled else { return nil }
         guard let autocapitalizationType else { return nil }

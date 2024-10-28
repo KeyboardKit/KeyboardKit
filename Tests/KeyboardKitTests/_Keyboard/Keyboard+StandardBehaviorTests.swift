@@ -53,7 +53,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
     func keyboardCase(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> Keyboard.Case {
+    ) -> Keyboard.KeyboardCase {
         behavior.preferredKeyboardCase(after: gesture, on: action)
     }
 

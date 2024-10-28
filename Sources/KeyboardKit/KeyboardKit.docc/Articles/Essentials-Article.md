@@ -31,7 +31,7 @@ Namespaces will not contain protocols, nor important types that are meant to be 
 
 The ``Keyboard`` namespace contains a lot of essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will list all essential types within this namespace.
 
-The namespace has a lot of essential types, like ``Keyboard/Accent``, ``Keyboard/AutocapitalizationType``, ``Keyboard/BackspaceRange``, ``Keyboard/Case``, ``Keyboard/Diacritic``, ``Keyboard/Gesture``, ``Keyboard/KeyboardType``, ``Keyboard/ReturnKeyType``, etc. and view-related types, like ``Keyboard/Button``, ``Keyboard/ButtonStyle``, ``Keyboard/Toolbar``, etc.
+The namespace has a lot of essential types, like ``Keyboard/KeyboardType``, ``Keyboard/KeyboardCase``, ``Keyboard/AutocapitalizationType``, ``Keyboard/ReturnKeyType``, ``Keyboard/Diacritic``, ``Keyboard/Gesture``, etc. and view-related types, like ``Keyboard/Button``, ``Keyboard/ButtonStyle``, ``Keyboard/Toolbar``, etc.
 
 
 

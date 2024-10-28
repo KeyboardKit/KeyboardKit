@@ -103,7 +103,7 @@ public enum KeyboardAction: Codable, Equatable {
     case settings
     
     /// Changes keyboard to `.alphabetic(.uppercased)` when released and `.capslocked` when double tapped.
-    case shift(currentCasing: Keyboard.Case)
+    case shift(currentCasing: Keyboard.KeyboardCase)
     
     /// Inserts a space when released and can perform custom actions when long pressed.
     case space

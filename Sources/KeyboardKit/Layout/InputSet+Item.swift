@@ -60,7 +60,7 @@ public extension InputSet.Item {
 
     /// Resolve the character to use for a certain case.
     func character(
-        for case: Keyboard.Case
+        for case: Keyboard.KeyboardCase
     ) -> String {
         switch `case` {
         case .auto: lowercased

@@ -54,7 +54,7 @@ public extension InputSet.ItemRow {
 
     /// Get all input characters for a certain keyboard case.
     func characters(
-        for case: Keyboard.Case,
+        for case: Keyboard.KeyboardCase,
         device: DeviceType
     ) -> [String] {
         items(for: device).map { $0.character(for: `case`) }
@@ -65,7 +65,7 @@ public extension InputSet.ItemRows {
 
     /// Get all input characters for a certain keyboard case.
     func characters(
-        for case: Keyboard.Case,
+        for case: Keyboard.KeyboardCase,
         device: DeviceType
     ) -> [[String]] {
         map { $0.characters(
