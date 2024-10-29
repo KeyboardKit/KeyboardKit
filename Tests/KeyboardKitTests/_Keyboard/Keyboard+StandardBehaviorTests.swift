@@ -74,9 +74,11 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
         let current = keyboardContext.keyboardCase
         let preferred = keyboardContext.preferredKeyboardCase
         XCTAssertNotEqual(preferred, current)
-        XCTAssertEqual(keyboardCase(for: .press, on: .shift(currentCasing: .auto)), current)
-        XCTAssertEqual(keyboardCase(for: .release, on: .shift(currentCasing: .auto)), current)
-        XCTAssertEqual(keyboardCase(for: .doubleTap, on: .shift(currentCasing: .auto)), .capsLocked)
+        XCTAssertEqual(keyboardCase(for: .press, on: .shift(.auto)), current)
+        behavior.lastShiftCheck = .now.addingTimeInterval(-10)
+        XCTAssertEqual(keyboardCase(for: .release, on: .shift(.auto)), current)
+        behavior.lastShiftCheck = .now
+        XCTAssertEqual(keyboardCase(for: .release, on: .shift(.auto)), .capsLocked)
     }
 
 

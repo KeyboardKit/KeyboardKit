@@ -102,8 +102,14 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents a settings (⚙️) key.
     case settings
     
-    /// Changes keyboard to `.alphabetic(.uppercased)` when released and `.capslocked` when double tapped.
-    case shift(currentCasing: Keyboard.KeyboardCase)
+    /// Changes keyboard case when released and double tapped.
+    ///
+    /// > Note: We currently need the current case, since it
+    /// is used for uniqueness. Without it, the keyboard key
+    /// isn't properly updated when the context case changes.
+    /// We should however try to find a way around it, since
+    /// the action should just be `shift`.
+    case shift(Keyboard.KeyboardCase)
     
     /// Inserts a space when released and can perform custom actions when long pressed.
     case space
@@ -243,14 +249,6 @@ public extension KeyboardAction {
         case .settings: true
         case .tab: true
         case .url: true
-        default: false
-        }
-    }
-    
-    /// Whether or not the action is uppercase shift.
-    var isUppercasedShiftAction: Bool {
-        switch self {
-        case .shift(let state): state.isUppercased
         default: false
         }
     }

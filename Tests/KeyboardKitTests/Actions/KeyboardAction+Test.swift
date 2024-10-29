@@ -50,10 +50,7 @@ extension KeyboardAction {
             .primary(.return),
             
             .capsLock,
-            .shift(currentCasing: .lowercased),
-            .shift(currentCasing: .uppercased),
-            .shift(currentCasing: .capsLocked),
-            
+            .shift(.auto),
             .space,
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .systemSettings,

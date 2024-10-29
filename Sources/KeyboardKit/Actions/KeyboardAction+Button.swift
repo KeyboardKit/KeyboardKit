@@ -59,7 +59,7 @@ private extension KeyboardAction {
         case .option: .keyboardOption
         case .primary(let type): type.standardButtonImage(for: context.locale)
         case .settings: .keyboardSettings
-        case .shift(let currentCasing): .keyboardShift(currentCasing)
+        case .shift: .keyboardShift(context.keyboardCase)
         case .systemImage(_, let imageName, _): Image(systemName: imageName)
         case .systemSettings: .keyboardSettings
         case .tab: .keyboardTab

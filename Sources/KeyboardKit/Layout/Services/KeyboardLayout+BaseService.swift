@@ -244,10 +244,9 @@ extension KeyboardLayout {
             for context: KeyboardContext
         ) -> KeyboardAction? {
             switch context.keyboardType {
-            case .alphabetic: .shift(currentCasing: context.keyboardCase)
             case .numeric: .keyboardType(.symbolic)
             case .symbolic: .keyboardType(.numeric)
-            default: .shift(currentCasing: .lowercased)
+            default: .shift(context.keyboardCase)
             }
         }
         

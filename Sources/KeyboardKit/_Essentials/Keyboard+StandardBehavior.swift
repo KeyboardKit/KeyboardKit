@@ -84,6 +84,7 @@ extension Keyboard {
             let current = keyboardContext.keyboardCase
             switch action {
             case .shift:
+                // We can't check double-tap since the key itself is released
                 return gesture == .release && isDoubleShiftTap ? .capsLocked : current
             default: return keyboardContext.preferredKeyboardCase
             }

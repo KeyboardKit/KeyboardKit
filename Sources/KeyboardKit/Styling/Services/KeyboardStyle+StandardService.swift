@@ -354,6 +354,10 @@ extension KeyboardStyle.StandardService {
 
 extension KeyboardAction {
 
+    func isUpperShift(for context: KeyboardContext) -> Bool {
+        isShiftAction && context.keyboardCase.isUppercased
+    }
+
     var buttonBackgroundColorForAllStates: Color? {
         switch self {
         case .none: .clear
@@ -371,17 +375,16 @@ extension KeyboardAction {
     }
 
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
-        if isUppercasedShiftAction { return buttonBackgroundColorForPressedState(for: context) }
+        if isUpperShift(for: context) { return .keyboardButtonBackground(for: context) }
         if isSystemAction { return .keyboardDarkButtonBackground(for: context) }
         if isPrimaryAction { return .blue }
-        if isUppercasedShiftAction { return .keyboardButtonBackground(for: context) }
         return .keyboardButtonBackground(for: context)
     }
 
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
+        if isUpperShift(for: context) { return .keyboardDarkButtonBackground(for: context) }
         if isSystemAction { return context.hasDarkColorScheme ? .keyboardButtonBackground(for: context) : .white }
         if isPrimaryAction { return context.hasDarkColorScheme ? .keyboardDarkButtonBackground(for: context) : .white }
-        if isUppercasedShiftAction { return .keyboardDarkButtonBackground(for: context) }
         return .keyboardDarkButtonBackground(for: context)
     }
 

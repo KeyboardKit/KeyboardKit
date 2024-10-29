@@ -48,9 +48,7 @@ final class KeyboardAction_ImagesTests: XCTestCase {
             .option,
             .primary(.newLine),
             .settings,
-            .shift(currentCasing: .lowercased),
-            .shift(currentCasing: .uppercased),
-            .shift(currentCasing: .capsLocked),
+            .shift(.auto),
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .systemSettings,
             .tab,
@@ -101,9 +99,7 @@ final class KeyboardAction_ImagesTests: XCTestCase {
         XCTAssertNil(result(for: .nextKeyboard))
         XCTAssertNil(result(for: .option))
         XCTAssertNil(result(for: .primary(.newLine)))
-        XCTAssertNil(result(for: .shift(currentCasing: .lowercased)))
-        XCTAssertNil(result(for: .shift(currentCasing: .uppercased)))
-        XCTAssertNil(result(for: .shift(currentCasing: .capsLocked)))
+        XCTAssertNil(result(for: .shift(.auto)))
         XCTAssertNil(result(for: .tab))
     }
 }

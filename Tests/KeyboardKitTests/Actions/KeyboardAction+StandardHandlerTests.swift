@@ -7,10 +7,9 @@
 //
 
 #if os(iOS) || os(tvOS)
+import KeyboardKit
 import MockingKit
 import XCTest
-
-@testable import KeyboardKit
 
 final class KeyboardAction_StandardHandlerTests: XCTestCase {
     
@@ -293,7 +292,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         validateAudioFeedback(for: .longPress, on: .space, expected: nil)
         validateAudioFeedback(for: .press, on: .backspace, expected: config.delete)
         validateAudioFeedback(for: .press, on: .character("a"), expected: config.input)
-        validateAudioFeedback(for: .press, on: .shift(currentCasing: .auto), expected: config.system)
+        validateAudioFeedback(for: .press, on: .shift(.auto), expected: config.system)
     }
     
     func validateHapticFeedback(

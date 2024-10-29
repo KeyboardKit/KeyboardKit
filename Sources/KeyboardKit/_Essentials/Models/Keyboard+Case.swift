@@ -45,7 +45,7 @@ public extension Keyboard.KeyboardCase {
         }
     }
     
-    /// Whether or not the case is uppercased.
+    /// Whether or not the case is uppercased or capslocked.
     var isUppercased: Bool {
         switch self {
         case .auto: false

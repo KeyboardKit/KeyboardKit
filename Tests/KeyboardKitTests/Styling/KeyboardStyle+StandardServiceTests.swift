@@ -106,7 +106,7 @@ class KeyboardStyle_StandardServiceTests: XCTestCase {
     func testButtonFontSizeIsDefinedForActionsWithImage() {
         XCTAssertEqual(buttonFontSize(for: .keyboardType(.email)), 20)
         XCTAssertEqual(buttonFontSize(for: .keyboardType(.emojis)), 20)
-        XCTAssertEqual(buttonFontSize(for: .shift(currentCasing: .lowercased)), 20)
+        XCTAssertEqual(buttonFontSize(for: .shift(.lowercased)), 20)
         XCTAssertEqual(buttonFontSize(for: .backspace), 20)
     }
 

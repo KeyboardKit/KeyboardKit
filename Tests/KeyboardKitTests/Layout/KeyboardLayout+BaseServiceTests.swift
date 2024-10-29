@@ -96,7 +96,7 @@ class KeyboardLayout_BaseServiceTests: XCTestCase {
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForLowercasedAlphabetic() {
         context.keyboardCase = .lowercased
         context.keyboardType = .alphabetic
-        let expected = KeyboardAction.shift(currentCasing: .lowercased)
+        let expected = KeyboardAction.shift(.lowercased)
         let result = service.keyboardSwitchActionForBottomInputRow(for: context)
         XCTAssertEqual(result, expected)
     }
@@ -104,66 +104,57 @@ class KeyboardLayout_BaseServiceTests: XCTestCase {
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForUppercasedAlphabetic() {
         context.keyboardCase = .uppercased
         context.keyboardType = .alphabetic
-        let expected = KeyboardAction.shift(currentCasing: .uppercased)
         let result = service.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .shift(.uppercased))
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForNumeric() {
         context.keyboardType = .numeric
-        let expected = KeyboardAction.keyboardType(.symbolic)
         let result = service.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .keyboardType(.symbolic))
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForSymbolic() {
         context.keyboardType = .symbolic
-        let expected = KeyboardAction.keyboardType(.numeric)
         let result = service.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .keyboardType(.numeric))
     }
 
     func testKeyboardSwitcherActionForBottomInputRowIsShiftForUnsupportedKeybardType() {
         context.keyboardType = .emojis
-        let expected = KeyboardAction.shift(currentCasing: .lowercased)
         let result = service.keyboardSwitchActionForBottomInputRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .shift(context.keyboardCase))
     }
 
     func testKeyboardSwitcherActionForBottomRowIsShiftForLowercasedAlphabetic() {
         context.keyboardCase = .lowercased
         context.keyboardType = .alphabetic
-        let expected = KeyboardAction.keyboardType(.numeric)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .keyboardType(.numeric))
     }
 
     func testKeyboardSwitcherActionForBottomRowIsShiftForUppercasedAlphabetic() {
         context.keyboardCase = .uppercased
         context.keyboardType = .alphabetic
-        let expected = KeyboardAction.keyboardType(.numeric)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .keyboardType(.numeric))
     }
 
     func testKeyboardSwitcherActionForBottomRowIsAlphabeticForMumeric() {
         context.keyboardType = .numeric
-        let expected = KeyboardAction.keyboardType(.alphabetic)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .keyboardType(.alphabetic))
     }
 
     func testKeyboardSwitcherActionForBottomRowIsAlphabeticForSymbolic() {
         context.keyboardType = .symbolic
-        let expected = KeyboardAction.keyboardType(.alphabetic)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .keyboardType(.alphabetic))
     }
 
     func testKeyboardSwitcherActionForBottomRowIsShiftForUnsupportedKeybardType() {
         context.keyboardType = .emojis
-        let expected = KeyboardAction.keyboardType(.numeric)
         let result = service.keyboardSwitchActionForBottomRow(for: context)
-        XCTAssertEqual(result, expected)
+        XCTAssertEqual(result, .keyboardType(.numeric))
     }
 }
