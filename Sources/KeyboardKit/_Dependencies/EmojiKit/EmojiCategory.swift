@@ -10,21 +10,6 @@ import SwiftUI
 
 /// This enum defines the standard emoji categories, as well
 /// as their emojis.
-///
-/// The static ``EmojiCategory/all`` property can be used to
-/// get all standard categories.
-///
-/// The ``EmojiCategory/frequent`` category will return
-///
-///
-/// category that doesn't contain any emojis from start. Use
-/// an ``EmojiProvider`` to provide the category with emojis
-/// and call ``EmojiProvider/addEmoji(_:)`` when an emoji is
-/// used, to add it to the category.
-///
-/// Various EmojiKit views, like the ``EmojiGrid``, lets you
-/// pass in a custom provider, and will automatically use it
-/// to register emojis when the user interacts with an emoji.
 public enum EmojiCategory: CaseIterable, Codable, Equatable, Hashable, Identifiable {
 
     case frequent

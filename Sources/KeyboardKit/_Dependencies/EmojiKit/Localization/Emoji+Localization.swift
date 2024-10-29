@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 extension Emoji: Localizable {
     
@@ -14,4 +15,42 @@ extension Emoji: Localizable {
     public var localizationKey: String {
         char
     }
+}
+
+#Preview {
+
+    struct Preview: View {
+
+        @AppStorage("com.emojikit.previews.emoji+location.scrollId")
+        var id: String = ""
+
+        var body: some View {
+            ScrollViewReader { scroll in
+            List {
+                    ForEach(Emoji.all) { emoji in
+                        Label {
+                            VStack(alignment: .leading) {
+                                Text(emoji.localizedName)
+                                Text(emoji.unicodeName)
+                                    .font(.footnote)
+                                    .foregroundColor(.secondary)
+                            }
+                        } icon: {
+                            Text(emoji.char)
+                        }
+                        .id(emoji.char)
+                        .onTapGesture {
+                            id = emoji.char
+                            print(emoji.char)
+                        }
+                    }
+                    .onAppear {
+                        scroll.scrollTo(id)
+                    }
+                }
+            }
+        }
+    }
+
+    return Preview()
 }
