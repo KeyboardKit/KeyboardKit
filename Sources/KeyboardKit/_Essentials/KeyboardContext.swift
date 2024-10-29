@@ -72,6 +72,10 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var deviceType: DeviceType = .current
 
+    /// The current device type to use for keyboard visualization.
+    @Published
+    public var deviceTypeForKeyboard: DeviceType = .current
+
     /// Whether or not the keyboard has a dictation key.
     @Published
     public var hasDictationKey: Bool = false

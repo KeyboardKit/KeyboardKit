@@ -43,8 +43,7 @@ public extension Callouts {
             self.maxButtonSize = maxButtonSize
             self.selectedBackgroundColor = selectedBackgroundColor ?? .blue
             self.selectedForegroundColor = selectedForegroundColor ?? .white
-            let standardVerticalOffset: CGFloat = DeviceType.current == .pad ? 20 : 0
-            self.verticalOffset = verticalOffset ?? standardVerticalOffset
+            self.verticalOffset = verticalOffset
             self.verticalTextPadding = verticalTextPadding
         }
         
@@ -64,8 +63,8 @@ public extension Callouts {
         public var selectedForegroundColor: Color
         
         /// The vertical offset to apply to the callout.
-        public var verticalOffset: CGFloat
-        
+        public var verticalOffset: CGFloat?
+
         /// The vertical padding of the callout text.
         public var verticalTextPadding: CGFloat
     }
@@ -75,6 +74,13 @@ public extension Callouts.ActionCalloutStyle {
     
     /// The standard action callout style.
     static var standard: Self { .init() }
+
+    /// The standard vertical offset for a certain device.
+    func standardVerticalOffset(
+        for device: DeviceType
+    ) -> CGFloat {
+        device == .pad ? 20 : 0
+    }
 }
 
 public extension View {

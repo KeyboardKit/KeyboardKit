@@ -12,7 +12,7 @@ extension KeyboardStyle.StandardService {
     
     var useSmallTextForControlButtons: Bool {
         return
-            keyboardContext.deviceType == .pad &&
+            keyboardContext.deviceTypeForKeyboard == .pad &&
             keyboardContext.locale.identifier.hasPrefix("en") &&
             iPadProRenderingModeActive
     }
@@ -30,7 +30,7 @@ extension KeyboardStyle.StandardService {
         if useSmallText(for: action) {
             return keyboardContext.interfaceOrientation == .portrait ? 16 : 20
         }
-        guard keyboardContext.deviceType == .pad else { return nil }
+        guard keyboardContext.deviceTypeForKeyboard == .pad else { return nil }
         let isLandscape = keyboardContext.interfaceOrientation.isLandscape
         guard isLandscape else { return nil }
         if action.isAlphabeticKeyboardTypeAction { return 22 }

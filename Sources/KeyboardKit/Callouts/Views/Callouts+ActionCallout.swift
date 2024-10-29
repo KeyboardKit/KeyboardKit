@@ -57,7 +57,7 @@ public extension Callouts {
             .opacity(calloutContext.isActive ? 1 : 0)
             .keyboardCalloutShadow(style: calloutStyle)
             .position(x: positionX, y: positionY)
-            .offset(y: style.verticalOffset)
+            .offset(y: style.verticalOffset ?? style.standardVerticalOffset(for: keyboardContext.deviceTypeForKeyboard))
         }
     }
 }
@@ -173,7 +173,7 @@ private extension Callouts.ActionCallout {
 private extension Callouts.ActionCallout {
     
     var isPad: Bool {
-        keyboardContext.deviceType == .pad
+        keyboardContext.deviceTypeForKeyboard == .pad
     }
 
     var isEmojiCallout: Bool {

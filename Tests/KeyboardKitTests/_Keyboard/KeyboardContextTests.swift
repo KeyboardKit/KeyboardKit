@@ -57,6 +57,7 @@ class KeyboardContextTests: XCTestCase {
 
     func testInitializerSetsDefaultValues() {
         XCTAssertEqual(context.deviceType, .current)
+        XCTAssertEqual(context.deviceTypeForKeyboard, .current)
         XCTAssertFalse(context.hasDictationKey)
         XCTAssertFalse(context.hasFullAccess)
         XCTAssertNil(context.keyboardDictationReplacement)

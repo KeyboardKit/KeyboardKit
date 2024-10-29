@@ -77,7 +77,7 @@ extension KeyboardStyle {
         
         /// The edge insets to apply to the entire keyboard.
         open var keyboardEdgeInsets: EdgeInsets {
-            switch keyboardContext.deviceType {
+            switch keyboardContext.deviceTypeForKeyboard {
             case .pad: .init(bottom: 4)
             case .phone: isProMaxPhone ? .zero : .init(bottom: -2)
             default: .zero
@@ -130,7 +130,7 @@ extension KeyboardStyle {
         open func buttonImageScaleFactor(
             for action: KeyboardAction
         ) -> CGFloat {
-            switch keyboardContext.deviceType {
+            switch keyboardContext.deviceTypeForKeyboard {
             case .pad: 1.2
             default: 1
             }

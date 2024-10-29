@@ -71,7 +71,7 @@ extension KeyboardLayout {
         open func keyboardLayoutService(
             for context: KeyboardContext
         ) -> KeyboardLayoutService {
-            switch context.deviceType {
+            switch context.deviceTypeForKeyboard {
             case .phone: iPhoneService
             case .pad: iPadService
             default: iPhoneService

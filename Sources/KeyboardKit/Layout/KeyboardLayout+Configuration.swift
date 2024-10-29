@@ -57,7 +57,7 @@ public extension KeyboardLayout.Configuration {
         for context: KeyboardContext
     ) -> Self {
         standard(
-            forDevice: context.deviceType,
+            forDevice: context.deviceTypeForKeyboard,
             screenSize: context.screenSize,
             orientation: context.interfaceOrientation
         )

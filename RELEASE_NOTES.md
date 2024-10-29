@@ -10,11 +10,23 @@ KeyboardKit tries to honor semantic versioning:
 These release notes only cover the current major version. Check out version tags for older release notes.  
 
 
+## 💡 KeyboardKit 9.0 Migration Guide
+
+When migrating from KeyboardKit 8.x to 9.x, first upgrade to the last 8.9 version and fix all the deprecation warnings that it provides you with. This will help you prepare for KeyboardKit 9.0.
+
+When you have fixed all deprecation warnings, you should first upgrade to KeyboardKit 9.0. It will provide you with migration deprecations that help you migrate to its many architectural changes.
+
+Once you have fixes all migration deprecations, you are ready to start using KeyboardKit 9.0. You can now configure SPM to use the latest major version number, which will make it use the latest 9.x version.
+
+Note that the legacy migrations will be removed in 9.1, so make sure that you always first upgrade to 9.0 when you upgrade from KeyboardKit 8. If you're on KeyboardKit 7, you should first follow the same procedure to update to 8.0.
+
+
+
 ## 9.0
 
-This version removes all deprecated code, simplifies many concepts, and prepares for future conformance to strict concurrency.
+This version removes all deprecated code, simplifies many concepts, and prepares for future strict concurrency.
 
-This version introduces `migration deprecations` that will help you transition from KeyboardKit 8.9 to 9.0. They will be removed in 9.1. 
+This version has migration deprecations to help you transition from KeyboardKit 8.9. They will be removed in 9.1. 
 
 ### 🧪 Experiments
 
@@ -22,9 +34,15 @@ The next keyboard button experiments have been made permanent.
 
 ### ⌨️ Essentials
 
-The `KeyboardContext` has a new `keyboardCase` property, and the `.alphabetic` keyboard type is decoupled from the case.
+The `KeyboardContext` has a new `keyboardCase` that lets us decouple the keyboard type from the keyboard case. 
 
-The `KeyboardController` protocol now requires `services` and `state`, to make it more versatile and used in more places.
+The `KeyboardType.alphabetic` keyboard type is also decoupled from the case, which makes the type model a lot easier to use.
+
+The `KeyboardContext` has a new `keyboardTypeForKeyboard` property that updates to `.phone` when a keyboard is floating on iPad.
+
+The `KeyboardController` protocol now requires `services` and `state`, to make it more versatile and able to be used in more places.
+
+The `KeyboardView` now supports being used as a floating keyboard on iPad devices.
 
 ### 💥 Actions
 
@@ -48,9 +66,7 @@ The new `DictationService` doesn't need a configuration. It uses a `KeyboardCont
 
 ### 😀 Emojis
 
-English emoji localization has been drastically improved. 
-
-This version also adds support for Swedish emoji localization. 
+Emoji localization has been drastically improved, and now supports Swedish. 
 
 The `EmojiKeyboardStyle` has been moved from KeyboardKit Pro to KeyboardKit.
 

@@ -117,7 +117,10 @@ extension KeyboardLayout {
             for context: KeyboardContext
         ) -> [[String]] {
             let rows = inputSet(for: context).rows
-            return rows.characters(for: context.keyboardCase, device: context.deviceType)
+            return rows.characters(
+                for: context.keyboardCase,
+                device: context.deviceTypeForKeyboard
+            )
         }
 
         /// The actions to convert to layout items.

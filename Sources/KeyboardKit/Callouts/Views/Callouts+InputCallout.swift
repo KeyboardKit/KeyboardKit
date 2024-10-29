@@ -118,7 +118,7 @@ private extension Callouts.InputCallout {
 private extension Callouts.InputCallout {
 
     var shouldEnforceSmallSize: Bool {
-        keyboardContext.deviceType == .phone && keyboardContext.interfaceOrientation.isLandscape
+        keyboardContext.deviceTypeForKeyboard == .phone && keyboardContext.interfaceOrientation.isLandscape
     }
 
     var position: CGPoint {
