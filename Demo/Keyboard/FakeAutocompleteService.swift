@@ -35,14 +35,11 @@ class FakeAutocompleteService: AutocompleteService {
     func autocomplete(
         _ text: String
     ) async throws -> KeyboardKit.Autocomplete.ServiceResult {
-        guard text.count > 0 else { return .init(inputText: text, suggestions: []) }
-        let suggestions = fakeSuggestions(for: text)
-            .map {
-                let autocorrect = $0.isAutocorrect && context.settings.isAutocorrectEnabled
-                var suggestion = $0
-                suggestion.type = autocorrect ? .autocorrect : $0.type
-                return suggestion
-            }
+        let word = text.wordFragmentAtEnd
+        if word.isEmpty { return .init(inputText: text, suggestions: []) }
+        let autocorrect = context.settings.isAutocorrectEnabled
+        let suggestions = fakeSuggestions(for: word)
+            .withAutocorrectEnabled(autocorrect)
         return .init(inputText: text, suggestions: suggestions)
     }
 

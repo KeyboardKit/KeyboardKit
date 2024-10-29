@@ -134,7 +134,23 @@ private extension String {
 
 public extension Collection where Element == Autocomplete.Suggestion {
 
+    /// Check if the collection contains a suggestion with a
+    /// certain `word`.
     func contains(_ word: String) -> Bool {
         contains { $0.text.caseInsensitiveCompare(word) == .orderedSame }
+    }
+
+    /// Adjust the collection to either keep or remove items
+    /// that are autocorrecting.
+    func withAutocorrectEnabled(
+        _ isEnabled: Bool
+    ) -> [Element] {
+        map {
+            if isEnabled { return $0 }
+            guard $0.type == .autocorrect else { return $0 }
+            var element = $0
+            element.type = .regular
+            return element
+        }
     }
 }
