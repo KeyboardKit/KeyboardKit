@@ -68,7 +68,11 @@ The new `DictationService` doesn't need a configuration. It uses a `KeyboardCont
 
 Emoji localization has been drastically improved, and now supports Swedish. 
 
-The `EmojiKeyboardStyle` has been moved from KeyboardKit Pro to KeyboardKit.
+The `EmojiKeyboardStyle` has been moved from KeyboardKit Pro to KeyboardKit. The `.emojiKeyboardStyle` view modifier now takes a style builder instead of a style, to allow root level styling.
+
+The standard emoji styles no longer take an input toolbar display mode, which can be used to increate the number of grid rows. You can use the new `.augmented(for:)` style function if you need to.
+
+The EmojiKeyboard in KeyboardKit Pro has been rebuilt from scratch, and now behaves more like a native keyboard. It now lets users scroll through categories instead of require them to tap in the menu.
 
 ### 🇸🇪 Localization
 

@@ -52,7 +52,7 @@ extension View {
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
             )
-            .environment(\.emojiKeyboardStyle, .standard(for: keyboardContext))
+            .environment(\.emojiKeyboardStyle, { .standard(for: $0) })
         )
         .coordinateSpace(name: calloutContext.coordinateSpace)
     }

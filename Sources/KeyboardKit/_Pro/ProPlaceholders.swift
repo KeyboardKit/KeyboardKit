@@ -217,6 +217,11 @@ public extension Emoji.KeyboardStyle {
     static func standard(for context: KeyboardContext) -> Self {
         .init()
     }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func optimized(for context: KeyboardContext) -> Self {
+        .init()
+    }
 }
 
 public extension Image {

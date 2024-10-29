@@ -143,6 +143,9 @@ public extension Emoji {
 
 public extension Emoji.KeyboardStyle {
 
+    /// This typealias defines an emoji keyboard style builder.
+    typealias Builder = (KeyboardContext) -> Self
+
     /// A standard iPhone style.
     static var standardPhone: Self {
         standardPhone(rows: 5)
@@ -156,26 +159,57 @@ public extension Emoji.KeyboardStyle {
 
 public extension View {
 
-    /// Apply an ``Emoji/KeyboardStyle``.
+    /// Apply a ``Emoji/KeyboardStyle``.
+    ///
+    /// Use the builder-based modifier if you need to adjust
+    /// the style based on the keyboard context.
+    ///
+    /// > Important: Make sure to use memory optimized style
+    /// for all devices if the keyboard uses a lot of memory,
+    /// e.g. if you load a huge ML model into memory.
     func emojiKeyboardStyle(
         _ style: Emoji.KeyboardStyle
     ) -> some View {
-        self.environment(\.emojiKeyboardStyle, style)
+        self.environment(\.emojiKeyboardStyle, { _ in style })
+    }
+
+    /// Apply a ``Emoji/KeyboardStyle`` builder.
+    ///
+    /// Instead of injecting a specific style, this modifier
+    /// lets you inject a style builder that can be provided
+    /// with the arguments it needs to build a dynamic style.
+    ///
+    /// If you don't apply a custom style builder, the style
+    /// will default to a memory optimized style for iPhones
+    /// and a standard style for iPads.
+    ///
+    /// > Important: Make sure to use memory optimized style
+    /// for all devices if the keyboard uses a lot of memory,
+    /// e.g. if you load a huge ML model into memory.
+    func emojiKeyboardStyle(
+        builder: @escaping Emoji.KeyboardStyle.Builder
+    ) -> some View {
+        self.environment(\.emojiKeyboardStyle, builder)
     }
 }
 
 private extension Emoji.KeyboardStyle {
 
     struct Key: EnvironmentKey {
-        static var defaultValue: Emoji.KeyboardStyle {
-            .standardPhone
+        static var defaultValue: Emoji.KeyboardStyle.Builder {
+            return { context in
+                if context.deviceTypeForKeyboard == .phone {
+                    return .optimized(for: context)
+                }
+                return .standard(for: context)
+            }
         }
     }
 }
 
 public extension EnvironmentValues {
 
-    var emojiKeyboardStyle: Emoji.KeyboardStyle {
+    var emojiKeyboardStyle: Emoji.KeyboardStyle.Builder {
         get { self [Emoji.KeyboardStyle.Key.self] }
         set { self [Emoji.KeyboardStyle.Key.self] = newValue }
     }

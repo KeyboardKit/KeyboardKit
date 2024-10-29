@@ -39,7 +39,7 @@ public extension Callouts {
         private var keyboardContext: KeyboardContext
 
         @Environment(\.emojiKeyboardStyle)
-        private var emojiStyle: Emoji.KeyboardStyle
+        private var emojiStyle: Emoji.KeyboardStyle.Builder
 
         @Environment(\.actionCalloutStyle)
         private var style
@@ -144,16 +144,23 @@ private extension Callouts.ActionCallout {
     }
 
     func calloutView(for emoji: Emoji) -> some View {
+        calloutView(for: emoji, style: emojiStyle(keyboardContext))
+    }
+
+    func calloutView(
+        for emoji: Emoji,
+        style: Emoji.KeyboardStyle
+    ) -> some View {
         Text(emoji.char)
-            .font(emojiStyle.itemFont)
-            .scaleEffect(emojiStyle.itemScaleFactor)
+            .font(style.itemFont)
+            .scaleEffect(style.itemScaleFactor)
             .frame(
-                width: emojiStyle.itemSize,
-                height: emojiStyle.itemSize,
+                width: style.itemSize,
+                height: style.itemSize,
                 alignment: .center
             )
     }
-    
+
     var positionX: CGFloat {
         let buttonWidth = calloutButtonSize.width
         let adjustment = (CGFloat(calloutActions.count) * buttonWidth)/2
