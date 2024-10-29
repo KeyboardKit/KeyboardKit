@@ -14,7 +14,7 @@ class Locale_KeyboardKitTests: XCTestCase {
     let locales = Locale.keyboardKitSupported
 
     func testDefinesKeyboardSupportedLocales() {
-        XCTAssertEqual(locales.count, 68)
+        XCTAssertEqual(locales.count, 70)
     }
 
     func testLocaleIdentifierIsValidForAllSupportedLocales() {
@@ -32,6 +32,8 @@ class Locale_KeyboardKitTests: XCTestCase {
             .dutch: "nl",
             .dutch_belgium: "nl_BE",
             .english: "en",
+            .english_australia: "en_AU",
+            .english_canada: "en_CA",
             .english_gb: "en_GB",
             .english_us: "en_US",
             .estonian: "et",

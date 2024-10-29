@@ -78,6 +78,8 @@ The EmojiKeyboard in KeyboardKit Pro has been rebuilt from scratch, and now beha
 
 The `KeyboardLocale` enum has been replaced with using the native `Locale` everywhere.
 
+This version adds support for 🇦🇺 English (Australia) and 🇨🇦 English (Canada), bringing the number of supported locales up to `70`.
+
 ### 🔣 Layout
 
 An `InputSet` can now be created with device variations, which allows for resolving device-specific items at runtime.

@@ -28,6 +28,8 @@ class Locale_FlagTests: XCTestCase {
             .dutch: "🇳🇱",
             .dutch_belgium: "🇧🇪",
             .english: "🇺🇸",
+            .english_australia: "🇦🇺",
+            .english_canada: "🇨🇦",
             .english_gb: "🇬🇧",
             .english_us: "🇺🇸",
             .estonian: "🇪🇪",
@@ -108,6 +110,7 @@ class Locale_FlagTests: XCTestCase {
                 text = ""
             }
         }
+        print(text)
         print("")
     }
 
@@ -124,6 +127,19 @@ class Locale_FlagTests: XCTestCase {
         print("")
     }
 
+    func testPrintHtmlForFlagBulletList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Flag List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            let name = locale.localizedName(in: .english) ?? ""
+            printBullet("\(locale.flag) \(name)")
+        }
+        print("")
+    }
+
     func testPrintHtmlForNameList() throws {
         print("")
         print("************************")
@@ -131,12 +147,28 @@ class Locale_FlagTests: XCTestCase {
         print("************************")
         print("")
         locales.forEach { locale in
-            printLine(locale.localizedName(in: .english) ?? "")
+            printLine(locale.localizedName(in: .english))
         }
         print("")
     }
-    
-    func printLine(_ string: String) {
-        print("\(string) <br />")
+
+    func testPrintHtmlForNameBulletList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            printBullet(locale.localizedName(in: .english))
+        }
+        print("")
+    }
+
+    func printBullet(_ string: String?) {
+        print("<li>\(string ?? "")</li>")
+    }
+
+    func printLine(_ string: String?) {
+        print("\(string ?? "") <br />")
     }
 }

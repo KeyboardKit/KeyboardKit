@@ -32,14 +32,16 @@ public extension Locale {
         case .dutch: "🇳🇱"
         case .dutch_belgium: "🇧🇪"
         case .english: "🇺🇸"
+        case .english_australia: "🇦🇺"
+        case .english_canada: "🇨🇦"
         case .english_gb: "🇬🇧"
         case .english_us: "🇺🇸"
         case .estonian: "🇪🇪"
         case .faroese: "🇫🇴"
         case .filipino: "🇵🇭"
+
         case .finnish: "🇫🇮"
         case .french: "🇫🇷"
-            
         case .french_canada: "🇨🇦"
         case .french_belgium: "🇧🇪"
         case .french_switzerland: "🇨🇭"
@@ -48,9 +50,9 @@ public extension Locale {
         case .german_austria: "🇦🇹"
         case .german_switzerland: "🇨🇭"
         case .greek: "🇬🇷"
+
         case .hawaiian: "🇺🇸"
         case .hebrew: "🇮🇱"
-            
         case .hungarian: "🇭🇺"
         case .icelandic: "🇮🇸"
         case .inari_sami: "🏳️"
@@ -59,9 +61,9 @@ public extension Locale {
         case .italian: "🇮🇹"
         case .kazakh: "🇰🇿"
         case .kurdish_sorani: "🇹🇯"
+
         case .kurdish_sorani_arabic: "🇹🇯"
         case .kurdish_sorani_pc: "🇹🇯"
-            
         case .latvian: "🇱🇻"
         case .lithuanian: "🇱🇹"
         case .macedonian: "🇲🇰"
@@ -70,9 +72,9 @@ public extension Locale {
         case .mongolian: "🇲🇳"
         case .northern_sami: "🏳️"
         case .norwegian: "🇳🇴"
+
         case .norwegian_nynorsk: "🇳🇴"
         case .persian: "🇮🇷"
-            
         case .polish: "🇵🇱"
         case .portuguese: "🇵🇹"
         case .portuguese_brazil: "🇧🇷"
@@ -81,9 +83,9 @@ public extension Locale {
         case .serbian: "🇷🇸"
         case .serbian_latin: "🇷🇸"
         case .slovenian: "🇸🇮"
+
         case .slovak: "🇸🇰"
         case .spanish: "🇪🇸"
-            
         case .spanish_latinAmerica: "🇦🇷"
         case .spanish_mexico: "🇲🇽"
         case .swedish: "🇸🇪"

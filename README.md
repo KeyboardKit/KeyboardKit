@@ -130,15 +130,15 @@ For more information, please see the [getting started guide][Getting-Started].
 
 ## Localization
 
-KeyboardKit supports [68 keyboard-specific locales][Localization]:
+KeyboardKit supports [70 keyboard-specific locales][Localization]:
 
-🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿 🇩🇰 <br />
-🇳🇱 🇧🇪 🇺🇸 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 <br />
-🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 <br />
-🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 <br />
-🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️ 🇳🇴 🇳🇴 🇮🇷 <br />
-🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰 🇸🇮 🇪🇸 <br />
-🇦🇷 🇲🇽 🇰🇪 🇸🇪 🇹🇷 🇺🇦 🇺🇿 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
+🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿  <br />
+🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭  <br />
+🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷  <br />
+🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯  <br />
+🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️ 🇳🇴  <br />
+🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰  <br />
+🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿 🏴󠁧󠁢󠁷󠁬󠁳󠁿  <br />
 
 KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unlocks localized keyboards, layouts, callouts and behaviors for all supported locales.
 
@@ -159,7 +159,7 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 * 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
 * 🏠 [Host][Host] - Identify the host application.
 * 🔣 [Layout][Layout] - Define and customize dynamic keyboard layouts.
-* 🌐 [Localization][Localization] - Localize your keyboard in **68+ locales**.
+* 🌐 [Localization][Localization] - Localize your keyboard in **70 locales**.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
 * 👁 [Previews][Previews] - Extensive SwiftUI preview support.
 * ➡️ [Proxy][Proxy] - Extend the text document proxy with more capabilities.
@@ -177,13 +177,13 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 * 🤖 [AI][AI] - Features that are needed for AI.
 * 📱 [App][App] - App-specific screens & views.
 * 💡 [Autocomplete][Autocomplete] - On-device & remote autocomplete.
-* 🗯 [Callouts][Callouts] - Localized callouts for **68 locales**.
+* 🗯 [Callouts][Callouts] - Localized callouts for locales.
 * 🎤 [Dictation][Dictation] - Trigger dictation from the keyboard.
 * 😀 [Emojis][Emojis] - A powerful emoji keyboard.
 * ⌨️ [External][External] - Detect if an external keyboard is connected. 
 * 🏠 [Host][Host] - Identify and open specific host applications.
-* 🔣 [Layout][Layout] - Localized layouts for **68 locales**.
-* 🌐 [Localization][Localization] - Services & views for **68 locales**.
+* 🔣 [Layout][Layout] - Localized layouts for all locales.
+* 🌐 [Localization][Localization] - Services & views for all locales.
 * 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
 * ➡️ [Proxy][Proxy] - Let `UITextDocumentProxy` read the full document.
 * 📝 [Text][Text-Input] - Let users type within the keyboard.
