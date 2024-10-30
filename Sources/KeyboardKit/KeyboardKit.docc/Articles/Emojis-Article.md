@@ -102,11 +102,16 @@ The ``EmojiKeyboard`` will automatically add skin tones as secondary callout act
 
 ## Localization Support
 
-The ``Emoji`` enum can be localized in any supported locale that has defined translations:
+The ``Emoji`` and ``EmojiCategory`` enums can be localized in any locale that has translations:
 
 ```swift
-Emoji("😀").localizedName                  // Grinning Face
-Emoji("😀").localizedName(for: .swedish)   // Leende Ansikte
+let emoji = Emoji("😀") 
+emoji.localizedName                   // Grinning Face
+emoji.localizedName(in: .swedish)     // Leende Ansikte
+
+let category = EmojiCategory.animalsAndNature 
+category.localizedName                // Animals & Nature
+category.localizedName(in: .swedish)  // Djur och natur
 ```
 
 Take a look at `Resources/en.lproj/Localizable.strings` to see how you can localize emojis for more keyboard locales.

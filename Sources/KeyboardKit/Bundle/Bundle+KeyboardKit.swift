@@ -19,8 +19,8 @@ public extension Bundle {
 
     /// The KeyboardKit bundle.
     ///
-    /// KeyboardKit maps this to `.module` while KeyboardKit
-    /// Pro needs to resolve it differently since it's built
-    /// as an Xcode Project.
+    /// KeyboardKit maps this bundle to the `.module` bundle,
+    /// while KeyboardKit Pro must resolve it differently to
+    /// handle how it's built with an Xcode Project.
     static var keyboardKit: Bundle { .module }
 }

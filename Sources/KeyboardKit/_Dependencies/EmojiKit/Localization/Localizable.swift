@@ -18,7 +18,7 @@ public extension Localizable {
 
     /// The localized name for the current locale and bundle.
     var localizedName: String {
-        localizedName(for: .current)
+        localizedName(in: .current)
     }
 
     /// The localized name for a certain locale and bundle.
@@ -27,8 +27,8 @@ public extension Localizable {
     ///   - locale: The locale to use, by default `.current`.
     ///   - bundle: The bundle that contains the localized content.
     func localizedName(
-        for locale: Locale = .current,
-        in bundle: Bundle
+        in locale: Locale = .current,
+        bundle: Bundle
     ) -> String {
         let key = localizationKey
         let localeBundle = bundle.bundle(for: locale) ?? bundle

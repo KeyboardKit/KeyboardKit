@@ -10,17 +10,14 @@ import Foundation
 
 public extension Emoji {
 
-    /// Whether or not the emoji matches a certain query.
+    /// Whether the emoji matches a certain query.
     func matches(
         _ query: String,
-        for locale: Locale = .current
+        in locale: Locale = .current
     ) -> Bool {
-        let query = query
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-            .lowercased()
-        if query.isEmpty { return true }
+        guard query.hasContent else { return true }
         if unicodeName.matches(query) { return true }
-        return localizedName(for: locale).matches(query)
+        return localizedName(in: locale).matches(query)
     }
 }
 
@@ -29,17 +26,20 @@ public extension Collection where Element == Emoji {
     // Find all emojis that match a certain search query.
     func matching(
         _ query: String,
-        for locale: Locale = .current
+        in locale: Locale = .current
     ) -> [Emoji] {
-        filter { $0.matches(query, for: locale) }
+        guard query.hasContent else { return Array(self) }
+        return filter { $0.matches(query, in: locale) }
     }
 }
 
 private extension String {
-    
+
+    var hasContent: Bool {
+        !trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+    }
+
     func matches(_ query: String) -> Bool {
-        query
-            .split(separator: " ")
-            .allSatisfy { localizedStandardContains($0) }
+        localizedCaseInsensitiveContains(query)
     }
 }
