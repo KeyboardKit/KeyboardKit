@@ -14,13 +14,15 @@ public extension Keyboard {
     /// This enum defines various keyboard types, of which a
     /// few are implemented by the library.
     ///
-    /// Just set the ``KeyboardContext/keyboardType`` to any
-    /// type you want to use, then observe the value.
-    ///
     /// ``KeyboardView`` automatically renders some of these
-    /// keyboard types. All other types require that you add
-    /// your own custom view to visualize them.
-    enum KeyboardType: CaseIterable, Codable, Equatable, Identifiable {
+    /// keyboard types. All other types require custom views.
+    /// You can also use a ``custom(named:)`` type to create
+    /// a completely custom keyboard type from scratch.
+    ///
+    /// Just set the ``KeyboardContext/keyboardType`` to any
+    /// type you want to use, then observe the value to make
+    /// any customizations needed for your app.
+    enum KeyboardType: CaseIterable, Codable, Equatable, Hashable, Identifiable {
 
         /// A keyboard with alphabetic input keys.
         case alphabetic
@@ -33,10 +35,13 @@ public extension Keyboard {
         
         /// An e-mail keyboard.
         case email
-        
+
         /// An emoji keyboard with emojis and categories.
         case emojis
-        
+
+        /// An emoji search bar with the alphabetic keyboard.
+        case emojiSearch
+
         /// An image keyboard, not currently implemented.
         case images
         
@@ -57,12 +62,13 @@ public extension Keyboard.KeyboardType {
     static var allCases: [Self] {
         [
             .alphabetic,
-            .numeric,
-            .symbolic,
             .email,
             .emojis,
+            .emojiSearch,
             .images,
             .numberPad,
+            .numeric,
+            .symbolic,
             .url
         ]
     }
@@ -78,6 +84,7 @@ public extension Keyboard.KeyboardType {
         case .symbolic: "symbolic"
         case .email: "email"
         case .emojis: "emojis"
+        case .emojiSearch: "emojiSearch"
         case .images: "images"
         case .numberPad: "numberPad"
         case .url: "url"

@@ -20,12 +20,13 @@ public extension Keyboard.KeyboardType {
     var prefersAutocomplete: Bool {
         switch self {
         case .alphabetic: true
-        case .numeric: true
-        case .symbolic: true
         case .email: false
         case .emojis: false
+        case .emojiSearch: false
         case .images: false
         case .numberPad: true
+        case .numeric: true
+        case .symbolic: true
         case .url: false
         case .custom: true
         }

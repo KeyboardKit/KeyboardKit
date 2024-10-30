@@ -97,11 +97,12 @@ public struct KeyboardView<
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
         var layout = layout
+        let layoutConfig = KeyboardLayout.Configuration.standard(for: keyboardContext)
         if !Emoji.KeyboardWrapper.isEmojiKeyboardAvailable {
             layout.itemRows.remove(.keyboardType(.emojis))
         }
         self.rawLayout = layout
-        self.layoutConfig = .standard(for: keyboardContext)
+        self.layoutConfig = layoutConfig
         self.actionHandler = actionHandler
         self.repeatTimer = repeatTimer
         self.styleService = styleService
@@ -110,9 +111,24 @@ public struct KeyboardView<
         self.buttonViewBuilder = buttonView
         self.emojiKeyboardBuilder = emojiKeyboard
         self.toolbarBuilder = toolbar
+
         _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
         _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+
+        self.actionCalloutStyle = {
+            var style = styleService.actionCalloutStyle
+            let insets = layoutConfig.buttonInsets
+            style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
+            return style
+        }()
+
+        self.inputCalloutStyle = {
+            var style = styleService.inputCalloutStyle
+            let insets = layoutConfig.buttonInsets
+            style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
+            return style
+        }()
     }
 
     private let actionHandler: KeyboardActionHandler
@@ -127,19 +143,8 @@ public struct KeyboardView<
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
     
-    private var actionCalloutStyle: Callouts.ActionCalloutStyle {
-        var style = styleService.actionCalloutStyle
-        let insets = layoutConfig.buttonInsets
-        style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
-        return style
-    }
-
-    private var inputCalloutStyle: Callouts.InputCalloutStyle {
-        var style = styleService.inputCalloutStyle
-        let insets = layoutConfig.buttonInsets
-        style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
-        return style
-    }
+    private var actionCalloutStyle: Callouts.ActionCalloutStyle
+    private var inputCalloutStyle: Callouts.InputCalloutStyle
 
     @ObservedObject
     private var autocompleteContext: AutocompleteContext
@@ -224,11 +229,26 @@ private extension KeyboardView {
             layoutConfiguration: layoutConfig
         )
     }
-    
+
     var shouldShowKeyboard: Bool {
         switch keyboardContext.keyboardType {
         case .emojis: false
         case .numberPad: false
+        default: true
+        }
+    }
+
+    var shouldShowEmojiKeyboard: Bool {
+        switch keyboardContext.keyboardType {
+        case .emojis: true
+        case .emojiSearch: true
+        default: false
+        }
+    }
+
+    var shouldShowToolbar: Bool {
+        switch keyboardContext.keyboardType {
+        case .emojiSearch: false
         default: true
         }
     }
@@ -253,7 +273,7 @@ private extension KeyboardView {
                 }
             }
             .padding(styleService.keyboardEdgeInsets)
-            .environment(\.layoutDirection, .leftToRight)   // We enforce a certain layout direction due to the layout engine
+            .environment(\.layoutDirection, .leftToRight)   // Enforce a direction due to the layout.
         }
         .frame(height: layout.totalHeight)
     }
@@ -261,12 +281,12 @@ private extension KeyboardView {
     @ViewBuilder
     var emojiKeyboard: some View {
         emojiKeyboardContent
-            .id(keyboardContext.interfaceOrientation)       // TODO: Temp orientation fix, is still still needed?
+            .id(keyboardContext.interfaceOrientation)       // TODO: Temp orientation fix, still needed?
     }
 
     @ViewBuilder
     var emojiKeyboardContent: some View {
-        if keyboardContext.keyboardType == .emojis {
+        if shouldShowEmojiKeyboard {                        // Conditional to save memory
             emojiKeyboardBuilder((
                 style: Emoji.KeyboardStyle.standard(for: keyboardContext),
                 view: Emoji.KeyboardWrapper(
@@ -305,6 +325,7 @@ private extension KeyboardView {
                 suggestionAction: actionHandler.handle(_:)
             )
         ))
+        .opacity(shouldShowToolbar ? 1 : 0)
         .autocompleteToolbarStyle(style)
         .frame(minHeight: style.height)
     }
@@ -364,7 +385,7 @@ private extension KeyboardView {
                 .init(text: "Baz")
             ]
             // controller.services.styleService = .crazy
-            // controller.state.keyboardContext.keyboardType = .numeric
+            // controller.state.keyboardContext.keyboardType = .emojiSearch
             return controller
         }()
         
