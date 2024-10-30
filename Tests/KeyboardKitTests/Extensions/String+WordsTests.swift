@@ -12,18 +12,6 @@ import XCTest
 
 class String_WordsTests: XCTestCase {
     
-    func testStringDefinesDelimiters() {
-        let delimiters = String.wordDelimiters.joined()
-        let expectedPrefix = ".,:;!¡?¿()[]{}<>«»་།"
-        XCTAssertTrue(delimiters.hasPrefix(expectedPrefix))
-    }
-
-    func testStringCanIdentifyAsDelimiter() {
-        let result = String.wordDelimiters
-        XCTAssertTrue(result.allSatisfy { $0.isWordDelimiter })
-        XCTAssertFalse("a".isWordDelimiter)
-    }
-
     func testWordFragmentAtStart(in text: String, expected: String) {
         XCTAssertEqual(text.wordFragmentAtStart, expected)
     }

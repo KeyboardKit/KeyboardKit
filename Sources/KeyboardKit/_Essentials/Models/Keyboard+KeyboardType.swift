@@ -91,6 +91,11 @@ public extension Keyboard.KeyboardType {
         case .custom(let name): name
         }
     }
+
+    /// Whether the type is numeric or symbolic.
+    var isNumericOrSymbolic: Bool {
+        self == .numeric || self == .symbolic
+    }
 }
 
 public extension Keyboard.KeyboardType {

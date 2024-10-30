@@ -84,8 +84,9 @@ extension Keyboard {
             let current = keyboardContext.keyboardCase
             switch action {
             case .shift:
-                // We can't check double-tap since the key itself is released
-                return gesture == .release && isDoubleShiftTap ? .capsLocked : current
+                let release = gesture == .release
+                let doubleTap = release && isDoubleShiftTap // We can't use double-tap gesture since the key is redrawn
+                return doubleTap ? .capsLocked : current
             default: return keyboardContext.preferredKeyboardCase
             }
         }
@@ -94,26 +95,9 @@ extension Keyboard {
             after gesture: Gesture,
             on action: KeyboardAction
         ) -> Keyboard.KeyboardType {
-            if let type = preferredKeyboardTypeForNumericOrSymbolicKeyboardGesture(gesture, on: action) { return type }
+            let release = gesture == .release
+            if release && action.shouldSwitchToAlphabetic(for: keyboardContext) { return .alphabetic }
             return keyboardContext.keyboardType
-        }
-
-        open func preferredKeyboardTypeForNumericOrSymbolicKeyboardGesture(
-            _ gesture: Gesture,
-            on action: KeyboardAction
-        ) -> Keyboard.KeyboardType? {
-            let type = keyboardContext.keyboardType
-            guard type == .numeric || type == .symbolic else { return nil }
-            guard gesture == .release else { return nil }
-            if action.shouldSwitchToAlphabetic(for: keyboardContext) { return .alphabetic }
-            #if os(iOS) || os(tvOS) || os(visionOS)
-            guard let before = keyboardContext.textDocumentProxy.documentContextBeforeInput else { return nil }
-            if action == .space && !before.hasSuffix("  ") { return .alphabetic }
-            if action.isPrimaryAction && before.isLastSentenceEnded { return .alphabetic }
-            return nil
-            #else
-            return nil
-            #endif
         }
 
         open func shouldEndCurrentSentence(
@@ -159,19 +143,36 @@ public extension Keyboard.StandardBehavior {
 private extension KeyboardAction {
     
     func shouldSwitchToAlphabetic(for context: KeyboardContext) -> Bool {
+        if self.shouldSwitchToAlphabeticFromNumericOrSymbolic(for: context) { return true }
         switch self {
-        case .character(let char): char.shouldSwitchToAlphabetic(for: context)
-        default: false
+        case .character(let char): return char.shouldSwitchToAlphabeticFromNumericOrSymbolic(for: context)
+        case .primary: return context.keyboardType == .emojiSearch
+        default: return false
         }
+    }
+
+    func shouldSwitchToAlphabeticFromNumericOrSymbolic(
+        for context: KeyboardContext
+    ) -> Bool {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        guard context.keyboardType.isNumericOrSymbolic else { return false }
+        let proxy = context.textDocumentProxy
+        if let before = proxy.documentContextBeforeInput {
+            if self == .space && !before.hasSuffix("  ") { return true }
+            if isPrimaryAction && before.isLastSentenceEnded { return true }
+        }
+        #endif
+        return false
     }
 }
 
 private extension String {
     
-    func shouldSwitchToAlphabetic(
+    func shouldSwitchToAlphabeticFromNumericOrSymbolic(
         for context: KeyboardContext
     ) -> Bool {
-        if self == "’" { return true }
+        guard context.keyboardType.isNumericOrSymbolic else { return false }
+        if String.alphabeticAccentSwitches.contains(self) { return true }
         let locale = context.locale
         return self == locale.alternateQuotationBeginDelimiter || self == locale.alternateQuotationEndDelimiter
     }

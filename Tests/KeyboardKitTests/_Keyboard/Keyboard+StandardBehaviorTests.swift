@@ -22,6 +22,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
     var proxy: MockTextDocumentProxy!
     var timer: GestureButtonTimer!
 
+    let keyboardTypes = Keyboard.KeyboardType.allCases
 
     override func setUp() {
         timer = .init()
@@ -93,59 +94,78 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
 
     func testPreferredKeyboardTypeIsByDefaultContextType() {
         keyboardContext.settings.isAutocapitalizationEnabled = true
-        Keyboard.KeyboardType.allCases.forEach {
+        keyboardTypes.forEach {
             keyboardContext.keyboardType = $0
             XCTAssertEqual(keyboardType(for: .press, on: .backspace), $0)
             XCTAssertEqual(keyboardType(for: .release, on: .character("i")), $0)
         }
     }
 
-    func testPreferredKeyboardTypeIsAlphabeticIfNumericOrSymbolicQuotationDelimiterIsReleased() {
-        Keyboard.KeyboardType.allCases.forEach {
-            keyboardContext.keyboardType = $0
-            let delim = KeyboardAction.character(Locale.swedish.alternateQuotationBeginDelimiter ?? "")
-            let shouldSwitch = $0 == .numeric || $0 == .symbolic
-            XCTAssertEqual(keyboardType(for: .press, on: delim), $0)
-            XCTAssertEqual(keyboardType(for: .release, on: delim), shouldSwitch ? .alphabetic : $0)
+    func testPreferredKeyboardTypeIsAlphabeticIfPrimaryButtonIsTappedInEmojiSearch() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            let should = type == .emojiSearch
+            XCTAssertEqual(keyboardType(for: .press, on: .primary(.return)), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .primary(.return)), should ? .alphabetic : type)
+        }
+    }
+
+    func testPreferredKeyboardTypeIsAlphabeticIfCertainCharactersAreReleased() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            let locale = Locale.swedish
+            let delim1 = locale.alternateQuotationBeginDelimiter ?? ""
+            let delim2 = locale.alternateQuotationEndDelimiter ?? ""
+            let should = type.isNumericOrSymbolic
+            let characters: [KeyboardAction] = [
+                .character(delim1),
+                .character(delim2),
+            ] + String.alphabeticAccentSwitches.map { .character($0) }
+            characters.forEach {
+                XCTAssertEqual(keyboardType(for: .press, on: $0), type)
+                XCTAssertEqual(keyboardType(for: .release, on: $0), should ? .alphabetic : type)
+            }
         }
     }
 
     #if os(iOS) || os(tvOS) || os(visionOS)
     func testPreferredKeyboardTypeIsAlphabeticIfSingleNumericOrSymbolicSpaceIsReleased() {
-        Keyboard.KeyboardType.allCases.forEach {
-            keyboardContext.keyboardType = $0
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
             proxy.documentContextBeforeInput = "Test "
-            let shouldSwitch = $0 == .numeric || $0 == .symbolic
-            XCTAssertEqual(keyboardType(for: .press, on: .space), $0)
-            XCTAssertEqual(keyboardType(for: .release, on: .space), shouldSwitch ? .alphabetic : $0)
+            let should = type.isNumericOrSymbolic
+            XCTAssertEqual(keyboardType(for: .press, on: .space), type)
+            let result = keyboardType(for: .release, on: .space)
+            XCTAssertEqual(keyboardType(for: .release, on: .space), should ? .alphabetic : type)
         }
     }
 
     func testPreferredKeyboardTypeIsUnchangedIfSubsequentWhitespaceIsReleasedInSymbolicOrNumericKeyboards() {
-        Keyboard.KeyboardType.allCases.forEach {
-            keyboardContext.keyboardType = $0
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
             proxy.documentContextBeforeInput = "Test  "
-            XCTAssertEqual(keyboardType(for: .press, on: .space), $0)
-            XCTAssertEqual(keyboardType(for: .release, on: .space), $0)
+            XCTAssertEqual(keyboardType(for: .press, on: .space), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .space), type)
         }
     }
 
     func testPreferredKeyboardTypeIsAlphabeticIfNewLineIsEnteredAfterFinishedSentence() {
-        Keyboard.KeyboardType.allCases.forEach {
-            keyboardContext.keyboardType = $0
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
             proxy.documentContextBeforeInput = "Test. "
-            let shouldSwitch = $0 == .numeric || $0 == .symbolic
-            XCTAssertEqual(keyboardType(for: .press, on: .primary(.done)), $0)
-            XCTAssertEqual(keyboardType(for: .release, on: .primary(.continue)), shouldSwitch ? .alphabetic : $0)
+            let should = type.isNumericOrSymbolic || type == .emojiSearch
+            XCTAssertEqual(keyboardType(for: .press, on: .primary(.done)), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .primary(.continue)), should ? .alphabetic : type)
         }
     }
 
     func testPreferredKeyboardTypeIsUnchangedIfNewLineIsEnteredAfterNonFinishedSentence() {
-        Keyboard.KeyboardType.allCases.forEach {
-            keyboardContext.keyboardType = $0
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
             proxy.documentContextBeforeInput = "Test  "
-            XCTAssertEqual(keyboardType(for: .press, on: .primary(.done)), $0)
-            XCTAssertEqual(keyboardType(for: .release, on: .primary(.newLine)), $0)
+            let should = type == .emojiSearch
+            XCTAssertEqual(keyboardType(for: .press, on: .primary(.done)), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .primary(.newLine)), should ? .alphabetic : type)
         }
     }
     #endif

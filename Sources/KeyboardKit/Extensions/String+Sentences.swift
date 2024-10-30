@@ -9,29 +9,6 @@
 import Foundation
 
 public extension String {
- 
-    /// A list of known sentence delimiters.
-    ///
-    /// Instead of using a character set-based way to define
-    /// delimiters, let's append missing ones as we find any.
-    static var sentenceDelimiters = ".:!¡?¿".chars
-
-    /// Whether or not this is a known sentence delimiters.
-    var isSentenceDelimiter: Bool {
-        Self.sentenceDelimiters.contains(self)
-    }
-}
-
-public extension Collection where Element == String {
-
-       /// A list of known sentence delimiters.
-    static var sentenceDelimiters: [String] {
-        String.sentenceDelimiters
-    }
-}
-
-
-public extension String {
 
     /// Check if the last character is a sentence delimiter.
     var hasSentenceDelimiterSuffix: Bool {
@@ -39,10 +16,8 @@ public extension String {
         return String(last).isSentenceDelimiter
     }
 
-    /**
-     Check whether or not the last sentence in the string is
-     ended, with or without trailing whitespace.
-     */
+    /// Check if the last sentence is ended, with or without
+    /// trailing whitespace.
     var isLastSentenceEnded: Bool {
         let content = trimmingCharacters(in: .whitespaces).replacingOccurrences(of: "\n", with: "")
         if content.isEmpty { return true }
@@ -50,10 +25,8 @@ public extension String {
         return lastCharacter.isSentenceDelimiter
     }
 
-    /**
-     Check whether or not the last sentence in the string is
-     ended with trailing whitespace.
-     */
+    /// Check if the last sentence is ended, with a trailing
+    /// whitespace sequence.
     var isLastSentenceEndedWithTrailingWhitespace: Bool {
         let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
         if isEmpty || trimmed.isEmpty { return true }
@@ -64,10 +37,7 @@ public extension String {
         return lastTrimmed.isSentenceDelimiter && isLastValid
     }
 
-    /**
-     Get the content of the last sentence, if any. Note that
-     it will not contain the sentence delimiter.
-     */
+    /// Get the trimmed content of the last sentence, if any.
     var lastSentence: String? {
         guard isLastSentenceEnded else { return nil }
         let components = split(by: Self.sentenceDelimiters).filter { !$0.isEmpty }
