@@ -187,7 +187,7 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var textInputMode: UITextInputMode?
 
-    /// The input controller's current trait collection.
+    /// The current trait collection.
     @Published
     public var traitCollection = UITraitCollection()
     #endif

@@ -94,6 +94,12 @@ This change from a reference type to a value type may require you to change how 
 
 Persistent settings have moved from the various contexts to nested types, to separate contextual properties from user settings.
 
+### 📝 Text
+
+This version makes the `KeyboardContext` responsible for the alternate `textInputProxy`. The controller refers to this property, but can't be used to modify it.
+
+The KeyboardKit Pro input text components can now be setup with a keyboard context, and don't need a controller anymore. 
+
 ### 👑 Pro
 
 KeyboardKit Pro can now be activated with a license file. License files will be provided to all yearly Gold and Enterprise customers!

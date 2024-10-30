@@ -67,7 +67,6 @@ private struct NextKeyboardButtonOverlay: UIViewRepresentable {
 
 private extension UIInputViewController {
 
-
     func setupButton(_ button: UIButton) {
         let proxyAction = #selector(handleInputProxy(from:with:))
         let inputAction = #selector(handleInputModeList(from:with:))
@@ -77,12 +76,13 @@ private extension UIInputViewController {
 
     @objc func handleInputProxy(from view: UIView, with event: UIEvent) {
         guard let vc = self as? KeyboardInputViewController else { return }
-        if vc.textInputProxy == nil { return }
-        let input = vc.textInputProxy
-        vc.textInputProxy = nil
+        let context = vc.state.keyboardContext
+        if context.textInputProxy == nil { return }
+        let input = context.textInputProxy
+        context.textInputProxy = nil
         handleInputModeList(from: view, with: event)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            vc.textInputProxy = input
+            context.textInputProxy = input
         }
     }
 }

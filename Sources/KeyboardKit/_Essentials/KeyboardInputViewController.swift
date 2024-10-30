@@ -180,14 +180,11 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// The text document proxy that is currently active.
     open override var textDocumentProxy: UITextDocumentProxy {
-        textInputProxy ?? originalTextDocumentProxy
+        state.keyboardContext.textInputProxy ?? originalTextDocumentProxy
     }
 
-    /// A custom text input proxy that can be set to replace
-    /// the ``textDocumentProxy``.
-    public var textInputProxy: UITextDocumentProxy? {
-        didSet { viewWillSyncWithContext() }
-    }
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use keyboard context instead.")
+    public var textInputProxy: UITextDocumentProxy?
 
 
     // MARK: - Keyboard Properties
@@ -223,7 +220,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open override func textWillChange(_ textInput: UITextInput?) {
         super.textWillChange(textInput)
         state.keyboardContext.syncTextDocumentProxy(with: self)
-        state.keyboardContext.syncTextInputProxy(with: self)
     }
     
     open override func textDidChange(_ textInput: UITextInput?) {

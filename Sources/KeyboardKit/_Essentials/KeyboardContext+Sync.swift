@@ -54,14 +54,6 @@ public extension KeyboardContext {
             self.originalTextDocumentProxy = controller.originalTextDocumentProxy
         }
     }
-
-    /// Sync the ``textInputProxy``.
-    func syncTextInputProxy(with controller: KeyboardInputViewController) {
-        if textInputProxy === controller.textInputProxy { return }
-        DispatchQueue.main.async {
-            self.textInputProxy = controller.textInputProxy
-        }
-    }
 }
 
 extension KeyboardContext {
@@ -69,7 +61,6 @@ extension KeyboardContext {
     /// Perform a sync after an async delay.
     func syncAfterAsync(with controller: KeyboardInputViewController) {
         syncTextDocumentProxy(with: controller)
-        syncTextInputProxy(with: controller)
 
         if hasDictationKey != controller.hasDictationKey {
             hasDictationKey = controller.hasDictationKey
