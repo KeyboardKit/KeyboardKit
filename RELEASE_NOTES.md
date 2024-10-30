@@ -24,7 +24,7 @@ Note that the legacy migrations will be removed in 9.1, so make sure that you al
 
 ## 9.0
 
-This version removes all deprecated code, simplifies many concepts, and prepares for future strict concurrency.
+This version upgrades the deployment targets to `iOS 15`, `macOS 12`, `tvOS 15`, `watchOS 8`, and `visionOS 1`, removes all deprecated code, and simplifies many concepts.
 
 This version has migration deprecations to help you transition from KeyboardKit 8.9. They will be removed in 9.1. 
 
