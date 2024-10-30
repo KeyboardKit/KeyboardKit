@@ -19,6 +19,7 @@
 "return" = "dychwelyd";
 "route" = "llwybr";
 "search" = "chwilio";
+"searchEmoji" = "Chwilio Emoji";
 "send" = "anfon";
 "space" = "gofod";
 "switcherAlphabetic" = "ABC";
@@ -27,7 +28,4 @@
 
 "searchEmoji" = "Sök emoji";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

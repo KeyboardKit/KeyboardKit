@@ -16,13 +16,11 @@
 "return" = "raddalâs";
 "route" = "sunde";
 "search" = "uusâ";
+"searchEmoji" = "Uccâ Emoji";
 "send" = "vuolgât";
 "space" = "koskâ";
 "switcherAlphabetic" = "ABC";
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

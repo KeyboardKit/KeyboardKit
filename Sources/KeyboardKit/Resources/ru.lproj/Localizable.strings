@@ -19,6 +19,7 @@
 "return" = "Ввод";
 "route" = "route";
 "search" = "Найти";
+"searchEmoji" = "Поиск Эмодзи";
 "send" = "Отправить";
 "space" = "Пробел";
 "switcherAlphabetic" = "АБВ";
@@ -27,7 +28,4 @@
 
 "searchEmoji" = "Найти эмодзи";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

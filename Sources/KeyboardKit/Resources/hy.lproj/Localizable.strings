@@ -19,6 +19,7 @@
 "return" = "վերադառնալ";
 "route" = "route";
 "search" = "որոնել";
+"searchEmoji" = "Որոնել Էմոձի";
 "send" = "ուղարկել";
 "space" = "բացատ";
 "switcherAlphabetic" = "ԱԲԳ";
@@ -27,7 +28,4 @@
 
 "searchEmoji" = "Որոնել էմոձի";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

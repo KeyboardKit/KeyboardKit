@@ -20,8 +20,8 @@ import SwiftUI
 /// and the ``KeyboardInputViewController/services`` service
 /// instances to customize it, you don't have to do anything.
 ///
-/// See the <doc:Essentials-Article> article for more information on
-/// how you can customize this and other system views.
+/// See the <doc:Essentials-Article> article for information
+/// on how to customize this and other views in this library.
 public struct KeyboardView<
     ButtonContent: View,
     ButtonView: View,
@@ -37,7 +37,7 @@ public struct KeyboardView<
     ///   - renderBackground: Whether to render the background.
     ///   - buttonContent: The content view to use for buttons.
     ///   - buttonView: The button view to use for an buttons.
-    ///   - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.
+    ///   - emojiKeyboard: The emoji keyboard to use.
     ///   - toolbar: The toolbar view to add above the keyboard.
     public init(
         layout: KeyboardLayout? = nil,

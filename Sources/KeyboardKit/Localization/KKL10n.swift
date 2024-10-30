@@ -28,6 +28,7 @@ public enum KKL10n: String, CaseIterable, Identifiable {
     case `return`
     case route
     case search
+    case searchEmoji
     case send
     case space
     case switcherAlphabetic

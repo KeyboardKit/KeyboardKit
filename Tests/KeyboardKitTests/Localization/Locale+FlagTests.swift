@@ -92,42 +92,8 @@ class Locale_FlagTests: XCTestCase {
             XCTAssertEqual(expected[$0], $0.flag)
         }
     }
-    
-    func testPrintHtmlForFlagGrid() throws {
-        var count = 0
-        var text = ""
-        print("")
-        print("************************")
-        print("*** Locale Flag Grid ***")
-        print("************************")
-        print("")
-        locales.forEach { locale in
-            count += 1
-            text += "\(locale.flag) "
-            if count == 10 {
-                printLine(text)
-                count = 0
-                text = ""
-            }
-        }
-        print(text)
-        print("")
-    }
 
-    func testPrintHtmlForFlagList() throws {
-        print("")
-        print("************************")
-        print("*** Locale Flag List ***")
-        print("************************")
-        print("")
-        locales.forEach { locale in
-            let name = locale.localizedName(in: .english) ?? ""
-            printLine("\(locale.flag) \(name)")
-        }
-        print("")
-    }
-
-    func testPrintHtmlForFlagBulletList() throws {
+    func testPrintFlagBulletList() throws {
         print("")
         print("************************")
         print("*** Locale Flag List ***")
@@ -140,19 +106,41 @@ class Locale_FlagTests: XCTestCase {
         print("")
     }
 
-    func testPrintHtmlForNameList() throws {
+    func testPrintFlagGridHtml() throws {
+        var count = 0
+        var text = ""
         print("")
         print("************************")
-        print("*** Locale Name List ***")
+        print("*** Locale Flag Grid ***")
         print("************************")
         print("")
         locales.forEach { locale in
-            printLine(locale.localizedName(in: .english))
+            count += 1
+            text += "\(locale.flag) "
+            if count == 10 {
+                printHtmlLine(text)
+                count = 0
+                text = ""
+            }
+        }
+        print(text)
+        print("")
+    }
+
+    func testPrintFlagListHtml() throws {
+        print("")
+        print("************************")
+        print("*** Locale Flag List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            let name = locale.localizedName(in: .english) ?? ""
+            printHtmlLine("\(locale.flag) \(name)")
         }
         print("")
     }
 
-    func testPrintHtmlForNameBulletList() throws {
+    func testPrintNameBulletList() throws {
         print("")
         print("************************")
         print("*** Locale Name List ***")
@@ -164,11 +152,36 @@ class Locale_FlagTests: XCTestCase {
         print("")
     }
 
+    func testPrintNameCommaList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        let string = locales
+            .compactMap { ($0.localizedName(in: .english) ?? "") + " (\($0.identifier))"}
+            .joined(separator: ", ")
+        print(string)
+        print("")
+    }
+
+    func testPrintNameListHtml() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            printHtmlLine(locale.localizedName(in: .english))
+        }
+        print("")
+    }
+
     func printBullet(_ string: String?) {
         print("<li>\(string ?? "")</li>")
     }
 
-    func printLine(_ string: String?) {
+    func printHtmlLine(_ string: String?) {
         print("\(string ?? "") <br />")
     }
 }
