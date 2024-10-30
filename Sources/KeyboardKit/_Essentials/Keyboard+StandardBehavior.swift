@@ -105,14 +105,14 @@ extension Keyboard {
             let type = keyboardContext.keyboardType
             guard type == .numeric || type == .symbolic else { return nil }
             guard gesture == .release else { return nil }
-            if action.isAlternateQuotationDelimiter(for: keyboardContext) { return .alphabetic }
+            if action.shouldSwitchToAlphabetic(for: keyboardContext) { return .alphabetic }
             #if os(iOS) || os(tvOS) || os(visionOS)
             guard let before = keyboardContext.textDocumentProxy.documentContextBeforeInput else { return nil }
             if action == .space && !before.hasSuffix("  ") { return .alphabetic }
             if action.isPrimaryAction && before.isLastSentenceEnded { return .alphabetic }
             return nil
             #else
-            nil
+            return nil
             #endif
         }
 
@@ -158,9 +158,9 @@ public extension Keyboard.StandardBehavior {
 
 private extension KeyboardAction {
     
-    func isAlternateQuotationDelimiter(for context: KeyboardContext) -> Bool {
+    func shouldSwitchToAlphabetic(for context: KeyboardContext) -> Bool {
         switch self {
-        case .character(let char): char.isAlternateQuotationDelimiter(for: context)
+        case .character(let char): char.shouldSwitchToAlphabetic(for: context)
         default: false
         }
     }
@@ -168,7 +168,10 @@ private extension KeyboardAction {
 
 private extension String {
     
-    func isAlternateQuotationDelimiter(for context: KeyboardContext) -> Bool {
+    func shouldSwitchToAlphabetic(
+        for context: KeyboardContext
+    ) -> Bool {
+        if self == "’" { return true }
         let locale = context.locale
         return self == locale.alternateQuotationBeginDelimiter || self == locale.alternateQuotationEndDelimiter
     }
