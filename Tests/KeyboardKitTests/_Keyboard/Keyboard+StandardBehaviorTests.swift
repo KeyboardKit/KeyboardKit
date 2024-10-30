@@ -135,7 +135,6 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
             proxy.documentContextBeforeInput = "Test "
             let should = type.isNumericOrSymbolic
             XCTAssertEqual(keyboardType(for: .press, on: .space), type)
-            let result = keyboardType(for: .release, on: .space)
             XCTAssertEqual(keyboardType(for: .release, on: .space), should ? .alphabetic : type)
         }
     }

@@ -21,7 +21,7 @@ class String_CharactersTests: XCTestCase {
 
     func testStringDefinesCharacterCollections() {
         let alphabeticSwitches = String.alphabeticAccentSwitches
-        XCTAssertEqual(alphabeticSwitches, "’’‘`".chars)
+        XCTAssertEqual(alphabeticSwitches, "’’’‘`".chars)
 
         let autoTriggers = String.autocorrectTriggers.joined()
         let autoTriggersPrefix = ".,:;!¡?¿{}<>«»"

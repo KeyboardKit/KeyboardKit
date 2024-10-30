@@ -134,7 +134,7 @@ private extension DemoToolbar {
     @ViewBuilder
     var textFieldIfFullAccess: some View {
         if keyboardContext.hasFullAccess {
-            KeyboardTextField(text: $text, controller: controller) {
+            KeyboardTextField(text: $text, keyboardContext: keyboardContext) {
                 $0.placeholder = "Type here..."
             }
             .frame(width: 150)

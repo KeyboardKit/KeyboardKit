@@ -29,7 +29,7 @@ public extension String {
 public extension String {
 
     /// A list of currently known alphabetic accent switches.
-    static let alphabeticAccentSwitches = "’’‘`"
+    static let alphabeticAccentSwitches = "’’’‘`"
         .chars
 
     /// A list of currently known autocorrect triggers.
