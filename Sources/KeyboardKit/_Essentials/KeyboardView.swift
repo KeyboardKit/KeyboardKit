@@ -126,14 +126,6 @@ public struct KeyboardView<
     private let buttonViewBuilder: ButtonViewBuilder
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
-
-    
-    /// This typealias defines a emoji keyboard builder.
-    public typealias EmojiKeyboardBuilder = (EmojiKeyboardParams) -> EmojiKeyboard
-    
-    /// This typealias defines a toolbar builder.
-    public typealias ToolbarBuilder = (ToolbarParams) -> Toolbar
-    
     
     private var actionCalloutStyle: Callouts.ActionCalloutStyle {
         var style = styleService.actionCalloutStyle
@@ -181,6 +173,35 @@ public struct KeyboardView<
         .actionCalloutStyle(actionCalloutStyle)
         .inputCalloutStyle(inputCalloutStyle)
     }
+}
+
+public extension KeyboardView {
+
+    /// This typealias defines an emoji keyboard builder.
+    typealias EmojiKeyboardBuilder = (EmojiKeyboardParams) -> EmojiKeyboard
+
+    /// This typealias defines emoji keyboard builder params.
+    typealias EmojiKeyboardParams = (
+        style: Emoji.KeyboardStyle,
+        view: StandardEmojiKeyboard)
+
+    /// This typealias defines a toolbar builder.
+    typealias ToolbarBuilder = (ToolbarParams) -> Toolbar
+
+    /// This typealias defines toolbar builder params.
+    typealias ToolbarParams = (
+        autocompleteAction: (Autocomplete.Suggestion) -> Void,
+        style: Autocomplete.ToolbarStyle,
+        view: StandardToolbarView)
+}
+
+public extension KeyboardView {
+
+    /// The standard emoji keyboard view.
+    typealias StandardEmojiKeyboard = Emoji.KeyboardWrapper
+
+    /// The standard toolbar view.
+    typealias StandardToolbarView = Autocomplete.Toolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
 }
 
 private extension KeyboardView {
@@ -232,7 +253,7 @@ private extension KeyboardView {
                 }
             }
             .padding(styleService.keyboardEdgeInsets)
-            .environment(\.layoutDirection, .leftToRight)
+            .environment(\.layoutDirection, .leftToRight)   // We enforce a certain layout direction due to the layout engine
         }
         .frame(height: layout.totalHeight)
     }
@@ -240,7 +261,7 @@ private extension KeyboardView {
     @ViewBuilder
     var emojiKeyboard: some View {
         emojiKeyboardContent
-            .id(keyboardContext.interfaceOrientation)           // TODO: Temp orientation fix
+            .id(keyboardContext.interfaceOrientation)       // TODO: Temp orientation fix, is still still needed?
     }
 
     @ViewBuilder
@@ -273,7 +294,8 @@ private extension KeyboardView {
     }
 
     var toolbar: some View {
-        toolbarBuilder((
+        let style = styleService.autocompleteToolbarStyle
+        return toolbarBuilder((
             autocompleteAction: actionHandler.handle(_:),
             style: styleService.autocompleteToolbarStyle,
             view: Autocomplete.Toolbar(
@@ -283,8 +305,8 @@ private extension KeyboardView {
                 suggestionAction: actionHandler.handle(_:)
             )
         ))
-        .autocompleteToolbarStyle(styleService.autocompleteToolbarStyle)
-        .frame(minHeight: styleService.autocompleteToolbarStyle.height)
+        .autocompleteToolbarStyle(style)
+        .frame(minHeight: style.height)
     }
 }
 

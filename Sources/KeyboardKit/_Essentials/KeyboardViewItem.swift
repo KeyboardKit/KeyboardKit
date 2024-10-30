@@ -13,10 +13,6 @@ import SwiftUI
 /// The reason why the ``KeyboardView`` doesn't just use the
 /// ``Keyboard/Button`` view, is that this view applies more
 /// insets and configurations to the content.
-///
-/// `TODO` KeyboardKit 9.0 should change ``KeyboardView`` to
-/// not use this view, but rather uses a ``Keyboard/Button``
-/// with the proper styles, insets, etc.
 public struct KeyboardViewItem<Content: View>: View {
 
     /// Create a keyboard view item.
