@@ -80,20 +80,9 @@ public extension View {
     }
 }
 
-private extension Autocomplete.ToolbarSeparatorStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: Autocomplete.ToolbarSeparatorStyle {
-            .standard
-        }
-    }
-}
-
 public extension EnvironmentValues {
 
-    var autocompleteToolbarSeparatorStyle: Autocomplete.ToolbarSeparatorStyle {
-        get { self [Autocomplete.ToolbarSeparatorStyle.Key.self] }
-        set { self [Autocomplete.ToolbarSeparatorStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Autocomplete/ToolbarSeparatorStyle``.
+    @Entry var autocompleteToolbarSeparatorStyle = Autocomplete
+        .ToolbarSeparatorStyle.standard
 }

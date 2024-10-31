@@ -132,20 +132,9 @@ public extension View {
     }
 }
 
-private extension Callouts.CalloutStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: Callouts.CalloutStyle {
-            .standard
-        }
-    }
-}
-
 public extension EnvironmentValues {
 
-    var calloutStyle: Callouts.CalloutStyle {
-        get { self [Callouts.CalloutStyle.Key.self] }
-        set { self [Callouts.CalloutStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Callouts/CalloutStyle``.
+    @Entry var calloutStyle = Callouts
+        .CalloutStyle.standard
 }

@@ -118,20 +118,9 @@ public extension View {
     }
 }
 
-private extension Autocomplete.ToolbarItemStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: Autocomplete.ToolbarItemStyle {
-            .standard
-        }
-    }
-}
-
 public extension EnvironmentValues {
 
-    var autocompleteToolbarItemStyle: Autocomplete.ToolbarItemStyle {
-        get { self [Autocomplete.ToolbarItemStyle.Key.self] }
-        set { self [Autocomplete.ToolbarItemStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Autocomplete/ToolbarItemStyle``.
+    @Entry var autocompleteToolbarItemStyle = Autocomplete
+        .ToolbarItemStyle.standard
 }

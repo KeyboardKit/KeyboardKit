@@ -193,24 +193,16 @@ public extension View {
     }
 }
 
-private extension Emoji.KeyboardStyle {
+public extension EnvironmentValues {
 
-    struct Key: EnvironmentKey {
-        static var defaultValue: Emoji.KeyboardStyle.Builder {
+    /// Apply a ``Emoji/KeyboardStyle`` builder.
+    @Entry var emojiKeyboardStyle: Emoji
+        .KeyboardStyle.Builder = {
             return { context in
                 if context.deviceTypeForKeyboard == .phone {
                     return .optimized(for: context)
                 }
                 return .standard(for: context)
             }
-        }
-    }
-}
-
-public extension EnvironmentValues {
-
-    var emojiKeyboardStyle: Emoji.KeyboardStyle.Builder {
-        get { self [Emoji.KeyboardStyle.Key.self] }
-        set { self [Emoji.KeyboardStyle.Key.self] = newValue }
-    }
+        }()
 }

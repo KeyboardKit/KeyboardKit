@@ -285,16 +285,6 @@ extension Keyboard.ButtonStyle {
     }()
 }
 
-public extension View {
-
-    /// Apply a ``Keyboard/ButtonStyle``.
-    func keyboardButtonStyle(
-        _ style: Keyboard.ButtonStyle
-    ) -> some View {
-        self.environment(\.keyboardButtonStyle, style)
-    }
-}
-
 private extension Keyboard.ButtonStyle {
 
     enum CodingKeys: String, CodingKey {
@@ -310,19 +300,21 @@ private extension Keyboard.ButtonStyle {
         shadowSize,
         pressedOverlayColor
     }
+}
 
-    struct Key: EnvironmentKey {
+public extension View {
 
-        public static var defaultValue: Keyboard.ButtonStyle {
-            .init(background: .color(.red))
-        }
+    /// Apply a ``Keyboard/ButtonStyle``.
+    func keyboardButtonStyle(
+        _ style: Keyboard.ButtonStyle
+    ) -> some View {
+        self.environment(\.keyboardButtonStyle, style)
     }
 }
 
 public extension EnvironmentValues {
 
-    var keyboardButtonStyle: Keyboard.ButtonStyle {
-        get { self [Keyboard.ButtonStyle.Key.self] }
-        set { self [Keyboard.ButtonStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Keyboard/ButtonStyle``.
+    @Entry var keyboardButtonStyle = Keyboard
+        .ButtonStyle(background: .color(.red))
 }

@@ -120,20 +120,9 @@ public extension View {
     }
 }
 
-private extension KeyboardStatus.LabelStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: KeyboardStatus.LabelStyle {
-            .standard
-        }
-    }
-}
-
 public extension EnvironmentValues {
 
-    var keyboardStatusLabelStyle: KeyboardStatus.LabelStyle {
-        get { self [KeyboardStatus.LabelStyle.Key.self] }
-        set { self [KeyboardStatus.LabelStyle.Key.self] = newValue }
-    }
+    /// Apply a ``KeyboardStatus/LabelStyle``.
+    @Entry var keyboardStatusLabelStyle = KeyboardStatus
+        .LabelStyle.standard
 }

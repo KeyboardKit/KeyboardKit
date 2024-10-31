@@ -93,20 +93,9 @@ public extension View {
     }
 }
 
-private extension Callouts.ActionCalloutStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: Callouts.ActionCalloutStyle {
-            .standard
-        }
-    }
-}
-
 public extension EnvironmentValues {
 
-    var actionCalloutStyle: Callouts.ActionCalloutStyle {
-        get { self [Callouts.ActionCalloutStyle.Key.self] }
-        set { self [Callouts.ActionCalloutStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Callouts/ActionCalloutStyle``.
+    @Entry var actionCalloutStyle = Callouts
+        .ActionCalloutStyle.standard
 }

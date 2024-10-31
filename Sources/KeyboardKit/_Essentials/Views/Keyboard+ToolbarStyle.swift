@@ -53,20 +53,9 @@ public extension View {
     }
 }
 
-private extension Keyboard.ToolbarStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: Keyboard.ToolbarStyle {
-            .standard
-        }
-    }
-}
-
 public extension EnvironmentValues {
 
-    var keyboardToolbarStyle: Keyboard.ToolbarStyle {
-        get { self [Keyboard.ToolbarStyle.Key.self] }
-        set { self [Keyboard.ToolbarStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Keyboard/ToolbarStyle``.
+    @Entry var keyboardToolbarStyle = Keyboard
+        .ToolbarStyle.standard
 }

@@ -68,20 +68,9 @@ public extension View {
     }
 }
 
-private extension Callouts.InputCalloutStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: Callouts.InputCalloutStyle {
-            .standard
-        }
-    }
-}
-
 public extension EnvironmentValues {
 
-    var inputCalloutStyle: Callouts.InputCalloutStyle {
-        get { self [Callouts.InputCalloutStyle.Key.self] }
-        set { self [Callouts.InputCalloutStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Callouts/InputCalloutStyle``.
+    @Entry var inputCalloutStyle = Callouts
+        .InputCalloutStyle.standard
 }
