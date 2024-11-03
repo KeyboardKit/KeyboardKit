@@ -116,17 +116,10 @@ public struct KeyboardView<
         _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
         _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
 
-        self.actionCalloutStyle = {
-            var style = styleService.actionCalloutStyle
+        self.calloutStyle = {
+            var style = styleService.calloutStyle
             let insets = layoutConfig.buttonInsets
-            style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
-            return style
-        }()
-
-        self.inputCalloutStyle = {
-            var style = styleService.inputCalloutStyle
-            let insets = layoutConfig.buttonInsets
-            style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
+            style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
             return style
         }()
     }
@@ -143,8 +136,7 @@ public struct KeyboardView<
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
     
-    private var actionCalloutStyle: Callouts.ActionCalloutStyle
-    private var inputCalloutStyle: Callouts.InputCalloutStyle
+    private var calloutStyle: Callouts.CalloutStyle
 
     @ObservedObject
     private var autocompleteContext: AutocompleteContext
@@ -175,8 +167,7 @@ public struct KeyboardView<
             calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
-        .actionCalloutStyle(actionCalloutStyle)
-        .inputCalloutStyle(inputCalloutStyle)
+        .calloutStyle(calloutStyle)
     }
 }
 

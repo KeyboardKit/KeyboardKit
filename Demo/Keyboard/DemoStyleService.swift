@@ -63,7 +63,7 @@ class DemoStyleService: KeyboardStyle.StandardService {
 //    override var inputCalloutStyle: Callouts.InputCalloutStyle {
 //        var style = super.inputCalloutStyle
 //        style.callout.backgroundColor = .blue
-//        style.callout.textColor = .yellow
+//        style.callout.foregroundColor = .yellow
 //        return style
 //    }
 }

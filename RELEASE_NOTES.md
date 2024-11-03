@@ -26,7 +26,9 @@ Note that the legacy migrations will be removed in 9.1, so make sure that you al
 
 This version upgrades the deployment targets to `iOS 15`, `macOS 12`, `tvOS 15`, `watchOS 8`, and `visionOS 1`, removes all deprecated code, and simplifies many concepts.
 
-This version has migration deprecations to help you transition from KeyboardKit 8.9. They will be removed in 9.1. 
+This version has migration deprecations to help you transition from KeyboardKit 8. Just follow the instructions to migrate your code if needed. They will be removed in 9.1.
+
+You may still run into a few breaking changes, where migrations were not possible due to architectural changes. For such breaking changes, see the changes & comments below.
 
 ### 🧪 Experiments
 
@@ -57,6 +59,14 @@ The `Autocomplete.Suggestion` type implements `Codable` and `Equatable`. This re
 The `Autocomplete.Toolbar` now lets you define custom views with builder params. The standard views are polished to look more native.
 
 The `KeyboardInputController` now ignores if the keyboard type prefers autocomplete and instead disables autocorrections for system suggestions.
+
+### 🗯️ Callouts
+
+The `Callout` namespace has been simplified to only use a single style and a single context that handles both input and action callouts.
+
+Most changes have migration deprecations, except the `.actionCalloutStyle` and `.inputCalloutStyle` modifiers which now takes a base style.
+
+This is also true for the `KeyboardStyleService`, which returns the base style as well. These are breaking changes if you used these styles.
 
 ### 🎤 Dictation
 
@@ -115,6 +125,7 @@ Some things that are not covered by migration deprecations are:
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
 * The dictation changes can't be migrated since the new services replace the old ones.
-* The `Autocomplete.LocalService` now requires a keyboard context for contextual info`
+* The `Autocomplete.LocalService` now requires a keyboard context for contextual info.
 * The `KeyboardLayout` is now a struct, and must now be a `var` for you to customize it.
-* The `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.`
+* The `KeyboardStyleService` and callout style view modifiers now only use the base style.
+* The `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.

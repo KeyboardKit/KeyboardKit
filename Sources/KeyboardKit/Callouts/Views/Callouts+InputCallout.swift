@@ -30,7 +30,6 @@ public extension Callouts {
         }
         
         public typealias Context = CalloutContext.InputContext
-        private typealias Style = Callouts.InputCalloutStyle
 
         @ObservedObject
         private var calloutContext: Context
@@ -38,14 +37,14 @@ public extension Callouts {
         @ObservedObject
         private var keyboardContext: KeyboardContext
         
-        @Environment(\.inputCalloutStyle)
+        @Environment(\.calloutStyle)
         private var style
 
         public var body: some View {
             callout
                 .transition(.opacity)
                 .opacity(calloutContext.isActive ? 1 : 0)
-                .keyboardCalloutShadow(style: style.callout)
+                .keyboardCalloutShadow(style: style)
                 .position(position)
                 .allowsHitTesting(false)
         }
@@ -64,16 +63,16 @@ private extension Callouts.InputCallout {
 
     var calloutBubble: some View {
         Text(calloutContext.input ?? "")
-            .font(style.font.font)
+            .font(style.inputItemFont.font)
             .frame(minWidth: calloutSize.width, minHeight: calloutSize.height)
-            .foregroundColor(style.callout.textColor)
-            .background(style.callout.backgroundColor)
+            .foregroundColor(style.foregroundColor)
+            .background(style.backgroundColor)
             .cornerRadius(cornerRadius)
     }
     
     var calloutButton: some View {
         ButtonArea(frame: buttonFrame)
-            .calloutStyle(style.callout)
+            .calloutStyle(style)
     }
 }
 
@@ -86,7 +85,7 @@ private extension Callouts.InputCallout {
     }
     
     var buttonInset: CGSize {
-        style.callout.buttonInset
+        style.buttonOverlayInset
     }
     
     var buttonSize: CGSize {
@@ -102,16 +101,18 @@ private extension Callouts.InputCallout {
     
     var calloutSizeHeight: CGFloat {
         let smallSize = buttonSize.height
-        return shouldEnforceSmallSize ? smallSize : style.calloutSize.height
+        let calloutSize = style.inputItemMinSize
+        return shouldEnforceSmallSize ? smallSize : calloutSize.height
     }
     
     var calloutSizeWidth: CGFloat {
-        let minSize = buttonSize.width + 2 * style.callout.curveSize.width + style.callout.cornerRadius
-        return max(style.calloutSize.width, minSize)
+        let minSize = buttonSize.width + 2 * style.curveSize.width + style.cornerRadius
+        let calloutSize = style.inputItemMinSize
+        return max(calloutSize.width, minSize)
     }
     
     var cornerRadius: CGFloat {
-        shouldEnforceSmallSize ? style.callout.buttonCornerRadius : style.callout.cornerRadius
+        shouldEnforceSmallSize ? style.buttonOverlayCornerRadius : style.cornerRadius
     }
 }
 
@@ -144,14 +145,6 @@ private extension Callouts.InputCallout {
 #Preview {
 
     struct Preview: View {
-
-        var style: Callouts.InputCalloutStyle {
-            var style = Callouts.InputCalloutStyle.standard
-            style.callout.backgroundColor = .blue
-            style.callout.textColor = .white
-            style.callout.buttonInset = CGSize(width: 3, height: 3)
-            return style
-        }
 
         @StateObject
         var context = CalloutContext.InputContext(isEnabled: true)
@@ -197,8 +190,9 @@ private extension Callouts.InputCallout {
     }
 
     return Preview()
-        .inputCalloutStyle(.init(
-            callout: .init(backgroundColor: .red)
+        .calloutStyle(.init(
+            backgroundColor: .blue,
+            foregroundColor: .yellow
         ))
 }
 #endif

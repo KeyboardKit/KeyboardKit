@@ -10,10 +10,8 @@ import SwiftUI
 
 public extension Callouts {
     
-    /// This callout can show secondary actions in a callout.
-    ///
-    /// In iOS, this callout is presented when a button with
-    /// secondary actions is long pressed.
+    /// This callout can show secondary callout actions when
+    /// a user long presser certain input keys.
     struct ActionCallout: View {
         
         /// Create an action callout.
@@ -30,7 +28,6 @@ public extension Callouts {
         }
         
         public typealias Context = CalloutContext.ActionContext
-        private typealias Style = Callouts.ActionCalloutStyle
 
         @ObservedObject
         private var calloutContext: Context
@@ -41,7 +38,7 @@ public extension Callouts {
         @Environment(\.emojiKeyboardStyle)
         private var emojiStyle: Emoji.KeyboardStyle.Builder
 
-        @Environment(\.actionCalloutStyle)
+        @Environment(\.calloutStyle)
         private var style
 
         public var body: some View {
@@ -52,12 +49,12 @@ public extension Callouts {
                 }
             }
             .buttonStyle(.plain)
-            .font(style.font.font)
+            .font(style.actionItemFont.font)
             .compositingGroup()
             .opacity(calloutContext.isActive ? 1 : 0)
-            .keyboardCalloutShadow(style: calloutStyle)
+            .keyboardCalloutShadow(style: style)
             .position(x: positionX, y: positionY)
-            .offset(y: style.verticalOffset ?? style.standardVerticalOffset(for: keyboardContext.deviceTypeForKeyboard))
+            .offset(y: style.offset?.y ?? style.standardVerticalOffset(for: keyboardContext.deviceTypeForKeyboard))
         }
     }
 }
@@ -67,7 +64,7 @@ public extension Callouts {
 
 private extension Callouts.ActionCallout {
     
-    var backgroundColor: Color { calloutStyle.backgroundColor }
+    var backgroundColor: Color { style.backgroundColor }
 
     var buttonFrame: CGRect { isEmojiCallout ? buttonFrameForEmojis : buttonFrameForCharacters }
     
@@ -77,23 +74,21 @@ private extension Callouts.ActionCallout {
     
     var buttonFrameForEmojis: CGRect { calloutContext.buttonFrame }
     
-    var buttonInset: CGSize { calloutStyle.buttonInset }
-    
+    var buttonInset: CGSize { style.buttonOverlayInset }
+
     var calloutActions: [KeyboardAction] { calloutContext.actions }
     
     var calloutButtonSize: CGSize {
         let frameSize = buttonFrame.size
         let widthScale = (calloutActions.count == 1) ? 1.2 : 1
         let buttonSize = CGSize(width: frameSize.width * widthScale, height: frameSize.height)
-        return buttonSize.limited(to: style.maxButtonSize)
+        return buttonSize.limited(to: style.actionItemMaxSize)
     }
     
-    var calloutStyle: Callouts.CalloutStyle { style.callout }
-    
-    var cornerRadius: CGFloat { calloutStyle.cornerRadius }
-    
-    var curveSize: CGSize { calloutStyle.curveSize }
-    
+    var cornerRadius: CGFloat { style.cornerRadius }
+
+    var curveSize: CGSize { style.curveSize }
+
     var isLeading: Bool { calloutContext.isLeading }
     
     var isTrailing: Bool { calloutContext.isTrailing }
@@ -101,7 +96,6 @@ private extension Callouts.ActionCallout {
     var buttonArea: some View {
         ButtonArea(frame: buttonFrame)
             .opacity(isPad ? 0 : 1)
-            .calloutStyle(calloutStyle)
             .rotation3DEffect(isTrailing ? .degrees(180) : .zero, axis: (x: 0.0, y: 1.0, z: 0.0))
     }
     
@@ -111,9 +105,10 @@ private extension Callouts.ActionCallout {
                 calloutView(for: $0.element)
                     .frame(width: calloutButtonSize.width, height: calloutButtonSize.height)
                     .background(isSelected($0.offset) ? style.selectedBackgroundColor : .clear)
-                    .foregroundColor(isSelected($0.offset) ? style.selectedForegroundColor : style.callout.textColor)
+                    .foregroundColor(isSelected($0.offset) ? style.selectedForegroundColor : style.foregroundColor)
                     .cornerRadius(cornerRadius)
-                    .padding(.vertical, style.verticalTextPadding)
+                    .padding(.horizontal, style.actionItemPadding.width)
+                    .padding(.vertical, style.actionItemPadding.height)
             }
         }
         .padding(.horizontal, curveSize.width)
@@ -170,7 +165,7 @@ private extension Callouts.ActionCallout {
     }
     
     var positionY: CGFloat {
-        buttonFrame.origin.y - style.verticalTextPadding
+        buttonFrame.origin.y - style.actionItemPadding.height
     }
 }
 
@@ -241,18 +236,18 @@ private extension KeyboardAction {
         Color.red
         VStack(spacing: 100) {
             previewGroup(
-                view: Color.red.frame(width: 40, height: 50),
+                view: Color.blue.frame(width: 40, height: 50),
                 actionContext: actionContext1,
                 alignment: .leading
             )
             previewGroup(
-                view: Color.yellow.frame(width: 40, height: 50),
+                view: Color.blue.frame(width: 40, height: 50),
                 actionContext: actionContext2,
                 alignment: .trailing
             )
         }
     }
-    .actionCalloutStyle(.init(
+    .calloutStyle(.init(
         // callout: .preview2,
         selectedBackgroundColor: .purple
     ))

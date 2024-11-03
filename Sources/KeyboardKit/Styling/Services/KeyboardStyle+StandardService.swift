@@ -167,21 +167,21 @@ extension KeyboardStyle {
         open var calloutStyle: Callouts.CalloutStyle {
             var style = Callouts.CalloutStyle.standard
             let button = buttonStyle(for: .character(""), isPressed: false)
-            style.buttonCornerRadius = button.cornerRadius ?? 5
+            style.buttonOverlayCornerRadius = button.cornerRadius ?? 5
             return style
         }
         
-        /// The style to use on ``Callouts/ActionCallout`` views.
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
         open var actionCalloutStyle: Callouts.ActionCalloutStyle {
             var style = Callouts.ActionCalloutStyle.standard
-            style.callout = calloutStyle
+            style.callout.buttonOverlayCornerRadius = calloutStyle.buttonOverlayCornerRadius
             return style
         }
-        
-        /// The style to use on ``Callouts/InputCallout`` views.
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
         open var inputCalloutStyle: Callouts.InputCalloutStyle {
             var style = Callouts.InputCalloutStyle.standard
-            style.callout = calloutStyle
+            style.callout.buttonOverlayCornerRadius = calloutStyle.buttonOverlayCornerRadius
             return style
         }
         

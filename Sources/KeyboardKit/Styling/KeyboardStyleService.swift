@@ -60,10 +60,13 @@ public protocol KeyboardStyleService: AnyObject {
 
     // MARK: - Callouts
 
-    /// The style to use on ``Callouts/ActionCallout`` views.
+    /// The callout style to use.
+    var calloutStyle: Callouts.CalloutStyle { get }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
     var actionCalloutStyle: Callouts.ActionCalloutStyle { get }
-    
-    /// The style to use on ``Callouts/InputCallout`` views.
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
     var inputCalloutStyle: Callouts.InputCalloutStyle { get }
 
 

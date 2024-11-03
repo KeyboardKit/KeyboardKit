@@ -44,7 +44,7 @@ public extension Callouts.ActionCallout {
 private extension Callouts.ActionCallout.ButtonArea {
     
     var backgroundColor: Color { style.backgroundColor }
-    var cornerRadius: CGFloat { style.buttonCornerRadius }
+    var cornerRadius: CGFloat { style.buttonOverlayCornerRadius }
     var curveSize: CGSize { style.curveSize }
     
     var buttonBody: some View {
@@ -104,7 +104,7 @@ private extension Callouts.ActionCallout.ButtonArea {
 }
 
 #Preview {
-    
+
     VStack(alignment: .leading, spacing: 0) {
         RoundedRectangle(cornerRadius: 10)
             .fill(.white)
@@ -115,7 +115,7 @@ private extension Callouts.ActionCallout.ButtonArea {
     }
     
     .padding(30)
-    .background(Color.gray)
+    .background(Color.keyboardBackground)
     .cornerRadius(20)
-    .calloutStyle(.preview1)
+    .calloutStyle(.standard)
 }

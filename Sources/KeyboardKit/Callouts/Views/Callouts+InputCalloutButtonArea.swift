@@ -44,7 +44,7 @@ public extension Callouts.InputCallout {
 private extension Callouts.InputCallout.ButtonArea {
     
     var backgroundColor: Color { style.backgroundColor }
-    var cornerRadius: CGFloat { style.buttonCornerRadius }
+    var cornerRadius: CGFloat { style.buttonOverlayCornerRadius }
     var curveSize: CGSize { style.curveSize }
     
     var buttonBody: some View {
