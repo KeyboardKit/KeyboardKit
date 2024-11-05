@@ -9,16 +9,12 @@
 import Combine
 import SwiftUI
 
-/// This class has observable, callout-related state.
-///
-/// The ``inputContext`` property is used for input callouts,
-/// and ``actionContext`` for action callouts. This class is
-/// used to have a single way to access both states.
+/// This context has observable callout-related state and is
+/// used for both input and action callouts.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value
-/// into the view hierarchy. 
+/// it as global state and inject it as an environment value.
 public class CalloutContext: ObservableObject {
 
     /// Create a callout context, with separate contexts for
@@ -27,28 +23,191 @@ public class CalloutContext: ObservableObject {
     /// - Parameters:
     ///   - actionContext: The action context to use.
     ///   - inputContext: The input context to use.
-    public init(
-        actionContext: ActionContext,
-        inputContext: InputContext
-    ) {
-        self.actionContext = actionContext
-        self.inputContext = inputContext
-    }
+    public init() {}
 
-    /// The action context that is bound to the context.
-    public var actionContext: ActionContext
 
-    /// The input context that is bound to the context.
-    public var inputContext: InputContext
+    /// The coordinate space to use for callout.
+    public let coordinateSpace = "com.keyboardkit.coordinate.callout"
+
+
+    /// The callout service to use, if any.
+    public var calloutService: CalloutService?
+
+    /// The last time an input was updated.
+    public var lastInputUpdate = Date()
+
+    /// The minimum input callout duration.
+    public var minimumInputDuration: TimeInterval = 0.05
+
+    /// The action handler to use when tapping actions.
+    public var actionHandler: (KeyboardAction) -> Void = { _ in }
+
+
+    /// The currently active button frame.
+    @Published
+    public private(set) var buttonFrame: CGRect = .zero
+
+    /// The current input action, if any.
+    @Published
+    public private(set) var inputAction: KeyboardAction?
+
+    /// The current secondary actions.
+    @Published
+    public private(set) var secondaryActions: [KeyboardAction] = []
+
+    /// The current secondary action callout alignment.
+    @Published
+    public private(set) var secondaryActionsAlignment: HorizontalAlignment = .leading
+
+    /// The current secondary action index.
+    @Published
+    public private(set) var secondaryActionsIndex: Int = -1
+
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
+    public var actionContext: ActionContext = .disabled
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
+    public var inputContext: InputContext = .disabled
 }
 
 public extension CalloutContext {
 
-    /// This context can be used to disable callouts.
+    var selectedSecondaryAction: KeyboardAction? {
+        let index = secondaryActionsIndex
+        return isSecondaryActionIndexValid(index) ? secondaryActions[index] : nil
+    }
+
+    @discardableResult
+    func handleSelectedSecondaryAction() -> Bool {
+        guard let action = selectedSecondaryAction else { return false }
+        actionHandler(action)
+        resetSecondaryActions()
+        return true
+    }
+
+    /// Reset the input action. This will remove the callout.
+    func resetInputAction() {
+        inputAction = nil
+    }
+
+    /// Reset the context with a slight delay.
+    func resetInputActionWithDelay() {
+        let delay = minimumInputDuration
+        let date = Date()
+        lastInputUpdate = date
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+            if self.lastInputUpdate > date { return }
+            self.resetInputAction()
+        }
+    }
+
+    /// Reset the context. This will dismiss the callout.
+    func resetSecondaryActions() {
+        secondaryActions = []
+        secondaryActionsIndex = -1
+    }
+
+    /// Update the current input for a certain action.
+    func updateInputAction(
+        _ action: KeyboardAction?,
+        in geo: GeometryProxy
+    ) {
+        lastInputUpdate = Date()
+        inputAction = action
+        buttonFrame = geo.frame(in: .named(coordinateSpace))
+    }
+
+    /// Update the secondary actions for a certain action.
+    func updateSecondaryActions(
+        for action: KeyboardAction?,
+        in geo: GeometryProxy,
+        alignment: HorizontalAlignment? = nil
+    ) {
+        guard let action = action else { return resetSecondaryActions() }
+        guard let actions = calloutService?.calloutActions(for: action) else { return }
+        buttonFrame = geo.frame(in: .named(coordinateSpace))
+        secondaryActionsAlignment = alignment ?? resolveSecondaryActionAlignment(for: geo)
+        secondaryActions = isLeading ? actions : actions.reversed()
+        secondaryActionsIndex = secondaryActionStartIndex
+        guard !secondaryActions.isEmpty else { return }
+        triggerSelectionChangeFeedback()
+    }
+
+    /// Update the secondary action selection.
+    func updateSecondaryActionsSelection(
+        with dragTranslation: CGSize?
+    ) {
+        guard let value = dragTranslation, buttonFrame != .zero else { return }
+        if shouldResetSecondaryActions(for: value) { return resetSecondaryActions() }
+        guard shouldUpdateSecondaryActionSelection(for: value) else { return }
+        let translation = value.width
+        let maxSize = Callouts.CalloutStyle.standard.actionItemMaxSize
+        let buttonSize = buttonFrame.size.limited(to: maxSize)
+        let indexWidth = 0.9 * buttonSize.width
+        let offset = Int(abs(translation) / indexWidth)
+        let index = isLeading ? offset : secondaryActions.count - offset - 1
+        let currentIndex = secondaryActionsIndex
+        let newIndex = isSecondaryActionIndexValid(index) ? index : secondaryActionStartIndex
+        if currentIndex != newIndex { triggerSelectionChangeFeedback() }
+        secondaryActionsIndex = newIndex
+    }
+}
+
+extension CalloutContext {
+
+    func triggerSelectionChangeFeedback() {
+        calloutService?.triggerFeedbackForSelectionChange()
+    }
+}
+
+private extension CalloutContext {
+
+    var isLeading: Bool {
+        secondaryActionsAlignment == .leading
+    }
+
+    var secondaryActionStartIndex: Int {
+        isLeading ? 0 : secondaryActions.count - 1
+    }
+
+    func isSecondaryActionIndexValid(
+        _ index: Int
+    ) -> Bool {
+        index >= 0 && index < secondaryActions.count
+    }
+
+    func resolveSecondaryActionAlignment(
+        for geo: GeometryProxy
+    ) -> HorizontalAlignment {
+        #if os(iOS)
+        let center = UIScreen.main.bounds.size.width / 2
+        let isTrailing = buttonFrame.origin.x > center
+        return isTrailing ? .trailing : .leading
+        #else
+        return .leading
+        #endif
+    }
+
+    func shouldResetSecondaryActions(
+        for dragTranslation: CGSize
+    ) -> Bool {
+        dragTranslation.height > buttonFrame.height
+    }
+
+    func shouldUpdateSecondaryActionSelection(
+        for dragTranslation: CGSize
+    ) -> Bool {
+        let translation = dragTranslation.width
+        if translation == 0 { return true }
+        return isLeading ? translation > 0 : translation < 0
+    }
+}
+
+public extension CalloutContext {
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
     static var disabled: CalloutContext {
-        .init(
-            actionContext: .disabled,
-            inputContext: .disabled
-        )
+        .init()
     }
 }

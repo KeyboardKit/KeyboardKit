@@ -9,16 +9,11 @@
 import Combine
 import SwiftUI
 
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use CalloutContext instead.")
 public extension CalloutContext {
 
-    /// This class has observable action callout state.
     class ActionContext: ObservableObject {
 
-        /// Create an action callout context instance.
-        ///
-        /// - Parameters:
-        ///   - service: The action service to use, if any.
-        ///   - tapAction: The action to perform when tapping an action.
         public init(
             service: CalloutService?,
             tapAction: @escaping (KeyboardAction) -> Void
@@ -27,58 +22,42 @@ public extension CalloutContext {
             self.tapAction = tapAction
         }
 
-
-        /// The coordinate space to use for callout.
         public let coordinateSpace = "com.keyboardkit.coordinate.ActionCallout"
 
-        /// The service to use for resolving callout actions.
         public var service: CalloutService?
 
-        /// The action handler to use when tapping buttons.
         public var tapAction: (KeyboardAction) -> Void
 
-
-        /// The currently active actions.
         @Published
         public private(set) var actions: [KeyboardAction] = []
 
-        /// The callout bubble alignment.
         @Published
         public private(set) var alignment: HorizontalAlignment = .leading
 
-        /// The frame of the currently pressed button.
         @Published
         public private(set) var buttonFrame: CGRect = .zero
 
-        /// The currently selected action index.
         @Published
         public private(set) var selectedIndex: Int = -1
     }
 }
 
 
-// MARK: - Public functionality
-
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use CalloutContext instead.")
 public extension CalloutContext.ActionContext {
 
-    /// Whether or not the context has a selected action.
     var hasSelectedAction: Bool { selectedAction != nil }
 
-    /// Whether or not the context currently has actions.
     var isActive: Bool { !actions.isEmpty }
 
-    /// Whether or not the action callout is leading.
     var isLeading: Bool { !isTrailing }
 
-    /// Whether or not the action callout is trailing.
     var isTrailing: Bool { alignment == .trailing }
 
-    /// The currently selected callout action, if any.
     var selectedAction: KeyboardAction? {
         isIndexValid(selectedIndex) ? actions[selectedIndex] : nil
     }
 
-    /// Handle the currently selected action, if any.
     @discardableResult
     func handleSelectedAction() -> Bool {
         guard let action = selectedAction else { return false }
@@ -87,19 +66,16 @@ public extension CalloutContext.ActionContext {
         return true
     }
 
-    /// Reset the context. This will dismiss the callout.
     func reset() {
         actions = []
         selectedIndex = -1
         buttonFrame = .zero
     }
 
-    /// Trigger haptic feedback for selection change.
     func triggerHapticFeedbackForSelectionChange() {
         service?.triggerFeedbackForSelectionChange()
     }
 
-    /// Update the input actions for a certain action.
     func updateInputs(for action: KeyboardAction?, in geo: GeometryProxy, alignment: HorizontalAlignment? = nil) {
         guard let action = action else { return reset() }
         guard let actions = service?.calloutActions(for: action) else { return }
@@ -111,7 +87,6 @@ public extension CalloutContext.ActionContext {
         triggerHapticFeedbackForSelectionChange()
     }
 
-    /// Update the selected action for aw drag gesture.
     func updateSelection(with dragTranslation: CGSize?) {
         guard let value = dragTranslation, buttonFrame != .zero else { return }
         if shouldReset(for: value) { return reset() }
@@ -130,22 +105,25 @@ public extension CalloutContext.ActionContext {
 }
 
 
-// MARK: - Context builders
-
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use CalloutContext instead.")
 public extension CalloutContext.ActionContext {
 
-    /// This context can be used to disable action callouts.
     static var disabled: CalloutContext.ActionContext {
         .init(
             service: nil,
             tapAction: { _ in }
         )
     }
+
+    static var preview: CalloutContext.ActionContext {
+        CalloutContext.ActionContext(
+            service: .preview,
+            tapAction: { _ in }
+        )
+    }
 }
 
-
-// MARK: - Private functionality
-
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use CalloutContext instead.")
 private extension CalloutContext.ActionContext {
 
     var startIndex: Int {

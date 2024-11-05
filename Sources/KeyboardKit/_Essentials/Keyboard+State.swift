@@ -27,9 +27,7 @@ public extension Keyboard {
         public lazy var autocompleteContext = AutocompleteContext()
         
         /// The callout context to use.
-        public lazy var calloutContext = CalloutContext(
-            actionContext: .disabled,
-            inputContext: .disabled)
+        public lazy var calloutContext = CalloutContext()
         
         /// The dictation context to use.
         public lazy var dictationContext = DictationContext()
@@ -58,12 +56,10 @@ public extension Keyboard.State {
 
     // Setup the state instance for the provided controller.
     func setup(for controller: KeyboardInputViewController) {
-        let isPhone = UIDevice.current.userInterfaceIdiom == .phone
         let keyboardType = controller.originalTextDocumentProxy.keyboardType
         keyboardContext.sync(with: controller)
         keyboardContext.keyboardCase = .auto
         keyboardContext.keyboardType = keyboardType?.keyboardType ?? .alphabetic
-        calloutContext.inputContext.isEnabled = isPhone
     }
 }
 #endif

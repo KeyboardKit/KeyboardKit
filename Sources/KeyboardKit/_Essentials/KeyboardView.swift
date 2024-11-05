@@ -89,7 +89,7 @@ public struct KeyboardView<
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
-        calloutContext: CalloutContext?,
+        calloutContext: CalloutContext,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
@@ -112,9 +112,9 @@ public struct KeyboardView<
         self.emojiKeyboardBuilder = emojiKeyboard
         self.toolbarBuilder = toolbar
 
-        _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
-        _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
-        _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+        _autocompleteContext = .init(wrappedValue: autocompleteContext)
+        _calloutContext = .init(wrappedValue: calloutContext)
+        _keyboardContext = .init(wrappedValue: keyboardContext)
 
         self.calloutStyle = {
             var style = styleService.calloutStyle

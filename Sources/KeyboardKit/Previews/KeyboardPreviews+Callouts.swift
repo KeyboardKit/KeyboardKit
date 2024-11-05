@@ -11,29 +11,7 @@ import Foundation
 public extension CalloutContext {
 
     static var preview: CalloutContext {
-        CalloutContext(
-            actionContext: .preview,
-            inputContext: .preview
-        )
-    }
-}
-
-public extension CalloutContext.ActionContext {
-
-    static var preview: CalloutContext.ActionContext {
-        CalloutContext.ActionContext(
-            service: .preview,
-            tapAction: { _ in }
-        )
-    }
-}
-
-public extension CalloutContext.InputContext {
-    
-    static var preview: CalloutContext.InputContext {
-        CalloutContext.InputContext(
-            isEnabled: true
-        )
+        CalloutContext()
     }
 }
 

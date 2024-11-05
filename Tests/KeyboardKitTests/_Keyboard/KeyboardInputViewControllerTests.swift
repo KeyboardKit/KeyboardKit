@@ -105,9 +105,9 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testObservablePropertiesHaveStandardValuesByDefault() {
         let vc = TestClass()
         eventually {
-            XCTAssertEqual(vc.state.calloutContext.actionContext.buttonFrame, .zero)
+            XCTAssertEqual(vc.state.calloutContext.buttonFrame, .zero)
             XCTAssertTrue(vc.state.autocompleteContext.suggestions.isEmpty)
-            XCTAssertEqual(vc.state.calloutContext.inputContext.buttonFrame, .zero)
+            XCTAssertEqual(vc.state.calloutContext.buttonFrame, .zero)
             XCTAssertFalse(vc.state.keyboardContext.hasFullAccess)
             XCTAssertEqual(vc.state.keyboardContext.keyboardType, .alphabetic)
             XCTAssertFalse(vc.state.keyboardContext.needsInputModeSwitchKey)
@@ -132,15 +132,15 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForKeyboardActionHandler() {
         let vc = TestClass()
         vc.services.actionHandler = .preview
-        let actionContext = vc.state.calloutContext.actionContext
-        XCTAssertTrue(actionContext.service === vc.services.calloutService)
+        let actionContext = vc.state.calloutContext
+        XCTAssertTrue(actionContext.calloutService === vc.services.calloutService)
     }
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForCalloutService() {
         let vc = TestClass()
         vc.services.calloutService = Callouts.StandardService(keyboardContext: .preview)
-        let actionContext = vc.state.calloutContext.actionContext
-        XCTAssertTrue(actionContext.service === vc.services.calloutService)
+        let actionContext = vc.state.calloutContext
+        XCTAssertTrue(actionContext.calloutService === vc.services.calloutService)
     }
 
 

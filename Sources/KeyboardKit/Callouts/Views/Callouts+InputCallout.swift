@@ -22,18 +22,16 @@ public extension Callouts {
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
         public init(
-            calloutContext: Context,
+            calloutContext: CalloutContext,
             keyboardContext: KeyboardContext
         ) {
-            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+            self._calloutContext = .init(wrappedValue: calloutContext)
+            self._keyboardContext = .init(wrappedValue: keyboardContext)
         }
         
-        public typealias Context = CalloutContext.InputContext
-
         @ObservedObject
-        private var calloutContext: Context
-        
+        private var calloutContext: CalloutContext
+
         @ObservedObject
         private var keyboardContext: KeyboardContext
         
@@ -43,7 +41,7 @@ public extension Callouts {
         public var body: some View {
             callout
                 .transition(.opacity)
-                .opacity(calloutContext.isActive ? 1 : 0)
+                .opacity(isCalloutActive ? 1 : 0)
                 .keyboardCalloutShadow(style: style)
                 .position(position)
                 .allowsHitTesting(false)
@@ -62,7 +60,7 @@ private extension Callouts.InputCallout {
     }
 
     var calloutBubble: some View {
-        Text(calloutContext.input ?? "")
+        Text(calloutContext.inputAction?.inputCalloutText ?? "")
             .font(style.inputItemFont.font)
             .frame(minWidth: calloutSize.width, minHeight: calloutSize.height)
             .foregroundColor(style.foregroundColor)
@@ -118,6 +116,14 @@ private extension Callouts.InputCallout {
 
 private extension Callouts.InputCallout {
 
+    var isCalloutActive: Bool {
+        isCalloutEnabled && calloutContext.inputAction != nil
+    }
+
+    var isCalloutEnabled: Bool {
+        keyboardContext.deviceTypeForKeyboard == .phone
+    }
+
     var shouldEnforceSmallSize: Bool {
         keyboardContext.deviceTypeForKeyboard == .phone && keyboardContext.interfaceOrientation.isLandscape
     }
@@ -132,7 +138,7 @@ private extension Callouts.InputCallout {
 
     var positionY: CGFloat {
         let base = buttonFrame.origin.y + buttonSize.height/2 - calloutSize.height/2
-        let isEmoji = calloutContext.action?.isEmojiAction == true
+        let isEmoji = calloutContext.inputAction?.isEmojiAction == true
         if isEmoji { return base + 5 }
         return base
     }
@@ -147,13 +153,13 @@ private extension Callouts.InputCallout {
     struct Preview: View {
 
         @StateObject
-        var context = CalloutContext.InputContext(isEnabled: true)
+        var context = CalloutContext()
 
-        func button(for context: CalloutContext.InputContext) -> some View {
+        func button(for context: CalloutContext) -> some View {
             GeometryReader { geo in
                 GestureButton(
                     pressAction: { showCallout(for: geo) },
-                    endAction: context.resetWithDelay,
+                    endAction: context.resetInputActionWithDelay,
                     label: { _ in Color.red.cornerRadius(5) }
                 )
             }
@@ -163,7 +169,7 @@ private extension Callouts.InputCallout {
         }
 
         func showCallout(for geo: GeometryProxy) {
-            context.updateInput(for: .character("a"), in: geo)
+            context.updateInputAction(.character("a"), in: geo)
         }
 
         var buttonStack: some View {
@@ -179,7 +185,7 @@ private extension Callouts.InputCallout {
                 buttonStack
                 buttonStack
                 Button("Reset") {
-                    context.reset()
+                    context.resetInputAction()
                 }
             }
             .keyboardInputCalloutContainer(

@@ -24,18 +24,16 @@ public extension Callouts {
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
         public init(
-            calloutContext: CalloutContext.ActionContext,
+            calloutContext: CalloutContext,
             keyboardContext: KeyboardContext
         ) {
             self._calloutContext = ObservedObject(wrappedValue: calloutContext)
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
         }
-        
-        public typealias Context = CalloutContext.ActionContext
 
         @ObservedObject
-        private var calloutContext: Context
-        
+        private var calloutContext: CalloutContext
+
         @ObservedObject
         private var keyboardContext: KeyboardContext
 
@@ -46,8 +44,8 @@ public extension Callouts {
         private var style
 
         public var body: some View {
-            Button(action: calloutContext.reset) {
-                VStack(alignment: calloutContext.alignment, spacing: 0) {
+            Button(action: calloutContext.resetSecondaryActions) {
+                VStack(alignment: calloutContext.secondaryActionsAlignment, spacing: 0) {
                     callout
                     buttonArea
                 }
@@ -55,7 +53,7 @@ public extension Callouts {
             .buttonStyle(.plain)
             .font(style.actionItemFont.font)
             .compositingGroup()
-            .opacity(calloutContext.isActive ? 1 : 0)
+            .opacity(calloutContext.secondaryActions.isEmpty ? 0 : 1)
             .keyboardCalloutShadow(style: style)
             .position(x: positionX, y: positionY)
             .offset(y: style.offset?.y ?? style.standardVerticalOffset(for: keyboardContext.deviceTypeForKeyboard))
@@ -80,8 +78,8 @@ private extension Callouts.ActionCallout {
     
     var buttonInset: CGSize { style.buttonOverlayInset }
 
-    var calloutActions: [KeyboardAction] { calloutContext.actions }
-    
+    var calloutActions: [KeyboardAction] { calloutContext.secondaryActions }
+
     var calloutButtonSize: CGSize {
         let frameSize = buttonFrame.size
         let widthScale = (calloutActions.count == 1) ? 1.2 : 1
@@ -93,9 +91,9 @@ private extension Callouts.ActionCallout {
 
     var curveSize: CGSize { style.curveSize }
 
-    var isLeading: Bool { calloutContext.isLeading }
-    
-    var isTrailing: Bool { calloutContext.isTrailing }
+    var isLeading: Bool { calloutContext.secondaryActionsAlignment == .leading }
+
+    var isTrailing: Bool { !isLeading }
 
     var buttonArea: some View {
         ButtonArea(frame: buttonFrame)
@@ -187,7 +185,7 @@ private extension Callouts.ActionCallout {
     }
 
     func isSelected(_ offset: Int) -> Bool {
-        calloutContext.selectedIndex == offset
+        calloutContext.secondaryActionsIndex == offset
     }
 }
 
@@ -203,25 +201,19 @@ private extension KeyboardAction {
 
 #Preview {
 
-    let actionContext1 = Callouts.ActionCallout.Context(
-        service: .preview,
-        tapAction: { _ in }
-    )
-
-    let actionContext2 = Callouts.ActionCallout.Context(
-        service: .preview,
-        tapAction: { _ in }
-    )
+    let context1 = CalloutContext()
+    let context2 = CalloutContext()
 
     func previewGroup<ButtonView: View>(
         view: ButtonView,
-        actionContext: CalloutContext.ActionContext,
+        context: CalloutContext,
         alignment: HorizontalAlignment
     ) -> some View {
-        view.overlay(
+        context.calloutService = .preview
+        return view.overlay(
             GeometryReader { geo in
                 Color.clear.onAppear {
-                    actionContext.updateInputs(
+                    context.updateSecondaryActions(
                         for: .character("a"),
                         in: geo,
                         alignment: alignment
@@ -230,23 +222,22 @@ private extension KeyboardAction {
             }
         )
         .keyboardActionCalloutContainer(
-            calloutContext: actionContext,
+            calloutContext: context,
             keyboardContext: .preview
         )
     }
-
 
     return ZStack {
         Color.red
         VStack(spacing: 100) {
             previewGroup(
                 view: Color.blue.frame(width: 40, height: 50),
-                actionContext: actionContext1,
+                context: context1,
                 alignment: .leading
             )
             previewGroup(
                 view: Color.blue.frame(width: 40, height: 50),
-                actionContext: actionContext2,
+                context: context2,
                 alignment: .trailing
             )
         }

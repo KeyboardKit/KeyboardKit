@@ -20,11 +20,11 @@ public extension View {
         keyboardContext: KeyboardContext
     ) -> some View {
         self.keyboardActionCalloutContainer(
-            calloutContext: calloutContext.actionContext,
+            calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
         .keyboardInputCalloutContainer(
-            calloutContext: calloutContext.inputContext,
+            calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
     }
@@ -32,10 +32,6 @@ public extension View {
 
 extension View {
 
-    /// Apply a keyboard callout shadow to the view.
-    ///
-    /// - Parameters:
-    ///   - style: The style apply, by default `.standard`.
     func keyboardCalloutShadow(
         style: Callouts.CalloutStyle = .standard
     ) -> some View {
@@ -44,7 +40,7 @@ extension View {
     }
 
     func keyboardActionCalloutContainer(
-        calloutContext: CalloutContext.ActionContext,
+        calloutContext: CalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(
@@ -58,7 +54,7 @@ extension View {
     }
 
     func keyboardInputCalloutContainer(
-        calloutContext: CalloutContext.InputContext,
+        calloutContext: CalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(

@@ -136,13 +136,13 @@ private extension Gestures.KeyboardButtonGestures {
 
     func handleDrag(in geo: GeometryProxy, value: DragGesture.Value) {
         lastDragValue = value
-        calloutContext?.actionContext.updateSelection(with: value.translation)
+        calloutContext?.updateSecondaryActionsSelection(with: value.translation)
         dragAction?(value.startLocation, value.location)
     }
 
     func handleGestureEnded(in geo: GeometryProxy) {
-        calloutContext?.inputContext.resetWithDelay()
-        calloutContext?.actionContext.reset()
+        calloutContext?.resetInputActionWithDelay()
+        calloutContext?.resetSecondaryActions()
         resetGestureState()
         endAction?()
     }
@@ -154,7 +154,7 @@ private extension Gestures.KeyboardButtonGestures {
 
     func handlePress(in geo: GeometryProxy) {
         pressAction?()
-        calloutContext?.inputContext.updateInput(for: action, in: geo)
+        calloutContext?.updateInputAction(action, in: geo)
     }
 
     func handleReleaseInside(in geo: GeometryProxy) {
@@ -173,10 +173,10 @@ private extension Gestures.KeyboardButtonGestures {
     }
 
     func tryBeginActionCallout(in geo: GeometryProxy) {
-        guard let context = calloutContext?.actionContext else { return }
-        context.updateInputs(for: action, in: geo)
-        guard context.isActive else { return }
-        calloutContext?.inputContext.reset()
+        guard let context = calloutContext else { return }
+        context.updateSecondaryActions(for: action, in: geo)
+        guard !context.secondaryActions.isEmpty else { return }
+        calloutContext?.resetInputAction()
     }
 
     func resetGestureState() {
@@ -191,10 +191,8 @@ private extension Gestures.KeyboardButtonGestures {
     }
 
     func tryHandleCalloutAction() -> Bool {
-        guard
-            let context = calloutContext?.actionContext
-        else { return false }
-        return context.handleSelectedAction()
+        guard let context = calloutContext else { return false }
+        return context.handleSelectedSecondaryAction()
     }
 }
 
