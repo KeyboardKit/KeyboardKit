@@ -7,7 +7,7 @@ KeyboardKit tries to honor semantic versioning:
 * Breaking changes should not occur in `minor` and `patch` updates.
 * Breaking changes *can* occur in `minor` and `patch` updates, if needed.
 
-These release notes only cover the current major version. Check out version tags for older release notes.  
+These release notes cover the current major version. Check out version tags for older release notes.  
 
 
 ## 💡 KeyboardKit 9.0 Migration Guide
