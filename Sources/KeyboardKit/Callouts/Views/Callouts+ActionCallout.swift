@@ -12,6 +12,10 @@ public extension Callouts {
     
     /// This callout can show secondary callout actions when
     /// a user long presser certain input keys.
+    ///
+    /// This callout will adjust the provided style's button
+    /// corner radius to fit the layout configuration of the
+    /// callout context.
     struct ActionCallout: View {
         
         /// Create an action callout.

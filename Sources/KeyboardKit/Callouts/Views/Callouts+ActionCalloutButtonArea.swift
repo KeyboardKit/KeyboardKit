@@ -12,21 +12,28 @@ public extension Callouts.ActionCallout {
     
     /// This view is used to cover the part of a button that
     /// was tapped or pressed to trigger the callout.
+    ///
+    /// The view accepts an optional button corner radius to
+    /// override the environment injected style radius. This
+    /// is needed for a dynamic view like the ``KeyboardView``
+    /// where the radius is based on the device type.
     struct ButtonArea: View {
         
         /// Create a callout button area.
         ///
         /// - Parameters:
         ///   - frame: The button area frame.
+        ///   - buttonCornerRadius: A custom button corner radius, if any.
         public init(
-            frame: CGRect
+            frame: CGRect,
+            buttonCornerRadius: Double? = nil
         ) {
             self.frame = frame
+            self.customButtonCornerRadius = buttonCornerRadius
         }
         
         private let frame: CGRect
-
-        private typealias Style = Callouts.CalloutStyle
+        private let customButtonCornerRadius: Double?
 
         @Environment(\.calloutStyle)
         private var style
@@ -43,12 +50,20 @@ public extension Callouts.ActionCallout {
 
 private extension Callouts.ActionCallout.ButtonArea {
     
-    var backgroundColor: Color { style.backgroundColor }
-    var cornerRadius: CGFloat { style.buttonOverlayCornerRadius }
-    var curveSize: CGSize { style.curveSize }
-    
+    var backgroundColor: Color {
+        style.backgroundColor
+    }
+
+    var buttonCornerRadius: Double {
+        customButtonCornerRadius ?? style.buttonOverlayCornerRadius
+    }
+
+    var curveSize: CGSize {
+        style.curveSize
+    }
+
     var buttonBody: some View {
-        CustomRoundedRectangle(bottomLeft: cornerRadius, bottomRight: cornerRadius)
+        CustomRoundedRectangle(bottomLeft: buttonCornerRadius, bottomRight: buttonCornerRadius)
             .foregroundColor(backgroundColor)
             .frame(width: frame.size.width, height: frame.size.height)
     }
@@ -109,13 +124,20 @@ private extension Callouts.ActionCallout.ButtonArea {
         RoundedRectangle(cornerRadius: 10)
             .fill(.white)
             .frame(height: 80)
-        Callouts.ActionCallout.ButtonArea(
-            frame: CGRect(x: 0, y: 0, width: 50, height: 50)
-        )
+        HStack {
+            Callouts.ActionCallout.ButtonArea(
+                frame: CGRect(x: 0, y: 0, width: 50, height: 50)
+            )
+            Spacer()
+            Callouts.ActionCallout.ButtonArea(
+                frame: CGRect(x: 0, y: 0, width: 100, height: 50),
+                buttonCornerRadius: 20
+            ).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+        }
     }
-    
-    .padding(30)
+    .padding()
     .background(Color.keyboardBackground)
     .cornerRadius(20)
     .calloutStyle(.standard)
+    .padding()
 }
