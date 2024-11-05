@@ -61,13 +61,13 @@ public protocol KeyboardStyleService: AnyObject {
     // MARK: - Callouts
 
     /// The callout style to override the standard style with, if any.
-    var calloutStyle: Callouts.CalloutStyle? { get }
+    var calloutStyle: KeyboardCallout.CalloutStyle? { get }
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
-    var actionCalloutStyle: Callouts.ActionCalloutStyle { get }
+    var actionCalloutStyle: KeyboardCallout.ActionCalloutStyle { get }
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
-    var inputCalloutStyle: Callouts.InputCalloutStyle { get }
+    var inputCalloutStyle: KeyboardCallout.InputCalloutStyle { get }
 
 
     // MARK: - Callouts

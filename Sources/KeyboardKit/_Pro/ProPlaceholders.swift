@@ -112,25 +112,25 @@ public extension KeyboardApp {
 }
 
 
-// MARK: - Callouts
+// MARK: - KeyboardCallout
 
-public extension Callouts {
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    class ProService: Callouts.BaseService {}
-}
-
-public extension Callouts.ProService {
+public extension KeyboardCallout {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class Swedish: Callouts.ProService {}
+    class ProService: KeyboardCallout.BaseService {}
 }
 
-public extension CalloutService where Self == Callouts.ProService {
+public extension KeyboardCallout.ProService {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    class Swedish: KeyboardCallout.ProService {}
+}
+
+public extension KeyboardCalloutService where Self == KeyboardCallout.ProService {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func localized(
-        _ service: @autoclosure () throws -> Callouts.ProService
+        _ service: @autoclosure () throws -> KeyboardCallout.ProService
     ) throws -> Self {
         throw ProPlaceholderError.proPlaceholder
     }

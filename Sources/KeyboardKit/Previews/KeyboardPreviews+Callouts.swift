@@ -1,5 +1,5 @@
 //
-//  KeyboardPreviews+Callouts.swift
+//  KeyboardPreviews+KeyboardCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-01.
@@ -8,23 +8,23 @@
 
 import Foundation
 
-public extension CalloutContext {
+public extension KeyboardCalloutContext {
 
-    static var preview: CalloutContext {
-        CalloutContext()
+    static var preview: KeyboardCalloutContext {
+        KeyboardCalloutContext()
     }
 }
 
-public extension CalloutService where Self == KeyboardPreviews.PreviewCalloutService {
+public extension KeyboardCalloutService where Self == KeyboardPreviews.PreviewKeyboardCalloutService {
 
-    static var preview: CalloutService {
-        KeyboardPreviews.PreviewCalloutService()
+    static var preview: KeyboardCalloutService {
+        KeyboardPreviews.PreviewKeyboardCalloutService()
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewCalloutService: CalloutService {
+    class PreviewKeyboardCalloutService: KeyboardCalloutService {
 
         public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
             switch action {

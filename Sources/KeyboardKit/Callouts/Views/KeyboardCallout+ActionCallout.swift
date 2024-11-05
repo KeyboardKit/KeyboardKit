@@ -1,5 +1,5 @@
 //
-//  Callouts+ActionCallout.swift
+//  KeyboardCallout+ActionCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-public extension Callouts {
-    
+public extension KeyboardCallout {
+
     /// This callout can show secondary callout actions when
     /// long pressing input keys with secondary actions.
     ///
@@ -23,7 +23,7 @@ public extension Callouts {
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
         public init(
-            calloutContext: CalloutContext,
+            calloutContext: KeyboardCalloutContext,
             keyboardContext: KeyboardContext
         ) {
             self._calloutContext = .init(wrappedValue: calloutContext)
@@ -31,7 +31,7 @@ public extension Callouts {
         }
 
         @ObservedObject
-        private var calloutContext: CalloutContext
+        private var calloutContext: KeyboardCalloutContext
 
         @ObservedObject
         private var keyboardContext: KeyboardContext
@@ -39,7 +39,7 @@ public extension Callouts {
         @Environment(\.emojiKeyboardStyle)
         private var emojiStyle
 
-        @Environment(\.calloutStyle)
+        @Environment(\.keyboardCalloutStyle)
         private var style
 
         public var body: some View {
@@ -59,7 +59,7 @@ public extension Callouts {
     }
 }
 
-private extension Callouts.ActionCallout {
+private extension KeyboardCallout.ActionCallout {
 
     var calloutBubble: some View {
         HStack(spacing: 0) {
@@ -114,7 +114,7 @@ private extension Callouts.ActionCallout {
     }
 }
 
-private extension Callouts.ActionCallout {
+private extension KeyboardCallout.ActionCallout {
 
     var actions: [KeyboardAction] {
         calloutContext.secondaryActions
@@ -141,7 +141,7 @@ private extension Callouts.ActionCallout {
     }
 }
 
-private extension Callouts.ActionCallout {
+private extension KeyboardCallout.ActionCallout {
 
     var alignment: HorizontalAlignment {
         calloutContext.secondaryActionsAlignment
@@ -202,12 +202,12 @@ private extension KeyboardAction {
 #Preview {
 
     let keyboardContext = KeyboardContext()
-    let calloutContext1 = CalloutContext()
-    let calloutContext2 = CalloutContext()
+    let calloutContext1 = KeyboardCalloutContext()
+    let calloutContext2 = KeyboardCalloutContext()
 
     func previewGroup<ButtonView: View>(
         view: ButtonView,
-        context: CalloutContext,
+        context: KeyboardCalloutContext,
         alignment: HorizontalAlignment
     ) -> some View {
         keyboardContext.deviceTypeForKeyboard = .phone
@@ -244,7 +244,7 @@ private extension KeyboardAction {
             )
         }
     }
-    .calloutStyle(.init(
+    .keyboardCalloutStyle(.init(
         // callout: .preview2,
         selectedBackgroundColor: .purple
     ))

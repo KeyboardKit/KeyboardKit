@@ -8,6 +8,33 @@
 
 import Foundation
 
+public extension KeyboardBehavior where Self == Keyboard.StandardBehavior {
+
+    /// Create a ``Keyboard/StandardBehavior`` instance.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - doubleTapThreshold: The douple tap threshold to use, by default `0.5` seconds.
+    ///   - endSentenceText: The text to use to end sentences with, by default `. `.
+    ///   - endSentenceThreshold: The end sentence auto-close threshold to use, by default `3.0` seconds.
+    ///   - repeatGestureTimer: The repease gesture timer to use, by default a new one.
+    static func standard(
+        keyboardContext: KeyboardContext,
+        doubleTapThreshold: TimeInterval? = nil,
+        endSentenceText: String? = nil,
+        endSentenceThreshold: TimeInterval? = nil,
+        repeatGestureTimer: GestureButtonTimer? = nil
+    ) -> Self {
+        Keyboard.StandardBehavior(
+            keyboardContext: keyboardContext,
+            doubleTapThreshold: doubleTapThreshold,
+            endSentenceText: endSentenceText,
+            endSentenceThreshold: endSentenceThreshold,
+            repeatGestureTimer: repeatGestureTimer
+        )
+    }
+}
+
 extension Keyboard {
     
     /// This class defines the standard keyboard behavior of
@@ -31,21 +58,21 @@ extension Keyboard {
         ///   - doubleTapThreshold: The douple tap threshold to use, by default `0.5` seconds.
         ///   - endSentenceText: The text to use to end sentences with, by default `. `.
         ///   - endSentenceThreshold: The end sentence auto-close threshold to use, by default `3.0` seconds.
-        ///   - repeatGestureTimer: The repease gesture timer to use, by default ``Gestures/RepeatTimer/shared``.
+        ///   - repeatGestureTimer: The repease gesture timer to use, by default a new one.
         public init(
             keyboardContext: KeyboardContext,
-            doubleTapThreshold: TimeInterval = 0.5,
-            endSentenceText: String = ". ",
-            endSentenceThreshold: TimeInterval = 3.0,
-            repeatGestureTimer: GestureButtonTimer = .init()
+            doubleTapThreshold: TimeInterval? = nil,
+            endSentenceText: String? = nil,
+            endSentenceThreshold: TimeInterval? = nil,
+            repeatGestureTimer: GestureButtonTimer? = nil
         ) {
             self.keyboardContext = keyboardContext
-            self.doubleTapThreshold = doubleTapThreshold
-            self.endSentenceText = endSentenceText
-            self.endSentenceThreshold = endSentenceThreshold
-            self.repeatGestureTimer = repeatGestureTimer
+            self.doubleTapThreshold = doubleTapThreshold ?? 0.5
+            self.endSentenceText = endSentenceText ?? ". "
+            self.endSentenceThreshold = endSentenceThreshold ?? 3.0
+            self.repeatGestureTimer = repeatGestureTimer ?? .init()
         }
-        
+
         
         /// The keyboard context to use.
         public let keyboardContext: KeyboardContext

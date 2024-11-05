@@ -1,5 +1,5 @@
 //
-//  Callouts+ActionCalloutButtonArea.swift
+//  KeyboardCallout+ActionCalloutButtonArea.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-10.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-public extension Callouts.ActionCallout {
-    
+public extension KeyboardCallout.ActionCallout {
+
     /// This view is used to cover the part of a button that
     /// was tapped or pressed to trigger the callout.
     ///
@@ -33,7 +33,7 @@ public extension Callouts.ActionCallout {
         private let frame: CGRect
         private let buttonCornerRadius: Double
 
-        @Environment(\.calloutStyle)
+        @Environment(\.keyboardCalloutStyle)
         private var style
         
         public var body: some View {
@@ -46,8 +46,8 @@ public extension Callouts.ActionCallout {
     }
 }
 
-private extension Callouts.ActionCallout.ButtonArea {
-    
+private extension KeyboardCallout.ActionCallout.ButtonArea {
+
     var backgroundColor: Color {
         style.backgroundColor
     }
@@ -75,8 +75,8 @@ private extension Callouts.ActionCallout.ButtonArea {
     }
 }
 
-private extension Callouts.ActionCallout.ButtonArea {
-    
+private extension KeyboardCallout.ActionCallout.ButtonArea {
+
     struct LeadingCurve: Shape {
         
         public func path(in rect: CGRect) -> Path {
@@ -119,12 +119,12 @@ private extension Callouts.ActionCallout.ButtonArea {
             .fill(.white)
             .frame(height: 80)
         HStack {
-            Callouts.ActionCallout.ButtonArea(
+            KeyboardCallout.ActionCallout.ButtonArea(
                 frame: CGRect(x: 0, y: 0, width: 50, height: 50),
                 buttonCornerRadius: 10
             )
             Spacer()
-            Callouts.ActionCallout.ButtonArea(
+            KeyboardCallout.ActionCallout.ButtonArea(
                 frame: CGRect(x: 0, y: 0, width: 100, height: 50),
                 buttonCornerRadius: 20
             ).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
@@ -133,6 +133,6 @@ private extension Callouts.ActionCallout.ButtonArea {
     .padding()
     .background(Color.keyboardBackground)
     .cornerRadius(20)
-    .calloutStyle(.standard)
+    .keyboardCalloutStyle(.standard)
     .padding()
 }

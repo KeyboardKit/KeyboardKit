@@ -35,7 +35,7 @@ extension Gestures {
             view: Content,
             action: KeyboardAction?,
             repeatTimer: GestureButtonTimer?,
-            calloutContext: CalloutContext?,
+            calloutContext: KeyboardCalloutContext?,
             isPressed: Binding<Bool>,
             scrollState: GestureButtonScrollState?,
             releaseOutsideTolerance: Double? = nil,
@@ -66,7 +66,7 @@ extension Gestures {
         private let view: Content
         private let action: KeyboardAction?
         private let repeatTimer: GestureButtonTimer?
-        private let calloutContext: CalloutContext?
+        private let calloutContext: KeyboardCalloutContext?
         private let isPressed: Binding<Bool>
         private let scrollState: GestureButtonScrollState?
         private let releaseOutsideTolerance: Double

@@ -31,7 +31,7 @@ A better way is to trigger a ``KeyboardAction/url(_:id:)`` action and let the ``
 
 ## How to open System Settings
 
-KeyboardKit defines a ``Foundation/URL/keyboardSettings`` URL, which can be used to open your app in System Settings.
+KeyboardKit defines a ``Foundation/URL/systemSettings`` URL, which can be used to open your app in System Settings.
 
 If your keyboard randomly navigates to the System Settings root instead of your app, try to add an empty settings bundle to your app. 
 

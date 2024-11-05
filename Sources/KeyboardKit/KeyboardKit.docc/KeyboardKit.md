@@ -35,7 +35,7 @@ The <doc:Getting-Started-Article> article helps you get started with KeyboardKit
 
 ## Supported Locales
 
-KeyboardKit supports **70** keyboard-specific ``Locale``s:
+KeyboardKit supports **70** keyboard-specific ``Foundation/Locale``s:
 
 🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿  <br />
 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭  <br />

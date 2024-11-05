@@ -1,5 +1,5 @@
 //
-//  Callouts+BaseService.swift
+//  KeyboardCallout+BaseService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-09-26.
@@ -8,9 +8,9 @@
 
 import SwiftUI
 
-extension Callouts {
-    
-    /// This is a base class for callout services.
+extension KeyboardCallout {
+
+    /// This is a base class for keyboard callout services.
     ///
     /// This class only provides alphabetic, English callout
     /// actions. For localized, as well as symbolic, numeric
@@ -21,7 +21,7 @@ extension Callouts {
     /// then override any open parts that you want to change.
     ///
     /// See <doc:Callouts-Article> for more information.
-    open class BaseService: CalloutService {
+    open class BaseService: KeyboardCalloutService {
 
         /// Create a base callout service.
         public init() {}

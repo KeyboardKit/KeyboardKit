@@ -9,12 +9,11 @@
 import Foundation
 import SwiftUI
 
-/// This type can be used to define important app properties,
-/// and is also a namespace for KeyboardKit Pro app features.
+/// This type can be used to define important properties for
+/// your app, and is also a namespace for app-based features.
 ///
 /// You can create a static app value and add it to both the
-/// main app target and its keyboard extension target, to be
-/// able to easily refer to it from both targets:
+/// main app and its keyboard, to be able to use it in both:
 ///
 /// ```swift
 /// extension KeyboardApp {
@@ -30,9 +29,6 @@ import SwiftUI
 ///     }
 /// }
 /// ```
-///
-/// The app value can also resolve other properties that you
-/// may need, such as a ``dictationConfiguration``.
 ///
 /// > Important: The ``locales`` collection is only meant to
 /// describe which locales you *want* to use in your app. It

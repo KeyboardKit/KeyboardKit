@@ -34,7 +34,7 @@ public struct KeyboardViewItem<Content: View>: View {
         repeatTimer: GestureButtonTimer? = nil,
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
         isNextProbability: Double = 0,
@@ -56,7 +56,7 @@ public struct KeyboardViewItem<Content: View>: View {
     private let actionHandler: KeyboardActionHandler
     private let repeatTimer: GestureButtonTimer?
     private let styleService: KeyboardStyleService
-    private let calloutContext: CalloutContext?
+    private let calloutContext: KeyboardCalloutContext?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let isNextProbability: Double

@@ -9,15 +9,42 @@
 import Foundation
 import SwiftUI
 
+@available(*, deprecated, renamed: "KeyboardCallout", message: "Migration Deprecation, will be removed in 9.1!")
+public typealias Callouts = KeyboardCallout
+
+@available(*, deprecated, renamed: "KeyboardCalloutContext", message: "Migration Deprecation, will be removed in 9.1!")
+public typealias CalloutContext = KeyboardCalloutContext
+
+@available(*, deprecated, renamed: "KeyboardCalloutService", message: "Migration Deprecation, will be removed in 9.1!")
+public typealias CalloutService = KeyboardCalloutService
+
 @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
-public extension CalloutService where Self == Callouts.DisabledService {
+public extension CalloutService where Self == KeyboardCallout.DisabledService {
 
     static var disabled: Self {
-        Callouts.DisabledService()
+        KeyboardCallout.DisabledService()
     }
 }
 
-extension Callouts {
+public extension View {
+
+    @available(*, deprecated, renamed: "keyboardCalloutStyle", message: "Migration Deprecation, will be removed in 9.1!")
+    func calloutStyle(
+        _ style: KeyboardCallout.CalloutStyle
+    ) -> some View {
+        self.environment(\.calloutStyle, style)
+    }
+}
+
+public extension EnvironmentValues {
+
+    @available(*, deprecated, renamed: "keyboardCalloutStyle", message: "Migration Deprecation, will be removed in 9.1!")
+    @Entry var calloutStyle = KeyboardCallout
+        .CalloutStyle.standard
+}
+
+
+extension KeyboardCallout {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
     open class DisabledService: CalloutService {
@@ -35,7 +62,7 @@ extension Callouts {
 }
 
 
-public extension Callouts.CalloutStyle {
+public extension KeyboardCallout.CalloutStyle {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use the new initializer instead.")
     init(
@@ -81,13 +108,13 @@ public extension Callouts.CalloutStyle {
     }
 }
 
-public extension Callouts {
+public extension KeyboardCallout {
 
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use Callouts.CalloutStyle instead.")
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use KeyboardCallout.CalloutStyle instead.")
     struct InputCalloutStyle: Codable, Equatable {
 
         public init(
-            callout: Callouts.CalloutStyle = .standard,
+            callout: KeyboardCallout.CalloutStyle = .standard,
             calloutPadding: CGFloat = 2,
             calloutSize: CGSize = CGSize(width: 0, height: 55),
             font: KeyboardFont = .init(.largeTitle, .light)
@@ -99,7 +126,7 @@ public extension Callouts {
             self.calloutPadding = calloutPadding
         }
 
-        public var callout: Callouts.CalloutStyle
+        public var callout: KeyboardCallout.CalloutStyle
         public var calloutPadding: CGFloat
 
         public static var standard: Self { .init() }
@@ -107,8 +134,8 @@ public extension Callouts {
 }
 
 
-@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use Callouts.CalloutStyle instead.")
-public extension Callouts.InputCalloutStyle {
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use KeyboardCallout.CalloutStyle instead.")
+public extension KeyboardCallout.InputCalloutStyle {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use callout.inputItemMinSize instead.")
     var calloutSize: CGSize {
@@ -123,13 +150,13 @@ public extension Callouts.InputCalloutStyle {
     }
 }
 
-public extension Callouts {
+public extension KeyboardCallout {
 
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use Callouts.CalloutStyle instead.")
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use KeyboardCallout.CalloutStyle instead.")
     struct ActionCalloutStyle: Codable, Equatable {
 
         public init(
-            callout: Callouts.CalloutStyle = .standard,
+            callout: KeyboardCallout.CalloutStyle = .standard,
             font: KeyboardFont = .init(.title3),
             maxButtonSize: CGSize = CGSize(width: 50, height: 50),
             selectedBackgroundColor: Color? = nil,
@@ -147,14 +174,14 @@ public extension Callouts {
             self.callout = callout
         }
 
-        public var callout: Callouts.CalloutStyle
+        public var callout: KeyboardCallout.CalloutStyle
 
         public static var standard: Self { .init() }
     }
 }
 
-@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use Callouts.CalloutStyle instead.")
-public extension Callouts.ActionCalloutStyle {
+@available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use KeyboardCallout.CalloutStyle instead.")
+public extension KeyboardCallout.ActionCalloutStyle {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use callout.actionItemFont instead.")
     var font: KeyboardFont {
@@ -197,14 +224,14 @@ public extension View {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .calloutStyle instead.")
     func actionCalloutStyle(
-        _ style: Callouts.ActionCalloutStyle
+        _ style: KeyboardCallout.ActionCalloutStyle
     ) -> some View {
         self.environment(\.calloutStyle, style.callout)
     }
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .calloutStyle instead.")
     func inputCalloutStyle(
-        _ style: Callouts.InputCalloutStyle
+        _ style: KeyboardCallout.InputCalloutStyle
     ) -> some View {
         self.environment(\.inputCalloutStyle, style)
     }
@@ -213,10 +240,10 @@ public extension View {
 public extension EnvironmentValues {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .calloutStyle instead.")
-    @Entry var actionCalloutStyle = Callouts
+    @Entry var actionCalloutStyle = KeyboardCallout
         .ActionCalloutStyle.standard
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .calloutStyle instead.")
-    @Entry var inputCalloutStyle = Callouts
+    @Entry var inputCalloutStyle = KeyboardCallout
         .InputCalloutStyle.standard
 }

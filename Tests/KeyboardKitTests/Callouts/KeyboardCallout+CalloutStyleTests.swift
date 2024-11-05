@@ -1,8 +1,9 @@
 //
-//  Callouts+CalloutStyleTests.swift
+//  KeyboardCallout+CalloutStyleTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-11-03.
+//  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -13,7 +14,7 @@ import XCTest
 class Callouts_CalloutStyleTests: XCTestCase {
 
     func testStandardCalloutStyleIsValid() {
-        let style = Callouts.CalloutStyle.standard
+        let style = KeyboardCallout.CalloutStyle.standard
         XCTAssertEqual(style.actionItemFont, .title3)
         XCTAssertEqual(style.actionItemMaxSize, .init(width: 50, height: 50))
         XCTAssertEqual(style.actionItemPadding, .init(width: 0, height: 6))
@@ -34,7 +35,7 @@ class Callouts_CalloutStyleTests: XCTestCase {
     }
 
     func testStyleSpecifiesDeviceSpecificOffset() {
-        let style = Callouts.CalloutStyle.standard
+        let style = KeyboardCallout.CalloutStyle.standard
         XCTAssertEqual(style.standardVerticalOffset(for: .phone), 0)
         XCTAssertEqual(style.standardVerticalOffset(for: .pad), 20)
     }

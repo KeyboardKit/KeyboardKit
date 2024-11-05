@@ -1,5 +1,5 @@
 //
-//  CalloutContext.swift
+//  KeyboardCalloutContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-24.
@@ -15,14 +15,9 @@ import SwiftUI
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value.
-public class CalloutContext: ObservableObject {
+public class KeyboardCalloutContext: ObservableObject {
 
-    /// Create a callout context, with separate contexts for
-    /// the different callout types.
-    ///
-    /// - Parameters:
-    ///   - actionContext: The action context to use.
-    ///   - inputContext: The input context to use.
+    /// Create a keyboard callout context.
     public init() {}
 
 
@@ -31,7 +26,7 @@ public class CalloutContext: ObservableObject {
 
 
     /// The callout service to use, if any.
-    public var calloutService: CalloutService?
+    public var calloutService: KeyboardCalloutService?
 
     /// The last time an input was updated.
     public var lastInputUpdate = Date()
@@ -71,7 +66,7 @@ public class CalloutContext: ObservableObject {
     public var inputContext: InputContext = .disabled
 }
 
-public extension CalloutContext {
+public extension KeyboardCalloutContext {
 
     var selectedSecondaryAction: KeyboardAction? {
         let index = secondaryActionsIndex
@@ -143,7 +138,7 @@ public extension CalloutContext {
         if shouldResetSecondaryActions(for: value) { return resetSecondaryActions() }
         guard shouldUpdateSecondaryActionSelection(for: value) else { return }
         let translation = value.width
-        let maxSize = Callouts.CalloutStyle.standard.actionItemMaxSize
+        let maxSize = KeyboardCallout.CalloutStyle.standard.actionItemMaxSize
         let buttonSize = buttonFrame.size.limited(to: maxSize)
         let indexWidth = 0.9 * buttonSize.width
         let offset = Int(abs(translation) / indexWidth)
@@ -155,14 +150,14 @@ public extension CalloutContext {
     }
 }
 
-extension CalloutContext {
+extension KeyboardCalloutContext {
 
     func triggerSelectionChangeFeedback() {
         calloutService?.triggerFeedbackForSelectionChange()
     }
 }
 
-private extension CalloutContext {
+private extension KeyboardCalloutContext {
 
     var isLeading: Bool {
         secondaryActionsAlignment == .leading
@@ -205,10 +200,8 @@ private extension CalloutContext {
     }
 }
 
-public extension CalloutContext {
+public extension KeyboardCalloutContext {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
-    static var disabled: CalloutContext {
-        .init()
-    }
+    static var disabled: KeyboardCalloutContext { .init() }
 }

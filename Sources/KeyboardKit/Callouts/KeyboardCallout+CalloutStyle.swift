@@ -1,5 +1,5 @@
 //
-//  Callouts+CalloutStyles.swift
+//  KeyboardCallout+CalloutStyles.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-07.
@@ -8,13 +8,13 @@
 
 import SwiftUI
 
-public extension Callouts {
-    
+public extension KeyboardCallout {
+
     /// This style can be used to modify the visual style of
-    /// the ``Callouts`` components callout shape.
+    /// the various ``KeyboardCallout`` components.
     ///
     /// You can apply this view style with the view modifier
-    /// ``SwiftUICore/View/calloutStyle(_:)``.
+    /// ``SwiftUICore/View/keyboardCalloutStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
     struct CalloutStyle: Codable, Equatable {
@@ -44,7 +44,6 @@ public extension Callouts {
         ///   - inputItemFont: The input item font, by default `.largeTitle .light`.
         ///   - inputItemMinSize: The minimum input item size, by default `55` height.
         ///   - offset: A custom callout offset, if any.
-        ///   - padding: The callout content padding, by default `2` points.
         ///   - selectedBackgroundColor: The selected item background, by default `.blue`.
         ///   - selectedForegroundColor: The selected item foreground, by default `.white`.
         ///   - shadowColor: The callout shadow color, by default 0.1 `.black`.
@@ -140,7 +139,7 @@ public extension Callouts {
     }
 }
 
-public extension Callouts.CalloutStyle {
+public extension KeyboardCallout.CalloutStyle {
 
     /// The corner radius to use for the provided context.
     func buttonCornerRadius(
@@ -159,13 +158,13 @@ public extension Callouts.CalloutStyle {
     }
 }
 
-public extension Callouts.CalloutStyle {
-    
+public extension KeyboardCallout.CalloutStyle {
+
     /// A standard callout style.
     static var standard: Self { .init() }
 }
 
-extension Callouts.CalloutStyle {
+extension KeyboardCallout.CalloutStyle {
 
     static var preview1: Self {
         .init(
@@ -192,17 +191,17 @@ extension Callouts.CalloutStyle {
 
 public extension View {
 
-    /// Apply a ``Callouts/CalloutStyle``.
-    func calloutStyle(
-        _ style: Callouts.CalloutStyle
+    /// Apply a ``KeyboardCallout/CalloutStyle``.
+    func keyboardCalloutStyle(
+        _ style: KeyboardCallout.CalloutStyle
     ) -> some View {
-        self.environment(\.calloutStyle, style)
+        self.environment(\.keyboardCalloutStyle, style)
     }
 }
 
 public extension EnvironmentValues {
 
-    /// Apply a ``Callouts/CalloutStyle``.
-    @Entry var calloutStyle = Callouts
+    /// Apply a ``KeyboardCallout/CalloutStyle``.
+    @Entry var keyboardCalloutStyle = KeyboardCallout
         .CalloutStyle.standard
 }

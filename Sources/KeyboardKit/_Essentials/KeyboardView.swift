@@ -89,7 +89,7 @@ public struct KeyboardView<
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
-        calloutContext: CalloutContext,
+        calloutContext: KeyboardCalloutContext,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
@@ -129,14 +129,14 @@ public struct KeyboardView<
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
     
-    private var calloutStyle: Callouts.CalloutStyle {
+    private var calloutStyle: KeyboardCallout.CalloutStyle {
         var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
         let insets = layoutConfig.buttonInsets
         style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
         return style
     }
 
-    @Environment(\.calloutStyle)
+    @Environment(\.keyboardCalloutStyle)
     private var calloutStyleFromEnvironment
 
     @Environment(\.keyboardInputToolbarDisplayMode)
@@ -146,7 +146,7 @@ public struct KeyboardView<
     private var autocompleteContext: AutocompleteContext
 
     @ObservedObject
-    private var calloutContext: CalloutContext
+    private var calloutContext: KeyboardCalloutContext
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
@@ -168,7 +168,6 @@ public struct KeyboardView<
             calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
-        .calloutStyle(calloutStyle)
     }
 }
 

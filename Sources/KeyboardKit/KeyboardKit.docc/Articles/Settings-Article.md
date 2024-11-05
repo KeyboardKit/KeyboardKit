@@ -55,7 +55,7 @@ if let url = URL.systemSettings {
 }
 ```
 
-You can also open System Settings with a ``KeyboardActionHandler``, by triggering ``KeyboardActionHandler/handle(_:)-35vwk`` with a ``KeyboardAction/url(_:id:)`` action and the ``Foundation/URL/keyboardSettings`` URL.
+You can also open System Settings with a ``KeyboardActionHandler``, by triggering ``KeyboardActionHandler/handle(_:)-35vwk`` with a ``KeyboardAction/url(_:id:)`` action and the ``Foundation/URL/systemSettings`` URL.
 
 > Note: If your app randomly navigates to the Settings root instead of your app, try adding an empty settings bundle to your app.
 

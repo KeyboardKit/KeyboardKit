@@ -1,5 +1,5 @@
 //
-//  Callouts+ButtonArea.swift
+//  KeyboardCallout+ButtonArea.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-10.
@@ -8,8 +8,8 @@
 
 import SwiftUI
 
-public extension Callouts.InputCallout {
-    
+public extension KeyboardCallout.InputCallout {
+
     /// This view is used to cover the part of a button that
     /// was tapped or pressed to trigger the callout.
     ///
@@ -33,7 +33,7 @@ public extension Callouts.InputCallout {
         private let frame: CGRect
         private let buttonCornerRadius: Double
 
-        @Environment(\.calloutStyle)
+        @Environment(\.keyboardCalloutStyle)
         private var style
 
         public var body: some View {
@@ -46,8 +46,8 @@ public extension Callouts.InputCallout {
     }
 }
 
-private extension Callouts.InputCallout.ButtonArea {
-    
+private extension KeyboardCallout.InputCallout.ButtonArea {
+
     var backgroundColor: Color {
         style.backgroundColor
     }
@@ -69,8 +69,8 @@ private extension Callouts.InputCallout.ButtonArea {
     }
 }
 
-private extension Callouts.InputCallout.ButtonArea {
-    
+private extension KeyboardCallout.InputCallout.ButtonArea {
+
     struct Curve: Shape {
         
         public func path(in rect: CGRect) -> Path {
@@ -95,11 +95,11 @@ private extension Callouts.InputCallout.ButtonArea {
             .fill(.white)
             .frame(height: 50)
         HStack {
-            Callouts.InputCallout.ButtonArea(
+            KeyboardCallout.InputCallout.ButtonArea(
                 frame: CGRect(x: 0, y: 0, width: 50, height: 50),
                 buttonCornerRadius: 10
             )
-            Callouts.InputCallout.ButtonArea(
+            KeyboardCallout.InputCallout.ButtonArea(
                 frame: CGRect(x: 0, y: 0, width: 100, height: 50),
                 buttonCornerRadius: 20
             )
@@ -108,6 +108,6 @@ private extension Callouts.InputCallout.ButtonArea {
     .padding()
     .background(Color.keyboardBackground)
     .cornerRadius(20)
-    .calloutStyle(.standard)
+    .keyboardCalloutStyle(.standard)
     .padding()
 }

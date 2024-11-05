@@ -1,5 +1,5 @@
 //
-//  Callouts.swift
+//  KeyboardCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-09-20.
@@ -14,4 +14,4 @@ import Foundation
 /// or settings types that should be top-level types.
 ///
 /// See the <doc:Callouts-Article> article for more information.
-public struct Callouts {}
+public struct KeyboardCallout {}

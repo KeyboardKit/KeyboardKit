@@ -100,15 +100,15 @@ Since the configuration is observable, any changes will automatically cause the 
 
 ## How to define custom audio feedback
 
-Since ``Feedback/Audio`` uses **AudioServices** to play audio, you can use any system audio ID (see [this website](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback. For instance, this is a way to define a custom sound, which can then be triggered with the ``Feedback/Audio/trigger()`` function:
+Since ``Feedback/Audio`` uses **AudioServices** to play audio, you can use any system audio ID (see [this website](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback. 
+
+For instance, this is a way to define a custom sound:
 
 ```swift
 extension Feedback.Audio {
 
     static let sentMessage = .custom(id: 1004)
 }
-
-Feedback.Audio.sentMessage.trigger()
 ```
 
 You can also use the ``Feedback/Audio/customUrl(_:)`` enum case to define custom audio feedback that loads the sound effect from an audio file.

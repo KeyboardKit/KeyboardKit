@@ -66,7 +66,7 @@ The reason for the autocomplete change is that custom keyboards must always have
 
 ### 🗯️ Callouts
 
-The `Callout` namespace has been simplified to only use a single style and a single context for both input and action callouts.
+The `Callouts` namespace has been renamed to `KeyboardCallout` and simplified to only use a single style and a single context.
 
 Most changes have migration deprecations, where using the old ways will either map to the new way, or in some cases do nothing.  
 

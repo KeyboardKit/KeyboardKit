@@ -67,7 +67,7 @@ public extension Keyboard {
             actionHandler: KeyboardActionHandler,
             layoutService: KeyboardLayoutService,
             styleService: KeyboardStyleService,
-            calloutContext: CalloutContext,
+            calloutContext: KeyboardCalloutContext,
             keyboardContext: KeyboardContext,
             @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
             @ViewBuilder buttonView: @escaping ButtonViewBuilder
@@ -97,7 +97,7 @@ public extension Keyboard {
         private let buttonViewBuilder: ButtonViewBuilder
 
         @ObservedObject
-        private var calloutContext: CalloutContext
+        private var calloutContext: KeyboardCalloutContext
 
         @ObservedObject
         private var keyboardContext: KeyboardContext

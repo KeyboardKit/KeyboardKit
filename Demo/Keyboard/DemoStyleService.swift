@@ -54,13 +54,13 @@ class DemoStyleService: KeyboardStyle.StandardService {
 //         }
 //     }
 
-//    override var actionCalloutStyle: Callouts.ActionCalloutStyle {
+//    override var actionCalloutStyle: KeyboardCallout.CalloutStyle {
 //        var style = super.actionCalloutStyle
 //        style.callout.backgroundColor = .red
 //        return style
 //    }
 
-//    override var inputCalloutStyle: Callouts.InputCalloutStyle {
+//    override var inputCalloutStyle: KeyboardCallout.CalloutStyle {
 //        var style = super.inputCalloutStyle
 //        style.callout.backgroundColor = .blue
 //        style.callout.foregroundColor = .yellow

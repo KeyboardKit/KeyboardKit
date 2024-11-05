@@ -1,5 +1,5 @@
 //
-//  Callouts+InputCallout.swift
+//  KeyboardCallout+InputCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension Callouts {
+public extension KeyboardCallout {
 
     /// This callout can show the currenly pressed key, when
     /// typing on an iPhone.
@@ -23,7 +23,7 @@ public extension Callouts {
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
         public init(
-            calloutContext: CalloutContext,
+            calloutContext: KeyboardCalloutContext,
             keyboardContext: KeyboardContext
         ) {
             self._calloutContext = .init(wrappedValue: calloutContext)
@@ -31,12 +31,12 @@ public extension Callouts {
         }
         
         @ObservedObject
-        private var calloutContext: CalloutContext
+        private var calloutContext: KeyboardCalloutContext
 
         @ObservedObject
         private var keyboardContext: KeyboardContext
         
-        @Environment(\.calloutStyle)
+        @Environment(\.keyboardCalloutStyle)
         private var style
 
         public var body: some View {
@@ -53,7 +53,7 @@ public extension Callouts {
     }
 }
 
-private extension Callouts.InputCallout {
+private extension KeyboardCallout.InputCallout {
 
     var calloutBubble: some View {
         Text(calloutContext.inputAction?.inputCalloutText ?? "")
@@ -72,7 +72,7 @@ private extension Callouts.InputCallout {
     }
 }
 
-private extension Callouts.InputCallout {
+private extension KeyboardCallout.InputCallout {
 
     var isActive: Bool {
         isEnabled && calloutContext.inputAction != nil
@@ -87,8 +87,8 @@ private extension Callouts.InputCallout {
     }
 }
 
-private extension Callouts.InputCallout {
-    
+private extension KeyboardCallout.InputCallout {
+
     var buttonFrame: CGRect {
         let inset = style.buttonOverlayInset
         return calloutContext.buttonFrame
@@ -144,9 +144,9 @@ private extension Callouts.InputCallout {
     struct Preview: View {
 
         @StateObject
-        var context = CalloutContext()
+        var context = KeyboardCalloutContext()
 
-        func button(for context: CalloutContext) -> some View {
+        func button(for context: KeyboardCalloutContext) -> some View {
             GeometryReader { geo in
                 GestureButton(
                     pressAction: { showCallout(for: geo) },
@@ -188,7 +188,7 @@ private extension Callouts.InputCallout {
     }
 
     return Preview()
-        .calloutStyle(.init(
+        .keyboardCalloutStyle(.init(
             backgroundColor: .blue,
             foregroundColor: .yellow
         ))

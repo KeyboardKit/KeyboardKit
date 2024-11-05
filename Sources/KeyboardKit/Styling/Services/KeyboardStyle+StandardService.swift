@@ -164,13 +164,13 @@ extension KeyboardStyle {
         // MARK: - Callouts
         
         /// The callout style to override the standard style with, if any.
-        open var calloutStyle: Callouts.CalloutStyle? { nil }
-        
-        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
-        open var actionCalloutStyle: Callouts.ActionCalloutStyle { .standard }
+        open var calloutStyle: KeyboardCallout.CalloutStyle? { nil }
 
         @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
-        open var inputCalloutStyle: Callouts.InputCalloutStyle { .standard }
+        open var actionCalloutStyle: KeyboardCallout.ActionCalloutStyle { .standard }
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+        open var inputCalloutStyle: KeyboardCallout.InputCalloutStyle { .standard }
         
         
         // MARK: - Autocomplete

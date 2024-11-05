@@ -15,11 +15,10 @@ import SwiftUI
 /// a ``Foundation/UserDefaults/keyboardSettings`` shorthand
 /// for convenient access.
 ///
-/// You can use ``setupStore(_:keyPrefix:)`` to register any
-/// custom store, ``setupStore(withAppGroup:keyPrefix:)`` to
-/// register a store that syncs settings between the app and
-/// its keyboard extension (make sure to set up an App Group
-/// first) or ``setupStore(for:)`` to use your ``KeyboardApp``.
+/// You can use ``setupStore(for:)`` to set up the store for
+/// your ``KeyboardApp`` or use the parameter-based variants
+/// for granular control. Make sure to register an App Group
+/// for the app and keyboard to be able to sync between them.
 ///
 /// > Important: `@AppStorage` properties will use the store
 /// that's available when a property is first accessed. Make
@@ -51,11 +50,23 @@ public extension KeyboardSettings {
     /// - Parameters:
     ///   - store: The store instance to use.
     ///   - keyPrefix: A custom prefix to use for all store keys, if any.
-    ///   - isAppGroupSynced: Whether the store syncs with an App Group, by default `nil`.
+    static func setupStore(
+        _ store: UserDefaults,
+        keyPrefix: String? = nil
+    ) {
+        setupStore(store, keyPrefix: keyPrefix, isAppGroupSynced: false)
+    }
+
+    /// Set up a custom settings store.
+    ///
+    /// - Parameters:
+    ///   - store: The store instance to use.
+    ///   - keyPrefix: A custom prefix to use for all store keys, if any.
+    ///   - isAppGroupSynced: Whether the store syncs with an App Group.
     static func setupStore(
         _ store: UserDefaults,
         keyPrefix: String? = nil,
-        isAppGroupSynced: Bool = false
+        isAppGroupSynced: Bool
     ) {
         Self.store = store
         Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix

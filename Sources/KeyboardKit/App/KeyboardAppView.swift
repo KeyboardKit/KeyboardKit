@@ -77,7 +77,7 @@ public struct KeyboardAppView<Content: View>: View {
     private var autocompleteContext: AutocompleteContext
 
     @StateObject
-    private var calloutContext: CalloutContext
+    private var calloutContext: KeyboardCalloutContext
 
     @StateObject
     private var dictationContext: DictationContext

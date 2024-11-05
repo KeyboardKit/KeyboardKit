@@ -1,5 +1,5 @@
 //
-//  CalloutService.swift
+//  KeyboardCalloutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// This protocol can be implemented by any type that can be
-/// used to perform keyboard callout-related actions.
+/// used to perform keyboard-related callout actions.
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
@@ -20,7 +20,7 @@ import Foundation
 /// for all ``Foundation/Locale/keyboardKitSupported``.
 ///
 /// See <doc:Callouts-Article> for more information.
-public protocol CalloutService: AnyObject {
+public protocol KeyboardCalloutService: AnyObject {
 
     /// Get callout actions for the provided keyboard action.
     func calloutActions(
@@ -31,9 +31,9 @@ public protocol CalloutService: AnyObject {
     func triggerFeedbackForSelectionChange()
 }
 
-public extension Callouts {
+public extension KeyboardCallout {
 
-    /// This error can be thrown by ``CalloutService/tryRegisterLocalizedService(_:)``.
+    /// This error can be thrown by ``KeyboardCalloutService/tryRegisterLocalizedService(_:)``.
     enum TryRegisterLocalizedLayoutServiceError: Error {
 
         /// The service doesn't support localized layout service registrations.
@@ -44,19 +44,15 @@ public extension Callouts {
     }
 }
 
-public extension CalloutService {
+public extension KeyboardCalloutService {
 
     /// Try to register a localized service, which will then
     /// be used for the locale it specifies.
     ///
     /// - Parameters:
     ///   - service: The service to register.
-    ///
-    /// - Throws: ``Callouts/TryRegisterLocalizedLayoutServiceError``
-    /// if the current service can't be cast to a ``Callouts/StandardService``
-    /// or the provided `service` doesn't implement ``LocalizedService``.
     func tryRegisterLocalizedService(
-        _ service: CalloutService
+        _ service: KeyboardCalloutService
     ) throws {
         typealias ErrorType = KeyboardLayout.TryRegisterLocalizedLayoutServiceError
         let selfError = ErrorType.serviceDoesNotSupportLocalizedServiceRegistration
