@@ -36,7 +36,7 @@ public extension Callouts {
         ///   - actionItemPadding: The intrinsic action item padding, by default `0x6` points.
         ///   - backgroundColor: The callout background color, by default `.keyboardButtonBackground`.
         ///   - borderColor: The callout border color, by default transparent `.black`.
-        ///   - buttonOverlayCornerRadius: The button overlay corner radius, by default `5`.
+        ///   - buttonOverlayCornerRadius: A custom button overlay corner radius, if any.
         ///   - buttonOverlayInset: The button overlay inset, by default `.zero`.
         ///   - cornerRadius: The callout corner radius, by default `10`.
         ///   - curveSize: The callout to button curve size, by default `8x15` points.
@@ -55,7 +55,7 @@ public extension Callouts {
             actionItemPadding: CGSize = .init(width: 0, height: 6),
             backgroundColor: Color = .keyboardButtonBackground,
             borderColor: Color = .black.opacity(0.5),
-            buttonOverlayCornerRadius: CGFloat = 5,
+            buttonOverlayCornerRadius: CGFloat? = nil,
             buttonOverlayInset: CGSize = .zero,
             cornerRadius: CGFloat = 10,
             curveSize: CGSize = .init(width: 8, height: 15),
@@ -103,7 +103,7 @@ public extension Callouts {
         public var borderColor: Color
         
         /// The button overlay corner radius.
-        public var buttonOverlayCornerRadius: CGFloat
+        public var buttonOverlayCornerRadius: CGFloat?
 
         /// The button overlay inset.
         public var buttonOverlayInset: CGSize
@@ -141,6 +141,15 @@ public extension Callouts {
 }
 
 public extension Callouts.CalloutStyle {
+
+    /// The corner radius to use for the provided context.
+    func buttonCornerRadius(
+        for context: KeyboardContext
+    ) -> Double {
+        if let radius = buttonOverlayCornerRadius { return radius }
+        let config = KeyboardLayout.Configuration.standard(for: context)
+        return config.buttonCornerRadius
+    }
 
     /// The standard vertical offset for the provided device.
     func standardVerticalOffset(

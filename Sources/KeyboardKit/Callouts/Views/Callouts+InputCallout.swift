@@ -9,11 +9,12 @@
 import SwiftUI
 
 public extension Callouts {
-    
-    /// This callout can show the pressed char in a callout.
+
+    /// This callout can show the currenly pressed key, when
+    /// typing on an iPhone.
     ///
-    /// In iOS, this callout is presented when a button with
-    /// an input character is pressed.
+    /// This callout will adjust the button corner radius to
+    /// fit the style's or the keyboard layout configuration.
     struct InputCallout: View {
         
         /// Create a custom input callout.
@@ -39,25 +40,20 @@ public extension Callouts {
         private var style
 
         public var body: some View {
-            callout
-                .transition(.opacity)
-                .opacity(isCalloutActive ? 1 : 0)
-                .keyboardCalloutShadow(style: style)
-                .position(position)
-                .allowsHitTesting(false)
+            VStack(spacing: 0) {
+                calloutBubble.offset(y: 1)
+                calloutButton
+            }
+            .compositingGroup()
+            .opacity(isActive ? 1 : 0)
+            .keyboardCalloutShadow(style: style)
+            .position(position)
+            .allowsHitTesting(false)
         }
     }
 }
 
 private extension Callouts.InputCallout {
-
-    var callout: some View {
-        VStack(spacing: 0) {
-            calloutBubble.offset(y: 1)
-            calloutButton
-        }
-        .compositingGroup()
-    }
 
     var calloutBubble: some View {
         Text(calloutContext.inputAction?.inputCalloutText ?? "")
@@ -65,25 +61,38 @@ private extension Callouts.InputCallout {
             .frame(minWidth: calloutSize.width, minHeight: calloutSize.height)
             .foregroundColor(style.foregroundColor)
             .background(style.backgroundColor)
-            .cornerRadius(cornerRadius)
+            .cornerRadius(style.cornerRadius)
     }
     
     var calloutButton: some View {
-        ButtonArea(frame: buttonFrame)
-            .calloutStyle(style)
+        ButtonArea(
+            frame: buttonFrame,
+            buttonCornerRadius: style.buttonCornerRadius(for: keyboardContext)
+        )
+    }
+}
+
+private extension Callouts.InputCallout {
+
+    var isActive: Bool {
+        isEnabled && calloutContext.inputAction != nil
+    }
+
+    var isEnabled: Bool {
+        keyboardContext.deviceTypeForKeyboard == .phone
+    }
+
+    var shouldEnforceSmallSize: Bool {
+        keyboardContext.deviceTypeForKeyboard == .phone && keyboardContext.interfaceOrientation.isLandscape
     }
 }
 
 private extension Callouts.InputCallout {
     
     var buttonFrame: CGRect {
-        calloutContext.buttonFrame.insetBy(
-            dx: buttonInset.width,
-            dy: buttonInset.height)
-    }
-    
-    var buttonInset: CGSize {
-        style.buttonOverlayInset
+        let inset = style.buttonOverlayInset
+        return calloutContext.buttonFrame
+            .insetBy(dx: inset.width, dy: inset.height)
     }
     
     var buttonSize: CGSize {
@@ -104,28 +113,10 @@ private extension Callouts.InputCallout {
     }
     
     var calloutSizeWidth: CGFloat {
-        let minSize = buttonSize.width + 2 * style.curveSize.width + style.cornerRadius
+        let totalCurveSize = 2 * style.curveSize.width
+        let minSize = buttonSize.width + totalCurveSize + style.cornerRadius
         let calloutSize = style.inputItemMinSize
         return max(calloutSize.width, minSize)
-    }
-    
-    var cornerRadius: CGFloat {
-        shouldEnforceSmallSize ? style.buttonOverlayCornerRadius : style.cornerRadius
-    }
-}
-
-private extension Callouts.InputCallout {
-
-    var isCalloutActive: Bool {
-        isCalloutEnabled && calloutContext.inputAction != nil
-    }
-
-    var isCalloutEnabled: Bool {
-        keyboardContext.deviceTypeForKeyboard == .phone
-    }
-
-    var shouldEnforceSmallSize: Bool {
-        keyboardContext.deviceTypeForKeyboard == .phone && keyboardContext.interfaceOrientation.isLandscape
     }
 
     var position: CGPoint {
@@ -162,6 +153,7 @@ private extension Callouts.InputCallout {
                     endAction: context.resetInputActionWithDelay,
                     label: { _ in Color.red.cornerRadius(5) }
                 )
+                .onAppear { showCallout(for: geo) }
             }
             .frame(width: 40, height: 40)
             .padding()

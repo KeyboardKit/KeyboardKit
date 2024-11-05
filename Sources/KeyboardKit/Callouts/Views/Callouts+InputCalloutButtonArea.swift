@@ -13,27 +13,25 @@ public extension Callouts.InputCallout {
     /// This view is used to cover the part of a button that
     /// was tapped or pressed to trigger the callout.
     ///
-    /// The view accepts an optional button corner radius to
-    /// override the environment injected style radius. This
-    /// is needed for a dynamic view like the ``KeyboardView``
-    /// where the radius is based on the device type.
+    /// This view requires a button corner radius, since the
+    /// style can't provide a dynamic radius.
     struct ButtonArea: View {
         
         /// Create a callout button area.
         ///
         /// - Parameters:
         ///   - frame: The button area frame.
-        ///   - buttonCornerRadius: A custom button corner radius, if any.
+        ///   - buttonCornerRadius: The button corner radius.
         public init(
             frame: CGRect,
-            buttonCornerRadius: Double? = nil
+            buttonCornerRadius: Double
         ) {
             self.frame = frame
-            self.customButtonCornerRadius = buttonCornerRadius
+            self.buttonCornerRadius = buttonCornerRadius
         }
 
         private let frame: CGRect
-        private let customButtonCornerRadius: Double?
+        private let buttonCornerRadius: Double
 
         @Environment(\.calloutStyle)
         private var style
@@ -52,10 +50,6 @@ private extension Callouts.InputCallout.ButtonArea {
     
     var backgroundColor: Color {
         style.backgroundColor
-    }
-
-    var buttonCornerRadius: Double {
-        customButtonCornerRadius ?? style.buttonOverlayCornerRadius
     }
 
     var curveSize: CGSize {
@@ -86,8 +80,7 @@ private extension Callouts.InputCallout.ButtonArea {
             let curveStop  = CGPoint(x: rect.maxX, y: rect.minY)
             let corner = CGPoint(x: rect.minY, y: rect.minY)
             path.move(to: curveStart)
-            path.addCurve(to: curveStop, control1: .init(x: 0, y: rect.maxY/2), control2: .zero)
-            path.addLine(to: curveStop)
+            path.addCurve(to: curveStop, control1: .init(x: 0, y: rect.maxY/2), control2: .init(x: 0, y: rect.maxY/2))
             path.addLine(to: corner)
             path.addLine(to: curveStart)
             return path
@@ -103,7 +96,8 @@ private extension Callouts.InputCallout.ButtonArea {
             .frame(height: 50)
         HStack {
             Callouts.InputCallout.ButtonArea(
-                frame: CGRect(x: 0, y: 0, width: 50, height: 50)
+                frame: CGRect(x: 0, y: 0, width: 50, height: 50),
+                buttonCornerRadius: 10
             )
             Callouts.InputCallout.ButtonArea(
                 frame: CGRect(x: 0, y: 0, width: 100, height: 50),

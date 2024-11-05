@@ -64,8 +64,9 @@ class KeyboardViewController: KeyboardInputViewController {
                 emojiKeyboard: { $0.view },
                 toolbar: { params in params.view }
             )
-            /// 💡 You can disable autocorrection like this.
             // .autocorrectionDisabled()
+            // .calloutStyle(.init(backgroundColor: .red))
+            // .emojiKeyboardStyle(.optimized(for: controller.state.keyboardContext))
         }
     }
 }

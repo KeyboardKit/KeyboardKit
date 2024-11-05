@@ -19,7 +19,7 @@ class Callouts_CalloutStyleTests: XCTestCase {
         XCTAssertEqual(style.actionItemPadding, .init(width: 0, height: 6))
         XCTAssertEqual(style.backgroundColor, .keyboardButtonBackground)
         XCTAssertEqual(style.borderColor, .black.opacity(0.5))
-        XCTAssertEqual(style.buttonOverlayCornerRadius, 5)
+        XCTAssertEqual(style.buttonOverlayCornerRadius, nil)
         XCTAssertEqual(style.buttonOverlayInset, .zero)
         XCTAssertEqual(style.cornerRadius, 10)
         XCTAssertEqual(style.curveSize, .init(width: 8, height: 15))

@@ -113,6 +113,7 @@ public extension CalloutContext {
         _ action: KeyboardAction?,
         in geo: GeometryProxy
     ) {
+        if action?.inputCalloutText == nil { return }
         lastInputUpdate = Date()
         inputAction = action
         buttonFrame = geo.frame(in: .named(coordinateSpace))

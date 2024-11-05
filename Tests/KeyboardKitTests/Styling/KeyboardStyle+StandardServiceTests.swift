@@ -37,10 +37,8 @@ class KeyboardStyle_StandardServiceTests: XCTestCase {
     }
 
 
-    func testCalloutStyleIsStandard() {
-        let result = service.calloutStyle
-        let standard = Callouts.CalloutStyle.standard
-        XCTAssertEqual(result, standard)
+    func testCalloutStyleIsNil() {
+        XCTAssertNil(service.calloutStyle)
     }
 
     func testButtonImageIsStandardForAllActions() {

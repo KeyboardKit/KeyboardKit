@@ -13,27 +13,25 @@ public extension Callouts.ActionCallout {
     /// This view is used to cover the part of a button that
     /// was tapped or pressed to trigger the callout.
     ///
-    /// The view accepts an optional button corner radius to
-    /// override the environment injected style radius. This
-    /// is needed for a dynamic view like the ``KeyboardView``
-    /// where the radius is based on the device type.
+    /// This view requires a button corner radius, since the
+    /// style can't provide a dynamic radius.
     struct ButtonArea: View {
         
         /// Create a callout button area.
         ///
         /// - Parameters:
         ///   - frame: The button area frame.
-        ///   - buttonCornerRadius: A custom button corner radius, if any.
+        ///   - buttonCornerRadius: The button corner radius.
         public init(
             frame: CGRect,
-            buttonCornerRadius: Double? = nil
+            buttonCornerRadius: Double
         ) {
             self.frame = frame
-            self.customButtonCornerRadius = buttonCornerRadius
+            self.buttonCornerRadius = buttonCornerRadius
         }
         
         private let frame: CGRect
-        private let customButtonCornerRadius: Double?
+        private let buttonCornerRadius: Double
 
         @Environment(\.calloutStyle)
         private var style
@@ -52,10 +50,6 @@ private extension Callouts.ActionCallout.ButtonArea {
     
     var backgroundColor: Color {
         style.backgroundColor
-    }
-
-    var buttonCornerRadius: Double {
-        customButtonCornerRadius ?? style.buttonOverlayCornerRadius
     }
 
     var curveSize: CGSize {
@@ -126,7 +120,8 @@ private extension Callouts.ActionCallout.ButtonArea {
             .frame(height: 80)
         HStack {
             Callouts.ActionCallout.ButtonArea(
-                frame: CGRect(x: 0, y: 0, width: 50, height: 50)
+                frame: CGRect(x: 0, y: 0, width: 50, height: 50),
+                buttonCornerRadius: 10
             )
             Spacer()
             Callouts.ActionCallout.ButtonArea(

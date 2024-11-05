@@ -70,7 +70,7 @@ public extension Callouts.CalloutStyle {
 
     @available(*, deprecated, renamed: "buttonOverlayCornerRadius", message: "Migration Deprecation, will be removed in 9.1!")
     var buttonCornerRadius: CGFloat {
-        get { buttonOverlayCornerRadius }
+        get { buttonOverlayCornerRadius ?? 5 }
         set { buttonOverlayCornerRadius = newValue }
     }
 

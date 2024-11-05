@@ -11,11 +11,10 @@ import SwiftUI
 public extension Callouts {
     
     /// This callout can show secondary callout actions when
-    /// a user long presser certain input keys.
+    /// long pressing input keys with secondary actions.
     ///
-    /// This callout will adjust the provided style's button
-    /// corner radius to fit the layout configuration of the
-    /// callout context.
+    /// This callout will adjust the button corner radius to
+    /// fit the style's or the keyboard layout configuration.
     struct ActionCallout: View {
         
         /// Create an action callout.
@@ -27,8 +26,8 @@ public extension Callouts {
             calloutContext: CalloutContext,
             keyboardContext: KeyboardContext
         ) {
-            self._calloutContext = ObservedObject(wrappedValue: calloutContext)
-            self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+            self._calloutContext = .init(wrappedValue: calloutContext)
+            self._keyboardContext = .init(wrappedValue: keyboardContext)
         }
 
         @ObservedObject
@@ -38,117 +37,73 @@ public extension Callouts {
         private var keyboardContext: KeyboardContext
 
         @Environment(\.emojiKeyboardStyle)
-        private var emojiStyle: Emoji.KeyboardStyle.Builder
+        private var emojiStyle
 
         @Environment(\.calloutStyle)
         private var style
 
         public var body: some View {
             Button(action: calloutContext.resetSecondaryActions) {
-                VStack(alignment: calloutContext.secondaryActionsAlignment, spacing: 0) {
-                    callout
-                    buttonArea
+                VStack(alignment: alignment, spacing: 0) {
+                    calloutBubble
+                    calloutButton
                 }
             }
             .buttonStyle(.plain)
-            .font(style.actionItemFont.font)
             .compositingGroup()
-            .opacity(calloutContext.secondaryActions.isEmpty ? 0 : 1)
+            .opacity(isActive ? 1 : 0)
             .keyboardCalloutShadow(style: style)
-            .position(x: positionX, y: positionY)
-            .offset(y: style.offset?.y ?? style.standardVerticalOffset(for: keyboardContext.deviceTypeForKeyboard))
+            .position(position)
+            .offset(y: verticalOffset)
         }
     }
 }
 
-
-// MARK: - Private Properties
-
 private extension Callouts.ActionCallout {
-    
-    var backgroundColor: Color { style.backgroundColor }
 
-    var buttonFrame: CGRect { isEmojiCallout ? buttonFrameForEmojis : buttonFrameForCharacters }
-    
-    var buttonFrameSize: CGSize { buttonFrame.size }
-    
-    var buttonFrameForCharacters: CGRect { calloutContext.buttonFrame.insetBy(dx: buttonInset.width, dy: buttonInset.height) }
-    
-    var buttonFrameForEmojis: CGRect { calloutContext.buttonFrame }
-    
-    var buttonInset: CGSize { style.buttonOverlayInset }
-
-    var calloutActions: [KeyboardAction] { calloutContext.secondaryActions }
-
-    var calloutButtonSize: CGSize {
-        let frameSize = buttonFrame.size
-        let widthScale = (calloutActions.count == 1) ? 1.2 : 1
-        let buttonSize = CGSize(width: frameSize.width * widthScale, height: frameSize.height)
-        return buttonSize.limited(to: style.actionItemMaxSize)
-    }
-    
-    var cornerRadius: CGFloat { style.cornerRadius }
-
-    var curveSize: CGSize { style.curveSize }
-
-    var isLeading: Bool { calloutContext.secondaryActionsAlignment == .leading }
-
-    var isTrailing: Bool { !isLeading }
-
-    var buttonArea: some View {
-        ButtonArea(frame: buttonFrame)
-            .opacity(isPad ? 0 : 1)
-            .rotation3DEffect(isTrailing ? .degrees(180) : .zero, axis: (x: 0.0, y: 1.0, z: 0.0))
-    }
-    
-    var callout: some View {
+    var calloutBubble: some View {
         HStack(spacing: 0) {
-            ForEach(Array(calloutActions.enumerated()), id: \.offset) {
-                calloutView(for: $0.element)
-                    .frame(width: calloutButtonSize.width, height: calloutButtonSize.height)
+            ForEach(Array(actions.enumerated()), id: \.offset) {
+                calloutItem(for: $0.element)
+                    .frame(width: itemSize.width, height: itemSize.height)
                     .background(isSelected($0.offset) ? style.selectedBackgroundColor : .clear)
                     .foregroundColor(isSelected($0.offset) ? style.selectedForegroundColor : style.foregroundColor)
-                    .cornerRadius(cornerRadius)
+                    .cornerRadius(style.cornerRadius)
                     .padding(.horizontal, style.actionItemPadding.width)
                     .padding(.vertical, style.actionItemPadding.height)
             }
         }
-        .padding(.horizontal, curveSize.width)
-        .background(calloutBackground)
+        .padding(.horizontal, style.curveSize.width)
+        .background(style.backgroundColor)
+        .cornerRadius(style.cornerRadius)
     }
-    
-    var calloutBackground: some View {
-        CustomRoundedRectangle(
-            topLeft: cornerRadius,
-            topRight: cornerRadius,
-            bottomLeft: cornerRadius,
-            bottomRight: cornerRadius
+
+    var calloutButton: some View {
+        ButtonArea(
+            frame: buttonFrame,
+            buttonCornerRadius: style.buttonCornerRadius(for: keyboardContext)
         )
-        .foregroundColor(backgroundColor)
+        .opacity(isPad ? 0 : 1)
+        .rotation3DEffect(isLeading ? .zero : .degrees(180), axis: (x: 0.0, y: 1.0, z: 0.0))
     }
 
     @ViewBuilder
-    func calloutView(for action: KeyboardAction) -> some View {
+    func calloutItem(for action: KeyboardAction) -> some View {
         switch action {
-        case .character(let char): calloutView(for: char)
-        case .emoji(let emoji): calloutView(for: emoji)
+        case .character(let char): calloutItem(for: char)
+        case .emoji(let emoji): calloutItem(for: emoji)
         default: EmptyView()
         }
     }
 
-    func calloutView(for character: String) -> some View {
-        Text(character)
+    func calloutItem(for char: String) -> some View {
+        Text(char)
+            .font(style.actionItemFont.font)
     }
 
-    func calloutView(for emoji: Emoji) -> some View {
-        calloutView(for: emoji, style: emojiStyle(keyboardContext))
-    }
-
-    func calloutView(
-        for emoji: Emoji,
-        style: Emoji.KeyboardStyle
-    ) -> some View {
-        Text(emoji.char)
+    func calloutItem(for emoji: Emoji) -> some View {
+        let style = emojiStyle(keyboardContext)
+        return Text(emoji.char)
             .font(style.itemFont)
             .scaleEffect(style.itemScaleFactor)
             .frame(
@@ -157,35 +112,80 @@ private extension Callouts.ActionCallout {
                 alignment: .center
             )
     }
-
-    var positionX: CGFloat {
-        let buttonWidth = calloutButtonSize.width
-        let adjustment = (CGFloat(calloutActions.count) * buttonWidth)/2
-        let widthDiff = buttonWidth - buttonFrameSize.width
-        let signedAdjustment = isTrailing ? -adjustment + buttonWidth - widthDiff : adjustment
-        return buttonFrame.origin.x + signedAdjustment
-    }
-    
-    var positionY: CGFloat {
-        buttonFrame.origin.y - style.actionItemPadding.height
-    }
 }
 
-
-// MARK: - Private Functions
-
 private extension Callouts.ActionCallout {
-    
+
+    var actions: [KeyboardAction] {
+        calloutContext.secondaryActions
+    }
+
+    var isActive: Bool {
+        !actions.isEmpty
+    }
+
+    var isEmojiCallout: Bool {
+        actions.first?.isEmojiAction ?? false
+    }
+
+    var isLeading: Bool {
+        calloutContext.secondaryActionsAlignment == .leading
+    }
+
     var isPad: Bool {
         keyboardContext.deviceTypeForKeyboard == .pad
     }
 
-    var isEmojiCallout: Bool {
-        calloutActions.first?.isEmojiAction ?? false
-    }
-
     func isSelected(_ offset: Int) -> Bool {
         calloutContext.secondaryActionsIndex == offset
+    }
+}
+
+private extension Callouts.ActionCallout {
+
+    var alignment: HorizontalAlignment {
+        calloutContext.secondaryActionsAlignment
+    }
+
+    var buttonSize: CGSize {
+        buttonFrame.size
+    }
+
+    var buttonFrame: CGRect {
+        isEmojiCallout ? calloutContext.buttonFrame : buttonFrameForCharacters
+    }
+
+    var buttonFrameForCharacters: CGRect {
+        let inset = style.buttonOverlayInset
+        return calloutContext.buttonFrame
+            .insetBy(dx: inset.width, dy: inset.height)
+    }
+
+    var itemSize: CGSize {
+        let frameSize = buttonSize
+        let widthScale = (actions.count == 1) ? 1.2 : 1
+        let buttonSize = CGSize(width: frameSize.width * widthScale, height: frameSize.height)
+        return buttonSize.limited(to: style.actionItemMaxSize)
+    }
+
+    var verticalOffset: CGFloat {
+        style.offset?.y ?? style.standardVerticalOffset(for: keyboardContext.deviceTypeForKeyboard)
+    }
+
+    var position: CGPoint {
+        CGPoint(x: positionX, y: positionY)
+    }
+
+    var positionX: CGFloat {
+        let buttonWidth = itemSize.width
+        let adjustment = (CGFloat(actions.count) * buttonWidth)/2
+        let widthDiff = buttonWidth - buttonFrame.size.width
+        let signedAdjustment = isLeading ? adjustment : -adjustment + buttonWidth - widthDiff
+        return buttonFrame.origin.x + signedAdjustment
+    }
+
+    var positionY: CGFloat {
+        buttonFrame.origin.y - style.actionItemPadding.height
     }
 }
 
@@ -201,14 +201,16 @@ private extension KeyboardAction {
 
 #Preview {
 
-    let context1 = CalloutContext()
-    let context2 = CalloutContext()
+    let keyboardContext = KeyboardContext()
+    let calloutContext1 = CalloutContext()
+    let calloutContext2 = CalloutContext()
 
     func previewGroup<ButtonView: View>(
         view: ButtonView,
         context: CalloutContext,
         alignment: HorizontalAlignment
     ) -> some View {
+        keyboardContext.deviceTypeForKeyboard = .phone
         context.calloutService = .preview
         return view.overlay(
             GeometryReader { geo in
@@ -223,7 +225,7 @@ private extension KeyboardAction {
         )
         .keyboardActionCalloutContainer(
             calloutContext: context,
-            keyboardContext: .preview
+            keyboardContext: keyboardContext
         )
     }
 
@@ -232,12 +234,12 @@ private extension KeyboardAction {
         VStack(spacing: 100) {
             previewGroup(
                 view: Color.blue.frame(width: 40, height: 50),
-                context: context1,
+                context: calloutContext1,
                 alignment: .leading
             )
             previewGroup(
                 view: Color.blue.frame(width: 40, height: 50),
-                context: context2,
+                context: calloutContext2,
                 alignment: .trailing
             )
         }

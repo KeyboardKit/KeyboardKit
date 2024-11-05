@@ -115,13 +115,6 @@ public struct KeyboardView<
         _autocompleteContext = .init(wrappedValue: autocompleteContext)
         _calloutContext = .init(wrappedValue: calloutContext)
         _keyboardContext = .init(wrappedValue: keyboardContext)
-
-        self.calloutStyle = {
-            var style = styleService.calloutStyle
-            let insets = layoutConfig.buttonInsets
-            style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
-            return style
-        }()
     }
 
     private let actionHandler: KeyboardActionHandler
@@ -136,7 +129,18 @@ public struct KeyboardView<
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
     
-    private var calloutStyle: Callouts.CalloutStyle
+    private var calloutStyle: Callouts.CalloutStyle {
+        var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
+        let insets = layoutConfig.buttonInsets
+        style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
+        return style
+    }
+
+    @Environment(\.calloutStyle)
+    private var calloutStyleFromEnvironment
+
+    @Environment(\.keyboardInputToolbarDisplayMode)
+    private var rawInputToolbarDisplayMode
 
     @ObservedObject
     private var autocompleteContext: AutocompleteContext
@@ -146,9 +150,6 @@ public struct KeyboardView<
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
-    
-    @Environment(\.keyboardInputToolbarDisplayMode)
-    private var rawInputToolbarDisplayMode
 
     public var body: some View {
         KeyboardStyle.StandardService.iPadProRenderingModeActive = layout.ipadProLayout
