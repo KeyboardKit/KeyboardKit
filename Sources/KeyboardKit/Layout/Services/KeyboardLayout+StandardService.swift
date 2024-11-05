@@ -13,7 +13,7 @@ public extension KeyboardLayoutService where Self == KeyboardLayout.StandardServ
     /// Create a ``KeyboardLayout/StandardService`` instance.
     ///
     /// - Parameters:
-    ///   - baseService: The base service to use, by default a ``Callouts/BaseService``.
+    ///   - baseService: The base service to use, by default a device-based service.
     ///   - localizedServices: A list of localized services, by default `empty`.
     static func standard(
         baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedService(),

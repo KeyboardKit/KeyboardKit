@@ -1,5 +1,5 @@
 //
-//  Callouts+StandardServiceTests.swift
+//  KeyboardCallout+StandardServiceTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -9,9 +9,9 @@
 import KeyboardKit
 import XCTest
 
-class Callouts_StandardServiceTests: XCTestCase {
+class KeyboardCallout_StandardServiceTests: XCTestCase {
 
-    var service: Callouts.StandardService!
+    var service: KeyboardCallout.StandardService!
     var context: KeyboardContext!
     
     override func setUp() {
@@ -20,7 +20,7 @@ class Callouts_StandardServiceTests: XCTestCase {
     }
     
     override func tearDown() {
-        Callouts.StandardService.localizedServiceResolver = nil
+        KeyboardCallout.StandardService.localizedServiceResolver = nil
     }
     
     func testLocalizedServicesHaveNoDefaultServices() {
@@ -77,7 +77,7 @@ class Callouts_StandardServiceTests: XCTestCase {
     
     
     func testCanResolveLayoutServiceWithStaticResolver() {
-        Callouts.StandardService.localizedServiceResolver = { locale in
+        KeyboardCallout.StandardService.localizedServiceResolver = { locale in
             if locale == .albanian { return TestService(localeKey: "apa") }
             return nil
         }
@@ -89,7 +89,7 @@ class Callouts_StandardServiceTests: XCTestCase {
     }
 }
 
-private class TestService: CalloutService, LocalizedService {
+private class TestService: KeyboardCalloutService, LocalizedService {
 
     init(localeKey: String) {
         self.localeKey = localeKey

@@ -46,7 +46,7 @@ EmojiCategory.smileysAndPeople.emojis  // 😀😃😄...
 EmojiCategory.animalsAndNature.emojis  // 🐶🐱🐭...
 ```
 
-You can use ``EmojiCategory/all`` to get a list of all available categories, in the native, default sort order:
+You can use ``EmojiCategory/standard`` to get a list of all standard categories, in the native, default sort order:
 
 ```swift
 EmojiCategory.all      // [.frequent, .smileyAndPeople, ...]

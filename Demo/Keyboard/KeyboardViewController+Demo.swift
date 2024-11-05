@@ -37,7 +37,7 @@ extension KeyboardViewController {
         
         /// 💡 Setup a demo-specific callout service that is
         /// adding some dummy actions to the `k` key.
-        services.calloutService = Callouts.StandardService(
+        services.calloutService = KeyboardCallout.StandardService(
             keyboardContext: state.keyboardContext,
             baseService: DemoCalloutService()
         )

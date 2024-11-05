@@ -1,5 +1,5 @@
 //
-//  Callouts+ActionCalloutButtonArea.swift
+//  KeyboardCallout+ActionCalloutButtonArea.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-10.
@@ -8,27 +8,32 @@
 
 import SwiftUI
 
-public extension Callouts.ActionCallout {
-    
+public extension KeyboardCallout.ActionCallout {
+
     /// This view is used to cover the part of a button that
     /// was tapped or pressed to trigger the callout.
+    ///
+    /// This view requires a button corner radius, since the
+    /// style can't provide a dynamic radius.
     struct ButtonArea: View {
         
         /// Create a callout button area.
         ///
         /// - Parameters:
         ///   - frame: The button area frame.
+        ///   - buttonCornerRadius: The button corner radius.
         public init(
-            frame: CGRect
+            frame: CGRect,
+            buttonCornerRadius: Double
         ) {
             self.frame = frame
+            self.buttonCornerRadius = buttonCornerRadius
         }
         
         private let frame: CGRect
+        private let buttonCornerRadius: Double
 
-        private typealias Style = Callouts.CalloutStyle
-
-        @Environment(\.calloutStyle)
+        @Environment(\.keyboardCalloutStyle)
         private var style
         
         public var body: some View {
@@ -41,14 +46,18 @@ public extension Callouts.ActionCallout {
     }
 }
 
-private extension Callouts.ActionCallout.ButtonArea {
-    
-    var backgroundColor: Color { style.backgroundColor }
-    var cornerRadius: CGFloat { style.buttonCornerRadius }
-    var curveSize: CGSize { style.curveSize }
-    
+private extension KeyboardCallout.ActionCallout.ButtonArea {
+
+    var backgroundColor: Color {
+        style.backgroundColor
+    }
+
+    var curveSize: CGSize {
+        style.curveSize
+    }
+
     var buttonBody: some View {
-        CustomRoundedRectangle(bottomLeft: cornerRadius, bottomRight: cornerRadius)
+        CustomRoundedRectangle(bottomLeft: buttonCornerRadius, bottomRight: buttonCornerRadius)
             .foregroundColor(backgroundColor)
             .frame(width: frame.size.width, height: frame.size.height)
     }
@@ -66,8 +75,8 @@ private extension Callouts.ActionCallout.ButtonArea {
     }
 }
 
-private extension Callouts.ActionCallout.ButtonArea {
-    
+private extension KeyboardCallout.ActionCallout.ButtonArea {
+
     struct LeadingCurve: Shape {
         
         public func path(in rect: CGRect) -> Path {
@@ -104,18 +113,26 @@ private extension Callouts.ActionCallout.ButtonArea {
 }
 
 #Preview {
-    
+
     VStack(alignment: .leading, spacing: 0) {
         RoundedRectangle(cornerRadius: 10)
             .fill(.white)
             .frame(height: 80)
-        Callouts.ActionCallout.ButtonArea(
-            frame: CGRect(x: 0, y: 0, width: 50, height: 50)
-        )
+        HStack {
+            KeyboardCallout.ActionCallout.ButtonArea(
+                frame: CGRect(x: 0, y: 0, width: 50, height: 50),
+                buttonCornerRadius: 10
+            )
+            Spacer()
+            KeyboardCallout.ActionCallout.ButtonArea(
+                frame: CGRect(x: 0, y: 0, width: 100, height: 50),
+                buttonCornerRadius: 20
+            ).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))
+        }
     }
-    
-    .padding(30)
-    .background(Color.gray)
+    .padding()
+    .background(Color.keyboardBackground)
     .cornerRadius(20)
-    .calloutStyle(.preview1)
+    .keyboardCalloutStyle(.standard)
+    .padding()
 }

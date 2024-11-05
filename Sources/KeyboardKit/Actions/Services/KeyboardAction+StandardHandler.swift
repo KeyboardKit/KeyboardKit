@@ -80,7 +80,7 @@ extension KeyboardAction {
     /// then override any open parts that you want to change.
     ///
     /// This service can also be resolved with the shorthand
-    /// ``KeyboardActionHandler/standard(controller:)``.
+    /// ``KeyboardActionHandler/standard(for:)``.
     ///
     /// See <doc:Actions-Article> for more information.
     open class StandardHandler: NSObject, KeyboardActionHandler, KeyboardBehavior {

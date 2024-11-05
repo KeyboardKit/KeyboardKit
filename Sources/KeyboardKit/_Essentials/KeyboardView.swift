@@ -89,7 +89,7 @@ public struct KeyboardView<
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
-        calloutContext: CalloutContext?,
+        calloutContext: KeyboardCalloutContext,
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
@@ -112,23 +112,9 @@ public struct KeyboardView<
         self.emojiKeyboardBuilder = emojiKeyboard
         self.toolbarBuilder = toolbar
 
-        _autocompleteContext = ObservedObject(wrappedValue: autocompleteContext)
-        _calloutContext = ObservedObject(wrappedValue: calloutContext ?? .disabled)
-        _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-
-        self.actionCalloutStyle = {
-            var style = styleService.actionCalloutStyle
-            let insets = layoutConfig.buttonInsets
-            style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
-            return style
-        }()
-
-        self.inputCalloutStyle = {
-            var style = styleService.inputCalloutStyle
-            let insets = layoutConfig.buttonInsets
-            style.callout.buttonInset = CGSize(width: insets.leading, height: insets.top)
-            return style
-        }()
+        _autocompleteContext = .init(wrappedValue: autocompleteContext)
+        _calloutContext = .init(wrappedValue: calloutContext)
+        _keyboardContext = .init(wrappedValue: keyboardContext)
     }
 
     private let actionHandler: KeyboardActionHandler
@@ -143,20 +129,27 @@ public struct KeyboardView<
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
     
-    private var actionCalloutStyle: Callouts.ActionCalloutStyle
-    private var inputCalloutStyle: Callouts.InputCalloutStyle
+    private var calloutStyle: KeyboardCallout.CalloutStyle {
+        var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
+        let insets = layoutConfig.buttonInsets
+        style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
+        return style
+    }
+
+    @Environment(\.keyboardCalloutStyle)
+    private var calloutStyleFromEnvironment
+
+    @Environment(\.keyboardInputToolbarDisplayMode)
+    private var rawInputToolbarDisplayMode
 
     @ObservedObject
     private var autocompleteContext: AutocompleteContext
 
     @ObservedObject
-    private var calloutContext: CalloutContext
+    private var calloutContext: KeyboardCalloutContext
 
     @ObservedObject
     private var keyboardContext: KeyboardContext
-    
-    @Environment(\.keyboardInputToolbarDisplayMode)
-    private var rawInputToolbarDisplayMode
 
     public var body: some View {
         KeyboardStyle.StandardService.iPadProRenderingModeActive = layout.ipadProLayout
@@ -175,8 +168,6 @@ public struct KeyboardView<
             calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
-        .actionCalloutStyle(actionCalloutStyle)
-        .inputCalloutStyle(inputCalloutStyle)
     }
 }
 

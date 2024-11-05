@@ -42,6 +42,7 @@ public extension Keyboard {
                 actionHandler: services.actionHandler,
                 layoutService: services.layoutService,
                 styleService: services.styleService,
+                calloutContext: state.calloutContext,
                 keyboardContext: state.keyboardContext,
                 buttonContent: buttonContent,
                 buttonView: buttonView
@@ -56,6 +57,7 @@ public extension Keyboard {
         ///   - actionHandler: The action handler to use.
         ///   - layoutService: The layout service to use.
         ///   - styleService: The style service to use.
+        ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
         ///   - buttonContent: The content view to use for buttons.
         ///   - buttonView: The button view to use for an buttons.
@@ -65,6 +67,7 @@ public extension Keyboard {
             actionHandler: KeyboardActionHandler,
             layoutService: KeyboardLayoutService,
             styleService: KeyboardStyleService,
+            calloutContext: KeyboardCalloutContext,
             keyboardContext: KeyboardContext,
             @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
             @ViewBuilder buttonView: @escaping ButtonViewBuilder
@@ -81,7 +84,9 @@ public extension Keyboard {
             self.styleService = styleService
             self.buttonContentBuilder = buttonContent
             self.buttonViewBuilder = buttonView
-            _keyboardContext = ObservedObject(wrappedValue: keyboardContext)
+
+            _calloutContext = .init(wrappedValue: calloutContext)
+            _keyboardContext = .init(wrappedValue: keyboardContext)
         }
 
         private let actionHandler: KeyboardActionHandler
@@ -90,6 +95,9 @@ public extension Keyboard {
 
         private let buttonContentBuilder: ButtonContentBuilder
         private let buttonViewBuilder: ButtonViewBuilder
+
+        @ObservedObject
+        private var calloutContext: KeyboardCalloutContext
 
         @ObservedObject
         private var keyboardContext: KeyboardContext
@@ -101,7 +109,7 @@ public extension Keyboard {
                 styleService: styleService,
                 keyboardContext: keyboardContext,
                 autocompleteContext: .preview,
-                calloutContext: nil,
+                calloutContext: calloutContext,
                 buttonContent: buttonContentBuilder,
                 buttonView: buttonViewBuilder,
                 emojiKeyboard: { _ in EmptyView() },

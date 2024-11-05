@@ -17,7 +17,7 @@ public extension Emoji {
         init(
             actionHandler: KeyboardActionHandler,
             keyboardContext: KeyboardContext,
-            calloutContext: CalloutContext?,
+            calloutContext: KeyboardCalloutContext?,
             styleService: KeyboardStyleService
         ) {}
 

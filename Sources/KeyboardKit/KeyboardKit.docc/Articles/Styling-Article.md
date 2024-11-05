@@ -33,7 +33,7 @@ This namespace will probably be removed in KeyboardKit 9.0, together with the ``
 
 In KeyboardKit, a ``KeyboardStyleService`` can provide dynamic styles for different parts of a keyboard. Unlike static styles, a style service can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
 
-KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardProvider`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
+KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
 
 
@@ -52,7 +52,7 @@ KeyboardKit defines additional, keyboard-specific ``SwiftUICore/Color`` and ``Sw
 
 KeyboardKit defines contextual colors that take a ``KeyboardContext``, like ``SwiftUICore/Color/keyboardBackground(for:)``, and then vary the color result based on the context. Prefer these context-based colors whenever possible.
 
-KeyboardKit defines variable-based icons like ``SwiftUICore/Image/keyboardNewline(for:)-4a8j6``, which make it easy to use them as toggles and indicators.
+KeyboardKit defines variable-based icons like ``SwiftUICore/Image/keyboardNewline``, which make it easy to use them as toggles and indicators.
 
 > Important: Some keyboard colors are semi-transparent to work around a system bug in iOS, where iOS defines an invalid color scheme when a keyboard is used with a dark appearance text field in light mode. iOS will say that the color scheme is `.dark`, even if the system color scheme is light. Since dark appearance keyboards in light mode look quite different from keyboards in dark mode, this makes it impossible to apply the correct style. This has been [reported to Apple][Bug], but until it's fixes, thse colors will stay semi-transparent.
 
@@ -82,11 +82,9 @@ Most views have static, standard styles that can be replaced by custom styles to
 
 
 
-## How to create a custom style provider
+## How to create a custom style service
 
-You can create a custom style provider to customize any style in any way you want. You can implement ``KeyboardStyleService`` from scratch, or inherit and customize ``KeyboardStyle/StandardProvider``.
-
-For instance, here's a custom provider that inherits ``KeyboardStyle/StandardProvider`` and makes all input buttons red:
+You can create a custom style service to customize any style in any way you want. You can implement ``KeyboardStyleService`` from scratch, or inherit and customize ``KeyboardStyle/StandardService``:
 
 ```swift
 class CustomKeyboardStyleService: KeyboardStyle.StandardProvider {

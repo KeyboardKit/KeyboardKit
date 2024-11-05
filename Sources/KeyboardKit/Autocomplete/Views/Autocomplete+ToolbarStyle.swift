@@ -23,7 +23,7 @@ public extension Autocomplete {
         ///
         /// - Parameters:
         ///   - height: An optional, fixed height, by default `48`.
-        ///   - height: An optional, fixed edge padding, by default `4`.
+        ///   - padding: An optional, fixed edge padding, by default `4`.
         ///   - item: The style to apply to the toolbar items, by default `.standard`.
         ///   - separator: The style to apply to autocorrect items `.standardAutocorrect`.
         ///   - autocorrectItem: The autocorrect background style, by default `.standard`.

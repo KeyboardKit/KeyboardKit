@@ -21,11 +21,10 @@ import UIKit
 /// make state-based decisions, and automatically update the
 /// ``KeyboardView`` whenever the context changes.
 ///
-/// You can use ``locale`` to get and set the current locale
-/// or use ``Locale``-based properties and functions. If the
-/// ``locales`` or `` addedLocales`` properties have multiple
-/// values, ``selectNextLocale()`` will toggle through these,
-/// where ``addedLocales`` is used over ``locales``.
+/// You can use ``locale`` to get and set the current locale.
+/// If ``locales`` or the ``KeyboardContext/settings-swift.property``
+/// added locales have multiple values, ``selectNextLocale()``
+/// will toggle through these.
 ///
 /// This class also has observable auto-persisted ``settings``
 /// that can be used to configure the behavior and presented

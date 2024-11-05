@@ -60,7 +60,7 @@ public extension Keyboard {
         }
 
         /// The callout service to use.
-        public lazy var calloutService: CalloutService = Callouts.StandardService(
+        public lazy var calloutService: KeyboardCalloutService = .standard(
             keyboardContext: state.keyboardContext,
             feedbackService: feedbackService
         ) {
@@ -73,10 +73,10 @@ public extension Keyboard {
         )
 
         /// The feedback service to use.
-        public lazy var feedbackService: FeedbackService = Feedback.StandardService()
+        public lazy var feedbackService: FeedbackService = .standard
 
         /// The keyboard behavior to use.
-        public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(
+        public lazy var keyboardBehavior: KeyboardBehavior = .standard(
             keyboardContext: state.keyboardContext,
             repeatGestureTimer: repeatGestureTimer
         ) {
@@ -87,7 +87,7 @@ public extension Keyboard {
         }
 
         /// The keyboard layout service to use.
-        public lazy var layoutService: KeyboardLayoutService = KeyboardLayout.StandardService() {
+        public lazy var layoutService: KeyboardLayoutService = .standard() {
             didSet { state.keyboardContext.triggerKeyboardViewRefresh() }
         }
 
@@ -101,7 +101,7 @@ public extension Keyboard {
         )
 
         /// The keyboard style service to use.
-        public lazy var styleService: KeyboardStyleService = KeyboardStyle.StandardService(
+        public lazy var styleService: KeyboardStyleService = .standard(
             keyboardContext: state.keyboardContext
         )
     }
@@ -114,13 +114,8 @@ public extension Keyboard.Services {
     ///
     /// - Parameters:
     ///   - service: The service to register.
-    ///
-    /// - Throws: ``Callouts/TryRegisterLocalizedLayoutServiceError``
-    /// if the current ``calloutService`` can't be cast to a
-    /// ``Callouts/StandardService`` or the provided `service`
-    /// doesn't implement the ``LocalizedService`` protocol.
     func tryRegisterLocalizedCalloutService(
-        _ service: CalloutService
+        _ service: KeyboardCalloutService
     ) throws {
         try calloutService.tryRegisterLocalizedService(service)
     }
@@ -130,11 +125,6 @@ public extension Keyboard.Services {
     ///
     /// - Parameters:
     ///   - service: The service to register.
-    ///
-    /// - Throws: ``KeyboardLayout/TryRegisterLocalizedLayoutServiceError``
-    /// if the current ``layoutService`` can't be cast to a
-    /// ``KeyboardLayout/StandardService`` or the provided `service`
-    /// doesn't implement the ``LocalizedService`` protocol.
     func tryRegisterLocalizedLayoutService(
         _ service: KeyboardLayoutService
     ) throws {
@@ -176,9 +166,8 @@ public extension Keyboard.Services {
 private extension Keyboard.Services {
 
     func setupCalloutContextForServices() {
-        let context = state.calloutContext.actionContext
-        context.service = calloutService
-        context.tapAction = { [weak self] action in
+        state.calloutContext.calloutService = calloutService
+        state.calloutContext.actionHandler = { [weak self] action in
             self?.actionHandler.handle(.release, on: action)
         }
     }

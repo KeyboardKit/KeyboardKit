@@ -17,27 +17,21 @@ A flexible keyboard layout is an important part of a software keyboard, and must
 
 In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after which a ``KeyboardLayoutService`` can create a dynamic ``KeyboardLayout`` at runtime that defines the full set of keys. 
 
-👑 [KeyboardKit Pro][Pro] unlocks localized input sets and layout services for all locales, as well as additional sets like ``InputSet/qwertz`` and ``InputSet/azerty``, and support for iPad Pro. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks localized input sets and layout services for all locales, as well as additional sets like ``InputSet/qwertz`` and ``InputSet/azerty``, and support for iPad Pro-specific layouts. Information about Pro features can be found at the end of this article.
 
 
 
-## KeyboardLayout namespace
+## Layout Namespace
 
 KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other layout-related types like ``KeyboardLayout/Configuration``, ``KeyboardLayout/Item``, etc.
 
 
 
-## Input Sets
+## Input Sets & Layouts
 
-An ``InputSet`` specifies the input keys of a keyboard. It makes it easy to define different input keys for the same keyboard layout.
+In KeyboardKit an ``InputSet`` specifies the input keys of a keyboard, while a ``KeyboardLayout`` specifies the full set of keys. Layouts can vary greatly for different devices, screens, locales, etc.
 
-KeyboardKit comes with some pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` and ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, e.g. ``InputSet/qwertz`` and ``InputSet/azerty``, as well as specific input sets for each locale.
-
-
-
-## Keyboard Layouts
-
-A ``KeyboardLayout`` specifies the full set of keys on a keyboard. Layouts can vary greatly for different devices, screens, locales, etc.
+KeyboardKit comes with pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` & ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` & ``InputSet/azerty``, as well as locale-specific input sets for all ``Foundation/Locale/keyboardKitSupported`` locales.
 
 *Most* iOS keyboards have 3 input rows of input keys surrounded by action keys, as well as a bottom row with a space bar and contextual action keys. This is however not true for all locales, where the keyboard layout can vary greatly.
 
@@ -45,7 +39,7 @@ For instance, Armenian keyboard have 4 input rows, Greek ones have way fewer act
 
 
 
-## Keyboard Layout Services
+## Layout Services
 
 In KeyboardKit, a ``KeyboardLayoutService`` can generate dynamic layouts at runtime, It provides us with the flexibility we need, to accomodate to the varying needs for different locales, devices, etc.
 

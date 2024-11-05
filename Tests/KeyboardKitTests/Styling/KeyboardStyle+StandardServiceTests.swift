@@ -37,14 +37,8 @@ class KeyboardStyle_StandardServiceTests: XCTestCase {
     }
 
 
-    func testActionCalloutStyleIsStandard() {
-        let result = service.actionCalloutStyle
-        let standard = Callouts.ActionCalloutStyle.standard
-        XCTAssertEqual(result.callout, standard.callout)
-        XCTAssertEqual(result.font, standard.font)
-        XCTAssertEqual(result.selectedBackgroundColor, standard.selectedBackgroundColor)
-        XCTAssertEqual(result.selectedForegroundColor, standard.selectedForegroundColor)
-        XCTAssertEqual(result.verticalTextPadding, standard.verticalTextPadding)
+    func testCalloutStyleIsNil() {
+        XCTAssertNil(service.calloutStyle)
     }
 
     func testButtonImageIsStandardForAllActions() {
@@ -62,15 +56,6 @@ class KeyboardStyle_StandardServiceTests: XCTestCase {
             result.expectEqual(to: standard)
         }
     }
-
-    func testInputCalloutStyleIsStandard() {
-        let result = service.inputCalloutStyle
-        let standard = Callouts.InputCalloutStyle.standard
-        XCTAssertEqual(result.callout, standard.callout)
-        XCTAssertEqual(result.calloutSize, standard.calloutSize)
-        XCTAssertEqual(result.font, standard.font)
-    }
-
 
     func testButtonStyleBackgroundColorIsStandardForAllExceptPrimaryAction() {
         styles.forEach {

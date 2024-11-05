@@ -14,9 +14,6 @@ public extension Feedback {
     ///
     /// You can use any of the standard configurations, like
     /// ``enabled`` and ``disabled``, or create a custom one.
-    ///
-    /// Note that this library uses ``minimal`` as a default
-    /// configuration.
     struct HapticConfiguration: Codable, Equatable {
         
         /// Create a custom haptic feedback configuration.

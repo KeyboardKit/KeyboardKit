@@ -1,5 +1,5 @@
 //
-//  View+Callouts.swift
+//  View+KeyboardCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -16,15 +16,15 @@ public extension View {
     ///   - calloutContext: The callout context to use.
     ///   - keyboardContext: The keyboard context to use.
     func keyboardCalloutContainer(
-        calloutContext: CalloutContext,
+        calloutContext: KeyboardCalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.keyboardActionCalloutContainer(
-            calloutContext: calloutContext.actionContext,
+            calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
         .keyboardInputCalloutContainer(
-            calloutContext: calloutContext.inputContext,
+            calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
     }
@@ -32,23 +32,19 @@ public extension View {
 
 extension View {
 
-    /// Apply a keyboard callout shadow to the view.
-    ///
-    /// - Parameters:
-    ///   - style: The style apply, by default `.standard`.
     func keyboardCalloutShadow(
-        style: Callouts.CalloutStyle = .standard
+        style: KeyboardCallout.CalloutStyle = .standard
     ) -> some View {
         self.shadow(color: style.borderColor, radius: 0.4)
             .shadow(color: style.shadowColor, radius: style.shadowRadius)
     }
 
     func keyboardActionCalloutContainer(
-        calloutContext: CalloutContext.ActionContext,
+        calloutContext: KeyboardCalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(
-            Callouts.ActionCallout(
+            KeyboardCallout.ActionCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
             )
@@ -58,11 +54,11 @@ extension View {
     }
 
     func keyboardInputCalloutContainer(
-        calloutContext: CalloutContext.InputContext,
+        calloutContext: KeyboardCalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(
-            Callouts.InputCallout(
+            KeyboardCallout.InputCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
             )

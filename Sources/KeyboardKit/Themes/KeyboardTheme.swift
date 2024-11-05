@@ -58,11 +58,14 @@ public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifi
     /// The style to apply to autocomplete toolbars, if any.
     public var autocompleteToolbarStyle: Autocomplete.ToolbarStyle?
 
-    /// The style to apply to action callouts, if any.
-    public var actionCalloutStyle: Callouts.ActionCalloutStyle?
+    /// The callout style to apply, if any.
+    public var calloutStyle: KeyboardCallout.CalloutStyle?
 
-    /// The style to apply to input callout, if any.
-    public var inputCalloutStyle: Callouts.InputCalloutStyle?
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+    public var actionCalloutStyle: KeyboardCallout.ActionCalloutStyle?
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+    public var inputCalloutStyle: KeyboardCallout.InputCalloutStyle?
 }
 
 public extension KeyboardTheme {

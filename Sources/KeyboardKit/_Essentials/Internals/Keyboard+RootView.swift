@@ -24,7 +24,7 @@ extension Keyboard {
         private var autocompleteContext: AutocompleteContext
 
         @EnvironmentObject
-        private var calloutContext: CalloutContext
+        private var calloutContext: KeyboardCalloutContext
 
         @EnvironmentObject
         private var dictationContext: DictationContext

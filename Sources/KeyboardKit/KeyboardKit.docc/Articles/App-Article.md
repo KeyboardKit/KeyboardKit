@@ -19,7 +19,7 @@ KeyboardKit has utilities that simplify building a great main app for your keybo
 
 
 
-## Keyboard App Namespace
+## Namespace
 
 KeyboardKit has a ``KeyboardApp`` struct that is also a namespace for app-related types and views, like the ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen`` and ``KeyboardApp/LocaleScreen`` screens that are unlocked by KeyboardKit Pro.
 
@@ -45,14 +45,14 @@ extension KeyboardApp {
 }
 ```
 
-Your app-specific ``KeyboardApp`` can also resolve other properties that you may need, like a ``KeyboardApp/dictationConfiguration``.
+Your app-specific ``KeyboardApp`` can also resolve other properties that you may need, e.g. to perform keyboard-based dictation.
 
 > Important: The ``KeyboardApp``'s ``KeyboardApp/locales`` collection is only meant to describe which locales you *want* to use in your app and keyboard. It will be capped to the number of locales that your KeyboardKit Pro license includes.
 
 
 ## Keyboard App View
 
-The ``KeyboardAppView`` view can be used as the root view of a keyboard app target, to set up everything it needs to use KeyboardKit.
+The ``KeyboardAppView`` view can be used as the root view of a keyboard app target, to set up everything needed to use KeyboardKit.
 
 To use it, just wrap your app's root view in a  ``KeyboardAppView`` and pass in your app-specific ``KeyboardApp`` value:
 
@@ -134,15 +134,13 @@ The injected state will also be used by the KeyboardKit Pro screens that are des
                 ![KeyboardApp.SettingsScreen](keyboardapp-themescreen)
             }
             @Column {
-                A ``KeyboardApp/ThemeScreen`` can be used as a main theme picker screen of a keyboard app or extension. It list available themes in shelves, and will by default set the main ``KeyboardThemeContext/theme``, which can then be applied with a   ``KeyboardStyle/ThemeBasedService`` style service.
+                A ``KeyboardApp/ThemeScreen`` can be used as a main theme picker screen of a keyboard app or extension. It list available themes in shelves, and will by default set the main ``KeyboardThemeContext/theme``.
             }
         }
     }
 }
 
-All screens have view modifiers to let you toggle the visibility of certain parts of the screen, and style and localize them to fit your needs. 
-
-For instance, this is how you set up and customize a home screen:
+All screens have view modifiers to let you toggle the visibility of certain parts of the screen, and style and localize them to fit your needs:
 
 ```swift
 NavigationView {
@@ -168,4 +166,4 @@ NavigationView {
 
 Check out the type documentation in the KeyboardKit Pro documentation, or the demo app for some examples on how to use this view.
 
-> Important: For settings to sync between the main app and its keyboard extension, you must replace the main keyboard settings ``KeyboardSettings/store`` with an App Group-synced store. You can use the ``KeyboardAppView`` to do this in the main app, and call  ``KeyboardSettings/setupStore(withAppGroup:keyPrefix:)`` in the keyboard extension's `viewDidLoad()` function.
+> Important: For settings to sync between the main app and its keyboard extension, you must replace the main keyboard settings ``KeyboardSettings/store`` with an App Group-synced store. You can use the ``KeyboardAppView`` to do this in the main app, and call  ``KeyboardSettings/setupStore(forAppGroup:keyPrefix:)`` in the keyboard extension's `viewDidLoad()` function.

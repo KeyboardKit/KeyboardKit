@@ -15,7 +15,7 @@ This article describes the KeyboardKit callout engine.
 
 Callouts are an important part of the typing experience, where input callouts can show the currently pressed key and action callouts can show secondary actions when certain keys are long pressed.
 
-KeyboardKit can show an ``Callouts/InputCallout`` for the currently pressed input key, and an ``Callouts/ActionCallout`` with secondary actions when long pressing certain keys.
+KeyboardKit can show an ``KeyboardCallout/InputCallout`` for the currently pressed input key, and an ``KeyboardCallout/ActionCallout`` with secondary actions when a key with secondary actions is long pressed.
 
 👑 [KeyboardKit Pro][Pro] unlocks localized services for all locales. Information about Pro features can be found at the end of this article.
 
@@ -23,51 +23,93 @@ KeyboardKit can show an ``Callouts/InputCallout`` for the currently pressed inpu
 
 
 
-## Callouts Namespace
+## Namespace
 
-KeyboardKit has a ``Callouts`` namespace that contains callout-related types and views. For instance, an ``Callouts/InputCallout`` can present the currently pressed character while an ``Callouts/ActionCallout`` can present secondary actions when long pressing a key.
+KeyboardKit has a ``KeyboardCallout`` namespace that contains callout-related types and views. For instance, an ``KeyboardCallout/InputCallout`` to show the currently pressed character and an ``KeyboardCallout/ActionCallout`` to present secondary actions.
 
 
 
-## Callout Context
+## Context
 
-KeyboardKit has an observable ``CalloutContext`` class that provides observable input and action callout state, such as the currently pressed key or the callout actions to present.
+KeyboardKit has an observable ``KeyboardCalloutContext`` class that provides observable input and action callout state, such as the currently pressed ``KeyboardCalloutContext/inputAction`` or the ``KeyboardCalloutContext/secondaryActions`` to present.
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``, then updates this context when keys are pressed.
 
 
 
-## Callout Services
+## Services
 
-In KeyboardKit, a ``CalloutService`` can return secondary callout actions when a key is long pressed.
+In KeyboardKit, a ``KeyboardCalloutService`` can return secondary callout actions when a key is long pressed and trigger feedback when the selected secondary action changes. 
 
-KeyboardKit automatically creates an instance of ``Callouts/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it with ``CalloutService/tryRegisterLocalizedService(_:)``.
+KeyboardKit automatically creates an instance of ``KeyboardCallout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it with ``KeyboardCalloutService/tryRegisterLocalizedService(_:)``.
 
 
 
-## How to show input and action callouts
+## Styling
 
-The ``KeyboardView`` and ``Keyboard/Button`` will automatically apply the proper view extensions to make input and action callouts work, so you don't have to do anything to make action and input callouts work.
+In KeyboardKit, a ``KeyboardCallout/CalloutStyle`` can be used to style both input & action callouts. You can apply a custom style with the ``SwiftUICore/View/keyboardCalloutStyle(_:)`` view modifier, or by returning a custom style with a custom ``KeyboardStyleService``.
 
-For other views, you can apply the ``SwiftUICore/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view extension to make any view act as the container of input and action callouts:
+
+
+## Views
+
+The ``KeyboardCallout`` namespace has callout-specific views, that can be used to mimic the native iOS input and action callouts.
+
+@TabNavigator {
+    
+    @Tab("ActionCallout") {
+        
+        @Row {
+            @Column { ![ActionCallout](actioncallout) }
+            @Column { 
+                The ``KeyboardCallout/ActionCallout`` view mimics presents secondary actions when a keyboard key with secondary actions is long-pressed.        
+            }
+        }
+    }
+    
+    @Tab("InputCallout") {
+        
+        @Row {
+            @Column { ![InputCallout](inputcallout) }
+            @Column { 
+                The ``KeyboardCallout/InputCallout`` view mimics a native input callout, which can be used to show the currently pressed key as the user types.
+            }
+        }
+    }
+}
+
+Both views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be applied with the ``SwiftUICore/View/calloutStyle(_:)`` view modifier or provided with a custom ``KeyboardStyleService``.
+
+
+
+## 👑 KeyboardKit Pro
+
+[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardCallout/ProService`` for every locale in your license, and injects them as localized services into the main ``Keyboard/Services/calloutService`` when a valid license is registered. You can access any localized service in your license like this:
 
 ```swift
-MyKeyboard()
-    .keyboardCalloutContainer(...)
+let service = try KeyboardCallout.ProService.Swedish()
 ```
 
-This will bind a ``CalloutContext`` to the view and apply ``Callouts/ActionCallout`` and ``Callouts/InputCallout`` views that will show as it changes. 
+
+## How to... 
+
+
+### Show input and action callouts
+
+The ``KeyboardView`` will automatically apply the proper view extensions to make input and action callouts work. For a custom view, just apply a ``SwiftUICore/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` modifier to it to make it present callouts.
+
+This binds a ``KeyboardCalloutContext`` to the view and applies a ``KeyboardCallout/ActionCallout`` and a ``KeyboardCallout/InputCallout`` view to the container. 
 
 
 
-## How to create a custom callout service
+### Create a custom callout service
 
-You can create a custom ``CalloutService`` to customize which secondary callout actions to show for different ``KeyboardAction``s.
+You can create a custom ``KeyboardCalloutService`` to customize which secondary actions to show for any ``KeyboardAction``. 
 
-You can implement the ``CalloutService`` protocol from scratch, or inherit and customize ``Callouts/BaseService`` or ``Callouts/StandardService`` to get a lot of functionality for free, for instance:
+You can implement the ``KeyboardCalloutService`` protocol from scratch, or inherit and customize the ``KeyboardCallout/StandardService`` class:
 
 ```swift
-class CustomCalloutService: Callouts.StandardService {
+class CustomCalloutService: KeyboardCallout.StandardService {
     
     override func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         var actions = super.calloutActions(for: action)
@@ -76,8 +118,6 @@ class CustomCalloutService: Callouts.StandardService {
     }
 }
 ```
-
-The ``Callouts/StandardService`` and ``Callouts/ProService`` base classes have different functions that you can override, and the ``KeyboardAction`` model also provodes ways to define actions.
 
 To use your custom service instead of the standard one, just inject it into ``KeyboardInputViewController/services`` by replacing its ``Keyboard/Services/calloutService`` property:
 
@@ -95,14 +135,14 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 
 
-## How to customize the callouts for a specific locale
+### Customize a specific locale
 
-Service that inherit ``Callouts/StandardService`` can use ``CalloutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)`` to register a custom service for a certain locale.
+Service that inherit ``KeyboardCallout/StandardService`` can use ``KeyboardCalloutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)`` function to register a custom service for a certain locale.
 
-For instance, this is how you could make KeyboardKit Pro use  a custom service for ``Locale/german``:
+For instance, this is how you could make KeyboardKit Pro use  a custom service for ``Foundation/Locale/german`` locales:
 
 ```swift
-class MyCustomGermanService: KeyboardLayout.ProService.German { ... } 
+class MyCustomGermanService: KeyboardCallout.ProService.German { ... } 
 
 class KeyboardViewController: KeyboardInputViewController {
 
@@ -115,71 +155,16 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This makes it easy to replace the default service for a certain locale in KeyboardKit Pro, where you can subclass ``Callouts/ProService`` or any localized Pro service, and make customizations to it.
+This makes it easy to replace the service for a certain KeyboardKit Pro locale, where you can inherit and customize any ``KeyboardCallout/ProService``.
 
 
 
-## Views
+### Customize a Pro service
 
-The ``Callouts`` namespace has callout-specific views, that can be used to mimic the native iOS & iPadOS input and action callouts.
-
-@TabNavigator {
-    
-    @Tab("Callouts.ActionCallout") {
-        
-        The ``Callouts/ActionCallout`` view mimics a native action callout, and can present secondary actions when a keyboard key is long-pressed:
-        
-        @Row {
-            @Column { }
-            @Column(size: 3) { ![ActionCallout](actioncallout) }
-            @Column { }
-        }
-        
-        The view can be styled with a ``Callouts/ActionCalloutStyle``, which is applied with the ``SwiftUICore/View/actionCalloutStyle(_:)`` view modifier.
-    }
-    
-    @Tab("Callouts.InputCallout") {
-        
-        The ``Callouts/InputCallout`` view mimics a native input callout, which can be used to show the currently pressed key as the user types:
-        
-        @Row {
-            @Column { }
-            @Column(size: 3) { ![InputCallout](inputcallout) }
-            @Column { }
-        }  
-        
-        The view can be styled with a ``Callouts/InputCalloutStyle``, which can be applied with the ``SwiftUICore/View/inputCalloutStyle(_:)`` view modifier.
-    }
-}
-
-The ``KeyboardView`` automatically registers everything needed to automatically show these callouts.
-
-
-
-## 👑 KeyboardKit Pro
-
-[KeyboardKit Pro][Pro] unlocks a localized ``CalloutService`` for every locale in your license, which will be injected as localized services into the main ``Keyboard/Services/calloutService`` when a valid license is registered.
-
-
-### Pro Callout Services
-
-KeyboardKit Pro unlocks a localized ``Callouts/ProService`` for every locale in your license. They are injected into the main ``Keyboard/Services/calloutService`` when a valid license is registered.
-
-You can access any localized service in your license like this, after successfully registering your license key:
+You can inherit and customize any ``KeyboardCallout/ProService`` and register it after setting up KeyboardKit Pro for your ``KeyboardApp``:
 
 ```swift
-let service = try Callouts.ProService.Swedish()
-```
-
-> Important: Localized pro services will throw a license error if their locales are not included in the license.
-
-
-### How to customize a Pro service
-
-You can inherit and customize any ``Callouts/ProService`` in your license, then manually register your service after setting up KeyboardKit Pro for your ``KeyboardApp``, or with a license key:
-
-```swift
-class CustomService: Callouts.ProService.Swedish {
+class CustomService: KeyboardCallout.ProService.Swedish {
 
     // Override any functions you want here...
 }
@@ -189,11 +174,11 @@ class KeyboardController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPro(for: .myApp) { license in
-            setupCustomService()
+            setupCustomCalloutService()
         } 
     }
 
-    func setupCustomService() {
+    func setupCustomCalloutService() {
         do {
             let service = try CustomService()
             try services.calloutService.tryRegisterLocalizedService(service)
@@ -205,6 +190,8 @@ class KeyboardController: KeyboardInputViewController {
 ```
 
 This is useful for when you want to make modifications to a single locale's callout actions, but keep all other locales the same.
+
+
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

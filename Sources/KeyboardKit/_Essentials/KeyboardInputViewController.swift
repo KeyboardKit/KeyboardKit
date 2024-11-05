@@ -108,7 +108,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     /// This function is called when the controller is about
-    /// to sync with the ``Keyboard/KeyboardState`` contexts.
+    /// to sync with the various ``Keyboard/State`` contexts.
     open func viewWillSyncWithContext() {
         performKeyboardContextSync()
     }
