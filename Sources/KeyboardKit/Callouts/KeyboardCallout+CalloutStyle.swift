@@ -18,7 +18,7 @@ public extension KeyboardCallout {
     ///
     /// You can use the ``standard`` style or your own style.
     struct CalloutStyle: Codable, Equatable {
-        
+
         /// Create a custom callout style.
         ///
         /// When creating custom styles, note that the style
@@ -49,41 +49,41 @@ public extension KeyboardCallout {
         ///   - shadowColor: The callout shadow color, by default 0.1 `.black`.
         ///   - shadowRadius: The callout shadow radius, by default `5`.
         public init(
-            actionItemFont: KeyboardFont = .title3,
-            actionItemMaxSize: CGSize = .init(width: 50, height: 50),
-            actionItemPadding: CGSize = .init(width: 0, height: 6),
+            actionItemFont: KeyboardFont? = nil,
+            actionItemMaxSize: CGSize? = nil,
+            actionItemPadding: CGSize? = nil,
             backgroundColor: Color = .keyboardButtonBackground,
-            borderColor: Color = .black.opacity(0.5),
+            borderColor: Color? = nil,
             buttonOverlayCornerRadius: CGFloat? = nil,
-            buttonOverlayInset: CGSize = .zero,
-            cornerRadius: CGFloat = 10,
-            curveSize: CGSize = .init(width: 8, height: 15),
-            foregroundColor: Color = .primary,
-            inputItemFont: KeyboardFont = .init(.largeTitle, .light),
-            inputItemMinSize: CGSize = .init(width: 0, height: 55),
+            buttonOverlayInset: CGSize? = nil,
+            cornerRadius: CGFloat? = nil,
+            curveSize: CGSize? = nil,
+            foregroundColor: Color? = nil,
+            inputItemFont: KeyboardFont? = nil,
+            inputItemMinSize: CGSize? = nil,
             offset: CGPoint? = nil,
-            selectedBackgroundColor: Color = .blue,
-            selectedForegroundColor: Color = .white,
-            shadowColor: Color = .black.opacity(0.1),
-            shadowRadius: CGFloat = 5
+            selectedBackgroundColor: Color? = nil,
+            selectedForegroundColor: Color? = nil,
+            shadowColor: Color? = nil,
+            shadowRadius: CGFloat? = nil
         ) {
-            self.actionItemFont = actionItemFont
-            self.actionItemMaxSize = actionItemMaxSize
-            self.actionItemPadding = actionItemPadding
+            self.actionItemFont = actionItemFont ?? .title3
+            self.actionItemMaxSize = actionItemMaxSize ?? .init(width: 50, height: 50)
+            self.actionItemPadding = actionItemPadding ?? .init(width: 0, height: 6)
             self.backgroundColor = backgroundColor
-            self.borderColor = borderColor
+            self.borderColor = borderColor ?? .black.opacity(0.5)
             self.buttonOverlayCornerRadius = buttonOverlayCornerRadius
-            self.buttonOverlayInset = buttonOverlayInset
-            self.cornerRadius = cornerRadius
-            self.curveSize = curveSize
-            self.foregroundColor = foregroundColor
-            self.inputItemFont = inputItemFont
-            self.inputItemMinSize = inputItemMinSize
+            self.buttonOverlayInset = buttonOverlayInset ?? .zero
+            self.cornerRadius = cornerRadius ?? 10
+            self.curveSize = curveSize ?? .init(width: 8, height: 15)
+            self.foregroundColor = foregroundColor ?? .primary
+            self.inputItemFont = inputItemFont ?? .init(.largeTitle, .light)
+            self.inputItemMinSize = inputItemMinSize ?? .init(width: 0, height: 55)
             self.offset = offset
-            self.selectedBackgroundColor = selectedBackgroundColor
-            self.selectedForegroundColor = selectedForegroundColor
-            self.shadowColor = shadowColor
-            self.shadowRadius = shadowRadius
+            self.selectedBackgroundColor = selectedBackgroundColor ?? .blue
+            self.selectedForegroundColor = selectedForegroundColor ?? .white
+            self.shadowColor = shadowColor ?? .black.opacity(0.1)
+            self.shadowRadius = shadowRadius ?? 5
         }
 
         /// The action item font.
@@ -97,10 +97,10 @@ public extension KeyboardCallout {
 
         /// The callout background color.
         public var backgroundColor: Color
-        
+
         /// The callout border color.
         public var borderColor: Color
-        
+
         /// The button overlay corner radius.
         public var buttonOverlayCornerRadius: CGFloat?
 
@@ -109,7 +109,7 @@ public extension KeyboardCallout {
 
         /// The callout corner radius.
         public var cornerRadius: CGFloat
-        
+
         /// The callout to button overlay curve size.
         public var curveSize: CGSize
 
@@ -133,7 +133,7 @@ public extension KeyboardCallout {
 
         /// The callout shadow color.
         public var shadowColor: Color
-        
+
         /// The callout shadow radius.
         public var shadowRadius: CGFloat
     }
@@ -176,7 +176,7 @@ extension KeyboardCallout.CalloutStyle {
             shadowRadius: 3
         )
     }
-    
+
     static var preview2: Self {
         .init(
             backgroundColor: .green,
