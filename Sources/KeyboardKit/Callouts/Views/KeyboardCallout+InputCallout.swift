@@ -190,7 +190,8 @@ private extension KeyboardCallout.InputCallout {
     return Preview()
         .keyboardCalloutStyle(.init(
             backgroundColor: .blue,
-            foregroundColor: .yellow
+            foregroundColor: .yellow,
+            inputItemFont: KeyboardFont.largeTitle.weight(.bold)
         ))
 }
 #endif

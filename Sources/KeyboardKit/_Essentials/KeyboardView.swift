@@ -168,6 +168,7 @@ public struct KeyboardView<
             calloutContext: calloutContext,
             keyboardContext: keyboardContext
         )
+        .keyboardCalloutStyle(calloutStyle)
     }
 }
 
