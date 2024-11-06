@@ -25,13 +25,13 @@ class KeyboardInputViewController_ViewTests: XCTestCase {
         XCTAssertFalse(vc.view.subviews.contains(subview))
         vc.view.addSubview(subview)
         XCTAssertTrue(vc.view.subviews.contains(subview))
-        vc.setupKeyboardView(Text("Hello"))
+        vc.setupKeyboardView(with: Text("Hello"))
         XCTAssertFalse(vc.view.subviews.contains(subview))
     }
 
     func testSettingUpKeyboardViewAddsChildControllerWithEnvironmentData() {
         XCTAssertEqual(vc.children.count, 0)
-        vc.setupKeyboardView(Text("Hello"))
+        vc.setupKeyboardView(with: Text("Hello"))
         XCTAssertEqual(vc.children.count, 1)
         XCTAssertFalse(vc.children[0] is KeyboardHostingController<Text>)
     }

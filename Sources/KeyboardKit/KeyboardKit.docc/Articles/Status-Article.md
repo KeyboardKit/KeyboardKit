@@ -13,23 +13,21 @@
 
 This article describes the KeyboardKit status engine.
 
-KeyboardKit has ways to check various keyboard statuses, e.g. if a keyboard is enabled in System Settings, if Full Access is enabled, if a keyboard is actively being used, etc.
+KeyboardKit has ways to check various keyboard statuses, e.g. if a keyboard is enabled in System Settings, if Full Access is enabled, if a keyboard is actively being used, etc. This can be used to help users set up their keyboard. 
 
-This information can be used to make an app help users to set up their keyboard properly. 
-
-👑 [KeyboardKit Pro][Pro] unlocks more status-related views & utilities. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks more keyboard status-related views & utilities. Information about Pro features can be found further down.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
 
-## Keyboard Status Namespace
+## Namespace
 
 KeyboardKit has a ``KeyboardStatus`` namespace that contains status-related types and views, like the ``KeyboardStatus/Label`` that can be used to visualize a certain status value, as well as the ``KeyboardStatus/Section`` which is unlocked by KeyboardKit Pro.
 
 
 
-## Keyboard Status Context
+## Context
 
 The observable ``KeyboardStatusContext`` can be used to observe the state of any keyboard:
 
@@ -49,7 +47,7 @@ struct MyView: View {
 } 
 ```
 
-The context is observable, so any status changes will immediately cause the view to refresh. It supports bundle ID wildcards, which let you can inspect multiple keyboards with a single instance:
+The context is observable, so any status changes will immediately cause the view to refresh. It supports bundle ID wildcards, which lets you inspect multiple keyboards with a single instance:
 
 ```
 @StateObject
@@ -57,7 +55,7 @@ var status = KeyboardStatusContext(bundleId: "com.myapp.*")
 ```
 
 
-## Keyboard Status Inspector
+## Status Inspector
 
 The ``KeyboardStatusInspector`` protocol that powers the context can be implemented by any type, to make it able to inspect the status of any keyboard at any time.
 
@@ -69,18 +67,20 @@ The ``KeyboardStatus`` namespace has status-specific views, that can be used to 
 @TabNavigator {
     
     @Tab("Label") {
-        A keyboard status ``KeyboardStatus/Label`` can display various keyboard statuses, e.g. if a keyboard has been enabled, if Full Access is enabled, etc.
-        
         @Row {
-            @Column {}
-            @Column(size:2) { ![KeyboardStatus.Label](keyboardstatuslabel) }
-            @Column {}
+            @Column { ![KeyboardStatus.Label](keyboardstatuslabel) }
+            @Column {
+                A keyboard status ``KeyboardStatus/Label`` can display various keyboard statuses, e.g. if a keyboard has been enabled, if Full Access is enabled, etc.
+                
+                The view supports custom texts, icons, etc. and can be styled with the ``SwiftUICore/View/keyboardStatusLabelStyle(_:)`` view modifier.        
+            }
         }
-        
-        The view can be wrapped in a SwiftUI `Link` to System Settings. It supports custom texts, icons, etc. and can be styled with the ``SwiftUICore/View/keyboardStatusLabelStyle(_:)`` view modifier.
+
     }
 }
 
+
+---
 
 ## 👑 KeyboardKit Pro
 
@@ -90,15 +90,16 @@ The ``KeyboardStatus`` namespace has status-specific views, that can be used to 
 
 @TabNavigator {
     
-    @Tab("Section ") {
-        A keyboard status ``KeyboardStatus/Section`` can display all relevant status labels for a keyboard extension, with a link to System Settings if needed:
-        
+    @Tab("Section") {
         @Row {
-            @Column {}
-            @Column(size:2) { ![KeyboardStatus.Label](keyboardstatussection) }
-            @Column {}
+            @Column { ![KeyboardStatus.Label](keyboardstatussection) }
+            @Column {
+                A keyboard status ``KeyboardStatus/Section`` can display all relevant status labels for a keyboard extension, with a link to System Settings if needed.
+                
+                The view is used by the ``KeyboardApp/HomeScreen`` component, and can be added as a standalone section, in e.g. an app's settings screen. 
+                
+                The view can be styled with the ``SwiftUICore/View/keyboardStatusSectionStyle(_:)`` view modifier.
+            }
         }
-        
-        The view is used by the ``KeyboardApp/HomeScreen`` component, and can be added as a standalone section, in e.g. an app's settings screen. It can be styled with the ``SwiftUICore/View/keyboardStatusSectionStyle(_:)`` view modifier.
     }
 }

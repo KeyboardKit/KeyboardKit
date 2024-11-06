@@ -15,7 +15,7 @@ This article describes the KeyboardKit app-specific utilities.
 
 KeyboardKit has utilities that simplify building a great main app for your keyboard, like setting that automatically sync between the app and its keyboard, auto-registering your KeyboardKit Pro license, and much more.   
 
-👑 [KeyboardKit Pro][Pro] unlocks app screens for the main app target. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks app-specific screens for the main app target. Information about Pro features can be found further down.
 
 
 
@@ -85,6 +85,8 @@ struct MyView: View {
 
 The injected state will also be used by the KeyboardKit Pro screens that are described below.
 
+
+---
 
 
 ## 👑 KeyboardKit Pro

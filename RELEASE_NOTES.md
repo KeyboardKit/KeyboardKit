@@ -136,3 +136,5 @@ Some things that are not covered by migration deprecations are:
 * The `KeyboardLayout` is now a struct, and must now be a `var` for you to customize it.
 * The `KeyboardStyleService` and callout style view modifiers now only use the base style.
 * The `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.
+
+A problem that you may run into, is that the `KeyboardInputViewController` `setupKeyboardView(_ view: @autoclosure @escaping () -> Content)` has been renamed to `setupKeyboardView(with:)` to remove DocC ambiguity with the controller-based function. If you use this variant, just add an `with:` parameter name.

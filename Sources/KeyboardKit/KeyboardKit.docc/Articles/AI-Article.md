@@ -18,6 +18,7 @@ Apple's native keyboard APIs lack many features that are needed by popular AI-ba
 👑 [KeyboardKit Pro][Pro] unlocks these capabilities to make it possible to read the full document and type in a text field within the keyboard.
 
 
+---
 
 ## 👑 KeyboardKit Pro
 

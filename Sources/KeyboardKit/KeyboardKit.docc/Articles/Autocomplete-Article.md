@@ -17,7 +17,7 @@ Autocomplete is an important part of the typing experience, where word suggestio
 
 In KeyboardKit, an ``AutocompleteService`` can provide suggestions and predictions to the main ``AutocompleteContext``. Unlike other services, there's no standard implementation of this protocol in the open-source SDK.
 
-👑 [KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalService`` for on-device autocomplete, as well as a ``Autocomplete/RemoteService`` for integration with remote services. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalService`` for on-device autocomplete, as well as a ``Autocomplete/RemoteService`` for integration with remote REST-APIs services. Information about Pro features can be found further down.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -43,7 +43,7 @@ In KeyboardKit, an ``AutocompleteService`` can provide suggestions when the user
 
 KeyboardKit doesn't have a standard autocomplete service. Instead, it injects a ``AutocompleteService/disabled`` service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
 
-KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which performs on-device autocomplete, and a ``Autocomplete/RemoteService``, which can be used to integrate with any remote, REST-based APIs.
+KeyboardKit Pro unlocks a ``Autocomplete/LocalService``, which can perform on-device autocomplete, and a ``Autocomplete/RemoteService``, which can be used to integrate with any remote, REST-based APIs.
 
 
 
@@ -70,6 +70,8 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 }
 
 
+---
+
 ## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalService`` and ``Autocomplete/RemoteService`` and injects a ``Autocomplete/LocalService`` into ``KeyboardInputViewController/services`` when you register a valid license. These services are open to inheritance, so you can inherit and customize them to fit your needs.
@@ -79,6 +81,8 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 
 The ``Autocomplete/LocalService`` performs autocomplete operations locally, on-device. It supporst many keyboard locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
 
+The service supports: **arabic, bulgarian, czech, danish, dutch, dutch_belgium, english, english_gb, english_us, filipino, finnish, french, french_belgium, french_switzerland, german, german_austria, german_switzerland, greek, hebrew, hungarian, irish, italian, norwegian, polish, portuguese_brazil, portuguese, romanian, russian, spanish, swedish, turkish, ukrainian**.
+
 You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the service to make it perform next word predictions, using external AI-based services. See the next word prediction section further down.
 
 
@@ -86,7 +90,7 @@ You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the serv
 
 The ``Autocomplete/RemoteService`` can be used to perform autocomplete by integrating with an external API. It requires that the device is online, and requires that Full Access is enabled, to allow the keyboard to make network requests.
 
-
+---
 
 ## How to...
 

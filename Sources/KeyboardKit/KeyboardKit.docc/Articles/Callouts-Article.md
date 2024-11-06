@@ -17,7 +17,7 @@ Callouts are an important part of the typing experience, where input callouts ca
 
 KeyboardKit can show an ``KeyboardCallout/InputCallout`` for the currently pressed input key, and an ``KeyboardCallout/ActionCallout`` with secondary actions when a key with secondary actions is long pressed.
 
-👑 [KeyboardKit Pro][Pro] unlocks localized services for all locales. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks localized keyboards and services for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. Information about Pro features can be found further down.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -81,6 +81,8 @@ The ``KeyboardCallout`` namespace has callout-specific views, that can be used t
 Both views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be applied with the ``SwiftUICore/View/calloutStyle(_:)`` view modifier or provided with a custom ``KeyboardStyleService``.
 
 
+---
+
 
 ## 👑 KeyboardKit Pro
 
@@ -89,6 +91,8 @@ Both views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be a
 ```swift
 let service = try KeyboardCallout.ProService.Swedish()
 ```
+
+---
 
 
 ## How to... 
@@ -135,11 +139,11 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 
 
-### Customize a specific locale
+### Customize a localized Pro service
 
 Service that inherit ``KeyboardCallout/StandardService`` can use ``KeyboardCalloutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)`` function to register a custom service for a certain locale.
 
-For instance, this is how you could make KeyboardKit Pro use  a custom service for ``Foundation/Locale/german`` locales:
+For instance, this is how you could make KeyboardKit Pro use a custom service for ``Foundation/Locale/german``:
 
 ```swift
 class MyCustomGermanService: KeyboardCallout.ProService.German { ... } 
@@ -156,42 +160,6 @@ class KeyboardViewController: KeyboardInputViewController {
 ```
 
 This makes it easy to replace the service for a certain KeyboardKit Pro locale, where you can inherit and customize any ``KeyboardCallout/ProService``.
-
-
-
-### Customize a Pro service
-
-You can inherit and customize any ``KeyboardCallout/ProService`` and register it after setting up KeyboardKit Pro for your ``KeyboardApp``:
-
-```swift
-class CustomService: KeyboardCallout.ProService.Swedish {
-
-    // Override any functions you want here...
-}
-
-class KeyboardController: KeyboardInputViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupPro(for: .myApp) { license in
-            setupCustomCalloutService()
-        } 
-    }
-
-    func setupCustomCalloutService() {
-        do {
-            let service = try CustomService()
-            try services.calloutService.tryRegisterLocalizedService(service)
-        } catch {
-            print(error)
-        }
-    }
-}
-```
-
-This is useful for when you want to make modifications to a single locale's callout actions, but keep all other locales the same.
-
-
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

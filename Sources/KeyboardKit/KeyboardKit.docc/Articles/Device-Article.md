@@ -42,7 +42,7 @@ KeyboardKit has ``CoreGraphics/CGSize`` extensions for detecting which hardware 
 
 You can use ``CoreGraphics/CGSize/isScreenSize(_:withTolerance:)`` to check if a certain size matches a screen size in any orientation. It uses a low tolerance by default to support slight variations between model changes of the same device type.
 
-Be careful with using screen size as the foundation for certain features. You never know when your software suddenly runs in another way, that makes the screen size irrelevant, e.g. in iPad split screen. 
+Be careful with using screen size as the foundation for certain features. You'll never know when your software suddenly runs in another way that makes the screen size irrelevant, e.g. in iPad split screen. 
 
 
 

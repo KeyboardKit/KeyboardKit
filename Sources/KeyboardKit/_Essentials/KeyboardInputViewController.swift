@@ -140,21 +140,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// Call this in ``viewWillSetupKeyboardView()`` to make
     /// the controller use the `view` as keyboard view.
     open func setupKeyboardView<Content: View>(
-        _ view: @autoclosure @escaping () -> Content
+        with view: @autoclosure @escaping () -> Content
     ) {
         guard setupKeyboardViewIsEnabled else { return }
         setup(withRootView: Keyboard.RootView(view))
     }
 
-    /// Set up KeyboardKit with a custom keyboard view.
+    /// Set up KeyboardKit with a custom view and an unowned
+    /// ``KeyboardInputViewController`` reference.
     ///
     /// Call this in ``viewWillSetupKeyboardView()`` to make
     /// the controller use the view as the keyboard view.
-    ///
-    /// See <doc:Getting-Started-Article> for more important
-    /// information on how to use an weak or unowned self to
-    /// avoid memory leaks when you must refer to a specific
-    /// controller class.
     open func setupKeyboardView<Content: View>(
         _ view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {

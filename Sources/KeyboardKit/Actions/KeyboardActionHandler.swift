@@ -60,3 +60,20 @@ public protocol KeyboardActionHandler: AnyObject, FeedbackService {
         on action: KeyboardAction
     )
 }
+
+public extension KeyboardActionHandler {
+
+    /// Handle a certain keyboard action.
+    func handle(
+        action: KeyboardAction
+    ) {
+        handle(action)
+    }
+
+    /// Handle a certain autocomplete suggestion.
+    func handle(
+        suggestion: Autocomplete.Suggestion
+    ) {
+        handle(suggestion)
+    }
+}

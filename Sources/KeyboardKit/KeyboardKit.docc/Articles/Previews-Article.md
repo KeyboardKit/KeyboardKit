@@ -13,21 +13,19 @@ This article describes the KeyboardKit preview engine.
     @PageColor(blue)
 }
 
-SwiftUI previews are a great way to work on your project in Xcode without having to launch an app all the time. Just update your views and models, and the preview will update.
+SwiftUI previews are a great way to work on your project in Xcode without having to launch an app all the time. Just update your views and models, and the preview will automtically update.
 
 KeyboardKit has preview-specific services and state, that can be used in your previews. This makes it easy to set up and preview your keyboard-specific views directly in Xcode.
 
-[KeyboardKit Pro][Pro] unlocks powerful keyboard preview components. Information about Pro features can be found at the end of this article.
+[KeyboardKit Pro][Pro] unlocks powerful keyboard preview components. Information about Pro preview features can be found further down.
 
 
 
-## Preview-specific state and services 
+## Preview-specific state & services 
 
-KeyboardKit adds preview-specific shorthand for all services and states. For instance, ``KeyboardContext`` has a ``KeyboardContext/preview`` context, the ``KeyboardInputViewController`` has a ``KeyboardInputViewController/preview`` controller, etc. 
+KeyboardKit adds preview-specific shorthand for all services and states. For instance, ``KeyboardContext`` has a ``KeyboardContext/preview`` instance, the ``KeyboardInputViewController`` has a ``KeyboardInputViewController/preview`` controller, etc. 
 
-These preview-specific values make it easy to pass in and apply preview-specific implementations in SwiftUI previews. 
-
-For instance, consider this custom view, which relies on a ``KeyboardActionHandler`` and a ``KeyboardContext``:
+These preview-specific values make it easy to use preview-specific implementations in previews. For instance, consider this view that relies on a ``KeyboardActionHandler`` and a ``KeyboardContext``:
 
 ```swift
 struct CustomView: View {
@@ -66,6 +64,8 @@ To preview the view, you can just pass in a ``KeyboardActionHandler/preview`` ac
 
 You can take a look at the source code of the various views in the library for inspiration.
 
+
+---
 
 
 ## 👑 KeyboardKit Pro

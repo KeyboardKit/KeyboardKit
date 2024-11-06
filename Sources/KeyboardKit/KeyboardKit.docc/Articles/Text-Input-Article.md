@@ -17,29 +17,27 @@ iOS keyboard extensions use a ``UIKit/UITextDocumentProxy`` to insert and delete
 
 Keyboard extensions will by default only send text to this proxy, and will *not* detect if you select a text field inside the keyboard. Even if you focus on a text field within the keyboard, text will still be sent to the text document proxy.
 
-These limitations make it hard to implement features that require text input in the keyboard, like emoji search, and AI-based features.
+These limitations make it hard to implement features that require text input in the keyboard, like emoji search, and AI-based features. KeyboardKit adds ways to make text routing easier.
 
 
 
-## How to route text with KeyboardKit 
+## Text Input 
 
-KeyboardKit adds ways to make text routing easier. ``KeyboardInputViewController`` has a custom ``KeyboardInputViewController/textInputProxy`` that can be set to automatically route text to any other text field or custom proxy.
+KeyboardKit adds ways to make text routing easier. For instance, ``KeyboardContext`` has a custom ``KeyboardContext/textInputProxy`` that can be set to route text to any other text field or custom proxy.
 
-Just set ``KeyboardInputViewController/textInputProxy`` to start routing text to that proxy, and set it to nil to resume routing text to the active application. You can always access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.
-
-👑 [KeyboardKit Pro][Pro] unlocks a ``KeyboardTextField`` and a ``KeyboardTextView`` that both automatically register and unregister as input proxy when they get and lose focus. Information about Pro features can be found at the end of this article.
+Just set ``KeyboardContext/textInputProxy`` to start typing to that proxy, and set it to nil to resume typing into the active application. The controller's ``KeyboardInputViewController/textDocumentProxy`` will point to this property if set. You can access the original proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.
 
 
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks text input components that automatically register and unregister themselves as the main text input proxy when they receive and lose focus.
+[KeyboardKit Pro][Pro] unlocks a ``KeyboardTextField`` and a ``KeyboardTextView`` that both automatically register and unregister as input proxy when they get and lose focus.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
-## Views
+### Views
 
 @TabNavigator {
     

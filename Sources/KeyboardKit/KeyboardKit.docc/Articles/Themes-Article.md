@@ -19,35 +19,25 @@ This article describes the KeyboardKit Pro theme engine, which can be used to st
 
 
 
-## Keyboard Theme Namespace
+## Namespace
 
 KeyboardKit has a ``KeyboardTheme`` type that is also a namespace for theme-related types and views, like ``KeyboardTheme/Shelf`` and ``KeyboardTheme/ShelfItem``.
 
 
 
-## Keyboard Theme Context
+## Context
 
-KeyboardKit has an observable ``KeyboardThemeContext`` class that can be used to handle themes and auto-persisted ``FeedbackContext/settings-swift.property``.
+KeyboardKit has an observable ``KeyboardThemeContext`` class that can be used to handle themes and auto-persisted ``FeedbackContext/settings-swift.property``. It also has auto-persisted ``KeyboardThemeContext/settings-swift.property`` that can be used to persist themes.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever the theme changes.
 
 
 
-## Feedback Settings
-
-The ``KeyboardThemeContext``'s ``KeyboardThemeContext/settings-swift.property`` property has auto-persisted properties that can be used to set the selected theme, and that can be bound to components in a settings screen.
-
-
-
-## What is a theme?
+## Themes
 
 A ``KeyboardTheme`` can provide keyboard-related styles in a way that can be easily used and modified. A theme can also define style variations that can be used to customize a constrained set of theme properties.
 
 KeyboardKit Pro unlocks a bunch of themes and style variations, as well as a ``KeyboardStyle/ThemeBasedService`` ``KeyboardStyleService`` that lets you apply themes with the style service concept that is used by some views, like the ``KeyboardView``.
-
-
-
-## Predefined themes
 
 KeyboardKit Pro unlocks many standard themes, like ``KeyboardTheme/standard``, ``KeyboardTheme/swifty`` and ``KeyboardTheme/minimal``. These themes also have style variations, that lets you vary their appearance, like the standard theme's ``KeyboardTheme/StandardStyle/blue`` and ``KeyboardTheme/StandardStyle/green`` variations:
 
@@ -157,7 +147,33 @@ You can get a list of all predefined themes, as well as all pre-defined style va
 
 
 
-## How to apply a theme
+## Views
+
+KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it easy to preview and present keyboard themes:
+
+@TabNavigator {
+    @Tab("Shelf"){
+        @Row {
+            @Column { ![ThemeShelf](themeshelf) }
+            @Column {
+                A keyboard theme ``KeyboardTheme/Shelf`` can be used to list themes in a vertical list of horizontally scrolling shelves.
+                
+                You can use the standard ``KeyboardTheme/ShelfItem`` to show how a ``Keyboard/Button`` will look, or use completely custom views for the titles and items.
+            }
+        }
+    }
+}
+
+
+
+
+---
+
+
+## How to...
+
+
+### Apply a theme
 
 You can apply theme with the ``KeyboardStyle/ThemeBasedService`` service, or the ``KeyboardStyleService/themeBased(theme:keyboardContext:)`` shorthand:
 
@@ -177,7 +193,7 @@ You can inherit ``KeyboardStyle/ThemeBasedService`` to customize the theme even 
 
 
 
-## How to create a custom theme
+### Create a custom theme
 
 Since a ``KeyboardTheme`` is just a struct, you can easily create your own custom themes by just defining new static theme value types. 
 
@@ -225,23 +241,3 @@ extension KeyboardTheme {
 ```
 
 All these combinations make the theme engine very flexible and powerful.
-
-
-
-## Views
-
-KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it easy to preview and present keyboard themes:
-
-@TabNavigator {
-    @Tab("Theme.Shelf"){
-        A keyboard theme ``KeyboardTheme/Shelf`` can be used to list theme collections in a vertical list of horizontally scrolling shelves, much like a Netflix list:
-        
-        @Row {
-            @Column {}
-            @Column(size: 3) { ![ThemeShelf](themeshelf) }
-            @Column {}
-        }
-        
-        You can use the standard ``KeyboardTheme/ShelfItem`` view to show how a ``Keyboard/Button`` will look, or use completely custom views for the titles and items.
-    }
-}

@@ -19,11 +19,9 @@ These gestures can be complicated to set up, but KeyboardKit provides you with a
 
 
 
-## Gestures Namespace
+## Namespace
 
-KeyboardKit has a ``Gestures`` namespace with gesture-related types, like ``Gestures/GestureButton``, ``Gestures/ScrollViewGestureButton``, etc.
-
-This namespace does not contain the ``Keyboard/Gesture`` enum, which is an essential type that is instead defined in the ``Keyboard`` namespace. 
+KeyboardKit has a ``Gestures`` namespace with gesture-related types, like ``GestureButton``. It however doesn't contain the ``Keyboard/Gesture`` enum, which is an essential type that is defined in the ``Keyboard`` namespace. 
 
 
 
@@ -34,22 +32,16 @@ You can use the ``SwiftUICore/View/keyboardButtonGestures(for:actionHandler:repe
 ```swift
 Text("😀")
     .keyboardButtonGestures(
-        for: .emoji("😀"), 
-        doubleTapAction: { ... },
+        for: .emoji("😀"),
         ...
     )
 ```
 
-This will automatically apply all standard gestures for the provided action. You can also set up completely custom actions with this modifier as well.
+This will automatically apply all standard gestures for the provided action. You can also set up fully custom actions with this modifier,
+using the ``SwiftUICore/View/keyboardButtonGestures(action:repeatTimer:calloutContext:isPressed:scrollState:releaseOutsideTolerance:doubleTapAction:longPressAction:pressAction:releaseAction:repeatAction:dragAction:endAction:)`` modifier variant.
 
 
 
 ## Drag gesture handlers
 
 KeyboardKit has a ``DragGestureHandler`` protocol that handles drag gestures. For instance, a ``Gestures/SpaceDragGestureHandler`` handles drag gestures on the space key.
-
-
-
-## Views
-
-KeyboardKit has a ``Gestures/GestureButton`` & ``Gestures/ScrollViewGestureButton`` that can be used to apply many gestures to the same button.

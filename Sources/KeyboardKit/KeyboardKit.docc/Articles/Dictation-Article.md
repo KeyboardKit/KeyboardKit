@@ -17,53 +17,32 @@ Dictation can be used to let users enter text by speaking instead of typing on t
 
 In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard extension, by opening the main app and let it perform the dictation operation, then return to the keyboard and apply the dictated text once dictation completes.
 
-👑 [KeyboardKit Pro][Pro] unlocks a ``Dictation/StandardService``. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks a ``Dictation/StandardService`` to handle dictation. Information about Pro features can be found further down.
 
 
 
-## Dictation Namespace
+## Namespace
 
 KeyboardKit has a ``Dictation`` namespace that contains dictation-related types, like ``Dictation/AuthorizationStatus`` & ``Dictation/ServiceError``, as well as views that are unlocked by KeyboardKit Pro, like ``Dictation/Screen`` & ``Dictation/BarVisualizer``. 
 
 
 
-## Dictation Context
+## Context
 
-KeyboardKit has a ``DictationContext`` that provides observable dictation state that is kept up to date as dictation is performed. It also has auto-persisted ``AutocompleteContext/settings-swift.property``.
+KeyboardKit has a ``DictationContext`` that provides observable dictation state that is kept up to date as dictation is performed. It also has auto-persisted ``AutocompleteContext/settings-swift.property`` that can be used to configure the dictation behavior.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever dictation is performed.
 
 
 
-## Dictation Settings
+## Services
 
-The ``DictationContext``'s ``DictationContext/settings-swift.property`` property has auto-persisted properties that can be used to customize the dictation behavior, and that can be bound to components in a settings screen.
-
-
-
-## Dictation Services
-
-In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard extension by opening the main app and let it perform dictation, then let the main app try to return to the keyboard and apply the dictated text once dictation completes.
+In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard by opening the main app and let it perform dictation, then let the main app try to return to the keyboard and apply the dictated text.
 
 KeyboardKit doesn't have a standard dictation service, as it has for other services. Instead, it injects a ``DictationService/disabled`` dictation service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
 
 
-
-## How to perform dictation
-
-Dictation works differently in apps, where microphone access is available, and in keyboard extensions, where mic access is unavailable. You can use a ``DictationService`` to perform dictation from both a keyboard extension, as well as in the main app.
-
-Before your app can perform dictation, you must configure your app to require the correct permissions. This is described further down.
-
-To make your keyboard extension start dictation, just trigger ``DictationService/startDictationFromKeyboard()`` or a ``KeyboardAction/dictation`` action. This will make the keyboard open the main app to perform dictation, then (try to) return to the keyboard once it's is done.
-
-To make your main app perform dictation that is started by its keyboard, just apply a `.keyboardDictation` view modifier to its root view. You dont have to do this when you use a ``KeyboardAppView``, since it does this automatically.
-
-To make your main app perform dictation without keyboard integration, just trigger ``DictationService/startDictationInApp()``. Since a dictation operation may stop at any time, a ``DictationService`` should describe how to access the dictated result.
-
-> Important: iOS 17 caused keyboard back navigation to stop working. KeyboardKit Pro uses a list of known host applications to fix this, but this may fail at any time. You can override ``DictationService/returnToKeyboardFromApp()`` to customize the behavior and observe the ``DictationContext/returnToKeyboardFromAppError`` to show a custom UI that tells the user how to return to the keyboard with the top-leading system back arrow.
-
-
+---
 
 ## 👑 KeyboardKit Pro
 
@@ -74,13 +53,9 @@ To make your main app perform dictation without keyboard integration, just trigg
 
 ### Services
 
-KeyboardKit Pro unlocks a ``Dictation/StandardService`` that can be used to perform dicattion from a keyboard extension and in its main app.
+KeyboardKit Pro unlocks a ``Dictation/StandardService`` that can be used to perform dictation from a keyboard extension and in its main app.
 
-The speech recognizer that is used by the service supports the following locales:
-
-`english`, `english_gb`, `english_us`, `arabic`, `catalan`, `croatian`, `czech`, `danish`, `dutch`, `dutch_belgium`, `finnish`, `french`, `french_belgium`, `french_switzerland`, `german`, `german_austria`, `german_switzerland`, `greek`, `hebrew`, `hungarian`, `indonesian`, `italian`, `malay`, `norwegian`, `polish`, `portuguese`, `portuguese_brazil`, `romanian`, `russian`, `slovak`, `spanish`, `swedish`, `turkish`, `ukrainian`.
-
-If you want to use dictation with other locales, you must implement a custom service or speech recognizer.
+The service's speech recognizer supports: **english, english_gb, english_us, arabic, catalan, croatian, czech, danish, dutch, dutch_belgium, finnish, french, french_belgium, french_switzerland, german, german_austria, german_switzerland, greek, hebrew, hungarian, indonesian, italian, malay, norwegian, polish, portuguese, portuguese_brazil, romanian, russian, slovak, spanish, swedish, turkish, ukrainian**.
 
 
 ### Views
@@ -121,7 +96,27 @@ KeyboardKit Pro adds views to the ``Dictation`` namespace, that let you quickly 
 }
 
 
-## How to configure your app to handle dictation
+---
+
+
+## How to...
+
+### Perform dictation
+
+Dictation works differently in apps, where microphone access is available, and in keyboard extensions, where mic access is unavailable. You can use a ``DictationService`` to perform dictation from both a keyboard extension, as well as in the main app.
+
+Before your app can perform dictation, you must configure your app to require the correct permissions. This is described further down.
+
+To make your keyboard extension start dictation, just trigger ``DictationService/startDictationFromKeyboard()`` or a ``KeyboardAction/dictation`` action. This will make the keyboard open the main app to perform dictation, then (try to) return to the keyboard once it's is done.
+
+To make your main app perform dictation that is started by its keyboard, just apply a `.keyboardDictation` view modifier to its root view. You dont have to do this when you use a ``KeyboardAppView``, since it does this automatically.
+
+To make your main app perform dictation without keyboard integration, just trigger ``DictationService/startDictationInApp()``. Since a dictation operation may stop at any time, a ``DictationService`` should describe how to access the dictated result.
+
+> Important: iOS 17 caused keyboard back navigation to stop working. KeyboardKit Pro uses a list of known host applications to fix this, but this may fail at any time. You can override ``DictationService/returnToKeyboardFromApp()`` to customize the behavior and observe the ``DictationContext/returnToKeyboardFromAppError`` to show a custom UI that tells the user how to return to the keyboard with the top-leading system back arrow.
+
+
+### Configure your app to handle dictation
 
 This article describes how to set up an app to start dictation from its keyboard extension and perform the dictation in the main app.
 
