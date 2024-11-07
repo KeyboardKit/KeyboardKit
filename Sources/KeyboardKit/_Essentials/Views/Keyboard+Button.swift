@@ -15,11 +15,8 @@ public extension Keyboard {
     /// The view adapts its content to fit the action, state
     /// and services that are passed in.
     ///
-    /// You can use an optional `contentConfig` view builder
-    /// to customize or replace the button content view.
-    ///
-    /// > Note: You can turn any view into a keyboard button
-    /// with ``SwiftUICore/View/keyboardButton(_:)``.
+    /// > Tip: You can turn any view into a keyboard button
+    /// with the `.keyboardButton(...)` view modifier.
     struct Button<Content: View>: View {
         
         /// Create a keyboard button.
@@ -40,7 +37,7 @@ public extension Keyboard {
             repeatTimer: GestureButtonTimer? = nil,
             styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext,
-            calloutContext: CalloutContext?,
+            calloutContext: KeyboardCalloutContext?,
             edgeInsets: EdgeInsets = .init(),
             isPressed: Binding<Bool>? = nil,
             @ViewBuilder content: @escaping ContentBuilder
@@ -73,7 +70,7 @@ public extension Keyboard {
             repeatTimer: GestureButtonTimer? = nil,
             styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext,
-            calloutContext: CalloutContext?,
+            calloutContext: KeyboardCalloutContext?,
             edgeInsets: EdgeInsets = .init(),
             isPressed: Binding<Bool>? = nil
         ) where Content == Keyboard.ButtonContent {
@@ -95,7 +92,7 @@ public extension Keyboard {
         private let repeatTimer: GestureButtonTimer?
         private let styleService: KeyboardStyleService
         private let keyboardContext: KeyboardContext
-        private let calloutContext: CalloutContext?
+        private let calloutContext: KeyboardCalloutContext?
         private let edgeInsets: EdgeInsets
         private var isPressed: Binding<Bool>?
         private let content: ContentBuilder
@@ -118,56 +115,6 @@ public extension Keyboard {
                     isPressed: isPressed ?? $isPressedInternal
                 )
         }
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, message: "Use the styleService initializer instead.")
-        public init(
-            action: KeyboardAction,
-            actionHandler: KeyboardActionHandler,
-            repeatTimer: GestureButtonTimer? = nil,
-            styleProvider: KeyboardStyleService,
-            keyboardContext: KeyboardContext,
-            calloutContext: CalloutContext?,
-            edgeInsets: EdgeInsets = .init(),
-            isPressed: Binding<Bool>? = nil,
-            @ViewBuilder content: @escaping ContentBuilder
-        ) {
-            self.action = action
-            self.actionHandler = actionHandler
-            self.repeatTimer = repeatTimer
-            self.styleService = styleProvider
-            self.keyboardContext = keyboardContext
-            self.calloutContext = calloutContext
-            self.edgeInsets = edgeInsets
-            self.isPressed = isPressed
-            self.content = content
-        }
-
-        @available(*, deprecated, message: "Use the styleService initializer instead.")
-        public init(
-            action: KeyboardAction,
-            actionHandler: KeyboardActionHandler,
-            repeatTimer: GestureButtonTimer? = nil,
-            styleProvider: KeyboardStyleService,
-            keyboardContext: KeyboardContext,
-            calloutContext: CalloutContext?,
-            edgeInsets: EdgeInsets = .init(),
-            isPressed: Binding<Bool>? = nil
-        ) where Content == Keyboard.ButtonContent {
-            self.init(
-                action: action,
-                actionHandler: actionHandler,
-                styleService: styleProvider,
-                keyboardContext: keyboardContext,
-                calloutContext: calloutContext,
-                edgeInsets: edgeInsets,
-                isPressed: isPressed,
-                content: { $0 }
-            )
-        }
-
     }
 }
 
@@ -231,7 +178,7 @@ private extension Keyboard.Button {
             }
             .padding()
             .background(Color.gray)
-            .cornerRadius(10)
+            .cornerRadius(8)
             .environment(\.sizeCategory, .extraExtraLarge)
         }
     }

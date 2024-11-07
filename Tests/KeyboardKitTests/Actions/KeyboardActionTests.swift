@@ -118,14 +118,4 @@ final class KeyboardActionTests: XCTestCase {
             }
         }
     }
-
-    func testIsUppercasedShiftActionIsTrueForCharacterActions() {
-        actions.forEach { action in
-            let result = action.isUppercasedShiftAction
-            switch action {
-            case .shift(let state): XCTAssertEqual(result, state.isUppercased)
-            default: XCTAssertFalse(result)
-            }
-        }
-    }
 }

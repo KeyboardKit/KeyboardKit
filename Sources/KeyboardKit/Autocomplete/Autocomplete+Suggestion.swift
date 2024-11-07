@@ -38,7 +38,7 @@ public extension Autocomplete {
             title: String? = nil,
             subtitle: String? = nil,
             source: String? = nil,
-            additionalInfo: [String: Any] = [:]
+            additionalInfo: [String: String] = [:]
         ) {
             self.text = text
             self.type = type
@@ -57,22 +57,6 @@ public extension Autocomplete {
         /// The text that should be displayed.
         public var title: String
 
-        /// Whether the suggestion is autocorrecting.
-        public var isAutocorrect: Bool {
-            get { type == .autocorrect }
-
-            @available(*, deprecated, message: "Use type instead.")
-            set { type = newValue ? .autocorrect : .regular }
-        }
-
-        /// Whether the suggestion is unknown.
-        public var isUnknown: Bool {
-            get { type == .unknown }
-
-            @available(*, deprecated, message: "Use type instead.")
-            set { type = newValue ? .unknown : .regular }
-        }
-
         /// An optional subtitle that can complete the title.
         public var subtitle: String?
 
@@ -80,33 +64,93 @@ public extension Autocomplete {
         public var source: String?
 
         /// An optional info dictionary.
-        public var additionalInfo: [String: Any]
-    }
-}
-
-private extension String {
-
-    func withAutocompleteCasing(for word: String) -> String {
-        let isUppercased = word.count > 1 && word == word.uppercased()
-        return isUppercased ? uppercased() : self
+        public var additionalInfo: [String: String]
     }
 }
 
 public extension Autocomplete.Suggestion {
 
+    /// Whether the suggestion is an autocorrect suggestion.
+    var isAutocorrect: Bool {
+        type == .autocorrect
+    }
+
+    /// Whether the suggestion is a regular suggestion.
+    var isRegular: Bool {
+        type == .regular
+    }
+
+    /// Whether the suggestion is an unknown suggestion.
+    var isUnknown: Bool {
+        type == .unknown
+    }
+
     /// Adjust the ``text`` casing to match a certain word.
-    func withAutocompleteCasing(
+    func autocompleteCased(
         for word: String
     ) -> Autocomplete.Suggestion {
         var result = self
-        result.text = result.text.withAutocompleteCasing(for: word)
+        result.text = result.text.autocompleteCased(for: word)
         return result
+    }
+}
+
+public extension Autocomplete {
+
+    /// This enum defines every autocomplete suggestion type
+    /// that can be returned by an ``AutocompleteService``.
+    enum SuggestionType: String, CaseIterable, Codable, Equatable {
+
+        /// These suggestions are only applied when the user
+        /// taps them.
+        ///
+        /// Native keyboards display all regular suggestions
+        /// as plain text, but you can customize this.
+        case regular
+
+        /// These suggestions are automatically applied when
+        /// the user taps a word or sentence delimiter.
+        ///
+        /// Native keyboards display autocorrect suggestions
+        /// with a rounded white background.
+        case autocorrect
+
+        /// These suggestions can be used when the currently
+        /// typed word is unknown, to automatically learn it.
+        ///
+        /// Native keyboards display unknown suggestions and
+        /// the current word although known, with quotes.
+        case unknown
+    }
+}
+
+private extension String {
+
+    func autocompleteCased(for word: String) -> String {
+        let isUppercased = word.count > 1 && word == word.uppercased()
+        return isUppercased ? uppercased() : self
     }
 }
 
 public extension Collection where Element == Autocomplete.Suggestion {
 
+    /// Check if the collection contains a suggestion with a
+    /// certain `word`.
     func contains(_ word: String) -> Bool {
         contains { $0.text.caseInsensitiveCompare(word) == .orderedSame }
+    }
+
+    /// Adjust the collection to either keep or remove items
+    /// that are autocorrecting.
+    func withAutocorrectEnabled(
+        _ isEnabled: Bool
+    ) -> [Element] {
+        map {
+            if isEnabled { return $0 }
+            guard $0.type == .autocorrect else { return $0 }
+            var element = $0
+            element.type = .regular
+            return element
+        }
     }
 }

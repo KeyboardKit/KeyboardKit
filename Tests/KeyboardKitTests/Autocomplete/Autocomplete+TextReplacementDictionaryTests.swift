@@ -11,9 +11,9 @@ import XCTest
 
 final class Autocomplete_TextReplacementDictionaryTests: XCTestCase {
 
-    let danish = KeyboardLocale.danish
-    let english = KeyboardLocale.english
-    let swedish = KeyboardLocale.swedish
+    let danish = Locale.danish
+    let english = Locale.english
+    let swedish = Locale.swedish
 
     func testCanAddSingleReplacement() {
         var dictionary = Autocomplete.TextReplacementDictionary()

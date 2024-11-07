@@ -8,6 +8,57 @@
 
 import Foundation
 
+public extension KeyboardActionHandler where Self == KeyboardAction.StandardHandler {
+
+    /// Create a ``KeyboardAction/StandardHandler`` instance.
+    ///
+    /// - Parameters:
+    ///   - controller: The keyboard controller to use.
+    static func standard(
+        for controller: KeyboardController
+    ) -> Self {
+        KeyboardAction.StandardHandler(
+            controller: controller
+        )
+    }
+
+    /// Create a ``KeyboardAction/StandardHandler``.
+    ///
+    /// The `controller` parameter is optional, to allow you
+    /// to set up later.
+    ///
+    /// - Parameters:
+    ///   - controller: The keyboard controller to use, if any.
+    ///   - keyboardContext: A custom keyboard context.
+    ///   - keyboardBehavior: A custom keyboard behavior.
+    ///   - autocompleteContext: A custom autocomplete context.
+    ///   - autocompleteService: A custom autocomplete service.
+    ///   - feedbackContext: A custom feedback context.
+    ///   - feedbackService: A custom feedback service.
+    ///   - spaceDragGestureHandler: A custom space gesture handler.
+    static func standard(
+        for controller: KeyboardController?,
+        keyboardContext: KeyboardContext,
+        keyboardBehavior: KeyboardBehavior,
+        autocompleteContext: AutocompleteContext,
+        autocompleteService: AutocompleteService,
+        feedbackContext: FeedbackContext,
+        feedbackService: FeedbackService,
+        spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
+    ) -> Self {
+        KeyboardAction.StandardHandler(
+            controller: controller,
+            keyboardContext: keyboardContext,
+            keyboardBehavior: keyboardBehavior,
+            autocompleteContext: autocompleteContext,
+            autocompleteService: autocompleteService,
+            feedbackContext: feedbackContext,
+            feedbackService: feedbackService,
+            spaceDragGestureHandler: spaceDragGestureHandler
+        )
+    }
+}
+
 extension KeyboardAction {
 
     /// This class provides a standard way to handle actions
@@ -17,63 +68,67 @@ extension KeyboardAction {
     /// class when the keyboard is launched, then injects it
     /// into ``KeyboardInputViewController/services``.
     ///
+    /// The handler implements ``KeyboardBehavior`` by using
+    /// the ``behavior`` by default, but it can override any
+    /// of these standard behaviors. For instance, the class
+    /// defines even more `should` functions for the various
+    /// corresponding `try` functions, which lets you easily
+    /// override both *if* something should be performed and
+    /// if so, *how* to perform it.
+    ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
-    /// Most functionality has a `should` and `try` function
-    /// tuple. This lets you easily override if an operation
-    /// should be performed, and how to perform it.
-    ///
     /// This service can also be resolved with the shorthand
-    /// ``KeyboardActionHandler/standard(controller:)``.
+    /// ``KeyboardActionHandler/standard(for:)``.
     ///
     /// See <doc:Actions-Article> for more information.
-    open class StandardHandler: NSObject, KeyboardActionHandler {
-
+    open class StandardHandler: NSObject, KeyboardActionHandler, KeyboardBehavior {
+        
         // MARK: - Initialization
 
-        #if os(iOS)
         /// Create a standard keyboard action handler for an
-        /// input controller.
+        /// explicit controller.
         ///
         /// - Parameters:
-        ///   - controller: The keyboard input controller to use.
-        public convenience init(
-            controller: KeyboardInputViewController
+        ///   - controller: The keyboard controller to use.
+        public init(
+            controller: KeyboardController
         ) {
             let state = controller.state
             let services = controller.services
-            self.init(
-                controller: controller,
-                keyboardContext: state.keyboardContext,
-                keyboardBehavior: services.keyboardBehavior,
-                autocompleteContext: state.autocompleteContext,
-                autocompleteService: services.autocompleteService,
-                feedbackContext: state.feedbackContext,
-                feedbackService: services.feedbackService,
-                spaceDragGestureHandler: services.spaceDragGestureHandler
-            )
+            weak var weakController = controller
+            self.keyboardController = weakController
+            self.keyboardContext = state.keyboardContext
+            self.behavior = services.keyboardBehavior
+            self.autocompleteContext = state.autocompleteContext
+            self.autocompleteService = services.autocompleteService
+            self.feedbackContext = state.feedbackContext
+            self.feedbackService = services.feedbackService
+            self.spaceDragGestureHandler = services.spaceDragGestureHandler
         }
-        #endif
 
-        /// Create a standard keyboard action handler with a
-        /// separate set of services.
+        /// Create a standard keyboard action handler for an
+        /// optional controller and explicit dependencies.
+        ///
+        /// The `controller` parameter is optional, to allow
+        /// you to set up later.
         ///
         /// - Parameters:
         ///   - controller: The keyboard controller to use, if any.
-        ///   - keyboardContext: The keyboard context to use.
-        ///   - keyboardBehavior: The keyboard behavior to use.
-        ///   - autocompleteContext: The autocomplete context to use.
-        ///   - autocompleteService: The autocomplete service to use.
-        ///   - feedbackContext: The feedback context to use.
-        ///   - feedbackService: The feedback service to use.
-        ///   - spaceDragGestureHandler: The space gesture handler to use.
+        ///   - keyboardContext: A custom keyboard context.
+        ///   - keyboardBehavior: A custom keyboard behavior.
+        ///   - autocompleteContext: A custom autocomplete context.
+        ///   - autocompleteService: A custom autocomplete service.
+        ///   - feedbackContext: A custom feedback context.
+        ///   - feedbackService: A custom feedback service.
+        ///   - spaceDragGestureHandler: A custom space gesture handler.
         public init(
             controller: KeyboardController?,
             keyboardContext: KeyboardContext,
             keyboardBehavior: KeyboardBehavior,
             autocompleteContext: AutocompleteContext,
-            autocompleteService: AutocompleteService? = nil,
+            autocompleteService: AutocompleteService,
             feedbackContext: FeedbackContext,
             feedbackService: FeedbackService,
             spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
@@ -81,53 +136,48 @@ extension KeyboardAction {
             weak var weakController = controller
             self.keyboardController = weakController
             self.keyboardContext = keyboardContext
-            self.keyboardBehavior = keyboardBehavior
+            self.behavior = keyboardBehavior
             self.autocompleteContext = autocompleteContext
             self.autocompleteService = autocompleteService
             self.feedbackContext = feedbackContext
             self.feedbackService = feedbackService
             self.spaceDragGestureHandler = spaceDragGestureHandler
         }
-
-
+        
+        
         // MARK: - Properties
-
+        
         /// The controller to which this handler applies.
         public weak var keyboardController: KeyboardController?
-
-
+        
+        
         /// The autocomplete context to use.
         public var autocompleteContext: AutocompleteContext
-
+        
         /// The autocomplete service to use.
         public var autocompleteService: AutocompleteService?
-
+        
         /// The keyboard behavior to use.
-        public var keyboardBehavior: KeyboardBehavior
-
+        public var behavior: KeyboardBehavior
+        
         /// The keyboard context to use.
         public var keyboardContext: KeyboardContext
-
+        
         /// The feedback context to use.
         public var feedbackContext: FeedbackContext
-
+        
         /// The feedback service to use.
         public var feedbackService: FeedbackService
-
+        
         /// The space drag gesture handler to use.
         public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
-
-
-        @available(*, deprecated, message: "This is no longer used.")
-        public var emojiRegistrationAction: ((Emoji) -> Void)?
-
-
+        
+        
         private var spaceDragActivationLocation: CGPoint?
-
-
-
+        
+        
         // MARK: - KeyboardActionHandler
-
+        
         /// Whether the handler can handle an action gesture.
         open func canHandle(
             _ gesture: Keyboard.Gesture,
@@ -135,14 +185,14 @@ extension KeyboardAction {
         ) -> Bool {
             self.action(for: gesture, on: action) != nil
         }
-
+        
         /// Handle a certain keyboard action.
         open func handle(
             _ action: KeyboardAction
         ) {
             action.standardAction?(keyboardController)
         }
-
+        
         /// Handle a certain keyboard action gesture.
         open func handle(
             _ gesture: Keyboard.Gesture,
@@ -150,7 +200,7 @@ extension KeyboardAction {
         ) {
             handle(gesture, on: action, replaced: false)
         }
-
+        
         /// Handle a certain action gesture, with replace logic.
         open func handle(
             _ gesture: Keyboard.Gesture,
@@ -168,11 +218,12 @@ extension KeyboardAction {
             gestureAction(keyboardController)
             tryReinsertAutocompleteRemovedSpace(after: gesture, on: action)
             tryEndCurrentSentence(after: gesture, on: action)
+            tryChangeKeyboardCase(after: gesture, on: action)
             tryChangeKeyboardType(after: gesture, on: action)
             tryPerformAutocomplete(after: gesture, on: action)
             tryRegisterEmoji(after: gesture, on: action)
         }
-
+        
         /// Handle a certain autocomplete suggestion.
         open func handle(
             _ suggestion: Autocomplete.Suggestion
@@ -181,7 +232,7 @@ extension KeyboardAction {
             keyboardContext.insertAutocompleteSuggestion(suggestion)
             handle(.release, on: .character(""))
         }
-
+        
         /// Handle a certain keyboard action drag gesture.
         open func handleDrag(
             on action: KeyboardAction,
@@ -194,32 +245,58 @@ extension KeyboardAction {
                 to: currentLocation
             )
         }
-
-
-        // MARK: - Core Keyboard Logic
-
-        /// Whether to change keyboard type after a certain action gesture.
-        open func shouldChangeKeyboardType(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) -> Bool {
-            keyboardBehavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
+        
+        
+        // MARK: - KeyboardBehavior
+        
+        open var backspaceRange: Keyboard.BackspaceRange {
+            behavior.backspaceRange
+        }
+        
+        open var endSentenceText: String {
+            get { behavior.endSentenceText }
+            set { behavior.endSentenceText = newValue }
         }
 
-        /// Whether to end the current sentence after a certain action gesture.
+        open func preferredKeyboardCase(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Keyboard.KeyboardCase {
+            behavior.preferredKeyboardCase(after: gesture, on: action)
+        }
+
+        open func preferredKeyboardType(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) -> Keyboard.KeyboardType {
+            behavior.preferredKeyboardType(after: gesture, on: action)
+        }
+
         open func shouldEndCurrentSentence(
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            keyboardBehavior.shouldEndSentence(after: gesture, on: action)
+            behavior.shouldEndCurrentSentence(after: gesture, on: action)
         }
-
-        /// Whether to register an emoji after a certain action gesture.
+        
         open func shouldRegisterEmoji(
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            gesture == .release && action.isEmojiAction
+            behavior.shouldRegisterEmoji(after: gesture, on: action)
+        }
+
+
+        // MARK: - Try Functionality
+
+        /// Try to change keyboard case after a certain action gesture.
+        open func tryChangeKeyboardCase(
+            after gesture: Keyboard.Gesture,
+            on action: KeyboardAction
+        ) {
+            let new = preferredKeyboardCase(after: gesture, on: action)
+            guard keyboardContext.keyboardCase != new else { return }
+            keyboardContext.keyboardCase = new
         }
 
         /// Try to change keyboard type after a certain action gesture.
@@ -227,9 +304,9 @@ extension KeyboardAction {
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
-            guard shouldChangeKeyboardType(after: gesture, on: action) else { return }
-            let newType = keyboardBehavior.preferredKeyboardType(after: gesture, on: action)
-            keyboardContext.keyboardType = newType
+            let new = preferredKeyboardType(after: gesture, on: action)
+            guard keyboardContext.keyboardType != new else { return }
+            keyboardContext.keyboardType = new
         }
 
         /// Try to end the current sentence after a certain action gesture.
@@ -237,8 +314,8 @@ extension KeyboardAction {
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
-            guard keyboardBehavior.shouldEndSentence(after: gesture, on: action) else { return }
-            let text = keyboardBehavior.endSentenceText
+            guard shouldEndCurrentSentence(after: gesture, on: action) else { return }
+            let text = behavior.endSentenceText
             keyboardController?.endSentence(withText: text)
         }
 
@@ -252,14 +329,6 @@ extension KeyboardAction {
             case .emoji(let emoji): EmojiCategory.addEmoji(emoji, to: .frequent, maxCount: 30)
             default: return
             }
-        }
-
-        @available(*, deprecated, renamed: "tryEndCurrentSentence(after:on:)")
-        open func tryEndSentence(
-            after gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            tryEndCurrentSentence(after: gesture, on: action)
         }
 
 
@@ -330,7 +399,7 @@ extension KeyboardAction {
             before gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            guard autocompleteContext.isAutolearnEnabled else { return false }
+            guard autocompleteContext.settings.isAutolearnEnabled else { return false }
             guard gesture == .press, action == .backspace else { return false }
             #if os(iOS) || os(tvOS) || os(visionOS)
             let proxy = keyboardContext.textDocumentProxy
@@ -346,7 +415,7 @@ extension KeyboardAction {
         open func shouldAutolearnSuggestion(
             _ suggestion: Autocomplete.Suggestion
         ) -> Bool {
-            guard autocompleteContext.isAutolearnEnabled else { return false }
+            guard autocompleteContext.settings.isAutolearnEnabled else { return false }
             return suggestion.isUnknown && !suggestion.text.isEmpty
         }
 
@@ -470,6 +539,7 @@ extension KeyboardAction {
         ///
         /// This always returns `true` by default. It causes
         /// this class to perform more granular checks later.
+        /// Set it to `false` to disable all feedback.
         open func shouldTriggerFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
@@ -481,6 +551,7 @@ extension KeyboardAction {
         ///
         /// This always returns `true` by default. It causes
         /// this class to perform more granular checks later.
+        /// Set it to `false` to disable all audio feedback.
         open func shouldTriggerAudioFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
@@ -491,7 +562,8 @@ extension KeyboardAction {
         /// Whether to trigger haptic feedback for an action.
         ///
         /// This checks various gesture actions to determine
-        /// if the feedback should be triggered.
+        /// if the feedback should be triggered. You can set
+        /// it to `false` to disable all haptic feedback.
         open func shouldTriggerHapticFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
@@ -545,28 +617,12 @@ extension KeyboardAction {
             triggerHapticFeedback(feedback)
         }
 
-        @available(*, deprecated, renamed: "tryTriggerFeedback(for:on:)")
+        /// Trigger feedback for a certain action gesture.
         open func triggerFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) {
             tryTriggerFeedback(for: gesture, on: action)
-        }
-
-        @available(*, deprecated, renamed: "tryTriggerAudioFeedback(for:on:)")
-        open func triggerAudioFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            tryTriggerAudioFeedback(for: gesture, on: action)
-        }
-
-        @available(*, deprecated, renamed: "tryTriggeHapticFeedback(for:on:)")
-        open func triggerHapticFeedback(
-            for gesture: Keyboard.Gesture,
-            on action: KeyboardAction
-        ) {
-            tryTriggerHapticFeedback(for: gesture, on: action)
         }
     }
 }

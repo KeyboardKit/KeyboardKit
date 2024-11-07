@@ -20,30 +20,17 @@ public extension Keyboard {
     struct ButtonShadow: View {
         
         /// Create a keyboard button shadow.
-        public init() {
-            self.initStyle = nil
-        }
+        public init() {}
         
         @Environment(\.keyboardButtonStyle)
-        private var envStyle
-        
+        private var style
+
         public var body: some View {
             buttonShape
                 .foregroundColor(shadowColor)
                 .offset(y: shadowSize)
                 .mask(buttonMask)
         }
-        
-        // MARK: - Deprecated
-        
-        @available(*, deprecated, message: "Use .keyboardButtonStyle to apply the style instead.")
-        public init(style: Keyboard.ButtonStyle) {
-            self.initStyle = style
-        }
-        
-        private typealias Style = Keyboard.ButtonStyle
-        private let initStyle: Style?
-        private var style: Style { initStyle ?? envStyle }
     }
 }
 

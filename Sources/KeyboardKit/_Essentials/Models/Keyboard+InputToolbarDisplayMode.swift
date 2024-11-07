@@ -37,8 +37,7 @@ public extension Keyboard.InputToolbarDisplayMode {
 
 public extension View {
 
-    /// Apply an ``Keyboard/InputToolbarDisplayMode`` to the
-    /// view hierarchy.
+    /// Apply an ``Keyboard/InputToolbarDisplayMode``.
     func keyboardInputToolbarDisplayMode(
         _ style: Keyboard.InputToolbarDisplayMode
     ) -> some View {
@@ -46,17 +45,9 @@ public extension View {
     }
 }
 
-private extension Keyboard.InputToolbarDisplayMode {
-
-    struct KeyboardKey: EnvironmentKey {
-        static var defaultValue: Keyboard.InputToolbarDisplayMode = .automatic
-    }
-}
-
 public extension EnvironmentValues {
 
-    var keyboardInputToolbarDisplayMode: Keyboard.InputToolbarDisplayMode {
-        get { self [Keyboard.InputToolbarDisplayMode.KeyboardKey.self] }
-        set { self [Keyboard.InputToolbarDisplayMode.KeyboardKey.self] = newValue }
-    }
+    /// Apply an ``Keyboard/InputToolbarDisplayMode``.
+    @Entry var keyboardInputToolbarDisplayMode = Keyboard
+        .InputToolbarDisplayMode.automatic
 }

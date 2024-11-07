@@ -36,6 +36,7 @@ public extension Keyboard {
             Text(text)
                 .lineLimit(1)
                 .offset(y: useNegativeOffset ? -2 : 0)
+                .minimumScaleFactor(0.8)
         }
     }
 }

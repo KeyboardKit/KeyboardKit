@@ -8,7 +8,6 @@
 
 #if os(iOS) || os(tvOS) || os(visionOS)
 import KeyboardKit
-import MockingKit
 import XCTest
 
 class UITextDocumentProxy_DiacriticsTests: XCTestCase {

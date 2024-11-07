@@ -13,7 +13,7 @@ public extension KeyboardAction {
     /// Whether the action should apply autocorrect suggestions.
     var shouldApplyAutocorrectSuggestion: Bool {
         switch self {
-        case .character(let char): char.isWordDelimiter
+        case .character(let char): char.isAutocorrectTrigger
         case .primary(let type): type.isSystemAction
         case .space: true
         default: false

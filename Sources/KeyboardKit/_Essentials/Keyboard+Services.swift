@@ -37,17 +37,19 @@ public extension Keyboard {
 
 
         /// The keyboard action handler to use.
-        public lazy var actionHandler: KeyboardActionHandler = KeyboardAction.StandardHandler(
-            controller: nil,
+        public lazy var actionHandler: KeyboardActionHandler = .standard(
+            for: nil,
             keyboardContext: state.keyboardContext,
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
+            autocompleteService: autocompleteService,
             feedbackContext: state.feedbackContext,
             feedbackService: feedbackService,
             spaceDragGestureHandler: spaceDragGestureHandler
         ) {
             didSet { setupCalloutContextForServices() }
         }
+
 
         /// The autocomplete service to use.
         public lazy var autocompleteService: AutocompleteService = .disabled {
@@ -58,7 +60,7 @@ public extension Keyboard {
         }
 
         /// The callout service to use.
-        public lazy var calloutService: CalloutService = Callouts.StandardService(
+        public lazy var calloutService: KeyboardCalloutService = .standard(
             keyboardContext: state.keyboardContext,
             feedbackService: feedbackService
         ) {
@@ -66,26 +68,26 @@ public extension Keyboard {
         }
 
         /// The dictation service to use.
-        public lazy var dictationService: KeyboardDictationService = .disabled(
+        public lazy var dictationService: DictationService = .disabled(
             context: state.dictationContext
         )
 
         /// The feedback service to use.
-        public lazy var feedbackService: FeedbackService = Feedback.StandardService()
+        public lazy var feedbackService: FeedbackService = .standard
 
         /// The keyboard behavior to use.
-        public lazy var keyboardBehavior: KeyboardBehavior = Keyboard.StandardBehavior(
+        public lazy var keyboardBehavior: KeyboardBehavior = .standard(
             keyboardContext: state.keyboardContext,
             repeatGestureTimer: repeatGestureTimer
         ) {
             didSet {
                 guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
-                handler.keyboardBehavior = keyboardBehavior
+                handler.behavior = keyboardBehavior
             }
         }
 
         /// The keyboard layout service to use.
-        public lazy var layoutService: KeyboardLayoutService = KeyboardLayout.StandardService() {
+        public lazy var layoutService: KeyboardLayoutService = .standard() {
             didSet { state.keyboardContext.triggerKeyboardViewRefresh() }
         }
 
@@ -99,36 +101,9 @@ public extension Keyboard {
         )
 
         /// The keyboard style service to use.
-        public lazy var styleService: KeyboardStyleService = KeyboardStyle.StandardService(
+        public lazy var styleService: KeyboardStyleService = .standard(
             keyboardContext: state.keyboardContext
         )
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, renamed: "autocompleteService")
-        public var autocompleteProvider: AutocompleteService {
-            get { autocompleteService }
-            set { autocompleteService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "calloutService")
-        public var calloutActionProvider: CalloutService {
-            get { calloutService }
-            set { calloutService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "layoutService")
-        public var layoutProvider: KeyboardLayoutService {
-            get { layoutService }
-            set { layoutService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "styleService")
-        public var styleProvider: KeyboardStyleService {
-            get { styleService }
-            set { styleService = newValue }
-        }
     }
 }
 
@@ -139,13 +114,8 @@ public extension Keyboard.Services {
     ///
     /// - Parameters:
     ///   - service: The service to register.
-    ///
-    /// - Throws: ``Callouts/TryRegisterLocalizedLayoutServiceError``
-    /// if the current ``calloutService`` can't be cast to a
-    /// ``Callouts/StandardService`` or the provided `service`
-    /// doesn't implement the ``LocalizedService`` protocol.
     func tryRegisterLocalizedCalloutService(
-        _ service: CalloutService
+        _ service: KeyboardCalloutService
     ) throws {
         try calloutService.tryRegisterLocalizedService(service)
     }
@@ -155,11 +125,6 @@ public extension Keyboard.Services {
     ///
     /// - Parameters:
     ///   - service: The service to register.
-    ///
-    /// - Throws: ``KeyboardLayout/TryRegisterLocalizedLayoutServiceError``
-    /// if the current ``layoutService`` can't be cast to a
-    /// ``KeyboardLayout/StandardService`` or the provided `service`
-    /// doesn't implement the ``LocalizedService`` protocol.
     func tryRegisterLocalizedLayoutService(
         _ service: KeyboardLayoutService
     ) throws {
@@ -179,8 +144,9 @@ public extension Keyboard.Services {
 
     // Setup the action handler for the provided controller.
     func setupActionHandler(for controller: KeyboardInputViewController) {
+        guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
         weak var weakController = controller
-        (actionHandler as? KeyboardAction.StandardHandler)?.keyboardController = weakController
+        handler.keyboardController = weakController
     }
 
     // Setup space gestures for the provided controller.
@@ -200,9 +166,8 @@ public extension Keyboard.Services {
 private extension Keyboard.Services {
 
     func setupCalloutContextForServices() {
-        let context = state.calloutContext.actionContext
-        context.service = calloutService
-        context.tapAction = { [weak self] action in
+        state.calloutContext.calloutService = calloutService
+        state.calloutContext.actionHandler = { [weak self] action in
             self?.actionHandler.handle(.release, on: action)
         }
     }

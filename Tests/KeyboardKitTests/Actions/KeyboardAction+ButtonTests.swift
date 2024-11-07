@@ -48,9 +48,7 @@ final class KeyboardAction_ImagesTests: XCTestCase {
             .option,
             .primary(.newLine),
             .settings,
-            .shift(currentCasing: .lowercased),
-            .shift(currentCasing: .uppercased),
-            .shift(currentCasing: .capsLocked),
+            .shift(.auto),
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .systemSettings,
             .tab,
@@ -70,9 +68,7 @@ final class KeyboardAction_ImagesTests: XCTestCase {
         XCTAssertTrue(result(for: .character("A"))! > 0)
         XCTAssertTrue(result(for: .emoji(Emoji("🛸")))! > 0)
 
-        XCTAssertTrue(result(for: .keyboardType(.alphabetic(.capsLocked)))! > 0)
-        XCTAssertTrue(result(for: .keyboardType(.alphabetic(.lowercased)))! > 0)
-        XCTAssertTrue(result(for: .keyboardType(.alphabetic(.uppercased)))! > 0)
+        XCTAssertTrue(result(for: .keyboardType(.alphabetic))! > 0)
         XCTAssertTrue(result(for: .keyboardType(.numeric))! > 0)
         XCTAssertTrue(result(for: .keyboardType(.symbolic))! > 0)
         XCTAssertNil(result(for: .keyboardType(.custom(named: ""))))
@@ -103,9 +99,7 @@ final class KeyboardAction_ImagesTests: XCTestCase {
         XCTAssertNil(result(for: .nextKeyboard))
         XCTAssertNil(result(for: .option))
         XCTAssertNil(result(for: .primary(.newLine)))
-        XCTAssertNil(result(for: .shift(currentCasing: .lowercased)))
-        XCTAssertNil(result(for: .shift(currentCasing: .uppercased)))
-        XCTAssertNil(result(for: .shift(currentCasing: .capsLocked)))
+        XCTAssertNil(result(for: .shift(.auto)))
         XCTAssertNil(result(for: .tab))
     }
 }

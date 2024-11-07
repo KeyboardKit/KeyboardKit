@@ -9,12 +9,11 @@
 import Foundation
 import SwiftUI
 
-/// This type can be used to define important app properties,
-/// and is also a namespace for KeyboardKit Pro app features.
+/// This type can be used to define important properties for
+/// your app, and is also a namespace for app-based features.
 ///
 /// You can create a static app value and add it to both the
-/// main app target and its keyboard extension target, to be
-/// able to easily refer to it from both targets:
+/// main app and its keyboard, to be able to use it in both:
 ///
 /// ```swift
 /// extension KeyboardApp {
@@ -31,13 +30,12 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// The app value can also resolve other properties that you
-/// may need, such as a ``dictationConfiguration``.
-///
 /// > Important: The ``locales`` collection is only meant to
 /// describe which locales you *want* to use in your app. It
 /// will be capped to the number of locales your KeyboardKit
 /// Pro license includes.
+///
+/// See the <doc:App-Article> article for more information.
 public struct KeyboardApp {
 
     /// Create a custom keyboard app value.
@@ -49,6 +47,7 @@ public struct KeyboardApp {
     ///   - keyboardBundleId: The app's keyboard bundle identifier, by default `<bundleId>.keyboard`.
     ///   - appGroupId: The app's App Group identifier, if any.
     ///   - locales: The locales to use in the app, by default `.all`.
+    ///   - autocompleteConfiguration: The autocomplete configuration to use.
     ///   - deepLinks: App-specific deep links, if any.
     ///   - keyboardSettingsKeyPrefix: A custom keyboard settings key prefix, if any.
     public init(
@@ -57,7 +56,8 @@ public struct KeyboardApp {
         bundleId: String,
         keyboardBundleId: String? = nil,
         appGroupId: String? = nil,
-        locales: [KeyboardLocale] = .all,
+        locales: [Locale] = .keyboardKitSupported,
+        autocompleteConfiguration: AutocompleteConfiguration = .init(),
         deepLinks: DeepLinks? = nil,
         keyboardSettingsKeyPrefix: String? = nil
     ) {
@@ -67,16 +67,9 @@ public struct KeyboardApp {
         self.keyboardBundleId = keyboardBundleId ?? "\(bundleId).keyboard"
         self.locales = locales
         self.licenseKey = licenseKey
+        self.autocompleteConfiguration = autocompleteConfiguration
         self.deepLinks = deepLinks
         self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
-        if let appGroupId, let dictationLink = deepLinks?.dictation {
-            dictationConfiguration = .init(
-                appGroupId: appGroupId,
-                appDeepLink: dictationLink
-            )
-        } else {
-            dictationConfiguration = nil
-        }
     }
 
     /// The name of the app.
@@ -95,42 +88,39 @@ public struct KeyboardApp {
     public let appGroupId: String?
 
     /// The locales to use in the app.
-    public let locales: [KeyboardLocale]
+    public let locales: [Locale]
 
     /// App-specific deep links, if any.
     public let deepLinks: DeepLinks?
 
-    /// The app's dictation configuration, if any.
-    public let dictationConfiguration: Dictation.KeyboardConfiguration?
+    /// The autocomplete configuration to use.
+    public let autocompleteConfiguration: AutocompleteConfiguration
 
     /// A custom keyboard settings key prefix, if any.
     public let keyboardSettingsKeyPrefix: String?
-
-    @available(*, deprecated, message: "Use the deepLinks initializer instead.")
-    @_disfavoredOverload
-    public init(
-        name: String,
-        licenseKey: String = "",
-        bundleId: String,
-        keyboardExtensionBundleId: String? = nil,
-        appGroupId: String? = nil,
-        locales: [KeyboardLocale] = .all,
-        dictationDeepLink: String
-    ) {
-        self.init(
-            name: name,
-            licenseKey: licenseKey,
-            bundleId: bundleId,
-            keyboardBundleId: keyboardExtensionBundleId,
-            appGroupId: appGroupId,
-            locales: locales,
-            deepLinks: .init(app: "", dictation: dictationDeepLink)
-        )
-    }
-
 }
 
 public extension KeyboardApp {
+
+    /// This type can define app-specific deep links.
+    ///
+    /// You only have to provide an `app` url, and can leave
+    /// the rest blank to use standard URLs.
+    struct AutocompleteConfiguration {
+
+        /// Create a custom autocomplete configuration.
+        ///
+        /// - Parameters:
+        ///   - nextWordPredictionRequest: The next word prediction request to use, if any.
+        public init(
+            nextWordPredictionRequest: Autocomplete.NextWordPredictionRequest? = nil
+        ) {
+            self.nextWordPredictionRequest = nextWordPredictionRequest
+        }
+
+        /// The next word prediction request to use, if any.
+        public let nextWordPredictionRequest: Autocomplete.NextWordPredictionRequest?
+    }
 
     /// This type can define app-specific deep links.
     ///
@@ -175,11 +165,6 @@ public extension KeyboardApp {
     /// extensions for the app.
     var keyboardBundleIdWildcard: String {
         "\(bundleId).*"
-    }
-
-    @available(*, deprecated, renamed: "keyboardBundleIdWildcard")
-    var keyboardExtensionBundleIdWildcard: String {
-        keyboardBundleIdWildcard
     }
 }
 

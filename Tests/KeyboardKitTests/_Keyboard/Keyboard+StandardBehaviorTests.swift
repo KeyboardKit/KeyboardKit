@@ -8,7 +8,6 @@
 
 #if os(iOS) || os(tvOS)
 import CoreGraphics
-import MockingKit
 import XCTest
 
 @testable import KeyboardKit
@@ -16,225 +15,192 @@ import XCTest
 class Keyboard_StandardBehaviorTests: XCTestCase {
     
     typealias Gesture = Keyboard.Gesture
+    typealias Action = KeyboardAction
 
     var behavior: Keyboard.StandardBehavior!
     var keyboardContext: KeyboardContext!
     var proxy: MockTextDocumentProxy!
     var timer: GestureButtonTimer!
 
+    let keyboardTypes = Keyboard.KeyboardType.allCases
 
     override func setUp() {
         timer = .init()
         proxy = MockTextDocumentProxy()
         keyboardContext = .init()
-        keyboardContext.setLocale(.english)
+        keyboardContext.locale = .english
         keyboardContext.sync(with: MockKeyboardInputViewController())
         keyboardContext.originalTextDocumentProxy = proxy
         behavior = .init(keyboardContext: keyboardContext, repeatGestureTimer: timer)
     }
 
 
-    func backspaceRangeResult(after seconds: TimeInterval) -> Keyboard.BackspaceRange {
-        timer.start {}
-        timer.modifyStartDate(to: Date().addingTimeInterval(-seconds))
-        return behavior.backspaceRange
+    // MARK: - Backspace Range
+
+    func testBackspaceRangeChangesTheLongerItIsPressed() {
+        func result(after seconds: TimeInterval) -> Keyboard.BackspaceRange {
+            timer.start {}
+            timer.modifyStartDate(to: Date().addingTimeInterval(-seconds))
+            return behavior.backspaceRange
+        }
+        XCTAssertEqual(result(after: 0), .character)
+        XCTAssertEqual(result(after: 2.9), .character)
+        XCTAssertEqual(result(after: 3.1), .word)
     }
 
-    func testBackspaceRangeIsCharBeforeThreeSecondsThenWords() {
-        XCTAssertEqual(backspaceRangeResult(after: 0), .character)
-        XCTAssertEqual(backspaceRangeResult(after: 2.9), .character)
-        XCTAssertEqual(backspaceRangeResult(after: 3.1), .word)
+
+    // MARK: - Preferred Keyboard Case
+
+    func keyboardCase(
+        for gesture: Keyboard.Gesture,
+        on action: KeyboardAction
+    ) -> Keyboard.KeyboardCase {
+        behavior.preferredKeyboardCase(after: gesture, on: action)
+    }
+
+    func testPreferredKeyboardCaseIsContextPreferredForAllActionsExceptShift() {
+        let actions = KeyboardAction.testActions.filter { !$0.isShiftAction }
+        let current = keyboardContext.keyboardCase
+        let preferred = keyboardContext.preferredKeyboardCase
+        XCTAssertNotEqual(preferred, current)
+        actions.forEach {
+            XCTAssertEqual(keyboardCase(for: .press, on: $0), preferred)
+            XCTAssertEqual(keyboardCase(for: .release, on: $0), preferred)
+            XCTAssertEqual(keyboardCase(for: .doubleTap, on: $0), preferred)
+        }
+
+    }
+
+    func testPreferredKeyboardCaseIsCapsLockIfShiftIsDoubleTapped() {
+        let current = keyboardContext.keyboardCase
+        let preferred = keyboardContext.preferredKeyboardCase
+        XCTAssertNotEqual(preferred, current)
+        XCTAssertEqual(keyboardCase(for: .press, on: .shift(.auto)), current)
+        behavior.lastShiftCheck = .now.addingTimeInterval(-10)
+        XCTAssertEqual(keyboardCase(for: .release, on: .shift(.auto)), current)
+        behavior.lastShiftCheck = .now
+        XCTAssertEqual(keyboardCase(for: .release, on: .shift(.auto)), .capsLocked)
     }
 
 
-    func preferredKeyboardTypeResult(
-        after gesture: Keyboard.Gesture,
+    // MARK: - Preferred Keyboard Type
+
+    func keyboardType(
+        for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Keyboard.KeyboardType {
         behavior.preferredKeyboardType(after: gesture, on: action)
     }
 
-    func testPreferredKeyboardTypeAfterGestureOnActionIsByDefaultContextPreferredType() {
-        proxy.documentContextBeforeInput = "Hello!"
-        proxy.autocapitalizationType = .allCharacters
-        keyboardContext.isAutocapitalizationEnabled = true
-        keyboardContext.keyboardType = .alphabetic(.lowercased)
-        let result = preferredKeyboardTypeResult(after: .release, on: .character("i"))
-        XCTAssertEqual(keyboardContext.keyboardLocale, .english)
-        XCTAssertEqual(result, .alphabetic(.uppercased))
+    func testPreferredKeyboardTypeIsByDefaultContextType() {
+        keyboardContext.settings.isAutocapitalizationEnabled = true
+        keyboardTypes.forEach {
+            keyboardContext.keyboardType = $0
+            XCTAssertEqual(keyboardType(for: .press, on: .backspace), $0)
+            XCTAssertEqual(keyboardType(for: .release, on: .character("i")), $0)
+        }
     }
 
-    func testPreferredKeyboardTypeAfterGestureOnActionIsByDefaultContextTypeForNonTap() {
-        proxy.documentContextBeforeInput = "Hello!"
-        proxy.autocapitalizationType = .allCharacters
-        keyboardContext.keyboardType = .alphabetic(.lowercased)
-        let result = preferredKeyboardTypeResult(after: .press, on: .character("i"))
-        XCTAssertEqual(result, keyboardContext.keyboardType)
+    func testPreferredKeyboardTypeIsAlphabeticIfPrimaryButtonIsTappedInEmojiSearch() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            let should = type == .emojiSearch
+            XCTAssertEqual(keyboardType(for: .press, on: .primary(.return)), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .primary(.return)), should ? .alphabetic : type)
+        }
     }
 
-    func testPreferredKeyboardTypeAfterGestureOnActionIsContextPreferredTypeIfShiftIsDoubleTappedTooSlowly() {
-        keyboardContext.keyboardType = .alphabetic(.uppercased)
-        behavior.lastShiftCheck = .distantPast
-        let result = preferredKeyboardTypeResult(after: .release, on: .shift(currentCasing: .uppercased))
-        XCTAssertEqual(result, keyboardContext.keyboardType)
+    func testPreferredKeyboardTypeIsAlphabeticIfCertainCharactersAreReleased() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            let locale = Locale.swedish
+            let delim1 = locale.alternateQuotationBeginDelimiter ?? ""
+            let delim2 = locale.alternateQuotationEndDelimiter ?? ""
+            let should = type.isNumericOrSymbolic
+            let characters: [KeyboardAction] = [
+                .character(delim1),
+                .character(delim2),
+            ] + String.alphabeticAccentSwitches.map { .character($0) }
+            characters.forEach {
+                XCTAssertEqual(keyboardType(for: .press, on: $0), type)
+                XCTAssertEqual(keyboardType(for: .release, on: $0), should ? .alphabetic : type)
+            }
+        }
     }
 
-    func testPreferredKeyboardTypeAfterGestureOnActionIsContextPreferredTypeIfNonShiftIsDoubleTapped() {
-        keyboardContext.keyboardType = .alphabetic(.uppercased)
-        let result = preferredKeyboardTypeResult(after: .release, on: .command)
-        XCTAssertEqual(result, .alphabetic(.lowercased))
+    #if os(iOS) || os(tvOS) || os(visionOS)
+    func testPreferredKeyboardTypeIsAlphabeticIfSingleNumericOrSymbolicSpaceIsReleased() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            proxy.documentContextBeforeInput = "Test "
+            let should = type.isNumericOrSymbolic
+            XCTAssertEqual(keyboardType(for: .press, on: .space), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .space), should ? .alphabetic : type)
+        }
     }
 
-    func testPreferredKeyboardTypeAfterGestureOnActionIsContextPreferredTypeIfCurrentTypeIsNotUpperCased() {
-        keyboardContext.keyboardType = .alphabetic(.lowercased)
-        let result = preferredKeyboardTypeResult(after: .release, on: .command)
-        XCTAssertEqual(result, .alphabetic(.lowercased))
+    func testPreferredKeyboardTypeIsUnchangedIfSubsequentWhitespaceIsReleasedInSymbolicOrNumericKeyboards() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            proxy.documentContextBeforeInput = "Test  "
+            XCTAssertEqual(keyboardType(for: .press, on: .space), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .space), type)
+        }
     }
 
-    func testPreferredKeyboardTypeAfterGestureOnActionIsCapsLockedIfShiftIsDoubleTappedQuicklyEnough() {
-        keyboardContext.keyboardType = .alphabetic(.uppercased)
-        let result = preferredKeyboardTypeResult(after: .release, on: .shift(currentCasing: .uppercased))
-        XCTAssertEqual(result, .alphabetic(.capsLocked))
+    func testPreferredKeyboardTypeIsAlphabeticIfNewLineIsEnteredAfterFinishedSentence() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            proxy.documentContextBeforeInput = "Test. "
+            let should = type.isNumericOrSymbolic || type == .emojiSearch
+            XCTAssertEqual(keyboardType(for: .press, on: .primary(.done)), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .primary(.continue)), should ? .alphabetic : type)
+        }
     }
 
-
-    func shouldEndSentenceResult(
-        after gesture: Keyboard.Gesture,
-        on action: KeyboardAction
-    ) -> Bool {
-        behavior.shouldEndSentence(after: gesture, on: action)
+    func testPreferredKeyboardTypeIsUnchangedIfNewLineIsEnteredAfterNonFinishedSentence() {
+        keyboardTypes.forEach { type in
+            keyboardContext.keyboardType = type
+            proxy.documentContextBeforeInput = "Test  "
+            let should = type == .emojiSearch
+            XCTAssertEqual(keyboardType(for: .press, on: .primary(.done)), type)
+            XCTAssertEqual(keyboardType(for: .release, on: .primary(.newLine)), should ? .alphabetic : type)
+        }
     }
+    #endif
 
-    func testShouldEndSentenceIsOnlyTrueForSpaceAfterPreviousSpace() {
+
+    // MARK: - Should End Sentende
+
+    func testShouldEndSentenceOnlyForSpaceAfterPreviousSpace() {
+        func result(after gesture: Gesture, on action: Action) -> Bool {
+            behavior.shouldEndCurrentSentence(after: gesture, on: action)
+        }
         proxy.documentContextBeforeInput = "hej  "
-        XCTAssertTrue(shouldEndSentenceResult(after: .release, on: .space))
-        XCTAssertFalse(shouldEndSentenceResult(after: .release, on: .character(" ")))
-        XCTAssertFalse(shouldEndSentenceResult(after: .release, on: .command))
+        XCTAssertTrue(result(after: .release, on: .space))
+        XCTAssertFalse(result(after: .release, on: .character(" ")))
+        XCTAssertFalse(result(after: .release, on: .command))
         proxy.documentContextBeforeInput = "hej. "
-        XCTAssertFalse(shouldEndSentenceResult(after: .release, on: .space))
-        XCTAssertFalse(shouldEndSentenceResult(after: .release, on: .character(" ")))
+        XCTAssertFalse(result(after: .release, on: .space))
+        XCTAssertFalse(result(after: .release, on: .character(" ")))
         proxy.documentContextBeforeInput = "hej.  "
-        XCTAssertFalse(shouldEndSentenceResult(after: .release, on: .space))
-        XCTAssertFalse(shouldEndSentenceResult(after: .release, on: .character(" ")))
+        XCTAssertFalse(result(after: .release, on: .space))
+        XCTAssertFalse(result(after: .release, on: .character(" ")))
     }
 
 
-    func shouldSwitchToCapsLockResult(
-        after gesture: Keyboard.Gesture,
-        on action: KeyboardAction
-    ) -> Bool {
-        behavior.shouldSwitchToCapsLock(after: gesture, on: action)
-    }
+    // MARK: - Should Register Emoji
 
-    func testShouldSwitchToCapsLockIsFalseIfKeyboardTypeIsNotAlphabeticWhenActionIsDoubleTapOnShift() {
-        keyboardContext.keyboardType = .numeric
-        XCTAssertFalse(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .capsLocked)))
-        XCTAssertFalse(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .lowercased)))
-        XCTAssertFalse(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .lowercased)))
-        XCTAssertFalse(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .uppercased)))
-        XCTAssertFalse(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .uppercased)))
-    }
-
-    func testShouldSwitchToCapsLockIsFalseIfKeyboardTypeIsAlphabeticWhenActionIsDoubleTapOnShift() {
-        XCTAssertTrue(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .capsLocked)))
-        XCTAssertFalse(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .lowercased)))
-        XCTAssertTrue(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .lowercased)))
-        XCTAssertFalse(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .uppercased)))
-        XCTAssertTrue(shouldSwitchToCapsLockResult(after: .release, on: .shift(currentCasing: .uppercased)))
-    }
-
-
-    func shouldSwitchToPreferredKeyboardTypeResult(
-        after gesture: Keyboard.Gesture,
-        on action: KeyboardAction
-    ) -> Bool {
-        behavior.shouldSwitchToPreferredKeyboardType(after: gesture, on: action)
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeIsFalseIfActionIsShift() {
-        XCTAssertTrue(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .shift(currentCasing: .capsLocked)))
-        XCTAssertTrue(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .shift(currentCasing: .lowercased)))
-        XCTAssertTrue(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .shift(currentCasing: .uppercased)))
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeIsFalseForMostKeyboardTypes() {
-        let types: [Keyboard.KeyboardType] = [
-            .custom(named: "foo"),
-            .email,
-            .emojis,
-            .images,
-            .numeric,
-            .symbolic]
-        types.forEach {
-            XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .keyboardType($0)))
+    func testShouldOnlyRegisterEmojiForReleaseOnEmojiAction() {
+        func result(after gesture: Gesture, on action: Action) -> Bool {
+            behavior.shouldRegisterEmoji(after: gesture, on: action)
         }
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeIsOnlyTrueForAlphabeticAutoCasedKeyboardType() {
-        let expectedTrue: [Keyboard.KeyboardType] = [
-            .alphabetic(.auto)]
-        let expectedFalse: [Keyboard.KeyboardType] = [
-            .alphabetic(.capsLocked),
-            .alphabetic(.lowercased),
-            .alphabetic(.uppercased)]
-        expectedTrue.forEach {
-            XCTAssertTrue(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .keyboardType($0)))
+        KeyboardAction.testActions.forEach { action in
+            Keyboard.Gesture.allCases.forEach { gesture in
+                let expected = gesture == .release && action.isEmojiAction
+                XCTAssertEqual(result(after: gesture, on: action), expected)
+            }
         }
-        expectedFalse.forEach {
-            XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .keyboardType($0)))
-        }
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeIsFalseIfActionIsKeyboardType() {
-        let types: [Keyboard.KeyboardType] = [
-            .alphabetic(.lowercased),
-            .custom(named: "foo"),
-            .email,
-            .emojis,
-            .images,
-            .numeric,
-            .symbolic]
-        types.forEach {
-            XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .keyboardType($0)))
-        }
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeIsTrueIfCurrentKeyboardTypeDiffersFromPreferredOne() {
-        proxy.documentContextBeforeInput = "Hello!"
-        proxy.autocapitalizationType = .allCharacters
-        keyboardContext.keyboardType = .alphabetic(.lowercased)
-        XCTAssertTrue(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .character("i")))
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeIsFalseIfCurrentKeyboardIsTheSameAsThePrefferredOneWithoutAutocap() {
-        proxy.documentContextBeforeInput = "Hello!"
-        proxy.autocapitalizationType = .none
-        keyboardContext.keyboardType = .alphabetic(.lowercased)
-        XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .character("i")))
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeIsFalseIfCurrentKeyboardIsTheSameAsThePrefferredOne() {
-        proxy.documentContextBeforeInput = "Hello. "
-        keyboardContext.keyboardType = .symbolic
-        XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeResult(after: .release, on: .keyboardType(.numeric)))
-    }
-
-
-    func shouldSwitchToPreferredKeyboardTypeAfterTextDidChangeResult() -> Bool {
-        behavior.shouldSwitchToPreferredKeyboardTypeAfterTextDidChange()
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeAfterTextDidChangeIsTrueIfCurrentKeyboardTypeIsNotPreferredOne() {
-        proxy.autocapitalizationType = .sentences
-        proxy.documentContextBeforeInput = "foo. "
-        XCTAssertTrue(shouldSwitchToPreferredKeyboardTypeAfterTextDidChangeResult())
-    }
-
-    func testShouldSwitchToPreferredKeyboardTypeAfterTextDidChangeIsFakseIfCurrentKeyboardTyopeIsPreferredOne() {
-        proxy.autocapitalizationType = .sentences
-        proxy.documentContextBeforeInput = "foo. "
-        keyboardContext.keyboardType = .alphabetic(.uppercased)
-        XCTAssertFalse(shouldSwitchToPreferredKeyboardTypeAfterTextDidChangeResult())
     }
 }
 #endif

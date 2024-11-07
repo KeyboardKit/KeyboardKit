@@ -15,7 +15,9 @@ This article describes the KeyboardKit emoji engine.
 
 KeyboardKit has an ``Emoji`` struct that represents an emoji value, and defines available ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.
 
-👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that's automatically injected into ``KeyboardView`` when a valid license is registered. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that's automatically injected into ``KeyboardView`` when a valid license is registered. Information about Pro features can be found further down.
+
+> Important: The ``EmojiKeyboard`` uses high-resolution emojis on iPad, which can consume a lot of memory when scrolling through the emoji categories. Apply an ``Emoji/KeyboardStyle/optimized(for:)`` style with ``SwiftUICore/View/emojiKeyboardStyle(_:)`` if your keyboard uses memory-intense tools, since keyboard extensions are memory capped at ~70 MB.
 
 
 
@@ -25,12 +27,6 @@ The ``Emoji`` struct represents a structured emoji model that lets you work with
 
 ```swift
 let emoji = Emoji("😀")
-```
-
-You can use ``Emoji/all`` to get a list of all emojis from all categories that are available to the current runtime:
-
-```swift
-let emojis = Emoji.all   // 😀😃😄😁😆🥹😅😂🤣🥲...
 ```
 
 You can trigger emoji character insertion by triggering the ``KeyboardAction/emoji(_:)-swift.enum.case`` keyboard action, just like you trigger any other keyboard action.
@@ -46,12 +42,6 @@ EmojiCategory.smileysAndPeople.emojis  // 😀😃😄...
 EmojiCategory.animalsAndNature.emojis  // 🐶🐱🐭...
 ```
 
-You can use ``EmojiCategory/all`` to get a list of all available categories, in the native, default sort order:
-
-```swift
-EmojiCategory.all      // [.frequent, .smileyAndPeople, ...]
-```
-
 ``EmojiCategory`` uses ``EmojiVersion`` to filter out emojis that are unavailable to the current runtime, to only include available emojis.
 
 
@@ -65,14 +55,7 @@ let version = EmojiVersion.v15
 version.emojis          // 🫨🫸🫷🪿🫎🪼🫏🪽🪻🫛🫚🪇🪈🪮🪭🩷🩵🩶🪯🛜...
 version.version         // 15.0
 version.iOS             // 16.4
-version.macOS           // 13.3
 version.olderVersions   // [.v14, .v13_1, .v13, .v12_1, ...]
-```
-
-All this information is used to resolve ``EmojiVersion/unavailableEmojis`` that are unavailable for a certain emoji version in the current runtime:
-
-```swift
-EmojiVersion.v14.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 ```
 
 ``EmojiCategory`` uses ``EmojiVersion`` to filter out emojis that are unavailable to the current runtime, to only include available emojis.
@@ -81,13 +64,12 @@ EmojiVersion.v14.unavailableEmojis // 🫨🫸🫷🪿🫎🪼🫏🪽...
 
 ## Unicode Information
 
-The ``Emoji`` enum has unicode-specific properties that can be used for identity and naming:
+The ``Emoji`` enum has unicode-specific properties that can be used for identity and basic, non-localized naming:
 
 ```swift
 Emoji("👍").unicodeIdentifier   // \\N{THUMBS UP SIGN}
 Emoji("👍🏿").unicodeIdentifier   // \\N{THUMBS UP SIGN}\\N{EMOJI MODIFIER FITZPATRICK TYPE-6}
 Emoji("👍").unicodeName         // Thumbs Up Sign
-Emoji("👍🏿").unicodeName         // Thumbs Up Sign
 ```
 
 
@@ -108,11 +90,16 @@ The ``EmojiKeyboard`` will automatically add skin tones as secondary callout act
 
 ## Localization Support
 
-The ``Emoji`` enum can be localized in any supported locale that has defined translations:
+The ``Emoji`` and ``EmojiCategory`` enums can be localized in any locale that has translations:
 
 ```swift
-Emoji("😀").localizedName                  // Grinning Face
-Emoji("😀").localizedName(for: .swedish)   // Leende Ansikte
+let emoji = Emoji("😀") 
+emoji.localizedName                   // Grinning Face
+emoji.localizedName(in: .swedish)     // Leende Ansikte
+
+let category = EmojiCategory.animalsAndNature 
+category.localizedName                // Animals & Nature
+category.localizedName(in: .swedish)  // Djur och natur
 ```
 
 Take a look at `Resources/en.lproj/Localizable.strings` to see how you can localize emojis for more keyboard locales.
@@ -131,6 +118,7 @@ There are String & Character extensions that can be used to detect and handle em
 ```
 
 
+---
 
 
 ## 👑 KeyboardKit Pro
@@ -143,16 +131,27 @@ There are String & Character extensions that can be used to detect and handle em
     
     @Tab("EmojiKeyboard") {
         
-        The ``EmojiKeyboard`` component mimics a native emoji keyboard, with support for categories, skin tones, etc. It uses many additional views that are unlocked by KeyboardKit Pro, such as the title, grid, and menu. These views can be used individually as well. 
-        
         @Row {
-            @Column {}
-            @Column(size: 4) {
+            @Column {
                 ![Emoji Keyboard](emojikeyboard)
             }
-            @Column {}
+            @Column {
+                The ``EmojiKeyboard`` mimics a native emoji keyboard. It has support for categories, skin tones, callouts, etc.
+                
+                The view can be styled with an emoji-specific ``Emoji/KeyboardStyle``, which can be applied with the ``SwiftUICore/View/emojiKeyboardStyle(_:)`` view modifier. Use the builder-based style modifier to generate styles at runtime, based on the keyboard context.
+            }
         }
-        
-        The view can be styled with an ``EmojiKeyboardStyle``, which can be applied with the ``SwiftUICore/View/emojiKeyboardStyle(_:)`` view modifier.
     }
 }
+
+
+If you don't apply a custom style builder, the style will default to a memory optimized style for iPhones and a standard one for iPads.
+
+This is how you can apply a memory optimized Emoji keyboard style for all device types, to help save memory when rendering emojis:
+
+```swift
+YourView(...)
+    .emojiKeyboardStyle { context in
+        .optimized(for: context)    // This will apply an optimized style regardless of the context.
+    }
+```

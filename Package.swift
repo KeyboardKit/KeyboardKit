@@ -6,10 +6,10 @@ let package = Package(
     name: "KeyboardKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v14),
-        .macOS(.v11),
-        .tvOS(.v14),
-        .watchOS(.v7),
+        .iOS(.v15),
+        .macOS(.v12),
+        .tvOS(.v15),
+        .watchOS(.v8),
         .visionOS(.v1)
     ],
     products: [
@@ -21,7 +21,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/danielsaidi/MockingKit.git",
-            .upToNextMajor(from: "1.3.0")
+            .upToNextMajor(from: "1.5.0")
         )
     ],
     targets: [

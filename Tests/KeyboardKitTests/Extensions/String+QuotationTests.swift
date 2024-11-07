@@ -8,19 +8,23 @@
 
 #if os(iOS) || os(tvOS)
 import KeyboardKit
-import MockingKit
 import XCTest
 
 class String_QuotationTests: XCTestCase {
 
+    let locales = Locale.keyboardKitSupported
+
     // MARK: - Unclosed alternate quotation
 
-    func hasUnclosedAltQuotation(_ text: String, locale: KeyboardLocale) -> Bool {
-        text.hasUnclosedAlternateQuotation(for: locale.locale)
+    func hasUnclosedAltQuotation(
+        _ text: String,
+        locale: Locale
+    ) -> Bool {
+        text.hasUnclosedAlternateQuotation(for: locale)
     }
 
     func testHasUnclosedAltQuotationIsFalseIfTextDoesNotContainDelimiters() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "I love coding"
             XCTAssertFalse(hasUnclosedAltQuotation(text, locale: $0))
         }
@@ -30,9 +34,9 @@ class String_QuotationTests: XCTestCase {
         XCTAssertTrue(hasUnclosedAltQuotation("‘I love coding", locale: .english))
         XCTAssertFalse(hasUnclosedAltQuotation("‘I love coding’", locale: .english))
         
-        KeyboardLocale.allCases.forEach {
-            let begin = $0.locale.alternateQuotationBeginDelimiter ?? ""
-            let end = $0.locale.alternateQuotationEndDelimiter ?? ""
+        locales.forEach {
+            let begin = $0.alternateQuotationBeginDelimiter ?? ""
+            let end = $0.alternateQuotationEndDelimiter ?? ""
             XCTAssertEqual(hasUnclosedAltQuotation("I love coding\(begin)", locale: $0), begin != end)
             XCTAssertFalse(hasUnclosedAltQuotation("I love coding\(end)", locale: $0))
             XCTAssertEqual(hasUnclosedAltQuotation("I love coding\(end)\(begin)", locale: $0), begin != end)
@@ -43,12 +47,12 @@ class String_QuotationTests: XCTestCase {
 
     // MARK: - Unclosed quotation
 
-    func hasUnclosedQuotation(_ text: String, locale: KeyboardLocale) -> Bool {
-        text.hasUnclosedQuotation(for: locale.locale)
+    func hasUnclosedQuotation(_ text: String, locale: Locale) -> Bool {
+        text.hasUnclosedQuotation(for: locale)
     }
 
     func testHasUnclosedQuotationIsFalseIfTextDoesNotContainDelimiters() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "I love coding"
             XCTAssertFalse(hasUnclosedQuotation(text, locale: $0))
         }
@@ -58,9 +62,9 @@ class String_QuotationTests: XCTestCase {
         XCTAssertTrue(hasUnclosedQuotation("“I love coding", locale: .english))
         XCTAssertFalse(hasUnclosedQuotation("“I love coding”", locale: .english))
         
-        KeyboardLocale.allCases.forEach {
-            let begin = $0.locale.quotationBeginDelimiter ?? ""
-            let end = $0.locale.quotationEndDelimiter ?? ""
+        locales.forEach {
+            let begin = $0.quotationBeginDelimiter ?? ""
+            let end = $0.quotationEndDelimiter ?? ""
             XCTAssertEqual(hasUnclosedQuotation("I love coding\(begin)", locale: $0), begin != end)
             XCTAssertFalse(hasUnclosedQuotation("I love coding\(end)", locale: $0))
             XCTAssertEqual(hasUnclosedQuotation("I love coding\(end)\(begin)", locale: $0), begin != end)
@@ -77,12 +81,12 @@ class String_QuotationTests: XCTestCase {
 
     // MARK: - String quotation
 
-    func quote(_ text: String, for locale: KeyboardLocale) -> String {
-        text.quoted(for: locale.locale)
+    func quote(_ text: String, for locale: Locale) -> String {
+        text.quoted(for: locale)
     }
 
-    func alternateQuote(_ text: String, for locale: KeyboardLocale) -> String {
-        text.alternateQuoted(for: locale.locale)
+    func alternateQuote(_ text: String, for locale: Locale) -> String {
+        text.alternateQuoted(for: locale)
     }
 
     func testQuoteStringForLocale() {
@@ -98,26 +102,30 @@ class String_QuotationTests: XCTestCase {
 
     // MARK: - Preferred quotation replacement
 
-    func beginDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.quotationBeginDelimiter ?? ""
+    func beginDelimiter(for locale: Locale) -> String {
+        locale.quotationBeginDelimiter ?? ""
     }
 
-    func altBeginDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.alternateQuotationBeginDelimiter ?? ""
+    func altBeginDelimiter(for locale: Locale) -> String {
+        locale.alternateQuotationBeginDelimiter ?? ""
     }
 
-    func endDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.quotationEndDelimiter ?? ""
+    func endDelimiter(for locale: Locale) -> String {
+        locale.quotationEndDelimiter ?? ""
     }
 
-    func altEndDelimiter(for locale: KeyboardLocale) -> String {
-        locale.locale.alternateQuotationEndDelimiter ?? ""
+    func altEndDelimiter(for locale: Locale) -> String {
+        locale.alternateQuotationEndDelimiter ?? ""
     }
 
-    func testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for locale: KeyboardLocale, delimiter: String? = nil, expected: String?) {
+    func testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(
+        for locale: Locale,
+        delimiter: String? = nil,
+        expected: String?
+    ) {
         let text = "before"
         let delimiter = delimiter ?? endDelimiter(for: locale)
-        let result = text.preferredQuotationReplacement(whenAppending: delimiter, for: locale.locale)
+        let result = text.preferredQuotationReplacement(whenAppending: delimiter, for: locale)
         XCTAssertEqual(result, expected)
     }
 
@@ -132,10 +140,14 @@ class String_QuotationTests: XCTestCase {
         testPreferredQuotationReplacementWhenInsertingEndDelimiterWithoutUnclosedBeginDelimiter(for: .swedish, expected: nil)
     }
 
-    func testPreferredQuotationReplacementWhenInsertingAlternateEndDelimiterWithoutUnclosedBeginDelimiter(for locale: KeyboardLocale, delimiter: String? = nil, expected: String?) {
+    func testPreferredQuotationReplacementWhenInsertingAlternateEndDelimiterWithoutUnclosedBeginDelimiter(
+        for locale: Locale,
+        delimiter: String? = nil,
+        expected: String?
+    ) {
         let text = "before"
         let delimiter = delimiter ?? altEndDelimiter(for: locale)
-        let result = text.preferredQuotationReplacement(whenAppending: delimiter, for: locale.locale)
+        let result = text.preferredQuotationReplacement(whenAppending: delimiter, for: locale)
         XCTAssertEqual(result, expected)
     }
 
@@ -150,18 +162,18 @@ class String_QuotationTests: XCTestCase {
     }
 
     func testPreferredQuotationReplacementWhenInsertingEndDelimiterAfterUnclosedBeginDelimiter() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "text with some \(beginDelimiter(for: $0))quoted text"
             let insert = endDelimiter(for: $0)
-            XCTAssertNil(text.preferredQuotationReplacement(whenAppending: insert, for: $0.locale))
+            XCTAssertNil(text.preferredQuotationReplacement(whenAppending: insert, for: $0))
         }
     }
 
     func testPreferredQuotationReplacementWhenInsertingAlternateEndDelimiterAfterUnclosedBeginDelimiter() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             let text = "text with some \(altBeginDelimiter(for: $0))quoted text"
             let insert = altEndDelimiter(for: $0)
-            XCTAssertNil(text.preferredQuotationReplacement(whenAppending: insert, for: $0.locale))
+            XCTAssertNil(text.preferredQuotationReplacement(whenAppending: insert, for: $0))
         }
     }
 }

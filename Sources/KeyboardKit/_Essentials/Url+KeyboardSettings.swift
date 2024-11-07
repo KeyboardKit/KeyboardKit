@@ -36,7 +36,4 @@ public extension URL {
         nil
         #endif
     }
-
-    @available(*, deprecated, renamed: "systemSettings")
-    static var keyboardSettings: URL? { systemSettings }
 }

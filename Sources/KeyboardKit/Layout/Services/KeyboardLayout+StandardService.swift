@@ -8,15 +8,32 @@
 
 import Foundation
 
+public extension KeyboardLayoutService where Self == KeyboardLayout.StandardService {
+
+    /// Create a ``KeyboardLayout/StandardService`` instance.
+    ///
+    /// - Parameters:
+    ///   - baseService: The base service to use, by default a device-based service.
+    ///   - localizedServices: A list of localized services, by default `empty`.
+    static func standard(
+        baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedService(),
+        localizedServices: [Self.LocalizedLayoutService] = []
+    ) -> Self {
+        KeyboardLayout.StandardService(
+            baseService: baseService,
+            localizedServices: localizedServices
+        )
+    }
+}
+
 extension KeyboardLayout {
     
     /// This class provides a standard way to create dynamic
     /// keyboard layouts.
     ///
     /// This class can register ``localizedServices``, which
-    /// will then be used to resolve layouts for the locales
-    /// they specify. If a ``KeyboardLocale`` is not handled
-    /// by these locales the ``baseService`` is used.
+    /// will then be used instead of ``baseService`` for the
+    /// locales it specifies.
     ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it
@@ -54,10 +71,10 @@ extension KeyboardLayout {
         public private(set) var baseService: KeyboardLayoutService
 
         /// A dictionary with localized layout services.
-        public var localizedServices: KeyboardLocale.Dictionary<KeyboardLayoutService>
+        public var localizedServices: Locale.Dictionary<KeyboardLayoutService>
 
         /// This is an optional resolver that is used by Pro to lazily resolve services.
-        public static var localizedServiceResolver: ((KeyboardLocale) -> KeyboardLayoutService?)?
+        public static var localizedServiceResolver: ((Locale) -> KeyboardLayoutService?)?
 
         
         /// The keyboard layout to use for a certain context.
@@ -72,10 +89,10 @@ extension KeyboardLayout {
         open func keyboardLayoutService(
             for context: KeyboardContext
         ) -> KeyboardLayoutService {
-            let locale = context.keyboardLocale ?? .english
+            let locale = context.locale
             if let service = localizedServices.value(for: locale) { return service }
             if let service = Self.localizedServiceResolver?(locale) {
-                localizedServices.dictionary[locale.localeIdentifier] = service
+                localizedServices.dictionary[locale.identifier] = service
                 return service
             }
             return baseService
@@ -83,53 +100,6 @@ extension KeyboardLayout {
         
         /// Register a localized service
         open func registerLocalizedService(
-            _ service: LocalizedLayoutService
-        ) {
-            localizedServices.set(service, for: service.localeKey)
-        }
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, renamed: "init(baseService:localizedServices:)")
-        @_disfavoredOverload
-        public convenience init(
-            baseProvider: KeyboardLayoutService = KeyboardLayout.DeviceBasedService(),
-            localizedProviders: [LocalizedLayoutService] = []
-        ) {
-            self.init(baseService: baseProvider, localizedServices: localizedProviders)
-        }
-
-        @available(*, deprecated, renamed: "LocalizedLayoutService")
-        public typealias LocalizedProvider = LocalizedLayoutService
-
-        @available(*, deprecated, renamed: "baseService")
-        public private(set) var baseProvider: KeyboardLayoutService {
-            get { baseService }
-            set { baseService = newValue }
-        }
-
-        @available(*, deprecated, renamed: "localizedServices")
-        public var localizedProviders: KeyboardLocale.Dictionary<KeyboardLayoutService> {
-            get { localizedServices }
-            set { localizedServices = newValue }
-        }
-
-        @available(*, deprecated, renamed: "localizedServiceResolver")
-        public static var localizedProviderResolver: ((KeyboardLocale) -> KeyboardLayoutService?)? {
-            get { localizedServiceResolver }
-            set { localizedServiceResolver = newValue }
-        }
-
-        @available(*, deprecated, renamed: "keyboardLayoutService(for:)")
-        open func keyboardLayoutProvider(
-            for context: KeyboardContext
-        ) -> KeyboardLayoutService {
-            keyboardLayoutService(for: context)
-        }
-
-        @available(*, deprecated, renamed: "registerLocalizedService")
-        open func registerLocalizedProvider(
             _ service: LocalizedLayoutService
         ) {
             localizedServices.set(service, for: service.localeKey)

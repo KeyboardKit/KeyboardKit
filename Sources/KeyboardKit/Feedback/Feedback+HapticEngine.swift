@@ -49,9 +49,6 @@ public extension Feedback {
             }
             #endif
         }
-
-        @available(*, deprecated, message: "Use a feedback service or action handler instead")
-        static var shared = Feedback.HapticEngine()
     }
 }
 

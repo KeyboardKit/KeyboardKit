@@ -18,28 +18,16 @@ extension KeyboardInputViewController {
         self.children.forEach { $0.removeFromParent() }
         self.view.subviews.forEach { $0.removeFromSuperview() }
         let view = view
-            .keyboardSettings(self.settings)
             .keyboardState(self.state)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }
 
-    /// DEPRECATED
-    func setupContexts() {
-        settings.autocompleteSettings
-            .syncToContextIfNeeded(state.autocompleteContext)
-        settings.keyboardSettings
-            .syncToContextIfNeeded(state.keyboardContext)
-        settings.dictationSettings
-            .syncToContextIfNeeded(state.dictationContext)
-        settings.feedbackSettings
-            .syncToContextIfNeeded(state.feedbackContext)
-    }
-
     /// Set up the initial keyboard type.
     func setupInitialKeyboardType() {
-        guard state.keyboardContext.keyboardType.isAlphabetic else { return }
-        state.keyboardContext.syncKeyboardType(with: textDocumentProxy)
+        let context = state.keyboardContext
+        guard context.keyboardType == .alphabetic else { return }
+        context.syncKeyboardType(with: textDocumentProxy)
     }
 
     /// Set up an initial width to avoid SwiftUI layout bugs.

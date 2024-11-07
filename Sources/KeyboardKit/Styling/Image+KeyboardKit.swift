@@ -10,49 +10,49 @@ import SwiftUI
 
 public extension Image {
     
-    static var keyboardEmoji = asset("keyboardEmoji")
-    static var keyboardKit = asset("keyboardKitIcon")
-    
-    static var keyboard = symbol("keyboard")
-    static var keyboardArrowUp = symbol("arrow.up")
-    static var keyboardArrowDown = symbol("arrow.down")
-    static var keyboardArrowLeft = symbol("arrow.left")
-    static var keyboardArrowRight = symbol("arrow.right")
-    static var keyboardAudioFeedbackDisabled = symbol("speaker")
-    static var keyboardAudioFeedbackEnabled = symbol("speaker.wave.3.fill")
-    static var keyboardBackspace = symbol("delete.left")
-    static var keyboardBackspaceRtl = symbol("delete.right")
-    static var keyboardBrightnessDown = symbol("sun.min")
-    static var keyboardBrightnessUp = symbol("sun.max")
-    static var keyboardCommand = symbol("command")
-    static var keyboardControl = symbol("control")
-    static var keyboardDictation = symbol("mic")
-    static var keyboardDismiss = symbol("keyboard.chevron.compact.down")
-    static var keyboardEmail = symbol("envelope")
-    static var keyboardEmojiSymbol = symbol("face.smiling")
-    static var keyboardGlobe = symbol("globe")
-    static var keyboardHapticFeedbackDisabled = symbol("hand.tap")
-    static var keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
-    static var keyboardImages = symbol("photo")
-    static var keyboardNewline = symbol("arrow.turn.down.left")
-    static var keyboardNewlineRtl = symbol("arrow.turn.down.right")
-    static var keyboardOption = symbol("option")
-    static var keyboardRedo = symbol("arrow.uturn.right")
-    static var keyboardSearch = symbol("magnifyingglass")
-    static var keyboardSettings = symbol("gearshape")
-    static var keyboardShiftCapslocked = symbol("capslock.fill")
-    static var keyboardShiftCapslockInactive = symbol("capslock")
-    static var keyboardShiftLowercased = symbol("shift")
-    static var keyboardShiftUppercased = symbol("shift.fill")
-    static var keyboardSpeaker = symbol("speaker")
-    static var keyboardSpeakerDown = symbol("speaker.wave.3")
-    static var keyboardSpeakerUp = symbol("speaker.wave.1")
-    static var keyboardTab = symbol("arrow.right.to.line")
-    static var keyboardTabRtl = symbol("arrow.left.to.line")
-    static var keyboardTheme = symbol("paintpalette")
-    static var keyboardUndo = symbol("arrow.uturn.left")
-    static var keyboardUrl = symbol("safari")
-    static var keyboardZeroWidthSpace = symbol("circle.dotted")
+    static let keyboardEmoji = Image(.keyboardEmoji)
+    static let keyboardKit = Image(.keyboardKitIcon)
+
+    static let keyboard = symbol("keyboard")
+    static let keyboardArrowUp = symbol("arrow.up")
+    static let keyboardArrowDown = symbol("arrow.down")
+    static let keyboardArrowLeft = symbol("arrow.left")
+    static let keyboardArrowRight = symbol("arrow.right")
+    static let keyboardAudioFeedbackDisabled = symbol("speaker")
+    static let keyboardAudioFeedbackEnabled = symbol("speaker.wave.3.fill")
+    static let keyboardBackspace = symbol("delete.left")
+    static let keyboardBackspaceRtl = symbol("delete.right")
+    static let keyboardBrightnessDown = symbol("sun.min")
+    static let keyboardBrightnessUp = symbol("sun.max")
+    static let keyboardCommand = symbol("command")
+    static let keyboardControl = symbol("control")
+    static let keyboardDictation = symbol("mic")
+    static let keyboardDismiss = symbol("keyboard.chevron.compact.down")
+    static let keyboardEmail = symbol("envelope")
+    static let keyboardEmojiSymbol = symbol("face.smiling")
+    static let keyboardGlobe = symbol("globe")
+    static let keyboardHapticFeedbackDisabled = symbol("hand.tap")
+    static let keyboardHapticFeedbackEnabled = symbol("hand.tap.fill")
+    static let keyboardImages = symbol("photo")
+    static let keyboardNewline = symbol("arrow.turn.down.left")
+    static let keyboardNewlineRtl = symbol("arrow.turn.down.right")
+    static let keyboardOption = symbol("option")
+    static let keyboardRedo = symbol("arrow.uturn.right")
+    static let keyboardSearch = symbol("magnifyingglass")
+    static let keyboardSettings = symbol("gearshape")
+    static let keyboardShiftCapslocked = symbol("capslock.fill")
+    static let keyboardShiftCapslockInactive = symbol("capslock")
+    static let keyboardShiftLowercased = symbol("shift")
+    static let keyboardShiftUppercased = symbol("shift.fill")
+    static let keyboardSpeaker = symbol("speaker")
+    static let keyboardSpeakerDown = symbol("speaker.wave.3")
+    static let keyboardSpeakerUp = symbol("speaker.wave.1")
+    static let keyboardTab = symbol("arrow.right.to.line")
+    static let keyboardTabRtl = symbol("arrow.left.to.line")
+    static let keyboardTheme = symbol("paintpalette")
+    static let keyboardUndo = symbol("arrow.uturn.left")
+    static let keyboardUrl = symbol("safari")
+    static let keyboardZeroWidthSpace = symbol("circle.dotted")
     
     static func keyboardAudioFeedback(enabled: Bool) -> Image {
         enabled ? keyboardAudioFeedbackEnabled : keyboardAudioFeedbackDisabled
@@ -62,9 +62,6 @@ public extension Image {
         locale.isLeftToRight ? .keyboardBackspace : .keyboardBackspaceRtl
     }
 
-    static func keyboardBackspace(for locale: KeyboardLocale) -> Image {
-        keyboardBackspace(for: locale.locale)
-    }
 
     static func keyboardHapticFeedback(enabled: Bool) -> Image {
         enabled ? keyboardHapticFeedbackEnabled : keyboardHapticFeedbackDisabled
@@ -74,19 +71,11 @@ public extension Image {
         locale.isLeftToRight ? .keyboardNewline : .keyboardNewlineRtl
     }
 
-    static func keyboardNewline(for locale: KeyboardLocale) -> Image {
-        keyboardNewline(for: locale.locale)
-    }
-
     static func keyboardTab(for locale: Locale) -> Image {
         locale.isLeftToRight ? .keyboardTab : .keyboardTabRtl
     }
 
-    static func keyboardTab(for locale: KeyboardLocale) -> Image {
-        keyboardTab(for: locale.locale)
-    }
-
-    static func keyboardShift(_ casing: Keyboard.Case) -> Image {
+    static func keyboardShift(_ casing: Keyboard.KeyboardCase) -> Image {
         switch casing {
         case .auto: .keyboardShiftLowercased
         case .capsLocked: .keyboardShiftCapslocked
@@ -97,10 +86,6 @@ public extension Image {
 }
 
 extension Image {
-
-    static func asset(_ name: String) -> Image {
-        Image(name, bundle: .keyboardKit)
-    }
 
     static func symbol(_ name: String) -> Image {
         Image(systemName: name)
@@ -154,7 +139,10 @@ extension Image {
                 preview(for: .keyboardTheme, "keyboardTheme")
                 preview(for: .keyboardUndo, "keyboardUndo")
                 preview(for: .keyboardZeroWidthSpace, "keyboardZeroWidthSpace")
-                preview(for: .keyboardEmoji, "keyboardEmoji")
+                Image.keyboardEmoji
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding(8)
             }
         }
         .padding()

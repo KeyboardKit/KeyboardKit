@@ -13,27 +13,25 @@ This article describes the KeyboardKit proxy engine and its utilities.
     @PageColor(blue)
 }
 
-iOS keyboards use a `UITextDocumentProxy` to integrate with the currently selected text field. The proxy lets you insert and delete text, get the currently selected text, move the input cursor, etc.
+iOS keyboards use a ``UIKit/UITextDocumentProxy`` to integrate with the currently selected text field. The proxy lets you insert and delete text, get the currently selected text, move the input cursor, etc.
 
 The native APIs are however quite limited, and make it hard to get detailed text information and to perform many standard operations. For instance, you have to write code to get the current word or sentence, understand where the cursor is, etc.
 
-KeyboardKit therefore adds a bunch of extension to the `UITextDocumentProxy` to make things easier. ``KeyboardInputViewController`` also has a custom ``KeyboardInputViewController/textDocumentProxy`` that lets you do even more. 
+KeyboardKit therefore extends ``UIKit/UITextDocumentProxy`` to make things easier. ``KeyboardInputViewController`` also has a custom ``KeyboardInputViewController/textDocumentProxy`` that lets you do even more. 
 
-👑 [KeyboardKit Pro][Pro] unlocks the ability to read the full content of the current document. Information about Pro features can be found at the end of this article.
+👑 [KeyboardKit Pro][Pro] also unlocks ways for a ``UIKit/UITextDocumentProxy`` to read the full content of the current document. Information about Pro features can be found further down.
 
 
 
-## Proxy namespace
+## Namespace
 
 KeyboardKit has a ``Proxy`` namespace with proxy-related types. It currently only contains utils when it's part of a KeyboardKit Pro build.
 
 
 
-## Proxy extensions
+## Extensions
 
-KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional capabilities, such as the ability to get more content from the document, analyze words, sentences & quotations, end the current sentence, etc.
-
-Here's a list of extensions that are automatically applied to the text document proxy when you import KeyboardKit:
+KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional capabilities, such as the ability to get more content from the document, analyze words, sentences & quotations, end the current sentence, etc. Here are some examples:
 
 * ``UIKit/UITextDocumentProxy/currentWord``
 * ``UIKit/UITextDocumentProxy/currentWordPreCursorPart``
@@ -43,29 +41,23 @@ Here's a list of extensions that are automatically applied to the text document 
 * ``UIKit/UITextDocumentProxy/documentContext``
 * ``UIKit/UITextDocumentProxy/endSentence(withText:)``
 * ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)``
-* ``UIKit/UITextDocumentProxy/hasAutocompleteInsertedSpace``
-* ``UIKit/UITextDocumentProxy/hasAutocompleteRemovedSpace``
-* ``UIKit/UITextDocumentProxy/hasCurrentWord``
 * ``UIKit/UITextDocumentProxy/hasUnclosedAlternateQuotationBeforeInput(for:)``
 * ``UIKit/UITextDocumentProxy/hasUnclosedQuotationBeforeInput(for:)``
-* ``UIKit/UITextDocumentProxy/insertAutocompleteSuggestion(_:tryInsertSpace:)``
-* ``UIKit/UITextDocumentProxy/insertDiacritic(_:)``
 * ``UIKit/UITextDocumentProxy/isCursorAtNewSentence``
 * ``UIKit/UITextDocumentProxy/isCursorAtNewSentenceWithTrailingWhitespace``
 * ``UIKit/UITextDocumentProxy/isCursorAtNewWord``
 * ``UIKit/UITextDocumentProxy/isCursorAtTheEndOfTheCurrentWord``
 * ``UIKit/UITextDocumentProxy/isReadingFullDocumentContext``
-* ``UIKit/UITextDocumentProxy/preferredQuotationReplacement(whenInserting:for:)``
 * ``UIKit/UITextDocumentProxy/replaceCurrentWord(with:)``
 * ``UIKit/UITextDocumentProxy/sentenceBeforeInput``
 * ``UIKit/UITextDocumentProxy/sentenceDelimiters``
-* ``UIKit/UITextDocumentProxy/tryInsertSpaceAfterAutocomplete()``
-* ``UIKit/UITextDocumentProxy/tryRemoveAutocompleteInsertedSpace()``
-* ``UIKit/UITextDocumentProxy/tryReinsertAutocompleteRemovedSpace()``
 * ``UIKit/UITextDocumentProxy/wordBeforeInput``
 
-See the ``UIKit/UITextDocumentProxy`` documentation for more information and a complete list of extension.
+See the ``UIKit/UITextDocumentProxy`` documentation for more information and a full list of extension that are applied by KeyboardKit.
 
+
+
+---
 
 
 ## 👑 KeyboardKit Pro
@@ -73,7 +65,13 @@ See the ``UIKit/UITextDocumentProxy`` documentation for more information and a c
 [KeyboardKit Pro][Pro] unlocks additional ``UIKit/UITextDocumentProxy`` capabilities, like the ability to read the full document content instead of just the content closest to the input cursor.
 
 
-### How to read the full document context
+---
+
+
+## How to...
+
+
+### Read the full document context
 
 As you may have noticed, the ``UIKit/UITextDocumentProxy`` ``UIKit/UITextDocumentProxy/documentContext`` functions don't return the full document content before and after the input cursor. Any new line may stop the proxy from looking for more content.
 

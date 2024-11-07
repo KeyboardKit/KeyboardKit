@@ -8,46 +8,32 @@
 
 import SwiftUI
 
-/**
- This enum defines keyboard-specific, localized texts.
- 
- Note that ``emergencyCall`` and ``ok`` are supported, since
- only `SubmitLabel` cases will be supported from now on. Any
- unsupported primary keys will get a fixed text.
- */
+/// This enum defines localized keyboard texts.
+///
+/// You can use the ``text`` property to translate texts for
+/// the current locale and ``text(forLocale:)`` to translate
+/// text for a certain locale.
+///
+/// See the <doc:Localization-Article> article for more information.
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case `continue`
     case capsLock
     case done
-    case emergencyCall  // deprecated
+    case emergencyCall
     case go
     case join
     case next
-    case ok             // deprecated
+    case ok
     case `return`
     case route
     case search
+    case searchEmoji
     case send
     case space
     case switcherAlphabetic
     case switcherNumeric
     case switcherSymbolic
-}
-
-
-
-public extension KKL10n {
-
-    /// The bundle to use to retrieve localized strings.
-    static var bundle: Bundle = .keyboardKit
-    
-    @available(*, deprecated, renamed: "switcherAlphabetic")
-    static var keyboardTypeAlphabetic = KKL10n.switcherAlphabetic
-    @available(*, deprecated, renamed: "switcherNumeric")
-    static var keyboardTypeNumeric = KKL10n.switcherNumeric
-    @available(*, deprecated, renamed: "switcherSymbolic")
-    static var keyboardTypeSymbolic = KKL10n.switcherSymbolic
 }
 
 public extension KKL10n {
@@ -67,10 +53,10 @@ public extension KKL10n {
     func text(for context: KeyboardContext) -> String {
         text(for: context.locale)
     }
-    
-    /// Get the localized text for a certain locale.
-    func text(for locale: KeyboardLocale) -> String {
-        text(for: locale.locale)
+
+    /// Get the localized text for a certain context.
+    func text(forContext context: KeyboardContext) -> String {
+        text(for: context)
     }
 
     /// Get the localized text for a certain `Locale`.
@@ -78,9 +64,9 @@ public extension KKL10n {
         Self.text(forKey: key, locale: locale)
     }
 
-    /// Get a localized text for a certain locale.
-    static func text(forKey key: String, locale: KeyboardLocale) -> String {
-        text(forKey: key, locale: locale.locale)
+    /// Get the localized text for a certain `Locale`.
+    func text(forLocale locale: Locale) -> String {
+        text(for: locale)
     }
 
     /// Get a localized text for a certain locale.

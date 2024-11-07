@@ -27,13 +27,14 @@ public extension Keyboard {
         public lazy var autocompleteContext = AutocompleteContext()
         
         /// The callout context to use.
-        public lazy var calloutContext = CalloutContext(
-            actionContext: .disabled,
-            inputContext: .disabled)
+        public lazy var calloutContext = KeyboardCalloutContext()
         
         /// The dictation context to use.
         public lazy var dictationContext = DictationContext()
-        
+
+        /// The external keyboard context to use.
+        public lazy var externalKeyboardContext = ExternalKeyboardContext()
+
         /// The feedback context to use.
         public lazy var feedbackContext = FeedbackContext()
         
@@ -49,13 +50,7 @@ public extension Keyboard.State {
 
     // Setup the state instance for the provided app.
     func setup(for app: KeyboardApp) {
-        setupDictation(for: app)
-    }
-
-    // Setup the state instance for the provided app.
-    func setupDictation(for app: KeyboardApp) {
-        guard let config = app.dictationConfiguration else { return }
-        self.dictationContext = .init(config: config)
+        keyboardContext.app = app
     }
 }
 
@@ -64,12 +59,10 @@ public extension Keyboard.State {
 
     // Setup the state instance for the provided controller.
     func setup(for controller: KeyboardInputViewController) {
-        let isPhone = UIDevice.current.userInterfaceIdiom == .phone
-        let keyboardType = controller.textDocumentProxy.keyboardType
-        let contextType = keyboardType?.keyboardType ?? .alphabetic(.auto)
+        let keyboardType = controller.originalTextDocumentProxy.keyboardType
         keyboardContext.sync(with: controller)
-        keyboardContext.keyboardType = contextType
-        calloutContext.inputContext.isEnabled = isPhone
+        keyboardContext.keyboardCase = .auto
+        keyboardContext.keyboardType = keyboardType?.keyboardType ?? .alphabetic
     }
 }
 #endif
@@ -81,6 +74,7 @@ public extension View {
         self.environmentObject(state.autocompleteContext)
             .environmentObject(state.calloutContext)
             .environmentObject(state.dictationContext)
+            .environmentObject(state.externalKeyboardContext)
             .environmentObject(state.feedbackContext)
             .environmentObject(state.keyboardContext)
             .environmentObject(state.themeContext)

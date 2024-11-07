@@ -8,6 +8,23 @@
 
 import SwiftUI
 
+public extension DictationService where Self == Dictation.DisabledService {
+
+    /// Create a ``Dictation/DisabledService`` instance.
+    static var disabled: Self {
+        Dictation.DisabledService(context: .preview)
+    }
+
+    /// Create a ``Dictation/DisabledService`` instance.
+    static func disabled(
+        context: DictationContext
+    ) -> Self {
+        Dictation.DisabledService(
+            context: context
+        )
+    }
+}
+
 public extension Dictation {
     
     /// This class is used as the default service, until you
@@ -19,29 +36,56 @@ public extension Dictation {
     ///
     /// See <doc:Dictation-Article> for more information.
     class DisabledService: DictationService {
+
+        public init(context: DictationContext) {
+            self.context = context
+        }
+
         
-        public init() {}
+        public let context: DictationContext
 
         open var authorizationStatus: Dictation.AuthorizationStatus {
             .disabledService
         }
 
-        open var supportedLocales: [KeyboardLocale] { [] }
+        open var supportedLocales: [Locale] { [] }
+
+
+        open func startDictationFromKeyboard() async throws {
+            resetContext()
+        }
+
+        open func startDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func abortDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func finishDictationInApp() async throws {
+            resetContext()
+        }
+
+        open func returnToKeyboardFromApp() throws {}
+
+        open func handleDictationResultInKeyboard() async throws {
+            resetContext()
+        }
 
         open func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
             authorizationStatus
         }
 
-        open func resetDictationResult() async throws {}
+        open func undoLastDictation() {}
+    }
+}
 
-        open func startDictation(
-            with config: Dictation.Configuration
-        ) async throws {
-            throw Dictation.ServiceError.disabledService
-        }
+private extension Dictation.DisabledService {
 
-        open func stopDictation() async throws {
-            throw Dictation.ServiceError.disabledService
+    func resetContext() {
+        DispatchQueue.main.async { [weak self] in
+            self?.context.reset()
         }
     }
 }

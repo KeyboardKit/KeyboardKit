@@ -19,14 +19,12 @@ import CoreGraphics
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
-/// it at any time to customize the keyboard action behavior.
+/// it at any time to customize the keyboard action handling.
 ///
 /// See <doc:Actions-Article> for more information.
 public protocol KeyboardActionHandler: AnyObject, FeedbackService {
-    
-    @available(*, deprecated, message: "Just use Keyboard.Gesture from now on")
-    typealias Gesture = Keyboard.Gesture
-    
+
+
     /// Whether the handler can handle an action gesture.
     func canHandle(
         _ gesture: Keyboard.Gesture,
@@ -61,4 +59,21 @@ public protocol KeyboardActionHandler: AnyObject, FeedbackService {
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     )
+}
+
+public extension KeyboardActionHandler {
+
+    /// Handle a certain keyboard action.
+    func handle(
+        action: KeyboardAction
+    ) {
+        handle(action)
+    }
+
+    /// Handle a certain autocomplete suggestion.
+    func handle(
+        suggestion: Autocomplete.Suggestion
+    ) {
+        handle(suggestion)
+    }
 }

@@ -13,8 +13,8 @@ public extension Keyboard {
     /// This view can be used to render a toolbar with a min
     /// height, to ensure that callouts are not cut off.
     ///
-    /// Use a `.keyboardToolbarStyle` view modifier to apply
-    /// a keyboard toolbar style.
+    /// You can style this component with the style modifier
+    /// ``keyboardToolbarStyle(_:)``.
     struct Toolbar<Content: View>: View {
         
         public init(
@@ -31,7 +31,9 @@ public extension Keyboard {
         
         public var body: some View {
             content()
-                .frame(minHeight: style.minHeight)
+                .frame(maxWidth: .infinity)
+                .frame(height: style.height)
+                .frame(minHeight: style.minHeight, maxHeight: style.maxHeight)
                 .background(style.backgroundColor)
         }
     }
@@ -39,15 +41,17 @@ public extension Keyboard {
 
 #Preview {
     
-    VStack {
+    VStack(spacing: 0) {
+        Color.blue
         Keyboard.Toolbar {
-            Text(".")
+            VStack {
+                Text(".")
+            }
         }
         Color.blue
     }
-    .background(Color.red)
+    .background(Color.keyboardBackground)
     .keyboardToolbarStyle(.init(
-        backgroundColor: Color.white.opacity(0.4),
-        minHeight: 75)
-    )
+        height: 350
+    ))
 }

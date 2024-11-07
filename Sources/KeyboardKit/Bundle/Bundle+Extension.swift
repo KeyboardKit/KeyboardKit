@@ -11,7 +11,6 @@ import Foundation
 public extension Bundle {
 
     /// Get whether or not the bundle is an extension.
-    @_disfavoredOverload
     var isExtension: Bool {
         bundlePath.hasSuffix(".appex")
     }

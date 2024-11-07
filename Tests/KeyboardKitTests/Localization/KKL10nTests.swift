@@ -6,49 +6,44 @@
 //  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
-/*
 import XCTest
 
 @testable import KeyboardKit
 
 class KKL10nTests: XCTestCase {
-    
-    func testBundlePathIsValidForAllKeyboardLocales() {
-        KeyboardLocale.allCases.forEach {
+
+    let locales = Locale.keyboardKitSupported
+
+    func testBundlePathIsValidForAllSupportedLocales() {
+        locales.forEach {
             let bundle = Bundle.keyboardKit
-            let path = bundle.bundlePath(for: $0.locale) ?? ""
+            let path = bundle.bundlePath(for: $0) ?? ""
             XCTAssertNotNil(path)
             XCTAssertTrue(FileManager.default.fileExists(atPath: path))
         }
     }
 
-    func assertTextResult(for locale: KeyboardLocale, key: KKL10n) {
+    func assertTextResult(for locale: Locale, key: KKL10n) {
         XCTAssertFalse(key.text(for: locale).isEmpty)
     }
 
     func testTextForContextReturnsCorrectText() {
         let key = KKL10n.done
         let context = KeyboardContext()
-        context.locale = KeyboardLocale.english.locale
+        context.locale = .english
         XCTAssertEqual(key.text(for: context), "done")
-        context.locale = KeyboardLocale.swedish.locale
+        context.locale = .swedish
         XCTAssertEqual(key.text(for: context), "klar")
     }
 
-    func testTextForKeyboardLocaleReturnsCorrectText() {
+    func testTextForLocaleReturnsCorrectText() {
         let key = KKL10n.done
         XCTAssertEqual(key.text(for: .english), "done")
         XCTAssertEqual(key.text(for: .swedish), "klar")
     }
 
-    func testTextForLocaleReturnsCorrectText() {
-        let key = KKL10n.done
-        XCTAssertEqual(key.text(for: KeyboardLocale.english.locale), "done")
-        XCTAssertEqual(key.text(for: KeyboardLocale.swedish.locale), "klar")
-    }
-
     func testTextForLocaleIsNotEmptyForAnyLocale() {
-        KeyboardLocale.allCases.forEach {
+        locales.forEach {
             assertTextResult(for: $0, key: .done)
             assertTextResult(for: $0, key: .go)
             assertTextResult(for: $0, key: .ok)
@@ -56,9 +51,9 @@ class KKL10nTests: XCTestCase {
             assertTextResult(for: $0, key: .search)
             assertTextResult(for: $0, key: .space)
 
-            assertTextResult(for: $0, key: .keyboardTypeAlphabetic)
-            assertTextResult(for: $0, key: .keyboardTypeNumeric)
-            assertTextResult(for: $0, key: .keyboardTypeSymbolic)
+            assertTextResult(for: $0, key: .switcherAlphabetic)
+            assertTextResult(for: $0, key: .switcherNumeric)
+            assertTextResult(for: $0, key: .switcherSymbolic)
         }
     }
 
@@ -76,4 +71,3 @@ class KKL10nTests: XCTestCase {
         XCTAssertEqual(KKL10n.text(forKey: "abra.kadabra", locale: .english), "abra.kadabra")
     }
 }
-*/

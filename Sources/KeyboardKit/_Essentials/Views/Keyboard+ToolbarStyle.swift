@@ -23,24 +23,39 @@ public extension Keyboard {
         ///
         /// - Parameters:
         ///   - backgroundColor: The toolbar color, by default `.clear`.
-        ///   - minHeight: An optional fixed minimum height, by default `48`.
+        ///   - height: An optional fixed height, by default `nil`..
+        ///   - minHeight: The toolbar's minimum height, by default `48`.
+        ///   - maxHeight: An optional max height, by default `nil`.
         public init(
             backgroundColor: Color = .clear,
-            minHeight: Double = 48
+            height: CGFloat? = nil,
+            minHeight: Double = 48,
+            maxHeight: CGFloat? = nil
         ) {
             self.backgroundColor = backgroundColor
+            self.height = height
             self.minHeight = minHeight
+            self.maxHeight = maxHeight
         }
 
+        /// The toolbar's background color.
         public var backgroundColor: Color
+
+        /// An optional fixed height.
+        public var height: CGFloat?
+
+        /// The toolbar's minimum height.
         public var minHeight: Double
+
+        /// An optional max height.
+        public var maxHeight: CGFloat?
     }
 }
 
 public extension Keyboard.ToolbarStyle {
 
     /// The standard keyboard toolbar style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 public extension View {
@@ -53,18 +68,9 @@ public extension View {
     }
 }
 
-private extension Keyboard.ToolbarStyle {
-
-    struct Key: EnvironmentKey {
-
-        static var defaultValue: Keyboard.ToolbarStyle = .standard
-    }
-}
-
 public extension EnvironmentValues {
 
-    var keyboardToolbarStyle: Keyboard.ToolbarStyle {
-        get { self [Keyboard.ToolbarStyle.Key.self] }
-        set { self [Keyboard.ToolbarStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Keyboard/ToolbarStyle``.
+    @Entry var keyboardToolbarStyle = Keyboard
+        .ToolbarStyle.standard
 }

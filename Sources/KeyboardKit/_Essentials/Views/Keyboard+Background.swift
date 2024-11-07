@@ -11,11 +11,10 @@ import SwiftUI
 public extension Keyboard {
     
     /// This background style can define the background of a
-    /// keyboard or any components within.
+    /// keyboard, or any component within it.
     ///
-    /// This style has many optional layers, which should be
-    /// added from the bottom to the top. A background color,
-    /// a gradient, an image, then some overlays.
+    /// This style has many optional layers, which are added
+    /// from the bottom to the top.
     ///
     /// Since the style implements `View`, you can render it
     /// directly into any view hierarchy.
@@ -102,7 +101,7 @@ public extension Keyboard {
 public extension Keyboard.Background {
 
     /// The standard keyboard background style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 
     /// A background style with a single color.
     static func color(
@@ -151,11 +150,6 @@ public extension Keyboard.Background {
         _ colors: [Color]
     ) -> Self {
         .init(backgroundGradient: colors)
-    }
-
-    @available(*, deprecated, renamed: "body", message: "This style now implements View and can be used right away")
-    var backgroundView: some View {
-        body
     }
 }
 

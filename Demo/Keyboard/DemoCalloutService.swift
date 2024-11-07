@@ -14,7 +14,7 @@ import KeyboardKitPro
 
 /// This demo-specific callout service shows "keyboard" when
 /// a "k" key is long pressed. 
-class DemoCalloutService: Callouts.BaseService {
+class DemoCalloutService: KeyboardCallout.BaseService {
 
     override func calloutActionString(for char: String) -> String {
         switch char {

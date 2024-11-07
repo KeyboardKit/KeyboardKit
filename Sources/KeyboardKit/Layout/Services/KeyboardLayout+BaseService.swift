@@ -53,59 +53,90 @@ extension KeyboardLayout {
         open func keyboardLayout(
             for context: KeyboardContext
         ) -> KeyboardLayout {
-            let rows = inputRows(for: context)
-            let actions = actions(for: rows, context: context)
-            let items = items(for: actions, context: context)
-            return KeyboardLayout(itemRows: items)
+            let rows = itemRows(for: context)
+            return KeyboardLayout(itemRows: rows)
         }
 
-        
-        // MARK: - Open helper functions
-        
-        /// Map ``InputSet`` rows to action rows.
+
+        // MARK: - Migration Deprecations
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `itemActions(for:)` instead.")
         open func actions(
             for rows: InputSet.Rows,
             context: KeyboardContext
         ) -> KeyboardAction.Rows {
-            let characters = actionCharacters(for: rows, context: context)
-            return .init(characters: characters)
+            itemActions(for: context)
         }
-        
-        /// Map ``InputSet`` rows to action character rows.
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `inputCharacters(for:)` instead.")
         open func actionCharacters(
             for rows: InputSet.Rows,
             context: KeyboardContext
         ) -> [[String]] {
-            switch context.keyboardType {
-            case .alphabetic(let casing): rows.characters(for: casing)
-            default: rows.characters()
-            }
+            inputCharacters(for: context)
         }
-        
-        /// Get ``InputSet`` rows for the provided context.
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `inputSet(for:)` instead.")
         open func inputRows(
             for context: KeyboardContext
         ) -> InputSet.Rows {
-            switch context.keyboardType {
-            case .numeric: numericInputSet.rows
-            case .symbolic: symbolicInputSet.rows
-            default: alphabeticInputSet.rows
-            }
+            inputSet(for: context).rows
         }
-        
-        /// Whether or not an index is the bottom row index.
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `itemRows(for:)` instead.")
+        open func items(
+            for actions: KeyboardAction.Rows,
+            context: KeyboardContext
+        ) -> KeyboardLayout.ItemRows {
+            itemRows(for: context)
+        }
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
         open func isBottomRowIndex(
             _ index: Int
         ) -> Bool {
             index == 3
         }
+
         
-        /// Map ``KeyboardAction`` rows to layout items rows.
-        open func items(
-            for actions: KeyboardAction.Rows,
-            context: KeyboardContext
+        // MARK: - Layout Builders
+
+        /// The ``InputSet`` to use for the provided context.
+        open func inputSet(
+            for context: KeyboardContext
+        ) -> InputSet {
+            switch context.keyboardType {
+            case .numeric: numericInputSet
+            case .symbolic: symbolicInputSet
+            default: alphabeticInputSet
+            }
+        }
+
+        /// The input characters to convert to input keys.
+        open func inputCharacters(
+            for context: KeyboardContext
+        ) -> [[String]] {
+            let rows = inputSet(for: context).rows
+            return rows.characters(
+                for: context.keyboardCase,
+                device: context.deviceTypeForKeyboard
+            )
+        }
+
+        /// The actions to convert to layout items.
+        open func itemActions(
+            for context: KeyboardContext
+        ) -> KeyboardAction.Rows {
+            let characters = inputCharacters(for: context)
+            return .init(characters: characters)
+        }
+        
+        /// The item rows to use for the provided context.
+        open func itemRows(
+            for context: KeyboardContext
         ) -> KeyboardLayout.ItemRows {
-            actions.enumerated().map { row in
+            let actions = itemActions(for: context)
+            return actions.enumerated().map { row in
                 row.element.enumerated().map { action in
                     item(
                         for: action.element,
@@ -133,7 +164,9 @@ extension KeyboardLayout {
                 edgeInsets: itemInsets(for: action, row: row, index: index, context: context)
             )
         }
-        
+
+        // MARK: - Item builders
+
         /// Get a layout item alignment for the provided params.
         open func itemAlignment(
             for action: KeyboardAction,
@@ -196,15 +229,16 @@ extension KeyboardLayout {
             default: .available
             }
         }
-        
+
+
+        // MARK: - Button Builders
+
         /// Get a return action for the provided context.
         open func keyboardReturnAction(
             for context: KeyboardContext
         ) -> KeyboardAction {
-            #if os(iOS) || os(tvOS) || os(visionOS)
             let type = context.returnKeyType
             if let type { return .primary(type) }
-            #endif
             return .primary(.return)
         }
         
@@ -213,10 +247,9 @@ extension KeyboardLayout {
             for context: KeyboardContext
         ) -> KeyboardAction? {
             switch context.keyboardType {
-            case .alphabetic(let casing): .shift(currentCasing: casing)
             case .numeric: .keyboardType(.symbolic)
             case .symbolic: .keyboardType(.numeric)
-            default: .shift(currentCasing: .lowercased)
+            default: .shift(context.keyboardCase)
             }
         }
         
@@ -224,8 +257,8 @@ extension KeyboardLayout {
         open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
             switch context.keyboardType {
             case .alphabetic: .keyboardType(.numeric)
-            case .numeric: .keyboardType(.alphabetic(.auto))
-            case .symbolic: .keyboardType(.alphabetic(.auto))
+            case .numeric: .keyboardType(.alphabetic)
+            case .symbolic: .keyboardType(.alphabetic)
             default: .keyboardType(.numeric)
             }
         }

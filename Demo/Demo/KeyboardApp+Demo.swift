@@ -14,11 +14,17 @@ import KeyboardKitPro
 
 public extension KeyboardApp {
 
-    /// This static app property defines the demo app.
+    /// This value defines the demo app.
     ///
-    /// The license key is demo-specific, and only works for
-    /// this particular demo app. The bundle ID is used when
-    /// presenting the keyboard status on the home screen.
+    /// The demo app has a license file in `Supporting Files`
+    /// that is linked to the app and `KeyboardPro`. This is
+    /// why the `licenseKey` below is disabled. The app uses
+    /// this license file instead of a binary or API license.
+    ///
+    /// All yearly Gold customers get a `KeyboardKit.license`
+    /// file, that they can add to their app in the same way.
+    /// If you are a Basic, Silver, or monthly Gold customer,
+    /// you must specify your license key like below.
     ///
     /// The App Group ID is only to show you how you can use
     /// a `KeyboardApp` to set up App Group data syncing for
@@ -30,21 +36,11 @@ public extension KeyboardApp {
     static var demoApp: Self {
         .init(
             name: "KeyboardKit Demo",
-            licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
+            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
             bundleId: "com.keyboardkit.demo",
             appGroupId: "group.com.keyboardkit.demo",
-            locales: .all,
+            locales: .keyboardKitSupported,
             deepLinks: .init(app: "kkdemo://")
         )
-    }
-}
-
-public extension Dictation.KeyboardConfiguration {
-
-    /// This configuration is derived from the demo app, but
-    /// has a fallback in case that one doesn't work.
-    static var app: Self {
-        let config = KeyboardApp.demoApp.dictationConfiguration
-        return config ?? .init(appGroupId: "", appDeepLink: "")
     }
 }

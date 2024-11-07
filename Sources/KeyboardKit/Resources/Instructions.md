@@ -5,14 +5,14 @@ This has instructions on how to implement new keyboard locales.
 
 ## How to add a new keyboard locale
 
-Each `KeyboardLocale` is hard-coded and must be added to the library like this:
+Each suppored `Locale` must be localized like this:
 
 * Fork the KeyboardKit project and create a feature branch.
-* Create a new ``KeyboardLocale`` case.
-* Make sure that the project builds, by adding locale support where needed.
-* Make sure that the unit tests pass, by adding locale-based tests where needed.
+* Add a new `Locale` to `Locale.keyboardKitSupported`.
+* Make sure to add the locale to all localized properties. 
+* Make sure that the unit tests pass.
 * Create a new `Resources/<id>.lproj` folder for the new locale.
-* Copy an existing `Localizable.strings` file from another folder.
+* Clone an existing `Localizable.strings` file from another folder.
 * Translate all `Localizable.strings` as described below.
 * Commit and push your changes.
 * Create a pull request.

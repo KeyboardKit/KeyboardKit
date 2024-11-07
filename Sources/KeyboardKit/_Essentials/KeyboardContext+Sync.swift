@@ -18,7 +18,7 @@ extension KeyboardContext {
     /// Sync ``autocapitalizationTypeOverride`` with settings.
     func syncAutocapitalizationWithSetting() {
         let noAutocap = Keyboard.AutocapitalizationType.none
-        let value = isAutocapitalizationEnabled ? nil : noAutocap
+        let value = settings.isAutocapitalizationEnabled ? nil : noAutocap
         if autocapitalizationTypeOverride != value {
             autocapitalizationTypeOverride = value
         }
@@ -26,7 +26,7 @@ extension KeyboardContext {
 
     /// Make the context trigger a keyboard view refresh.
     func triggerKeyboardViewRefresh() {
-        setLocale(locale)
+        self.locale = locale
     }
 }
 
@@ -54,14 +54,6 @@ public extension KeyboardContext {
             self.originalTextDocumentProxy = controller.originalTextDocumentProxy
         }
     }
-
-    /// Sync the ``textInputProxy``.
-    func syncTextInputProxy(with controller: KeyboardInputViewController) {
-        if textInputProxy === controller.textInputProxy { return }
-        DispatchQueue.main.async {
-            self.textInputProxy = controller.textInputProxy
-        }
-    }
 }
 
 extension KeyboardContext {
@@ -69,7 +61,6 @@ extension KeyboardContext {
     /// Perform a sync after an async delay.
     func syncAfterAsync(with controller: KeyboardInputViewController) {
         syncTextDocumentProxy(with: controller)
-        syncTextInputProxy(with: controller)
 
         if hasDictationKey != controller.hasDictationKey {
             hasDictationKey = controller.hasDictationKey
@@ -122,10 +113,15 @@ extension KeyboardContext {
     }
 
     /// Perform a sync to check if the keyboard is floating.
-    func syncIsFloating(with controller: KeyboardInputViewController) {
+    func syncIsFloating(
+        with controller: KeyboardInputViewController,
+        usePhoneDeviceForFloatingKeyboard: Bool = true
+    ) {
         let isFloating = controller.view.frame.width < screenSize.width/2
         if isKeyboardFloating == isFloating { return }
+        let usePhone = isFloating && usePhoneDeviceForFloatingKeyboard
         isKeyboardFloating = isFloating
+        deviceTypeForKeyboard = usePhone ? .phone : deviceType
     }
 }
 

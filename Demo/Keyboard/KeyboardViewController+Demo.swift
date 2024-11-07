@@ -37,7 +37,7 @@ extension KeyboardViewController {
         
         /// 💡 Setup a demo-specific callout service that is
         /// adding some dummy actions to the `k` key.
-        services.calloutService = Callouts.StandardService(
+        services.calloutService = KeyboardCallout.StandardService(
             keyboardContext: state.keyboardContext,
             baseService: DemoCalloutService()
         )
@@ -72,10 +72,6 @@ extension KeyboardViewController {
 
         /// 💡 Disable autocorrection.
         // state.autocompleteContext.isAutocorrectEnabled = false
-
-        /// 💡 Setup dictation. It will trigger the app, but
-        /// data is not synced as the demo isn't code signed.
-        state.dictationContext.setup(with: .app)
         
         /// 💡 Setup demo-specific haptic & audio feedback.
         let feedback = state.feedbackContext

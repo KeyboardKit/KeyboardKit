@@ -13,7 +13,7 @@ public extension Keyboard {
     /// This is a typealias for the ``Diacritic`` type.
     ///
     /// > Note: This typealias is only meant to make it easy
-    /// to find the ``Diacritic`` type for developers who do
-    /// not know the proper terminology.
+    /// to find the ``Diacritic`` type for those who doesn't
+    /// know the proper terminology.
     typealias Accent = Diacritic
 }

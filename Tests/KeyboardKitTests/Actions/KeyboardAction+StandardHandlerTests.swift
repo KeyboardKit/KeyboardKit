@@ -7,10 +7,9 @@
 //
 
 #if os(iOS) || os(tvOS)
+import KeyboardKit
 import MockingKit
 import XCTest
-
-@testable import KeyboardKit
 
 final class KeyboardAction_StandardHandlerTests: XCTestCase {
     
@@ -32,19 +31,14 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         textDocumentProxy = MockTextDocumentProxy()
         textDocumentProxy.documentContextBeforeInput = ""
 
-        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
-        controller.state.keyboardContext.originalTextDocumentProxy = textDocumentProxy
-        controller.services.spaceDragGestureHandler = spaceDragHandler
+        let state = controller.state
+        let services = controller.services
+
+        state.keyboardContext.locale = .swedish
+        state.keyboardContext.originalTextDocumentProxy = textDocumentProxy
+        services.spaceDragGestureHandler = spaceDragHandler
         
-        handler = TestClass(
-            controller: controller,
-            keyboardContext: controller.state.keyboardContext,
-            keyboardBehavior: controller.services.keyboardBehavior,
-            autocompleteContext: controller.state.autocompleteContext,
-            feedbackContext: controller.state.feedbackContext,
-            feedbackService: controller.services.feedbackService,
-            spaceDragGestureHandler: controller.services.spaceDragGestureHandler
-        )
+        handler = TestClass(controller: controller)
     }
 
 
@@ -131,29 +125,31 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
     func testReplacementActionIsOnlyDefinedForReleaseOnCharWithProxyReplacement() {
+        let context = controller.state.keyboardContext
         var result = handler.replacementAction(for: .press, on: .character("”"))
         XCTAssertNil(result)
         result = handler.replacementAction(for: .release, on: .backspace)
         XCTAssertNil(result)
         result = handler.replacementAction(for: .release, on: .character("A"))
         XCTAssertNil(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
+        context.locale = .swedish
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNotNil(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
+        context.locale = .english
         result = handler.replacementAction(for: .release, on: .character("‘"))
         XCTAssertNil(result)
     }
 
     func testTryHandleReplacementActionTriggersWhenItShould() {
+        let context = controller.state.keyboardContext
         var result = handler.tryHandleReplacementAction(before: .release, on: .character("A"))
         XCTAssertFalse(result)
         result = handler.tryHandleReplacementAction(before: .doubleTap, on: .character("A"))
         XCTAssertFalse(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.swedish.locale
+        context.locale = .swedish
         result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertTrue(result)
-        controller.state.keyboardContext.locale = KeyboardLocale.english.locale
+        context.locale = .english
         result = handler.tryHandleReplacementAction(before: .release, on: .character("‘"))
         XCTAssertFalse(result)
     }
@@ -175,12 +171,13 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
     func testShouldAutolearnSuggestionReturnsTrueForUnknownSuggestionWhenAutolearnIsEnabled() {
-        handler.autocompleteContext.isAutolearnEnabled = true
+        let settings = handler.autocompleteContext.settings
+        settings.isAutolearnEnabled = true
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .regular))) // Invalid type
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "", type: .autocorrect))) // Empty text
-        handler.autocompleteContext.isAutolearnEnabled = false
+        settings.isAutolearnEnabled = false
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .autocorrect))) // Disabled
-        handler.autocompleteContext.isAutolearnEnabled = true
+        settings.isAutolearnEnabled = true
         XCTAssertFalse(handler.shouldAutolearnSuggestion(.init(text: "text", type: .autocorrect))) // Valid
     }
 
@@ -295,7 +292,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         validateAudioFeedback(for: .longPress, on: .space, expected: nil)
         validateAudioFeedback(for: .press, on: .backspace, expected: config.delete)
         validateAudioFeedback(for: .press, on: .character("a"), expected: config.input)
-        validateAudioFeedback(for: .press, on: .shift(currentCasing: .auto), expected: config.system)
+        validateAudioFeedback(for: .press, on: .shift(.auto), expected: config.system)
     }
     
     func validateHapticFeedback(

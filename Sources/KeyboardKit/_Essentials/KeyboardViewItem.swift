@@ -13,10 +13,6 @@ import SwiftUI
 /// The reason why the ``KeyboardView`` doesn't just use the
 /// ``Keyboard/Button`` view, is that this view applies more
 /// insets and configurations to the content.
-///
-/// `TODO` KeyboardKit 9.0 should change ``KeyboardView`` to
-/// not use this view, but rather uses a ``Keyboard/Button``
-/// with the proper styles, insets, etc.
 public struct KeyboardViewItem<Content: View>: View {
 
     /// Create a keyboard view item.
@@ -38,7 +34,7 @@ public struct KeyboardViewItem<Content: View>: View {
         repeatTimer: GestureButtonTimer? = nil,
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         keyboardWidth: CGFloat,
         inputWidth: CGFloat,
         isNextProbability: Double = 0,
@@ -56,36 +52,11 @@ public struct KeyboardViewItem<Content: View>: View {
         self.content = content
     }
 
-    @available(*, deprecated, message: "Use the styleService initializer instead.")
-    init(
-        item: KeyboardLayout.Item,
-        actionHandler: KeyboardActionHandler,
-        repeatTimer: GestureButtonTimer? = nil,
-        styleProvider: KeyboardStyleProvider,
-        keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
-        keyboardWidth: CGFloat,
-        inputWidth: CGFloat,
-        content: Content
-    ) {
-        self.item = item
-        self.actionHandler = actionHandler
-        self.repeatTimer = repeatTimer
-        self.styleService = styleProvider
-        self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-        self.calloutContext = calloutContext
-        self.keyboardWidth = keyboardWidth
-        self.inputWidth = inputWidth
-        self.isNextProbability = 0
-        self.content = content
-    }
-
-
     private let item: KeyboardLayout.Item
     private let actionHandler: KeyboardActionHandler
     private let repeatTimer: GestureButtonTimer?
     private let styleService: KeyboardStyleService
-    private let calloutContext: CalloutContext?
+    private let calloutContext: KeyboardCalloutContext?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let isNextProbability: Double

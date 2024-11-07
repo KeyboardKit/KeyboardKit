@@ -19,13 +19,11 @@
 "return" = "enter";
 "route" = "route";
 "search" = "pesquisar";
+"searchEmoji" = "Pesquisar Emoji";
 "send" = "send";
 "space" = "espaço";
 "switcherAlphabetic" = "ABC";
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

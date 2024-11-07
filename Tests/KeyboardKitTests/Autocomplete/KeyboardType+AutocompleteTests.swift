@@ -16,39 +16,40 @@ import UIKit
 class KeyboardType_AutocompleteTests: XCTestCase {
 
     func testKeyboardTypePrefersAutocomplete() {
-        func prefersAutocompleteResult(for type: Keyboard.KeyboardType) -> Bool {
-            type.prefersAutocomplete
-        }
-        
-        XCTAssertTrue(prefersAutocompleteResult(for: .alphabetic(.lowercased)))
-        XCTAssertTrue(prefersAutocompleteResult(for: .numeric))
-        XCTAssertTrue(prefersAutocompleteResult(for: .symbolic))
-        XCTAssertFalse(prefersAutocompleteResult(for: .email))
-        XCTAssertFalse(prefersAutocompleteResult(for: .emojis))
-        XCTAssertFalse(prefersAutocompleteResult(for: .images))
-        XCTAssertTrue(prefersAutocompleteResult(for: .custom(named: "")))
+        let types = Keyboard.KeyboardType.allCases
+        let result = Dictionary(uniqueKeysWithValues: types.map { ($0, $0.prefersAutocomplete) })
+        XCTAssertEqual(result, [
+            .alphabetic: true,
+            .email: false,
+            .emojis: false,
+            .emojiSearch: false,
+            .images: false,
+            .numberPad: true,
+            .numeric: true,
+            .symbolic: true,
+            .url: false
+        ])
     }
 
 
     #if os(iOS) || os(tvOS) || os(visionOS)
     func testNativeKeyboardTypePrefersAutocomplete() {
-        func prefersAutocompleteResult(for type: UIKeyboardType) -> Bool {
+        func result(for type: UIKeyboardType) -> Bool {
             type.prefersAutocomplete
         }
-        
-        XCTAssertTrue(prefersAutocompleteResult(for: .default))
-        XCTAssertTrue(prefersAutocompleteResult(for: .alphabet))
-        XCTAssertFalse(prefersAutocompleteResult(for: .asciiCapableNumberPad))
-        XCTAssertTrue(prefersAutocompleteResult(for: .asciiCapable))
-        XCTAssertFalse(prefersAutocompleteResult(for: .decimalPad))
-        XCTAssertFalse(prefersAutocompleteResult(for: .emailAddress))
-        XCTAssertFalse(prefersAutocompleteResult(for: .namePhonePad))
-        XCTAssertFalse(prefersAutocompleteResult(for: .numberPad))
-        XCTAssertFalse(prefersAutocompleteResult(for: .numbersAndPunctuation))
-        XCTAssertFalse(prefersAutocompleteResult(for: .phonePad))
-        XCTAssertTrue(prefersAutocompleteResult(for: .twitter))
-        XCTAssertFalse(prefersAutocompleteResult(for: .URL))
-        XCTAssertFalse(prefersAutocompleteResult(for: .webSearch))
+        XCTAssertTrue(result(for: .default))
+        XCTAssertTrue(result(for: .alphabet))
+        XCTAssertFalse(result(for: .asciiCapableNumberPad))
+        XCTAssertTrue(result(for: .asciiCapable))
+        XCTAssertFalse(result(for: .decimalPad))
+        XCTAssertFalse(result(for: .emailAddress))
+        XCTAssertFalse(result(for: .namePhonePad))
+        XCTAssertFalse(result(for: .numberPad))
+        XCTAssertFalse(result(for: .numbersAndPunctuation))
+        XCTAssertFalse(result(for: .phonePad))
+        XCTAssertTrue(result(for: .twitter))
+        XCTAssertFalse(result(for: .URL))
+        XCTAssertFalse(result(for: .webSearch))
     }
     #endif
 }

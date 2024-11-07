@@ -12,9 +12,8 @@ import UIKit
 
 public extension KeyboardInputViewController {
     
-    /// The bundle ID of the host application, if any, or if the view
-    /// is instantiated directly within a host app, the bundle id
-    /// of the main bundle.
+    /// The bundle ID of the host application, if any, or if
+    /// within a host app, the bundle id of the main bundle.
     ///
     /// The property uses technologies that may stop working
     /// in any future iOS version. Do not rely solely on the
@@ -27,11 +26,6 @@ public extension KeyboardInputViewController {
         } else {
             return Bundle.main.bundleIdentifier
         }
-    }
-    
-    @available(*, deprecated, renamed: "hostApplicationBundleId")
-    var hostBundleId: String? {
-        hostApplicationBundleId
     }
 }
 

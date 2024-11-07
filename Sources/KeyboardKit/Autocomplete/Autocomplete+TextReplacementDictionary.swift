@@ -10,8 +10,8 @@ import Foundation
 
 public extension Autocomplete {
 
-    /// This type can be used to define text replacements to
-    /// e.g. define custom autocorrections.
+    /// This dictionary can be used to define localized text
+    /// replacements, for instance custom autocorrections.
     struct TextReplacementDictionary {
 
         public init(
@@ -20,7 +20,7 @@ public extension Autocomplete {
             self.dictionary = initialValue
         }
 
-        public typealias Dictionary = KeyboardLocale.Dictionary<[String: String]>
+        public typealias Dictionary = Locale.Dictionary<[String: String]>
 
         private var dictionary: Dictionary = .init()
     }
@@ -33,7 +33,7 @@ public extension Autocomplete.TextReplacementDictionary {
     static var additionalAutocorrections: Self {
         .init(.init(
             [
-                KeyboardLocale.english: [
+                Locale.english: [
                     "i": "I",
                     "ill": "I'll",
                     "Ill": "I'll"
@@ -49,7 +49,7 @@ public extension Autocomplete.TextReplacementDictionary {
     mutating func addTextReplacement(
         for text: String,
         with replacement: String,
-        locale: KeyboardLocaleInfo
+        locale: Locale
     ) {
         addTextReplacements([text: replacement], for: locale)
     }
@@ -57,7 +57,7 @@ public extension Autocomplete.TextReplacementDictionary {
     /// Insert a text replacement for a certain locale.
     mutating func addTextReplacements(
         _ dict: [String: String],
-        for locale: KeyboardLocaleInfo
+        for locale: Locale
     ) {
         var val = dictionary.value(for: locale) ?? [:]
         dict.forEach {
@@ -69,7 +69,7 @@ public extension Autocomplete.TextReplacementDictionary {
     /// Set the text replacements for a certain locale.
     mutating func setTextReplacements(
         _ dict: [String: String],
-        for locale: KeyboardLocaleInfo
+        for locale: Locale
     ) {
         dictionary.set(dict, for: locale)
     }
@@ -77,14 +77,14 @@ public extension Autocomplete.TextReplacementDictionary {
     /// Get a text replacement for a certain text and locale.
     func textReplacement(
         for text: String,
-        locale: KeyboardLocaleInfo
+        locale: Locale
     ) -> String? {
         textReplacements(for: locale)?[text]
     }
 
     /// Get all text replacements for a certain locale.
     func textReplacements(
-        for locale: KeyboardLocaleInfo
+        for locale: Locale
     ) -> [String: String]? {
         dictionary.value(for: locale)
     }

@@ -14,34 +14,42 @@ public extension Keyboard {
     /// This enum defines various keyboard types, of which a
     /// few are implemented by the library.
     ///
-    /// Just set the ``KeyboardContext/keyboardType`` to any
-    /// type you want to use, then observe the value.
-    ///
     /// ``KeyboardView`` automatically renders some of these
-    /// keyboard types. All other types require that you add
-    /// your own custom view to visualize them.
-    enum KeyboardType: Codable, Equatable, Identifiable {
-        
+    /// keyboard types. All other types require custom views.
+    /// You can also use a ``custom(named:)`` type to create
+    /// a completely custom keyboard type from scratch.
+    ///
+    /// Just set the ``KeyboardContext/keyboardType`` to any
+    /// type you want to use, then observe the value to make
+    /// any customizations needed for your app.
+    enum KeyboardType: CaseIterable, Codable, Equatable, Hashable, Identifiable {
+
         /// A keyboard with alphabetic input keys.
-        case alphabetic(Keyboard.Case)
-        
-        /// A keyboard with numeric input keys.
-        case numeric
-        
-        /// A keyboard with symbolic input keys.
-        case symbolic
-        
-        /// An e-mail keyboard, not currently implemented.
+        case alphabetic
+
+        /// An e-mail keyboard.
         case email
-        
-        /// An emoji keyboard, with emojis and categories.
+
+        /// An emoji keyboard with emojis and categories.
         case emojis
-        
+
+        /// An emoji search bar with the alphabetic keyboard.
+        case emojiSearch
+
         /// An image keyboard, not currently implemented.
         case images
         
         /// A number pad keyboard.
         case numberPad
+
+        /// A keyboard with numeric input keys.
+        case numeric
+
+        /// A keyboard with symbolic input keys.
+        case symbolic
+
+        /// A URL keyboard
+        case url
         
         /// A custom keyboard type, if you need to use one.
         case custom(named: String)
@@ -50,50 +58,43 @@ public extension Keyboard {
 
 public extension Keyboard.KeyboardType {
 
+    /// Get a list of all standard available keyboard types.
+    static var allCases: [Self] {
+        [
+            .alphabetic,
+            .email,
+            .emojis,
+            .emojiSearch,
+            .images,
+            .numberPad,
+            .numeric,
+            .symbolic,
+            .url
+        ]
+    }
+}
+
+public extension Keyboard.KeyboardType {
+
     /// The type's unique identifier.
     var id: String {
         switch self {
-        case .alphabetic(let casing): casing.id
-        case .numeric: "numeric"
-        case .symbolic: "symbolic"
+        case .alphabetic: "alphabetic"
         case .email: "email"
         case .emojis: "emojis"
+        case .emojiSearch: "emojiSearch"
         case .images: "images"
         case .numberPad: "numberPad"
+        case .numeric: "numeric"
+        case .symbolic: "symbolic"
+        case .url: "url"
         case .custom(let name): name
         }
     }
 
-    /// Whether or not the type is alphabetic.
-    var isAlphabetic: Bool {
-        switch self {
-        case .alphabetic: true
-        default: false
-        }
-    }
-    
-    /// Whether or not the type is caps locked.
-    var isAlphabeticCapsLocked: Bool {
-        switch self {
-        case .alphabetic(let current): current.isCapsLocked
-        default: false
-        }
-    }
-
-    /// Whether or not the type is uppercased alphabetic.
-    var isAlphabeticUppercased: Bool {
-        switch self {
-        case .alphabetic(let current): current.isUppercased
-        default: false
-        }
-    }
-
-    /// Whether or not the type is an alphabetic state type.
-    func isAlphabetic(_ case: Keyboard.Case) -> Bool {
-        switch self {
-        case .alphabetic(let current): current == `case`
-        default: false
-        }
+    /// Whether the type is numeric or symbolic.
+    var isNumericOrSymbolic: Bool {
+        self == .numeric || self == .symbolic
     }
 }
 
@@ -126,20 +127,20 @@ public extension UIKeyboardType {
     /// The ``Keyboard/KeyboardType`` this type represents.
     var keyboardType: Keyboard.KeyboardType? {
         switch self {
-        case .default: .alphabetic(.auto)
+        case .default: .alphabetic
+        case .alphabet: .alphabetic
         case .asciiCapable: nil
-        case .numbersAndPunctuation: .numeric
-        case .URL: .alphabetic(.auto)
-        case .numberPad: .numberPad
-        case .phonePad: nil
-        case .namePhonePad: nil
-        case .emailAddress: .alphabetic(.auto)
-        case .decimalPad: nil
-        case .twitter: .alphabetic(.auto)
-        case .webSearch: .alphabetic(.auto)
         case .asciiCapableNumberPad: .numberPad
-        case .alphabet: .alphabetic(.auto)
-        @unknown default: .alphabetic(.auto)
+        case .decimalPad: nil
+        case .emailAddress: .email
+        case .namePhonePad: nil
+        case .numberPad: .numberPad
+        case .numbersAndPunctuation: .numeric
+        case .phonePad: nil
+        case .twitter: .alphabetic
+        case .URL: .url
+        case .webSearch: .alphabetic
+        @unknown default: .alphabetic
         }
     }
 }

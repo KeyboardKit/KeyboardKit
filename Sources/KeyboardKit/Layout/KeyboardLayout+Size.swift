@@ -23,9 +23,9 @@ public extension KeyboardLayout {
     func inputWidth(
         for totalWidth: TotalWidth
     ) -> Double {
-        if let result = widthCache[totalWidth] { return result }
+        if let result = widthCache.data[totalWidth] { return result }
         let result = itemRows.inputWidth(for: totalWidth)
-        widthCache[totalWidth] = result
+        widthCache.data[totalWidth] = result
         return result
     }
 }

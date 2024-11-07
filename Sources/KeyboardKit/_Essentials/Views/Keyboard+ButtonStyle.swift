@@ -232,52 +232,44 @@ public extension Keyboard.ButtonStyle {
 public extension Keyboard.ButtonBorderStyle {
     
     /// This style applies no border.
-    static var noBorder = Self()
-    
+    static var noBorder: Self { .init() }
+
     /// The standard button border style.
-    static var standard = Self()
+    static var standard: Self { .noBorder }
 }
 
 public extension Keyboard.ButtonShadowStyle {
     
     /// This style applies no shadow.
-    static var noShadow = Self(color: .clear)
-    
+    static var noShadow: Self { .init(color: .clear) }
+
     /// The standard button shadow style.
-    static var standard = Self()
+    static var standard: Self { .init() }
 }
 
 extension Keyboard.ButtonStyle {
 
-    static let preview1 = Self(
-        backgroundColor: .yellow,
-        foregroundColor: .white,
-        font: .body,
-        cornerRadius: 20,
-        border: .init(
-            color: .red,
-            size: 3
-        ),
-        shadow: .init(
-            color: .blue,
-            size: 4
+    static var preview1: Self {
+        .init(
+            backgroundColor: .yellow,
+            foregroundColor: .white,
+            font: .body,
+            cornerRadius: 20,
+            border: .init(color: .red, size: 3),
+            shadow: .init(color: .blue, size: 4)
         )
-    )
+    }
 
-    static let preview2 = Self(
-        backgroundColor: .purple,
-        foregroundColor: .yellow,
-        font: .headline,
-        cornerRadius: 10,
-        border: .init(
-            color: .blue,
-            size: 5
-        ),
-        shadow: .init(
-            color: .green,
-            size: 8
-        )
-    )
+    static var preview2: Self {
+        .init(
+           backgroundColor: .purple,
+           foregroundColor: .yellow,
+           font: .headline,
+           cornerRadius: 10,
+           border: .init(color: .blue, size: 5),
+           shadow: .init(color: .green, size: 8)
+       )
+    }
     
     static let previewImage: Keyboard.ButtonStyle = {
         var style = Keyboard.ButtonStyle.preview1
@@ -291,16 +283,6 @@ extension Keyboard.ButtonStyle {
         #endif
         return style
     }()
-}
-
-public extension View {
-
-    /// Apply a ``Keyboard/ButtonStyle``.
-    func keyboardButtonStyle(
-        _ style: Keyboard.ButtonStyle
-    ) -> some View {
-        self.environment(\.keyboardButtonStyle, style)
-    }
 }
 
 private extension Keyboard.ButtonStyle {
@@ -318,18 +300,21 @@ private extension Keyboard.ButtonStyle {
         shadowSize,
         pressedOverlayColor
     }
+}
 
-    struct Key: EnvironmentKey {
+public extension View {
 
-        /// TODO: For now, there's no standard button style.
-        public static var defaultValue: Keyboard.ButtonStyle = .init(background: .color(.red))
+    /// Apply a ``Keyboard/ButtonStyle``.
+    func keyboardButtonStyle(
+        _ style: Keyboard.ButtonStyle
+    ) -> some View {
+        self.environment(\.keyboardButtonStyle, style)
     }
 }
 
 public extension EnvironmentValues {
 
-    var keyboardButtonStyle: Keyboard.ButtonStyle {
-        get { self [Keyboard.ButtonStyle.Key.self] }
-        set { self [Keyboard.ButtonStyle.Key.self] = newValue }
-    }
+    /// Apply a ``Keyboard/ButtonStyle``.
+    @Entry var keyboardButtonStyle = Keyboard
+        .ButtonStyle(background: .color(.red))
 }

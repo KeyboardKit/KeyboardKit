@@ -28,17 +28,10 @@ public extension KeyboardLayoutServiceProxy {
     func keyboardLayoutService(
         for context: KeyboardContext
     ) -> KeyboardLayoutService {
-        switch context.deviceType {
+        switch context.deviceTypeForKeyboard {
         case .phone: iPhoneService
         case .pad: iPadService
         default: iPhoneService
         }
-    }
-
-    @available(*, deprecated, renamed: "keyboardLayoutService(for:)")
-    func keyboardLayoutProvider(
-        for context: KeyboardContext
-    ) -> KeyboardLayoutService {
-        keyboardLayoutService(for: context)
     }
 }

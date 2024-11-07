@@ -9,6 +9,21 @@
 import SwiftUI
 import CoreGraphics
 
+public extension KeyboardStyleService where Self == KeyboardStyle.StandardService {
+
+    /// Create a ``KeyboardStyle/StandardService`` instance.
+    ///
+    /// - Parameters:
+    ///   - keyboardContext: The keyboard context to use.
+    static func standard(
+        keyboardContext: KeyboardContext
+    ) -> Self {
+        KeyboardStyle.StandardService(
+            keyboardContext: keyboardContext
+        )
+    }
+}
+
 extension KeyboardStyle {
     
     /// This class provides a standard way to create dynamic
@@ -20,28 +35,7 @@ extension KeyboardStyle {
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
-    /// For instance, this would change the background color
-    /// of every input key:
-    ///
-    /// ```swift
-    /// class CustomKeyboardStyleService: KeyboardStyle.StandardService {
-    ///
-    ///     override func buttonStyle(
-    ///         for action: KeyboardAction,
-    ///         isPressed: Bool
-    ///         ) -> Keyboard.ButtonStyle {
-    ///         let style = super.buttonStyle(for: action, isPressed: isPressed)
-    ///         if !action.isInputAction { return style }
-    ///         style.backgroundColor = .red
-    ///         return style
-    ///         }
-    ///     }
-    /// ```
-    ///
-    /// This service can also be resolved with the shorthand
-    /// ``KeyboardStyleService/standard(keyboardContext:)``.
-    ///
-    /// See <doc:Styling-Article> for more information.
+    /// See the <doc:Styling-Article> article for more information.
     open class StandardService: KeyboardStyleService {
 
         /// Create a standard keyboard style service.
@@ -83,7 +77,7 @@ extension KeyboardStyle {
         
         /// The edge insets to apply to the entire keyboard.
         open var keyboardEdgeInsets: EdgeInsets {
-            switch keyboardContext.deviceType {
+            switch keyboardContext.deviceTypeForKeyboard {
             case .pad: .init(bottom: 4)
             case .phone: isProMaxPhone ? .zero : .init(bottom: -2)
             default: .zero
@@ -124,28 +118,6 @@ extension KeyboardStyle {
             return insets
         }
         
-        
-        @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
-        open func buttonContentBottomMargin(
-            for action: KeyboardAction
-        ) -> CGFloat {
-            switch action {
-            case .character(let char): buttonContentBottomMargin(for: char)
-            default: 0
-            }
-        }
-        
-        @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
-        open func buttonContentBottomMargin(
-            for char: String
-        ) -> CGFloat {
-            switch char {
-            case "-", "/", ":", ";", "@", ",": 3
-            case "(", ")": 4
-            default: 0
-            }
-        }
-        
         /// The button image to use for a certain action.
         open func buttonImage(
             for action: KeyboardAction
@@ -158,7 +130,7 @@ extension KeyboardStyle {
         open func buttonImageScaleFactor(
             for action: KeyboardAction
         ) -> CGFloat {
-            switch keyboardContext.deviceType {
+            switch keyboardContext.deviceTypeForKeyboard {
             case .pad: 1.2
             default: 1
             }
@@ -191,27 +163,14 @@ extension KeyboardStyle {
         
         // MARK: - Callouts
         
-        /// The callout style to apply to callouts.
-        open var calloutStyle: Callouts.CalloutStyle {
-            var style = Callouts.CalloutStyle.standard
-            let button = buttonStyle(for: .character(""), isPressed: false)
-            style.buttonCornerRadius = button.cornerRadius ?? 5
-            return style
-        }
-        
-        /// The style to use on ``Callouts/ActionCallout`` views.
-        open var actionCalloutStyle: Callouts.ActionCalloutStyle {
-            var style = Callouts.ActionCalloutStyle.standard
-            style.callout = calloutStyle
-            return style
-        }
-        
-        /// The style to use on ``Callouts/InputCallout`` views.
-        open var inputCalloutStyle: Callouts.InputCalloutStyle {
-            var style = Callouts.InputCalloutStyle.standard
-            style.callout = calloutStyle
-            return style
-        }
+        /// The callout style to override the standard style with, if any.
+        open var calloutStyle: KeyboardCallout.CalloutStyle? { nil }
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+        open var actionCalloutStyle: KeyboardCallout.ActionCalloutStyle { .standard }
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+        open var inputCalloutStyle: KeyboardCallout.InputCalloutStyle { .standard }
         
         
         // MARK: - Autocomplete
@@ -360,7 +319,7 @@ extension KeyboardStyle {
 extension KeyboardStyle.StandardService {
 
     var isGregorianAlpha: Bool {
-        keyboardType.isAlphabetic && locale.matches(.georgian)
+        keyboardType == .alphabetic && locale == .georgian
     }
     
     var isProMaxPhone: Bool {
@@ -382,6 +341,10 @@ extension KeyboardStyle.StandardService {
 
 extension KeyboardAction {
 
+    func isUpperShift(for context: KeyboardContext) -> Bool {
+        isShiftAction && context.keyboardCase.isUppercased
+    }
+
     var buttonBackgroundColorForAllStates: Color? {
         switch self {
         case .none: .clear
@@ -399,17 +362,16 @@ extension KeyboardAction {
     }
 
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
-        if isUppercasedShiftAction { return buttonBackgroundColorForPressedState(for: context) }
+        if isUpperShift(for: context) { return .keyboardButtonBackground(for: context) }
         if isSystemAction { return .keyboardDarkButtonBackground(for: context) }
         if isPrimaryAction { return .blue }
-        if isUppercasedShiftAction { return .keyboardButtonBackground(for: context) }
         return .keyboardButtonBackground(for: context)
     }
 
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
+        if isUpperShift(for: context) { return .keyboardDarkButtonBackground(for: context) }
         if isSystemAction { return context.hasDarkColorScheme ? .keyboardButtonBackground(for: context) : .white }
         if isPrimaryAction { return context.hasDarkColorScheme ? .keyboardDarkButtonBackground(for: context) : .white }
-        if isUppercasedShiftAction { return .keyboardDarkButtonBackground(for: context) }
         return .keyboardDarkButtonBackground(for: context)
     }
 

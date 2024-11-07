@@ -2,82 +2,47 @@
 
 This article describes the KeyboardKit dictation engine.
 
-Dictation can be used to let users enter text by speaking instead of typing on the keyboard. Since keyboard extensions have no access to the microphone, KeyboardKit provides tools that let you perform dictation in both the app and trigger it from the keyboard extension.
+@Metadata {
 
-In KeyboardKit, a ``KeyboardDictationService`` can be used to perform autocomplete from the keyboard, by triggering the main app and then (try to) return to the keyboard once dictation ends.
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
 
-👑 [KeyboardKit Pro][Pro] unlocks dictation services for app- and keyboard-based dictation. Information about Pro features can be found at the end of this article.
+    @PageColor(blue)
+}
 
+Dictation can be used to let users enter text by speaking instead of typing on the keyboard. Since keyboard extensions have no access to the microphone, KeyboardKit lets you trigger dictation from a keyboard extension and perform it in the main app.
 
+In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard extension, by opening the main app and let it perform the dictation operation, then return to the keyboard and apply the dictated text once dictation completes.
 
-## Dictation Namespace
-
-KeyboardKit has a ``Dictation`` namespace that contains dictation-related types and views like the ``Dictation/KeyboardConfiguration``, as well as the ``Dictation/Screen`` and ``Dictation/BarVisualizer`` views that are unlocked by KeyboardKit Pro. 
-
-
-
-## Dictation Context
-
-KeyboardKit has an observable ``DictationContext`` that provides observable dictation state, such as the ``DictationContext/dictatedText``. The state properties are modified as dictation is performed by the keyboard and the main app.
-
-The context also has persistent, observable settings, such as  ``DictationContext/silenceLimit``, etc. You can read more about how settings are handled in the <doc:Essentials-Article> and <doc:Settings-Article> articles.
-
-KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state`` and updates it whenever dictation is performed.
+👑 [KeyboardKit Pro][Pro] unlocks a ``Dictation/StandardService`` to handle dictation. Information about Pro features can be found further down.
 
 
 
-## Dictation Services
+## Namespace
 
-In KeyboardKit, a ``DictationService`` can perform dictation where microphone access is available, while a ``KeyboardDictationService`` can initialize a dictation operation from a keyboard extension, by opening the main app.
-
-KeyboardKit doesn't have standard dictation services. Instead, it injects a disabled keyboard service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
+KeyboardKit has a ``Dictation`` namespace that contains dictation-related types, like ``Dictation/AuthorizationStatus`` & ``Dictation/ServiceError``, as well as views that are unlocked by KeyboardKit Pro, like ``Dictation/Screen`` & ``Dictation/BarVisualizer``. 
 
 
 
-## Dictation Service Shorthands
+## Context
 
-You can easily resolve various service types with these shorthands:
+KeyboardKit has a ``DictationContext`` that provides observable dictation state that is kept up to date as dictation is performed. It also has auto-persisted ``AutocompleteContext/settings-swift.property`` that can be used to configure the dictation behavior.
 
-* ``KeyboardDictationService/proInApp(dictationContext:openUrl:speechRecognizer:)`` (👑 KeyboardKit Pro)
-* ``KeyboardDictationService/proInKeyboard(keyboardContext:dictationContext:actionHandler:)`` (👑 KeyboardKit Pro)
-* ``KeyboardDictationService/disabled(context:)``
-* ``KeyboardDictationService/preview``
-
-The ``DictationService`` protocol also has a couple of shorthands:
-
-* ``DictationService/pro(context:speechRecognizer:result:)`` (👑 KeyboardKit Pro)
-* ``DictationService/disabled``
-* ``DictationService/preview``
+KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever dictation is performed.
 
 
 
-## How to perform dictation
+## Services
 
-Dictation works differently in apps, where microphone access is available, and in keyboard extensions, where mic access is unavailable.
+In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard by opening the main app and let it perform dictation, then let the main app try to return to the keyboard and apply the dictated text.
 
-
-### How to perform dictation in an app
-
-You can use a ``DictationService`` to perform dictation where microphone access is available, e.g. a KeyboardKit Pro ``Dictation/ProService``. 
-
-To start dictation in an app, just call ``DictationService/startDictation(with:)`` and observe the ``KeyboardContext`` to see if dictation is started, to get and show the dictated text, to detect any errors, etc.
-
-A ``DictationService`` can call ``DictationService/requestDictationAuthorization()`` to ask for user permissions. You can call it manually as well, before starting the operation, to avoid interruption.
-
-Since dictation may stop at any time, e.g. due to silence, a ``DictationService`` should describe how to access the dictated result.
+KeyboardKit doesn't have a standard dictation service, as it has for other services. Instead, it injects a ``DictationService/disabled`` dictation service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
 
 
-### How to perform dictation in a keyboard extension
-
-You can use a ``KeyboardDictationService`` to perform dictation in a keyboard extension, where the microphone is unavailable, e.g. a KeyboardKit Pro ``Dictation/ProKeyboardService``.
-
-Keyboard-based dictation must open the app to start dictation or open an audio bridge, then write the dictated text to shared storage and return to the keyboard to process the result. 
-
-This can be tricky to set up, but KeyboardKit Pro lets you configure this in a few simple steps, as described further down in this article.
-
-> Important: iOS 17 caused a way to return to the keyboard from the main app to stop working. KeyboardKit replaced this with a new approach that however was also rejected due to the APIs being deprecated. Until a native way to handle back nacigation is found, the ``Dictation/ProKeyboardService`` will try to use the ``DictationContext`` ``KeyboardHostApplicationProvider/hostApplication`` property to identify and open the previous application. If this fails, your UI should tell the user how to return to the keyboard, by swiping back.
-
-
+---
 
 ## 👑 KeyboardKit Pro
 
@@ -86,63 +51,77 @@ This can be tricky to set up, but KeyboardKit Pro lets you configure this in a f
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
+### Services
+
+KeyboardKit Pro unlocks a ``Dictation/StandardService`` that can be used to perform dictation from a keyboard extension and in its main app.
+
+The service's speech recognizer supports: **english, english_gb, english_us, arabic, catalan, croatian, czech, danish, dutch, dutch_belgium, finnish, french, french_belgium, french_switzerland, german, german_austria, german_switzerland, greek, hebrew, hungarian, indonesian, italian, malay, norwegian, polish, portuguese, portuguese_brazil, romanian, russian, slovak, spanish, swedish, turkish, ukrainian**.
+
+
 ### Views
 
-KeyboardKit Pro unlocks views in the ``Dictation`` namespace, that let you quickly add dictation visualization views to your main app:
+KeyboardKit Pro adds views to the ``Dictation`` namespace, that let you quickly add dictation visualization views to your main app:
 
 @TabNavigator {
     
-    @Tab("Dictation.Screen") {
-        KeyboardKit Pro unlocks a ``Dictation``.``Dictation/Screen`` that lets you overlay your app with a custom dictation view while dictation is active. It will automatically fade in when dictation is started, if you use the Pro keyboard dictation view modifiers.
-
+    @Tab("Screen") {
+        
         @Row {
-            @Column {}
-            @Column(size: 3) {
+            @Column {
                 ![DictationScreen](dictationscreen)
             }
-            @Column {}
+            @Column {
+                KeyboardKit Pro unlocks a dictation ``Dictation/Screen`` that lets you overlay your app with a custom dictation view while dictation is active. 
+                
+                The screen will automatically fade in when dictation is started, if you use the Pro keyboard dictation view modifiers.
+                
+                This view can be styled with a ``Dictation/ScreenStyle``, which can be applied with a ``SwiftUICore/View/dictationScreenStyle(_:)`` modifier.
+            }
         }
-        
-        This view can be styled with a ``Dictation/ScreenStyle``, which can be applied with the ``SwiftUICore/View/dictationScreenStyle(_:)`` view modifier.
     }
     
-    @Tab("Dictation.BarVisualizer") {
-        KeyboardKit Pro unlocks a ``Dictation``.``Dictation/BarVisualizer`` that can be used to visualize ongoing dictations with a set of animated bars. You can change the number of bars, the colors & thickness of each bar, etc.
-
+    @Tab("BarVisualizer") {
+        
         @Row {
-            @Column {}
-            @Column(size: 3) {
+            @Column {
                 ![DictationScreen](dictationscreen)
             }
-            @Column {}
+            @Column {
+                KeyboardKit Pro unlocks a ``Dictation/BarVisualizer`` that can be used to visualize ongoing dictations with a set of animated bars. You can change the number of bars, the colors & thickness of each bar, etc.
+                
+                This view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUICore/View/dictationScreenStyle(_:)`` modifier.
+            }
         }
-        
-        This view can be styled with a ``Dictation/BarVisualizerStyle``, which can be applied with a ``SwiftUICore/View/dictationScreenStyle(_:)`` view modifier.
     }
 }
 
 
-### Services
-
-KeyboardKit Pro unlocks a ``Dictation/ProService`` that can be used in the main app, and a ``Dictation/ProKeyboardService`` that can initialize dictation from a keyboard extension, perform it in the main app, then return to the keyboard to handle the result.
+---
 
 
-### Supported languages
+## How to...
 
-The speech recognizer that is used by KeyboardKit Pro supports the following locales:
+### Perform dictation
 
-``KeyboardLocale/english``, ``KeyboardLocale/english_gb``, ``KeyboardLocale/english_us``, ``KeyboardLocale/arabic``, ``KeyboardLocale/catalan``, ``KeyboardLocale/croatian``, ``KeyboardLocale/czech``, ``KeyboardLocale/danish``, ``KeyboardLocale/dutch``, ``KeyboardLocale/dutch_belgium``, ``KeyboardLocale/finnish``, ``KeyboardLocale/french``, ``KeyboardLocale/french_belgium``, ``KeyboardLocale/french_switzerland``, ``KeyboardLocale/german``, ``KeyboardLocale/german_austria``, ``KeyboardLocale/german_switzerland``, ``KeyboardLocale/greek``, ``KeyboardLocale/hebrew``, ``KeyboardLocale/hungarian``, ``KeyboardLocale/indonesian``, ``KeyboardLocale/italian``, ``KeyboardLocale/malay``, ``KeyboardLocale/norwegian``, ``KeyboardLocale/polish``, ``KeyboardLocale/portuguese``, ``KeyboardLocale/portuguese_brazil``, ``KeyboardLocale/romanian``, ``KeyboardLocale/russian``, ``KeyboardLocale/slovak``, ``KeyboardLocale/spanish``, ``KeyboardLocale/swedish``, ``KeyboardLocale/turkish``, ``KeyboardLocale/ukrainian``.
+Dictation works differently in apps, where microphone access is available, and in keyboard extensions, where mic access is unavailable. You can use a ``DictationService`` to perform dictation from both a keyboard extension, as well as in the main app.
 
-If you want to use dictation with other locales, you must implement a custom recognizer.
+Before your app can perform dictation, you must configure your app to require the correct permissions. This is described further down.
+
+To make your keyboard extension start dictation, just trigger ``DictationService/startDictationFromKeyboard()`` or a ``KeyboardAction/dictation`` action. This will make the keyboard open the main app to perform dictation, then (try to) return to the keyboard once it's is done.
+
+To make your main app perform dictation that is started by its keyboard, just apply a `.keyboardDictation` view modifier to its root view. You dont have to do this when you use a ``KeyboardAppView``, since it does this automatically.
+
+To make your main app perform dictation without keyboard integration, just trigger ``DictationService/startDictationInApp()``. Since a dictation operation may stop at any time, a ``DictationService`` should describe how to access the dictated result.
+
+> Important: iOS 17 caused keyboard back navigation to stop working. KeyboardKit Pro uses a list of known host applications to fix this, but this may fail at any time. You can override ``DictationService/returnToKeyboardFromApp()`` to customize the behavior and observe the ``DictationContext/returnToKeyboardFromAppError`` to show a custom UI that tells the user how to return to the keyboard with the top-leading system back arrow.
 
 
+### Configure your app to handle dictation
 
-## How to perform dictation
-
-This article describes how to set up a dictation that starts in a keyboard extension and is performed in the app, using KeyboardKit Pro.
+This article describes how to set up an app to start dictation from its keyboard extension and perform the dictation in the main app.
 
 
-#### Step 1. Set up required permissions
+#### Step 1 - Set up the required permissions
 
 Before you can start dictation, you must add these keys to your app's `Info.plist`, otherwise the app will crash at runtime:
 
@@ -154,7 +133,7 @@ Before you can start dictation, you must add these keys to your app's `Info.plis
 ```
 
 
-#### Step 2. Create an App Group
+#### Step 2 - Create an App Group
 
 To share data between your app and keyboard extension, you must setup a shared app group for both targets:
 
@@ -167,69 +146,133 @@ To share data between your app and keyboard extension, you must setup a shared a
     }
 }
 
-> Important: While a keyboard will immediately see data from the app, the app may experience delays if Full Access is disabled for the keyboard.
+Add this App Group ID to your ``KeyboardApp``'s ``KeyboardApp/appGroupId`` property, to properly set up dictation for the keyboard and its main app.
 
 
-#### Step 3. Create a deep link
+#### Step 3 - Create a deep link
 
 To make it possible for the keyboard to open the app, you must set up a deep link URL scheme for the app target:
 
 ![Set up a URL Scheme for the app](dictation-url-scheme)
 
+Add this deep link to your ``KeyboardApp``'s ``KeyboardApp/deepLinks-swift.property`` property, to properly set up deep linking for the keyboard and its main app.
 
-#### Step 4. Create a keyboard dictation configuration
 
-If you use ``KeyboardInputViewController/setup(for:)`` to set up your keyboard extension for a ``KeyboardApp``, you can skip this step. Otherwise, you must create a ``Dictation/KeyboardConfiguration`` with your app-specific information:
+#### Step 4 - Create a speech recognizer
+
+KeyboardKit uses a ``DictationSpeechRecognizer`` protocol to decouple KeyboardKit from the Speech framework, to avoid having to specify dictation permissions in apps that don't use speech recognition.
+
+Here's a standard speech recognizer implementation that you can add to your app and inject into the keyboard dictation view modifier:
 
 ```swift
-extension KeyboardDictationConfiguration {
+import KeyboardKitPro
+import Speech
 
-    static let app = .init(
-        appGroupId: "group.com.your-app-name"    
-        appDeepLink: "YOUR-URL-SCHEME://dictation"
-    )
+public extension DictationSpeechRecognizer where Self == StandardSpeechRecognizer {
+
+    static var standard: Self { .init() }
+} 
+
+public class StandardSpeechRecognizer: DictationSpeechRecognizer {
+
+    public init() {}
+
+    private var recognizer: SFSpeechRecognizer?
+    private var request: SFSpeechAudioBufferRecognitionRequest?
+    private var speechRecognizerTask: SFSpeechRecognitionTask?
+
+    private typealias Err = Dictation.ServiceError
+
+    public var authorizationStatus: Dictation.AuthorizationStatus {
+        SFSpeechRecognizer.authorizationStatus().keyboardDictationStatus
+    }
+
+    public var supportedLocales: [Locale] {
+        Array(SFSpeechRecognizer.supportedLocales())
+    }
+
+    public func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
+        await withCheckedContinuation { continuation in
+            SFSpeechRecognizer.requestAuthorization { status in
+                continuation.resume(returning: status.keyboardDictationStatus)
+            }
+        }
+    }
+
+    public func resetDictationResult() async throws {}
+
+    public func startDictation(
+        with locale: Locale
+    ) async throws {
+        try await startDictation(
+            with: locale,
+            resultHandler: nil
+        )
+    }
+
+    public func startDictation(
+        with locale: Locale,
+        resultHandler: ((Dictation.SpeechRecognizerResult) -> Void)?
+    ) async throws {
+        recognizer = SFSpeechRecognizer(locale: locale)
+        guard let recognizer else { throw Err.missingSpeechRecognizer }
+        request = SFSpeechAudioBufferRecognitionRequest()
+        request?.shouldReportPartialResults = true
+        guard let request else { throw Err.missingSpeechRecognitionRequest }
+        speechRecognizerTask = recognizer.recognitionTask(with: request) {
+            let result = Dictation.SpeechRecognizerResult(
+                dictatedText: $0?.bestTranscription.formattedString,
+                error: $1,
+                isFinal: $0?.isFinal ?? true)
+            resultHandler?(result)
+        }
+    }
+
+    public func stopDictation() async throws {
+        request?.endAudio()
+        request = nil
+        speechRecognizerTask?.cancel()
+        speechRecognizerTask = nil
+    }
+
+    public func setupAudioEngineBuffer(_ buffer: AVAudioPCMBuffer) {
+        request?.append(buffer)
+    }
 }
 ```
 
-Make sure to add this configuration file to both the main app target and the keyboard extension, so that both targets can use it.
+
+#### Step 5 - Set up dictation in your keyboard extension
+
+To set up dictation for your keyboard extension, just call ``KeyboardInputViewController/setup(for:)`` with a properly configured ``KeyboardApp``, as described in the <doc:Getting-Started-Article> article. Your ``KeyboardApp`` must define a ``KeyboardApp/DeepLinks-swift.struct/dictation`` deep link, or at least an ``KeyboardApp/DeepLinks-swift.struct/app`` deep link to use the standard link.
 
 
-#### Step 5. Set up dictation in the keyboard extension
+#### Step 6 - Set up dictation in your main application
 
-If you use ``KeyboardInputViewController/setup(for:)`` to set up your keyboard extension with a ``KeyboardApp``, you can skip this step. Otherwise, you must set up the global ``Keyboard/State/dictationConfig`` with the app-specific config we just created:
-
-```swift
-class KeyboardViewController: KeyboardInputViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupPro(withLicenseKey: "...") { license in
-            self.state.dictationContext.setup(with: .app)   // <-- Here
-        }
-    }
-} 
-```
-
-
-#### Step 6. Set up dictation in the main application
-
-To configure dictation for the *main app*, first register your KeyboardKit Pro license key, as described in the <doc:Getting-Started-Article> article, then apply a dictation view modifier to the app's root view:
+To set up dictation for your main app, just wrap its root view in a  ``KeyboardAppView``, as described in the <doc:Getting-Started-Article> article, then apply any of the available `keyboardDictation` view modifiers to make the app trigger dictation:
 
 ```swift
 struct ContentView: View {
 
-    @StateObject
-    var context = DictationContext(config: .app)
+    @Environment(\.openURL)
+    var openURL
+    
+    @EnvironmentObject
+    private var dictationContext: DictationContext
+
+    @EnvironmentObject
+    private var keyboardContext: KeyboardContext
 
     var body: some View {
-        NavigationStack(path: $path) {
+        KeyboardAppView(for: .keyboardKitDemo) {
             ...
         }
         .keyboardDictation(
-            context: context,
-            config: .app,
-            speechRecognizer: recognizer,   // See further down
-            overlay: overlay
+            dictationContext: dictationContext,
+            keyboardContext: keyboardContext,
+            openUrl: openURL,
+            speechRecognizer: .standard,         // As defined earlier
+            overlay: dictationOverlay            // You can use any view
         )
     }
 
@@ -245,145 +288,14 @@ struct ContentView: View {
 
 The keyboard dictation view modifier has an overlay parameter that defines the view to show while dictation is active. You can use the Pro dictation ``Dictation/Screen`` with any of the built-in dictation visualizers, or a completely custom view.
 
+#### Step 7 - Perform dictation
 
-#### 7. Create a speech recognizer
+You can now start dictation in your keyboard by triggering a ``KeyboardAction/dictation`` action or by calling ``DictationService/startDictationFromKeyboard()``. 
 
-The Pro keyboard dictation view modifier requires a ``SpeechRecognizer``, which is a protocol that decouples KeyboardKit from the Speech framework, to avoid apps from having to specify dictation permissions when not using speech recognition.
+If everything is correctly configured, the keyboard extension should open its main app to start dictation. Once dictation is done, the app should return to the keyboard to handle the dictated text.
 
-Instead, just add this speech recognizer code to your app, then inject an instance of the class into the keyboard dictation view modifier.
+You can override ``KeyboardInputViewController/viewWillHandleDictationResult()`` to customize how the keyboard controller handles the dictation result.
 
-```swift
-import Speech
-import KeyboardKitPro
+KeyboardKit Pro tries to work around the native back navigation limitations by using the ``DictationContext``'s ``KeyboardHostApplicationProvider/hostApplication`` to identify and open the previous app. Since this approach only supports the most popular apps, it may fail in many cases.
 
-public class StandardSpeechRecognizer: DictationSpeechRecognizer {
-
-    public init() {}
-
-    public var supportedLocales: [KeyboardLocale] {
-        [
-            .english, .arabic, .catalan, .croatian, .czech,
-            .danish, .dutch, .dutch_belgium, .english_gb,
-            .english_us, .finnish, .french, .french_belgium,
-            .french_switzerland, .german, .german_austria,
-            .german_switzerland, .greek, .hebrew, .hungarian,
-            .indonesian, .italian, .malay, .norwegian, .polish,
-            .portuguese, .portuguese_brazil, .romanian, .russian,
-            .slovak, .spanish, .swedish, .turkish, .ukrainian
-        ]
-    }
-
-    private var resultHandler: ResultHandler?
-    private var speechRecognizer: SFSpeechRecognizer?
-    private var speechRecognizerRequest: SFSpeechAudioBufferRecognitionRequest?
-    private var speechRecognizerTask: SFSpeechRecognitionTask?
-}
-
-public extension StandardSpeechRecognizer {
-
-    var authorizationStatus: Dictation.AuthorizationStatus {
-        SFSpeechRecognizer.authorizationStatus().keyboardDictationStatus
-    }
-
-    func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
-        await withCheckedContinuation { continuation in
-            SFSpeechRecognizer.requestAuthorization { status in
-                continuation.resume(returning: status.keyboardDictationStatus)
-            }
-        }
-    }
-
-    func resetDictationResult() async throws {}
-
-    func startDictation(
-        with config: Dictation.Configuration
-    ) async throws {
-        try await startDictation(with: config, resultHandler: nil)
-    }
-
-    func startDictation(
-        with config: Dictation.Configuration,
-        resultHandler: ResultHandler?
-    ) async throws {
-        guard let recognizer = setupSpeechRecognizer(for: config) else { throw Dictation.ServiceError.missingSpeechRecognizer }
-        guard let request = setupSpeechRecognizerRequest() else { throw Dictation.ServiceError.missingSpeechRecognitionRequest }
-        self.resultHandler = resultHandler
-        setupSpeechRecognizerTask(for: recognizer, and: request)
-    }
-
-    func stopDictation() async throws {
-        speechRecognizerRequest?.endAudio()
-        speechRecognizerRequest = nil
-        speechRecognizerTask?.cancel()
-        speechRecognizerTask = nil
-    }
-
-    func setupAudioEngineBuffer(_ buffer: AVAudioPCMBuffer) {
-        speechRecognizerRequest?.append(buffer)
-    }
-}
-
-private extension StandardSpeechRecognizer {
-
-    func setupSpeechRecognizer(for config: Dictation.Configuration) -> SFSpeechRecognizer? {
-        let locale = Locale(identifier: config.localeId)
-        speechRecognizer = SFSpeechRecognizer(locale: locale)
-        return speechRecognizer
-    }
-
-    func setupSpeechRecognizerRequest() -> SFSpeechAudioBufferRecognitionRequest? {
-        speechRecognizerRequest = SFSpeechAudioBufferRecognitionRequest()
-        speechRecognizerRequest?.shouldReportPartialResults = true
-        return speechRecognizerRequest
-    }
-
-    func setupSpeechRecognizerTask(
-        for recognizer: SFSpeechRecognizer,
-        and request: SFSpeechRecognitionRequest
-    ) {
-        speechRecognizerTask = recognizer.recognitionTask(with: request) { [weak self] in
-            self?.handleTaskResult($0, error: $1)
-        }
-    }
-
-    func handleTaskResult(_ result: SFSpeechRecognitionResult?, error: Error?) {
-        let result = SpeechRecognizerResult(
-            dictatedText: result?.bestTranscription.formattedString,
-            error: error,
-            isFinal: result?.isFinal ?? true)
-        resultHandler?(result)
-    }
-}
-```
-
-#### 8. Perform dictation
-
-You can now start dictation in your keyboard by triggering ``KeyboardAction/dictation`` or by calling ``KeyboardDictationService/startDictationFromKeyboard(with:)``. 
-
-If everything is correctly configured, the keyboard should open the app to start dictation. When the user returns to the keyboard, it will automatically send the dictated text to the text field.
-
-You can override the controller ``KeyboardInputViewController/viewWillHandleDictationResult()`` to customize how the keyboard handles the dictated text. 
-
-> Important: In a DocumentGroup-based app, the .keyboardDictation modifier only works when a document is open. Instead, check if isDictationStartedByKeyboard. If it's true, present a sheet or modal and add .keyboardDictationOnAppear to its root view.
-
-
-#### 9. Return to the keyboard
-
-Once dictation is done, the app should return to the keyboard to let it handle the dictated text.
-
-KeyboardKit Pro used to automatically navigate back to the keyboard, but this stopped working in iOS 17. A new implementation that worked great was then rejected by Apple, due to using private APIs.
-
-For now, KeyboardKit Pro tries to work around this limitation by using the ``DictationContext``'s ``KeyboardHostApplicationProvider/hostApplication`` property to identify and open the previoysly active app. Since this approach only supports the most popular apps, it may fail in many cases.
-
-If the back navigation fails, your dictation screen should inform the user how to return to the keyboard, which is done by swiping back or tapping the top-trailing back arrow.
-
-```swift
-class CustomDictationService: Dictation.ProKeyboardService {
-
-    override func tryToReturnToKeyboard() {
-        // Add your code here
-    }
-}
-```
-
-See the <doc:Navigation-Article> for the implementations that were previously used. Although they may be rejected, they may give some inspiration.
+If back navigation fails, your dictation screen must inform the user how to return to the keyboard, which can be done by swiping back or tapping the top-trailing back arrow. You can observe ``DictationContext/returnToKeyboardFromAppError`` to know when this happens. 

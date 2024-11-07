@@ -14,6 +14,7 @@ extension KeyboardAction {
     static var testActions: [KeyboardAction] {
         [
             .none,
+            // .autocompleteSuggestion(.init(text: "a")),
             .dismissKeyboard,
             .character(""),
             .characterMargin(""),
@@ -28,9 +29,7 @@ extension KeyboardAction {
             .image(description: "", keyboardImageName: "", imageName: ""),
             .text(""),
             
-            .keyboardType(.alphabetic(.lowercased)),
-            .keyboardType(.alphabetic(.uppercased)),
-            .keyboardType(.alphabetic(.capsLocked)),
+            .keyboardType(.alphabetic),
             .keyboardType(.numeric),
             .keyboardType(.symbolic),
             .keyboardType(.email),
@@ -51,10 +50,7 @@ extension KeyboardAction {
             .primary(.return),
             
             .capsLock,
-            .shift(currentCasing: .lowercased),
-            .shift(currentCasing: .uppercased),
-            .shift(currentCasing: .capsLocked),
-            
+            .shift(.auto),
             .space,
             .systemImage(description: "", keyboardImageName: "", imageName: ""),
             .systemSettings,

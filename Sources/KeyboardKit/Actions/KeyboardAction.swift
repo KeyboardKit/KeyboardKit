@@ -26,7 +26,12 @@ import Foundation
 ///
 /// Types that don't define any standard behaviors require a
 /// custom ``KeyboardActionHandler`` to be handled.
+///
+/// See the <doc:Actions-Article> article for more information.
 public enum KeyboardAction: Codable, Equatable {
+
+    /// Handle a certain autocomplete suggestion.
+    // case autocompleteSuggestion(Autocomplete.Suggestion)
 
     /// Deletes backwards when pressed, and repeats until released.
     case backspace
@@ -97,8 +102,14 @@ public enum KeyboardAction: Codable, Equatable {
     /// Represents a settings (⚙️) key.
     case settings
     
-    /// Changes keyboard to `.alphabetic(.uppercased)` when released and `.capslocked` when double tapped.
-    case shift(currentCasing: Keyboard.Case)
+    /// Changes keyboard case when released and double tapped.
+    ///
+    /// > Note: We currently need the current case, since it
+    /// is used for uniqueness. Without it, the keyboard key
+    /// isn't properly updated when the context case changes.
+    /// We should however try to find a way around it, since
+    /// the action should just be `shift`.
+    case shift(Keyboard.KeyboardCase)
     
     /// Inserts a space when released and can perform custom actions when long pressed.
     case space
@@ -149,7 +160,7 @@ public extension KeyboardAction {
     /// Whether or not the action is an alphabetic type.
     var isAlphabeticKeyboardTypeAction: Bool {
         switch self {
-        case .keyboardType(let type): type.isAlphabetic
+        case .keyboardType(let type): type == .alphabetic
         default: false
         }
     }
@@ -241,62 +252,12 @@ public extension KeyboardAction {
         default: false
         }
     }
-    
-    /// Whether or not the action is uppercase shift.
-    var isUppercasedShiftAction: Bool {
-        switch self {
-        case .shift(let state): state.isUppercased
-        default: false
-        }
-    }
 
     /// Whether or not the action is a keyboard type action.
     func isKeyboardTypeAction(_ keyboardType: Keyboard.KeyboardType) -> Bool {
         switch self {
         case .keyboardType(let type): type == keyboardType
         default: false
-        }
-    }
-}
-
-
-// MARK: - Accessibility
-
-public extension KeyboardAction {
-    
-    /// The standard accessibility label for the action.
-    var standardAccessibilityLabel: String? {
-        switch self {
-        case .backspace: "Backspace"
-        case .capsLock: "Capslock"
-        case .character(let char): char
-        case .characterMargin: nil
-        case .command: "Command"
-        case .control: "Control"
-        case .custom(let name): name
-        case .diacritic(let val): val.char
-        case .dictation: "Dictation"
-        case .dismissKeyboard: "Dismiss Keyboard"
-        case .emoji(let emoji): "Emoji - \(emoji)"
-        case .escape: "Escape"
-        case .function: "Function"
-        case .image(let desc, _, _): desc
-        case .keyboardType(let keyboardType): "Keyboard Type - \(keyboardType.id)"
-        case .moveCursorBackward: "Move Cursor Backward"
-        case .moveCursorForward: "Move Cursor Forward"
-        case .nextKeyboard: "Next Keyboard"
-        case .nextLocale: "Next Locale"
-        case .none: nil
-        case .option: "Option"
-        case .primary(let returnKeyType): returnKeyType.id
-        case .settings: "Settings"
-        case .shift: "Shift"
-        case .space: KKL10n.space.text
-        case .systemImage(let desc, _, _): desc
-        case .systemSettings: "System Settings"
-        case .tab: "Tab"
-        case .text(let text): text
-        case .url(let url, _): "Open \(url?.absoluteString ?? "invalid url")"
         }
     }
 }

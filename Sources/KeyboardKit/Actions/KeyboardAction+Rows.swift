@@ -40,7 +40,9 @@ public extension KeyboardAction.Row {
     }
 
     /// Get a matching character margin action for an action.
-    func characterMarginAction(for action: KeyboardAction?) -> KeyboardAction {
+    func characterMarginAction(
+        for action: KeyboardAction?
+    ) -> KeyboardAction {
         switch action {
         case .character(let char): .characterMargin(char)
         default: .none

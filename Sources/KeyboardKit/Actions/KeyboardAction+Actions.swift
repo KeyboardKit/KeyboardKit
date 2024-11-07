@@ -56,7 +56,7 @@ public extension KeyboardAction {
     var standardPressAction: GestureAction? {
         switch self {
         case .backspace: { $0?.deleteBackward() }
-        case .capsLock: { $0?.setKeyboardType(.alphabetic(.capsLocked)) }
+        case .capsLock: { $0?.setKeyboardType(.alphabetic) }
         case .keyboardType(let type): { $0?.setKeyboardType(type) }
         default: nil
         }
@@ -76,7 +76,7 @@ public extension KeyboardAction {
         case .moveCursorForward: { $0?.adjustTextPosition(by: 1) }
         case .nextLocale: { $0?.selectNextLocale() }
         case .primary: { $0?.insertText(.newline) }
-        case .shift(let current): current.standardReleaseAction
+        case .shift: { $0?.state.keyboardContext.keyboardCase.standardReleaseAction?($0) }
         case .space: { $0?.insertText(.space) }
         case .systemSettings: { $0?.openUrl(.systemSettings) }
         case .tab: { $0?.insertText(.tab) }

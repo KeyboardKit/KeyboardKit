@@ -44,21 +44,6 @@ public extension Keyboard {
                 .padding(styleService.buttonContentInsets(for: action))
                 .contentShape(Rectangle())
         }
-
-
-        // MARK: - Deprecated
-
-        @available(*, deprecated, message: "Use the styleService initializer instead.")
-        public init(
-            action: KeyboardAction,
-            styleProvider: KeyboardStyleService,
-            keyboardContext: KeyboardContext
-        ) {
-            self.action = action
-            self.styleService = styleProvider
-            self.keyboardContext = keyboardContext
-        }
-
     }
 }
 
@@ -84,7 +69,7 @@ private extension Keyboard.ButtonContent {
     var spaceView: some View {
         let text = styleService.buttonText(for: action) ?? ""
         let showLocale = keyboardContext.locales.count > 1
-        let localeName = keyboardContext.locale.localizedLanguageName
+        let localeName = keyboardContext.locale.localizedLanguageName ?? ""
         return Keyboard.SpaceContent(
             localeText: showLocale ? localeName : text,
             spaceText: text
@@ -103,10 +88,7 @@ private extension Keyboard.ButtonContent {
     
     let multiLocaleContext: KeyboardContext = {
         let context = KeyboardContext.preview
-        context.locales = [
-            KeyboardLocale.english.locale,
-            KeyboardLocale.swedish.locale
-        ]
+        context.locales = [.english, .swedish]
         return context
     }()
     

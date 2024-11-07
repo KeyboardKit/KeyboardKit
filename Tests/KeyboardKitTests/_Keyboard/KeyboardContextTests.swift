@@ -6,7 +6,6 @@
 //  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
-import MockingKit
 import XCTest
 
 @testable import KeyboardKit
@@ -31,21 +30,13 @@ class KeyboardContextTests: XCTestCase {
     }
 
     override func tearDown() {
-        context.isAutocapitalizationEnabled = true
         context.locale = .init(identifier: "en")
+        context.settings.isAutocapitalizationEnabled = true
     }
 
     
     func locale(for id: String) -> Locale {
         Locale(identifier: id)
-    }
-
-    func hasCurrentLocaleResult(for locale: KeyboardLocale) -> Bool {
-        context.hasCurrentLocale(locale)
-    }
-
-    func hasKeyboardTypeResult(for type: Keyboard.KeyboardType) -> Bool {
-        context.hasKeyboardType(type)
     }
 
     #if os(iOS) || os(tvOS)
@@ -66,11 +57,12 @@ class KeyboardContextTests: XCTestCase {
 
     func testInitializerSetsDefaultValues() {
         XCTAssertEqual(context.deviceType, .current)
+        XCTAssertEqual(context.deviceTypeForKeyboard, .current)
         XCTAssertFalse(context.hasDictationKey)
         XCTAssertFalse(context.hasFullAccess)
         XCTAssertNil(context.keyboardDictationReplacement)
-        XCTAssertEqual(context.keyboardType, .alphabetic(.auto))
-        XCTAssertEqual(context.locale, Locale(identifier: context.localeIdentifier))
+        XCTAssertEqual(context.keyboardType, .alphabetic)
+        XCTAssertEqual(context.locale, Locale(identifier: context.settings.localeIdentifier))
         XCTAssertEqual(context.locales, [.current])
         XCTAssertFalse(context.needsInputModeSwitchKey)
         XCTAssertTrue(context.prefersAutocomplete)
@@ -106,25 +98,6 @@ class KeyboardContextTests: XCTestCase {
     }
     #endif
 
-    func testHasKeyboardLocaleReturnsTrueForMatchingType() {
-        context.setLocale(.swedish)
-        XCTAssertTrue(hasCurrentLocaleResult(for: .swedish))
-        XCTAssertFalse(hasCurrentLocaleResult(for: .finnish))
-        XCTAssertFalse(hasCurrentLocaleResult(for: .german))
-        XCTAssertFalse(hasCurrentLocaleResult(for: .norwegian))
-    }
-
-    func testHasKeyboardTypeReturnsTrueForMatchingType() {
-        context.keyboardType = .emojis
-        XCTAssertTrue(hasKeyboardTypeResult(for: .emojis))
-        XCTAssertFalse(hasKeyboardTypeResult(for: .alphabetic(.auto)))
-        XCTAssertFalse(hasKeyboardTypeResult(for: .custom(named: "")))
-        XCTAssertFalse(hasKeyboardTypeResult(for: .email))
-        XCTAssertFalse(hasKeyboardTypeResult(for: .images))
-        XCTAssertFalse(hasKeyboardTypeResult(for: .numeric))
-        XCTAssertFalse(hasKeyboardTypeResult(for: .symbolic))
-    }
-
     func testSelectingNextLocaleSelectsFirstItemIfTheCurrentLocaleIsNotInLocales() {
         context.locale = locale(for: "sv")
         context.locales = [locale(for: "en"), locale(for: "fi"), locale(for: "da")]
@@ -149,9 +122,9 @@ class KeyboardContextTests: XCTestCase {
     }
 
 
-    func testSettingKeyboardLocaleSetsContextLocale() {
+    func testSettingLocaleSetsContextLocale() {
         context.locale = locale(for: "sv")
-        context.setLocale(.catalan)
+        context.locale = .catalan
         XCTAssertEqual(context.locale.identifier, "ca")
     }
 

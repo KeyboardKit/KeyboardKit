@@ -15,62 +15,37 @@ import SwiftUI
 /// typealiases and keyboard view functionality.
 public protocol KeyboardViewComponent: View {
 
-    /// The view type to  button content view to use.
+    /// The button content view type to use.
     associatedtype ButtonContent: View
     
-    /// The button view
+    /// The button view type to use.
     associatedtype ButtonView: View
 }
 
 public extension KeyboardViewComponent {
 
-    /// A button content builder typalias.
+    /// This typealias defines a button content builder.
     typealias ButtonContentBuilder = (ButtonContentParams) -> ButtonContent
     
-    /// A button content builder params typalias.
+    /// This typealias defines button content builder params.
     typealias ButtonContentParams = (
         item: KeyboardLayout.Item,
         view: StandardButtonContent
     )
-    
-    
-    /// A button view builder typalias.
+
+    /// The standard button content view type.
+    typealias StandardButtonContent = Keyboard.ButtonContent
+
+
+    /// This typealias defines a button view builder.
     typealias ButtonViewBuilder = (ButtonViewParams) -> ButtonView
-    
-    /// A button view builder params typalias.
+
+    /// This typealias defines button view builder params.
     typealias ButtonViewParams = (
         item: KeyboardLayout.Item,
         view: StandardButtonView
     )
-    
-    
-    /// An emoji keyboard builder params typalias.
-    typealias EmojiKeyboardParams = (
-        style: EmojiKeyboardStyle,
-        view: StandardEmojiKeyboard
-    )
-    
-    
-    /// The standard button content view type.
-    typealias StandardButtonContent = Keyboard.ButtonContent
-    
+
     /// The standard button view type.
     typealias StandardButtonView = KeyboardViewItem<ButtonContent>
-    
-    /// The standard emoji keyboard view type.
-    typealias StandardEmojiKeyboard = Emoji.KeyboardWrapper
-    
-    /// The standard toolbar view type.
-    typealias StandardToolbarView = Autocomplete.Toolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
-
-
-    /// A toolbar builder params typalias.
-    typealias ToolbarParams = (
-        autocompleteAction: (Autocomplete.Suggestion) -> Void,
-        style: Autocomplete.ToolbarStyle,
-        view: StandardToolbarView)
-    
-    
-    /// An autocomplete toolbar action typalias.
-    typealias AutocompleteToolbarAction = (Autocomplete.Suggestion) -> Void
 }

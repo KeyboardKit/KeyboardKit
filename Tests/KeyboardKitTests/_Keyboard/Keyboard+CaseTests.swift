@@ -11,11 +11,11 @@ import XCTest
 
 class Keyboard_CaseTests: XCTestCase {
 
-    func isLowercased(for case: Keyboard.Case) -> Bool {
+    func isLowercased(for case: Keyboard.KeyboardCase) -> Bool {
         return `case`.isLowercased
     }
 
-    func isUppercased(for case: Keyboard.Case) -> Bool {
+    func isUppercased(for case: Keyboard.KeyboardCase) -> Bool {
         return `case`.isUppercased
     }
 

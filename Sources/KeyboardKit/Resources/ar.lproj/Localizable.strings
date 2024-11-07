@@ -18,13 +18,10 @@
 "return" = "↳";
 "route" = "route";
 "search" = "بحث";
-"join" = "send";
+"searchEmoji" = "البحث عن الرموز التعبيرية";
 "space" = "مسافة";
 "switcherAlphabetic" = "ا‌ب‌ج";
 "switcherNumeric" = "١٢٣";
 "switcherSymbolic" = "#+=";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

@@ -8,6 +8,24 @@
 
 import Foundation
 
+public extension AutocompleteService where Self == Autocomplete.DisabledService {
+
+    /// Create a ``Autocomplete/DisabledService`` instance.
+    static var disabled: Self {
+        Autocomplete.DisabledService()
+    }
+
+    /// Create a ``Autocomplete/DisabledService`` instance.
+    ///
+    /// - Parameters:
+    ///   - suggestions: The suggestions to present.
+    static func disabled(
+        suggestions: [Autocomplete.Suggestion] = []
+    ) -> Self {
+        Autocomplete.DisabledService(suggestions: suggestions)
+    }
+}
+
 public extension Autocomplete {
 
     /// This service is used as a default service, until you
@@ -32,17 +50,10 @@ public extension Autocomplete {
         open var locale: Locale = .current
         open internal(set) var suggestions: [Autocomplete.Suggestion]
 
-        open func autocompleteSuggestions(
-            for text: String
-        ) async throws -> [Autocomplete.Suggestion] {
-            suggestions
-        }
-
-        open func nextCharacterPredictions(
-            forText text: String,
-            suggestions: [Autocomplete.Suggestion]
-        ) async throws -> [Character: Double] {
-            [:]
+        open func autocomplete(
+            _ text: String
+        ) async throws -> Autocomplete.ServiceResult {
+            .init(inputText: text, suggestions: suggestions)
         }
 
         open var canIgnoreWords: Bool { false }

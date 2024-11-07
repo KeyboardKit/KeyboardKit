@@ -19,13 +19,11 @@
 "return" = "↵";
 "route" = "route";
 "search" = "Пошук";
+"searchEmoji" = "Пошук Эмодзі";
 "send" = "send";
 "space" = "прабел";
 "switcherAlphabetic" = "АБВ";
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

@@ -15,6 +15,13 @@ import Foundation
 /// by using its text document proxy, state, and services.
 public protocol KeyboardController: AnyObject {
 
+    /// Keyboard-specific services.
+    var services: Keyboard.Services { get }
+
+    /// Keyboard-specific state.
+    var state: Keyboard.State { get }
+
+
     /// Adjust the text input cursor position.
     func adjustTextPosition(by characterOffset: Int)
 
@@ -44,6 +51,9 @@ public protocol KeyboardController: AnyObject {
 
     /// Select the next locale, if any.
     func selectNextLocale()
+
+    /// Set a certain keyboard case.
+    func setKeyboardCase(_ case: Keyboard.KeyboardCase)
 
     /// Set a certain keyboard type.
     func setKeyboardType(_ type: Keyboard.KeyboardType)

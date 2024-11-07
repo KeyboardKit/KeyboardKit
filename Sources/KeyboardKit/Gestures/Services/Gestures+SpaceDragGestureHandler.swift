@@ -8,6 +8,22 @@
 
 import CoreGraphics
 
+public extension DragGestureHandler where Self == Gestures.SpaceDragGestureHandler {
+
+    /// Create a ``Gestures/SpaceDragGestureHandler``.
+    static func spaceDrag(
+        sensitivity: Gestures.SpaceDragSensitivity = .medium,
+        verticalThreshold: Double = 50,
+        action: @escaping (Int) -> Void
+    ) -> Self {
+        Gestures.SpaceDragGestureHandler(
+            sensitivity: sensitivity,
+            verticalThreshold: verticalThreshold,
+            action: action
+        )
+    }
+}
+
 public extension Gestures {
     
     /// This custom gesture handler can handle the space key

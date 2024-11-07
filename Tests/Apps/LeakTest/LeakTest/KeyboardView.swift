@@ -14,10 +14,11 @@ struct KeyboardView: View {
 
     var body: some View {
         VStack {
-            KeyboardView(
+            KeyboardKit.KeyboardView(
                 controller: controller,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
+                collapsedView: { $0.view },
                 emojiKeyboard: { $0.view },
                 toolbar: { $0.view }
             )
@@ -29,24 +30,4 @@ struct KeyboardView: View {
 
 #Preview {
     KeyboardView()
-}
-
-class KeyboardController: KeyboardInputViewController {
-
-    required init?(coder: NSCoder) {
-        Self.instances += 1
-        super.init(coder: coder)
-    }
-
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        Self.instances += 1
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
-    static var instances = 0
-
-    deinit {
-        Self.instances -= 1
-        print("DEINIT")
-    }
 }

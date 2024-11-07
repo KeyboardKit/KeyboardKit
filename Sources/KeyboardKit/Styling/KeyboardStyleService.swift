@@ -45,9 +45,6 @@ public protocol KeyboardStyleService: AnyObject {
     /// The overall insets action's content.
     func buttonContentInsets(for action: KeyboardAction) -> EdgeInsets
 
-    @available(*, deprecated, message: "This is no longer used. Use buttonContentInsets.")
-    func buttonContentBottomMargin(for action: KeyboardAction) -> CGFloat
-
     /// The button image to use for a certain action.
     func buttonImage(for action: KeyboardAction) -> Image?
 
@@ -63,11 +60,14 @@ public protocol KeyboardStyleService: AnyObject {
 
     // MARK: - Callouts
 
-    /// The style to use on ``Callouts/ActionCallout`` views.
-    var actionCalloutStyle: Callouts.ActionCalloutStyle { get }
-    
-    /// The style to use on ``Callouts/InputCallout`` views.
-    var inputCalloutStyle: Callouts.InputCalloutStyle { get }
+    /// The callout style to override the standard style with, if any.
+    var calloutStyle: KeyboardCallout.CalloutStyle? { get }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+    var actionCalloutStyle: KeyboardCallout.ActionCalloutStyle { get }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+    var inputCalloutStyle: KeyboardCallout.InputCalloutStyle { get }
 
 
     // MARK: - Callouts

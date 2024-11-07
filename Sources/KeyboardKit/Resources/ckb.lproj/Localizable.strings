@@ -18,13 +18,11 @@
 "return" = "↳";
 "route" = "route";
 "search" = "گەڕان";
+"searchEmoji" = "گەڕان بۆ ئیمۆجی";
 "send" = "send";
 "space" = "بۆشایی";
 "switcherAlphabetic" = "ا‌ب‌ج";
 "switcherNumeric" = "١٢٣";
 "switcherSymbolic" = "#+=";
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+// For emoji localization, copy & translate the English list.

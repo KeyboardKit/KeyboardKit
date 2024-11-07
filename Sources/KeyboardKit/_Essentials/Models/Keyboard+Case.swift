@@ -11,8 +11,8 @@ import Foundation
 public extension Keyboard {
     
     /// This enum defines various keyboard shift states.
-    enum Case: String, Codable, Identifiable {
-        
+    enum KeyboardCase: String, Codable, Identifiable {
+
         case auto
         case capsLocked
         case lowercased
@@ -20,8 +20,8 @@ public extension Keyboard {
     }
 }
 
-public extension Keyboard.Case {
-    
+public extension Keyboard.KeyboardCase {
+
     /// The case's unique identifier.
     var id: String { rawValue }
     
@@ -45,7 +45,7 @@ public extension Keyboard.Case {
         }
     }
     
-    /// Whether or not the case is uppercased.
+    /// Whether or not the case is uppercased or capslocked.
     var isUppercased: Bool {
         switch self {
         case .auto: false
@@ -56,12 +56,16 @@ public extension Keyboard.Case {
     }
 }
 
-extension Keyboard.Case {
-    
+extension Keyboard.KeyboardCase {
+
     var standardReleaseAction: KeyboardAction.GestureAction? {
+        return { $0?.setKeyboardCase(standardReleaseCase) }
+    }
+
+    var standardReleaseCase: Self {
         switch self {
-        case .lowercased: { $0?.setKeyboardType(.alphabetic(.uppercased)) }
-        default: { $0?.setKeyboardType(.alphabetic(.lowercased)) }
+        case .lowercased: .uppercased
+        default: .lowercased
         }
     }
 }

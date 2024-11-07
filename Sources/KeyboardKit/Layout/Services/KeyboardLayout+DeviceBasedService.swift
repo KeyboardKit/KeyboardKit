@@ -42,7 +42,7 @@ extension KeyboardLayout {
         }
         
         /// The locale identifier.
-        public var localeKey = KeyboardLocale.english.id
+        public var localeKey = Locale.english.identifier
         
         /// The layout service to use for iPad devices.
         public lazy var iPadService: KeyboardLayoutService = KeyboardLayout.iPadService(
@@ -71,18 +71,11 @@ extension KeyboardLayout {
         open func keyboardLayoutService(
             for context: KeyboardContext
         ) -> KeyboardLayoutService {
-            switch context.deviceType {
+            switch context.deviceTypeForKeyboard {
             case .phone: iPhoneService
             case .pad: iPadService
             default: iPhoneService
             }
-        }
-
-        @available(*, deprecated, renamed: "keyboardLayoutService")
-        open func keyboardLayoutProvider(
-            for context: KeyboardContext
-        ) -> KeyboardLayoutService {
-            keyboardLayoutService(for: context)
         }
     }
 }

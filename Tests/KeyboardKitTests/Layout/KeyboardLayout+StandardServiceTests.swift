@@ -46,24 +46,23 @@ class KeyboardLayout_StandardServiceTests: XCTestCase {
     }
     
     func testCanRegisterLocalizedService() {
-        let locale = KeyboardLocale.albanian
-        let new = TestService(localeKey: locale.localeIdentifier)
-        XCTAssertNil(service.localizedServices.value(for: locale.locale))
+        let locale = Locale.albanian
+        let new = TestService(localeKey: locale.identifier)
+        XCTAssertNil(service.localizedServices.value(for: locale))
         service.registerLocalizedService(new)
-        XCTAssertIdentical(service.localizedServices.value(for: locale.locale), new)
+        XCTAssertIdentical(service.localizedServices.value(for: locale), new)
     }
-    
     
     func testCanResolveLayoutServiceWithStaticResolver() {
         KeyboardLayout.StandardService.localizedServiceResolver = { locale in
             if locale == .albanian { return TestService(localeKey: "apa") }
             return nil
         }
-        context.setLocale(KeyboardLocale.albanian)
-        XCTAssertNil(service.localizedServices.value(for: KeyboardLocale.albanian))
+        context.locale = .albanian
+        XCTAssertNil(service.localizedServices.value(for: .albanian))
         let result = service.keyboardLayoutService(for: context)
         XCTAssertEqual((result as? TestService)?.localeKey, "apa")
-        XCTAssertTrue(service.localizedServices.value(for: KeyboardLocale.albanian) is TestService)
+        XCTAssertTrue(service.localizedServices.value(for: .albanian) is TestService)
     }
 }
 

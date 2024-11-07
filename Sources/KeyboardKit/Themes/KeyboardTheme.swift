@@ -12,14 +12,13 @@ import SwiftUI
 /// be used to define a bunch of styles at once.
 ///
 /// A theme can be copied, tweaked, styled, etc. This struct
-/// implements `Codable` and can as such be easily persisted.
+/// implements the ``KeyboardThemeCopyable`` protocol to let
+/// it share copy logic with its style variation.
 ///
-/// KeyboardKit Pro unlocks theme initializers, capabilities,
-/// many predefined themes and style variations, and a theme
-/// based style service. You can use these predefined themes
-/// as they are, or use them as templates for new ones.
+/// KeyboardKit Pro unlocks a bunch of predefined themes and
+/// style variations, as well as a theme-based style service.
 ///
-/// See <doc:Themes-Article> for more information.
+/// See the <doc:Themes-Article> article for more information.
 public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifiable {
 
     /// This enum defines various button types.
@@ -59,11 +58,14 @@ public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifi
     /// The style to apply to autocomplete toolbars, if any.
     public var autocompleteToolbarStyle: Autocomplete.ToolbarStyle?
 
-    /// The style to apply to action callouts, if any.
-    public var actionCalloutStyle: Callouts.ActionCalloutStyle?
+    /// The callout style to apply, if any.
+    public var calloutStyle: KeyboardCallout.CalloutStyle?
 
-    /// The style to apply to input callout, if any.
-    public var inputCalloutStyle: Callouts.InputCalloutStyle?
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+    public var actionCalloutStyle: KeyboardCallout.ActionCalloutStyle?
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
+    public var inputCalloutStyle: KeyboardCallout.InputCalloutStyle?
 }
 
 public extension KeyboardTheme {

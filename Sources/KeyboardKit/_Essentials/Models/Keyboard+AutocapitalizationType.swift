@@ -14,7 +14,7 @@ public extension Keyboard {
     ///
     /// The ``KeyboardContext/autocapitalizationTypeOverride``
     /// property can be set to override the default behavior
-    /// defined by the currently active text-field.
+    /// that is defined by the active text-field.
     enum AutocapitalizationType: String, CaseIterable {
 
         // All characters should be auto-capitalized.

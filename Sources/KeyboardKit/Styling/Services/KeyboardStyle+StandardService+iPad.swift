@@ -12,13 +12,13 @@ extension KeyboardStyle.StandardService {
     
     var useSmallTextForControlButtons: Bool {
         return
-            keyboardContext.deviceType == .pad &&
+            keyboardContext.deviceTypeForKeyboard == .pad &&
             keyboardContext.locale.identifier.hasPrefix("en") &&
             iPadProRenderingModeActive
     }
     
     func buttonColorPadProOverride(for action: KeyboardAction) -> Color? {
-        let isCapsLock = keyboardType.isAlphabeticCapsLocked
+        let isCapsLock = keyboardContext.keyboardCase == .capsLocked
         switch action {
         case .capsLock: return isCapsLock ? buttonBackgroundColor(for: .backspace, isPressed: true) : nil
         case .shift: return isCapsLock ? buttonBackgroundColor(for: .backspace, isPressed: false) : nil
@@ -30,7 +30,7 @@ extension KeyboardStyle.StandardService {
         if useSmallText(for: action) {
             return keyboardContext.interfaceOrientation == .portrait ? 16 : 20
         }
-        guard keyboardContext.deviceType == .pad else { return nil }
+        guard keyboardContext.deviceTypeForKeyboard == .pad else { return nil }
         let isLandscape = keyboardContext.interfaceOrientation.isLandscape
         guard isLandscape else { return nil }
         if action.isAlphabeticKeyboardTypeAction { return 22 }
@@ -41,7 +41,7 @@ extension KeyboardStyle.StandardService {
     
     func buttonImagePadOverride(for action: KeyboardAction) -> Image? {
         guard iPadProRenderingModeActive else { return nil }
-        let isCapsLock = keyboardType.isAlphabeticCapsLocked
+        let isCapsLock = keyboardContext.keyboardCase == .capsLocked
         switch action {
         case .capsLock: return isCapsLock ? .keyboardShiftCapslocked : .keyboardShiftCapslockInactive
         case .shift: return isCapsLock ? .keyboardShiftLowercased : nil

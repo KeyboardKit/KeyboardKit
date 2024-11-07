@@ -17,7 +17,9 @@ import SwiftUI
 ///
 /// You can use the ``itemRows`` property to modify a layout,
 /// e.g. with the various insert, replace & remove functions.
-public class KeyboardLayout {
+///
+/// See the <doc:Layout-Article> article for more information.
+public struct KeyboardLayout {
 
     /// Create a new layout with the provided items.
     ///
@@ -54,7 +56,15 @@ public class KeyboardLayout {
     public typealias TotalWidth = CGFloat
 
     /// A cache used to avoid having to recalculate widths.
-    var widthCache = [TotalWidth: CGFloat]()
+    var widthCache = WidthCache()
+}
+
+extension KeyboardLayout {
+
+    class WidthCache {
+
+        var data = [TotalWidth: CGFloat]()
+    }
 }
 
 private extension KeyboardLayout {

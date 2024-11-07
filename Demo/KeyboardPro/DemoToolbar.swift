@@ -72,10 +72,10 @@ private extension DemoToolbar {
                 Group {
                     textFieldIfFullAccess
                     Divider()
-                    toggle($autocompleteContext.isAutocorrectEnabled, "textformat.abc.dottedunderline")
+                    toggle($autocompleteContext.settings.isAutocorrectEnabled, "textformat.abc.dottedunderline")
                     Divider()
-                    toggle($feedbackContext.isAudioFeedbackEnabled, "speaker.wave.2.fill")
-                    toggle($feedbackContext.isHapticFeedbackEnabled, "hand.tap.fill")
+                    toggle($feedbackContext.settings.isAudioFeedbackEnabled, "speaker.wave.2.fill")
+                    toggle($feedbackContext.settings.isHapticFeedbackEnabled, "hand.tap.fill")
                     Divider()
                     button(toggleThemePicker, "paintpalette")
                     button(readDocument, "doc.text.magnifyingglass")
@@ -126,7 +126,7 @@ private extension DemoToolbar {
             .scaleEffect(1.2)
             .padding()
             .background(Color.clearInteractable)
-            .keyboardLocaleContextMenu(for: keyboardContext) {
+            .localeContextMenu(for: keyboardContext) {
                 controller.services.actionHandler.handle(.nextLocale)
             }
     }
@@ -134,7 +134,7 @@ private extension DemoToolbar {
     @ViewBuilder
     var textFieldIfFullAccess: some View {
         if keyboardContext.hasFullAccess {
-            KeyboardTextField(text: $text, controller: controller) {
+            KeyboardTextField(text: $text, keyboardContext: keyboardContext) {
                 $0.placeholder = "Type here..."
             }
             .frame(width: 150)

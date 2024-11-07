@@ -15,10 +15,6 @@ public extension View {
     /// The `edgeInsets` init parameter can be used to apply
     /// intrinsic insets within the interactable button area.
     ///
-    /// > Note: ``Keyboard/Button`` view should replace this
-    /// modifier, and use environment values to apply styles
-    /// and features. This will be done in KeyboardKit 9.0.
-    ///
     /// - Parameters:
     ///   - action: The keyboard action to trigger.
     ///   - style: The keyboard style to apply.
@@ -37,7 +33,7 @@ public extension View {
         actionHandler: KeyboardActionHandler,
         repeatTimer: GestureButtonTimer? = nil,
         keyboardContext: KeyboardContext,
-        calloutContext: CalloutContext?,
+        calloutContext: KeyboardCalloutContext?,
         additionalTapArea: Double = 0,
         edgeInsets: EdgeInsets = .init(),
         isPressed: Binding<Bool> = .constant(false),
@@ -116,7 +112,7 @@ private extension View {
         actionHandler: KeyboardActionHandler
     ) -> some View {
         if shouldApplyLocaleContextMenu(for: action, context: context) {
-            self.keyboardLocaleContextMenu(for: context) {
+            self.localeContextMenu(for: context) {
                 actionHandler.handle(.release, on: action)
             }
             .id(context.locale.identifier)
@@ -147,8 +143,8 @@ private extension View {
         @State
         var context: KeyboardContext = {
             let context = KeyboardContext()
-            context.locales = KeyboardLocale.allCases.map { $0.locale }
-            context.localePresentationLocale = KeyboardLocale.swedish.locale
+            context.locales = .keyboardKitSupported
+            context.localePresentationLocale = .swedish
             context.spaceLongPressBehavior = .openLocaleContextMenu
             return context
         }()

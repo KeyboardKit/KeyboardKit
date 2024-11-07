@@ -28,9 +28,11 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// This view will set up ``KeyboardSettings`` to use an App
-/// Group, set up a ``Keyboard/State`` and inject state into
-/// the view, after which you can access any state like this:
+/// This will set up the ``Keyboard/Settings`` to use an App
+/// Group to sync data between the app and its keyboard, set
+/// up the main ``Keyboard/State`` for the provided app, and
+/// inject the adjusted state into the view hierarchy, after
+/// which you can access any state like this:
 ///
 /// ```swift
 /// struct MyView: View {
@@ -54,7 +56,7 @@ public struct KeyboardAppView<Content: View>: View {
         for app: KeyboardApp,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        KeyboardSettings.setupStore(for: app)
+        Keyboard.Settings.setupStore(for: app)
         let state = Keyboard.State()
         state.setup(for: app)
 
@@ -62,6 +64,7 @@ public struct KeyboardAppView<Content: View>: View {
         self._autocompleteContext = .init(wrappedValue: state.autocompleteContext)
         self._calloutContext = .init(wrappedValue: state.calloutContext)
         self._dictationContext = .init(wrappedValue: state.dictationContext)
+        self._externalContext = .init(wrappedValue: state.externalKeyboardContext)
         self._feedbackContext = .init(wrappedValue: state.feedbackContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
@@ -77,10 +80,13 @@ public struct KeyboardAppView<Content: View>: View {
     private var autocompleteContext: AutocompleteContext
 
     @StateObject
-    private var calloutContext: CalloutContext
+    private var calloutContext: KeyboardCalloutContext
 
     @StateObject
     private var dictationContext: DictationContext
+
+    @StateObject
+    private var externalContext: ExternalKeyboardContext
 
     @StateObject
     private var feedbackContext: FeedbackContext
@@ -99,6 +105,7 @@ public struct KeyboardAppView<Content: View>: View {
         .environmentObject(autocompleteContext)
         .environmentObject(calloutContext)
         .environmentObject(dictationContext)
+        .environmentObject(externalContext)
         .environmentObject(feedbackContext)
         .environmentObject(keyboardContext)
         .environmentObject(themeContext)
