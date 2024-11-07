@@ -30,6 +30,9 @@ extension Keyboard {
         private var dictationContext: DictationContext
 
         @EnvironmentObject
+        private var externalContext: ExternalKeyboardContext
+
+        @EnvironmentObject
         private var feedbackContext: FeedbackContext
 
         @EnvironmentObject

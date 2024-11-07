@@ -62,6 +62,7 @@ public struct KeyboardAppView<Content: View>: View {
         self._autocompleteContext = .init(wrappedValue: state.autocompleteContext)
         self._calloutContext = .init(wrappedValue: state.calloutContext)
         self._dictationContext = .init(wrappedValue: state.dictationContext)
+        self._externalContext = .init(wrappedValue: state.externalKeyboardContext)
         self._feedbackContext = .init(wrappedValue: state.feedbackContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
@@ -83,6 +84,9 @@ public struct KeyboardAppView<Content: View>: View {
     private var dictationContext: DictationContext
 
     @StateObject
+    private var externalContext: ExternalKeyboardContext
+
+    @StateObject
     private var feedbackContext: FeedbackContext
 
     @StateObject
@@ -99,6 +103,7 @@ public struct KeyboardAppView<Content: View>: View {
         .environmentObject(autocompleteContext)
         .environmentObject(calloutContext)
         .environmentObject(dictationContext)
+        .environmentObject(externalContext)
         .environmentObject(feedbackContext)
         .environmentObject(keyboardContext)
         .environmentObject(themeContext)

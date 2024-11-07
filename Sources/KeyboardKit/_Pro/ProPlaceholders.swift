@@ -235,12 +235,6 @@ public extension Image {
 }
 
 
-// MARK: - External
-
-/// 👑 This is unlocked by KeyboardKit Pro.
-public class ExternalKeyboardContext: ObservableObject {}
-
-
 // MARK: - Feedback
 
 public extension Feedback {

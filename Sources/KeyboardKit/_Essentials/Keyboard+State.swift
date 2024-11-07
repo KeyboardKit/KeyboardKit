@@ -31,7 +31,10 @@ public extension Keyboard {
         
         /// The dictation context to use.
         public lazy var dictationContext = DictationContext()
-        
+
+        /// The external keyboard context to use.
+        public lazy var externalKeyboardContext = ExternalKeyboardContext()
+
         /// The feedback context to use.
         public lazy var feedbackContext = FeedbackContext()
         
@@ -71,6 +74,7 @@ public extension View {
         self.environmentObject(state.autocompleteContext)
             .environmentObject(state.calloutContext)
             .environmentObject(state.dictationContext)
+            .environmentObject(state.externalKeyboardContext)
             .environmentObject(state.feedbackContext)
             .environmentObject(state.keyboardContext)
             .environmentObject(state.themeContext)

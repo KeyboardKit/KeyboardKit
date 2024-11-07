@@ -14,10 +14,11 @@ struct KeyboardView: View {
 
     var body: some View {
         VStack {
-            KeyboardView(
+            KeyboardKit.KeyboardView(
                 controller: controller,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
+                collapsedView: { $0.view },
                 emojiKeyboard: { $0.view },
                 toolbar: { $0.view }
             )

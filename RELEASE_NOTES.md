@@ -98,6 +98,10 @@ The standard emoji styles no longer take an input toolbar display mode. You can 
 
 The KeyboardKit Pro `EmojiKeyboard` has been rebuilt from scratch, and now behaves more like a native keyboard, by scrolling through all categories and supporting search.
 
+### ⌨️ External Keyboard
+
+The `ExternalKeyboardContext` has been moved to the open-source library and added to `Keyboard.State`.
+
 ### 🇸🇪 Localization
 
 The `KeyboardLocale` enum has been replaced with using the native `Locale` everywhere.

@@ -155,10 +155,11 @@ struct CustomKeyboardView: View {
             KeyboardView(
                 state: controller.state,
                 services: controller.services,
-                buttonContent: { $0.view },        // Use standard view
-                buttonView: { $0.view },           // Use standard view
-                emojiKeyboard: { $0.view },        // Use standard view
-                toolbar: { _ in CustomToolbar() }  // Use a custom view
+                buttonContent: { $0.view },        // Use $0.view to use the standard view
+                buttonView: { $0.view },           // Each view provides additional parameters than $0.view             
+                collapsedView: { $0.view },
+                emojiKeyboard: { $0.view },        
+                toolbar: { _ in CustomToolbar() }  // This ignores the params and uses a custom view
             )
         }
     }
@@ -216,6 +217,7 @@ struct CustomKeyboardView: View {
                 services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
+                collapsedView: { $0.view },
                 emojiKeyboard: { $0.view },
                 toolbar: { _ in CustomToolbar() }
             )

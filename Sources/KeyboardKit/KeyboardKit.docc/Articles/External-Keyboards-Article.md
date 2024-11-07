@@ -13,20 +13,31 @@
 
 This article describes the KeyboardKit external keyboard engine.
 
-A keyboard extension should be able to detect if an external keyboard is connected, since it will causes it to stop working as expected. For instance, the text document proxy will not update while you type on an external keyboard.
+Keyboard extensions start to behave strangely when you type on an external keyboard. For instance, the keyboard extension will stop receiving information about when text changes, and will only update the context when the text cursor moves.
 
-👑 [KeyboardKit Pro][Pro] unlocks tools that help you easily detect if an external keyboard is connected to the device, for instance if a magic keyboard is connected to an iPad.
+👑 [KeyboardKit Pro][Pro] unlocks tools that help you easily detect if an external keyboard is connected to the device, for instance if a magic keyboard is connected to an iPad. Information about Pro features can be found further down.
 
 
-## More Information
+## Workarounds
 
-Keyboard extensions start to behave strangely when you type on an external keyboard. For instance, the keyboard extension will stop receiving information about when text changes. This makes it hard to provide features like autocomplete. 
-
-Using a scheduled timer to continuously check the text doesn't help, since the text document proxy will not update until you interact with the keyboard extension or move the text input cursor.
-
-One way to force the proxy to update is to move the text cursor with a fixed interval, to make the keyboard read the current text. This may interfere however with the typing, so it's not encouraged.
+One way to force the proxy to update is to move the text cursor with a fixed interval, to make the keyboard read the current text. This may however interfere with the typing, so it's not encouraged.
 
 Due to this limitation, it may be better to collapse the keyboard to a compact toolbar when an external keyboard is connected. You can always add a button that expands the keyboard again.
+
+
+## How to collapse the keyboard
+
+The ``KeyboardContext/isKeyboardCollapsed`` property can be used to collapse and expand the keyboard when an external keyboard is connected. KeyboardKit Pro will automatically update this when an external keyboard is connected and disconnected. 
+
+The ``KeyboardView`` lets you define which view to show when it's collapsed. It defaults to a ``Keyboard/CollapsedView``, which can be set to use any custom content. See the <doc:Essentials-Article> article for more information.
+
+
+## How to manage external keyboard state 
+
+KeyboardKit has an ``ExternalKeyboardContext`` that has state for if an external keyboard is connected, such as a Smart Keyboard Folio, a Magic Keyboard, any Bluetooth keyboards, etc.
+
+KeyboardKit Pro will automatically keep this context up to date when an external keyboard is connected and disconnected. Without it, you must listen for connection changes yourself and update this context accordingly.  
+
 
 
 ---
@@ -34,29 +45,10 @@ Due to this limitation, it may be better to collapse the keyboard to a compact t
 
 ## 👑 KeyboardKit Pro
 
-KeyboardKit has an ``ExternalKeyboardContext`` that can detect if an external keyboard is connected, such as the Smart Keyboard Folio, Magic Keyboard, Bluetooth keyboards, etc.
 
-Unlike other contexts, this context is not automatically setup when the keyboard launches. To use it, just set it up as an observed object:
+KeyboardKit Pro will automatically keep the ``ExternalKeyboardContext`` up to date when an external keyboard is connected and disconnected. Without it, you must listen for connection changes yourself and update this context accordingly.
 
-```swift
-struct CustomKeyboardView: View {
-
-   @StateObject
-   var context = ExternalKeyboardContext()
-
-   var body: some View {
-       VStack {
-           Text("Is an external keyboard connected?")
-           Text(context.isExternalKeyboardConnected.description)
-       }
-       .environmentObject(context)
-   }
-}
-```
-
-In the code above, we also inject the context into the view hierarchy as an environment object, to make its state available to other views.
-
-> Warning: This context will consider an Apple Smart Keyboard Folio to be connected, even when it's just snapped on to the device and not actively being used.
+> Warning: KeyboardKit Pro will consider an Apple Smart Keyboard Folio to be connected even when it's just snapped on to the device and not being actively used. This should be improved.
 
 
 
