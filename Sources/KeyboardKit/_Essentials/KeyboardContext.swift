@@ -75,11 +75,11 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var deviceTypeForKeyboard: DeviceType = .current
 
-    /// Whether or not the keyboard has a dictation key.
+    /// Whether the keyboard has a dictation key.
     @Published
     public var hasDictationKey: Bool = false
 
-    /// Whether or not the extension has full access.
+    /// Whether the extension has full access.
     @Published
     public var hasFullAccess: Bool = false
 
@@ -91,11 +91,15 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var interfaceOrientation: InterfaceOrientation = .portrait
 
-    /// Whether or not the keyboard is in floating mode.
+    /// Whether the keyboard is collapsed.
+    @Published
+    public var isKeyboardCollapsed = false
+
+    /// Whether the keyboard is in floating mode.
     @Published
     public var isKeyboardFloating = false
 
-    /// Whether or not a space drag gesture is active.
+    /// Whether a space drag gesture is active.
     @Published
     public var isSpaceDragGestureActive = false
 
@@ -139,11 +143,11 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var localePresentationLocale: Locale?
 
-    /// Whether or not to add an input mode switch key.
+    /// Whether to add an input mode switch key.
     @Published
     public var needsInputModeSwitchKey = false
 
-    /// Whether or not the context prefers autocomplete.
+    /// Whether the context prefers autocomplete.
     ///
     /// > Note: This will become a computed property in 9.0.
     @Published
@@ -227,7 +231,7 @@ public extension KeyboardContext {
         #endif
     }
 
-    /// Whether or not to use a dark color scheme.
+    /// Whether to use a dark color scheme.
     var hasDarkColorScheme: Bool {
         #if os(iOS) || os(tvOS) || os(visionOS)
         colorScheme == .dark
@@ -236,7 +240,7 @@ public extension KeyboardContext {
         #endif
     }
 
-    /// Whether or not the context has multiple locales.
+    /// Whether the context has multiple locales.
     var hasMultipleLocales: Bool {
         locales.count > 1
     }

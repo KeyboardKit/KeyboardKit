@@ -112,6 +112,7 @@ public extension Keyboard {
                 calloutContext: calloutContext,
                 buttonContent: buttonContentBuilder,
                 buttonView: buttonViewBuilder,
+                collapsedView: { $0.view },
                 emojiKeyboard: { _ in EmptyView() },
                 toolbar: { _ in EmptyView() }
             )

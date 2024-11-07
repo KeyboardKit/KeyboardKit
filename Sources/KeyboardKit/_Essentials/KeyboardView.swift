@@ -25,6 +25,7 @@ import SwiftUI
 public struct KeyboardView<
     ButtonContent: View,
     ButtonView: View,
+    CollapsedView: View,
     EmojiKeyboard: View,
     Toolbar: View>: KeyboardViewComponent {
 
@@ -37,6 +38,7 @@ public struct KeyboardView<
     ///   - renderBackground: Whether to render the background.
     ///   - buttonContent: The content view to use for buttons.
     ///   - buttonView: The button view to use for an buttons.
+    ///   - collapsedView: The collapsed view to use.
     ///   - emojiKeyboard: The emoji keyboard to use.
     ///   - toolbar: The toolbar view to add above the keyboard.
     public init(
@@ -46,6 +48,7 @@ public struct KeyboardView<
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
+        @ViewBuilder collapsedView: @escaping CollapsedViewBuilder,
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
@@ -62,6 +65,7 @@ public struct KeyboardView<
             renderBackground: renderBackground,
             buttonContent: buttonContent,
             buttonView: buttonView,
+            collapsedView: collapsedView,
             emojiKeyboard: emojiKeyboard,
             toolbar: toolbar
         )
@@ -80,6 +84,7 @@ public struct KeyboardView<
     ///   - renderBackground: Whether to render the background, by default `true`.
     ///   - buttonContent: The content view to use for buttons.
     ///   - buttonView: The button view to use for an buttons.
+    ///   - collapsedView: The collapsed view to use.
     ///   - emojiKeyboard: The emoji keyboard to use for an ``Keyboard/KeyboardType/emojis`` keyboard.
     ///   - toolbar: The toolbar view to add above the keyboard.
     public init(
@@ -93,6 +98,7 @@ public struct KeyboardView<
         renderBackground: Bool = true,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
+        @ViewBuilder collapsedView: @escaping CollapsedViewBuilder,
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
@@ -109,6 +115,7 @@ public struct KeyboardView<
         self.renderBackground = renderBackground
         self.buttonContentBuilder = buttonContent
         self.buttonViewBuilder = buttonView
+        self.collapsedViewBuilder = collapsedView
         self.emojiKeyboardBuilder = emojiKeyboard
         self.toolbarBuilder = toolbar
 
@@ -126,6 +133,7 @@ public struct KeyboardView<
     
     private let buttonContentBuilder: ButtonContentBuilder
     private let buttonViewBuilder: ButtonViewBuilder
+    private let collapsedViewBuilder: CollapsedViewBuilder
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
     
@@ -152,6 +160,27 @@ public struct KeyboardView<
     private var keyboardContext: KeyboardContext
 
     public var body: some View {
+        if keyboardContext.isKeyboardCollapsed {
+            collapsedContent
+                .transition(.move(edge: .bottom))
+        } else {
+            keyboardContent
+                .transition(.move(edge: .bottom))
+        }
+    }
+
+    var collapsedContent: some View {
+        collapsedViewBuilder((
+            binding: $keyboardContext.isKeyboardCollapsed,
+            view: Keyboard.CollapsedView(openKeyboardAction: {
+                keyboardContext.isKeyboardCollapsed.toggle()
+            }, content: {
+                EmptyView()
+            })
+        ))
+    }
+
+    var keyboardContent: some View {
         KeyboardStyle.StandardService.iPadProRenderingModeActive = layout.ipadProLayout
 
         return VStack(spacing: 0) {
@@ -170,35 +199,6 @@ public struct KeyboardView<
         )
         .keyboardCalloutStyle(calloutStyle)
     }
-}
-
-public extension KeyboardView {
-
-    /// This typealias defines an emoji keyboard builder.
-    typealias EmojiKeyboardBuilder = (EmojiKeyboardParams) -> EmojiKeyboard
-
-    /// This typealias defines emoji keyboard builder params.
-    typealias EmojiKeyboardParams = (
-        style: Emoji.KeyboardStyle,
-        view: StandardEmojiKeyboard)
-
-    /// This typealias defines a toolbar builder.
-    typealias ToolbarBuilder = (ToolbarParams) -> Toolbar
-
-    /// This typealias defines toolbar builder params.
-    typealias ToolbarParams = (
-        autocompleteAction: (Autocomplete.Suggestion) -> Void,
-        style: Autocomplete.ToolbarStyle,
-        view: StandardToolbarView)
-}
-
-public extension KeyboardView {
-
-    /// The standard emoji keyboard view.
-    typealias StandardEmojiKeyboard = Emoji.KeyboardWrapper
-
-    /// The standard toolbar view.
-    typealias StandardToolbarView = Autocomplete.Toolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
 }
 
 private extension KeyboardView {
@@ -244,6 +244,45 @@ private extension KeyboardView {
         default: true
         }
     }
+}
+
+public extension KeyboardView {
+
+    /// This typealias defines a collapsed view builder.
+    typealias CollapsedViewBuilder = (CollapsedViewParams) -> CollapsedView
+
+    /// This struct defines collapsed view builder params.
+    typealias CollapsedViewParams = (
+        binding: Binding<Bool>,
+        view: StandardCollapsedView)
+
+    /// The standard collapsed view.
+    typealias StandardCollapsedView = Keyboard.CollapsedView<EmptyView>
+
+
+    /// This typealias defines an emoji keyboard builder.
+    typealias EmojiKeyboardBuilder = (EmojiKeyboardParams) -> EmojiKeyboard
+
+    /// This typealias defines emoji keyboard builder params.
+    typealias EmojiKeyboardParams = (
+        style: Emoji.KeyboardStyle,
+        view: StandardEmojiKeyboard)
+
+    /// The standard emoji keyboard view.
+    typealias StandardEmojiKeyboard = Emoji.KeyboardWrapper
+
+
+    /// This typealias defines a toolbar builder.
+    typealias ToolbarBuilder = (ToolbarParams) -> Toolbar
+
+    /// This typealias defines toolbar builder params.
+    typealias ToolbarParams = (
+        autocompleteAction: (Autocomplete.Suggestion) -> Void,
+        style: Autocomplete.ToolbarStyle,
+        view: StandardToolbar)
+
+    /// The standard toolbar view.
+    typealias StandardToolbar = Autocomplete.Toolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
 }
 
 private extension KeyboardView {
@@ -388,6 +427,7 @@ private extension KeyboardView {
                 renderBackground: true,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
+                collapsedView: { $0.view },
                 emojiKeyboard: { $0.view },
                 toolbar: { $0.view }
             )
@@ -397,6 +437,12 @@ private extension KeyboardView {
             ScrollView {
                 VStack(spacing: 10) {
                     Group {
+                        Button("Toggle Collapsed") {
+                            withAnimation {
+                                controller.state.keyboardContext.isKeyboardCollapsed.toggle()
+                            }
+                        }
+
                         keyboard
                         
                         keyboard.frame(width: 250)
@@ -410,6 +456,7 @@ private extension KeyboardView {
                             services: controller.services,
                             buttonContent: { $0.view },
                             buttonView: { $0.view },
+                            collapsedView: { $0.view },
                             emojiKeyboard: { $0.view },
                             toolbar: { _ in EmptyView() }
                         )
@@ -432,6 +479,9 @@ private extension KeyboardView {
                                         .multilineTextAlignment(.center)
                                 default: param.view
                                 }
+                            },
+                            collapsedView: { _ in
+                                Color.red.frame(height: 100)
                             },
                             emojiKeyboard: { _ in
                                 Button {

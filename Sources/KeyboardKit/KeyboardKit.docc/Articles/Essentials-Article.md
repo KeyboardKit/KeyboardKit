@@ -110,6 +110,8 @@ KeyboardView(
 )
 ```
 
+Note that some content types, like the emoji keyboard and the collapsed content, requires KeyboardKit Pro to be handled automatically. Without KeyboardKit Pro, you must manually implement what to show and when to show it.
+
 Just return `{ $0.view }` or `{ params in params.view }` to use the standard view, or return a custom view for any part of the keyboard. Each view builder provides you with view-related parameters with contextual information.
 
 
@@ -119,25 +121,10 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
 
 @TabNavigator {
     
-    @Tab("KeyboardView") {
-        
-        @Row {
-            @Column {
-                ![Keyboard View](keyboardview-english)
-            }
-            @Column {
-                The ``KeyboardView`` component can be used to mimic a native iOS keyboard. It can be styled and customized to great extent.
-                
-                Read more above this component above.
-            }
-        }
-    }
-    
     @Tab("Button") {
-        
         @Row {
             @Column {
-                ![Keyboard Button](keyboardbuttonpreview)
+                ![Keyboard Button](keyboard-buttonpreview)
             }
             @Column {
                 The ``Keyboard`` namespace has a collection of ``Keyboard/Button`` views & styles that can be used to mimic all parts of a native keyboard.
@@ -148,13 +135,25 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
     }
     
     @Tab("BottomRow") {
-        ![Keyboard Bottom Row](keyboard-bottomrow)
+        ![Bottom Row](keyboard-bottomrow)
         
         The keyboard ``Keyboard/BottomRow`` renders a bottom keyboard row with the same behavior as a full ``KeyboardView``. It can be used when you want to replace the rows above with a custom user interface.
     }
     
+    @Tab("CollapsedView") {
+        @Row {
+            @Column {
+                ![Collapsed View](keyboard-collapsedview)
+            }
+            @Column {
+                The ``Keyboard/CollapsedView`` can be used to render a collapsed view when the ``Keyboard/KeyboardType/collapsed`` keyboard type is selected, or an external keyboard is connected.
+                
+                The ``KeyboardView`` has a `collapsedContent` view builder that lets you specify which view to use as collapsed content.
+            }
+        }
+    }
+    
     @Tab("Keyboard Switcher") {
-        
         @Row {
             @Column {
                 ![NextKeyboardButton](keyboard-nextkeyboardbutton)
@@ -166,7 +165,6 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
     }
     
     @Tab("NumberPad") {
-        
         @Row {
             @Column {
                 ![NextKeyboardButton](keyboard-numberpad)
@@ -291,7 +289,7 @@ KeyboardKit Pro also unlocks ``Keyboard``-related previews, that can be used to 
     @Tab("ButtonPreview") {
         @Row {
             @Column { 
-                ![Keyboard Button Preview](keyboardbuttonpreview)
+                ![Keyboard Button Preview](keyboardbutton-preview)
             }
             @Column { 
                 KeyboardKit Pro unlocks a ``Keyboard/ButtonPreview`` that can be used to preview a ``Keyboard``.``Keyboard/Button``.

@@ -26,13 +26,7 @@ public extension Keyboard {
 
         /// A keyboard with alphabetic input keys.
         case alphabetic
-        
-        /// A keyboard with numeric input keys.
-        case numeric
-        
-        /// A keyboard with symbolic input keys.
-        case symbolic
-        
+
         /// An e-mail keyboard.
         case email
 
@@ -47,6 +41,12 @@ public extension Keyboard {
         
         /// A number pad keyboard.
         case numberPad
+
+        /// A keyboard with numeric input keys.
+        case numeric
+
+        /// A keyboard with symbolic input keys.
+        case symbolic
 
         /// A URL keyboard
         case url
@@ -80,13 +80,13 @@ public extension Keyboard.KeyboardType {
     var id: String {
         switch self {
         case .alphabetic: "alphabetic"
-        case .numeric: "numeric"
-        case .symbolic: "symbolic"
         case .email: "email"
         case .emojis: "emojis"
         case .emojiSearch: "emojiSearch"
         case .images: "images"
         case .numberPad: "numberPad"
+        case .numeric: "numeric"
+        case .symbolic: "symbolic"
         case .url: "url"
         case .custom(let name): name
         }

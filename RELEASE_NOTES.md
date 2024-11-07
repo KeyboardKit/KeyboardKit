@@ -38,15 +38,21 @@ The next keyboard button experiments have been made permanent.
 
 ### ⌨️ Essentials
 
+The `KeyboardContext` has a new `isKeyboardCollapsed` property that can be enabled to collapse the keyboard.
+
 The `KeyboardContext` has a new `keyboardCase` that lets us decouple the keyboard type from the keyboard case. 
 
-The `KeyboardType.alphabetic` keyboard type is also decoupled from the case, which makes the type a lot easier to use.
+The `KeyboardContext` has a new `keyboardTypeForKeyboard` that updates to phone when the keyboard is floating on iPad.
 
-The `KeyboardContext` has a new `keyboardTypeForKeyboard` that updates to `phone` when the keyboard is floating on iPad.
+The `KeyboardType.alphabetic` keyboard type is also decoupled from the case, which makes the type a lot easier to use.
 
 The `KeyboardController` protocol now has `services` and `state` properties, so that it can be used in even more places.
 
 The `KeyboardView` now supports being used as a floating keyboard on iPad devices, which will render it as a phone keyboard.
+
+The `KeyboardView` now has a `collapsedView` that will be displayed when the keyboard context `isKeyboardCollapsed` is true.
+
+`Keyboard.CollapsedView` is a new standard view that can be displayed when the keyboard context `isKeyboardCollapsed` is true.
 
 ### 💥 Actions
 

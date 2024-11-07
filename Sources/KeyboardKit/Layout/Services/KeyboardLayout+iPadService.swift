@@ -194,6 +194,7 @@ extension KeyboardLayout.iPadService {
         calloutContext: .preview,
         buttonContent: { $0.view },
         buttonView: { $0.view },
+        collapsedView: { $0.view },
         emojiKeyboard: { $0.view },
         toolbar: { $0.view}
     )

@@ -41,6 +41,9 @@ extension Keyboard {
 
         var body: some View {
             view()
+                .onChange(of: externalContext.isExternalKeyboardConnected) { newValue in
+                    keyboardContext.isKeyboardCollapsed = newValue
+                }
         }
     }
 }
