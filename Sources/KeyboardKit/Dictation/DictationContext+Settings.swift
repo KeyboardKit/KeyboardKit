@@ -23,7 +23,7 @@ public extension DictationContext {
 
         /// The settings key prefix to use for the namespace.
         public static var settingsPrefix: String {
-            KeyboardSettings.storeKeyPrefix(for: "dictation")
+            Keyboard.Settings.storeKeyPrefix(for: "dictation")
         }
 
         /// The max number of seconds of silence after which

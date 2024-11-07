@@ -28,9 +28,11 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// This view will set up ``KeyboardSettings`` to use an App
-/// Group, set up a ``Keyboard/State`` and inject state into
-/// the view, after which you can access any state like this:
+/// This will set up the ``Keyboard/Settings`` to use an App
+/// Group to sync data between the app and its keyboard, set
+/// up the main ``Keyboard/State`` for the provided app, and
+/// inject the adjusted state into the view hierarchy, after
+/// which you can access any state like this:
 ///
 /// ```swift
 /// struct MyView: View {
@@ -54,7 +56,7 @@ public struct KeyboardAppView<Content: View>: View {
         for app: KeyboardApp,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        KeyboardSettings.setupStore(for: app)
+        Keyboard.Settings.setupStore(for: app)
         let state = Keyboard.State()
         state.setup(for: app)
 

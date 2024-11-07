@@ -48,8 +48,14 @@ public extension KeyboardInputViewController {
     typealias LicenseRegistrationResult = Result<License, Error>
 
     /// 👑 This is unlocked by KeyboardKit Pro.
+    enum LicenseValidationErrorDisplay: Equatable {
+        case debug, always
+    }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
     func setupPro(
         for app: KeyboardApp,
+        errorDisplay: LicenseValidationErrorDisplay = .debug,
         completion: @escaping (LicenseRegistrationResult) -> Void
     ) {}
 }

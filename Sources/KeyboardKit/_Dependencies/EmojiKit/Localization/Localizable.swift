@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This protocol is implemented by resource-localized types.
 public protocol Localizable {
     
     /// The `Localizable.strings` key to use when localizing.

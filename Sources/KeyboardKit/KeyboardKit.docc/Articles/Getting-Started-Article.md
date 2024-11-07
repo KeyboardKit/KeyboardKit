@@ -79,7 +79,7 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, etc.
 
-To set up the keyboard for your app, just override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:)`` (or ``KeyboardInputViewController/setupPro(for:completion:)`` if you use [KeyboardKit Pro][Pro]) with your ``KeyboardApp`` value:
+To set up the keyboard for your app, just override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:)`` (or ``KeyboardInputViewController/setupPro(for:errorDisplay:completion:)`` if you use [KeyboardKit Pro][Pro]) with your ``KeyboardApp`` value:
 
 @TabNavigator {
     
@@ -110,7 +110,7 @@ To set up the keyboard for your app, just override ``KeyboardInputViewController
     }
 }
 
-This will make ``KeyboardSettings`` sync data between the app and its keyboard extension if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
+This will make keyboard ``Keyboard/Settings`` sync data between the app and its keyboard extension if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
 
 This is all you have to do if you want to use the standard ``KeyboardView`` with a standard configuration. Upgrade to KeyboardKit Pro to unlock more locales and features, like autocomplete and an emoji keyboard.
 
@@ -190,7 +190,7 @@ struct MyApp: App {
 }
 ```
 
-This will make ``KeyboardSettings`` sync data between the app and its keyboard extension if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
+This will make keyboard ``Keyboard/Settings`` sync data between the app and its keyboard extension if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
 
 You can use the KeyboardKit Pro ``KeyboardApp/HomeScreen`` to easily set up a start screen for the app, or link to the individual ``KeyboardApp/SettingsScreen``, ``KeyboardApp/LocaleScreen``, and ``KeyboardApp/ThemeScreen`` screens from any screen. You can also use a status ``KeyboardStatus/Section`` to show keyboard status.
 

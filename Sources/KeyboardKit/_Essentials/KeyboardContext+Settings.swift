@@ -32,7 +32,7 @@ public extension KeyboardContext {
 
         /// The settings key prefix to use.
         public static var settingsPrefix: String {
-            KeyboardSettings.storeKeyPrefix(for: "keyboard")
+            Keyboard.Settings.storeKeyPrefix(for: "keyboard")
         }
 
         /// A list of explicitly added locale identifiers.

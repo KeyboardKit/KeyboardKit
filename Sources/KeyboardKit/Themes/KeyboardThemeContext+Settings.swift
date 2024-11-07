@@ -23,7 +23,7 @@ public extension KeyboardThemeContext {
 
         /// The settings key prefix to use for the namespace.
         public static var settingsPrefix: String {
-            KeyboardSettings.storeKeyPrefix(for: "themes")
+            Keyboard.Settings.storeKeyPrefix(for: "themes")
         }
 
         /// The current theme, if any.

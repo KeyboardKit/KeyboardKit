@@ -23,7 +23,7 @@ public extension FeedbackContext {
 
         /// The settings key prefix to use for the namespace.
         public static var settingsPrefix: String {
-            KeyboardSettings.storeKeyPrefix(for: "feedback")
+            Keyboard.Settings.storeKeyPrefix(for: "feedback")
         }
 
         /// Whether audio feedback is enabled, by default `true`.

@@ -44,11 +44,10 @@ public class DictationContext: ObservableObject {
 
     /// This store to use for persisted dictation data.
     ///
-    /// This uses the same store as ``KeyboardSettings``, so
-    /// that settings and dictation state are persisted into
-    /// the same store.
+    /// This uses the same store as ``Keyboard/Settings`` so
+    /// settings and dictation state use the same store.
     static var peristentStore: UserDefaults {
-        KeyboardSettings.store
+        Keyboard.Settings.store
     }
 
     /// The currently dictated text, which will update while

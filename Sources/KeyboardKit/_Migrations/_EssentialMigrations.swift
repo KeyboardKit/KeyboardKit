@@ -35,6 +35,9 @@ public extension Keyboard.KeyboardType {
     }
 }
 
+@available(*, deprecated, renamed: "Keyboard.Settings", message: "Migration Deprecation, will be removed in 9.1!")
+public typealias KeyboardSettings = Keyboard.Settings
+
 public extension KeyboardView where CollapsedView == KeyboardView.StandardCollapsedView {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! You must define a collapsed view.")

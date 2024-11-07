@@ -21,7 +21,7 @@ KeyboardKit provides tools to make this easier, such as ``Foundation/URL`` exten
 
 ## Keyboard Settings
 
-KeyboardKit has a ``KeyboardSettings`` class that has a ``KeyboardSettings/store`` that can persist settings-related data. When you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, it's automatically set up to sync data between your app and its keyboard extension.
+KeyboardKit has a ``Keyboard/Settings`` class that has a global ``Keyboard/Settings/store`` that is used to persist all context settings. If you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, this store is set up to sync data between the app and its keyboard.
 
 > Important: `@AppStorage` properties use the store that's available when they're first accessed. Make sure to set up a custom store BEFORE accessing any of these settings properties.
 
@@ -36,7 +36,7 @@ KeyboardKit has a ``KeyboardSettings`` class that has a ``KeyboardSettings/store
 
 To sync data between the main app and its keyboard, you have to create an App Group and link it to both the app and the keyboard. You can then add the App Group ID to your ``KeyboardApp`` and use it to set up your main app and keyboard, as described in <doc:App-Article>.
 
-You can also use ``KeyboardSettings/setupStore(forAppGroup:keyPrefix:)`` to set up a store for an App Group, without using a ``KeyboardApp``.
+You can also use ``Keyboard/Settings/setupStore(forAppGroup:keyPrefix:)`` to set up a store for an App Group, without using a ``KeyboardApp``.
 
 > Important: The main app will always write data to an App Group in a way that is instantly available to the keyboard. A keyboard must however have Full Access enabled for changes to be immediately synced to the app. When Full Access is disabled, the sync will be less reliable.
 

@@ -23,7 +23,7 @@ public extension AutocompleteContext {
 
         /// The settings key prefix to use.
         public static var settingsPrefix: String {
-            KeyboardSettings.storeKeyPrefix(for: "autocomplete")
+            Keyboard.Settings.storeKeyPrefix(for: "autocomplete")
         }
 
         /// Whether autocomplete is enabled, by default `true`.

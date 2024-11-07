@@ -69,7 +69,7 @@ struct MyApp: App {
 }
 ```
 
-This will set up everything that is defined by the ``KeyboardApp``, like setting up ``KeyboardSettings`` to use an App Group, register a KeyboardKit Pro license key, set up dictation, etc. It will also inject keyboard ``Keyboard/State`` into the view, to let you access state values like this:
+This will set up everything that is defined by the ``KeyboardApp``, like setting up keyboard ``Keyboard/Settings`` to use an App Group, register a KeyboardKit Pro license key, set up dictation, etc. It will also inject keyboard ``Keyboard/State`` into the view, to let you access state values like this:
 
 ```swift
 struct MyView: View {
@@ -168,4 +168,4 @@ NavigationView {
 
 Check out the type documentation in the KeyboardKit Pro documentation, or the demo app for some examples on how to use this view.
 
-> Important: For settings to sync between the main app and its keyboard extension, you must replace the main keyboard settings ``KeyboardSettings/store`` with an App Group-synced store. You can use the ``KeyboardAppView`` to do this in the main app, and call  ``KeyboardSettings/setupStore(forAppGroup:keyPrefix:)`` in the keyboard extension's `viewDidLoad()` function.
+> Important: For settings to sync between the main app and its keyboard extension, you must replace the main keyboard settings ``Keyboard/Settings/store`` with an App Group-synced store. You can use the ``KeyboardAppView`` to do this in the main app, and call  ``Keyboard/Settings/setupStore(forAppGroup:keyPrefix:)`` in the keyboard extension's `viewDidLoad()` function.

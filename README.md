@@ -41,7 +41,7 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 ## Getting Started
 
-To use KeyboardKit in a keyboard extension, just import `KeyboardKit` and let your `KeyboardViewController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+To use KeyboardKit in a keyboard extension, just import `KeyboardKit` and let the controller inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
@@ -80,7 +80,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make `KeyboardSettings` sync data between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
+This will make settings sync between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
 
 To replace or customize the standard, English `KeyboardView`, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
 
@@ -123,7 +123,7 @@ struct MyApp: App {
 }
 ```
 
-This will make `KeyboardSettings` sync data between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
+This will make settings sync between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
 
 For more information, please see the [getting started guide][Getting-Started].
 

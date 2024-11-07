@@ -59,7 +59,7 @@ KeyboardKit automatically creates instances of these classes and injects them in
 
 ## Settings
 
-KeyboardKit has a ``KeyboardSettings`` class that has a global ``KeyboardSettings/store`` that is used to persist all context settings properties. If you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, this store is set up to sync data between the app and its keyboard.
+KeyboardKit has a ``Keyboard/Settings`` class that has a global ``Keyboard/Settings/store`` that is used to persist all context settings. If you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, this store is set up to sync data between the app and its keyboard.
 
 > Important: `@AppStorage` properties use the store that's available when they're first accessed. Make sure to set up a custom store BEFORE accessing any of these settings properties.
 
@@ -186,11 +186,9 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
 
 ---
 
-Most KeyboardKit views have a style & style modifier, much like SwiftUI's `Button` has a `ButtonStyle` and a `.buttonStyle(...)` modifier, that can be applied to an individual button, or an entire view hierarchy for global styling.
+Most KeyboardKit views have a corresponding style & style modifier that can be applied to an individual view or an entire view hierarchy. You can e.g. apply a ``SwiftUICore/View/autocompleteToolbarStyle(_:)`` to the ``KeyboardView`` to customize the callout style within the view.
 
-You can e.g. apply the ``SwiftUICore/View/autocompleteToolbarStyle(_:)``, ``SwiftUICore/View/emojiKeyboardStyle(_:)``,  ``SwiftUICore/View/keyboardCalloutStyle(_:)``, ``SwiftUICore/View/keyboardToolbarStyle(_:)``, etc. to the ``KeyboardView`` to customize the various components within the view.
-
-The ``KeyboardView`` however requires a ``KeyboardStyleService`` to style its buttons, since this requires dynamic styling on a per-button basis. You can however apply explicit button styles to tje views you return in the ``KeyboardView``'s `buttonView` view builder.
+The ``KeyboardView`` however requires a ``KeyboardStyleService`` to style its buttons, since this requires dynamic styling on a per-button basis. You can however apply styles to the views you return in the ``KeyboardView``'s `buttonView` view builder.
     
 See the <doc:Styling-Article> article for more information.
     

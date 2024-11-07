@@ -39,7 +39,7 @@ extension Keyboard {
         private var keyboardContext: KeyboardContext
 
         @EnvironmentObject
-        private var keyboardSettings: KeyboardSettings
+        private var keyboardSettings: Keyboard.Settings
 
 
         var body: some View {

@@ -1,5 +1,5 @@
 //
-//  KeyboardSettings.swift
+//  Keyboard+Settings.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-03-30.
@@ -8,25 +8,31 @@
 
 import SwiftUI
 
-/// This class can be used to setup a custom value store for
-/// all settings types in the library.
-///
-/// The static ``store`` is used to persist settings. It has
-/// a ``Foundation/UserDefaults/keyboardSettings`` shorthand
-/// for convenient access.
-///
-/// You can use ``setupStore(for:)`` to set up the store for
-/// your ``KeyboardApp`` or use the parameter-based variants
-/// for granular control. Make sure to register an App Group
-/// for the app and keyboard to be able to sync between them.
-///
-/// > Important: `@AppStorage` properties will use the store
-/// that's available when a property is first accessed. Make
-/// sure to set up a custom store BEFORE the app or keyboard
-/// extension accesses any settings.
-public class KeyboardSettings: ObservableObject {}
+public extension Keyboard {
 
-public extension KeyboardSettings {
+    /// This class can be used to setup a custom value store
+    /// for all settings types in the library.
+    ///
+    /// The static ``store`` is used to persist settings for
+    /// all context types, as well as other persistent state.
+    ///
+    /// Use the ``Foundation/UserDefaults/keyboardSettings``
+    /// shorthand for convenient access.
+    ///
+    /// You can use ``setupStore(for:)`` to set up the store
+    /// for your ``KeyboardApp``, or use the parameter-based
+    /// variants for granular control. Make sure to register
+    /// an App Group for the app and keyboard, to be able to
+    /// sync between them.
+    ///
+    /// > Important: A `@AppStorage` property uses the store
+    /// that's available when it's first accessed. Make sure
+    /// to setup your custom store BEFORE accessing any such
+    /// persisted properties.
+    class Settings: ObservableObject {}
+}
+
+public extension Keyboard.Settings {
 
     /// The store that will be used by library settings.
     static var store: UserDefaults = .standard
@@ -111,11 +117,9 @@ public extension KeyboardSettings {
 
 public extension UserDefaults {
 
-    /// This store to use for persisted keyboard settings.
-    ///
-    /// See ``KeyboardSettings`` for more information on how
-    /// to register a custom store.
+    /// This store to use to persist keyboard settings using
+    /// the ``Keyboard/Settings/store``.
     static var keyboardSettings: UserDefaults {
-        KeyboardSettings.store
+        Keyboard.Settings.store
     }
 }
