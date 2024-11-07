@@ -33,6 +33,10 @@ public extension KeyboardViewComponent {
         view: StandardButtonContent
     )
 
+    /// The standard button content view type.
+    typealias StandardButtonContent = Keyboard.ButtonContent
+
+
     /// This typealias defines a button view builder.
     typealias ButtonViewBuilder = (ButtonViewParams) -> ButtonView
 
@@ -41,13 +45,7 @@ public extension KeyboardViewComponent {
         item: KeyboardLayout.Item,
         view: StandardButtonView
     )
-}
 
-public extension KeyboardViewComponent {
-
-    /// The standard button content view type.
-    typealias StandardButtonContent = Keyboard.ButtonContent
-    
     /// The standard button view type.
     typealias StandardButtonView = KeyboardViewItem<ButtonContent>
 }

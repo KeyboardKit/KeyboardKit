@@ -15,10 +15,6 @@ public extension View {
     /// The `edgeInsets` init parameter can be used to apply
     /// intrinsic insets within the interactable button area.
     ///
-    /// > Note: ``Keyboard/Button`` view should replace this
-    /// modifier, and use environment values to apply styles
-    /// and features. This will be done in KeyboardKit 9.0.
-    ///
     /// - Parameters:
     ///   - action: The keyboard action to trigger.
     ///   - style: The keyboard style to apply.

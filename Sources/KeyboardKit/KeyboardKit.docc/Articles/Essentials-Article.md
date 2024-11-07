@@ -146,7 +146,9 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
                 ![Collapsed View](keyboard-collapsedview)
             }
             @Column {
-                The ``Keyboard/CollapsedView`` can be used to render a collapsed view when the ``Keyboard/KeyboardType/collapsed`` keyboard type is selected, or an external keyboard is connected.
+                The ``Keyboard/CollapsedView`` can be used to render a collapsed view when the ``KeyboardContext/isKeyboardCollapsed`` is true.
+                
+                KeyboardKit Pro automatically detects when an external keyboard is connected or disconnected, and update the state accordingly.
                 
                 The ``KeyboardView`` has a `collapsedContent` view builder that lets you specify which view to use as collapsed content.
             }
@@ -182,9 +184,7 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
     }
 }
 
-
-
-## View Styling
+---
 
 Most KeyboardKit views have a style & style modifier, much like SwiftUI's `Button` has a `ButtonStyle` and a `.buttonStyle(...)` modifier, that can be applied to an individual button, or an entire view hierarchy for global styling.
 
@@ -289,7 +289,7 @@ KeyboardKit Pro also unlocks ``Keyboard``-related previews, that can be used to 
     @Tab("ButtonPreview") {
         @Row {
             @Column { 
-                ![Keyboard Button Preview](keyboardbutton-preview)
+                ![Keyboard Button Preview](keyboard-buttonpreview)
             }
             @Column { 
                 KeyboardKit Pro unlocks a ``Keyboard/ButtonPreview`` that can be used to preview a ``Keyboard``.``Keyboard/Button``.

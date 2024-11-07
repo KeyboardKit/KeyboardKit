@@ -35,7 +35,7 @@ public struct KeyboardView<
     ///   - layout: A custom keyboard layout, if any.
     ///   - state: The keyboard state to use.
     ///   - services: The keyboard services to use.
-    ///   - renderBackground: Whether to render the background.
+    ///   - renderBackground: Whether to render the style background.
     ///   - buttonContent: The content view to use for buttons.
     ///   - buttonView: The button view to use for an buttons.
     ///   - collapsedView: The collapsed view to use.
@@ -45,7 +45,7 @@ public struct KeyboardView<
         layout: KeyboardLayout? = nil,
         state: Keyboard.State,
         services: Keyboard.Services,
-        renderBackground: Bool = true,
+        renderBackground: Bool? = nil,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
         @ViewBuilder collapsedView: @escaping CollapsedViewBuilder,
@@ -81,7 +81,7 @@ public struct KeyboardView<
     ///   - keyboardContext: The keyboard context to use.
     ///   - autocompleteContext: The autocomplete context to use.
     ///   - calloutContext: The callout context to use.
-    ///   - renderBackground: Whether to render the background, by default `true`.
+    ///   - renderBackground: Whether to render the style background.
     ///   - buttonContent: The content view to use for buttons.
     ///   - buttonView: The button view to use for an buttons.
     ///   - collapsedView: The collapsed view to use.
@@ -95,7 +95,7 @@ public struct KeyboardView<
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
         calloutContext: KeyboardCalloutContext,
-        renderBackground: Bool = true,
+        renderBackground: Bool? = nil,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
         @ViewBuilder collapsedView: @escaping CollapsedViewBuilder,
@@ -112,7 +112,7 @@ public struct KeyboardView<
         self.actionHandler = actionHandler
         self.repeatTimer = repeatTimer
         self.styleService = styleService
-        self.renderBackground = renderBackground
+        self.renderBackground = renderBackground ?? true
         self.buttonContentBuilder = buttonContent
         self.buttonViewBuilder = buttonView
         self.collapsedViewBuilder = collapsedView

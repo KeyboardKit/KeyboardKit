@@ -16,9 +16,6 @@ public extension Autocomplete {
     /// You can style this component with the style modifier
     /// ``autocompleteToolbarStyle(_:)`` and customize views
     /// in the toolbar with various view builders.
-    ///
-    /// > Note: This view will be rebuilt in KeyboardKit 9.0,
-    /// to let the view builders provide you with parameters.
     struct Toolbar<ItemView: View, SeparatorView: View>: View {
 
         /// Create a toolbar with standard views.

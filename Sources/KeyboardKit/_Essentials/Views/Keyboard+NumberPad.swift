@@ -16,10 +16,6 @@ public extension Keyboard {
     /// much space as they can. You can restrict its size by
     /// applying a `frame` modifier, or adding it as overlay
     /// above e.g. a ``KeyboardView``.
-    ///
-    /// > Information: You'll be able to style the view with
-    /// by applying a ``Keyboard/ButtonStyle`` modifier, but
-    /// this won't be implemented until KeyboardKit 9.0.
     struct NumberPad: View {
 
         public init(
