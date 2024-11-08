@@ -7,6 +7,8 @@ KeyboardKit is a Swift SDK that lets you create fully customizable keyboards in 
 
 ![KeyboardKit logo](Logo.png)
 
+> Important: This documentation is updated for KeyboardKit 9.0 RC 1. Documentation for KeyboardKit 8 can be built from the source code.
+
 KeyboardKit lets you create fully customizable [keyboard extensions][About] in a few lines of code, using SwiftUI. It extends Apple's limited APIs and provides you with a lot more functionality than what is otherwise available.
 
 KeyboardKit is open-source and completely free to use. It can be extended with [KeyboardKit Pro][Pro] to unlock a bunch of pro features, like fully localized keyboards, autocomplete, AI-enabling features, and much more.  

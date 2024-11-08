@@ -143,8 +143,8 @@ public extension Feedback.HapticConfiguration {
     
     /// This configuration enables all haptic feedback.
     static let enabled = Self(
-        press: .lightImpact,
-        release: .lightImpact,
+        press: .selectionChanged,
+        release: .selectionChanged,
         doubleTap: .lightImpact,
         longPress: .mediumImpact,
         longPressOnSpace: .mediumImpact,

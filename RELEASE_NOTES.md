@@ -102,6 +102,10 @@ The KeyboardKit Pro `EmojiKeyboard` has been rebuilt from scratch, and now behav
 
 The `ExternalKeyboardContext` has been moved to the open-source library and added to `Keyboard.State`.
 
+### 🔉 Feedback
+
+The haptic feedback has been adjusted to be lighter when typing, to make the typing not feel as heavy.
+
 ### 🇸🇪 Localization
 
 The `KeyboardLocale` enum has been replaced with using the native `Locale` everywhere.

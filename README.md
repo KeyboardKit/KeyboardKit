@@ -3,12 +3,10 @@
 </p>
 
 <p align="center">
-    <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=%2300550&sort=semver" alt="Version" />
+    <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=forestgreen&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/swift-5.9-orange.svg" alt="Swift 5.9" />
-    <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
-    <a href="https://twitter.com/getkeyboardkit"><img src="https://img.shields.io/twitter/url?label=Twitter&style=social&url=https%3A%2F%2Ftwitter.com%2Fgetkeyboardkit" alt="Twitter: @@getkeyboardkit" title="Twitter: @getkeyboardkit" /></a>
-    <a href="https://techhub.social/@keyboardkit"><img src="https://img.shields.io/mastodon/follow/109340839247880048?domain=https%3A%2F%2Ftechhub.social&style=social" alt="Mastodon: @keyboardkit@techhub.social" title="Mastodon: @keyboardkit@techhub.social" /></a>
+    <a href="https://keyboardkit.github.io/KeyboardKit"><img src="https://img.shields.io/badge/docs-6.x-blue.svg" alt="Documentation" /></a>
 </p>
 
 
@@ -17,7 +15,7 @@
 
 KeyboardKit is a SwiftUI SDK that lets you create fully customizable [keyboard extensions][About] with a few lines of code.
 
-KeyboardKit extends Apple's limited keyboard APIs, extends the input controller and proxy with more capabilities, and provides you with additional functionality, states and views, to let you build an outstanding, custom keyboards.
+KeyboardKit extends Apple's limited keyboard APIs with more capabilities, and provides additional functionality, to let you build outstanding custom keyboards with little effort.
 
 <p align="center">
     <img src ="Resources/Demo.gif" width=450 />
@@ -35,13 +33,11 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-After installing KeyboardKit, make sure to link it to all targets that need it.
-
 
 
 ## Getting Started
 
-To use KeyboardKit in a keyboard extension, just import `KeyboardKit` and let the controller inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+To use KeyboardKit in a keyboard extension, just import `KeyboardKit` and let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
@@ -68,7 +64,7 @@ extension KeyboardApp {
 }
 ```  
 
-To set up your keyboard, just override `viewDidLoad` and call `setup(for:)` with your `KeyboardApp`:
+To set up your keyboard, just override `viewDidLoad` and call `setup(for:)` with your `KeyboardApp` value:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -80,9 +76,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This will make settings sync between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
-
-To replace or customize the standard, English `KeyboardView`, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
+To replace or customize the standard `KeyboardView` keyboard, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -104,7 +98,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-To set up the main app with the same configuration as the keyboard extension, just wrap the main content view in a `KeyboardAppView` and provide it with the same app information:
+To set up your main app with the same configuration, just wrap the root content view in a `KeyboardAppView`:
 
 ```swift
 import SwiftUI
@@ -123,7 +117,7 @@ struct MyApp: App {
 }
 ```
 
-This will make settings sync between the main app and its keyboard if an ``appGroupId`` is defined, register a KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
+Setting up your app and keyboard with a `KeyboardApp` will make settings sync between the two if an ``appGroupId`` is defined, register your KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
 
 For more information, please see the [getting started guide][Getting-Started].
 
@@ -194,10 +188,10 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 
 ## Documentation
 
-The [online documentation][Documentation] has more information, getting-started guides, articles, code examples, etc.
+The [online documentation][Documentation] has a detailed article for each feature, a thorough getting-started guide, code samples, etc. You can also build it from the source code to get better formatting.
 
 > [!NOTE]
-> The documentation is updated for KeyboardKit 8.9. This also adjusts it for Xcode 16, which makes native type extension links fail to resolve for GitHub Actions, which currently uses Xcode 15.
+> The online documentation is updated for KeyboardKit 9.0 RC 1. Documentation for KeyboardKit 8 can be built from the source code.
 
 
 
@@ -208,7 +202,7 @@ The `Demo` folder has a demo app that shows how to set up the main keyboard app,
 The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro. Note that you need to enable Full Access for some features to work, like haptic feedback.
 
 > [!IMPORTANT]
-> The demo isn't code signed, and can therefore not sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has the same settings screens to provide in-keyboard settings.
+> The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has settings screens in the keyboard as well. You can try out the [KeyboardKit app][KeyboardKit-App] from the App Store to see how settings sync when you use a signed app.  
 
 
 

@@ -25,8 +25,8 @@ class Feedback_HapticConfigurationTests: XCTestCase {
 
     func testEnabledConfigurationEnabledAllFeedback() {
         let config = Config.enabled
-        XCTAssertEqual(config.press, .lightImpact)
-        XCTAssertEqual(config.release, .lightImpact)
+        XCTAssertEqual(config.press, .selectionChanged)
+        XCTAssertEqual(config.release, .selectionChanged)
         XCTAssertEqual(config.doubleTap, .lightImpact)
         XCTAssertEqual(config.longPress, .mediumImpact)
         XCTAssertEqual(config.longPressOnSpace, .mediumImpact)
