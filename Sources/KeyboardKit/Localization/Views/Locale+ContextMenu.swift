@@ -39,7 +39,7 @@ public extension Locale {
                 locales: locales,
                 tapAction: tapAction
             ) {
-                Text($0.localizedName(in: keyboardContext.localePresentationLocale ?? $0) ?? "")
+                Text($0.localizedName(in: keyboardContext.localePresentationLocale) ?? "")
             }
         }
         
@@ -132,9 +132,7 @@ private extension Locale.ContextMenu {
     }
 
     func title(for locale: Locale) -> String {
-        locale.localizedName(
-            in: keyboardContext.localePresentationLocale ?? locale
-        ) ?? ""
+        locale.localizedName(in: keyboardContext.localePresentationLocale) ?? ""
     }
 }
 

@@ -126,7 +126,7 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var keyboardType = Keyboard.KeyboardType.alphabetic
 
-    /// The current locale.
+    /// The current locale, by default `.current`.
     ///
     /// > Note: Settings this will update ``localeIdentifier``
     /// and cause it to persist.
@@ -141,15 +141,13 @@ public class KeyboardContext: ObservableObject {
 
     /// The locale to use when displaying other locales.
     @Published
-    public var localePresentationLocale: Locale?
+    public var localePresentationLocale = Locale.current
 
     /// Whether to add an input mode switch key.
     @Published
     public var needsInputModeSwitchKey = false
 
     /// Whether the context prefers autocomplete.
-    ///
-    /// > Note: This will become a computed property in 9.0.
     @Published
     public var prefersAutocomplete = true
 
