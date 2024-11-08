@@ -1,6 +1,14 @@
 {
-  "originHash" : "62ccb62fd838df846cdb6c8869e014525c4f9c091e8b3f4000ad0e2427ff04a1",
   "pins" : [
+    {
+      "identity" : "keyboardkitpro",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
+      "state" : {
+        "branch" : "9.0.0-rc.1",
+        "revision" : "079adc304858cbe7f9db0deff7bd9a3a50c24ac6"
+      }
+    },
     {
       "identity" : "mockingkit",
       "kind" : "remoteSourceControl",
@@ -11,5 +19,5 @@
       }
     }
   ],
-  "version" : 3
+  "version" : 2
 }

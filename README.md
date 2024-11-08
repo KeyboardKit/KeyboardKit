@@ -47,7 +47,7 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives you access to lifecycle functions like `viewWillSetupKeyboardView`, observable state, services, etc.
 
-The easiest way to set up KeyboardKit is to use create a `KeyboardApp` value to define information for your app:
+The easiest way to set up KeyboardKit is to create a `KeyboardApp` value that defines information for your app:
 
 ```swift
 extension KeyboardApp {
@@ -119,7 +119,7 @@ struct MyApp: App {
 
 Setting up your app and keyboard with a `KeyboardApp` will make settings sync between the two if an ``appGroupId`` is defined, register your KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
 
-For more information, please see the [getting started guide][Getting-Started].
+For more information, see the [getting started guide][Getting-Started].
 
 
 
@@ -202,7 +202,7 @@ The `Demo` folder has a demo app that shows how to set up the main keyboard app,
 The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro. Note that you need to enable Full Access for some features to work, like haptic feedback.
 
 > [!IMPORTANT]
-> The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has settings screens in the keyboard as well. You can try out the [KeyboardKit app][KeyboardKit-App] from the App Store to see how settings sync when you use a signed app.  
+> The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has settings screens in the keyboard as well. You can try out the [KeyboardKit app][KeyboardKit-App] from the App Store to see how settings sync when you use a signed app.
 
 
 
