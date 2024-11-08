@@ -23,7 +23,7 @@ public extension InputSet {
         ///   - deviceVariations: Device-specific item variations, if any.
         public init(
             items: [Item],
-            deviceVariations: [DeviceType : [Item]] = [:]
+            deviceVariations: [DeviceType: [Item]] = [:]
         ) {
             self.items = items
             self.deviceVariations = deviceVariations
@@ -36,7 +36,7 @@ public extension InputSet {
         public let deviceVariations: [DeviceType: [Item]]
 
         /// This typealias represents a row device variation.
-        public typealias DeviceVariations = [DeviceType : [Item]]
+        public typealias DeviceVariations = [DeviceType: [Item]]
     }
 
     /// This typealias represents a list of input set rows.
@@ -93,7 +93,7 @@ public extension InputSet.ItemRow {
     /// characters as a single string, that will be split up.
     init(
         chars: String,
-        deviceVariations: [DeviceType : String] = [:]
+        deviceVariations: [DeviceType: String] = [:]
     ) {
         self.init(
             chars: chars.chars,
@@ -117,7 +117,7 @@ public extension InputSet.ItemRow {
     /// two chars in its string, like the Swedish `kr`.
     init(
         chars: [String],
-        deviceVariations: [DeviceType : [String]] = [:]
+        deviceVariations: [DeviceType: [String]] = [:]
     ) {
         self.init(
             items: chars.map { InputSet.Item($0) },
@@ -138,7 +138,7 @@ public extension InputSet.ItemRow {
     /// Create an input row from two cased character strings.
     init(
         lowercased: String, uppercased: String,
-        deviceVariations: [DeviceType : (lowercased: String, uppercased: String)] = [:]
+        deviceVariations: [DeviceType: (lowercased: String, uppercased: String)] = [:]
     ) {
         self.init(
             lowercased: lowercased.chars,
@@ -157,7 +157,7 @@ public extension InputSet.ItemRow {
     /// Create an input row from cased character arrays.
     init(
         lowercased: [String], uppercased: [String],
-        deviceVariations: [DeviceType : (lowercased: [String], uppercased: [String])] = [:]
+        deviceVariations: [DeviceType: (lowercased: [String], uppercased: [String])] = [:]
     ) {
         let equal = lowercased.count == uppercased.count
         assert(equal, "lowercased and uppercased must contain the same number of characters")

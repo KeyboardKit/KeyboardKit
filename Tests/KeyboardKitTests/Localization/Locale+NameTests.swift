@@ -175,7 +175,7 @@ class Locale_NameTests: XCTestCase {
             .turkish: "turkish",
             .ukrainian: "ukrainian",
             .uzbek: "uzbek",
-            .welsh: "welsh",
+            .welsh: "welsh"
         ]
 
         XCTAssertEqual(expected.keys.count, locales.count)

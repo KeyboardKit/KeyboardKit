@@ -30,9 +30,6 @@ import Foundation
 /// See the <doc:Actions-Article> article for more information.
 public enum KeyboardAction: Codable, Equatable {
 
-    /// Handle a certain autocomplete suggestion.
-    // case autocompleteSuggestion(Autocomplete.Suggestion)
-
     /// Deletes backwards when pressed, and repeats until released.
     case backspace
     

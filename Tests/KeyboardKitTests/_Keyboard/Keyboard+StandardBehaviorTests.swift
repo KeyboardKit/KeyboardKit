@@ -119,7 +119,7 @@ class Keyboard_StandardBehaviorTests: XCTestCase {
             let should = type.isNumericOrSymbolic
             let characters: [KeyboardAction] = [
                 .character(delim1),
-                .character(delim2),
+                .character(delim2)
             ] + String.alphabeticAccentSwitches.map { .character($0) }
             characters.forEach {
                 XCTAssertEqual(keyboardType(for: .press, on: $0), type)
