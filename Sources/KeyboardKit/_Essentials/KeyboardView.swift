@@ -297,7 +297,8 @@ private extension KeyboardView {
                             buttonView(
                                 for: item.element,
                                 totalWidth: geo.size.width,
-                                inputWidth: inputWidth
+                                inputWidth: inputWidth,
+                                isGestureAutoCancellable: row.offset == 0
                             )
                         }
                     }
@@ -380,7 +381,8 @@ private extension KeyboardView {
     func buttonView(
         for item: KeyboardLayout.Item,
         totalWidth width: Double,
-        inputWidth: Double
+        inputWidth: Double,
+        isGestureAutoCancellable: Bool
     ) -> ButtonView {
         let action = item.action
         let prediction = autocompleteContext.nextCharacterPrediction(for: action)
@@ -396,6 +398,7 @@ private extension KeyboardView {
                 keyboardWidth: width,
                 inputWidth: inputWidth,
                 isNextProbability: prediction,
+                isGestureAutoCancellable: isGestureAutoCancellable,
                 content: buttonContent(for: item)
             )
         ))

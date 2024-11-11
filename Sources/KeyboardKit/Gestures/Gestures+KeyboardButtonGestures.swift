@@ -22,6 +22,7 @@ extension Gestures {
         ///   - repeatTimer: The repeat gesture timer to use, if any.
         ///   - calloutContext: The callout context to affect, if any.
         ///   - isPressed: An optional binding that can be used to observe the button pressed state.
+        ///   - isGestureAutoCancellable: Whether an aborted gesture will auto-cancel itself, by default `false`.
         ///   - scrollState: The scroll state to use, if any.
         ///   - releaseOutsideTolerance: The percentage of the button size outside its bounds that should count as a release, by default `1.0`.
         ///   - doubleTapAction: The action to trigger when the button is double tapped.
@@ -37,6 +38,7 @@ extension Gestures {
             repeatTimer: GestureButtonTimer?,
             calloutContext: KeyboardCalloutContext?,
             isPressed: Binding<Bool>,
+            isGestureAutoCancellable: Bool? = nil,
             scrollState: GestureButtonScrollState?,
             releaseOutsideTolerance: Double? = nil,
             doubleTapAction: KeyboardGestureAction?,
@@ -54,6 +56,7 @@ extension Gestures {
             self.isPressed = isPressed
             self.scrollState = scrollState
             self.releaseOutsideTolerance = releaseOutsideTolerance ?? 1.0
+            self.cancelDelay = (isGestureAutoCancellable ?? false) ? 3 : nil
             self.doubleTapAction = doubleTapAction
             self.longPressAction = longPressAction
             self.pressAction = pressAction
@@ -70,6 +73,7 @@ extension Gestures {
         private let isPressed: Binding<Bool>
         private let scrollState: GestureButtonScrollState?
         private let releaseOutsideTolerance: Double
+        private let cancelDelay: Double?
         private let doubleTapAction: KeyboardGestureAction?
         private let longPressAction: KeyboardGestureAction?
         private let pressAction: KeyboardGestureAction?
@@ -84,7 +88,21 @@ extension Gestures {
         var body: some View {
             view.overlay(
                 GeometryReader { geo in
-                    button(for: geo)
+                    GestureButton(
+                        isPressed: isPressed,
+                        scrollState: scrollState,
+                        pressAction: { handlePress(in: geo) },
+                        cancelDelay: cancelDelay,
+                        releaseInsideAction: { handleReleaseInside(in: geo) },
+                        releaseOutsideAction: { handleReleaseOutside(in: geo) },
+                        longPressAction: { handleLongPress(in: geo) },
+                        doubleTapAction: { handleDoubleTap(in: geo) },
+                        repeatTimer: repeatTimer,
+                        repeatAction: { handleRepeat(in: geo) },
+                        dragAction: { handleDrag(in: geo, value: $0) },
+                        endAction: { handleGestureEnded(in: geo) },
+                        label: { _ in Color.clearInteractable }
+                    )
                 }
             )
         }
@@ -100,28 +118,6 @@ private extension View {
         } else {
             self
         }
-    }
-}
-
-// MARK: - Views
-
-private extension Gestures.KeyboardButtonGestures {
-
-    func button(for geo: GeometryProxy) -> some View {
-        GestureButton(
-            isPressed: isPressed,
-            scrollState: scrollState,
-            pressAction: { handlePress(in: geo) },
-            releaseInsideAction: { handleReleaseInside(in: geo) },
-            releaseOutsideAction: { handleReleaseOutside(in: geo) },
-            longPressAction: { handleLongPress(in: geo) },
-            doubleTapAction: { handleDoubleTap(in: geo) },
-            repeatTimer: repeatTimer,
-            repeatAction: { handleRepeat(in: geo) },
-            dragAction: { handleDrag(in: geo, value: $0) },
-            endAction: { handleGestureEnded(in: geo) },
-            label: { _ in Color.clearInteractable }
-        )
     }
 }
 

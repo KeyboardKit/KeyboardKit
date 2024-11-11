@@ -25,6 +25,7 @@ public extension View {
     ///   - repeatTimer: The repeat gesture timer to use, if any.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - isPressed: An optional binding that can be used to observe the button pressed state.
+    ///   - isGestureAutoCancellable: Whether an aborted gesture will auto-cancel itself, by default `false`.
     ///   - scrollState: The scroll state to use, if any.
     ///   - releaseOutsideTolerance: A custom percentage of the button size outside its bounds to count as a release, if any.
     func keyboardButtonGestures(
@@ -33,6 +34,7 @@ public extension View {
         repeatTimer: GestureButtonTimer? = nil,
         calloutContext: KeyboardCalloutContext?,
         isPressed: Binding<Bool> = .constant(false),
+        isGestureAutoCancellable: Bool? = nil,
         scrollState: GestureButtonScrollState? = nil,
         releaseOutsideTolerance: Double = 1
     ) -> some View {
@@ -41,6 +43,7 @@ public extension View {
             repeatTimer: repeatTimer,
             calloutContext: calloutContext,
             isPressed: isPressed,
+            isGestureAutoCancellable: isGestureAutoCancellable,
             scrollState: scrollState,
             releaseOutsideTolerance: releaseOutsideTolerance,
             doubleTapAction: { actionHandler.handle(.doubleTap, on: action) },
@@ -64,6 +67,7 @@ public extension View {
     ///   - repeatTimer: The repeat gesture timer to use, if any.
     ///   - calloutContext: The callout context to affect, if any.
     ///   - isPressed: An optional binding that can be used to observe the button pressed state, if any.
+    ///   - isGestureAutoCancellable: Whether an aborted gesture will auto-cancel itself, by default `false`.
     ///   - scrollState: The scroll state to use, if any.
     ///   - releaseOutsideTolerance: A custom percentage of the button size outside its bounds to count as a release, if any.
     ///   - doubleTapAction: The action to trigger when the button is double tapped, if any.
@@ -79,6 +83,7 @@ public extension View {
         repeatTimer: GestureButtonTimer? = nil,
         calloutContext: KeyboardCalloutContext? = nil,
         isPressed: Binding<Bool> = .constant(false),
+        isGestureAutoCancellable: Bool? = nil,
         scrollState: GestureButtonScrollState? = nil,
         releaseOutsideTolerance: Double? = nil,
         doubleTapAction: KeyboardGestureAction? = nil,
@@ -96,6 +101,7 @@ public extension View {
             repeatTimer: repeatTimer,
             calloutContext: calloutContext,
             isPressed: isPressed,
+            isGestureAutoCancellable: isGestureAutoCancellable,
             scrollState: scrollState,
             releaseOutsideTolerance: releaseOutsideTolerance,
             doubleTapAction: doubleTapAction,

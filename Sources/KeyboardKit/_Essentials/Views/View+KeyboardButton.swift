@@ -25,6 +25,7 @@ public extension View {
     ///   - additionalTapArea: An additional tap area in point to add outside the button.
     ///   - edgeInsets: The edge insets to apply to the interactable area, if any.
     ///   - isPressed: An optional binding that can observe the button pressed state.
+    ///   - isGestureAutoCancellable: Whether an aborted gesture will auto-cancel itself, by default `false`.
     ///   - scrollState: The scroll state to use, if any.
     ///   - releaseOutsideTolerance: The percentage of the button size that spans outside the button and still counts as a release, by default `1`.
     func keyboardButton(
@@ -37,6 +38,7 @@ public extension View {
         additionalTapArea: Double = 0,
         edgeInsets: EdgeInsets = .init(),
         isPressed: Binding<Bool> = .constant(false),
+        isGestureAutoCancellable: Bool? = nil,
         scrollState: GestureButtonScrollState? = nil,
         releaseOutsideTolerance: Double = 1
     ) -> some View {
@@ -59,6 +61,7 @@ public extension View {
                 repeatTimer: repeatTimer,
                 calloutContext: calloutContext,
                 isPressed: isPressed,
+                isGestureAutoCancellable: isGestureAutoCancellable,
                 scrollState: scrollState,
                 releaseOutsideTolerance: releaseOutsideTolerance
             )
@@ -199,7 +202,8 @@ private extension View {
                     keyboardContext: context,
                     calloutContext: .preview,
                     edgeInsets: insets,
-                    isPressed: $isPressed
+                    isPressed: $isPressed,
+                    isGestureAutoCancellable: true
                 )
         }
     }
