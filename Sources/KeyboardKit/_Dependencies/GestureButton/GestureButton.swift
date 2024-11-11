@@ -11,6 +11,12 @@ import SwiftUI
 
 /// This button can be used to trigger gesture-based actions.
 ///
+/// A `cancelDelay` can be specified to make a button cancel
+/// its gesture if no values are registered during the delay.
+/// This can be used to avoid a button from getting stuck in
+/// a pressed state, which for instance can happen when it's
+/// placed next to a scroll view and touched by accident.
+///
 /// > Important: Make sure to use ``GestureButtonScrollState``
 /// if the button is within a `ScrollView`, otherwise it may
 /// block the scroll view gestures in iOS 17 and earlier and
@@ -23,7 +29,7 @@ public struct GestureButton<Label: View>: View {
     ///   - isPressed: A custom, optional binding to track pressed state, if any.
     ///   - scrollState: The scroll state to use, if any.
     ///   - pressAction: The action to trigger when the button is pressed, if any.
-    ///   - cancelDelay: The time it takes for a cancelled press to cancel itself, by default `3.0` seconds.
+    ///   - cancelDelay: The time it takes for a cancelled press to cancel itself, if any.
     ///   - releaseInsideAction: The action to trigger when the button is released inside, if any.
     ///   - releaseOutsideAction: The action to trigger when the button is released outside of its bounds, if any.
     ///   - longPressDelay: The time it takes for a press to count as a long press, by default `0.5` seconds.
@@ -277,8 +283,8 @@ private extension GestureButton {
     /// triggered, this function can yield incorrect results
     /// and should be replaced by a proper bug fix.
     func tryTriggerCancelAfterDelay() {
+        guard let delay = state.cancelDelay else { return }
         let value = state.lastGestureValue
-        let delay = state.cancelDelay
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
             guard state.lastGestureValue?.location == value?.location else { return }
             self.reset()

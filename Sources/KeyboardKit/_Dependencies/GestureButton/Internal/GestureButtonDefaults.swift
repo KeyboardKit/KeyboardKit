@@ -11,9 +11,6 @@ import Foundation
 /// This struct is used to configure gesture button defaults.
 struct GestureButtonDefaults {
 
-    /// The time to wait before checking if the gesture was silently cancelled.
-    static let cancelDelay = 3.0
-
     /// The max time between two taps for them to count as a double tap.
     static let doubleTapTimeout = 0.2
 

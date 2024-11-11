@@ -23,14 +23,14 @@ class GestureButtonState: ObservableObject {
         repeatTimer: GestureButtonTimer? = nil
     ) {
         self.isPressedBinding = isPressed ?? .constant(false)
-        self.cancelDelay = cancelDelay ?? GestureButtonDefaults.cancelDelay
+        self.cancelDelay = cancelDelay
         self.longPressDelay = longPressDelay ?? GestureButtonDefaults.longPressDelay
         self.doubleTapTimeout = doubleTapTimeout ?? GestureButtonDefaults.doubleTapTimeout
         self.repeatTimer = repeatTimer ?? .init()
         self.repeatDelay = repeatDelay ?? GestureButtonDefaults.repeatDelay
     }
     
-    let cancelDelay: TimeInterval
+    let cancelDelay: TimeInterval?
     let longPressDelay: TimeInterval
     let doubleTapTimeout: TimeInterval
     let repeatTimer: GestureButtonTimer
