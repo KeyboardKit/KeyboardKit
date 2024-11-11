@@ -20,16 +20,11 @@ public extension Keyboard {
     struct ButtonKey: View {
         
         /// Create a keyboard button key.
-        ///
-        /// - Parameters:
-        ///   - isPressed: Whether or not the button is pressed, by default `false`.
-        public init(
-            isPressed: Bool = false
-        ) {
-            self.isPressed = isPressed
-        }
-        
-        private let isPressed: Bool
+        public init() {}
+
+        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! isPressed is no longer used.")
+        public init(isPressed: Bool) {}
+
         
         @Environment(\.keyboardButtonStyle)
         private var style
@@ -39,10 +34,8 @@ public extension Keyboard {
                 .strokeBorder(borderColor, lineWidth: borderLineWidth)
                 .background(style.background)
                 .background(backgroundColor)
-                .overlay(isPressed ? style.pressedOverlayColor : .clear)
                 .cornerRadius(cornerRadius)
                 .overlay(Keyboard.ButtonShadow())
-                .keyboardButtonStyle(style)  // Not needed in 9.0
         }
     }
 }

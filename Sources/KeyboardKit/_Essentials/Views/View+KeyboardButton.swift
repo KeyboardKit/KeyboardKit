@@ -45,6 +45,7 @@ public extension View {
             .keyboardButtonStyle(style)
             .foregroundColor(style.foregroundColor)
             .font(style.font)
+            .overlay(overlayColor(for: isPressed, style: style).cornerRadius(style.cornerRadius ?? 0))
             .padding(edgeInsets)
             .background(Color.clearInteractable)
             .additionalTapArea(
@@ -119,6 +120,16 @@ private extension View {
         } else {
             self
         }
+    }
+
+    func overlayColor(
+        for isPressed: Binding<Bool>,
+        style: Keyboard.ButtonStyle
+    ) -> Color {
+        if isPressed.wrappedValue {
+            return style.pressedOverlayColor ?? .clear
+        }
+        return .clear
     }
 
     func shouldApplyLocaleContextMenu(

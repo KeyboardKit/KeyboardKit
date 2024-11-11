@@ -256,7 +256,8 @@ extension Keyboard.ButtonStyle {
             font: .body,
             cornerRadius: 20,
             border: .init(color: .red, size: 3),
-            shadow: .init(color: .blue, size: 4)
+            shadow: .init(color: .blue, size: 4),
+            pressedOverlayColor: .red
         )
     }
 
@@ -267,7 +268,8 @@ extension Keyboard.ButtonStyle {
            font: .headline,
            cornerRadius: 10,
            border: .init(color: .blue, size: 5),
-           shadow: .init(color: .green, size: 8)
+           shadow: .init(color: .green, size: 8),
+           pressedOverlayColor: .yellow
        )
     }
     
