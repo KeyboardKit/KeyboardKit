@@ -23,16 +23,14 @@ public extension Keyboard {
 
         /// This mode can be used to display a set of inputs.
         case inputs(_ inputs: String)
-        
+
+        /// This mode can be used to display a numbers input
+        /// row, that is based on the current layout.
+        case numbers
+
         /// This mode can be used to hide the input toolbar.
         case hidden
     }
-}
-
-public extension Keyboard.InputToolbarDisplayMode {
-    
-    /// This mode can be used to display 1-0 as inputs.
-    static let numbers = Self.inputs("1234567890")
 }
 
 public extension View {

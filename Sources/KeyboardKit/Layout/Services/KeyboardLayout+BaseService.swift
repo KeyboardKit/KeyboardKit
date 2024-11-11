@@ -53,8 +53,10 @@ extension KeyboardLayout {
         open func keyboardLayout(
             for context: KeyboardContext
         ) -> KeyboardLayout {
-            let rows = itemRows(for: context)
-            return KeyboardLayout(itemRows: rows)
+            KeyboardLayout(
+                itemRows: itemRows(for: context),
+                numberInputToolbarInputSet: inputSetForNumberInputToolbar(with: context)
+            )
         }
 
 
@@ -98,8 +100,8 @@ extension KeyboardLayout {
             index == 3
         }
 
-        
-        // MARK: - Layout Builders
+
+        // MARK: - Input Sets
 
         /// The ``InputSet`` to use for the provided context.
         open func inputSet(
@@ -112,6 +114,20 @@ extension KeyboardLayout {
             }
         }
 
+        /// The ``InputSet`` to use for the provided context,
+        /// when creating a ``Keyboard/InputToolbarDisplayMode/numbers``
+        open func inputSetForNumberInputToolbar(
+            with context: KeyboardContext
+        ) -> InputSet {
+            switch context.keyboardType {
+            case .numeric: symbolicInputSet
+            default: numericInputSet
+            }
+        }
+
+
+        // MARK: - Layout Builders
+
         /// The input characters to convert to input keys.
         open func inputCharacters(
             for context: KeyboardContext
@@ -123,14 +139,21 @@ extension KeyboardLayout {
             )
         }
 
-        /// The actions to convert to layout items.
-        open func itemActions(
+        /// The input actions to convert to layout actions.
+        open func inputActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Rows {
             let characters = inputCharacters(for: context)
             return .init(characters: characters)
         }
-        
+
+        /// The actions to convert to layout items.
+        open func itemActions(
+            for context: KeyboardContext
+        ) -> KeyboardAction.Rows {
+            inputActions(for: context)
+        }
+
         /// The item rows to use for the provided context.
         open func itemRows(
             for context: KeyboardContext
@@ -148,7 +171,9 @@ extension KeyboardLayout {
                 }
             }
         }
-        
+
+        // MARK: - Item builders
+
         /// Get a layout item for the provided params.
         open func item(
             for action: KeyboardAction,
@@ -164,8 +189,6 @@ extension KeyboardLayout {
                 edgeInsets: itemInsets(for: action, row: row, index: index, context: context)
             )
         }
-
-        // MARK: - Item builders
 
         /// Get a layout item alignment for the provided params.
         open func itemAlignment(
