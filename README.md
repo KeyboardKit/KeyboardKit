@@ -157,7 +157,7 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 * 🌐 [Localization][Localization] - Localize your keyboard in **70 locales**.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
 * 👁 [Previews][Previews] - Extensive SwiftUI preview support.
-* ➡️ [Proxy][Proxy] - Extend the text document proxy with more capabilities.
+* 📄 [Proxy][Proxy] - Extend the text document proxy with more capabilities.
 * ⚙️ [Settings][Settings] - Provide keyboard settings & link to System Settings.
 * 🩺 [Status][Status] - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - Style your keyboard to great extent.
@@ -180,7 +180,7 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 * 🔣 [Layout][Layout] - Localized layouts for all locales.
 * 🌐 [Localization][Localization] - Services & views for all locales.
 * 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
-* ➡️ [Proxy][Proxy] - Let `UITextDocumentProxy` read the full document.
+* 📄 [Proxy][Proxy] - Let `UITextDocumentProxy` read the full document.
 * 📝 [Text][Text-Input] - Let users type within the keyboard.
 * 🍭 [Themes][Themes] - A theme engine with many pre-defined themes.
 

@@ -69,7 +69,7 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 * 🌐 <doc:Localization-Article> - Localize your keyboard in **70 locales**.
 * 🗺️ <doc:Navigation-Article> - Open urls and other apps from the keyboard.
 * 👁 <doc:Previews-Article> - Extensive SwiftUI preview support.
-* ➡️ <doc:Proxy-Article> - Extend the text document proxy with more capabilities.
+* 📄 <doc:Proxy-Article> - Extend the text document proxy with more capabilities.
 * ⚙️ <doc:Settings-Article> - Provide keyboard settings & link to System Settings.
 * 🩺 <doc:Status-Article> - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 <doc:Styling-Article> - Style your keyboard to great extent.
@@ -92,7 +92,7 @@ You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 * 🔣 <doc:Layout-Article> - Localized layouts for all locales.
 * 🌐 <doc:Localization-Article> - Services & views for all locales.
 * 👁 <doc:Previews-Article> - Keyboard & theme previews for in-app use.
-* ➡️ <doc:Proxy-Article> - Let ``UIKit/UITextDocumentProxy`` read the full document.
+* 📄 <doc:Proxy-Article> - Let ``UIKit/UITextDocumentProxy`` read the full document.
 * 📝 <doc:Text-Input-Article> - Let users type within the keyboard.
 * 🍭 <doc:Themes-Article> - A theme engine with many pre-defined themes.
 
