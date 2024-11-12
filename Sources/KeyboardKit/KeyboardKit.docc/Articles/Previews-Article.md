@@ -9,8 +9,6 @@ This article describes the KeyboardKit preview engine.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 SwiftUI previews are a great way to work on your project in Xcode without having to launch an app all the time. Just update your views and models, and the preview will automtically update.

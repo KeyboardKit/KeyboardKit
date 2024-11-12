@@ -9,8 +9,6 @@ This article describes how KeyboardKit can identify the host application.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 KeyboardKit provides ways to easily identify the host application, which may be of interest for many reasons, e.g. to vary the style or functionality of a keyboard based on the currently active app.

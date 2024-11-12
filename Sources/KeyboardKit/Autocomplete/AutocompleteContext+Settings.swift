@@ -43,8 +43,12 @@ public extension AutocompleteContext {
         public var isAutoIgnoreEnabled = true
 
         /// Whether next character prediction is enabled, by default `true`.
-        @AppStorage("\(settingsPrefix)isNextWordPredictionEnabled", store: .keyboardSettings)
+        @AppStorage("\(settingsPrefix)isNextCharacterPredictionEnabled", store: .keyboardSettings)
         public var isNextCharacterPredictionEnabled = true
+
+        /// Whether next word prediction is enabled, by default `true`.
+        @AppStorage("\(settingsPrefix)isNextWordPredictionEnabled", store: .keyboardSettings)
+        public var isNextWordPredictionEnabled = true
 
         /// The number of autocomplete suggestions to display, by default `3`.
         @AppStorage("\(settingsPrefix)suggestionsDisplayCount", store: .keyboardSettings)

@@ -9,25 +9,19 @@ This article describes the KeyboardKit app-specific utilities.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
-KeyboardKit has utilities that simplify building a great main app for your keyboard, like setting that automatically sync between the app and its keyboard, auto-registering your KeyboardKit Pro license, and much more.   
+KeyboardKit has app-specific utilities to help you build a great main app for your keyboard, like setting that automatically setting up your keyboard and app with a ``KeyboardApp``, syncing settings between the app and its keyboard, and much more.   
 
-👑 [KeyboardKit Pro][Pro] unlocks app-specific screens for the main app target. Information about Pro features can be found further down.
-
-
-
-## Namespace
-
-KeyboardKit has a ``KeyboardApp`` struct that is also a namespace for app-related types and views, like the ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen`` and ``KeyboardApp/LocaleScreen`` screens that are unlocked by KeyboardKit Pro.
+👑 [KeyboardKit Pro][Pro] unlocks app-specific screens, like a home screen template, and various settings screens, to help you get your main app up and running in minutes. Information about Pro features can be found further down.
 
 
 
 ## Keyboard App
 
-You can create a ``KeyboardApp`` to define and set up your app and keyboard, by defining the app's  ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, ``KeyboardApp/licenseKey``, ``KeyboardApp/deepLinks-swift.property``, etc.
+KeyboardKit has a ``KeyboardApp`` struct that is also a namespace for app-related types and views, like the ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen`` and ``KeyboardApp/LocaleScreen`` that are unlocked by KeyboardKit Pro.
+
+You can create an app-specific ``KeyboardApp`` value to define and set up your app & keyboard, by defining your app's  ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, ``KeyboardApp/licenseKey``, ``KeyboardApp/deepLinks-swift.property``, etc.
 
 You can create a static app value and add it to both the main app target and its keyboard extension target, to easily refer to it from both:
 
@@ -45,16 +39,14 @@ extension KeyboardApp {
 }
 ```
 
-Your app-specific ``KeyboardApp`` can also resolve other properties that you may need, e.g. to perform keyboard-based dictation.
+Your app-specific ``KeyboardApp`` can also resolve other properties that you may need, e.g. to perform keyboard-based dictation, to enable AI-based next word prediction, etc. See <doc:Dictation-Article> and <doc:Autocomplete-Article> and <doc:AI-Article> for more information. 
 
 > Important: The ``KeyboardApp``'s ``KeyboardApp/locales`` collection is only meant to describe which locales you *want* to use in your app and keyboard. It will be capped to the number of locales that your KeyboardKit Pro license includes.
 
 
 ## Keyboard App View
 
-The ``KeyboardAppView`` view can be used as the root view of a keyboard app target, to set up everything needed to use KeyboardKit.
-
-To use it, just wrap your app's root view in a  ``KeyboardAppView`` and pass in your app-specific ``KeyboardApp`` value:
+The ``KeyboardAppView`` view can be used as the root view of a keyboard app target, to set up everything needed to use KeyboardKit for a certain ``KeyboardApp``:
 
 ```swift
 @main
@@ -69,10 +61,10 @@ struct MyApp: App {
 }
 ```
 
-This will set up everything that is defined by the ``KeyboardApp``, like setting up keyboard ``Keyboard/Settings`` to use an App Group, register a KeyboardKit Pro license key, set up dictation, etc. It will also inject keyboard ``Keyboard/State`` into the view, to let you access state values like this:
+This will set up things that are defined by the ``KeyboardApp``, like making keyboard setting use an App Group to sync between the app and its keyboard, register a KeyboardKit Pro license key, set up dictation, etc. It will also inject all keyboard ``Keyboard/State`` into the environment:
 
 ```swift
-struct MyView: View {
+struct ContentView: View {
 
     @EnvironmentObject
     var keyboardContext: KeyboardContext
@@ -103,7 +95,9 @@ The injected state will also be used by the KeyboardKit Pro screens that are des
                 ![KeyboardApp.HomeScreen](keyboardapp-homescreen)
             }
             @Column {
-                A ``KeyboardApp/HomeScreen`` can be used as the main screen of a keyboard app. It shows the main app icon, a keyboard status section, links to settings screens, custom header & footer content, etc.
+                A ``KeyboardApp/HomeScreen`` can be used as the main screen of a keyboard app, to let you quickly get your main app up and running. 
+                
+                The screen shows the main app icon, a keyboard status section, links to settings screens, custom header & footer content, etc.
             }
         }
     }
@@ -114,7 +108,9 @@ The injected state will also be used by the KeyboardKit Pro screens that are des
                 ![KeyboardApp.SettingsScreen](keyboardapp-settingsscreen)
             }
             @Column {
-                A ``KeyboardApp/SettingsScreen`` can be used as the main settings screen of a keyboard app or extension. It lists various keyboard settings that are grouped by type.
+                A ``KeyboardApp/SettingsScreen`` can be used as the main settings screen of a keyboard app or in a keyboard extension. 
+                
+                The screen lists various keyboard settings, grouped by type. All changes are automatically synced to the various context types.
             }
         }
     }
@@ -125,7 +121,9 @@ The injected state will also be used by the KeyboardKit Pro screens that are des
                 ![KeyboardApp.SettingsScreen](keyboardapp-localescreen)
             }
             @Column {
-                A ``KeyboardApp/LocaleScreen`` can be used as the language settings screen in a keyboard app or extension. It lists added and available locales and lets users reorganize locales that are added to the keyboard.
+                A ``KeyboardApp/LocaleScreen`` can be used as the language settings screen in a keyboard app or in a keyboard extension. 
+                
+                The screen lists all added and all available locales, and lets users add and reorganize locales that are used by the keyboard.
             }
         }
     }
@@ -136,7 +134,11 @@ The injected state will also be used by the KeyboardKit Pro screens that are des
                 ![KeyboardApp.SettingsScreen](keyboardapp-themescreen)
             }
             @Column {
-                A ``KeyboardApp/ThemeScreen`` can be used as a main theme picker screen of a keyboard app or extension. It list available themes in shelves, and will by default set the main ``KeyboardThemeContext/theme``.
+                A ``KeyboardApp/ThemeScreen`` can be used as a main theme picker screen of a keyboard app or in a keyboard extension.
+                
+                The screen list available themes in shelves, and will by default set the main ``KeyboardThemeContext/theme`` when a theme is tapped.
+                
+                Since you may not want to support themes in your keyboard, this screen is opt-in when using a ``KeyboardApp/HomeScreen``.
             }
         }
     }

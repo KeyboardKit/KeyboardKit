@@ -9,8 +9,6 @@ This article describes the essential parts of KeyboardKit.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 KeyboardKit extends Apple's native keyboard APIs and provides you with a lot more functionality. It lets you mimic a native iOS keyboard and tweak its style and behavior, or create completely custom keyboards.

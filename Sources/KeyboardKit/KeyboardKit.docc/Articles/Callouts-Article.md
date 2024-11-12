@@ -9,8 +9,6 @@ This article describes the KeyboardKit callout engine.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 Callouts are an important part of the typing experience, where input callouts can show the currently pressed key and action callouts can show secondary actions when certain keys are long pressed.

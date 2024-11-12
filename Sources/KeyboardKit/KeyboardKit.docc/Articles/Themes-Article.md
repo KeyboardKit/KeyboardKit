@@ -7,8 +7,6 @@
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 This article describes the KeyboardKit Pro theme engine, which can be used to style the entire keyboard with a single theme.

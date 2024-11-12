@@ -81,7 +81,7 @@ public extension UITextDocumentProxy {
     }
 }
 
-extension UITextDocumentProxy {
+public extension UITextDocumentProxy {
     
     var wordDelimiters: [String] {
         String.wordDelimiters

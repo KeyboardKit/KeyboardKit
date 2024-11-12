@@ -9,8 +9,6 @@ This article describes the KeyboardKit proxy engine and its utilities.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 iOS keyboards use a ``UIKit/UITextDocumentProxy`` to integrate with the currently selected text field. The proxy lets you insert and delete text, get the currently selected text, move the input cursor, etc.
@@ -31,20 +29,18 @@ KeyboardKit has a ``Proxy`` namespace with proxy-related types. It currently onl
 
 ## Extensions
 
-KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional capabilities, such as the ability to get more content from the document, analyze words, sentences & quotations, end the current sentence, etc. Here are some examples:
+KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional capabilities, such as the ability to get more content from the document, analyze words, sentences & quotations, end the current sentence, etc.
+
+Here are some examples of extensions that are added to the proxy by KeyboardKit, to make it much more capable than it is by default, with more variants of certain operations listed in the full ``UIKit/UITextDocumentProxy`` documentation:
 
 * ``UIKit/UITextDocumentProxy/currentWord``
-* ``UIKit/UITextDocumentProxy/currentWordPreCursorPart``
-* ``UIKit/UITextDocumentProxy/currentWordPostCursorPart``
 * ``UIKit/UITextDocumentProxy/deleteBackward(range:)``
 * ``UIKit/UITextDocumentProxy/deleteBackward(times:)``
 * ``UIKit/UITextDocumentProxy/documentContext``
 * ``UIKit/UITextDocumentProxy/endSentence(withText:)``
 * ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)``
-* ``UIKit/UITextDocumentProxy/hasUnclosedAlternateQuotationBeforeInput(for:)``
 * ``UIKit/UITextDocumentProxy/hasUnclosedQuotationBeforeInput(for:)``
 * ``UIKit/UITextDocumentProxy/isCursorAtNewSentence``
-* ``UIKit/UITextDocumentProxy/isCursorAtNewSentenceWithTrailingWhitespace``
 * ``UIKit/UITextDocumentProxy/isCursorAtNewWord``
 * ``UIKit/UITextDocumentProxy/isCursorAtTheEndOfTheCurrentWord``
 * ``UIKit/UITextDocumentProxy/isReadingFullDocumentContext``
@@ -52,6 +48,7 @@ KeyboardKit extends the native ``UIKit/UITextDocumentProxy`` with additional cap
 * ``UIKit/UITextDocumentProxy/sentenceBeforeInput``
 * ``UIKit/UITextDocumentProxy/sentenceDelimiters``
 * ``UIKit/UITextDocumentProxy/wordBeforeInput``
+* ``UIKit/UITextDocumentProxy/wordDelimiters``
 
 See the ``UIKit/UITextDocumentProxy`` documentation for more information and a full list of extension that are applied by KeyboardKit.
 
@@ -65,51 +62,15 @@ See the ``UIKit/UITextDocumentProxy`` documentation for more information and a f
 [KeyboardKit Pro][Pro] unlocks additional ``UIKit/UITextDocumentProxy`` capabilities, like the ability to read the full document content instead of just the content closest to the input cursor.
 
 
----
+### Full Document Context
 
+Apple's native text document proxy doesn't return all the text within the document. It instead cuts off the available text at any time, e.g. at the previous or next paragraph. This makes it hard to provide <doc:AI-Article> that require more context.
 
-## How to...
-
-
-### Read the full document context
-
-As you may have noticed, the ``UIKit/UITextDocumentProxy`` ``UIKit/UITextDocumentProxy/documentContext`` functions don't return the full document content before and after the input cursor. Any new line may stop the proxy from looking for more content.
-
-This means that you will most likely only get a partial text result, which makes it hard to build more complex features, like proof-reading a document, use other AI-based features that require more context, etc.
-
-KeyboardKit Pro therefore unlocks additional capabilities to read *all* text from the document, by moving the text cursor in careful ways to unlock more content, then returning the input cursor to the original position.
-
-To read *all* the text from the document, just use the ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)`` functions instead of ``UIKit/UITextDocumentProxy/documentContext``:
+KeyboardKit Pro therefore unlocks ways to read **all** text from the proxy, using ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)`` proxy extensions that reads the full document content by moving the input cursor in intricate ways.
 
 ```swift
-struct KeyboardView: View {
-
-    @EnvironmentObject
-    private var context: KeyboardContext
-
-    var body: some View {
-        VStack {
-            Button("Get the full document context") {
-                Task {
-                    let proxy = context.textDocumentProxy
-                    let result = try? await proxy.fullDocumentContext()
-                    await MainActor.run {
-                        print(result?.fullDocumentContext)
-                        print(result?.fullDocumentContextBeforeInput)
-                        print(result?.fullDocumentContextAfterInput)
-                    }
-                }
-            }
-        }
-    }
-}
+let proxy = keyboardContext.textDocumentProxy
+let result = try await proxy.fullDocumentContext(config: ...)
 ```
 
-These functions are async, since they will read the document by moving the input cursor in intricate ways. It's not a fail-safe operation, but has been tweaked to provide as accurate results as possible with the current approach.
-
-You can pass in a custom configuration to configure the read operation. It lets you tweak factors like sleep time and how many times to try to read more content at the detected end.
-
-Since the full document context functions are async, you must wrap them in a task when calling them from SwiftUI or non-async places.
-
-
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+This will provide you with all the text before and after the text input cursor, as well as an aggregate of all the available text. Note that it's a best effort operation that is not guaranteed to return a valid result. You can therefore configure the function to yield better results.

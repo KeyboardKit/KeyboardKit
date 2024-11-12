@@ -9,8 +9,6 @@ This article describes the KeyboardKit action engine.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 The ``KeyboardAction`` type is a central concept in KeyboardKit, where an action can be triggered by the keyboard or by code, then handled with a ``KeyboardActionHandler``.

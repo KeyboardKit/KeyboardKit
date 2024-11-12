@@ -9,8 +9,6 @@ This article describes the KeyboardKit dictation engine.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 Dictation can be used to let users enter text by speaking instead of typing on the keyboard. Since keyboard extensions have no access to the microphone, KeyboardKit lets you trigger dictation from a keyboard extension and perform it in the main app.

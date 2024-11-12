@@ -9,8 +9,6 @@ This article describes the KeyboardKit localization engine.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 A flexible localization engine is an important part of a keyboard, where every supported locale should be able to localize the keyboard and its texts, layout, and secondary callout actions.

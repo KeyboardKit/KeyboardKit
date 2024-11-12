@@ -9,8 +9,6 @@ This article describes how to get started with KeyboardKit.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 

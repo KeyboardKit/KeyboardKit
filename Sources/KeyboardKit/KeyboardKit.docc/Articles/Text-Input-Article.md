@@ -7,8 +7,6 @@
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 This article describes the KeyboardKit text input engine, which lets you type within the keyboard extension.

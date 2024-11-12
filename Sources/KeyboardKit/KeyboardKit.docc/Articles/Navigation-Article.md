@@ -9,8 +9,6 @@ This article describes the KeyboardKit navigation engine.
         source: "Page",
         alt: "Page icon"
     )
-
-    @PageColor(blue)
 }
 
 A custom keyboard extension may sometimes have to open URLs or trigger deep links, for instance to open the app or System Settings.
