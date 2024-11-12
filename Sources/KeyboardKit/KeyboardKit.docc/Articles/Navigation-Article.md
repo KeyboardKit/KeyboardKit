@@ -26,7 +26,7 @@ KeyboardKit therefore provides ways to open URLs from a keyboard extension, with
 
 ### Open a URL from a keyboard extension
 
-The best way to open a URL from a keyboard extension, where you can't access `UIApplication.shared` is to use a SwiftUI `Link`. You can alsotrigger a ``KeyboardAction/url(_:id:)`` action and let the main ``Keyboard/Services/actionHandler`` in ``KeyboardInputViewController/services`` handle it.
+The best way to open a URL from a keyboard extension, where you can't access `UIApplication.shared` is to use a SwiftUI `Link`. You can also trigger a ``KeyboardAction/url(_:id:)`` action and let the main ``Keyboard/Services/actionHandler`` in ``KeyboardInputViewController/services`` handle it.
 
 
 

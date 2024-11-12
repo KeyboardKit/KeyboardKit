@@ -168,20 +168,20 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 
 [KeyboardKit Pro][Pro] extends KeyboardKit with Pro features:
 
-* ⌨️ [Essentials][Essentials] - More essential tools, keyboard previews, etc.
+* ⌨️ [Essentials][Essentials] - More essential tools, previews, toolbars, etc.
 * 🤖 [AI][AI] - Features that are needed for AI.
 * 📱 [App][App] - App-specific screens & views.
-* 💡 [Autocomplete][Autocomplete] - On-device & remote autocomplete.
-* 🗯 [Callouts][Callouts] - Localized callouts for locales.
-* 🎤 [Dictation][Dictation] - Trigger dictation from the keyboard.
-* 😀 [Emojis][Emojis] - A powerful emoji keyboard.
-* ⌨️ [External][External] - Detect if an external keyboard is connected. 
+* 💡 [Autocomplete][Autocomplete] - Local & remote autocomplete, next word prediction, etc.
+* 🗯 [Callouts][Callouts] - Localized callout actions for all supported locales.
+* 🎤 [Dictation][Dictation] - Dictate text from the keyboard.
+* 😀 [Emojis][Emojis] - A powerful emoji keyboard, search, etc.
+* ⌨️ [External][External] - Auto-detect if an external keyboard is connected. 
 * 🏠 [Host][Host] - Identify and open specific host applications.
-* 🔣 [Layout][Layout] - Localized layouts for all locales.
-* 🌐 [Localization][Localization] - Services & views for all locales.
+* 🔣 [Layout][Layout] - Localized layouts for all supported locales.
+* 🌐 [Localization][Localization] - Services & views for all supported locales.
 * 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
-* 📄 [Proxy][Proxy] - Let `UITextDocumentProxy` read the full document.
-* 📝 [Text][Text-Input] - Let users type within the keyboard.
+* 📄 [Proxy][Proxy] - Allow `UITextDocumentProxy` to read the full document.
+* 📝 [Text][Text-Input] - Allow users to type within the keyboard.
 * 🍭 [Themes][Themes] - A theme engine with many pre-defined themes.
 
 
