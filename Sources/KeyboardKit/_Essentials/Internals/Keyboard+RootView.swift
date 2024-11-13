@@ -41,6 +41,8 @@ extension Keyboard {
         @EnvironmentObject
         private var keyboardSettings: Keyboard.Settings
 
+        @EnvironmentObject
+        private var themeContext: KeyboardThemeContext
 
         var body: some View {
             view()

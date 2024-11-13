@@ -25,28 +25,8 @@ public extension Keyboard.KeyboardCase {
     /// The case's unique identifier.
     var id: String { rawValue }
     
-    /// Whether or not the case is caps locked.
-    var isCapsLocked: Bool {
-        switch self {
-        case .auto: false
-        case .capsLocked: true
-        case .lowercased: false
-        case .uppercased: false
-        }
-    }
-    
-    /// Whether or not the case is lowercased.
-    var isLowercased: Bool {
-        switch self {
-        case .auto: false
-        case .capsLocked: false
-        case .lowercased: true
-        case .uppercased: false
-        }
-    }
-    
-    /// Whether or not the case is uppercased or capslocked.
-    var isUppercased: Bool {
+    /// Whether the case is uppercased or caps locked.
+    var isUppercasedOrCapslocked: Bool {
         switch self {
         case .auto: false
         case .capsLocked: true

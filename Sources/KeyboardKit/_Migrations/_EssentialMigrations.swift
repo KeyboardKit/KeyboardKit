@@ -102,3 +102,36 @@ public extension KeyboardView where CollapsedView == KeyboardView.StandardCollap
         )
     }
 }
+
+public extension Keyboard.KeyboardCase {
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Just use an equality check. instead")
+    var isCapsLocked: Bool {
+        switch self {
+        case .auto: false
+        case .capsLocked: true
+        case .lowercased: false
+        case .uppercased: false
+        }
+    }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Just use an equality check. instead")
+    var isLowercased: Bool {
+        switch self {
+        case .auto: false
+        case .capsLocked: false
+        case .lowercased: true
+        case .uppercased: false
+        }
+    }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Just use an equality check. instead")
+    var isUppercased: Bool {
+        switch self {
+        case .auto: false
+        case .capsLocked: true
+        case .lowercased: false
+        case .uppercased: true
+        }
+    }
+}

@@ -342,7 +342,7 @@ extension KeyboardStyle.StandardService {
 extension KeyboardAction {
 
     func isUpperShift(for context: KeyboardContext) -> Bool {
-        isShiftAction && context.keyboardCase.isUppercased
+        isShiftAction && context.keyboardCase.isUppercasedOrCapslocked
     }
 
     var buttonBackgroundColorForAllStates: Color? {
