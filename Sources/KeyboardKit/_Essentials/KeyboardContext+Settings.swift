@@ -45,6 +45,10 @@ public extension KeyboardContext {
             didSet { onAutocapitalizationEnabledChanged() }
         }
 
+        /// Whether to auto-collapse the keyboard when an external keyboard is connected.
+        @AppStorage("\(settingsPrefix)`isKeyboardAutoCollapseEnabled`", store: .keyboardSettings)
+        public var isKeyboardAutoCollapseEnabled = false
+
         /// The identifier of the current ``locale``.
         @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
         public internal(set) var localeIdentifier = Locale.current.identifier

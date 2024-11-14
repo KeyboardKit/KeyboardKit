@@ -38,7 +38,7 @@ The next keyboard button experiments have been made permanent.
 
 ### ⌨️ Essentials
 
-The `KeyboardContext` has a new `isKeyboardCollapsed` property that can be enabled to collapse the keyboard.
+The `KeyboardContext` has a new `isKeyboardCollapsed` as well as a new `isAutoCollapsedEnabled` setting.
 
 The `KeyboardContext` has a new `keyboardCase` that lets us decouple the keyboard type from the keyboard case. 
 
