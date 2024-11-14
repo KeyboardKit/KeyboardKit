@@ -38,7 +38,18 @@ public struct License {}
 public extension Keyboard {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct ToggleToolbar {}
+    struct BottomRow: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct ToggleToolbar: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
 }
 
 #if os(iOS)
@@ -105,16 +116,32 @@ public extension AutocompleteService where Self == Autocomplete.LocalService {
 public extension KeyboardApp {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct HomeScreen {}
+    struct HomeScreen: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct LocaleScreen {}
+    struct LocaleScreen: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct SettingsScreen {}
+    struct SettingsScreen: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct ThemeScreen {}
+    struct ThemeScreen: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
 }
 
 
@@ -155,14 +182,22 @@ public extension KeyboardCalloutService where Self == KeyboardCallout.ProService
 public extension Dictation {
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct BarVisualizer {}
-    
+    struct BarVisualizer: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
+
     /// 👑 This is unlocked by KeyboardKit Pro.
     struct BarVisualizerStyle {}
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct Screen {}
-    
+    struct Screen: View {
+        public var body: some View {
+            ProPlaceholderError.proPlaceholder
+        }
+    }
+
     /// 👑 This is unlocked by KeyboardKit Pro.
     struct ScreenStyle {}
 
@@ -214,7 +249,11 @@ public extension View {
 // MARK: - Emojis
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public struct EmojiKeyboard {}
+public struct EmojiKeyboard: View {
+    public var body: some View {
+        ProPlaceholderError.proPlaceholder
+    }
+}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
 public extension Emoji.KeyboardStyle {
@@ -238,15 +277,6 @@ public extension Image {
     ) throws -> Image {
         throw ProPlaceholderError.proPlaceholder
     }
-}
-
-
-// MARK: - Feedback
-
-public extension Feedback {
-    
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    struct Toggle {}
 }
 
 
@@ -296,6 +326,13 @@ public extension KeyboardLayout {
         layoutConfiguration: KeyboardLayout.Configuration
     ) -> KeyboardLayout {
         return self
+    }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    var bottomRowLayout: KeyboardLayout {
+        var layout = self
+        layout.itemRows = layout.itemRows.suffix(1)
+        return layout
     }
 
     /// 👑 This is unlocked by KeyboardKit Pro.

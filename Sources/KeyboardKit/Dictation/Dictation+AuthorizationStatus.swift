@@ -27,11 +27,11 @@ public extension SFSpeechRecognizerAuthorizationStatus {
     /// Get a dictation-mapped status.
     var keyboardDictationStatus: Dictation.AuthorizationStatus {
         switch self {
-        case .notDetermined: return .notDetermined
-        case .denied: return .denied
-        case .restricted: return .restricted
-        case .authorized: return .authorized
-        @unknown default: return .notDetermined
+        case .notDetermined: .notDetermined
+        case .denied: .denied
+        case .restricted: .restricted
+        case .authorized: .authorized
+        @unknown default: .notDetermined
         }
     }
 }

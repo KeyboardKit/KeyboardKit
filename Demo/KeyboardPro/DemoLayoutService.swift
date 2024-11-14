@@ -45,16 +45,16 @@ private extension KeyboardLayout {
         let hasEmoji = row.contains(where: { $0.action == .keyboardType(.emojis) })
         if hasEmoji { return }
         guard let button = tryCreateBottomRowItem(for: .keyboardType(.emojis)) else { return }
-        itemRows.insert(button, after: .space, atRow: bottomRowIndex)
+        rows.insert(button, after: .space, atRow: bottomRowIndex)
     }
 
     func tryInsertLocaleSwitcher() {
         guard let item = tryCreateBottomRowItem(for: .nextLocale) else { return }
-        itemRows.insert(item, after: .space, atRow: bottomRowIndex)
+        rows.insert(item, after: .space, atRow: bottomRowIndex)
     }
 
     func tryInsertRocketButton() {
         guard let button = tryCreateBottomRowItem(for: .rocket) else { return }
-        itemRows.insert(button, before: .space, atRow: bottomRowIndex)
+        rows.insert(button, before: .space, atRow: bottomRowIndex)
     }
 }

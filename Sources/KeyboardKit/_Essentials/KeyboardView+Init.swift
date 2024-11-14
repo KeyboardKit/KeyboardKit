@@ -1,5 +1,5 @@
 //
-//  KeyboardView+Inits.swift
+//  KeyboardView+Init.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-11-07.

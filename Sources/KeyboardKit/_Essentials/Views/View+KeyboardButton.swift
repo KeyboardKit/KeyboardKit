@@ -78,7 +78,7 @@ public extension View {
     func keyboardButtonAccessibility(
         for action: KeyboardAction
     ) -> some View {
-        if let label = action.standardAccessibilityLabel {
+        if let label = action.accessibilityLabel {
             self.accessibilityElement()
                 .accessibilityAddTraits(.isButton)
                 .accessibilityLabel(label)

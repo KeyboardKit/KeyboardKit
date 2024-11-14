@@ -12,8 +12,7 @@ public extension Dictation {
 
     /// This enum defines dictation service errors.
     ///
-    /// These errors can be thrown by a ``DictationService``
-    /// or a ``KeyboardDictationService``.
+    /// These errors can be thrown by a ``DictationService``.
     enum ServiceError: Error {
 
         /// The service is disabled.

@@ -19,14 +19,12 @@ public extension KeyboardAction {
     /// This typealias defines a controller gesture action.
     typealias GestureAction = (KeyboardController?) -> Void
 
-    /// The controller action to trigger when this action is
-    /// triggered without a gesture.
+    /// The standard controller action.
     var standardAction: GestureAction? {
         standardReleaseAction ?? standardPressAction
     }
-    
-    /// The controller action to trigger when this action is
-    /// triggered with a certain gesture.
+
+    /// The standard controller action for a certain gesture.
     func standardAction(for gesture: Keyboard.Gesture) -> GestureAction? {
         switch gesture {
         case .doubleTap: standardDoubleTapAction
@@ -37,22 +35,19 @@ public extension KeyboardAction {
         case .end: nil
         }
     }
-    
-    /// The controller action to trigger when this action is
-    /// triggered with a double tap.
+
+    /// The standard double tap action, if any.
     var standardDoubleTapAction: GestureAction? { nil }
-    
-    /// The controller action to trigger when this action is
-    /// triggered with a long press.
+
+    /// The standard long press action, if any.
     var standardLongPressAction: GestureAction? {
         switch self {
         case .space: { _ in }
         default: nil
         }
     }
-    
-    /// The controller action to trigger when this action is
-    /// triggered with a press.
+
+    /// The standard press action, if any.
     var standardPressAction: GestureAction? {
         switch self {
         case .backspace: { $0?.deleteBackward() }
@@ -61,9 +56,8 @@ public extension KeyboardAction {
         default: nil
         }
     }
-    
-    /// The controller action to trigger when this action is
-    /// triggered with a release.
+
+    /// The standard release action, if any.
     var standardReleaseAction: GestureAction? {
         switch self {
         case .character(let char): { $0?.insertText(char) }
@@ -85,9 +79,8 @@ public extension KeyboardAction {
         default: nil
         }
     }
-    
-    /// The controller action to trigger when this action is
-    /// triggered, and repeated until it's released.
+
+    /// The standard repeat action, if any.
     var standardRepeatAction: GestureAction? {
         switch self {
         case .backspace: standardPressAction

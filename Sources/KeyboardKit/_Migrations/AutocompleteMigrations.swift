@@ -1,3 +1,5 @@
+import SwiftUI
+
 public extension Autocomplete.Suggestion {
 
     @available(*, deprecated, renamed: "autocompleteCased", message: "Migration Deprecation, will be removed in 9.1!")
@@ -21,5 +23,30 @@ public extension AutocompleteService {
         suggestions: [Autocomplete.Suggestion]
     ) async throws -> [Character: Double] {
         try await autocomplete(text).nextCharacterPredictions ?? [:]
+    }
+}
+
+public extension Autocomplete.ToolbarItemStyle {
+
+    @available(*, deprecated, message: "color must come before font.")
+    @_disfavoredOverload
+    init(
+        titleFont: KeyboardFont = .body,
+        titleColor: Color = .primary,
+        subtitleFont: KeyboardFont = .footnote,
+        subtitleColor: Color = .primary,
+        horizontalPadding: Double = 6,
+        verticalPadding: Double = 10,
+        backgroundColor: Color = .clear,
+        backgroundCornerRadius: CGFloat = 4
+    ) {
+        self.titleFont = titleFont
+        self.titleColor = titleColor
+        self.subtitleFont = subtitleFont
+        self.subtitleColor = subtitleColor
+        self.horizontalPadding = horizontalPadding
+        self.verticalPadding = verticalPadding
+        self.backgroundColor = backgroundColor
+        self.backgroundCornerRadius = backgroundCornerRadius
     }
 }

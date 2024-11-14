@@ -13,7 +13,7 @@ import SwiftUI
 /// be given a custom corner radius.
 ///
 /// This view will be removed when this library is bumped to
-/// iOS 17, since SwiftUI then has an UnevenRoundedRectangle.
+/// iOS 17, where SwiftUI has an `UnevenRoundedRectangle`.
 struct CustomRoundedRectangle: Shape {
     
     init(

@@ -6,6 +6,11 @@ public extension KeyboardAction {
     static func shift(currentCasing: Keyboard.KeyboardCase) -> KeyboardAction {
         .shift(currentCasing)
     }
+
+    @available(*, deprecated, renamed: "accessibilityLabel", message: "Migration Deprecation, will be removed in 9.1!")
+    var standardAccessibilityLabel: String? {
+        accessibilityLabel
+    }
 }
 
 @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Copy it if you need it.")

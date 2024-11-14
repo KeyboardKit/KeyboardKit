@@ -46,6 +46,12 @@ public extension KeyboardLayout {
         /// The edge insets to apply.
         public var edgeInsets: EdgeInsets
     }
+
+    /// This typealias represents a list of layout items.
+    typealias ItemRow = [Item]
+
+    /// This typealias represents a list of layout item rows.
+    typealias ItemRows = [ItemRow]
 }
 
 public extension KeyboardLayout.Item {
@@ -146,11 +152,5 @@ public extension KeyboardLayout {
         itemRows.compactMap { row in
             row.first { $0.action == action }
         }.first
-    }
-    
-    /// Get the item row, if any at a certain row index.
-    func itemRow(at rowIndex: Int) -> ItemRow? {
-        guard rowIndex > 0 && rowIndex < itemRows.count else { return nil }
-        return itemRows[rowIndex]
     }
 }

@@ -12,9 +12,9 @@ public extension Gestures {
     
     /// This enum defines supported space drag sensitivities.
     ///
-    /// > Note: This type defines to how many points a space
-    /// key must be dragged for the input cursor to be moved
-    /// a step. Higher sensitivity means fewer points.
+    /// The type defines to how many points a space key must
+    /// be dragged for the input cursor to be moved one step.
+    /// Higher sensitivity means fewer points.
     enum SpaceDragSensitivity: Codable, Identifiable {
         
         case low, medium, high, custom(points: Int)

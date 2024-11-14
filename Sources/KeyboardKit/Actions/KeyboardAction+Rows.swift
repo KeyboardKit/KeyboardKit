@@ -51,7 +51,7 @@ public extension KeyboardAction.Row {
 }
 
 public extension KeyboardAction.Rows {
-    
+
     /// Map a string array array to keyboard action rows.
     init(characters: [[String]]) {
         self = characters.map {

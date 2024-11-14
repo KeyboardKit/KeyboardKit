@@ -16,11 +16,9 @@ import Foundation
 ///
 /// KeyboardKit has pre-defined input sets, such as ``qwerty``,
 /// ``numeric(currency:)`` and ``symbolic(currencies:)``, to
-/// let you easily get started with a base setup that can be
-/// tweaked as needed.
-///
-/// KeyboardKit Pro unlocks additional input sets to support
-/// more locales, like `qwertz` and `azerty`.
+/// help you get started. KeyboardKit Pro unlocks additional
+/// input sets, like `qwertz` & `azerty` and locale-specific
+/// input sets for each supported locale.
 ///
 /// See the <doc:Layout-Article> article for more information.
 public struct InputSet: Equatable {

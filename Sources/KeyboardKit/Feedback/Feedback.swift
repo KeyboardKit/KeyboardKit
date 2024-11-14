@@ -13,6 +13,5 @@ import Foundation
 /// The namespace doesn't contain protocols, nor any context
 /// or settings types that should be top-level types.
 ///
-/// For more information about this namespace and its features
 /// See the <doc:Feedback-Article> article for more information.
 public struct Feedback {}

@@ -10,6 +10,10 @@ import Foundation
 
 public extension Locale {
 
+    /// A list of KeyboardKit supported locales.
+    ///
+    /// KeyboardKit Pro unlocks localized secondary callouts,
+    /// layouts and services for all supported locales.
     static var keyboardKitSupported: [Locale] {
         [
         .english,

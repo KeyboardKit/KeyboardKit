@@ -10,8 +10,8 @@ import Foundation
 
 public extension KeyboardAction {
     
-    /// The standard accessibility label for the action.
-    var standardAccessibilityLabel: String? {
+    /// The action's accessibility label.
+    var accessibilityLabel: String? {
         switch self {
         case .backspace: "Backspace"
         case .capsLock: "Capslock"

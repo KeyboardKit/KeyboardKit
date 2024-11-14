@@ -13,15 +13,14 @@ public extension Autocomplete {
     /// This type represents an autocomplete suggestion that
     /// is returned by an ``AutocompleteService``.
     ///
-    /// Autocomplete suggestions can be standard suggestions
-    /// or autocorrecting suggestions that are automatically
-    /// applied when a word delimiter is applied.
+    /// Suggestions can either be standard ones that require
+    /// users to manually apply them, or autocorrecting ones
+    /// that are auto-applied when a word delimiter is typed.
     ///
     /// Native keyboards typically present an autocorrecting
     /// suggestion with a semi-white background, and unknown
-    /// or current words with locale-specific quotation, but
-    /// you can customize this as you see fit.
-    struct Suggestion {
+    /// or current words with locale-specific quotation.
+    struct Suggestion: Codable, Equatable, Hashable {
 
         /// Create an autocomplete suggestion.
         ///

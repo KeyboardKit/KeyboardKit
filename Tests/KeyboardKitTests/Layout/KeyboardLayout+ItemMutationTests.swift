@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+ItemTests.swift
+//  KeyboardLayout+ItemMutationTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -11,7 +11,7 @@ import XCTest
 
 @testable import KeyboardKit
 
-class KeyboardLayout_ItemRowTests: XCTestCase {
+class KeyboardLayout_ItemMutationTests: XCTestCase {
     
     var item: KeyboardLayout.Item!
     var row: KeyboardLayout.ItemRow!
@@ -99,20 +99,20 @@ class KeyboardLayout_ItemRowTests: XCTestCase {
 
 
     func testInsertingItemAfterActionAtCertainRowDoesNothingIfRowDoesNotExist() {
-        rows.insert(item, after: .escape, atRow: -1)
-        rows.insert(item, after: .escape, atRow: 3)
+        rows.insert(item, after: .escape, inRow: -1)
+        rows.insert(item, after: .escape, inRow: 3)
         XCTAssertEqual(rowsActions, [rowActions, rowActions, rowActions])
     }
 
     func testInsertingItemAfterActionAtCertainRowCanInsertItemAfterFirstItemInFirstRow() {
-        rows.insert(item, after: .command, atRow: 0)
+        rows.insert(item, after: .command, inRow: 0)
         XCTAssertEqual(rowsActions[0], [.command, .primary(.done), .space, .backspace])
         XCTAssertEqual(rowsActions[1], rowActions)
         XCTAssertEqual(rowsActions[2], rowActions)
     }
 
     func testInsertingItemAfterActionAtCertainRowCanInsertItemAfterFirstItemInLastRow() {
-        rows.insert(item, after: .backspace, atRow: 2)
+        rows.insert(item, after: .backspace, inRow: 2)
         XCTAssertEqual(rowsActions[0], rowActions)
         XCTAssertEqual(rowsActions[1], rowActions)
         XCTAssertEqual(rowsActions[2], [.command, .space, .backspace, .primary(.done)])
@@ -135,20 +135,20 @@ class KeyboardLayout_ItemRowTests: XCTestCase {
 
 
     func testInsertingItemBeforeActionAtCertainRowDoesNothingIfRowDoesNotExist() {
-        rows.insert(item, before: .escape, atRow: -1)
-        rows.insert(item, before: .escape, atRow: 3)
+        rows.insert(item, before: .escape, inRow: -1)
+        rows.insert(item, before: .escape, inRow: 3)
         XCTAssertEqual(rowsActions, [rowActions, rowActions, rowActions])
     }
 
     func testInsertingItemBeforeActionAtCertainRowCanInsertItemAfterFirstItemInFirstRow() {
-        rows.insert(item, before: .command, atRow: 0)
+        rows.insert(item, before: .command, inRow: 0)
         XCTAssertEqual(rowsActions[0], [.primary(.done), .command, .space, .backspace])
         XCTAssertEqual(rowsActions[1], rowActions)
         XCTAssertEqual(rowsActions[2], rowActions)
     }
 
     func testInsertingItemBeforeActionAtCertainRowCanInsertItemAfterFirstItemInLastRow() {
-        rows.insert(item, before: .backspace, atRow: 2)
+        rows.insert(item, before: .backspace, inRow: 2)
         XCTAssertEqual(rowsActions[0], rowActions)
         XCTAssertEqual(rowsActions[1], rowActions)
         XCTAssertEqual(rowsActions[2], [.command, .space, .primary(.done), .backspace])
@@ -171,15 +171,15 @@ class KeyboardLayout_ItemRowTests: XCTestCase {
 
 
     func testRemovingItemFromCertainRowDoesNothingIfActionDoesNotExist() {
-        rows.remove(.character("a"), atRow: 2)
+        rows.remove(.character("a"), fromRow: 2)
         XCTAssertEqual(rowActions, [.command, .space, .backspace])
     }
 
     func testRemovingItemFromCertainRowRemovesItemIfItExists() {
         let item = KeyboardLayout.Item(action: .backspace, size: size)
-        rows.insert(item, before: .command, atRow: 2)
+        rows.insert(item, before: .command, inRow: 2)
         XCTAssertEqual(rowsActions[2], [.backspace, .command, .space, .backspace])
-        rows.remove(.backspace, atRow: 2)
+        rows.remove(.backspace, fromRow: 2)
         XCTAssertEqual(rowsActions[2], [.command, .space])
     }
 }

@@ -13,8 +13,9 @@ public extension Autocomplete {
     /// This type can be used by ``Autocomplete/LocalService``
     /// to perform next word prediction.
     ///
-    /// You can use any of the predefined request types, for
-    /// instance ``claude(apiKey:apiVersion:apiUrl:model:maxTokens:system:)``.
+    /// KeyboardKit Pro unlocks pre-defined requests, like a
+    /// ``claude(apiKey:apiVersion:apiUrl:model:maxTokens:system:)``
+    /// request to integrate with the Claude remote API.
     struct NextWordPredictionRequest {
 
         enum RequestError: Error {

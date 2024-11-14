@@ -14,9 +14,8 @@ public extension InputSet {
     /// neutral, uppercased and lowercased input variant.
     ///
     /// You can create an instance with just a string, which
-    /// is the default way. You can however provide explicit
-    /// casings, to fully customize the input characters for
-    /// certain casings.
+    /// is the default way. You can also provide casings, to
+    /// fully customize input characters for certain casings.
     struct Item: Equatable {
 
         /// Create an input set item with a single character.

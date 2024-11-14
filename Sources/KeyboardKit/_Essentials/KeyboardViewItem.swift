@@ -9,10 +9,9 @@
 import SwiftUI
 
 /// This view renders button item for a ``KeyboardView``.
-/// 
-/// The reason why the ``KeyboardView`` doesn't just use the
-/// ``Keyboard/Button`` view, is that this view applies more
-/// insets and configurations to the content.
+///
+/// Unlike ``Keyboard/Button`` this view applies more insets
+/// and configurations to make it work in a ``KeyboardView``.
 public struct KeyboardViewItem<Content: View>: View {
 
     /// Create a keyboard view item.

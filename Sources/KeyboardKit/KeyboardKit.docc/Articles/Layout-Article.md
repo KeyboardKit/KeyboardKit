@@ -15,7 +15,7 @@ A flexible keyboard layout is an important part of a software keyboard, and must
 
 In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after which a ``KeyboardLayoutService`` can create a dynamic ``KeyboardLayout`` at runtime that defines the full set of keys. 
 
-👑 [KeyboardKit Pro][Pro] unlocks localized keyboards and services for all ``Foundation/Locale/keyboardKitSupported`` locales in your license, additional input sets like ``InputSet/qwertz`` and ``InputSet/azerty``, and support for iPad Pro layouts. Information about Pro features can be found further down.
+👑 [KeyboardKit Pro][Pro] unlocks localized layout services for all ``Foundation/Locale/keyboardKitSupported`` locales in your license, additional input sets like ``InputSet/qwertz`` & ``InputSet/azerty``, iPad Pro support, more layout capabilities that make modifying layouts easier, etc. Read more further down.
 
 
 
@@ -31,7 +31,7 @@ In KeyboardKit an ``InputSet`` specifies the input keys of a keyboard, while a `
 
 KeyboardKit comes with pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` & ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` and ``InputSet/azerty``, as well as locale-specific input sets for all ``Foundation/Locale/keyboardKitSupported`` locales.
 
-Most iOS keyboards have 3 input rows of input keys surrounded by action keys, as well as a bottom row with a space bar and contextual action keys. This is however not true for all locales, where the layout can vary greatly. This is why the layout engine must be flexible.
+While most iOS keyboards have 3 input rows of input keys surrounded by action keys, and a bottom row with space bar and action keys, this is not true for all locales. The layout can vary greatly, so the layout engine must be flexible.
 
 
 
@@ -56,12 +56,7 @@ let service = try KeyboardLayout.ProService.Swedish()
 KeyboardKit Pro also unlocks more input sets, adds more capabilities to the ``KeyboardLayout`` and makes it easier to handle layouts.
 
 
-### iPad Pro Support
-
-KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProService`` that generates iPad Pro-specific layouts for most ``Foundation/Locale/keyboardKitSupported`` locales.
-
-
-### Input Sets & Layouts
+### Localized Input Sets & Layouts
 
 KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` & ``InputSet/azerty``, as well as alphabetic, numeric & symbolic sets for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license, like `.swedishNumeric`.
 
@@ -71,7 +66,19 @@ KeyboardKit Pro unlocks a localized ``KeyboardLayout/ProService`` for all suppor
 let service = try KeyboardLayout.ProService.Swedish()
 ```
 
-KeyboardKit Pro also unlocks more ``KeyboardLayout`` capabilities, like ``KeyboardLayout/adjusted(for:layoutConfiguration:)``, ``KeyboardLayout/copy()``, and ``KeyboardLayout/createIdealItem(for:width:alignment:)``, which make i a lot easier to customize your layout.
+
+### iPad Pro Support
+
+KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProService`` that generates iPad Pro-specific layouts for most ``Foundation/Locale/keyboardKitSupported`` locales.
+
+
+### Pro Layout Capabilites
+
+KeyboardKit Pro extends the ``KeyboardLayout`` ``KeyboardLayout/itemRows-swift.property`` property and all layout ``KeyboardLayout/Item`` collections with more capabilities, that make it easier to insert, remove, and replace items and actions.
+
+KeyboardKit Pro also unlocks more ``KeyboardLayout`` capabilities like ``KeyboardLayout/adjusted(for:layoutConfiguration:)``, ``KeyboardLayout/copy()`` and ``KeyboardLayout/createIdealItem(for:width:alignment:)``, and a specific set of tools for the bottom row, like ``KeyboardLayout/bottomRowLayout``.
+
+See ``KeyboardLayout`` and its ``KeyboardLayout/Item`` in the KeyboardKit Pro documentations for a full list of capabilities that KeyboardKit Pro unlocks. The open-source documentation doesn't include all these extensions, which is why they are not in the documentation. 
 
 
 ---

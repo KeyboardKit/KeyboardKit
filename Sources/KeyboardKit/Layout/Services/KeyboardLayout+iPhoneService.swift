@@ -16,7 +16,8 @@ extension KeyboardLayout {
     /// This class inherits the ``KeyboardLayout/BaseService``
     /// and applies iPhone-specific adjustments to it.
     ///
-    /// You can inherit the class and override any parts that you want to change.
+    /// You can inherit this class to get base functionality,
+    /// then override any open parts that you want to change. 
     ///
     /// See <doc:Layout-Article> for more information.
     open class iPhoneService: KeyboardLayout.BaseService {

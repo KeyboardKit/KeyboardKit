@@ -11,25 +11,13 @@ import XCTest
 
 class Keyboard_CaseTests: XCTestCase {
 
-    func isLowercased(for case: Keyboard.KeyboardCase) -> Bool {
-        return `case`.isLowercased
-    }
-
-    func isUppercased(for case: Keyboard.KeyboardCase) -> Bool {
-        return `case`.isUppercased
-    }
-
-    func testIsLowercasedOnlyAppliesToCertainStates() {
-        XCTAssertFalse(isLowercased(for: .auto))
-        XCTAssertFalse(isLowercased(for: .capsLocked))
-        XCTAssertTrue(isLowercased(for: .lowercased))
-        XCTAssertFalse(isLowercased(for: .uppercased))
-    }
-
-    func testIsUppercasedOnlyAppliesToCertainStates() {
-        XCTAssertFalse(isUppercased(for: .auto))
-        XCTAssertTrue(isUppercased(for: .capsLocked))
-        XCTAssertFalse(isUppercased(for: .lowercased))
-        XCTAssertTrue(isUppercased(for: .uppercased))
+    func testIsUpperCasedOrCapsLockedIsValid() {
+        func result(for case: Keyboard.KeyboardCase) -> Bool {
+            return `case`.isUppercasedOrCapslocked
+        }
+        XCTAssertFalse(result(for: .auto))
+        XCTAssertTrue(result(for: .capsLocked))
+        XCTAssertFalse(result(for: .lowercased))
+        XCTAssertTrue(result(for: .uppercased))
     }
 }

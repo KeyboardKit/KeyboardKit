@@ -37,9 +37,8 @@ extension KeyboardCallout {
     /// This service class provides a standard way to handle
     /// keyboard callouts.
     ///
-    /// This class can register ``localizedServices``, which
-    /// will then be used instead of ``baseService`` for the
-    /// locales it specifies.
+    /// You can register ``localizedServices`` that are then
+    /// used instead of ``baseService`` for their locales.
     ///
     /// KeyboardKit automatically creates an instance of the
     /// class when the keyboard is launched, then injects it

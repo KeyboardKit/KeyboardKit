@@ -1,5 +1,5 @@
 //
-//  KeyboardContext.swift
+//  KeyboardContext+Proxy.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-06-15.

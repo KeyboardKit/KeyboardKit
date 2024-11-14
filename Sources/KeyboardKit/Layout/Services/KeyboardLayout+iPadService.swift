@@ -16,15 +16,14 @@ extension KeyboardLayout {
     /// This class inherits the ``KeyboardLayout/BaseService``
     /// and applies iPad-specific adjustments to it.
     ///
-    /// The additional ``KeyboardLayout/iPadProService`` can
-    /// be unlocked by KeyboardKit Pro.
-    ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
+    /// KeyboardKit Pro unlocks an additional service for an
+    /// iPad Pro-specific klayout. 
+    ///
     /// See <doc:Layout-Article> for more information.
     open class iPadService: KeyboardLayout.BaseService {
-
         
         // MARK: - Overrides
 

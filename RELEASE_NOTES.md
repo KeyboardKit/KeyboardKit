@@ -28,6 +28,8 @@ This version upgrades the deployment targets to `iOS 15`, `macOS 12`, `tvOS 15`,
 
 This version has migration deprecations to help you transition from KeyboardKit 8. Just follow the instructions to migrate your code if needed. They will be removed in 9.1.
 
+This version also moves a lot of non-essential views and utilities from KeyboardKit to KeyboardKit Pro, to make the open-source framework a bit more basic and overviewable. 
+
 You may still run into a few breaking changes, where migrations were not possible due to architectural changes. For such breaking changes, see the changes & comments below.
 
 Migration-based changes that are not listed under "Breaking Changes" will become breaking if you don't address any such warnings before upgrading to KeyboardKit 9.1 and later.
@@ -114,11 +116,17 @@ This version adds support for 🇦🇺 English (Australia) and 🇨🇦 English 
 
 ### 🔣 Layout
 
-An `InputSet` can now be created with device variations, which allows for resolving device-specific items at runtime.
+`InputSet` can now be created with device variations, which allows for resolving device-specific items at runtime.
 
-The `KeyboardLayout` type is now a `struct` instead of a `class`, to better represent the value type it's meant to be.
+This makes it possible to render the same input for different devices, which makes the floating keyboard possible.
 
-This change from a reference type to a value type may require you to change from `let` to `var` when you modify a layout.
+`KeyboardLayout` is now a `struct` instead of a `class`, which better reflects the value type nature of its model.
+
+This requires you to change any layout variables to use `var` instead of `let` when you want to mutate the layout.
+
+The `KeyboardLayoutIdentifiable` protocol has been removed to make layout item mutations easier to understand & use.
+
+KeyboardKit Pro adds layout item mutations to the `KeyboardLayout` itself, which will allow for future improvements. 
 
 ### 🎛️ Settings
 
@@ -144,11 +152,12 @@ Some things that are not covered by migration deprecations are:
 
 * All previously deprecated code has been removed.
 * All previously mutable styles and configs are now computed.
-* The dictation changes can't be migrated since a new service replaces the old ones.
-* The `Autocomplete.Suggestion` additional info are now limited to string-based data.
-* The `Autocomplete.LocalService` now requires a keyboard context for contextual info.
-* The `KeyboardLayout` is now a struct, and must now be a `var` for you to customize it.
-* The `KeyboardStyleService` and callout style view modifiers now only use the base style.
-* The `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.
+* The dictation changes can't be migrated since the services are merged.
+* `Autocomplete.Suggestion` implements protocols that required info constraints.
+* `Autocomplete.LocalService` now requires a keyboard context for contextual info.
+* `InputSet` no longer implements the removed `KeyboardLayoutIdentifiable` protocol.
+* `KeyboardLayout` is now a struct, and must now be a `var` for you to customize it.
+* `KeyboardStyleService` and callout style view modifiers now only use the base style.
+* `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.
 
 A problem that you may run into, is that the `KeyboardInputViewController` `setupKeyboardView(_ view: @autoclosure @escaping () -> Content)` has been renamed to `setupKeyboardView(with:)` to remove DocC ambiguity with the controller-based function. If you use this variant, just add an `with:` parameter name.

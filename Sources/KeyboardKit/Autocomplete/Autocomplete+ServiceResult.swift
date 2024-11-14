@@ -12,9 +12,6 @@ public extension Autocomplete {
 
     /// This type represents the autocomplete service result
     /// that is returned by an ``AutocompleteService``.
-    ///
-    /// Note that various service implementations may return
-    /// various results, based on the service's capabilities.
     struct ServiceResult {
 
         /// Create an autocomplete suggestion.

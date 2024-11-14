@@ -143,8 +143,7 @@ extension KeyboardLayout {
         open func inputActions(
             for context: KeyboardContext
         ) -> KeyboardAction.Rows {
-            let characters = inputCharacters(for: context)
-            return .init(characters: characters)
+            .init(characters: inputCharacters(for: context))
         }
 
         /// The actions to convert to layout items.

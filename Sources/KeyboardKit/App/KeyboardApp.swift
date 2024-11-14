@@ -13,7 +13,7 @@ import SwiftUI
 /// your app, and is also a namespace for app-based features.
 ///
 /// You can create a static app value and add it to both the
-/// main app and its keyboard, to be able to use it in both:
+/// app and its keyboard, to be able to use it in both, e.g.:
 ///
 /// ```swift
 /// extension KeyboardApp {
@@ -30,8 +30,7 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// > Important: The ``locales`` collection is only meant to
-/// describe which locales you *want* to use in your app. It
+/// > Important: The ``locales`` collection is only describe which locales you *want* to use in your app. It
 /// will be capped to the number of locales your KeyboardKit
 /// Pro license includes.
 ///

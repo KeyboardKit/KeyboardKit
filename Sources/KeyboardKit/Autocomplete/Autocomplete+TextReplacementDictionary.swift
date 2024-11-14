@@ -35,6 +35,8 @@ public extension Autocomplete.TextReplacementDictionary {
             [
                 Locale.english: [
                     "i": "I",
+                    "id": "I'd",
+                    "Id": "I'd",
                     "ill": "I'll",
                     "Ill": "I'll"
                 ]

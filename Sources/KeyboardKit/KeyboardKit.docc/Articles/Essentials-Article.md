@@ -113,7 +113,7 @@ Note that some content types, like the emoji keyboard and the collapsed content,
 Just return `{ $0.view }` or `{ params in params.view }` to use the standard view, or return a custom view for any part of the keyboard. Each view builder provides you with view-related parameters with contextual information.
 
 
-## Views
+## Essential Views
 
 The ``Keyboard`` namespace has a lot of other standard views, styles, and view-related types to make it easy to build great keyboards.
 
@@ -132,19 +132,13 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
         }
     }
     
-    @Tab("BottomRow") {
-        ![Bottom Row](keyboard-bottomrow)
-        
-        The keyboard ``Keyboard/BottomRow`` renders a bottom keyboard row with the same behavior as a full ``KeyboardView``. It can be used when you want to replace the rows above with a custom user interface.
-    }
-    
     @Tab("CollapsedView") {
         @Row {
             @Column {
                 ![Collapsed View](keyboard-collapsedview)
             }
             @Column {
-                The ``Keyboard/CollapsedView`` can be used to render a collapsed view when the ``KeyboardContext/isKeyboardCollapsed`` is true.
+                The ``Keyboard/CollapsedView`` can be used to render a collapsed view when ``KeyboardContext/isKeyboardCollapsed`` is true.
                 
                 KeyboardKit Pro automatically detects when an external keyboard is connected or disconnected, and update the state accordingly.
                 
@@ -153,10 +147,10 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
         }
     }
     
-    @Tab("Keyboard Switcher") {
+    @Tab("NextKeyboardButton") {
         @Row {
             @Column {
-                ![NextKeyboardButton](keyboard-nextkeyboardbutton)
+                ![Next Keyboard Button](keyboard-nextkeyboardbutton)
             }
             @Column {
                 The ``Keyboard/NextKeyboardButton`` can be used to switch to the next keyboard on tap and to show a keyboard menu on long press.
@@ -167,7 +161,7 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
     @Tab("NumberPad") {
         @Row {
             @Column {
-                ![NextKeyboardButton](keyboard-numberpad)
+                ![Number Pad](keyboard-numberpad)
             }
             @Column {
                 The ``Keyboard/NumberPad`` mimics a native number pad. ``KeyboardView`` will automatically show it for the ``Keyboard/KeyboardType/numberPad`` keyboard type.
@@ -176,7 +170,7 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
     }
     
     @Tab("Toolbar") {
-        ![Keyboard Toolbar](keyboardtoolbar)
+        ![Toolbar](keyboard-toolbar)
         
         The keyboard  ``Keyboard/Toolbar`` applies a minimum height to its content. KeyboardKit always adds a toolbar to the ``KeyboardView`` by default, to avoid callouts from being cut off, since a custom keyboard can't render any content outside of its frame.
     }
@@ -202,7 +196,7 @@ See the <doc:Styling-Article> article for more information.
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
-### Views
+### Additional Views
 
 KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, that make it easier to create even more powerful keyboards:
 
@@ -211,7 +205,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
     @Tab("Localization") {
         @Row {
             @Column {
-                ![KeyboardView in Swedish](keyboardview-swedish)
+                ![A Swedish Keyboard](keyboardview-swedish)
             }
             @Column {
                 KeyboardKit Pro unlocks localized services for all ``Foundation/Locale/keyboardKitSupported`` locales. This lets you create fully localized keyboards that automatically use correct buttons, autocomplete & callouts.
@@ -219,7 +213,6 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
                 The various license tiers unlock different amount of locales, where Gold unlocks all. See the <doc:Localization-Article> article for more information.
             }
         }
-        
     }
     
     @Tab("Emoji Keyboard") {
@@ -239,7 +232,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
     @Tab("Input Toolbar") {
         @Row {
             @Column { 
-                ![Input Row in iPad](inputtoolbar-ipad)
+                ![Input Toolbar in iPad](keyboard-inputtoolbar-ipad)
             }
             @Column { 
                 KeyboardKit Pro will automatically add an additional input toolbar above ``KeyboardView`` on large iPads, to fit the native keyboard.
@@ -251,11 +244,17 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
     
     @Tab("Toggle Toolbar") {
         
-        ![ToggleToolbar](keyboardtoggletoolbar)
+        ![ToggleToolbar](keyboard-toggletoolbar)
         
         The ``Keyboard/ToggleToolbar`` can be used to toggle between two toolbars, e.g. to place a main menu "behind" the autocomplete toolbar.
         
         This view wraps itself in a ``Keyboard/Toolbar``, which means that it can also be styled with the ``SwiftUICore/View/keyboardToolbarStyle(_:)`` modifier.
+    }
+    
+    @Tab("Bottom Row") {
+        ![Bottom Row](keyboard-bottomrow)
+        
+        The keyboard ``Keyboard/BottomRow`` renders a bottom keyboard row with the same behavior as a full ``KeyboardView``. It can be used when you want to replace the rows above with a custom user interface.
     }
 }
 
@@ -299,3 +298,59 @@ KeyboardKit Pro also unlocks ``Keyboard``-related previews, that can be used to 
 These previews can be used in the main application, to show users how the keyboard will look for different settings, styles, themes, etc.
 
 See the <doc:Previews-Article> article for more information.
+
+
+---
+
+## How to...
+
+### Replace the standard keyboard view
+
+KeyboardKit makes it super simple to replace or customize the standard ``KeyboardView``. The <doc:Getting-Started-Article> article has information about how you can use ``KeyboardInputViewController/viewWillSetupKeyboardView()`` to customize the keyboard view.
+
+
+### Render unsupported keyboard types
+
+While ``KeyboardView`` will render most ``Keyboard/KeyboardType``s, some don't have a standard visual representation. For instance setting the main ``KeyboardContext/keyboardType`` to ``Keyboard/KeyboardType/images`` has no effect if you use the standard ``KeyboardView``.
+
+You can add support for unsupported keyboard types by creating a custom keyboard view that renders the standard ``KeyboardView`` (or a customized one) for supported keyboard types, and custom views for other types, for instance:
+
+```swift
+struct CustomKeyboardView: View {
+
+    /// Passed in from the controller for convenience
+    unowned var controller: KeyboardInputViewController
+
+    @EnvironmentObject
+    private var context: KeyboardContext
+
+    var body: some View {
+        if context.keyboardType == .images {
+            // Render a custom keyboard here
+        } else {
+            KeyboardView(
+                state: controller.state,
+                services: controller.services
+            )
+        }
+    }
+}
+```
+
+You can add a ``KeyboardAction/keyboardType(_:)`` action item to your keyboard to automatically switch to your custom keyboard when its tapped.
+
+
+### Implement a custom keyboard type
+
+You can implement a custom ``Keyboard/KeyboardType`` with the ``Keyboard/KeyboardType/custom(named:)`` type builder, then handle it by checking if the main  ``KeyboardContext/keyboardType`` matches your custom type:
+
+```swift
+extension Keyboard.KeyboardType {
+
+    static var gifKeyboard: Keyboard.KeyboardType {
+        return .custom(named: "gifKeyboard")
+    } 
+}
+```
+
+You can render a custom type just like you would any of the unsupported keyboard types, as demonstrated in the previous paragraph.

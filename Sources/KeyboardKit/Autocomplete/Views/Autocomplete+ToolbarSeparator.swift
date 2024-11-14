@@ -30,6 +30,64 @@ public extension Autocomplete {
                 .frame(height: style.height)
         }
     }
+
+    /// This style can be used to modify the visual style of
+    /// the ``Autocomplete/ToolbarSeparator`` component.
+    ///
+    /// You can apply this view style with the view modifier
+    /// ``SwiftUICore/View/autocompleteToolbarSeparatorStyle(_:)``.
+    ///
+    /// You can use the ``standard`` style or your own style.
+    struct ToolbarSeparatorStyle: Codable, Equatable {
+
+        /// Create a custom toolbar separator style.
+        ///
+        /// - Parameters:
+        ///   - color: The separator color, by default `.secondary.opacity(0.5)`.
+        ///   - width: The separator width, by default `1`.
+        ///   - height: The separator height, by default `30`.
+        public init(
+            color: Color = .secondary.opacity(0.5),
+            width: CGFloat = 1,
+            height: CGFloat = 30
+        ) {
+            self.color = color
+            self.width = width
+            self.height = height
+        }
+
+        /// The separator color.
+        public var color: Color
+
+        /// The separator width.
+        public var height: CGFloat
+
+        /// The separator height.
+        public var width: CGFloat
+    }
+}
+
+public extension Autocomplete.ToolbarSeparatorStyle {
+
+    /// The standard autocomplete toolbar separator style.
+    static var standard: Self { .init() }
+}
+
+public extension View {
+
+    /// Apply a ``Autocomplete/ToolbarSeparatorStyle``.
+    func autocompleteToolbarSeparatorStyle(
+        _ style: Autocomplete.ToolbarSeparatorStyle
+    ) -> some View {
+        self.environment(\.autocompleteToolbarSeparatorStyle, style)
+    }
+}
+
+public extension EnvironmentValues {
+
+    /// Apply a ``Autocomplete/ToolbarSeparatorStyle``.
+    @Entry var autocompleteToolbarSeparatorStyle = Autocomplete
+        .ToolbarSeparatorStyle.standard
 }
 
 #Preview {
@@ -38,9 +96,14 @@ public extension Autocomplete {
         Autocomplete.ToolbarSeparator()
             .autocompleteToolbarSeparatorStyle(.standard)
         Autocomplete.ToolbarSeparator()
-            .autocompleteToolbarSeparatorStyle(.preview1)
+            .autocompleteToolbarSeparatorStyle(
+                .init(color: .blue, width: 10)
+            )
         Autocomplete.ToolbarSeparator()
-            .autocompleteToolbarSeparatorStyle(.preview2)
+            .autocompleteToolbarSeparatorStyle(
+                .init(color: .yellow, width: 5)
+            )
     }
-    .frame(height: 50)
+    .padding()
+    .background(Color.keyboardBackground)
 }
