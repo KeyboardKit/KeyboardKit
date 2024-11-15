@@ -41,6 +41,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - View Controller Lifecycle
 
     open override func viewDidLoad() {
+        state.setup(for: self)
         super.viewDidLoad()
         setupInitialWidth()
         setupLocaleObservation()
@@ -194,12 +195,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }()
 
     /// Keyboard-specific state.
-    public lazy var state: Keyboard.State = {
-        let instance = Keyboard.State()
-        instance.setup(for: self)
-        return instance
-    }()
-
+    public var state = Keyboard.State()
 
 
     // MARK: - Text And Selection Change
