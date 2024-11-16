@@ -6,6 +6,12 @@
 //  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
+// This code is copied from the online documentation, and is
+// used to enable dictation. The reason why this code is not
+// in the KeyboardKitPro SDK, is that importing Speech would
+// require all apps to add permission requests to Info.plist,
+// even when not using dictation.
+
 import Speech
 import KeyboardKitPro
 
@@ -17,7 +23,6 @@ public extension DictationSpeechRecognizer where Self == StandardSpeechRecognize
     static var standard: Self { .init() }
 }
 
-/// This class is copied from the online documentation.
 public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
     public init() {}

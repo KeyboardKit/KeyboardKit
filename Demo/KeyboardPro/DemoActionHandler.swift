@@ -1,17 +1,12 @@
 //
 //  DemoActionHandler.swift
-//  Keyboard
+//  KeyboardPro
 //
 //  Created by Daniel Saidi on 2021-02-11.
 //  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
 //
 
-#if IS_KEYBOARDKIT
-import KeyboardKit
-#elseif IS_KEYBOARDKITPRO
 import KeyboardKitPro
-#endif
-
 import UIKit
 
 /// This action handler inherits the standard action handler

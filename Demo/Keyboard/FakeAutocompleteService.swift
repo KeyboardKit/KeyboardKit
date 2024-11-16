@@ -9,7 +9,8 @@
 import Foundation
 import KeyboardKit
 
-/// This fake service provides fake suggestions while typing.
+/// This fake service provides fake suggestions while typing,
+/// to make the demo show words in the toolbar.
 class FakeAutocompleteService: AutocompleteService {
 
     init(context: AutocompleteContext) {

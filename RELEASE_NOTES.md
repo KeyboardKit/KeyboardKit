@@ -140,7 +140,9 @@ The KeyboardKit Pro input text components can therefore be setup with a `Keyboar
 
 ### 👑 Pro
 
-KeyboardKit Pro can now be activated with a license file. License files will be provided to all yearly Gold and Enterprise customers. 
+KeyboardKit Pro can now be used by multiple targets in the same app, using a single app bundle ID.
+
+KeyboardKit Pro can now activate yearly Gold & Enterprise licenses with a standalone license file. 
 
 ### 🚨 Breaking Changes
 

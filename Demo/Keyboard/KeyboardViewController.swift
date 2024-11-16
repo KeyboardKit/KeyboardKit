@@ -9,52 +9,51 @@
 import KeyboardKit
 import SwiftUI
 
-/// This keyboard demonstrates how to setup KeyboardKit with
-/// a `KeyboardApp` and customize the standard configuration.
+/// This keyboard shows you how to set up `KeyboardKit` with
+/// a `KeyboardApp` and customize the standard keyboard view,
+/// adding `KeyboardKit` as a local dependency.
 ///
-/// To use the keyboard, simply enable it in System Settings,
-/// then switch to it with the 🌐 key when typing in any app.
+/// This demo is intentionally kept very basic, to provide a
+/// starting point for you to play around with this keyboard.
+/// You can customize the keyboard views, state and services.
 ///
-/// See ``DemoApp`` for important, demo-specific information.
+/// See the `KeyboardPro` keyboard for a more extensive demo.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
-    /// Use it to set up your keyboard.
     ///
-    /// Below, we make demo-specific keyboard configurations.
-    /// Play around with them to see how it affects the demo.
+    /// Call `setup(for:)` here to set up the controller for
+    /// the `.keyboardKitDemo` app in `KeyboardApp+Demo`.
     override func viewDidLoad() {
 
         /// 💡 Always call super :)
         super.viewDidLoad()
 
-        /// ‼️ Set up the keyboard for the demo app.
-        super.setup(for: .demoApp)
+        /// ‼️ Set up the keyboard for `.keyboardKitDemo`.
+        super.setup(for: .keyboardKitDemo)
 
-        /// 💡 These demo-specific configurations are placed
-        /// in a file that is shared by the two keyboards.
-        setupDemoServices(extraKey: .rocket)
+        /// 💡 Make basic state & service customizations.
+        setupDemoServices()
         setupDemoState()
-
-        /// 🧪 Uncomment the lines if you want to revert the
-        /// experimental next keyboard key modes that aim to
-        /// improve the next keyboard key behavior.
-        // Keyboard.NextKeyboardButtonControllerMode.current = .classic
     }
 
     /// This function is called when the controller needs to
     /// create or update the keyboard view.
     ///
-    /// 💡 You don't need to override this function when you
-    /// want to use a regular `KeyboardView`. This demo just
-    /// overrides it to show you how you can do it if needed.
+    /// Call `setupKeyboardView(_:)` here to set up a custom
+    /// keyboard view, or customize the standard view.
+    ///
+    /// 💡 You don't have to override this function when you
+    /// want to use a standard `KeyboardView`.
     override func viewWillSetupKeyboardView() {
 
         /// 💡 Always call super :)
         super.viewWillSetupKeyboardView()
 
-        /// 💡 You can play around with this view or replace
-        /// it, to see how it affects the keyboard extension.
+        /// 💡 Call `setupKeyboardView(...)` to customize or
+        /// replace the standard `KeyboardView`.
+        ///
+        /// You can replace `KeyboardView` with another view.
         setupKeyboardView { controller in
             KeyboardView(
                 state: controller.state,
@@ -63,11 +62,39 @@ class KeyboardViewController: KeyboardInputViewController {
                 buttonView: { $0.view },
                 collapsedView: { $0.view },
                 emojiKeyboard: { $0.view },
-                toolbar: { params in params.view }
+                toolbar: { params in params.view }  // This is the same as $0.view
             )
+            // Apply global view modifiers here, e.g. styles.
             // .autocorrectionDisabled()
             // .calloutStyle(.init(backgroundColor: .red))
-            // .emojiKeyboardStyle(.optimized(for: controller.state.keyboardContext))
         }
+    }
+}
+
+private extension KeyboardViewController {
+
+    /// Make demo-specific service changes.
+    ///
+    /// You can add your own customizations here, to see how
+    /// it affects the keyboard behavior.
+    func setupDemoServices() {
+
+        /// 💡 Register a demo-specific autocomplete service
+        /// that provides the keyboard with fake suggestions.
+        services.autocompleteService = FakeAutocompleteService(
+            context: state.autocompleteContext
+        )
+    }
+
+    /// Make demo-specific state changes.
+    ///
+    /// You can add your own customizations here, to see how
+    /// it affects the keyboard behavior.
+    func setupDemoState() {
+
+        /// 💡 Configure the space key's long press behavior.
+        /// Note that this demo only supports English.
+        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
+        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
     }
 }

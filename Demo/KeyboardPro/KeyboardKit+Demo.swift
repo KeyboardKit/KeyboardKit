@@ -1,18 +1,13 @@
 //
 //  KeyboardKit+Demo.swift
-//  Keyboard
+//  KeyboardPro
 //
 //  Created by Daniel Saidi on 2022-02-07.
 //  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
-#if IS_KEYBOARDKIT
-import KeyboardKit
-#elseif IS_KEYBOARDKITPRO
-import KeyboardKitPro
-#endif
-
 import Foundation
+import KeyboardKitPro
 
 extension KeyboardAction {
     

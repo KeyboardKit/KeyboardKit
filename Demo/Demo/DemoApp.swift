@@ -11,34 +11,31 @@ import KeyboardKitPro
 
 /// This is the KeyboardKit demo app.
 ///
-/// This app and the `KeyboardPro` keyboard uses KeyboardKit
-/// Pro, while the `Keyboard` keyboard uses KeyboardKit as a
-/// local dependency. The keyboards can be enabled in System
-/// Settings, and require Full Access for some features.
+/// The main app target shows you how `KeyboardKit Pro` lets
+/// you create a great keyboard app, in which a user can set
+/// up and configure the keyboard in in-app settings screens.
+/// The `Keyboard` keyboard uses `KeyboardKit` to show basic
+/// keyboard usage while `KeyboardPro` uses `KeyboardKit Pro`
+/// to unlock localized layouts, emojis, settings, etc.
 ///
-/// The app uses a `KeyboardAppView` to set up the app while
-/// the keyboards use `setup` & `setupPro`. This will set up
-/// state & services, settings, dictation, etc. and register
-/// the KeyboardKit Pro license key.
+/// To run this demo on a physical device, you must register
+/// your development team under `Signing & Capabilities` for
+/// all three targets.
 ///
-/// The app and its keyboards share files between targets to
-/// avoid code duplications. For instance, `KeyboardApp+Demo`
-/// is added to all targets. Since it uses both `KeyboardKit`
-/// and `KeyboardKit Pro` you will therefore see checks like
-/// `#if IS_KEYBOARDKIT`. You do NOT need it in your own app.
-///
-/// `IMPORTANT` Although this app lets you test the keyboard
-/// settings screens and start dictation, it can't sync data
-/// between the app and its keyboards, since it's not signed
-/// and therefore can't use an App Group. To make it work in
-/// your app, just create an App Group, link it to both your
-/// app AND keyboard, then add the group ID to `KeyboardApp`.
+/// `IMPORTANT` This demo has no App Group by default, which
+/// means that keyboard settings won't sync between the main
+/// app and its keyboards. This is why the `KeyboardPro` has
+/// in-keyboard settings screens. To make settings sync, you
+/// have to change the bundle ID of all targets, then create
+/// an App Group in the Apple Developer Portal and add it to
+/// all three targets, then change the `appGroupId` value in
+/// `KeyboardApp+Demo.swift`.
 @main
 struct DemoApp: App {
 
     var body: some Scene {
         WindowGroup {
-            KeyboardAppView(for: .demoApp) {
+            KeyboardAppView(for: .keyboardKitDemo) {
                 HomeScreen()
             }
         }

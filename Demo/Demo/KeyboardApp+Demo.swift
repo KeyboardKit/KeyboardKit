@@ -14,26 +14,23 @@ import KeyboardKitPro
 
 public extension KeyboardApp {
 
-    /// This value defines the demo app.
+    /// This `KeyboardApp` value defines the demo app.
     ///
-    /// The demo app has a license file in `Supporting Files`
-    /// that is linked to the app and `KeyboardPro`. This is
-    /// why the `licenseKey` below is disabled. The app uses
-    /// this license file instead of a binary or API license.
+    /// The demo app has a `KeyboardKit.license` file that's
+    /// linked to the app and the `KeyboardPro` keyboard. It
+    /// unlocks KeyboardKit Pro, without having to specify a
+    /// `licenseKey` in the `KeyboardApp` below.
     ///
-    /// All yearly Gold customers get a `KeyboardKit.license`
-    /// file, that they can add to their app in the same way.
-    /// If you are a Basic, Silver, or monthly Gold customer,
-    /// you must specify your license key like below.
+    /// All yearly Gold and Enterprise customers can request
+    /// a `KeyboardKit.license` file, while lower tiers must
+    /// specify a `licenseKey`. License files let you update
+    /// the license without having to update KeyboardKit Pro.
     ///
     /// The App Group ID is only to show you how you can use
     /// a `KeyboardApp` to set up App Group data syncing for
-    /// an app and its keyboard. It doesn't work in the demo,
-    /// since the demo isn't code signed.
-    ///
-    /// See ``DemoApp`` for mode important information about
-    /// this demo.
-    static var demoApp: Self {
+    /// an app and its keyboard. It doesn't work in the demo.
+    /// See the ``DemoApp`` for more information.
+    static var keyboardKitDemo: Self {
         .init(
             name: "KeyboardKit Demo",
             // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
