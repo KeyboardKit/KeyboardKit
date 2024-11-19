@@ -78,7 +78,11 @@ public extension KeyboardInputViewController {
 public extension Autocomplete {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class LocalService: Autocomplete.DisabledService {}
+    class LocalService: Autocomplete.DisabledService {
+
+        /// 👑 This is unlocked by KeyboardKit Pro.
+        public var nextWordPredictionRequest: Autocomplete.NextWordPredictionRequest?
+    }
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     class RemoteService: Autocomplete.DisabledService {}
@@ -89,13 +93,34 @@ public extension Autocomplete.NextWordPredictionRequest {
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func claude(
         apiKey: String,
-        apiVersion: String = "2023-06-01",
-        apiUrl: String = "https://api.anthropic.com/v1/messages",
-        model: String = "claude-3-5-sonnet-20240620",
+        apiUrl: String = "",
+        anthropicVersion: String = "",
+        model: String = "",
         maxTokens: Int = 15,
-        system: String = "You are a next word predictor. ONLY return the 3 most probable next words as CSV."
-    ) throws -> Self {
-        throw ProPlaceholderError.proPlaceholder
+        systemPrompt: String? = nil
+    ) -> Self {
+        .init { _ in
+            throw ProPlaceholderError.proPlaceholder
+        } predictionParser: { _ in
+            throw ProPlaceholderError.proPlaceholder
+        }
+    }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func openAI(
+        apiKey: String,
+        apiUrl: String = "",
+        apiKeyHeader: String = "",
+        apiKeyValuePrefix: String = "",
+        model: String = "",
+        maxTokens: Int = 100,
+        systemPrompt: String? = nil
+    ) -> Self {
+        .init { _ in
+            throw ProPlaceholderError.proPlaceholder
+        } predictionParser: { _ in
+            throw ProPlaceholderError.proPlaceholder
+        }
     }
 }
 

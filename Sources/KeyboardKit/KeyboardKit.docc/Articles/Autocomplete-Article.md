@@ -57,9 +57,9 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
             @Column {
                 The autocomplete ``Autocomplete/Toolbar`` can be used to show autocomplete suggestions as the user types.
          
-                The view can be styled with a ``Autocomplete/ToolbarStyle``, which is applied with the ``SwiftUICore/View/autocompleteToolbarStyle(_:)`` view modifier. You can also use completely custom views.
+                The view can be styled with a ``Autocomplete/ToolbarStyle``, which is applied with the ``SwiftUICore/View/autocompleteToolbarStyle(_:)`` modifier. It can also use completely custom views.
                 
-                This view is used as the standard toolbar by the ``KeyboardView``. This means that you can style it with a global style modifier.
+                This view is used as the standard toolbar by the ``KeyboardView``. This means you can style it with a global style modifier.
             }
         }
     }
@@ -98,9 +98,9 @@ You can disable next-character predictions with the ``AutocompleteContext`` ``Au
 
 ### Next Word Prediction (BETA)
 
-Apple's on-device text prediction utilities stopped supporting next word prediction in iOS 16, and can now only complete already started words. KeyboardKit Pro therefore unlocks ways to let ``Autocomplete/LocalService`` perform next word prediction via 3rd party AI tools.
+Apple's on-device text prediction utilities stopped supporting next word prediction in iOS 16. KeyboardKit Pro therefore unlocks ways to let the local autocomplete service perform next word prediction via 3rd party AI services.
 
-The easiest way to make the ``Autocomplete/LocalService`` perform next word prediction, is to specify a ``Autocomplete/NextWordPredictionRequest`` in your ``KeyboardApp``'s ``KeyboardApp/autocompleteConfiguration-swift.property``. This will inject it into the autocomplete service when your license is registered:
+The easiest way to make the ``Autocomplete/LocalService`` perform next word prediction, is to specify a ``Autocomplete/NextWordPredictionRequest`` in your ``KeyboardApp``'s ``KeyboardApp/autocompleteConfiguration-swift.property``:
 
 ```swift
 extension KeyboardApp {
@@ -116,11 +116,15 @@ extension KeyboardApp {
 }
 ```
 
-You must also explicitly enable the ``AutocompleteContext``'s ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled`` setting to enable this feature.
+This will make KeyboardKit Pro automatically inject the request into the autocomplete service when you set up the SDK with your app.
 
-> Important: AI-based next word prediction requires Full Access for network access. The feature is disabled by default, to avoid sending user text to 3rd party services without user consent. Make sure to explicitly get the user's consent before activating this feature!
+You can use these pre-defined requests to integrate with Claude or OpenAI, by providing an API key and any optional customizations:
 
-KeyboardKit Pro currently only provides a ``Autocomplete/NextWordPredictionRequest/claude(apiKey:apiVersion:apiUrl:model:maxTokens:system:)`` request. More 3rd party request types will be added in the future. All requests require that you use your own API keys.
+* ``Autocomplete/NextWordPredictionRequest/claude(apiKey:apiUrl:anthropicVersion:model:maxTokens:systemPrompt:)`` 
+* ``Autocomplete/NextWordPredictionRequest/openAI(apiKey:apiUrl:apiKeyHeader:apiKeyValuePrefix:model:maxTokens:systemPrompt:)``.
+
+> Warning: AI-based next word prediction requires Full Access to be able to make network requests. This feature is also disabled by default, to avoid sending user text to 3rd party services without user consent. Make sure to explicitly get the user's consent before activating this feature, and enable it by setting the ``AutocompleteContext`` ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled`` to true!
+
 
 ---
 
@@ -139,64 +143,17 @@ The ``KeyboardView`` will automatically add an ``Autocomplete``.``Autocomplete/T
 
 ### Create a custom autocomplete service
 
-You can create a custom autocomplete service to customize the autocomplete behavior or integrate with 3rd party services. You can implement ``AutocompleteService`` from scratch, or inherit and customize any of the [KeyboardKit Pro][Pro] services:
+You can create a custom autocomplete service to customize the standard autocomplete behavior or integrate with 3rd party services. You can implement ``AutocompleteService`` from scratch, or inherit and customize any [KeyboardKit Pro][Pro] service, like this:
 
 ```swift
-class CustomAutocompleteService: AutocompleteService {
+class CustomAutocompleteService: Autocomplete.LocalService {
 
-    init(match: String = "match") {
-        self.match = match
-    }
-
-    private var match: String
-    
-    var locale: Locale = .current
-    
-    var canIgnoreWords: Bool { false }
-    var canLearnWords: Bool { false }
-    var ignoredWords: [String] = []
-    var learnedWords: [String] = []
-    
-    func hasIgnoredWord(_ word: String) -> Bool { false }
-    func hasLearnedWord(_ word: String) -> Bool { false }
-    func ignoreWord(_ word: String) {}
-    func learnWord(_ word: String) {}
-    func removeIgnoredWord(_ word: String) {}
-    func unlearnWord(_ word: String) {}
-    
-    func autocompleteSuggestions(
+    override func autocompleteSuggestions(
         for text: String
     ) async throws -> [Autocomplete.Suggestion] {
-        guard text.count > 0 else { return [] }
-        let currentWord = text.wordFragmentAtEnd
-        if currentWord == match {
-            return matchSuggestions()
-        } else {
-            return fakeSuggestions(for: text)
-        }
-    }
-}
-
-private extension CustomAutocompleteService {
-    
-    func fakeSuggestions(for text: String) -> [Autocomplete.Suggestion] {
-        [
-            .init(text: text, isUnknown: true),
-            .init(text: text, isAutocorrect: true),
-            .init(text: text, subtitle: "Subtitle")
-        ]
-    }
-    
-    func fakeSuggestion(_ text: String, _ subtitle: String? = nil) -> Autocomplete.Suggestion {
-        .init(text: text, subtitle: subtitle)
-    }
-
-    func matchSuggestions() -> [Autocomplete.Suggestion] {
-        [
-            .init(text: match, isUnknown: true),
-            .init(text: match, isAutocorrect: true),
-            .init(text: match),
-        ]
+        let original = super.autocompleteSuggestions(for: text)
+        let reversed = original.reversed()
+        return Array(reversed)
     }
 }
 ```

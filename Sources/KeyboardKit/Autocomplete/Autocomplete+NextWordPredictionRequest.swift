@@ -13,9 +13,22 @@ public extension Autocomplete {
     /// This type can be used by ``Autocomplete/LocalService``
     /// to perform next word prediction.
     ///
-    /// KeyboardKit Pro unlocks pre-defined requests, like a
-    /// ``claude(apiKey:apiVersion:apiUrl:model:maxTokens:system:)``
-    /// request to integrate with the Claude remote API.
+    /// You can register a next word prediction request with
+    /// the ``Autocomplete/LocalService/nextWordPredictionRequest``
+    /// property. This is automatically done when you set up
+    /// your keyboard with a ``KeyboardApp`` in which you've
+    /// defined a ``KeyboardApp/AutocompleteConfiguration-swift.struct/nextWordPredictionRequest``.
+    ///
+    /// KeyboardKit Pro unlocks a couple of pre-defined next
+    /// word prediction requests, like these:
+    ///
+    /// - ``claude(apiKey:apiUrl:anthropicVersion:model:maxTokens:systemPrompt:)``
+    /// - ``openAI(apiKey:apiUrl:apiKeyHeader:apiKeyValuePrefix:model:maxTokens:systemPrompt:)``
+    ///
+    /// You have to provide your own private API keys to use
+    /// the Claude and OpenAI-based requests, since you must
+    /// pay for your own consumption. You can customize both
+    /// request types to great extent.
     struct NextWordPredictionRequest {
 
         enum RequestError: Error {

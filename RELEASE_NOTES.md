@@ -10,15 +10,15 @@ KeyboardKit tries to honor semantic versioning:
 These release notes cover the current major version. Check out version tags for older release notes.  
 
 
-## 💡 KeyboardKit 9.0 Migration Guide
+## 💡 KeyboardKit 9 Migration Guide
 
-When migrating from KeyboardKit 8.x to 9.x, first upgrade to the last 8.9 version and fix all the deprecation warnings that it provides you with. This will help you prepare for KeyboardKit 9.0.
+When migrating from KeyboardKit 8 to 9, first upgrade to the last 8 version and fix all the deprecation warnings that it provides. This helps you prepare for KeyboardKit 9.
 
-When you have fixed all deprecation warnings, you should first upgrade to KeyboardKit 9.0. It will provide you with migration deprecations that help you migrate to its many architectural changes.
+When you have fixed all warnings, first upgrade to KeyboardKit 9.0. It will provide you with migration deprecations that help you migrate to its many architectural changes.
 
-Once you have fixes all migration deprecations, you are ready to start using KeyboardKit 9.0. You can now configure SPM to use the latest major version number, which will make it use the latest 9.x version.
+Once you have fixes all migration deprecations, you can start using KeyboardKit 9. You can now configure SPM to use the latest major version number, i.e. the latest 9.x version.
 
-Note that the legacy migrations will be removed in 9.1, so make sure that you always first upgrade to 9.0 when you upgrade from KeyboardKit 8. If you're on KeyboardKit 7, you should first follow the same procedure to update to 8.0.
+The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9.0 when migrating from KeyboardKit 8. If you're on KeyboardKit 7, first repeat these steps for 8.0.
 
 
 
@@ -66,9 +66,15 @@ The `KeyboardView` now has a `collapsedView` that will be displayed when the key
 
 The `KeyboardAction.StandardHandler` now implements `KeyboardBehavior`.
 
+### 📱 App
+
+The `KeyboardApp` now lets you register a custom next word prediction request.
+
 ### 💡 Autocomplete
 
 The `AutocompleteService` now returns a `Autocomplete.ServiceResult` instead of just a list of suggestions.
+
+The `Autocomplete.NextWordPredictionRequest` is a new type with `Claude` and `OpenAI` integration requests.
 
 The `Autocomplete.Suggestion` type now implements `Codable` and `Equatable`. This required additional info changes.
 
@@ -166,4 +172,4 @@ Some things that are not covered by migration deprecations are:
 * `KeyboardStyleService` and callout style view modifiers now only use the base style.
 * `StandardSpeechRecognizer` has been refactored, and must be updated for you to use it.
 
-A problem that you may run into, is that the `KeyboardInputViewController` `setupKeyboardView(_ view: @autoclosure @escaping () -> Content)` has been renamed to `setupKeyboardView(with:)` to remove DocC ambiguity with the controller-based function. If you use this variant, just add an `with:` parameter name.
+A problem you may face, is that `KeyboardInputViewController.setupKeyboardView(_ view: @autoclosure @escaping () -> Content)` has been renamed to `setupKeyboardView(with:)` to remove DocC ambiguity. If you do, just add `with:`.
