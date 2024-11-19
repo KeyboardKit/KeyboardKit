@@ -34,6 +34,12 @@ You may still run into a few breaking changes, where migrations were not possibl
 
 Migration-based changes that are not listed under "Breaking Changes" will become breaking if you don't address any such warnings before upgrading to KeyboardKit 9.1 and later.
 
+### 👑 Pro
+
+KeyboardKit Pro can now be used by multiple targets in the same app, using a single app bundle ID.
+
+KeyboardKit Pro can now activate yearly Gold & Enterprise licenses with a standalone license file. 
+
 ### 🧪 Experiments
 
 The next keyboard button experiments have been made permanent.
@@ -136,13 +142,11 @@ Persistent settings have moved from the various contexts to nested `settings` ty
 
 The `KeyboardContext` is now responsible for the `textInputProxy`. The controller refers to this proxy, but the context owns it.
 
-The KeyboardKit Pro input text components can therefore be setup with a `KeyboardContext`, and no longer need a controller instance. 
+The KeyboardKit Pro input text components can therefore be setup with a `KeyboardContext`, and no longer need a controller instance.
 
-### 👑 Pro
+### 🍭 Themes
 
-KeyboardKit Pro can now be used by multiple targets in the same app, using a single app bundle ID.
-
-KeyboardKit Pro can now activate yearly Gold & Enterprise licenses with a standalone license file. 
+The `KeyboardStyle.ThemeBasedService` can now be created with a theme context, which makes it auto-update when the theme is changed.
 
 ### 🚨 Breaking Changes
 

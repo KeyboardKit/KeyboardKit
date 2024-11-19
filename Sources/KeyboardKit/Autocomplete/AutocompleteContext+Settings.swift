@@ -34,9 +34,9 @@ public extension AutocompleteContext {
         @AppStorage("\(settingsPrefix)isAutocorrectEnabled", store: .keyboardSettings)
         public var isAutocorrectEnabled = true
 
-        /// Whether to autolearn unknown suggestions, by default `true`.
+        /// Whether to autolearn unknown suggestions, by default `false`.
         @AppStorage("\(settingsPrefix)isAutolearnEnabled", store: .keyboardSettings)
-        public var isAutolearnEnabled = true
+        public var isAutolearnEnabled = false
 
         /// Whether to automatically ignore adjusted suggestions, by default `true`.
         @AppStorage("\(settingsPrefix)isAutoIgnoreEnabled", store: .keyboardSettings)

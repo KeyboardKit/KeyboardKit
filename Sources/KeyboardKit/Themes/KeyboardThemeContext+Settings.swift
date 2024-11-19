@@ -13,9 +13,13 @@ public extension KeyboardThemeContext {
 
     /// This type is used for theme-related settings.
     ///
-    /// All properties in this type are automatically stored
-    /// in ``Foundation/UserDefaults/keyboardSettings`` with
-    /// a `themes` prefix.
+    /// Use the ``theme`` property to get the selected theme,
+    /// and the ``themeValue`` to get any persisted data.
+    ///
+    /// For now, the ``KeyboardThemeContext``, since SwiftUI
+    /// wasn't properly updated when this struct was changed.
+    /// This should be changed when possible, since settings
+    /// are meant to be used for persisted settings.
     struct Settings {
 
         /// Create a custom settings instance.
@@ -27,20 +31,12 @@ public extension KeyboardThemeContext {
         }
 
         /// The current theme, if any.
+        public var theme: KeyboardTheme? {
+            themeValue.value
+        }
+
+        /// The current theme storage value, if any.
         @AppStorage("\(settingsPrefix)theme", store: .keyboardSettings)
-        public var theme: Keyboard.StorageValue<KeyboardTheme?> = .init(value: nil)
-    }
-}
-
-public extension KeyboardThemeContext.Settings {
-
-    /// Reset the current ``theme``.
-    func resetTheme() {
-        self.theme.value = nil
-    }
-
-    /// Set the current ``theme``.
-    func setTheme(_ theme: KeyboardTheme) {
-        self.theme.value = theme
+        public var themeValue: Keyboard.StorageValue<KeyboardTheme?> = .init(value: nil)
     }
 }

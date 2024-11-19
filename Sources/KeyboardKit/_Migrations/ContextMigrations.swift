@@ -163,25 +163,15 @@ public extension FeedbackContext {
 }
 
 public extension KeyboardThemeContext {
-    
+
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .settings instead.")
     static var settingsPrefix: String {
         Settings.settingsPrefix
     }
-    
+
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .settings instead.")
     var theme: Keyboard.StorageValue<KeyboardTheme?> {
-        get { settings.theme }
-        set { settings.theme = newValue }
-    }
-
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .settings instead.")
-    func resetTheme() {
-        settings.resetTheme()
-    }
-
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .settings instead.")
-    func setTheme(_ theme: KeyboardTheme) {
-        settings.setTheme(theme)
+        get { settings.themeValue }
+        set { settings.themeValue = newValue }
     }
 }
