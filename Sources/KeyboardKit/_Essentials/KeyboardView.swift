@@ -70,7 +70,7 @@ public struct KeyboardView<
             toolbar: toolbar
         )
     }
-    
+
     /// Create a keyboard based on raw properties.
     ///
     /// - Parameters:
@@ -130,13 +130,13 @@ public struct KeyboardView<
     private let layoutConfig: KeyboardLayout.Configuration
     private let styleService: KeyboardStyleService
     private let renderBackground: Bool
-    
+
     private let buttonContentBuilder: ButtonContentBuilder
     private let buttonViewBuilder: ButtonViewBuilder
     private let collapsedViewBuilder: CollapsedViewBuilder
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
-    
+
     private var calloutStyle: KeyboardCallout.CalloutStyle {
         var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
         let insets = layoutConfig.buttonInsets
@@ -309,7 +309,7 @@ private extension KeyboardView {
         }
         .frame(height: layout.totalHeight)
     }
-    
+
     @ViewBuilder
     var emojiKeyboard: some View {
         emojiKeyboardContent
@@ -347,19 +347,31 @@ private extension KeyboardView {
 
     var toolbar: some View {
         let style = styleService.autocompleteToolbarStyle
-        return toolbarBuilder((
-            autocompleteAction: actionHandler.handle(_:),
-            style: styleService.autocompleteToolbarStyle,
-            view: Autocomplete.Toolbar(
-                suggestions: autocompleteContext.suggestions,
-                itemView: { $0.view },
-                separatorView: { $0.view },
-                suggestionAction: actionHandler.handle(_:)
-            )
-        ))
+        return ZStack {
+            Color.clear
+                .frame(minHeight: toolbarNeedsEmojiHeight ? style.height : 0)
+
+            toolbarBuilder((
+                autocompleteAction: actionHandler.handle(_:),
+                style: styleService.autocompleteToolbarStyle,
+                view: Autocomplete.Toolbar(
+                    suggestions: autocompleteContext.suggestions,
+                    itemView: { $0.view },
+                    separatorView: { $0.view },
+                    suggestionAction: actionHandler.handle(_:)
+                )
+            ))
+            .autocompleteToolbarStyle(style)
+            .frame(minHeight: style.height)
+        }
         .opacity(shouldShowToolbar ? 1 : 0)
-        .autocompleteToolbarStyle(style)
-        .frame(minHeight: style.height)
+    }
+
+    var toolbarNeedsEmojiHeight: Bool {
+        switch keyboardContext.keyboardType {
+        case .emojis, .emojiSearch: true
+        default: false
+        }
     }
 }
 
@@ -377,7 +389,7 @@ private extension KeyboardView {
             )
         ))
     }
-    
+
     func buttonView(
         for item: KeyboardLayout.Item,
         totalWidth width: Double,
@@ -422,7 +434,7 @@ private extension KeyboardView {
             // controller.state.keyboardContext.keyboardType = .emojiSearch
             return controller
         }()
-        
+
         var keyboard: some View {
             KeyboardView(
                 state: controller.state,
@@ -447,9 +459,9 @@ private extension KeyboardView {
                         }
 
                         keyboard
-                        
+
                         keyboard.frame(width: 250)
-                        
+
                         KeyboardView(
                             layout: controller.services
                                 .layoutService
@@ -463,7 +475,7 @@ private extension KeyboardView {
                             emojiKeyboard: { $0.view },
                             toolbar: { _ in EmptyView() }
                         )
-                        
+
                         KeyboardView(
                             state: controller.state,
                             services: controller.services,
