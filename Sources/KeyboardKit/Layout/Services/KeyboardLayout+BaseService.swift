@@ -10,7 +10,7 @@ import CoreGraphics
 import SwiftUI
 
 extension KeyboardLayout {
-    
+
     /// This base class provides a foundation for generating
     /// layouts that are based on an ``InputSet``.
     ///
@@ -39,16 +39,16 @@ extension KeyboardLayout {
             self.numericInputSet = numericInputSet
             self.symbolicInputSet = symbolicInputSet
         }
-        
+
         /// The alphabetic input set to use.
         public var alphabeticInputSet: InputSet
-        
+
         /// The numeric input set to use.
         public var numericInputSet: InputSet
-        
+
         /// The symbolic input set to use.
         public var symbolicInputSet: InputSet
-        
+
         /// Get a keyboard layout for the provided context.
         open func keyboardLayout(
             for context: KeyboardContext
@@ -199,7 +199,7 @@ extension KeyboardLayout {
         ) -> Alignment {
             .center
         }
-        
+
         /// Get layout item insets for the provided params.
         open func itemInsets(
             for action: KeyboardAction,
@@ -214,7 +214,7 @@ extension KeyboardLayout {
                     .buttonInsets
             }
         }
-        
+
         /// Get a layout item size for the provided params.
         open func itemSize(
             for action: KeyboardAction,
@@ -226,7 +226,7 @@ extension KeyboardLayout {
             let height = itemSizeHeight(for: action, row: row, index: index, context: context)
             return .init(width: width, height: height)
         }
-        
+
         /// Get a layout item height for the provided params.
         open func itemSizeHeight(
             for action: KeyboardAction,
@@ -238,7 +238,7 @@ extension KeyboardLayout {
                 .standard(for: context)
                 .rowHeight
         }
-        
+
         /// Get a layout item width for the provided params.
         open func itemSizeWidth(
             for action: KeyboardAction,
@@ -259,11 +259,12 @@ extension KeyboardLayout {
         open func keyboardReturnAction(
             for context: KeyboardContext
         ) -> KeyboardAction {
+            if context.keyboardType == .emojiSearch { return .primary(.done) }
             let type = context.returnKeyType
             if let type { return .primary(type) }
             return .primary(.return)
         }
-        
+
         /// The keyboard switcher to use on the bottom input row.
         open func keyboardSwitchActionForBottomInputRow(
             for context: KeyboardContext
@@ -274,7 +275,7 @@ extension KeyboardLayout {
             default: .shift(context.keyboardCase)
             }
         }
-        
+
         /// The keyboard switcher to use on the bottom row.
         open func keyboardSwitchActionForBottomRow(for context: KeyboardContext) -> KeyboardAction? {
             switch context.keyboardType {
