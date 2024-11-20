@@ -100,7 +100,7 @@ You can disable next-character predictions with the ``AutocompleteContext`` ``Au
 
 Apple's on-device text prediction utilities stopped supporting next word prediction in iOS 16. KeyboardKit Pro therefore unlocks ways to let the local autocomplete service perform next word prediction via 3rd party AI services.
 
-The easiest way to make the ``Autocomplete/LocalService`` perform next word prediction, is to specify a ``Autocomplete/NextWordPredictionRequest`` in your ``KeyboardApp``'s ``KeyboardApp/autocompleteConfiguration-swift.property``:
+The easiest way to enable next word prediction, is to add a ``Autocomplete/NextWordPredictionRequest`` to your ``KeyboardApp`` configuration:
 
 ```swift
 extension KeyboardApp {
@@ -108,15 +108,13 @@ extension KeyboardApp {
     static var keyboardKitDemo: Self {
         .init(
             ...
-            autocompleteConfiguration: .init(
+            autocomplete: .init(
                 nextWordPredictionRequest: .claude(apiKey: ...)
             )
         )
     }
 }
 ```
-
-This will make KeyboardKit Pro automatically inject the request into the autocomplete service when you set up the SDK with your app.
 
 You can use these pre-defined requests to integrate with Claude or OpenAI, by providing an API key and any optional customizations:
 

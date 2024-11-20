@@ -24,6 +24,7 @@ import SwiftUI
 ///             bundleId: "com.keyboardkit.demo",
 ///             appGroupId: "group.com.keyboardkit.demo",
 ///             locales: [.english, .swedish, .persian],
+///             autocomplete: .init(...),
 ///             deepLinks: .init(app: "keyboardkit://")
 ///         )
 ///     }
@@ -46,9 +47,33 @@ public struct KeyboardApp {
     ///   - keyboardBundleId: The app's keyboard bundle identifier, by default `<bundleId>.keyboard`.
     ///   - appGroupId: The app's App Group identifier, if any.
     ///   - locales: The locales to use in the app, by default `.all`.
-    ///   - autocompleteConfiguration: The autocomplete configuration to use.
+    ///   - autocomplete: The autocomplete configuration to use.
     ///   - deepLinks: App-specific deep links, if any.
     ///   - keyboardSettingsKeyPrefix: A custom keyboard settings key prefix, if any.
+    public init(
+        name: String,
+        licenseKey: String? = nil,
+        bundleId: String,
+        keyboardBundleId: String? = nil,
+        appGroupId: String? = nil,
+        locales: [Locale] = .keyboardKitSupported,
+        autocomplete: AutocompleteConfiguration = .init(),
+        deepLinks: DeepLinks? = nil,
+        keyboardSettingsKeyPrefix: String? = nil
+    ) {
+        self.name = name
+        self.bundleId = bundleId
+        self.appGroupId = appGroupId
+        self.keyboardBundleId = keyboardBundleId ?? "\(bundleId).keyboard"
+        self.locales = locales
+        self.licenseKey = licenseKey
+        self.autocomplete = autocomplete
+        self.deepLinks = deepLinks
+        self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
+    }
+
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! autocompleteConfiguration has been renamed to just autocomplete.")
+    @_disfavoredOverload
     public init(
         name: String,
         licenseKey: String? = nil,
@@ -60,16 +85,21 @@ public struct KeyboardApp {
         deepLinks: DeepLinks? = nil,
         keyboardSettingsKeyPrefix: String? = nil
     ) {
-        self.name = name
-        self.bundleId = bundleId
-        self.appGroupId = appGroupId
-        self.keyboardBundleId = keyboardBundleId ?? "\(bundleId).keyboard"
-        self.locales = locales
-        self.licenseKey = licenseKey
-        self.autocompleteConfiguration = autocompleteConfiguration
-        self.deepLinks = deepLinks
-        self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
+        self.init(
+            name: name,
+            licenseKey: licenseKey,
+            bundleId: bundleId,
+            keyboardBundleId: keyboardBundleId,
+            appGroupId: appGroupId,
+            locales: locales,
+            autocomplete: autocompleteConfiguration,
+            deepLinks: deepLinks,
+            keyboardSettingsKeyPrefix: keyboardSettingsKeyPrefix
+        )
     }
+
+    @available(*, deprecated, renamed: "autocomplete", message: "Migration Deprecation, will be removed in 9.1!")
+    public var autocompleteConfiguration: AutocompleteConfiguration { autocomplete }
 
     /// The name of the app.
     public let name: String
@@ -93,7 +123,7 @@ public struct KeyboardApp {
     public let deepLinks: DeepLinks?
 
     /// The autocomplete configuration to use.
-    public let autocompleteConfiguration: AutocompleteConfiguration
+    public let autocomplete: AutocompleteConfiguration
 
     /// A custom keyboard settings key prefix, if any.
     public let keyboardSettingsKeyPrefix: String?

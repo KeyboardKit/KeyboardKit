@@ -32,9 +32,9 @@ This will provide you with all the text before and after the text input cursor, 
 
 ## Next Word Prediction (BETA)
 
-Apple's native text prediction utilities stopped supporting next word prediction in iOS 16, which means that we can only complete and correct words that we have started typing.
+Apple's on-device text prediction utilities stopped supporting next word prediction in iOS 16. KeyboardKit Pro therefore unlocks ways to let the local autocomplete service perform next word prediction via 3rd party AI services.
 
-KeyboardKit Pro therefore unlocks ways to inject 3rd party support for performing next word prediction, by specifying a ``Autocomplete/NextWordPredictionRequest``in your ``KeyboardApp``'s ``KeyboardApp/autocompleteConfiguration-swift.property``:
+The easiest way to enable next word prediction, is to add a ``Autocomplete/NextWordPredictionRequest`` to your ``KeyboardApp`` configuration:
 
 ```swift
 extension KeyboardApp {
@@ -42,7 +42,7 @@ extension KeyboardApp {
     static var keyboardKitDemo: Self {
         .init(
             ...
-            autocompleteConfiguration: .init(
+            autocomplete: .init(
                 nextWordPredictionRequest: .claude(apiKey: ...)
             )
         )
@@ -50,9 +50,7 @@ extension KeyboardApp {
 }
 ```
 
-This will automatically inject the request into the autocomplete service when your license is registered. Use ``AutocompleteContext`` ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled`` to disable this feature. See the <doc:Autocomplete-Article> article for more information.
-
-> Warning: AI-based next word prediction requires Full Access for the keyboard to communicate with the remote service, and will send the user's text to that remote service. Make sure to explicitly get the users consent before activating this feature.
+KeyboardKit Pro has support for Claude and OpenAI. See the <doc:Autocomplete-Article> article for more information and important considerations.
 
 
 ## Text Input Support
