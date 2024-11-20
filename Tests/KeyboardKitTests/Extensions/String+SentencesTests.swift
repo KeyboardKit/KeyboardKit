@@ -46,13 +46,13 @@ class String_SentencesTests: XCTestCase {
 
     func testLastSentence() {
         testLastSentence(in: "", expected: nil)
-        testLastSentence(in: "sentence", expected: nil)
-        testLastSentence(in: "sentence.", expected: "sentence")
-        testLastSentence(in: "sentence!", expected: "sentence")
-        testLastSentence(in: " sentence .", expected: " sentence ")
+        testLastSentence(in: "sentence", expected: "sentence")
+        testLastSentence(in: "sentence.", expected: "sentence.")
+        testLastSentence(in: "sentence!", expected: "sentence!")
+        testLastSentence(in: " sentence .", expected: "sentence.")
         testLastSentence(in: "sentence. ", expected: nil)
-        testLastSentence(in: "sentence. a", expected: nil)
-        testLastSentence(in: "sentence.a", expected: nil)
+        testLastSentence(in: "sentence. a", expected: "a")
+        testLastSentence(in: "sentence.a", expected: "a")
     }
 }
 #endif

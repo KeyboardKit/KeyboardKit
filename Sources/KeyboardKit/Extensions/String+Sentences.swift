@@ -39,10 +39,12 @@ public extension String {
 
     /// Get the trimmed content of the last sentence, if any.
     var lastSentence: String? {
-        guard isLastSentenceEnded else { return nil }
+        guard let lastCharacter = trimmingCharacters(in: .whitespacesAndNewlines).last else { return nil }
+        let lastChar = String(lastCharacter)
         let components = split(by: Self.sentenceDelimiters).filter { !$0.isEmpty }
-        let trimmed = components.last?.trimmingCharacters(in: .whitespaces)
-        let ignoreLast = trimmed?.count == 0
-        return ignoreLast ? nil : components.last
+        guard let trimmed = components.last?.trimmingCharacters(in: .whitespaces) else { return nil }
+        if trimmed.isEmpty { return nil }
+        let addLastChar = lastChar.isSentenceDelimiter
+        return addLastChar ? "\(trimmed)\(lastChar)" : trimmed
     }
 }

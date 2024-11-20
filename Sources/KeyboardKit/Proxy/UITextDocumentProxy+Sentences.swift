@@ -23,7 +23,7 @@ public extension UITextDocumentProxy {
         documentContextBeforeInput?.isLastSentenceEndedWithTrailingWhitespace ?? true
     }
 
-    /// The last ended sentence just before the input cursor.
+    /// The sentence just before the input cursor.
     var sentenceBeforeInput: String? {
         documentContextBeforeInput?.lastSentence
     }

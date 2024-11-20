@@ -96,7 +96,7 @@ public extension Autocomplete.NextWordPredictionRequest {
         apiUrl: String = "",
         anthropicVersion: String = "",
         model: String = "",
-        maxTokens: Int = 15,
+        maxTokens: Int = 0,
         systemPrompt: String? = nil
     ) -> Self {
         .init { _ in
@@ -113,7 +113,7 @@ public extension Autocomplete.NextWordPredictionRequest {
         apiKeyHeader: String = "",
         apiKeyValuePrefix: String = "",
         model: String = "",
-        maxTokens: Int = 100,
+        maxTokens: Int = 0,
         systemPrompt: String? = nil
     ) -> Self {
         .init { _ in

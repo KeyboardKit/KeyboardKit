@@ -184,6 +184,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
     func testShouldAutocompleteIgnoreCurrentWordReturnsTrueWhenPressingBackspaceWithExistingWordAndAutocorrection() {
+        handler.autocompleteContext.settings.isAutolearnEnabled = true
         textDocumentProxy.documentContextBeforeInput = "abc"
         handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
         XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .release, on: .backspace)) // Invalid gesture
