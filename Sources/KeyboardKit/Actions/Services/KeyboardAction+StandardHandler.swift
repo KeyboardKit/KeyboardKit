@@ -537,9 +537,8 @@ extension KeyboardAction {
 
         /// Whether to trigger feedback for an action.
         ///
-        /// This always returns `true` by default. It causes
-        /// this class to perform more granular checks later.
-        /// Set it to `false` to disable all feedback.
+        /// This always returns `true` to allow the class to
+        /// perform more granular checks later.
         open func shouldTriggerFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
@@ -549,25 +548,28 @@ extension KeyboardAction {
 
         /// Whether to trigger audio feedback for an action.
         ///
-        /// This always returns `true` by default. It causes
-        /// this class to perform more granular checks later.
-        /// Set it to `false` to disable all audio feedback.
+        /// This returns true if the ``feedbackContext`` has
+        /// audio feedback enabled in it's settings.
         open func shouldTriggerAudioFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            return true
+            feedbackContext.settings.isAudioFeedbackEnabled
         }
 
         /// Whether to trigger haptic feedback for an action.
         ///
-        /// This checks various gesture actions to determine
-        /// if the feedback should be triggered. You can set
-        /// it to `false` to disable all haptic feedback.
+        /// This returns true if the ``feedbackContext`` has
+        /// haptic feedback enabled in it's settings, and if
+        /// certain other gesture conditions are `true`. The
+        /// function also always returns true for long press
+        /// on space by default.
         open func shouldTriggerHapticFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
+            if action == .space && gesture == .longPress { return true }
+            guard feedbackContext.settings.isHapticFeedbackEnabled else { return false }
             let hasRelease = self.action(for: .release, on: action) != nil
             if gesture == .press && hasRelease { return true }
             let hasAction = self.action(for: gesture, on: action) != nil

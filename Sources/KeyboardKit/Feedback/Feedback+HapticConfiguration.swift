@@ -19,31 +19,26 @@ public extension Feedback {
         /// Create a custom haptic feedback configuration.
         ///
         /// - Parameters:
-        ///   - press: The feedback to use for presses, by default `.none`.
-        ///   - release: The feedback to use for releases, by default `.none`.
+        ///   - press: The feedback to use for presses, by default `.selectionChanged`.
+        ///   - release: The feedback to use for releases, by default `.selectionChanged`.
         ///   - doubleTap: The feedback to use for double taps, by default `.none`.
-        ///   - longPress: The feedback to use for long presses, by default `.none`.
-        ///   - longPressOnSpace: The feedback to use for long presses on space, by default `.mediumImpact`.
-        ///   - repeat: The feedback to use for repeat, by default `.none`.
+        ///   - longPress: The feedback to use for long presses, by default `.mediumImpact`.
+        ///   - repeat: The feedback to use for repeat, by default `.selectionChanged`.
         ///   - custom: A list of custom feedback, by default `empty`.
         public init(
-            press: Feedback.Haptic = .none,
-            release: Feedback.Haptic = .none,
+            press: Feedback.Haptic = .selectionChanged,
+            release: Feedback.Haptic = .selectionChanged,
             doubleTap: Feedback.Haptic = .none,
-            longPress: Feedback.Haptic = .none,
-            longPressOnSpace: Feedback.Haptic = .mediumImpact,
-            repeat: Feedback.Haptic = .none,
+            longPress: Feedback.Haptic = .mediumImpact,
+            repeat: Feedback.Haptic = .selectionChanged,
             custom: [CustomFeedback] = []
         ) {
             self.press = press
             self.release = release
             self.doubleTap = doubleTap
             self.longPress = longPress
-            self.longPressOnSpace = longPressOnSpace
             self.repeat = `repeat`
-            self.custom = custom + [
-                .haptic(longPressOnSpace, for: .longPress, on: .space)
-            ]
+            self.custom = custom
         }
         
         /// The feedback to use for presses.
@@ -58,15 +53,30 @@ public extension Feedback {
         /// The feedback to use for long presses.
         public var longPress: Feedback.Haptic
         
-        /// The feedback to use for long presses on space.
-        public var longPressOnSpace: Feedback.Haptic
-        
         /// The feedback to use for repeat.
         public var `repeat`: Feedback.Haptic
         
         /// A list of custom haptic feedback.
         public var custom: [CustomFeedback]
     }
+}
+
+public extension Feedback.HapticConfiguration {
+
+    /// A standard, enabled haptic configuration.
+    static let standard = Self()
+
+    @available(*, deprecated, renamed: "standard", message: "Migration Deprecation, will be removed in 9.1!")
+    static var enabled: Self { .standard }
+
+    /// This configuration disables all haptic feedback.
+    static let disabled = Self(
+        press: .none,
+        release: .none,
+        doubleTap: .none,
+        longPress: .none,
+        repeat: .none
+    )
 }
 
 public extension Feedback.HapticConfiguration {
@@ -137,29 +147,6 @@ public extension Feedback.HapticConfiguration {
     ) {
         custom.append(feedback)
     }
-}
-
-public extension Feedback.HapticConfiguration {
-    
-    /// This configuration enables all haptic feedback.
-    static let enabled = Self(
-        press: .selectionChanged,
-        release: .selectionChanged,
-        doubleTap: .lightImpact,
-        longPress: .mediumImpact,
-        longPressOnSpace: .mediumImpact,
-        repeat: .selectionChanged
-    )
-    
-    /// This configuration disables all haptic feedback.
-    static let disabled = Self(
-        press: .none,
-        release: .none,
-        doubleTap: .none,
-        longPress: .none,
-        longPressOnSpace: .mediumImpact,
-        repeat: .none
-    )
 }
 
 private extension Feedback.HapticConfiguration {

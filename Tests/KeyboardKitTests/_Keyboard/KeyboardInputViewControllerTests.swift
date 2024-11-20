@@ -111,8 +111,8 @@ class KeyboardInputViewControllerTests: XCTestCase {
             XCTAssertFalse(vc.state.keyboardContext.hasFullAccess)
             XCTAssertEqual(vc.state.keyboardContext.keyboardType, .alphabetic)
             XCTAssertFalse(vc.state.keyboardContext.needsInputModeSwitchKey)
-            XCTAssertEqual(vc.state.feedbackContext.audioConfiguration, .enabled)
-            XCTAssertEqual(vc.state.feedbackContext.hapticConfiguration, .disabled)
+            XCTAssertEqual(vc.state.feedbackContext.audioConfiguration, .standard)
+            XCTAssertEqual(vc.state.feedbackContext.hapticConfiguration, .standard)
         }
     }
 

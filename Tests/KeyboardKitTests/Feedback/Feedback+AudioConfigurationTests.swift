@@ -15,14 +15,14 @@ class Feedback_AudioConfigurationTests: XCTestCase {
     
     func testDefaultInitializerUsesStandardFeedback() {
         let config = Config()
+        XCTAssertEqual(config, .standard)
+    }
+
+    func testStandardConfigurationEnablesFeedback() {
+        let config = Config()
         XCTAssertEqual(config.input, Feedback.Audio.input)
         XCTAssertEqual(config.delete, Feedback.Audio.delete)
         XCTAssertEqual(config.system, Feedback.Audio.system)
-    }
-
-    func testEnabledConfigurationUsesEnabledFeedback() {
-        let config = Config.enabled
-        XCTAssertEqual(config, Config())
     }
 
     func testDisabledConfigurationUsesDisabledFeedback() {

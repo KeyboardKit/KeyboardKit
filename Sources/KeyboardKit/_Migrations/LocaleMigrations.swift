@@ -7,7 +7,7 @@ public typealias KeyboardLocale = Locale
 @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use Locale instead.")
 public extension KeyboardLocale {
 
-    @available(*, deprecated, message: "Migration Deprecation! This will be removed in KeyboardKit 9.1.")
+    @available(*, deprecated, message: "Migration Deprecation, will be removed in KeyboardKit 9.1!")
     init?(
         for locale: Locale
     ) {

@@ -15,21 +15,15 @@ class Feedback_HapticConfigurationTests: XCTestCase {
     
     func testDefaultInitilizerUsesStandardFeedback() {
         let config = Config()
-        XCTAssertEqual(config.press, Feedback.Haptic.none)
-        XCTAssertEqual(config.release, Feedback.Haptic.none)
-        XCTAssertEqual(config.doubleTap, Feedback.Haptic.none)
-        XCTAssertEqual(config.longPress, Feedback.Haptic.none)
-        XCTAssertEqual(config.longPressOnSpace, .mediumImpact)
-        XCTAssertEqual(config.repeat, Feedback.Haptic.none)
+        XCTAssertEqual(config, .standard)
     }
 
-    func testEnabledConfigurationEnabledAllFeedback() {
-        let config = Config.enabled
+    func testStandardConfigurationEnablesSomeFeedback() {
+        let config = Config.standard
         XCTAssertEqual(config.press, .selectionChanged)
         XCTAssertEqual(config.release, .selectionChanged)
-        XCTAssertEqual(config.doubleTap, .lightImpact)
+        XCTAssertEqual(config.doubleTap, .none)
         XCTAssertEqual(config.longPress, .mediumImpact)
-        XCTAssertEqual(config.longPressOnSpace, .mediumImpact)
         XCTAssertEqual(config.repeat, .selectionChanged)
     }
 
@@ -39,7 +33,6 @@ class Feedback_HapticConfigurationTests: XCTestCase {
         XCTAssertEqual(config.release, .none)
         XCTAssertEqual(config.doubleTap, .none)
         XCTAssertEqual(config.longPress, .none)
-        XCTAssertEqual(config.longPressOnSpace, .mediumImpact)
         XCTAssertEqual(config.repeat, .none)
     }
 }

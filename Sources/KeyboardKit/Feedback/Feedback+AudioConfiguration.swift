@@ -70,6 +70,22 @@ public extension Feedback.AudioConfiguration {
     }
 }
 
+public extension Feedback.AudioConfiguration {
+
+    /// A standard, enabled audio configuration.
+    static let standard = Self()
+
+    @available(*, deprecated, renamed: "standard", message: "Migration Deprecation, will be removed in 9.1!")
+    static var enabled: Self { .standard }
+
+    /// This configuration disables all audio feedback.
+    static let disabled = Self(
+        input: .none,
+        delete: .none,
+        system: .none
+    )
+}
+
 public extension Feedback.AudioConfiguration.CustomFeedback {
     
     /// Create a custom audio feedback configuration.
@@ -116,17 +132,4 @@ public extension Feedback.AudioConfiguration {
     ) {
         custom.append(feedback)
     }
-}
-
-public extension Feedback.AudioConfiguration {
-    
-    /// This configuration enables all audio feedback.
-    static let enabled = Self()
-    
-    /// This configuration disables all audio feedback.
-    static let disabled = Self(
-        input: .none,
-        delete: .none,
-        system: .none
-    )
 }

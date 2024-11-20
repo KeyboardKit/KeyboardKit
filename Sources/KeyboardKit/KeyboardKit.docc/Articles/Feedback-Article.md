@@ -39,6 +39,8 @@ The ``Feedback/Haptic`` enum defines haptic feedback types, like ``Feedback/Hapt
 
 KeyboardKit has an observable ``FeedbackContext`` class that can be used to configure feedback for various actions. It also has auto-persisted ``FeedbackContext/settings-swift.property`` that can be used to customize the feedback behavior.
 
+You can use the ``FeedbackContext/audioConfiguration`` and ``FeedbackContext/hapticConfiguration`` to configure which feedback to trigger when feedback is enabled in ``FeedbackContext/settings-swift.property``.
+
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``. You can use this instance to configure feedback.
 
 

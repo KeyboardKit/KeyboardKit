@@ -34,6 +34,8 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
         let state = controller.state
         let services = controller.services
 
+        state.feedbackContext.settings.isAudioFeedbackEnabled = false
+        state.feedbackContext.settings.isHapticFeedbackEnabled = false
         state.keyboardContext.locale = .swedish
         state.keyboardContext.originalTextDocumentProxy = textDocumentProxy
         services.spaceDragGestureHandler = spaceDragHandler
@@ -258,17 +260,37 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
 
     // MARK: - Feedback
 
-    func testShouldTriggerHapticFeedbackInSomeCases() {
-        var result = handler.shouldTriggerHapticFeedback(for: .press, on: .control)
-        XCTAssertFalse(result)
-        result = handler.shouldTriggerHapticFeedback(for: .press, on: .character(""))
-        XCTAssertTrue(result)
-        result = handler.shouldTriggerHapticFeedback(for: .release, on: .character(""))
-        XCTAssertFalse(result)
-        result = handler.shouldTriggerHapticFeedback(for: .longPress, on: .space)
-        XCTAssertTrue(result)
+    func audioResult(for gesture: Keyboard.Gesture, on action: KeyboardAction) -> Bool {
+        handler.shouldTriggerAudioFeedback(for: gesture, on: action)
     }
-    
+
+    func hapticResult(for gesture: Keyboard.Gesture, on action: KeyboardAction) -> Bool {
+        handler.shouldTriggerHapticFeedback(for: gesture, on: action)
+    }
+
+    func testAudioFeedbackShouldOnlyTriggerIfSettingsIsEnabled() {
+        controller.state.feedbackContext.settings.isAudioFeedbackEnabled = false
+        XCTAssertFalse(audioResult(for: .press, on: .character("a")))
+        controller.state.feedbackContext.settings.isAudioFeedbackEnabled = true
+        XCTAssertTrue(audioResult(for: .press, on: .character("a")))
+    }
+
+    func testHapticFeedbackShouldAlwaysTriggerForLongPressOnSpace() {
+        controller.state.feedbackContext.settings.isHapticFeedbackEnabled = false
+        XCTAssertTrue(hapticResult(for: .longPress, on: .space))
+        controller.state.feedbackContext.settings.isHapticFeedbackEnabled = true
+        XCTAssertTrue(hapticResult(for: .longPress, on: .space))
+    }
+
+    func testHapticFeedbackShouldOnlyTriggerForSomeActionGesturesIfSettingsIsEnabled() {
+        controller.state.feedbackContext.settings.isHapticFeedbackEnabled = false
+        XCTAssertFalse(hapticResult(for: .press, on: .character("a")))
+        XCTAssertFalse(hapticResult(for: .release, on: .character("a")))
+        controller.state.feedbackContext.settings.isHapticFeedbackEnabled = true
+        XCTAssertTrue(hapticResult(for: .press, on: .character("a")))
+        XCTAssertFalse(hapticResult(for: .release, on: .character("a")))
+    }
+
     func testTriggerFeedbackForGestureOnActionCallsInjectedHandler() {
         // TODO: Implement a mock feedback handler and inspect the result
         // handler.triggerFeedback(for: .press, on: .character(""))
@@ -307,7 +329,6 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     func testHapticFeedbackForGestureOnActionReturnsCorrectValue() {
         let config = handler.feedbackContext.hapticConfiguration
         let char = KeyboardAction.character("a")
-        validateHapticFeedback(for: .longPress, on: .space, expected: config.longPressOnSpace)
         validateHapticFeedback(for: .doubleTap, on: char, expected: config.doubleTap)
         validateHapticFeedback(for: .longPress, on: char, expected: config.longPress)
         validateHapticFeedback(for: .press, on: char, expected: config.press)

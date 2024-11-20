@@ -120,6 +120,8 @@ The `ExternalKeyboardContext` has been moved to the open-source library and adde
 
 The haptic feedback has been adjusted to be lighter when typing, to make the typing not feel as heavy.
 
+The `FeedbackContext` no longer has enabled configs, since its `settings` is now used to toggle feedback.
+
 ### 🇸🇪 Localization
 
 The `KeyboardLocale` enum has been replaced with using the native `Locale` everywhere.
