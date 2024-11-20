@@ -228,6 +228,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func testPerformingAutocompleteAbortsIfTextProxyHasNoCurrentWord() {
         let vc = TestClass()
         setupMocksForAutocomplete(for: vc)
+        vc.lastAutocompleteText = "something to trigger this"
         vc.state.autocompleteContext.suggestions = [.init(text: "")]
         mockTextDocumentProxy.documentContextBeforeInput = nil
         mockTextDocumentProxy.documentContextAfterInput = nil
@@ -240,6 +241,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func testPerformingAutocompleteWritesResultToAutocompleteContext() {
         let vc = TestClass()
+        vc.lastAutocompleteText = "something to trigger this"
         setupMocksForAutocomplete(for: vc)
         mockAutocompleteService.suggestions = [.init(text: "")]
         vc.performAutocomplete()

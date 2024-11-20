@@ -198,7 +198,7 @@ final class KeyboardAction_StandardHandlerTests: XCTestCase {
     }
 
     func testShouldPerformAutocompleteReturnsTrueForReleaseGesture() {
-        XCTAssertTrue(handler.shouldPerformAutocomplete(after: .press, on: .backspace))
+        XCTAssertFalse(handler.shouldPerformAutocomplete(after: .press, on: .backspace))
         XCTAssertTrue(handler.shouldPerformAutocomplete(after: .release, on: .backspace))
         XCTAssertTrue(handler.shouldPerformAutocomplete(after: .release, on: .space))
     }

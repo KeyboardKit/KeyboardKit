@@ -424,7 +424,7 @@ extension KeyboardAction {
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            return true
+            gesture == .release
         }
 
         /// Whether to reinsert an autocomplete removed space after a certain gesture action.

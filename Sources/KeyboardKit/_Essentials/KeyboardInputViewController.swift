@@ -170,7 +170,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - Proxy Properties
-    
+
     /// The original text document proxy.
     open var originalTextDocumentProxy: UITextDocumentProxy {
         super.textDocumentProxy
@@ -214,14 +214,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         super.textWillChange(textInput)
         state.keyboardContext.syncTextDocumentProxy(with: self)
     }
-    
+
     open override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
         DispatchQueue.main.async { [weak self] in
             self?.textDidChangeAsync(textInput)
         }
     }
-    
+
     /// This function will be called with an async delay, to
     /// give the text document proxy time to update itself.
     open func textDidChangeAsync(_ textInput: UITextInput?) {
@@ -231,7 +231,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - KeyboardController
-    
+
     open func adjustTextPosition(by offset: Int) {
         textDocumentProxy.adjustTextPosition(byCharacterOffset: offset)
     }
@@ -289,7 +289,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open var isContextSyncEnabled: Bool {
         !textDocumentProxy.isReadingFullDocumentContext
     }
-    
+
     /// Perform a keyboard context sync.
     ///
     /// This is performed to keep the ``state`` in sync, and
@@ -301,6 +301,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
 
     // MARK: - Autocomplete
+
+    var lastAutocompleteText = ""
 
     /// The text to use when performing autocomplete.
     ///
@@ -326,6 +328,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func performAutocomplete() {
         guard isAutocompleteEnabled else { return }
         let text = autocompleteText ?? ""
+        guard text != lastAutocompleteText else { return }
+        lastAutocompleteText = text
         let context = state.autocompleteContext
         let service = services.autocompleteService
         service.autocomplete(text, updating: context)
@@ -355,7 +359,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 // MARK: - Private Functions
 
 private extension KeyboardInputViewController {
-    
+
     /// Update the last received dictation error.
     func updateLastDictationError(_ error: Error) async {
         await MainActor.run {

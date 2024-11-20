@@ -27,7 +27,7 @@ class KeyboardViewController: KeyboardInputViewController {
     /// This function is called when the controller launches.
     ///
     /// Call `setup(for:)` here to set up the controller for
-    /// the `.keyboardKitDemo` app in `KeyboardApp+Demo`.
+    /// the `.keyboardKitDemo` app.
     override func viewDidLoad() {
 
         /// 💡 Always call super :)
