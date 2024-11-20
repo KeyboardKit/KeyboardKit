@@ -11,7 +11,7 @@ import UIKit
 
 /// This action handler inherits the standard action handler
 /// and makes demo-specific adjustments to it.
-class DemoActionHandler: KeyboardAction.StandardHandler {
+class DemoActionHandler: KeyboardAction.StandardActionHandler {
 
     /// Trigger custom actions for `.image` keyboard actions.
     override func action(

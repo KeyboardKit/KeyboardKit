@@ -10,7 +10,7 @@ import KeyboardKitPro
 
 /// This service inherits the standard service, and can then
 /// add one extra button before or after the spacebar.
-class DemoLayoutService: KeyboardLayout.StandardService {
+class DemoLayoutService: KeyboardLayout.StandardLayoutService {
 
     init(extraKey: ExtraKey) {
         self.extraKey = extraKey

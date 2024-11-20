@@ -17,7 +17,7 @@ import SwiftUI
 ///
 /// The ``KeyboardViewController`` shows how you can replace
 /// the standard provider with this custom one.
-class DemoStyleService: KeyboardStyle.ThemeBasedService {
+class DemoStyleService: KeyboardStyle.ThemeBasedStyleService {
 
     override func buttonFontSize(
         for action: KeyboardAction
