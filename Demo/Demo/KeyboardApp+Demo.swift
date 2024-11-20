@@ -18,8 +18,7 @@ public extension KeyboardApp {
     ///
     /// The demo app has a `KeyboardKit.license` file that's
     /// linked to the app and the `KeyboardPro` keyboard. It
-    /// unlocks KeyboardKit Pro, without having to specify a
-    /// `licenseKey` in the `KeyboardApp` below.
+    /// unlocks KeyboardKit Pro without a `licenseKey` below.
     ///
     /// All yearly Gold and Enterprise customers can request
     /// a `KeyboardKit.license` file, while lower tiers must
@@ -33,10 +32,13 @@ public extension KeyboardApp {
     static var keyboardKitDemo: Self {
         .init(
             name: "KeyboardKit Demo",
-            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",
+            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // The demo app uses a license file
             bundleId: "com.keyboardkit.demo",
             appGroupId: "group.com.keyboardkit.demo",
             locales: .keyboardKitSupported,
+            autocomplete: .init(
+                // nextWordPredictionRequest: .claude(apiKey: "")
+            ),
             deepLinks: .init(app: "kkdemo://")
         )
     }

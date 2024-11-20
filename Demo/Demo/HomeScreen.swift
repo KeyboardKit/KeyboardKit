@@ -52,7 +52,7 @@ struct HomeScreen: View {
             .navigationTitle("KeyboardKit")
         }
         .keyboardAppHomeScreenLocalization(.init(
-            keyboardSectionFooter: "OBS! This demo doesn't sync settings between the app and its keyboards!"
+            keyboardSectionFooter: "OBS! This demo isn't code signed and therefore can't sync settings to its keyboard extensions!"
         ))
         .keyboardAppHomeScreenStyle(.init(
             appIconSize: 150

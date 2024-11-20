@@ -81,6 +81,8 @@ private extension DemoToolbar {
                     button(readDocument, "doc.text.magnifyingglass")
                     button(startDictation, "mic")
                     button(openSettings, "gearshape")
+                    Divider()
+                    toggle($keyboardContext.isKeyboardCollapsed, "keyboard.chevron.compact.down")
                 }
                 .frame(maxHeight: .infinity)
             }
@@ -156,18 +158,22 @@ private extension DemoToolbar {
     
     func themePickerSheet() -> some View {
         KeyboardTheme.Shelf(
-            themes: KeyboardTheme.allPredefined
-        ) { theme in
-            self.theme = theme
-        } title: { collection in
-            Text(collection.name)
-                .font(.callout.bold())
-                .frame(maxWidth: .infinity, alignment: .leading)
-        } item: { theme in
-            KeyboardTheme.ShelfItem(theme: theme)
-                .shadow(radius: 1, x: 0, y: 1)
-                .padding(.vertical, 3)
-        }
+            themes: KeyboardTheme.allPredefined,
+            title: { collection in
+                Text(collection.name)
+                    .font(.callout.bold())
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            },
+            item: { theme in
+                SwiftUI.Button {
+                    self.theme = theme
+                } label: {
+                    KeyboardTheme.ShelfItem(theme: theme)
+                        .shadow(radius: 1, x: 0, y: 1)
+                        .padding(.vertical, 3)
+                }
+            }
+        )
         .demoSheet("Theme Picker")
     }
 }

@@ -23,7 +23,7 @@ class KeyboardViewController: KeyboardInputViewController {
     /// This function is called when the controller launches.
     ///
     /// Call `setup(for:)` here to set up the controller for
-    /// the `.keyboardKitDemo` app in `KeyboardApp+Demo`.
+    /// the `.keyboardKitDemo` app.
     override func viewDidLoad() {
 
         /// 💡 Always call super :)
@@ -61,12 +61,20 @@ class KeyboardViewController: KeyboardInputViewController {
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 collapsedView: { $0.view },
-                emojiKeyboard: { $0.view },
-                toolbar: { params in params.view }  // This is the same as $0.view
+                emojiKeyboard: { params in params.view },   // This is the same as $0.view
+                toolbar: { _ in
+                    Keyboard.Toolbar {
+                        HStack {
+                            Spacer()
+                            Text("Autocomplete can be tested in the Pro demo.")
+                            Spacer()
+                        }
+                    }
+                }
             )
             // Apply global view modifiers here, e.g. styles.
             // .autocorrectionDisabled()
-            // .calloutStyle(.init(backgroundColor: .red))
+            // .keyboardToolbarStyle(.init(backgroundColor: .red))
         }
     }
 }
@@ -74,27 +82,20 @@ class KeyboardViewController: KeyboardInputViewController {
 private extension KeyboardViewController {
 
     /// Make demo-specific service changes.
-    ///
-    /// You can add your own customizations here, to see how
-    /// it affects the keyboard behavior.
     func setupDemoServices() {
 
-        /// 💡 Register a demo-specific autocomplete service
-        /// that provides the keyboard with fake suggestions.
-        services.autocompleteService = FakeAutocompleteService(
-            context: state.autocompleteContext
-        )
+        /// 💡 You can replace any service with your own custom service.
+        services.autocompleteService = services.autocompleteService
     }
 
     /// Make demo-specific state changes.
-    ///
-    /// You can add your own customizations here, to see how
-    /// it affects the keyboard behavior.
     func setupDemoState() {
 
         /// 💡 Configure the space key's long press behavior.
-        /// Note that this demo only supports English.
         state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
         // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
+
+        /// 💡 Enable haptic feedback.
+        state.feedbackContext.settings.isHapticFeedbackEnabled = false
     }
 }
