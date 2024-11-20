@@ -47,21 +47,8 @@ public extension Keyboard {
                 .padding(10)
             }
             .font(.title3.weight(.light))
-            .buttonStyle(.keyboardPlain)
+            .buttonStyle(.plainKeyboard)
         }
-    }
-}
-
-extension ButtonStyle where Self == KeyboardPlainButtonStyle {
-
-    static var keyboardPlain: Self { .init() }
-}
-
-struct KeyboardPlainButtonStyle: ButtonStyle {
-
-    func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .opacity(configuration.isPressed ? 0.5 : 1)
     }
 }
 
