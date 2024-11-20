@@ -9,17 +9,17 @@
 #if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
 
-public extension UITextDocumentProxy where Self == KeyboardPreviews.PreviewTextDocumentProxy {
-    
+public extension UITextDocumentProxy where Self == KeyboardPreviews.TextDocumentProxy {
+
     static var preview: UITextDocumentProxy {
-        KeyboardPreviews.PreviewTextDocumentProxy()
+        KeyboardPreviews.TextDocumentProxy()
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewTextDocumentProxy: NSObject, UITextDocumentProxy {
-        
+    class TextDocumentProxy: NSObject, UITextDocumentProxy {
+
         public override init() {
             super.init()
         }

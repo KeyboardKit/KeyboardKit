@@ -54,7 +54,7 @@ public extension Keyboard {
         /// The autocomplete service to use.
         public lazy var autocompleteService: AutocompleteService = .disabled {
             didSet {
-                guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
+                guard let handler = actionHandler as? KeyboardAction.StandardActionHandler else { return }
                 handler.autocompleteService = autocompleteService
             }
         }
@@ -81,7 +81,7 @@ public extension Keyboard {
             repeatGestureTimer: repeatGestureTimer
         ) {
             didSet {
-                guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
+                guard let handler = actionHandler as? KeyboardAction.StandardActionHandler else { return }
                 handler.behavior = keyboardBehavior
             }
         }
@@ -144,7 +144,7 @@ public extension Keyboard.Services {
 
     // Setup the action handler for the provided controller.
     func setupActionHandler(for controller: KeyboardInputViewController) {
-        guard let handler = actionHandler as? KeyboardAction.StandardHandler else { return }
+        guard let handler = actionHandler as? KeyboardAction.StandardActionHandler else { return }
         weak var weakController = controller
         handler.keyboardController = weakController
     }

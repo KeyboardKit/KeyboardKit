@@ -31,7 +31,7 @@ KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 
 In KeyboardKit, a ``KeyboardStyleService`` can provide dynamic styles for different parts of a keyboard. Unlike static styles, a style service can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
 
-KeyboardKit automatically creates an instance of ``KeyboardStyle/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
+KeyboardKit injects a ``KeyboardStyle/StandardStyleService`` into ``KeyboardInputViewController/services`` when the keyboard is launched. You can replace it at any time, as described further down.
 
 
 
@@ -123,10 +123,10 @@ You can apply themes with a style-specific ``KeyboardStyleService``. Future vers
 
 ### Create a custom style service
 
-You can create a custom style service to customize any style in any way you want. You can implement ``KeyboardStyleService`` from scratch, or inherit and customize ``KeyboardStyle/StandardService``:
+You can create a custom style service to customize styles in any way you want. You can implement ``KeyboardStyleService`` from scratch, or inherit and customize ``KeyboardStyle/StandardStyleService``:
 
 ```swift
-class CustomKeyboardStyleService: KeyboardStyle.StandardProvider {
+class CustomKeyboardStyleService: KeyboardStyle.StandardStyleService {
     
     override func buttonStyle(
         for action: KeyboardAction,

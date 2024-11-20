@@ -49,7 +49,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 In KeyboardKit, a ``FeedbackService`` can be used to trigger audio and haptic feedback as the user interacts with the keyboard. The ``KeyboardActionHandler`` protocol also implements this protocol.
 
-KeyboardKit automatically creates a ``Feedback/StandardService``  instance and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, to customize how feedback is triggered.
+KeyboardKit injects a ``Feedback/StandardFeedbackService``  instance into ``KeyboardInputViewController/services``. You can replace it at any time, to customize how the keyboard triggers feedback.
 
 
 

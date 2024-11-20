@@ -19,7 +19,7 @@ A ``KeyboardActionHandler`` can either handle a ``KeyboardAction`` in a standard
 
 ## Namespace
 
-KeyboardKit has a ``KeyboardAction`` enum that defines a bunch of keyboard-related actions. It's also a namespace for action-related types and views, like a ``KeyboardAction/StandardHandler`` that provides you with a standard way to handle actions.
+KeyboardKit has a ``KeyboardAction`` enum that defines a bunch of keyboard-related actions. It's also a namespace for action-related types and views, like a ``KeyboardAction/StandardActionHandler`` that provides you with a standard way to handle actions.
 
 
 
@@ -46,7 +46,7 @@ A ``KeyboardActionHandler`` can handle actions and trigger audio & haptic feedba
 
 For instance, to customize what happens when a user double-taps space, you can override ``KeyboardActionHandler/handle(_:on:)`` and check if the action is ``KeyboardAction/space`` and the gesture is ``Keyboard/Gesture/doubleTap``. If so, do your custom thing, else call `super.handle(gesture, on: action)`.
 
-KeyboardKit automatically creates an instance of ``KeyboardAction/StandardHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
+KeyboardKit automatically creates an instance of ``KeyboardAction/StandardActionHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
 
 ---
@@ -97,10 +97,10 @@ This will by default insert the suggestion into the text document proxy. You can
 
 You can create a custom ``KeyboardActionHandler`` to customize how certain actions are handled, and to handle actions that don't have a default behavior, like ``KeyboardAction/image``, ``KeyboardAction/command``, etc. 
 
-You can implement the ``KeyboardActionHandler`` protocol from scratch, or inherit and customize the ``KeyboardAction/StandardHandler`` class:
+You can implement the ``KeyboardActionHandler`` protocol from scratch, or inherit and customize ``KeyboardAction/StandardActionHandler``:
 
 ```swift
-class CustomActionHandler: KeyboardAction.StandardHandler {
+class CustomActionHandler: KeyboardAction.StandardActionHandler {
 
     open override func handle(
         _ gesture: Keyboard.Gesture, 

@@ -1,5 +1,5 @@
 //
-//  KeyboardStyle+StandardServiceTests.swift
+//  KeyboardStyle+StandardStyleServiceTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-08.
@@ -11,9 +11,9 @@ import XCTest
 
 @testable import KeyboardKit
 
-class KeyboardStyle_StandardServiceTests: XCTestCase {
+class KeyboardStyle_StandardStyleServiceTests: XCTestCase {
 
-    var service: KeyboardStyle.StandardService!
+    var service: KeyboardStyle.StandardStyleService!
     var context: KeyboardContext!
 
     var styles: [(action: KeyboardAction, style: Keyboard.ButtonStyle)]!

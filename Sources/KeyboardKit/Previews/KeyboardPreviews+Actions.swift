@@ -8,16 +8,16 @@
 
 import CoreGraphics
 
-public extension KeyboardActionHandler where Self == KeyboardPreviews.PreviewKeyboardActionHandler {
-    
+public extension KeyboardActionHandler where Self == KeyboardPreviews.ActionHandler {
+
     static var preview: KeyboardActionHandler {
-        KeyboardPreviews.PreviewKeyboardActionHandler()
+        KeyboardPreviews.ActionHandler()
     }
 }
 
 public extension KeyboardPreviews {
  
-    class PreviewKeyboardActionHandler: KeyboardActionHandler {
+    class ActionHandler: KeyboardActionHandler {
         
         public init() {}
         

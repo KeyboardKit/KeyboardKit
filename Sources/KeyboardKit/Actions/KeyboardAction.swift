@@ -21,11 +21,9 @@ import Foundation
 /// trigger actions with a ``KeyboardActionHandler``.
 ///
 /// The documentation for each action describes the standard
-/// behavior when using a ``KeyboardAction/StandardHandler``,
-/// with a ``Keyboard/StandardBehavior``.
-///
-/// Types that don't define any standard behaviors require a
-/// custom ``KeyboardActionHandler`` to be handled.
+/// behavior when using a ``StandardActionHandler``. Actions
+/// that don't have a standard behavior must be handled with
+/// a custom ``KeyboardActionHandler``.
 ///
 /// See the <doc:Actions-Article> article for more information.
 public enum KeyboardAction: Codable, Equatable {

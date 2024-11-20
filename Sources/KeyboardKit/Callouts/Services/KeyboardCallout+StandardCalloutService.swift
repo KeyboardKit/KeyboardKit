@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+StandardService.swift
+//  KeyboardCallout+StandardCalloutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,22 +8,22 @@
 
 import Foundation
 
-public extension KeyboardCalloutService where Self == KeyboardCallout.StandardService {
+public extension KeyboardCalloutService where Self == KeyboardCallout.StandardCalloutService {
 
-    /// Create a ``KeyboardCallout/StandardService`` instance.
+    /// Create a ``KeyboardCallout/StandardCalloutService`` instance.
     ///
     /// - Parameters:
     ///   - keyboardContext: The keyboard context to use.
-    ///   - baseService: The base service to use, by default a ``KeyboardCallout/BaseService``.
+    ///   - baseService: The base service to use, by default a ``KeyboardCallout/BaseCalloutService``.
     ///   - localizedServices: A list of localized services, by default `empty`.
     ///   - feedbackService: The feedback service to use.
     static func standard(
         keyboardContext: KeyboardContext,
-        baseService: KeyboardCalloutService = KeyboardCallout.BaseService(),
+        baseService: KeyboardCalloutService = KeyboardCallout.BaseCalloutService(),
         localizedServices: [Self.LocalizedCalloutService] = [],
         feedbackService: FeedbackService? = nil
     ) -> Self {
-        KeyboardCallout.StandardService(
+        KeyboardCallout.StandardCalloutService(
             keyboardContext: keyboardContext,
             baseService: baseService,
             localizedServices: localizedServices,
@@ -51,18 +51,18 @@ extension KeyboardCallout {
     /// ``KeyboardCalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``.
     ///
     /// See <doc:Callouts-Article> for more information.
-    open class StandardService: KeyboardCalloutService {
+    open class StandardCalloutService: KeyboardCalloutService {
 
         /// Create a standard callout service.
         ///
         /// - Parameters:
         ///   - keyboardContext: The keyboard context to use.
-        ///   - baseService: The base service to use, by default a ``KeyboardCallout/BaseService``.
+        ///   - baseService: The base service to use, by default a ``KeyboardCallout/BaseCalloutService``.
         ///   - localizedServices: A list of localized services, by default `empty`.
         ///   - feedbackService: The feedback service to use.
         public init(
             keyboardContext: KeyboardContext,
-            baseService: KeyboardCalloutService = KeyboardCallout.BaseService(),
+            baseService: KeyboardCalloutService = KeyboardCallout.BaseCalloutService(),
             localizedServices: [LocalizedCalloutService] = [],
             feedbackService: FeedbackService? = nil
         ) {

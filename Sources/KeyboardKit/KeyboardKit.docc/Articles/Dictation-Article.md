@@ -15,7 +15,7 @@ Dictation can be used to let users enter text by speaking instead of typing on t
 
 In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard extension, by opening the main app and let it perform the dictation operation, then return to the keyboard and apply the dictated text once dictation completes.
 
-👑 [KeyboardKit Pro][Pro] unlocks a ``Dictation/StandardService`` to handle dictation. Information about Pro features can be found further down.
+👑 [KeyboardKit Pro][Pro] unlocks a ``Dictation/StandardDictationService`` that can be used to perform dictation from the keyboard. Information about Pro features can be found further down.
 
 
 
@@ -51,7 +51,7 @@ KeyboardKit doesn't have a standard dictation service, as it has for other servi
 
 ### Services
 
-KeyboardKit Pro unlocks a ``Dictation/StandardService`` that can be used to perform dictation from a keyboard extension and in its main app.
+KeyboardKit Pro unlocks a ``Dictation/StandardDictationService`` that can be used to start dictation from a keyboard extension, by opening the main app and perform dictation there, then return to the keyboard (if possible).
 
 The service's speech recognizer supports: **english, english_gb, english_us, arabic, catalan, croatian, czech, danish, dutch, dutch_belgium, finnish, french, french_belgium, french_switzerland, german, german_austria, german_switzerland, greek, hebrew, hungarian, indonesian, italian, malay, norwegian, polish, portuguese, portuguese_brazil, romanian, russian, slovak, spanish, swedish, turkish, ukrainian**.
 

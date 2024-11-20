@@ -62,9 +62,21 @@ The `KeyboardView` now has a `collapsedView` that will be displayed when the key
 
 `Keyboard.CollapsedView` is a new standard view that can be displayed when the keyboard context `isKeyboardCollapsed` is true.
 
+### ⚙️ Services
+
+The service name changes and refactoring have been a great adjustment, but went a little too far.
+
+Developers have provided feedback that it's hard to tell services apart since there are now many `StandardService`.
+
+As such, this version takes one step back and adds the service type to the class name. The shorthands stay the same.
+
+This means that the adjusted name for e.g. `KeyboardLayout.StandardService` will be `KeyboardLayout.StandardLayoutService`.
+
+This name change will hopefully make it easier to distinguish between various services when searching and debugging the SDK.  
+
 ### 💥 Actions
 
-The `KeyboardAction.StandardHandler` now implements `KeyboardBehavior`.
+The `KeyboardAction.StandardActionHandler` now implements `KeyboardBehavior`.
 
 ### 📱 App
 
@@ -122,6 +134,8 @@ The `ExternalKeyboardContext` has been moved to the open-source library and adde
 
 ### 🔉 Feedback
 
+The `Feedback` namespace has been renamed to `KeyboardFeedback` and simplified quite a bit.
+
 The haptic feedback has been adjusted to be lighter when typing, to make the typing not feel as heavy.
 
 The `FeedbackContext` no longer has enabled configs, since its `settings` is now used to toggle feedback.
@@ -158,7 +172,7 @@ The KeyboardKit Pro input text components can therefore be setup with a `Keyboar
 
 ### 🍭 Themes
 
-The `KeyboardStyle.ThemeBasedService` can now be created with a theme context, which makes it auto-update when the theme is changed.
+The `KeyboardStyle.ThemeBasedStyleService` can now be created with a theme context, which makes it auto-update when the theme is changed.
 
 ### 🚨 Breaking Changes
 
@@ -172,7 +186,7 @@ Some things that are not covered by migration deprecations are:
 * All previously mutable styles and configs are now computed.
 * The dictation changes can't be migrated since the services are merged.
 * `Autocomplete.Suggestion` implements protocols that required info constraints.
-* `Autocomplete.LocalService` now requires a keyboard context for contextual info.
+* `Autocomplete.LocalAutocompleteService` now requires a keyboard context for contextual info.
 * `InputSet` no longer implements the removed `KeyboardLayoutIdentifiable` protocol.
 * `KeyboardLayout` is now a struct, and must now be a `var` for you to customize it.
 * `KeyboardStyleService` and callout style view modifiers now only use the base style.

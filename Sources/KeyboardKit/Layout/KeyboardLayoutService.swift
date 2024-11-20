@@ -49,7 +49,7 @@ public extension KeyboardLayoutService {
     ///   - service: The service to register.
     ///
     /// - Throws: ``KeyboardLayout/TryRegisterLocalizedLayoutServiceError``
-    /// if the current service can't be cast to a ``KeyboardLayout/StandardService``
+    /// if the current service can't be cast to a ``KeyboardLayout/StandardLayoutService``
     /// or the provided `service` doesn't implement ``LocalizedService``.
     func tryRegisterLocalizedService(
         _ service: KeyboardLayoutService
@@ -57,7 +57,7 @@ public extension KeyboardLayoutService {
         typealias ErrorType = KeyboardLayout.TryRegisterLocalizedLayoutServiceError
         let selfError = ErrorType.serviceDoesNotSupportLocalizedServiceRegistration
         let serviceError = ErrorType.providedServiceDoesNotImplementLocalizedServiceProtocol
-        guard let _self = self as? KeyboardLayout.StandardService else { throw selfError }
+        guard let _self = self as? KeyboardLayout.StandardLayoutService else { throw selfError }
         guard let service = service as? KeyboardLayoutService & LocalizedService else { throw serviceError }
         _self.registerLocalizedService(service)
     }

@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+StandardHandler.swift
+//  KeyboardAction+StandardActionHandler.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-24.
@@ -8,21 +8,21 @@
 
 import Foundation
 
-public extension KeyboardActionHandler where Self == KeyboardAction.StandardHandler {
+public extension KeyboardActionHandler where Self == KeyboardAction.StandardActionHandler {
 
-    /// Create a ``KeyboardAction/StandardHandler`` instance.
+    /// Create a standard action handler.
     ///
     /// - Parameters:
     ///   - controller: The keyboard controller to use.
     static func standard(
         for controller: KeyboardController
     ) -> Self {
-        KeyboardAction.StandardHandler(
+        KeyboardAction.StandardActionHandler(
             controller: controller
         )
     }
 
-    /// Create a ``KeyboardAction/StandardHandler``.
+    /// Create a standard action handler.
     ///
     /// The `controller` parameter is optional, to allow you
     /// to set up later.
@@ -46,7 +46,7 @@ public extension KeyboardActionHandler where Self == KeyboardAction.StandardHand
         feedbackService: FeedbackService,
         spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
     ) -> Self {
-        KeyboardAction.StandardHandler(
+        KeyboardAction.StandardActionHandler(
             controller: controller,
             keyboardContext: keyboardContext,
             keyboardBehavior: keyboardBehavior,
@@ -83,8 +83,8 @@ extension KeyboardAction {
     /// ``KeyboardActionHandler/standard(for:)``.
     ///
     /// See <doc:Actions-Article> for more information.
-    open class StandardHandler: NSObject, KeyboardActionHandler, KeyboardBehavior {
-        
+    open class StandardActionHandler: NSObject, KeyboardActionHandler, KeyboardBehavior {
+
         // MARK: - Initialization
 
         /// Create a standard keyboard action handler for an
@@ -629,7 +629,7 @@ extension KeyboardAction {
     }
 }
 
-private extension KeyboardAction.StandardHandler {
+private extension KeyboardAction.StandardActionHandler {
 
     func isSpaceCursorDrag(_ action: KeyboardAction) -> Bool {
         guard action == .space else { return false }

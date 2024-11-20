@@ -1,5 +1,5 @@
 //
-//  Dictation+DisabledService.swift
+//  Dictation+DisabledDictationService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-03-21.
@@ -8,18 +8,18 @@
 
 import SwiftUI
 
-public extension DictationService where Self == Dictation.DisabledService {
+public extension DictationService where Self == Dictation.DisabledDictationService {
 
-    /// Create a ``Dictation/DisabledService`` instance.
+    /// Create a ``Dictation/DisabledDictationService`` instance.
     static var disabled: Self {
-        Dictation.DisabledService(context: .preview)
+        Dictation.DisabledDictationService(context: .preview)
     }
 
-    /// Create a ``Dictation/DisabledService`` instance.
+    /// Create a ``Dictation/DisabledDictationService`` instance.
     static func disabled(
         context: DictationContext
     ) -> Self {
-        Dictation.DisabledService(
+        Dictation.DisabledDictationService(
             context: context
         )
     }
@@ -35,7 +35,7 @@ public extension Dictation {
     /// ``DictationService/disabled``.
     ///
     /// See <doc:Dictation-Article> for more information.
-    class DisabledService: DictationService {
+    class DisabledDictationService: DictationService {
 
         public init(context: DictationContext) {
             self.context = context
@@ -81,7 +81,7 @@ public extension Dictation {
     }
 }
 
-private extension Dictation.DisabledService {
+private extension Dictation.DisabledDictationService {
 
     func resetContext() {
         DispatchQueue.main.async { [weak self] in

@@ -1,5 +1,5 @@
 //
-//  KeyboardStyle+StandardService.swift
+//  KeyboardStyle+StandardStyleService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -9,16 +9,16 @@
 import SwiftUI
 import CoreGraphics
 
-public extension KeyboardStyleService where Self == KeyboardStyle.StandardService {
+public extension KeyboardStyleService where Self == KeyboardStyle.StandardStyleService {
 
-    /// Create a ``KeyboardStyle/StandardService`` instance.
+    /// Create a ``KeyboardStyle/StandardStyleService`` instance.
     ///
     /// - Parameters:
     ///   - keyboardContext: The keyboard context to use.
     static func standard(
         keyboardContext: KeyboardContext
     ) -> Self {
-        KeyboardStyle.StandardService(
+        KeyboardStyle.StandardStyleService(
             keyboardContext: keyboardContext
         )
     }
@@ -36,7 +36,7 @@ extension KeyboardStyle {
     /// then override any open parts that you want to change.
     ///
     /// See the <doc:Styling-Article> article for more information.
-    open class StandardService: KeyboardStyleService {
+    open class StandardStyleService: KeyboardStyleService {
 
         /// Create a standard keyboard style service.
         ///
@@ -316,7 +316,7 @@ extension KeyboardStyle {
 
 // MARK: - Internal, Testable Extensions
 
-extension KeyboardStyle.StandardService {
+extension KeyboardStyle.StandardStyleService {
 
     var isGregorianAlpha: Bool {
         keyboardType == .alphabetic && locale == .georgian

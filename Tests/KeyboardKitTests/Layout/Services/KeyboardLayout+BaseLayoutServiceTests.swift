@@ -9,9 +9,9 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardLayout_BaseServiceTests: XCTestCase {
+class KeyboardLayout_BaseLayoutServiceTests: XCTestCase {
 
-    var service: KeyboardLayout.BaseService!
+    var service: KeyboardLayout.BaseLayoutService!
     var context: KeyboardContext!
     var layoutConfig: KeyboardLayout.Configuration!
 

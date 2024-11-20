@@ -8,16 +8,16 @@
 
 import SwiftUI
 
-public extension KeyboardStyleService where Self == KeyboardPreviews.PreviewKeyboardStyleService {
+public extension KeyboardStyleService where Self == KeyboardPreviews.StyleService {
 
     static var preview: KeyboardStyleService {
-        KeyboardPreviews.PreviewKeyboardStyleService()
+        KeyboardPreviews.StyleService()
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewKeyboardStyleService: KeyboardStyle.StandardService {
+    class StyleService: KeyboardStyle.StandardStyleService {
 
         init() {
             super.init(keyboardContext: .preview)

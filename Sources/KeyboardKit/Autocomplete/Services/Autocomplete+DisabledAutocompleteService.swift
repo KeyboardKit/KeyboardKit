@@ -1,5 +1,5 @@
 //
-//  Autocomplete+DisabledService.swift
+//  Autocomplete+DisabledAutocompleteService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-03-17.
@@ -8,21 +8,21 @@
 
 import Foundation
 
-public extension AutocompleteService where Self == Autocomplete.DisabledService {
+public extension AutocompleteService where Self == Autocomplete.DisabledAutocompleteService {
 
-    /// Create a ``Autocomplete/DisabledService`` instance.
+    /// Create a disabled service instance.
     static var disabled: Self {
-        Autocomplete.DisabledService()
+        Autocomplete.DisabledAutocompleteService()
     }
 
-    /// Create a ``Autocomplete/DisabledService`` instance.
+    /// Create a disabled service instance.
     ///
     /// - Parameters:
     ///   - suggestions: The suggestions to present.
     static func disabled(
         suggestions: [Autocomplete.Suggestion] = []
     ) -> Self {
-        Autocomplete.DisabledService(suggestions: suggestions)
+        Autocomplete.DisabledAutocompleteService(suggestions: suggestions)
     }
 }
 
@@ -35,7 +35,7 @@ public extension Autocomplete {
     /// ``AutocompleteService/disabled(suggestions:)``.
     ///
     /// See <doc:Autocomplete-Article> for more information.
-    class DisabledService: AutocompleteService {
+    class DisabledAutocompleteService: AutocompleteService {
 
         /// Create a disabled autocomplete service.
         ///

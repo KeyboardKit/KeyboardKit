@@ -25,7 +25,7 @@ public extension Array where Element == KeyboardAction {
     }
 }
 
-public extension KeyboardAction.StandardHandler {
+public extension KeyboardAction.StandardActionHandler {
 
     @available(*, deprecated, renamed: "behavior", message: "Migration Deprecation, will be removed in 9.1!")
     var keyboardBehavior: KeyboardBehavior {

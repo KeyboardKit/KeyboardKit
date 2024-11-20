@@ -1,5 +1,5 @@
 //
-//  Feedback+DisabledService.swift
+//  Feedback+DisabledFeedbackService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-11.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public extension FeedbackService where Self == Feedback.DisabledService {
+public extension FeedbackService where Self == Feedback.DisabledFeedbackService {
 
-    /// Create a ``Feedback/DisabledService`` instance.
+    /// Create a ``Feedback/DisabledFeedbackService`` instance.
     static var disabled: Self {
-        Feedback.DisabledService()
+        Feedback.DisabledFeedbackService()
     }
 }
 
@@ -24,7 +24,7 @@ extension Feedback {
     /// ``FeedbackService/disabled``.
     ///
     /// See <doc:Feedback-Article> for more information.
-    open class DisabledService: FeedbackService {
+    open class DisabledFeedbackService: FeedbackService {
 
         /// Create a disabled feedback service.
         public init() {}

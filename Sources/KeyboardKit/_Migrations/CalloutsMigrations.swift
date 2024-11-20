@@ -1,11 +1,3 @@
-//
-//  Callouts+DisabledService.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2024-07-01.
-//  Copyright © 2024 Daniel Saidi. All rights reserved.
-//
-
 import Foundation
 import SwiftUI
 

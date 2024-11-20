@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+StandardServiceTests.swift
+//  KeyboardLayout+StandardLayoutServiceTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-17.
@@ -9,21 +9,21 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardLayout_StandardServiceTests: XCTestCase {
+class KeyboardLayout_StandardLayoutServiceTests: XCTestCase {
 
     var context: KeyboardContext!
-    var service: KeyboardLayout.StandardService!
+    var service: KeyboardLayout.StandardLayoutService!
 
     override func setUp() {
         context = .init()
         service = .init(
-            baseService: KeyboardLayout.DeviceBasedService(),
+            baseService: KeyboardLayout.DeviceBasedLayoutService(),
             localizedServices: [TestService()]
         )
     }
     
     override func tearDown() {
-        KeyboardLayout.StandardService.localizedServiceResolver = nil
+        KeyboardLayout.StandardLayoutService.localizedServiceResolver = nil
     }
 
     func testUsesLocalizedServiceIfOneMatchesContext() {
@@ -41,7 +41,7 @@ class KeyboardLayout_StandardServiceTests: XCTestCase {
         let layout = service.keyboardLayout(for: context)
         let firstItem = layout.itemRows[0].first
         let result = service.keyboardLayoutService(for: context)
-        XCTAssertTrue(result is KeyboardLayout.DeviceBasedService)
+        XCTAssertTrue(result is KeyboardLayout.DeviceBasedLayoutService)
         XCTAssertEqual(firstItem?.action, .character("q"))
     }
     
@@ -54,7 +54,7 @@ class KeyboardLayout_StandardServiceTests: XCTestCase {
     }
     
     func testCanResolveLayoutServiceWithStaticResolver() {
-        KeyboardLayout.StandardService.localizedServiceResolver = { locale in
+        KeyboardLayout.StandardLayoutService.localizedServiceResolver = { locale in
             if locale == .albanian { return TestService(localeKey: "apa") }
             return nil
         }
@@ -66,7 +66,7 @@ class KeyboardLayout_StandardServiceTests: XCTestCase {
     }
 }
 
-private class TestService: KeyboardLayout.BaseService, LocalizedService {
+private class TestService: KeyboardLayout.BaseLayoutService, LocalizedService {
 
     init(localeKey: String = "sv") {
         self.localeKey = localeKey

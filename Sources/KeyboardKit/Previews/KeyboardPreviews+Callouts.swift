@@ -15,16 +15,16 @@ public extension KeyboardCalloutContext {
     }
 }
 
-public extension KeyboardCalloutService where Self == KeyboardPreviews.PreviewKeyboardCalloutService {
+public extension KeyboardCalloutService where Self == KeyboardPreviews.CalloutService {
 
     static var preview: KeyboardCalloutService {
-        KeyboardPreviews.PreviewKeyboardCalloutService()
+        KeyboardPreviews.CalloutService()
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewKeyboardCalloutService: KeyboardCalloutService {
+    class CalloutService: KeyboardCalloutService {
 
         public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
             switch action {

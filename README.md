@@ -23,6 +23,9 @@ KeyboardKit extends Apple's limited keyboard APIs with more capabilities, and pr
 
 KeyboardKit is open-source and completely free. It can be extended with [KeyboardKit Pro][Pro] to unlock Pro features, like localized keyboards, autocomplete & autocorrect, AI support, an emoji keyboard, themes, dictation, and more.
 
+> [!NOTE]
+> KeyboardKit 9 is soon out! Give it a try by using the `9.0-rc.4` tag instead of a version tag. The [online docs][Documentation] are updated for this major update. See [the GitHub roadmap](https://github.com/KeyboardKit/KeyboardKit/milestone/100) for remaining and closed issues.
+
 
 
 ## Installation

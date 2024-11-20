@@ -1,5 +1,5 @@
 //
-//  KeyboardBehavior+Standard.swift
+//  Keyboard+StandardKeyboardBehavior.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-28.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-public extension KeyboardBehavior where Self == Keyboard.StandardBehavior {
+public extension KeyboardBehavior where Self == Keyboard.StandardKeyboardBehavior {
 
-    /// Create a ``Keyboard/StandardBehavior`` instance.
+    /// Create a ``Keyboard/StandardKeyboardBehavior`` instance.
     ///
     /// - Parameters:
     ///   - keyboardContext: The keyboard context to use.
@@ -25,7 +25,7 @@ public extension KeyboardBehavior where Self == Keyboard.StandardBehavior {
         endSentenceThreshold: TimeInterval? = nil,
         repeatGestureTimer: GestureButtonTimer? = nil
     ) -> Self {
-        Keyboard.StandardBehavior(
+        Keyboard.StandardKeyboardBehavior(
             keyboardContext: keyboardContext,
             doubleTapThreshold: doubleTapThreshold,
             endSentenceText: endSentenceText,
@@ -49,8 +49,8 @@ extension Keyboard {
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
-    open class StandardBehavior: KeyboardBehavior {
-        
+    open class StandardKeyboardBehavior: KeyboardBehavior {
+
         /// Create a standard keyboard behavior instance.
         ///
         /// - Parameters:
@@ -155,7 +155,7 @@ extension Keyboard {
     }
 }
 
-public extension Keyboard.StandardBehavior {
+public extension Keyboard.StandardKeyboardBehavior {
 
     /// Is the type currently registering a double shift tap.
     var isDoubleShiftTap: Bool {

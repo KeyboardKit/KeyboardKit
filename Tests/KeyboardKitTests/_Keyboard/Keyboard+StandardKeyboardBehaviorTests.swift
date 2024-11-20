@@ -1,5 +1,5 @@
 //
-//  Keyboard+StandardBehaviorTests.swift
+//  Keyboard+StandardKeyboardBehaviorTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-06.
@@ -12,12 +12,12 @@ import XCTest
 
 @testable import KeyboardKit
 
-class Keyboard_StandardBehaviorTests: XCTestCase {
-    
+class Keyboard_StandardKeyboardBehaviorTests: XCTestCase {
+
     typealias Gesture = Keyboard.Gesture
     typealias Action = KeyboardAction
 
-    var behavior: Keyboard.StandardBehavior!
+    var behavior: Keyboard.StandardKeyboardBehavior!
     var keyboardContext: KeyboardContext!
     var proxy: MockTextDocumentProxy!
     var timer: GestureButtonTimer!

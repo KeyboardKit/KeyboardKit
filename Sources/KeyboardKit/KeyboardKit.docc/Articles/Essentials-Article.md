@@ -67,7 +67,7 @@ KeyboardKit has a ``Keyboard/Settings`` class that has a global ``Keyboard/Setti
 
 KeyboardKit has a ``KeyboardBehavior`` protocol that can be used to define the keyboard's behavior. It's used by some services, like the standard ``KeyboardActionHandler``, to make behavior-based decisions.
 
-KeyboardKit automatically creates an instance of ``Keyboard/StandardBehavior`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, by implementing the procotol from scratch or by inheriting and customizing the standard behavior.
+KeyboardKit automatically creates an instance of ``Keyboard/StandardKeyboardBehavior`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, by implementing the procotol from scratch or by inheriting and customizing the standard behavior.
 
 
 

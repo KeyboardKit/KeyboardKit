@@ -19,9 +19,9 @@ public extension Keyboard {
 
     /// This type can define character diacritic variants.
     ///
-    /// The ``KeyboardAction/StandardHandler`` will handle a
-    /// ``KeyboardAction/diacritic(_:)`` action by replacing
-    /// the last character that any diacritic match.
+    /// The ``KeyboardAction/StandardActionHandler`` handles
+    /// diacritics by replacing the last typed character, if
+    /// matches the diacritic.
     struct Diacritic: Codable, Equatable {
         
         /// Create a custom diacritic value.

@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+StandardService.swift
+//  KeyboardLayout+StandardLayoutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-12-01.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-public extension KeyboardLayoutService where Self == KeyboardLayout.StandardService {
+public extension KeyboardLayoutService where Self == KeyboardLayout.StandardLayoutService {
 
-    /// Create a ``KeyboardLayout/StandardService`` instance.
+    /// Create a standard layout service.
     ///
     /// - Parameters:
     ///   - baseService: The base service to use, by default a device-based service.
     ///   - localizedServices: A list of localized services, by default `empty`.
     static func standard(
-        baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedService(),
+        baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedLayoutService(),
         localizedServices: [Self.LocalizedLayoutService] = []
     ) -> Self {
-        KeyboardLayout.StandardService(
+        KeyboardLayout.StandardLayoutService(
             baseService: baseService,
             localizedServices: localizedServices
         )
@@ -46,15 +46,15 @@ extension KeyboardLayout {
     /// ``KeyboardLayoutService/standard(baseService:localizedServices:)``. 
     ///
     /// See <doc:Layout-Article> for more information.
-    open class StandardService: KeyboardLayoutService {
+    open class StandardLayoutService: KeyboardLayoutService {
 
         /// Create a standard keyboard layout service.
         ///
         /// - Parameters:
-        ///   - baseService: The base service, by default a ``KeyboardLayout/DeviceBasedService``.
+        ///   - baseService: The base service, by default a ``KeyboardLayout/DeviceBasedLayoutService``.
         ///   - localizedServices: A list of localized layout services, by default `empty`.
         public init(
-            baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedService(),
+            baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedLayoutService(),
             localizedServices: [LocalizedLayoutService] = []
         ) {
             self.baseService = baseService

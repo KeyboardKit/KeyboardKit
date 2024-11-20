@@ -57,8 +57,8 @@ public extension KeyboardCalloutService {
         typealias ErrorType = KeyboardLayout.TryRegisterLocalizedLayoutServiceError
         let selfError = ErrorType.serviceDoesNotSupportLocalizedServiceRegistration
         let serviceError = ErrorType.providedServiceDoesNotImplementLocalizedServiceProtocol
-        guard let _self = self as? KeyboardLayout.StandardService else { throw selfError }
-        guard let service = service as? KeyboardLayoutService & LocalizedService else { throw serviceError }
+        guard let _self = self as? KeyboardCallout.StandardCalloutService else { throw selfError }
+        guard let service = service as? KeyboardCalloutService & LocalizedService else { throw serviceError }
         _self.registerLocalizedService(service)
     }
 }

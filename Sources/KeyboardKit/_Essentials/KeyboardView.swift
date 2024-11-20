@@ -181,7 +181,7 @@ public struct KeyboardView<
     }
 
     var keyboardContent: some View {
-        KeyboardStyle.StandardService.iPadProRenderingModeActive = layout.ipadProLayout
+        KeyboardStyle.StandardStyleService.iPadProRenderingModeActive = layout.ipadProLayout
 
         return VStack(spacing: 0) {
             toolbar

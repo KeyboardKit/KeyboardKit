@@ -39,7 +39,7 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 In KeyboardKit, a ``KeyboardCalloutService`` can return secondary callout actions when a key is long pressed and trigger feedback when the selected secondary action changes. 
 
-KeyboardKit automatically creates an instance of ``KeyboardCallout/StandardService`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or inject localized services into it with ``KeyboardCalloutService/tryRegisterLocalizedService(_:)``.
+KeyboardKit injects a ``KeyboardCallout/StandardCalloutService`` into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or add localized services to it with ``KeyboardCalloutService/tryRegisterLocalizedService(_:)``.
 
 
 
@@ -84,10 +84,10 @@ Both views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be a
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardCallout/ProService`` for every locale in your license, and injects them as localized services into the main ``Keyboard/Services/calloutService`` when a valid license is registered. You can access any localized service in your license like this:
+[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardCallout/ProCalloutService`` for every locale in your license, and injects them as localized services into the main ``Keyboard/Services/calloutService`` when a valid license is registered. You can access any localized service in your license like this:
 
 ```swift
-let service = try KeyboardCallout.ProService.Swedish()
+let service = try KeyboardCallout.ProCalloutService.Swedish()
 ```
 
 ---
@@ -108,10 +108,10 @@ This binds a ``KeyboardCalloutContext`` to the view and applies a ``KeyboardCall
 
 You can create a custom ``KeyboardCalloutService`` to customize which secondary actions to show for any ``KeyboardAction``. 
 
-You can implement the ``KeyboardCalloutService`` protocol from scratch, or inherit and customize the ``KeyboardCallout/StandardService`` class:
+You can implement the ``KeyboardCalloutService`` protocol from scratch or inherit and customize ``KeyboardCallout/StandardCalloutService``:
 
 ```swift
-class CustomCalloutService: KeyboardCallout.StandardService {
+class CustomCalloutService: KeyboardCallout.StandardCalloutService {
     
     override func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
         var actions = super.calloutActions(for: action)
@@ -139,12 +139,12 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 ### Customize a localized Pro service
 
-Service that inherit ``KeyboardCallout/StandardService`` can use ``KeyboardCalloutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)`` function to register a custom service for a certain locale.
+Service that inherit ``KeyboardCallout/StandardCalloutService`` can use ``KeyboardCalloutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)`` function to register a custom service for a certain locale.
 
 For instance, this is how you could make KeyboardKit Pro use a custom service for ``Foundation/Locale/german``:
 
 ```swift
-class MyCustomGermanService: KeyboardCallout.ProService.German { ... } 
+class MyCustomGermanService: KeyboardCallout.ProCalloutService.German { ... } 
 
 class KeyboardViewController: KeyboardInputViewController {
 
@@ -157,7 +157,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This makes it easy to replace the service for a certain KeyboardKit Pro locale, where you can inherit and customize any ``KeyboardCallout/ProService``.
+This makes it easy to replace layout service for a certain locale, since you can inherit and customize the related ``KeyboardCallout/ProCalloutServiceService``.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

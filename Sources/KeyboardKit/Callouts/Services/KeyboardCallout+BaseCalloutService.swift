@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+BaseService.swift
+//  KeyboardCallout+BaseCalloutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-09-26.
@@ -21,7 +21,7 @@ extension KeyboardCallout {
     /// then override any open parts that you want to change.
     ///
     /// See <doc:Callouts-Article> for more information.
-    open class BaseService: KeyboardCalloutService {
+    open class BaseCalloutService: KeyboardCalloutService {
 
         /// Create a base callout service.
         public init() {}

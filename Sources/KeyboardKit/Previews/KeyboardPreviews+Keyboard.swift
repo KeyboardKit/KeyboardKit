@@ -13,13 +13,13 @@ import SwiftUI
 public extension KeyboardInputViewController {
 
     static var preview: KeyboardInputViewController {
-        KeyboardPreviews.PreviewKeyboardInputViewController()
+        KeyboardPreviews.InputViewController()
     }
 }
 
 public extension KeyboardPreviews {
     
-    class PreviewKeyboardInputViewController: KeyboardInputViewController {}
+    class InputViewController: KeyboardInputViewController {}
 }
 #endif
 

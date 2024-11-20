@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+DeviceBasedService.swift
+//  KeyboardLayout+DeviceBasedLayoutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2022-12-29.
@@ -13,15 +13,14 @@ extension KeyboardLayout {
     /// This base class provides a foundation for generating
     /// layouts that are based on an ``InputSet`` and device.
     ///
-    /// The class will either use an ``iPhoneService`` or an
-    /// ``iPadService``, based on the current device that is
-    /// specified by the ``KeyboardContext/deviceType``.
+    /// The class will either use ``iPhoneLayoutService`` or
+    /// ``iPadLayoutService``, based on the device.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
     /// See <doc:Layout-Article> for more information.
-    open class DeviceBasedService: KeyboardLayout.BaseService, LocalizedService {
+    open class DeviceBasedLayoutService: KeyboardLayout.BaseLayoutService, LocalizedService {
 
         /// Create an device-based keyboard layout service.
         ///
@@ -45,14 +44,14 @@ extension KeyboardLayout {
         public var localeKey = Locale.english.identifier
         
         /// The layout service to use for iPad devices.
-        public lazy var iPadService: KeyboardLayoutService = KeyboardLayout.iPadService(
+        public lazy var iPadService: KeyboardLayoutService = KeyboardLayout.iPadLayoutService(
             alphabeticInputSet: alphabeticInputSet,
             numericInputSet: numericInputSet,
             symbolicInputSet: symbolicInputSet
         )
         
         /// The layout service to use for iPhone devices.
-        public lazy var iPhoneService: KeyboardLayoutService = KeyboardLayout.iPhoneService(
+        public lazy var iPhoneService: KeyboardLayoutService = KeyboardLayout.iPhoneLayoutService(
             alphabeticInputSet: alphabeticInputSet,
             numericInputSet: numericInputSet,
             symbolicInputSet: symbolicInputSet

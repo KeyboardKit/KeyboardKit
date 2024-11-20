@@ -1,5 +1,5 @@
 //
-//  Feedback+StandardService.swift
+//  Feedback+StandardFeedbackService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-11.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public extension FeedbackService where Self == Feedback.StandardService {
+public extension FeedbackService where Self == Feedback.StandardFeedbackService {
 
-    /// Create a ``Feedback/StandardService`` instance.
+    /// Create a ``Feedback/StandardFeedbackService`` instance.
     static var standard: Self {
-        Feedback.StandardService()
+        Feedback.StandardFeedbackService()
     }
 }
 
@@ -32,7 +32,7 @@ extension Feedback {
     /// ``FeedbackService/standard``.
     ///
     /// See <doc:Feedback-Article> for more information.
-    open class StandardService: FeedbackService {
+    open class StandardFeedbackService: FeedbackService {
 
         /// Create a standard feedback service.
         public init() {}

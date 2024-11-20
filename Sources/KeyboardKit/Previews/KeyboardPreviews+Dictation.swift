@@ -15,9 +15,9 @@ public extension DictationContext {
     }()
 }
 
-public extension DictationService where Self == Dictation.DisabledService {
+public extension DictationService where Self == Dictation.DisabledDictationService {
 
     static var preview: Self {
-        Dictation.DisabledService(context: .preview)
+        Dictation.DisabledDictationService(context: .preview)
     }
 }

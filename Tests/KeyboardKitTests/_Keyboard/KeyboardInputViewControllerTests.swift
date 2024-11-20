@@ -17,7 +17,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     
     private var vc: TestClass!
 
-    private let mockAutocompleteService = Autocomplete.DisabledService()
+    private let mockAutocompleteService = Autocomplete.DisabledAutocompleteService()
     private let mockTextDocumentProxy = MockTextDocumentProxy()
 
     override func setUp() {
@@ -120,13 +120,13 @@ class KeyboardInputViewControllerTests: XCTestCase {
     // MARK: - Services
 
     func servicesHaveStandardInstancesByDefault() {
-        XCTAssertNotNil(vc.services.actionHandler as? KeyboardAction.StandardHandler)
-        XCTAssertNotNil(vc.services.autocompleteService as? Autocomplete.DisabledService)
-        XCTAssertNotNil(vc.services.calloutService as? KeyboardCallout.StandardService)
-        XCTAssertNotNil(vc.services.dictationService as? Dictation.DisabledService)
-        XCTAssertNotNil(vc.services.keyboardBehavior as? Keyboard.StandardBehavior)
-        XCTAssertNotNil(vc.services.layoutService as? KeyboardLayout.StandardService)
-        XCTAssertNotNil(vc.services.styleService as? KeyboardStyle.StandardService)
+        XCTAssertNotNil(vc.services.actionHandler as? KeyboardAction.StandardActionHandler)
+        XCTAssertNotNil(vc.services.autocompleteService as? Autocomplete.DisabledAutocompleteService)
+        XCTAssertNotNil(vc.services.calloutService as? KeyboardCallout.StandardCalloutService)
+        XCTAssertNotNil(vc.services.dictationService as? Dictation.DisabledDictationService)
+        XCTAssertNotNil(vc.services.keyboardBehavior as? Keyboard.StandardKeyboardBehavior)
+        XCTAssertNotNil(vc.services.layoutService as? KeyboardLayout.StandardLayoutService)
+        XCTAssertNotNil(vc.services.styleService as? KeyboardStyle.StandardStyleService)
     }
     
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForKeyboardActionHandler() {
@@ -138,7 +138,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForCalloutService() {
         let vc = TestClass()
-        vc.services.calloutService = KeyboardCallout.StandardService(keyboardContext: .preview)
+        vc.services.calloutService = KeyboardCallout.StandardCalloutService(keyboardContext: .preview)
         let actionContext = vc.state.calloutContext
         XCTAssertTrue(actionContext.calloutService === vc.services.calloutService)
     }

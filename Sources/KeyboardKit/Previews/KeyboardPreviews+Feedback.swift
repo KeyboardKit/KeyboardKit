@@ -8,9 +8,9 @@
 
 import CoreGraphics
 
-public extension FeedbackService where Self == Feedback.DisabledService {
+public extension FeedbackService where Self == Feedback.DisabledFeedbackService {
 
     static var preview: Self {
-        Feedback.DisabledService()
+        Feedback.DisabledFeedbackService()
     }
 }

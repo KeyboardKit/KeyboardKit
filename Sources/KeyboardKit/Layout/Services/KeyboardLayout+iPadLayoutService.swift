@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+iPadService.swift
+//  KeyboardLayout+iPadLayoutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-02.
@@ -13,9 +13,6 @@ extension KeyboardLayout {
     /// This base class provides a foundation for generating
     /// iPad-specific layouts.
     ///
-    /// This class inherits the ``KeyboardLayout/BaseService``
-    /// and applies iPad-specific adjustments to it.
-    ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
@@ -23,8 +20,8 @@ extension KeyboardLayout {
     /// iPad Pro-specific klayout. 
     ///
     /// See <doc:Layout-Article> for more information.
-    open class iPadService: KeyboardLayout.BaseService {
-        
+    open class iPadLayoutService: KeyboardLayout.BaseLayoutService {
+
         // MARK: - Overrides
 
         open override func itemActions(
@@ -136,7 +133,7 @@ extension KeyboardLayout {
 
 // MARK: - Private functions
 
-extension KeyboardLayout.iPadService {
+extension KeyboardLayout.iPadLayoutService {
 
     func isBottomTrailingSwitcher(
         _ action: KeyboardAction,
@@ -176,7 +173,7 @@ extension KeyboardLayout.iPadService {
 #Preview {
     
     func layout() -> KeyboardLayout {
-        KeyboardLayout.iPadService(
+        KeyboardLayout.iPadLayoutService(
             alphabeticInputSet: .qwerty,
             numericInputSet: .numeric(currency: "$"),
             symbolicInputSet: .symbolic(currencies: [""])

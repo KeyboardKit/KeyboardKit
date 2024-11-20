@@ -11,24 +11,24 @@ import Foundation
 public extension KeyboardLayout {
 
     static var preview: KeyboardLayout {
-        KeyboardPreviews.PreviewKeyboardLayoutService()
+        KeyboardPreviews.LayoutService()
             .keyboardLayout(for: .preview)
     }
 }
 
-public extension KeyboardLayoutService where Self == KeyboardPreviews.PreviewKeyboardLayoutService {
+public extension KeyboardLayoutService where Self == KeyboardPreviews.LayoutService {
 
     static var preview: KeyboardLayoutService {
-        KeyboardPreviews.PreviewKeyboardLayoutService()
+        KeyboardPreviews.LayoutService()
     }
 }
 
 public extension KeyboardPreviews {
  
-    class PreviewKeyboardLayoutService: KeyboardLayoutService {
+    class LayoutService: KeyboardLayoutService {
 
         public init(keyboardContext: KeyboardContext = .preview) {
-            service = KeyboardLayout.StandardService()
+            service = KeyboardLayout.StandardLayoutService()
         }
 
         private let service: KeyboardLayoutService
