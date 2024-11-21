@@ -12,27 +12,24 @@ These release notes cover the current major version. Check out version tags for 
 
 ## 💡 KeyboardKit 9 Migration Guide
 
-When migrating from KeyboardKit 8 to 9, first upgrade to the last 8 version and fix all the deprecation warnings that it provides. This helps you prepare for KeyboardKit 9.
+When migrating from KeyboardKit 8 to 9, first upgrade to the last 8 version and fix all deprecation warnings. This helps you prepare for KeyboardKit 9. 
 
-When you have fixed all warnings, first upgrade to KeyboardKit 9.0. It will provide you with migration deprecations that help you migrate to its many architectural changes.
+When you have fixed all migration warnings, upgrade to KeyboardKit 9.0 and fix any migration deprecations to conform to its many architectural changes.
 
-Once you have fixes all migration deprecations, you can start using KeyboardKit 9. You can now configure SPM to use the latest major version number, i.e. the latest 9.x version.
+Once you've fixed all warnings, you can start using KeyboardKit 9. You can now setup SPM to use the latest major version number, i.e. the latest 9.x version. 
 
-The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9.0 when migrating from KeyboardKit 8. If you're on KeyboardKit 7, first repeat these steps for 8.0.
+The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9.0 when migrating from KeyboardKit 8, before you upgrade to any later versions.
 
 
+## KeyboardKit 9.0
 
-## 9.0
+This version targets `iOS 15`, `macOS 12`, `tvOS 15`, `watchOS 8`, and `visionOS 1`, removes all deprecated code, and simplifies many concepts.
 
-This version upgrades the deployment targets to `iOS 15`, `macOS 12`, `tvOS 15`, `watchOS 8`, and `visionOS 1`, removes all deprecated code, and simplifies many concepts.
+This version has migration deprecations to help you transition from KeyboardKit 8. Just follow the instructions to migrate your code if needed.
 
-This version has migration deprecations to help you transition from KeyboardKit 8. Just follow the instructions to migrate your code if needed. They will be removed in 9.1.
+You may still run into breaking changes, where using migrations were not possible. For such breaking changes, see the changes & comments below.
 
-This version also moves a lot of non-essential views and utilities from KeyboardKit to KeyboardKit Pro, to make the open-source framework a bit more basic and overviewable. 
-
-You may still run into a few breaking changes, where migrations were not possible due to architectural changes. For such breaking changes, see the changes & comments below.
-
-Migration-based changes that are not listed under "Breaking Changes" will become breaking if you don't address any such warnings before upgrading to KeyboardKit 9.1 and later.
+This version moves many non-essential views & utils from KeyboardKit to KeyboardKit Pro, to make the open-source SDK more basic and overviewable.
 
 ### 👑 Pro
 
