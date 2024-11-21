@@ -348,9 +348,7 @@ private extension KeyboardView {
     var toolbar: some View {
         let style = styleService.autocompleteToolbarStyle
         return ZStack {
-            Color.clear
-                .frame(minHeight: toolbarNeedsEmojiHeight ? style.height : 0)
-
+            toolbarEmojiHeight(for: style)
             toolbarBuilder((
                 autocompleteAction: actionHandler.handle(_:),
                 style: styleService.autocompleteToolbarStyle,
@@ -365,6 +363,15 @@ private extension KeyboardView {
             .frame(minHeight: style.height)
         }
         .opacity(shouldShowToolbar ? 1 : 0)
+    }
+
+    @ViewBuilder
+    func toolbarEmojiHeight(
+        for style: Autocomplete.ToolbarStyle
+    ) -> some View {
+        if toolbarNeedsEmojiHeight {
+            Color.clear.frame(height: style.height)
+        }
     }
 
     var toolbarNeedsEmojiHeight: Bool {
