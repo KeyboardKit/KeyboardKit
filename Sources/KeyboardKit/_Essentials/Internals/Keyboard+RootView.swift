@@ -33,7 +33,7 @@ extension Keyboard {
         private var externalContext: ExternalKeyboardContext
 
         @EnvironmentObject
-        private var feedbackContext: FeedbackContext
+        private var feedbackContext: KeyboardFeedbackContext
 
         @EnvironmentObject
         private var keyboardContext: KeyboardContext

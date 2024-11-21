@@ -133,7 +133,7 @@ public extension DictationContext {
     }
 }
 
-public extension FeedbackContext {
+public extension KeyboardFeedbackContext {
 
     @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use .settings instead.")
     static var settingsPrefix: String {

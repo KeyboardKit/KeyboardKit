@@ -1,5 +1,5 @@
 //
-//  FeedbackContext.swift
+//  KeyboardFeedbackContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -25,8 +25,8 @@ import SwiftUI
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
 /// it as global state and inject it as an environment value.
-public class FeedbackContext: ObservableObject {
-    
+public class KeyboardFeedbackContext: ObservableObject {
+
     public init() {
         settings = .init()
     }
@@ -39,27 +39,33 @@ public class FeedbackContext: ObservableObject {
     public var settings: Settings
 
 
+    // MARK: - Typealiases
+
+    public typealias AudioConfiguration = KeyboardFeedback.AudioConfiguration
+    public typealias HapticConfiguration = KeyboardFeedback.HapticConfiguration
+
+
     // MARK: - Properties
     
     /// The audio configuration to use when enabled.
-    public var audioConfiguration: Feedback.AudioConfiguration = .standard
+    public var audioConfiguration: AudioConfiguration = .standard
 
     /// The haptic configuration to use when enabled.
-    public var hapticConfiguration: Feedback.HapticConfiguration = .standard
+    public var hapticConfiguration: HapticConfiguration = .standard
 }
 
-public extension FeedbackContext {
-    
+public extension KeyboardFeedbackContext {
+
     /// Register custom audio feedback.
     func registerCustomFeedback(
-        _ feedback: Feedback.AudioConfiguration.CustomFeedback
+        _ feedback: AudioConfiguration.CustomFeedback
     ) {
         audioConfiguration.registerCustomFeedback(feedback)
     }
     
     /// Register custom haptic feedback.
     func registerCustomFeedback(
-        _ feedback: Feedback.HapticConfiguration.CustomFeedback
+        _ feedback: HapticConfiguration.CustomFeedback
     ) {
         hapticConfiguration.registerCustomFeedback(feedback)
     }

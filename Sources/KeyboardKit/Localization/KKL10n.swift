@@ -14,7 +14,7 @@ import SwiftUI
 /// the current locale and ``text(forLocale:)`` to translate
 /// text for a certain locale.
 ///
-/// See the <doc:Localization-Article> article for more information.
+/// See <doc:Localization-Article> for more information.
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case `continue`

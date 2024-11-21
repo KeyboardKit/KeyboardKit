@@ -25,7 +25,7 @@ import Foundation
 /// that don't have a standard behavior must be handled with
 /// a custom ``KeyboardActionHandler``.
 ///
-/// See the <doc:Actions-Article> article for more information.
+/// See <doc:Actions-Article> for more information.
 public enum KeyboardAction: Codable, Equatable {
 
     /// Deletes backwards when pressed, and repeats until released.

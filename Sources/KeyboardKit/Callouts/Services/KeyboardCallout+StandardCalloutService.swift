@@ -21,7 +21,7 @@ public extension KeyboardCalloutService where Self == KeyboardCallout.StandardCa
         keyboardContext: KeyboardContext,
         baseService: KeyboardCalloutService = KeyboardCallout.BaseCalloutService(),
         localizedServices: [Self.LocalizedCalloutService] = [],
-        feedbackService: FeedbackService? = nil
+        feedbackService: KeyboardFeedbackService? = nil
     ) -> Self {
         KeyboardCallout.StandardCalloutService(
             keyboardContext: keyboardContext,
@@ -64,7 +64,7 @@ extension KeyboardCallout {
             keyboardContext: KeyboardContext,
             baseService: KeyboardCalloutService = KeyboardCallout.BaseCalloutService(),
             localizedServices: [LocalizedCalloutService] = [],
-            feedbackService: FeedbackService? = nil
+            feedbackService: KeyboardFeedbackService? = nil
         ) {
             self.keyboardContext = keyboardContext
             self.baseService = baseService
@@ -82,7 +82,7 @@ extension KeyboardCallout {
         public let keyboardContext: KeyboardContext
 
         /// The feedback service to use.
-        public var feedbackService: FeedbackService?
+        public var feedbackService: KeyboardFeedbackService?
 
 
         /// The base service to use.

@@ -25,13 +25,11 @@ See the <doc:Getting-Started-Article> article for more information on how to use
 
 ## Namespaces
 
-KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. KeyboardKit has namespaces like ``Keyboard``, ``KeyboardAction`` ``KeyboardLayout``, ``Callouts``, ``Dictation``, ``Feedback``, etc.
+KeyboardKit uses namespaces to make the API surface smaller, by nesting types in logical groups. KeyboardKit has namespaces like ``Keyboard``, ``KeyboardAction`` ``KeyboardLayout``, etc.
 
-Namespaces will not contain protocols, nor important types that are meant to be exposed as top-level types. This includes essential types like ``KeyboardInputViewController``, ``KeyboardContext``, etc., and important view components like ``KeyboardView``.
+Namespaces don't contain protocols, or important types that are meant to be exposed as top-level types. This includes essential types like ``KeyboardInputViewController``, ``KeyboardContext``, etc., and important view components like ``KeyboardView``.
 
-The ``Keyboard`` namespace contains a lot of essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will list all essential types within this namespace.
-
-The namespace has a lot of essential types, like ``Keyboard/KeyboardType``, ``Keyboard/KeyboardCase``, ``Keyboard/AutocapitalizationType``, ``Keyboard/ReturnKeyType``, ``Keyboard/Diacritic``, ``Keyboard/Gesture``, etc. and view-related types, like ``Keyboard/Button``, ``Keyboard/ButtonStyle``, ``Keyboard/Toolbar``, etc.
+The ``Keyboard`` namespace contains a lot of essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will list all essential types within this namespace, like ``Keyboard/KeyboardType``, ``Keyboard/KeyboardCase``, ``Keyboard/ReturnKeyType``, etc.
 
 
 

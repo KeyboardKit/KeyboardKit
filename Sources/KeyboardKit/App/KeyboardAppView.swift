@@ -89,7 +89,7 @@ public struct KeyboardAppView<Content: View>: View {
     private var externalContext: ExternalKeyboardContext
 
     @StateObject
-    private var feedbackContext: FeedbackContext
+    private var feedbackContext: KeyboardFeedbackContext
 
     @StateObject
     private var keyboardContext: KeyboardContext

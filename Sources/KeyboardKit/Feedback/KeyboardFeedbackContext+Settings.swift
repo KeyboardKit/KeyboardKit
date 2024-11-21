@@ -1,5 +1,5 @@
 //
-//  DictationContext+Settings.swift
+//  KeyboardFeedbackContext+Settings.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-10-27.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public extension FeedbackContext {
+public extension KeyboardFeedbackContext {
 
     /// This type is used for feedback-related settings.
     ///
@@ -36,7 +36,7 @@ public extension FeedbackContext {
     }
 }
 
-public extension FeedbackContext.Settings {
+public extension KeyboardFeedbackContext.Settings {
 
     /// Toggle audio feedback enabled state.
     func toggleIsAudioFeedbackEnabled() {

@@ -64,15 +64,15 @@ The `KeyboardView` now has a `collapsedView` that will be displayed when the key
 
 ### ⚙️ Services
 
-The service name changes and refactoring have been a great adjustment, but went a little too far.
+The service name changes and refactoring was a great adjustment, but went a little too far.
 
-Developers have provided feedback that it's hard to tell services apart since there are now many `StandardService`.
+Some feedback has been that it's hard to tell services apart since many have the same name.
 
-As such, this version takes one step back and adds the service type to the class name. The shorthands stay the same.
+As such, we take a step back and add the service type to the name. The shorthands stay the same.
 
-This means that the adjusted name for e.g. `KeyboardLayout.StandardService` will be `KeyboardLayout.StandardLayoutService`.
+The new name for e.g. `KeyboardLayout.StandardService` is now `KeyboardLayout.StandardLayoutService`.
 
-This name change will hopefully make it easier to distinguish between various services when searching and debugging the SDK.  
+This will hopefully make it easier to distinguish between services when searching and debugging the SDK.  
 
 ### 💥 Actions
 
@@ -134,7 +134,7 @@ The `ExternalKeyboardContext` has been moved to the open-source library and adde
 
 ### 🔉 Feedback
 
-The `Feedback` namespace has been renamed to `KeyboardFeedback` and simplified quite a bit.
+The `Feedback` namespace has been renamed to `KeyboardFeedback`, and simplified quite a bit.
 
 The haptic feedback has been adjusted to be lighter when typing, to make the typing not feel as heavy.
 
@@ -144,7 +144,7 @@ The `FeedbackContext` no longer has enabled configs, since its `settings` is now
 
 The `KeyboardLocale` enum has been replaced with using the native `Locale` everywhere.
 
-This version adds support for 🇦🇺 English (Australia) and 🇨🇦 English (Canada), bringing the number of supported locales up to `70`.
+This version adds 🇦🇺 English (Australia) and 🇨🇦 English (Canada), bringing the number locales up to `70`.
 
 ### 🔣 Layout
 

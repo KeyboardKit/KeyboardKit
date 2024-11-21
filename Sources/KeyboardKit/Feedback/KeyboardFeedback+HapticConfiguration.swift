@@ -1,5 +1,5 @@
 //
-//  Feedback+HapticConfiguration.swift
+//  KeyboardFeedback+HapticConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-public extension Feedback {
-    
+public extension KeyboardFeedback {
+
     /// This struct can be used to configure haptic feedback.
     ///
     /// You can use any of the standard configurations, like
@@ -26,11 +26,11 @@ public extension Feedback {
         ///   - repeat: The feedback to use for repeat, by default `.selectionChanged`.
         ///   - custom: A list of custom feedback, by default `empty`.
         public init(
-            press: Feedback.Haptic = .selectionChanged,
-            release: Feedback.Haptic = .selectionChanged,
-            doubleTap: Feedback.Haptic = .none,
-            longPress: Feedback.Haptic = .mediumImpact,
-            repeat: Feedback.Haptic = .selectionChanged,
+            press: Haptic = .selectionChanged,
+            release: Haptic = .selectionChanged,
+            doubleTap: Haptic = .none,
+            longPress: Haptic = .mediumImpact,
+            repeat: Haptic = .selectionChanged,
             custom: [CustomFeedback] = []
         ) {
             self.press = press
@@ -42,26 +42,26 @@ public extension Feedback {
         }
         
         /// The feedback to use for presses.
-        public var press: Feedback.Haptic
+        public var press: Haptic
         
         /// The feedback to use for releases.
-        public var release: Feedback.Haptic
+        public var release: Haptic
         
         /// The feedback to use for double taps.
-        public var doubleTap: Feedback.Haptic
+        public var doubleTap: Haptic
         
         /// The feedback to use for long presses.
-        public var longPress: Feedback.Haptic
+        public var longPress: Haptic
         
         /// The feedback to use for repeat.
-        public var `repeat`: Feedback.Haptic
+        public var `repeat`: Haptic
         
         /// A list of custom haptic feedback.
         public var custom: [CustomFeedback]
     }
 }
 
-public extension Feedback.HapticConfiguration {
+public extension KeyboardFeedback.HapticConfiguration {
 
     /// A standard, enabled haptic configuration.
     static let standard = Self()
@@ -79,15 +79,15 @@ public extension Feedback.HapticConfiguration {
     )
 }
 
-public extension Feedback.HapticConfiguration {
-    
+public extension KeyboardFeedback.HapticConfiguration {
+
     /// This struct is used for custom haptic feedback.
     struct CustomFeedback: Codable, Equatable {
         
         public init(
             action: KeyboardAction,
             gesture: Keyboard.Gesture,
-            feedback: Feedback.Haptic
+            feedback: KeyboardFeedback.Haptic
         ) {
             self.action = action
             self.gesture = gesture
@@ -96,15 +96,15 @@ public extension Feedback.HapticConfiguration {
         
         public let action: KeyboardAction
         public let gesture: Keyboard.Gesture
-        public let feedback: Feedback.Haptic
+        public let feedback: KeyboardFeedback.Haptic
     }
 }
 
-public extension Feedback.HapticConfiguration.CustomFeedback {
-    
+public extension KeyboardFeedback.HapticConfiguration.CustomFeedback {
+
     /// Create a custom haptic feedback configuration.
     static func haptic(
-        _ feedback: Feedback.Haptic,
+        _ feedback: KeyboardFeedback.Haptic,
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Self {
@@ -112,13 +112,13 @@ public extension Feedback.HapticConfiguration.CustomFeedback {
     }
 }
 
-public extension Feedback.HapticConfiguration {
-    
+public extension KeyboardFeedback.HapticConfiguration {
+
     /// Get a custom registered feedback, if any.
     func customFeedback(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> Feedback.Haptic? {
+    ) -> KeyboardFeedback.Haptic? {
         custom.first {
             $0.action == action && $0.gesture == gesture
         }?.feedback
@@ -136,7 +136,7 @@ public extension Feedback.HapticConfiguration {
     func feedback(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> Feedback.Haptic? {
+    ) -> KeyboardFeedback.Haptic? {
         let custom = customFeedback(for: gesture, on: action)
         return custom ?? feedback(for: gesture)
     }
@@ -149,12 +149,12 @@ public extension Feedback.HapticConfiguration {
     }
 }
 
-private extension Feedback.HapticConfiguration {
-    
+private extension KeyboardFeedback.HapticConfiguration {
+
     /// Get the feedback to use for a certain gesture.
     func feedback(
         for gesture: Keyboard.Gesture
-    ) -> Feedback.Haptic? {
+    ) -> KeyboardFeedback.Haptic? {
         switch gesture {
         case .doubleTap: doubleTap
         case .longPress: longPress

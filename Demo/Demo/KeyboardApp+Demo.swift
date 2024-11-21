@@ -28,6 +28,7 @@ public extension KeyboardApp {
     /// The App Group ID is only to show you how you can use
     /// a `KeyboardApp` to set up App Group data syncing for
     /// an app and its keyboard. It doesn't work in the demo.
+    /// 
     /// See the ``DemoApp`` for more information.
     static var keyboardKitDemo: Self {
         .init(

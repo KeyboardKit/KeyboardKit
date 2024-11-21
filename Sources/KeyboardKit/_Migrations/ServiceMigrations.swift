@@ -27,7 +27,7 @@ public extension Dictation {
     typealias StandardService = StandardDictationService
 }
 
-public extension Feedback {
+public extension KeyboardFeedback {
 
     @available(*, deprecated, renamed: "DisabledFeedbackService", message: "Migration Deprecation, will be removed in 9.1!")
     typealias DisabledService = DisabledFeedbackService

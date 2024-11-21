@@ -207,9 +207,9 @@ KeyboardKit is available under the MIT license.
 
 ### Feedback
 
-- ``Feedback``
-- ``FeedbackContext``
-- ``FeedbackService``
+- ``KeyboardFeedback``
+- ``KeyboardFeedbackContext``
+- ``KeyboardFeedbackService``
 
 ### Gestures
 

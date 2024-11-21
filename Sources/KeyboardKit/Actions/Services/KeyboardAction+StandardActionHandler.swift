@@ -42,8 +42,8 @@ public extension KeyboardActionHandler where Self == KeyboardAction.StandardActi
         keyboardBehavior: KeyboardBehavior,
         autocompleteContext: AutocompleteContext,
         autocompleteService: AutocompleteService,
-        feedbackContext: FeedbackContext,
-        feedbackService: FeedbackService,
+        feedbackContext: KeyboardFeedbackContext,
+        feedbackService: KeyboardFeedbackService,
         spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
     ) -> Self {
         KeyboardAction.StandardActionHandler(
@@ -129,8 +129,8 @@ extension KeyboardAction {
             keyboardBehavior: KeyboardBehavior,
             autocompleteContext: AutocompleteContext,
             autocompleteService: AutocompleteService,
-            feedbackContext: FeedbackContext,
-            feedbackService: FeedbackService,
+            feedbackContext: KeyboardFeedbackContext,
+            feedbackService: KeyboardFeedbackService,
             spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
         ) {
             weak var weakController = controller
@@ -164,11 +164,11 @@ extension KeyboardAction {
         public var keyboardContext: KeyboardContext
         
         /// The feedback context to use.
-        public var feedbackContext: FeedbackContext
-        
+        public var feedbackContext: KeyboardFeedbackContext
+
         /// The feedback service to use.
-        public var feedbackService: FeedbackService
-        
+        public var feedbackService: KeyboardFeedbackService
+
         /// The space drag gesture handler to use.
         public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
         
@@ -514,7 +514,7 @@ extension KeyboardAction {
         open func audioFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
-        ) -> Feedback.Audio? {
+        ) -> KeyboardFeedback.Audio? {
             let config = feedbackContext.audioConfiguration
             let custom = config.customFeedback(for: gesture, on: action)
             if let custom = custom { return custom }
@@ -530,7 +530,7 @@ extension KeyboardAction {
         open func hapticFeedback(
             for gesture: Keyboard.Gesture,
             on action: KeyboardAction
-        ) -> Feedback.Haptic? {
+        ) -> KeyboardFeedback.Haptic? {
             let config = feedbackContext.hapticConfiguration
             return config.feedback(for: gesture, on: action)
         }
@@ -579,12 +579,12 @@ extension KeyboardAction {
         }
 
         /// Trigger a certain audio feedback.
-        open func triggerAudioFeedback(_ feedback: Feedback.Audio) {
+        open func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio) {
             feedbackService.triggerAudioFeedback(feedback)
         }
 
         /// Trigger a certain haptic feedback.
-        open func triggerHapticFeedback(_ feedback: Feedback.Haptic) {
+        open func triggerHapticFeedback(_ feedback: KeyboardFeedback.Haptic) {
             feedbackService.triggerHapticFeedback(feedback)
         }
 

@@ -73,7 +73,7 @@ public extension Keyboard {
         )
 
         /// The feedback service to use.
-        public lazy var feedbackService: FeedbackService = .standard
+        public lazy var feedbackService: KeyboardFeedbackService = .standard
 
         /// The keyboard behavior to use.
         public lazy var keyboardBehavior: KeyboardBehavior = .standard(

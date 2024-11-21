@@ -1,3 +1,11 @@
+//
+//  KeyboardFeedback+AudioEngine.swift
+//  KeyboardKit
+//
+//  Created by Daniel Saidi on 2021-04-01.
+//  Copyright © 2021-2024 Daniel Saidi. All rights reserved.
+//
+
 import Foundation
 
 #if os(iOS) || os(macOS) || os(tvOS) || os(visionOS)
@@ -6,7 +14,7 @@ import AudioToolbox
 typealias SystemSoundID = Int
 #endif
 
-public extension Feedback {
+public extension KeyboardFeedback {
 
     /// This engine can be used to trigger audio feedback.
     ///
@@ -16,7 +24,7 @@ public extension Feedback {
 
         public init() {}
         
-        func trigger(_ audio: Feedback.Audio) {
+        func trigger(_ audio: KeyboardFeedback.Audio) {
             switch audio {
             case .none: return
             case .customUrl(let url): playAudio(at: url)
@@ -26,11 +34,11 @@ public extension Feedback {
     }
 }
 
-private extension Feedback.AudioEngine {
-    
+private extension KeyboardFeedback.AudioEngine {
+
     static var systemSoundIDs: [URL: SystemSoundID] = [:]
     
-    func play(_ audio: Feedback.Audio) {
+    func play(_ audio: KeyboardFeedback.Audio) {
         guard let id = audio.id else { return }
         #if os(iOS) || os(macOS) || os(tvOS)
         AudioServicesPlaySystemSound(id)

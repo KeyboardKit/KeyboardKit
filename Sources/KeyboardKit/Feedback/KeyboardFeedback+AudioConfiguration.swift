@@ -1,5 +1,5 @@
 //
-//  Feedback+AudioConfiguration.swift
+//  KeyboardFeedback+AudioConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-public extension Feedback {
-    
+public extension KeyboardFeedback {
+
     /// This struct can be used to configure audio feedback.
     ///
     /// You can use any of the standard configurations, like
@@ -24,9 +24,9 @@ public extension Feedback {
         ///   - system: The feedback to use for system keys, by default `.system`.
         ///   - custom: A list of custom feedback, by default `empty`.
         public init(
-            input: Feedback.Audio = .input,
-            delete: Feedback.Audio = .delete,
-            system: Feedback.Audio = .system,
+            input: Audio = .input,
+            delete: Audio = .delete,
+            system: Audio = .system,
             custom: [CustomFeedback] = []
         ) {
             self.input = input
@@ -36,28 +36,28 @@ public extension Feedback {
         }
         
         /// The audio to play when a delete key is pressed.
-        public var delete: Feedback.Audio
+        public var delete: Audio
         
         /// The audio to play when an input key is pressed.
-        public var input: Feedback.Audio
+        public var input: Audio
         
         /// The audio to play when a system key is pressed.
-        public var system: Feedback.Audio
+        public var system: Audio
         
         /// A list of custom audio feedback.
         public var custom: [CustomFeedback]
     }
 }
 
-public extension Feedback.AudioConfiguration {
-    
+public extension KeyboardFeedback.AudioConfiguration {
+
     /// This struct is used for custom audio feedback.
     struct CustomFeedback: Codable, Equatable {
         
         public init(
             action: KeyboardAction,
             gesture: Keyboard.Gesture,
-            feedback: Feedback.Audio
+            feedback: KeyboardFeedback.Audio
         ) {
             self.action = action
             self.gesture = gesture
@@ -66,11 +66,11 @@ public extension Feedback.AudioConfiguration {
         
         public let action: KeyboardAction
         public let gesture: Keyboard.Gesture
-        public let feedback: Feedback.Audio
+        public let feedback: KeyboardFeedback.Audio
     }
 }
 
-public extension Feedback.AudioConfiguration {
+public extension KeyboardFeedback.AudioConfiguration {
 
     /// A standard, enabled audio configuration.
     static let standard = Self()
@@ -86,11 +86,11 @@ public extension Feedback.AudioConfiguration {
     )
 }
 
-public extension Feedback.AudioConfiguration.CustomFeedback {
-    
+public extension KeyboardFeedback.AudioConfiguration.CustomFeedback {
+
     /// Create a custom audio feedback configuration.
     static func audio(
-        _ feedback: Feedback.Audio,
+        _ feedback: KeyboardFeedback.Audio,
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Self {
@@ -98,13 +98,13 @@ public extension Feedback.AudioConfiguration.CustomFeedback {
     }
 }
 
-public extension Feedback.AudioConfiguration {
-    
+public extension KeyboardFeedback.AudioConfiguration {
+
     /// Get a custom registered feedback, if any.
     func customFeedback(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> Feedback.Audio? {
+    ) -> KeyboardFeedback.Audio? {
         custom.first {
             $0.action == action && $0.gesture == gesture
         }?.feedback
@@ -122,7 +122,7 @@ public extension Feedback.AudioConfiguration {
     func feedback(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> Feedback.Audio? {
+    ) -> KeyboardFeedback.Audio? {
         customFeedback(for: gesture, on: action)
     }
     

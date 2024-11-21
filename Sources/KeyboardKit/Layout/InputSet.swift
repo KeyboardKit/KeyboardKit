@@ -20,7 +20,7 @@ import Foundation
 /// input sets, like `qwertz` & `azerty` and locale-specific
 /// input sets for each supported locale.
 ///
-/// See the <doc:Layout-Article> article for more information.
+/// See <doc:Layout-Article> for more information.
 public struct InputSet: Equatable {
     
     /// Create an input set with rows.

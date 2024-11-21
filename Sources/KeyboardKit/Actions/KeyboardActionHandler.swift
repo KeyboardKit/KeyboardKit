@@ -22,7 +22,7 @@ import CoreGraphics
 /// it at any time to customize the keyboard action handling.
 ///
 /// See <doc:Actions-Article> for more information.
-public protocol KeyboardActionHandler: AnyObject, FeedbackService {
+public protocol KeyboardActionHandler: AnyObject, KeyboardFeedbackService {
 
 
     /// Whether the handler can handle an action gesture.

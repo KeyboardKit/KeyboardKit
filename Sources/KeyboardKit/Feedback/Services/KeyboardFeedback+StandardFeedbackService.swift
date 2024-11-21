@@ -1,5 +1,5 @@
 //
-//  Feedback+StandardFeedbackService.swift
+//  KeyboardFeedback+StandardFeedbackService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-11.
@@ -8,15 +8,15 @@
 
 import Foundation
 
-public extension FeedbackService where Self == Feedback.StandardFeedbackService {
+public extension KeyboardFeedbackService where Self == KeyboardFeedback.StandardFeedbackService {
 
-    /// Create a ``Feedback/StandardFeedbackService`` instance.
+    /// Create a standard feedback service instance.
     static var standard: Self {
-        Feedback.StandardFeedbackService()
+        KeyboardFeedback.StandardFeedbackService()
     }
 }
 
-extension Feedback {
+extension KeyboardFeedback {
 
     /// This standard service can be used to trigger various
     /// audio and haptic feedback, using system capabilities.
@@ -29,25 +29,25 @@ extension Feedback {
     /// then override any open parts that you want to change.
     ///
     /// This service can also be resolved with the shorthand
-    /// ``FeedbackService/standard``.
+    /// ``KeyboardFeedbackService/standard``.
     ///
     /// See <doc:Feedback-Article> for more information.
-    open class StandardFeedbackService: FeedbackService {
+    open class StandardFeedbackService: KeyboardFeedbackService {
 
         /// Create a standard feedback service.
         public init() {}
 
         /// The audio feedback engine to use.
-        public lazy var audioEngine = Feedback.AudioEngine()
+        public lazy var audioEngine = KeyboardFeedback.AudioEngine()
 
         /// The haptic feedback engine to use.
-        public lazy var hapticEngine = Feedback.HapticEngine()
+        public lazy var hapticEngine = KeyboardFeedback.HapticEngine()
 
-        open func triggerAudioFeedback(_ feedback: Feedback.Audio) {
+        open func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio) {
             audioEngine.trigger(feedback)
         }
 
-        open func triggerHapticFeedback(_ feedback: Feedback.Haptic) {
+        open func triggerHapticFeedback(_ feedback: KeyboardFeedback.Haptic) {
             hapticEngine.trigger(feedback)
         }
     }

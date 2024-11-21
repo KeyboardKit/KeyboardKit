@@ -1,5 +1,5 @@
 //
-//  CalloutService.swift
+//  KeyboardFeedbackService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-11.
@@ -17,11 +17,11 @@ import Foundation
 /// it at any time to customize the feedback behavior.
 ///
 /// See <doc:Feedback-Article> for more information.
-public protocol FeedbackService: AnyObject {
+public protocol KeyboardFeedbackService: AnyObject {
 
     /// Trigger the provided audio feedback.
-    func triggerAudioFeedback(_ feedback: Feedback.Audio)
+    func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio)
 
     /// Trigger the provided haptic feedback.
-    func triggerHapticFeedback(_ feedback: Feedback.Haptic)
+    func triggerHapticFeedback(_ feedback: KeyboardFeedback.Haptic)
 }

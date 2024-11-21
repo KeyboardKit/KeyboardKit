@@ -36,7 +36,7 @@ public extension Keyboard {
         public lazy var externalKeyboardContext = ExternalKeyboardContext()
 
         /// The feedback context to use.
-        public lazy var feedbackContext = FeedbackContext()
+        public lazy var feedbackContext = KeyboardFeedbackContext()
         
         /// The keyboard context to use.
         public lazy var keyboardContext = KeyboardContext()

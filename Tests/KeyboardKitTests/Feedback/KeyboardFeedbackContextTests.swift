@@ -1,5 +1,5 @@
 //
-//  FeedbackContextTests.swift
+//  KeyboardFeedbackContextTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-07-04.
@@ -9,15 +9,15 @@
 import KeyboardKit
 import XCTest
 
-class FeedbackContextTests: XCTestCase {
+class KeyboardFeedbackContextTests: XCTestCase {
 
     override func tearDown() {
-        FeedbackContext().settings.isAudioFeedbackEnabled = true
-        FeedbackContext().settings.isHapticFeedbackEnabled = false
+        KeyboardFeedbackContext().settings.isAudioFeedbackEnabled = true
+        KeyboardFeedbackContext().settings.isHapticFeedbackEnabled = false
     }
 
     func testContextUsesExpectedConfigurationsByDefault() {
-        let settings = FeedbackContext()
+        let settings = KeyboardFeedbackContext()
         XCTAssertEqual(settings.audioConfiguration, .standard)
         XCTAssertEqual(settings.hapticConfiguration, .standard)
     }

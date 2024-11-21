@@ -1,5 +1,5 @@
 //
-//  Feedback+AudioTests.swift
+//  KeyboardFeedback+AudioTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -9,9 +9,9 @@
 import XCTest
 @testable import KeyboardKit
 
-class Feedback_AudioTests: XCTestCase {
+class KeyboardFeedback_AudioTests: XCTestCase {
 
-    func id(for feedback: Feedback.Audio) -> UInt32? {
+    func id(for feedback: KeyboardFeedback.Audio) -> UInt32? {
         feedback.id
     }
 

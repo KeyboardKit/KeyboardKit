@@ -25,7 +25,7 @@ KeyboardKit has a ``KeyboardTheme`` type that is also a namespace for theme-rela
 
 ## Context
 
-KeyboardKit has an observable ``KeyboardThemeContext`` class that can be used to handle themes and auto-persisted ``FeedbackContext/settings-swift.property``. It also has auto-persisted ``KeyboardThemeContext/settings-swift.property`` that can be used to persist themes.
+KeyboardKit has an observable ``KeyboardThemeContext`` class that can be used to handle themes and auto-persisted ``KeyboardThemeContext/settings-swift.property``. It also has auto-persisted ``KeyboardThemeContext/settings-swift.property`` that can be used to persist themes.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever the theme changes.
 

@@ -15,31 +15,29 @@ This article describes the KeyboardKit feedback engine.
 
 Feedback is an important part of the typing experience, where a keyboard can trigger audio and haptic feedback when a user taps on a key or performs certain actions.
 
-In KeyboardKit, audio & haptic feedback can be triggered with a ``FeedbackService``, a ``KeyboardActionHandler`` or by using the ``Feedback/AudioEngine`` and ``Feedback/HapticEngine`` engines directly.
+In KeyboardKit, keyboard feedback can be triggered with a ``KeyboardFeedbackService``, a ``KeyboardActionHandler``, or using the underlying ``KeyboardFeedback/AudioEngine`` and ``KeyboardFeedback/HapticEngine`` engines directly.
 
 
 
 ## Namespace
 
-KeyboardKit has a ``Feedback`` namespace that contains feedback-related types, like ``Feedback/Audio`` and ``Feedback/Haptic`` enums that define available feedback types, ``Feedback/AudioEngine`` and ``Feedback/HapticEngine`` services that can trigger feedback, etc. 
+KeyboardKit has a ``KeyboardFeedback`` namespace that contains feedback-related types, like ``KeyboardFeedback/Audio`` & ``KeyboardFeedback/Haptic`` enums that define available feedback types, ``KeyboardFeedback/AudioEngine`` & ``KeyboardFeedback/HapticEngine``, etc. 
 
 
 
 ## Audio & Haptic Feedback
 
-KeyboardKit defines audio and haptic feedback that can be triggered with a ``FeedbackService`` or a ``KeyboardActionHandler``.
+KeyboardKit defines feedback types that can be triggered with a ``KeyboardFeedbackService`` or a ``KeyboardActionHandler``.
 
-The ``Feedback/Audio`` enum defines audio feedback types, like ``Feedback/Audio/input``, ``Feedback/Audio/system``, ``Feedback/Audio/delete``, etc. The ``Feedback`` namespace also has other audio-related types like ``Feedback/AudioConfiguration``, which can be used to define many different types of audio feedback.
+The ``KeyboardFeedback/Audio`` enum defines audio feedback types, like ``KeyboardFeedback/Audio/input``, ``KeyboardFeedback/Audio/system``, ``KeyboardFeedback/Audio/delete``, etc. The ``KeyboardFeedback`` namespace also has other audio-related types like ``KeyboardFeedback/AudioConfiguration``, which can be used to define complex audio feedback behavior.
 
-The ``Feedback/Haptic`` enum defines haptic feedback types, like ``Feedback/Haptic/success``, ``Feedback/Haptic/warning``, etc. The ``Feedback`` namespace also has other haptic-related types like ``Feedback/HapticConfiguration``, which can be used to define many different types of haptic feedback.
+The ``KeyboardFeedback/Haptic`` enum defines haptic feedback types, like ``KeyboardFeedback/Haptic/success``, ``KeyboardFeedback/Haptic/warning``, ``KeyboardFeedback/Haptic/error`` etc. The ``KeyboardFeedback`` namespace also has other haptic-related types like ``KeyboardFeedback/HapticConfiguration``, which can be used to define complex haptic feedback behavior.
 
 
 
 ## Context
 
-KeyboardKit has an observable ``FeedbackContext`` class that can be used to configure feedback for various actions. It also has auto-persisted ``FeedbackContext/settings-swift.property`` that can be used to customize the feedback behavior.
-
-You can use the ``FeedbackContext/audioConfiguration`` and ``FeedbackContext/hapticConfiguration`` to configure which feedback to trigger when feedback is enabled in ``FeedbackContext/settings-swift.property``.
+KeyboardKit has an observable ``KeyboardFeedbackContext`` class that can be used to configure feedback for various gestures and actions. It also has auto-persisted ``KeyboardFeedbackContext/settings-swift.property`` that can be used to customize the feedback behavior and toggle it on and off.
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``. You can use this instance to configure feedback.
 
@@ -47,9 +45,9 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 ## Services
 
-In KeyboardKit, a ``FeedbackService`` can be used to trigger audio and haptic feedback as the user interacts with the keyboard. The ``KeyboardActionHandler`` protocol also implements this protocol.
+In KeyboardKit, a ``KeyboardFeedbackService`` can be used to trigger audio & haptic feedback as users interacts with the keyboard. The ``KeyboardActionHandler`` protocol also implements this protocol.
 
-KeyboardKit injects a ``Feedback/StandardFeedbackService``  instance into ``KeyboardInputViewController/services``. You can replace it at any time, to customize how the keyboard triggers feedback.
+KeyboardKit injects a ``KeyboardFeedback/StandardFeedbackService``  instance into ``KeyboardInputViewController/services``. You can replace it at any time, to customize it to affect how the keyboard triggers feedback.
 
 
 
@@ -61,14 +59,14 @@ KeyboardKit injects a ``Feedback/StandardFeedbackService``  instance into ``Keyb
 
 ### Trigger feedback
 
-You can trigger any ``Feedback/Audio`` and ``Feedback/Haptic`` feedback with a ``FeedbackService`` or with a ``KeyboardActionHandler``. The standard action handler uses a nested feedback service by default.
+You can trigger ``KeyboardFeedback/Audio`` & ``KeyboardFeedback/Haptic`` feedback with a ``KeyboardFeedbackService`` or a ``KeyboardActionHandler``. The standard action handler uses a nested feedback service by default.
 
-To trigger feedback, just use ``FeedbackService/triggerAudioFeedback(_:)`` and ``FeedbackService/triggerHapticFeedback(_:)``. The standard action handler has even more ways to customize which feedback to trigger for a specific ``KeyboardAction``.
+To trigger feedback, just use ``KeyboardFeedbackService/triggerAudioFeedback(_:)`` and ``KeyboardFeedbackService/triggerHapticFeedback(_:)``. The standard action handler has more ways to customize which feedback to trigger for specific ``KeyboardAction`` gestures.
 
 
-### Configure feedback
+### Customize feedback
 
-You can configure the ``Keyboard/State/dictationContext``  in the main ``KeyboardInputViewController/state`` to configure the global feedback behavior. For instance, this would enable and customize audio feedback, then disable haptic feedback:
+You can configure the ``Keyboard/State/feedbackContext``  in the main ``KeyboardInputViewController/state`` to configure the feedback behavior. For instance, this would customize the audio feedback for input keys, then disable haptic feedback:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -76,9 +74,8 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let context = state.feedbackContext
-        context.audioConfiguration = .enabled
         context.audioConfiguration.input = .custom(id: 1329)
-        context.isHapticFeedbackEnabled = false
+        context.settings.isHapticFeedbackEnabled = false
     }
 }
 ```
@@ -101,9 +98,9 @@ class KeyboardViewController: KeyboardInputViewController {
 Since the configuration is observable, any changes will automatically cause the keyboard to update, e.g. if you have feedback toggles.
 
 
-### Define custom feedback
+### Define custom audio feedback
 
-The ``Feedback/Audio`` feedback type uses **AudioServices** to play audio, which means that you can use any system audio ID (see [this website](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback. For instance, this is how to define a custom sound:
+The ``KeyboardFeedback/Audio`` feedback type uses **AudioServices**, which means that you can use any system audio (see [this site](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback:
 
 ```swift
 extension Feedback.Audio {
@@ -112,7 +109,7 @@ extension Feedback.Audio {
 }
 ```
 
-You can also use the ``Feedback/Audio/customUrl(_:)`` feedback type to define a custom audio feedback that loads a sound effect from an audio file:
+You can also use the ``KeyboardFeedback/Audio/customUrl(_:)`` feedback type to define a custom audio feedback that loads a sound effect from an audio file:
 
 ```swift
 extension Feedback.Audio {
