@@ -82,13 +82,6 @@ extension KeyboardContext {
             needsInputModeSwitchKey = controller.needsInputModeSwitchKey
         }
 
-        let sdkAutocomplete = keyboardType.prefersAutocomplete
-        let rawAutocomplete = textDocumentProxy.keyboardType?.prefersAutocomplete ?? true
-        let newPrefersAutocomplete = sdkAutocomplete && rawAutocomplete
-        if prefersAutocomplete != newPrefersAutocomplete {
-            prefersAutocomplete = newPrefersAutocomplete
-        }
-
         if primaryLanguage != controller.primaryLanguage {
             primaryLanguage = controller.primaryLanguage
         }

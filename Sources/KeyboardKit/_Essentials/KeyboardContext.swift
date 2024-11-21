@@ -21,10 +21,10 @@ import UIKit
 /// make state-based decisions, and automatically update the
 /// ``KeyboardView`` whenever the context changes.
 ///
-/// You can use ``locale`` to get and set the current locale.
-/// If ``locales`` or the ``KeyboardContext/settings-swift.property``
-/// added locales have multiple values, ``selectNextLocale()``
-/// will toggle through these.
+/// You can use ``locale`` to get and set the current locale,
+/// which also affects the keyboard primary language. If the
+/// ``locales`` or ``settings`` added locales have more than
+/// one locale, ``selectNextLocale()`` toggles through these.
 ///
 /// This class also has observable auto-persisted ``settings``
 /// that can be used to configure the behavior and presented
@@ -147,10 +147,6 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var needsInputModeSwitchKey = false
 
-    /// Whether the context prefers autocomplete.
-    @Published
-    public var prefersAutocomplete = true
-
     /// The primary language that is currently being used.
     @Published
     public var primaryLanguage: String?
@@ -241,6 +237,17 @@ public extension KeyboardContext {
     /// Whether the context has multiple locales.
     var hasMultipleLocales: Bool {
         locales.count > 1
+    }
+
+    /// Whether the context prefers autocomplete.
+    var prefersAutocomplete: Bool {
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        let proxy = textDocumentProxy.keyboardType?.prefersAutocomplete
+        let proxyPrefers = proxy ?? true
+        return keyboardType.prefersAutocomplete && proxyPrefers
+        #else
+        keyboardType.prefersAutocomplete
+        #endif
     }
 
     /// The return key type type to use.

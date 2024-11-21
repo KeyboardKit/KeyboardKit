@@ -304,7 +304,7 @@ final class KeyboardAction_StandardActionHandlerTests: XCTestCase {
     func validateAudioFeedback(
         for gesture: Gesture,
         on action: KeyboardAction,
-        expected: Feedback.Audio?
+        expected: KeyboardFeedback.Audio?
     ) {
         let result = handler.audioFeedback(for: gesture, on: action)
         XCTAssertEqual(result, expected)
@@ -321,7 +321,7 @@ final class KeyboardAction_StandardActionHandlerTests: XCTestCase {
     func validateHapticFeedback(
         for gesture: Gesture,
         on action: KeyboardAction,
-        expected: Feedback.Haptic?
+        expected: KeyboardFeedback.Haptic?
     ) {
         let result = handler.hapticFeedback(for: gesture, on: action)
         XCTAssertEqual(result, expected)
