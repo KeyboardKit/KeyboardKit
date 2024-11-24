@@ -19,6 +19,8 @@ import SwiftUI
 /// keyboards by default, and how you can enable this.
 struct HomeScreen: View {
 
+    let app = KeyboardApp.keyboardKitDemo
+
     @State var text = ""
     @State var textEmail = ""
     @State var textURL = ""
@@ -33,29 +35,29 @@ struct HomeScreen: View {
     var body: some View {
         NavigationView {
             KeyboardApp.HomeScreen(
-                app: .keyboardKitDemo,
+                app: app,
                 appIcon: Image(.icon),
                 header: {},
                 footer: {
-                    Section("Text Fields") {
-                        TextField("Plain Text...", text: $text)
+                    Section("Section.TextFields") {
+                        TextField("TextField.Plain", text: $text)
                             .keyboardType(.default)
-                        TextField("Email...", text: $textEmail)
+                        TextField("TextField.Email", text: $textEmail)
                             .keyboardType(.emailAddress)
-                        TextField("URL...", text: $textURL)
+                        TextField("TextField.URL", text: $textURL)
                             .keyboardType(.URL)
-                        TextField("Web Search...", text: $textWebSearch)
+                        TextField("TextField.WebSearch", text: $textWebSearch)
                             .keyboardType(.webSearch)
                     }
                 }
             )
-            .navigationTitle("KeyboardKit")
+            .navigationTitle(app.name)
         }
         .keyboardAppHomeScreenLocalization(.init(
             keyboardSectionFooter: "OBS! This demo isn't code signed and therefore can't sync settings to its keyboard extensions!"
         ))
         .keyboardAppHomeScreenStyle(.init(
-            appIconSize: 150
+            appIconSize: 120
         ))
         .keyboardAppHomeScreenVisibility(.init(
             keyboardSection: true,
@@ -80,7 +82,7 @@ extension HomeScreen {
             titleView: { EmptyView() },
             visualizer: { Dictation.BarVisualizer(isAnimating: $0) },
             doneButton: { action in
-                Button("Done", action: action)
+                Button("Button.Done", action: action)
                     .buttonStyle(.borderedProminent)
             }
         )

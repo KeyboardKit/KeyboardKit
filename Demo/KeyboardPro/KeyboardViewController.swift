@@ -46,10 +46,7 @@ class KeyboardViewController: KeyboardInputViewController {
     /// create or update the keyboard view.
     ///
     /// Call `setupKeyboardView(_:)` here to set up a custom
-    /// keyboard view, or customize the standard view.
-    ///
-    /// 💡 You don't have to override this function when you
-    /// want to use a standard `KeyboardView`.
+    /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
 
         /// 💡 Always call super :)
@@ -59,10 +56,11 @@ class KeyboardViewController: KeyboardInputViewController {
         /// replace the standard `KeyboardView`.
         ///
         /// ‼️ Try avoid passing on `self` or the controller.
-        /// If you must, make sure that the custom view uses
-        /// an `unowned` property, otherwise you will end up
-        /// with a memory leak.
-        setupKeyboardView { controller in
+        /// If you must pass it on, make sure that the `self`
+        /// reference is weak and that your custom view uses
+        /// an `unowned` controller property, otherwise your
+        /// controller reference will cause a memory leak.
+        setupKeyboardView { /*[weak self]*/ controller in
             DemoKeyboardView(
                 controller: controller
             )
@@ -73,9 +71,6 @@ class KeyboardViewController: KeyboardInputViewController {
 private extension KeyboardViewController {
 
     /// Make demo-specific service changes.
-    ///
-    /// You can add your own customizations here, to see how
-    /// it affects the keyboard behavior.
     func setupDemoServices() {
 
         /// 💡 Set up a demo-specific action handler.
@@ -91,15 +86,12 @@ private extension KeyboardViewController {
 
         /// 💡 Set up a demo-specific keyboard style service.
         services.styleService = (try? DemoStyleService(
-            theme: .standard,
-            keyboardContext: state.keyboardContext
+            keyboardContext: state.keyboardContext,
+            themeContext: state.themeContext
         )) ?? services.styleService
     }
 
     /// Make demo-specific state changes.
-    ///
-    /// You can add your own customizations here, to see how
-    /// it affects the keyboard behavior.
     func setupDemoState() {
 
         /// 💡 Set up which locale to use to present locales.

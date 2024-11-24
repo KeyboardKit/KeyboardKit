@@ -19,40 +19,104 @@ struct DemoKeyboardView: View {
     /// This is (for now) required by the ``DemoToolbar``.
     unowned var controller: KeyboardInputViewController
 
-    @State
-    private var theme: KeyboardTheme?
+    @Environment(\.keyboardToolbarStyle) var toolbarStyle
+
+    @State var activeSheet: DemoSheet?
+    @State var isTextInputActive = false
+    @State var isToolbarToggled = false
+    @State var theme: KeyboardTheme?
 
     var body: some View {
         KeyboardView(
             state: controller.state,
-            services: keyboardServices,
-            buttonContent: { $0.view },
-            buttonView: { $0.view },
+            services: controller.services,
+            buttonContent: { $0.view },                     // $0.view uses the default view.
+            buttonView: {
+                $0.view.opacity(isToolbarToggled ? 0 : 1)   // Hide keys when the toolbar is toggled
+            },
             collapsedView: { $0.view },
             emojiKeyboard: { $0.view },
-            toolbar: { params in    // <- All view builders has parameters with more information
-                DemoToolbar(
-                    controller: controller,
-                    toolbar: params.view,
-                    theme: $theme
-                )
+            toolbar: { params in                            // All view builders have parameters
+                if isTextInputActive {
+                    DemoTextInputToolbar(
+                        isTextInputActive: $isTextInputActive
+                    )
+                } else {
+                    DemoToolbar(
+                        controller: controller,
+                        toolbar: params.view,               // Use the original toolbar
+                        isTextInputActive: $isTextInputActive,
+                        isToolbarToggled: $isToolbarToggled
+                    )
+                }
             }
         )
+        .overlay(menuGrid)
+        .animation(.bouncy, value: isToolbarToggled)
+        .sheet(item: $activeSheet) { sheet in
+            NavigationStack {
+                sheetContent
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Button.Done") {
+                                activeSheet = nil
+                            }
+                        }
+                    }
+            }
+        }
     }
 }
 
 private extension DemoKeyboardView {
 
-    var keyboardServices: Keyboard.Services {
-        let services = controller.services
-        if let theme {
-            if let service = try? KeyboardStyle.ThemeBasedStyleService(
-                theme: theme,
-                keyboardContext: controller.state.keyboardContext
-            ) {
-                services.styleService = service
-            }
+    var services: Keyboard.Services {
+        controller.services
+    }
+
+    var state: Keyboard.State {
+        controller.state
+    }
+
+    @ViewBuilder
+    var menuGrid: some View {
+        if isToolbarToggled {
+            DemoGridMenu(
+                isTextInputActive: $isTextInputActive,
+                isToolbarToggled: $isToolbarToggled,
+                sheet: $activeSheet,
+                actionHandler: services.actionHandler
+            )
+            .padding(.top, 55)  // Give room for the toolbar
+            .padding(.horizontal, 10)
+            .transition(.move(edge: .bottom))
         }
-        return services
+    }
+
+    @ViewBuilder
+    var sheetContent: some View {
+        switch activeSheet {
+        case .fullDocumentReader:
+            FullDocumentContextSheet()
+        case .hostApplicationInfo:
+            HostAppInfoSheet()
+        case .keyboardSettings:
+            KeyboardApp.SettingsScreen(
+                autocompleteContext: state.autocompleteContext,
+                dictationContext: state.dictationContext,
+                feedbackContext: state.feedbackContext,
+                keyboardContext: state.keyboardContext
+            )
+        case .localeSettings:
+            KeyboardApp.LocaleScreen(
+                keyboardContext: state.keyboardContext
+            )
+        case .themeSettings:
+            KeyboardApp.ThemeScreen(
+                themeContext: state.themeContext
+            )
+        case .none: EmptyView()
+        }
     }
 }

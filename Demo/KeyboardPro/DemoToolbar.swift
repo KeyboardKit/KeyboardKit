@@ -21,39 +21,30 @@ struct DemoToolbar<Toolbar: View>: View {
 
     var toolbar: Toolbar
 
-    @Binding
-    var theme: KeyboardTheme?
+    @Binding var isTextInputActive: Bool
+    @Binding var isToolbarToggled: Bool
 
-    @EnvironmentObject
-    private var autocompleteContext: AutocompleteContext
+    @EnvironmentObject var autocompleteContext: AutocompleteContext
+    @EnvironmentObject var feedbackContext: FeedbackContext
+    @EnvironmentObject var keyboardContext: KeyboardContext
 
-    @EnvironmentObject
-    private var feedbackContext: FeedbackContext
+    @FocusState var isTextFieldFocused
 
-    @EnvironmentObject
-    private var keyboardContext: KeyboardContext
-
-    @FocusState
-    private var isTextFieldFocused
-
-    @State
-    private var fullDocumentContext = ""
-    
-    @State
-    private var isThemePickerPresented = false
-    
-    @State
-    private var isFullDocumentContextActive = false
-    
-    @State
-    private var text = ""
+    @State var fullDocumentContext = ""
+    @State var isThemePickerPresented = false
+    @State var isFullDocumentContextActive = false
+    @State var text = ""
 
     var body: some View {
         try? Keyboard.ToggleToolbar(
-            toolbar: autocompleteToolbar,
-            toggledToolbar: menuToolbar
+            isToggled: $isToolbarToggled,
+            toolbar: autocompleteToolbar,                   // Add a locale switcher to the toolbar
+            toggledToolbar: toggledToolbar
         )
         .tint(.primary)
+        .font(.title3)
+        .buttonStyle(.plainKeyboard)
+        .padding(.trailing)
     }
 }
 
@@ -66,155 +57,25 @@ private extension DemoToolbar {
         }
     }
 
-    var menuToolbar: some View {
-        ScrollView(.horizontal) {
-            HStack {
-                Group {
-                    textFieldIfFullAccess
-                    Divider()
-                    toggle($autocompleteContext.settings.isAutocorrectEnabled, "textformat.abc.dottedunderline")
-                    Divider()
-                    toggle($feedbackContext.settings.isAudioFeedbackEnabled, "speaker.wave.2.fill")
-                    toggle($feedbackContext.settings.isHapticFeedbackEnabled, "hand.tap.fill")
-                    Divider()
-                    button(toggleThemePicker, "paintpalette")
-                    button(readDocument, "doc.text.magnifyingglass")
-                    button(startDictation, "mic")
-                    button(openSettings, "gearshape")
-                    Divider()
-                    toggle($keyboardContext.isKeyboardCollapsed, "keyboard.chevron.compact.down")
-                }
-                .frame(maxHeight: .infinity)
+    var toggledToolbar: some View {
+        HStack {
+            Spacer()
+            Button {
+                keyboardContext.isKeyboardCollapsed.toggle()
+            } label: {
+                Image.keyboardDismiss
             }
-            .padding([.trailing, .vertical], 10)
-            .background(Color.clearInteractable)
         }
-        .font(.headline)
-        .buttonStyle(.bordered)
-        .toggleStyle(.button)
-        .sheet(isPresented: $isFullDocumentContextActive, content: fullDocumentContextSheet)
-        .sheet(isPresented: $isThemePickerPresented, content: themePickerSheet)
     }
 }
 
 private extension DemoToolbar {
 
-    func button(
-        _ action: @escaping () -> Void,
-        _ imageName: String
-    ) -> some View {
-        Button(action: action) {
-            image(imageName)
-        }
-    }
-
-    func toggle(
-        _ isOn: Binding<Bool>,
-        _ imageName: String
-    ) -> some View {
-        Toggle(isOn: isOn) {
-            image(imageName)
-        }
-    }
-
-    func image(_ name: String) -> some View {
-        Color.clear
-            .overlay(Image(systemName: name))
-            .frame(maxHeight: .infinity)
-    }
-
     var localeSwitcher: some View {
         Image.keyboardGlobe
-            .scaleEffect(1.2)
-            .padding()
             .background(Color.clearInteractable)
             .localeContextMenu(for: keyboardContext) {
                 controller.services.actionHandler.handle(.nextLocale)
             }
-    }
-
-    @ViewBuilder
-    var textFieldIfFullAccess: some View {
-        if keyboardContext.hasFullAccess {
-            KeyboardTextField(text: $text, keyboardContext: keyboardContext) {
-                $0.placeholder = "Type here..."
-            }
-            .frame(width: 150)
-            .focused($isTextFieldFocused) {
-                Image(systemName: "xmark.circle.fill")
-            }
-            .buttonStyle(.plain)
-        }
-    }
-    
-    func fullDocumentContextSheet() -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(fullDocumentContext)
-                .frame(maxWidth: .infinity, alignment: .leading)
-        }
-        .padding()
-        .demoSheet("Full Document Reader")
-    }
-    
-    func themePickerSheet() -> some View {
-        KeyboardTheme.Shelf(
-            themes: KeyboardTheme.allPredefined,
-            title: { collection in
-                Text(collection.name)
-                    .font(.callout.bold())
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            },
-            item: { theme in
-                SwiftUI.Button {
-                    self.theme = theme
-                } label: {
-                    KeyboardTheme.ShelfItem(theme: theme)
-                        .shadow(radius: 1, x: 0, y: 1)
-                        .padding(.vertical, 3)
-                }
-            }
-        )
-        .demoSheet("Theme Picker")
-    }
-}
-
-private extension DemoToolbar {
-    
-    func openSettings() {
-        controller.openUrl(.systemSettings)
-    }
-    
-    func readDocument() {
-        isFullDocumentContextActive = true
-        fullDocumentContext = "Reading..."
-        Task {
-            let result = try await keyboardContext.textDocumentProxy.fullDocumentContext()
-            await MainActor.run { self.fullDocumentContext = result.fullDocumentContext }
-        }
-    }
-    
-    func selectTheme(_ theme: KeyboardTheme) {
-        self.theme = theme
-        isThemePickerPresented = false
-    }
-    
-    func startDictation() {
-        controller.performDictation()
-    }
-
-    func toggleThemePicker() {
-        isThemePickerPresented.toggle()
-    }
-}
-
-private extension View {
-    
-    func demoSheet(_ title: String) -> some View {
-        NavigationView {
-            ScrollView {
-                self
-            }
-            .navigationTitle(title)
-        }
     }
 }

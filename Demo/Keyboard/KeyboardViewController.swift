@@ -10,14 +10,16 @@ import KeyboardKit
 import SwiftUI
 
 /// This keyboard shows you how to set up `KeyboardKit` with
-/// a `KeyboardApp` and customize the standard keyboard view,
-/// adding `KeyboardKit` as a local dependency.
+/// a `KeyboardApp` and customize the standard keyboard view.
 ///
 /// This demo is intentionally kept very basic, to provide a
-/// starting point for you to play around with this keyboard.
-/// You can customize the keyboard views, state and services.
+/// starting point to let you to play with the keyboard. You
+/// can customize the keyboard view, state & services and do
+/// anything you want.
 ///
-/// See the `KeyboardPro` keyboard for a more extensive demo.
+/// See the `KeyboardPro` keyboard for a more extensive demo
+/// that shows you how to set up and configure more parts of
+/// the keyboard and its functionality.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
@@ -41,10 +43,7 @@ class KeyboardViewController: KeyboardInputViewController {
     /// create or update the keyboard view.
     ///
     /// Call `setupKeyboardView(_:)` here to set up a custom
-    /// keyboard view, or customize the standard view.
-    ///
-    /// 💡 You don't have to override this function when you
-    /// want to use a standard `KeyboardView`.
+    /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
 
         /// 💡 Always call super :)
@@ -52,17 +51,15 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Call `setupKeyboardView(...)` to customize or
         /// replace the standard `KeyboardView`.
-        ///
-        /// You can replace `KeyboardView` with another view.
         setupKeyboardView { controller in
             KeyboardView(
                 state: controller.state,
                 services: controller.services,
-                buttonContent: { $0.view },
+                buttonContent: { $0.view },                 // $0.view uses the default view.
                 buttonView: { $0.view },
                 collapsedView: { $0.view },
-                emojiKeyboard: { params in params.view },   // This is the same as $0.view
-                toolbar: { _ in
+                emojiKeyboard: { params in params.view },   // This is the same as $0.view.
+                toolbar: { _ in                             // Return a custom toolbar.
                     Keyboard.Toolbar {
                         HStack {
                             Spacer()
@@ -84,7 +81,7 @@ private extension KeyboardViewController {
     /// Make demo-specific service changes.
     func setupDemoServices() {
 
-        /// 💡 You can replace any service with your own custom service.
+        /// 💡 You can replace any service with a custom service.
         services.autocompleteService = services.autocompleteService
     }
 
