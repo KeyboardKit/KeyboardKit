@@ -260,7 +260,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardStatus``
 - ``KeyboardStatusContext``
-- ``KeyboardStatusInspector``
 
 ### Styling
 

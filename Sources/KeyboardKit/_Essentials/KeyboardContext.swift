@@ -80,8 +80,13 @@ public class KeyboardContext: ObservableObject {
     public var hasDictationKey: Bool = false
 
     /// Whether the extension has full access.
+    #if os(iOS) || os(tvOS) || os(visionOS)
+    @Published
+    public var hasFullAccess = UIInputViewController().hasFullAccess
+    #else
     @Published
     public var hasFullAccess: Bool = false
+    #endif
 
     /// The bundle ID of the keyboard host application.
     @Published

@@ -6,9 +6,11 @@
 //  Copyright © 2020-2024 Daniel Saidi. All rights reserved.
 //
 
-#if os(iOS) || os(tvOS) || os(visionOS)
 import Foundation
+
+#if os(iOS) || os(tvOS) || os(visionOS)
 import UIKit
+#endif
 
 /// This protocol can be implemented by classes that must be
 /// able to check the enabled state of a keyboard extension.
@@ -26,9 +28,10 @@ import UIKit
 ///
 /// The easiest way to observe a keyboard's enabled state is
 /// to use an observable ``KeyboardStatusContext``.
-public protocol KeyboardStatusInspector {}
+protocol KeyboardStatusInspector {}
 
-public extension KeyboardStatusInspector {
+#if os(iOS) || os(tvOS) || os(visionOS)
+extension KeyboardStatusInspector {
 
     /// Get a list of all active keyboard bundle IDs.
     var activeKeyboardBundleIds: [String] {
@@ -44,12 +47,7 @@ public extension KeyboardStatusInspector {
     ) -> [String] {
         defaults.object(forKey: "AppleKeyboards") as? [String] ?? []
     }
-    
-    /// Whether the full access is enabled in System Settings.
-    var isFullAccessEnabled: Bool {
-        FullAccessInspector().hasFullAccess
-    }
-    
+
     /// Whether a certain keyboard extension is active.
     func isKeyboardActive(
         withBundleId bundleId: String
@@ -57,7 +55,7 @@ public extension KeyboardStatusInspector {
         let ids = activeKeyboardBundleIds
         return isKeyboardActive(withId: bundleId, in: ids)
     }
-    
+
     /// Whether a certain keyboard extension is enabled.
     func isKeyboardEnabled(
         withBundleId bundleId: String,
@@ -93,6 +91,4 @@ extension String {
         return hasPrefix(wildcard)
     }
 }
-
-private class FullAccessInspector: UIInputViewController {}
 #endif

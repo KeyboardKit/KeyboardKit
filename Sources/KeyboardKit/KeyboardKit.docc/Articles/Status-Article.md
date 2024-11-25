@@ -53,11 +53,6 @@ var status = KeyboardStatusContext(bundleId: "com.myapp.*")
 ```
 
 
-## Status Inspector
-
-The ``KeyboardStatusInspector`` protocol that powers the context can be implemented by any type, to make it able to inspect the status of any keyboard at any time.
-
-
 ## Views
 
 The ``KeyboardStatus`` namespace has status-specific views, that can be used to display various keyboard status-related values:

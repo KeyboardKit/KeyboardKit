@@ -169,6 +169,12 @@ KeyboardKit Pro adds layout item mutations to the `KeyboardLayout` itself, which
 
 Persistent settings have moved from the various contexts to nested `settings` types, to separate properties from settings.
 
+### 🩺 Status
+
+The `KeyboardStatusInspector` has been made internal to avoid using it in incorrect ways.
+
+Use the `KeyboardStatusContext` instead, which manages status information in a better way. 
+
 ### 📝 Text Input
 
 The `KeyboardContext` is now responsible for the `textInputProxy`. The controller refers to this proxy, but the context owns it.
