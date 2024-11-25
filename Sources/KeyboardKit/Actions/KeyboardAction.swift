@@ -122,28 +122,38 @@ public enum KeyboardAction: Codable, Equatable {
     case text(String)
 
     /// Open an url when released, using a custom id for identification.
-    case url(_ url: URL?, id: String? = nil)
+    case url(_ url: URL?, id: String?)
 }
 
 public extension KeyboardAction {
     
-    /// An `.emoji(_:)` shorthand that inserts an emoji when
-    /// released.
-    ///
-    /// > Note: This typealias is meant to make it easier to
-    /// find the ``KeyboardAction/diacritic(_:)`` action.
+    /// An ``KeyboardAction/diacritic(_:)`` alias.
     static func accent(
         _ accent: Keyboard.Accent
     ) -> KeyboardAction {
         .diacritic(accent)
     }
-    
-    /// An `.emoji(_:)` shorthand that inserts an emoji when
-    /// released.
+
+    /// An ``KeyboardAction/emoji(_:)`` shorthand.
     static func emoji(
         _ char: String
     ) -> KeyboardAction {
         .emoji(.init(char))
+    }
+
+    /// An ``KeyboardAction/url(_:id:)`` shorthand.
+    static func url(
+        _ url: URL?
+    ) -> KeyboardAction {
+        .url(url, id: nil)
+    }
+
+    /// An ``KeyboardAction/url(_:id:)`` shorthand.
+    static func url(
+        _ url: String?
+    ) -> KeyboardAction {
+        guard let url else { return .url(.init(string: ""), id: nil) }
+        return .url(.init(string: url), id: nil)
     }
 }
 
