@@ -179,13 +179,39 @@ public extension KeyboardApp {
             self.themeSettings = themeSettings ?? "\(app)themeSettings"
         }
 
+        /// A deep link for opening the app.
         public let app: String
+
+        /// A deep link for opening the app and starting dictation.
         public let dictation: String
+
+        /// A deep link for opening the app's keyboard settings screen.
         public let keyboardSettings: String
+
+        /// A deep link for opening the app's language settings screen.
         public let languageSettings: String
+
+        /// A deep link for opening the app's theme settings screen.
         public let themeSettings: String
     }
+}
 
+public extension KeyboardApp.DeepLinks {
+
+    /// A deep link for opening the app.
+    var appURL: URL? { .init(string: app) }
+
+    /// A deep link for opening the app and starting dictation.
+    var dictationURL: URL? { .init(string: dictation) }
+
+    /// A deep link for opening the app's keyboard settings screen.
+    var keyboardSettingsURL: URL? { .init(string: keyboardSettings) }
+
+    /// A deep link for opening the app's language settings screen.
+    var languageSettingsURL: URL? { .init(string: languageSettings) }
+
+    /// A deep link for opening the app's theme settings screen.
+    var themeSettingsURL: URL? { .init(string: themeSettings) }
 }
 
 public extension KeyboardApp {
