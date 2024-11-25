@@ -52,7 +52,7 @@ public extension Keyboard {
     }
 }
 
-#if os(iOS)
+#if os(iOS) || os(tvOS) || os(visionOS)
 public extension KeyboardInputViewController {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
@@ -69,6 +69,9 @@ public extension KeyboardInputViewController {
         errorDisplay: LicenseValidationErrorDisplay = .debug,
         completion: @escaping (LicenseRegistrationResult) -> Void
     ) {}
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    var hostApplicationBundleId: String? { nil }
 }
 #endif
 
@@ -308,7 +311,11 @@ public extension Image {
 // MARK: - Host
 
 /// 👑 This is unlocked by KeyboardKit Pro.
-public enum KeyboardHostApplication {}
+public struct KeyboardHostApplication {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public func open(with handler: KeyboardActionHandler) {}
+}
 
 /// 👑 This is unlocked by KeyboardKit Pro.
 public protocol KeyboardHostApplicationProvider {

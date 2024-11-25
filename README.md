@@ -155,7 +155,6 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 * 😀 [Emojis][Emojis] - Emojis, categories, versions, skin tones, etc.
 * 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback with ease.
 * 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
-* 🏠 [Host][Host] - Identify the host application.
 * 🔣 [Layout][Layout] - Define and customize dynamic keyboard layouts.
 * 🌐 [Localization][Localization] - Localize your keyboard in **70 locales**.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
