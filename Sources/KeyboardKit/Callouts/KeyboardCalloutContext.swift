@@ -86,7 +86,9 @@ public extension KeyboardCalloutContext {
         inputAction = nil
     }
 
-    /// Reset the context with a slight delay.
+    /// Reset the context with a slight delay, since we want
+    /// the callout to be visible for a short while, even if
+    /// the user immediately releases the button.
     func resetInputActionWithDelay() {
         let delay = minimumInputDuration
         let date = Date()

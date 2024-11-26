@@ -33,16 +33,22 @@ public extension String {
         .chars
 
     /// A list of currently known autocorrect triggers.
-    static var autocorrectTriggers = ".,:;!¡?¿{}<>«»"
-        .appending(CharacterSet.whitespacesAndNewlines.toString())
+    static let autocorrectTriggers = ".,:;!¡?¿{}<>«»"
+        .appending(whitespacesAndNewlinesString)
         .chars
 
     /// A list of currently known sentence delimiters.
-    static var sentenceDelimiters = ".:!¡?¿".chars
+    static let sentenceDelimiters = ".:!¡?¿".chars
+
+    /// A list of currently known whitespaces and newlines.
+    static let whitespacesAndNewlines = whitespacesAndNewlinesString.chars
+
+    /// A list of currently known whitespaces and newlines.
+    static let whitespacesAndNewlinesString = " \t\n\u{b}\u{c}\r \u{85}             ​\u{2028}\u{2029}"
 
     /// A list of currently known word delimiters.
     static let wordDelimiters = ".,:;!¡?¿()[]{}<>«»་།"
-        .appending(CharacterSet.whitespacesAndNewlines.toString())
+        .appending(whitespacesAndNewlinesString)
         .chars
 }
 
@@ -89,15 +95,5 @@ public extension String {
     /// Whether this is a known word delimiter.
     var isWordDelimiter: Bool {
         Self.wordDelimiters.contains(self)
-    }
-}
-
-private extension CharacterSet {
-
-    func toString() -> String {
-        let scalars = (0...0x10FFFF)
-            .compactMap(UnicodeScalar.init)
-            .filter(self.contains)
-        return String(String.UnicodeScalarView(scalars))
     }
 }
