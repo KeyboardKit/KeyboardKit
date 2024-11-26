@@ -193,7 +193,7 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 The [online documentation][Documentation] has a detailed article for each feature, a thorough getting-started guide, code samples, etc. You can also build it from the source code to get better formatting.
 
 > [!NOTE]
-> The online documentation is updated for KeyboardKit 9.0 RC 1. Documentation for KeyboardKit 8 can be built from the source code.
+> The online documentation is updated for KeyboardKit 9.0 RC. Documentation for KeyboardKit 8 can be built from the source code.
 
 
 

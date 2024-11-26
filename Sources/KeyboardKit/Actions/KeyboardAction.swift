@@ -134,7 +134,7 @@ public extension KeyboardAction {
         .diacritic(accent)
     }
 
-    /// An ``KeyboardAction/emoji(_:)`` shorthand.
+    /// An `emoji(_:)` shorthand.
     static func emoji(
         _ char: String
     ) -> KeyboardAction {

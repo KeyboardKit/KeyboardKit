@@ -25,9 +25,10 @@ KeyboardKit has a ``Gestures`` namespace with gesture-related types, like ``Gest
 
 
 
-## Gesture view modifiers
+## View Modifiers
 
-You can use the ``SwiftUICore/View/keyboardButtonGestures(for:actionHandler:repeatTimer:calloutContext:isPressed:scrollState:releaseOutsideTolerance:)`` view modifier to apply keyboard gesture to any view:
+You can use the ``SwiftUICore/View/keyboardButtonGestures(for:actionHandler:repeatTimer:calloutContext:isPressed:isGestureAutoCancellable:scrollState:releaseOutsideTolerance:)``
+modifier to apply keyboard gesture to any view:
 
 ```swift
 Text("😀")
@@ -37,8 +38,7 @@ Text("😀")
     )
 ```
 
-This will automatically apply all standard gestures for the provided action. You can also set up fully custom actions with this modifier,
-using the ``SwiftUICore/View/keyboardButtonGestures(action:repeatTimer:calloutContext:isPressed:scrollState:releaseOutsideTolerance:doubleTapAction:longPressAction:pressAction:releaseAction:repeatAction:dragAction:endAction:)`` modifier variant.
+This will apply all standard gestures for the provided action. You can also set up completely custom gesture actions with this modifier.
 
 
 

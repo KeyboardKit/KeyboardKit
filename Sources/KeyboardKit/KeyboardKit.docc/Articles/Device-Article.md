@@ -38,11 +38,11 @@ let isLandscape = orientation.isLandscape
 
 ## Screen sizes
 
-KeyboardKit has ``CoreGraphics/CGSize`` extensions for detecting which hardware you're on, for instance to define and compare various screen sizes.
+KeyboardKit has `CGSize` extensions for detecting which hardware you're on, for instance to define and compare various screen sizes.
 
-You can use ``CoreGraphics/CGSize/isScreenSize(_:withTolerance:)`` to check if a certain size matches a screen size in any orientation. It uses a low tolerance by default to support slight variations between model changes of the same device type.
+You can use `isScreenSize(_:withTolerance:)` to check if a certain size matches a screen size in any orientation. It uses a low tolerance by default to support slight variations between model changes of the same device type.
 
-Be careful with using screen size as the foundation for certain features. You'll never know when your software suddenly runs in another way that makes the screen size irrelevant, e.g. in iPad split screen. 
+> Warning: Be careful with using screen size as the foundation for certain features. You never know if your software suddenly runs in another way that makes the screen size irrelevant, e.g. in iPad split screen or floating keyboard mode. 
 
 
 

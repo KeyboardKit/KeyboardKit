@@ -15,7 +15,7 @@ Callouts are an important part of the typing experience, where input callouts ca
 
 KeyboardKit can show an ``KeyboardCallout/InputCallout`` for the currently pressed input key, and an ``KeyboardCallout/ActionCallout`` with secondary actions when a key with secondary actions is long pressed.
 
-👑 [KeyboardKit Pro][Pro] unlocks localized keyboards and services for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. Information about Pro features can be found further down.
+👑 [KeyboardKit Pro][Pro] unlocks localized services for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. Information about Pro features can be found further down.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -157,7 +157,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-This makes it easy to replace layout service for a certain locale, since you can inherit and customize the related ``KeyboardCallout/ProCalloutServiceService``.
+This makes it easy to replace layout service for a certain locale, since you can inherit and customize the related ``KeyboardCallout/ProCalloutService``.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

@@ -26,8 +26,8 @@ public struct KeyboardLayout {
     /// - Parameters:
     ///   - rows: The items to add to the keyboard.
     ///   - iPadProLayout: Whether the layout is iPad Pro specific.
-    ///   - idealItemHeight: An optional, ideal item height, otherwise picked from the first item.
-    ///   - idealItemInsets: An optional, ideal item inset value, otherwise picked from the first item.
+    ///   - height: An optional, ideal item height, otherwise picked from the first item.
+    ///   - insets: An optional, ideal item inset value, otherwise picked from the first item.
     ///   - numberInputToolbarInputSet: The input set to use for a number-based input toolbar, if any.
     public init(
         itemRows rows: ItemRows,
