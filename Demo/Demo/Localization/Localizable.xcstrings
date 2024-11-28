@@ -222,6 +222,7 @@
       }
     },
     "Sheet.Host.Section.KnownApps" : {
+      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

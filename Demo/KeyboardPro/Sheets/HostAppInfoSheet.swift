@@ -24,23 +24,12 @@ struct HostAppInfoSheet: View {
             }
             Section("Sheet.Host.Section.App") {
                 if let app = try? keyboardContext.hostApplication {
-                    item(
-                        title: "Sheet.Host.Section.App.Name",
-                        subtitle: app.name
-                    )
-                    item(
-                        title: "Sheet.Host.Section.App.BundleId",
-                        subtitle: app.bundleId
-                    )
-                    item(
-                        title: "Sheet.Host.Section.App.CanOpen",
-                        subtitle: (app.url != nil) ? "✔" : "✘"
-                    )
+                    infoItems(for: app)
                 } else {
                     Text("Sheet.Host.Section.App.Unknown")
                 }
             }
-            Section("Sheet.Host.Section.KnownApps") {
+            /*Section("Sheet.Host.Section.KnownApps") {
                 ForEach(KeyboardHostApplication.allCases) { app in
                     Button {
                         guard let url = app.url else { return }
@@ -49,13 +38,31 @@ struct HostAppInfoSheet: View {
                         Text(app.name)
                     }
                 }
-            }
+            }*/
         }
         .navigationTitle("Sheet.Host")
     }
 }
 
 private extension HostAppInfoSheet {
+
+    @ViewBuilder
+    func infoItems(
+        for app: KeyboardHostApplication
+    ) -> some View {
+        item(
+            title: "Sheet.Host.Section.App.Name",
+            subtitle: app.name
+        )
+        item(
+            title: "Sheet.Host.Section.App.BundleId",
+            subtitle: app.bundleId
+        )
+        item(
+            title: "Sheet.Host.Section.App.CanOpen",
+            subtitle: app.canOpen ? "✔" : "✘"
+        )
+    }
 
     func item(
         title: LocalizedStringKey,

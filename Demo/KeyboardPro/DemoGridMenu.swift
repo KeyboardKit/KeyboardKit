@@ -28,7 +28,7 @@ struct DemoGridMenu: View {
 
     @EnvironmentObject var autocompleteContext: AutocompleteContext
     @EnvironmentObject var dictationContext: DictationContext
-    @EnvironmentObject var feedbackContext: FeedbackContext
+    @EnvironmentObject var feedbackContext: KeyboardFeedbackContext
     @EnvironmentObject var keyboardContext: KeyboardContext
     @EnvironmentObject var themeContext: KeyboardThemeContext
 
