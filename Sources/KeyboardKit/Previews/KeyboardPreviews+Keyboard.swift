@@ -26,35 +26,21 @@ public extension KeyboardPreviews {
 public extension Keyboard.Services {
     
     static var preview: Keyboard.Services {
-        #if os(iOS) || os(tvOS) || os(visionOS)
-        KeyboardInputViewController.preview.services
-        #else
         Keyboard.Services(state: .preview)
-        #endif
     }
 }
 
 public extension Keyboard.State {
     
     static var preview: Keyboard.State {
-        #if os(iOS) || os(tvOS) || os(visionOS)
-        KeyboardInputViewController.preview.state
-        #else
         Keyboard.State()
-        #endif
     }
 }
 
 public extension KeyboardContext {
     
     static var preview: KeyboardContext {
-        #if os(iOS) || os(tvOS) || os(visionOS)
-        let context = KeyboardContext()
-        context.sync(with: .preview)
-        return context
-        #else
         KeyboardContext()
-        #endif
     }
 }
 
