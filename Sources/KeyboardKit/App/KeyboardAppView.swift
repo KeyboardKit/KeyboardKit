@@ -9,7 +9,7 @@
 import SwiftUI
 
 /// This view can be used as the root view of a keyboard app,
-/// to set up KeyboardKit for a ``KeyboardApp``.
+/// to set up KeyboardKit for a certain ``KeyboardApp``.
 ///
 /// To use this view, just create a ``KeyboardApp`` for your
 /// app and use it to setup this view as the app's root view:
@@ -28,11 +28,12 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// This will set up the ``Keyboard/Settings`` to use an App
-/// Group to sync data between the app and its keyboard, set
-/// up the main ``Keyboard/State`` for the provided app, and
-/// inject the adjusted state into the view hierarchy, after
-/// which you can access any state like this:
+/// This sets up the main ``Keyboard/Settings`` to sync data
+/// between the app and its keyboard, provided that your app
+/// defines am ``KeyboardApp/appGroupId``. It also creates a
+/// dedicated ``Keyboard/State`` for the app and injects the
+/// state into the main view hierarchy, after which your app
+/// can access any state like this:
 ///
 /// ```swift
 /// struct MyView: View {
@@ -66,7 +67,6 @@ public struct KeyboardAppView<Content: View>: View {
         self._dictationContext = .init(wrappedValue: state.dictationContext)
         self._externalContext = .init(wrappedValue: state.externalKeyboardContext)
         self._feedbackContext = .init(wrappedValue: state.feedbackContext)
-        self._keyboardContext = .init(wrappedValue: state.keyboardContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
         self._themeContext = .init(wrappedValue: state.themeContext)
         self.content = content
