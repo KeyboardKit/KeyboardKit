@@ -198,10 +198,11 @@ final class KeyboardAction_StandardActionHandlerTests: XCTestCase {
         XCTAssertTrue(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .backspace)) // Valid
     }
 
-    func testShouldPerformAutocompleteReturnsTrueForReleaseGesture() {
-        XCTAssertFalse(handler.shouldPerformAutocomplete(after: .press, on: .backspace))
-        XCTAssertTrue(handler.shouldPerformAutocomplete(after: .release, on: .backspace))
+    func testShouldPerformAutocompleteReturnsTrueForReleaseGestureAndBackspace() {
+        XCTAssertFalse(handler.shouldPerformAutocomplete(after: .press, on: .space))
         XCTAssertTrue(handler.shouldPerformAutocomplete(after: .release, on: .space))
+        XCTAssertTrue(handler.shouldPerformAutocomplete(after: .press, on: .backspace))
+        XCTAssertTrue(handler.shouldPerformAutocomplete(after: .release, on: .backspace))
     }
 
     func testShouldReinsertAutocompleteRemovedSpaceReturnsTrueForReleaseOnValidAction() {

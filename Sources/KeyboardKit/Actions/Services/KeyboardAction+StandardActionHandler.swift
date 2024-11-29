@@ -424,7 +424,10 @@ extension KeyboardAction {
             after gesture: Keyboard.Gesture,
             on action: KeyboardAction
         ) -> Bool {
-            gesture == .release
+            switch action {
+            case .backspace: true
+            default: gesture == .release
+            }
         }
 
         /// Whether to reinsert an autocomplete removed space after a certain gesture action.
