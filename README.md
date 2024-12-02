@@ -23,9 +23,6 @@ KeyboardKit extends Apple's limited keyboard APIs with more capabilities, and pr
 
 KeyboardKit is open-source and completely free. It can be extended with [KeyboardKit Pro][Pro] to unlock Pro features, like localized keyboards, autocomplete & autocorrect, AI support, an emoji keyboard, themes, dictation, and more.
 
-> [!NOTE]
-> KeyboardKit 9 is soon out! Give it a try by using the `9.0.0-rc.6` tag. The [online docs][Documentation] are updated for this major update. See [the GitHub roadmap](https://github.com/KeyboardKit/KeyboardKit/milestone/100) for remaining and closed issues.
-
 
 
 ## Installation
@@ -192,9 +189,6 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 
 The [online documentation][Documentation] has a detailed article for each feature, a thorough getting-started guide, code samples, etc. You can also build it from the source code to get better formatting.
 
-> [!NOTE]
-> The online documentation is updated for KeyboardKit 9.0 RC. Documentation for KeyboardKit 8 can be built from the source code.
-
 
 
 ## Demo App
@@ -204,7 +198,7 @@ The `Demo` folder has a demo app that shows how to set up the main keyboard app,
 The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro. Note that you need to enable Full Access for some features to work, like haptic feedback.
 
 > [!IMPORTANT]
-> The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has settings screens in the keyboard as well. You can try out the [KeyboardKit app][KeyboardKit-App] from the App Store to see how settings sync when you use a signed app.
+> The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has settings screens in the keyboard as well.
 
 
 
