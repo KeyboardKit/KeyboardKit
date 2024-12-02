@@ -79,6 +79,8 @@ The `KeyboardAction.StandardActionHandler` now implements `KeyboardBehavior`.
 
 The `KeyboardApp` now lets you register a custom next word prediction request.
 
+The `KeyboardApp.SettingsScreen` now lets you customize each section with custom content.
+
 ### 💡 Autocomplete
 
 The `AutocompleteService` now returns a `Autocomplete.ServiceResult` instead of just a list of suggestions.
