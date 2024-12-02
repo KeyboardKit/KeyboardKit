@@ -33,14 +33,17 @@ public extension KeyboardApp {
     static var keyboardKitDemo: Self {
         .init(
             name: "KeyboardKit Demo",
-            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // The demo app uses a license file
+            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // The demo uses a license file
             bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",
-            locales: .keyboardKitSupported,
+            appGroupId: "group.com.keyboardkit.demo",               // The demo doesn't have an app group
+            locales: .keyboardKitSupported,                         // This list is capped to your license
             autocomplete: .init(
-                // nextWordPredictionRequest: .claude(apiKey: "")
+                // nextWordPredictionRequest: .claude(apiKey: "")   // Add your own key to test this
             ),
-            deepLinks: .init(app: "kkdemo://")
+            deepLinks: .init(
+                app: "kkdemo://"                                    // This can be used to open your app
+                // dictation: "kkdemo://dictation"                  // This is the default url for the app url
+            )
         )
     }
 }

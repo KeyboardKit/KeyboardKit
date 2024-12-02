@@ -15,7 +15,7 @@ Autocomplete is an important part of the typing experience, where word suggestio
 
 In KeyboardKit, an ``AutocompleteService`` can provide suggestions and predictions to the main ``AutocompleteContext``. Unlike other services, there's no standard service implementation in the open-source SDK.
 
-👑 [KeyboardKit Pro][Pro] unlocks an on-device ``Autocomplete/LocalAutocompleteService`` and a ``Autocomplete/RemoteAutocompleteService`` for integration with external APIs, plus next character prediction, next word prediction, etc. Information about Pro features can be found further down.
+👑 [KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalAutocompleteService`` and a ``Autocomplete/RemoteAutocompleteService``, next character prediction, next word prediction, etc. Information about Pro features can be found further down.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -23,13 +23,13 @@ In KeyboardKit, an ``AutocompleteService`` can provide suggestions and predictio
 
 ## Namespace
 
-KeyboardKit has an ``Autocomplete`` namespace that contains autocomplete-related types and views, like a ``Autocomplete/Suggestion`` model, a ``Autocomplete/Toolbar`` component, etc.
+KeyboardKit has an ``Autocomplete`` namespace with autocomplete-related types, like a ``Autocomplete/Suggestion`` model, a ``Autocomplete/Toolbar`` view, etc.
 
 
 
 ## Context
 
-KeyboardKit has an ``AutocompleteContext`` that provides observable autocomplete state that is kept up to date as the user types. It also has auto-persisted ``AutocompleteContext/settings-swift.property`` that can be used to customize the autocomplete behavior, toggle features, etc.
+KeyboardKit has an ``AutocompleteContext`` that provides observable autocomplete state, and auto-persisted ``AutocompleteContext/settings-swift.property`` that can be used to customize the autocomplete behavior.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
 
@@ -37,9 +37,9 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 
 ## Services
 
-In KeyboardKit, an ``AutocompleteService`` can provide suggestions when the user types or the text input cursor moves in the text.
+In KeyboardKit, an ``AutocompleteService`` can provide suggestions when the user types and the text input cursor moves in the text.
 
-KeyboardKit doesn't have a standard autocomplete service. Instead, it injects a ``AutocompleteService/disabled`` service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation. Read more further down.
+KeyboardKit doesn't have a standard autocomplete service, as it has for other service types. Instead, it injects a ``AutocompleteService/disabled`` service into ``KeyboardInputViewController/services`` until you set up [KeyboardKit Pro][pro] or inject your own service implementation. Read more further down.
 
 
 
@@ -70,28 +70,30 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalAutocompleteService`` and ``Autocomplete/RemoteAutocompleteService`` and injects the local service into ``KeyboardInputViewController/services`` when you register a valid license. You can inherit these services and customize them to your needs.
+[KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalAutocompleteService`` and a ``Autocomplete/RemoteAutocompleteService``, and injects a local service into ``KeyboardInputViewController/services`` when you set up KeyboardKit Pro with valid license. You can inherit both services and customize them further.
 
 
 ### Local Autocomplete
 
-The ``Autocomplete/LocalAutocompleteService`` performs on-device autocomplete. It supports many locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
+The ``Autocomplete/LocalAutocompleteService`` performs local on-device autocomplete. It supports many locales, works offline, doesn't require Full Access and can integrate with system services, like the local lexicon.
 
 The service supports: **arabic, bulgarian, czech, danish, dutch, dutch_belgium, english, english_gb, english_us, filipino, finnish, french, french_belgium, french_switzerland, german, german_austria, german_switzerland, greek, hebrew, hungarian, irish, italian, norwegian, polish, portuguese_brazil, portuguese, romanian, russian, spanish, swedish, turkish, ukrainian**.
 
-You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the service to make it perform next word predictions, using external AI-based services. See the next word prediction section further down.
+You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the service to make it perform next word predictions with an external AI-based service. See the next word prediction section further down for more information.
 
 
 ### Remote Autocomplete
 
-The ``Autocomplete/RemoteAutocompleteService`` can be used to perform autocomplete by integrating with an external API. It requires that the device is online, and requires that Full Access is enabled, to allow the keyboard to make network requests.
+The ``Autocomplete/RemoteAutocompleteService`` can be used to perform autocomplete by integrating with any external API. It requires that the device is online, and requires Full Access to allow the keyboard to make network requests.
 
-You create a custom remote autocomplete service by defining which URL to call, any potential headers or query parameters, as well as a result type that can parse the remote request response. 
+You create a remote autocomplete service by defining the API URL, any potential headers or query parameters, as well as a result type. 
 
 
 ### Next Character Prediction
 
-The ``Autocomplete/LocalAutocompleteService`` and ``Autocomplete/RemoteAutocompleteService`` will perform next-character predictions based on the result. This information is used by ``KeyboardView`` to increase the tap area of probable keys, to reduce the risk of incorrect typing.
+The ``Autocomplete/LocalAutocompleteService`` and ``Autocomplete/RemoteAutocompleteService`` perform next-character predictions on their results.
+
+The next character prediction uses the current autocomplete suggestions to predict which keys that are more likely to be tapped next. This information is used by ``KeyboardView`` to slightly increase the tap area of more probable keys, to reduce the risk of typing error.
 
 You can disable next-character predictions with the ``AutocompleteContext`` ``AutocompleteContext/Settings-swift.struct/isNextCharacterPredictionEnabled`` setting.
 
@@ -105,8 +107,8 @@ The easiest way to enable next word prediction, is to add a ``Autocomplete/NextW
 ```swift
 extension KeyboardApp {
 
-    static var keyboardKitDemo: Self {
-        .init(
+    static var keyboardKitDemo: KeyboardApp {
+        KeyboardApp(
             ...
             autocomplete: .init(
                 nextWordPredictionRequest: .claude(apiKey: ...)
@@ -121,7 +123,9 @@ You can use these pre-defined requests to integrate with Claude or OpenAI, by pr
 * ``Autocomplete/NextWordPredictionRequest/claude(apiKey:apiUrl:anthropicVersion:model:maxTokens:systemPrompt:)`` 
 * ``Autocomplete/NextWordPredictionRequest/openAI(apiKey:apiUrl:apiKeyHeader:apiKeyValuePrefix:model:maxTokens:systemPrompt:)``.
 
-> Warning: AI-based next word prediction requires Full Access to be able to make network requests. This feature is also disabled by default, to avoid sending user text to 3rd party services without user consent. Make sure to explicitly get the user's consent before activating this feature, and enable it by setting the ``AutocompleteContext`` ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled`` to true!
+You can enable next-word prediction with the ``AutocompleteContext`` ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled`` setting.
+
+> Warning: AI-based next word prediction requires Full Access and is disabled by default, to avoid sending user text to 3rd parties without the user's explicit consent. Make sure to first ask the user, after which you can enable it with ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled``.
 
 
 ---

@@ -42,26 +42,33 @@ After adding the package to your project, you must link it correctly to be able 
 
 ## Step 2. Define app-specific information
 
-The easiest way to set up KeyboardKit is to use a ``KeyboardApp``, which can define ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey`` and ``KeyboardApp/locales`` for KeyboardKit Pro, ``KeyboardApp/deepLinks-swift.property``, etc. See the <doc:App-Article> article for more information.
+The easiest way to set up KeyboardKit is with a ``KeyboardApp``, which can define ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey``, etc.
 
 ```swift
 import KeyboardKit (or KeyboardKitPro)
 
 extension KeyboardApp {
 
-    static var keyboardKitDemo: Self {
-        .init(
+    static var keyboardKitDemo: KeyboardApp {
+        KeyboardApp(
             name: "KeyboardKit",
-            licenseKey: "keyboardkitpro-license-key",
+            licenseKey: "your-key-here",                    // You may also use a license file
             bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",
-            deepLinks: .init(app: "kkdemo://")
+            appGroupId: "group.com.keyboardkit.demo",       // This will set up settings syncing
+            locales: .keyboardKitSupported,                 // This list is capped to your license 
+            autocomplete: .init(
+                nextWordPredictionRequest: .claude(apiKey: "your-key-here")
+            ),
+            deepLinks: .init(
+                app: "kkdemo://",                           // This can be used to open your app
+                dictation: "kkdemo://dictation"             // This is the default url for the app url
+            )
         )
     }
 }
 ```
 
-If you define this info in a file that you add to both the main app and its keyboard extension, you can easily refer to it from both targets.
+Define this in a file that you add to both the app and its keyboard extension, to easily refer to it from both. See <doc:App-Article> for more info.
 
 
 

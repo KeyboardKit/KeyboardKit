@@ -23,23 +23,31 @@ KeyboardKit has a ``KeyboardApp`` struct that is also a namespace for app-relate
 
 You can create an app-specific ``KeyboardApp`` value to define and set up your app & keyboard, by defining your app's  ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, ``KeyboardApp/licenseKey``, ``KeyboardApp/deepLinks-swift.property``, etc.
 
-You can create a static app value and add it to both the main app target and its keyboard extension target, to easily refer to it from both:
+You can create a static app value and add it to both the main app and its keyboard extension, to easily refer to it from both, for instance:
 
 ```swift
 extension KeyboardApp {
 
-    static var keyboardKitDemo: Self {
-        .init(
+    static var keyboardKitDemo: KeyboardApp {
+        KeyboardApp(
             name: "KeyboardKit",
-            licenseKey: "keyboardkit-pro-license-key",
+            licenseKey: "your-key-here",                    // You may also use a license file
             bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo"
+            appGroupId: "group.com.keyboardkit.demo",       // This will set up settings syncing
+            locales: .keyboardKitSupported,                 // This list is capped to your license 
+            autocomplete: .init(
+                nextWordPredictionRequest: .claude(apiKey: "your-key-here")
+            ),
+            deepLinks: .init(
+                app: "kkdemo://",                           // This can be used to open your app
+                dictation: "kkdemo://dictation"             // This is the default url for the app url
+            )
         )
     }
 }
 ```
 
-Your app-specific ``KeyboardApp`` can also resolve other properties that you may need, e.g. to perform keyboard-based dictation, to enable AI-based next word prediction, etc. See <doc:Dictation-Article> and <doc:Autocomplete-Article> and <doc:AI-Article> for more information. 
+Your ``KeyboardApp`` can specify other properties you may need. See <doc:Dictation-Article> and <doc:Autocomplete-Article> and <doc:AI-Article> for more information. 
 
 > Important: The ``KeyboardApp``'s ``KeyboardApp/locales`` collection is only meant to describe which locales you *want* to use in your app and keyboard. It will be capped to the number of locales that your KeyboardKit Pro license includes.
 

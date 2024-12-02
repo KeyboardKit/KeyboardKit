@@ -39,11 +39,11 @@ The easiest way to enable next word prediction, is to add a ``Autocomplete/NextW
 ```swift
 extension KeyboardApp {
 
-    static var keyboardKitDemo: Self {
-        .init(
+    static var keyboardKitDemo: KeyboardApp {
+        KeyboardApp(
             ...
             autocomplete: .init(
-                nextWordPredictionRequest: .claude(apiKey: ...)
+                nextWordPredictionRequest: .claude(apiKey: "your-key-here")
             )
         )
     }
