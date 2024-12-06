@@ -12,11 +12,12 @@ public extension Autocomplete {
 
     /// This type can be used to enable next word prediction.
     ///
-    /// You can register a next word prediction request with
-    /// your ``KeyboardApp`` value, by adding the request to
-    /// its ``KeyboardApp/autocomplete`` property. This will
-    /// make KeyboardKit Pro inject it into the autocomplete
-    /// service when you set it up with a valid Gold license.
+    /// You can easily enable next word prediction by adding
+    /// a pre-defined request type to your ``KeyboardApp``'s
+    /// ``KeyboardApp/autocomplete`` value. You can also add
+    /// a request to ``Autocomplete/LocalAutocompleteService``
+    /// at any time, e.g. to let your users set up their own
+    /// service configuration and API key.
     ///
     /// KeyboardKit Pro unlocks some pre-configured requests:
     ///
@@ -24,8 +25,7 @@ public extension Autocomplete {
     /// - ``openAI(apiKey:apiUrl:apiKeyHeader:apiKeyValuePrefix:model:maxTokens:systemPrompt:)``
     ///
     /// You have to provide your own private API keys to use
-    /// these requests. Visit the developer portal for these
-    /// services to sign up, see price information, etc.
+    /// these requests.
     struct NextWordPredictionRequest {
 
         enum RequestError: Error {

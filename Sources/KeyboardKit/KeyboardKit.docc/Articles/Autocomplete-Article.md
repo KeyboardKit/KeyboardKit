@@ -123,7 +123,7 @@ You can use these pre-defined requests to integrate with Claude or OpenAI, by pr
 * ``Autocomplete/NextWordPredictionRequest/claude(apiKey:apiUrl:anthropicVersion:model:maxTokens:systemPrompt:)`` 
 * ``Autocomplete/NextWordPredictionRequest/openAI(apiKey:apiUrl:apiKeyHeader:apiKeyValuePrefix:model:maxTokens:systemPrompt:)``.
 
-You can enable next-word prediction with the ``AutocompleteContext`` ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled`` setting.
+You can also let your users select which next word prediction request to use, with their own private API key. Read more further down.
 
 > Warning: AI-based next word prediction requires Full Access and is disabled by default, to avoid sending user text to 3rd parties without the user's explicit consent. Make sure to first ask the user, after which you can enable it with ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled``.
 
@@ -174,6 +174,15 @@ class KeyboardViewController: KeyboardInputViewController {
 ```
 
 This will make KeyboardKit use your custom autocomplete service instead of the standard one.
+
+
+### Let users use their own next word prediction service
+
+You can let users pick a ``AutocompleteContext/Settings-swift.struct/nextWordPredictionRequestType`` and specify a ``AutocompleteContext/Settings-swift.struct/nextWordPredictionRequestApiKey`` to let them use their own API key and pay for their own consumption. 
+
+The ``AutocompleteContext`` settings will then provide you with a properly configured ``AutocompleteContext/Settings-swift.struct/nextWordPredictionRequest``, which you can can then add to your ``KeyboardApp`` or ``Autocomplete/LocalAutocompleteService``.
+
+The KeyboardKit Pro ``KeyboardApp/SettingsScreen`` has a visibility setting to show a next word prediction section, which is hidden by default.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
