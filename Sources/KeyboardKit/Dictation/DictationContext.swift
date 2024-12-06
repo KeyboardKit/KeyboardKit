@@ -35,6 +35,9 @@ public class DictationContext: ObservableObject {
 
     // MARK: - Settings
 
+    /// A ``Dictation/Settings`` typealias.
+    public typealias Settings = Dictation.Settings
+
     /// Dictation-specific, auto-persisted settings.
     @Published
     public var settings: Settings

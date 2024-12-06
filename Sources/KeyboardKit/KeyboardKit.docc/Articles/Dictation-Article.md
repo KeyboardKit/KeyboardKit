@@ -21,7 +21,7 @@ In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard ex
 
 ## Namespace
 
-KeyboardKit has a ``Dictation`` namespace that contains dictation-related types, like ``Dictation/AuthorizationStatus`` & ``Dictation/ServiceError``, as well as views that are unlocked by KeyboardKit Pro, like ``Dictation/Screen`` & ``Dictation/BarVisualizer``. 
+KeyboardKit has a ``Dictation`` namespace that contains dictation-related types, like ``Dictation/AuthorizationStatus``, as well as views that are unlocked by KeyboardKit Pro, like ``Dictation/Screen`` & ``Dictation/BarVisualizer``. 
 
 
 
@@ -38,6 +38,13 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 In KeyboardKit, a ``DictationService`` can start autocomplete from a keyboard by opening the main app and let it perform dictation, then let the main app try to return to the keyboard and apply the dictated text.
 
 KeyboardKit doesn't have a standard dictation service, as it has for other services. Instead, it injects a ``DictationService/disabled`` dictation service into ``KeyboardInputViewController/services`` until you register [KeyboardKit Pro][pro] or inject your own service implementation.
+
+
+
+## Settings
+
+KeyboardKit has a ``Dictation``-specific ``Dictation/Settings`` type that defines auto-persisted settings. The ``DictationContext`` ``DictationContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
+
 
 
 ---

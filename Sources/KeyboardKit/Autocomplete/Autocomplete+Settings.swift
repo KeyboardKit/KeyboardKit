@@ -1,5 +1,5 @@
 //
-//  AutocompleteContext+Settings.swift
+//  Autocomplete+Settings.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-10-27.

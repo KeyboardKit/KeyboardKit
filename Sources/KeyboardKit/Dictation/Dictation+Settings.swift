@@ -1,5 +1,5 @@
 //
-//  DictationContext+Settings.swift
+//  Dictation+Settings.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-10-27.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public extension DictationContext {
+public extension Dictation {
 
     /// This type is used for dictation-related settings.
     ///
