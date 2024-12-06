@@ -27,7 +27,7 @@ KeyboardKit has a ``Dictation`` namespace that contains dictation-related types,
 
 ## Context
 
-KeyboardKit has a ``DictationContext`` that provides observable dictation state that is kept up to date as dictation is performed. It also has auto-persisted ``AutocompleteContext/settings-swift.property`` that can be used to configure the dictation behavior.
+KeyboardKit has a ``DictationContext`` that provides observable dictation state that is kept up to date as dictation is performed. It also has auto-persisted ``DictationContext/settings-swift.property`` that can be used to configure the dictation behavior.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever dictation is performed.
 

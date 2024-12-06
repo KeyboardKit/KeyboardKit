@@ -43,6 +43,12 @@ KeyboardKit doesn't have a standard autocomplete service, as it has for other se
 
 
 
+## Settings
+
+KeyboardKit has an ``Autocomplete``-specific ``Autocomplete/Settings`` type that defines auto-persisted settings. The ``AutocompleteContext``'s ``AutocompleteContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
+
+
+
 ## Views
 
 The ``Autocomplete`` namespace has autocomplete-specific views, that can be used to mimic native autocomplete toolbars and items.
@@ -95,8 +101,6 @@ The ``Autocomplete/LocalAutocompleteService`` and ``Autocomplete/RemoteAutocompl
 
 The next character prediction uses the current autocomplete suggestions to predict which keys that are more likely to be tapped next. This information is used by ``KeyboardView`` to slightly increase the tap area of more probable keys, to reduce the risk of typing error.
 
-You can disable next-character predictions with the ``AutocompleteContext`` ``AutocompleteContext/Settings-swift.struct/isNextCharacterPredictionEnabled`` setting.
-
 
 ### Next Word Prediction (BETA)
 
@@ -125,7 +129,7 @@ You can use these pre-defined requests to integrate with Claude or OpenAI, by pr
 
 You can also let your users select which next word prediction request to use, with their own private API key. Read more further down.
 
-> Warning: AI-based next word prediction requires Full Access and is disabled by default, to avoid sending user text to 3rd parties without the user's explicit consent. Make sure to first ask the user, after which you can enable it with ``AutocompleteContext/Settings-swift.struct/isNextWordPredictionEnabled``.
+> Warning: AI-based next word prediction requires Full Access and is disabled by default, to avoid sending user text to 3rd parties without the user's explicit consent. Make sure to first ask the user, after which you can enable it with ``Autocomplete/Settings/isNextWordPredictionEnabled``.
 
 
 ---
@@ -178,9 +182,9 @@ This will make KeyboardKit use your custom autocomplete service instead of the s
 
 ### Let users use their own next word prediction service
 
-You can let users pick a ``AutocompleteContext/Settings-swift.struct/nextWordPredictionRequestType`` and specify a ``AutocompleteContext/Settings-swift.struct/nextWordPredictionRequestApiKey`` to let them use their own API key and pay for their own consumption. 
+You can let your users pick a ``Autocomplete/Settings/nextWordPredictionRequestType`` and specify a ``Autocomplete/Settings/nextWordPredictionRequestApiKey`` to let them use their own API key and pay for their own consumption. 
 
-The ``AutocompleteContext`` settings will then provide you with a properly configured ``AutocompleteContext/Settings-swift.struct/nextWordPredictionRequest``, which you can can then add to your ``KeyboardApp`` or ``Autocomplete/LocalAutocompleteService``.
+The ``AutocompleteContext`` settings will then provide you with a properly configured ``Autocomplete/Settings/nextWordPredictionRequest``, which you can add to your ``KeyboardApp`` or ``Autocomplete/LocalAutocompleteService``.
 
 The KeyboardKit Pro ``KeyboardApp/SettingsScreen`` has a visibility setting to show a next word prediction section, which is hidden by default.
 

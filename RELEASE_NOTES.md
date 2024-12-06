@@ -28,8 +28,17 @@ This version adds some additional next word prediction utils.
 
 ### 💡 Autocomplete
 
-`AutocompleteContext.NextWordPredictionRequestType` is a new settings-enabling picker enum. 
-`AutocompleteContext.Settings` has new properties for letting users pick their own request type and API key.
+`Autocomplete.NextWordPredictionRequestType` is a new settings-enabling enum.
+`Autocomplete.Settings` has new properties to let users pick which next word request type and API key to use. 
+
+
+### 🎛️ Settings
+
+The various settings types have been moved from the context to the namespace, for instance:
+
+* `AutocompleteContext.Settings` is now named `Autocomplete.Settings`.
+
+The context classes however still have `Settings` typealiases to keep the public APIs unchanged. 
 
 
 

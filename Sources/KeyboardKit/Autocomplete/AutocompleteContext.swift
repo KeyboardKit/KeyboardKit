@@ -35,6 +35,9 @@ public class AutocompleteContext: ObservableObject {
 
     // MARK: - Settings
 
+    /// An ``Autocomplete/Settings`` typealias.
+    public typealias Settings = Autocomplete.Settings
+
     /// Autocomplete-specific, auto-persisted settings.
     @Published
     public var settings: Settings

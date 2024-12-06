@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public extension AutocompleteContext {
+public extension Autocomplete {
 
     /// This type is used for autocomplete-related settings.
     ///
