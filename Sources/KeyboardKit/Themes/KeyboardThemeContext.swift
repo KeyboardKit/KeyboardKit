@@ -12,10 +12,12 @@ import SwiftUI
 /// for keyboard-specific themes.
 ///
 /// The class has observable auto-persisted ``settings`` for
-/// e.g. the current ``Settings-swift.struct/theme``. Due to
-/// observation-related issues that makes SwiftUI not update
-/// when the ``settings`` theme is changed, the theme should
-/// be managed through this class and its properties instead.
+/// e.g. manage the current ``KeyboardTheme/Settings/theme``.
+///
+/// Due to an observation-related issue, that caused SwiftUI
+/// to not update when a ``settings`` theme was changed, the
+/// theme should be managed through this class instead. This
+/// automatically updates the settings, to persist the theme.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use
@@ -29,6 +31,9 @@ public class KeyboardThemeContext: ObservableObject {
 
 
     // MARK: - Settings
+
+    /// A ``KeyboardTheme/Settings`` typealias.
+    public typealias Settings = KeyboardTheme.Settings
 
     /// Theme-specific, auto-persisted settings.
     @Published

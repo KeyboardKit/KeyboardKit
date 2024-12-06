@@ -31,6 +31,32 @@ KeyboardKit automatically creates an instance of this class, injects it into ``K
 
 
 
+## Services
+
+In KeyboardKit, a ``KeyboardStyleService/themeBased(keyboardContext:themeContext:)`` style service can be used to apply a keyboard theme:
+
+```swift
+override func viewDidLoad() {
+    super.viewDidLoad()
+    setupPro(for: .myApp) { license in
+        self.services.styleService = .themeBased(
+            keyboardContext: state.keyboardContext,
+            themeContext: state.themeContext
+        )
+    } 
+}
+```
+
+You can inherit ``KeyboardStyle/ThemeBasedStyleService`` to customize themes even further, which lets you mix the benefits of themes and styles.
+
+
+
+## Settings
+
+KeyboardKit has a ``KeyboardTheme``-specific ``KeyboardTheme/Settings`` type that defines auto-persisted settings. The ``KeyboardThemeContext`` ``KeyboardThemeContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
+
+
+
 ## Themes
 
 A ``KeyboardTheme`` can provide keyboard-related styles in a way that can be easily used and modified. A theme can also define style variations that can be used to customize a constrained set of theme properties.
@@ -169,26 +195,6 @@ KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it e
 
 
 ## How to...
-
-
-### Apply a theme
-
-You can apply themes with a ``KeyboardStyle/ThemeBasedStyleService`` service, or ``KeyboardStyleService/themeBased(keyboardContext:themeContext:)``:
-
-```swift
-override func viewDidLoad() {
-    super.viewDidLoad()
-    setupPro(for: .myApp) { license in
-        self.services.styleService = .themeBased(
-            theme: .standard,
-            keyboardContext: state.keyboardContext
-        )
-    } 
-}
-```
-
-You can inherit ``KeyboardStyle/ThemeBasedStyleService`` to customize themes even further, which lets you mix the benefits of themes and styles.
-
 
 
 ### Create a custom theme
