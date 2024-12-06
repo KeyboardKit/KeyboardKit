@@ -36,7 +36,7 @@ public extension KeyboardFeedback {
     }
 }
 
-public extension KeyboardFeedbackContext.Settings {
+public extension KeyboardFeedback.Settings {
 
     /// Toggle audio feedback enabled state.
     func toggleIsAudioFeedbackEnabled() {

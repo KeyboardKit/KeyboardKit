@@ -45,7 +45,7 @@ KeyboardKit also has a ``KeyboardController`` protocol that aims to make it easi
 
 ## Context
 
-KeyboardKit has a ``KeyboardContext`` that provides observable keyboard state that keeps the keyboard UI up to date. It has a ``KeyboardContext/textDocumentProxy`` reference, lets you get and set the ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc. It also has auto-persisted ``KeyboardContext/settings-swift.property``. 
+KeyboardKit has a ``KeyboardContext`` that provides observable keyboard state that keeps the keyboard UI up to date. It has a ``KeyboardContext/textDocumentProxy`` reference, lets you get and set ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc. It also has auto-persisted ``KeyboardContext/settings-swift.property``. 
 
 Other namespaces define other context types, like ``AutocompleteContext``, ``CalloutContext``, ``DictationContext``, etc. They will all automatically update the keyboard view when they're observed, and provide namespace-specific settings.
 
@@ -55,7 +55,9 @@ KeyboardKit automatically creates instances of these classes and injects them in
 
 ## Settings
 
-KeyboardKit has a ``Keyboard/Settings`` class that has a global ``Keyboard/Settings/store`` that is used to persist all context settings. If you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, this store is set up to sync data between the app and its keyboard.
+KeyboardKit has a ``Keyboard``-specific ``Keyboard/Settings`` type with auto-persisted keyboard settings. The ``KeyboardContext`` ``KeyboardContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
+
+The ``Keyboard/Settings`` class has a global ``Keyboard/Settings/store`` that is shared by all settings types and used to persist all settings. If you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, this store is set up to sync data between the app and its keyboard.
 
 > Important: `@AppStorage` properties use the store that's available when they're first accessed. Make sure to set up a custom store BEFORE accessing any of these settings properties.
 

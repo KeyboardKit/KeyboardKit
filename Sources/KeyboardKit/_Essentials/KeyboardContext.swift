@@ -45,6 +45,10 @@ public class KeyboardContext: ObservableObject {
 
     // MARK: - Settings
 
+    /// A ``Keyboard/Settings`` typealias.
+    public typealias Settings = Keyboard.Settings
+
+
     /// Keyboard-specific, auto-persisted settings.
     @Published
     public var settings: Settings

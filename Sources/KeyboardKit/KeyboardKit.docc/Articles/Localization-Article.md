@@ -97,7 +97,7 @@ If ``KeyboardContext/locales`` or the ``KeyboardContext/settings-swift.property`
 You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` button, or add a context menu to any view with the ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)`` view modifier.
 
 
-### Change the primary language  
+### Change the primary language
 
 Setting the ``KeyboardContext`` ``KeyboardContext/locale`` will update the controller's **primaryLanguage**, which controls things like spell checking and text direction. This also sets the keyboard's language subtitle in the keyboard switcher.
 

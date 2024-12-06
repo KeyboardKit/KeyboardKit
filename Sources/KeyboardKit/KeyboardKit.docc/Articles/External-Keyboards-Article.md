@@ -27,9 +27,9 @@ Due to this limitation, it may be better to collapse the keyboard to a compact t
 
 ## How to collapse the keyboard
 
-The ``KeyboardContext/isKeyboardCollapsed`` context property can be used to collapse the keyboard, e.g. when an external keyboard is connected. KeyboardKit Pro will automatically update this if the context setting's ``KeyboardContext/Settings-swift.struct/isKeyboardAutoCollapseEnabled`` is true. 
+The ``KeyboardContext``'s ``KeyboardContext/isKeyboardCollapsed`` property can be used to collapse the keyboard, e.g. when an external keyboard is connected. KeyboardKit Pro will automatically update this if the ``Keyboard/Settings/isKeyboardAutoCollapseEnabled`` setting is true. 
 
-The ``KeyboardView`` lets you define which view to show when it's collapsed. It defaults to a ``Keyboard/CollapsedView``, which can be set to use any custom content. See the <doc:Essentials-Article> article for more information.
+``KeyboardView`` lets you define which view to show when it's collapsed. It defaults to a ``Keyboard/CollapsedView``. This can be used to display custom content when the keyboard is collapsed. See the <doc:Essentials-Article> article for more information.
 
 
 ## How to manage external keyboard state 

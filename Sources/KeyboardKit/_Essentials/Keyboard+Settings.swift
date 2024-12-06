@@ -2,22 +2,25 @@
 //  Keyboard+Settings.swift
 //  KeyboardKit
 //
-//  Created by Daniel Saidi on 2024-03-30.
+//  Created by Daniel Saidi on 2024-10-26.
 //  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
+import Foundation
 import SwiftUI
 
 public extension Keyboard {
 
-    /// This class can be used to setup a custom value store
-    /// for all settings types in the library.
+    /// This type is used for essential keyboard settings.
     ///
-    /// The static ``store`` is used to persist settings for
-    /// all context types, as well as other persistent state.
+    /// All properties in this type are automatically stored
+    /// in ``Foundation/UserDefaults/keyboardSettings`` with
+    /// a `keyboard` prefix.
     ///
-    /// Use the ``Foundation/UserDefaults/keyboardSettings``
-    /// shorthand for convenient access.
+    /// This class also defines the global keyboard settings
+    /// ``store`` that's used by all keyboard settings types.
+    /// Use ``Foundation/UserDefaults/keyboardSettings`` for
+    /// convenience, when defining a user defaults value.
     ///
     /// You can use ``setupStore(for:)`` to set up the store
     /// for your ``KeyboardApp``, or use the parameter-based
@@ -29,97 +32,81 @@ public extension Keyboard {
     /// that's available when it's first accessed. Make sure
     /// to setup your custom store BEFORE accessing any such
     /// persisted properties.
-    class Settings: ObservableObject {}
-}
+    struct Settings {
 
-public extension Keyboard.Settings {
-
-    /// The store that will be used by library settings.
-    static var store: UserDefaults = .standard
-
-    /// The key prefix that will be used by library settings.
-    static var storeKeyPrefix = storeKeyPrefixDefault
-
-    /// The default key prefix that will be used by library settings.
-    static let storeKeyPrefixDefault = "com.keyboardkit.settings."
-
-    /// Whether the ``store`` is synced with an App Group.
-    static private(set) var storeIsAppGroupSynced = false
-
-    /// Reset the standard settings store.
-    static func resetStore() {
-        setupStore(.standard, keyPrefix: storeKeyPrefixDefault)
-    }
-
-    /// Set up a custom settings store.
-    ///
-    /// - Parameters:
-    ///   - store: The store instance to use.
-    ///   - keyPrefix: A custom prefix to use for all store keys, if any.
-    static func setupStore(
-        _ store: UserDefaults,
-        keyPrefix: String? = nil
-    ) {
-        setupStore(store, keyPrefix: keyPrefix, isAppGroupSynced: false)
-    }
-
-    /// Set up a custom settings store.
-    ///
-    /// - Parameters:
-    ///   - store: The store instance to use.
-    ///   - keyPrefix: A custom prefix to use for all store keys, if any.
-    ///   - isAppGroupSynced: Whether the store syncs with an App Group.
-    static func setupStore(
-        _ store: UserDefaults,
-        keyPrefix: String? = nil,
-        isAppGroupSynced: Bool
-    ) {
-        Self.store = store
-        Self.storeKeyPrefix = keyPrefix ?? Self.storeKeyPrefix
-        Self.storeIsAppGroupSynced = isAppGroupSynced
-    }
-
-    /// Set up a custom settings store for the provided `app`.
-    ///
-    /// This will set up App Group syncing if the app has an
-    /// ``KeyboardApp/appGroupId`` specified.
-    static func setupStore(
-        for app: KeyboardApp
-    ) {
-        let prefix = app.keyboardSettingsKeyPrefix
-        if let appGroup = app.appGroupId {
-            setupStore(forAppGroup: appGroup, keyPrefix: prefix)
-        } else {
-            setupStore(.standard, keyPrefix: prefix)
+        /// Create a custom settings instance.
+        ///
+        /// - Parameters:
+        ///   - onAutocapitalizationEnabledChanged: The action to trigger when autocapitalization is changed.
+        public init(
+            onAutocapitalizationEnabledChanged: @escaping () -> Void = {}
+        ) {
+            self.onAutocapitalizationEnabledChanged = onAutocapitalizationEnabledChanged
         }
-    }
 
-    /// Set up a custom settings store for a given App Group.
-    ///
-    /// - Parameters:
-    ///   - appGroup: The ID of the App Group to use.
-    ///   - keyPrefix: A custom prefix to use for all store keys, if any.
-    static func setupStore(
-        forAppGroup appGroup: String,
-        keyPrefix: String? = nil
-    ) {
-        guard let store = UserDefaults(suiteName: appGroup) else { return }
-        setupStore(store, keyPrefix: keyPrefix, isAppGroupSynced: true)
-    }
+        private let onAutocapitalizationEnabledChanged: () -> Void
 
-    /// Get the store key prefix for a certain namespace.
-    static func storeKeyPrefix(
-        for namespace: String
-    ) -> String {
-        "\(Self.storeKeyPrefix)\(namespace)."
+        /// The settings key prefix to use.
+        public static var settingsPrefix: String {
+            Keyboard.Settings.storeKeyPrefix(for: "keyboard")
+        }
+
+        /// A list of explicitly added locale identifiers.
+        @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
+        public var addedLocaleIdentifiersValues: Keyboard.StorageValue<[String]> = .init(value: [])
+
+        /// Whether autocapitalization is enabled.
+        @AppStorage("\(settingsPrefix)isAutocapitalizationEnabled", store: .keyboardSettings)
+        public var isAutocapitalizationEnabled = true {
+            didSet { onAutocapitalizationEnabledChanged() }
+        }
+
+        /// Whether to auto-collapse the keyboard when an external keyboard is connected.
+        @AppStorage("\(settingsPrefix)`isKeyboardAutoCollapseEnabled`", store: .keyboardSettings)
+        public var isKeyboardAutoCollapseEnabled = false
+
+        /// The identifier of the current ``locale``.
+        @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
+        public internal(set) var localeIdentifier = Locale.current.identifier
     }
 }
 
-public extension UserDefaults {
 
-    /// This store to use to persist keyboard settings using
-    /// the ``Keyboard/Settings/store``.
-    static var keyboardSettings: UserDefaults {
-        Keyboard.Settings.store
+// MARK: - Added locales
+
+extension Keyboard.Settings {
+
+    /// A list of explicitly added locales.
+    var addedLocales: [Locale] {
+        get { addedLocaleIdentifiers.compactMap { Locale(identifier: $0) } }
+        set { addedLocaleIdentifiers = newValue.unique().map { $0.identifier } }
+    }
+
+    /// A list of explicitly added locale identifiers.
+    var addedLocaleIdentifiers: [String] {
+        get { addedLocaleIdentifiersValues.value }
+        set { addedLocaleIdentifiersValues.value = newValue }
+    }
+
+    /// Whether a locale has been added to ``addedLocales``.
+    func hasAddedLocale(_ locale: Locale) -> Bool {
+        addedLocales.contains(locale)
+    }
+
+    /// Move the current ``locale`` first in ``addedLocales``.
+    mutating func moveLocaleFirstInAddedLocales(_ locale: Locale) {
+        if locale == addedLocales.first { return }
+        addedLocales = addedLocales.insertingFirst(locale)
+    }
+}
+
+
+// MARK: - Internals
+
+extension Keyboard.Settings {
+
+    func updateLocaleIdentifier(_ id: String) {
+        guard localeIdentifier != id else { return }
+        localeIdentifier = id
     }
 }
