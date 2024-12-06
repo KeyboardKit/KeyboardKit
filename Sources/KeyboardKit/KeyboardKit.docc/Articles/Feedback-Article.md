@@ -27,8 +27,6 @@ KeyboardKit has a ``KeyboardFeedback`` namespace that contains feedback-related 
 
 ## Audio & Haptic Feedback
 
-KeyboardKit defines feedback types that can be triggered with a ``KeyboardFeedbackService`` or a ``KeyboardActionHandler``.
-
 The ``KeyboardFeedback/Audio`` enum defines audio feedback types, like ``KeyboardFeedback/Audio/input``, ``KeyboardFeedback/Audio/system``, ``KeyboardFeedback/Audio/delete``, etc. The ``KeyboardFeedback`` namespace also has other audio-related types like ``KeyboardFeedback/AudioConfiguration``, which can be used to define complex audio feedback behavior.
 
 The ``KeyboardFeedback/Haptic`` enum defines haptic feedback types, like ``KeyboardFeedback/Haptic/success``, ``KeyboardFeedback/Haptic/warning``, ``KeyboardFeedback/Haptic/error`` etc. The ``KeyboardFeedback`` namespace also has other haptic-related types like ``KeyboardFeedback/HapticConfiguration``, which can be used to define complex haptic feedback behavior.
@@ -48,6 +46,12 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 In KeyboardKit, a ``KeyboardFeedbackService`` can be used to trigger audio & haptic feedback as users interacts with the keyboard. The ``KeyboardActionHandler`` protocol also implements this protocol.
 
 KeyboardKit injects a ``KeyboardFeedback/StandardFeedbackService``  instance into ``KeyboardInputViewController/services``. You can replace it at any time, to customize it to affect how the keyboard triggers feedback.
+
+
+
+## Settings
+
+KeyboardKit has an ``KeyboardFeedback``-specific ``KeyboardFeedback/Settings`` type that defines auto-persisted settings. The ``KeyboardFeedbackContext`` ``KeyboardFeedbackContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
 
 
 

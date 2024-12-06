@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedbackContext+Settings.swift
+//  KeyboardFeedback+Settings.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-10-27.
@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-public extension KeyboardFeedbackContext {
+public extension KeyboardFeedback {
 
     /// This type is used for feedback-related settings.
     ///
