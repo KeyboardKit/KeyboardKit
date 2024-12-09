@@ -34,6 +34,9 @@ public extension Autocomplete {
 
         typealias Text = String
 
+        /// The request type.
+        public var type: NextWordPredictionRequestType
+
         var predictionRequest: (Text) throws -> URLRequest
         var predictionParser: (Data) throws -> [String]
     }

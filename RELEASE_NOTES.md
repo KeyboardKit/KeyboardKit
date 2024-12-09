@@ -22,23 +22,39 @@ The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9
 
 
 
+## 9.0.2
+
+This version adds more next word prediction and settings utilities.
+
+### ✨ Features
+
+* `Autocomplete.NextWordPredictionRequest` has a new `type` property.
+
+### 👑 Pro
+
+* `Autocomplete.Settings` has a new `nextWordPredictionRequest` property.
+* `KeyboardApp.SettingsScreen` has ne sections and can be customized in even more ways.
+* `KeyboardInputViewController` sets up settings-based next word prediction if specified.
+
+
 ## 9.0.1
 
-This version adds some additional next word prediction utils.
+This version adds more next word prediction utilities.
 
-### 💡 Autocomplete
+### ✨ Features
 
-`Autocomplete.NextWordPredictionRequestType` is a new settings-enabling enum.
-`Autocomplete.Settings` has new properties to let users pick which next word request type and API key to use. 
+* `Autocomplete.NextWordPredictionRequestType` is a new enum.
+* `Autocomplete.Settings` has new next word request type and API key properties.
 
+### 👑 Pro
 
-### 🎛️ Settings
+* `KeyboardApp.SettingsScreen` can now show a custom next word prediction section.
+ 
+### 💡 Adjustments
 
-The various settings types have been moved from the context to the namespace, for instance:
-
-* `AutocompleteContext.Settings` is now named `Autocomplete.Settings`.
-
-The context classes however still have `Settings` typealiases to keep the public APIs unchanged. 
+* The various settings types are moved from the contexts to namespaces.
+* For instance, `AutocompleteContext.Settings` is now named `Autocomplete.Settings`.
+* The contexts still have `Settings` typealiases to keep the previous APIs unchanged. 
 
 
 

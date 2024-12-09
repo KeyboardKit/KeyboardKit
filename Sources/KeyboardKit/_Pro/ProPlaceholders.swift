@@ -108,7 +108,7 @@ public extension Autocomplete.NextWordPredictionRequest {
         maxTokens: Int = 0,
         systemPrompt: String? = nil
     ) -> Self {
-        .init { _ in
+        .init(type: .claude) { _ in
             throw ProPlaceholderError.proPlaceholder
         } predictionParser: { _ in
             throw ProPlaceholderError.proPlaceholder
@@ -125,7 +125,7 @@ public extension Autocomplete.NextWordPredictionRequest {
         maxTokens: Int = 0,
         systemPrompt: String? = nil
     ) -> Self {
-        .init { _ in
+        .init(type: .openAI) { _ in
             throw ProPlaceholderError.proPlaceholder
         } predictionParser: { _ in
             throw ProPlaceholderError.proPlaceholder
