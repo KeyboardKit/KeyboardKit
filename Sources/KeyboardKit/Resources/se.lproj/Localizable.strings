@@ -8,12 +8,14 @@
 
 "locale" = "se";
 
-"capsLock" = "";
+"capsLock" = "caps lock";
 "continue" = "continue";
 "done" = "geargan";
+"emergencyCall" = "Emergency Call";
 "go" = "raba";
 "join" = "searvva";
 "next" = "boahtte";
+"ok" = "OK";
 "return" = "↵";
 "route" = "ruvtu";
 "search" = "oza";
@@ -23,5 +25,15 @@
 "switcherAlphabetic" = "ABC";
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";
+
+"EmojiCategory.frequent" = "Frequently Used";
+"EmojiCategory.smileysAndPeople" = "Smileys & People";
+"EmojiCategory.animalsAndNature" = "Animals & Nature";
+"EmojiCategory.foodAndDrink" = "Food & Drink";
+"EmojiCategory.activity" = "Activity";
+"EmojiCategory.travelAndPlaces" = "Travel & Places";
+"EmojiCategory.objects" = "Objects";
+"EmojiCategory.symbols" = "Symbols";
+"EmojiCategory.flags" = "Flags";
 
 // For emoji localization, copy & translate the English list.

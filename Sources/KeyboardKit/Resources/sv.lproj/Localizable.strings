@@ -8,7 +8,7 @@
 
 "locale" = "sv";
 
-"capsLock" = "";
+"capsLock" = "caps lock";
 "continue" = "continue";
 "done" = "klar";
 "emergencyCall" = "Emergency Call";

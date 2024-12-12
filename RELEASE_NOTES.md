@@ -22,6 +22,12 @@ The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9
 
 
 
+## 9.0.3
+
+This version adds emoji category texts to all localized string files to fix bugs in some locales.
+
+
+
 ## 9.0.2
 
 This version adds more next word prediction and settings utilities.
@@ -35,6 +41,7 @@ This version adds more next word prediction and settings utilities.
 * `Autocomplete.Settings` has a new `nextWordPredictionRequest` property.
 * `KeyboardApp.SettingsScreen` has ne sections and can be customized in even more ways.
 * `KeyboardInputViewController` sets up settings-based next word prediction if specified.
+
 
 
 ## 9.0.1
