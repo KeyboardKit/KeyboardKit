@@ -26,14 +26,14 @@
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";
 
-"EmojiCategory.frequent" = "Frequently Used";
-"EmojiCategory.smileysAndPeople" = "Smileys & People";
-"EmojiCategory.animalsAndNature" = "Animals & Nature";
-"EmojiCategory.foodAndDrink" = "Food & Drink";
-"EmojiCategory.activity" = "Activity";
-"EmojiCategory.travelAndPlaces" = "Travel & Places";
-"EmojiCategory.objects" = "Objects";
-"EmojiCategory.symbols" = "Symbols";
-"EmojiCategory.flags" = "Flags";
+"EmojiCategory.frequent" = "Oft benutzt";
+"EmojiCategory.smileysAndPeople" = "Smileys & Personen";
+"EmojiCategory.animalsAndNature" = "Tiere & Natur";
+"EmojiCategory.foodAndDrink" = "Essen & Trinken";
+"EmojiCategory.activity" = "Aktivität";
+"EmojiCategory.travelAndPlaces" = "Reisen & Orte";
+"EmojiCategory.objects" = "Objekte";
+"EmojiCategory.symbols" = "Symbole";
+"EmojiCategory.flags" = "Flaggen";
 
 // For emoji localization, copy & translate the English list.
