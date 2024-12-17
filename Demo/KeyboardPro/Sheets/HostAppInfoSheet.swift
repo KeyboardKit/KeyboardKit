@@ -60,7 +60,7 @@ private extension HostAppInfoSheet {
         )
         item(
             title: "Sheet.Host.Section.App.CanOpen",
-            subtitle: app.canOpen ? "✔" : "✘"
+            subtitle: app.canBeOpened ? "✔" : "✘"
         )
     }
 

@@ -32,12 +32,14 @@ public extension Keyboard {
         ) {
             self.action = action
             self.styleService = styleService
-            self.keyboardContext = keyboardContext
+            self._keyboardContext = .init(wrappedValue: keyboardContext)
         }
         
         private let action: KeyboardAction
         private let styleService: KeyboardStyleService
-        private let keyboardContext: KeyboardContext
+        
+        @ObservedObject
+        private var keyboardContext: KeyboardContext
         
         public var body: some View {
             bodyContent

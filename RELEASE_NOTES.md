@@ -22,6 +22,17 @@ The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9
 
 
 
+## 9.0.4
+
+This version fixes two bugs.
+
+### 🐛 Bug Fixes
+
+* `Keyboard+ButtonContent` now properly updates when changing locale.
+* `Keyboard+Diacritics` adds missing accents and carons.
+
+
+
 ## 9.0.3
 
 This version adds emoji category texts to all localized string files to fix bugs in some locales.
@@ -32,7 +43,7 @@ This version adds emoji category texts to all localized string files to fix bugs
 
 ### 👑 Pro
 
-* `Autocomplete.NextWordPredictionRequest.claude` now uses latest Sonnet 3.5 model by defauöt.
+* `Autocomplete.NextWordPredictionRequest.claude` now uses latest Sonnet 3.5 model by default.
 
 
 
