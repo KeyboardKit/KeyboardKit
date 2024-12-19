@@ -18,13 +18,10 @@ class KKL10nTests: XCTestCase {
         locales.forEach {
             let bundle = Bundle.keyboardKit
             let path = bundle.bundlePath(for: $0) ?? ""
+            let exists = FileManager.default.fileExists(atPath: path)
             XCTAssertNotNil(path)
-            XCTAssertTrue(FileManager.default.fileExists(atPath: path))
+            XCTAssertTrue(exists, $0.identifier)
         }
-    }
-
-    func assertTextResult(for locale: Locale, key: KKL10n) {
-        XCTAssertFalse(key.text(for: locale).isEmpty)
     }
 
     func testTextForContextReturnsCorrectText() {
@@ -40,6 +37,10 @@ class KKL10nTests: XCTestCase {
         let key = KKL10n.done
         XCTAssertEqual(key.text(for: .english), "done")
         XCTAssertEqual(key.text(for: .swedish), "klar")
+    }
+    
+    func assertTextResult(for locale: Locale, key: KKL10n) {
+        XCTAssertFalse(key.text(for: locale).isEmpty)
     }
 
     func testTextForLocaleIsNotEmptyForAnyLocale() {

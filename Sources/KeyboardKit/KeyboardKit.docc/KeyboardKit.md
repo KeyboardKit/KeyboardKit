@@ -37,15 +37,16 @@ The <doc:Getting-Started-Article> article helps you get started with KeyboardKit
 
 ## Supported Locales
 
-KeyboardKit supports **70** keyboard-specific ``Foundation/Locale``s:
+KeyboardKit supports **71** keyboard-specific ``Foundation/Locale``s:
 
-🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🇭🇷 🇨🇿  <br />
-🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴 🇵🇭  <br />
-🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 🇬🇷  <br />
-🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 🇹🇯  <br />
-🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️ 🇳🇴  <br />
-🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 🇸🇰  <br />
-🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿 🏴󠁧󠁢󠁷󠁬󠁳󠁿  <br />
+🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🏳️ 🇭🇷  <br />
+🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴  <br />
+🇵🇭 🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭  <br />
+🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿  <br />
+🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️  <br />
+🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸  <br />
+🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿  <br />
+🏴󠁧󠁢󠁷󠁬󠁳󠁿  <br />
 
 KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] unlocks localized layouts, callouts & behaviors for all supported locales, as described in the <doc:Localization-Article> article.
 
@@ -66,7 +67,7 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 * 👆 <doc:Gestures-Article> - Handle a rich set of gestures on any key.
 * 🏠 <doc:Host-Article> - Identify the host application.
 * 🔣 <doc:Layout-Article> - Define and customize dynamic keyboard layouts.
-* 🌐 <doc:Localization-Article> - Localize your keyboard in **70 locales**.
+* 🌐 <doc:Localization-Article> - Localize your keyboard in **71 locales**.
 * 🗺️ <doc:Navigation-Article> - Open urls and other apps from the keyboard.
 * 👁 <doc:Previews-Article> - Extensive SwiftUI preview support.
 * 📄 <doc:Proxy-Article> - Extend the text document proxy with more capabilities.

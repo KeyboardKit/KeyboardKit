@@ -7,17 +7,31 @@
 //
 
 import Foundation
+import SwiftUI
 
 public extension Locale {
-
+    
     /// A list of KeyboardKit supported locales.
     ///
     /// KeyboardKit Pro unlocks localized secondary callouts,
     /// layouts and services for all supported locales.
     static var keyboardKitSupported: [Locale] {
         [
-        .english,
-        .albanian, .arabic, .armenian, .belarusian, .bulgarian, .catalan, .cherokee, .croatian, .czech, .danish, .dutch, .dutch_belgium, .english_australia, .english_canada, .english_gb, .english_us, .estonian, .faroese, .filipino, .finnish, .french, .french_canada, .french_belgium, .french_switzerland, .georgian, .german, .german_austria, .german_switzerland, .greek, .hawaiian, .hebrew, .hungarian, .icelandic, .inari_sami, .indonesian, .irish, .italian, .kazakh, .kurdish_sorani, .kurdish_sorani_arabic, .kurdish_sorani_pc, .latvian, .lithuanian, .macedonian, .malay, .maltese, .mongolian, .northern_sami, .norwegian, .norwegian_nynorsk, .persian, .polish, .portuguese, .portuguese_brazil, .romanian, .russian, .serbian, .serbian_latin, .slovak, .slovenian, .spanish, .spanish_latinAmerica, .spanish_mexico, .swedish, .swahili, .turkish, .ukrainian, .uzbek, .welsh
+            .english, .albanian, .arabic, .armenian, .belarusian,
+            .bulgarian, .catalan, .cherokee, .chuvash, .croatian,
+            .czech, .danish, .dutch, .dutch_belgium, .english_australia,
+            .english_canada, .english_gb, .english_us, .estonian, .faroese,
+            .filipino, .finnish, .french, .french_canada, .french_belgium,
+            .french_switzerland, .georgian, .german, .german_austria, .german_switzerland,
+            .greek, .hawaiian, .hebrew, .hungarian, .icelandic,
+            .inari_sami, .indonesian, .irish, .italian, .kazakh,
+            .kurdish_sorani, .kurdish_sorani_arabic, .kurdish_sorani_pc, .latvian, .lithuanian,
+            .macedonian, .malay, .maltese, .mongolian, .northern_sami,
+            .norwegian, .norwegian_nynorsk, .persian, .polish, .portuguese,
+            .portuguese_brazil, .romanian, .russian, .serbian, .serbian_latin,
+            .slovak, .slovenian, .spanish, .spanish_latinAmerica, .spanish_mexico,
+            .swedish, .swahili, .turkish, .ukrainian, .uzbek,
+            .welsh
         ]
     }
 }
@@ -40,6 +54,7 @@ public extension Locale {
     static var bulgarian: Locale { .withId("bg") }
     static var catalan: Locale { .withId("ca") }
     static var cherokee: Locale { .withId("chr") }
+    static var chuvash: Locale { .withId("cv") }
     static var croatian: Locale { .withId("hr") }
     static var czech: Locale { .withId("cs") }
     static var danish: Locale { .withId("da") }
@@ -116,10 +131,11 @@ public extension Locale {
         case .bulgarian: "bulgarian"
         case .catalan: "catalan"
         case .cherokee: "cherokee"
+        case .chuvash: "chuvash"
         case .croatian: "croatian"
         case .czech: "czech"
-        case .danish: "danish"
             
+        case .danish: "danish"
         case .dutch: "dutch"
         case .dutch_belgium: "dutch_belgium"
         case .english: "english"
@@ -129,8 +145,8 @@ public extension Locale {
         case .english_us: "english_us"
         case .estonian: "estonian"
         case .faroese: "faroese"
+            
         case .filipino: "filipino"
-
         case .finnish: "finnish"
         case .french: "french"
         case .french_belgium: "french_belgium"
@@ -140,8 +156,8 @@ public extension Locale {
         case .german: "german"
         case .german_austria: "german_austria"
         case .german_switzerland: "german_switzerland"
+            
         case .greek: "greek"
-
         case .hawaiian: "hawaiian"
         case .hebrew: "hebrew"
         case .hungarian: "hungarian"
@@ -151,8 +167,8 @@ public extension Locale {
         case .irish: "irish"
         case .italian: "italian"
         case .kazakh: "kazakh"
+            
         case .kurdish_sorani: "kurdish_sorani"
-
         case .kurdish_sorani_arabic: "kurdish_sorani_arabic"
         case .kurdish_sorani_pc: "kurdish_sorani_pc"
         case .latvian: "latvian"
@@ -162,8 +178,8 @@ public extension Locale {
         case .maltese: "maltese"
         case .mongolian: "mongolian"
         case .northern_sami: "northern_sami"
+            
         case .norwegian: "norwegian"
-
         case .norwegian_nynorsk: "norwegian_nynorsk"
         case .persian: "persian"
         case .polish: "polish"
@@ -173,8 +189,8 @@ public extension Locale {
         case .russian: "russian"
         case .serbian: "serbian"
         case .serbian_latin: "serbian_latin"
+            
         case .slovenian: "slovenian"
-
         case .slovak: "slovak"
         case .spanish: "spanish"
         case .spanish_latinAmerica: "spanish_latinAmerica"
@@ -184,6 +200,7 @@ public extension Locale {
         case .turkish: "turkish"
         case .ukrainian: "ukrainian"
         case .uzbek: "uzbek"
+            
         case .welsh: "welsh"
             
         default: "-"
@@ -196,4 +213,11 @@ private extension Locale {
     static func withId(_ id: String) -> Locale {
         .init(identifier: id)
     }
+}
+
+#Preview {
+    
+    let locale = Locale(identifier: "cv")
+    
+    Text(locale.localizedName(in: .english) ?? "-")
 }

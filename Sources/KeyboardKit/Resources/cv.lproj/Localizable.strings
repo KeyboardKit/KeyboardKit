@@ -1,0 +1,39 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2021-02-15.
+ Copyright © 2021-2024 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "cv";
+
+"capsLock" = "caps";
+"continue" = "малалла тy";
+"done" = "вӗҫле";
+"emergencyCall" = "авари лару-тӑрӑвӗ";
+"go" = "каҫни";
+"join" = "ҫыхӑнтарас";
+"next" = "тепӗр";
+"ok" = "юрӗ";
+"return" = "кӗртни";
+"route" = "маршрут";
+"search" = "шырав";
+"searchEmoji" = "шырав эмодзи";
+"send" = "яр";
+"space" = "сиктерчӗк";
+"switcherAlphabetic" = "АӐБ";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
+
+"EmojiCategory.frequent" = "Frequently Used";
+"EmojiCategory.smileysAndPeople" = "Smileys & People";
+"EmojiCategory.animalsAndNature" = "Animals & Nature";
+"EmojiCategory.foodAndDrink" = "Food & Drink";
+"EmojiCategory.activity" = "Activity";
+"EmojiCategory.travelAndPlaces" = "Travel & Places";
+"EmojiCategory.objects" = "Objects";
+"EmojiCategory.symbols" = "Symbols";
+"EmojiCategory.flags" = "Flags";
+
+// For emoji localization, copy & translate the English list.

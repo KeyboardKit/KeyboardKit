@@ -151,8 +151,10 @@ public extension UIReturnKeyType {
     /// The ``Keyboard/ReturnKeyType`` this type represents.
     var keyboardType: Keyboard.ReturnKeyType {
         switch self {
+        case .continue: .continue
         case .default: .return
         case .done: .done
+        case .emergencyCall: .emergencyCall
         case .go: .go
         case .google: .custom(title: "Google")
         case .join: .join
@@ -161,8 +163,6 @@ public extension UIReturnKeyType {
         case .search: .search
         case .send: .send
         case .yahoo: .custom(title: "Yahoo")
-        case .emergencyCall: .emergencyCall
-        case .continue: .continue
         @unknown default: .custom(title: "unknown")
         }
     }

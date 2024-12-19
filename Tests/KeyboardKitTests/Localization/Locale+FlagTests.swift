@@ -22,6 +22,7 @@ class Locale_FlagTests: XCTestCase {
             .bulgarian: "🇧🇬",
             .catalan: "🇦🇩",
             .cherokee: "🏳️",
+            .chuvash: "🏳️",
             .croatian: "🇭🇷",
             .czech: "🇨🇿",
             .danish: "🇩🇰",

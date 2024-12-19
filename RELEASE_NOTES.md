@@ -24,7 +24,11 @@ The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9
 
 ## 9.0.4
 
-This version fixes two bugs.
+This version adds support for Chuvash and fixes two bugs.
+
+### 🌐 Localization
+
+This version adds support for 🏳️ Chuvash, bringing the number locales up to `71`.
 
 ### 🐛 Bug Fixes
 
