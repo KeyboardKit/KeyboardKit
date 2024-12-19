@@ -25,10 +25,11 @@ public extension Locale {
         case .bulgarian: "🇧🇬"
         case .catalan: "🇦🇩"
         case .cherokee: "🏳️"
+        case .chuvash: "🏳️"
         case .croatian: "🇭🇷"
         case .czech: "🇨🇿"
-        case .danish: "🇩🇰"
             
+        case .danish: "🇩🇰"
         case .dutch: "🇳🇱"
         case .dutch_belgium: "🇧🇪"
         case .english: "🇺🇸"
@@ -38,8 +39,8 @@ public extension Locale {
         case .english_us: "🇺🇸"
         case .estonian: "🇪🇪"
         case .faroese: "🇫🇴"
+            
         case .filipino: "🇵🇭"
-
         case .finnish: "🇫🇮"
         case .french: "🇫🇷"
         case .french_canada: "🇨🇦"
@@ -49,8 +50,8 @@ public extension Locale {
         case .german: "🇩🇪"
         case .german_austria: "🇦🇹"
         case .german_switzerland: "🇨🇭"
+            
         case .greek: "🇬🇷"
-
         case .hawaiian: "🇺🇸"
         case .hebrew: "🇮🇱"
         case .hungarian: "🇭🇺"
@@ -60,8 +61,8 @@ public extension Locale {
         case .irish: "🇮🇪"
         case .italian: "🇮🇹"
         case .kazakh: "🇰🇿"
+            
         case .kurdish_sorani: "🇹🇯"
-
         case .kurdish_sorani_arabic: "🇹🇯"
         case .kurdish_sorani_pc: "🇹🇯"
         case .latvian: "🇱🇻"
@@ -71,8 +72,8 @@ public extension Locale {
         case .maltese: "🇲🇹"
         case .mongolian: "🇲🇳"
         case .northern_sami: "🏳️"
+            
         case .norwegian: "🇳🇴"
-
         case .norwegian_nynorsk: "🇳🇴"
         case .persian: "🇮🇷"
         case .polish: "🇵🇱"
@@ -82,8 +83,8 @@ public extension Locale {
         case .russian: "🇷🇺"
         case .serbian: "🇷🇸"
         case .serbian_latin: "🇷🇸"
+            
         case .slovenian: "🇸🇮"
-
         case .slovak: "🇸🇰"
         case .spanish: "🇪🇸"
         case .spanish_latinAmerica: "🇦🇷"
@@ -93,6 +94,7 @@ public extension Locale {
         case .turkish: "🇹🇷"
         case .ukrainian: "🇺🇦"
         case .uzbek: "🇺🇿"
+            
         case .welsh: "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
 
         default: "🏳️"
