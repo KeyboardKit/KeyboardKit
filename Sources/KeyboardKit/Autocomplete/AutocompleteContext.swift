@@ -12,15 +12,15 @@ import SwiftUI
 /// This class has observable states and persistent settings
 /// for keyboard autocomplete.
 ///
-/// The ``suggestions`` property is automatically updated by
-/// ``KeyboardInputViewController/performAutocomplete()`` as
-/// users type. It honors ``Settings/suggestionsDisplayCount``
-/// by capping the ``suggestionsFromService`` result to this
-/// value, while keeping the original result for predictions.
-///
 /// This class also has observable auto-persisted ``settings``
 /// that can be used to configure the behavior and presented
 /// to users in e.g. a settings screen.
+///
+/// The ``suggestions`` property is automatically updated by
+/// ``KeyboardInputViewController/performAutocomplete()`` as
+/// the users type. It will cap the ``suggestionsFromService``
+/// result to the settings cap, but keep the original result
+/// for predictions and other calculations.
 ///
 /// KeyboardKit will automatically setup an instance of this
 /// class in ``KeyboardInputViewController/state``, then use

@@ -141,7 +141,7 @@ public class KeyboardContext: ObservableObject {
     /// and cause it to persist.
     @Published
     public var locale = Locale.current {
-        didSet { settings.updateLocaleIdentifier(locale.identifier) }
+        didSet { settings.localeIdentifier = locale.identifier }
     }
 
     /// The locales that are currently available.

@@ -61,11 +61,15 @@ public extension Keyboard {
             didSet { onAutocapitalizationEnabledChanged() }
         }
 
-        /// Whether to auto-collapse the keyboard when an external keyboard is connected.
+        /// Whether to auto-collapse the keyboard whenever a
+        /// user connects an external keyboard.
         @AppStorage("\(settingsPrefix)`isKeyboardAutoCollapseEnabled`", store: .keyboardSettings)
         public var isKeyboardAutoCollapseEnabled = false
 
-        /// The identifier of the current ``locale``.
+        /// The identifier of the current locale.
+        ///
+        /// This is set by the ``KeyboardContext``, when the
+        /// ``KeyboardContext/locale`` changes.
         @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
         public internal(set) var localeIdentifier = Locale.current.identifier
     }
@@ -97,16 +101,5 @@ extension Keyboard.Settings {
     mutating func moveLocaleFirstInAddedLocales(_ locale: Locale) {
         if locale == addedLocales.first { return }
         addedLocales = addedLocales.insertingFirst(locale)
-    }
-}
-
-
-// MARK: - Internals
-
-extension Keyboard.Settings {
-
-    func updateLocaleIdentifier(_ id: String) {
-        guard localeIdentifier != id else { return }
-        localeIdentifier = id
     }
 }
