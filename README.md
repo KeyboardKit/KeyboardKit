@@ -1,5 +1,5 @@
 <p align="center">
-    <img src ="Resources/Logo_GitHub.png" alt="KeyboardKit Logo" title="KeyboardKit" />
+    <img src ="Resources/Logo_Rounded.png" alt="KeyboardKit Logo" title="KeyboardKit" />
 </p>
 
 <p align="center">
