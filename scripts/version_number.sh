@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Documentation:
-# This script returns the latest semver project version.
+# This script returns the latest project version.
+
+# Usage:
+# version_number.sh
+# e.g. `bash scripts/version_number.sh`
 
 # Exit immediately if a command exits with a non-zero status
 set -e

@@ -3,16 +3,24 @@
 # Documentation:
 # This script bumps the project version number.
 
+# Usage:
+# version_bump.sh
+# e.g. `bash scripts/version_bump.sh`
+
 # Exit immediately if a command exits with a non-zero status
 set -e
 
 # Use the script folder to refer to other scripts.
 FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-SCRIPT="$FOLDER/version_number.sh"
+SCRIPT_VERSION_NUMBER="$FOLDER/version_number.sh"
+
+# Start script
+echo ""
+echo "Bumping version number..."
+echo ""
 
 # Get the latest version
-VERSION=$($SCRIPT)
-
+VERSION=$($SCRIPT_VERSION_NUMBER)
 if [ $? -ne 0 ]; then
     echo "Failed to get the latest version"
     exit 1
@@ -34,6 +42,7 @@ validate_semver() {
 while true; do
     read -p "Enter the new version number: " NEW_VERSION
 
+    # Validate the version number to ensure that it's a semver version
     if validate_semver "$NEW_VERSION"; then
         break
     else
@@ -42,6 +51,12 @@ while true; do
     fi
 done
 
+# Push the new tag
 git push -u origin HEAD
 git tag $NEW_VERSION
 git push --tags
+
+# Complete successfully
+echo ""
+echo "Version tag pushed successfully!"
+echo ""

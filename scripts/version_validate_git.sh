@@ -1,8 +1,16 @@
 #!/bin/bash
 
 # Documentation:
-# This script version validates the Git repository for a <BRANCH>.
-# The script will fail if there are uncommitted changes, or if the branch is incorrect.
+# This script validates the Git repository for a <BRANCH>.
+
+# Usage:
+# version_validate_git.sh <BRANCH default:main>"
+# e.g. `bash scripts/version_validate_git.sh master`
+
+# This script will:
+# * Validate that the script is run within a git repository.
+# * Validate that the git repository doesn't have any uncommitted changes.
+# * Validate that the current git branch matches the provided one.
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -29,6 +37,11 @@ if ! git diff-index --quiet HEAD --; then
     exit 1
 fi
 
+# Start script
+echo ""
+echo "Validating git repository..."
+echo ""
+
 # Verify that we're on the correct branch
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 if [ "$current_branch" != "$BRANCH" ]; then
@@ -37,5 +50,6 @@ if [ "$current_branch" != "$BRANCH" ]; then
 fi
 
 # The Git repository validation succeeded.
-echo "Git repository successfully validated for branch ($1)."
-exit 0
+echo ""
+echo "Git repository validated successfully!"
+echo ""
