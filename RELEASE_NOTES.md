@@ -31,6 +31,10 @@ This version provides some minor bug fixes and improvements.
 * `Keryboard.Settings` now enables haptic feedback by default, since it's much better.
 * `Locale.ContextMenu` now sorts the listed locales in the locale presentation locale.
 
+### 👑 Pro
+
+Fixed outdated platform version information in the distribution package manifest file.  
+
 ### 🐛 Bug Fixes
 
 * `Keyboard.Settings` had accidentally marked utilities for added locales as internal.
