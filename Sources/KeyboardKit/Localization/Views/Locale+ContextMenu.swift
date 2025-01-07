@@ -15,11 +15,18 @@ public extension Locale {
     ///
     /// The easiest way to apply this modifier is to use the
     /// ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)``
-    /// modifier. The ``KeyboardView`` automatically applies
-    /// it to the ``KeyboardAction/nextLocale`` action.
+    /// modifier to a view. This will apply the context menu
+    /// to the view if either the explicitly provided locale
+    /// list, or the global ``KeyboardContext/locales`` list
+    /// contains at least two locales.
     ///
-    /// The menu sorts and localizes the listed locales with
-    /// the ``KeyboardContext/localePresentationLocale``.
+    /// This menu will sort and localizes the listed locales
+    /// with the ``KeyboardContext/localePresentationLocale``.
+    ///
+    /// Note: The ``KeyboardView`` automatically applies the
+    /// menu to the ``KeyboardAction/nextLocale`` action, so
+    /// you don't have to do it manually when adding such an
+    /// action to the keyboard layout.
     struct ContextMenu<MenuItem: View>: ViewModifier {
         
         /// Create a menu that lists locales as `Text` views
@@ -66,42 +73,26 @@ public extension Locale {
         private var keyboardContext: KeyboardContext
 
         private var locales: [Locale]?
-
         private var tapAction: () -> Void
-        
         private var menuItem: (Locale) -> MenuItem
         
         public func body(content: Content) -> some View {
-            if keyboardContext.locales.count > 1 {
-                content.withContextMenu(
-                    menu,
-                    keyboardContext: keyboardContext,
-                    tapAction: tapAction
-                )
+            if menuLocales.count > 1 {
+                #if os(iOS) || os(macOS) || os(visionOS)
+                Menu(content: {
+                    menu
+                }, label: {
+                    content
+                }, primaryAction: tapAction)
+                #else
+                Button(action: tapAction) {
+                    content
+                }
+                #endif
             } else {
                 content
             }
         }
-    }
-}
-
-private extension View {
-
-    @ViewBuilder
-    func withContextMenu<MenuView: View>(
-        _ menu: MenuView,
-        keyboardContext: KeyboardContext,
-        tapAction: @escaping () -> Void
-    ) -> some View {
-        #if os(iOS) || os(macOS) || os(visionOS)
-        Menu(content: {
-            menu
-        }, label: {
-            self
-        }, primaryAction: tapAction)
-        #else
-        self
-        #endif
     }
 }
 
@@ -121,16 +112,11 @@ private extension Locale.ContextMenu {
 
     var menuLocales: [Locale] {
         let context = keyboardContext
-        let contextLocale = context.locale
-        let contextLocales = context.selectableLocales
-        let customLocales = self.locales
-        let locales = customLocales ?? contextLocales
-        var filtered = locales
-            .filter { $0.identifier != contextLocale.identifier }
-        filtered.insert(contextLocale, at: 0)
-        return filtered
+        let presentationLocale = context.localePresentationLocale
+        let locales = self.locales ?? context.selectableLocales
+        return locales.sorted(in: presentationLocale, insertFirst: context.locale)
     }
-
+    
     func title(for locale: Locale) -> String {
         locale.localizedName(in: keyboardContext.localePresentationLocale) ?? ""
     }
@@ -189,10 +175,15 @@ public extension View {
     struct Preview: View {
 
         @State
-        var context = KeyboardContext()
+        var context: KeyboardContext = {
+            let context = KeyboardContext()
+            context.locales = .keyboardKitSupported
+            context.localePresentationLocale = .english
+            return context
+        }()
 
         var localeName: String {
-            context.locale.localizedName(in: .english) ?? "-"
+            context.locale.localizedName(in: context.localePresentationLocale) ?? "-"
         }
 
         var body: some View {
@@ -206,14 +197,6 @@ public extension View {
                 Button("Print locale") {
                     print(context.locale)
                 }
-            }
-            .onAppear {
-                context.locales = .keyboardKitSupported
-                context.settings.addedLocales = [
-                    // .arabic,
-                    // .mongolian
-                ]
-                context.localePresentationLocale = .danish
             }
             .id(context.locale.identifier)
         }

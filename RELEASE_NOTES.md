@@ -22,6 +22,20 @@ The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9
 
 
 
+## 9.0.6
+
+This version provides some minor bug fixes and improvements.
+
+### 💡 Adjustments
+
+* `Locale.ContextMenu` now sorts the listed locales in the locale presentation locale.
+
+### 🐛 Bug Fixes
+
+* `Keyboard.Settings` had accidentally marked utilities for added locales as internal.
+
+
+
 ## 9.0.4
 
 This version adds support for Chuvash and fixes two bugs.
