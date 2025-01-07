@@ -30,9 +30,9 @@ public extension KeyboardFeedback {
         @AppStorage("\(settingsPrefix)isAudioFeedbackEnabled", store: .keyboardSettings)
         public var isAudioFeedbackEnabled = true
 
-        /// Whether haptic feedback is enabled, by default `false`.
+        /// Whether haptic feedback is enabled, by default `true`.
         @AppStorage("\(settingsPrefix)isHapticFeedbackEnabled", store: .keyboardSettings)
-        public var isHapticFeedbackEnabled = false
+        public var isHapticFeedbackEnabled = true
     }
 }
 
