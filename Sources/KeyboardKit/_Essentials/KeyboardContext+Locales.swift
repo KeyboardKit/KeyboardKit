@@ -26,7 +26,7 @@ extension KeyboardContext {
 
     /// This is internal until we find a better name for it.
     var selectableLocales: [Locale] {
-        let locales = settings.addedLocales
-        return locales.isEmpty ? self.locales : locales
+        let addedLocales = settings.addedLocales
+        return addedLocales.isEmpty ? locales : addedLocales
     }
 }

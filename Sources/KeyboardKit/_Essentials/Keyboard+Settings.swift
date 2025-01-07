@@ -78,7 +78,7 @@ public extension Keyboard {
 
 // MARK: - Added locales
 
-extension Keyboard.Settings {
+public extension Keyboard.Settings {
 
     /// A list of explicitly added locales.
     var addedLocales: [Locale] {
