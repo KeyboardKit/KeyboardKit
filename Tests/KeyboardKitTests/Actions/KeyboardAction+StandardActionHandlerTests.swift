@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-06.
-//  Copyright © 2019-2024 Daniel Saidi. All rights reserved.
+//  Copyright © 2019-2025 Daniel Saidi. All rights reserved.
 //
 
 #if os(iOS) || os(tvOS)
