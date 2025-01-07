@@ -212,8 +212,8 @@
 			children = (
 				A921152525D58A94003510D9 /* DemoApp.swift */,
 				A921152725D58A94003510D9 /* HomeScreen.swift */,
-				A9855EEB2CCBDD8000FD9F0A /* KeyboardKit.license */,
 				A96F413A2C73F2FE007344D2 /* KeyboardApp+Demo.swift */,
+				A9855EEB2CCBDD8000FD9F0A /* KeyboardKit.license */,
 				A96F3FDA2C70E04A007344D2 /* Assets */,
 				A9A58B802CF4C0EF004DC7BE /* Dictation */,
 				A9DBBFDA2CF3C519007B48F4 /* Localization */,

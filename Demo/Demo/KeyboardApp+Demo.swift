@@ -16,14 +16,12 @@ public extension KeyboardApp {
 
     /// This `KeyboardApp` value defines the demo app.
     ///
-    /// The demo app has a `KeyboardKit.license` file that's
-    /// linked to the app and the `KeyboardPro` keyboard. It
-    /// unlocks KeyboardKit Pro without a `licenseKey` below.
-    ///
-    /// All yearly Gold and Enterprise customers can request
-    /// a `KeyboardKit.license` file, while lower tiers must
-    /// specify a `licenseKey`. License files let you update
-    /// the license without having to update KeyboardKit Pro.
+    /// The demo uses a `KeyboardKit.license` file to unlock
+    /// KeyboardKit Pro, without having to include a license
+    /// key in the app information below. This also lets the
+    /// app update its license without also having to update
+    /// KeyboardKit version. Note that this file is added to
+    /// both the app and the `KeyboardPro` keyboard.
     ///
     /// The App Group ID is only to show you how you can use
     /// a `KeyboardApp` to set up App Group data syncing for
