@@ -22,6 +22,16 @@ The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9
 
 
 
+## 9.1
+
+This version provides some minor bug fixes and improvements.
+
+### ✨ Features
+
+* `Locale` has new collection matching capabilities.
+
+
+
 ## 9.0.6
 
 This version provides some minor bug fixes and improvements.

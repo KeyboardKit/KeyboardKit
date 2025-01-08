@@ -22,6 +22,17 @@ public extension Locale {
     }
 }
 
+public extension Collection where Element == Locale {
+
+    /// Filter out all locales that matches a certain query.
+    func matching(
+        query: String,
+        in locale: Locale = .current
+    ) -> [Locale] {
+        filter { $0.matches(query: query, in: locale) }
+    }
+}
+
 private extension String {
 
     func contains(_ query: String) -> Bool {
