@@ -2,10 +2,12 @@
 
 # Documentation:
 # This script bumps the project version number.
+# You can append --no-semver to disable semantic version validation.
 
 # Usage:
-# version_bump.sh
+# version_bump.sh [--no-semver]
 # e.g. `bash scripts/version_bump.sh`
+# e.g. `bash scripts/version_bump.sh --no-semver`
 
 # Exit immediately if a command exits with a non-zero status
 set -e
@@ -13,6 +15,18 @@ set -e
 # Use the script folder to refer to other scripts.
 FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 SCRIPT_VERSION_NUMBER="$FOLDER/version_number.sh"
+
+
+# Parse --no-semver argument
+VALIDATE_SEMVER=true
+for arg in "$@"; do
+    case $arg in
+        --no-semver)
+            VALIDATE_SEMVER=false
+            shift # Remove --no-semver from processing
+            ;;
+    esac
+done
 
 # Start script
 echo ""
@@ -31,6 +45,10 @@ echo "The current version is: $VERSION"
 
 # Function to validate semver format, including optional -rc.<INT> suffix
 validate_semver() {
+    if [ "$VALIDATE_SEMVER" = false ]; then
+        return 0
+    fi
+    
     if [[ $1 =~ ^v?[0-9]+\.[0-9]+\.[0-9]+(-rc\.[0-9]+)?$ ]]; then
         return 0
     else
