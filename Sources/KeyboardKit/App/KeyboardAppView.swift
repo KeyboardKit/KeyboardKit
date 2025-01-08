@@ -99,7 +99,7 @@ public struct KeyboardAppView<Content: View>: View {
 
     public var body: some View {
         ZStack {
-            RegistrationView(app: app)
+            LicenseRegistrationView(app: app)
             content()
         }
         .environmentObject(autocompleteContext)

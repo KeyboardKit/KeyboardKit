@@ -1,5 +1,5 @@
 //
-//  KeyboardAppView+RegistrationView.swift
+//  KeyboardAppView+LicenseRegistrationView.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-19.
@@ -10,7 +10,7 @@ import SwiftUI
 
 extension KeyboardAppView {
 
-    struct RegistrationView: View {
+    struct LicenseRegistrationView: View {
 
         let app: KeyboardApp
 
