@@ -24,9 +24,8 @@ public extension Locale {
     /// with the ``KeyboardContext/localePresentationLocale``.
     ///
     /// Note: The ``KeyboardView`` automatically applies the
-    /// menu to the ``KeyboardAction/nextLocale`` action, so
-    /// you don't have to do it manually when adding such an
-    /// action to the keyboard layout.
+    /// menu to ``KeyboardAction/nextLocale``, so you do not
+    /// have to do it manually when using that view.
     struct ContextMenu<MenuItem: View>: ViewModifier {
         
         /// Create a menu that lists locales as `Text` views
@@ -46,7 +45,7 @@ public extension Locale {
                 locales: locales,
                 tapAction: tapAction
             ) {
-                Text($0.localizedName(in: keyboardContext.localePresentationLocale) ?? "")
+                Text(Self.title(for: $0, in: keyboardContext.localePresentationLocale))
             }
         }
         
@@ -117,8 +116,11 @@ private extension Locale.ContextMenu {
         return locales.sorted(in: presentationLocale, insertFirst: context.locale)
     }
     
-    func title(for locale: Locale) -> String {
-        locale.localizedName(in: keyboardContext.localePresentationLocale) ?? ""
+    static func title(
+        for locale: Locale,
+        in presentationLocale: Locale
+    ) -> String {
+        locale.localizedName(in: presentationLocale) ?? ""
     }
 }
 
@@ -174,7 +176,7 @@ public extension View {
 
     struct Preview: View {
 
-        @State
+        @StateObject
         var context: KeyboardContext = {
             let context = KeyboardContext()
             context.locales = .keyboardKitSupported

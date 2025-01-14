@@ -31,6 +31,7 @@ public extension Locale {
     var localizedLanguageName: String? {
         localizedLanguageName(in: self)
     }
+    
     /// The language name of this locale in another locale.
     func localizedLanguageName(
         in locale: Locale

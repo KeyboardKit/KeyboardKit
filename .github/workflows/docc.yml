@@ -19,6 +19,7 @@ concurrency:
   group: "pages"
   cancel-in-progress: true
   
+# Define the job and its build steps
 jobs:
   deploy:
     environment:
