@@ -1,11 +1,13 @@
 #!/bin/bash
 
 # Documentation:
-# This script validates the project for a <TARGET>.
+# This script validates a <TARGET> for release.
+# This script targets iOS, macOS, tvOS, watchOS, and xrOS by default.
+# You can pass in a list of <PLATFORMS> if you want to customize the build.
 
 # Usage:
-# version_validate_project.sh <TARGET> [<PLATFORMS> default:iOS macOS tvOS watchOS xrOS]"
-# e.g. `bash scripts/version_validate_project.sh iOS macOS`
+# version_validate_target.sh <TARGET> [<PLATFORMS> default:iOS macOS tvOS watchOS xrOS]"
+# e.g. `bash scripts/version_validate_target.sh iOS macOS`
 
 # This script will:
 # * Validate that swiftlint passes.

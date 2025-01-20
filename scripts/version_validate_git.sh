@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Documentation:
-# This script validates the Git repository for a <BRANCH>.
+# This script validates the Git repository for release.
+# You can pass in a <BRANCH> to validate any non-main branch.
 
 # Usage:
 # version_validate_git.sh <BRANCH default:main>"

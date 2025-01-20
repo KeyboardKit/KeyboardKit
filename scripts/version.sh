@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Documentation:
-# This script creates a new version for the provided <TARGET>, git <BRANCH> and <PLATFORMS>.
+# This script creates a new version for the provided <TARGET> and <BRANCH>.
+# This script targets iOS, macOS, tvOS, watchOS, and xrOS by default.
+# You can pass in a list of <PLATFORMS> if you want to customize the build.
 
 # Usage:
 # version.sh <TARGET> <BRANCH default:main> [<PLATFORMS> default:iOS macOS tvOS watchOS xrOS]"
@@ -9,7 +11,7 @@
 
 # This script will:
 # * Call version_validate_git.sh to validate the git repo.
-# * Call version_validate_project to run tests, swiftlint, etc.
+# * Call version_validate_target to run tests, swiftlint, etc.
 # * Call version_bump.sh if all validation steps above passed.
 
 # Exit immediately if a command exits with a non-zero status
@@ -39,7 +41,7 @@ fi
 # Use the script folder to refer to other scripts.
 FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 SCRIPT_VALIDATE_GIT="$FOLDER/version_validate_git.sh"
-SCRIPT_VALIDATE_PROJECT="$FOLDER/version_validate_project.sh"
+SCRIPT_VALIDATE_TARGET="$FOLDER/version_validate_target.sh"
 SCRIPT_VERSION_BUMP="$FOLDER/version_bump.sh"
 
 # A function that run a certain script and checks for errors
@@ -67,7 +69,7 @@ echo ""
 # Validate git and project
 echo "Validating..."
 run_script "$SCRIPT_VALIDATE_GIT" "$BRANCH"
-run_script "$SCRIPT_VALIDATE_PROJECT" "$TARGET"
+run_script "$SCRIPT_VALIDATE_TARGET" "$TARGET"
 
 # Bump version
 echo "Bumping version..."

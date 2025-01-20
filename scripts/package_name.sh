@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# Documentation:
+# This script finds the main target name in `Package.swift`.
+
+# Usage:
+# package_name.sh
+# e.g. `bash scripts/package_name.sh`
+
+# Exit immediately if a command exits with non-zero status
+set -e
+
+# Check that a Package.swift file exists
 if [ ! -f "Package.swift" ]; then
     echo "Error: Package.swift not found in current directory"
     exit 1

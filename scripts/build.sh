@@ -2,6 +2,8 @@
 
 # Documentation:
 # This script builds a <TARGET> for all provided <PLATFORMS>.
+# This script targets iOS, macOS, tvOS, watchOS, and xrOS by default.
+# You can pass in a list of <PLATFORMS> if you want to customize the build.
 
 # Usage:
 # build.sh <TARGET> [<PLATFORMS> default:iOS macOS tvOS watchOS xrOS]

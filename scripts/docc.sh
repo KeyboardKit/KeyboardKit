@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Documentation:
-# This script builds DocC for a <TARGET> for all provided <PLATFORMS>.
+# This script builds DocC for a <TARGET> and certain <PLATFORMS>.
+# This script targets iOS, macOS, tvOS, watchOS, and xrOS by default.
+# You can pass in a list of <PLATFORMS> if you want to customize the build.
 # The documentation ends up in to .build/docs-<PLATFORM>.
 
 # Usage:
@@ -10,6 +12,9 @@
 
 # Exit immediately if a command exits with a non-zero status
 set -e
+
+# Fail if any command in a pipeline fails
+set -o pipefail
 
 # Verify that all required arguments are provided
 if [ $# -eq 0 ]; then
@@ -38,8 +43,9 @@ swift package resolve;
 # A function that builds $TARGET for a specific platform
 build_platform() {
 
-    # Define a local $PLATFORM variable
+    # Define a local $PLATFORM variable and set an exit code
     local PLATFORM=$1
+    local EXIT_CODE=0
 
     # Define the build folder name, based on the $PLATFORM
     case $PLATFORM in
@@ -66,19 +72,26 @@ build_platform() {
 
     # Build $TARGET docs for the $PLATFORM
     echo "Building $TARGET docs for $PLATFORM..."
-    xcodebuild docbuild -scheme $TARGET -derivedDataPath .build/docbuild -destination 'generic/platform='$PLATFORM;
+    if ! xcodebuild docbuild -scheme $TARGET -derivedDataPath .build/docbuild -destination "generic/platform=$PLATFORM"; then
+        echo "Error: Failed to build documentation for $PLATFORM" >&2
+        return 1
+    fi
 
     # Transform docs for static hosting
-    $(xcrun --find docc) process-archive \
+    if ! $(xcrun --find docc) process-archive \
       transform-for-static-hosting .build/docbuild/Build/Products/$DEBUG_PATH/$TARGET.doccarchive \
       --output-path .build/docs-$PLATFORM \
-      --hosting-base-path "$TARGET";
+      --hosting-base-path "$TARGET"; then
+        echo "Error: Failed to transform documentation for $PLATFORM" >&2
+        return 1
+    fi
 
     # Inject a root redirect script on the root page
     echo "<script>window.location.href += \"/documentation/$TARGET_LOWERCASED\"</script>" > .build/docs-$PLATFORM/index.html;
 
     # Complete successfully
     echo "Successfully built $TARGET docs for $PLATFORM"
+    return 0
 }
 
 # Start script
