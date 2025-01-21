@@ -7,28 +7,19 @@ KeyboardKit tries to honor semantic versioning:
 * Breaking changes should not occur in `minor` and `patch` updates.
 * Breaking changes *can* occur in `minor` and `patch` updates, if needed.
 
-These release notes cover the current major version. Check out version tags for older release notes.  
-
-
-## 💡 KeyboardKit 9 Migration Guide
-
-When migrating from KeyboardKit 8 to 9, first upgrade to the last 8 version and fix all deprecation warnings. This helps you prepare for KeyboardKit 9. 
-
-When you have fixed all migration warnings, upgrade to KeyboardKit 9.0 and fix any migration deprecations to conform to its many architectural changes.
-
-Once you've fixed all warnings, you can start using KeyboardKit 9. You can now setup SPM to use the latest major version number, i.e. the latest 9.x version. 
-
-The legacy migrations will be removed in 9.1, so make sure to first upgrade to 9.0 when migrating from KeyboardKit 8, before you upgrade to any later versions.
+These release notes cover the current major version. Check out version tags for older release notes. 
 
 
 
 ## 9.1
 
-This version provides some minor bug fixes and improvements.
+This version removes KeyboardKit 8 migration support. 
 
-### ✨ Features
+From now on, migrate to the last 9.0.x version before you migrate to the latest version  
 
-* `Locale` has new collection matching capabilities.
+### 🗑️ Deprecations
+
+* All migration deprecations have been removed.
 
 
 

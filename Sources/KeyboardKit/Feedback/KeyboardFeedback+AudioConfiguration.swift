@@ -75,9 +75,6 @@ public extension KeyboardFeedback.AudioConfiguration {
     /// A standard, enabled audio configuration.
     static let standard = Self()
 
-    @available(*, deprecated, renamed: "standard", message: "Migration Deprecation, will be removed in 9.1!")
-    static var enabled: Self { .standard }
-
     /// This configuration disables all audio feedback.
     static let disabled = Self(
         input: .none,

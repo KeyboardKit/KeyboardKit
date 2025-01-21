@@ -60,12 +60,6 @@ public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifi
 
     /// The callout style to apply, if any.
     public var calloutStyle: KeyboardCallout.CalloutStyle?
-
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
-    public var actionCalloutStyle: KeyboardCallout.ActionCalloutStyle?
-
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use calloutStyle instead.")
-    public var inputCalloutStyle: KeyboardCallout.InputCalloutStyle?
 }
 
 public extension KeyboardTheme {

@@ -72,35 +72,6 @@ public struct KeyboardApp {
         self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
     }
 
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! autocompleteConfiguration has been renamed to just autocomplete.")
-    @_disfavoredOverload
-    public init(
-        name: String,
-        licenseKey: String? = nil,
-        bundleId: String,
-        keyboardBundleId: String? = nil,
-        appGroupId: String? = nil,
-        locales: [Locale] = .keyboardKitSupported,
-        autocompleteConfiguration: AutocompleteConfiguration = .init(),
-        deepLinks: DeepLinks? = nil,
-        keyboardSettingsKeyPrefix: String? = nil
-    ) {
-        self.init(
-            name: name,
-            licenseKey: licenseKey,
-            bundleId: bundleId,
-            keyboardBundleId: keyboardBundleId,
-            appGroupId: appGroupId,
-            locales: locales,
-            autocomplete: autocompleteConfiguration,
-            deepLinks: deepLinks,
-            keyboardSettingsKeyPrefix: keyboardSettingsKeyPrefix
-        )
-    }
-
-    @available(*, deprecated, renamed: "autocomplete", message: "Migration Deprecation, will be removed in 9.1!")
-    public var autocompleteConfiguration: AutocompleteConfiguration { autocomplete }
-
     /// The name of the app.
     public let name: String
 

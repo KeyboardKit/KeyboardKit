@@ -60,47 +60,6 @@ extension KeyboardLayout {
         }
 
 
-        // MARK: - Migration Deprecations
-
-        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `itemActions(for:)` instead.")
-        open func actions(
-            for rows: InputSet.Rows,
-            context: KeyboardContext
-        ) -> KeyboardAction.Rows {
-            itemActions(for: context)
-        }
-
-        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `inputCharacters(for:)` instead.")
-        open func actionCharacters(
-            for rows: InputSet.Rows,
-            context: KeyboardContext
-        ) -> [[String]] {
-            inputCharacters(for: context)
-        }
-
-        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `inputSet(for:)` instead.")
-        open func inputRows(
-            for context: KeyboardContext
-        ) -> InputSet.Rows {
-            inputSet(for: context).rows
-        }
-
-        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use `itemRows(for:)` instead.")
-        open func items(
-            for actions: KeyboardAction.Rows,
-            context: KeyboardContext
-        ) -> KeyboardLayout.ItemRows {
-            itemRows(for: context)
-        }
-
-        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
-        open func isBottomRowIndex(
-            _ index: Int
-        ) -> Bool {
-            index == 3
-        }
-
-
         // MARK: - Input Sets
 
         /// The ``InputSet`` to use for the provided context.

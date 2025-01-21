@@ -66,9 +66,6 @@ public extension KeyboardFeedback.HapticConfiguration {
     /// A standard, enabled haptic configuration.
     static let standard = Self()
 
-    @available(*, deprecated, renamed: "standard", message: "Migration Deprecation, will be removed in 9.1!")
-    static var enabled: Self { .standard }
-
     /// This configuration disables all haptic feedback.
     static let disabled = Self(
         press: .none,

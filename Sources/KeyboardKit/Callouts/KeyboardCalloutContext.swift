@@ -57,13 +57,6 @@ public class KeyboardCalloutContext: ObservableObject {
     /// The current secondary action index.
     @Published
     public private(set) var secondaryActionsIndex: Int = -1
-
-
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
-    public var actionContext: ActionContext = .disabled
-
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
-    public var inputContext: InputContext = .disabled
 }
 
 public extension KeyboardCalloutContext {
@@ -200,10 +193,4 @@ private extension KeyboardCalloutContext {
         if translation == 0 { return true }
         return isLeading ? translation > 0 : translation < 0
     }
-}
-
-public extension KeyboardCalloutContext {
-
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1!")
-    static var disabled: KeyboardCalloutContext { .init() }
 }

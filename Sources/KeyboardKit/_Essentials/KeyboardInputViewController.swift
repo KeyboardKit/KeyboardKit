@@ -181,9 +181,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         state.keyboardContext.textInputProxy ?? originalTextDocumentProxy
     }
 
-    @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! Use keyboard context instead.")
-    public var textInputProxy: UITextDocumentProxy?
-
 
     // MARK: - Keyboard Properties
 

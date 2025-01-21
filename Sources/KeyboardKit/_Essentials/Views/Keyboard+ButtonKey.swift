@@ -22,9 +22,6 @@ public extension Keyboard {
         /// Create a keyboard button key.
         public init() {}
 
-        @available(*, deprecated, message: "Migration Deprecation, will be removed in 9.1! isPressed is no longer used.")
-        public init(isPressed: Bool) {}
-
         
         @Environment(\.keyboardButtonStyle)
         private var style
