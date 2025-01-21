@@ -15,7 +15,11 @@ These release notes cover the current major version. Check out version tags for 
 
 This version removes KeyboardKit 8 migration support. 
 
-From now on, migrate to the last 9.0.x version before you migrate to the latest version  
+From now on, migrate to the last 9.0.x version before you migrate to the latest version.
+
+### 😀 Emojis
+
+* All emojis and catetegories have been localized in Spanish.
 
 ### 🗑️ Deprecations
 

@@ -26,7 +26,6 @@
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";
 
-"EmojiCategory.frequent" = "Ofta använda";
 "EmojiCategory.smileysAndPeople" = "Smileys och människor";
 "EmojiCategory.animalsAndNature" = "Djur och natur";
 "EmojiCategory.foodAndDrink" = "Mat och dryck";
@@ -35,6 +34,10 @@
 "EmojiCategory.objects" = "Objekt";
 "EmojiCategory.symbols" = "Symboler";
 "EmojiCategory.flags" = "Flaggor";
+
+"EmojiCategory.favorites" = "Favoriter";
+"EmojiCategory.frequent" = "Ofta använda";
+"EmojiCategory.recent" = "Senaste";
 
 "😀" = "Leende ansikte";
 "😃" = "Leende ansikte med öppen mun";

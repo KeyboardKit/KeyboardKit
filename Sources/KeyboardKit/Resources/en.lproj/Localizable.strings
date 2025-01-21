@@ -26,7 +26,6 @@
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";
 
-"EmojiCategory.frequent" = "Frequently Used";
 "EmojiCategory.smileysAndPeople" = "Smileys & People";
 "EmojiCategory.animalsAndNature" = "Animals & Nature";
 "EmojiCategory.foodAndDrink" = "Food & Drink";
@@ -35,6 +34,10 @@
 "EmojiCategory.objects" = "Objects";
 "EmojiCategory.symbols" = "Symbols";
 "EmojiCategory.flags" = "Flags";
+
+"EmojiCategory.favorites" = "Favorites";
+"EmojiCategory.frequent" = "Frequently Used";
+"EmojiCategory.recent" = "Most Recent";
 
 "😀" = "Grinning Face";
 "😃" = "Smiling Face with Open Mouth";

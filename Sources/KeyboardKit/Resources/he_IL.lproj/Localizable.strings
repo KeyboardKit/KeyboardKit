@@ -34,9 +34,10 @@
 "EmojiCategory.travelAndPlaces" = "Travel & Places";
 "EmojiCategory.objects" = "Objects";
 "EmojiCategory.symbols" = "Symbols";
-"EmojiCategory.flags" = "Flags";
+"EmojiCategory.flags" = "Flags";;
 
-/**
- For emojis localization, copy the text in `Emojis.md`, then
- replace this comment with it and translate the keys.
- */
+"EmojiCategory.favorites" = "Favorites";
+"EmojiCategory.frequent" = "Frequently Used";
+"EmojiCategory.recent" = "Most Recent";
+
+// For emoji localization, copy & translate the English list.
