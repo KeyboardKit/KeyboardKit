@@ -13,7 +13,7 @@ import SwiftUI
 ///
 /// This is for instance needed for a keyboard theme persist
 /// a custom font.
-public struct KeyboardFont: Codable, Equatable {
+public struct KeyboardFont: KeyboardModel {
 
     public init(
         _ type: FontType,
@@ -30,7 +30,7 @@ public struct KeyboardFont: Codable, Equatable {
 public extension KeyboardFont {
 
     /// This enum defines various keyboard font types.
-    enum FontType: Codable, Equatable {
+    enum FontType: KeyboardModel {
 
         case body
         case callout
@@ -75,7 +75,7 @@ public extension KeyboardFont.FontType {
 public extension KeyboardFont {
 
     /// This enum defines various keyboard font weights.
-    enum FontWeight: Codable, Equatable {
+    enum FontWeight: KeyboardModel {
 
         case black
         case bold

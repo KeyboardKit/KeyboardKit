@@ -19,7 +19,7 @@ public extension Keyboard {
     /// Unlike most other styles, the style doesn't yet have
     /// a standard style, due to the complexities of how the
     /// button looks on different platforms.
-    struct ButtonStyle: Codable, Equatable {
+    struct ButtonStyle: Codable, Equatable, Sendable {
         
         /// Create a custom keyboard button style.
         ///
@@ -149,7 +149,7 @@ public extension Keyboard {
     /// This style defines the border of a keyboard button.
     ///
     /// You can use the ``standard`` style or your own style.
-    struct ButtonBorderStyle: Codable, Equatable {
+    struct ButtonBorderStyle: KeyboardModel {
         
         /// Create a custom keyboard button border style.
         ///
@@ -174,7 +174,7 @@ public extension Keyboard {
     /// This style defines the shadow of a keyboard button.
     ///
     /// You can use the ``standard`` style or your own style.
-    struct ButtonShadowStyle: Codable, Equatable {
+    struct ButtonShadowStyle: KeyboardModel {
         
         /// Create a custom keyboard button shadow style.
         ///

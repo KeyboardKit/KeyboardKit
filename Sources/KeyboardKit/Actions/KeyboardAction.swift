@@ -26,7 +26,7 @@ import Foundation
 /// a custom ``KeyboardActionHandler``.
 ///
 /// See <doc:Actions-Article> for more information.
-public enum KeyboardAction: Codable, Equatable {
+public enum KeyboardAction: KeyboardModel {
 
     /// Deletes backwards when pressed, and repeats until released.
     case backspace

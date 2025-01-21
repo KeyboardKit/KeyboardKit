@@ -126,7 +126,7 @@ public extension KeyboardApp {
     ///
     /// You only have to provide an `app` url, and can leave
     /// the rest blank to use standard URLs.
-    struct DeepLinks {
+    struct DeepLinks: KeyboardModel {
 
         /// Create a custom keyboard deep links value.
         ///

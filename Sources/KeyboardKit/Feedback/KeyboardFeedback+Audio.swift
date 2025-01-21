@@ -16,7 +16,7 @@ public extension KeyboardFeedback {
     /// system sounds. You can use ``customId(_:)`` to add a
     /// custom ID-based feedback type, and ``customUrl(_:)``
     /// to add custom audio feedback from any URL-based file.
-    enum Audio: Codable, Equatable, Identifiable {
+    enum Audio: Identifiable, KeyboardModel {
         
         /// Represents the sound of an input key.
         case input

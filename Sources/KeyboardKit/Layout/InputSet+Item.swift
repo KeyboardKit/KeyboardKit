@@ -16,7 +16,7 @@ public extension InputSet {
     /// You can create an instance with just a string, which
     /// is the default way. You can also provide casings, to
     /// fully customize input characters for certain casings.
-    struct Item: Equatable {
+    struct Item: KeyboardModel {
 
         /// Create an input set item with a single character.
         ///

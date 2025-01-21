@@ -15,7 +15,7 @@ public extension Keyboard {
     /// The ``KeyboardContext/autocapitalizationTypeOverride``
     /// property can be set to override the default behavior
     /// that is defined by the active text-field.
-    enum AutocapitalizationType: String, CaseIterable {
+    enum AutocapitalizationType: String, CaseIterable, KeyboardModel {
 
         // All characters should be auto-capitalized.
         case allCharacters
@@ -29,6 +29,11 @@ public extension Keyboard {
         // Auto-capitalization should not be applied.
         case none
     }
+}
+
+public extension Keyboard.AutocapitalizationType {
+    
+    var id: String { rawValue }
 }
 
 #if os(iOS) || os(tvOS) || os(visionOS)

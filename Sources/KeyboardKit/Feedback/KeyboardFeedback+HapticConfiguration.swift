@@ -14,7 +14,7 @@ public extension KeyboardFeedback {
     ///
     /// You can use any of the standard configurations, like
     /// ``enabled`` and ``disabled``, or create a custom one.
-    struct HapticConfiguration: Codable, Equatable {
+    struct HapticConfiguration: KeyboardModel {
         
         /// Create a custom haptic feedback configuration.
         ///
@@ -79,7 +79,7 @@ public extension KeyboardFeedback.HapticConfiguration {
 public extension KeyboardFeedback.HapticConfiguration {
 
     /// This struct is used for custom haptic feedback.
-    struct CustomFeedback: Codable, Equatable {
+    struct CustomFeedback: KeyboardModel {
         
         public init(
             action: KeyboardAction,

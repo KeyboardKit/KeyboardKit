@@ -12,7 +12,7 @@ public extension Keyboard {
 
     /// This enum defines various keyboard gestures that can
     /// be used to interact with a keyboard.
-    enum Gesture: String, CaseIterable, Codable, Equatable, Identifiable {
+    enum Gesture: String, CaseIterable, KeyboardModel {
 
         /// Triggers when a button is double tapped.
         case doubleTap

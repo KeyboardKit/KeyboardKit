@@ -17,12 +17,12 @@ public extension Keyboard {
     /// know the proper terminology.
     typealias Accent = Diacritic
 
-    /// This type can define character diacritic variants.
+    /// This type can be used to define diacritic characters,
+    /// which can replace a character(s) with a combined one.
     ///
-    /// The ``KeyboardAction/StandardActionHandler`` handles
-    /// diacritics by replacing the last typed character, if
-    /// matches the diacritic.
-    struct Diacritic: Codable, Equatable {
+    /// The ``KeyboardAction/StandardActionHandler`` will do
+    /// this by replacing any last typed, matching character.
+    struct Diacritic: KeyboardModel {
         
         /// Create a custom diacritic value.
         ///

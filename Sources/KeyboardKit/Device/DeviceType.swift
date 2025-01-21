@@ -16,7 +16,7 @@ import UIKit
 ///
 /// The static ``current`` property will resolve the current
 /// device type.
-public enum DeviceType: String, CaseIterable, Equatable {
+public enum DeviceType: String, CaseIterable, KeyboardModel {
     
     case phone, pad, watch, mac, tv, vision, other
 }

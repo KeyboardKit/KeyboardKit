@@ -21,7 +21,7 @@ import Foundation
 /// input sets for each supported locale.
 ///
 /// See <doc:Layout-Article> for more information.
-public struct InputSet: Equatable {
+public struct InputSet: KeyboardModel {
     
     /// Create an input set with rows.
     public init(

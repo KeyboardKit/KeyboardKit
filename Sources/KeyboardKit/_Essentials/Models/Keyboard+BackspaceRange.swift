@@ -11,7 +11,7 @@ import Foundation
 public extension Keyboard {
     
     /// This enum defines how much the backspace key deletes.
-    enum BackspaceRange {
+    enum BackspaceRange: String, CaseIterable, Identifiable, KeyboardModel {
         
         /// Delete a single char at a time.
         case character
@@ -22,4 +22,9 @@ public extension Keyboard {
         /// Delete an entire sentence at a time.
         case sentence
     }
+}
+
+public extension Keyboard.BackspaceRange {
+    
+    var id: String { rawValue }
 }

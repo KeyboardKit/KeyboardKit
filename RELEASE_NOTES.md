@@ -17,6 +17,10 @@ This version removes KeyboardKit 8 migration support.
 
 From now on, migrate to the last 9.0.x version before you migrate to the latest version.
 
+### 🛠️ Code Improvements
+
+* Many types now conform to `Codable`, `Sendable` and other essential protocols.
+
 ### 😀 Emojis
 
 * All emojis and catetegories have been localized in Spanish.

@@ -11,7 +11,7 @@ import Foundation
 public extension KeyboardFeedback {
 
     /// This enum defines standard haptic feedback types.
-    enum Haptic: String, CaseIterable, Codable, Equatable, Identifiable {
+    enum Haptic: String, CaseIterable, Identifiable, KeyboardModel {
         
         /// Represents feedback for an error event.
         case error

@@ -9,7 +9,7 @@
 public extension Dictation {
     
     /// This enum defines various dictation statuses.
-    enum AuthorizationStatus: Int {
+    enum AuthorizationStatus: Int, KeyboardModel {
         
         case disabledService = -1
         case notDetermined = 0

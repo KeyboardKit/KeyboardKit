@@ -20,7 +20,7 @@ public extension Autocomplete {
     /// Native keyboards typically present an autocorrecting
     /// suggestion with a semi-white background, and unknown
     /// or current words with locale-specific quotation.
-    struct Suggestion: Codable, Equatable, Hashable {
+    struct Suggestion: KeyboardModel {
 
         /// Create an autocomplete suggestion.
         ///
@@ -98,7 +98,7 @@ public extension Autocomplete {
 
     /// This enum defines every autocomplete suggestion type
     /// that can be returned by an ``AutocompleteService``.
-    enum SuggestionType: String, CaseIterable, Codable, Equatable {
+    enum SuggestionType: String, CaseIterable, KeyboardModel {
 
         /// These suggestions are only applied when the user
         /// taps them.

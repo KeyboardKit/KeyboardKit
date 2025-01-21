@@ -14,7 +14,7 @@ public extension InputSet {
     ///
     /// There are many convenience initializers to assist us
     /// in creating input set rows in different ways.
-    struct ItemRow: Equatable {
+    struct ItemRow: KeyboardModel {
 
         /// Create an input set row.
         ///

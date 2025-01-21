@@ -14,7 +14,7 @@ public extension KeyboardFeedback {
     ///
     /// You can use any of the standard configurations, like
     /// ``enabled`` and ``disabled``, or create a custom one.
-    struct AudioConfiguration: Codable, Equatable {
+    struct AudioConfiguration: KeyboardModel {
         
         /// Create a custom audio feedback configuration.
         ///
@@ -52,7 +52,7 @@ public extension KeyboardFeedback {
 public extension KeyboardFeedback.AudioConfiguration {
 
     /// This struct is used for custom audio feedback.
-    struct CustomFeedback: Codable, Equatable {
+    struct CustomFeedback: KeyboardModel {
         
         public init(
             action: KeyboardAction,

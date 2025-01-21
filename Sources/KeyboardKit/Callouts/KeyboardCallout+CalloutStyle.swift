@@ -17,7 +17,7 @@ public extension KeyboardCallout {
     /// ``SwiftUICore/View/keyboardCalloutStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
-    struct CalloutStyle: Codable, Equatable {
+    struct CalloutStyle: KeyboardModel {
 
         /// Create a custom callout style.
         ///

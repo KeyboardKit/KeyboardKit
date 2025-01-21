@@ -15,7 +15,7 @@ public extension Gestures {
     /// The type defines to how many points a space key must
     /// be dragged for the input cursor to be moved one step.
     /// Higher sensitivity means fewer points.
-    enum SpaceDragSensitivity: Codable, Identifiable {
+    enum SpaceDragSensitivity: KeyboardModel {
         
         case low, medium, high, custom(points: Int)
     }

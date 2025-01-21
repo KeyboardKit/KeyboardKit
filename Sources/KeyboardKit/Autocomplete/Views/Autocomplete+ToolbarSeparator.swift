@@ -38,7 +38,7 @@ public extension Autocomplete {
     /// ``SwiftUICore/View/autocompleteToolbarSeparatorStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
-    struct ToolbarSeparatorStyle: Codable, Equatable {
+    struct ToolbarSeparatorStyle: KeyboardModel {
 
         /// Create a custom toolbar separator style.
         ///

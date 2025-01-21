@@ -15,7 +15,7 @@ public extension Keyboard {
     /// Return keys are used as ``KeyboardAction/primary(_:)``
     /// actions and insert a new line or perform the primary
     /// action when they are tapped.
-    enum ReturnKeyType: CaseIterable, Codable, Equatable, Identifiable {
+    enum ReturnKeyType: CaseIterable, KeyboardModel {
         
         /// A return key that uses a return text and not a ⏎.
         case `return`

@@ -122,7 +122,7 @@ public extension Autocomplete {
     /// ``SwiftUICore/View/autocompleteToolbarStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
-    struct ToolbarStyle: Codable, Equatable {
+    struct ToolbarStyle: Codable, Equatable, Sendable {
 
         /// Create a custom autocomplete toolbar style.
         ///

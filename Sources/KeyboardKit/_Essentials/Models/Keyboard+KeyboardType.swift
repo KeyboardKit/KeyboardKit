@@ -22,7 +22,7 @@ public extension Keyboard {
     /// Just set the ``KeyboardContext/keyboardType`` to any
     /// type you want to use, then observe the value to make
     /// any customizations needed for your app.
-    enum KeyboardType: CaseIterable, Codable, Equatable, Hashable, Identifiable {
+    enum KeyboardType: CaseIterable, KeyboardModel {
 
         /// A keyboard with alphabetic input keys.
         case alphabetic

@@ -52,7 +52,7 @@ public extension Autocomplete {
     /// ``SwiftUICore/View/autocompleteToolbarItemStyle(_:)``.
     ///
     /// You can use the ``standard`` style or your own style.
-    struct ToolbarItemStyle: Codable, Equatable {
+    struct ToolbarItemStyle: KeyboardModel {
 
         /// Create a custom autocomplete toolbar item style.
         ///

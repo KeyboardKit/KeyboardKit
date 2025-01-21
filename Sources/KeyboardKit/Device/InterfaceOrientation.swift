@@ -12,13 +12,11 @@ import Foundation
 import UIKit
 #endif
 
-/**
- This enum can be used to specify an interface orientation.
-
- The static ``current`` property will resolve to the current
- interface orientation.
- */
-public enum InterfaceOrientation: String, CaseIterable, Equatable {
+/// This enum defines supported interface orientations.
+///
+/// The static ``current`` property will resolve the current
+/// interface orientation.
+public enum InterfaceOrientation: String, CaseIterable, KeyboardModel {
 
     case portrait
     case portraitUpsideDown

@@ -11,7 +11,7 @@ import Foundation
 public extension Keyboard {
     
     /// This enum defines various keyboard shift states.
-    enum KeyboardCase: String, Codable, Identifiable {
+    enum KeyboardCase: String, CaseIterable, Identifiable, KeyboardModel {
 
         case auto
         case capsLocked
@@ -21,8 +21,7 @@ public extension Keyboard {
 }
 
 public extension Keyboard.KeyboardCase {
-
-    /// The case's unique identifier.
+    
     var id: String { rawValue }
     
     /// Whether the case is uppercased or caps locked.

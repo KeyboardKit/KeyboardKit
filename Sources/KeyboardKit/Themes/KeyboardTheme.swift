@@ -19,10 +19,10 @@ import SwiftUI
 /// style variations, as well as a theme-based style service.
 ///
 /// See <doc:Themes-Article> for more information.
-public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifiable {
+public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifiable, Sendable {
 
     /// This enum defines various button types.
-    public enum ButtonType: String, Codable {
+    public enum ButtonType: KeyboardModel {
 
         /// Input buttons are the light ones that enter text.
         case input
@@ -65,7 +65,7 @@ public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifi
 public extension KeyboardTheme {
 
     /// This struct defines a theme author.
-    struct Author: Codable, Equatable {
+    struct Author: KeyboardModel {
 
         /// Create a theme author value.
         public init(
