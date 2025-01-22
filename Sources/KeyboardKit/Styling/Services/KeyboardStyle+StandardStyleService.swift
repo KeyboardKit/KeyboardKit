@@ -356,6 +356,7 @@ extension KeyboardAction {
     }
 
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
+        if isUpperShift(for: context) && context.hasDarkColorScheme { return .white }
         if isUpperShift(for: context) { return .keyboardButtonBackground(for: context) }
         if isSystemAction { return .keyboardDarkButtonBackground(for: context) }
         if isPrimaryAction { return .blue }
@@ -385,6 +386,8 @@ extension KeyboardAction {
     }
 
     func buttonForegroundColorForIdleState(for context: KeyboardContext) -> Color {
+        if context.hasDarkColorScheme { return .blue }
+        if isUpperShift(for: context) && context.hasDarkColorScheme { return .black }
         let standard = Color.keyboardButtonForeground(for: context)
         if isSystemAction { return standard }
         if isPrimaryAction { return .white }

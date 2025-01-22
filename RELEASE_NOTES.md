@@ -24,13 +24,14 @@ From now on, migrate to the last 9.0.x version before you migrate to the latest 
 * `KeyboardView` can now be docked to any horizontal edge.
 * `View` has a new `.keyboardDockEdge(...)` view modifier.
 
-### 🛠️ Code Improvements
+### 💡 Adjustments
 
 * Many types now conform to `Codable`, `Sendable` and other essential protocols.
+* Upper-case shift and caps-lock has adjusted, default idle colors in dark mode.
 
-### 😀 Emojis
+### 🇪🇸 Localization
 
-* All emojis and catetegories have been localized in Spanish.
+* All emojis and emoji catetegories have been localized in Spanish.
 
 ### 🗑️ Deprecations
 
@@ -44,7 +45,7 @@ This version provides some minor bug fixes and improvements.
 
 ### 💡 Adjustments
 
-* `Keryboard.Settings` now enables haptic feedback by default, since it's much better.
+* `Keyboard.Settings` now enables haptic feedback by default, since it's much better.
 * `Locale.ContextMenu` now sorts the listed locales in the locale presentation locale.
 
 ### 👑 Pro

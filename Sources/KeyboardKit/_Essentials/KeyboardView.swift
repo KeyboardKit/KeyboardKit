@@ -471,6 +471,8 @@ private extension KeyboardView {
             )
         }
         
+        @Environment(\.colorScheme) var colorScheme
+        
         @State var dockEdge: Keyboard.DockEdge? = nil
         
         var body: some View {
