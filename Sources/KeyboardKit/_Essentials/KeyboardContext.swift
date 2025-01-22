@@ -218,7 +218,7 @@ public extension KeyboardContext {
 #endif
 
 
-// MARK: - Public Properties
+// MARK: - Public Computed Properties
 
 public extension KeyboardContext {
 

@@ -143,9 +143,12 @@ public struct KeyboardView<
         style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
         return style
     }
-
+    
     @Environment(\.keyboardCalloutStyle)
     private var calloutStyleFromEnvironment
+    
+    @Environment(\.keyboardDockEdge)
+    private var keyboardDockEdge
 
     @Environment(\.keyboardInputToolbarDisplayMode)
     private var rawInputToolbarDisplayMode
@@ -289,25 +292,35 @@ private extension KeyboardView {
 
     var keyboardView: some View {
         GeometryReader { geo in
-            let inputWidth = layout.inputWidth(for: geo.size.width)
-            VStack(spacing: 0) {
-                ForEach(Array(layout.itemRows.enumerated()), id: \.offset) { row in
-                    HStack(spacing: 0) {
-                        ForEach(Array(row.element.enumerated()), id: \.offset) { item in
-                            buttonView(
-                                for: item.element,
-                                totalWidth: geo.size.width,
-                                inputWidth: inputWidth,
-                                isGestureAutoCancellable: row.offset == 0
-                            )
+            let keyboardWidth = keyboardWidth(for: geo.size.width)
+            let inputWidth = layout.inputWidth(for: keyboardWidth)
+            VStack {
+                VStack(spacing: 0) {
+                    ForEach(Array(layout.itemRows.enumerated()), id: \.offset) { row in
+                        HStack(spacing: 0) {
+                            ForEach(Array(row.element.enumerated()), id: \.offset) { item in
+                                buttonView(
+                                    for: item.element,
+                                    totalWidth: keyboardWidth,
+                                    inputWidth: inputWidth,
+                                    isGestureAutoCancellable: row.offset == 0
+                                )
+                            }
                         }
                     }
                 }
+                .padding(styleService.keyboardEdgeInsets)
+                .environment(\.layoutDirection, .leftToRight)   // Enforce a direction due to the layout.
+                .frame(width: keyboardWidth)
             }
-            .padding(styleService.keyboardEdgeInsets)
-            .environment(\.layoutDirection, .leftToRight)   // Enforce a direction due to the layout.
+            .frame(maxWidth: .infinity, alignment: keyboardDockEdge?.alignment ?? .center)
         }
         .frame(height: layout.totalHeight)
+    }
+    
+    func keyboardWidth(for totalWidth: Double) -> Double {
+        let isDocked = keyboardDockEdge != nil
+        return isDocked ? 0.75 * totalWidth : totalWidth
     }
 
     @ViewBuilder
@@ -318,7 +331,7 @@ private extension KeyboardView {
 
     @ViewBuilder
     var emojiKeyboardContent: some View {
-        if shouldShowEmojiKeyboard {                        // Conditional to save memory
+        if shouldShowEmojiKeyboard {                        // Conditional to avoid allocating memory
             emojiKeyboardBuilder((
                 style: Emoji.KeyboardStyle.standard(for: keyboardContext),
                 view: Emoji.KeyboardWrapper(
@@ -424,7 +437,6 @@ private extension KeyboardView {
     }
 }
 
-
 #if os(iOS) || os(tvOS) || os(visionOS)
 #Preview {
 
@@ -441,6 +453,10 @@ private extension KeyboardView {
             // controller.state.keyboardContext.keyboardType = .emojiSearch
             return controller
         }()
+        
+        var keyboardContext: KeyboardContext {
+            controller.state.keyboardContext
+        }
 
         var keyboard: some View {
             KeyboardView(
@@ -454,20 +470,30 @@ private extension KeyboardView {
                 toolbar: { $0.view }
             )
         }
-
+        
+        @State var dockEdge: Keyboard.DockEdge? = nil
+        
         var body: some View {
             ScrollView {
                 VStack(spacing: 10) {
                     Group {
-                        Button("Toggle Collapsed") {
-                            withAnimation {
+                        HStack {
+                            Button("⬅️") {
+                                let isAlready = dockEdge == .leading
+                                dockEdge = isAlready ? nil : .leading
+                            }
+                            Button("⬇️") {
                                 controller.state.keyboardContext.isKeyboardCollapsed.toggle()
+                            }
+                            Button("➡️") {
+                                let isAlready = dockEdge == .trailing
+                                dockEdge = isAlready ? nil : .trailing
                             }
                         }
 
                         keyboard
 
-                        keyboard.frame(width: 250)
+                        keyboard.frame(width: 300)
 
                         KeyboardView(
                             layout: controller.services
@@ -520,6 +546,7 @@ private extension KeyboardView {
                     .keyboardInputToolbarDisplayMode(.numbers)
                 }
             }
+            .keyboardDockEdge(dockEdge)
         }
     }
 

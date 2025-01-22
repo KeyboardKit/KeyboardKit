@@ -43,6 +43,7 @@ extension Keyboard {
 
         var body: some View {
             view()
+                .keyboardDockEdge(keyboardContext.settings.keyboardDockEdge)
                 .onChange(of: externalContext.isExternalKeyboardConnected) { newValue in
                     guard keyboardContext.settings.isKeyboardAutoCollapseEnabled else { return }
                     keyboardContext.isKeyboardCollapsed = newValue

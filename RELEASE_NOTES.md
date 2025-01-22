@@ -17,6 +17,13 @@ This version removes KeyboardKit 8 migration support.
 
 From now on, migrate to the last 9.0.x version before you migrate to the latest version.
 
+### ✨ Features
+
+* `Keyboard.DockEdge` is a new value type.
+* `Keyboard.Settings` has a new `keyboardDockEdge` value.
+* `KeyboardView` can now be docked to any horizontal edge.
+* `View` has a new `.keyboardDockEdge(...)` view modifier.
+
 ### 🛠️ Code Improvements
 
 * Many types now conform to `Codable`, `Sendable` and other essential protocols.

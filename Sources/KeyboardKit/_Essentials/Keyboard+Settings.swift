@@ -54,7 +54,7 @@ public extension Keyboard {
         /// A list of explicitly added locale identifiers.
         @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
         public var addedLocaleIdentifiersValues: Keyboard.StorageValue<[String]> = .init(value: [])
-
+        
         /// Whether autocapitalization is enabled.
         @AppStorage("\(settingsPrefix)isAutocapitalizationEnabled", store: .keyboardSettings)
         public var isAutocapitalizationEnabled = true {
@@ -65,6 +65,10 @@ public extension Keyboard {
         /// user connects an external keyboard.
         @AppStorage("\(settingsPrefix)`isKeyboardAutoCollapseEnabled`", store: .keyboardSettings)
         public var isKeyboardAutoCollapseEnabled = false
+        
+        /// An optional keyboard dock edge.
+        @AppStorage("\(settingsPrefix)`keyboardDockEdge`", store: .keyboardSettings)
+        public var keyboardDockEdge: Keyboard.DockEdge?
 
         /// The identifier of the current locale.
         ///

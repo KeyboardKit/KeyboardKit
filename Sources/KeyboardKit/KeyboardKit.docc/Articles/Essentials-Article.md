@@ -47,7 +47,7 @@ KeyboardKit also has a ``KeyboardController`` protocol that aims to make it easi
 
 KeyboardKit has a ``KeyboardContext`` that provides observable keyboard state that keeps the keyboard UI up to date. It has a ``KeyboardContext/textDocumentProxy`` reference, lets you get and set ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc. It also has auto-persisted ``KeyboardContext/settings-swift.property``. 
 
-Other namespaces define other context types, like ``AutocompleteContext``, ``CalloutContext``, ``DictationContext``, etc. They will all automatically update the keyboard view when they're observed, and provide namespace-specific settings.
+Other namespaces define separate contexts, like ``AutocompleteContext``, ``KeyboardCalloutContext``, ``DictationContext``, etc. They will all automatically update the keyboard view when modified, and provide namespace-specific settings.
 
 KeyboardKit automatically creates instances of these classes and injects them into ``KeyboardInputViewController/state``, and syncs with the controller when needed.
 
@@ -108,12 +108,39 @@ KeyboardView(
 )
 ```
 
-Note that some content types, like the emoji keyboard and the collapsed content, requires KeyboardKit Pro to be handled automatically. Without KeyboardKit Pro, you must manually implement what to show and when to show it.
-
 Just return `{ $0.view }` or `{ params in params.view }` to use the standard view, or return a custom view for any part of the keyboard. Each view builder provides you with view-related parameters with contextual information.
 
+Note that some views, like the emoji keyboard and the collapsed content, requires KeyboardKit Pro. Without KeyboardKit Pro, you must manually implement what to show and when to show it.
 
-## Essential Views
+
+
+## Keyboard View Capabilities
+
+The ``KeyboardView`` will automatically: 
+
+* Display the ``KeyboardContext/locale``, if unlocked by KeyboardKit Pro or manually implemented.
+* Render the ``KeyboardLayout`` provided by the ``KeyboardLayoutService``.
+* Style the keyboard with the styles provided by the ``KeyboardStyleService``.
+* Display input and action callouts when the user interacts with the keyboard keys.
+* Handle gestures, trigger actions, and handle all other complex keyboard operations.
+* React to changes in ``KeyboardContext`` and its ``KeyboardContext/settings-swift.property``, as well as all other contexts & settings.
+
+As a general rule, look in the various context and settings classes for things that you can modify. KeyboardKit will increase its use of environment values and view extensions over time, which will make things even more discoverable than they currently are.
+
+
+## Keyboard View Size
+
+The ``KeyboardView`` will by default take up as much space as it needs, and resize the keyboard extension frame accordingly. It will:
+
+* Collapse when ``KeyboardContext/isKeyboardCollapsed`` is set, e.g. when connecting an external keyboard.
+* Render a floating keyboard when ``KeyboardContext/isKeyboardFloating`` is active, e.g. when enabling it on iPad. 
+* Dock to any edge that is applied with ``SwiftUICore/View/keyboardDockEdge(_:)``, which by default uses ``Keyboard/Settings/keyboardDockEdge``.
+
+You can also modify the resulting keyboard size by changing the height of the ``KeyboardLayout`` rows.
+
+
+
+## Other Essential Views
 
 The ``Keyboard`` namespace has a lot of other standard views, styles, and view-related types to make it easy to build great keyboards.
 
@@ -181,10 +208,6 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
 Most KeyboardKit views have a corresponding style & style modifier that can be applied to an individual view or an entire view hierarchy. You can e.g. apply a ``SwiftUICore/View/autocompleteToolbarStyle(_:)`` to the ``KeyboardView`` to customize the callout style within the view.
 
 The ``KeyboardView`` however requires a ``KeyboardStyleService`` to style its buttons, since this requires dynamic styling on a per-button basis. You can however apply styles to the views you return in the ``KeyboardView``'s `buttonView` view builder.
-    
-See the <doc:Styling-Article> article for more information.
-    
-    
     
 ---
 
