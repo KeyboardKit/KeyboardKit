@@ -15,7 +15,7 @@ class KeyboardHostingController<Content: View>: UIHostingController<Content> {
     
     /// Add this hosting controller to a keyboard input view
     /// controller, with every required resizing constraints.
-    public func add(to controller: KeyboardInputViewController) {
+    func add(to controller: KeyboardInputViewController) {
         controller.addChild(self)
         controller.view.addSubview(view)
         didMove(toParent: controller)
@@ -36,7 +36,7 @@ class KeyboardHostingController<Content: View>: UIHostingController<Content> {
         }
     }
     
-    public override func viewWillLayoutSubviews() {
+    override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         updateViewConstraints()
     }
