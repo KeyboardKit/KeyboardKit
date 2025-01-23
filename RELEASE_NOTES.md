@@ -36,6 +36,7 @@ From now on, migrate to the last 9.0.x version before you migrate to the latest 
 ### 🗑️ Deprecations
 
 * All migration deprecations have been removed.
+* `Gestures.SpaceLongPressBehavior` and `Gestures.SpaceDragSensitivity` are moved to `Keyboard`. 
 
 
 

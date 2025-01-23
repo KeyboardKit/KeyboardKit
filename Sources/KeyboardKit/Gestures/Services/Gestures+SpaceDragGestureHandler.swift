@@ -12,7 +12,7 @@ public extension DragGestureHandler where Self == Gestures.SpaceDragGestureHandl
 
     /// Create a ``Gestures/SpaceDragGestureHandler``.
     static func spaceDrag(
-        sensitivity: Gestures.SpaceDragSensitivity = .medium,
+        sensitivity: Keyboard.SpaceDragSensitivity = .medium,
         verticalThreshold: Double = 50,
         action: @escaping (Int) -> Void
     ) -> Self {
@@ -43,7 +43,7 @@ public extension Gestures {
         ///   - verticalThreshold: The vertical threshold in points, by default `50`.
         ///   - action: The action to perform when the offset changes.
         public init(
-            sensitivity: Gestures.SpaceDragSensitivity = .medium,
+            sensitivity: Keyboard.SpaceDragSensitivity = .medium,
             verticalThreshold: Double = 50,
             action: @escaping (Int) -> Void
         ) {
@@ -54,7 +54,7 @@ public extension Gestures {
         
         
         /// The drag sensitivity.
-        public var sensitivity: Gestures.SpaceDragSensitivity
+        public var sensitivity: Keyboard.SpaceDragSensitivity
         
         /// The vertical threshold in points.
         public var verticalThreshold: Double

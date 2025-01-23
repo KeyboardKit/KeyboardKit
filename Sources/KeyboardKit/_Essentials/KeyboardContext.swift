@@ -164,9 +164,9 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var screenSize = CGSize.zero
 
-    /// The space long press behavior to use.
+    /// The space long press behavior to use, by default ``Keyboard/SpaceLongPressBehavior/moveInputCursor``.
     @Published
-    public var spaceLongPressBehavior = Gestures.SpaceLongPressBehavior.moveInputCursor
+    public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
 
 
     #if os(iOS) || os(tvOS) || os(visionOS)

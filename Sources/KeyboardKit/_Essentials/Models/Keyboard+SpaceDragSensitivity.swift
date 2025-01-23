@@ -1,5 +1,5 @@
 //
-//  Gestures+SpaceDragSensitivity.swift
+//  Keyboard+SpaceDragSensitivity.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-10.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Gestures {
+public extension Keyboard {
     
     /// This enum defines supported space drag sensitivities.
     ///
@@ -21,7 +21,7 @@ public extension Gestures {
     }
 }
 
-public extension Gestures.SpaceDragSensitivity {
+public extension Keyboard.SpaceDragSensitivity {
     
     var id: Int { points }
     

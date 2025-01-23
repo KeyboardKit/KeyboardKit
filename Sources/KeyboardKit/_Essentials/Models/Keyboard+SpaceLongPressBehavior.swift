@@ -1,5 +1,5 @@
 //
-//  Gestures+SpaceLongPressBehavior.swift
+//  Keyboard+SpaceLongPressBehavior.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-02-21.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension Gestures {
+public extension Keyboard {
     
     /// This enum defines various space long press actions.
     enum SpaceLongPressBehavior: Codable {
