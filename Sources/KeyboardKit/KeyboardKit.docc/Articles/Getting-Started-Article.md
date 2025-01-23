@@ -106,7 +106,7 @@ To set up the keyboard for your app, just override ``KeyboardInputViewController
     
         override func viewDidLoad() {
             super.viewDidLoad()
-            setup(for: .keyboardKitDemo) { result in
+            setupPro(for: .keyboardKitDemo) { result in
                 // This is called when the license registration completes
             }
         }

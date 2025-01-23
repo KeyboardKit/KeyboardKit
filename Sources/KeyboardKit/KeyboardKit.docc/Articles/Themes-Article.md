@@ -53,7 +53,7 @@ You can inherit ``KeyboardStyle/ThemeBasedStyleService`` to customize themes eve
 
 ## Settings
 
-KeyboardKit has a ``KeyboardTheme``-specific ``KeyboardTheme/Settings`` type that defines auto-persisted settings. The ``KeyboardThemeContext`` ``KeyboardThemeContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
+KeyboardKit has a ``KeyboardTheme``-specific ``KeyboardTheme/Settings`` type with auto-persisted settings. ``KeyboardThemeContext`` ``KeyboardThemeContext/settings-swift.property`` is used by default within KeyboardKit.
 
 
 

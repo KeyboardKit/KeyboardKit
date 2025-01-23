@@ -36,7 +36,7 @@ To sync data between the main app and its keyboard, you have to create an App Gr
 
 You can also use ``Keyboard/Settings/setupStore(forAppGroup:keyPrefix:)`` to set up a store for an App Group, without using a ``KeyboardApp``.
 
-> Important: The main app will always write data to an App Group in a way that is instantly available to the keyboard. A keyboard must however have Full Access enabled for changes to be immediately synced to the app. When Full Access is disabled, the sync will be less reliable.
+> Important: The main app will always write data to an App Group in a way that is instantly available to the keyboard. A keyboard must however have Full Access enabled for changes to immediately sync with the app. When Full Access is disabled, syncing is less reliable.
 
 
 

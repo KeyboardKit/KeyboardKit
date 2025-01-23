@@ -51,7 +51,7 @@ KeyboardKit injects a ``KeyboardFeedback/StandardFeedbackService``  instance int
 
 ## Settings
 
-KeyboardKit has an ``KeyboardFeedback``-specific ``KeyboardFeedback/Settings`` type that defines auto-persisted settings. The ``KeyboardFeedbackContext`` ``KeyboardFeedbackContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
+KeyboardKit has an ``KeyboardFeedback``-specific ``KeyboardFeedback/Settings`` type with auto-persisted settings. ``KeyboardFeedbackContext`` ``KeyboardFeedbackContext/settings-swift.property`` is used by default within KeyboardKit.
 
 
 

@@ -45,7 +45,7 @@ KeyboardKit doesn't have a standard autocomplete service, as it has for other se
 
 ## Settings
 
-KeyboardKit has an ``Autocomplete``-specific ``Autocomplete/Settings`` type that defines auto-persisted settings. The ``AutocompleteContext``'s ``AutocompleteContext/settings-swift.property`` property is used as the main settings instance within KeyboardKit.
+KeyboardKit has an ``Autocomplete``-specific ``Autocomplete/Settings`` type with auto-persisted settings. ``AutocompleteContext`` ``AutocompleteContext/settings-swift.property`` is used by default within KeyboardKit.
 
 
 

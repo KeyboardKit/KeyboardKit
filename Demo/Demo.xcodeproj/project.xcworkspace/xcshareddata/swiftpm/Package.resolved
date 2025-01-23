@@ -1,4 +1,5 @@
 {
+  "originHash" : "22964a358f199a59ad16018a19f61c1a4d898478575a8b59a7883eda0dd9d62b",
   "pins" : [
     {
       "identity" : "keyboardkitpro",
@@ -8,16 +9,7 @@
         "revision" : "4a072c17ce264341d2f3d2981555e038c2f8e265",
         "version" : "9.0.6"
       }
-    },
-    {
-      "identity" : "mockingkit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/danielsaidi/MockingKit.git",
-      "state" : {
-        "revision" : "a1096bb9b149b70147e6fb8294f720989edf72ae",
-        "version" : "1.5.0"
-      }
     }
   ],
-  "version" : 2
+  "version" : 3
 }
