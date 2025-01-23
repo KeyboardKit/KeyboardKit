@@ -3,7 +3,7 @@
 //  EmojiKit
 //
 //  Created by Daniel Saidi on 2023-11-02.
-//  Copyright © 2023-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
@@ -12,7 +12,7 @@ public extension Emoji {
 
     /// Get all available emojis from all categories.
     static var all: [Emoji] {
-        EmojiCategory.standardWithoutFrequent.flatMap {
+        EmojiCategory.standard.flatMap {
             $0.emojis
         }
     }

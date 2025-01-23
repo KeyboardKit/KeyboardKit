@@ -3,7 +3,7 @@
 //  EmojiKit
 //
 //  Created by Daniel Saidi on 2022-12-12.
-//  Copyright © 2022-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
@@ -16,6 +16,7 @@ public extension Emoji {
         in locale: Locale = .current
     ) -> Bool {
         guard query.hasContent else { return true }
+        if self.char == query { return true }
         if unicodeName.matches(query) { return true }
         return localizedName(in: locale).matches(query)
     }

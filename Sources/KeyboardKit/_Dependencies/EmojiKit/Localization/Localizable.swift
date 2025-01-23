@@ -3,12 +3,11 @@
 //  EmojiKit
 //
 //  Created by Daniel Saidi on 2022-12-12.
-//  Copyright © 2022-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2024 Daniel Saidi. All rights reserved.
 //
 
 import Foundation
 
-/// This protocol is implemented by resource-localized types.
 public protocol Localizable {
     
     /// The `Localizable.strings` key to use when localizing.

@@ -3,23 +3,27 @@
 //  EmojiKit
 //
 //  Created by Daniel Saidi on 2024-08-23.
-//  Copyright © 2024-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2024 Daniel Saidi. All rights reserved.
 //
 
 import SwiftUI
 
 public extension EmojiCategory {
 
-    /// A persisted list of emojis, that will be used by the
-    /// ``EmojiCategory/favorites`` category.
+    /// A persisted list of emojis, used by ``favorites``.
     static var favoriteEmojis: [Emoji] {
         get { getPersistedEmojis(for: .favorites) }
         set { setPersistedEmojis(newValue, for: .favorites) }
     }
-
-    /// A persisted list of emojis, that will be used by the
-    /// ``EmojiCategory/frequent`` category.
+    
+    /// A persisted list of emojis, used by ``frequent``.
     static var frequentEmojis: [Emoji] {
+        get { getPersistedEmojis(for: .frequent) }
+        set { setPersistedEmojis(newValue, for: .frequent) }
+    }
+    
+    /// A persisted list of emojis, used by ``recent``.
+    static var recentEmojis: [Emoji] {
         get { getPersistedEmojis(for: .frequent) }
         set { setPersistedEmojis(newValue, for: .frequent) }
     }
@@ -63,7 +67,7 @@ public extension EmojiCategory {
     /// This enum defines all standard, persisted categories.
     enum PersistedCategory: Identifiable, Equatable {
 
-        case favorites, frequent, custom(name: String)
+        case favorites, frequent, recent, custom(name: String)
     }
 }
 
@@ -75,6 +79,7 @@ public extension EmojiCategory.PersistedCategory {
         switch self {
         case .favorites: "favorites"
         case .frequent: "frequent"
+        case .recent: "recent"
         case .custom(let name): name
         }
     }
