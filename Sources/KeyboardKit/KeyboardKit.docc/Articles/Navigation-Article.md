@@ -24,22 +24,24 @@ KeyboardKit therefore provides ways to open URLs from a keyboard extension, with
 ## How to...
 
 
-### Open a URL from a keyboard extension
+### ...open a URL from a keyboard extension
 
 The best way to open a URL from a keyboard extension, where you can't access `UIApplication.shared` is to use a SwiftUI `Link`. You can also trigger a ``KeyboardAction/url(_:id:)`` action and let the main ``Keyboard/Services/actionHandler`` in ``KeyboardInputViewController/services`` handle it.
 
 
 
-### Open System Settings
+### ...open System Settings
 
 KeyboardKit defines a ``Foundation/URL/systemSettings`` URL, which can be used to open your app in System Settings. If your keyboard navigates to the System Settings root instead of your app, try to add an empty settings bundle to your app. 
 
 
-### Navigate back to the keyboard from the app
+### ...navigate back to the keyboard from the app
 
-[KeyboardKit Pro][Pro] used to have a **PreviousAppNavigator** that could navigate back to the keyboard (in the previously open app) from the main app. As this was rejected by Apple, an **LSApplicationWorkspace** alternative was implemented, which was also rejected.
+If a keyboard opens the main app to perform a quick operation, it may want to automatically return to the keyboard once the operation is done. One such example is when performing dictation.
 
-Since the lack of this navigation results in bad UX, for instance when opening the app to perform an action then return to the keyboard, KeyboardKit Pro provides a ``KeyboardHostApplication`` that lets you navigate back to the most common apps. 
+This is however not easy, since Apple continues to restrict the ways in which apps can open other apps. Previous ways to implement this have either stopped working, or will be rejected by Apple when you push them to the App Store.
+
+Since being able to return to the keyboard from the main app is an important part of some operations, KeyboardKit Pro has therefore added a ``KeyboardHostApplication`` that lets you navigate back to the most common apps. 
 
 You can read more in the <doc:Host-Article> article.
 

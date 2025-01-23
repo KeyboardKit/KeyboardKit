@@ -55,7 +55,7 @@ KeyboardKit automatically creates an instance of ``KeyboardAction/StandardAction
 ## How to... 
 
 
-### Handle keyboard actions 
+### ...handle keyboard actions 
 
 KeyboardKit automatically triggers ``KeyboardAction`` events when a user interacts with the keyboard or when certain events happen. Actions are by default handler with the main ``Keyboard/Services/actionHandler``, which you can replace to customize how actions are handled. 
 
@@ -79,7 +79,7 @@ Text("Button")
 ``KeyboardView`` applies this modifier to all its buttons, to make them support gestures for press, release, long press, repeat, etc.
 
 
-### Handle autocomplete suggestions
+### ...handle autocomplete suggestions
 
 A ``KeyboardActionHandler`` can also handle ``Autocomplete``.``Autocomplete/Suggestion`` values, which are for instance what happens when a user taps a suggestion in an  ``Autocomplete``.``Autocomplete/Toolbar``:
 
@@ -93,7 +93,7 @@ func handle(_ suggestion: Autocomplete.Suggestion, with handler: KeyboardActionH
 This will by default insert the suggestion into the text document proxy. You can customize this behavior with a custom action handler.
 
 
-### Create a custom action handler
+### ...create a custom action handler
 
 You can create a custom ``KeyboardActionHandler`` to customize how certain actions are handled, and to handle actions that don't have a default behavior, like ``KeyboardAction/image``, ``KeyboardAction/command``, etc. 
 

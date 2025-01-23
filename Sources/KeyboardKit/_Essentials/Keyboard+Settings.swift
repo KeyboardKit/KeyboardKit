@@ -55,18 +55,18 @@ public extension Keyboard {
         @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
         public var addedLocaleIdentifiersValues: Keyboard.StorageValue<[String]> = .init(value: [])
         
-        /// Whether autocapitalization is enabled.
+        /// Whether auto-capitalization is enabled.
         @AppStorage("\(settingsPrefix)isAutocapitalizationEnabled", store: .keyboardSettings)
         public var isAutocapitalizationEnabled = true {
             didSet { onAutocapitalizationEnabledChanged() }
         }
 
-        /// Whether to auto-collapse the keyboard whenever a
-        /// user connects an external keyboard.
+        /// Whether to auto-collapse the keyboard when users
+        /// connect an external keyboard.
         @AppStorage("\(settingsPrefix)`isKeyboardAutoCollapseEnabled`", store: .keyboardSettings)
         public var isKeyboardAutoCollapseEnabled = false
         
-        /// An optional keyboard dock edge.
+        /// An optional edge to which the keyboard is docked.
         @AppStorage("\(settingsPrefix)`keyboardDockEdge`", store: .keyboardSettings)
         public var keyboardDockEdge: Keyboard.DockEdge?
 

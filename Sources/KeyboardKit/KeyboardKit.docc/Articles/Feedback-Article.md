@@ -61,14 +61,14 @@ KeyboardKit has an ``KeyboardFeedback``-specific ``KeyboardFeedback/Settings`` t
 ## How to...
 
 
-### Trigger feedback
+### ...trigger keyboard feedback
 
 You can trigger ``KeyboardFeedback/Audio`` & ``KeyboardFeedback/Haptic`` feedback with a ``KeyboardFeedbackService`` or a ``KeyboardActionHandler``. The standard action handler uses a nested feedback service by default.
 
 To trigger feedback, just use ``KeyboardFeedbackService/triggerAudioFeedback(_:)`` and ``KeyboardFeedbackService/triggerHapticFeedback(_:)``. The standard action handler has more ways to customize which feedback to trigger for specific ``KeyboardAction`` gestures.
 
 
-### Customize feedback
+### ...customize keyboard feedback
 
 You can configure the ``Keyboard/State/feedbackContext``  in the main ``KeyboardInputViewController/state`` to configure the feedback behavior. For instance, this would customize the audio feedback for input keys, then disable haptic feedback:
 
@@ -102,7 +102,7 @@ class KeyboardViewController: KeyboardInputViewController {
 Since the configuration is observable, any changes will automatically cause the keyboard to update, e.g. if you have feedback toggles.
 
 
-### Define custom audio feedback
+### ...define custom audio feedback
 
 The ``KeyboardFeedback/Audio`` feedback type uses **AudioServices**, which means that you can use any system audio (see [this site](https://iphonedev.wiki/index.php/AudioServices) for info) as feedback:
 

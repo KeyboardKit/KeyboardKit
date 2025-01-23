@@ -139,7 +139,7 @@ KeyboardKit Pro adds dictation-related views to the ``Dictation`` namespace, to 
 ## How to...
 
 
-### Perform dictation
+### ...perform dictation
 
 Dictation works differently in apps, where microphone access is available, and in keyboard extensions, where mic access is unavailable. You can use a ``DictationService`` to perform dictation from both a keyboard extension, as well as in the main app.
 
@@ -155,7 +155,7 @@ The user can always tap the top-leading back button to return to the keyboard fr
 
 
 
-### Configure your app to handle dictation
+### ...configure your app to handle dictation
 
 This section describes how to set up an app to start dictation from its keyboard extension and perform the dictation in the main app.
 

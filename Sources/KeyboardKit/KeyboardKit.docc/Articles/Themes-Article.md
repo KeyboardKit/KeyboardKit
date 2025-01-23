@@ -197,7 +197,7 @@ KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it e
 ## How to...
 
 
-### Create a custom theme
+### ...create a custom theme
 
 Since a ``KeyboardTheme`` is just a struct, you can easily create your own custom themes by just defining new static theme value types. 
 

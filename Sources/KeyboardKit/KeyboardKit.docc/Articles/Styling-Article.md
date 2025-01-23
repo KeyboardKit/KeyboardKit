@@ -121,7 +121,7 @@ You can apply themes with a style-specific ``KeyboardStyleService``. Future vers
 ## How to...
 
 
-### Create a custom style service
+### ...create a custom style service
 
 You can create a custom style service to customize styles in any way you want. You can implement ``KeyboardStyleService`` from scratch, or inherit and customize ``KeyboardStyle/StandardStyleService``:
 

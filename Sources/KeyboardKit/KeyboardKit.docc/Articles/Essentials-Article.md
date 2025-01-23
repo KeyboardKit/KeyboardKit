@@ -327,12 +327,12 @@ See the <doc:Previews-Article> article for more information.
 
 ## How to...
 
-### Replace the standard keyboard view
+### ...replace the standard keyboard view
 
 KeyboardKit makes it super simple to replace or customize the standard ``KeyboardView``. The <doc:Getting-Started-Article> article has information about how you can use ``KeyboardInputViewController/viewWillSetupKeyboardView()`` to customize the keyboard view.
 
 
-### Render unsupported keyboard types
+### ...render unsupported keyboard types
 
 While ``KeyboardView`` will render most ``Keyboard/KeyboardType``s, some don't have a standard visual representation. For instance setting the main ``KeyboardContext/keyboardType`` to ``Keyboard/KeyboardType/images`` has no effect if you use the standard ``KeyboardView``.
 
@@ -363,7 +363,7 @@ struct CustomKeyboardView: View {
 You can add a ``KeyboardAction/keyboardType(_:)`` action item to your keyboard to automatically switch to your custom keyboard when its tapped.
 
 
-### Implement a custom keyboard type
+### ...implement a custom keyboard type
 
 You can implement a custom ``Keyboard/KeyboardType`` with the ``Keyboard/KeyboardType/custom(named:)`` type builder, then handle it by checking if the main  ``KeyboardContext/keyboardType`` matches your custom type:
 

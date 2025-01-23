@@ -75,7 +75,7 @@ See ``KeyboardLayout`` and its ``KeyboardLayout/Item`` in the KeyboardKit Pro do
 
 ## How to...
 
-### Create a custom layout service
+### ...create a custom layout service
 
 You can create a custom ``KeyboardLayoutService`` to customize the layout for a certain locale, or define a fully custom layout.
 
@@ -109,7 +109,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 
 
-### Customize a localized Pro service
+### ...customize a localized Pro service
 
 Service that inherit ``KeyboardLayout/StandardLayoutService`` can use ``KeyboardLayoutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedLayoutService(_:)`` function to register a custom service for a certain locale.
 

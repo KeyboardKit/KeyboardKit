@@ -96,7 +96,7 @@ let service = try KeyboardCallout.ProCalloutService.Swedish()
 ## How to... 
 
 
-### Show input and action callouts
+### ...show input and action callouts
 
 The ``KeyboardView`` will automatically apply the proper view extensions to make input and action callouts work. For a custom view, just apply a ``SwiftUICore/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` modifier to it to make it present callouts.
 
@@ -104,7 +104,7 @@ This binds a ``KeyboardCalloutContext`` to the view and applies a ``KeyboardCall
 
 
 
-### Create a custom callout service
+### ...create a custom callout service
 
 You can create a custom ``KeyboardCalloutService`` to customize which secondary actions to show for any ``KeyboardAction``. 
 
@@ -137,7 +137,7 @@ This will make KeyboardKit use your custom implementation instead of the standar
 
 
 
-### Customize a localized Pro service
+### ...customize a localized Pro service
 
 Service that inherit ``KeyboardCallout/StandardCalloutService`` can use ``KeyboardCalloutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)`` function to register a custom service for a certain locale.
 

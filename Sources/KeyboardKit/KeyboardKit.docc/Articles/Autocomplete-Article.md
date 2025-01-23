@@ -137,7 +137,7 @@ You can also let your users select which next word prediction request to use, wi
 ## How to...
 
 
-### Perform autocomplete
+### ...perform autocomplete
 
 The ``KeyboardInputViewController`` will automatically call ``KeyboardController/performAutocomplete()`` whenever the keyboard text changes, then update the ``Keyboard/State/autocompleteContext`` with the result from the ``Keyboard/Services/autocompleteService``.
 
@@ -147,7 +147,7 @@ The ``KeyboardView`` will automatically add an ``Autocomplete``.``Autocomplete/T
 
 
 
-### Create a custom autocomplete service
+### ...create a custom autocomplete service
 
 You can create a custom autocomplete service to customize the standard autocomplete behavior or integrate with 3rd party services. You can implement ``AutocompleteService`` from scratch, or inherit and customize any [KeyboardKit Pro][Pro] service, like this:
 
@@ -180,7 +180,7 @@ class KeyboardViewController: KeyboardInputViewController {
 This will make KeyboardKit use your custom autocomplete service instead of the standard one.
 
 
-### Let users use their own next word prediction service
+### ...let users register use custom next word prediction
 
 You can let your users pick a ``Autocomplete/Settings/nextWordPredictionRequestType`` and specify a ``Autocomplete/Settings/nextWordPredictionRequestApiKey`` to let them use their own API key and pay for their own consumption. 
 

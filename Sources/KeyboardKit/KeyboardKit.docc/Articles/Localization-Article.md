@@ -88,7 +88,7 @@ After setting up KeyboardKit Pro with your license key, as described in the <doc
 ## How to...
 
 
-### Get, set and pick locales 
+### ...get, set and pick locales 
 
 The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and the available ``KeyboardContext/locales``. You can also use the context's ``KeyboardContext/settings-swift.property`` to set which of the available locales to explicitly add to the keyboard.
 
@@ -97,26 +97,14 @@ If ``KeyboardContext/locales`` or the ``KeyboardContext/settings-swift.property`
 You can automatically add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` button, or add a context menu to any view with the ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)`` view modifier.
 
 
-### Change the primary language
+### ...change the primary language
 
 Setting the ``KeyboardContext`` ``KeyboardContext/locale`` will update the controller's **primaryLanguage**, which controls things like spell checking and text direction. This also sets the keyboard's language subtitle in the keyboard switcher.
 
 > Note: The `primaryLanguage` property seems to always return `nil`, even after it has been set properly (and works). This can be a bit confusing, but just check that the proper language is displayed in the system keyboard switcher.
 
 
-### Use LTR & RTL locales
-
-KeyboardKit supports LTR (Left-To-Right) & RTL (Right-To-Left) locales if you use the ``KeyboardContext``. Just change the locale as explained above, and KeyboardKit will automatically adjust the text direction, spell checking, etc.
-
-If you want to use a single RTL ``Foundation/Locale`` without using KeyboardKit, you can adjust the **Info.plist** file in your keyboard extension like this:
-
-* Set **PrefersRightToLeft** to **1**.
-* Set **PrimaryLanguage** to the language code of your locale, e.g. **fa** for Perian (Farsi).
-
-Just be aware that setting the primary language like this may affect external keyboard mappings if you don't set the primary language.
-
-
-### Translate localized content
+### ...translate localized content
 
 Each ``Foundation/Locale/keyboardKitSupported`` locale has a localized file in **Resources/[id].lproj** with texts that are applied with the ``KKL10n`` enum. 
 
@@ -135,7 +123,19 @@ let translation = KKL10n.keyboardTypeNumeric.text(for: .spanish)
 Besides localized strings, you can use the context ``KeyboardContext/localePresentationLocale`` to set how locales are translated for a keyboard.
 
 
-### Add more locales
+### ...use LTR & RTL locales
+
+KeyboardKit supports LTR (Left-To-Right) & RTL (Right-To-Left) locales. Just change the locale as shown above, and KeyboardKit will automatically adjust the text direction, spell checking, etc.
+
+If you want to use a single, fixed RTL locale, you can adjust the keyboard extension's **Info.plist** file like this:
+
+* Set **PrefersRightToLeft** to **1**.
+* Set **PrimaryLanguage** to the language code of your locale, e.g. **fa** for Perian (Farsi).
+
+Just be aware that setting the primary language like this may affect external keyboard mappings if you don't set the primary language.
+
+
+### ...add support for more locales
 
 If you need a locale that KeyboardKit doesn't support yet, like Japanese or Simplified Chinese, you can implement a custom ``KeyboardView`` configuration to support it, or reach out to add support for a new ``Foundation/Locale``.
 
