@@ -13,7 +13,7 @@ public extension Keyboard {
     /// This view renders standard system space key content.
     ///
     /// This view starts with showing a provided `localeText`,
-    /// then fades to the provided `spaceText` or `spaceView`.
+    /// that fades to the provided `spaceText` or `spaceView`.
     struct SpaceContent<SpaceView: View>: View {
         
         /// Create a space key content view.
@@ -102,17 +102,22 @@ private extension Keyboard.SpaceContent {
 
 #Preview {
     
-    Group {
-        Keyboard.SpaceContent(
-            localeText: Locale.english.localizedName ?? "",
-            spaceText: KKL10n.space.text(for: .english)
-        )
-        Keyboard.SpaceContent(
-            localeText: Locale.spanish.localizedName ?? "",
-            spaceView: Image.keyboardGlobe
-        )
+    VStack {
+        Group {
+            Keyboard.SpaceContent(
+                localeText: Locale.english.localizedName ?? "",
+                spaceText: KKL10n.space.text(for: .english)
+            )
+            Keyboard.SpaceContent(
+                localeText: Locale.spanish.localizedName ?? "",
+                spaceView: Image.keyboardGlobe
+            )
+        }
+        .frame(maxWidth: .infinity, minHeight: 44)
+        .background(Color.white)
+        .cornerRadius(10)
+        .shadow(radius: 2, y: 2)
     }
     .padding()
-    .background(Color.red)
-    .cornerRadius(10)
+    .background(Color.keyboardBackground)
 }

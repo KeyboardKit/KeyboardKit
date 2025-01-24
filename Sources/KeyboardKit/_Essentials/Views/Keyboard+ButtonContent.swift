@@ -70,7 +70,7 @@ private extension Keyboard.ButtonContent {
     
     var spaceView: some View {
         let text = styleService.buttonText(for: action) ?? ""
-        let showLocale = keyboardContext.locales.count > 1
+        let showLocale = keyboardContext.hasMultipleEnabledLocales
         let localeName = keyboardContext.locale.localizedLanguageName ?? ""
         return Keyboard.SpaceContent(
             localeText: showLocale ? localeName : text,
@@ -103,7 +103,7 @@ private extension Keyboard.ButtonContent {
             styleService: .preview,
             keyboardContext: multiLocale ? multiLocaleContext : .preview
         )
-        .background(Color.gray)
+        
     }
     
     return VStack {
@@ -116,4 +116,6 @@ private extension Keyboard.ButtonContent {
         preview(for: .character("PascalCased"))
         preview(for: .character("lowercased"))
     }
+    .padding()
+    .background(Color.keyboardBackground)
 }

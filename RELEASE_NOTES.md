@@ -17,12 +17,17 @@ This version removes KeyboardKit 8 migration support.
 
 From now on, migrate to the last 9.0.x version before you migrate to the latest version.
 
+This version makes it possible to dock the keyboard to the leading or trailing edge, and to add a locale context menu to the spacebar while still supporting dragging to move the input cursor.  
+
 ### ✨ Features
 
 * `Keyboard.DockEdge` is a new value type.
-* `Keyboard.Settings` has a new `keyboardDockEdge` value.
-* `KeyboardView` can now be docked to any horizontal edge.
-* `View` has a new `.keyboardDockEdge(...)` view modifier.
+* `Keyboard.Settings` has a new `keyboardDockEdge` that applies keyboard docking.
+* `Keyboard.SpaceLongPressBehavior` has a new `.moveInputCursorWithLocaleSwitcher`.
+* `KeyboardContext` has new `enabledLocales` that usess `addedLocales` or `locales`.
+* `KeyboardView` can now docks to any horizontal edge, if `keyboardDockEdge` is set.
+* `Locale` has a new `shortDisplayName` that returns the language code or identifier.
+* `View` has a new `.keyboardDockEdge(...)` modifier, which can apply a custom value.
 
 ### 👑 Pro
 
@@ -48,7 +53,7 @@ From now on, migrate to the last 9.0.x version before you migrate to the latest 
 ### 🗑️ Deprecations
 
 * All migration deprecations have been removed.
-* `Gestures.SpaceLongPressBehavior` and `Gestures.SpaceDragSensitivity` are moved to `Keyboard`. 
+* `Gestures` space models have been moved to `Keyboard`. 
 
 
 

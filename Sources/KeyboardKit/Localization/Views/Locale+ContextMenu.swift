@@ -112,7 +112,7 @@ private extension Locale.ContextMenu {
     var menuLocales: [Locale] {
         let context = keyboardContext
         let presentationLocale = context.localePresentationLocale
-        let locales = self.locales ?? context.selectableLocales
+        let locales = self.locales ?? context.enabledLocales
         return locales.sorted(in: presentationLocale, insertFirst: context.locale)
     }
     

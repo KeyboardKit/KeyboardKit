@@ -444,6 +444,12 @@ private extension KeyboardView {
 
         var controller: KeyboardInputViewController = {
             let controller = KeyboardInputViewController.preview
+            
+            let context = controller.state.keyboardContext
+            context.locale = .english
+            context.settings.addedLocales = [.english, .french]
+            context.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
+            
             controller.state.autocompleteContext.suggestions = [
                 .init(text: "Foo"),
                 .init(text: "Bar", type: .autocorrect),
@@ -494,22 +500,6 @@ private extension KeyboardView {
                         }
 
                         keyboard
-
-                        keyboard.frame(width: 300)
-
-                        KeyboardView(
-                            layout: controller.services
-                                .layoutService
-                                .keyboardLayout(for: .preview)
-                                .bottomRowLayout,
-                            state: controller.state,
-                            services: controller.services,
-                            buttonContent: { $0.view },
-                            buttonView: { $0.view },
-                            collapsedView: { $0.view },
-                            emojiKeyboard: { $0.view },
-                            toolbar: { _ in EmptyView() }
-                        )
 
                         KeyboardView(
                             state: controller.state,

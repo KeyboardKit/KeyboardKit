@@ -87,9 +87,13 @@ private extension KeyboardViewController {
 
     /// Make demo-specific state changes.
     func setupDemoState() {
+        
+        /// 💡 Enable more locales for the context.
+        state.keyboardContext.settings.addedLocales = [.english, .swedish]
 
         /// 💡 Configure the space key's long press behavior.
-        state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
+        // state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
+        state.keyboardContext.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
         // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
         /// 💡 Enable haptic feedback.

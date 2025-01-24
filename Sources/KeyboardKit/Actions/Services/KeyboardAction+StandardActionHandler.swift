@@ -646,7 +646,8 @@ private extension KeyboardAction.StandardActionHandler {
         to currentLocation: CGPoint
     ) {
         guard action == .space else { return }
-        guard keyboardContext.spaceLongPressBehavior == .moveInputCursor else { return }
+        let behavior = keyboardContext.spaceLongPressBehavior
+        guard behavior.shouldMoveInputCursor else { return }
         guard keyboardContext.isSpaceDragGestureActive else { return }
         let activationLocation = spaceDragActivationLocation ?? currentLocation
         spaceDragActivationLocation = activationLocation

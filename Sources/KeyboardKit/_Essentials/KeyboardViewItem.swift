@@ -95,6 +95,30 @@ public struct KeyboardViewItem<Content: View>: View {
             isPressed: $isPressed,
             isGestureAutoCancellable: isGestureAutoCancellable
         )
+        .overlay(alignment: .bottomTrailing) {
+            spacebarLocaleContextMenuOverlay
+        }
+    }
+    
+    @ViewBuilder
+    // TODO: Extract this to a separate view.
+    private var spacebarLocaleContextMenuOverlay: some View {
+        if item.action == .space && keyboardContext.shouldAddLocaleContextMenuToSpaceBar {
+            let style = styleService.buttonStyle(for: .space, isPressed: false)
+            Text(keyboardContext.locale.shortDisplayName)
+                .font(.caption)
+                .textCase(.uppercase)
+                .foregroundStyle(style.foregroundColor ?? .primary)
+                .opacity(0.4)
+                .padding(.horizontal, 7)
+                .padding(.vertical, 5)
+                .frame(minWidth: 44, minHeight: 44, alignment: .bottomTrailing)
+                .localeContextMenu(for: keyboardContext) {
+                    actionHandler.handle(.release, on: .space)
+                    actionHandler.triggerFeedback(for: .press, on: .space)
+                }
+                .padding(item.edgeInsets)
+        }
     }
     
     private var contentOpacity: Double {
@@ -108,21 +132,40 @@ public struct KeyboardViewItem<Content: View>: View {
 
 #Preview {
     
-    KeyboardViewItem(
-        item: .init(
-            action: .backspace,
-            size: .init(width: .points(100), height: 100),
-            alignment: .bottomLeading,
-            edgeInsets: .init(horizontal: 10, vertical: 10)
-        ),
-        actionHandler: .preview,
-        styleService: .preview,
-        keyboardContext: .preview,
-        calloutContext: .preview,
-        keyboardWidth: 100,
-        inputWidth: 100,
-        isGestureAutoCancellable: false,
-        content: Text("HEJ")
-    )
-    .background(Color.red)
+    struct Preview: View {
+        
+        let action = KeyboardAction.space
+        
+        @State
+        var keyboardContext: KeyboardContext = {
+            let context = KeyboardContext()
+            context.locales = .keyboardKitSupported
+            context.settings.addedLocales = [.english, .swedish, .finnish]
+            context.localePresentationLocale = .swedish
+            context.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
+            return context
+        }()
+        
+        var body: some View {
+            KeyboardViewItem(
+                item: .init(
+                    action: action,
+                    size: .init(width: .points(100), height: 100),
+                    alignment: .bottomLeading,
+                    edgeInsets: .init(horizontal: 10, vertical: 10)
+                ),
+                actionHandler: .preview,
+                styleService: .preview,
+                keyboardContext: keyboardContext,
+                calloutContext: .preview,
+                keyboardWidth: 100,
+                inputWidth: 100,
+                isGestureAutoCancellable: false,
+                content: Text("HEJ")
+            )
+            .background(Color.red)
+        }
+    }
+    
+    return Preview()
 }

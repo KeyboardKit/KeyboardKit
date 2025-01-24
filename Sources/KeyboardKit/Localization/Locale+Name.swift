@@ -14,6 +14,13 @@ public extension Locale {
     var localizedName: String? {
         localizedName(in: self)
     }
+    
+    /// The short display name of this locale.
+    ///
+    /// This is the langauge code if any, or the identifier.
+    var shortDisplayName: String {
+        languageCode ?? identifier
+    }
 
     /// The full name of this locale in another locale.
     func localizedName(
