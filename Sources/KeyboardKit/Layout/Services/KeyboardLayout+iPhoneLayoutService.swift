@@ -60,8 +60,9 @@ extension KeyboardLayout {
         ) -> KeyboardLayout.ItemWidth {
             #if os(iOS) || os(tvOS) || os(visionOS)
             let rowCount = inputSet(for: context).rows.count
-            let isBottomRow = row == rowCount - 1
-            if isBottomRow && context.textDocumentProxy.keyboardType == .URL { return .available }
+            let isBottomRow = row == rowCount   // We have one more row than in the input set
+            let isUrlInput = context.textDocumentProxy.keyboardType == .URL
+            if isBottomRow && isUrlInput { return .available }
             #endif
             if isLastNumericInputRow(row, for: context) { return lastSymbolicInputWidth(for: context) }
             return .input
