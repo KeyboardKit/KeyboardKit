@@ -33,6 +33,10 @@ From now on, migrate to the last 9.0.x version before you migrate to the latest 
 
 * All emojis and emoji catetegories have been localized in Spanish.
 
+### 🐛 Bug Fixes
+
+* The URL keyboard now renders the input keys and bottom actions properly.
+
 ### 📄 Documentation
 
 * The documentation has been updated with more information and examples.
