@@ -24,6 +24,10 @@ From now on, migrate to the last 9.0.x version before you migrate to the latest 
 * `KeyboardView` can now be docked to any horizontal edge.
 * `View` has a new `.keyboardDockEdge(...)` view modifier.
 
+### 👑 Pro
+
+* The `iPadProLayoutService` now renders URL and email keyboards better.
+
 ### 💡 Adjustments
 
 * Many types now conform to `Codable`, `Sendable` and other essential protocols.

@@ -12,7 +12,7 @@ public extension Autocomplete {
 
     /// This enum defines all available next word prediction
     /// request types, for use in e.g. pickers.
-    enum NextWordPredictionRequestType: String, CaseIterable, KeyboardModel {
+    enum NextWordPredictionRequestType: String, CaseIterable, Identifiable, KeyboardModel {
 
         /// Perform next word prediction with the Claude API.
         case claude
