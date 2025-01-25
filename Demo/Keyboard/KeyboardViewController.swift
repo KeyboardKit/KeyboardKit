@@ -51,15 +51,18 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// 💡 Call `setupKeyboardView(...)` to customize or
         /// replace the standard `KeyboardView`.
+        ///
+        /// Return `$0.view` to return the standard view, or
+        /// return a custom view for the provided parameters.
         setupKeyboardView { controller in
             KeyboardView(
                 state: controller.state,
                 services: controller.services,
-                buttonContent: { $0.view },                 // $0.view uses the default view.
+                buttonContent: { $0.view },
                 buttonView: { $0.view },
                 collapsedView: { $0.view },
-                emojiKeyboard: { params in params.view },   // This is the same as $0.view.
-                toolbar: { _ in                             // Return a custom toolbar.
+                emojiKeyboard: { $0.view },
+                toolbar: { _ in
                     Keyboard.Toolbar {
                         HStack {
                             Spacer()
@@ -69,7 +72,6 @@ class KeyboardViewController: KeyboardInputViewController {
                     }
                 }
             )
-            // Apply global view modifiers here, e.g. styles.
             // .autocorrectionDisabled()
             // .keyboardToolbarStyle(.init(backgroundColor: .red))
         }

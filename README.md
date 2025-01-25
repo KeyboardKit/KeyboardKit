@@ -37,7 +37,28 @@ https://github.com/KeyboardKit/KeyboardKit.git
 
 ## Getting Started
 
-To use KeyboardKit in a keyboard extension, just import `KeyboardKit` and let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+The easiest way to set up KeyboardKit is to first create a `KeyboardApp` value for your app:
+
+```swift
+extension KeyboardApp {
+
+        static var keyboardKitDemo: KeyboardApp {
+        .init(
+            name: "KeyboardKit",
+            licenseKey: "your-key-here",                    // Sets up KeyboardKit Pro!
+            bundleId: "com.keyboardkit.demo",               // Used to identify the app
+            appGroupId: "group.com.keyboardkit.demo",       // Sets up App Group data sync
+            locales: .keyboardKitSupported,                 // Sets up the enabled locales
+            autocomplete: .init(                            // Sets up custom autocomplete  
+                nextWordPredictionRequest: .claude(...)     // Sets up AI-based prediction
+            ),
+            deepLinks: .init(app: "keyboardkit://", ...)    // Defines how to open the app
+        )
+    }
+}
+```  
+
+Next, let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 import KeyboardKit
@@ -45,44 +66,30 @@ import KeyboardKit
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives you access to lifecycle functions like `viewWillSetupKeyboardView`, observable state, services, etc.
+This unlocks additional functions and capabilities, and injects `services` and observable `state` to the controller. 
 
-The easiest way to set up KeyboardKit is to create a `KeyboardApp` value that defines information for your app:
-
-```swift
-extension KeyboardApp {
-
-    static var keyboardKitDemo: Self {
-        .init(
-            name: "KeyboardKit",
-            licenseKey: "keyboardkitpro-license-key",
-            bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",
-            deepLinks: .init(app: "kkdemo://")
-        )
-    }
-}
-```  
-
-To set up your keyboard, just override `viewDidLoad` and call `setup(for:)` with your `KeyboardApp` value:
+Next, override `viewDidLoad` and call `setup(for:)` with your app value, or `setupPro(for:...)` if you use KeyboardKit Pro:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // KeyboardKit
         setup(for: .keyboardKitDemo)
+        
+        // 👑 KeyboardKit Pro
     }
 }
 ```
 
-To replace or customize the standard `KeyboardView` keyboard, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
+To replace or customize the standard `KeyboardView` keyboard view, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewWillSetupKeyboardView() {
-        super.viewWillSetupKeyboardView()
         setupKeyboardView { [weak self] controller in // <-- Use weak or unknowned self!
             KeyboardView(
                 state: controller.state,
@@ -91,14 +98,16 @@ class KeyboardViewController: KeyboardInputViewController {
                 buttonView: { $0.view },
                 collapsedView: { $0.view },
                 emojiKeyboard: { $0.view },
-                toolbar: { _ in MyCustomToolbar() }
+                toolbar: { $0.view }
             )
         }
     }
 }
 ```
 
-To set up your main app with the same configuration, just wrap the root content view in a `KeyboardAppView`:
+You can return `$0.view` to use the standard view, or return any custom view you like for the provided parameters.
+
+To set up your main app with the same keyboard configuration, just wrap the content view in a `KeyboardAppView`:
 
 ```swift
 import SwiftUI
@@ -205,7 +214,7 @@ The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPr
 
 ## KeyboardKit App
 
-If you want to try KeyboardKit without having to write any code or build the demo app from Xcode, the [KeyboardKit app][KeyboardKit-App] lets you try out many features by just downloading it from the App Store.
+You can try KeyboardKit without having to write any code or build the demo app from Xcode, by downloading the [KeyboardKit app][KeyboardKit-App] from the App Store.
 
 
 

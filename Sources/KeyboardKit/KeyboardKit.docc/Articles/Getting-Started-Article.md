@@ -12,17 +12,13 @@ This article describes how to get started with KeyboardKit.
 }
 
 
-KeyboardKit is a Swift SDK that lets you create fully customizable keyboard extensions in a few lines of code, using SwiftUI. It extends Apple's limited keyboard APIs and provides you with a lot more functionality.
-
-Keyboard extensions can use KeyboardKit to create custom keyboards, while the main app can use it to show keyboard status, provide keyboard-specific settings screens, link to System Settings, etc.
-
 This guide goes through the steps of adding [KeyboardKit][KeyboardKit] or [KeyboardKit Pro][Pro] to your project and setting up the main app and keyboard. 
 
 
 
 ## Step 1. Add KeyboardKit to your project
 
-The easiest way to add KeyboardKit to your app or package is with the Swift Package Manager. You can either install [KeyboardKit][KeyboardKit] to use the open-source library, or [KeyboardKit Pro][Pro] to use the more capable, commercially licensed product:
+The easiest way to add KeyboardKit to your app or package is with the Swift Package Manager. You can either use [KeyboardKit][KeyboardKit] or the more capable, commercially licensed [KeyboardKit Pro][Pro]:
 
 
 ```
@@ -30,9 +26,7 @@ https://github.com/KeyboardKit/KeyboardKit.git      // or...
 https://github.com/KeyboardKit/KeyboardKitPro.git
 ```
 
-After adding the package to your project, you must link it correctly to be able to use it. KeyboardKit must be added to both the main app target and its keyboard extension, while KeyboardKit Pro must *only* be added to the main app target. 
-
-> Tip: You only have to add KeyboardKit to the main app target if you want to use the library in it, for instance to show keyboard settings. 
+KeyboardKit must be linked to the main app target *and* its keyboard extension, while KeyboardKit Pro must only be added to the app. 
 
 
 [KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
@@ -50,19 +44,16 @@ import KeyboardKit (or KeyboardKitPro)
 extension KeyboardApp {
 
     static var keyboardKitDemo: KeyboardApp {
-        KeyboardApp(
+        .init(
             name: "KeyboardKit",
-            licenseKey: "your-key-here",                    // You may also use a license file
-            bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",       // This will set up settings syncing
-            locales: .keyboardKitSupported,                 // This list is capped to your license 
-            autocomplete: .init(
-                nextWordPredictionRequest: .claude(apiKey: "your-key-here")
+            licenseKey: "your-key-here",                    // Sets up KeyboardKit Pro!
+            bundleId: "com.keyboardkit.demo",               // Used to identify the app
+            appGroupId: "group.com.keyboardkit.demo",       // Sets up App Group data sync
+            locales: .keyboardKitSupported,                 // Sets up the enabled locales
+            autocomplete: .init(                            // Sets up custom autocomplete  
+                nextWordPredictionRequest: .claude(...)     // Sets up AI-based prediction
             ),
-            deepLinks: .init(
-                app: "kkdemo://",                           // This can be used to open your app
-                dictation: "kkdemo://dictation"             // This is the default url for the app url
-            )
+            deepLinks: .init(app: "keyboardkit://", ...)    // Defines how to open the app
         )
     }
 }
@@ -84,7 +75,7 @@ class KeyboardController: KeyboardInputViewController {}
 
 This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, etc.
 
-To set up the keyboard for your app, just override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:)`` (or ``KeyboardInputViewController/setupPro(for:errorDisplay:completion:)`` if you use [KeyboardKit Pro][Pro]) with your ``KeyboardApp`` value:
+Override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:)`` (or ``KeyboardInputViewController/setupPro(for:errorDisplay:completion:)`` if you use [KeyboardKit Pro][Pro]) to set up the keyboard extension for your app:
 
 @TabNavigator {
     
@@ -115,42 +106,30 @@ To set up the keyboard for your app, just override ``KeyboardInputViewController
     }
 }
 
-This will make keyboard ``Keyboard/Settings`` sync data between the app and its keyboard extension if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
+This will make the keyboard ``Keyboard/Settings`` sync data between the keyboard extension and its main app if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
 
-This is all you have to do if you want to use the standard ``KeyboardView`` with a standard configuration. Upgrade to KeyboardKit Pro to unlock more locales and features, like autocomplete and an emoji keyboard.
-
-> Important: KeyboardKit Pro has an ``EmojiKeyboard`` that uses high-resolution emojis on iPad. This consumes memory as you scroll through categories, which can become a problem if your keyboard uses memory intense resources, since extensions are memory capped at ~70 MB. If you notice memory-related crashes, consider applying an ``Emoji/KeyboardStyle/optimized(for:)`` emoji style (see below).
-
-
-
-## Step 4. Customize the keyboard extension (optional)
-
-You can customize the keyboard and its behavior by customizing its ``KeyboardController/services``, adjusting it's ``KeyboardController/state`` and their settings, customizing the standard ``KeyboardView`` or use a completely custom view, etc.
-
-
-Just override ``KeyboardInputViewController/viewWillSetupKeyboardView()`` and call ``KeyboardInputViewController/setupKeyboardView(_:)`` to replace or customize ``KeyboardView``:
+This also makes the keyboard use a standard ``KeyboardView`` that is configured for your app. Override ``KeyboardInputViewController/viewWillSetupKeyboardView()`` and call ``KeyboardInputViewController/setupKeyboardView(_:)`` to replace or customize the ``KeyboardView``:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
 
     override func viewWillSetupKeyboardView() {
-        super.viewWillSetupKeyboardView()
         setupKeyboardView { [weak self] controller in // <-- Use weak or unknowned if you must use self!
             CustomKeyboardView( 
+                state: controller.state
                 services: controller.services
             )
         }
     }
 }
 
-// Use a custom view if you need to observe some state, like
-// the many context classes that KeyboardKit injects.
+// Defining a custom view in a separate file keeps your controller clean.
 struct CustomKeyboardView: View {
 
-    // These are not used here, but perhaps you need them.
+    var state: Keyboard.State
     var services: Keyboard.Services
 
-    // Keyboard state can be accessed from the enviroment.
+    // State can also be accessed from the enviroment.
     @EnvironmentObject var keyboardContext: KeyboardContext
 
     var body: some View {
@@ -158,13 +137,13 @@ struct CustomKeyboardView: View {
             // Insert your GPT-powered email client here :)
         } else {
             KeyboardView(
-                state: controller.state,
-                services: controller.services,
+                state: state,
+                services: services,
                 buttonContent: { $0.view },        // Use $0.view to use the standard view
-                buttonView: { $0.view },           // Each view provides additional parameters than $0.view             
-                collapsedView: { $0.view },
+                buttonView: { $0.view },           // The $0 has additional parameter data             
+                collapsedView: { params in params.view },   // This is the same as $0.view
                 emojiKeyboard: { $0.view },        
-                toolbar: { _ in CustomToolbar() }  // This ignores the params and uses a custom view
+                toolbar: { _ in CustomToolbar() }  // Ignores the params and returns a view
             )
         }
     }
@@ -175,9 +154,9 @@ struct CustomKeyboardView: View {
 
 
 
-## Step 5. Set up the main app (optional)
+## Step 4. Set up the main app (optional)
 
-You can use KeyboardKit in your main app, to manage the enabled and Full Access status of a keyboard, provide keyboard settings, link to System Settings, etc. It's a great place for app settings, since it has more space.
+You can use KeyboardKit in your main app, to display the enabled and Full Access status of your keyboard, link to System Settings, etc. It's a great place for app and keyboard settings, since it has more space than in the keyboard extension.
 
 The easiest way to set up an app is to use a ``KeyboardAppView`` root view, which uses a ``KeyboardApp`` to set up everything it needs:
 
@@ -195,38 +174,23 @@ struct MyApp: App {
 }
 ```
 
-This will make keyboard ``Keyboard/Settings`` sync data between the app and its keyboard extension if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
-
 You can use the KeyboardKit Pro ``KeyboardApp/HomeScreen`` to easily set up a start screen for the app, or link to the individual ``KeyboardApp/SettingsScreen``, ``KeyboardApp/LocaleScreen``, and ``KeyboardApp/ThemeScreen`` screens from any screen. You can also use a status ``KeyboardStatus/Section`` to show keyboard status.
 
 
-## Step 6. Customize state & services (optional)
+## Step 5. Customize state & services (optional)
 
 The main ``KeyboardInputViewController`` provides you with keyboard ``KeyboardInputViewController/state`` and ``KeyboardInputViewController/services``, to let you build great keyboards. 
 
 KeyboardKit injects observable state into the view hierarchy as environment objects, which lets you access various state types like this:
 
 ```swift
-struct CustomKeyboardView: View {
+struct CustomView: View {
 
     @EnvironmentObject
     var keyboardContext: KeyboardContext
 
     var body: some View {
-        VStack { 
-            Button("Show Numeric Keyboard") {
-                keyboardContext.keyboardType = .numeric 
-            }
-            KeyboardView(
-                state: controller.state,
-                services: controller.services,
-                buttonContent: { $0.view },
-                buttonView: { $0.view },
-                collapsedView: { $0.view },
-                emojiKeyboard: { $0.view },
-                toolbar: { _ in CustomToolbar() }
-            )
-        }
+        ...
     }
 }
 ```
@@ -235,16 +199,37 @@ Services are not injected into the view hierarchy, and must be passed around. Ke
 
 You can replace any services with custom implementations. For instance, here we replace the standard ``KeyboardActionHandler``:
 
-```swift
-class KeyboardViewController: KeyboardInputViewController {
+@TabNavigator {
+    
+    @Tab("KeyboardKit") {
+    ```swift
+    class KeyboardViewController: KeyboardInputViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setup(for: .keyboardKitDemo)
-        services.actionHandler = CustomActionHandler(controller: self)
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setup(for: .keyboardKitDemo)
+            services.actionHandler = CustomActionHandler(controller: self)
+        }
+    }
+    ```
+    }
+    
+    @Tab("KeyboardKit Pro 👑") {
+    ```swift
+    class KeyboardViewController: KeyboardInputViewController {
+    
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            setupPro(for: .keyboardKitDemo) { _ in 
+                services.actionHandler = CustomActionHandler(controller: self)
+            }
+        }
+    }
+    ```
     }
 }
 
+```swift
 class CustomActionHandler: StandardActionHandler {
 
     open override func handle(_ action: KeyboardAction) {
@@ -260,21 +245,7 @@ Since services are lazy and resolved when they're used for the first time, you s
 
 
 
-## That's it!
-
-You should now have a fully functional keyboard extension and companion app, which you can customize even further to fit your needs. For more information, see the <doc:Essentials-Article> article, as well as the other articles in this documentation.
-
-
-
-
----
-
-
-## Advanced
-
-This section contains information for more advanced configurations.
-
-### Set up KeyboardKit as a package dependency
+## Bonus - Set up KeyboardKit as a package dependency
 
 @TabNavigator {
     
@@ -317,9 +288,20 @@ This section contains information for more advanced configurations.
     ]
     ```
     
-    > Important: The KeyboardKit Pro binary may require some special handling to be used as a dependency. You don't have to link to KeyboardKit Pro from any target that adds *your* package, but the target *must* update **runpath search paths** under **Build Settings**. For an app, set it to **@executable_path/Frameworks**. For a keyboard, set it to **@executable_path/../../Frameworks**. Failing to set the search paths will cause a runtime crash when you try to use KeyboardKit Pro.
+    > Important: You don't have to link to KeyboardKit Pro from any target that adds *your* package, but the target *must* update its **runpath search paths** under **Build Settings**. Use **@executable_path/Frameworks** for the main app and **@executable_path/../../Frameworks** for the keyboard. Failing to set the search paths will cause a runtime crash when you try to use KeyboardKit Pro.
     }
 }
+
+
+
+## That's it!
+
+You should now have a fully functional keyboard extension and companion app, which you can customize even further to fit your needs. For more information, see the <doc:Essentials-Article> article, as well as the other articles in this documentation.
+
+
+
+
+---
 
 
 

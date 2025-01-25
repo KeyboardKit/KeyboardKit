@@ -31,9 +31,11 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// > Important: The ``locales`` collection is only describe which locales you *want* to use in your app. It
-/// will be capped to the number of locales your KeyboardKit
-/// Pro license includes.
+/// > Important: The ``locales`` specifies which locales you
+/// want to enable for the app. You don't have to provide it
+/// if you have a KeyboardKit Pro Gold license, since it has
+/// all locales enabled. The list is otherwise capped to the
+/// amount of locales that your license includes.
 ///
 /// See <doc:App-Article> for more information.
 public struct KeyboardApp {

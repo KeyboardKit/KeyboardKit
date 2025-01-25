@@ -27,7 +27,7 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 
 
-## Gettings Started
+## Getting Started
 
 The <doc:Getting-Started-Article> article helps you get started with KeyboardKit.
 
