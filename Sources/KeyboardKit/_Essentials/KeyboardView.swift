@@ -444,6 +444,17 @@ private extension KeyboardView {
 
 #if os(iOS) || os(tvOS) || os(visionOS)
 #Preview {
+    
+    class PreviewLayoutService: KeyboardLayout.StandardLayoutService {
+        
+        override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
+            var layout = super.keyboardLayout(for: context)
+            var item = layout.createIdealItem(for: .nextLocale)
+            item.size.width = .inputPercentage(1.3)
+            layout.itemRows.insert(item, before: .primary(.return))
+            return layout
+        }
+    }
 
     struct Preview: View {
 
@@ -452,7 +463,8 @@ private extension KeyboardView {
             
             let context = controller.state.keyboardContext
             context.locale = .english
-            context.settings.addedLocales = [.english, .french]
+            context.settings.addedLocales = [.english, .swedish, .persian]
+            context.spaceLongPressBehavior = .openLocaleContextMenu
             context.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
             
             controller.state.autocompleteContext.suggestions = [
@@ -460,6 +472,7 @@ private extension KeyboardView {
                 .init(text: "Bar", type: .autocorrect),
                 .init(text: "Baz")
             ]
+            // controller.services.layoutService = PreviewLayoutService()
             // controller.services.styleService = .crazy
             // controller.state.keyboardContext.keyboardType = .emojiSearch
             return controller
@@ -474,71 +487,54 @@ private extension KeyboardView {
         @State var dockEdge: Keyboard.DockEdge? = nil
         
         var body: some View {
-            ScrollView {
-                VStack(spacing: 10) {
-                    Group {
-                        HStack {
-                            Button("⬅️") {
-                                let isAlready = dockEdge == .leading
-                                dockEdge = isAlready ? nil : .leading
-                            }
-                            Button("⬇️") {
-                                controller.state.keyboardContext.isKeyboardCollapsed.toggle()
-                            }
-                            Button("➡️") {
-                                let isAlready = dockEdge == .trailing
-                                dockEdge = isAlready ? nil : .trailing
-                            }
-                        }
-
-                        KeyboardView(
-                            state: controller.state,
-                            services: controller.services,
-                            renderBackground: true,
-                            buttonContent: { $0.view },
-                            buttonView: { $0.view },
-                            collapsedView: { $0.view },
-                            emojiKeyboard: { $0.view },
-                            toolbar: { $0.view }
-                        )
-
-                        KeyboardView(
-                            state: controller.state,
-                            services: controller.services,
-                            buttonContent: { param in
-                                switch param.item.action {
-                                case .backspace:
-                                    Image(systemName: "trash").foregroundColor(Color.red)
-                                default: param.view
-                                }
-                            },
-                            buttonView: { param in
-                                switch param.item.action {
-                                case .space:
-                                    Text("This is a space bar replacement")
-                                        .frame(maxWidth: .infinity)
-                                        .multilineTextAlignment(.center)
-                                default: param.view
-                                }
-                            },
-                            collapsedView: { _ in
-                                Color.red.frame(height: 100)
-                            },
-                            emojiKeyboard: { _ in
-                                Button {
-                                    controller.state.keyboardContext.keyboardType = .alphabetic
-                                } label: {
-                                    Color.orange
-                                        .overlay(Text("Not implemented"))
-                                }
-                            },
-                            toolbar: { $0.view }
-                        )
-                    }
-                    .background(Color.keyboardBackground)
-                    .keyboardInputToolbarDisplayMode(.numbers)
-                }
+            VStack {
+                Spacer()
+                KeyboardView(
+                    state: controller.state,
+                    services: controller.services,
+                    renderBackground: true,
+                    buttonContent: { $0.view },
+                    buttonView: { $0.view },
+                    collapsedView: { $0.view },
+                    emojiKeyboard: { $0.view },
+                    toolbar: { $0.view }
+                )
+                .padding(.bottom, 15)
+                .background(Color.keyboardBackground)
             }
+            
+//            KeyboardView(
+//                state: controller.state,
+//                services: controller.services,
+//                buttonContent: { param in
+//                    switch param.item.action {
+//                    case .backspace:
+//                        Image(systemName: "trash").foregroundColor(Color.red)
+//                    default: param.view
+//                    }
+//                },
+//                buttonView: { param in
+//                    switch param.item.action {
+//                    case .space:
+//                        Text("This is a space bar replacement")
+//                            .frame(maxWidth: .infinity)
+//                            .multilineTextAlignment(.center)
+//                    default: param.view
+//                    }
+//                },
+//                collapsedView: { _ in
+//                    Color.red.frame(height: 100)
+//                },
+//                emojiKeyboard: { _ in
+//                    Button {
+//                        controller.state.keyboardContext.keyboardType = .alphabetic
+//                    } label: {
+//                        Color.orange
+//                            .overlay(Text("Not implemented"))
+//                    }
+//                },
+//                toolbar: { $0.view }
+//            )
             .keyboardDockEdge(dockEdge)
         }
     }

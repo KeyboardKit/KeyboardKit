@@ -45,7 +45,9 @@ public extension Locale {
                 locales: locales,
                 tapAction: tapAction
             ) {
-                Text(Self.title(for: $0, in: keyboardContext.localePresentationLocale))
+                let contextLocale = keyboardContext.localePresentationLocale
+                let locale = contextLocale ?? $0
+                Text($0.localizedName(in: locale) ?? $0.identifier)
             }
         }
         
@@ -115,13 +117,6 @@ private extension Locale.ContextMenu {
         let locales = self.locales ?? context.enabledLocales
         return locales.sorted(in: presentationLocale, insertFirst: context.locale)
     }
-    
-    static func title(
-        for locale: Locale,
-        in presentationLocale: Locale
-    ) -> String {
-        locale.localizedName(in: presentationLocale) ?? ""
-    }
 }
 
 public extension View {
@@ -180,12 +175,15 @@ public extension View {
         var context: KeyboardContext = {
             let context = KeyboardContext()
             context.locales = .keyboardKitSupported
-            context.localePresentationLocale = .english
+            context.localePresentationLocale = nil // .english
+            context.settings.addedLocales = .keyboardKitSupported
             return context
         }()
 
         var localeName: String {
-            context.locale.localizedName(in: context.localePresentationLocale) ?? "-"
+            let contextLocale = context.localePresentationLocale
+            let locale = contextLocale ?? context.locale
+            return context.locale.localizedName(in: locale) ?? "-"
         }
 
         var body: some View {
@@ -196,6 +194,7 @@ public extension View {
                     // locales: [.swedish],
                     tapAction: { }
                 )
+                Spacer()
                 Button("Print locale") {
                     print(context.locale)
                 }

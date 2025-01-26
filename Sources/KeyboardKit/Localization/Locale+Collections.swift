@@ -42,12 +42,12 @@ public extension Collection where Element == Locale {
     ///   - locale: The locale to use to get the localized name.
     ///   - first: The locale to place first, by default `nil`.
     func sorted(
-        in locale: Locale,
+        in locale: Locale?,
         insertFirst first: Element? = nil
     ) -> [Element] {
         sorted(by: {
-            let lhs = $0.localizedName(in: locale)?.lowercased() ?? ""
-            let rhs = $1.localizedName(in: locale)?.lowercased() ?? ""
+            let lhs = $0.localizedName(in: locale ?? $0)?.lowercased() ?? ""
+            let rhs = $1.localizedName(in: locale ?? $1)?.lowercased() ?? ""
             return lhs < rhs
         }, insertFirst: first)
     }

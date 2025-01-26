@@ -148,9 +148,13 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var locales: [Locale] = [.current]
 
-    /// The locale to use when displaying other locales.
+    /// The locale to use when displaying the localized name
+    /// of other locales.
+    ///
+    /// > Note: This is `.current` by default. Set it to nil
+    /// to display each locale in their own language.
     @Published
-    public var localePresentationLocale = Locale.current
+    public var localePresentationLocale: Locale? = .current
 
     /// Whether to add an input mode switch key.
     @Published
