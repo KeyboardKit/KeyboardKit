@@ -25,6 +25,6 @@ public extension Emoji {
             EmptyView()
         }
         
-        static let isEmojiKeyboardAvailable = false
+        static var isEmptyPlaceholder: Bool { true }
     }
 }

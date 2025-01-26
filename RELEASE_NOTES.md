@@ -47,7 +47,8 @@ This version makes it possible to add a locale context menu directly to the spac
 
 ### 🐛 Bug Fixes
 
-* The URL keyboard now renders the input keys and bottom actions properly.
+* `Keyboard.KeyboardType.URL` now renders input keys and bottom actions correctly.
+* `KeyboardView` doesn't remove the emoji key if a custom `emojiKeyboard` is used.
 
 ### 📄 Documentation
 

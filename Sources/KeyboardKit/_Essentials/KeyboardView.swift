@@ -104,9 +104,14 @@ public struct KeyboardView<
     ) {
         var layout = layout
         let layoutConfig = KeyboardLayout.Configuration.standard(for: keyboardContext)
-        if !Emoji.KeyboardWrapper.isEmojiKeyboardAvailable {
+        
+        let hasProEmojiKeyboard = !Emoji.KeyboardWrapper.isEmptyPlaceholder
+        let hasCustomEmojiKeyboard = EmojiKeyboard.self != Emoji.KeyboardWrapper.self
+        let hasEmojiKeyboard = hasCustomEmojiKeyboard || hasProEmojiKeyboard
+        if !hasEmojiKeyboard {
             layout.itemRows.remove(.keyboardType(.emojis))
         }
+        
         self.rawLayout = layout
         self.layoutConfig = layoutConfig
         self.actionHandler = actionHandler
@@ -463,19 +468,6 @@ private extension KeyboardView {
         var keyboardContext: KeyboardContext {
             controller.state.keyboardContext
         }
-
-        var keyboard: some View {
-            KeyboardView(
-                state: controller.state,
-                services: controller.services,
-                renderBackground: true,
-                buttonContent: { $0.view },
-                buttonView: { $0.view },
-                collapsedView: { $0.view },
-                emojiKeyboard: { $0.view },
-                toolbar: { $0.view }
-            )
-        }
         
         @Environment(\.colorScheme) var colorScheme
         
@@ -499,7 +491,16 @@ private extension KeyboardView {
                             }
                         }
 
-                        keyboard
+                        KeyboardView(
+                            state: controller.state,
+                            services: controller.services,
+                            renderBackground: true,
+                            buttonContent: { $0.view },
+                            buttonView: { $0.view },
+                            collapsedView: { $0.view },
+                            emojiKeyboard: { $0.view },
+                            toolbar: { $0.view }
+                        )
 
                         KeyboardView(
                             state: controller.state,
@@ -527,7 +528,7 @@ private extension KeyboardView {
                                 Button {
                                     controller.state.keyboardContext.keyboardType = .alphabetic
                                 } label: {
-                                    Color.red
+                                    Color.orange
                                         .overlay(Text("Not implemented"))
                                 }
                             },
