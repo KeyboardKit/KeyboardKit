@@ -45,14 +45,13 @@ extension KeyboardApp {
         static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit",
-            licenseKey: "your-key-here",                    // Sets up KeyboardKit Pro!
-            bundleId: "com.keyboardkit.demo",               // Used to identify the app
-            appGroupId: "group.com.keyboardkit.demo",       // Sets up App Group data sync
-            locales: .keyboardKitSupported,                 // Sets up the enabled locales
-            autocomplete: .init(                            // Sets up custom autocomplete  
-                nextWordPredictionRequest: .claude(...)     // Sets up AI-based prediction
+            licenseKey: "your-key-here",                // Sets up KeyboardKit Pro!
+            appGroupId: "group.com.keyboardkit.demo",   // Sets up App Group data sync
+            locales: .keyboardKitSupported,             // Sets up the enabled locales
+            autocomplete: .init(                        // Sets up custom autocomplete  
+                nextWordPredictionRequest: .claude(...) // Sets up AI-based prediction
             ),
-            deepLinks: .init(app: "keyboardkit://", ...)    // Defines how to open the app
+            deepLinks: .init(app: "kkdemo://", ...)     // Defines how to open the app
         )
     }
 }

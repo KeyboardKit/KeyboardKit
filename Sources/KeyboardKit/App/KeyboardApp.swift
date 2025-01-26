@@ -21,7 +21,6 @@ import SwiftUI
 ///         .init(
 ///             name: "KeyboardKit",
 ///             licenseKey: "abc123",
-///             bundleId: "com.keyboardkit.demo",
 ///             appGroupId: "group.com.keyboardkit.demo",
 ///             locales: [.english, .swedish, .persian],
 ///             autocomplete: .init(...),
@@ -39,19 +38,36 @@ import SwiftUI
 ///
 /// See <doc:App-Article> for more information.
 public struct KeyboardApp {
-
+    
     /// Create a custom keyboard app value.
     ///
     /// - Parameters:
     ///   - name: The name of the app.
     ///   - licenseKey: Your license key, if any.
-    ///   - bundleId: The app's bundle identifier.
-    ///   - keyboardBundleId: The app's keyboard bundle identifier, by default `<bundleId>.keyboard`.
     ///   - appGroupId: The app's App Group identifier, if any.
     ///   - locales: The locales to use in the app, by default `.all`.
     ///   - autocomplete: The autocomplete configuration to use.
     ///   - deepLinks: App-specific deep links, if any.
     ///   - keyboardSettingsKeyPrefix: A custom keyboard settings key prefix, if any.
+    public init(
+        name: String,
+        licenseKey: String? = nil,
+        appGroupId: String? = nil,
+        locales: [Locale] = .keyboardKitSupported,
+        autocomplete: AutocompleteConfiguration = .init(),
+        deepLinks: DeepLinks? = nil,
+        keyboardSettingsKeyPrefix: String? = nil
+    ) {
+        self.name = name
+        self.appGroupId = appGroupId
+        self.locales = locales
+        self.licenseKey = licenseKey
+        self.autocomplete = autocomplete
+        self.deepLinks = deepLinks
+        self.keyboardSettingsKeyPrefix = keyboardSettingsKeyPrefix
+    }
+    
+    @available(*, deprecated, renamed: "init(name:licenseKey:appGroupId:locales:autocomplete:deepLinks:keyboardSettingsKeyPrefix:)")
     public init(
         name: String,
         licenseKey: String? = nil,
@@ -80,12 +96,6 @@ public struct KeyboardApp {
     /// Your license key, if any.
     public let licenseKey: String?
 
-    /// The app's bundle identifier.
-    public let bundleId: String
-
-    /// The app's keyboard bundle identifier
-    public let keyboardBundleId: String
-
     /// The app's App Group identifier, if any.
     public let appGroupId: String?
 
@@ -100,6 +110,18 @@ public struct KeyboardApp {
 
     /// A custom keyboard settings key prefix, if any.
     public let keyboardSettingsKeyPrefix: String?
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "This is no longer needed.")
+    public var bundleId: String = ""
+
+    @available(*, deprecated, message: "This is no longer needed.")
+    public var keyboardBundleId: String = ""
+    
+    @available(*, deprecated, message: "This is no longer needed.")
+    public var keyboardBundleIdWildcard: String { "\(bundleId).*" }
 }
 
 public extension KeyboardApp {
@@ -127,17 +149,20 @@ public extension KeyboardApp {
     /// This type can define app-specific deep links.
     ///
     /// You only have to provide an `app` url, and can leave
-    /// the rest blank to use standard URLs.
+    /// the rest blank, if you want to use standard patterns.
+    ///
+    /// > Important: You must register your `app` URL scheme
+    /// within the app project, for these deep links to work.
     struct DeepLinks: KeyboardModel {
 
         /// Create a custom keyboard deep links value.
         ///
         /// - Parameters:
-        ///   - app: A deep link for opening the app, e.g. `x://`.
-        ///   - dictation: A deep link for opening the app and starting dictation, by default `x://dictation`.
-        ///   - keyboardSettings: A deep link for opening the app's keyboard settings screen, by default `x://keyboardSettings`.
-        ///   - languageSettings: A deep link for opening the app's language settings screen, by default `x://languageSettings`.
-        ///   - themeSettings: A deep link for opening the app's theme settings screen, by default `x://themeSettings`.
+        ///   - app: A deep link for opening the app, e.g. `myapp://`.
+        ///   - dictation: A deep link for opening the app and starting dictation, by default `myapp://dictation`.
+        ///   - keyboardSettings: A deep link for opening the app's keyboard settings screen, by default `myapp://keyboardSettings`.
+        ///   - languageSettings: A deep link for opening the app's language settings screen, by default `myapp://languageSettings`.
+        ///   - themeSettings: A deep link for opening the app's theme settings screen, by default `myapp://themeSettings`.
         public init(
             app: String,
             dictation: String? = nil,
@@ -187,22 +212,12 @@ public extension KeyboardApp.DeepLinks {
     var themeSettingsURL: URL? { .init(string: themeSettings) }
 }
 
-public extension KeyboardApp {
-
-    /// This bundle ID wildcard that applies to all keyboard
-    /// extensions for the app.
-    var keyboardBundleIdWildcard: String {
-        "\(bundleId).*"
-    }
-}
-
 private extension KeyboardApp {
 
     static var keyboardKitDemo: Self {
         .init(
             name: "KeyboardKit",
             licenseKey: "abc123",
-            bundleId: "com.keyboardkit.demo",
             appGroupId: "group.com.keyboardkit.demo",
             locales: [.english, .swedish, .persian]
         )

@@ -29,19 +29,15 @@ You can create a static app value and add it to both the main app and its keyboa
 extension KeyboardApp {
 
     static var keyboardKitDemo: KeyboardApp {
-        KeyboardApp(
+        .init(
             name: "KeyboardKit",
-            licenseKey: "your-key-here",                    // You may also use a license file
-            bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",       // This will set up settings syncing
-            locales: .keyboardKitSupported,                 // This list is capped to your license 
-            autocomplete: .init(
-                nextWordPredictionRequest: .claude(apiKey: "your-key-here")
+            licenseKey: "your-key-here",                // Sets up KeyboardKit Pro!
+            appGroupId: "group.com.keyboardkit.demo",   // Sets up App Group data sync
+            locales: .keyboardKitSupported,             // Sets up the enabled locales
+            autocomplete: .init(                        // Sets up custom autocomplete  
+                nextWordPredictionRequest: .claude(...) // Sets up AI-based prediction
             ),
-            deepLinks: .init(
-                app: "kkdemo://",                           // This can be used to open your app
-                dictation: "kkdemo://dictation"             // This is the default url for the app url
-            )
+            deepLinks: .init(app: "kkdemo://", ...)     // Defines how to open the app
         )
     }
 }

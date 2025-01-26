@@ -28,7 +28,7 @@ public extension KeyboardApp {
     /// an app and its keyboard. It doesn't work in the demo.
     /// 
     /// See the ``DemoApp`` for more information.
-    static var keyboardKitDemo: Self {
+    static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit Demo",
             // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // The demo uses a license file

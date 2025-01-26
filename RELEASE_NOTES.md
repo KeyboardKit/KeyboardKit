@@ -13,16 +13,18 @@ These release notes cover the current major version. Check out version tags for 
 
 ## 9.1
 
-This version removes KeyboardKit 8 migration support. 
+This version removes the KeyboardKit 8 migration support! Migrate to the last 9.0 version before updating to 9.1 or later.
 
-From now on, migrate to the last 9.0.x version before you migrate to the latest version.
+This version makes it easier to set up a custom `KeyboardApp`, by removing the need to specify the application `bundleId`. 
 
-This version makes it possible to dock the keyboard to the leading or trailing edge, and to add a locale context menu to the spacebar while still supporting dragging to move the input cursor.  
+This version makes it possible to dock the keyboard to the leading or trailing edge, to simplify one handed typing on iPhone.
+
+This version makes it possible to add a locale context menu directly to the spacebar, instead of using an extra keyboard key.  
 
 ### ✨ Features
 
-* `Keyboard.DockEdge` is a new value type.
-* `Keyboard.Settings` has a new `keyboardDockEdge` that applies keyboard docking.
+* `Keyboard.DockEdge` is a new enum that can be used to enable keyboard docking.
+* `Keyboard.Settings` has a new `keyboardDockEdge` that enables keyboard docking.
 * `Keyboard.SpaceLongPressBehavior` has a new `.moveInputCursorWithLocaleSwitcher`.
 * `KeyboardContext` has new `enabledLocales` that usess `addedLocales` or `locales`.
 * `KeyboardView` can now docks to any horizontal edge, if `keyboardDockEdge` is set.
@@ -31,12 +33,13 @@ This version makes it possible to dock the keyboard to the leading or trailing e
 
 ### 👑 Pro
 
-* The `iPadProLayoutService` now renders URL and email keyboards better.
+* `iPadProLayoutService` now renders URL and email keyboards better.
 
-### 💡 Adjustments
+### 💡 Adjustment
 
 * Many types now conform to `Codable`, `Sendable` and other essential protocols.
 * Upper-case shift and caps-lock has adjusted, default idle colors in dark mode.
+* `KeyboardApp` no longer needs you to define `bundleId` and `keyboardBundleId`.
 
 ### 🇪🇸 Localization
 
