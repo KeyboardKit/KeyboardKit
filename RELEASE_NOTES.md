@@ -34,6 +34,7 @@ This version makes it possible to add a locale context menu directly to the spac
 ### 👑 Pro
 
 * `iPadProLayoutService` now renders URL and email keyboards better.
+* `Emoji.KeyboardMenu` now gets a style builder from the environment.
 
 ### 💡 Adjustment
 
