@@ -40,6 +40,7 @@ This version makes it possible to add a locale context menu directly to the spac
 * Many types now conform to `Codable`, `Sendable` and other essential protocols.
 * Upper-case shift and caps-lock has adjusted, default idle colors in dark mode.
 * `KeyboardApp` no longer needs you to define `bundleId` and `keyboardBundleId`.
+* `KeyboardLayout` & `BaseLayoutService` removes `number` from input toolbar naming.
 
 ### 🇪🇸 Localization
 

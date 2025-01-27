@@ -55,7 +55,7 @@ extension KeyboardLayout {
         ) -> KeyboardLayout {
             KeyboardLayout(
                 itemRows: itemRows(for: context),
-                numberInputToolbarInputSet: inputSetForNumberInputToolbar(with: context)
+                inputToolbarInputSet: inputSetForInputToolbar(with: context)
             )
         }
 
@@ -72,10 +72,17 @@ extension KeyboardLayout {
             default: alphabeticInputSet
             }
         }
-
-        /// The ``InputSet`` to use for the provided context,
-        /// when creating a ``Keyboard/InputToolbarDisplayMode/numbers``
+        
+        @available(*, deprecated, renamed: "inputSetForInputToolbar(with:)")
         open func inputSetForNumberInputToolbar(
+            with context: KeyboardContext
+        ) -> InputSet {
+            inputSetForInputToolbar(with: context)
+        }
+        
+        /// The ``InputSet`` to use to setup an optional top
+        /// input toolbar, if any.
+        open func inputSetForInputToolbar(
             with context: KeyboardContext
         ) -> InputSet {
             switch context.keyboardType {

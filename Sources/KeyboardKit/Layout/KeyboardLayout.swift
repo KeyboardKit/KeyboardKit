@@ -28,19 +28,19 @@ public struct KeyboardLayout {
     ///   - iPadProLayout: Whether the layout is iPad Pro specific.
     ///   - height: An optional, ideal item height, otherwise picked from the first item.
     ///   - insets: An optional, ideal item inset value, otherwise picked from the first item.
-    ///   - numberInputToolbarInputSet: The input set to use for a number-based input toolbar, if any.
+    ///   - inputToolbarInputSet: The input set to use for a topmost input toolbar, if any.
     public init(
         itemRows rows: ItemRows,
         iPadProLayout: Bool = false,
         idealItemHeight height: Double? = nil,
         idealItemInsets insets: EdgeInsets? = nil,
-        numberInputToolbarInputSet: InputSet? = nil
+        inputToolbarInputSet: InputSet? = nil
     ) {
         self.itemRows = rows
         self.ipadProLayout = iPadProLayout
         self.idealItemHeight = height ?? Self.resolveIdealItemHeight(for: rows)
         self.idealItemInsets = insets ?? Self.resolveIdealItemInsets(for: rows)
-        self.numberInputToolbarInputSet = numberInputToolbarInputSet
+        self.inputToolbarInputSet = inputToolbarInputSet
     }
 
     /// The layout item rows to show in the keyboard.
@@ -55,8 +55,8 @@ public struct KeyboardLayout {
     /// Whether this is an iPad Pro layout.
     public var ipadProLayout: Bool
 
-    /// The input set to use for a number-based input toolbar.
-    public var numberInputToolbarInputSet: InputSet?
+    /// The input set to use for a top input toolbar.
+    public var inputToolbarInputSet: InputSet?
 
     /// A `CGFloat` typealias for the total keyboard width.
     public typealias TotalWidth = CGFloat

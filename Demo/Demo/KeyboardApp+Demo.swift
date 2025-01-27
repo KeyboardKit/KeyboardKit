@@ -31,16 +31,16 @@ public extension KeyboardApp {
     static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit Demo",
-            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // The demo uses a license file
-            bundleId: "com.keyboardkit.demo",
-            appGroupId: "group.com.keyboardkit.demo",               // The demo doesn't have an app group
-            locales: .keyboardKitSupported,                         // This list is capped to your license
-            autocomplete: .init(
-                // nextWordPredictionRequest: .claude(apiKey: "")   // Add your own key to test this
+            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // Sets up KeyboardKit Pro!
+            bundleId: "com.keyboardkit.demo",                       // No longer needed in KeyboardKit 9.1!
+            appGroupId: "group.com.keyboardkit.demo",               // Sets up App Group data sync
+            locales: .keyboardKitSupported,                         // Sets up the enabled locales
+            autocomplete: .init(                                    // Sets up custom autocomplete
+                // nextWordPredictionRequest: .claude(apiKey: "")   // Sets up AI-based prediction (add your own key)
             ),
             deepLinks: .init(
-                app: "kkdemo://"                                    // This can be used to open your app
-                // dictation: "kkdemo://dictation"                  // This is the default url for the app url
+                app: "kkdemo://"                                    // Defines how to open the app
+                // dictation: "kkdemo://dictation"                  // You can customize any default deep link
             )
         )
     }

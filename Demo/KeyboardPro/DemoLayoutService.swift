@@ -8,8 +8,8 @@
 
 import KeyboardKitPro
 
-/// This service inherits the standard service, and can then
-/// add one extra button before or after the spacebar.
+/// This demo-specific service inherits the standard service
+/// and adds extra buttons before or after the spacebar.
 class DemoLayoutService: KeyboardLayout.StandardLayoutService {
 
     init(extraKey: ExtraKey) {
@@ -26,7 +26,7 @@ class DemoLayoutService: KeyboardLayout.StandardLayoutService {
         case rocket
         case url(String)
     }
-
+    
     /// Insert a locale switcher action or a rocket button.
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         var layout = super.keyboardLayout(for: context)
