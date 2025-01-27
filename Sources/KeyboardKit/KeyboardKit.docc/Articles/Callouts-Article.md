@@ -76,11 +76,10 @@ The ``KeyboardCallout`` namespace has callout-specific views, that can be used t
     }
 }
 
-Both views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be applied with the ``SwiftUICore/View/calloutStyle(_:)`` view modifier or provided with a custom ``KeyboardStyleService``.
+Both views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be applied with the ``SwiftUICore/View/keyboardCalloutStyle(_:)`` view modifier or provided with a custom ``KeyboardStyleService``.
 
 
 ---
-
 
 ## 👑 KeyboardKit Pro
 
@@ -160,7 +159,7 @@ override func viewDidLoad() {
 }
 ```
 
-This makes it easy to replace the service for a certain locale, since you can inherit and customize the related ``KeyboardLayout/ProCalloutService``.
+This makes it easy to replace the service for a certain locale, since you can inherit and customize the related ``KeyboardCallout/ProCalloutService``.
 
 > Important: Note that you must wait for **setupPro** to finish successfully when you use KeyboardKit Pro and want to customize a Pro service class, otherwise you won't be able to resolve the pro-specific services, since your license will not yet be registered.
 

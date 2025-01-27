@@ -40,7 +40,7 @@ public extension Keyboard.DockEdge {
 
 public extension View {
 
-    /// Apply an ``Keyboard/KeyboardDockEdge``.
+    /// Apply an ``Keyboard/DockEdge``.
     func keyboardDockEdge(
         _ edge: Keyboard.DockEdge?
     ) -> some View {
@@ -50,6 +50,6 @@ public extension View {
 
 public extension EnvironmentValues {
 
-    /// Apply an ``Keyboard/KeyboardDockEdge``.
+    /// Apply an ``Keyboard/DockEdge``.
     @Entry var keyboardDockEdge: Keyboard.DockEdge?
 }

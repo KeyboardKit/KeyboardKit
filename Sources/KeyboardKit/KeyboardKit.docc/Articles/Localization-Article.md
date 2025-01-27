@@ -163,7 +163,7 @@ Just be aware that setting the primary language like this may affect external ke
 
 If you need a locale that KeyboardKit doesn't support yet, like Japanese or Simplified Chinese, you can implement a custom ``KeyboardView`` configuration to support it, or reach out to add support for a new ``Foundation/Locale``.
 
-To fully support a certain ``Foundation/Locale``, you must add locale-specific ``CalloutService``, ``InputSet`` and ``KeyboardLayoutService`` implementations, and create a localization folder in `Resources`. You may also have to provide custom autocoplete logic.
+To fully support a certain ``Foundation/Locale``, you must add locale-specific ``KeyboardCalloutService``, ``InputSet`` and ``KeyboardLayoutService`` implementations, and create a `Resources` localization folder. You may also have to implement custom autocomplete logic.
 
 > Tip: If you have expertise on a certain locale that you want KeyboardKit to support, you can reach out to help adding it to KeyboardKit Pro. If a locale gets added as a result of your contribution, you will get a free Basic license or a discount on the higher plans.   
 

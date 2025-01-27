@@ -13,7 +13,7 @@ public extension KeyboardFeedback {
     /// This struct can be used to configure haptic feedback.
     ///
     /// You can use any of the standard configurations, like
-    /// ``enabled`` and ``disabled``, or create a custom one.
+    /// ``standard`` and ``disabled``, or create custom ones.
     struct HapticConfiguration: KeyboardModel {
         
         /// Create a custom haptic feedback configuration.

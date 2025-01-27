@@ -61,12 +61,12 @@ public extension KeyboardThemeContext {
         }
     }
 
-    /// Reset the current ``theme``.
+    /// Reset the current ``KeyboardTheme/Settings/theme``.
     func resetCurrentTheme() {
         setCurrentTheme(nil)
     }
 
-    /// Set the current ``theme``.
+    /// Set the current ``KeyboardTheme/Settings/theme``.
     func setCurrentTheme(_ theme: KeyboardTheme?) {
         settings.themeValue.value = theme
         themeChanged = Date.now.timeIntervalSince1970

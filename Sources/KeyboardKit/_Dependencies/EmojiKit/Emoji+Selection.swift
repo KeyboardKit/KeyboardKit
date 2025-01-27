@@ -16,16 +16,13 @@ public extension Emoji {
     /// according to how they should be affected when a user
     /// selects an emoji.
     ///
-    /// For instance, the ``recent`` category should get the
-    /// emoji added firstmost, while ``frequent`` should use
-    /// a more sophisticated algorithm and take frequency in
-    /// consideration when updating the category.
+    /// For instance, the recent category will add the emoji
+    /// first, while the frequent category should use a more
+    /// sophisticated way to take frequency in consideration.
     ///
-    /// Since EmojiKit does not have algoritms for frequency
-    /// calculations, this function will just apply the same
-    /// changes to both ``recent`` and ``frequent``. You can
-    /// however use the ``frequent`` category if you want to
-    /// implement your own frequency logic.
+    /// Since EmojiKit does not yet have an algoritm for the
+    /// frequency calculations, this function will currently
+    /// apply the same changes to both categories.
     func registerUserSelection() {
         EmojiCategory.addEmoji(self, to: .recent)
         EmojiCategory.addEmoji(self, to: .frequent)

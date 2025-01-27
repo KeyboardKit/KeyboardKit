@@ -137,8 +137,8 @@ public class KeyboardContext: ObservableObject {
 
     /// The current locale, by default `.current`.
     ///
-    /// > Note: Settings this will update ``localeIdentifier``
-    /// and cause it to persist.
+    /// This sets ``Keyboard/Settings/localeIdentifier`` for
+    /// ``settings-swift.property``, to make it auto-persist.
     @Published
     public var locale = Locale.current {
         didSet { settings.localeIdentifier = locale.identifier }

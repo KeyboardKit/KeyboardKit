@@ -140,7 +140,7 @@ The injected state will also be used by the KeyboardKit Pro screens that are des
             @Column {
                 A ``KeyboardApp/ThemeScreen`` can be used as a main theme picker screen of a keyboard app or in a keyboard extension.
                 
-                The screen list available themes in shelves, and will by default set the main ``KeyboardThemeContext/theme`` when a theme is tapped.
+                The screen list available themes in shelves, and will by default set the main, persisted ``KeyboardTheme/Settings/theme`` when a theme is tapped.
                 
                 Since you may not want to support themes in your keyboard, this screen is opt-in when using a ``KeyboardApp/HomeScreen``.
             }

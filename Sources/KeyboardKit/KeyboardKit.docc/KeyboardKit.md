@@ -44,7 +44,7 @@ KeyboardKit supports **71** keyboard-specific ``Foundation/Locale``s:
 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿  <br />
 🏴󠁧󠁢󠁷󠁬󠁳󠁿  <br />
 
-KeyboardKit provides a basic keyboard layout with basic callout actions. [KeyboardKit Pro][Pro] unlocks localized layouts, callouts & behaviors for all supported locales, as described in the <doc:Localization-Article> article.
+[KeyboardKit Pro][Pro] unlocks localized callouts, input sets, layouts & services for all supported locales, as described in the <doc:Localization-Article> article.
 
 
 
@@ -104,6 +104,7 @@ The demo app in the [KeyboardKit repository][SDK] lets you try out both Keyboard
 ## License
 
 KeyboardKit is available under the MIT license.
+
 
 
 [About]: https://keyboardkit.com/about
@@ -226,7 +227,6 @@ KeyboardKit is available under the MIT license.
 
 - ``InputSet``
 - ``KeyboardLayout``
-- ``KeyboardLayoutIdentifiable``
 - ``KeyboardLayoutService``
 - ``KeyboardLayoutServiceProxy``
 

@@ -101,7 +101,7 @@ public extension Keyboard.Settings {
         addedLocales.contains(locale)
     }
 
-    /// Move the current ``locale`` first in ``addedLocales``.
+    /// Move the provided locale first in ``addedLocales``.
     mutating func moveLocaleFirstInAddedLocales(_ locale: Locale) {
         if locale == addedLocales.first { return }
         addedLocales = addedLocales.insertingFirst(locale)
