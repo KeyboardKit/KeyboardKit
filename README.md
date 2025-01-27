@@ -196,7 +196,7 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 
 ## Documentation
 
-The [online documentation][Documentation] has a detailed article for each feature, a thorough getting-started guide, code samples, etc. You can also build it from the source code to get better formatting.
+The [online documentation][Documentation] has a thorough getting-started guide, a detailed article for each feature, code samples, etc. You can also build it from the source code to get better formatting.
 
 
 
@@ -255,9 +255,11 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/
-[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started-article
-[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-article
 
+[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started-guide
+[Memory-Management]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/memory-management-guide
+
+[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-article
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions-article
 [AI]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/ai-article
 [App]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/app-article

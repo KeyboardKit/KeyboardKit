@@ -1,5 +1,7 @@
 # Themes
 
+This article describes the KeyboardKit Pro theme engine.
+
 @Metadata {
 
     @PageImage(
@@ -9,9 +11,9 @@
     )
 }
 
-This article describes the KeyboardKit Pro theme engine, which can be used to style the entire keyboard with a single theme.
+KeyboardKit has a style engine that makes it easy to customize the style of your keyboard. However, the ``KeyboardStyleService`` is a bit tricky to use if you need to easily apply many different styles.
 
-👑 [KeyboardKit Pro][Pro] unlocks a theme engine that makes it easier to style your keyboard, as well as many predefined themes and theme-based views. You can easily create your own themes as well.
+👑 [KeyboardKit Pro][Pro] therefore unlocks a theme engine that can be used to easily style your keyboard with different styles, and provides you with many predefined themes, templates, and theme-based views. You can easily create custom themes as well.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 

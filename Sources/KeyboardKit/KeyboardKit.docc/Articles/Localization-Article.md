@@ -100,8 +100,6 @@ KeyboardKit extends ``Foundation/Locale`` with keyboard-specific views, that can
 
 [KeyboardKit Pro][Pro] unlocks more ``InputSet``s, a ``KeyboardLayoutService`` and a ``KeyboardCalloutService`` for every locale in your license. This lets KeyboardKit create a fully localized ``KeyboardView`` for every locale, with no additional code needed.
 
-After setting up KeyboardKit Pro with your license key, as described in the <doc:Getting-Started-Article> article, you can just change the ``KeyboardContext/locale`` to automatically update the keyboard view for any locale in your license.
-
 You can customize any localized service, as described in the <doc:Callouts-Article> and <doc:Layout-Article> articles. You can also read more in the How to:s below.
 
 

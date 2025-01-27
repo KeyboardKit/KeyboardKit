@@ -9,8 +9,6 @@ This article describes the KeyboardKit emoji engine.
         source: "Page",
         alt: "Page icon"
     )
-    
-    @PageColor(blue)
 }
 
 KeyboardKit has an ``Emoji`` struct that represents an emoji value, and defines available ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.

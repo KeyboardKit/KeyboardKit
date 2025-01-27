@@ -11,7 +11,7 @@ This article describes the essential parts of KeyboardKit.
     )
 }
 
-This article describes essential types, models, and views that KeyboardKit provides. See the <doc:Getting-Started-Article> guide for information on how to set up your main app and keyboard extension to use KeyboardKit.
+This article describes essential types, models, and views that KeyboardKit provides. See the <doc:Getting-Started-Guide> guide for information on how to set up your main app and keyboard extension for KeyboardKit.
 
 👑 [KeyboardKit Pro][Pro] unlocks a lot of additional, essential Pro features. Information about Pro features can be found further down.
 
@@ -32,7 +32,7 @@ The ``Keyboard`` namespace contains many essential, keyboard-related types and v
 
 ## Controller
 
-``KeyboardInputViewController`` is the most essential type in the library. See the <doc:Getting-Started-Article> guide on how to use it to access a bunch of additional ``KeyboardInputViewController/services``, ``KeyboardInputViewController/state``, and lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``.
+``KeyboardInputViewController`` is the most essential type in the library. See the <doc:Getting-Started-Guide> guide on how to use it to access a bunch of additional ``KeyboardInputViewController/services``, ``KeyboardInputViewController/state``, and lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``.
 
 You can override controller functions to customize its behavior. By delegating the responsibility of certain operations to its ``KeyboardInputViewController/services`` and ``KeyboardInputViewController/state``, you can avoid having to rely on the controller for most operations. 
 
@@ -339,7 +339,7 @@ See the <doc:Previews-Article> article for more information.
 
 ### ...replace the standard keyboard view
 
-KeyboardKit makes it super simple to replace or customize the standard ``KeyboardView``. The <doc:Getting-Started-Article> article has information about how you can use ``KeyboardInputViewController/viewWillSetupKeyboardView()`` to customize the keyboard view.
+KeyboardKit makes it super simple to customize or replace the standard ``KeyboardView``. The <doc:Getting-Started-Guide> guide has information that shows you how to do this with just a few lines of code.
 
 
 ### ...render unsupported keyboard types

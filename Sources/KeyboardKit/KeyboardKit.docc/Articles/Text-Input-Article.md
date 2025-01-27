@@ -1,5 +1,7 @@
 # Text Input
 
+This article describes the KeyboardKit text input engine.
+
 @Metadata {
 
     @PageImage(
@@ -9,13 +11,11 @@
     )
 }
 
-This article describes the KeyboardKit text input engine, which lets you type within the keyboard extension.
-
 iOS keyboard extensions use a ``UIKit/UITextDocumentProxy`` to insert and delete text, move the text input cursor, etc. This proxy will by default point to the currently selected text field in the currently active app.
 
-Keyboard extensions will by default only send text to this proxy, and will *not* detect if you select a text field inside the keyboard. Even if you focus on a text field within the keyboard, text will still be sent to the text document proxy.
+Standard keyboard extensions will by default only send text to this proxy, and will *not* detect if you select a text field inside the keyboard. Even if you focus on a text field within the keyboard, text will still be sent to the text document proxy.
 
-These limitations make it hard to implement features that require text input in the keyboard, like emoji search, and AI-based features. KeyboardKit adds ways to make text routing easier.
+KeyboardKit adds ways to make typing within the text field a lot easier. This makes implementing AI prompt-based features a breeze.
 
 
 

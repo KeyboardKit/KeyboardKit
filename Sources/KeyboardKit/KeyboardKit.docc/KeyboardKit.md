@@ -27,7 +27,9 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 ## Getting Started
 
-The <doc:Getting-Started-Article> article helps you get started with KeyboardKit.
+The <doc:Getting-Started-Guide> guide helps you get started with KeyboardKit, and the <doc:Essentials-Article> article describes the essential types in the library.
+
+You should also read the <doc:Memory-Management-Guide> guide, about the very strict memory limitations that Apple puts on keyboard extensions.
 
 
 
@@ -44,7 +46,7 @@ KeyboardKit supports **71** keyboard-specific ``Foundation/Locale``s:
 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿  <br />
 🏴󠁧󠁢󠁷󠁬󠁳󠁿  <br />
 
-[KeyboardKit Pro][Pro] unlocks localized callouts, input sets, layouts & services for all supported locales, as described in the <doc:Localization-Article> article.
+[KeyboardKit Pro][Pro] unlocks localized callouts, input sets, layouts & services for all supported locales, as shown in the <doc:Localization-Article> article.
 
 
 
@@ -117,11 +119,12 @@ KeyboardKit is available under the MIT license.
 
 ## Topics
 
-### Getting Started
+### Guides
 
-- <doc:Getting-Started-Article>
+- <doc:Getting-Started-Guide>
+- <doc:Memory-Management-Guide>
 
-### Features
+### Articles
 
 - <doc:Essentials-Article>
 - <doc:Actions-Article>

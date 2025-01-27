@@ -1,5 +1,7 @@
 # Status
 
+This article describes the KeyboardKit status engine.
+
 @Metadata {
 
     @PageImage(
@@ -8,8 +10,6 @@
         alt: "Page icon"
     )
 }
-
-This article describes the KeyboardKit status engine.
 
 KeyboardKit has ways to check various keyboard statuses, e.g. if a keyboard is enabled in System Settings, if Full Access is enabled, if a keyboard is actively being used, etc. This can be used to help users set up their keyboard. 
 

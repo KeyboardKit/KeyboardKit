@@ -1,5 +1,7 @@
 # Styling
 
+This article describes the KeyboardKit styling engine.
+
 @Metadata {
 
     @PageImage(
@@ -8,8 +10,6 @@
         alt: "Page icon"
     )
 }
-
-This article describes the KeyboardKit styling engine.
 
 While native iOS keyboards provide no way to customize the look & feel of the keyboard, KeyboardKit keyboards can be to great extent.
 

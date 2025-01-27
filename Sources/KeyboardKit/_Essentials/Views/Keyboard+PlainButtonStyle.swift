@@ -1,5 +1,5 @@
 //
-//  ButtonStyle+PlainKeyboard.swift
+//  Keyboard+PlainKeyboardButtonStyle.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-11-20.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension ButtonStyle where Self == PlainKeyboardButtonStyle {
+public extension ButtonStyle where Self == Keyboard.PlainButtonStyle {
 
     /// This button style can be used for plain buttons that
     /// are used in keyboard extensions.
@@ -27,23 +27,26 @@ public extension ButtonStyle where Self == PlainKeyboardButtonStyle {
     ) -> Self { .init(pressedOpacity: pressedOpacity) }
 }
 
-/// This button style can be used for plain buttons that are
-/// used in keyboard extensions.
-///
-/// This is needed because the transparent background is not
-/// responding to touches, which this style fixes.
-public struct PlainKeyboardButtonStyle: ButtonStyle {
-
-    init(pressedOpacity: Double? = nil) {
-        self.pressedOpacity = pressedOpacity ?? 0.5
-    }
-
-    private let pressedOpacity: Double
-
-    public func makeBody(configuration: Configuration) -> some View {
-        configuration.label
-            .background(Color.clearInteractable)
-            .opacity(configuration.isPressed ? pressedOpacity : 1)
+public extension Keyboard {
+    
+    /// This button style can be used for plain buttons that are
+    /// used in keyboard extensions.
+    ///
+    /// This is needed because the transparent background is not
+    /// responding to touches, which this style fixes.
+    struct PlainButtonStyle: SwiftUI.ButtonStyle {
+        
+        init(pressedOpacity: Double? = nil) {
+            self.pressedOpacity = pressedOpacity ?? 0.5
+        }
+        
+        private let pressedOpacity: Double
+        
+        public func makeBody(configuration: Configuration) -> some View {
+            configuration.label
+                .background(Color.clearInteractable)
+                .opacity(configuration.isPressed ? pressedOpacity : 1)
+        }
     }
 }
 

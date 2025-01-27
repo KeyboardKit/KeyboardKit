@@ -2,6 +2,15 @@
 
 This article describes the KeyboardKit device utilities.
 
+@Metadata {
+
+    @PageImage(
+        purpose: card,
+        source: "Page",
+        alt: "Page icon"
+    )
+}
+
 KeyboardKit has device-related features that can help customize your keyboard for various device types, orientations and screen sizes.
 
 Although you should avoid targeting a specific device, orientation, or screen size, some keyboard features require these considerations.

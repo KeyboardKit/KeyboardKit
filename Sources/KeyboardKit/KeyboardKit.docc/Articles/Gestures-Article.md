@@ -9,8 +9,6 @@ This article describes the KeyboardKit gesture engine.
         source: "Page",
         alt: "Page icon"
     )
-    
-    @PageColor(blue)
 }
 
 Native iOS keyboards use more gestures than you may think. For instance, keys can be pressed, released, long pressed, etc. Space can be dragged to move the cursor, shift can be double tapped to toggle caps-lock, etc.

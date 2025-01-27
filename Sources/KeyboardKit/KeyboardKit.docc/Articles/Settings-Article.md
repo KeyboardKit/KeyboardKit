@@ -1,5 +1,7 @@
 # Settings
 
+This article describes the KeyboardKit settings engine and its available settings.
+
 @Metadata {
 
     @PageImage(
@@ -8,8 +10,6 @@
         alt: "Page icon"
     )
 }
-
-This article describes the KeyboardKit settings engine and its available settings.
 
 KeyboardKit provides you with auto-persisted keyboard-related settings, as well as ways to integrate with System Settings. You can use this to provide users with ways to open System Settings from the app and keyboard, and to configure the keyboard extension.
 

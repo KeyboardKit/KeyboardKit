@@ -25,7 +25,7 @@ Unlike most other service types, the open-source project doesn't include a dicta
 
 Since keyboard dictation is based on navigating between the keyboard and the main app, and to share information between the two, a keyboard that wishes yo use dictation must use an App Group and set up the app and keyboard to use it.
 
-See the <doc:Getting-Started-Article> and <doc:Essentials-Article> articles for information on how to properly set up your app and keyboard to share data storage. 
+See the <doc:Getting-Started-Guide> guide and <doc:Essentials-Article> articles for information on how to properly set up your app and keyboard to share settings. 
 
 
 
@@ -283,12 +283,14 @@ public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
 #### Step 5 - Set up dictation in your keyboard extension
 
-To set up dictation for your keyboard extension, just setup your app and keyboard as described in the <doc:Getting-Started-Article> article, using a ``KeyboardApp`` that defines a ``KeyboardApp/DeepLinks-swift.struct/dictation`` deep link, or at least an ``KeyboardApp/DeepLinks-swift.struct/app`` deep link to use the standard dictation link pattern.
+To set up dictation for your keyboard extension, just set up your app and keyboard as described in the <doc:Getting-Started-Guide> guide, using a ``KeyboardApp`` that defines a ``KeyboardApp/DeepLinks-swift.struct/dictation`` deep link, or an ``KeyboardApp/DeepLinks-swift.struct/app`` deep link with the standard dictation pattern.
 
 
 #### Step 6 - Set up dictation in your main application
 
-To set up dictation for your main app, just wrap its root view in a  ``KeyboardAppView``, as described in the <doc:Getting-Started-Article> article, then apply any of the available `keyboardDictation` view modifiers to make the app trigger dictation:
+To even be able to start dictation in the main app from the keyboard, make sure to set up the ``KeyboardApp/DeepLinks-swift.struct/dictation`` deep link in your application. 
+
+To then set up dictation, just wrap your main app's root view in a  ``KeyboardAppView``, as described in the <doc:Getting-Started-Guide> guide, then apply the **.keyboardDictation** view modifier to it:
 
 ```swift
 struct ContentView: View {

@@ -89,6 +89,8 @@ Both views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be a
 let service = try KeyboardCallout.ProCalloutService.Swedish()
 ```
 
+These services will all throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Guide> for more info.
+
 ---
 
 

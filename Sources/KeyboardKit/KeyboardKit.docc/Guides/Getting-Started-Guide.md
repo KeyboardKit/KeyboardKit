@@ -1,6 +1,6 @@
 # Getting Started
 
-This article describes how to get started with KeyboardKit.
+This guide describes how to get started with KeyboardKit.
 
 @Metadata {
 
@@ -11,8 +11,7 @@ This article describes how to get started with KeyboardKit.
     )
 }
 
-
-This guide goes through the steps of adding [KeyboardKit][KeyboardKit] or [KeyboardKit Pro][Pro] to your project and setting up the main app and keyboard. 
+This guide goes through the steps of adding [KeyboardKit][KeyboardKit] or [KeyboardKit Pro][Pro] to your project and setting up the main app and keyboard.
 
 
 
@@ -298,10 +297,7 @@ Since services are lazy and resolved when they're used for the first time, you s
 You should now have a fully functional keyboard extension and companion app, which you can customize even further to fit your needs. For more information, see the <doc:Essentials-Article> article, as well as the other articles in this documentation.
 
 
-
-
 ---
-
 
 
 [KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit

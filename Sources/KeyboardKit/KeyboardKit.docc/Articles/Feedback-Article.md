@@ -9,8 +9,6 @@ This article describes the KeyboardKit feedback engine.
         source: "Page",
         alt: "Page icon"
     )
-    
-    @PageColor(blue)
 }
 
 Feedback is an important part of the typing experience, where a keyboard can trigger audio and haptic feedback when a user taps on a key or performs certain actions.

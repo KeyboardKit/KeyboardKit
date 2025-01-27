@@ -1,5 +1,7 @@
 # External Keyboards
 
+This article describes the KeyboardKit external keyboard engine.
+
 @Metadata {
     
     @PageImage(
@@ -7,11 +9,7 @@
         source: "Page",
         alt: "Page icon"
     )
-    
-    @PageColor(blue)
 }
-
-This article describes the KeyboardKit external keyboard engine.
 
 Keyboard extensions start to behave strangely when you type on an external keyboard. For instance, the keyboard extension will stop receiving information about when text changes, and will only update the context when the text cursor moves.
 
