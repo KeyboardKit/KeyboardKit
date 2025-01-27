@@ -13,7 +13,8 @@ These release notes cover the current major version. Check out version tags for 
 
 ## 9.1
 
-This version removes the KeyboardKit 8 migration support! Migrate to the last 9.0 version before updating to 9.1 or later.
+> [!IMPORTANT]
+> This version removes the KeyboardKit 8 migration support! Migrate to the last 9.0 version before updating to 9.1 or later.
 
 This version makes it easier to set up a custom `KeyboardApp`, by removing the need to specify the application `bundleId`. 
 

@@ -79,6 +79,10 @@ class KeyboardViewController: KeyboardInputViewController {
         setup(for: .keyboardKitDemo)
         
         // 👑 KeyboardKit Pro
+        setup(for: .keyboardKitDemo) { result in
+            // If result is successful, KeyboardKit Pro is now active
+            // You can now customize your keyboard and tweak features 
+        }
     }
 }
 ```
@@ -150,7 +154,7 @@ KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unloc
 
 ## Features
 
-KeyboardKit is packed with features to help you build amazing custom keyboards:
+KeyboardKit has open-source features that help you build great keyboards:
 
 * ⌨️ [Essentials][Essentials] - Essential keyboard utilities, models, services & views.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
@@ -174,7 +178,7 @@ KeyboardKit is packed with features to help you build amazing custom keyboards:
 
 ## 👑 Pro Features
 
-[KeyboardKit Pro][Pro] extends KeyboardKit with Pro features:
+[KeyboardKit Pro][Pro] extends KeyboardKit with Pro features that take your keyboard further:
 
 * ⌨️ [Essentials][Essentials] - More essential tools, previews, toolbars, etc.
 * 🤖 [AI][AI] - Features that are needed for AI.
@@ -204,7 +208,7 @@ The [online documentation][Documentation] has a thorough getting-started guide, 
 
 The `Demo` folder has a demo app that shows how to set up the main keyboard app, show keyboard status, provide in-app settings, link to system settings, apply custom styles, etc. 
 
-The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro. Note that you need to enable Full Access for some features to work, like haptic feedback.
+The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro. Note that you need to enable Full Access for some features to work.
 
 > [!IMPORTANT]
 > The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has settings screens in the keyboard as well.
