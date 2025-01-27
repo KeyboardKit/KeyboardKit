@@ -107,7 +107,7 @@ public struct KeyboardView<
         
         let hasProEmojiKeyboard = !Emoji.KeyboardWrapper.isEmptyPlaceholder
         let hasCustomEmojiKeyboard = EmojiKeyboard.self != Emoji.KeyboardWrapper.self
-        let hasEmojiKeyboard = hasCustomEmojiKeyboard || hasProEmojiKeyboard
+        let hasEmojiKeyboard = hasProEmojiKeyboard || hasCustomEmojiKeyboard
         if !hasEmojiKeyboard {
             layout.itemRows.remove(.keyboardType(.emojis))
         }
@@ -149,23 +149,14 @@ public struct KeyboardView<
         return style
     }
     
-    @Environment(\.keyboardCalloutStyle)
-    private var calloutStyleFromEnvironment
+    @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
+    @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
+    @Environment(\.keyboardDockEdge) var keyboardDockEdge
+    @Environment(\.keyboardInputToolbarDisplayMode) var rawInputToolbarDisplayMode
     
-    @Environment(\.keyboardDockEdge)
-    private var keyboardDockEdge
-
-    @Environment(\.keyboardInputToolbarDisplayMode)
-    private var rawInputToolbarDisplayMode
-
-    @ObservedObject
-    private var autocompleteContext: AutocompleteContext
-
-    @ObservedObject
-    private var calloutContext: KeyboardCalloutContext
-
-    @ObservedObject
-    private var keyboardContext: KeyboardContext
+    @ObservedObject var autocompleteContext: AutocompleteContext
+    @ObservedObject var calloutContext: KeyboardCalloutContext
+    @ObservedObject var keyboardContext: KeyboardContext
 
     public var body: some View {
         if keyboardContext.isKeyboardCollapsed {
@@ -315,7 +306,7 @@ private extension KeyboardView {
                     }
                 }
                 .padding(styleService.keyboardEdgeInsets)
-                .environment(\.layoutDirection, .leftToRight)   // Enforce a direction due to the layout.
+                .environment(\.layoutDirection, .leftToRight)   // Enforce a layout direction
                 .frame(width: keyboardWidth)
             }
             .frame(maxWidth: .infinity, alignment: keyboardDockEdge?.alignment ?? .center)
@@ -331,6 +322,7 @@ private extension KeyboardView {
     @ViewBuilder
     var emojiKeyboard: some View {
         emojiKeyboardContent
+            .emojiKeyboardStyle(emojiKeyboardStyle)
             .id(keyboardContext.interfaceOrientation)       // TODO: Temp orientation fix, still needed?
     }
 
@@ -338,7 +330,7 @@ private extension KeyboardView {
     var emojiKeyboardContent: some View {
         if shouldShowEmojiKeyboard {                        // Conditional to avoid allocating memory
             emojiKeyboardBuilder((
-                style: Emoji.KeyboardStyle.standard(for: keyboardContext),
+                style: emojiKeyboardStyle,
                 view: Emoji.KeyboardWrapper(
                     actionHandler: actionHandler,
                     keyboardContext: keyboardContext,
@@ -349,6 +341,11 @@ private extension KeyboardView {
         } else {
             Color.clear
         }
+    }
+    
+    var emojiKeyboardStyle: Emoji.KeyboardStyle {
+        emojiKeyboardStyleFromEnvironment(keyboardContext)
+            .augmented(for: inputToolbarDisplayMode)
     }
 
     @ViewBuilder

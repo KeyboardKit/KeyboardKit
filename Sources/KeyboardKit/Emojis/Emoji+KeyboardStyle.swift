@@ -145,15 +145,22 @@ public extension Emoji.KeyboardStyle {
 
     /// This typealias defines an emoji keyboard style builder.
     typealias Builder = (KeyboardContext) -> Self
+}
 
-    /// A standard iPhone style.
-    static var standardPhone: Self {
-        standardPhone(rows: 5)
-    }
-
-    /// A standard iPhone style with custom parameters.
-    static func standardPhone(rows: Int) -> Self {
-        .init(rows: rows)
+public extension Emoji.KeyboardStyle {
+    
+    /// Add an extra row if an input toolbar is presented.
+    ///
+    /// This is used by ``KeyboardView``, so do not use this
+    /// modifier on styles that you pass into that view.
+    func augmented(
+        for mode: Keyboard.InputToolbarDisplayMode? = nil
+    ) -> Self {
+        var copy = self
+        if let mode, mode != .hidden {
+            copy.rows += 1
+        }
+        return copy
     }
 }
 

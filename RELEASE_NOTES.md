@@ -28,13 +28,15 @@ This version makes it possible to add a locale context menu directly to the spac
 * `Keyboard.SpaceLongPressBehavior` has a new `.moveInputCursorWithLocaleSwitcher`.
 * `KeyboardContext` has new `enabledLocales` that usess `addedLocales` or `locales`.
 * `KeyboardView` can now docks to any horizontal edge, if `keyboardDockEdge` is set.
+* `KeyboardView` now automatically augments emoji keyboard styles for input toolbars.
 * `Locale` has a new `shortDisplayName` that returns the language code or identifier.
 * `View` has a new `.keyboardDockEdge(...)` modifier, which can apply a custom value.
 
 ### 👑 Pro
 
-* `iPadProLayoutService` now renders URL and email keyboards better.
+* `EmojiKeyboard` now renders a lot better for more device types.
 * `Emoji.KeyboardMenu` now gets a style builder from the environment.
+* `iPadProLayoutService` now renders URL and email keyboard keys better.
 
 ### 💡 Adjustment
 

@@ -161,7 +161,7 @@ public struct KeyboardViewItem<Content: View>: View {
                 keyboardWidth: 100,
                 inputWidth: 100,
                 isGestureAutoCancellable: false,
-                content: Text("HEJ")
+                content: Text("Hello, world!")
             )
             .background(Color.red)
         }

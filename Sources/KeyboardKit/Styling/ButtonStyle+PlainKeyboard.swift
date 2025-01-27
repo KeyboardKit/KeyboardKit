@@ -51,7 +51,7 @@ private var previewButton: some View {
     Button {
         print("Tapped!")
     } label: {
-        Text("HEJ")
+        Text("Hello, world!")
     }
 }
 
