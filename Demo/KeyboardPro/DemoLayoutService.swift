@@ -47,15 +47,18 @@ class DemoLayoutService: KeyboardLayout.StandardLayoutService {
 private extension KeyboardLayout {
 
     mutating func tryInsert(_ action: KeyboardAction) {
-        guard let item = tryCreateBottomRowItem(for: action) else { return }
-        itemRows.insert(item, before: .space, inRow: bottomRowIndex)
+        guard var item = tryCreateBottomRowItem(for: action) else { return }
+        item.alignment = ipadProLayout ? .bottomLeading : .center
+        insert(item, before: .space, inRow: bottomRowIndex)
     }
 
     mutating func tryInsertEmojiButton() {
         guard let row = bottomRow else { return }
-        let hasEmoji = row.contains(where: { $0.action == .keyboardType(.emojis) })
+        let action = KeyboardAction.keyboardType(.emojis)
+        let hasEmoji = row.contains(where: { $0.action == action })
         if hasEmoji { return }
-        guard let button = tryCreateBottomRowItem(for: .keyboardType(.emojis)) else { return }
-        itemRows.insert(button, after: .space, inRow: bottomRowIndex)
+        guard var item = tryCreateBottomRowItem(for: action) else { return }
+        item.alignment = ipadProLayout ? .bottomTrailing : .center
+        itemRows.insert(item, after: .space, inRow: bottomRowIndex)
     }
 }

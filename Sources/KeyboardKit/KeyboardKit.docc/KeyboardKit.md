@@ -11,8 +11,6 @@ KeyboardKit lets you create fully customizable [keyboard extensions][About] in a
 
 KeyboardKit is open-source and completely free to use. It can be extended with [KeyboardKit Pro][Pro] to unlock a bunch of pro features, like fully localized keyboards, autocomplete, AI-enabling features, and much more.  
 
-Keyboard extensions can be used within all other apps on iOS, whever text input is supported. It's the only way for a company, product, or technology to directly interact with other apps on iOS. Don't miss out!
-
 
 
 ## Installation
@@ -155,6 +153,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardContext``
 - ``KeyboardController``
 - ``KeyboardInputViewController``
+- ``KeyboardModel``
 - ``KeyboardView``
 - ``KeyboardViewComponent``
 - ``KeyboardViewItem``

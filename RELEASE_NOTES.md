@@ -58,7 +58,8 @@ This version makes it possible to add a locale context menu directly to the spac
 ### 🗑️ Deprecations
 
 * All migration deprecations have been removed.
-* `Gestures` space models have been moved to `Keyboard`. 
+* `Gestures` space models have been moved to `Keyboard`.
+* `KeyboardLayout.ipadProLayout` has been renamed to `isIpadProLayout`.
 
 
 

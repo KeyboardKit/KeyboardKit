@@ -37,7 +37,7 @@ public struct KeyboardLayout {
         inputToolbarInputSet: InputSet? = nil
     ) {
         self.itemRows = rows
-        self.ipadProLayout = iPadProLayout
+        self.isIpadProLayout = iPadProLayout
         self.idealItemHeight = height ?? Self.resolveIdealItemHeight(for: rows)
         self.idealItemInsets = insets ?? Self.resolveIdealItemInsets(for: rows)
         self.inputToolbarInputSet = inputToolbarInputSet
@@ -53,7 +53,7 @@ public struct KeyboardLayout {
     public var idealItemInsets: EdgeInsets
     
     /// Whether this is an iPad Pro layout.
-    public var ipadProLayout: Bool
+    public var isIpadProLayout: Bool
 
     /// The input set to use for a top input toolbar.
     public var inputToolbarInputSet: InputSet?
@@ -63,6 +63,15 @@ public struct KeyboardLayout {
 
     /// A cache used to avoid having to recalculate widths.
     var widthCache = WidthCache()
+}
+
+public extension KeyboardLayout {
+    
+    @available(*, deprecated, renamed: "isIpadProLayout")
+    var ipadProLayout: Bool {
+        get { isIpadProLayout }
+        set { isIpadProLayout = newValue }
+    }
 }
 
 extension KeyboardLayout {

@@ -30,7 +30,7 @@ class KeyboardViewController: KeyboardInputViewController {
     /// the `.keyboardKitDemo` app.
     override func viewDidLoad() {
 
-        /// 💡 Always call super :)
+        /// 💡 Always call super.viewDidLoad()
         super.viewDidLoad()
 
         /// ‼️ Set up the keyboard for `.keyboardKitDemo`.
@@ -49,17 +49,15 @@ class KeyboardViewController: KeyboardInputViewController {
     /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
 
-        /// 💡 Always call super :)
-        super.viewWillSetupKeyboardView()
-
-        /// 💡 Call `setupKeyboardView(...)` to customize or
-        /// replace the standard `KeyboardView`.
+        /// 💡 Don't call `super.viewWillSetupKeyboardView()`
+        /// but call `setupKeyboardView { ... }` instead, to
+        /// customize or replace the standard `KeyboardView`.
         ///
-        /// ‼️ Try avoid passing on `self` or the controller.
-        /// If you must pass it on, make sure that the `self`
-        /// reference is weak and that your custom view uses
-        /// an `unowned` controller property, otherwise your
-        /// controller reference will cause a memory leak.
+        /// ‼️ Avoid passing `self` and `controller` to your
+        /// custom view. If you must do so, make sure to use
+        /// a weak or unowned `self`, and that the view uses
+        /// an `unowned` controller property. Otherwise, you
+        /// run the risk of creating a memory leak.
         setupKeyboardView { /*[weak self]*/ controller in
             DemoKeyboardView(
                 controller: controller
@@ -81,7 +79,8 @@ private extension KeyboardViewController {
         /// 💡 Set up a demo-specific layout service with an
         /// optional additional bottom key.
         services.layoutService = DemoLayoutService(
-            extraKey: .rocket
+            // extraKey: .rocket
+            extraKey: .localeSwitcher
         )
 
         /// 💡 Set up a demo-specific keyboard style service.
