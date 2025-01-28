@@ -94,6 +94,7 @@ private extension KeyboardViewController {
         state.keyboardContext.settings.addedLocales = [.english, .swedish]
 
         /// 💡 Configure the space key's long press behavior.
+        state.keyboardContext.settings.keyboardDockEdge = .leading
         // state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
         state.keyboardContext.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
         // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu

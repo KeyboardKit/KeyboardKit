@@ -62,6 +62,7 @@ class KeyboardViewController: KeyboardInputViewController {
             DemoKeyboardView(
                 controller: controller
             )
+            .keyboardDockEdge(.leading)     // 💡 This is needed until 9.1 is out
         }
     }
 }
