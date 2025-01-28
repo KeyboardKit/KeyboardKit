@@ -22,6 +22,9 @@ import SwiftUI
 ///
 /// See the <doc:Essentials-Article> article for information
 /// on how to customize this and other views in this library.
+///
+/// > Note: This view ignores environment values that can be
+/// set using the various context and setting classes.
 public struct KeyboardView<
     ButtonContent: View,
     ButtonView: View,
@@ -151,7 +154,6 @@ public struct KeyboardView<
     
     @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
-    @Environment(\.keyboardDockEdge) var keyboardDockEdge
     @Environment(\.keyboardInputToolbarDisplayMode) var rawInputToolbarDisplayMode
     
     @ObservedObject var autocompleteContext: AutocompleteContext
@@ -197,6 +199,7 @@ public struct KeyboardView<
             keyboardContext: keyboardContext
         )
         .keyboardCalloutStyle(calloutStyle)
+        .keyboardDockEdge(keyboardContext.settings.keyboardDockEdge)
     }
 }
 
@@ -309,14 +312,22 @@ private extension KeyboardView {
                 .environment(\.layoutDirection, .leftToRight)   // Enforce a layout direction
                 .frame(width: keyboardWidth)
             }
-            .frame(maxWidth: .infinity, alignment: keyboardDockEdge?.alignment ?? .center)
+            .frame(maxWidth: .infinity, alignment: keyboardViewAlignment)
         }
         .frame(height: layout.totalHeight)
     }
     
+    var keyboardViewAlignment: Alignment {
+        keyboardViewDockEdge?.alignment ?? .center
+    }
+    
+    var keyboardViewDockEdge: Keyboard.DockEdge? {
+        keyboardContext.settings.keyboardDockEdge
+    }
+    
     func keyboardWidth(for totalWidth: Double) -> Double {
-        let isDocked = keyboardDockEdge != nil
-        return isDocked ? 0.75 * totalWidth : totalWidth
+        let isDocked = keyboardViewDockEdge != nil
+        return isDocked ? 0.8 * totalWidth : totalWidth
     }
 
     @ViewBuilder
@@ -461,8 +472,9 @@ private extension KeyboardView {
             let context = controller.state.keyboardContext
             context.locale = .english
             context.settings.addedLocales = [.english, .swedish, .persian]
-            context.spaceLongPressBehavior = .openLocaleContextMenu
-            context.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
+            context.settings.keyboardDockEdge = .leading
+//            context.spaceLongPressBehavior = .openLocaleContextMenu
+//            context.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
             
             controller.state.autocompleteContext.suggestions = [
                 .init(text: "Foo"),
@@ -532,7 +544,7 @@ private extension KeyboardView {
 //                },
 //                toolbar: { $0.view }
 //            )
-            .keyboardDockEdge(dockEdge)
+//            .keyboardDockEdge(dockEdge)
         }
     }
 
