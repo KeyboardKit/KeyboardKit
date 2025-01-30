@@ -29,7 +29,7 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 The <doc:Getting-Started> guide helps you get started with KeyboardKit, and the <doc:Essentials> article describes the essential types in the library.
 
-You should also read the <doc:Essentials-Memory-Management> article about the *very* strict memory limitations that Apple puts on keyboard extensions. Learn how to avoid memory-leaks, keep within the memory limits, and how to monitor your memory consumption.
+> Important: You should also read the <doc:Essentials-Memory-Management> article about the *very* strict memory limitations that Apple puts on keyboard extensions. Learn how to avoid memory-leaks, keep within the limits, and how to monitor your memory consumption.
 
 
 
