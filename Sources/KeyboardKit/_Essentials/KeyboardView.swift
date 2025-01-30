@@ -20,8 +20,8 @@ import SwiftUI
 /// and the ``KeyboardInputViewController/services`` service
 /// instances to customize it, you don't have to do anything.
 ///
-/// See the <doc:Essentials-Article> article for information
-/// on how to customize this and other views in this library.
+/// See the <doc:Essentials> article for more information on
+/// this essential part of the KeyboardKit SDK.
 ///
 /// > Note: This view ignores environment values that can be
 /// set using the various context and setting classes.

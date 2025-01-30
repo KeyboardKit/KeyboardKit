@@ -60,8 +60,6 @@ extension KeyboardApp {
 Next, let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
-import KeyboardKit
-
 class KeyboardController: KeyboardInputViewController {}
 ```
 
@@ -108,14 +106,9 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-You can return `$0.view` to use the standard view, or return any custom view you like for the provided parameters.
-
 To set up your main app with the same keyboard configuration, just wrap the content view in a `KeyboardAppView`:
 
 ```swift
-import SwiftUI
-import KeyboardKit
-
 @main
 struct MyApp: App {
 
@@ -129,9 +122,7 @@ struct MyApp: App {
 }
 ```
 
-Setting up your app and keyboard with a `KeyboardApp` will make settings sync between the two if an ``appGroupId`` is defined, register your KeyboardKit Pro license if a ``licenseKey`` is defined, set up dictation, deep links, etc.
-
-For more information, see the [getting started guide][Getting-Started].
+For more information, see the [getting started guide][Getting-Started] and [essentials][Essentials] articles.
 
 
 
@@ -156,7 +147,8 @@ KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unloc
 
 KeyboardKit has open-source features that help you build great keyboards:
 
-* ⌨️ [Essentials][Essentials] - Essential keyboard utilities, models, services & views.
+* 🌱 [Essentials][Essentials] - Essential keyboard utilities, models, services & views.
+* ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - Render a native-looking, customizable iOS keyboard.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
 * 📱 [App][App] - Define and set up your app, settings, etc.
 * 💡 [Autocomplete][Autocomplete] - Perform autocomplete as the user types.
@@ -180,7 +172,8 @@ KeyboardKit has open-source features that help you build great keyboards:
 
 [KeyboardKit Pro][Pro] extends KeyboardKit with Pro features that take your keyboard further:
 
-* ⌨️ [Essentials][Essentials] - More essential tools, previews, toolbars, etc.
+* 🌱 [Essentials][Essentials] - More essential tools, previews, toolbars, etc.
+* ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - Make the keyboard view do a lot more.
 * 🤖 [AI][AI] - Features that are needed for AI.
 * 📱 [App][App] - App-specific screens & views.
 * 💡 [Autocomplete][Autocomplete] - Local & remote autocomplete, next word prediction, etc.
@@ -260,10 +253,11 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 [Documentation]: https://keyboardkit.github.io/KeyboardKit/
 
-[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started-guide
-[Memory-Management]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/memory-management-guide
+[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
+[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
+[Essentials-KeyboardView]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-keyboardview
+[Essentials-Memory-Management]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-memory-management
 
-[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-article
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions-article
 [AI]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/ai-article
 [App]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/app-article

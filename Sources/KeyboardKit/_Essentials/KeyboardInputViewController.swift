@@ -33,9 +33,9 @@ import UIKit
 /// `[weak self]` or `[unowned self]` to the builder. If you
 /// don't, the `self` reference will cause a memory leak.
 ///
-/// See the <doc:Getting-Started-Guide> guide to get started
-/// with the class, and the <doc:Essentials-Article> article
-/// for more information about the capabilities it has.
+/// See the <doc:Getting-Started> article for a guide on how
+/// to use this class, and <doc:Essentials> article for more
+/// information about its capabilities.
 open class KeyboardInputViewController: UIInputViewController, KeyboardController, UrlOpener {
 
 

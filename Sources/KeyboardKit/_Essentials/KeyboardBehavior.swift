@@ -15,8 +15,6 @@ import Foundation
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
 /// it at any time to customize the keyboard behavior.
-///
-/// See <doc:Essentials-Article> for more information.
 public protocol KeyboardBehavior {
     
     /// The range that backspace should delete.

@@ -1,4 +1,4 @@
-# Memory Management
+# Essentials - Memory Management
 
 This guide describes how to manage memory in a keyboard extensions.
 

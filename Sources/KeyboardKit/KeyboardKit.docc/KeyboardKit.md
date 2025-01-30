@@ -27,9 +27,9 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 ## Getting Started
 
-The <doc:Getting-Started-Guide> guide helps you get started with KeyboardKit, and the <doc:Essentials-Article> article describes the essential types in the library.
+The <doc:Getting-Started> guide helps you get started with KeyboardKit, and the <doc:Essentials> article describes the essential types in the library.
 
-You should also read the <doc:Memory-Management-Guide> guide, about the very strict memory limitations that Apple puts on keyboard extensions.
+You should also read the <doc:Essentials-Memory-Management> article about the *very* strict memory limitations that Apple puts on keyboard extensions. Learn how to avoid memory-leaks, keep within the memory limits, and how to monitor your memory consumption.
 
 
 
@@ -54,7 +54,8 @@ KeyboardKit supports **71** keyboard-specific ``Foundation/Locale``s:
 
 KeyboardKit comes packed with features to help you build amazing keyboard extensions:
 
-* ⌨️ <doc:Essentials-Article> - Essential utilities, models, services & views.
+* 🌱 <doc:Essentials> - Essential utilities, models, services & views.
+* ⌨️ <doc:Essentials-KeyboardView> - Render a native-looking, customizable iOS keyboard.
 * 💥 <doc:Actions-Article> - Trigger & handle keyboard-related actions.
 * 📱 <doc:App-Article> - Define and set up your app, settings, etc.
 * 💡 <doc:Autocomplete-Article> - Perform autocomplete as the user types.
@@ -79,7 +80,8 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 
 You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
-* ⌨️ <doc:Essentials-Article> - More essential tools, keyboard previews, etc.
+* 🌱 <doc:Essentials> - More essential tools, keyboard previews, etc.
+* ⌨️ <doc:Essentials-KeyboardView> - Make the keyboard view do a lot more.
 * 🤖 <doc:AI-Article> - Features that are needed for AI.
 * 📱 <doc:App-Article> - App-specific screens & views.
 * 💡 <doc:Autocomplete-Article> - On-device & remote autocomplete.
@@ -107,8 +109,6 @@ The demo app in the [KeyboardKit repository][SDK] lets you try out both Keyboard
 
 KeyboardKit is available under the MIT license.
 
-
-
 [About]: https://keyboardkit.com/about
 [App]: https://keyboardkit.com/app
 [SDK]: https://github.com/KeyboardKit/KeyboardKit
@@ -121,12 +121,17 @@ KeyboardKit is available under the MIT license.
 
 ### Guides
 
-- <doc:Getting-Started-Guide>
-- <doc:Memory-Management-Guide>
+
+
+### Essentials
+
+- <doc:Getting-Started>
+- <doc:Essentials>
+- <doc:Essentials-KeyboardView>
+- <doc:Essentials-Memory-Management>
 
 ### Articles
 
-- <doc:Essentials-Article>
 - <doc:Actions-Article>
 - <doc:AI-Article>
 - <doc:App-Article>

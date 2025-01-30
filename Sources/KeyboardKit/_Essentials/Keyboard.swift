@@ -13,5 +13,6 @@ import Foundation
 /// The namespace doesn't contain protocols, nor any context
 /// or settings types that should be top-level types.
 ///
-/// See <doc:Essentials-Article> for more information.
+/// See the <doc:Essentials> article for more information on
+/// this essential part of the KeyboardKit SDK.
 public struct Keyboard {}

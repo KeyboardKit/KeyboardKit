@@ -55,7 +55,7 @@ KeyboardKit Pro also unlocks a localized ``KeyboardLayout/ProLayoutService`` for
 let service = try KeyboardLayout.ProLayoutService.Swedish()
 ```
 
-These input sets and layout services will all throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Guide> for more info.
+These input sets and layout services will all throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started> for more info.
 
 
 ### More Layout Capabilites

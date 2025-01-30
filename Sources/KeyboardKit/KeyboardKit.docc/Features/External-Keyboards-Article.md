@@ -23,11 +23,11 @@ One way to force the proxy to update is to move the text cursor with a fixed int
 Due to this limitation, it may be better to collapse the keyboard to a compact toolbar when an external keyboard is connected. You can always add a button that expands the keyboard again.
 
 
-## How to collapse the keyboard
+## How to auto-collapse the software keyboard
 
 The ``KeyboardContext``'s ``KeyboardContext/isKeyboardCollapsed`` property can be used to collapse the keyboard, e.g. when an external keyboard is connected. KeyboardKit Pro will automatically update this if the ``Keyboard/Settings/isKeyboardAutoCollapseEnabled`` setting is true. 
 
-``KeyboardView`` lets you define which view to show when it's collapsed. It defaults to a ``Keyboard/CollapsedView``. This can be used to display custom content when the keyboard is collapsed. See the <doc:Essentials-Article> article for more information.
+``KeyboardView`` lets you define which view to show when it's collapsed. It defaults to a ``Keyboard/CollapsedView``. This can be used to display custom content when the keyboard is collapsed. See the <doc:Essentials> article for more information.
 
 
 ## How to manage external keyboard state 
