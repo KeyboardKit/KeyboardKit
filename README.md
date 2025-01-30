@@ -13,15 +13,13 @@
 
 ## About KeyboardKit
 
-KeyboardKit is a SwiftUI SDK that lets you create fully customizable [keyboard extensions][About] with a few lines of code.
-
-KeyboardKit extends Apple's limited keyboard APIs with more capabilities, and provides additional functionality, to let you build outstanding custom keyboards with little effort.
+KeyboardKit lets you create amazing [custom keyboards][About] with a few lines of code, using Swift & SwiftUI.
 
 <p align="center">
     <img src ="Resources/Demo.gif" width=450 />
 </p>
 
-KeyboardKit is open-source and completely free. It can be extended with [KeyboardKit Pro][Pro] to unlock Pro features, like localized keyboards, autocomplete & autocorrect, AI support, an emoji keyboard, themes, dictation, and more.
+KeyboardKit extends Apple's limited keyboard APIs with more capabilities. It can be extended with [KeyboardKit Pro][Pro], which unlocks localized keyboards, autocomplete, an emoji keyboard, AI support, themes, and much more.
 
 
 
@@ -65,7 +63,7 @@ class KeyboardController: KeyboardInputViewController {}
 
 This unlocks additional functions and capabilities, and injects `services` and observable `state` to the controller. 
 
-Next, override `viewDidLoad` and call `setup(for:)` with your app value, or `setupPro(for:...)` if you use KeyboardKit Pro:
+Next, override `viewDidLoad()` and call `setup(for:)`, or `setupPro(for:)` if you use KeyboardKit Pro:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -85,7 +83,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-To replace or customize the standard `KeyboardView` keyboard view, just override `viewWillSetupKeyboardView` and call `setupKeyboardView` with the view you want to use:
+To replace or customize the standard `KeyboardView` view, just override `viewWillSetupKeyboardView()` and call `setupKeyboardView(with:)` with the view that you want to use:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -145,7 +143,9 @@ KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unloc
 
 ## Features
 
-KeyboardKit has open-source features that help you build great keyboards:
+KeyboardKit helps you build amazing keyboard extensions, and provides you with a completely free, open-source keyboard engine. You can upgrade to [KeyboardKit Pro][Pro] to unlock even more features.
+
+### Open-Source
 
 * 🌱 [Essentials][Essentials] - Essential keyboard utilities, models, services & views.
 * ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - Render a native-looking, customizable iOS keyboard.
@@ -166,11 +166,7 @@ KeyboardKit has open-source features that help you build great keyboards:
 * 🩺 [Status][Status] - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - Style your keyboard to great extent.
 
-
-
-## 👑 Pro Features
-
-[KeyboardKit Pro][Pro] extends KeyboardKit with Pro features that take your keyboard further:
+### KeyboardKit Pro
 
 * 🌱 [Essentials][Essentials] - More essential tools, previews, toolbars, etc.
 * ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - Make the keyboard view do a lot more.
@@ -210,7 +206,7 @@ The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPr
 
 ## KeyboardKit App
 
-You can try KeyboardKit without having to write any code or build the demo app from Xcode, by downloading the [KeyboardKit app][KeyboardKit-App] from the App Store.
+Download the [KeyboardKit app][KeyboardKit-App] from the App Store to try KeyboardKit without having to write any code or build the demo app from Xcode.
 
 
 
@@ -225,9 +221,8 @@ KeyboardKit is open-source and completely free, but you can support the project 
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
 * Website: [keyboardkit.com][Website]
+* Bluesky: [@keyboardkit.bsky.social][Bluesky]
 * Mastodon: [@keyboardkit@techhub.social][Mastodon]
-* Twitter: [@getkeyboardkit][Twitter]
-* E-mail: [info@keyboardkit.com][Email]
 
 
 
@@ -239,7 +234,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 
 [Email]: mailto:info@keyboardkit.com
 [Website]: https://keyboardkit.com
-[Twitter]: http://twitter.com/getkeyboardkit
+[Bluesky]: https://bsky.app/profile/keyboardkit.bsky.social
 [Mastodon]: https://techhub.social/@keyboardkit
 [Sponsors]: https://github.com/sponsors/danielsaidi
 

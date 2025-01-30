@@ -1,15 +1,15 @@
 # ``KeyboardKit``
 
-KeyboardKit is a Swift SDK that lets you create fully customizable keyboards in SwiftUI.
+KeyboardKit helps you create fully customizable keyboard extensions, using Swift and SwiftUI.
 
 
 ## Overview
 
 ![KeyboardKit logo](Logo.png)
 
-KeyboardKit lets you create fully customizable [keyboard extensions][About] in a few lines of code, using SwiftUI. It extends Apple's limited APIs and provides you with a lot more functionality than what is otherwise available.
+KeyboardKit lets you create amazing [custom keyboards][About] with a few lines of code, using Swift & SwiftUI.
 
-KeyboardKit is open-source and completely free to use. It can be extended with [KeyboardKit Pro][Pro] to unlock a bunch of pro features, like fully localized keyboards, autocomplete, AI-enabling features, and much more.  
+KeyboardKit extends Apple's limited keyboard APIs with more capabilities. It can be extended with [KeyboardKit Pro][Pro], which unlocks Pro features like localized keyboards, autocomplete, an emoji keyboard, AI support, themes, and much more.
 
 
 
@@ -49,18 +49,20 @@ KeyboardKit supports **71** keyboard-specific ``Foundation/Locale``s:
 [KeyboardKit Pro][Pro] unlocks localized callouts, input sets, layouts & services for all supported locales, as shown in the <doc:Localization-Article> article.
 
 
+## Features 
 
-## Open-Source Features
+KeyboardKit helps you build amazing keyboard extensions, and provides you with a completely free, open-source keyboard engine. You can upgrade to [KeyboardKit Pro][Pro] to unlock even more features.
 
-KeyboardKit comes packed with features to help you build amazing keyboard extensions:
 
-* 🌱 <doc:Essentials> - Essential utilities, models, services & views.
-* ⌨️ <doc:Essentials-KeyboardView> - Render a native-looking, customizable iOS keyboard.
+### Open-Source
+
+* 🌱 <doc:Essentials> - Essential models, features & views.
+* ⌨️ <doc:Essentials-KeyboardView> - Render a native-looking, customizable keyboard.
 * 💥 <doc:Actions-Article> - Trigger & handle keyboard-related actions.
 * 📱 <doc:App-Article> - Define and set up your app, settings, etc.
 * 💡 <doc:Autocomplete-Article> - Perform autocomplete as the user types.
 * 🗯 <doc:Callouts-Article> - Show input & secondary action callouts.
-* 🖥️ <doc:Device-Article> - Identify device type, device capabilities, etc.
+* 🖥️ <doc:Device-Article> - Identify device types, capabilities, etc.
 * 😀 <doc:Emojis-Article> - Emojis, categories, versions, skin tones, etc.
 * 🔉 <doc:Feedback-Article> - Trigger audio & haptic feedback with ease.
 * 👆 <doc:Gestures-Article> - Handle a rich set of gestures on any key.
@@ -75,10 +77,7 @@ KeyboardKit comes packed with features to help you build amazing keyboard extens
 * 🎨 <doc:Styling-Article> - Style your keyboard to great extent.
 
 
-
-## Pro Features
-
-You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
+### KeyboardKit Pro
 
 * 🌱 <doc:Essentials> - More essential tools, keyboard previews, etc.
 * ⌨️ <doc:Essentials-KeyboardView> - Make the keyboard view do a lot more.
@@ -101,7 +100,7 @@ You can upgrade to [KeyboardKit Pro][Pro] to unlock Pro features.
 
 ## Demo & Inspiration
 
-The demo app in the [KeyboardKit repository][SDK] lets you try out both KeyboardKit and KeyboardKit Pro. The [KeyboardKit app][App] on the App Store lets you try many pro features directly on your iPhone & iPad, without having to write any code.
+The demo app in the [KeyboardKit GitHub repository][KeyboardKit] lets you try out both KeyboardKit and KeyboardKit Pro. The [KeyboardKit app][App] on the App Store lets you try many pro features directly on your iPhone & iPad, without having to write any code.
 
 
 
@@ -109,19 +108,17 @@ The demo app in the [KeyboardKit repository][SDK] lets you try out both Keyboard
 
 KeyboardKit is available under the MIT license.
 
+
+
 [About]: https://keyboardkit.com/about
 [App]: https://keyboardkit.com/app
-[SDK]: https://github.com/KeyboardKit/KeyboardKit
+[KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 [Website]: https://keyboard.com
 
 
 
 ## Topics
-
-### Guides
-
-
 
 ### Essentials
 
@@ -155,7 +152,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Text-Input-Article>
 - <doc:Themes-Article>
 
-### Essentials
+### Essential Types
 
 - ``Keyboard``
 - ``KeyboardBehavior``
