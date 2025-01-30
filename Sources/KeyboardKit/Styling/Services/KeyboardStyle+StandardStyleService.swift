@@ -383,10 +383,10 @@ extension KeyboardAction {
         return isPressed ?
             buttonForegroundColorForPressedState(for: context) :
             buttonForegroundColorForIdleState(for: context)
+        
     }
 
     func buttonForegroundColorForIdleState(for context: KeyboardContext) -> Color {
-        if context.hasDarkColorScheme { return .blue }
         if isUpperShift(for: context) && context.hasDarkColorScheme { return .black }
         let standard = Color.keyboardButtonForeground(for: context)
         if isSystemAction { return standard }
