@@ -143,7 +143,7 @@ KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unloc
 
 ## Features
 
-KeyboardKit helps you build amazing keyboard extensions, and provides you with a completely free, open-source keyboard engine. You can upgrade to [KeyboardKit Pro][Pro] to unlock even more features.
+KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro] unlocks more powerful pro features.
 
 ### Open-Source
 
@@ -197,10 +197,10 @@ The [online documentation][Documentation] has a thorough getting-started guide, 
 
 The `Demo` folder has a demo app that shows how to set up the main keyboard app, show keyboard status, provide in-app settings, link to system settings, apply custom styles, etc. 
 
-The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro. Note that you need to enable Full Access for some features to work.
+The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro.
 
 > [!IMPORTANT]
-> The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has settings screens in the keyboard as well.
+> The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has keyboard settings in the keyboard as well.
 
 
 
@@ -221,6 +221,7 @@ KeyboardKit is open-source and completely free, but you can support the project 
 Feel free to reach out if you have questions or if you want to contribute in any way:
 
 * Website: [keyboardkit.com][Website]
+* E-mail: [info@keyboardkit.com][Email]
 * Bluesky: [@keyboardkit.bsky.social][Bluesky]
 * Mastodon: [@keyboardkit@techhub.social][Mastodon]
 
