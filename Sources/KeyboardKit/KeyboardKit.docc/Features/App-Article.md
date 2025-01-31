@@ -140,7 +140,7 @@ The injected state will also be used by the KeyboardKit Pro screens that are des
             @Column {
                 A ``KeyboardApp/ThemeScreen`` can be used as a main theme picker screen of a keyboard app or in a keyboard extension.
                 
-                The screen list available themes in shelves, and will by default set the main, persisted ``KeyboardTheme/Settings/theme`` when a theme is tapped.
+                The screen list available themes in shelves, and will by default set the main, persisted ``KeyboardThemeSettings/theme`` when a theme is tapped.
                 
                 Since you may not want to support themes in your keyboard, this screen is opt-in when using a ``KeyboardApp/HomeScreen``.
             }
@@ -174,4 +174,4 @@ NavigationView {
 
 Check out the type documentation in the KeyboardKit Pro documentation, or the demo app for some examples on how to use this view.
 
-> Important: For settings to sync between the main app and its keyboard extension, you must replace the main keyboard settings ``Keyboard/Settings/store`` with an App Group-synced store. You can use the ``KeyboardAppView`` to do this in the main app, and call  ``Keyboard/Settings/setupStore(forAppGroup:keyPrefix:)`` in the keyboard extension's `viewDidLoad()` function.
+> Important: For settings to sync between the main app and its keyboard extension, you must replace the main ``KeyboardSettings`` ``KeyboardSettings/store`` with an App Group-synced store. This is easily done by adding an ``KeyboardApp/appGroupId`` to your ``KeyboardApp`` value.

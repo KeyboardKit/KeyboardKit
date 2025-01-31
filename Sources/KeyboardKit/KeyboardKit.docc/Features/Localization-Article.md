@@ -110,9 +110,9 @@ You can customize any localized service, as described in the <doc:Callouts-Artic
 
 ### ...get, set and pick locales 
 
-The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and the enabled ``KeyboardContext/locales``. You can also use the keyboard ``KeyboardContext/settings-swift.property`` to set the ``Keyboard/Settings/addedLocales``, which can be used to let users pick which of the enabled locales to use.
+The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and all enabled ``KeyboardContext/locales``. You can use ``KeyboardSettings/addedLocales`` to override the enabled locales. This can be used to let users pick which of the enabled locales to use.
 
-If the enabled ``KeyboardContext/locales`` or the ``Keyboard/Settings/addedLocales`` have multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user select locales with a locale ``Foundation/Locale/ContextMenu``.
+If the enabled ``KeyboardContext/locales`` or ``KeyboardSettings/addedLocales`` have multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user select locales with a locale ``Foundation/Locale/ContextMenu``.
 
 You can add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` button into the layout, add a context menu to any view with the ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)`` modifier, or use ``KeyboardContext/settings-swift.property`` to add a context menu to the spacebar.
 

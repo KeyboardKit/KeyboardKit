@@ -152,17 +152,21 @@ KeyboardKit is available under the MIT license.
 - <doc:Text-Input-Article>
 - <doc:Themes-Article>
 
-### Essential Types
+### Keyboard Types
 
 - ``Keyboard``
-- ``KeyboardBehavior``
 - ``KeyboardContext``
-- ``KeyboardController``
 - ``KeyboardInputViewController``
-- ``KeyboardModel``
+- ``KeyboardSettings``
 - ``KeyboardView``
-- ``KeyboardViewComponent``
 - ``KeyboardViewItem``
+
+### Keyboard Protocols
+
+- ``KeyboardBehavior``
+- ``KeyboardController``
+- ``KeyboardModel``
+- ``KeyboardViewComponent``
 
 ### Actions
 
@@ -174,6 +178,7 @@ KeyboardKit is available under the MIT license.
 - ``Autocomplete``
 - ``AutocompleteContext``
 - ``AutocompleteService``
+- ``AutocompleteSettings``
 
 ### App
 
@@ -196,6 +201,7 @@ KeyboardKit is available under the MIT license.
 - ``Dictation``
 - ``DictationContext``
 - ``DictationService``
+- ``DictationSettings``
 - ``DictationSpeechRecognizer``
 
 ### Emojis
@@ -214,6 +220,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardFeedback``
 - ``KeyboardFeedbackContext``
 - ``KeyboardFeedbackService``
+- ``KeyboardFeedbackSettings``
 
 ### Gestures
 
@@ -280,4 +287,5 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardTheme``
 - ``KeyboardThemeContext``
 - ``KeyboardThemeCopyable``
+- ``KeyboardThemeSettings``
 - ``KeyboardThemeStyleVariation``

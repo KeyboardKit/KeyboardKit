@@ -45,7 +45,7 @@ KeyboardKit doesn't have a standard autocomplete service, as it has for other se
 
 ## Settings
 
-KeyboardKit has an ``Autocomplete``-specific ``Autocomplete/Settings`` type with auto-persisted settings. ``AutocompleteContext`` ``AutocompleteContext/settings-swift.property`` is used by default within KeyboardKit.
+KeyboardKit has an ``AutocompleteSettings`` type with autocomplete-related settings. ``AutocompleteContext`` ``AutocompleteContext/settings-swift.property`` is used by default within KeyboardKit.
 
 
 
@@ -102,7 +102,7 @@ The ``Autocomplete/LocalAutocompleteService`` and ``Autocomplete/RemoteAutocompl
 The next character prediction uses the current autocomplete suggestions to predict which keys that are more likely to be tapped next. This information is used by ``KeyboardView`` to slightly increase the tap area of more probable keys, to reduce the risk of typing error.
 
 
-### Next Word Prediction (BETA)
+### Next Word Prediction
 
 Apple's on-device text prediction utilities stopped supporting next word prediction in iOS 16. KeyboardKit Pro therefore unlocks ways to let the local autocomplete service perform next word prediction via 3rd party AI services.
 
@@ -129,7 +129,7 @@ You can use these pre-defined requests to integrate with Claude or OpenAI, by pr
 
 You can also let your users select which next word prediction request to use, with their own private API key. Read more further down.
 
-> Warning: AI-based next word prediction requires Full Access and is disabled by default, to avoid sending user text to 3rd parties without the user's explicit consent. Make sure to first ask the user, after which you can enable it with ``Autocomplete/Settings/isNextWordPredictionEnabled``.
+> Warning: AI-based next word prediction requires Full Access and is disabled by default, to avoid sending user text to 3rd parties without the user's explicit consent. Make sure to first ask the user, after which you can enable it with ``AutocompleteSettings/isNextWordPredictionEnabled``.
 
 
 ---
@@ -182,11 +182,11 @@ This will make KeyboardKit use your custom autocomplete service instead of the s
 
 ### ...let users register use custom next word prediction
 
-You can let your users pick a ``Autocomplete/Settings/nextWordPredictionRequestType`` and specify a ``Autocomplete/Settings/nextWordPredictionRequestApiKey`` to let them use their own API key and pay for their own consumption. 
+You can let your users pick a ``AutocompleteSettings/nextWordPredictionRequestType`` and specify a ``AutocompleteSettings/nextWordPredictionRequestApiKey`` to let them use their own API key and pay for their own data consumption. 
 
-The ``AutocompleteContext`` settings will then provide you with a properly configured ``Autocomplete/Settings/nextWordPredictionRequest``, which you can add to your ``KeyboardApp`` or ``Autocomplete/LocalAutocompleteService``.
+The ``AutocompleteContext`` settings will then provide you with a properly configured ``AutocompleteSettings/nextWordPredictionRequest``, which is automatically injected into the ``Autocomplete/LocalAutocompleteService``.
 
-The KeyboardKit Pro ``KeyboardApp/SettingsScreen`` has a visibility setting to show a next word prediction section, which is hidden by default.
+KeyboardKit Pro's ``KeyboardApp/SettingsScreen`` has a visibility setting to show a next word prediction section. This section is hidden by default.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro

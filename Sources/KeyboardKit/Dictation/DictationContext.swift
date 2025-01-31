@@ -35,22 +35,24 @@ public class DictationContext: ObservableObject {
 
     // MARK: - Settings
 
-    /// A ``Dictation/Settings`` typealias.
-    public typealias Settings = Dictation.Settings
-
     /// Dictation-specific, auto-persisted settings.
     @Published
-    public var settings: Settings
+    public var settings: DictationSettings
+    
+    /// The settings key prefix to use.
+    public static var settingsPrefix: String {
+        DictationSettings.settingsPrefix
+    }
 
 
     // MARK: - Persisted State
 
     /// This store to use for persisted dictation data.
     ///
-    /// This uses the same store as ``Keyboard/Settings`` so
+    /// This uses the same store as ``KeyboardSettings``, so
     /// settings and dictation state use the same store.
     static var peristentStore: UserDefaults {
-        Keyboard.Settings.store
+        KeyboardSettings.store
     }
 
     /// The currently dictated text, which will update while
@@ -58,21 +60,21 @@ public class DictationContext: ObservableObject {
     ///
     /// This text can be observed from your app, and will be
     /// automatically synced between an app and its keyboard.
-    @AppStorage("\(Settings.settingsPrefix)dictatedText", store: .keyboardSettings)
+    @AppStorage("\(settingsPrefix)dictatedText", store: .keyboardSettings)
     public var dictatedText = ""
 
     /// The bundle ID of the app that is using the keyboard.
     ///
     /// This is automatically set by the keyboard to let the
     /// main app navigate back to the keyboard.
-    @AppStorage("\(Settings.settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
+    @AppStorage("\(settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
     public var hostApplicationBundleId: String?
 
     /// Whether dictation has been started by a keyboard.
     ///
     /// This is automatically set by the keyboard to let the
     /// main app start dictation if it cannot use deep links.
-    @AppStorage("\(Settings.settingsPrefix)isDictationStartedByKeyboard", store: .keyboardSettings)
+    @AppStorage("\(settingsPrefix)isDictationStartedByKeyboard", store: .keyboardSettings)
     public var isDictationStartedByKeyboard = false
 
 

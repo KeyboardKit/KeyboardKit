@@ -53,7 +53,7 @@ Unlike most other service types, the open-source project doesn't include a dicta
 
 ## Settings
 
-KeyboardKit has a ``Dictation``-specific ``Dictation/Settings`` type with auto-persisted settings. The ``DictationContext`` ``DictationContext/settings-swift.property`` is used by default within KeyboardKit.
+KeyboardKit has a ``DictationSettings`` type with dictation-related settings. ``DictationContext`` ``DictationContext/settings-swift.property`` is used by default within KeyboardKit.
 
 
 

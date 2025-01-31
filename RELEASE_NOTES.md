@@ -11,6 +11,20 @@ These release notes cover the current major version. Check out version tags for 
 
 
 
+## 9.2
+
+### 👑 Pro
+
+* `InputSet` has a new `.colemak` property that returns a COLEMAK input set.
+
+### 🗑️ Deprecations
+
+* `Autocomplete.Settings` has been renamed to `AutocompleteSettings`.
+* `Dictation.Settings` has been renamed to `DictationSettings`.
+* `Keyboard.Settings` has been renamed to `KeyboardSettings`.
+
+
+
 ## 9.1
 
 > [!IMPORTANT]

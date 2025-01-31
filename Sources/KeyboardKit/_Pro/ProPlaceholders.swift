@@ -91,7 +91,7 @@ public extension Autocomplete {
     class RemoteAutocompleteService: Autocomplete.DisabledAutocompleteService {}
 }
 
-public extension Autocomplete.Settings {
+public extension AutocompleteSettings {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     var nextWordPredictionRequest: Autocomplete.NextWordPredictionRequest? { nil }

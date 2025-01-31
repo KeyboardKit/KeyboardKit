@@ -104,7 +104,7 @@ Override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputV
     }
 }
 
-This will make the keyboard ``Keyboard/Settings`` sync data between the keyboard extension and its main app if you define a valid ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if you define a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
+This will make the ``KeyboardSettings`` ``KeyboardSettings/store`` automatically sync data between the app and its keyboard if the app defines an ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if it defines a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
 
 This also makes the keyboard use a standard ``KeyboardView`` that is configured for your app. Override ``KeyboardInputViewController/viewWillSetupKeyboardView()`` and call ``KeyboardInputViewController/setupKeyboardView(_:)`` to replace or customize the ``KeyboardView``:
 

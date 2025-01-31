@@ -28,9 +28,9 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// This sets up the main ``Keyboard/Settings`` to sync data
+/// This sets up the ``KeyboardSettings/store`` to sync data
 /// between the app and its keyboard, provided that your app
-/// defines am ``KeyboardApp/appGroupId``. It also creates a
+/// defines an ``KeyboardApp/appGroupId``. It also creates a
 /// dedicated ``Keyboard/State`` for the app and injects the
 /// state into the main view hierarchy, after which your app
 /// can access any state like this:
@@ -57,7 +57,7 @@ public struct KeyboardAppView<Content: View>: View {
         for app: KeyboardApp,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        Keyboard.Settings.setupStore(for: app)
+        KeyboardSettings.setupStore(for: app)
         let state = Keyboard.State()
         state.setup(for: app)
 

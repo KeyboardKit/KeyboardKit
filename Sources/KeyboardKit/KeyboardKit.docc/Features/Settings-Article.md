@@ -17,9 +17,9 @@ KeyboardKit provides you with auto-persisted keyboard-related settings, as well 
 
 ## Keyboard Settings
 
-KeyboardKit has a ``Keyboard/Settings`` class that has a global ``Keyboard/Settings/store`` for persisting settings. It will automatically sync settings between the main app and its keyboard if you use a ``KeyboardApp`` that defines an App Group. Read more in the "How to..." section.
+KeyboardKit has a ``KeyboardSettings`` class that has a ``KeyboardSettings/store`` for persisting settings. It will automatically sync settings between the main app and its keyboard if you use a ``KeyboardApp`` that defines an ``KeyboardApp/appGroupId``.
 
-Since auto-peristed settings properties use `@AppStorage`, they will use the store available when they're first used. You must therefore set up your custom store before accessing any of these properties.
+Since the auto-peristed settings properties will use the store that is available when they're first used, you must set up your custom store before accessing any of these properties. Do this by
 
 Each namespace has a separate settings class that provides namespace-related settings. Each context has a ``KeyboardContext/settings-swift.property`` property that acts as the main settings instance for each namespace.
 
@@ -40,40 +40,46 @@ KeyboardKit currently provides the following settings for the various namespaces
 
 ### Keyboard
 
-The ``Keyboard``.``Keyboard/Settings`` class provides the following settings, as well as other settings-related properties and functions.
+The ``KeyboardSettings`` type provides the following settings.
 
-* ``Keyboard/Settings/addedLocales`` - A list of activated or user-selected locales.
-* ``Keyboard/Settings/isAutocapitalizationEnabled`` - Whether auto-capitalization is enabled.
-* ``Keyboard/Settings/isKeyboardAutoCollapseEnabled`` - Whether to auto-collapse the keyboard when users connect an external keyboard.
-* ``Keyboard/Settings/keyboardDockEdge`` - An optional edge to which the keyboard is docked.
-* ``Keyboard/Settings/localeIdentifier`` - The identifier of the current locale, set with the ``KeyboardContext/locale``. 
+* ``KeyboardSettings/addedLocales`` - A list of activated or user-selected locales.
+* ``KeyboardSettings/isAutocapitalizationEnabled`` - Whether auto-capitalization is enabled.
+* ``KeyboardSettings/isKeyboardAutoCollapseEnabled`` - Whether to auto-collapse the keyboard when users connect an external keyboard.
+* ``KeyboardSettings/keyboardDockEdge`` - An optional edge to which the keyboard is docked.
+* ``KeyboardSettings/localeIdentifier`` - The identifier of the current locale, set with the ``KeyboardContext/locale``. 
 
 ### Autocomplete
 
-The ``Autocomplete``.``Autocomplete/Settings`` class provides the following settings, as well as other settings-related properties and functions.
+The ``AutocompleteSettings`` type provides the following settings.
 
-* ``Autocomplete/Settings/isAutocompleteEnabled`` - Whether autocomplete is enabled. 
-* ``Autocomplete/Settings/isAutocorrectEnabled`` - Whether autocorrect is enabled. 
-* ``Autocomplete/Settings/isAutolearnEnabled`` - Whether to autolearn unknown suggestions. 
-* ``Autocomplete/Settings/isAutoIgnoreEnabled`` - Whether to automatically ignore adjusted suggestions. 
-* ``Autocomplete/Settings/isNextCharacterPredictionEnabled`` - Whether next character prediction is enabled. 
-* ``Autocomplete/Settings/isNextWordPredictionEnabled`` - Whether next word prediction is enabled. 
-* ``Autocomplete/Settings/nextWordPredictionRequestApiKey`` - A custom, user-specified next word predicton request API key. 
-* ``Autocomplete/Settings/nextWordPredictionRequestType`` - A custom, user-specified next word predicton request type. 
-* ``Autocomplete/Settings/suggestionsDisplayCount`` - The number of autocomplete suggestions to display.
+* ``AutocompleteSettings/isAutocompleteEnabled`` - Whether autocomplete is enabled. 
+* ``AutocompleteSettings/isAutocorrectEnabled`` - Whether autocorrect is enabled. 
+* ``AutocompleteSettings/isAutolearnEnabled`` - Whether to autolearn unknown suggestions. 
+* ``AutocompleteSettings/isAutoIgnoreEnabled`` - Whether to automatically ignore adjusted suggestions. 
+* ``AutocompleteSettings/isNextCharacterPredictionEnabled`` - Whether next character prediction is enabled. 
+* ``AutocompleteSettings/isNextWordPredictionEnabled`` - Whether next word prediction is enabled. 
+* ``AutocompleteSettings/nextWordPredictionRequestApiKey`` - A custom, user-specified next word predicton request API key. 
+* ``AutocompleteSettings/nextWordPredictionRequestType`` - A custom, user-specified next word predicton request type. 
+* ``AutocompleteSettings/suggestionsDisplayCount`` - The number of autocomplete suggestions to display.
 
 ### Dictation
 
-The ``Dictation``.``Dictation/Settings`` class provides the following settings, as well as other settings-related properties and functions.
+The ``DictationSettings`` type provides the following settings.
 
-* ``Dictation/Settings/silenceLimit`` - The max number of seconds of silence after which dictation ends.
+* ``DictationSettings/silenceLimit`` - The max number of seconds of silence after which dictation ends.
 
 ### Feedback
 
-The ``KeyboardFeedback``.``KeyboardFeedback/Settings`` class provides the following settings, as well as other settings-related properties and functions.
+The ``KeyboardFeedbackSettings`` type provides the following settings.
 
-* ``KeyboardFeedback/Settings/isAudioFeedbackEnabled`` - Whether audio feedback is enabled.
-* ``KeyboardFeedback/Settings/isHapticFeedbackEnabled`` - Whether Haptic feedback is enabled. 
+* ``KeyboardFeedbackSettings/isAudioFeedbackEnabled`` - Whether audio feedback is enabled.
+* ``KeyboardFeedbackSettings/isHapticFeedbackEnabled`` - Whether Haptic feedback is enabled. 
+
+### Themes
+
+The ``KeyboardThemeSettings`` class provides the following settings.
+
+* ``KeyboardThemeSettings/theme`` - The currently selected theme, if any. 
 
 
 ---
@@ -84,9 +90,9 @@ The ``KeyboardFeedback``.``KeyboardFeedback/Settings`` class provides the follow
 
 ### ...sync data between an app and its keyboard
 
-To sync data between an app and its keyboard, you must create an App Group and link it to both the app and its keyboard. You can then add the App Group ID to your ``KeyboardApp`` to automatically set up your app and keyboard, as described in <doc:App-Article>.
+To sync data between an app and its keyboard, you must create an App Group and link it to both the app and its keyboard. You can then add the App Group ID to your ``KeyboardApp``'s ``KeyboardApp/appGroupId`` to automatically set up your app as described in <doc:Getting-Started>.
 
-You can also use ``Keyboard/Settings/setupStore(forAppGroup:keyPrefix:)`` to set up a store for an App Group, without using a ``KeyboardApp``.
+You can also use ``KeyboardSettings/setupStore(forAppGroup:keyPrefix:)`` to set up a store for an App Group, without using a ``KeyboardApp``.
 
 > Important: The main app will always write data to an App Group in a way that is instantly available to the keyboard. A keyboard must however have Full Access enabled for changes to immediately sync with the app. When Full Access is disabled, syncing is less reliable.
 

@@ -45,13 +45,9 @@ public class KeyboardContext: ObservableObject {
 
     // MARK: - Settings
 
-    /// A ``Keyboard/Settings`` typealias.
-    public typealias Settings = Keyboard.Settings
-
-
-    /// Keyboard-specific, auto-persisted settings.
+    /// Auto-persisted keyboard settings.
     @Published
-    public var settings: Settings
+    public var settings: KeyboardSettings
 
 
     // MARK: - Temporary overrides
@@ -137,8 +133,8 @@ public class KeyboardContext: ObservableObject {
 
     /// The current locale, by default `.current`.
     ///
-    /// This sets ``Keyboard/Settings/localeIdentifier`` for
-    /// ``settings-swift.property``, to make it auto-persist.
+    /// This updates the ``KeyboardSettings/localeIdentifier``
+    /// whenever the value is changed.
     @Published
     public var locale = Locale.current {
         didSet { settings.localeIdentifier = locale.identifier }
@@ -168,7 +164,9 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var screenSize = CGSize.zero
 
-    /// The space long press behavior to use, by default ``Keyboard/SpaceLongPressBehavior/moveInputCursor``.
+    /// The long press behavior to use for the space bar.
+    ///
+    /// The space bar will by default move the input cursor.
     @Published
     public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
 

@@ -121,17 +121,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// Set up KeyboardKit for a ``KeyboardApp``.
     ///
-    /// This will set up ``Keyboard/Settings`` to use an App
-    /// Group-synced store, if the app is configured with an
-    /// ``KeyboardApp/appGroupId``. It will also set up your
-    /// controller's main ``state`` for the app.
-    ///
     /// Call this in ``viewDidLoad()`` to make sure that the
-    /// keyboard is properly configured as early as possible.
+    /// keyboard is properly configured as early as possible. 
+    ///
+    /// If the app defines a ``KeyboardApp/appGroupId``, the
+    /// function will set up ``KeyboardSettings`` to use the
+    /// App Group to automatically sync data between the app
+    /// and its keyboard extension.
     open func setup(
         for app: KeyboardApp
     ) {
-        Keyboard.Settings.setupStore(for: app)
+        KeyboardSettings.setupStore(for: app)
         state.setup(for: app)
     }
 

@@ -52,7 +52,7 @@ KeyboardKit automatically creates instances of these classes and injects them in
 
 ## Settings
 
-KeyboardKit has a ``Keyboard``-specific ``Keyboard/Settings`` type with auto-persisted keyboard settings. It has a global ``Keyboard/Settings/store`` that is shared by all settings types and used to persist all settings.
+KeyboardKit has a ``Keyboard``-specific ``KeyboardSettings`` type with auto-persisted keyboard settings. It has a global ``KeyboardSettings/store`` that is shared by all settings types and used to persist settings.
 
 The ``KeyboardContext`` ``KeyboardContext/settings-swift.property`` property is used as the standard settings instance in KeyboardKit, as are the other contexts. If you set up KeyboardKit with a ``KeyboardApp`` that defines an App Group, this store will sync data between the app and its keyboard.
 

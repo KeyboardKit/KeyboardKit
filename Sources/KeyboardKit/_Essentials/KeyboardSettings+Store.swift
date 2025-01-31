@@ -1,5 +1,5 @@
 //
-//  Keyboard+SettingsStore.swift
+//  KeyboardSettings+Store.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-03-30.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension Keyboard.Settings {
+public extension KeyboardSettings {
 
     /// The store that will be used by library settings.
     static var store: UserDefaults = .standard
@@ -93,9 +93,8 @@ public extension Keyboard.Settings {
 
 public extension UserDefaults {
 
-    /// This store to use to persist keyboard settings using
-    /// the ``Keyboard/Settings/store``.
+    /// This is an alias for the ``KeyboardSettings/store``.
     static var keyboardSettings: UserDefaults {
-        Keyboard.Settings.store
+        KeyboardSettings.store
     }
 }

@@ -43,7 +43,7 @@ public extension View {
     /// Apply a ``Keyboard/DockEdge``.
     ///
     /// > Note: The ``KeyboardView`` ignores this value, and
-    /// uses ``Keyboard/Settings/keyboardDockEdge`` instead.
+    /// uses ``KeyboardSettings/keyboardDockEdge`` instead.
     func keyboardDockEdge(
         _ edge: Keyboard.DockEdge?
     ) -> some View {

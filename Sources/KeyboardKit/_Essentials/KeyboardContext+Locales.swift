@@ -10,7 +10,7 @@ import Foundation
 
 public extension KeyboardContext {
     
-    /// All ``Keyboard/Settings/addedLocales`` or ``locales``.
+    /// All ``KeyboardSettings/addedLocales`` or ``locales``.
     var enabledLocales: [Locale] {
         let addedLocales = settings.addedLocales
         return addedLocales.isEmpty ? locales : addedLocales
