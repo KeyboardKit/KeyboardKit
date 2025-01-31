@@ -12,6 +12,8 @@ import SwiftUI
 /// This sheet shows host application information within the
 /// keyboard extension.
 struct HostAppInfoSheet: View {
+    
+    let actionHandler: KeyboardActionHandler
 
     @Environment(\.openURL) var openURL
 
@@ -29,16 +31,11 @@ struct HostAppInfoSheet: View {
                     Text("Sheet.Host.Section.App.Unknown")
                 }
             }
-            /*Section("Sheet.Host.Section.KnownApps") {
+            Section("Sheet.Host.Section.KnownApps") {
                 ForEach(KeyboardHostApplication.allCases) { app in
-                    Button {
-                        guard let url = app.url else { return }
-                        openURL.callAsFunction(url)
-                    } label: {
-                        Text(app.name)
-                    }
+                    listItem(for: app)
                 }
-            }*/
+            }
         }
         .navigationTitle("Sheet.Host")
     }
@@ -50,21 +47,21 @@ private extension HostAppInfoSheet {
     func infoItems(
         for app: KeyboardHostApplication
     ) -> some View {
-        item(
+        infoItem(
             title: "Sheet.Host.Section.App.Name",
             subtitle: app.name
         )
-        item(
+        infoItem(
             title: "Sheet.Host.Section.App.BundleId",
             subtitle: app.bundleId
         )
-        item(
+        infoItem(
             title: "Sheet.Host.Section.App.CanOpen",
             subtitle: app.canBeOpened ? "✔" : "✘"
         )
     }
 
-    func item(
+    func infoItem(
         title: LocalizedStringKey,
         subtitle: String
     ) -> some View {
@@ -75,8 +72,23 @@ private extension HostAppInfoSheet {
                 .foregroundStyle(.secondary)
         }
     }
+    
+    @ViewBuilder
+    func listItem(
+        for app: KeyboardHostApplication
+    ) -> some View {
+        if app.canBeOpened {
+            Button(app.name) {
+                app.open(with: actionHandler)
+            }
+        } else {
+            Text(app.name)
+        }
+    }
 }
 
 #Preview {
-    HostAppInfoSheet()
+    HostAppInfoSheet(
+        actionHandler: .preview
+    )
 }

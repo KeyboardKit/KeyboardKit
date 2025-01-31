@@ -48,7 +48,7 @@ private extension KeyboardLayout {
 
     mutating func tryInsert(_ action: KeyboardAction) {
         guard var item = tryCreateBottomRowItem(for: action) else { return }
-        item.alignment = ipadProLayout ? .bottomLeading : .center
+        item.alignment = isIpadProLayout ? .bottomLeading : .center
         insert(item, before: .space, inRow: bottomRowIndex)
     }
 
@@ -58,7 +58,7 @@ private extension KeyboardLayout {
         let hasEmoji = row.contains(where: { $0.action == action })
         if hasEmoji { return }
         guard var item = tryCreateBottomRowItem(for: action) else { return }
-        item.alignment = ipadProLayout ? .bottomTrailing : .center
+        item.alignment = isIpadProLayout ? .bottomTrailing : .center
         itemRows.insert(item, after: .space, inRow: bottomRowIndex)
     }
 }

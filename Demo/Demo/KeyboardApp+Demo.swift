@@ -12,7 +12,7 @@ import KeyboardKit
 import KeyboardKitPro
 #endif
 
-public extension KeyboardApp {
+extension KeyboardApp {
 
     /// This `KeyboardApp` value defines the demo app.
     ///
@@ -27,12 +27,11 @@ public extension KeyboardApp {
     /// a `KeyboardApp` to set up App Group data syncing for
     /// an app and its keyboard. It doesn't work in the demo.
     /// 
-    /// See the ``DemoApp`` for more information.
+    /// See `DemoApp.swift` for more info about the demo app.
     static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit Demo",
             // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // Sets up KeyboardKit Pro!
-            bundleId: "com.keyboardkit.demo",                       // No longer needed in KeyboardKit 9.1!
             appGroupId: "group.com.keyboardkit.demo",               // Sets up App Group data sync
             locales: .keyboardKitSupported,                         // Sets up the enabled locales
             autocomplete: .init(                                    // Sets up custom autocomplete

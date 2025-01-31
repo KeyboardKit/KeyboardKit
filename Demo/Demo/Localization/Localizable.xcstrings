@@ -11,6 +11,16 @@
         }
       }
     },
+    "Menu.CloseMenu" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Close"
+          }
+        }
+      }
+    },
     "Menu.Dictation" : {
       "localizations" : {
         "en" : {
@@ -26,7 +36,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Host App"
+            "value" : "Host App Info"
           }
         }
       }
@@ -46,17 +56,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open App"
-          }
-        }
-      }
-    },
-    "Menu.OpenDocumentation" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Docs"
+            "value" : "Demo App"
           }
         }
       }
@@ -76,7 +76,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Read Doc"
+            "value" : "Read All Text"
           }
         }
       }
@@ -186,7 +186,7 @@
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Can Open?"
+            "value" : "Can Be Opened?"
           }
         }
       }
@@ -222,7 +222,6 @@
       }
     },
     "Sheet.Host.Section.KnownApps" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

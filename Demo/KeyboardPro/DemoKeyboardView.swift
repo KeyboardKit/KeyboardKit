@@ -18,12 +18,14 @@ struct DemoKeyboardView: View {
 
     /// This is (for now) required by the ``DemoToolbar``.
     unowned var controller: KeyboardInputViewController
+    
+    @AppStorage("com.keyboardkit.demo.isToolbarToggled")
+    var isToolbarToggled = false
 
     @Environment(\.keyboardToolbarStyle) var toolbarStyle
 
     @State var activeSheet: DemoSheet?
     @State var isTextInputActive = false
-    @State var isToolbarToggled = false
     @State var theme: KeyboardTheme?
 
     var body: some View {
@@ -82,11 +84,11 @@ private extension DemoKeyboardView {
     @ViewBuilder
     var menuGrid: some View {
         if isToolbarToggled {
-            DemoGridMenu(
+            DemoKeyboardMenu(
+                actionHandler: services.actionHandler,
                 isTextInputActive: $isTextInputActive,
                 isToolbarToggled: $isToolbarToggled,
-                sheet: $activeSheet,
-                actionHandler: services.actionHandler
+                sheet: $activeSheet
             )
             .padding(.top, 55)  // Give room for the toolbar
             .padding(.horizontal, 10)
@@ -100,7 +102,9 @@ private extension DemoKeyboardView {
         case .fullDocumentReader:
             FullDocumentContextSheet()
         case .hostApplicationInfo:
-            HostAppInfoSheet()
+            HostAppInfoSheet(
+                actionHandler: services.actionHandler
+            )
         case .keyboardSettings:
             KeyboardApp.SettingsScreen(
                 autocompleteContext: state.autocompleteContext,

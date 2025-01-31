@@ -17,11 +17,8 @@ import SwiftUI
 /// offer, e.g. all localized keyboards, autocomplete, emoji
 /// keyboard & emoji search, dictation, themes, etc.
 ///
-/// See the `Keyboard` target for a simplified keyboard demo.
-///
-/// > Important: See ``DemoApp`` for important demo-specific
-/// information on why the in-app settings doesn't sync with
-/// this keyboard, and how you can enable this.
+/// See the `Keyboard` target for a simplified keyboard demo,
+/// and the `DemoApp.swift` for more info about the demo app.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
@@ -30,13 +27,13 @@ class KeyboardViewController: KeyboardInputViewController {
     /// the `.keyboardKitDemo` app.
     override func viewDidLoad() {
 
-        /// 💡 Always call super.viewDidLoad()
+        /// 💡 Always call super.viewDidLoad()!
         super.viewDidLoad()
 
         /// ‼️ Set up the keyboard for `.keyboardKitDemo`.
         super.setupPro(for: .keyboardKitDemo) { result in
 
-            /// 💡 Make state & service customizations.
+            /// 💡 Customize the keyboard's state & services.
             self.setupDemoServices()
             self.setupDemoState()
         }
@@ -48,28 +45,29 @@ class KeyboardViewController: KeyboardInputViewController {
     /// Call `setupKeyboardView(_:)` here to set up a custom
     /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
-
-        /// 💡 Don't call `super.viewWillSetupKeyboardView()`
-        /// but call `setupKeyboardView { ... }` instead, to
-        /// customize or replace the standard `KeyboardView`.
+        
+        /// 💡 Don't call `super.viewWillSetupKeyboardView()`.
+        // super.viewWillSetupKeyboardView()
+        
+        /// 💡 Call `setupKeyboardView(...)` to customize or
+        /// replace the standard `KeyboardView`.
         ///
-        /// ‼️ Avoid passing `self` and `controller` to your
-        /// custom view. If you must do so, make sure to use
-        /// a weak or unowned `self`, and that the view uses
+        /// ‼️ Avoid passing on `self` and `controller` to a
+        /// custom view. If you must, make sure to use `weak`
+        /// or `unowned` for `self`, and that your view uses
         /// an `unowned` controller property. Otherwise, you
-        /// run the risk of creating a memory leak.
+        /// will cause a memory leak.
         setupKeyboardView { /*[weak self]*/ controller in
             DemoKeyboardView(
                 controller: controller
             )
-            .keyboardDockEdge(.leading)     // 💡 This is needed until 9.1 is out
         }
     }
 }
 
 private extension KeyboardViewController {
 
-    /// Make demo-specific service changes.
+    /// Make demo-specific changes to your keyboard services.
     func setupDemoServices() {
 
         /// 💡 Set up a demo-specific action handler.
@@ -91,7 +89,9 @@ private extension KeyboardViewController {
         )) ?? services.styleService
     }
 
-    /// Make demo-specific state changes.
+    /// Make demo-specific changes to your keyboard's state.
+    ///
+    /// 💡 Many setting changes can be made from the toolbar.
     func setupDemoState() {
 
         /// 💡 Set up which locale to use to present locales.

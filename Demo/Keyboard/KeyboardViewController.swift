@@ -12,23 +12,22 @@ import SwiftUI
 /// This keyboard shows you how to set up `KeyboardKit` with
 /// a `KeyboardApp` and customize the standard keyboard view.
 ///
-/// This demo is intentionally kept very basic, to provide a
-/// starting point to let you to play with the keyboard. You
-/// can customize the keyboard view, state & services and do
-/// anything you want.
+/// This keyboard is very basic, to provide a starting point
+/// for trying out the open-source features. You can perform
+/// any customizations to the keyboard, state & services and
+/// inject any custom views into the keyboard.
 ///
-/// See the `KeyboardPro` keyboard for a more extensive demo
-/// that shows you how to set up and configure more parts of
-/// the keyboard and its functionality.
+/// See the `KeyboardPro` keyboard for a more extensive demo,
+/// and the `DemoApp.swift` for more info about the demo app.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
     ///
-    /// Call `setup(for:)` here to set up the controller for
-    /// the `.keyboardKitDemo` app.
+    /// Call `setup(for:)` to set up this controller for the
+    /// `.keyboardKitDemo` application.
     override func viewDidLoad() {
 
-        /// 💡 Always call super :)
+        /// 💡 Always call `super.viewDidLoad()`.
         super.viewDidLoad()
 
         /// ‼️ Set up the keyboard for `.keyboardKitDemo`.
@@ -46,8 +45,8 @@ class KeyboardViewController: KeyboardInputViewController {
     /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
 
-        /// 💡 Always call super :)
-        super.viewWillSetupKeyboardView()
+        /// 💡 Don't call `super.viewWillSetupKeyboardView()`.
+        // super.viewWillSetupKeyboardView()
 
         /// 💡 Call `setupKeyboardView(...)` to customize or
         /// replace the standard `KeyboardView`.
@@ -80,26 +79,32 @@ class KeyboardViewController: KeyboardInputViewController {
 
 private extension KeyboardViewController {
 
-    /// Make demo-specific service changes.
+    /// Make demo-specific changes to your keyboard services.
     func setupDemoServices() {
 
         /// 💡 You can replace any service with a custom service.
         services.autocompleteService = services.autocompleteService
     }
 
-    /// Make demo-specific state changes.
+    /// Make demo-specific changes to your keyboard's state.
     func setupDemoState() {
         
-        /// 💡 Enable more locales for the context.
+        /// 💡 This enable more locales.
+        state.keyboardContext.locales = [.english, .spanish]
+        
+        /// 💡 This overrides the standard enabled locales.
         state.keyboardContext.settings.addedLocales = [.english, .swedish]
+        
+        /// 💡 Dock the keyboard to any horizontal edge.
+        // state.keyboardContext.settings.keyboardDockEdge = .leading
 
         /// 💡 Configure the space key's long press behavior.
-        // state.keyboardContext.settings.keyboardDockEdge = .leading
         // state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
         state.keyboardContext.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
         // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
 
-        /// 💡 Enable haptic feedback.
-        state.feedbackContext.settings.isHapticFeedbackEnabled = false
+        /// 💡 Customize keyboard feedback.
+        // state.feedbackContext.settings.isAudioFeedbackEnabled = false
+        // state.feedbackContext.settings.isHapticFeedbackEnabled = false
     }
 }
