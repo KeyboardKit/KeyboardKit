@@ -20,11 +20,12 @@ import SwiftUI
 /// and the ``KeyboardInputViewController/services`` service
 /// instances to customize it, you don't have to do anything.
 ///
-/// See the <doc:Essentials> article for more information on
-/// this essential part of the KeyboardKit SDK.
-///
-/// > Note: This view ignores environment values that can be
-/// set using the various context and setting classes.
+/// See the <doc:Essentials-KeyboardView> article for a very
+/// important discussion on how to configure this view, with
+/// both optional environment values and the various context
+/// and settings types. Note that this is still a transition
+/// in progress, which is why there are discrepancies in how
+/// the view uses environment values, contexts, and settings
 public struct KeyboardView<
     ButtonContent: View,
     ButtonView: View,
@@ -154,7 +155,8 @@ public struct KeyboardView<
     
     @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
-    @Environment(\.keyboardInputToolbarDisplayMode) var rawInputToolbarDisplayMode
+    @Environment(\.keyboardDockEdge) var dockEdgeFromEnvironment
+    @Environment(\.keyboardInputToolbarDisplayMode) var inputToolbarDisplayModeFromEnvironment
     
     @ObservedObject var autocompleteContext: AutocompleteContext
     @ObservedObject var calloutContext: KeyboardCalloutContext
@@ -200,10 +202,18 @@ public struct KeyboardView<
         )
         .keyboardCalloutStyle(calloutStyle)
         .keyboardDockEdge(keyboardContext.settings.keyboardDockEdge)
+        .keyboardInputToolbarDisplayMode(inputToolbarDisplayMode)
     }
 }
 
+
+// MARK: - Properties
+
 private extension KeyboardView {
+    
+    var dockEdge: Keyboard.DockEdge? {
+        dockEdgeFromEnvironment ?? keyboardContext.settings.keyboardDockEdge
+    }
 
     var isLargePad: Bool {
         let size = keyboardContext.screenSize
@@ -211,10 +221,15 @@ private extension KeyboardView {
     }
 
     var inputToolbarDisplayMode: Keyboard.InputToolbarDisplayMode {
-        switch rawInputToolbarDisplayMode {
-        case .automatic: isLargePad ? .numbers : .hidden
-        default: rawInputToolbarDisplayMode
+        let value = inputToolbarDisplayModeFromEnvironment ?? keyboardContext.settings.inputToolbarDisplayMode
+        switch value {
+        case .automatic: return isLargePad ? .numbers : .none
+        default: return value
         }
+    }
+    
+    var keyboardAlignment: Alignment {
+        dockEdge?.alignment ?? .center
     }
 
     var layout: KeyboardLayout {
@@ -247,6 +262,9 @@ private extension KeyboardView {
         }
     }
 }
+
+
+// MARK: - Typealiases
 
 public extension KeyboardView {
 
@@ -287,6 +305,9 @@ public extension KeyboardView {
     typealias StandardToolbar = Autocomplete.Toolbar<Autocomplete.ToolbarItem, Autocomplete.ToolbarSeparator>
 }
 
+
+// MARK: - Views
+
 private extension KeyboardView {
 
     var keyboardView: some View {
@@ -312,21 +333,13 @@ private extension KeyboardView {
                 .environment(\.layoutDirection, .leftToRight)   // Enforce a layout direction
                 .frame(width: keyboardWidth)
             }
-            .frame(maxWidth: .infinity, alignment: keyboardViewAlignment)
+            .frame(maxWidth: .infinity, alignment: keyboardAlignment)
         }
         .frame(height: layout.totalHeight)
     }
     
-    var keyboardViewAlignment: Alignment {
-        keyboardViewDockEdge?.alignment ?? .center
-    }
-    
-    var keyboardViewDockEdge: Keyboard.DockEdge? {
-        keyboardContext.settings.keyboardDockEdge
-    }
-    
     func keyboardWidth(for totalWidth: Double) -> Double {
-        let isDocked = keyboardViewDockEdge != nil
+        let isDocked = dockEdge != nil
         return isDocked ? 0.8 * totalWidth : totalWidth
     }
 

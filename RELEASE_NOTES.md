@@ -13,15 +13,32 @@ These release notes cover the current major version. Check out version tags for 
 
 ## 9.2
 
+This version adds a bunch of new settings and environment properties.
+
+### ✨ Features
+
+* `Image` has new keyboard picker-specific images.
+* `Keyboard.InputToolbarDisplayMode` has new `characters` builders.
+* `KeyboardSettings` has new input toolbar-related types and settings.
+
+### 💡 Adjustment
+
+* The `.keyboardInputToolbarDisplayMode` environment value is now optional.
+* `KeyboardView` uses the environment `.keyboardDockEdge` if any, else from settings.
+* `KeyboardView` uses the environment `.keyboardInputToolbarDisplayMode` if any, else from settings.
+
 ### 👑 Pro
 
-* `InputSet` has a new `.colemak` property that returns a COLEMAK input set.
+* `InputSet.colemak` is a new Colemak input set.
 
 ### 🗑️ Deprecations
 
-* `Autocomplete.Settings` has been renamed to `AutocompleteSettings`.
-* `Dictation.Settings` has been renamed to `DictationSettings`.
-* `Keyboard.Settings` has been renamed to `KeyboardSettings`.
+* `Autocomplete.Settings` is renamed to `AutocompleteSettings`.
+* `Dictation.Settings` is renamed to `DictationSettings`.
+* `Keyboard.Settings` is renamed to `KeyboardSettings`.
+* `KeyboardFeedback.Settings` is renamed to `KeyboardFeedbackSettings`.
+* `Keyboard.InputToolbarDisplayMode.hidden` is renamed to `.none`.
+* `Keyboard.InputToolbarDisplayMode.inputs` is renamed to `.characters`.
 
 
 

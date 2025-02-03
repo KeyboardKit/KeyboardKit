@@ -53,20 +53,28 @@ public struct KeyboardSettings {
     public var isAutocapitalizationEnabled = true {
         didSet { onAutocapitalizationEnabledChanged() }
     }
+    
+    /// The input toolbar type to use, if any.
+    @AppStorage("\(settingsPrefix)inputToolbarType", store: .keyboardSettings)
+    public var inputToolbarType: InputToolbarType = .automatic
+    
+    /// The input toolbar chars to show for ``KeyboardSettings/InputToolbarType/characters``.
+    @AppStorage("\(settingsPrefix)inputToolbarCharacters", store: .keyboardSettings)
+    public var inputToolbarCharacters = ""
+    
+    /// The ``inputToolbarCharacters`` max length.
+    @AppStorage("\(settingsPrefix)inputToolbarCharactersMaxLength", store: .keyboardSettings)
+    public var inputToolbarCharactersMaxLength = 10
 
-    /// Whether to auto-collapse the keyboard when users
-    /// connect an external keyboard.
-    @AppStorage("\(settingsPrefix)`isKeyboardAutoCollapseEnabled`", store: .keyboardSettings)
+    /// Whether to auto-collapse the keyboard when connecting an external keyboard.
+    @AppStorage("\(settingsPrefix)isKeyboardAutoCollapseEnabled", store: .keyboardSettings)
     public var isKeyboardAutoCollapseEnabled = false
     
     /// An optional edge to which the keyboard is docked.
-    @AppStorage("\(settingsPrefix)`keyboardDockEdge`", store: .keyboardSettings)
+    @AppStorage("\(settingsPrefix)keyboardDockEdge", store: .keyboardSettings)
     public var keyboardDockEdge: Keyboard.DockEdge?
 
-    /// The identifier of the current locale.
-    ///
-    /// This is set by the ``KeyboardContext``, when the
-    /// ``KeyboardContext/locale`` changes.
+    /// The identifier of the current locale, set by  ``KeyboardContext/locale``.
     @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
     public internal(set) var localeIdentifier = Locale.current.identifier
 }

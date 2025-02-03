@@ -24,8 +24,8 @@ public extension EmojiCategory {
     
     /// A persisted list of emojis, used by ``recent``.
     static var recentEmojis: [Emoji] {
-        get { getPersistedEmojis(for: .frequent) }
-        set { setPersistedEmojis(newValue, for: .frequent) }
+        get { getPersistedEmojis(for: .recent) }
+        set { setPersistedEmojis(newValue, for: .recent) }
     }
 }
 

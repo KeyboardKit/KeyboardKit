@@ -54,6 +54,16 @@ public extension Image {
     static let keyboardUrl = symbol("safari")
     static let keyboardZeroWidthSpace = symbol("circle.dotted")
     
+    static let keyboardDockEdgeNone = symbol("keyboard")
+    static let keyboardDockEdgeLeading = symbol("keyboard.onehanded.left")
+    static let keyboardDockEdgeTrailing = symbol("keyboard.onehanded.right")
+    
+    static let keyboardInputToolbarAutomatic = symbol("square")
+    static let keyboardInputToolbarNone = symbol("square.slash")
+    static let keyboardInputToolbarCharacters = symbol("character.square")
+    static let keyboardInputToolbarNumbers = symbol("1.square")
+    static let keyboardInputToolbarRecentEmojis = symbol("heart.square")
+    
     static func keyboardAudioFeedback(enabled: Bool) -> Image {
         enabled ? keyboardAudioFeedbackEnabled : keyboardAudioFeedbackDisabled
     }

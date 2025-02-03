@@ -35,14 +35,15 @@ Since the settings concept is fairly new, there are several context properties t
 
 ## Available Settings
 
-KeyboardKit currently provides the following settings for the various namespaces:
+KeyboardKit currently provides the following settings, some of which are derived from other values:
 
 
 ### Keyboard
 
-The ``KeyboardSettings`` type provides the following settings.
+``KeyboardSettings`` has the following settings:
 
 * ``KeyboardSettings/addedLocales`` - A list of activated or user-selected locales.
+* ``KeyboardSettings/inputToolbarDisplayMode`` - The input toolbar display mode to use.
 * ``KeyboardSettings/isAutocapitalizationEnabled`` - Whether auto-capitalization is enabled.
 * ``KeyboardSettings/isKeyboardAutoCollapseEnabled`` - Whether to auto-collapse the keyboard when users connect an external keyboard.
 * ``KeyboardSettings/keyboardDockEdge`` - An optional edge to which the keyboard is docked.
@@ -50,7 +51,7 @@ The ``KeyboardSettings`` type provides the following settings.
 
 ### Autocomplete
 
-The ``AutocompleteSettings`` type provides the following settings.
+``AutocompleteSettings`` has the following settings:
 
 * ``AutocompleteSettings/isAutocompleteEnabled`` - Whether autocomplete is enabled. 
 * ``AutocompleteSettings/isAutocorrectEnabled`` - Whether autocorrect is enabled. 
@@ -64,20 +65,20 @@ The ``AutocompleteSettings`` type provides the following settings.
 
 ### Dictation
 
-The ``DictationSettings`` type provides the following settings.
+``DictationSettings`` has the following settings:
 
 * ``DictationSettings/silenceLimit`` - The max number of seconds of silence after which dictation ends.
 
 ### Feedback
 
-The ``KeyboardFeedbackSettings`` type provides the following settings.
+``KeyboardFeedbackSettings`` has the following settings:
 
 * ``KeyboardFeedbackSettings/isAudioFeedbackEnabled`` - Whether audio feedback is enabled.
 * ``KeyboardFeedbackSettings/isHapticFeedbackEnabled`` - Whether Haptic feedback is enabled. 
 
 ### Themes
 
-The ``KeyboardThemeSettings`` class provides the following settings.
+``KeyboardThemeSettings`` has the following settings:
 
 * ``KeyboardThemeSettings/theme`` - The currently selected theme, if any. 
 

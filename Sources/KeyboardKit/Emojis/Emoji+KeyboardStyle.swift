@@ -157,7 +157,7 @@ public extension Emoji.KeyboardStyle {
         for mode: Keyboard.InputToolbarDisplayMode? = nil
     ) -> Self {
         var copy = self
-        if let mode, mode != .hidden {
+        if let mode, mode != .none {
             copy.rows += 1
         }
         return copy

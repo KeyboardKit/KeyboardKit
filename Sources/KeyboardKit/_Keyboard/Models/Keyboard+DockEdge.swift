@@ -42,8 +42,8 @@ public extension View {
 
     /// Apply a ``Keyboard/DockEdge``.
     ///
-    /// > Note: The ``KeyboardView`` ignores this value, and
-    /// uses ``KeyboardSettings/keyboardDockEdge`` instead.
+    /// ``KeyboardView`` will use this value, if any, or the
+    /// ``KeyboardSettings/keyboardDockEdge`` setting.
     func keyboardDockEdge(
         _ edge: Keyboard.DockEdge?
     ) -> some View {
@@ -54,5 +54,8 @@ public extension View {
 public extension EnvironmentValues {
 
     /// Apply a ``Keyboard/DockEdge``.
+    ///
+    /// ``KeyboardView`` will use this value, if any, or the
+    /// ``KeyboardSettings/keyboardDockEdge`` setting.
     @Entry var keyboardDockEdge: Keyboard.DockEdge?
 }
