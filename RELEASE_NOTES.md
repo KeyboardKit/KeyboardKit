@@ -24,6 +24,8 @@ This version adds a bunch of new settings and environment properties.
 ### 💡 Adjustment
 
 * The `.keyboardInputToolbarDisplayMode` environment value is now optional.
+* `KeyboardAppView` now injects a `KeyboardStatusContext` environment object.
+* `KeyboardHostApplication` now uses a case-insensitive bundle ID init match.
 * `KeyboardView` uses the environment `.keyboardDockEdge` if any, else from settings.
 * `KeyboardView` uses the environment `.keyboardInputToolbarDisplayMode` if any, else from settings.
 

@@ -13,15 +13,15 @@ This article describes the KeyboardKit app-specific utilities.
 
 KeyboardKit has app-specific utilities to help you build a great main app for your keyboard, sync data between the app & keyboard, etc. 
 
-👑 [KeyboardKit Pro][Pro] unlocks app-specific screens, like a home screen template, and various settings screens, to help you get your main app up and running in minutes. Information about Pro features can be found further down.
+👑 [KeyboardKit Pro][Pro] unlocks a ``KeyboardAppView`` that can be used to set up the main app, as well as app-specific screen templates that let you set up a complete keyboard app with just a few lines of code.
 
 
 
 ## Keyboard App
 
-You can create an app-specific ``KeyboardApp`` value to define and set up your app & keyboard, by defining your app's  ``KeyboardApp/name``, ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, ``KeyboardApp/licenseKey``, ``KeyboardApp/deepLinks-swift.property``, etc. See the <doc:Getting-Started> and <doc:Essentials> articles for more information.
+You can create an app-specific ``KeyboardApp`` value to define and set up your app & keyboard. See the <doc:Getting-Started> and <doc:Essentials> articles for more information.
 
-The ``KeyboardApp`` type is also a namespace for app-related types and views, like the ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen``, ``KeyboardApp/LocaleScreen``, and ``KeyboardApp/ThemeScreen`` that are unlocked by KeyboardKit Pro.
+The ``KeyboardApp`` is also a namespace for app-related types & views, like the ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen``, ``KeyboardApp/LocaleScreen``, and ``KeyboardApp/ThemeScreen`` screens that are unlocked by KeyboardKit Pro.
 
 
 
@@ -43,13 +43,12 @@ struct MyApp: App {
 }
 ```
 
-This will set up KeyboardKit features and App Group data sync, register your KeyboardKit Pro license, etc. It will also inject all keyboard ``Keyboard/State`` into the environment, which means that you can access any context like this:
+This will set up KeyboardKit features, make the ``KeyboardSettings`` ``KeyboardSettings/store`` sync data between the app and keyboard, register your KeyboardKit Pro license, etc. It will also inject all ``Keyboard/State`` into the environment, which means that you can access any context like this:
 
 ```swift
 struct ContentView: View {
 
-    @EnvironmentObject
-    var keyboardContext: KeyboardContext
+    @EnvironmentObject var keyboardContext: KeyboardContext
 
     var body: View {
         ...
@@ -57,7 +56,20 @@ struct ContentView: View {
 }
 ```
 
-The injected state will also be used by the KeyboardKit Pro screens that are described below.
+The ``KeyboardAppView`` will also inject a ``KeyboardStatusContext`` into the environment, to provide you with information if the app's keyboard (or any keyboard if it has multiple) is enabled, if Full Access is active, etc. 
+
+```swift
+struct ContentView: View {
+
+    @EnvironmentObject var keyboardStatusContext: KeyboardStatusContext
+
+    var body: View {
+        ...
+    }
+}
+```
+
+The injected state will also be used by the KeyboardKit Pro screens that are described below. Since the ``KeyboardAppView`` injects all state into the environment, you don't have to do this when using any of these screens. 
 
 
 ---
@@ -149,7 +161,5 @@ NavigationView {
 )
 .navigationViewStyle(.stack)
 ```
-
-Check out the type documentation in the KeyboardKit Pro documentation, or the demo app for some examples on how to use this view.
 
 > Important: For settings to sync between the main app and its keyboard extension, you must replace the main ``KeyboardSettings`` ``KeyboardSettings/store`` with an App Group-synced store. This is easily done by adding an ``KeyboardApp/appGroupId`` to your ``KeyboardApp`` value.
