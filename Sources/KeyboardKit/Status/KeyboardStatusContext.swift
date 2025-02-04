@@ -62,12 +62,10 @@ public class KeyboardStatusContext: KeyboardStatusInspector, ObservableObject {
     private let notificationCenter: NotificationCenter
 
     /// Whether the keyboard extension is actively used.
-    @Published
-    public var isKeyboardActive: Bool = false
+    @Published public var isKeyboardActive: Bool = false
 
     /// Whether the keyboard extension has been enabled.
-    @Published
-    public var isKeyboardEnabled: Bool = false
+    @Published public var isKeyboardEnabled: Bool = false
 
     /// Refresh the observable state.
     public func refresh() {

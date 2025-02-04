@@ -13,7 +13,7 @@ public extension Keyboard {
     /// This enum defines various input toolbar modes, which
     /// can be used to set how an input toolbar is displayed.
     ///
-    /// You can apply a display mode using the view modifier
+    /// You can apply a custom value using the view modifier
     /// ``SwiftUICore/View/keyboardInputToolbarDisplayMode(_:)``.
     enum InputToolbarDisplayMode: KeyboardModel {
 
@@ -41,23 +41,23 @@ public extension Keyboard.InputToolbarDisplayMode {
 
 public extension View {
 
-    /// Apply an ``Keyboard/InputToolbarDisplayMode``.
+    /// Apply an ``Keyboard/InputToolbarDisplayMode`` value.
     ///
     /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/inputToolbarDisplayMode`` setting.
+    /// ``KeyboardSettings/inputToolbarDisplayMode``.
     func keyboardInputToolbarDisplayMode(
-        _ mode: Keyboard.InputToolbarDisplayMode
+        _ value: Keyboard.InputToolbarDisplayMode
     ) -> some View {
-        self.environment(\.keyboardInputToolbarDisplayMode, mode)
+        self.environment(\.keyboardInputToolbarDisplayMode, value)
     }
 }
 
 public extension EnvironmentValues {
 
-    /// Apply an ``Keyboard/InputToolbarDisplayMode``.
+    /// Apply an ``Keyboard/InputToolbarDisplayMode`` value.
     ///
     /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/inputToolbarDisplayMode`` setting. 
+    /// ``KeyboardSettings/inputToolbarDisplayMode``.
     @Entry var keyboardInputToolbarDisplayMode: Keyboard
         .InputToolbarDisplayMode?
 }

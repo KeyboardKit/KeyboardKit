@@ -142,7 +142,7 @@ public struct KeyboardViewItem<Content: View>: View {
             context.locales = .keyboardKitSupported
             context.settings.addedLocales = [.english, .swedish, .finnish]
             context.localePresentationLocale = .swedish
-            context.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
+            context.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
             return context
         }()
         

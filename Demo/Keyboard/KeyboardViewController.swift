@@ -99,9 +99,8 @@ private extension KeyboardViewController {
         // state.keyboardContext.settings.keyboardDockEdge = .leading
 
         /// 💡 Configure the space key's long press behavior.
-        // state.keyboardContext.spaceLongPressBehavior = .moveInputCursor
-        state.keyboardContext.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
-        // state.keyboardContext.spaceLongPressBehavior = .openLocaleContextMenu
+        // state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursor
+        state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
 
         /// 💡 Customize keyboard feedback.
         // state.feedbackContext.settings.isAudioFeedbackEnabled = false

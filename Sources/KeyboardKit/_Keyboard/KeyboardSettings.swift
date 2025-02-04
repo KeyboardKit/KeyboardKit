@@ -48,12 +48,6 @@ public struct KeyboardSettings {
     @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
     public var addedLocaleIdentifiersValues: Keyboard.StorageValue<[String]> = .init(value: [])
     
-    /// Whether auto-capitalization is enabled.
-    @AppStorage("\(settingsPrefix)isAutocapitalizationEnabled", store: .keyboardSettings)
-    public var isAutocapitalizationEnabled = true {
-        didSet { onAutocapitalizationEnabledChanged() }
-    }
-    
     /// The input toolbar type to use, if any.
     @AppStorage("\(settingsPrefix)inputToolbarType", store: .keyboardSettings)
     public var inputToolbarType: InputToolbarType = .automatic
@@ -62,17 +56,27 @@ public struct KeyboardSettings {
     @AppStorage("\(settingsPrefix)inputToolbarCharacters", store: .keyboardSettings)
     public var inputToolbarCharacters = ""
     
-    /// The ``inputToolbarCharacters`` max length.
-    @AppStorage("\(settingsPrefix)inputToolbarCharactersMaxLength", store: .keyboardSettings)
-    public var inputToolbarCharactersMaxLength = 10
+    /// The ``inputToolbarCharacters`` max count.
+    @AppStorage("\(settingsPrefix)inputToolbarCharactersMaxCount", store: .keyboardSettings)
+    public var inputToolbarCharactersMaxCount = 10
+    
+    /// Whether auto-capitalization is enabled.
+    @AppStorage("\(settingsPrefix)isAutocapitalizationEnabled", store: .keyboardSettings)
+    public var isAutocapitalizationEnabled = true {
+        didSet { onAutocapitalizationEnabledChanged() }
+    }
 
-    /// Whether to auto-collapse the keyboard when connecting an external keyboard.
+    /// Whether to auto-collapse the keyboard when an external keyboard is connected.
     @AppStorage("\(settingsPrefix)isKeyboardAutoCollapseEnabled", store: .keyboardSettings)
     public var isKeyboardAutoCollapseEnabled = false
     
-    /// An optional edge to which the keyboard is docked.
+    /// The ``Keyboard/DockEdge`` to use, if any.
     @AppStorage("\(settingsPrefix)keyboardDockEdge", store: .keyboardSettings)
     public var keyboardDockEdge: Keyboard.DockEdge?
+    
+    /// The ``Keyboard/SpaceLongPressBehavior`` to use.
+    @AppStorage("\(settingsPrefix)spaceLongPressBehavior", store: .keyboardSettings)
+    public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
 
     /// The identifier of the current locale, set by  ``KeyboardContext/locale``.
     @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)

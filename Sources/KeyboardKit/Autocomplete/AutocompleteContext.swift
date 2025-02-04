@@ -36,8 +36,7 @@ public class AutocompleteContext: ObservableObject {
     // MARK: - Settings
 
     /// Auto-persisted autocomplete settings.
-    @Published
-    public var settings: AutocompleteSettings
+    @Published public var settings: AutocompleteSettings
     
 
     // MARK: - Published Properties
@@ -47,27 +46,22 @@ public class AutocompleteContext: ObservableObject {
     ///
     /// Note that it's already initialized with a well-known
     /// set of autocorrections, so make sure to append to it.
-    @Published
-    public var autocorrectDictionary = Autocomplete.TextReplacementDictionary.additionalAutocorrections
+    @Published public var autocorrectDictionary = Autocomplete.TextReplacementDictionary.additionalAutocorrections
 
     /// Whether or not suggestions are being fetched.
-    @Published
-    public var isLoading = false
+    @Published public var isLoading = false
 
     /// The last received autocomplete error.
     public var lastError: Error?
 
     /// The characters that are more likely to be typed next.
-    @Published
-    public var nextCharacterPredictions: [Character: Double] = [:]
+    @Published public var nextCharacterPredictions: [Character: Double] = [:]
 
     /// The suggestions to present to the user.
-    @Published
-    public var suggestions: [Autocomplete.Suggestion] = []
+    @Published public var suggestions: [Autocomplete.Suggestion] = []
 
     /// The suggestions returned by an autocomplete service.
-    @Published
-    public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
+    @Published public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
         didSet {
             let value = suggestionsFromService
             let capped = value.prefix(settings.suggestionsDisplayCount)

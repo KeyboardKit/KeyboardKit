@@ -4,10 +4,9 @@ KeyboardKit tries to honor semantic versioning:
 
 * Deprecations can happen at any time.
 * Deprecations should only be removed in `major` updates.
-* Breaking changes should not occur in `minor` and `patch` updates.
-* Breaking changes *can* occur in `minor` and `patch` updates, if needed.
+* Breaking should only occur in `major` updates, but *can* occur in `minor` and `patch` updates.
 
-These release notes cover the current major version. Check out version tags for older release notes. 
+These release notes cover the current major version. See older versions for older release notes. 
 
 
 
@@ -18,16 +17,19 @@ This version adds a bunch of new settings and environment properties.
 ### ✨ Features
 
 * `Image` has new keyboard picker-specific images.
-* `Keyboard.InputToolbarDisplayMode` has new `characters` builders.
+* `Keyboard.InputToolbarDisplayMode` has new value builders.
+* `Keyboard.SpaceLongPressBehavior` has a new view modifier.
+* `KeyboardSettings` has a new space long press behavior setting.
 * `KeyboardSettings` has new input toolbar-related types and settings.
 
 ### 💡 Adjustment
 
+* More types implement the `KeyboardModel` aggregate protocol.
 * The `.keyboardInputToolbarDisplayMode` environment value is now optional.
 * `KeyboardAppView` now injects a `KeyboardStatusContext` environment object.
 * `KeyboardHostApplication` now uses a case-insensitive bundle ID init match.
-* `KeyboardView` uses the environment `.keyboardDockEdge` if any, else from settings.
-* `KeyboardView` uses the environment `.keyboardInputToolbarDisplayMode` if any, else from settings.
+* `KeyboardView` uses the environment `.keyboardDockEdge` if any, else settings.
+* `KeyboardView` uses the environment `.keyboardInputToolbarDisplayMode` if any, else settings.
 
 ### 👑 Pro
 
@@ -35,12 +37,10 @@ This version adds a bunch of new settings and environment properties.
 
 ### 🗑️ Deprecations
 
-* `Autocomplete.Settings` is renamed to `AutocompleteSettings`.
-* `Dictation.Settings` is renamed to `DictationSettings`.
-* `Keyboard.Settings` is renamed to `KeyboardSettings`.
-* `KeyboardFeedback.Settings` is renamed to `KeyboardFeedbackSettings`.
+* All settings types are not top level types.
 * `Keyboard.InputToolbarDisplayMode.hidden` is renamed to `.none`.
 * `Keyboard.InputToolbarDisplayMode.inputs` is renamed to `.characters`.
+* `KeyboardContext.spaceLongPressBehaviot` is moved to `KeyboardSettings`.
 
 
 

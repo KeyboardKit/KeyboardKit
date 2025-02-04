@@ -14,12 +14,20 @@ public extension Keyboard {
     ///
     /// You can apply a custom value using the view modifier
     /// ``SwiftUICore/View/keyboardDockEdge(_:)``.
-    enum DockEdge: String, CaseIterable, KeyboardModel {
-        case leading, trailing
+    enum DockEdge: String, Identifiable, CaseIterable, KeyboardModel {
+        
+        /// Dock the keyboard to the leading edge.
+        case leading
+        
+        /// Dock the keyboard to the trailing edge.
+        case trailing
     }
 }
 
 public extension Keyboard.DockEdge {
+    
+    /// The unique edge ID.
+    var id: String { rawValue }
     
     /// The corresponding keyboard alignment.
     var alignment: Alignment {
@@ -40,22 +48,22 @@ public extension Keyboard.DockEdge {
 
 public extension View {
 
-    /// Apply a ``Keyboard/DockEdge``.
+    /// Apply a ``Keyboard/DockEdge`` value.
     ///
     /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/keyboardDockEdge`` setting.
+    /// ``KeyboardSettings/keyboardDockEdge``.
     func keyboardDockEdge(
-        _ edge: Keyboard.DockEdge?
+        _ value: Keyboard.DockEdge?
     ) -> some View {
-        self.environment(\.keyboardDockEdge, edge)
+        self.environment(\.keyboardDockEdge, value)
     }
 }
 
 public extension EnvironmentValues {
 
-    /// Apply a ``Keyboard/DockEdge``.
+    /// Apply a ``Keyboard/DockEdge`` value.
     ///
     /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/keyboardDockEdge`` setting.
+    /// ``KeyboardSettings/keyboardDockEdge``.
     @Entry var keyboardDockEdge: Keyboard.DockEdge?
 }

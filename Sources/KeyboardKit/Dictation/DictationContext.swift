@@ -36,8 +36,7 @@ public class DictationContext: ObservableObject {
     // MARK: - Settings
 
     /// Dictation-specific, auto-persisted settings.
-    @Published
-    public var settings: DictationSettings
+    @Published public var settings: DictationSettings
     
     /// The settings key prefix to use.
     public static var settingsPrefix: String {
@@ -81,22 +80,16 @@ public class DictationContext: ObservableObject {
     // MARK: - Properties
 
     /// Whether dictation is currently in progress.
-    @Published
-    public var isDictating = false
+    @Published public var isDictating = false
 
     /// The last applied dictation error.
-    @Published
-    public var lastError: Error?
+    @Published public var lastError: Error?
 
     /// The last inserted dictated text.
-    ///
-    /// This can be used to undo the last inserted dictation.
-    @Published
-    public var lastInsertedText: String?
+    @Published public var lastInsertedText: String?
 
     /// The last navigate back error.
-    @Published
-    public var returnToKeyboardFromAppError: Error?
+    @Published public var returnToKeyboardFromAppError: Error?
 
     /// A strong reference to the current dictation service.
     public var service: DictationService?

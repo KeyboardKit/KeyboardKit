@@ -13,12 +13,9 @@ public extension KeyboardSettings {
     /// This enum defines various input toolbar modes, which
     /// can be used to set how an input toolbar is displayed.
     ///
-    /// Unlike the ``Keyboard/InputToolbarDisplayMode`` type,
-    /// this type is used by ``KeyboardSettings``, which can
-    /// then resolve display modes based on other properties.
-    ///
-    /// You can apply a display mode using the view modifier
-    /// ``SwiftUICore/View/keyboardInputToolbarDisplayMode(_:)``.
+    /// The reason why this type is used in settings instead
+    /// of ``Keyboard/InputToolbarDisplayMode`` is that this
+    /// type can be persisted, while the display mode cannot.
     enum InputToolbarType: String, KeyboardModel {
 
         /// Display a toolbar based on the native behavior.
@@ -43,23 +40,23 @@ public extension KeyboardSettings {
     /// uses ``inputToolbarCharacters`` for input characters.
     var inputToolbarDisplayMode: Keyboard.InputToolbarDisplayMode {
         switch inputToolbarType {
-        case .automatic: return .automatic
-        case .characters: return .characters(charactersString)
-        case .numbers: return .numbers
-        case .recentEmojis: return .characters(recentEmojisString)
-        case .none: return .none
+        case .automatic: .automatic
+        case .characters: .characters(charactersString)
+        case .numbers: .numbers
+        case .recentEmojis: .characters(recentEmojisString)
+        case .none: .none
         }
     }
 }
 
 private extension KeyboardSettings {
     
-    var maxLength: Int {
-        inputToolbarCharactersMaxLength
+    var maxCount: Int {
+        inputToolbarCharactersMaxCount
     }
     
     var charactersString: String {
-        inputToolbarCharacters.inputToolbarCapped(maxLength)
+        inputToolbarCharacters.inputToolbarCapped(maxCount)
     }
 
     var recentEmojisString: String {
@@ -69,7 +66,7 @@ private extension KeyboardSettings {
             .map { $0.char }.joined()
         let placeholders = "😀🤩😍😂👍👎👋🙌🙏❤️"
         let joined = recentString + placeholders
-        return joined.inputToolbarCapped(maxLength)
+        return joined.inputToolbarCapped(maxCount)
     }
 }
 

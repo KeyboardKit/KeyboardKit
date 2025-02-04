@@ -6,19 +6,21 @@
 //  Copyright © 2023-2025 Daniel Saidi. All rights reserved.
 //
 
-import Foundation
+import SwiftUI
 
 public extension Keyboard {
     
-    /// This enum defines various space long press actions.
-    enum SpaceLongPressBehavior: Codable {
+    /// This enum defines various space long press behaviors.
+    ///
+    /// You can apply a custom value using the view modifier
+    /// ``SwiftUICore/View/keyboardSpaceLongPressBehavior(_:)``.
+    enum SpaceLongPressBehavior: String, CaseIterable, Identifiable, KeyboardModel {
         
         /// Long pressing space moves the input cursor.
         case moveInputCursor
         
-        /// Long pressing space moves the input cursor. This
-        /// case also adds a locale context menu to the view,
-        /// when there are multiple enabled localed.
+        /// Long pressing space moves the input cursor, with
+        /// an additional trailing locale context menu.
         case moveInputCursorWithLocaleSwitcher
         
         /// Long pressing space opens a locale context menu.
@@ -27,6 +29,9 @@ public extension Keyboard {
 }
 
 public extension Keyboard.SpaceLongPressBehavior {
+    
+    /// The unique behavior ID.
+    var id: String { rawValue }
     
     /// Whether space should add a trailing context menu.
     var shouldAddTrailingLocaleContextMenu: Bool {
@@ -55,3 +60,26 @@ public extension Keyboard.SpaceLongPressBehavior {
         }
     }
 }
+
+public extension View {
+
+    /// Apply a ``Keyboard/SpaceLongPressBehavior`` value.
+    ///
+    /// ``KeyboardView`` will use this value, if any, or the
+    /// ``KeyboardSettings/keyboardSpaceLongPressBehavior``.
+    func keyboardSpaceLongPressBehavior(
+        _ value: Keyboard.SpaceLongPressBehavior?
+    ) -> some View {
+        self.environment(\.keyboardSpaceLongPressBehavior, value)
+    }
+}
+
+public extension EnvironmentValues {
+
+    /// Apply a ``Keyboard/SpaceLongPressBehavior`` value.
+    ///
+    /// ``KeyboardView`` will use this value, if any, or the
+    /// ``KeyboardSettings/keyboardSpaceLongPressBehavior``.
+    @Entry var keyboardSpaceLongPressBehavior: Keyboard.SpaceLongPressBehavior?
+}
+

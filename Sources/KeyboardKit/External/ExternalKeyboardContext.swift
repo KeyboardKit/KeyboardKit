@@ -20,14 +20,19 @@ import SwiftUI
 /// keyboard is actively being used.
 public class ExternalKeyboardContext: ObservableObject {
 
+    /// Create an external keyboard context.
+    ///
+    /// - Parameters:
+    ///   - notificationCenter: The notification center to use.
     public init(
         notificationCenter: NotificationCenter = .default
     ) {
         self.notificationCenter = notificationCenter
     }
 
+    /// The notification center to use for observations.
     public let notificationCenter: NotificationCenter
 
-    @Published
-    public var isExternalKeyboardConnected = false
+    /// Whether an external keyboard is connected.
+    @Published var isExternalKeyboardConnected = false
 }

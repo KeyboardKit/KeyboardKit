@@ -39,24 +39,19 @@ public class KeyboardCalloutContext: ObservableObject {
 
 
     /// The currently active button frame.
-    @Published
-    public private(set) var buttonFrame: CGRect = .zero
+    @Published public private(set) var buttonFrame: CGRect = .zero
 
     /// The current input action, if any.
-    @Published
-    public private(set) var inputAction: KeyboardAction?
+    @Published public private(set) var inputAction: KeyboardAction?
 
     /// The current secondary actions.
-    @Published
-    public private(set) var secondaryActions: [KeyboardAction] = []
+    @Published public private(set) var secondaryActions: [KeyboardAction] = []
 
     /// The current secondary action callout alignment.
-    @Published
-    public private(set) var secondaryActionsAlignment: HorizontalAlignment = .leading
+    @Published public private(set) var secondaryActionsAlignment: HorizontalAlignment = .leading
 
     /// The current secondary action index.
-    @Published
-    public private(set) var secondaryActionsIndex: Int = -1
+    @Published public private(set) var secondaryActionsIndex: Int = -1
 }
 
 public extension KeyboardCalloutContext {

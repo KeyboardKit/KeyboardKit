@@ -46,67 +46,53 @@ public class KeyboardContext: ObservableObject {
     // MARK: - Settings
 
     /// Auto-persisted keyboard settings.
-    @Published
-    public var settings: KeyboardSettings
+    @Published public var settings: KeyboardSettings
 
 
     // MARK: - Temporary overrides
 
     /// Set this to override ``autocapitalizationType``.
-    @Published
-    public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
+    @Published public var autocapitalizationTypeOverride: Keyboard.AutocapitalizationType?
 
     /// Set this to override ``returnKeyType``.
-    @Published
-    public var returnKeyTypeOverride: Keyboard.ReturnKeyType?
+    @Published public var returnKeyTypeOverride: Keyboard.ReturnKeyType?
 
 
     // MARK: - Published Properties
 
     /// The app for which the context is set up, if any.
-    @Published
-    public var app: KeyboardApp?
+    @Published public var app: KeyboardApp?
 
     /// The current device type.
-    @Published
-    public var deviceType: DeviceType = .current
+    @Published public var deviceType: DeviceType = .current
 
     /// The current device type to use for keyboard visualization.
-    @Published
-    public var deviceTypeForKeyboard: DeviceType = .current
+    @Published public var deviceTypeForKeyboard: DeviceType = .current
 
     /// Whether the keyboard has a dictation key.
-    @Published
-    public var hasDictationKey: Bool = false
+    @Published public var hasDictationKey: Bool = false
 
     /// Whether the extension has full access.
     #if os(iOS) || os(tvOS) || os(visionOS)
-    @Published
-    public var hasFullAccess = UIInputViewController().hasFullAccess
+    @Published public var hasFullAccess = UIInputViewController().hasFullAccess
     #else
-    @Published
-    public var hasFullAccess: Bool = false
+    @Published public var hasFullAccess: Bool = false
     #endif
 
     /// The bundle ID of the keyboard host application.
-    @Published
-    public var hostApplicationBundleId: String?
+    @Published public var hostApplicationBundleId: String?
 
     /// The current interface orientation.
-    @Published
-    public var interfaceOrientation: InterfaceOrientation = .portrait
+    @Published public var interfaceOrientation: InterfaceOrientation = .portrait
 
     /// Whether the keyboard is collapsed.
-    @Published
-    public var isKeyboardCollapsed = false
+    @Published public var isKeyboardCollapsed = false
 
     /// Whether the keyboard is in floating mode.
-    @Published
-    public var isKeyboardFloating = false
+    @Published public var isKeyboardFloating = false
 
     /// Whether a space drag gesture is active.
-    @Published
-    public var isSpaceDragGestureActive = false
+    @Published public var isSpaceDragGestureActive = false
 
     func setIsSpaceDragGestureActive(
         _ value: Bool,
@@ -120,55 +106,46 @@ public class KeyboardContext: ObservableObject {
     }
 
     /// The keyboard case that is currently used.
-    @Published
-    public var keyboardCase = Keyboard.KeyboardCase.auto
+    @Published public var keyboardCase = Keyboard.KeyboardCase.auto
 
     /// An optional dictation replacement action.
-    @Published
-    public var keyboardDictationReplacement: KeyboardAction?
+    @Published public var keyboardDictationReplacement: KeyboardAction?
 
     /// The keyboard type that is currently used.
-    @Published
-    public var keyboardType = Keyboard.KeyboardType.alphabetic
+    @Published public var keyboardType = Keyboard.KeyboardType.alphabetic
 
     /// The current locale, by default `.current`.
     ///
     /// This updates the ``KeyboardSettings/localeIdentifier``
     /// whenever the value is changed.
-    @Published
-    public var locale = Locale.current {
+    @Published public var locale = Locale.current {
         didSet { settings.localeIdentifier = locale.identifier }
     }
 
     /// The locales that are currently available.
-    @Published
-    public var locales: [Locale] = [.current]
+    @Published public var locales: [Locale] = [.current]
 
     /// The locale to use when displaying the localized name
     /// of other locales.
     ///
     /// > Note: This is `.current` by default. Set it to nil
     /// to display each locale in their own language.
-    @Published
-    public var localePresentationLocale: Locale? = .current
+    @Published public var localePresentationLocale: Locale? = .current
 
     /// Whether to add an input mode switch key.
-    @Published
-    public var needsInputModeSwitchKey = false
+    @Published public var needsInputModeSwitchKey = false
 
     /// The primary language that is currently being used.
-    @Published
-    public var primaryLanguage: String?
+    @Published public var primaryLanguage: String?
 
     /// The current screen size (avoid using this).
-    @Published
-    public var screenSize = CGSize.zero
+    @Published public var screenSize = CGSize.zero
 
-    /// The long press behavior to use for the space bar.
-    ///
-    /// The space bar will by default move the input cursor.
-    @Published
-    public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
+    @available(*, deprecated, message: "Use `settings.spaceLongPressBehavior` instead.")
+    public var spaceLongPressBehavior: Keyboard.SpaceLongPressBehavior {
+        get { settings.spaceLongPressBehavior }
+        set { settings.spaceLongPressBehavior = newValue }
+    }
 
 
     #if os(iOS) || os(tvOS) || os(visionOS)
@@ -176,8 +153,7 @@ public class KeyboardContext: ObservableObject {
     // MARK: - iOS/tvOS proxy properties
 
     /// The original text document proxy.
-    @Published
-    public var originalTextDocumentProxy: UITextDocumentProxy = .preview
+    @Published public var originalTextDocumentProxy: UITextDocumentProxy = .preview
 
     /// The text document proxy that is currently active.
     public var textDocumentProxy: UITextDocumentProxy {
@@ -185,19 +161,16 @@ public class KeyboardContext: ObservableObject {
     }
 
     /// A custom text proxy to which text can be routed.
-    @Published
-    public var textInputProxy: UITextDocumentProxy?
+    @Published public var textInputProxy: UITextDocumentProxy?
 
 
     // MARK: - iOS/tvOS properties
 
     /// The text input mode of the input controller.
-    @Published
-    public var textInputMode: UITextInputMode?
+    @Published public var textInputMode: UITextInputMode?
 
     /// The current trait collection.
-    @Published
-    public var traitCollection = UITraitCollection()
+    @Published public var traitCollection = UITraitCollection()
     #endif
 }
 

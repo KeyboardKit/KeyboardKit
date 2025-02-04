@@ -20,7 +20,7 @@ final class KeyboardSettings_InputToolbarTests: XCTestCase {
     
     override func tearDown() {
         settings.inputToolbarCharacters = ""
-        settings.inputToolbarCharactersMaxLength = 10
+        settings.inputToolbarCharactersMaxCount = 10
         EmojiCategory.resetEmojis(in: .recent)
     }
     
@@ -40,7 +40,7 @@ final class KeyboardSettings_InputToolbarTests: XCTestCase {
     func testCanResolveCustomCharacters() {
         settings.inputToolbarCharacters = "abcdefghijklmnopq"
         XCTAssertEqual(mode(for: .characters), .characters("abcdefghij".chars))
-        settings.inputToolbarCharactersMaxLength = 5
+        settings.inputToolbarCharactersMaxCount = 5
         XCTAssertEqual(mode(for: .characters), .characters("abcde".chars))
     }
     
@@ -49,7 +49,7 @@ final class KeyboardSettings_InputToolbarTests: XCTestCase {
         let emojis = emojiChars.map { Emoji($0) }
         emojis.reversed().forEach { EmojiCategory.addEmoji($0, to: .recent) }
         XCTAssertEqual(mode(for: .recentEmojis), .characters("🚀👍🙌🙏⌨️👋💡🌱😂⚠️".chars))
-        settings.inputToolbarCharactersMaxLength = 5
+        settings.inputToolbarCharactersMaxCount = 5
         XCTAssertEqual(mode(for: .recentEmojis), .characters("🚀👍🙌🙏⌨️".chars))
     }
 }

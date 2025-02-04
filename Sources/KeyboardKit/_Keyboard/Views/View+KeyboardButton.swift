@@ -141,7 +141,7 @@ private extension View {
     ) -> Bool {
         switch action {
         case .nextLocale: true
-        case .space: context.spaceLongPressBehavior == .openLocaleContextMenu
+        case .space: context.settings.spaceLongPressBehavior.shouldAddTrailingLocaleContextMenu
         default: false
         }
     }
@@ -159,7 +159,7 @@ private extension View {
             let context = KeyboardContext()
             context.locales = .keyboardKitSupported
             context.localePresentationLocale = .swedish
-            context.spaceLongPressBehavior = .openLocaleContextMenu
+            context.settings.spaceLongPressBehavior = .openLocaleContextMenu
             return context
         }()
 

@@ -35,8 +35,7 @@ public class KeyboardFeedbackContext: ObservableObject {
     // MARK: - Settings
 
     /// Feedback-specific, auto-persisted settings.
-    @Published
-    public var settings: KeyboardFeedbackSettings
+    @Published public var settings: KeyboardFeedbackSettings
 
 
     // MARK: - Typealiases

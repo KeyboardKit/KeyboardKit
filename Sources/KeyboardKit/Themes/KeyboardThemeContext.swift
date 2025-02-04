@@ -33,12 +33,10 @@ public class KeyboardThemeContext: ObservableObject {
     // MARK: - Settings
 
     /// Theme-specific, auto-persisted settings.
-    @Published
-    public var settings: KeyboardThemeSettings
+    @Published public var settings: KeyboardThemeSettings
 
     /// The last theme changed date, if any.
-    @Published
-    public var themeChanged = Date.now.timeIntervalSince1970
+    @Published public var themeChanged = Date.now.timeIntervalSince1970
 }
 
 public extension KeyboardThemeContext {
