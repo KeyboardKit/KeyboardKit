@@ -11,3 +11,33 @@ public extension Keyboard.InputToolbarDisplayMode {
         .characters(inputs)
     }
 }
+
+public extension Keyboard.SpaceLongPressBehavior {
+    
+    @available(*, deprecated, message: "Use Keyboard.SpaceTrailingAction instead.")
+    static var moveInputCursorWithLocaleSwitcher: Self { .moveInputCursor }
+    
+    @available(*, deprecated, message: "Use Keyboard.SpaceTrailingAction instead.")
+    var shouldAddTrailingLocaleContextMenu: Bool {
+        switch self {
+        case .moveInputCursor: false
+        case .openLocaleContextMenu: false
+        }
+    }
+    
+    /// Whether space should move the input cursor.
+    var shouldMoveInputCursor: Bool {
+        switch self {
+        case .moveInputCursor: true
+        case .openLocaleContextMenu: false
+        }
+    }
+    
+    /// Whether space should open a locale context menu.
+    var shouldOpenLocaleContextMenu: Bool {
+        switch self {
+        case .moveInputCursor: false
+        case .openLocaleContextMenu: true
+        }
+    }
+}

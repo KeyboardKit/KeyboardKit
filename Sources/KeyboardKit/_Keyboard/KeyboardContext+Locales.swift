@@ -25,7 +25,7 @@ public extension KeyboardContext {
     /// context menu.
     var shouldAddLocaleContextMenuToSpaceBar: Bool {
         guard hasMultipleEnabledLocales else { return false }
-        return spaceLongPressBehavior.shouldAddTrailingLocaleContextMenu
+        return settings.spaceTrailingAction == .localeContextMenu
     }
 
     /// Select the next locale in the selectable locales.

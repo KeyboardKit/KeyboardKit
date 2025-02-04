@@ -13,7 +13,7 @@ import SwiftUI
 /// Unlike ``Keyboard/Button`` this view applies more insets
 /// and configurations to make it work in a ``KeyboardView``.
 public struct KeyboardViewItem<Content: View>: View {
-
+    
     /// Create a keyboard view item.
     ///
     /// - Parameters:
@@ -53,7 +53,7 @@ public struct KeyboardViewItem<Content: View>: View {
         self.isGestureAutoCancellable = isGestureAutoCancellable
         self.content = content
     }
-
+    
     private let item: KeyboardLayout.Item
     private let actionHandler: KeyboardActionHandler
     private let repeatTimer: GestureButtonTimer?
@@ -65,11 +65,11 @@ public struct KeyboardViewItem<Content: View>: View {
     private let isGestureAutoCancellable: Bool?
     private let content: Content
     
-    @ObservedObject
-    private var keyboardContext: KeyboardContext
+    @Environment(\.keyboardSpaceTrailingAction) var spaceTrailingActionFromEnvironment
     
-    @State
-    private var isPressed = false
+    @ObservedObject var keyboardContext: KeyboardContext
+    
+    @State var isPressed = false
     
     public var body: some View {
         ZStack(alignment: item.alignment) {
@@ -99,11 +99,32 @@ public struct KeyboardViewItem<Content: View>: View {
             spacebarLocaleContextMenuOverlay
         }
     }
+}
+
+private extension KeyboardViewItem {
+    
+    var buttonStyle: Keyboard.ButtonStyle {
+        item.action.isSpacer ? .spacer : styleService.buttonStyle(for: item.action, isPressed: isPressed)
+    }
+    
+    var contentOpacity: Double {
+        keyboardContext.isSpaceDragGestureActive ? 0 : 1
+    }
+    
+    var shouldAddLocaleContextMenuToSpaceBar: Bool {
+        keyboardContext.hasMultipleEnabledLocales && spaceTrailingAction == .localeContextMenu
+    }
+    
+    var spaceTrailingAction: Keyboard.SpaceAction? {
+        spaceTrailingActionFromEnvironment ?? keyboardContext.settings.spaceTrailingAction
+    }
+}
+
+private extension KeyboardViewItem {
     
     @ViewBuilder
-    // TODO: Extract this to a separate view.
-    private var spacebarLocaleContextMenuOverlay: some View {
-        if item.action == .space && keyboardContext.shouldAddLocaleContextMenuToSpaceBar {
+    var spacebarLocaleContextMenuOverlay: some View {
+        if item.action == .space && shouldAddLocaleContextMenuToSpaceBar {
             let style = styleService.buttonStyle(for: .space, isPressed: false)
             Text(keyboardContext.locale.shortDisplayName)
                 .font(.caption)
@@ -120,14 +141,6 @@ public struct KeyboardViewItem<Content: View>: View {
                 .padding(item.edgeInsets)
         }
     }
-    
-    private var contentOpacity: Double {
-        keyboardContext.isSpaceDragGestureActive ? 0 : 1
-    }
-    
-    private var buttonStyle: Keyboard.ButtonStyle {
-        item.action.isSpacer ? .spacer : styleService.buttonStyle(for: item.action, isPressed: isPressed)
-    }
 }
 
 #Preview {
@@ -142,7 +155,7 @@ public struct KeyboardViewItem<Content: View>: View {
             context.locales = .keyboardKitSupported
             context.settings.addedLocales = [.english, .swedish, .finnish]
             context.localePresentationLocale = .swedish
-            context.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
+            context.settings.spaceTrailingAction = nil // .localeContextMenu
             return context
         }()
         
@@ -168,4 +181,5 @@ public struct KeyboardViewItem<Content: View>: View {
     }
     
     return Preview()
+        // .keyboardSpaceTrailingAction(.localeContextMenu)
 }

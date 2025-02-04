@@ -74,9 +74,13 @@ public struct KeyboardSettings {
     @AppStorage("\(settingsPrefix)keyboardDockEdge", store: .keyboardSettings)
     public var keyboardDockEdge: Keyboard.DockEdge?
     
-    /// The ``Keyboard/SpaceLongPressBehavior`` to use.
+    /// The ``Keyboard/SpaceLongPressBehavior`` to use for the space key.
     @AppStorage("\(settingsPrefix)spaceLongPressBehavior", store: .keyboardSettings)
     public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
+    
+    /// The trailing ``Keyboard/SpaceAction`` to use for the space key, if any.
+    @AppStorage("\(settingsPrefix)spaceTrailingAction", store: .keyboardSettings)
+    public var spaceTrailingAction: Keyboard.SpaceAction?
 
     /// The identifier of the current locale, set by  ``KeyboardContext/locale``.
     @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)

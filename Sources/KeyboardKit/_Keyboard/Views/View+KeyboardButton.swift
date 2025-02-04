@@ -141,7 +141,6 @@ private extension View {
     ) -> Bool {
         switch action {
         case .nextLocale: true
-        case .space: context.settings.spaceLongPressBehavior.shouldAddTrailingLocaleContextMenu
         default: false
         }
     }

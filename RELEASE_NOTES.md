@@ -14,13 +14,16 @@ These release notes cover the current major version. See older versions for olde
 
 This version adds a bunch of new settings and environment properties.
 
+This version migrates `Keyboard.SpaceLongPressBehavior` locale switcher to a new `Keyboard.SpaceTrailingAction`. 
+
 ### ✨ Features
 
 * `Image` has new keyboard picker-specific images.
 * `Keyboard.InputToolbarDisplayMode` has new value builders.
+* `Keyboard.SpaceAction` is an enum for extra space actions.
 * `Keyboard.SpaceLongPressBehavior` has a new view modifier.
-* `KeyboardSettings` has a new space long press behavior setting.
 * `KeyboardSettings` has new input toolbar-related types and settings.
+* `KeyboardSettings` has new `.spaceLongPressBehavior` and `.spaceTrailingAction` settings.
 
 ### 💡 Adjustment
 
@@ -28,19 +31,22 @@ This version adds a bunch of new settings and environment properties.
 * The `.keyboardInputToolbarDisplayMode` environment value is now optional.
 * `KeyboardAppView` now injects a `KeyboardStatusContext` environment object.
 * `KeyboardHostApplication` now uses a case-insensitive bundle ID init match.
-* `KeyboardView` uses the environment `.keyboardDockEdge` if any, else settings.
-* `KeyboardView` uses the environment `.keyboardInputToolbarDisplayMode` if any, else settings.
+* `KeyboardView` uses the new environment values, if any, else the keyboard settings.
 
 ### 👑 Pro
 
 * `InputSet.colemak` is a new Colemak input set.
+* `KeyboardApp.LocaleScreen` has new keyboard settings.
+* `KeyboardApp.SettingsScreen` has new keyboard settings.
 
 ### 🗑️ Deprecations
 
-* All settings types are not top level types.
 * `Keyboard.InputToolbarDisplayMode.hidden` is renamed to `.none`.
 * `Keyboard.InputToolbarDisplayMode.inputs` is renamed to `.characters`.
-* `KeyboardContext.spaceLongPressBehaviot` is moved to `KeyboardSettings`.
+* `Keyboard.SpaceLongPressBehavior` deprecates the locale switcher case.
+* `Keyboard.SpaceLongPressBehavior` deprecates various should properties. 
+* `KeyboardContext.spaceLongPressBehavior` is moved to `KeyboardSettings`.
+* `KeyboardSettings` and all other settings types are now top level types.
 
 
 
