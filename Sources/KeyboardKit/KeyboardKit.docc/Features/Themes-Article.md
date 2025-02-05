@@ -169,7 +169,7 @@ KeyboardKit Pro also unlocks other more expressive themes, which provide their o
     }
 }
 
-You can get a list of all predefined themes, as well as all pre-defined style variations, using the static ``KeyboardTheme/allPredefined`` properties. You can create your own themes, as well as custom style variations for all predefined themes.
+You can get a list of all predefined themes, as well as all pre-defined style variations, using the static ``KeyboardTheme/predefined`` properties. You can create your own themes, as well as custom style variations for all predefined themes.
 
 
 

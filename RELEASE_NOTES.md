@@ -47,6 +47,7 @@ This version migrates `Keyboard.SpaceLongPressBehavior` locale switcher to a new
 * `Keyboard.SpaceLongPressBehavior` deprecates various should properties. 
 * `KeyboardContext.spaceLongPressBehavior` is moved to `KeyboardSettings`.
 * `KeyboardSettings` and all other settings types are now top level types.
+* `KeyboardTheme` renames `allPredefined` themes and styles to `predefined`.
 
 
 

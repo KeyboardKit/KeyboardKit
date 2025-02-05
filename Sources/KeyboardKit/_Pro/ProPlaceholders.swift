@@ -539,7 +539,7 @@ public extension View {
 public extension KeyboardTheme {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    static var allPredefined: [KeyboardTheme] {
+    static var predefined: [KeyboardTheme] {
         get throws { throw ProPlaceholderError.proPlaceholder }
     }
     
