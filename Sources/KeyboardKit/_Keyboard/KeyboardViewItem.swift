@@ -153,7 +153,7 @@ private extension KeyboardViewItem {
         var keyboardContext: KeyboardContext = {
             let context = KeyboardContext()
             context.locales = .keyboardKitSupported
-            context.settings.addedLocales = [.english, .swedish, .finnish]
+            context.settings.addedLocales = [.english, .swedish, .finnish].map { .init($0) }
             context.localePresentationLocale = .swedish
             context.settings.spaceTrailingAction = nil // .localeContextMenu
             return context

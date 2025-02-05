@@ -22,9 +22,9 @@ import SwiftUI
 /// result to the settings cap, but keep the original result
 /// for predictions and other calculations.
 ///
-/// KeyboardKit will automatically setup an instance of this
-/// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value.
+/// KeyboardKit set up an instance of this class and injects
+/// it as an environment value when you set up your main app
+/// and keyboard as described in <doc:Getting-Started>.
 public class AutocompleteContext: ObservableObject {
 
     /// Create an autocomplete context instance.

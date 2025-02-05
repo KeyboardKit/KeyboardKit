@@ -43,6 +43,12 @@ public extension Keyboard {
             ProPlaceholderError.proPlaceholder
         }
     }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    enum LayoutType: String, Identifiable, KeyboardModel {
+        case qwerty
+        public var id: String { rawValue }
+    }
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     struct ToggleToolbar: View {
@@ -341,9 +347,16 @@ public extension InputSet {
             throw ProPlaceholderError.proPlaceholder
         }
     }
-
+    
     /// 👑 This is unlocked by KeyboardKit Pro.
     static var qwertz: InputSet {
+        get throws {
+            throw ProPlaceholderError.proPlaceholder
+        }
+    }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static var colemak: InputSet {
         get throws {
             throw ProPlaceholderError.proPlaceholder
         }

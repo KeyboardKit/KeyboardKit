@@ -8,17 +8,20 @@
 
 import Foundation
 
-public extension Collection where Element == Locale {
-
-    /// Insert a certain a locale first in the collection.
+public extension Collection where Element: Equatable {
+    
+    /// Insert a certain an element first in the collection.
     func insertingFirst(_ locale: Element) -> [Element] {
         [locale] + removing(locale)
     }
 
-    /// Remove a certain a locale from the collection.
+    /// Remove a certain an element from the collection.
     func removing(_ locale: Element) -> [Element] {
         filter { $0 != locale }
     }
+}
+
+public extension Collection where Element == Locale {
 
     /// Sort the collection by the localized item name, then
     /// optionally place a locale first.

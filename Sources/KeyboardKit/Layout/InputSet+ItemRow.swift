@@ -162,19 +162,19 @@ public extension InputSet.ItemRow {
         let equal = lowercased.count == uppercased.count
         assert(equal, "lowercased and uppercased must contain the same number of characters")
         self.init(
-            items: lowercased.enumerated().map {
+            items: lowercased.indices.map {
                 InputSet.Item(
-                    neutral: lowercased[$0.offset],
-                    uppercased: uppercased[$0.offset],
-                    lowercased: lowercased[$0.offset]
+                    neutral: lowercased[$0],
+                    uppercased: uppercased[$0],
+                    lowercased: lowercased[$0]
                 )
             },
             deviceVariations: deviceVariations.mapValues({ lowercased, uppercased in
-                lowercased.enumerated().map {
+                lowercased.indices.map {
                     InputSet.Item(
-                        neutral: lowercased[$0.offset],
-                        uppercased: uppercased[$0.offset],
-                        lowercased: lowercased[$0.offset]
+                        neutral: lowercased[$0],
+                        uppercased: uppercased[$0],
+                        lowercased: lowercased[$0]
                     )
                 }
             })

@@ -26,7 +26,7 @@ import SwiftUI
 /// set up a custom store BEFORE accessing stored properties,
 /// otherwise they will keep referring to the original store.
 public struct KeyboardSettings {
-
+    
     /// Create a custom settings instance.
     ///
     /// - Parameters:
@@ -35,18 +35,19 @@ public struct KeyboardSettings {
         onAutocapitalizationEnabledChanged: @escaping () -> Void = {}
     ) {
         self.onAutocapitalizationEnabledChanged = onAutocapitalizationEnabledChanged
+        self.migrateAddedLocaleDataForKeyboardKit9_2()
     }
-
+    
     private let onAutocapitalizationEnabledChanged: () -> Void
-
+    
     /// The settings key prefix to use.
     public static var settingsPrefix: String {
         KeyboardSettings.storeKeyPrefix(for: "keyboard")
     }
-
+    
     /// A list of explicitly added locale identifiers.
-    @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
-    public var addedLocaleIdentifiersValues: Keyboard.StorageValue<[String]> = .init(value: [])
+    @AppStorage("\(settingsPrefix)addedLocales", store: .keyboardSettings)
+    public var addedLocales: [Keyboard.AddedLocale] = []
     
     /// The input toolbar type to use, if any.
     @AppStorage("\(settingsPrefix)inputToolbarType", store: .keyboardSettings)
@@ -74,44 +75,54 @@ public struct KeyboardSettings {
     @AppStorage("\(settingsPrefix)keyboardDockEdge", store: .keyboardSettings)
     public var keyboardDockEdge: Keyboard.DockEdge?
     
+    /// The identifier of the current layout type, set by ``KeyboardContext/layoutType``.
+    @AppStorage("\(settingsPrefix)keyboardLayoutTypeIdentifier", store: .keyboardSettings)
+    public internal(set) var keyboardLayoutTypeIdentifier: Keyboard.LayoutType.ID?
+    
+    /// The identifier of the current locale, set by ``KeyboardContext/locale``.
+    @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
+    public internal(set) var localeIdentifier = Locale.current.identifier
+    
     /// The ``Keyboard/SpaceLongPressBehavior`` to use for the space key.
     @AppStorage("\(settingsPrefix)spaceLongPressBehavior", store: .keyboardSettings)
     public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
     
-    /// The trailing ``Keyboard/SpaceAction`` to use for the space key, if any.
+    /// An optional trailing ``Keyboard/SpaceAction`` to add to the space key, if any.
     @AppStorage("\(settingsPrefix)spaceTrailingAction", store: .keyboardSettings)
     public var spaceTrailingAction: Keyboard.SpaceAction?
-
-    /// The identifier of the current locale, set by  ``KeyboardContext/locale``.
-    @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
-    public internal(set) var localeIdentifier = Locale.current.identifier
-}
-
-
-// MARK: - Added locales
-
-public extension KeyboardSettings {
-
-    /// A list of explicitly added locales.
-    var addedLocales: [Locale] {
-        get { addedLocaleIdentifiers.compactMap { Locale(identifier: $0) } }
-        set { addedLocaleIdentifiers = newValue.unique().map { $0.identifier } }
+    
+    
+    // MARK: - Deprecated
+    
+    /// DEPRECATED: Use ``addedLocaleValues`` instead.
+    ///
+    /// This is kept to propertly deprecate the old property,
+    /// while still being able to access the data internally.
+    @AppStorage("\(settingsPrefix)addedLocaleIdentifiers", store: .keyboardSettings)
+    var _addedLocaleIdentifiersValuesInternal: Keyboard.StorageValue<[String]> = .init(value: []) {
+        didSet { self.migrateAddedLocaleDataForKeyboardKit9_2() }
     }
-
-    /// A list of explicitly added locale identifiers.
+    
+    @available(*, deprecated, message: "Use addedLocaleValues instead! This will automatically migrate.")
+    public var addedLocaleIdentifiersValues: Keyboard.StorageValue<[String]> {
+        get { _addedLocaleIdentifiersValuesInternal }
+        set { _addedLocaleIdentifiersValuesInternal = newValue }
+    }
+    
+    @available(*, deprecated, message: "Use addedLocaleValues instead! This will automatically migrate.")
     var addedLocaleIdentifiers: [String] {
         get { addedLocaleIdentifiersValues.value }
         set { addedLocaleIdentifiersValues.value = newValue }
     }
+}
 
-    /// Whether a locale has been added to ``addedLocales``.
-    func hasAddedLocale(_ locale: Locale) -> Bool {
-        addedLocales.contains(locale)
-    }
-
-    /// Move the provided locale first in ``addedLocales``.
-    mutating func moveLocaleFirstInAddedLocales(_ locale: Locale) {
-        if locale == addedLocales.first { return }
-        addedLocales = addedLocales.insertingFirst(locale)
+private extension KeyboardSettings {
+    
+    func migrateAddedLocaleDataForKeyboardKit9_2() {
+        guard addedLocales.isEmpty else { return }
+        let value = _addedLocaleIdentifiersValuesInternal.value
+        if value.isEmpty { return }
+        addedLocales = value.map { .init(localeIdentifier: $0) }
+        _addedLocaleIdentifiersValuesInternal.value = []
     }
 }

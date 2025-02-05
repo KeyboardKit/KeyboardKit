@@ -15,7 +15,9 @@ A flexible keyboard layout is an important part of a software keyboard, and must
 
 In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after which a ``KeyboardLayoutService`` can create a dynamic ``KeyboardLayout`` at runtime that defines the full set of keys. 
 
-👑 [KeyboardKit Pro][Pro] unlocks layout extensions that make modifying layouts easier, more input sets like ``InputSet/qwertz`` & ``InputSet/azerty``, localized input sets and layout services for all locales in your license, iPad Pro support, etc. Read more further down.
+👑 [KeyboardKit Pro][Pro] unlocks extensions that make it easier to modify layouts, adds more input sets like ``InputSet/qwertz``, ``InputSet/azerty`` & ``InputSet/colemak``, unlocks localized input sets & layout services for all locales in your license, iPad Pro layout, etc. 
+
+KeyboardKit Pro also adds a ``Keyboard/LayoutType`` type that can be used to easily register ``KeyboardSettings/localeSpecificLayoutTypeIdentifiers``.  
 
 
 
@@ -47,7 +49,7 @@ KeyboardKit injects ``KeyboardLayout/StandardLayoutService`` into ``KeyboardInpu
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz`` & ``InputSet/azerty``, as well as alphabetic, numeric & symbolic sets for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license, like `.french`, `.swedishNumeric`, etc.
+[KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, and  ``InputSet/colemak``, as well as alphabetic, numeric & symbolic sets for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license, like `.french`, `.swedishNumeric`, etc.
 
 KeyboardKit Pro also unlocks a localized ``KeyboardLayout/ProLayoutService`` for every locale and injects them as localized services into the ``Keyboard/Services/layoutService`` when a valid license is registered. You can access any localized service in your license like this:
 
@@ -58,13 +60,18 @@ let service = try KeyboardLayout.ProLayoutService.Swedish()
 These input sets and layout services will all throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started> for more info.
 
 
-### More Layout Capabilites
+### Additional Layout Capabilites
 
-KeyboardKit Pro extends ``KeyboardLayout`` and all layout ``KeyboardLayout/Item`` collections with more capabilities, that make it easier to add, remove, and replace items in the layout.
+KeyboardKit Pro extends ``KeyboardLayout`` and its various related types and collections with more capabilities, that make it easier to add, remove, and replace items in a layout.
 
-KeyboardKit Pro also unlocks more ``KeyboardLayout`` capabilities like ``KeyboardLayout/adjusted(for:layoutConfiguration:)``, ``KeyboardLayout/copy()`` and ``KeyboardLayout/createIdealItem(for:width:alignment:)``, ``KeyboardLayout/bottomRowLayout``, etc.
+See ``KeyboardLayout`` and the nested layout ``KeyboardLayout/Item`` type in the KeyboardKit Pro documentation for a full list of additional capabilities.
 
-> Tip: See ``KeyboardLayout`` and the nested ``KeyboardLayout/Item`` type in the KeyboardKit Pro documentation for a full list of additional capabilities. The open-source documentation doesn't include these extensions, since they're not part of the open-source library. 
+
+### Multiple Supported Layouts Per Locale
+
+KeyboardKit Pro unlocks a ``Keyboard/LayoutType``, extends ``Foundation/Locale`` with a list of supported layout types, and extends ``KeyboardSettings`` with ways to get and set the preferred layout type for any locale. 
+
+This is used by ``KeyboardApp/LocaleScreen`` to add a layout type picker to all ``KeyboardSettings/addedLocales`` that support multiple layouts. For instance, English keyboards support ``InputSet/qwerty``, ``InputSet/azerty``, ``InputSet/qwertz``, and ``InputSet/colemak``, and will therefore add a picker to the added locale item.  
 
 
 ### iPad Pro Support
@@ -83,15 +90,15 @@ KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProLayoutService`` that can gene
 
 You can create a custom ``KeyboardLayoutService`` to customize the layout for a certain locale, device type, or complete layout.
 
-You can implement the ``KeyboardLayoutService`` protocol from scratch, or inherit and customize ``KeyboardLayout/StandardLayoutService`` or the ``KeyboardLayout/BaseLayoutService``, ``KeyboardLayout/iPadLayoutService``, ``KeyboardLayout/iPadProLayoutService``, or ``KeyboardLayout/iPhoneLayoutService`` base classes:
+You can implement the ``KeyboardLayoutService`` protocol from scratch, or inherit and customize ``KeyboardLayout/StandardLayoutService`` or any of the available ``KeyboardLayout/iPadLayoutService``, ``KeyboardLayout/iPadProLayoutService``, or ``KeyboardLayout/iPhoneLayoutService`` base classes:
 
 ```swift
 class CustomKeyboardLayoutService: KeyboardLayout.StandardLayoutService {
     
-    // Never use array indices if it can cause a crash.
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
         var layout = super.keyboardLayout(for: context)
         // Perform any modifications here
+        // 💡 KeyboardKit Pro unlocks many layout extensions
         return layout
     }
 }
@@ -112,12 +119,9 @@ class KeyboardViewController: KeyboardInputViewController {
 This will make KeyboardKit use your custom implementation instead of the standard one.
 
 
-
 ### ...customize a localized layout service
 
-Service that inherit ``KeyboardLayout/StandardLayoutService`` can use ``KeyboardLayoutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedLayoutService(_:)`` function to register a custom service for a certain locale.
-
-For instance, this is how you could make KeyboardKit Pro use a custom layout service for ``Foundation/Locale/german``:
+Service that inherit ``KeyboardLayout/StandardLayoutService`` can use ``KeyboardLayoutService/tryRegisterLocalizedService(_:)`` or the ``Keyboard/Services`` convenient ``Keyboard/Services/tryRegisterLocalizedLayoutService(_:)`` function to register a custom service for a certain locale, for instance:
 
 ```swift
 class MyCustomGermanService: KeyboardLayout.ProLayoutService.German { ... } 
@@ -126,8 +130,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPro(for: ...) { result in
-            // KeyboardKit Pro is available first after this
+        setupPro(for: ...) { _ in
             self.services.tryRegisterLocalizedLayoutService(
                 try! MyCustomGermanService() 
             )
@@ -138,7 +141,25 @@ class KeyboardViewController: KeyboardInputViewController {
 
 This makes it easy to replace the service for a certain locale, since you can inherit and customize the related ``KeyboardLayout/ProLayoutService``.
 
-> Important: Note that you must wait for **setupPro** to finish successfully when you use KeyboardKit Pro and want to customize a Pro service class, otherwise you won't be able to resolve the pro-specific services, since your license will not yet be registered.
+
+### ...change the layout type for a specific locale
+
+You can use ``KeyboardSettings`` to change the preferred layout type for a specific locale. KeyboardKit Pro unlocks a ``Keyboard/LayoutType`` that makes this a lot easier, where you can use any of the available settings extensions like this:
+
+```swift
+class KeyboardViewController: KeyboardInputViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupPro(for: ...) { _ in
+            let settings = self.state.keyboardContext.settings 
+            settings.setLayoutType(.azerty, for: .english)
+        }
+    }
+}
+```
+
+You can still use the underlying ``KeyboardSettings/localeSpecificLayoutTypeIdentifiers`` to store alternate layout information, but you need KeyboardKit Pro if you want to use its extended locale and layout support.
 
 
 

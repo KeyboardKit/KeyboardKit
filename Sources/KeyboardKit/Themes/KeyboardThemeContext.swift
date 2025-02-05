@@ -19,9 +19,9 @@ import SwiftUI
 /// theme should be managed through this class instead. This
 /// automatically updates the settings, to persist the theme.
 ///
-/// KeyboardKit will automatically setup an instance of this
-/// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value.
+/// KeyboardKit set up an instance of this class and injects
+/// it as an environment value when you set up your main app
+/// and keyboard as described in <doc:Getting-Started>.
 public class KeyboardThemeContext: ObservableObject {
 
     /// Create a keyboard theme context instance.

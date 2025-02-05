@@ -64,8 +64,11 @@ KeyboardKit currently provides the following settings, some of which are derived
 * ``KeyboardSettings/isAutocapitalizationEnabled`` - Whether auto-capitalization is enabled.
 * ``KeyboardSettings/isKeyboardAutoCollapseEnabled`` - Whether to auto-collapse the keyboard when an external keyboard is connected.
 * ``KeyboardSettings/keyboardDockEdge`` - The keyboard dock edge to use, if any.
-* ``KeyboardSettings/localeIdentifier`` - The current locale identifier, set by ``KeyboardContext/locale``. 
-* ``KeyboardSettings/spaceLongPressBehavior`` - The space long press behavior to use.
+* ``KeyboardSettings/keyboardLayoutTypeIdentifier`` - The current layout type identifier, set by ``KeyboardContext/keyboardLayoutType``.
+* ``KeyboardSettings/localeIdentifier`` - The current locale identifier, set by ``KeyboardContext/locale``.
+* ``KeyboardSettings/localeSpecificLayoutTypeIdentifiers`` - A dictionary of locale-specific layout type identifiers. 
+* ``KeyboardSettings/spaceLongPressBehavior`` - The long press behavior to use for the space key.
+* ``KeyboardSettings/spaceTrailingAction`` - An optional trailing action to add to the space key, if any.
 
 Most of the keyboard settings can also be managed from the ``KeyboardApp/SettingsScreen``, and the locale settings from the ``KeyboardApp/LocaleScreen``.
 

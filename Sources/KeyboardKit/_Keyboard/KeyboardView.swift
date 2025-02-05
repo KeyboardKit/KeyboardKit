@@ -484,7 +484,7 @@ private extension KeyboardView {
             
             let context = controller.state.keyboardContext
             context.locale = .english
-            context.settings.addedLocales = [.english, .swedish, .persian]
+            context.settings.addedLocales = [.english, .swedish, .persian].map { .init($0) } 
             context.settings.keyboardDockEdge = .leading
 //            context.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
             
@@ -505,7 +505,7 @@ private extension KeyboardView {
         
         @Environment(\.colorScheme) var colorScheme
         
-        @State var dockEdge: Keyboard.DockEdge? = nil
+        @State var dockEdge: Keyboard.DockEdge?
         
         var body: some View {
             VStack {

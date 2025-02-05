@@ -14,16 +14,21 @@ These release notes cover the current major version. See older versions for olde
 
 This version adds a bunch of new settings and environment properties.
 
-This version migrates `Keyboard.SpaceLongPressBehavior` locale switcher to a new `Keyboard.SpaceTrailingAction`. 
+This version refactors the `KeyboardContext` and `KeyboardSettings` added locale logic, to let us add a separate locale multiple times, and also define which keyboard layout type to use for a certain locale.  
 
 ### ✨ Features
 
 * `Image` has new keyboard picker-specific images.
+* `Keyboard.AddedLocale` is a new type for added locales.
 * `Keyboard.InputToolbarDisplayMode` has new value builders.
 * `Keyboard.SpaceAction` is an enum for extra space actions.
 * `Keyboard.SpaceLongPressBehavior` has a new view modifier.
-* `KeyboardSettings` has new input toolbar-related types and settings.
-* `KeyboardSettings` has new `.spaceLongPressBehavior` and `.spaceTrailingAction` settings.
+* `KeyboardSettings` has new input toolbar types & settings.
+* `KeyboardSettings` has a new locale layout type dictionary.
+* `KeyboardSettings` has a new `.spaceTrailingAction` setting.
+* `KeyboardSettings` has a new `.spaceLongPressBehavior` setting.
+* `KeyboardSettings` has new added locale capabilites and functions.
+* `Locale.ListItem` can now display an optional layout type description.
 
 ### 💡 Adjustment
 
@@ -36,8 +41,11 @@ This version migrates `Keyboard.SpaceLongPressBehavior` locale switcher to a new
 ### 👑 Pro
 
 * `InputSet.colemak` is a new Colemak input set.
+* `Keyboard.LayoutType` is a new layout type enum.
 * `KeyboardApp.LocaleScreen` has new keyboard settings.
+* `KeyboardApp.LocaleScreen` has new visibility settings.
 * `KeyboardApp.SettingsScreen` has new keyboard settings.
+* `Locale` has a new `.supportedLayoutType` for alternate layouts. 
 
 ### 🗑️ Deprecations
 
@@ -47,6 +55,7 @@ This version migrates `Keyboard.SpaceLongPressBehavior` locale switcher to a new
 * `Keyboard.SpaceLongPressBehavior` deprecates various should properties. 
 * `KeyboardContext.spaceLongPressBehavior` is moved to `KeyboardSettings`.
 * `KeyboardSettings` and all other settings types are now top level types.
+* `KeyboardSettings.addedLocaleIdentifiers` is replaced by `.addedLocales`.
 * `KeyboardTheme` renames `allPredefined` themes and styles to `predefined`.
 
 

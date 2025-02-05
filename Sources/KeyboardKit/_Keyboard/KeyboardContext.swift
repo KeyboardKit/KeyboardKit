@@ -6,15 +6,14 @@
 //  Copyright © 2020-2025 Daniel Saidi. All rights reserved.
 //
 
-import Combine
-import Foundation
 import SwiftUI
 
 #if canImport(UIKit)
 import UIKit
 #endif
 
-/// This class has observable states and persistent settings.
+/// This class has observable states and persistent settings
+/// for the core keyboard functionality.
 ///
 /// This class syncs with ``KeyboardInputViewController`` to
 /// keep up to date. It's extensively used in the library to
@@ -22,17 +21,23 @@ import UIKit
 /// ``KeyboardView`` whenever the context changes.
 ///
 /// You can use ``locale`` to get and set the current locale,
-/// which also affects the keyboard primary language. If the
-/// ``locales`` or ``settings`` added locales have more than
-/// one locale, ``selectNextLocale()`` toggles through these.
+/// which also affects the keyboard primary language.
+///
+/// You can use ``locales`` to define which locales that you
+/// want to enable for the keyboard. This list is used until
+/// you add any locales to ``KeyboardSettings/addedLocales``,
+/// which then takes precedene over ``locales``. You can use
+/// ``enabledLocales`` to resolve the valid, underlying list.
+/// If ``enabledLocales`` has multiple locales, you can loop
+/// through the collection with ``selectNextLocale()``.
 ///
 /// This class also has observable auto-persisted ``settings``
 /// that can be used to configure the behavior and presented
 /// to users in e.g. a settings screen.
 ///
-/// KeyboardKit will automatically setup an instance of this
-/// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value.
+/// KeyboardKit set up an instance of this class and injects
+/// it as an environment value when you set up your main app
+/// and keyboard as described in <doc:Getting-Started>.
 public class KeyboardContext: ObservableObject {
 
     public init() {
@@ -110,26 +115,25 @@ public class KeyboardContext: ObservableObject {
 
     /// An optional dictation replacement action.
     @Published public var keyboardDictationReplacement: KeyboardAction?
+    
+    /// The current keyboard layout type, if any.
+    @Published public var keyboardLayoutType: Keyboard.LayoutType? {
+        didSet { settings.keyboardLayoutTypeIdentifier = keyboardLayoutType?.id }
+    }
 
     /// The keyboard type that is currently used.
     @Published public var keyboardType = Keyboard.KeyboardType.alphabetic
 
     /// The current locale, by default `.current`.
-    ///
-    /// This updates the ``KeyboardSettings/localeIdentifier``
-    /// whenever the value is changed.
     @Published public var locale = Locale.current {
         didSet { settings.localeIdentifier = locale.identifier }
     }
 
-    /// The locales that are currently available.
+    /// The locales that are enabled for the keyboard.
     @Published public var locales: [Locale] = [.current]
 
-    /// The locale to use when displaying the localized name
-    /// of other locales.
-    ///
-    /// > Note: This is `.current` by default. Set it to nil
-    /// to display each locale in their own language.
+    /// The locale to use to localize other locale names. If
+    /// this is `nil`, each locale will use its own language.
     @Published public var localePresentationLocale: Locale? = .current
 
     /// Whether to add an input mode switch key.
@@ -140,12 +144,6 @@ public class KeyboardContext: ObservableObject {
 
     /// The current screen size (avoid using this).
     @Published public var screenSize = CGSize.zero
-
-    @available(*, deprecated, message: "Use `settings.spaceLongPressBehavior` instead.")
-    public var spaceLongPressBehavior: Keyboard.SpaceLongPressBehavior {
-        get { settings.spaceLongPressBehavior }
-        set { settings.spaceLongPressBehavior = newValue }
-    }
 
 
     #if os(iOS) || os(tvOS) || os(visionOS)

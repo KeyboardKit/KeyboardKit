@@ -49,4 +49,3 @@ public extension EnvironmentValues {
     /// ``KeyboardSettings/spaceTrailingAction``.
     @Entry var keyboardSpaceTrailingAction: Keyboard.SpaceAction?
 }
-

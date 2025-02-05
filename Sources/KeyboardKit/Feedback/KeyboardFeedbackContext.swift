@@ -22,9 +22,9 @@ import SwiftUI
 /// type is enabled. The enabled states for audio and haptic
 /// feedback can be found in ``settings``.
 ///
-/// KeyboardKit will automatically setup an instance of this
-/// class in ``KeyboardInputViewController/state``, then use
-/// it as global state and inject it as an environment value.
+/// KeyboardKit set up an instance of this class and injects
+/// it as an environment value when you set up your main app
+/// and keyboard as described in <doc:Getting-Started>.
 public class KeyboardFeedbackContext: ObservableObject {
 
     public init() {

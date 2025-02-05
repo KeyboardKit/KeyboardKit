@@ -10,13 +10,14 @@ import Foundation
 
 public extension KeyboardContext {
     
-    /// All ``KeyboardSettings/addedLocales`` or ``locales``.
+    /// The ``KeyboardSettings/addedLocales`` locales or the
+    /// raw ``locales`` collection.
     var enabledLocales: [Locale] {
         let addedLocales = settings.addedLocales
-        return addedLocales.isEmpty ? locales : addedLocales
+        return addedLocales.isEmpty ? locales : addedLocales.compactMap { $0.locale }
     }
     
-    /// Whether the context has multiple enabled locales.
+    /// Whether the context has multiple ``enabledLocales``.
     var hasMultipleEnabledLocales: Bool {
         enabledLocales.count > 1
     }
@@ -28,7 +29,7 @@ public extension KeyboardContext {
         return settings.spaceTrailingAction == .localeContextMenu
     }
 
-    /// Select the next locale in the selectable locales.
+    /// Select the next locale in the ``enabledLocales``.
     func selectNextLocale() {
         let locales = enabledLocales
         let fallback = locales.first ?? locale

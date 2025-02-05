@@ -28,6 +28,11 @@ These locales have been requested, and should be prioritized:
 * vi - Vietnamese (https://github.com/KeyboardKit/KeyboardKit/issues/744)
 
 
+## May be fesible
+
+* Bulgarian QWERTY
+
+
 ## Requested (unusual)
 
 These locales have been requested, but the system locale to use is not obvious:
