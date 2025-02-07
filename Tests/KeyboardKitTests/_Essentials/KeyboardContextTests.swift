@@ -98,31 +98,31 @@ class KeyboardContextTests: XCTestCase {
     #endif
 
     func testSelectingNextLocaleSelectsFirstItemIfTheCurrentLocaleIsNotInLocales() {
-        context.locale = locale(for: "sv")
-        context.locales = [locale(for: "en"), locale(for: "fi"), locale(for: "da")]
+        context.locale = .swedish
+        context.locales = [.english, .finnish, .danish]
         context.selectNextLocale()
         XCTAssertEqual(context.locale.identifier, "en")
     }
 
     func testSelectingNextLocaleSelectsFirstItemIfTheCurrentLocaleIsLastInLocales() {
-        context.locale = locale(for: "sv")
-        context.locales = [locale(for: "en"), locale(for: "fi"), locale(for: "da")]
-        context.locale = locale(for: "da")
+        context.locale = .swedish
+        context.locales = [.english, .finnish, .danish]
+        context.locale = .danish
         context.selectNextLocale()
         XCTAssertEqual(context.locale.identifier, "en")
     }
 
     func testSelectingNextLocaleSelectsNextItemIfTheCurrentLocaleIsNotLastInLocales() {
-        context.locale = locale(for: "sv")
-        context.locales = [locale(for: "en"), locale(for: "fi"), locale(for: "da")]
-        context.locale = locale(for: "fi")
+        context.locale = .swedish
+        context.locales = [.english, .finnish, .danish]
+        context.locale = .finnish
         context.selectNextLocale()
         XCTAssertEqual(context.locale.identifier, "da")
     }
 
 
     func testSettingLocaleSetsContextLocale() {
-        context.locale = locale(for: "sv")
+        context.locale = .swedish
         context.locale = .catalan
         XCTAssertEqual(context.locale.identifier, "ca")
     }

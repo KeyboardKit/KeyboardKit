@@ -10,11 +10,21 @@ import Foundation
 
 public extension KeyboardContext {
     
-    /// The ``KeyboardSettings/addedLocales`` locales or the
-    /// raw ``locales`` collection.
+    /// This enum defines various enabled locale datasources.
+    enum EnabledLocalesDataSource: KeyboardModel {
+        case added, context
+    }
+    
+    /// The ``KeyboardSettings/addedLocales``, or the static
+    /// ``locales`` if there are no added ones.
     var enabledLocales: [Locale] {
-        let addedLocales = settings.addedLocales
-        return addedLocales.isEmpty ? locales : addedLocales.compactMap { $0.locale }
+        let added = enabledLocalesDataSource == .added
+        return added ? settings.addedLocales.compactMap { $0.locale } : locales
+    }
+    
+    /// The ``enabledLocales`` data source.
+    var enabledLocalesDataSource: EnabledLocalesDataSource {
+        settings.hasAddedLocales ? .added : .context
     }
     
     /// Whether the context has multiple ``enabledLocales``.
@@ -22,21 +32,70 @@ public extension KeyboardContext {
         enabledLocales.count > 1
     }
     
-    /// Whether the space bar should apply a trailing locale
-    /// context menu.
+    /// Whether to add a locale context menu to the spacebar.
     var shouldAddLocaleContextMenuToSpaceBar: Bool {
         guard hasMultipleEnabledLocales else { return false }
         return settings.spaceTrailingAction == .localeContextMenu
     }
-
-    /// Select the next locale in the ``enabledLocales``.
+    
+    /// Select a locale with an optioknal layout type.
+    func selectLocale(_ locale: Locale, layoutType: Keyboard.LayoutType? = nil) {
+        self.locale = locale
+        self.keyboardLayoutType = layoutType
+    }
+    
+    /// Select a locale from ``enabledLocales``.
+    func selectLocale(at index: Int) {
+        enabledLocalesDataSource == .added ?
+        selectLocaleFromAddedLocales(at: index) :
+        selectLocaleFromContextLocales(at: index)
+    }
+    
+    /// Select a locale from ``KeyboardSettings/addedLocales``.
+    func selectLocaleFromAddedLocales(at index: Int) {
+        let locales = settings.addedLocales
+        guard locales.validateIndex(index) else { return }
+        let locale = locales[index]
+        selectLocale(locale.locale ?? .english, layoutType: locale.layoutType)
+    }
+    
+    /// Select a locale from ``locales``.
+    func selectLocaleFromContextLocales(at index: Int) {
+        guard locales.validateIndex(index) else { return }
+        self.selectLocale(locales[index], layoutType: nil)
+    }
+    
+    /// Select the next locale from ``enabledLocales``.
     func selectNextLocale() {
-        let locales = enabledLocales
-        let fallback = locales.first ?? locale
-        let firstIndex = locales.firstIndex(of: locale)
-        guard let index = firstIndex else { return locale = fallback }
-        let nextIndex = index.advanced(by: 1)
-        guard locales.count > nextIndex else { return locale = fallback }
-        locale = locales[nextIndex]
+        enabledLocalesDataSource == .added ?
+        selectNextLocaleFromAddedLocales() :
+        selectNextLocaleFromContextLocales()
+    }
+    
+    /// Select the next locale from ``KeyboardSettings/addedLocales``.
+    func selectNextLocaleFromAddedLocales() {
+        let locales = settings.addedLocales
+        if locales.isEmpty { return }
+        let count = locales.count
+        let layout = keyboardLayoutType
+        let index = locales.firstIndex(of: locale, layoutType: layout) ?? count
+        let isLast = index >= count - 1
+        selectLocaleFromAddedLocales(at: isLast ? 0 : index.advanced(by: 1))
+    }
+    
+    /// Select the next locale from ``enabledLocales``.
+    func selectNextLocaleFromContextLocales() {
+        if locales.isEmpty { return }
+        let count = locales.count
+        let index = locales.firstIndex(of: locale) ?? count
+        let isLast = index >= count - 1
+        selectLocaleFromContextLocales(at: isLast ? 0 : index.advanced(by: 1))
+    }
+}
+
+private extension Array {
+    
+    func validateIndex(_ index: Int) -> Bool {
+        index >= 0 && index < count
     }
 }

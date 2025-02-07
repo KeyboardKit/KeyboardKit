@@ -10,22 +10,18 @@ import SwiftUI
 
 public extension Locale {
     
-    /// This view modifier can apply locale context menus to
-    /// any view.
+    /// This view modifier can be used to add locale context
+    /// menus to any.
     ///
-    /// The easiest way to apply this modifier is to use the
-    /// ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)``
-    /// modifier to a view. This will apply the context menu
-    /// to the view if either the explicitly provided locale
-    /// list, or the global ``KeyboardContext/locales`` list
-    /// contains at least two locales.
+    /// Use ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)``
+    /// as a convenience modifier to apply this menu, if the
+    /// provided locales or ``KeyboardContext/enabledLocales``
+    /// have at least two locales. It will sort and localize
+    /// the list with ``KeyboardContext/localePresentationLocale``.
     ///
-    /// This menu will sort and localizes the listed locales
-    /// with the ``KeyboardContext/localePresentationLocale``.
-    ///
-    /// Note: The ``KeyboardView`` automatically applies the
-    /// menu to ``KeyboardAction/nextLocale``, so you do not
-    /// have to do it manually when using that view.
+    /// The ``KeyboardView`` automatically applies this menu
+    /// to ``KeyboardAction/nextLocale``, so you do not have
+    /// to do it manually when using that view.
     struct ContextMenu<MenuItem: View>: ViewModifier {
         
         /// Create a menu that lists locales as `Text` views
@@ -81,7 +77,15 @@ public extension Locale {
             if menuLocales.count > 1 {
                 #if os(iOS) || os(macOS) || os(visionOS)
                 Menu(content: {
-                    menu
+                    ForEach(menuLocales, id: \.identifier) { locale in
+                        Button(
+                            action: { keyboardContext.locale = locale },
+                            label: { menuItem(locale) }
+                        )
+                        if keyboardContext.locale == locale {
+                            Divider()
+                        }
+                    }
                 }, label: {
                     content
                 }, primaryAction: tapAction)
@@ -99,23 +103,11 @@ public extension Locale {
 
 private extension Locale.ContextMenu {
 
-    var menu: some View {
-        ForEach(menuLocales, id: \.identifier) { locale in
-            Button(
-                action: { keyboardContext.locale = locale },
-                label: { menuItem(locale) }
-            )
-            if keyboardContext.locale == locale {
-                Divider()
-            }
-        }
-    }
-
     var menuLocales: [Locale] {
         let context = keyboardContext
         let presentationLocale = context.localePresentationLocale
-        let locales = self.locales ?? context.enabledLocales
-        return locales.sorted(in: presentationLocale, insertFirst: context.locale)
+        let result = self.locales ?? context.enabledLocales
+        return result.sorted(in: presentationLocale, insertFirst: context.locale)
     }
 }
 

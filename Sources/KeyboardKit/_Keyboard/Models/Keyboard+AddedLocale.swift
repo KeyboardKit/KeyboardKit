@@ -75,4 +75,21 @@ public extension Collection where Element == Keyboard.AddedLocale {
     static var keyboardKitSupported: [Element] {
         Element.keyboardKitSupported
     }
+    
+    /// Get the first locale for a certain locale and layout.
+    func first(
+        of locale: Locale,
+        layoutType: Keyboard.LayoutType?
+    ) -> Element? {
+        guard let index = firstIndex(of: locale, layoutType: layoutType) else { return nil }
+        return self[index]
+    }
+    
+    /// Get the first locale for a certain locale and layout.
+    func firstIndex(
+        of locale: Locale,
+        layoutType: Keyboard.LayoutType?
+    ) -> Self.Index? {
+        firstIndex { $0.locale?.identifier == locale.identifier && $0.layoutType == layoutType }
+    }
 }

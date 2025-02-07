@@ -23,6 +23,8 @@ This version refactors the `KeyboardContext` and `KeyboardSettings` added locale
 * `Keyboard.InputToolbarDisplayMode` has new value builders.
 * `Keyboard.SpaceAction` is an enum for extra space actions.
 * `Keyboard.SpaceLongPressBehavior` has a new view modifier.
+* `KeyboardContext` has new ways to select & switch locales.
+* `KeyboardContext` has new ways get the locales datasource.
 * `KeyboardSettings` has new input toolbar types & settings.
 * `KeyboardSettings` has a new locale layout type dictionary.
 * `KeyboardSettings` has a new `.spaceTrailingAction` setting.

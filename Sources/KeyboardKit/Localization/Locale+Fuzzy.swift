@@ -9,7 +9,6 @@
 import Foundation
 import SwiftUI
 
-
 public extension Locale {
     
     /// Try to create a locale from a fuzzy name.
