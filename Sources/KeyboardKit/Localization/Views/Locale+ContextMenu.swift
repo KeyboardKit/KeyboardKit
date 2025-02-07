@@ -40,10 +40,14 @@ public extension Locale {
                 keyboardContext: keyboardContext,
                 locales: locales,
                 tapAction: tapAction
-            ) {
-                let contextLocale = keyboardContext.localePresentationLocale
-                let locale = contextLocale ?? $0
-                Text($0.localizedName(in: locale) ?? $0.identifier)
+            ) { locale, layoutType in
+                let presentation = keyboardContext.localePresentationLocale ?? locale
+                let localeName = locale.localizedName(in: presentation) ?? locale.identifier
+                if let layout = layoutType {
+                    return Text("\(localeName) - \(layout.displayName)")
+                } else {
+                    return Text("\(localeName)")
+                }
             }
         }
         
@@ -58,10 +62,10 @@ public extension Locale {
             keyboardContext: KeyboardContext,
             locales: [Locale]? = nil,
             tapAction: @escaping () -> Void,
-            @ViewBuilder menuItem: @escaping (Locale) -> MenuItem
+            @ViewBuilder menuItem: @escaping (Locale, Keyboard.LayoutType?) -> MenuItem
         ) {
             self._keyboardContext = ObservedObject(wrappedValue: keyboardContext)
-            self.locales = locales
+            self.locales = locales.map { .init($0) }
             self.tapAction = tapAction
             self.menuItem = menuItem
         }
@@ -71,19 +75,21 @@ public extension Locale {
 
         private var locales: [Locale]?
         private var tapAction: () -> Void
-        private var menuItem: (Locale) -> MenuItem
+        private var menuItem: (Locale, Keyboard.LayoutType?) -> MenuItem
         
         public func body(content: Content) -> some View {
             if menuLocales.count > 1 {
                 #if os(iOS) || os(macOS) || os(visionOS)
                 Menu(content: {
-                    ForEach(menuLocales, id: \.identifier) { locale in
-                        Button(
-                            action: { keyboardContext.locale = locale },
-                            label: { menuItem(locale) }
-                        )
-                        if keyboardContext.locale == locale {
-                            Divider()
+                    ForEach(menuLocales) { menuLocale in
+                        if let locale = menuLocale.locale {
+                            Button(
+                                action: { select(menuLocale) },
+                                label: { menuItem(locale, menuLocale.layoutType) }
+                            )
+                            if isSelected(menuLocale) {
+                                Divider()
+                            }
                         }
                     }
                 }, label: {
@@ -102,12 +108,29 @@ public extension Locale {
 }
 
 private extension Locale.ContextMenu {
+    
+    var menuLocales: [Keyboard.AddedLocale] {
+        let locales = menuLocalesRaw
+        guard let selected = locales.first(where: isSelected) else { return locales }
+        return [selected] + locales.filter { $0 != selected }
+    }
 
-    var menuLocales: [Locale] {
-        let context = keyboardContext
-        let presentationLocale = context.localePresentationLocale
-        let result = self.locales ?? context.enabledLocales
-        return result.sorted(in: presentationLocale, insertFirst: context.locale)
+    var menuLocalesRaw: [Keyboard.AddedLocale] {
+        if let locales { return (locales.map { .init($0) }) }
+        let useAdded = keyboardContext.enabledLocalesDataSource == .added
+        if useAdded { return keyboardContext.settings.addedLocales }
+        return keyboardContext.locales.map { .init($0) }
+    }
+    
+    func isSelected(_ locale: Keyboard.AddedLocale) -> Bool {
+        let currentLocale = keyboardContext.locale
+        let currentLayout = keyboardContext.keyboardLayoutType
+        return locale.locale == currentLocale && locale.layoutType == currentLayout
+    }
+    
+    func select(_ addedLocale: Keyboard.AddedLocale) {
+        guard let locale = addedLocale.locale else { return }
+        keyboardContext.selectLocale(locale, layoutType: addedLocale.layoutType)
     }
 }
 
@@ -146,7 +169,7 @@ public extension View {
         for context: KeyboardContext,
         locales: [Locale]? = nil,
         tapAction: @escaping () -> Void,
-        menuItem: @escaping (Locale) -> ButtonView
+        menuItem: @escaping (Locale, Keyboard.LayoutType?) -> ButtonView
     ) -> some View {
         self.modifier(
             Locale.ContextMenu(
@@ -166,9 +189,16 @@ public extension View {
         @StateObject
         var context: KeyboardContext = {
             let context = KeyboardContext()
+            context.locale = .swedish
             context.locales = .keyboardKitSupported
-            context.localePresentationLocale = nil // .english
-            context.settings.addedLocales = .keyboardKitSupported
+            context.localePresentationLocale = .english
+            context.settings.addedLocales = [
+                .init(.english, layoutType: nil),
+                .init(.english, layoutType: .qwerty),
+                .init(.finnish, layoutType: nil),
+                .init(.english, layoutType: .azerty),
+                .init(.swedish, layoutType: nil)
+            ]
             return context
         }()
 

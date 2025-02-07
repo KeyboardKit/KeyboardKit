@@ -14,10 +14,6 @@ extension KeyboardLayout {
     /// This base class provides a foundation for generating
     /// layouts that are based on an ``InputSet``.
     ///
-    /// The class will map the provided input sets to layout
-    /// item rows, then add additional surrounding items and
-    /// an additional bottom row, based on the context.
-    ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///

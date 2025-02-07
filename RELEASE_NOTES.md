@@ -14,13 +14,18 @@ These release notes cover the current major version. See older versions for olde
 
 This version adds a bunch of new settings and environment properties.
 
-This version refactors the `KeyboardContext` and `KeyboardSettings` added locale logic, to let us add a separate locale multiple times, and also define which keyboard layout type to use for a certain locale.  
+This version also makes it possible to add the same language with different keyboard layouts.
+
+This means that you can add multiple English keyboards, for instance QWERTY, AZERTY & Colemak. 
+
+To make this possible, this version adds many new types and more capabilities to `KeyboardContext` & `KeyboardSettings`.
 
 ### ✨ Features
 
 * `Image` has new keyboard picker-specific images.
 * `Keyboard.AddedLocale` is a new type for added locales.
 * `Keyboard.InputToolbarDisplayMode` has new value builders.
+* `Keyboard.LayoutType` is a new, abstract layout type enum.
 * `Keyboard.SpaceAction` is an enum for extra space actions.
 * `Keyboard.SpaceLongPressBehavior` has a new view modifier.
 * `KeyboardContext` has new ways to select & switch locales.
@@ -36,9 +41,11 @@ This version refactors the `KeyboardContext` and `KeyboardSettings` added locale
 
 * More types implement the `KeyboardModel` aggregate protocol.
 * The `.keyboardInputToolbarDisplayMode` environment value is now optional.
+
 * `KeyboardAppView` now injects a `KeyboardStatusContext` environment object.
 * `KeyboardHostApplication` now uses a case-insensitive bundle ID init match.
 * `KeyboardView` uses the new environment values, if any, else the keyboard settings.
+* `KeyboardLocale.ProLayoutService` now uses the context layout type, if this is set.
 
 ### 👑 Pro
 
@@ -59,6 +66,10 @@ This version refactors the `KeyboardContext` and `KeyboardSettings` added locale
 * `KeyboardSettings` and all other settings types are now top level types.
 * `KeyboardSettings.addedLocaleIdentifiers` is replaced by `.addedLocales`.
 * `KeyboardTheme` renames `allPredefined` themes and styles to `predefined`.
+
+### 🚨 Breaking Changes
+
+* `Locale.ContextMenu` now passes in a layout type in the view builder.
 
 
 

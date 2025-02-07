@@ -38,7 +38,7 @@ public extension KeyboardContext {
         return settings.spaceTrailingAction == .localeContextMenu
     }
     
-    /// Select a locale with an optioknal layout type.
+    /// Select a locale with an optional layout type.
     func selectLocale(_ locale: Locale, layoutType: Keyboard.LayoutType? = nil) {
         self.locale = locale
         self.keyboardLayoutType = layoutType

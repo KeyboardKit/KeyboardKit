@@ -45,12 +45,6 @@ public extension Keyboard {
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    enum LayoutType: String, Identifiable, KeyboardModel {
-        case qwerty
-        public var id: String { rawValue }
-    }
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
     struct ToggleToolbar: View {
         public var body: some View {
             ProPlaceholderError.proPlaceholder
