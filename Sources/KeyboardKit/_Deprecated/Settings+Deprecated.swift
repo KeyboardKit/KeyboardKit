@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  KeyboardKit
-//
-//  Created by Daniel Saidi on 2025-01-31.
-//
-
 import Foundation
 
 public extension Keyboard {

@@ -11,7 +11,7 @@ This article describes the essential parts of KeyboardKit.
     )
 }
 
-This article describes essential types, models, and views that KeyboardKit provides. See the <doc:Getting-Started> guide for information on how to set up your main app and keyboard extension for KeyboardKit.
+This article describes essential types, models, and views that KeyboardKit provides. See the <doc:Getting-Started-Article> guide for information on how to set up your main app and keyboard extension for KeyboardKit.
 
 👑 [KeyboardKit Pro][Pro] unlocks a lot of additional, essential Pro features. Information about Pro features can be found further down.
 
@@ -32,7 +32,7 @@ The ``Keyboard`` namespace contains many essential, keyboard-related types and v
 
 ## Controller
 
-``KeyboardInputViewController`` is the most essential type in the library. See the <doc:Getting-Started> guide on how to use it to access a bunch of additional ``KeyboardInputViewController/services``, ``KeyboardInputViewController/state``, and lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``.
+``KeyboardInputViewController`` is the most essential type in the library. See the <doc:Getting-Started-Article> guide on how to use it to access a bunch of additional ``KeyboardInputViewController/services``, ``KeyboardInputViewController/state``, and lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``.
 
 You can override controller functions to customize its behavior. By delegating the responsibility of certain operations to its ``KeyboardInputViewController/services`` and ``KeyboardInputViewController/state``, you can avoid having to rely on the controller for most operations. 
 
@@ -85,11 +85,7 @@ KeyboardKit has a ``KeyboardView`` that mimics the native iOS keyboard. It can b
     }
     
     @Column {
-        ![KeyboardView](keyboardview-swedish)
-    }
-    
-    @Column {
-        ![KeyboardView](keyboardview-styled)
+        ![KeyboardView](keyboardview-theme)
     }
 }
 
@@ -210,7 +206,7 @@ KeyboardKit Pro unlocks additional ``Keyboard``-related views and utilities, tha
     @Tab("Emoji Keyboard") {
         @Row {
             @Column { 
-                ![Emoji Keyboard](emojikeyboard)
+                ![Emoji Keyboard](keyboardview-emojis)
             }
             @Column { 
                 KeyboardKit Pro unlocks an ``EmojiKeyboard`` that is added to ``KeyboardView`` when a valid license is registered.
@@ -258,17 +254,16 @@ KeyboardKit Pro also unlocks ``Keyboard``-related previews, that can be used to 
 @TabNavigator {
     
     @Tab("KeyboardViewPreview") {
-        KeyboardKit Pro unlocks a ``KeyboardViewPreview`` that can preview the ``KeyboardView`` for various locales, styles, themes, etc.
-
         @Row {
             @Column {
                 ![KeyboardView Preview - Swedish](keyboardview-swedish)
             }
             @Column {
-                ![KeyboardView Preview - Turkish](keyboardviewpreview)
-            }
-            @Column {
-                ![KeyboardView Preview - Theme](keyboardviewpreview-theme)
+                KeyboardKit Pro unlocks a ``KeyboardViewPreview`` that can be used to preview a ``KeyboardView`` for various locales, styles, etc.
+                
+                This preview is intended to be used in the main app, for instance to show the effect of changing settings or styles.
+                
+                Note that this view renders a full keyboard, so it's not performant enough to preview many keyboards at once. For these cases, use a ``Keyboard/ButtonPreview`` instead.
             }
         }
     }
@@ -281,13 +276,13 @@ KeyboardKit Pro also unlocks ``Keyboard``-related previews, that can be used to 
             @Column { 
                 KeyboardKit Pro unlocks a ``Keyboard/ButtonPreview`` that can be used to preview a ``Keyboard``.``Keyboard/Button``.
                 
-                This view is a lot more performant than the full ``KeyboardViewPreview``. Consider using it when you list multiple themes.
+                This preview is intended to be used in the main app, for instance to list themes in a picker.
+                
+                This view is more performant than ``KeyboardViewPreview``.
             }
         }
     }
 }
-
-These previews can be used in the main application, to show users how the keyboard will look for different settings, styles, themes, etc.
 
 See the <doc:Previews-Article> article for more information.
 
@@ -298,7 +293,7 @@ See the <doc:Previews-Article> article for more information.
 
 ### ...replace the standard keyboard view
 
-KeyboardKit makes it super simple to customize or replace the standard ``KeyboardView``. The <doc:Getting-Started> guide has information that shows you how to do this with just a few lines of code.
+KeyboardKit makes it super simple to customize or replace the standard ``KeyboardView``. The <doc:Getting-Started-Article> guide has information that shows you how to do this with just a few lines of code.
 
 
 ### ...render unsupported keyboard types

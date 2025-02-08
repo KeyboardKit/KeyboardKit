@@ -27,24 +27,24 @@ KeyboardKit has a ``KeyboardView`` that mimics the native iOS keyboard. It can b
     }
     
     @Column {
-        ![KeyboardView](keyboardview-styled)
+        ![KeyboardView](keyboardview-theme)
     }
 }
 
-The ``KeyboardView`` will automatically conform to the current configurations and settings in the various context and settings classes, like ``KeyboardContext`` and ``KeyboardSettings``. It will also automatically apply gestures and callouts to its keys.
+The ``KeyboardView`` will automatically conform to the current configurations and settings in the various context and settings classes, like ``KeyboardContext`` and ``KeyboardSettings``, apply gestures and callouts to its keys, etc.
 
-If you activate [KeyboardKit Pro][Pro], the ``KeyboardView`` will automatically support any of the locales in your license. Just set the ``KeyboardContext/locale`` and the keyboard will automatically be localized in that locale's language, and use a locale-specific ``KeyboardLayout``.
+[KeyboardKit Pro][Pro] makes ``KeyboardView`` automatically support all the locales in your license, by using localized ``KeyboardLayout``s that adapt to the current ``KeyboardContext/locale`` and ``KeyboardContext/keyboardLayoutType``.
 
 
-## Styles, Services & Settings vs. View Modifiers 
+## Injected Values vs. View Modifiers 
 
 Since the ``KeyboardView`` has all the information it needs, it will set up most things for you. While you can customize each view, it will automatically apply gestures, styles, callouts, etc. based on the provided ``Keyboard/Services`` and ``Keyboard/State``.
 
-So, while there are many view extensions, like ``SwiftUICore/View/keyboardDockEdge(_:)``, ``KeyboardView`` will automatically apply such extensions to its content, using the contextual state and settings. This means that it will override such view modifiers that you apply, except styles.
+You can however apply some view modifiers, like ``SwiftUICore/View/keyboardDockEdge(_:)`` to override the default values that  ``KeyboardView`` will otherwise apply. This support will be further extended throughout the KeyboardKit 9 lifecycle. 
 
-Styles are *meant* to be applied from the outside, and will be even more used in future versions of this SDK. Meanwhile, you will find that you can style many parts of the keyboard with both view modifiers and a custom ``KeyboardStyleService``.
+For instance, you will find that you can style many parts of the keyboard with both view modifiers and a ``KeyboardStyleService``, while some styles don't yet have a corresponding view modifier.
 
-In general, use ``Keyboard/Services``, ``Keyboard/State``, and ``KeyboardSettings`` to customize the ``KeyboardView`` and use view modifiers for styles. 
+In general, use ``Keyboard/Services``, ``Keyboard/State``, and ``KeyboardSettings`` to customize the ``KeyboardView`` and use view modifiers for styles and to override context and settings properties that have corresponding view modifiers.
 
 
 
@@ -108,7 +108,7 @@ The ``KeyboardView`` will by default take up as much space as it needs, and resi
 * Render as a floating keyboard when ``KeyboardContext/isKeyboardFloating`` is set (iPad only).
 * Render custom sizes for any keys, based on the size information in the ``KeyboardLayout``.
 
-See the <doc:Essentials> article and various namespace articles for more information.
+See the <doc:Essentials-Article> article and various namespace articles for more information.
 
 
 

@@ -75,7 +75,7 @@ public struct KeyboardSettings {
     @AppStorage("\(settingsPrefix)keyboardDockEdge", store: .keyboardSettings)
     public var keyboardDockEdge: Keyboard.DockEdge?
     
-    /// The identifier of the current layout type, set by ``KeyboardContext/layoutType``.
+    /// The identifier of the current layout type, set by ``KeyboardContext/keyboardLayoutType``.
     @AppStorage("\(settingsPrefix)keyboardLayoutTypeIdentifier", store: .keyboardSettings)
     public internal(set) var keyboardLayoutTypeIdentifier: Keyboard.LayoutType.ID?
     

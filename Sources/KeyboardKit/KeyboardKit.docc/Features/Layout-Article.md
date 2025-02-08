@@ -15,9 +15,7 @@ A flexible keyboard layout is an important part of a software keyboard, and must
 
 In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after which a ``KeyboardLayoutService`` can create a dynamic ``KeyboardLayout`` at runtime that defines the full set of keys. 
 
-👑 [KeyboardKit Pro][Pro] unlocks extensions that make it easier to modify layouts, adds more input sets like ``InputSet/qwertz``, ``InputSet/azerty`` & ``InputSet/colemak``, unlocks localized input sets & layout services for all locales in your license, iPad Pro layout, etc. 
-
-KeyboardKit Pro also adds a ``Keyboard/LayoutType`` type that can be used to easily register ``KeyboardSettings/localeSpecificLayoutTypeIdentifiers``.  
+👑 [KeyboardKit Pro][Pro] unlocks extensions that make it easier to modify layouts, adds more input sets like ``InputSet/qwertz``, ``InputSet/azerty`` & ``InputSet/colemak``, unlocks localized input sets & layout services for all locales in your license, iPad Pro layout, etc.
 
 
 
@@ -35,6 +33,8 @@ In KeyboardKit an ``InputSet`` specifies the input keys of a keyboard, while a `
 
 KeyboardKit comes with pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` & ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` and ``InputSet/azerty``, as well as locale-specific input sets for all ``Foundation/Locale/keyboardKitSupported`` locales.
 
+KeyboardKit also defines a ``Keyboard/LayoutType`` enum that defines various keyboard layout types, like ``Keyboard/LayoutType/qwerty``, ``Keyboard/LayoutType/azerty`` and other types with the same as the input sets above. This enum is used by [KeyboardKit Pro][Pro], to make a ``KeyboardLayout/ProLayoutService`` adjust its alphabetic layout. 
+
 
 
 ## Services
@@ -51,27 +51,14 @@ KeyboardKit injects ``KeyboardLayout/StandardLayoutService`` into ``KeyboardInpu
 
 [KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, and  ``InputSet/colemak``, as well as alphabetic, numeric & symbolic sets for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license, like `.french`, `.swedishNumeric`, etc.
 
-KeyboardKit Pro also unlocks a localized ``KeyboardLayout/ProLayoutService`` for every locale and injects them as localized services into the ``Keyboard/Services/layoutService`` when a valid license is registered. You can access any localized service in your license like this:
+KeyboardKit Pro also unlocks a localized ``KeyboardLayout/ProLayoutService`` for every locale and injects them as localized services into the ``Keyboard/Services/layoutService``. You can access any localized service in your license like this:
 
 ```swift
-let service = try KeyboardLayout.ProLayoutService.Swedish()
+let swedishInputSet = try InputSet.swedish
+let swedishService = try KeyboardLayout.ProLayoutService.Swedish()
 ```
 
-These input sets and layout services will all throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started> for more info.
-
-
-### Additional Layout Capabilites
-
-KeyboardKit Pro extends ``KeyboardLayout`` and its various related types and collections with more capabilities, that make it easier to add, remove, and replace items in a layout.
-
-See ``KeyboardLayout`` and the nested layout ``KeyboardLayout/Item`` type in the KeyboardKit Pro documentation for a full list of additional capabilities.
-
-
-### Multiple Supported Layouts Per Locale
-
-KeyboardKit Pro unlocks a ``Keyboard/LayoutType``, extends ``Foundation/Locale`` with a list of supported layout types, and extends ``KeyboardSettings`` with ways to get and set the preferred layout type for any locale. 
-
-This is used by ``KeyboardApp/LocaleScreen`` to add a layout type picker to all ``KeyboardSettings/addedLocales`` that support multiple layouts. For instance, English keyboards support ``InputSet/qwerty``, ``InputSet/azerty``, ``InputSet/qwertz``, and ``InputSet/colemak``, and will therefore add a picker to the added locale item.  
+These input sets and layout services will all throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Article> for more info.
 
 
 ### iPad Pro Support
@@ -79,6 +66,20 @@ This is used by ``KeyboardApp/LocaleScreen`` to add a layout type picker to all 
 KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProLayoutService`` that can generate iPad Pro-specific layouts for most supported locales.
 
 ![iPad Pro Layout](keyboardview-ipadpro)
+
+
+### More Layout Capabilites
+
+KeyboardKit Pro extends ``KeyboardLayout`` and its various related types and collections with more capabilities, that make it easier to add, remove, and replace items in a layout.
+
+See ``KeyboardLayout`` and the nested layout ``KeyboardLayout/Item`` type in the KeyboardKit Pro documentation for a full list of additional capabilities.
+
+
+### ✨ NEW - Multiple Supported Layouts Per Locale
+
+KeyboardKit extends ``Foundation/Locale`` with a list of supported ``Keyboard/LayoutType``s, and makes the ``KeyboardApp/LocaleScreen`` add a layout type picker to all ``KeyboardSettings/addedLocales`` that support multiple layouts. For instance, English keyboards support ``InputSet/qwerty``, ``InputSet/azerty``, ``InputSet/qwertz``, and ``InputSet/colemak``.
+
+All ``KeyboardLayout/ProLayoutService`` implementations use the ``KeyboardContext/keyboardLayoutType`` to adjust their alphabetic input set for the current type.
 
 
 ---
@@ -142,9 +143,9 @@ class KeyboardViewController: KeyboardInputViewController {
 This makes it easy to replace the service for a certain locale, since you can inherit and customize the related ``KeyboardLayout/ProLayoutService``.
 
 
-### ...change the layout type for a specific locale
+### ...customize the layout for a certain locale
 
-You can use ``KeyboardSettings`` to change the preferred layout type for a specific locale. KeyboardKit Pro unlocks a ``Keyboard/LayoutType`` that makes this a lot easier, where you can use any of the available settings extensions like this:
+Most ``KeyboardLayout/ProLayoutService`` implementations in KeyboardKit Pro lets you specify custom input sets when you initialize them. This can for instance be used to use another alphabetic layout for locales that support it: 
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -152,14 +153,24 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupPro(for: ...) { _ in
-            let settings = self.state.keyboardContext.settings 
-            settings.setLayoutType(.azerty, for: .english)
+            try? self?.services.tryRegisterLocalizedLayoutService(
+                KeyboardLayout.ProLayoutService.English(
+                    alphabeticInputSet: try? .qwertz
+                )
+            )
         }
     }
 }
 ```
 
-You can still use the underlying ``KeyboardSettings/localeSpecificLayoutTypeIdentifiers`` to store alternate layout information, but you need KeyboardKit Pro if you want to use its extended locale and layout support.
+You can use the ``Foundation/Locale/supportedLayoutTypes`` information that KeyboardKit Pro unlocks to check if a locale supports a certain layout. A layout service that is provided with an unsupported layout type may render it incorrectly.
+
+
+### ...override the layout type for a certain locale
+
+KeyboardKit has a ``KeyboardContext/selectLocale(_:layoutType:)`` that can be used to set both the ``KeyboardContext/locale`` and ``KeyboardContext/keyboardLayoutType``. The layout type will be used to override the default layout type of certain layout services.
+
+This function is automatically used when you use the ``KeyboardSettings/addedLocales`` collection to manually set a keyboard layout type for a certain locale. Both the ``KeyboardContext/selectNextLocale()`` and the ``Foundation/Locale/ContextMenu`` will use this function to set both properties properly.
 
 
 

@@ -10,18 +10,17 @@ import SwiftUI
 
 public extension Locale {
     
-    /// This view modifier can be used to add locale context
-    /// menus to any.
+    /// This modifier can apply a locale context menu to any
+    /// view or keyboard button.
     ///
     /// Use ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)``
-    /// as a convenience modifier to apply this menu, if the
+    /// to apply this menu, which then only applies when the
     /// provided locales or ``KeyboardContext/enabledLocales``
     /// have at least two locales. It will sort and localize
     /// the list with ``KeyboardContext/localePresentationLocale``.
     ///
     /// The ``KeyboardView`` automatically applies this menu
-    /// to ``KeyboardAction/nextLocale``, so you do not have
-    /// to do it manually when using that view.
+    /// to all keys that trigger ``KeyboardAction/nextLocale``.
     struct ContextMenu<MenuItem: View>: ViewModifier {
         
         /// Create a menu that lists locales as `Text` views
@@ -29,7 +28,7 @@ public extension Locale {
         ///
         /// - Parameters:
         ///   - keyboardContext: The keyboard context to use.
-        ///   - locales: The explicit locales to list, if any.
+        ///   - locales: An explicit list of locales to show, if any.
         ///   - tapAction: The action to trigger when the view is tapped.
         public init(
             keyboardContext: KeyboardContext,
@@ -55,7 +54,7 @@ public extension Locale {
         ///
         /// - Parameters:
         ///   - keyboardContext: The keyboard context to use.
-        ///   - locales: The explicit locales to list, if any.
+        ///   - locales: An explicit list of locales to show, if any.
         ///   - tapAction: The action to trigger when the view is tapped.
         ///   - menuItem: A menu item view builder.
         public init(

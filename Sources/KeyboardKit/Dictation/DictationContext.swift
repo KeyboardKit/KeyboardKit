@@ -22,9 +22,9 @@ import SwiftUI
 /// that can be used to configure the behavior and presented
 /// to users in e.g. a settings screen.
 ///
-/// KeyboardKit set up an instance of this class and injects
-/// it as an environment value when you set up your main app
-/// and keyboard as described in <doc:Getting-Started>.
+/// KeyboardKit will create an instance of this context, and
+/// inject into the environment, when you set up KeyboardKit
+/// as shown in <doc:Getting-Started-Article>.
 public class DictationContext: ObservableObject {
 
     /// Create a dictation context instance.

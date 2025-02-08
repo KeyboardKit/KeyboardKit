@@ -29,7 +29,7 @@ KeyboardKit Pro unlocks ways to identify specific apps, using a ``KeyboardHostAp
 
 KeyboardKit Pro adds ``KeyboardHostApplicationProvider/hostApplication`` property to the ``KeyboardContext``. which tries to map ``KeyboardInputViewController/hostApplicationBundleId`` to any of the known host applications.
 
-Once you have a ``KeyboardHostApplication``, you can get additional information about the app, and open it with ``KeyboardHostApplication/open(with:)``.
+Once you have a ``KeyboardHostApplication`` instance, you can get additional information about the app, and open it with any of the ``KeyboardHostApplication/openWithAction(_:)`` or ``KeyboardHostApplication/openWithActionHandler(_:)`` functions.
 
 
 ## Known Host Applications

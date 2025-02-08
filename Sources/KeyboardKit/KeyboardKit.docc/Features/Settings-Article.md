@@ -28,7 +28,7 @@ The separation between contexts and settings, is with the intention that a conte
 
 The ``KeyboardSettings`` class has a ``KeyboardSettings/store`` that is used by all settings types to persist data. This store will automatically sync data between the main app and its keyboard if you use a ``KeyboardApp`` that defines an ``KeyboardApp/appGroupId`` to set up the app and keyboard.
 
-> Important: The auto-peristed settings properties will use the store that is available when they're first used, so make sure to set up your app and keyboard as shown in <doc:Getting-Started>, *before* accessing any of these properties.
+> Important: The auto-peristed settings properties will use the store that is available when they're first used, so make sure to set up your app and keyboard as shown in <doc:Getting-Started-Article>, *before* accessing any of these properties.
 
 
 
@@ -65,8 +65,7 @@ KeyboardKit currently provides the following settings, some of which are derived
 * ``KeyboardSettings/isKeyboardAutoCollapseEnabled`` - Whether to auto-collapse the keyboard when an external keyboard is connected.
 * ``KeyboardSettings/keyboardDockEdge`` - The keyboard dock edge to use, if any.
 * ``KeyboardSettings/keyboardLayoutTypeIdentifier`` - The current layout type identifier, set by ``KeyboardContext/keyboardLayoutType``.
-* ``KeyboardSettings/localeIdentifier`` - The current locale identifier, set by ``KeyboardContext/locale``.
-* ``KeyboardSettings/localeSpecificLayoutTypeIdentifiers`` - A dictionary of locale-specific layout type identifiers. 
+* ``KeyboardSettings/localeIdentifier`` - The current locale identifier, set by ``KeyboardContext/locale``. 
 * ``KeyboardSettings/spaceLongPressBehavior`` - The long press behavior to use for the space key.
 * ``KeyboardSettings/spaceTrailingAction`` - An optional trailing action to add to the space key, if any.
 

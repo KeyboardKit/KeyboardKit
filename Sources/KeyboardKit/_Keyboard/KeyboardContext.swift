@@ -37,7 +37,7 @@ import UIKit
 ///
 /// KeyboardKit set up an instance of this class and injects
 /// it as an environment value when you set up your main app
-/// and keyboard as described in <doc:Getting-Started>.
+/// and keyboard, as shown in <doc:Getting-Started-Article>.
 public class KeyboardContext: ObservableObject {
 
     public init() {

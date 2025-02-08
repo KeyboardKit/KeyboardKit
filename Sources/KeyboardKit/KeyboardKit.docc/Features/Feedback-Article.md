@@ -49,7 +49,7 @@ KeyboardKit injects a ``KeyboardFeedback/StandardFeedbackService``  instance int
 
 ## Settings
 
-KeyboardKit has a ``KeyboardFeedbackSettings`` type with audio and haptic feedback-related settings. ``KeyboardFeedbackContext`` ``KeyboardFeedbackContext/settings-swift.property`` is used by default within KeyboardKit.
+KeyboardKit has a ``KeyboardFeedbackSettings`` type with feedback-related settings. The context ``KeyboardFeedbackContext/settings-swift.property`` is used by default.
 
 
 

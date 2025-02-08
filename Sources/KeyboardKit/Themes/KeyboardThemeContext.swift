@@ -14,14 +14,9 @@ import SwiftUI
 /// This class has observable auto-persisted ``settings`` to
 /// handle the current ``KeyboardThemeSettings/theme``.
 ///
-/// Due to an observation-related issue, that caused SwiftUI
-/// to not update when a ``settings`` theme was changed, the
-/// theme should be managed through this class instead. This
-/// automatically updates the settings, to persist the theme.
-///
-/// KeyboardKit set up an instance of this class and injects
-/// it as an environment value when you set up your main app
-/// and keyboard as described in <doc:Getting-Started>.
+/// KeyboardKit will create an instance of this context, and
+/// inject into the environment, when you set up KeyboardKit
+/// as shown in <doc:Getting-Started-Article>.
 public class KeyboardThemeContext: ObservableObject {
 
     /// Create a keyboard theme context instance.

@@ -313,6 +313,14 @@ public extension Image {
     }
 }
 
+public extension Locale {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    var supportedLayoutTypes: [Keyboard.LayoutType] {
+        get throws { [] }
+    }
+}
+
 
 // MARK: - Host
 
@@ -320,7 +328,16 @@ public extension Image {
 public struct KeyboardHostApplication {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    public func open(with handler: KeyboardActionHandler) {}
+    public func open(with actionHandler: KeyboardActionHandler) {}
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public func open(with action: OpenURLAction) {}
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public func openWithActionHandler(_ actionHandler: KeyboardActionHandler) {}
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    public func openWithAction(_ action: OpenURLAction) {}
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.

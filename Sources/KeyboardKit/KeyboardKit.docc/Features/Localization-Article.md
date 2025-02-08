@@ -61,14 +61,14 @@ KeyboardKit extends ``Foundation/Locale`` with keyboard-specific views, that can
 
 @TabNavigator {
     
-    @Tab("Locale.ContextMenu") {
+    @Tab("ContextMenu") {
         
         @Row {
             @Column {
                 ![Locale Context Menu](localecontextmenu-space)
             }
             @Column {
-                The ``Foundation/Locale``-specific ``Foundation/Locale/ContextMenu`` can be used to change the ``KeyboardContext/locale`` by tapping or long pressing any view that it's applied to.
+                The ``Foundation/Locale``.``Foundation/Locale/ContextMenu`` can be used to change the ``KeyboardContext/locale`` by tapping or long pressing any view that it's applied to.
                 
                 You can apply the menu to any view with the ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)`` view modifier.
                 
@@ -83,11 +83,11 @@ KeyboardKit extends ``Foundation/Locale`` with keyboard-specific views, that can
                 ![Locale Context Menu](localecontextmenu-space)
             }
             @Column {
-                The ``KeyboardView`` spacebar can be configured to open the locale context menu, based on ``KeyboardContext/spaceLongPressBehavior``.
+                The ``KeyboardView`` spacebar can be configured to open the locale context menu, based on ``KeyboardSettings/spaceLongPressBehavior``.
                 
-                Set it to ``Keyboard/SpaceLongPressBehavior/openLocaleContextMenu`` to make it open the menu when it's long pressed, instead of moving the input cursor.
+                Set the behavior to ``Keyboard/SpaceLongPressBehavior/openLocaleContextMenu`` to make it open a context menu instead of moving the input cursor.
                 
-                Set it to ``Keyboard/SpaceLongPressBehavior/moveInputCursorWithLocaleSwitcher`` to add a trailing label that opens the menu while the rest of the spacebar can still move the input cursor.
+                You can also a ``KeyboardSettings/spaceTrailingAction`` to add a locale context menu to the spacebar and keep its cursor move capabilities.
             }
         }
     }
@@ -110,11 +110,13 @@ You can customize any localized service, as described in the <doc:Callouts-Artic
 
 ### ...get, set and pick locales 
 
-The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and all enabled ``KeyboardContext/locales``. You can use ``KeyboardSettings/addedLocales`` to override the enabled locales. This can be used to let users pick which of the enabled locales to use.
+The ``KeyboardContext`` can be used to get and set the current ``KeyboardContext/locale`` and all available ``KeyboardContext/locales``. You can use ``KeyboardSettings/addedLocales`` to override the default ``KeyboardContext/locale`` and use ``KeyboardContext/enabledLocales`` to use either the added or the available locales.
 
-If the enabled ``KeyboardContext/locales`` or ``KeyboardSettings/addedLocales`` have multiple values, you can select the next locale with ``KeyboardContext/selectNextLocale()`` or let the user select locales with a locale ``Foundation/Locale/ContextMenu``.
+If the ``KeyboardContext/enabledLocales`` have multiple values, you can use ``KeyboardContext/selectNextLocale()`` to loop through the proper collection. Since the ``KeyboardSettings/addedLocales`` can also define ``Keyboard/LayoutType``, the ``KeyboardContext/keyboardLayoutType`` will be updated automatically.
 
-You can add a context menu to the keyboard by inserting a ``KeyboardAction/nextLocale`` button into the layout, add a context menu to any view with the ``SwiftUICore/View/localeContextMenu(for:locales:tapAction:)`` modifier, or use ``KeyboardContext/settings-swift.property`` to add a context menu to the spacebar.
+The ``Foundation/Locale/ContextMenu`` described above, and the spacebar, will use the ``KeyboardContext/enabledLocales`` by default, and will also set a keyboard layout type when the user selects an ``Keyboard/AddedLocale`` that defines a layout type.
+
+You can also use the other ``KeyboardContext`` functions to select locales and layout types in various ways. Just make sure to only set a layout type that is supported by the selected locale.
 
 
 ### ...change the primary language
@@ -126,9 +128,7 @@ Setting the ``KeyboardContext`` ``KeyboardContext/locale`` will update the contr
 
 ### ...translate localized content
 
-Each ``Foundation/Locale/keyboardKitSupported`` locale has a localized file in **Resources/[id].lproj** with texts that are applied with the ``KKL10n`` enum. 
-
-For instance, this translates the numeric button key for the current locale:
+Each ``Foundation/Locale/keyboardKitSupported`` locale has a localized file in **Resources/[id].lproj** with texts that are applied with the ``KKL10n`` enum:
 
 ```
 let translation = KKL10n.keyboardTypeNumeric.text
@@ -140,7 +140,7 @@ To translate the same text for a certain ``Foundation/Locale``, you can use the 
 let translation = KKL10n.keyboardTypeNumeric.text(for: .spanish)
 ```
 
-### ...translate locales
+### ...translate locale display names
 
 You can change the ``KeyboardContext/localePresentationLocale`` to set which locale to use when displaying locales. It's set to the current locale by default, but you can change it to any locale, or set it to nil to use each locale's own language.
 

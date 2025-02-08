@@ -27,9 +27,9 @@ After installing KeyboardKit, make sure to link it to all targets that need it.
 
 ## Getting Started
 
-The <doc:Getting-Started> guide helps you get started with KeyboardKit, and the <doc:Essentials> article describes the essential types in the library.
+The <doc:Getting-Started-Article> guide helps you get started with KeyboardKit, and the <doc:Essentials-Article> article describes the essential types in the library.
 
-> Important: You should also read the <doc:Essentials-Memory-Management> article about the *very* strict memory limitations that Apple puts on keyboard extensions. Learn how to avoid memory-leaks, keep within the limits, and how to monitor your memory consumption.
+> Important: Make sure to read the <doc:Developer-Memory-Management> article about the *very* strict memory limitations that Apple puts on custom keyboards.
 
 
 
@@ -56,11 +56,10 @@ KeyboardKit helps you build amazing keyboard extensions, and provides you with a
 
 ### Open-Source
 
-* 🌱 <doc:Essentials> - Essential models, features & views.
+* 🌱 <doc:Essentials-Article> - Essential models, features & views.
 * ⌨️ <doc:Essentials-KeyboardView> - Render a native-looking, customizable keyboard.
 * 💥 <doc:Actions-Article> - Trigger & handle keyboard-related actions.
 * 📱 <doc:App-Article> - Define and set up your app, settings, etc.
-* 💡 <doc:Autocomplete-Article> - Perform autocomplete as the user types.
 * 🗯 <doc:Callouts-Article> - Show input & secondary action callouts.
 * 🖥️ <doc:Device-Article> - Identify device types, capabilities, etc.
 * 😀 <doc:Emojis-Article> - Emojis, categories, versions, skin tones, etc.
@@ -79,20 +78,20 @@ KeyboardKit helps you build amazing keyboard extensions, and provides you with a
 
 ### KeyboardKit Pro
 
-* 🌱 <doc:Essentials> - More essential tools, keyboard previews, etc.
+* 🌱 <doc:Essentials-Article> - More essential tools, keyboard previews, etc.
 * ⌨️ <doc:Essentials-KeyboardView> - Make the keyboard view do a lot more.
 * 🤖 <doc:AI-Article> - Features that are needed for AI.
 * 📱 <doc:App-Article> - App-specific screens & views.
-* 💡 <doc:Autocomplete-Article> - On-device & remote autocomplete.
+* 💡 <doc:Autocomplete-Article> - Perform autocomplete as the user types.
 * 🗯 <doc:Callouts-Article> - Localized callouts for all locales.
 * 🎤 <doc:Dictation-Article> - Trigger dictation from the keyboard.
 * 😀 <doc:Emojis-Article> - A powerful emoji keyboard.
 * ⌨️ <doc:External-Keyboards-Article> - Detect if an external keyboard is connected.
 * 🏠 <doc:Host-Article> - Identify and open specific host applications.
-* 🔣 <doc:Layout-Article> - Localized layouts for all locales.
+* 🔣 <doc:Layout-Article> - Localized input sets and layouts for all locales.
 * 🌐 <doc:Localization-Article> - Services & views for all locales.
 * 👁 <doc:Previews-Article> - Keyboard & theme previews for in-app use.
-* 📄 <doc:Proxy-Article> - Let ``UIKit/UITextDocumentProxy`` read the full document.
+* 📄 <doc:Proxy-Article> - Let the text document proxy read the entire document.
 * 📝 <doc:Text-Input-Article> - Let users type within the keyboard.
 * 🍭 <doc:Themes-Article> - A theme engine with many pre-defined themes.
 
@@ -122,12 +121,18 @@ KeyboardKit is available under the MIT license.
 
 ### Essentials
 
-- <doc:Getting-Started>
-- <doc:Essentials>
+- <doc:Getting-Started-Article>
+- <doc:Essentials-Article>
 - <doc:Essentials-KeyboardView>
-- <doc:Essentials-Memory-Management>
 
-### Articles
+### Developer Guides
+
+- <doc:Developer-Custom-Keyboards-Explained>
+- <doc:Developer-Data-Syncing>
+- <doc:Developer-Debugging>
+- <doc:Developer-Memory-Management>
+
+### Features
 
 - <doc:Actions-Article>
 - <doc:AI-Article>

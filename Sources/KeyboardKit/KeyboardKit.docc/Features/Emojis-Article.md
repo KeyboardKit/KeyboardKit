@@ -11,11 +11,11 @@ This article describes the KeyboardKit emoji engine.
     )
 }
 
-KeyboardKit has an ``Emoji`` struct that represents an emoji value, and defines available ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.
+KeyboardKit has an ``Emoji`` struct that represents an plain emoji value, and defines ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.
 
 👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that's automatically injected into ``KeyboardView`` when a valid license is registered. Information about Pro features can be found further down.
 
-> Important: The ``EmojiKeyboard`` uses high-resolution emojis on iPad, which can consume a lot of memory when scrolling through the emoji categories. Apply an ``Emoji/KeyboardStyle/optimized(for:)`` style with ``SwiftUICore/View/emojiKeyboardStyle(_:)`` if your keyboard uses memory-intense tools, since keyboard extensions are memory capped at ~70 MB.
+> Important: The ``EmojiKeyboard`` uses high-resolution emojis on iPad, which can consume a lot of memory when scrolling through the emoji categories. Apply an ``Emoji/KeyboardStyle/optimized(for:)`` style with ``SwiftUICore/View/emojiKeyboardStyle(_:)`` if your keyboard uses memory-intense tools. See the <doc:Developer-Memory-Management> article for more information.
 
 
 
@@ -131,7 +131,7 @@ There are String & Character extensions that can be used to detect and handle em
         
         @Row {
             @Column {
-                ![Emoji Keyboard](emojikeyboard)
+                ![Emoji Keyboard](emojis-emojikeyboard)
             }
             @Column {
                 The ``EmojiKeyboard`` mimics a native emoji keyboard. It has support for categories, skin tones, callouts, etc.

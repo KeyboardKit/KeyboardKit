@@ -21,11 +21,7 @@ A ``KeyboardActionHandler`` can either handle a ``KeyboardAction`` in a standard
 
 KeyboardKit has a ``KeyboardAction`` enum that defines a bunch of keyboard-related actions. It's also a namespace for action-related types and views, like a ``KeyboardAction/StandardActionHandler`` that provides you with a standard way to handle actions.
 
-
-
-## Actions
-
-The ``KeyboardAction`` enum defines many keyboard-specific actions, for instance:
+Here are just some of the many actions that the enum defines. See the full ``KeyboardAction`` documentation for a full list of actions:
 
 * ``KeyboardAction/backspace`` - triggers a backspace deletion.
 * ``KeyboardAction/character(_:)`` - inserts a character.
@@ -36,15 +32,15 @@ The ``KeyboardAction`` enum defines many keyboard-specific actions, for instance
 * ``KeyboardAction/nextKeyboard`` - triggers the system keyboard switcher.
 * ``KeyboardAction/nextLocale`` - triggers the locale switcher.
 
-See the ``KeyboardAction`` documentation for a complete list of all available actions. Many actions have a ``KeyboardAction/standardAction``, and a ``KeyboardAction/standardButtonText(for:)`` or ``KeyboardAction/standardButtonImage(for:)``, while other actions require manual handling.
+Many actions have a ``KeyboardAction/standardAction``, and a ``KeyboardAction/standardButtonText(for:)`` or ``KeyboardAction/standardButtonImage(for:)`` while others require manual handling by creating a custom ``KeyboardActionHandler``.
 
 
 
 ## Action Handlers
 
-A ``KeyboardActionHandler`` can handle actions and trigger audio & haptic feedback. It's in the center of how actions are handled, and can be customized to fit your needs.
+A ``KeyboardActionHandler`` can handle actions, apply ``Autocomplete/Suggestion`` values, trigger audio & haptic feedback, etc. It's in the center of how actions are handled, and can be customized to fit your needs.
 
-For instance, to customize what happens when a user double-taps space, you can override ``KeyboardActionHandler/handle(_:on:)`` and check if the action is ``KeyboardAction/space`` and the gesture is ``Keyboard/Gesture/doubleTap``. If so, do your custom thing, else call `super.handle(gesture, on: action)`.
+For instance, to customize what happens when a user double-taps space, you can override ``KeyboardActionHandler/handle(_:on:)`` and check if the action is ``KeyboardAction/space`` and the gesture is ``Keyboard/Gesture/doubleTap``. If so, do your custom thing, else call super.
 
 KeyboardKit automatically creates an instance of ``KeyboardAction/StandardActionHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
 
@@ -55,11 +51,11 @@ KeyboardKit automatically creates an instance of ``KeyboardAction/StandardAction
 ## How to... 
 
 
-### ...handle keyboard actions 
+### ...trigger keyboard actions 
 
-KeyboardKit automatically triggers ``KeyboardAction`` events when a user interacts with the keyboard or when certain events happen. Actions are by default handler with the main ``Keyboard/Services/actionHandler``, which you can replace to customize how actions are handled. 
+KeyboardKit automatically triggers ``KeyboardAction``s when users interact with the keyboard or when certain events happen. Actions are by default handled with the main ``Keyboard/Services/actionHandler``, which you can replace to customize how actions are handled. 
 
-You can trigger actions programmatically by calling any of the ``KeyboardActionHandler/handle(_:on:)`` functions to trigger an action with an optional gesture:
+You can trigger actions programmatically with ``KeyboardActionHandler/handle(action:)``, or trigger ``KeyboardActionHandler/handle(_:on:)`` to simulate a certain action gesture:
 
 ```swift
 func doStuff(with handler: KeyboardActionHandler) {
@@ -76,7 +72,15 @@ Text("Button")
     .keyboardButton(...)
 ```
 
-``KeyboardView`` applies this modifier to all its buttons, to make them support gestures for press, release, long press, repeat, etc.
+``KeyboardView`` applies this modifier to all its buttons, to automatically make them support press, release, long press, repeat, etc.
+
+
+### ...handle keyboard actions
+
+Actions are by default handled with the main ``Keyboard/Services/actionHandler``, which you can replace to customize how actions are handled. This is required for some actions that don't have a standard or default behavior.
+
+You can either implement the ``KeyboardActionHandler`` protocol from scratch, or inherit the ``KeyboardAction/StandardActionHandler`` class and override any of the many functions that it provides to add your own customizations to the standard behavior.
+
 
 
 ### ...handle autocomplete suggestions
@@ -85,8 +89,7 @@ A ``KeyboardActionHandler`` can also handle ``Autocomplete``.``Autocomplete/Sugg
 
 ```swift
 func handle(_ suggestion: Autocomplete.Suggestion, with handler: KeyboardActionHandler) {
-    let action = KeyboardAction.suggestion(suggestion)
-    handler.handle(action)
+    handler.handle(.suggestion(suggestion))
 }
 ```
 
@@ -95,7 +98,7 @@ This will by default insert the suggestion into the text document proxy. You can
 
 ### ...create a custom action handler
 
-You can create a custom ``KeyboardActionHandler`` to customize how certain actions are handled, and to handle actions that don't have a default behavior, like ``KeyboardAction/image``, ``KeyboardAction/command``, etc. 
+You can create a custom ``KeyboardActionHandler`` to customize how certain actions are handled, and to handle actions that don't have a standard or default behavior, like ``KeyboardAction/image``, ``KeyboardAction/command``, etc. 
 
 You can implement the ``KeyboardActionHandler`` protocol from scratch, or inherit and customize ``KeyboardAction/StandardActionHandler``:
 

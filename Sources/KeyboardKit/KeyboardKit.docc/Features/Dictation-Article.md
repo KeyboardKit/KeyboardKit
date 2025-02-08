@@ -21,14 +21,6 @@ Unlike most other service types, the open-source project doesn't include a dicta
 
 
 
-## ⚠️ Important Requirements!
-
-Since keyboard dictation is based on navigating between the keyboard and the main app, and to share information between the two, a keyboard that wishes yo use dictation must use an App Group and set up the app and keyboard to use it.
-
-See the <doc:Getting-Started> guide and <doc:Essentials> articles for information on how to properly set up your app and keyboard to share settings. 
-
-
-
 ## Namespace
 
 KeyboardKit has a ``Dictation`` namespace that contains dictation-related types, like ``Dictation/AuthorizationStatus``, as well as views that are unlocked by KeyboardKit Pro, like ``Dictation/Screen`` & ``Dictation/BarVisualizer``. 
@@ -53,7 +45,7 @@ Unlike most other service types, the open-source project doesn't include a dicta
 
 ## Settings
 
-KeyboardKit has a ``DictationSettings`` type with dictation-related settings. ``DictationContext`` ``DictationContext/settings-swift.property`` is used by default within KeyboardKit.
+KeyboardKit has a ``DictationSettings`` type with dictation-related state and settings. The context ``DictationContext/settings-swift.property`` is used by default.
 
 
 
@@ -69,13 +61,15 @@ The reason why the standard speech recognizer isn't part of the SDK, is that it 
 
 
 
-## Standard Dictation Behavior
+## Important Dictation Information
 
 When you start dictation from the keyboard, the keyboard will by default open the main app and perform dictation there, after which it will try to return to the keyboard. The reason for this is that the keyboard doesn't have access to the microphone.
 
-Due to Apple's major restrictions on how apps can interact with eachother, the main app will only be able to return to the keyboard if it was used in an app that KeyboardKit knows how to open. 
+Due to Apple's major restrictions on how apps can interact with eachother, the main app will only be able to return to the keyboard if it knows how to open the app in which the keyboard was used. 
 
-KeyboardKit will use its ``KeyboardHostApplication`` capabilities to try to identify the app, and redirect to it using a deep link that will open the app. If this is successful, the keyboard read the persisted dictation result and send the text to the host app.
+KeyboardKit will use its ``KeyboardHostApplication`` capabilities to try to identify the app, and navigate back to it using a deep link that will open the app. If this is successful, the keyboard will then read the persisted result and send the text to the host app.
+
+If the source application can't be opened, users can still tap the top leading back arrow to navigate back to the app. You should point to this arrow if the ``DictationContext/hostApplicationBundleId`` is nil or the resulting ``KeyboardHostApplication`` can't be opened. 
 
 See the <doc:Host-Article> for more information on which apps that are currently supported, and how to add more apps to this database.
 
@@ -94,7 +88,7 @@ See the <doc:Host-Article> for more information on which apps that are currently
 
 ### Services
 
-KeyboardKit Pro unlocks a ``Dictation/StandardDictationService`` that can be used to start dictation from a keyboard extension, by opening the main app and perform dictation there, then return to the keyboard (if possible).
+KeyboardKit Pro unlocks a ``Dictation/StandardDictationService`` that can be used to start dictation from a keyboard extension, by opening the main app and perform dictation there, then return to the keyboard (if possible) to apply the result.
 
 
 ### Views
@@ -143,15 +137,11 @@ KeyboardKit Pro adds dictation-related views to the ``Dictation`` namespace, to 
 
 Dictation works differently in apps, where microphone access is available, and in keyboard extensions, where mic access is unavailable. You can use a ``DictationService`` to perform dictation from both a keyboard extension, as well as in the main app.
 
-Before your app can perform dictation, you must configure your app to require the correct permissions. This is described further down.
+> Important: Before you can perform dictation, you must configure your app to require the correct permissions. This is described further down.
 
-To make your keyboard extension start dictation, just trigger ``DictationService/startDictationFromKeyboard()`` or a ``KeyboardAction/dictation`` action. This will open the main app, perform dictation, then (try to) return to the keyboard once it's is done.
+To make your keyboard extension start dictation, just call ``DictationService/startDictationFromKeyboard()`` or trigger a ``KeyboardAction/dictation`` action. This will open the main app, perform dictation, then (try to) return to the keyboard once it's is done.
 
 To make an app perform dictation that is started by the keyboard, just apply a `.keyboardDictation` modifier to the root view. You can also call ``DictationService/startDictationInApp()`` to perform dictation directly within the app.
-
-iOS 17 caused keyboard back navigation to stop working. KeyboardKit Pro uses a list of known ``KeyboardHostApplication``s to fix this, but you can override ``DictationService/returnToKeyboardFromApp()`` to customize it, and use ``DictationContext/returnToKeyboardFromAppError`` to see why back navigation failed.
-
-The user can always tap the top-leading back button to return to the keyboard from the app. Your app should point to this arrow if the back navigation doesn't work.
 
 
 
@@ -190,7 +180,7 @@ Add this App Group ID to your ``KeyboardApp``'s ``KeyboardApp/appGroupId`` prope
 
 #### Step 3 - Create a deep link
 
-To make it possible for the keyboard to open the app, you must set up a deep link URL scheme for the app target:
+To make it possible for the keyboard to open the app and start dictation, you must set up a deep link URL scheme for the app target:
 
 ![Set up a URL Scheme for the app](dictation-url-scheme)
 
@@ -283,14 +273,14 @@ public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
 #### Step 5 - Set up dictation in your keyboard extension
 
-To set up dictation for your keyboard extension, just set up your app and keyboard as described in the <doc:Getting-Started> guide, using a ``KeyboardApp`` that defines a ``KeyboardApp/DeepLinks-swift.struct/dictation`` deep link, or an ``KeyboardApp/DeepLinks-swift.struct/app`` deep link with the standard dictation pattern.
+To set up dictation for your keyboard extension, just set up your app and keyboard as described in the <doc:Getting-Started-Article> guide, using a ``KeyboardApp`` that defines a ``KeyboardApp/DeepLinks-swift.struct/dictation`` deep link, or an ``KeyboardApp/DeepLinks-swift.struct/app`` deep link with the standard dictation pattern.
 
 
 #### Step 6 - Set up dictation in your main application
 
 To even be able to start dictation in the main app from the keyboard, make sure to set up the ``KeyboardApp/DeepLinks-swift.struct/dictation`` deep link in your application. 
 
-To then set up dictation, just wrap your main app's root view in a  ``KeyboardAppView``, as described in the <doc:Getting-Started> guide, then apply the **.keyboardDictation** view modifier to it:
+Next, wrap your app in a  ``KeyboardAppView`` as described in <doc:Getting-Started-Article>, then apply the **.keyboardDictation** view modifier to it:
 
 ```swift
 struct ContentView: View {

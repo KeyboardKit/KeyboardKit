@@ -294,7 +294,7 @@ Since services are lazy and resolved when they're used for the first time, you s
 
 ## That's it!
 
-You should now have a fully functional keyboard extension and companion app, which you can customize even further to fit your needs. For more information, see the <doc:Essentials> article, as well as the other articles in this documentation.
+You should now have a fully functional keyboard extension and companion app, which you can customize even further to fit your needs. For more information, see the <doc:Essentials-Article> article, as well as the other articles in this documentation.
 
 
 ---

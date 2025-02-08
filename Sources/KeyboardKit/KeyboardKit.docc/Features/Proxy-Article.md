@@ -64,13 +64,15 @@ See the ``UIKit/UITextDocumentProxy`` documentation for more information and a f
 
 ### Full Document Context
 
-Apple's native text document proxy doesn't return all the text within the document. It instead cuts off the available text at any time, e.g. at the previous or next paragraph. This makes it hard to provide <doc:AI-Article> that require more context.
+Apple's native text document proxy doesn't return all the text within the document. It instead cuts off the available text at any time, e.g. at the previous or next paragraph. This makes it hard to provide AI-based features that require more context.
 
-KeyboardKit Pro therefore unlocks ways to read **all** text from the proxy, using ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)`` proxy extensions that reads the full document content by moving the input cursor in intricate ways.
+KeyboardKit Pro therefore unlocks ``UIKit/UITextDocumentProxy/fullDocumentContext(config:)`` proxy extensions that let you read **all** text from the proxy:
 
 ```swift
 let proxy = keyboardContext.textDocumentProxy
-let result = try await proxy.fullDocumentContext(config: ...)
+let result = try await proxy.fullDocumentContext()
 ```
 
-This will provide you with all the text before and after the text input cursor, as well as an aggregate of all the available text. Note that it's a best effort operation that is not guaranteed to return a valid result. You can therefore configure the function to yield better results.
+This will provide you with all the text before and after the input cursor, as well as an aggregate of all the available text in the document. 
+
+> Note: The full document read operation is a best effort operation, that makes the most of the very limited capabilities that are provided by the operating system. It's not guaranteed to return a valid result. You can configure the operation to yield better results, for instance by waiting longer when moving the input cursor, try to move more times around the edges, etc.
