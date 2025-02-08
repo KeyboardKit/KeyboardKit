@@ -120,3 +120,29 @@ public extension KeyboardThemeCopyable {
         return copy
     }
 }
+
+public extension KeyboardTheme {
+    
+    /// - Parameters:
+    ///   - id: An optional, explicit ID.
+    ///   - name: The name of the theme.
+    ///   - collectionName: The name of the collection to which the theme belongs, if any.
+    ///   - author: The author of the theme, if any.
+    ///   - backgroundStyle: The background type to apply, by default `nil`.
+    ///   - foregroundColor: The foreground color to apply to the entire keyboard, by default `nil`.
+    ///   - buttonStyles: The override styles to apply to certain button types, by default `empty`.
+    ///   - autocompleteToolbarStyle: The style to apply to autocomplete toolbars, by default `nil`.
+    ///   - calloutStyle: The style to apply to callouts, by default `nil`.
+    init(id: UUID? = nil, name: String, collectionName: String, author: KeyboardKit.KeyboardTheme.Author? = nil, backgroundStyle: KeyboardKit.Keyboard.Background? = nil, foregroundColor: Color? = nil, buttonStyles: [KeyboardKit.KeyboardTheme.ButtonType : KeyboardKit.Keyboard.ButtonStyle] = [:], autocompleteToolbarStyle: KeyboardKit.Autocomplete.ToolbarStyle? = nil, calloutStyle: KeyboardKit.KeyboardCallout.CalloutStyle? = nil) {
+        self.id = id ?? UUID()
+        self.name = name
+        self.collectionName = collectionName
+        self.author = author
+        self.backgroundStyle = backgroundStyle
+        self.foregroundColor = foregroundColor
+        self.buttonStyles = buttonStyles
+        self.autocompleteToolbarStyle = autocompleteToolbarStyle
+        self.calloutStyle = calloutStyle
+    }
+    
+}
