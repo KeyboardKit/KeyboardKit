@@ -46,9 +46,9 @@ public extension KeyboardContext {
     
     /// Select a locale from ``enabledLocales``.
     func selectLocale(at index: Int) {
-        enabledLocalesDataSource == .added ?
-        selectLocaleFromAddedLocales(at: index) :
-        selectLocaleFromContextLocales(at: index)
+        let isAdded = enabledLocalesDataSource == .added
+        if isAdded { return selectLocaleFromAddedLocales(at: index) }
+        return selectLocaleFromContextLocales(at: index)
     }
     
     /// Select a locale from ``KeyboardSettings/addedLocales``.
@@ -67,8 +67,8 @@ public extension KeyboardContext {
     
     /// Select the next locale from ``enabledLocales``.
     func selectNextLocale() {
-        enabledLocalesDataSource == .added ?
-        selectNextLocaleFromAddedLocales() :
+        let isAdded = enabledLocalesDataSource == .added
+        if isAdded { return selectNextLocaleFromAddedLocales() }
         selectNextLocaleFromContextLocales()
     }
     
