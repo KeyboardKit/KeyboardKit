@@ -60,6 +60,10 @@ public struct KeyboardAppView<Content: View>: View {
         KeyboardSettings.setupStore(for: app)
         let state = Keyboard.State()
         state.setup(for: app)
+        
+        let bundleId = Bundle.main.bundleIdentifier ?? ""
+        let bundleWildcard = "\(bundleId).*"
+        let statusContext = KeyboardStatusContext(bundleId: bundleWildcard)
 
         self.app = app
         self._autocompleteContext = .init(wrappedValue: state.autocompleteContext)
@@ -68,6 +72,7 @@ public struct KeyboardAppView<Content: View>: View {
         self._externalContext = .init(wrappedValue: state.externalKeyboardContext)
         self._feedbackContext = .init(wrappedValue: state.feedbackContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
+        self._keyboardStatusContext = .init(wrappedValue: statusContext)
         self._themeContext = .init(wrappedValue: state.themeContext)
         self.content = content
     }
@@ -75,27 +80,15 @@ public struct KeyboardAppView<Content: View>: View {
     private let app: KeyboardApp
 
     private let content: () -> Content
-
-    @StateObject
-    private var autocompleteContext: AutocompleteContext
-
-    @StateObject
-    private var calloutContext: KeyboardCalloutContext
-
-    @StateObject
-    private var dictationContext: DictationContext
-
-    @StateObject
-    private var externalContext: ExternalKeyboardContext
-
-    @StateObject
-    private var feedbackContext: KeyboardFeedbackContext
-
-    @StateObject
-    private var keyboardContext: KeyboardContext
-
-    @StateObject
-    private var themeContext: KeyboardThemeContext
+    
+    @StateObject var autocompleteContext: AutocompleteContext
+    @StateObject var calloutContext: KeyboardCalloutContext
+    @StateObject var dictationContext: DictationContext
+    @StateObject var externalContext: ExternalKeyboardContext
+    @StateObject var feedbackContext: KeyboardFeedbackContext
+    @StateObject var keyboardContext: KeyboardContext
+    @StateObject var keyboardStatusContext: KeyboardStatusContext
+    @StateObject var themeContext: KeyboardThemeContext
 
     public var body: some View {
         ZStack {
@@ -108,6 +101,7 @@ public struct KeyboardAppView<Content: View>: View {
         .environmentObject(externalContext)
         .environmentObject(feedbackContext)
         .environmentObject(keyboardContext)
+        .environmentObject(keyboardStatusContext)
         .environmentObject(themeContext)
     }
 }
