@@ -61,6 +61,36 @@ public class KeyboardContext: ObservableObject {
 
     /// Set this to override ``returnKeyType``.
     @Published public var returnKeyTypeOverride: Keyboard.ReturnKeyType?
+    
+    
+    // MARK: - Persisted Properties
+
+    /// The bundle ID of the keyboard host application.
+    ///
+    /// The property is persisted if an app and its keyboard
+    /// use an App Group to sync data. It can be used to see
+    /// in which app the keyboard was last used, and is used
+    /// by the KeyboardKit Pro `hostApplication` as well. It
+    /// will set ``hostApplicationBundleIdSyncDate`` when it
+    /// is set, which can be used to determine if this value
+    /// is still relevant.
+    ///
+    /// > Note: Future versions may reset this property when
+    /// the app is launched without the keyboard.
+    @AppStorage("\(KeyboardSettings.settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
+    public var hostApplicationBundleId: String? {
+        didSet { hostApplicationBundleIdTimeInterval = Date().timeIntervalSince1970 }
+    }
+    
+    /// The date when ``hostApplicationBundleId`` was last set.
+    public var hostApplicationBundleIdSyncDate: Date? {
+        guard let interval = hostApplicationBundleIdTimeInterval else { return nil }
+        return .init(timeIntervalSince1970: interval)
+    }
+    
+    /// The time (from 1970) when the
+    @AppStorage("\(KeyboardSettings.settingsPrefix)hostApplicationBundleIdTimeInterval", store: .keyboardSettings)
+    public var hostApplicationBundleIdTimeInterval: TimeInterval?
 
 
     // MARK: - Published Properties
@@ -83,9 +113,6 @@ public class KeyboardContext: ObservableObject {
     #else
     @Published public var hasFullAccess: Bool = false
     #endif
-
-    /// The bundle ID of the keyboard host application.
-    @Published public var hostApplicationBundleId: String?
 
     /// The current interface orientation.
     @Published public var interfaceOrientation: InterfaceOrientation = .portrait

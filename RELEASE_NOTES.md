@@ -14,11 +14,19 @@ These release notes cover the current major version. See older versions for olde
 
 This version adds a bunch of new settings and environment properties.
 
-This version also makes it possible to add the same language with different keyboard layouts.
+For instance, it adds settings for the space long press behavior and an optional trailing space action.
 
-This means that you can add multiple English keyboards, for instance QWERTY, AZERTY & Colemak. 
+This version also makes it possible to add the same language multiple times, using different keyboard layouts.
 
-To make this possible, this version adds many new types and more capabilities to `KeyboardContext` & `KeyboardSettings`.
+This means that you can let users enable many English keyboards, using QWERTY, AZERTY, QWERTZ & Colemak layouts.
+
+This is used by `Locale.ContextMenu` and `KeyboardApp.LocaleScreen`, which means that it's supported by default.
+
+This required new types, like `Keyboard.LayoutType` & `Keyboard.AddedLocale`, and new context & settings features.
+
+KeyboardKit Pro adds layout type support to `Locale`, and makes its layout services honor the selected layout type.  
+
+This version also makes the `hostApplicationBundleId` auto-persisted, so that it can be read from the main app target.
 
 ### ✨ Features
 
@@ -30,8 +38,9 @@ To make this possible, this version adds many new types and more capabilities to
 * `Keyboard.SpaceLongPressBehavior` has a new view modifier.
 * `KeyboardContext` has new ways to select & switch locales.
 * `KeyboardContext` has new ways get the locales datasource.
-* `KeyboardSettings` has new input toolbar types & settings.
-* `KeyboardSettings` has a new locale layout type dictionary.
+* `KeyboardContext` auto-persists `hostApplicationBundleId`.
+* `KeyboardContext` has new `hostApplication` date properties.
+* `KeyboardSettings` has new input toolbar types and settings.
 * `KeyboardSettings` has a new `.spaceTrailingAction` setting.
 * `KeyboardSettings` has a new `.spaceLongPressBehavior` setting.
 * `KeyboardSettings` has new added locale capabilites and functions.
@@ -43,6 +52,8 @@ To make this possible, this version adds many new types and more capabilities to
 * The `.keyboardInputToolbarDisplayMode` environment value is now optional.
 
 * `KeyboardAppView` now injects a `KeyboardStatusContext` environment object.
+* `KeyboardContext` now auto-persists the `hostApplicationBundleId` property.
+* `KeyboardContext` now uses key paths to minimize the controller sync logic.
 * `KeyboardHostApplication` now uses a case-insensitive bundle ID init match.
 * `KeyboardView` uses the new environment values, if any, else the keyboard settings.
 * `KeyboardLocale.ProLayoutService` now uses the context layout type, if this is set.
