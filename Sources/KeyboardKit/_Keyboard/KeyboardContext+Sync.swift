@@ -57,46 +57,31 @@ public extension KeyboardContext {
 }
 
 extension KeyboardContext {
+    
+    func update<ValueType: Equatable>(
+        _ keypath: ReferenceWritableKeyPath<KeyboardContext, ValueType>,
+        ifHasChanged val: ValueType
+    ) {
+        if self[keyPath: keypath] != val {
+            self[keyPath: keypath] = val
+        }
+    }
+}
+
+extension KeyboardContext {
 
     /// Perform a sync after an async delay.
     func syncAfterAsync(with controller: KeyboardInputViewController) {
         syncTextDocumentProxy(with: controller)
-
-        if hasDictationKey != controller.hasDictationKey {
-            hasDictationKey = controller.hasDictationKey
-        }
-
-        if hasFullAccess != controller.hasFullAccess {
-            hasFullAccess = controller.hasFullAccess
-        }
-
-        if hostApplicationBundleId != controller.hostApplicationBundleId {
-            hostApplicationBundleId = controller.hostApplicationBundleId
-        }
-
-        if interfaceOrientation != controller.orientation {
-            interfaceOrientation = controller.orientation
-        }
-
-        if needsInputModeSwitchKey != controller.needsInputModeSwitchKey {
-            needsInputModeSwitchKey = controller.needsInputModeSwitchKey
-        }
-
-        if primaryLanguage != controller.primaryLanguage {
-            primaryLanguage = controller.primaryLanguage
-        }
-
-        if screenSize != controller.screenSize {
-            screenSize = controller.screenSize
-        }
-
-        if textInputMode != controller.textInputMode {
-            textInputMode = controller.textInputMode
-        }
-
-        if traitCollection != controller.traitCollection {
-            traitCollection = controller.traitCollection
-        }
+        update(\.hasDictationKey, ifHasChanged: controller.hasDictationKey)
+        update(\.hasFullAccess, ifHasChanged: controller.hasFullAccess)
+        update(\.hostApplicationBundleId, ifHasChanged: controller.hostApplicationBundleId)
+        update(\.needsInputModeSwitchKey, ifHasChanged: controller.needsInputModeSwitchKey)
+        update(\.interfaceOrientation, ifHasChanged: controller.orientation)
+        update(\.primaryLanguage, ifHasChanged: controller.primaryLanguage)
+        update(\.screenSize, ifHasChanged: controller.screenSize)
+        update(\.textInputMode, ifHasChanged: controller.textInputMode)
+        update(\.traitCollection, ifHasChanged: controller.traitCollection)
     }
 
     func syncAfterLayout(with controller: KeyboardInputViewController) {
