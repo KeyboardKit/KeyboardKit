@@ -3,10 +3,10 @@
     {
       "identity" : "keyboardkitpro",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/KeyboardKit/KeyboardKitPro.git",
+      "location" : "https://github.com/keyboardkit/keyboardkitpro",
       "state" : {
-        "revision" : "eac1a12f5d17c2842477483e13fb2289f0569a3b",
-        "version" : "9.1.1"
+        "branch" : "9.2-b.1",
+        "revision" : "7f189d3e07f467d49caa53bd7363932921e4b653"
       }
     },
     {

@@ -32,7 +32,7 @@ import KeyboardKitPro
 /// `KeyboardApp+Demo.swift`.
 @main
 struct DemoApp: App {
-
+    
     var body: some Scene {
         WindowGroup {
             KeyboardAppView(for: .keyboardKitDemo) {

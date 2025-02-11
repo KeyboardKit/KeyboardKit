@@ -93,14 +93,14 @@ private extension KeyboardViewController {
         state.keyboardContext.locales = [.english, .spanish]
         
         /// 💡 This overrides the standard enabled locales.
-        state.keyboardContext.settings.addedLocales = [.english, .swedish]
+        state.keyboardContext.settings.addedLocales = [.init(.english), .init(.swedish)]
         
         /// 💡 Dock the keyboard to any horizontal edge.
         // state.keyboardContext.settings.keyboardDockEdge = .leading
 
-        /// 💡 Configure the space key's long press behavior.
-        // state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursor
-        state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
+        /// 💡 Configure the space key's long press behavior and trailing action.
+        state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursor
+        state.keyboardContext.settings.spaceTrailingAction = .localeContextMenu
 
         /// 💡 Customize keyboard feedback.
         // state.feedbackContext.settings.isAudioFeedbackEnabled = false
