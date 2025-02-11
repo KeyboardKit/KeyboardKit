@@ -32,8 +32,10 @@ class KeyboardViewController: KeyboardInputViewController {
 
         /// ‼️ Set up the keyboard for `.keyboardKitDemo`.
         super.setupPro(for: .keyboardKitDemo) { result in
-
-            /// 💡 Customize the keyboard's state & services.
+            
+            /// 💡 If `result` is successful, the license is
+            /// now registered and you can start customizing
+            /// the keyboard extension.
             self.setupDemoServices()
             self.setupDemoState()
         }
@@ -46,7 +48,8 @@ class KeyboardViewController: KeyboardInputViewController {
     /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
         
-        /// 💡 Don't call `super.viewWillSetupKeyboardView()`.
+        /// 💡 Don't call `super.viewWillSetupKeyboardView()`,
+        /// since that triggers unnecessary calculations.
         // super.viewWillSetupKeyboardView()
         
         /// 💡 Call `setupKeyboardView(...)` to customize or
@@ -81,6 +84,16 @@ private extension KeyboardViewController {
             // extraKey: .rocket
             extraKey: .localeSwitcher
         )
+        
+        /// 💡 Even though you can set the layout type using
+        /// the keyboard context layout type and using added
+        /// locales, this is how to change the default input
+        /// set for a specific locale.
+        // try? services.tryRegisterLocalizedLayoutService(
+        //     KeyboardLayout.ProLayoutService.English(
+        //         alphabeticInputSet: try? .azerty
+        //     )
+        // )
 
         /// 💡 Set up a demo-specific keyboard style service.
         services.styleService = (try? DemoStyleService(
