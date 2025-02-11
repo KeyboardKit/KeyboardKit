@@ -1,12 +1,12 @@
 <p align="center">
-    <img src ="Resources/Logo_Rounded.png" alt="KeyboardKit Logo" title="KeyboardKit" />
+    <img src ="Resources/Logo_Readme.png" alt="KeyboardKit Logo" title="KeyboardKit" />
 </p>
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=forestgreen&sort=semver" alt="Version" />
     <img src="https://img.shields.io/badge/swift-5.9-orange.svg" alt="Swift 5.9" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
-    <a href="https://keyboardkit.github.io/KeyboardKit"><img src="https://img.shields.io/badge/docs-9.0-blue.svg" alt="Documentation" /></a>
+    <a href="https://keyboardkit.github.io/KeyboardKit"><img src="https://img.shields.io/badge/docs-9.1-blue.svg" alt="Documentation" /></a>
 </p>
 
 
