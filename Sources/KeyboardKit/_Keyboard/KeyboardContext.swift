@@ -63,34 +63,26 @@ public class KeyboardContext: ObservableObject {
     @Published public var returnKeyTypeOverride: Keyboard.ReturnKeyType?
     
     
-    // MARK: - Persisted Properties
-
+    // MARK: - Temporary Host Application Values
+    
     /// The bundle ID of the keyboard host application.
     ///
-    /// The property is persisted if an app and its keyboard
-    /// use an App Group to sync data. It can be used to see
-    /// in which app the keyboard was last used, and is used
-    /// by the KeyboardKit Pro `hostApplication` as well. It
-    /// will set ``hostApplicationBundleIdSyncDate`` when it
-    /// is set, which can be used to determine if this value
-    /// is still relevant.
+    /// The property is persisted, and can be used to see in
+    /// which app the keyboard was last used. You should use
+    /// ``hostApplicationBundleIdSyncDate`` to check when it
+    /// was last written, to see if it's still relevant.
     ///
     /// > Note: Future versions may reset this property when
     /// the app is launched without the keyboard.
-    @AppStorage("\(KeyboardSettings.settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
     public var hostApplicationBundleId: String? {
-        didSet { hostApplicationBundleIdTimeInterval = Date().timeIntervalSince1970 }
+        get { settings.hostApplicationBundleId }
+        set { settings.hostApplicationBundleId = newValue }
     }
     
-    /// The date when ``hostApplicationBundleId`` was last set.
+    /// A date when ``hostApplicationBundleId`` was last set.
     public var hostApplicationBundleIdSyncDate: Date? {
-        guard let interval = hostApplicationBundleIdTimeInterval else { return nil }
-        return .init(timeIntervalSince1970: interval)
+        settings.hostApplicationBundleIdSyncDate
     }
-    
-    /// The time (from 1970) when the
-    @AppStorage("\(KeyboardSettings.settingsPrefix)hostApplicationBundleIdTimeInterval", store: .keyboardSettings)
-    public var hostApplicationBundleIdTimeInterval: TimeInterval?
 
 
     // MARK: - Published Properties

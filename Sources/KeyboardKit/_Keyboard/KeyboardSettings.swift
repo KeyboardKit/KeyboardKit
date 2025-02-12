@@ -92,6 +92,22 @@ public struct KeyboardSettings {
     public var spaceTrailingAction: Keyboard.SpaceAction?
     
     
+    // MARK: - Host Application
+    
+    @AppStorage("\(settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
+    var hostApplicationBundleId: String? {
+        didSet { hostApplicationBundleIdTimeInterval = Date().timeIntervalSince1970 }
+    }
+    
+    var hostApplicationBundleIdSyncDate: Date? {
+        guard let interval = hostApplicationBundleIdTimeInterval else { return nil }
+        return .init(timeIntervalSince1970: interval)
+    }
+    
+    @AppStorage("\(settingsPrefix)hostApplicationBundleIdTimeInterval", store: .keyboardSettings)
+    var hostApplicationBundleIdTimeInterval: TimeInterval?
+    
+    
     // MARK: - Deprecated
     
     /// DEPRECATED: Use ``addedLocaleValues`` instead.
