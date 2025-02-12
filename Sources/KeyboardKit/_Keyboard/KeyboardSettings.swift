@@ -45,6 +45,9 @@ public struct KeyboardSettings {
         KeyboardSettings.storeKeyPrefix(for: "keyboard")
     }
     
+    
+    // MARK: - Persisted Properties
+    
     /// A list of explicitly added locale identifiers.
     @AppStorage("\(settingsPrefix)addedLocales", store: .keyboardSettings)
     public var addedLocales: [Keyboard.AddedLocale] = []
@@ -92,7 +95,7 @@ public struct KeyboardSettings {
     public var spaceTrailingAction: Keyboard.SpaceAction?
     
     
-    // MARK: - Host Application
+    // MARK: - Internal State
     
     @AppStorage("\(settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
     var hostApplicationBundleId: String? {

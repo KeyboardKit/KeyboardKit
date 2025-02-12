@@ -61,28 +61,6 @@ public class KeyboardContext: ObservableObject {
 
     /// Set this to override ``returnKeyType``.
     @Published public var returnKeyTypeOverride: Keyboard.ReturnKeyType?
-    
-    
-    // MARK: - Temporary Host Application Values
-    
-    /// The bundle ID of the keyboard host application.
-    ///
-    /// The property is persisted, and can be used to see in
-    /// which app the keyboard was last used. You should use
-    /// ``hostApplicationBundleIdSyncDate`` to check when it
-    /// was last written, to see if it's still relevant.
-    ///
-    /// > Note: Future versions may reset this property when
-    /// the app is launched without the keyboard.
-    public var hostApplicationBundleId: String? {
-        get { settings.hostApplicationBundleId }
-        set { settings.hostApplicationBundleId = newValue }
-    }
-    
-    /// A date when ``hostApplicationBundleId`` was last set.
-    public var hostApplicationBundleIdSyncDate: Date? {
-        settings.hostApplicationBundleIdSyncDate
-    }
 
 
     // MARK: - Published Properties
@@ -189,6 +167,31 @@ public class KeyboardContext: ObservableObject {
     /// The current trait collection.
     @Published public var traitCollection = UITraitCollection()
     #endif
+}
+
+
+// MARK: - Settings-Backed Properties
+
+public extension KeyboardContext {
+    
+    /// The bundle ID of the keyboard host application.
+    ///
+    /// The property is persisted, and can be used to see in
+    /// which app the keyboard was last used. You should use
+    /// ``hostApplicationBundleIdSyncDate`` to check when it
+    /// was last written, to see if it's still relevant.
+    ///
+    /// > Note: Future versions may reset this property when
+    /// the app is launched without the keyboard.
+    var hostApplicationBundleId: String? {
+        get { settings.hostApplicationBundleId }
+        set { settings.hostApplicationBundleId = newValue }
+    }
+    
+    /// A date when ``hostApplicationBundleId`` was last set.
+    var hostApplicationBundleIdSyncDate: Date? {
+        settings.hostApplicationBundleIdSyncDate
+    }
 }
 
 

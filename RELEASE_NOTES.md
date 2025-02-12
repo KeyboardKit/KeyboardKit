@@ -50,6 +50,7 @@ This version also makes the `hostApplicationBundleId` auto-persisted, so that it
 
 * More types implement the `KeyboardModel` aggregate protocol.
 * The `.keyboardInputToolbarDisplayMode` environment value is now optional.
+* To fix rare cases of SwiftUI thread locks, stored properies are moved from contexts to settings.
 
 * `KeyboardAppView` now injects a `KeyboardStatusContext` environment object.
 * `KeyboardContext` now auto-persists the `hostApplicationBundleId` property.

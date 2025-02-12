@@ -30,6 +30,7 @@ public class DictationContext: ObservableObject {
     /// Create a dictation context instance.
     public init() {
         settings = .init()
+        dictatedText = settings.dictatedText
     }
 
 
@@ -37,47 +38,14 @@ public class DictationContext: ObservableObject {
 
     /// Dictation-specific, auto-persisted settings.
     @Published public var settings: DictationSettings
+
+
+    // MARK: - Published Properties
     
-    /// The settings key prefix to use.
-    public static var settingsPrefix: String {
-        DictationSettings.settingsPrefix
+    /// The currently dictated text, which will auto-persist.
+    @Published public var dictatedText: String = "" {
+        didSet { settings.dictatedText = dictatedText }
     }
-
-
-    // MARK: - Persisted State
-
-    /// This store to use for persisted dictation data.
-    ///
-    /// This uses the same store as ``KeyboardSettings``, so
-    /// settings and dictation state use the same store.
-    static var peristentStore: UserDefaults {
-        KeyboardSettings.store
-    }
-
-    /// The currently dictated text, which will update while
-    /// dictation detects new text.
-    ///
-    /// This text can be observed from your app, and will be
-    /// automatically synced between an app and its keyboard.
-    @AppStorage("\(settingsPrefix)dictatedText", store: .keyboardSettings)
-    public var dictatedText = ""
-
-    /// The bundle ID of the app that is using the keyboard.
-    ///
-    /// This is automatically set by the keyboard to let the
-    /// main app navigate back to the keyboard.
-    @AppStorage("\(settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
-    public var hostApplicationBundleId: String?
-
-    /// Whether dictation has been started by a keyboard.
-    ///
-    /// This is automatically set by the keyboard to let the
-    /// main app start dictation if it cannot use deep links.
-    @AppStorage("\(settingsPrefix)isDictationStartedByKeyboard", store: .keyboardSettings)
-    public var isDictationStartedByKeyboard = false
-
-
-    // MARK: - Properties
 
     /// Whether dictation is currently in progress.
     @Published public var isDictating = false
@@ -93,6 +61,30 @@ public class DictationContext: ObservableObject {
 
     /// A strong reference to the current dictation service.
     public var service: DictationService?
+}
+
+
+// MARK: - Settings-Backed Properties
+
+public extension DictationContext {
+    
+    /// The bundle ID of the app that is using the keyboard.
+    ///
+    /// This is automatically set by the keyboard to let the
+    /// main app navigate back to the keyboard.
+    var hostApplicationBundleId: String? {
+        get { settings.hostApplicationBundleId }
+        set { settings.hostApplicationBundleId = newValue }
+    }
+
+    /// Whether dictation has been started by a keyboard.
+    ///
+    /// This is automatically set by the keyboard to let the
+    /// main app start dictation if it cannot use deep links.
+    var isDictationStartedByKeyboard: Bool {
+        get { settings.isDictationStartedByKeyboard }
+        set { settings.isDictationStartedByKeyboard = newValue }
+    }
 }
 
 public extension DictationContext {

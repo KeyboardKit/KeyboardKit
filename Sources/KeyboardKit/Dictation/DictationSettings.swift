@@ -22,8 +22,23 @@ public struct DictationSettings {
     public static var settingsPrefix: String {
         KeyboardSettings.storeKeyPrefix(for: "dictation")
     }
+    
+    
+    // MARK: - Persisted Properties
 
     /// The max number of seconds of silence, after which dictation automatically ends.
     @AppStorage("\(settingsPrefix)silenceLimit", store: .keyboardSettings)
     public var silenceLimit: TimeInterval = 5.0
+    
+    
+    // MARK: - Internal State
+    
+    @AppStorage("\(settingsPrefix)dictatedText", store: .keyboardSettings)
+    var dictatedText = ""
+
+    @AppStorage("\(settingsPrefix)hostApplicationBundleId", store: .keyboardSettings)
+    var hostApplicationBundleId: String?
+
+    @AppStorage("\(settingsPrefix)isDictationStartedByKeyboard", store: .keyboardSettings)
+    var isDictationStartedByKeyboard = false
 }
