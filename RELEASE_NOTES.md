@@ -71,6 +71,7 @@ This also version makes the `hostApplicationBundleId` property auto-persisted, s
 ### 🚨 Breaking Changes
 
 * `Locale.ContextMenu` now passes in a layout type in the view builder.
+* `KeyboardContext.addedLocales` now contains `Keyboard.AddedLocale` values instead of `Locale`s.
 
 
 

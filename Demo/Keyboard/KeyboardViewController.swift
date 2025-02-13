@@ -100,7 +100,8 @@ private extension KeyboardViewController {
 
         /// 💡 Configure the space key's long press behavior and trailing action.
         state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursor
-        state.keyboardContext.settings.spaceTrailingAction = .localeContextMenu
+        // state.keyboardContext.settings.spaceContextMenuLeading = .locale
+        state.keyboardContext.settings.spaceContextMenuTrailing = .locale
 
         /// 💡 Customize keyboard feedback.
         // state.feedbackContext.settings.isAudioFeedbackEnabled = false
