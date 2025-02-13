@@ -83,9 +83,15 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 
 The ``Autocomplete/LocalAutocompleteService`` performs local on-device autocomplete. It supports many locales, works offline, doesn't require Full Access, and can integrate with system services like the local lexicon.
 
-The service supports: **arabic, bulgarian, czech, danish, dutch, dutch_belgium, english, english_gb, english_us, filipino, finnish, french, french_belgium, french_switzerland, german, german_austria, german_switzerland, greek, hebrew, hungarian, irish, italian, norwegian, polish, portuguese_brazil, portuguese, romanian, russian, spanish, swedish, turkish, ukrainian**.
+The service supports the following languages, per platform: 
 
-You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the service to make it perform predictions with an external AI service.
+* **iOS/iPadOS/visionOS:** Arabic, Arabic, Najdi, Bulgarian (Bulgaria), Czech (Czechia), Danish (Denmark), Dutch (Netherlands), English (Australia), English (Canada), English (India), English (New Zealand), English (Singapore), English (South Africa), English (United Kingdom), English (United States), Finnish (Finland), French (France), German (Germany), Greek (Greece), Hebrew (Israel), Hindi, Hungarian (Hungary), Icelandic (Iceland), Indonesian (Indonesia), Irish (Ireland), Italian (Italy), Lithuanian (Lithuania), Norwegian Bokmål (Norway), Norwegian Nynorsk, Polish (Poland), Portuguese (Brazil), Portuguese (Portugal), Punjabi, Romanian (Romania), Russian (Russia), Slovenian (Slovenia), Spanish (Mexico), Spanish (Spain), Swedish (Sweden), Telugu, Turkish (Türkiye), Ukrainian (Ukraine), Vietnamese (Vietnam)
+
+* **macOS:** Arabic, Arabic, Najdi, Bulgarian, Czech, Danish, Dutch, English, English (Australia), English (Canada), English (India), English (Japan), English (New Zealand), English (Singapore), English (South Africa), English (United Kingdom), Finnish, French, German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Irish, Italian, Korean, Lithuanian, Norwegian Bokmål, Norwegian Nynorsk, Polish, Portuguese (Brazil), Portuguese (Portugal), Punjabi, Romanian, Russian, Slovenian, Spanish, Swedish, Telugu, Turkish, Ukrainian, Vietnamese**
+
+* watchOS: Not available.
+
+You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the service to make it perform next word predictions with an external AI service. Read more below.
 
 
 ### Remote Autocomplete

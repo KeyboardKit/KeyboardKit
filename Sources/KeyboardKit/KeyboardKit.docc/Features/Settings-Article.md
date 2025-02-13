@@ -14,17 +14,24 @@ This article describes the KeyboardKit settings engine and its available setting
 KeyboardKit provides you with auto-persisted keyboard-related settings, as well as ways to integrate with System Settings. You can use this to provide users with ways to open System Settings from the app and keyboard, and to configure the keyboard extension.
 
 
-## Keyboard Setting
+## Settings Types
 
 KeyboardKit has ``KeyboardSettings``, ``AutocompleteSettings``, ``DictationSettings``, ``KeyboardFeedbackSettings``, and ``KeyboardThemeSettings`` types that provide auto-persisted settings for the various namespaces.
 
 KeyboardKit sets up settings instances in the various context, like the ``KeyboardContext`` ``KeyboardContext/settings-swift.property`` property, and use these as the main setting types. The various contexts can also use their settings to modify their own behavior.
 
-The separation between contexts and settings, is with the intention that a context should provide runtime-specific info, while a settings type should provide auto-persisted properties that can be set by code or by a user.
+The separation between contexts and settings, is with the intention that a context should provide runtime-specific information, while a settings type should provide auto-persisted properties that can be set by code or be bound to a settings form.
+
+
+## Settings Observation
+
+Note that while a context's settings property, like ``KeyboardContext/settings-swift.property`` is marked as `@Published`, it will not publish any changes made to values within the type, e.g. when using a form. This means that views will by default not update if another view makes a change to a property.
+
+You can solve this by using local state properties, bind those properties to the view or form, initialize the properties with the settings you want to affect, and sync any state changes back to those settings. 
 
 
 
-## Keyboard Setting Persistency & Sync
+## Settings Persistency & Sync
 
 The ``KeyboardSettings`` class has a ``KeyboardSettings/store`` that is used by all settings types to persist data. This store will automatically sync data between the main app and its keyboard if you use a ``KeyboardApp`` that defines an ``KeyboardApp/appGroupId`` to set up the app and keyboard.
 
@@ -50,7 +57,7 @@ If your app or keyboard randomly navigates to the Settings root instead of your 
 
 
 
-## Available Keyboard Settings
+## Available Settings
 
 KeyboardKit currently provides the following settings, some of which are derived from other values:
 
