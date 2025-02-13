@@ -49,9 +49,6 @@ public extension Keyboard.DockEdge {
 public extension View {
 
     /// Apply a ``Keyboard/DockEdge`` value.
-    ///
-    /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/keyboardDockEdge``.
     func keyboardDockEdge(
         _ value: Keyboard.DockEdge?
     ) -> some View {
@@ -62,8 +59,5 @@ public extension View {
 public extension EnvironmentValues {
 
     /// Apply a ``Keyboard/DockEdge`` value.
-    ///
-    /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/keyboardDockEdge``.
     @Entry var keyboardDockEdge: Keyboard.DockEdge?
 }

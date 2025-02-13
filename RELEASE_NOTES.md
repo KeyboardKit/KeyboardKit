@@ -12,21 +12,11 @@ These release notes cover the current major version. See older versions for olde
 
 ## 9.2
 
-This version adds a bunch of new settings and environment properties.
+This version adds a bunch of new settings, for instance to customize the long press behavior of the spacebar and add leading and trailing context menus to it. There are also new settings to add an input toolbar with numbers, emojis, or custom characters, and to dock the keyboard to a horizontal edge. These settings are added to the KeyboardKit Pro settings screen, which means that it's as easy for you to change them with code, as it is for your users to change them in the app.
 
-For instance, it adds settings for the space long press behavior and an optional trailing space action.
+This version also makes it possible to use alternate keyboard layouts for locales that support it, and to add many keyboards with the same locale, but different layouts, like QWERTY, AZERTY, QWERTZ and Colemak (NEW!). These new layout capabilities are used by the locale context menu, KeyboardKit Pro locale screen, and all pro services, which means that you can let users pick between supported layouts and have them apply automatically, without having to write any additional code for it.
 
-This version also makes it possible to add the same language multiple times, using different keyboard layouts.
-
-This means that you can let users enable many English keyboards, using QWERTY, AZERTY, QWERTZ & Colemak layouts.
-
-This is used by `Locale.ContextMenu` and `KeyboardApp.LocaleScreen`, which means that it's supported by default.
-
-This required new types, like `Keyboard.LayoutType` & `Keyboard.AddedLocale`, and new context & settings features.
-
-KeyboardKit Pro adds layout type support to `Locale`, and makes its layout services honor the selected layout type.  
-
-This version also makes the `hostApplicationBundleId` auto-persisted, so that it can be read from the main app target.
+This also version makes the `hostApplicationBundleId` property auto-persisted, so that it can be read from the main app when it's opened from the keyboard. This makes it easy to identify the host app for certain operations. Implementing this exposed a SwiftUI bug, where having AppStorage properties in an observed context class could cause strange SwiftUI rendering loops that caused apps to freeze. To counter this bug, the persistency mechanism have been moved from the context to the settings. 
 
 ### ✨ Features
 
@@ -34,23 +24,20 @@ This version also makes the `hostApplicationBundleId` auto-persisted, so that it
 * `Keyboard.AddedLocale` is a new type for added locales.
 * `Keyboard.InputToolbarDisplayMode` has new value builders.
 * `Keyboard.LayoutType` is a new, abstract layout type enum.
-* `Keyboard.SpaceAction` is an enum for extra space actions.
+* `Keyboard.SpaceContextMenu` is a new enum for space menus.
 * `Keyboard.SpaceLongPressBehavior` has a new view modifier.
 * `KeyboardContext` has new ways to select & switch locales.
 * `KeyboardContext` has new ways get the locales datasource.
 * `KeyboardContext` auto-persists `hostApplicationBundleId`.
 * `KeyboardContext` has new `hostApplication` date properties.
-* `KeyboardSettings` has new input toolbar types and settings.
-* `KeyboardSettings` has a new `.spaceTrailingAction` setting.
-* `KeyboardSettings` has a new `.spaceLongPressBehavior` setting.
 * `KeyboardSettings` has new added locale capabilites and functions.
-* `Locale.ListItem` can now display an optional layout type description.
+* `KeyboardSettings` has new space, input toolbar, and dock edge settings.
+* `Locale.ListItem` can now display an extra, optional layout type description.
 
 ### 💡 Adjustment
 
-* More types implement the `KeyboardModel` aggregate protocol.
-* The `.keyboardInputToolbarDisplayMode` environment value is now optional.
-* To fix rare cases of SwiftUI thread locks, stored properies are moved from contexts to settings.
+* More types implement the `KeyboardModel` protocol.
+* The `.keyboardInputToolbarDisplayMode` value is now optional.
 
 * `KeyboardAppView` now injects a `KeyboardStatusContext` environment object.
 * `KeyboardContext` now auto-persists the `hostApplicationBundleId` property.
@@ -59,9 +46,11 @@ This version also makes the `hostApplicationBundleId` auto-persisted, so that it
 * `KeyboardView` uses the new environment values, if any, else the keyboard settings.
 * `KeyboardLocale.ProLayoutService` now uses the context layout type, if this is set.
 
+* To fix rare SwiftUI hangs, @AppStorage properies have moved from contexts to settings.
+
 ### 👑 Pro
 
-* `InputSet.colemak` is a new Colemak input set.
+* `InputSet.colemak` is used for a Colemak layout.
 * `Keyboard.LayoutType` is a new layout type enum.
 * `KeyboardApp.LocaleScreen` has new keyboard settings.
 * `KeyboardApp.LocaleScreen` has new visibility settings.

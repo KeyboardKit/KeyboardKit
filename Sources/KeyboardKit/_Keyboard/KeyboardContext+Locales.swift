@@ -32,12 +32,6 @@ public extension KeyboardContext {
         enabledLocales.count > 1
     }
     
-    /// Whether to add a locale context menu to the spacebar.
-    var shouldAddLocaleContextMenuToSpaceBar: Bool {
-        guard hasMultipleEnabledLocales else { return false }
-        return settings.spaceTrailingAction == .localeContextMenu
-    }
-    
     /// Select a locale with an optional layout type.
     func selectLocale(_ locale: Locale, layoutType: Keyboard.LayoutType? = nil) {
         self.locale = locale

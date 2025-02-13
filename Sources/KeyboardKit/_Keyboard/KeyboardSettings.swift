@@ -90,9 +90,13 @@ public struct KeyboardSettings {
     @AppStorage("\(settingsPrefix)spaceLongPressBehavior", store: .keyboardSettings)
     public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
     
-    /// An optional trailing ``Keyboard/SpaceAction`` to add to the space key, if any.
-    @AppStorage("\(settingsPrefix)spaceTrailingAction", store: .keyboardSettings)
-    public var spaceTrailingAction: Keyboard.SpaceAction?
+    /// A leading ``Keyboard/SpaceContextMenu`` to add to the space key, if any.
+    @AppStorage("\(settingsPrefix)spaceContextMenuLeading", store: .keyboardSettings)
+    public var spaceContextMenuLeading: Keyboard.SpaceContextMenu?
+    
+    /// A trailing ``Keyboard/SpaceContextMenu`` to add to the space key, if any.
+    @AppStorage("\(settingsPrefix)spaceContextMenuTrailing", store: .keyboardSettings)
+    public var spaceContextMenuTrailing: Keyboard.SpaceContextMenu?
     
     
     // MARK: - Internal State

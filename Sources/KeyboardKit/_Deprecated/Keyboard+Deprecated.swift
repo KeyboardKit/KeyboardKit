@@ -14,10 +14,10 @@ public extension Keyboard.InputToolbarDisplayMode {
 
 public extension Keyboard.SpaceLongPressBehavior {
     
-    @available(*, deprecated, message: "Use Keyboard.SpaceTrailingAction instead.")
+    @available(*, deprecated, message: "Use Keyboard.SpaceContextMenu instead.")
     static var moveInputCursorWithLocaleSwitcher: Self { .moveInputCursor }
     
-    @available(*, deprecated, message: "Use Keyboard.SpaceTrailingAction instead.")
+    @available(*, deprecated, message: "Use Keyboard.SpaceContextMenu instead.")
     var shouldAddTrailingLocaleContextMenu: Bool {
         switch self {
         case .moveInputCursor: false

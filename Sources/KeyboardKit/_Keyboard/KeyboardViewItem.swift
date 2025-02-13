@@ -65,7 +65,11 @@ public struct KeyboardViewItem<Content: View>: View {
     private let isGestureAutoCancellable: Bool?
     private let content: Content
     
-    @Environment(\.keyboardSpaceTrailingAction) var spaceTrailingActionFromEnvironment
+    @Environment(\.keyboardSpaceContextMenuLeading)
+    private var spaceContextMenuLeadingEnv
+    
+    @Environment(\.keyboardSpaceContextMenuTrailing)
+    private var spaceContextMenuTrailingEnv
     
     @ObservedObject var keyboardContext: KeyboardContext
     
@@ -95,9 +99,8 @@ public struct KeyboardViewItem<Content: View>: View {
             isPressed: $isPressed,
             isGestureAutoCancellable: isGestureAutoCancellable
         )
-        .overlay(alignment: .bottomTrailing) {
-            spacebarLocaleContextMenuOverlay
-        }
+        .overlay(alignment: .bottomLeading) { spaceContextMenuLeadingOverlay }
+        .overlay(alignment: .bottomTrailing) { spaceContextMenuTrailingOverlay }
     }
 }
 
@@ -111,35 +114,49 @@ private extension KeyboardViewItem {
         keyboardContext.isSpaceDragGestureActive ? 0 : 1
     }
     
-    var shouldAddLocaleContextMenuToSpaceBar: Bool {
-        keyboardContext.hasMultipleEnabledLocales && spaceTrailingAction == .localeContextMenu
+    var shouldAddSpaceContextMenu: Bool {
+        item.action == .space && keyboardContext.hasMultipleEnabledLocales
     }
     
-    var spaceTrailingAction: Keyboard.SpaceAction? {
-        spaceTrailingActionFromEnvironment ?? keyboardContext.settings.spaceTrailingAction
+    var spaceContextMenuLeading: Keyboard.SpaceContextMenu? {
+        spaceContextMenuLeadingEnv ?? keyboardContext.settings.spaceContextMenuLeading
+    }
+    
+    var spaceContextMenuTrailing: Keyboard.SpaceContextMenu? {
+        spaceContextMenuTrailingEnv ?? keyboardContext.settings.spaceContextMenuTrailing
     }
 }
 
 private extension KeyboardViewItem {
     
     @ViewBuilder
-    var spacebarLocaleContextMenuOverlay: some View {
-        if item.action == .space && shouldAddLocaleContextMenuToSpaceBar {
-            let style = styleService.buttonStyle(for: .space, isPressed: false)
-            Text(keyboardContext.locale.shortDisplayName)
-                .font(.caption)
-                .textCase(.uppercase)
-                .foregroundStyle(style.foregroundColor ?? .primary)
-                .opacity(0.4)
-                .padding(.horizontal, 7)
-                .padding(.vertical, 5)
-                .frame(minWidth: 44, minHeight: 44, alignment: .bottomTrailing)
-                .localeContextMenu(for: keyboardContext) {
-                    actionHandler.handle(.release, on: .space)
-                    actionHandler.triggerFeedback(for: .press, on: .space)
-                }
-                .padding(item.edgeInsets)
+    var spaceContextMenuLeadingOverlay: some View {
+        if shouldAddSpaceContextMenu && spaceContextMenuLeading == .locale {
+            spaceContextMenu(.bottomLeading)
         }
+    }
+    
+    @ViewBuilder
+    var spaceContextMenuTrailingOverlay: some View {
+        if shouldAddSpaceContextMenu && spaceContextMenuTrailing == .locale {
+            spaceContextMenu(.bottomTrailing)
+        }
+    }
+    
+    func spaceContextMenu(_ alignment: Alignment) -> some View {
+        spaceContextMenuTitle(alignment)
+            .padding(item.edgeInsets)
+            .localeContextMenu(for: keyboardContext) {
+                actionHandler.handle(.release, on: .space)
+                actionHandler.triggerFeedback(for: .press, on: .space)
+            }
+    }
+    
+    func spaceContextMenuTitle(_ alignment: Alignment) -> some View {
+        typealias Content = Keyboard.SpaceContextMenuTitle
+        let title = keyboardContext.locale.shortDisplayName
+        let style = styleService.buttonStyle(for: .space, isPressed: false)
+        return Content(title, alignment: alignment, style: style)
     }
 }
 
@@ -155,7 +172,8 @@ private extension KeyboardViewItem {
             context.locales = .keyboardKitSupported
             context.settings.addedLocales = [.english, .swedish, .finnish].map { .init($0) }
             context.localePresentationLocale = .swedish
-            context.settings.spaceTrailingAction = nil // .localeContextMenu
+            context.settings.spaceContextMenuLeading = .locale
+            context.settings.spaceContextMenuTrailing = .locale
             return context
         }()
         
@@ -163,20 +181,21 @@ private extension KeyboardViewItem {
             KeyboardViewItem(
                 item: .init(
                     action: action,
-                    size: .init(width: .points(100), height: 100),
-                    alignment: .bottomLeading,
-                    edgeInsets: .init(horizontal: 10, vertical: 10)
+                    size: .init(width: .points(200), height: 100)
+//                    alignment: .bottomLeading,
+//                    edgeInsets: .init(horizontal: 10, vertical: 10)
                 ),
                 actionHandler: .preview,
                 styleService: .preview,
                 keyboardContext: keyboardContext,
                 calloutContext: .preview,
-                keyboardWidth: 100,
-                inputWidth: 100,
+                keyboardWidth: 200,
+                inputWidth: 200,
                 isGestureAutoCancellable: false,
                 content: Text("Hello, world!")
             )
-            .background(Color.red)
+            .padding()
+            .background(Color.keyboardBackground)
         }
     }
     

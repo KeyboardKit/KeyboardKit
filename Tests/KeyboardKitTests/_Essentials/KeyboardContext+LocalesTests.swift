@@ -25,7 +25,8 @@ class KeyboardContext_LocalesTests: XCTestCase {
         context.locale = .english
         context.keyboardLayoutType = nil
         context.settings.addedLocales = []
-        context.settings.spaceTrailingAction = nil
+        context.settings.spaceContextMenuLeading = nil
+        context.settings.spaceContextMenuTrailing = nil
     }
     
     override func setUp() {
@@ -58,17 +59,6 @@ class KeyboardContext_LocalesTests: XCTestCase {
         context.locales = []
         context.settings.addedLocales = addedLocales
         XCTAssertTrue(context.hasMultipleEnabledLocales)
-    }
-    
-    func testCanResolveSpacebarContextMenuState() {
-        XCTAssertFalse(context.shouldAddLocaleContextMenuToSpaceBar)
-        context.locales = locales
-        XCTAssertFalse(context.shouldAddLocaleContextMenuToSpaceBar)
-        context.settings.spaceTrailingAction = .localeContextMenu
-        XCTAssertTrue(context.shouldAddLocaleContextMenuToSpaceBar)
-        context.locales = []
-        context.settings.addedLocales = addedLocales
-        XCTAssertTrue(context.shouldAddLocaleContextMenuToSpaceBar)
     }
     
     func assertSelection(locale: Locale, layoutType: Keyboard.LayoutType?) {
