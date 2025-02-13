@@ -18,6 +18,8 @@ KeyboardKit provides you with auto-persisted keyboard-related settings, as well 
 
 KeyboardKit has ``KeyboardSettings``, ``AutocompleteSettings``, ``DictationSettings``, ``KeyboardFeedbackSettings``, and ``KeyboardThemeSettings`` types that provide auto-persisted settings for the various namespaces.
 
+These settings can be set with code or presented to the user, and make it easy to configure the keyboard. The various KeyboardKit Pro settings screens use them to provide rich customizations. See the <doc:App-Article> article for more information.    
+
 KeyboardKit sets up settings instances in the various context, like the ``KeyboardContext`` ``KeyboardContext/settings-swift.property`` property, and use these as the main setting types. The various contexts can also use their settings to modify their own behavior.
 
 The separation between contexts and settings, is with the intention that a context should provide runtime-specific information, while a settings type should provide auto-persisted properties that can be set by code or be bound to a settings form.

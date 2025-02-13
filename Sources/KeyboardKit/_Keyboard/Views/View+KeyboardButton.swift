@@ -89,7 +89,7 @@ public extension View {
 }
 
 private extension View {
-
+    
     @ViewBuilder
     func additionalTapArea(
         _ points: Double,
@@ -100,15 +100,15 @@ private extension View {
             .background(
                 Color.clearInteractable
                     .padding(-points)
-                    #if os(iOS)
+                #if os(iOS)
                     .onTapGesture {
                         actionHandler.handle(.press, on: action)
                         actionHandler.handle(.release, on: action)
                     }
-                    #endif
+                #endif
             )
     }
-
+    
     @ViewBuilder
     func localeContextMenu(
         for action: KeyboardAction,
@@ -123,6 +123,15 @@ private extension View {
         } else {
             self
         }
+    }
+}
+
+private extension View {
+    
+    func isSpaceContextMenuEnabled(
+        for context: KeyboardContext
+    ) -> Bool {
+        context.settings.spaceLongPressBehavior == .openLocaleContextMenu
     }
 
     func overlayColor(
@@ -141,6 +150,7 @@ private extension View {
     ) -> Bool {
         switch action {
         case .nextLocale: true
+        case .space: isSpaceContextMenuEnabled(for: context)
         default: false
         }
     }

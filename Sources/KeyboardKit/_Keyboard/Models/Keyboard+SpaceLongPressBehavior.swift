@@ -34,8 +34,10 @@ public extension View {
 
     /// Apply a ``Keyboard/SpaceLongPressBehavior`` value.
     ///
-    /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/spaceLongPressBehavior``.
+    /// You can inject this value if you want to use it in a
+    /// custom way. ``KeyboardView`` will not use this value,
+    /// since ``KeyboardSettings/spaceLongPressBehavior`` is
+    /// not only used by the views, but by the entire system.
     func keyboardSpaceLongPressBehavior(
         _ value: Keyboard.SpaceLongPressBehavior?
     ) -> some View {
@@ -47,7 +49,9 @@ public extension EnvironmentValues {
 
     /// Apply a ``Keyboard/SpaceLongPressBehavior`` value.
     ///
-    /// ``KeyboardView`` will use this value, if any, or the
-    /// ``KeyboardSettings/spaceLongPressBehavior``.
+    /// You can inject this value if you want to use it in a
+    /// custom way. ``KeyboardView`` will not use this value,
+    /// since ``KeyboardSettings/spaceLongPressBehavior`` is
+    /// not only used by the views, but by the entire system.
     @Entry var keyboardSpaceLongPressBehavior: Keyboard.SpaceLongPressBehavior?
 }

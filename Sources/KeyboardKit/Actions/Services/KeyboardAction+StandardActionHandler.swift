@@ -172,8 +172,8 @@ extension KeyboardAction {
         /// The space drag gesture handler to use.
         public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
         
-        
-        private var spaceDragActivationLocation: CGPoint?
+        /// The start point of the last space drag, if any.
+        public var spaceDragGestureStartPoint: CGPoint?
         
         
         // MARK: - KeyboardActionHandler
@@ -629,55 +629,5 @@ extension KeyboardAction {
         ) {
             tryTriggerFeedback(for: gesture, on: action)
         }
-    }
-}
-
-private extension KeyboardAction.StandardActionHandler {
-
-    func isSpaceCursorDrag(_ action: KeyboardAction) -> Bool {
-        guard action == .space else { return false }
-        let handler = spaceDragGestureHandler
-        return handler.currentDragTextPositionOffset != 0
-    }
-
-    func tryHandleSpaceDrag(
-        on action: KeyboardAction,
-        from startLocation: CGPoint,
-        to currentLocation: CGPoint
-    ) {
-        guard action == .space else { return }
-        let behavior = keyboardContext.settings.spaceLongPressBehavior
-        guard behavior.shouldMoveInputCursor else { return }
-        guard keyboardContext.isSpaceDragGestureActive else { return }
-        let activationLocation = spaceDragActivationLocation ?? currentLocation
-        spaceDragActivationLocation = activationLocation
-        spaceDragGestureHandler.handleDragGesture(
-            from: activationLocation,
-            to: currentLocation
-        )
-    }
-
-    func tryUpdateSpaceDragState(
-        for gesture: Keyboard.Gesture,
-        on action: KeyboardAction
-    ) {
-        guard action == .space else { return }
-        switch gesture {
-        case .press:
-            setSpaceDragActive(false)
-            spaceDragActivationLocation = nil
-        case .longPress:
-            setSpaceDragActive(true)
-        case .release, .end:
-            setSpaceDragActive(false)
-        default: break
-        }
-    }
-
-    func setSpaceDragActive(_ isActive: Bool) {
-        keyboardContext.setIsSpaceDragGestureActive(
-            isActive,
-            animated: true
-        )
     }
 }
