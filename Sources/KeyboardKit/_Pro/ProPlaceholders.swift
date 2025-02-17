@@ -282,6 +282,12 @@ public extension View {
 
 // MARK: - Emojis
 
+public extension Emoji {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    class ColonSearch {}
+}
+
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct EmojiKeyboard: View {
     public var body: some View {

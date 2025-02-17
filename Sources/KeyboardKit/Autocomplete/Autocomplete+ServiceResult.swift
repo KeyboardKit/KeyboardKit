@@ -11,24 +11,27 @@ import Foundation
 public extension Autocomplete {
 
     /// This type represents the autocomplete service result
-    /// that is returned by an ``AutocompleteService``.
+    /// that can be returned by an ``AutocompleteService``.
     struct ServiceResult {
 
-        /// Create an autocomplete suggestion.
+        /// Create an autocomplete result for an `inputText`.
         ///
         /// - Parameters:
         ///   - inputText: The originally provided text.
-        ///   - suggestions: Suggestions for the provided texts.
-        ///   - nextCharacterPredictions: Next character predictions for the provided text, if any.
-        ///   - isOutdated: Whether the result is outdated and should be ignored, by default `false`.
+        ///   - suggestions: Resulting autocomplete suggestions.
+        ///   - emojiCompletions: Emoji completion matches, if any.
+        ///   - nextCharacterPredictions: Next character predictions, if any.
+        ///   - isOutdated: Whether the result is outdated and should be ignored.
         public init(
             inputText: String,
             suggestions: [Suggestion],
+            emojiSuggestions: [Suggestion]? = nil,
             nextCharacterPredictions: [Character: Double]? = nil,
             isOutdated: Bool = false
         ) {
             self.inputText = inputText
             self.suggestions = suggestions
+            self.emojiSuggestions = emojiSuggestions
             self.nextCharacterPredictions = nextCharacterPredictions
             self.isOutdated = isOutdated
         }
@@ -38,6 +41,9 @@ public extension Autocomplete {
 
         /// Suggestions for the provided texts.
         public let suggestions: [Suggestion]
+        
+        /// Emoji suggestions, if any.
+        public let emojiSuggestions: [Suggestion]?
 
         /// Next character predictions for the provided text, if any.
         public let nextCharacterPredictions: [Character: Double]?

@@ -58,7 +58,7 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
     @Tab("Toolbar") {
         @Row {
             @Column {
-                ![AutocompleteToolbar](autocompletetoolbar)
+                ![AutocompleteToolbar](autocomplete-toolbar)
             }
             @Column {
                 The autocomplete ``Autocomplete/Toolbar`` can be used to show autocomplete suggestions as the user types.
@@ -78,20 +78,31 @@ The ``Autocomplete`` namespace has autocomplete-specific views, that can be used
 
 [KeyboardKit Pro][Pro] unlocks a ``Autocomplete/LocalAutocompleteService`` and a ``Autocomplete/RemoteAutocompleteService``, and injects a local service into ``KeyboardInputViewController/services`` when you set up KeyboardKit Pro. You can inherit both classes to customize their functionality.
 
+KeyboardKit Pro also unlocks an ``Emoji``.``Emoji/ColonSearch`` engine that can be used to add emoji suggestions to the autocomplete result, as well as next character prediction and next word prediction.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
 
 ### Local Autocomplete
 
-The ``Autocomplete/LocalAutocompleteService`` performs local on-device autocomplete. It supports many locales, works offline, doesn't require Full Access, and can integrate with system services like the local lexicon.
+The ``Autocomplete/LocalAutocompleteService`` performs on-device autocomplete. It works offline, doesn't require Full Access, integrates with system services like the local lexicon, and supports the following languages: 
 
-The service supports the following languages, per platform: 
+@TabNavigator {
+    
+    @Tab("iOS, iPadOS, visionOS") {
+        Arabic, Arabic, Najdi, Bulgarian (Bulgaria), Czech (Czechia), Danish (Denmark), Dutch (Netherlands), English (Australia), English (Canada), English (India), English (New Zealand), English (Singapore), English (South Africa), English (United Kingdom), English (United States), Finnish (Finland), French (France), German (Germany), Greek (Greece), Hebrew (Israel), Hindi, Hungarian (Hungary), Icelandic (Iceland), Indonesian (Indonesia), Irish (Ireland), Italian (Italy), Lithuanian (Lithuania), Norwegian Bokmål (Norway), Norwegian Nynorsk, Polish (Poland), Portuguese (Brazil), Portuguese (Portugal), Punjabi, Romanian (Romania), Russian (Russia), Slovenian (Slovenia), Spanish (Mexico), Spanish (Spain), Swedish (Sweden), Telugu, Turkish (Türkiye), Ukrainian (Ukraine), Vietnamese (Vietnam)
+    }
+    
+    @Tab("macOS") {
+        Arabic, Arabic, Najdi, Bulgarian, Czech, Danish, Dutch, English, English (Australia), English (Canada), English (India), English (Japan), English (New Zealand), English (Singapore), English (South Africa), English (United Kingdom), Finnish, French, German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Irish, Italian, Korean, Lithuanian, Norwegian Bokmål, Norwegian Nynorsk, Polish, Portuguese (Brazil), Portuguese (Portugal), Punjabi, Romanian, Russian, Slovenian, Spanish, Swedish, Telugu, Turkish, Ukrainian, Vietnamese
+    }
+    
+    @Tab("watchOS") {
+        Not available.
+    }
+}
 
-* **iOS/iPadOS/visionOS:** Arabic, Arabic, Najdi, Bulgarian (Bulgaria), Czech (Czechia), Danish (Denmark), Dutch (Netherlands), English (Australia), English (Canada), English (India), English (New Zealand), English (Singapore), English (South Africa), English (United Kingdom), English (United States), Finnish (Finland), French (France), German (Germany), Greek (Greece), Hebrew (Israel), Hindi, Hungarian (Hungary), Icelandic (Iceland), Indonesian (Indonesia), Irish (Ireland), Italian (Italy), Lithuanian (Lithuania), Norwegian Bokmål (Norway), Norwegian Nynorsk, Polish (Poland), Portuguese (Brazil), Portuguese (Portugal), Punjabi, Romanian (Romania), Russian (Russia), Slovenian (Slovenia), Spanish (Mexico), Spanish (Spain), Swedish (Sweden), Telugu, Turkish (Türkiye), Ukrainian (Ukraine), Vietnamese (Vietnam)
-
-* **macOS:** Arabic, Arabic, Najdi, Bulgarian, Czech, Danish, Dutch, English, English (Australia), English (Canada), English (India), English (Japan), English (New Zealand), English (Singapore), English (South Africa), English (United Kingdom), Finnish, French, German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Irish, Italian, Korean, Lithuanian, Norwegian Bokmål, Norwegian Nynorsk, Polish, Portuguese (Brazil), Portuguese (Portugal), Punjabi, Romanian, Russian, Slovenian, Spanish, Swedish, Telugu, Turkish, Ukrainian, Vietnamese**
-
-* watchOS: Not available.
-
-You can inject a custom ``Autocomplete/NextWordPredictionRequest`` into the service to make it perform next word predictions with an external AI service. Read more below.
+The service will use an ``Emoji``.``Emoji/ColonSearch`` to perform colon search if ``AutocompleteSettings/isEmojiColonSearchEnabled`` is enabled. You can also inject a ``Autocomplete/NextWordPredictionRequest`` to make the service perform next word predictions with an external AI service. 
 
 
 ### Remote Autocomplete
@@ -159,6 +170,14 @@ The ``KeyboardInputViewController`` will automatically call ``KeyboardController
 You can configure the ``Keyboard/State/autocompleteContext``, override the ``KeyboardInputViewController``'s autocomplete properties and functions, and replace the ``Keyboard/Services/autocompleteService`` with a custom service, to customize the autocomplete behavior.
 
 The ``KeyboardView`` automatically adds an autocomplete ``Autocomplete/Toolbar`` to list ``AutocompleteContext/suggestions`` and provide extra top space for callouts.
+
+
+
+### ...enable emoji autocomplete 
+
+KeyboardKit Pro unlocks a ``Emoji/ColonSearch`` engine that makes it possible to search for emojis by starting the current word with a `:`. This engine is automatically used by the ``Autocomplete/LocalAutocompleteService`` service, when ``AutocompleteSettings/isEmojiColonSearchEnabled`` is turned on.
+
+The autocomplete ``Autocomplete/Toolbar`` will automatically display the emoji suggestions that are returned by the service's ``Autocomplete/ServiceResult``. You can implement these parts yourself, if you don't use KeyboardKit Pro.
 
 
 

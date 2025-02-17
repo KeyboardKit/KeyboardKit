@@ -10,6 +10,21 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 9.3
+
+### ✨ Features
+
+* `Autocomplete.ServiceResult` has a new `emojiCompletions` property.
+* `Autocomplete.Settings` has a new `isEmojiColonSearchEnabled` property.
+* `AutocompleteContext` has a new, observable `emojiCompletions` property.
+
+### 👑 Pro
+
+* `App.KeyboardSettingsScreen` has a new toggle to enable emoji colon search.
+* `Emoji.ColonSearch` is a new class for searching emojis with a leading colon.
+
+
+
 ## 9.2
 
 This version adds a bunch of new settings, for instance to customize the long press behavior of the spacebar and add leading and trailing context menus to it. There are also new settings to add an input toolbar with numbers, emojis, or custom characters, and to dock the keyboard to a horizontal edge. These settings are added to the KeyboardKit Pro settings screen, which means that it's as easy for you to change them with code, as it is for your users to change them in the app.

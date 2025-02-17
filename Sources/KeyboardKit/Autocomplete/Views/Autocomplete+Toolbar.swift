@@ -21,9 +21,11 @@ public extension Autocomplete {
         ///
         /// - Parameters:
         ///   - suggestions: The suggestions to display.
+        ///   - emojiSuggestions: The emoji suggestions to display, if any.
         ///   - suggestionAction: The action to run when tapping a suggestion.
         public init(
             suggestions: [Autocomplete.Suggestion],
+            emojiSuggestions: [Autocomplete.Suggestion] = [],
             suggestionAction: @escaping SuggestionAction
         ) where ItemView == StandardItem, SeparatorView == StandardSeparator {
             self.init(
@@ -41,17 +43,21 @@ public extension Autocomplete {
         ///
         /// - Parameters:
         ///   - suggestions: The suggestions to display.
+        ///   - emojiSuggestions: The emoji suggestions to display, if any.
         ///   - itemView: The suggestion view builder to use.
         ///   - separatorView: The separator view builder to use.
         ///   - suggestionAction: The action to run when tapping a suggestion.
         public init(
             suggestions: [Autocomplete.Suggestion],
+            emojiSuggestions emojis: [Autocomplete.Suggestion] = [],
             itemView: @escaping ItemViewBuilder,
             separatorView: @escaping SeparatorViewBuilder,
             suggestionAction: @escaping SuggestionAction
         ) {
-            self.suggestions = suggestions
-            self.items = suggestions.map { BarItem($0) }
+            let drop = emojis.isEmpty ? 0 : 1
+            let useAllEmojis = suggestions.count - drop < 3
+            self.suggestions = suggestions.dropLast(drop)
+            self.emojiSuggestions = useAllEmojis ? emojis : Array(emojis.prefix(1))
             self.itemView = itemView
             self.separatorView = separatorView
             self.suggestionAction = suggestionAction
@@ -79,8 +85,8 @@ public extension Autocomplete {
         public typealias StandardItem = Autocomplete.ToolbarItem
         public typealias StandardSeparator = Autocomplete.ToolbarSeparator
 
-        private let items: [BarItem]
         private let suggestions: [Suggestion]
+        private let emojiSuggestions: [Suggestion]
         private let suggestionAction: SuggestionAction
         private let itemView: ItemViewBuilder
         private let separatorView: SeparatorViewBuilder
@@ -89,24 +95,15 @@ public extension Autocomplete {
 
         @Environment(\.autocompleteToolbarStyle)
         private var style
-
-        /// This internal struct is used to wrap item data.
-        struct BarItem: Identifiable {
-            
-            init(_ suggestion: Suggestion) {
-                self.suggestion = suggestion
-            }
-            
-            public let id = UUID()
-            public let suggestion: Suggestion
-        }
         
         public var body: some View {
             HStack {
-                ForEach(items) { item in
-                    itemButton(for: item.suggestion)
-                    if useSeparator(for: item) {
-                        separatorView(for: item.suggestion)
+                ForEach(Array(suggestions.enumerated()), id: \.offset) { item in
+                    toolbarItem(for: item.element, at: item.offset)
+                }
+                HStack {
+                    ForEach(Array(emojiSuggestions.enumerated()), id: \.offset) { item in
+                        toolbarItemButton(for: item.element)
                     }
                 }
             }
@@ -164,17 +161,25 @@ public extension Autocomplete {
 }
 
 private extension Autocomplete.Toolbar {
+    
+    @ViewBuilder
+    func toolbarItem(for suggestion: Suggestion, at index: Int) -> some View {
+        toolbarItemButton(for: suggestion)
+        if useSeparator(for: suggestion, at: index) {
+            separatorView(for: suggestion)
+        }
+    }
 
-    func itemButton(for suggestion: Suggestion) -> some View {
+    func toolbarItemButton(for suggestion: Suggestion) -> some View {
         Button {
             suggestionAction(suggestion)
         } label: {
-            itemView(for: suggestion)
+            toolbarItemView(for: suggestion)
         }
         .buttonStyle(.plain)
     }
 
-    func itemView(for suggestion: Suggestion) -> some View {
+    func toolbarItemView(for suggestion: Suggestion) -> some View {
         itemView(.init(
             suggestion: suggestion,
             style: style,
@@ -197,21 +202,11 @@ private extension Autocomplete.Toolbar {
 
 private extension Autocomplete.Toolbar {
     
-    func isLast(_ item: BarItem) -> Bool {
-        item.id == items.last?.id
-    }
-    
-    func isNextItemAutocomplete(for item: BarItem) -> Bool {
-        guard let index = (items.firstIndex { $0.id == item.id }) else { return false }
-        let nextIndex = items.index(after: index)
-        guard nextIndex < items.count else { return false }
-        return items[nextIndex].suggestion.isAutocorrect
-    }
-    
-    func useSeparator(for item: BarItem) -> Bool {
-        if item.suggestion.isAutocorrect { return false }
-        if isLast(item) { return false }
-        return !isNextItemAutocomplete(for: item)
+    func useSeparator(for suggestion: Suggestion, at index: Int) -> Bool {
+        if suggestion.isAutocorrect { return false }
+        let isLast = index >= suggestions.count - 1
+        if isLast { return !emojiSuggestions.isEmpty }
+        return !suggestions[index+1].isAutocorrect
     }
 }
 
@@ -244,14 +239,19 @@ public extension EnvironmentValues {
         Autocomplete.Suggestion(
             text: "",
             title: "Foo",
-            subtitle: "Recommended"
+            subtitle: "Extra"
         )
     ]
     
     let suggestions: [Autocomplete.Suggestion] = [
-        .init(text: "Baz", type: .unknown),
+        .init(text: "Foo", type: .unknown),
         .init(text: "Bar", type: .autocorrect),
-        .init(text: "", title: "Foo", subtitle: "Recommended")]
+        .init(text: "", title: "Baz" /*, subtitle: "Recommended"*/)]
+    
+    let emojis: [Autocomplete.Suggestion] = [
+        .init(text: "😊", type: .emoji),
+        .init(text: "💡", type: .emoji),
+        .init(text: "👍", type: .emoji)]
     
     return VStack {
         Group {
@@ -261,7 +261,6 @@ public extension EnvironmentValues {
                 separatorView: { $0.view },
                 suggestionAction: { _ in }
             )
-
             Autocomplete.Toolbar(
                 suggestions: Array(suggestions.prefix(2)),
                 itemView: { $0.view },
@@ -270,25 +269,35 @@ public extension EnvironmentValues {
             )
             Autocomplete.Toolbar(
                 suggestions: suggestions + additional,
+                emojiSuggestions: emojis,
                 itemView: { $0.view },
                 separatorView: { $0.view },
                 suggestionAction: { _ in }
             )
-
+            Autocomplete.Toolbar(
+                suggestions: suggestions,
+                emojiSuggestions: emojis,
+                itemView: { $0.view },
+                separatorView: { $0.view },
+                suggestionAction: { _ in }
+            )
             Autocomplete.Toolbar(
                 suggestions: suggestions + additional,
                 itemView: { $0.view },
-                separatorView: { $0.view },
+                separatorView: { $0.view.clipShape(.capsule) },
                 suggestionAction: { _ in }
             )
             .autocompleteToolbarStyle(.init(
-                height: 100,
-                item: .init(titleColor: .red),
-                autocorrectItem: .init(backgroundColor: .red),
-                separator: .init(color: .purple, width: 20)
+                item: .init(titleColor: .blue),
+                autocorrectItem: .init(
+                    titleColor: .yellow,
+                    backgroundColor: .blue
+                ),
+                separator: .init(color: .gray, width: 5)
             ))
         }
+        .background(Color.keyboardBackground)
+        .clipShape(.rect(cornerRadius: 10))
     }
     .padding(5)
-    .background(Color.keyboardBackground)
 }

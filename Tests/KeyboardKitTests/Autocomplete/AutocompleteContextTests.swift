@@ -12,7 +12,26 @@ import XCTest
 final class AutocompleteContextTests: XCTestCase {
 
     let context = AutocompleteContext()
+    
+    func testCanBeUpdatedWithAutocompleteServiceResult() async {
+        context.isLoading = true
+        let result = Autocomplete.ServiceResult(
+            inputText: "foo",
+            suggestions: .preview,
+            emojiSuggestions: [.init(text: "😊", type: .emoji)],
+            nextCharacterPredictions: ["a" : 0.5]
+        )
+        context.update(with: result)
 
+        await MainActor.run {
+            XCTAssertEqual(context.isLoading, false)
+            XCTAssertNil(context.lastError)
+            XCTAssertEqual(context.suggestionsFromService, .preview)
+            XCTAssertEqual(context.emojiSuggestions, [.init(text: "😊", type: .emoji)])
+            XCTAssertEqual(context.nextCharacterPredictions, ["a": 0.5])
+        }
+    }
+    
     func testCanGetNextCharacterProbabilityForStringsAndActions() {
         context.nextCharacterPredictions = [
             "a": 0.1,

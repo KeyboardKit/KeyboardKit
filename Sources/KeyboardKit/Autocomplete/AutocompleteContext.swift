@@ -32,6 +32,12 @@ public class AutocompleteContext: ObservableObject {
     /// Auto-persisted autocomplete settings.
     @Published public var settings: AutocompleteSettings
     
+    
+    // MARK: - Errors
+
+    /// The last received autocomplete error.
+    public var lastError: Error?
+    
 
     // MARK: - Published Properties
 
@@ -44,17 +50,17 @@ public class AutocompleteContext: ObservableObject {
 
     /// Whether or not suggestions are being fetched.
     @Published public var isLoading = false
-
-    /// The last received autocomplete error.
-    public var lastError: Error?
+    
+    /// The characters that are more likely to be typed next.
+    @Published public var emojiSuggestions: [Autocomplete.Suggestion] = []
 
     /// The characters that are more likely to be typed next.
     @Published public var nextCharacterPredictions: [Character: Double] = [:]
 
-    /// The suggestions to present to the user.
+    /// The suggestions that should be presented to the user.
     @Published public var suggestions: [Autocomplete.Suggestion] = []
 
-    /// The suggestions returned by an autocomplete service.
+    /// The suggestions that were returned by the service.
     @Published public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
         didSet {
             let value = suggestionsFromService
@@ -81,6 +87,7 @@ public extension AutocompleteContext {
             self.isLoading = false
             self.lastError = nil
             self.suggestionsFromService = result.suggestions
+            self.emojiSuggestions = result.emojiSuggestions ?? []
             self.nextCharacterPredictions = result.nextCharacterPredictions ?? [:]
         }
     }

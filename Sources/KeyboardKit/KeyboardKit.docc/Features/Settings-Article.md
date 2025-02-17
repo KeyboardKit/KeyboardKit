@@ -16,13 +16,53 @@ KeyboardKit provides you with auto-persisted keyboard-related settings, as well 
 
 ## Settings Types
 
-KeyboardKit has ``KeyboardSettings``, ``AutocompleteSettings``, ``DictationSettings``, ``KeyboardFeedbackSettings``, and ``KeyboardThemeSettings`` types that provide auto-persisted settings for the various namespaces.
+KeyboardKit has ``KeyboardSettings`` and other namespace-specific settings types that provide the following auto-persisted settings:
 
-These settings can be set with code or presented to the user, and make it easy to configure the keyboard. The various KeyboardKit Pro settings screens use them to provide rich customizations. See the <doc:App-Article> article for more information.    
+@TabNavigator {
+    
+    @Tab("Keyboard") {
+        ``KeyboardSettings/addedLocales``,
+        ``KeyboardSettings/inputToolbarType-swift.property``,
+        ``KeyboardSettings/isAutocapitalizationEnabled``,
+        ``KeyboardSettings/isKeyboardAutoCollapseEnabled``,
+        ``KeyboardSettings/keyboardDockEdge``,
+        ``KeyboardSettings/keyboardLayoutTypeIdentifier``,
+        ``KeyboardSettings/localeIdentifier``,
+        ``KeyboardSettings/spaceContextMenuLeading``,
+        ``KeyboardSettings/spaceContextMenuTrailing``,
+        ``KeyboardSettings/spaceLongPressBehavior``
+    }
+    
+    @Tab("Autocomplete") {
+        ``AutocompleteSettings/isAutocompleteEnabled``,
+        ``AutocompleteSettings/isAutocorrectEnabled``,
+        ``AutocompleteSettings/isAutolearnEnabled``,
+        ``AutocompleteSettings/isAutoIgnoreEnabled``,
+        ``AutocompleteSettings/isEmojiColonSearchEnabled``,
+        ``AutocompleteSettings/isNextCharacterPredictionEnabled``,
+        ``AutocompleteSettings/isNextWordPredictionEnabled``,
+        ``AutocompleteSettings/nextWordPredictionRequestApiKey``,
+        ``AutocompleteSettings/nextWordPredictionRequestType``,
+        ``AutocompleteSettings/suggestionsDisplayCount``
+    }
+    
+    @Tab("Dictation") {
+        ``DictationSettings/silenceLimit``
+    }
+    
+    @Tab("Feedback") {
+        ``KeyboardFeedbackSettings/isAudioFeedbackEnabled``,
+        ``KeyboardFeedbackSettings/isHapticFeedbackEnabled``
+    }
+    
+    @Tab("Themes") {
+        ``KeyboardThemeSettings/theme``
+    }
+}
 
-KeyboardKit sets up settings instances in the various context, like the ``KeyboardContext`` ``KeyboardContext/settings-swift.property`` property, and use these as the main setting types. The various contexts can also use their settings to modify their own behavior.
+These settings can be set with code or presented to the user, for instance using the various KeyboardKit Pro settings screens. See the <doc:App-Article> article for more information.    
 
-The separation between contexts and settings, is with the intention that a context should provide runtime-specific information, while a settings type should provide auto-persisted properties that can be set by code or be bound to a settings form.
+The various context classes have settings properties, like ``KeyboardContext`` ``KeyboardContext/settings-swift.property``, that are used as the main settings values. The distinction between contexts and settings, is that a context provides contextual information, while settings provide persisted ones.
 
 
 ## Settings Observation
@@ -56,67 +96,3 @@ if let url = URL.systemSettings {
 ```
 
 If your app or keyboard randomly navigates to the Settings root instead of your app, try adding an empty Settings Bundle to your app.
-
-
-
-## Available Settings
-
-KeyboardKit currently provides the following settings, some of which are derived from other values:
-
-
-### Keyboard
-
-``KeyboardSettings`` has the following settings:
-
-* ``KeyboardSettings/addedLocales`` - A list of activated or user-selected locales.
-* ``KeyboardSettings/inputToolbarType-swift.property`` - The input toolbar type to use.
-* ``KeyboardSettings/isAutocapitalizationEnabled`` - Whether auto-capitalization is enabled.
-* ``KeyboardSettings/isKeyboardAutoCollapseEnabled`` - Whether to auto-collapse the keyboard when an external keyboard is connected.
-* ``KeyboardSettings/keyboardDockEdge`` - The keyboard dock edge to use, if any.
-* ``KeyboardSettings/keyboardLayoutTypeIdentifier`` - The current layout type identifier, set by ``KeyboardContext/keyboardLayoutType``.
-* ``KeyboardSettings/localeIdentifier`` - The current locale identifier, set by ``KeyboardContext/locale``. 
-* ``KeyboardSettings/spaceLongPressBehavior`` - The long press behavior to use for the space key.
-* ``KeyboardSettings/spaceTrailingAction`` - An optional trailing action to add to the space key, if any.
-
-Most of the keyboard settings can also be managed from the ``KeyboardApp/SettingsScreen``, and the locale settings from the ``KeyboardApp/LocaleScreen``.
-
-### Autocomplete
-
-``AutocompleteSettings`` has the following settings:
-
-* ``AutocompleteSettings/isAutocompleteEnabled`` - Whether autocomplete is enabled. 
-* ``AutocompleteSettings/isAutocorrectEnabled`` - Whether autocorrect is enabled. 
-* ``AutocompleteSettings/isAutolearnEnabled`` - Whether to autolearn unknown suggestions. 
-* ``AutocompleteSettings/isAutoIgnoreEnabled`` - Whether to automatically ignore adjusted suggestions. 
-* ``AutocompleteSettings/isNextCharacterPredictionEnabled`` - Whether next character prediction is enabled. 
-* ``AutocompleteSettings/isNextWordPredictionEnabled`` - Whether next word prediction is enabled. 
-* ``AutocompleteSettings/nextWordPredictionRequestApiKey`` - A custom, user-specified next word predicton request API key. 
-* ``AutocompleteSettings/nextWordPredictionRequestType`` - A custom, user-specified next word predicton request type. 
-* ``AutocompleteSettings/suggestionsDisplayCount`` - The number of autocomplete suggestions to display.
-
-Most of these settings can also be managed from the ``KeyboardApp/SettingsScreen``.
-
-### Dictation
-
-``DictationSettings`` has the following settings:
-
-* ``DictationSettings/silenceLimit`` - The max number of seconds of silence after which dictation ends.
-
-This setting can also be managed from the ``KeyboardApp/SettingsScreen``.
-
-### Feedback
-
-``KeyboardFeedbackSettings`` has the following settings:
-
-* ``KeyboardFeedbackSettings/isAudioFeedbackEnabled`` - Whether audio feedback is enabled.
-* ``KeyboardFeedbackSettings/isHapticFeedbackEnabled`` - Whether Haptic feedback is enabled.
-
-These settings can also be managed from the ``KeyboardApp/SettingsScreen``.
-
-### Themes
-
-``KeyboardThemeSettings`` has the following settings:
-
-* ``KeyboardThemeSettings/theme`` - The currently selected theme, if any.
-
-This setting can also be managed from the ``KeyboardApp/ThemeScreen``.

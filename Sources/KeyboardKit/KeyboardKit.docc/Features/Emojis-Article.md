@@ -13,9 +13,9 @@ This article describes the KeyboardKit emoji engine.
 
 KeyboardKit has an ``Emoji`` struct that represents an plain emoji value, and defines ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.
 
-👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that's automatically injected into ``KeyboardView`` when a valid license is registered. Information about Pro features can be found further down.
+👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that's used by ``KeyboardView`` when a valid license is registered. It also unlocks an ``Emoji``.``Emoji/ColonSearch`` engine that performs emoji autocomplete.  Information about Pro features can be found further down.
 
-> Important: The ``EmojiKeyboard`` uses high-resolution emojis on iPad, which can consume a lot of memory when scrolling through the emoji categories. Apply an ``Emoji/KeyboardStyle/optimized(for:)`` style with ``SwiftUICore/View/emojiKeyboardStyle(_:)`` if your keyboard uses memory-intense tools. See the <doc:Developer-Memory-Management> article for more information.
+> Important: The ``EmojiKeyboard`` uses high-resolution emojis on iPad, which consumes a lot of memory when scrolling through categories. Apply an ``Emoji/KeyboardStyle/optimized(for:)`` style with ``SwiftUICore/View/emojiKeyboardStyle(_:)`` if your keyboard uses memory-intense tools. Check out the <doc:Developer-Memory-Management> article for more information about memory management in keyboard extensions.
 
 
 
@@ -121,9 +121,17 @@ There are String & Character extensions that can be used to detect and handle em
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that is automatically added to the ``KeyboardView`` when a valid license is registered.
+[KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that is automatically added to the ``KeyboardView`` when a Gold license is registered.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+
+### Colon Search
+
+KeyboardKit unlocks an ``Emoji``.``Emoji/ColonSearch`` search engine that makes it possible to search for emojis by starting the current word with a colon. This engine can be used by the local autocomplete service, to add emoji suggestions to the search result.
+
+
+### Views
 
 @TabNavigator {
     

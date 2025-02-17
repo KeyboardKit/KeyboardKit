@@ -100,19 +100,25 @@ public extension Autocomplete {
     /// that can be returned by an ``AutocompleteService``.
     enum SuggestionType: String, CaseIterable, KeyboardModel {
 
-        /// These suggestions are only applied when the user
-        /// taps them.
+        /// A regular suggestion is applied when it's tapped.
         ///
         /// Native keyboards display all regular suggestions
         /// as plain text, but you can customize this.
         case regular
-
-        /// These suggestions are automatically applied when
-        /// the user taps a word or sentence delimiter.
+        
+        /// An autocorrect suggestion is applied when a user
+        /// types a word or sentence delimiter.
         ///
         /// Native keyboards display autocorrect suggestions
         /// with a rounded white background.
         case autocorrect
+        
+        /// An emoji suggestion can be grouped into a single
+        /// slot in the autocomplete toolbar.
+        ///
+        /// Native keyboards display these emoji suggestions
+        /// like reular suggestions, but in a tighter space.
+        case emoji
 
         /// These suggestions can be used when the currently
         /// typed word is unknown, to automatically learn it.

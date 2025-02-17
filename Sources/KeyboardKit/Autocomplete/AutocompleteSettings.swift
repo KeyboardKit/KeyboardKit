@@ -46,10 +46,14 @@ public struct AutocompleteSettings {
     /// Whether to autolearn unknown suggestions, by default `false`.
     @AppStorage("\(settingsPrefix)isAutolearnEnabled", store: .keyboardSettings)
     public var isAutolearnEnabled = false
-
+    
     /// Whether to automatically ignore adjusted suggestions, by default `true`.
     @AppStorage("\(settingsPrefix)isAutoIgnoreEnabled", store: .keyboardSettings)
     public var isAutoIgnoreEnabled = true
+    
+    /// Whether emoji colon search is enabled, by default `false`.
+    @AppStorage("\(settingsPrefix)isEmojiColonSearchEnabled", store: .keyboardSettings)
+    public var isEmojiColonSearchEnabled = false
 
     /// Whether next character prediction is enabled, by default `true`.
     @AppStorage("\(settingsPrefix)isNextCharacterPredictionEnabled", store: .keyboardSettings)

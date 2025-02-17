@@ -4,16 +4,16 @@
 
 <p align="center">
     <img src="https://img.shields.io/github/v/release/KeyboardKit/KeyboardKit?color=forestgreen&sort=semver" alt="Version" />
+    <a href="https://keyboardkit.github.io/KeyboardKit"><img src="https://img.shields.io/badge/documentation-read-blue.svg" alt="Documentation" /></a>
     <img src="https://img.shields.io/badge/swift-5.9-orange.svg" alt="Swift 5.9" />
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
-    <a href="https://keyboardkit.github.io/KeyboardKit"><img src="https://img.shields.io/badge/docs-9.1-blue.svg" alt="Documentation" /></a>
 </p>
 
 
 
-## About KeyboardKit
+# KeyboardKit
 
-KeyboardKit lets you create amazing [custom keyboards][About] with a few lines of code, using Swift & SwiftUI.
+KeyboardKit lets you create amazing [custom keyboard extensions][About] with a few lines of code, using Swift & SwiftUI.
 
 <p align="center">
     <img src ="Resources/Demo.gif" width=450 />
