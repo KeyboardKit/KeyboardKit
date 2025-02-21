@@ -30,11 +30,8 @@ public extension KeyboardCallout {
             self._keyboardContext = .init(wrappedValue: keyboardContext)
         }
 
-        @ObservedObject
-        private var calloutContext: KeyboardCalloutContext
-
-        @ObservedObject
-        private var keyboardContext: KeyboardContext
+        @ObservedObject private var calloutContext: KeyboardCalloutContext
+        @ObservedObject private var keyboardContext: KeyboardContext
 
         @Environment(\.emojiKeyboardStyle)
         private var emojiStyle
@@ -232,17 +229,24 @@ private extension KeyboardAction {
     return ZStack {
         Color.red
         VStack(spacing: 100) {
-            previewGroup(
-                view: Color.blue.frame(width: 40, height: 50),
-                context: calloutContext1,
-                alignment: .leading
-            )
-            previewGroup(
-                view: Color.blue.frame(width: 40, height: 50),
-                context: calloutContext2,
-                alignment: .trailing
-            )
+            HStack {
+                previewGroup(
+                    view: Color.blue.frame(width: 40, height: 50),
+                    context: calloutContext1,
+                    alignment: .leading
+                )
+                Spacer()
+            }
+            HStack {
+                Spacer()
+                previewGroup(
+                    view: Color.blue.frame(width: 40, height: 50),
+                    context: calloutContext2,
+                    alignment: .trailing
+                )
+            }
         }
+        .padding(20)
     }
     .keyboardCalloutStyle(.init(
         // callout: .preview2,
