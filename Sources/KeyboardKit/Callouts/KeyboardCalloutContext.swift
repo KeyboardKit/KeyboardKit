@@ -119,24 +119,23 @@ public extension KeyboardCalloutContext {
         guard !secondaryActions.isEmpty else { return }
         triggerSelectionChangeFeedback()
     }
-
-    /// Update the secondary action selection.
-    func updateSecondaryActionsSelection(
-        with dragTranslation: CGSize?
-    ) {
-        guard let value = dragTranslation, buttonFrame != .zero else { return }
-        if shouldResetSecondaryActions(for: value) { return resetSecondaryActions() }
-        guard shouldUpdateSecondaryActionSelection(for: value) else { return }
-        let translation = value.width
-        let maxSize = KeyboardCallout.CalloutStyle.standard.actionItemMaxSize
-        let buttonSize = buttonFrame.size.limited(to: maxSize)
-        let indexWidth = 0.9 * buttonSize.width
-        let offset = Int(abs(translation) / indexWidth)
+    
+    /// Update the secondary action selection with a drag gesture value.
+    func updateSecondaryActionsSelection(with value: DragGesture.Value) {
+        guard buttonFrame != .zero else { return }
+        if shouldResetSecondaryActions(for: value.translation) { return resetSecondaryActions() }
+        guard shouldUpdateSecondaryActionSelection(for: value.translation) else { return }
+        let standardStyle = KeyboardCallout.CalloutStyle.standard
+        let maxButtonSize = standardStyle.actionItemMaxSize
+        let buttonSize = buttonFrame.size.limited(to: maxButtonSize)
+        guard buttonSize.width > 1 else { return }
+        let indexWidth = max(20, 0.9 * buttonSize.width)
+        let offset = isLeading ? Int(value.location.x / indexWidth) : Int(abs(value.location.x - indexWidth) / indexWidth)
         let index = isLeading ? offset : secondaryActions.count - offset - 1
-        let currentIndex = secondaryActionsIndex
+        let currentIndex = self.secondaryActionsIndex
         let newIndex = isSecondaryActionIndexValid(index) ? index : secondaryActionStartIndex
         if currentIndex != newIndex { triggerSelectionChangeFeedback() }
-        secondaryActionsIndex = newIndex
+        self.secondaryActionsIndex = newIndex
     }
 }
 

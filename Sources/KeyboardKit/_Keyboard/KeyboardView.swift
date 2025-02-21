@@ -485,7 +485,7 @@ private extension KeyboardView {
             let context = controller.state.keyboardContext
             context.locale = .english
             context.settings.addedLocales = [.english, .swedish, .persian].map { .init($0) } 
-            context.settings.keyboardDockEdge = .leading
+            context.settings.keyboardDockEdge = .none
 //            context.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
             
             controller.state.autocompleteContext.suggestions = [

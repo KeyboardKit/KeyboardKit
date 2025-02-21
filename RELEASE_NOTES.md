@@ -5,6 +5,7 @@ KeyboardKit tries to honor semantic versioning:
 * Deprecations can happen at any time.
 * Deprecations should only be removed in `major` updates.
 * Breaking should only occur in `major` updates, but *can* occur in `minor` and `patch` updates.
+* Breaking should only occur in `major` updates, but *can* occur in `minor` and `patch` updates.
 
 These release notes cover the current major version. See older versions for older release notes. 
 
@@ -24,6 +25,14 @@ These release notes cover the current major version. See older versions for olde
 * `Autocomplete.LocalAutocompleteService` uses emoji colon search when enabled.
 * `Emoji.ColonSearch` is a new class for searching emojis with a leading colon.
 * `KeyboardSettings` has a new functions to handle added locales and layout types.
+
+### 🐛 Bug Fixes
+
+* `KeyboardCalloutContext` now properly handles drag gestures on RTL devices.
+
+### 🚨 Breaking Changes
+
+* `KeyboardCalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
 
 
 
