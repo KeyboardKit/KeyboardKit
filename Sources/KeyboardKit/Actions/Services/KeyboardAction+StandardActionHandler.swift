@@ -363,9 +363,12 @@ extension KeyboardAction {
             return nil
         }
 
-        /// Try to handle a replacement action before a certain action gesture.
+        /// Try to handle a replacement action for a certain
+        /// action, which then replaces this original action.
         ///
-        /// The caller shouldn't handle the action when this returns `true`.
+        /// The caller shouldn't handle the action when this
+        /// returns `true`, since this means that the action
+        /// has been replaced.
         open func tryHandleReplacementAction(
             before gesture: Keyboard.Gesture,
             on action: KeyboardAction
