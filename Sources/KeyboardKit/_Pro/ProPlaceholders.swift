@@ -12,6 +12,9 @@ import SwiftUI
 import UIKit
 #endif
 
+
+// MARK: - Errors
+
 enum ProPlaceholderError: LocalizedError, View {
     
     case proPlaceholder
@@ -29,11 +32,8 @@ enum ProPlaceholderError: LocalizedError, View {
     }
 }
 
-/// 👑 This is unlocked by KeyboardKit Pro.
-public struct License {}
 
-
-// MARK: - Essential
+// MARK: - Keyboard
 
 public extension Keyboard {
 
@@ -179,7 +179,7 @@ public extension KeyboardApp {
 }
 
 
-// MARK: - KeyboardCallout
+// MARK: - Callouts
 
 public extension KeyboardCallout {
 
@@ -319,14 +319,6 @@ public extension Image {
     }
 }
 
-public extension Locale {
-    
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    var supportedLayoutTypes: [Keyboard.LayoutType] {
-        get throws { [] }
-    }
-}
-
 
 // MARK: - Host
 
@@ -448,6 +440,23 @@ public extension KeyboardLayoutService where Self == KeyboardLayout.ProLayoutSer
         for locale: Locale
     ) throws -> Self {
         throw ProPlaceholderError.proPlaceholder
+    }
+}
+
+
+// MARK: - Licenses
+
+/// 👑 This is unlocked by KeyboardKit Pro.
+public struct License {}
+
+
+// MARK: - Localization
+
+public extension Locale {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    var supportedLayoutTypes: [Keyboard.LayoutType] {
+        get throws { [] }
     }
 }
 
