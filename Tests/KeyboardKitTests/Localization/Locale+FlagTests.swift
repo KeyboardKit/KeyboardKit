@@ -85,6 +85,7 @@ class Locale_FlagTests: XCTestCase {
             .turkish: "🇹🇷",
             .ukrainian: "🇺🇦",
             .uzbek: "🇺🇿",
+            .vietnamese: "🇻🇳",
             .welsh: "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
         ]
 

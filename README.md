@@ -126,7 +126,7 @@ For more information, see the [getting started guide][Getting-Started] and [esse
 
 ## Localization
 
-KeyboardKit supports [71 keyboard-specific locales][Localization]:
+KeyboardKit supports [72 locales][Localization]:
 
 🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🏳️ 🇭🇷  <br />
 🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴  <br />
@@ -135,7 +135,7 @@ KeyboardKit supports [71 keyboard-specific locales][Localization]:
 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️  <br />
 🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸  <br />
 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿  <br />
-🏴󠁧󠁢󠁷󠁬󠁳󠁿  <br />
+🇻🇳 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
 
 KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unlocks localized keyboards, layouts, callouts and behaviors for all supported locales.
 
@@ -147,17 +147,17 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 
 ### Open-Source
 
-* 🌱 [Essentials][Essentials] - Essential keyboard utilities, models, services & views.
+* 🌱 [Essentials][Essentials] - Essential models, services, utilities & views.
 * ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - A native-looking, customizable keyboard.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
 * 📱 [App][App] - Set up your app, keyboard, sync settings, etc.
 * 🗯 [Callouts][Callouts] - Show input & secondary action callouts.
-* 🖥️ [Device][Device] - Identify device type, device capabilities, etc.
+* 🖥️ [Device][Device] - Identify device type, capabilities, etc.
 * 😀 [Emojis][Emojis] - Emojis, categories, versions, skin tones, etc.
 * 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback.
 * 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
 * 🔣 [Layout][Layout] - Define and customize dynamic keyboard layouts.
-* 🌐 [Localization][Localization] - Localize your keyboard in **71 locales**.
+* 🌐 [Localization][Localization] - Additional locale-related utilities.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
 * 👁 [Previews][Previews] - Extensive SwiftUI preview support.
 * 📄 [Proxy][Proxy] - Extend the text document proxy with more capabilities.
@@ -175,10 +175,10 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * 🗯 [Callouts][Callouts] - Localized callout actions for all supported locales.
 * 🎤 [Dictation][Dictation] - Dictate text from the keyboard.
 * 😀 [Emojis][Emojis] - A powerful emoji keyboard, search, etc.
-* ⌨️ [External][External] - Auto-detect if an external keyboard is connected. 
+* ⌨️ [External][External] - Detect if an external keyboard is connected. 
 * 🏠 [Host][Host] - Identify and open specific host applications.
 * 🔣 [Layout][Layout] - More input sets and layouts for all supported locales.
-* 🌐 [Localization][Localization] - Services & views for all supported locales.
+* 🌐 [Localization][Localization] - Localize your keyboard in **72 locales**.
 * 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
 * 📄 [Proxy][Proxy] - Allow `UITextDocumentProxy` to read the full document.
 * 📝 [Text][Text-Input] - Allow users to type within the keyboard.

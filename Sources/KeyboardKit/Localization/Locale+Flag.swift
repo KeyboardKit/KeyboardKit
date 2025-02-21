@@ -95,6 +95,7 @@ public extension Locale {
         case .ukrainian: "🇺🇦"
         case .uzbek: "🇺🇿"
             
+        case .vietnamese: "🇻🇳"
         case .welsh: "🏴󠁧󠁢󠁷󠁬󠁳󠁿"
 
         default: "🏳️"

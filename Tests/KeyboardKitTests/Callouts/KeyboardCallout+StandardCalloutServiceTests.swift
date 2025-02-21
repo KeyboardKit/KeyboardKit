@@ -62,7 +62,7 @@ class KeyboardCallout_StandardCalloutServiceTests: XCTestCase {
             localizedServices: [TestService(localeKey: "en")]
         )
         let nonEmptyActions = service.calloutActions(for: .character("a"))
-        let emptyActions = service.calloutActions(for: .character("k"))
+        let emptyActions = service.calloutActions(for: .character("å"))
         XCTAssertNotEqual(nonEmptyActions, [])
         XCTAssertEqual(emptyActions, [])
     }

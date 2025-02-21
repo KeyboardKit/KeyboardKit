@@ -18,18 +18,19 @@ These release notes cover the current major version. See older versions for olde
 * `Autocomplete.ServiceResult` has a new `emojiCompletions` property.
 * `Autocomplete.Settings` has a new `isEmojiColonSearchEnabled` property.
 * `AutocompleteContext` has a new, observable `emojiCompletions` property.
+* `Keyboard.LayoutType` has new enum cases for Vietnamese Telex layout types.
 
 ### 💡 Adjustment
 
-* `KeyboardCallout.ActionCallout` now shrinks actions on iPhone when needed.
-* `KeyboardCalloutContext` makes it easier to swipe to select callout actions.
+* `KeyboardCallout.ActionCallout` now shrinks actions on iPhone if needed.
+* `KeyboardCalloutContext` makes it easier to swipe select callout actions.
 
 ### 👑 Pro
 
 * `App.KeyboardSettingsScreen` has a new toggle to enable emoji colon search.
-* `Autocomplete.LocalAutocompleteService` uses emoji colon search when enabled.
-* `Emoji.ColonSearch` is a new class for searching emojis with a leading colon.
-* `KeyboardSettings` has a new functions to handle added locales and layout types.
+* `Autocomplete.LocalAutocompleteService` uses emoji colon search if enabled.
+* `Emoji.ColonSearch` is a new class for searching emojis with a colon prefix.
+* `KeyboardSettings` has new functions for its added locales and layout types.
 
 ### 🐛 Bug Fixes
 
@@ -42,6 +43,7 @@ These release notes cover the current major version. See older versions for olde
 ### 🚨 Breaking Changes
 
 * `KeyboardCalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
+
 
 
 ## 9.2

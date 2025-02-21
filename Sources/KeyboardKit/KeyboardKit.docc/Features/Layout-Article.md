@@ -79,6 +79,33 @@ See ``KeyboardLayout`` and the nested layout ``KeyboardLayout/Item`` type in the
 
 KeyboardKit extends ``Foundation/Locale`` with a list of supported ``Keyboard/LayoutType``s, and makes the ``KeyboardApp/LocaleScreen`` add a layout type picker to all ``KeyboardSettings/addedLocales`` that support multiple layouts. For instance, English keyboards support ``InputSet/qwerty``, ``InputSet/azerty``, ``InputSet/qwertz``, and ``InputSet/colemak``.
 
+* Catalan: QWERY - Catalan, QWERTY, AZERTY, QWERTZ, Colemak
+* Croatian: QWERTZ, QWERTY, AZERTY, Colemak
+* Dutch: QWERTY, AZERTY, QWERTZ, Colemak
+* Dutch_belgium: AZERTY, QWERTY, QWERTZ, Colemak
+* English: QWERTY, AZERTY, QWERTZ, Colemak
+* English_australia: QWERTY, AZERTY, QWERTZ, Colemak
+* English_canada: QWERTY, AZERTY, QWERTZ, Colemak
+* English_gb: QWERTY, AZERTY, QWERTZ, Colemak
+* English_us: QWERTY, AZERTY, QWERTZ, Colemak
+* Estonian: QWERTY, QWERTZ, AZERTY, .colemak
+* Hungarian: QWERTZ, QWERTY, AZERTY, Colemak
+* Indonesian: QWERTY, QWERTZ, AZERTY, Colemak
+* Irish: QWERTY, QWERTZ, AZERTY, Colemak
+* Italian: QWERTY, AZERTY, QWERTZ, Colemak
+* Latvian: QWERTY, QWERTZ, AZERTY, Colemak
+* Malay: QWERTY, QWERTZ, AZERTY, Colemak
+* Polish: QWERTY, QWERTZ, AZERTY, Colemak
+* Portuguese: QWERTY, AZERTY, QWERTZ, Colemak
+* Portuguese_brazil: QWERTY, AZERTY, QWERTZ, Colemak
+* Romanian: QWERTY, QWERTZ, AZERTY, Colemak
+* Serbian_latin: QWERTY, QWERTZ, AZERTY, Colemak
+* Slovenian: QWERTZ, QWERTY, AZERTY, Colemak
+* Swahili: QWERTY, AZERTY, QWERTZ, Colemak
+* Uzbek: QWERTY, AZERTY, QWERTZ, Colemak
+* Vietnamese TELEX/VIQR/VNI: QWERTY, AZERTY, QWERTZ
+* Welsh: QWERTY, AZERTY, QWERTZ, Colemak
+
 All ``KeyboardLayout/ProLayoutService`` implementations use the ``KeyboardContext/keyboardLayoutType`` to adjust their alphabetic input set for the current type.
 
 

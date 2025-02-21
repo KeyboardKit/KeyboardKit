@@ -1,0 +1,40 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2021-02-15.
+ Copyright © 2021-2025 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "en";
+
+"capsLock" = "khóa chữ hoa";
+"continue" = "tiếp tục";
+"done" = "xong";
+"emergencyCall" = "Cuộc Gọi Khẩn Cấp";
+"go" = "đi";
+"join" = "kết nối";
+"next" = "tiếp";
+"ok" = "OK";
+"return" = "nhập";
+"route" = "đ.tuyến";
+"search" = "tìm";
+"searchEmoji" = "Tìm Emoji";
+"send" = "gửi";
+"space" = "dấu cách";
+"switcherAlphabetic" = "ABC";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
+
+"EmojiCategory.smileysAndPeople" = "Mặt Cười & Người";
+"EmojiCategory.animalsAndNature" = "Động Vật & Thiên Nhiên";
+"EmojiCategory.foodAndDrink" = "Đồ Ăn & Thức Uống";
+"EmojiCategory.activity" = "Hoạt Động";
+"EmojiCategory.travelAndPlaces" = "Du Lịch & Địa Điểm";
+"EmojiCategory.objects" = "Đồ Vật";
+"EmojiCategory.symbols" = "Ký Hiệu";
+"EmojiCategory.flags" = "Cờ";
+
+"EmojiCategory.favorites" = "Yêu Thích";
+"EmojiCategory.frequent" = "Thường Dùng";
+"EmojiCategory.recent" = "Gần Đây";

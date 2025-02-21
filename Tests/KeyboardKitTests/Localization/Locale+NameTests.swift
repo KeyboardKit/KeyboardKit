@@ -85,6 +85,7 @@ class Locale_NameTests: XCTestCase {
             .turkish: "Türkçe",
             .ukrainian: "українська",
             .uzbek: "o‘zbek",
+            .vietnamese: "Tiếng Việt",
             .welsh: "Cymraeg"
         ]
 
@@ -103,6 +104,8 @@ class Locale_NameTests: XCTestCase {
         XCTAssertEqual(localizedName(of: .english, in: .swedish), "engelska")
         XCTAssertEqual(localizedName(of: .swedish, in: .english), "Swedish")
         XCTAssertEqual(localizedName(of: .swedish, in: .swedish), "svenska")
+        XCTAssertEqual(localizedName(of: .vietnamese, in: .english), "Vietnamese")
+        XCTAssertEqual(localizedName(of: .vietnamese, in: .swedish), "vietnamesiska")
     }
 
     func testKeyboardKitNameIsValidForAllSupportedLocales() {
@@ -177,6 +180,7 @@ class Locale_NameTests: XCTestCase {
             .turkish: "turkish",
             .ukrainian: "ukrainian",
             .uzbek: "uzbek",
+            .vietnamese: "vietnamese",
             .welsh: "welsh"
         ]
 

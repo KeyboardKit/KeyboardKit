@@ -35,7 +35,7 @@ The <doc:Getting-Started-Article> guide helps you get started with KeyboardKit, 
 
 ## Supported Locales
 
-KeyboardKit supports **71** keyboard-specific ``Foundation/Locale``s:
+KeyboardKit supports **72** ``Foundation/Locale``s:
 
 🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🏳️ 🇭🇷  <br />
 🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴  <br />
@@ -44,7 +44,7 @@ KeyboardKit supports **71** keyboard-specific ``Foundation/Locale``s:
 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️  <br />
 🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸  <br />
 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿  <br />
-🏴󠁧󠁢󠁷󠁬󠁳󠁿  <br />
+🇻🇳 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
 
 [KeyboardKit Pro][Pro] unlocks localized callouts, input sets, layouts & services for all supported locales, as shown in the <doc:Localization-Article> article.
 
@@ -56,18 +56,17 @@ KeyboardKit helps you build amazing keyboard extensions, and provides you with a
 
 ### Open-Source
 
-* 🌱 <doc:Essentials-Article> - Essential models, features & views.
-* ⌨️ <doc:Essentials-KeyboardView> - Render a native-looking, customizable keyboard.
+* 🌱 <doc:Essentials-Article> - Essential models, services, utilities & views.
+* ⌨️ <doc:Essentials-KeyboardView> - A native-looking, customizable keyboard.
 * 💥 <doc:Actions-Article> - Trigger & handle keyboard-related actions.
-* 📱 <doc:App-Article> - Define and set up your app, settings, etc.
+* 📱 <doc:App-Article> - Set up your app, keyboard, sync settings, etc.
 * 🗯 <doc:Callouts-Article> - Show input & secondary action callouts.
-* 🖥️ <doc:Device-Article> - Identify device types, capabilities, etc.
+* 🖥️ <doc:Device-Article> - Identify device type, capabilities, etc.
 * 😀 <doc:Emojis-Article> - Emojis, categories, versions, skin tones, etc.
-* 🔉 <doc:Feedback-Article> - Trigger audio & haptic feedback with ease.
+* 🔉 <doc:Feedback-Article> - Trigger audio & haptic feedback.
 * 👆 <doc:Gestures-Article> - Handle a rich set of gestures on any key.
-* 🏠 <doc:Host-Article> - Identify the host application.
 * 🔣 <doc:Layout-Article> - Define and customize dynamic keyboard layouts.
-* 🌐 <doc:Localization-Article> - Localize your keyboard in **71 locales**.
+* 🌐 <doc:Localization-Article> - Additional locale-related utilities.
 * 🗺️ <doc:Navigation-Article> - Open urls and other apps from the keyboard.
 * 👁 <doc:Previews-Article> - Extensive SwiftUI preview support.
 * 📄 <doc:Proxy-Article> - Extend the text document proxy with more capabilities.
@@ -78,21 +77,21 @@ KeyboardKit helps you build amazing keyboard extensions, and provides you with a
 
 ### KeyboardKit Pro
 
-* 🌱 <doc:Essentials-Article> - More essential tools, keyboard previews, etc.
+* 🌱 <doc:Essentials-Article> - More essential tools, previews, toolbars, etc.
 * ⌨️ <doc:Essentials-KeyboardView> - Make the keyboard view do a lot more.
 * 🤖 <doc:AI-Article> - Features that are needed for AI.
 * 📱 <doc:App-Article> - App-specific screens & views.
-* 💡 <doc:Autocomplete-Article> - Perform autocomplete as the user types.
-* 🗯 <doc:Callouts-Article> - Localized callouts for all locales.
-* 🎤 <doc:Dictation-Article> - Trigger dictation from the keyboard.
-* 😀 <doc:Emojis-Article> - A powerful emoji keyboard.
+* 💡 <doc:Autocomplete-Article> - Local & remote autocomplete, next word prediction, etc.
+* 🗯 <doc:Callouts-Article> - Localized callout actions for all supported locales.
+* 🎤 <doc:Dictation-Article> - Dictate text from the keyboard.
+* 😀 <doc:Emojis-Article> - A powerful emoji keyboard, search, etc.
 * ⌨️ <doc:External-Keyboards-Article> - Detect if an external keyboard is connected.
 * 🏠 <doc:Host-Article> - Identify and open specific host applications.
-* 🔣 <doc:Layout-Article> - Localized input sets and layouts for all locales.
-* 🌐 <doc:Localization-Article> - Services & views for all locales.
+* 🔣 <doc:Layout-Article> - More input sets and layouts for all supported locales.
+* 🌐 <doc:Localization-Article> - Localize your keyboard in **72 locales**.
 * 👁 <doc:Previews-Article> - Keyboard & theme previews for in-app use.
-* 📄 <doc:Proxy-Article> - Let the text document proxy read the entire document.
-* 📝 <doc:Text-Input-Article> - Let users type within the keyboard.
+* 📄 <doc:Proxy-Article> - Allow `UITextDocumentProxy` to read the full document.
+* 📝 <doc:Text-Input-Article> - Allow users to type within the keyboard.
 * 🍭 <doc:Themes-Article> - A theme engine with many pre-defined themes.
 
 

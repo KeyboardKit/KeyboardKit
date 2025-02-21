@@ -31,7 +31,7 @@ public extension Locale {
             .portuguese_brazil, .romanian, .russian, .serbian, .serbian_latin,
             .slovak, .slovenian, .spanish, .spanish_latinAmerica, .spanish_mexico,
             .swedish, .swahili, .turkish, .ukrainian, .uzbek,
-            .welsh
+            .vietnamese, .welsh
         ]
     }
 }
@@ -116,6 +116,7 @@ public extension Locale {
     static var turkish: Locale { .withId("tr") }
     static var ukrainian: Locale { .withId("uk") }
     static var uzbek: Locale { .withId("uz") }
+    static var vietnamese: Locale { .withId("vi") }
     static var welsh: Locale { .withId("cy") }
 }
 
@@ -201,6 +202,7 @@ public extension Locale {
         case .ukrainian: "ukrainian"
         case .uzbek: "uzbek"
             
+        case .vietnamese: "vietnamese"
         case .welsh: "welsh"
             
         default: "-"
