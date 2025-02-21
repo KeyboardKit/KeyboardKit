@@ -18,8 +18,6 @@ import Foundation
 ///
 /// KeyboardKit Pro can be used to unlock localized services
 /// for all ``Foundation/Locale/keyboardKitSupported``.
-///
-/// See <doc:Callouts-Article> for more information.
 public protocol KeyboardCalloutService: AnyObject {
 
     /// Get callout actions for the provided keyboard action.

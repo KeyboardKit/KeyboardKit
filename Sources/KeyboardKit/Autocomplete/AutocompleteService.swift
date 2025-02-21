@@ -27,8 +27,6 @@ import Foundation
 /// KeyboardKit doesn't have a standard autocomplete service
 /// as it has for other services. Instead, a disabled one is
 /// used until you setup KeyboardKit Pro or a custom service.
-///
-/// See <doc:Autocomplete-Article> for more information.
 public protocol AutocompleteService: AnyObject {
 
     /// The currently applied locale.

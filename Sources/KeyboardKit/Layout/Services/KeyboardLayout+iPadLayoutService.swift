@@ -17,9 +17,7 @@ extension KeyboardLayout {
     /// then override any open parts that you want to change.
     ///
     /// KeyboardKit Pro unlocks an additional service for an
-    /// iPad Pro-specific klayout. 
-    ///
-    /// See <doc:Layout-Article> for more information.
+    /// iPad Pro-specific layout.
     open class iPadLayoutService: KeyboardLayout.BaseLayoutService {
 
         // MARK: - Overrides

@@ -22,8 +22,6 @@ extension KeyboardFeedback {
     ///
     /// This service can also be resolved with the shorthand
     /// ``KeyboardFeedbackService/disabled``.
-    ///
-    /// See <doc:Feedback-Article> for more information.
     open class DisabledFeedbackService: KeyboardFeedbackService {
 
         /// Create a disabled feedback service.

@@ -16,8 +16,6 @@ extension KeyboardLayout {
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
-    ///
-    /// See <doc:Layout-Article> for more information.
     open class BaseLayoutService: KeyboardLayoutService {
 
         /// Create a base layout service with input sets.

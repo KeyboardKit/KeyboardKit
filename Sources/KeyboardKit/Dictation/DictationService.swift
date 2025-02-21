@@ -20,8 +20,6 @@ import Foundation
 /// it has for other services. Instead, a disabled dictation
 /// service will be used until you setup KeyboardKit Pro, or
 /// register a custom service.
-///
-/// See <doc:Dictation-Article> for more information.
 public protocol DictationService: AnyObject {
 
     /// The current dictation authorization status.

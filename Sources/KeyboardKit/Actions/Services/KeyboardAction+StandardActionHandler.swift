@@ -70,19 +70,15 @@ extension KeyboardAction {
     ///
     /// The handler implements ``KeyboardBehavior`` by using
     /// the ``behavior`` by default, but it can override any
-    /// of these standard behaviors. For instance, the class
-    /// defines even more `should` functions for the various
-    /// corresponding `try` functions, which lets you easily
-    /// override both *if* something should be performed and
-    /// if so, *how* to perform it.
+    /// of the standard behaviors. It has `should` functions
+    /// and corresponding `try` functions to let is override
+    /// *if* something should be done, and if so, *how*.
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
     ///
     /// This service can also be resolved with the shorthand
     /// ``KeyboardActionHandler/standard(for:)``.
-    ///
-    /// See <doc:Actions-Article> for more information.
     open class StandardActionHandler: NSObject, KeyboardActionHandler, KeyboardBehavior {
 
         // MARK: - Initialization
@@ -92,20 +88,19 @@ extension KeyboardAction {
         ///
         /// - Parameters:
         ///   - controller: The keyboard controller to use.
-        public init(
+        public convenience init(
             controller: KeyboardController
         ) {
-            let state = controller.state
-            let services = controller.services
-            weak var weakController = controller
-            self.keyboardController = weakController
-            self.keyboardContext = state.keyboardContext
-            self.behavior = services.keyboardBehavior
-            self.autocompleteContext = state.autocompleteContext
-            self.autocompleteService = services.autocompleteService
-            self.feedbackContext = state.feedbackContext
-            self.feedbackService = services.feedbackService
-            self.spaceDragGestureHandler = services.spaceDragGestureHandler
+            self.init(
+                controller: controller,
+                keyboardContext: controller.state.keyboardContext,
+                keyboardBehavior: controller.services.keyboardBehavior,
+                autocompleteContext: controller.state.autocompleteContext,
+                autocompleteService: controller.services.autocompleteService,
+                feedbackContext: controller.state.feedbackContext,
+                feedbackService: controller.services.feedbackService,
+                spaceDragGestureHandler: controller.services.spaceDragGestureHandler
+            )
         }
 
         /// Create a standard keyboard action handler for an

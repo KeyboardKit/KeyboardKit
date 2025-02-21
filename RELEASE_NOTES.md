@@ -21,7 +21,9 @@ These release notes cover the current major version. See older versions for olde
 ### 👑 Pro
 
 * `App.KeyboardSettingsScreen` has a new toggle to enable emoji colon search.
+* `Autocomplete.LocalAutocompleteService` uses emoji colon search when enabled.
 * `Emoji.ColonSearch` is a new class for searching emojis with a leading colon.
+* `KeyboardSettings` has a new functions to handle added locales and layout types.
 
 
 

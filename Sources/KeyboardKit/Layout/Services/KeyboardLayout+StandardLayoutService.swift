@@ -43,9 +43,7 @@ extension KeyboardLayout {
     /// then override any open parts that you want to change.
     ///
     /// This service can also be resolved with the shorthand
-    /// ``KeyboardLayoutService/standard(baseService:localizedServices:)``. 
-    ///
-    /// See <doc:Layout-Article> for more information.
+    /// ``KeyboardLayoutService/standard(baseService:localizedServices:)``.
     open class StandardLayoutService: KeyboardLayoutService {
 
         /// Create a standard keyboard layout service.

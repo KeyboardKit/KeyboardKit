@@ -24,8 +24,6 @@ import Foundation
 /// behavior when using a ``StandardActionHandler``. Actions
 /// that don't have a standard behavior must be handled with
 /// a custom ``KeyboardActionHandler``.
-///
-/// See <doc:Actions-Article> for more information.
 public enum KeyboardAction: KeyboardModel {
 
     /// Deletes backwards when pressed, and repeats until released.

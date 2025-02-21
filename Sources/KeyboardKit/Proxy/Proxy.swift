@@ -11,7 +11,5 @@ import Foundation
 /// This namespace contains proxy-related types.
 ///
 /// For now, this namespace only has nested types when it is
-/// a part of a KeyboardKit Pro build.
-///
-/// See <doc:Proxy-Article> for more information.
+/// a part of a KeyboardKit Pro build. 
 public struct Proxy {}

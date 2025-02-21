@@ -18,8 +18,6 @@ extension KeyboardLayout {
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
-    ///
-    /// See <doc:Layout-Article> for more information.
     open class DeviceBasedLayoutService: KeyboardLayout.BaseLayoutService, LocalizedService {
 
         /// Create an device-based keyboard layout service.

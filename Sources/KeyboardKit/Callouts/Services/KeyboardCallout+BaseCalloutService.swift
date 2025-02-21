@@ -19,8 +19,6 @@ extension KeyboardCallout {
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
-    ///
-    /// See <doc:Callouts-Article> for more information.
     open class BaseCalloutService: KeyboardCalloutService {
 
         /// Create a base callout service.

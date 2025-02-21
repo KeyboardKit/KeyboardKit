@@ -35,8 +35,6 @@ import SwiftUI
 /// if you have a KeyboardKit Pro Gold license, since it has
 /// all locales enabled. The list is otherwise capped to the
 /// amount of locales that your license includes.
-///
-/// See <doc:App-Article> for more information.
 public struct KeyboardApp {
     
     /// Create a custom keyboard app value.

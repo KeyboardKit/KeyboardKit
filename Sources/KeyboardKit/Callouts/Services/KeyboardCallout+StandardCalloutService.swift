@@ -49,8 +49,6 @@ extension KeyboardCallout {
     ///
     /// This service can also be resolved with the shorthand
     /// ``KeyboardCalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``.
-    ///
-    /// See <doc:Callouts-Article> for more information.
     open class StandardCalloutService: KeyboardCalloutService {
 
         /// Create a standard callout service.

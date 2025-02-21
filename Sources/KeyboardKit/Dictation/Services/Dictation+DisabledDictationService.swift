@@ -33,8 +33,6 @@ public extension Dictation {
     ///
     /// This service can also be resolved with the shorthand
     /// ``DictationService/disabled``.
-    ///
-    /// See <doc:Dictation-Article> for more information.
     class DisabledDictationService: DictationService {
 
         public init(context: DictationContext) {

@@ -30,8 +30,6 @@ extension KeyboardFeedback {
     ///
     /// This service can also be resolved with the shorthand
     /// ``KeyboardFeedbackService/standard``.
-    ///
-    /// See <doc:Feedback-Article> for more information.
     open class StandardFeedbackService: KeyboardFeedbackService {
 
         /// Create a standard feedback service.

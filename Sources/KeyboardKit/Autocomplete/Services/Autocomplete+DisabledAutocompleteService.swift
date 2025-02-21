@@ -33,8 +33,6 @@ public extension Autocomplete {
     ///
     /// This service can also be resolved with the shorthand
     /// ``AutocompleteService/disabled(suggestions:)``.
-    ///
-    /// See <doc:Autocomplete-Article> for more information.
     class DisabledAutocompleteService: AutocompleteService {
 
         /// Create a disabled autocomplete service.

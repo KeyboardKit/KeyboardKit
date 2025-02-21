@@ -13,8 +13,6 @@ import SwiftUI
 /// You can use the ``text`` property to translate texts for
 /// the current locale and ``text(forLocale:)`` to translate
 /// text for a certain locale.
-///
-/// See <doc:Localization-Article> for more information.
 public enum KKL10n: String, CaseIterable, Identifiable {
 
     case `continue`

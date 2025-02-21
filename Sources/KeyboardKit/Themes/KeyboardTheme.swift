@@ -17,8 +17,6 @@ import SwiftUI
 ///
 /// KeyboardKit Pro unlocks a bunch of predefined themes and
 /// style variations, as well as a theme-based style service.
-///
-/// See <doc:Themes-Article> for more information.
 public struct KeyboardTheme: KeyboardThemeCopyable, Codable, Equatable, Identifiable, Sendable {
 
     /// This enum defines various button types.

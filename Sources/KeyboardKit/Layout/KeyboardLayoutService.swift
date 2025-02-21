@@ -18,8 +18,6 @@ import Foundation
 ///
 /// KeyboardKit Pro can be used to unlock localized services
 /// for all ``Foundation/Locale/keyboardKitSupported``.
-///
-/// See <doc:Layout-Article> for more information.
 public protocol KeyboardLayoutService: AnyObject {
 
     /// Get a keyboard layout for the provided context.

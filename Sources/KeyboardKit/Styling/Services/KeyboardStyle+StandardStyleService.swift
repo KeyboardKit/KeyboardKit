@@ -34,8 +34,6 @@ extension KeyboardStyle {
     ///
     /// You can inherit this class to get base functionality,
     /// then override any open parts that you want to change.
-    ///
-    /// See <doc:Styling-Article> for more information.
     open class StandardStyleService: KeyboardStyleService {
 
         /// Create a standard keyboard style service.

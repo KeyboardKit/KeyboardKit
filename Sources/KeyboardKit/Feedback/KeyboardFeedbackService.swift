@@ -15,8 +15,6 @@ import Foundation
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
 /// it at any time to customize the feedback behavior.
-///
-/// See <doc:Feedback-Article> for more information.
 public protocol KeyboardFeedbackService: AnyObject {
 
     /// Trigger the provided audio feedback.

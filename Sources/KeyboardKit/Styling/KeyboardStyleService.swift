@@ -26,8 +26,6 @@ import SwiftUI
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
 /// it at any time to customize the keyboard action behavior.
-///
-/// See <doc:Styling-Article> for more information.
 public protocol KeyboardStyleService: AnyObject {
 
     /// The background style to apply to the entire keyboard.

@@ -12,6 +12,4 @@ import Foundation
 ///
 /// The namespace doesn't contain protocols, nor any context
 /// or settings types that should be top-level types.
-///
-/// See <doc:Autocomplete-Article> for more information.
 public struct Autocomplete {}

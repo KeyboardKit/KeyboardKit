@@ -27,6 +27,4 @@ import Foundation
 ///
 /// These previews make it easier to use SwiftUI previews in
 /// a KeyboardKit-based app.
-///
-/// See <doc:Previews-Article> for more information.
 public struct KeyboardPreviews {}
