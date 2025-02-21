@@ -15,13 +15,14 @@ public extension KeyboardCalloutContext {
     }
 }
 
-public extension KeyboardCalloutService where Self == KeyboardPreviews.CalloutService {
+public extension KeyboardCalloutService where Self == KeyboardCallout.BaseCalloutService {
 
     static var preview: KeyboardCalloutService {
-        KeyboardPreviews.CalloutService()
+        KeyboardCallout.BaseCalloutService()
     }
 }
 
+@available(*, deprecated, message: "KeyboardCallout.BaseCalloutService is now used instead.")
 public extension KeyboardPreviews {
     
     class CalloutService: KeyboardCalloutService {
@@ -30,7 +31,8 @@ public extension KeyboardPreviews {
             switch action {
             case .character(let char):
                 switch char {
-                case "a": return "aàáâäæãåā".map { KeyboardAction.character(String($0)) }
+                case "a": return "aàáâäǎæãåāăą".map { KeyboardAction.character(String($0)) }
+                case "e": return "e".map { KeyboardAction.character(String($0)) }
                 default: return []
                 }
             default: break

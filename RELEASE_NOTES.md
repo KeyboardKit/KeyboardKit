@@ -19,6 +19,11 @@ These release notes cover the current major version. See older versions for olde
 * `Autocomplete.Settings` has a new `isEmojiColonSearchEnabled` property.
 * `AutocompleteContext` has a new, observable `emojiCompletions` property.
 
+### 💡 Adjustment
+
+* `KeyboardCallout.ActionCallout` now shrinks actions on iPhone when needed.
+* `KeyboardCalloutContext` makes it easier to swipe to select callout actions.
+
 ### 👑 Pro
 
 * `App.KeyboardSettingsScreen` has a new toggle to enable emoji colon search.
@@ -30,10 +35,13 @@ These release notes cover the current major version. See older versions for olde
 
 * `KeyboardCalloutContext` now properly handles drag gestures on RTL devices.
 
+### 🗑️ Deprecations
+
+* `KeyboardPreviews.CalloutService` is replaced by `KeyboardCallout.BaseCalloutService`.
+
 ### 🚨 Breaking Changes
 
 * `KeyboardCalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
-
 
 
 ## 9.2

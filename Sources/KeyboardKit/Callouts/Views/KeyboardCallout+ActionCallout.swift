@@ -160,9 +160,14 @@ private extension KeyboardCallout.ActionCallout {
 
     var itemSize: CGSize {
         let frameSize = buttonSize
-        let widthScale = (actions.count == 1) ? 1.2 : 1
-        let buttonSize = CGSize(width: frameSize.width * widthScale, height: frameSize.height)
+        let buttonSize = CGSize(width: frameSize.width * itemSizeWidthScale, height: frameSize.height)
         return buttonSize.limited(to: style.actionItemMaxSize)
+    }
+    
+    var itemSizeWidthScale: Double {
+        if actions.count == 1 { return 1.4 }
+        if useCompressedButtonSize { return calloutContext.compressedWidthScale }
+        return 1
     }
 
     var verticalOffset: CGFloat {
@@ -183,6 +188,10 @@ private extension KeyboardCallout.ActionCallout {
 
     var positionY: CGFloat {
         buttonFrame.origin.y - style.actionItemPadding.height
+    }
+    
+    var useCompressedButtonSize: Bool {
+        keyboardContext.deviceTypeForKeyboard == .phone && actions.count > 10
     }
 }
 
@@ -213,7 +222,7 @@ private extension KeyboardAction {
             GeometryReader { geo in
                 Color.clear.onAppear {
                     context.updateSecondaryActions(
-                        for: .character("a"),
+                        for: .character("o"),
                         in: geo,
                         alignment: alignment
                     )
@@ -231,7 +240,7 @@ private extension KeyboardAction {
         VStack(spacing: 100) {
             HStack {
                 previewGroup(
-                    view: Color.blue.frame(width: 40, height: 50),
+                    view: Color.blue.frame(width: 35, height: 50),
                     context: calloutContext1,
                     alignment: .leading
                 )
@@ -240,7 +249,7 @@ private extension KeyboardAction {
             HStack {
                 Spacer()
                 previewGroup(
-                    view: Color.blue.frame(width: 40, height: 50),
+                    view: Color.blue.frame(width: 35, height: 50),
                     context: calloutContext2,
                     alignment: .trailing
                 )

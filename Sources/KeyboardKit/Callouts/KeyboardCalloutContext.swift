@@ -27,6 +27,12 @@ public class KeyboardCalloutContext: ObservableObject {
 
     /// The callout service to use, if any.
     public var calloutService: KeyboardCalloutService?
+    
+    /// The scale to apply if the items must be compressed.
+    public var compressedWidthScale = 0.85
+    
+    /// The scale to apply to drag selection index changes.
+    public var dragIndexScaleFactor = 0.8
 
     /// The last time an input was updated.
     public var lastInputUpdate = Date()
@@ -129,7 +135,7 @@ public extension KeyboardCalloutContext {
         let maxButtonSize = standardStyle.actionItemMaxSize
         let buttonSize = buttonFrame.size.limited(to: maxButtonSize)
         guard buttonSize.width > 1 else { return }
-        let indexWidth = max(20, 0.9 * buttonSize.width)
+        let indexWidth = max(20, dragIndexScaleFactor * buttonSize.width)
         let offset = isLeading ? Int(value.location.x / indexWidth) : Int(abs(value.location.x - indexWidth) / indexWidth)
         let index = isLeading ? offset : secondaryActions.count - offset - 1
         let currentIndex = self.secondaryActionsIndex
