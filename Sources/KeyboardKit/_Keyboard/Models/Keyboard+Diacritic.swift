@@ -43,4 +43,33 @@ public extension Keyboard {
         /// All possible replacements.
         public let replacements: [String: String]
     }
+    
+    /// This type is used to determine how diacritics should
+    /// be applied to strings.
+    struct DiacriticResult {
+        
+        /// Whether the last character should be removed.
+        public let removeLast: Bool
+        
+        /// The character to insert after removing the last.
+        public let insert: String
+    }
+}
+
+public extension Keyboard.Diacritic {
+    
+    /// Determine how to apply the diacritic to a string.
+    func insertionResult(
+        whenAppendedTo string: String
+    ) -> Keyboard.DiacriticResult {
+        let last = string.last ?? Character("")
+        let isUpper = last.isUppercase
+        let key = String(last).lowercased()
+        if let match = replacements[key] {
+            let replacement = isUpper ? match.uppercased() : match
+            return .init(removeLast: true, insert: replacement)
+        } else {
+            return .init(removeLast: false, insert: char)
+        }
+    }
 }

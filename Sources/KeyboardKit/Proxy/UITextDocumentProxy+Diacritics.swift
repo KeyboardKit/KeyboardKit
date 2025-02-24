@@ -19,14 +19,12 @@ public extension UITextDocumentProxy {
     func insertDiacritic(
         _ diacritic: Keyboard.Diacritic
     ) {
-        let before = documentContextBeforeInput
-        guard let last = before?.suffix(1) else { return }
-        if let match = diacritic.replacements[String(last)] {
+        let before = documentContextBeforeInput ?? ""
+        let result = diacritic.insertionResult(whenAppendedTo: before)
+        if result.removeLast {
             deleteBackward()
-            insertText(match)
-        } else {
-            insertText(diacritic.char)
         }
+        insertText(result.insert)
     }
 }
 #endif
