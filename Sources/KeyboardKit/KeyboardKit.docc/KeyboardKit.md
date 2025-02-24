@@ -283,6 +283,7 @@ KeyboardKit is available under the MIT license.
 
 ### Text Input
 
+- ``KeyboardTextInput``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
 

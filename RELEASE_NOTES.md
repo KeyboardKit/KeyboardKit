@@ -18,19 +18,29 @@ These release notes cover the current major version. See older versions for olde
 * `Autocomplete.ServiceResult` has a new `emojiCompletions` property.
 * `Autocomplete.Settings` has a new `isEmojiColonSearchEnabled` property.
 * `AutocompleteContext` has a new, observable `emojiCompletions` property.
-* `Keyboard.LayoutType` has new enum cases for Vietnamese Telex layout types.
-
-### 💡 Adjustment
-
-* `KeyboardCallout.ActionCallout` now shrinks actions on iPhone if needed.
-* `KeyboardCalloutContext` makes it easier to swipe select callout actions.
+* `Keyboard.Diacritic` has a new `insertionResult(whenAppendedTo:)` function.
+* `Keyboard.LayoutType` has new enum cases for Vietnamese Telex, VIQR and VNI.
+* `KeyboardTextInput` is a new namespace for alternate Pro text input methods.
 
 ### 👑 Pro
 
 * `App.KeyboardSettingsScreen` has a new toggle to enable emoji colon search.
 * `Autocomplete.LocalAutocompleteService` uses emoji colon search if enabled.
 * `Emoji.ColonSearch` is a new class for searching emojis with a colon prefix.
+* `Keyboard.Diacritic` has new Vietnamese diacritics like the `vietnameseSac`.
 * `KeyboardSettings` has new functions for its added locales and layout types.
+* `KeyboardTextInput+Vietnamese` is a new namespace for Vietnamese text input.
+
+### 🇻🇳 Localization
+
+* This version adds support for typing in Vietnamese TELEX, VIQR, and VNI.
+* `Locale` has brand new support for and localized resources for Vietnamese.
+
+### 💡 Adjustment
+
+* `KeyboardCallout.ActionCallout` now shrinks actions on iPhone if needed.
+* `KeyboardCalloutContext` makes it easier to swipe select callout actions.
+* `UITextDocumentProxy.insertDiacritic` uses the new diacritic insertion result.
 
 ### 🐛 Bug Fixes
 

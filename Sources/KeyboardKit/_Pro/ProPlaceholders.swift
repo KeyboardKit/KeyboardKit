@@ -549,6 +549,18 @@ public extension KeyboardStyleService where Self == KeyboardStyle.ThemeBasedStyl
 
 // MARK: - Text Input
 
+public extension KeyboardTextInput {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct Vietnamese {}
+}
+
+public extension KeyboardTextInput.Vietnamese {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct InputEngine {}
+}
+
 /// 👑 This is unlocked by KeyboardKit Pro.
 public struct KeyboardTextField {}
 

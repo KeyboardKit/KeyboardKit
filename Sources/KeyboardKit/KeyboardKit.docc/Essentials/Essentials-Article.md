@@ -26,8 +26,28 @@ KeyboardKit uses namespaces nest types into logical groups, like ``Keyboard``, `
 
 Namespaces don't contain protocols, or important types that are meant to be exposed as top-level types. This includes some essential types, like ``KeyboardInputViewController``, ``KeyboardContext``, etc., and important views, like ``KeyboardView``.
 
-The ``Keyboard`` namespace contains many essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will list all types in this namespace, like ``Keyboard/KeyboardType``, ``Keyboard/KeyboardCase``, ``Keyboard/ReturnKeyType``, etc.
+The ``Keyboard`` namespace contains many essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will list all types in this namespace, like ``Keyboard/KeyboardType``, ``Keyboard/Button``, etc.
 
+
+
+## Models
+
+The ``Keyboard`` namespace contains many essential keyboard engine models that are used by many features, for instance these ones:
+
+* ``Keyboard/Accent``
+* ``Keyboard/AddedLocale``
+* ``Keyboard/AutocapitalizationType``
+* ``Keyboard/BackspaceRange``
+* ``Keyboard/Diacritic``
+* ``Keyboard/DockEdge``
+* ``Keyboard/Gesture``
+* ``Keyboard/InputToolbarDisplayMode``
+* ``Keyboard/KeyboardCase``
+* ``Keyboard/KeyboardType``
+* ``Keyboard/LayoutType``
+* ``Keyboard/ReturnKeyType``
+* ``Keyboard/SpaceDragSensitivity``
+* ``Keyboard/SpaceLongPressBehavior``
 
 
 ## Controller
