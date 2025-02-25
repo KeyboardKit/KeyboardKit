@@ -76,6 +76,19 @@ public extension KeyboardInputViewController {
 #endif
 
 
+// MARK: - Actions
+
+public extension KeyboardAction.StandardActionHandler {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func proReplacementActionWhenAppending(
+        char: String
+    ) -> KeyboardAction? {
+        return nil
+    }
+}
+    
+    
 // MARK: - Autocomplete
 
 public extension Autocomplete {
@@ -558,7 +571,12 @@ public extension KeyboardTextInput {
 public extension KeyboardTextInput.Vietnamese {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    struct InputEngine {}
+    struct InputEngine {
+        
+        public init() throws {
+            throw ProPlaceholderError.proPlaceholder
+        }
+    }
 }
 
 /// 👑 This is unlocked by KeyboardKit Pro.

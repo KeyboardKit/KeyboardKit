@@ -15,6 +15,8 @@ The ``KeyboardAction`` type is a central concept in KeyboardKit, where an action
 
 A ``KeyboardActionHandler`` can either handle a ``KeyboardAction`` in a standard way, or handle it based on a certain ``Keyboard/Gesture`` for more granular control when triggering actions programatically.
 
+👑 [KeyboardKit Pro][Pro] injects more capabilities into the action handler, to make it handle locale-specific input methods like Vietnamese.
+
 
 
 ## Namespace
@@ -43,6 +45,12 @@ A ``KeyboardActionHandler`` can handle actions, apply ``Autocomplete/Suggestion`
 For instance, to customize what happens when a user double-taps space, you can override ``KeyboardActionHandler/handle(_:on:)`` and check if the action is ``KeyboardAction/space`` and the gesture is ``Keyboard/Gesture/doubleTap``. If so, do your custom thing, else call super.
 
 KeyboardKit automatically creates an instance of ``KeyboardAction/StandardActionHandler`` and injects it into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down.
+
+
+
+## 👑 KeyboardKit Pro
+
+[KeyboardKit Pro][Pro] injects more capabilities into the ``KeyboardAction/StandardActionHandler``, to make it handle locale-specific input methods like Vietnamese TELEX, VIQR, and VNI, and handle other locale and pro-specific replacements.
 
 
 ---

@@ -25,7 +25,6 @@ These locales have been requested, and should be prioritized:
 * ko - South Korean
 * pa - Punjabi
 * zh - Simplified Chinese 
-* vi - Vietnamese (https://github.com/KeyboardKit/KeyboardKit/issues/744)
 
 
 ## May be fesible
@@ -297,7 +296,6 @@ Only implement locale variants upon request (most of these don't have native key
 * sr_Cyrl_ME Serbian (Cyrillic, Montenegro)
 * ses_ML Koyraboro Senni (Mali)
 * ak_GH Akan (Ghana)
-* vi_VN Vietnamese (Vietnam)
 * to_TO Tonga (Tonga)
 * my_MM Burmese (Myanmar [Burma])
 * ar_QA Arabic (Qatar)

@@ -40,7 +40,8 @@ extension KeyboardContext {
         for locale: Locale
     ) -> String? {
         #if os(iOS) || os(tvOS) || os(visionOS)
-        textDocumentProxy.documentContextBeforeInput?.preferredQuotationReplacement(whenAppending: text, for: locale)
+        textDocumentProxy.documentContextBeforeInput?
+            .preferredQuotationReplacement(whenAppending: text, for: locale)
         #else
         return nil
         #endif

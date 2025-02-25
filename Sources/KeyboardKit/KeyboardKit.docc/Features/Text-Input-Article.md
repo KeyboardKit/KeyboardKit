@@ -35,7 +35,7 @@ KeyboardKit Pro also unlocks additional ``KeyboardTextInput`` support, like ``Ke
 
 
 
-### 🇻🇳 Vietnamese
+### 🇻🇳 Vietnamese (BETA)
 
 KeyboardKit Pro unlocks support for ``KeyboardTextInput/Vietnamese`` TELEX, VIQR, and VNI. This support is based on Vietnamese-specific ``Keyboard/Diacritic`` values and locale-specific types in the Vietnamese namespace. 
 

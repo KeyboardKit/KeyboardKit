@@ -13,6 +13,8 @@ These release notes cover the current major version. See older versions for olde
 
 ## 9.3
 
+This version adds support for Vietnamese TELEX, VIQR, and VNI (Beta).
+
 ### ✨ Features
 
 * `Autocomplete.ServiceResult` has a new `emojiCompletions` property.

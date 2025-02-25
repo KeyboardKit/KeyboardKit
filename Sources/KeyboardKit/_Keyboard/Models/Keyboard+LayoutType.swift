@@ -26,46 +26,46 @@ public extension Keyboard {
     /// better name should at least be found.
     enum LayoutType: String, CaseIterable, Identifiable, KeyboardModel {
         
-        /// The AZERTY keyboard layout type.
+        /// A AZERTY keyboard layout type.
         case azerty
         
-        /// The Colemak keyboard layout type.
+        /// A Colemak keyboard layout type.
         case colemak
         
-        /// The QWERTY keyboard layout type.
+        /// A QWERTY keyboard layout type.
         case qwerty
         
-        /// The QWERTY keyboard in Catalan layout type.
+        /// A QWERTY keyboard in Catalan layout type.
         case qwerty_catalan
         
-        /// The QWERTZ keyboard layout type.
+        /// A QWERTZ keyboard layout type.
         case qwertz
         
-        /// The Vietnamese Telex - AZERTY layout type.
+        /// A Vietnamese Telex - AZERTY layout type.
         case vietnamese_telex_azerty
         
-        /// The Vietnamese Telex - QWERTY layout type.
+        /// A Vietnamese Telex - QWERTY layout type.
         case vietnamese_telex_qwerty
         
-        /// The Vietnamese Telex - QWERTZ layout type.
+        /// A Vietnamese Telex - QWERTZ layout type.
         case vietnamese_telex_qwertz
         
-        /// The Vietnamese VIQR - AZERTY layout type.
+        /// A Vietnamese VIQR - AZERTY layout type.
         case vietnamese_viqr_azerty
         
-        /// The Vietnamese VIQR - QWERTY layout type.
+        /// A Vietnamese VIQR - QWERTY layout type.
         case vietnamese_viqr_qwerty
         
-        /// The Vietnamese VIQR - QWERTZ layout type.
+        /// A Vietnamese VIQR - QWERTZ layout type.
         case vietnamese_viqr_qwertz
         
-        /// The Vietnamese VNI - AZERTY layout type.
+        /// A Vietnamese VNI - AZERTY layout type.
         case vietnamese_vni_azerty
         
-        /// The Vietnamese VNI - QWERTY layout type.
+        /// A Vietnamese VNI - QWERTY layout type.
         case vietnamese_vni_qwerty
         
-        /// The Vietnamese VNI - QWERTZ layout type.
+        /// A Vietnamese VNI - QWERTZ layout type.
         case vietnamese_vni_qwertz
         
         /// The layout type's unique ID.

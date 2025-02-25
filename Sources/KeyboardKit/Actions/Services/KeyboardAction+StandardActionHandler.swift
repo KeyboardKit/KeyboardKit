@@ -171,6 +171,12 @@ extension KeyboardAction {
         public var spaceDragGestureStartPoint: CGPoint?
         
         
+        // MARK: - Input Engines
+        
+        /// This property can be resolved in KeyboardKit Pro.
+        public lazy var vietnameseInputEngine = try? KeyboardTextInput.Vietnamese.InputEngine()
+        
+        
         // MARK: - KeyboardActionHandler
         
         /// Whether the handler can handle an action gesture.
@@ -346,18 +352,15 @@ extension KeyboardAction {
             on action: KeyboardAction
         ) -> KeyboardAction? {
             guard gesture == .release else { return nil }
+            guard case let .character(char) = action else { return nil }
+            if let pro = proReplacementActionWhenAppending(char: char) { return pro }
 
             // Apply proxy-based replacements, if any
-            if case let .character(char) = action,
-               let replacement = keyboardContext.preferredQuotationReplacement(
+            if let replacement = keyboardContext.preferredQuotationReplacement(
                 whenInserting: char,
-                for: keyboardContext.locale) {
+                for: keyboardContext.locale
+            ) {
                 return .character(replacement)
-            }
-
-            // Apply Kurdish replacements, if any
-            if keyboardContext.locale.identifier.hasPrefix("ckb") && action == .character("ھ") {
-                return .character("ه")
             }
 
             return nil
