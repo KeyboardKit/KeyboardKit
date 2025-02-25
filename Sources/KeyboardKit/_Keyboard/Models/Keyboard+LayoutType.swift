@@ -24,7 +24,13 @@ public extension Keyboard {
     /// This may be refactored in the future, since it mixes
     /// the concept of locales, layouts and input methods. A
     /// better name should at least be found.
-    enum LayoutType: String, CaseIterable, Identifiable, KeyboardModel {
+    enum LayoutType: CaseIterable, Identifiable, KeyboardModel {
+        
+        public init?(id: String) {
+            let match = Self.allCases.first { $0.id == id }
+            guard let match else { return nil }
+            self = match
+        }
         
         /// A AZERTY keyboard layout type.
         case azerty
@@ -41,55 +47,90 @@ public extension Keyboard {
         /// A QWERTZ keyboard layout type.
         case qwertz
         
-        /// A Vietnamese Telex - AZERTY layout type.
-        case vietnamese_telex_azerty
+        /// A Vietnamese Telex layout type.
+        case vietnamese_telex(NestedReference)
         
-        /// A Vietnamese Telex - QWERTY layout type.
-        case vietnamese_telex_qwerty
+        /// A Vietnamese VIQR layout type.
+        case vietnamese_viqr(NestedReference)
         
-        /// A Vietnamese Telex - QWERTZ layout type.
-        case vietnamese_telex_qwertz
-        
-        /// A Vietnamese VIQR - AZERTY layout type.
-        case vietnamese_viqr_azerty
-        
-        /// A Vietnamese VIQR - QWERTY layout type.
-        case vietnamese_viqr_qwerty
-        
-        /// A Vietnamese VIQR - QWERTZ layout type.
-        case vietnamese_viqr_qwertz
-        
-        /// A Vietnamese VNI - AZERTY layout type.
-        case vietnamese_vni_azerty
-        
-        /// A Vietnamese VNI - QWERTY layout type.
-        case vietnamese_vni_qwerty
-        
-        /// A Vietnamese VNI - QWERTZ layout type.
-        case vietnamese_vni_qwertz
-        
-        /// The layout type's unique ID.
-        public var id: String { rawValue }
+        /// A Vietnamese VNI layout type.
+        case vietnamese_vni(NestedReference)
     }
 }
 
 public extension Keyboard.LayoutType {
     
-    // The layout type's display name.
+    /// All possible layout combinations
+    static var allCases: [Keyboard.LayoutType] {
+        [
+            .azerty,
+            .colemak,
+            .qwerty,
+            .qwerty_catalan,
+            .qwertz,
+            .vietnamese_telex(.azerty),
+            .vietnamese_telex(.colemak),
+            .vietnamese_telex(.qwerty),
+            .vietnamese_telex(.qwertz),
+            .vietnamese_viqr(.azerty),
+            .vietnamese_viqr(.colemak),
+            .vietnamese_viqr(.qwerty),
+            .vietnamese_viqr(.qwertz),
+            .vietnamese_vni(.azerty),
+            .vietnamese_vni(.colemak),
+            .vietnamese_vni(.qwerty),
+            .vietnamese_vni(.qwertz)
+        ]
+    }
+    
+    /// The layout type's display name.
+    var displayName: String {
+        switch self {
+        case .azerty: "AZERTY"
+        case .colemak: "Colemak"
+        case .qwerty: "QWERTY"
+        case .qwerty_catalan: "QWERTY - Catalan"
+        case .qwertz: "QWERTZ"
+        case .vietnamese_telex(let ref): "Telex - \(ref.displayName)"
+        case .vietnamese_viqr(let ref): "VIQR - \(ref.displayName)"
+        case .vietnamese_vni(let ref): "VNI - \(ref.displayName)"
+        }
+    }
+    
+    /// The layout type's unique ID.
+    var id: String {
+        switch self {
+        case .azerty: "azerty"
+        case .colemak: "colemak"
+        case .qwerty: "qwerty"
+        case .qwerty_catalan: "qwerty_catalan"
+        case .qwertz: "qwertz"
+        case .vietnamese_telex(let ref): "vietnamese_telex_\(ref.id)"
+        case .vietnamese_viqr(let ref): "vietnamese_viqr_\(ref.id)"
+        case .vietnamese_vni(let ref): "vietnamese_vni_\(ref.id)"
+        }
+    }
+}
+
+public extension Keyboard.LayoutType {
+    
+    /// This is used as a nested reference to a main type.
+    enum NestedReference: String, CaseIterable, Identifiable, KeyboardModel {
+        case azerty
+        case colemak
+        case qwerty
+        case qwertz
+    }
+}
+
+public extension Keyboard.LayoutType.NestedReference {
+    
     var displayName: String {
         switch self {
         case .colemak: rawValue.capitalized
-        case .qwerty_catalan: "QWERTY - Catalan"
-        case .vietnamese_telex_azerty: "Telex - AZERTY"
-        case .vietnamese_telex_qwerty: "Telex - QWERTY"
-        case .vietnamese_telex_qwertz: "Telex - QWERTZ"
-        case .vietnamese_viqr_azerty: "VIQR - AZERTY"
-        case .vietnamese_viqr_qwerty: "VIQR - QWERTY"
-        case .vietnamese_viqr_qwertz: "VIQR - QWERTZ"
-        case .vietnamese_vni_azerty: "VNI - AZERTY"
-        case .vietnamese_vni_qwerty: "VNI - QWERTY"
-        case .vietnamese_vni_qwertz: "VNI - QWERTZ"
         default: rawValue.uppercased()
         }
     }
+    
+    var id: String { rawValue }
 }

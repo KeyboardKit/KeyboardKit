@@ -65,7 +65,7 @@ public extension Keyboard.AddedLocale {
     /// The related keyboard layout to use, if any.
     var layoutType: Keyboard.LayoutType? {
         guard let id = layoutTypeIdentifier else { return nil }
-        return .init(rawValue: id)
+        return .init(id: id)
     }
 }
 
