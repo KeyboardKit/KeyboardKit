@@ -215,9 +215,9 @@
 				A921152525D58A94003510D9 /* DemoApp.swift */,
 				A921152725D58A94003510D9 /* HomeScreen.swift */,
 				A96F413A2C73F2FE007344D2 /* KeyboardApp+Demo.swift */,
-				A9855EEB2CCBDD8000FD9F0A /* KeyboardKit.license */,
 				A96F3FDA2C70E04A007344D2 /* Assets */,
 				A9A58B802CF4C0EF004DC7BE /* Dictation */,
+				A95A567C2D7081430036FAAD /* License */,
 				A9DBBFDA2CF3C519007B48F4 /* Localization */,
 				A921155925D58E39003510D9 /* Supporting Files */,
 			);
@@ -269,6 +269,14 @@
 				A92E4A1D2B15101500F957C6 /* DemoToolbar.swift */,
 			);
 			path = KeyboardPro;
+			sourceTree = "<group>";
+		};
+		A95A567C2D7081430036FAAD /* License */ = {
+			isa = PBXGroup;
+			children = (
+				A9855EEB2CCBDD8000FD9F0A /* KeyboardKit.license */,
+			);
+			path = License;
 			sourceTree = "<group>";
 		};
 		A96F3FDA2C70E04A007344D2 /* Assets */ = {
