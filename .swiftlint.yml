@@ -18,13 +18,3 @@ disabled_rules:
 included:
   - Sources
   - Tests
-  - KeyboardKitDemo
-
-identifier_name:
-  excluded:
-    - id
-    - x
-    - y
-    - dx
-    - dy
-    - vc
