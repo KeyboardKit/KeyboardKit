@@ -19,7 +19,7 @@ public extension Autocomplete {
         /// - Parameters:
         ///   - inputText: The originally provided text.
         ///   - suggestions: Resulting autocomplete suggestions.
-        ///   - emojiCompletions: Emoji completion matches, if any.
+        ///   - emojiSuggestions: Emoji completion matches, if any.
         ///   - nextCharacterPredictions: Next character predictions, if any.
         ///   - isOutdated: Whether the result is outdated and should be ignored.
         public init(

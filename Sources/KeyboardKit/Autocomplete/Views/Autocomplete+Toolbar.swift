@@ -43,7 +43,7 @@ public extension Autocomplete {
         ///
         /// - Parameters:
         ///   - suggestions: The suggestions to display.
-        ///   - emojiSuggestions: The emoji suggestions to display, if any.
+        ///   - emojis: The emoji suggestions to display, if any.
         ///   - itemView: The suggestion view builder to use.
         ///   - separatorView: The separator view builder to use.
         ///   - suggestionAction: The action to run when tapping a suggestion.

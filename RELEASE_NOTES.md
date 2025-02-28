@@ -15,6 +15,8 @@ These release notes cover the current major version. See older versions for olde
 
 This version adds support for Vietnamese TELEX, VIQR, and VNI (Beta).
 
+This version also moves back Pro theme types to KeyboardKit Pro to avoid confusion.
+
 ### ✨ Features
 
 * `Autocomplete.ServiceResult` has a new `emojiCompletions` property.
@@ -55,6 +57,7 @@ This version adds support for Vietnamese TELEX, VIQR, and VNI (Beta).
 ### 🚨 Breaking Changes
 
 * `KeyboardCalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
+* `KeyboardTheme` types have been moved back to KeyboardKit Pro to avoid open-source confusions.
 
 
 

@@ -87,7 +87,7 @@ KeyboardKit extends ``Foundation/Locale`` with keyboard-specific views, that can
                 
                 Set the behavior to ``Keyboard/SpaceLongPressBehavior/openLocaleContextMenu`` to make it open a context menu instead of moving the input cursor.
                 
-                You can also a ``KeyboardSettings/spaceTrailingAction`` to add a locale context menu to the spacebar and keep its cursor move capabilities.
+                You can also use ``KeyboardSettings/spaceContextMenuLeading`` and ``KeyboardSettings/spaceContextMenuTrailing`` to add a locale context menu to the spacebar and keep its cursor move capabilities.
             }
         }
     }
