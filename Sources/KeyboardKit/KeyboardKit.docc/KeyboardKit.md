@@ -156,21 +156,18 @@ KeyboardKit is available under the MIT license.
 - <doc:Text-Input-Article>
 - <doc:Themes-Article>
 
-### Keyboard Types
+### Essentials Types
 
 - ``Keyboard``
+- ``KeyboardBehavior``
 - ``KeyboardContext``
+- ``KeyboardController``
 - ``KeyboardInputViewController``
+- ``KeyboardModel``
 - ``KeyboardSettings``
 - ``KeyboardView``
-- ``KeyboardViewItem``
-
-### Keyboard Protocols
-
-- ``KeyboardBehavior``
-- ``KeyboardController``
-- ``KeyboardModel``
 - ``KeyboardViewComponent``
+- ``KeyboardViewItem``
 
 ### Actions
 
