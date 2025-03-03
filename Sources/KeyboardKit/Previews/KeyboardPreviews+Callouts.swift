@@ -22,24 +22,10 @@ public extension KeyboardCalloutService where Self == KeyboardCallout.BaseCallou
     }
 }
 
-@available(*, deprecated, message: "KeyboardCallout.BaseCalloutService is now used instead.")
 public extension KeyboardPreviews {
     
-    class CalloutService: KeyboardCalloutService {
+    class CalloutService: KeyboardCallout.BaseCalloutService {
 
-        public func calloutActions(for action: KeyboardAction) -> [KeyboardAction] {
-            switch action {
-            case .character(let char):
-                switch char {
-                case "a": return "aàáâäǎæãåāăą".map { KeyboardAction.character(String($0)) }
-                case "e": return "e".map { KeyboardAction.character(String($0)) }
-                default: return []
-                }
-            default: break
-            }
-            return []
-        }
-
-        public func triggerFeedbackForSelectionChange() {}
+        public override func triggerFeedbackForSelectionChange() {}
     }
 }

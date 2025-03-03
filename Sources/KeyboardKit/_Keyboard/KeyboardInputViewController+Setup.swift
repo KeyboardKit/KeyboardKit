@@ -12,13 +12,12 @@ import SwiftUI
 extension KeyboardInputViewController {
     
     /// Set up KeyboardKit with a ``Keyboard.RootView``.
-    func setup<Content: View>(
-        withRootView view: Keyboard.RootView<Content>
+    func setupControllerView<Content: View>(
+        _ rootView: Keyboard.RootView<Content>
     ) {
-        self.children.forEach { $0.removeFromParent() }
-        self.view.subviews.forEach { $0.removeFromSuperview() }
-        let view = view
-            .keyboardState(self.state)
+        children.forEach { $0.removeFromParent() }
+        view.subviews.forEach { $0.removeFromSuperview() }
+        let view = rootView.keyboardState(self.state)
         let host = KeyboardHostingController(rootView: view)
         host.add(to: self)
     }

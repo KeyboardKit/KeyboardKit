@@ -44,7 +44,8 @@ This version also moves back Pro theme types to KeyboardKit Pro to avoid confusi
 
 * `KeyboardCallout.ActionCallout` now shrinks actions on iPhone if needed.
 * `KeyboardCalloutContext` makes it easier to swipe select callout actions.
-* `UITextDocumentProxy.insertDiacritic` uses the new diacritic insertion result.
+* `KeyboardPreviews.CalloutService` now inherits `KeyboardCallout.BaseCalloutService`.
+* `UITextDocumentProxy.insertDiacritic` now uses the new diacritic insertion result model.
 
 ### 🐛 Bug Fixes
 
@@ -52,7 +53,7 @@ This version also moves back Pro theme types to KeyboardKit Pro to avoid confusi
 
 ### 🗑️ Deprecations
 
-* `KeyboardPreviews.CalloutService` is replaced by `KeyboardCallout.BaseCalloutService`.
+* `KeyboardInputViewController` `setupKeyboardView` without view builder has been deprecated.
 
 ### 🚨 Breaking Changes
 

@@ -70,7 +70,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func testSettingUpWithViewCreatesAndAddsKeyboardHostingController() {
         XCTAssertEqual(vc.children.count, 0)
-        vc.setupKeyboardView(with: Text("HEJ"))
+        vc.setupKeyboardView { _ in Text("HEJ") }
         XCTAssertEqual(vc.children.count, 1)
         XCTAssertEqual(vc.view.subviews.count, 1)
     }

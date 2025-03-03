@@ -23,18 +23,19 @@ import UIKit
 /// You also get a lot of additional controller features.
 ///
 /// > Warning: A very important thing that you MUST consider
-/// when you use `setup` or `setupPro` with a `view` builder,
-/// is that the `view` builder provides you with an `unowned`
-/// controller reference, since referring to `self` from the
-/// view builder can cause memory leaks. However, since this
-/// reference is a ``KeyboardInputViewController``, you must
-/// still use `self` when you have to refer to your specific
-/// controller class. If you do, it is VERY important to add
-/// `[weak self]` or `[unowned self]` to the builder. If you
-/// don't, the `self` reference will cause a memory leak.
+/// when you use ``setupKeyboardView(_:)``, is that the view
+/// builder provides you with an unowned keyboard controller
+/// reference. You should use this instance instead of `self`
+/// in the view builder, since referring to `self` can cause
+/// a memory leak if done wrong. However, if you have to use
+/// `self` to reference your specific controller class, it's
+/// VERY important to add a `[weak self]` or `[unowned self]`
+/// to the view builder. If you don't, your `self` reference
+/// will cause a memory leak.
 ///
 /// See the <doc:Getting-Started-Article> article as well as
-/// the <doc:Essentials-Article> article for more information.
+/// <doc:Essentials-Article> for more information on how you
+/// should set up your keyboard extension.
 open class KeyboardInputViewController: UIInputViewController, KeyboardController, UrlOpener {
 
 
@@ -137,17 +138,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // Used to let KeyboardKit Pro show license error alerts.
     var setupKeyboardViewIsEnabled = true
 
-    /// Set up KeyboardKit with a custom keyboard view.
-    ///
-    /// Call this in ``viewWillSetupKeyboardView()`` to make
-    /// the controller use the `view` as keyboard view.
-    open func setupKeyboardView<Content: View>(
-        with view: @autoclosure @escaping () -> Content
-    ) {
-        guard setupKeyboardViewIsEnabled else { return }
-        setup(withRootView: Keyboard.RootView(view))
-    }
-
     /// Set up KeyboardKit with a custom view and an unowned
     /// ``KeyboardInputViewController`` reference.
     ///
@@ -156,7 +146,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func setupKeyboardView<Content: View>(
         _ view: @escaping (_ controller: KeyboardInputViewController) -> Content
     ) {
-        setup(withRootView: Keyboard.RootView { [weak self] in
+        guard setupKeyboardViewIsEnabled else { return }
+        setupControllerView(Keyboard.RootView { [weak self] in
             guard let self else { return view(.preview) }
             unowned let controller = self
             return view(controller)
@@ -350,6 +341,17 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
                 await updateLastDictationError(error)
             }
         }
+    }
+    
+    
+    // MARK: - Deprecated
+    
+    @available(*, deprecated, message: "Use view builder variant instead.")
+    open func setupKeyboardView<Content: View>(
+        with view: @autoclosure @escaping () -> Content
+    ) {
+        guard setupKeyboardViewIsEnabled else { return }
+        setupControllerView(Keyboard.RootView(view))
     }
 }
 
