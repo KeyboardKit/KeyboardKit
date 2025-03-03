@@ -11,7 +11,15 @@ import SwiftUI
 
 extension KeyboardInputViewController {
     
-    /// Set up KeyboardKit with a ``Keyboard.RootView``.
+    /// Set up the controller for the provided app.
+    func setupController(
+        for app: KeyboardApp
+    ) {
+        KeyboardSettings.setupStore(for: app)
+        state.setup(for: app)
+    }
+    
+    /// Set up the ``Keyboard.RootView`` to present.
     func setupControllerView<Content: View>(
         _ rootView: Keyboard.RootView<Content>
     ) {
