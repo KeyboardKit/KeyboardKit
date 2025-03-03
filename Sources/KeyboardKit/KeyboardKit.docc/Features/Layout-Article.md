@@ -158,7 +158,8 @@ class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPro(for: ...) { _ in
+        setup(for: ...) { result in
+            // Check result to see that setup was successful
             self.services.tryRegisterLocalizedLayoutService(
                 try! MyCustomGermanService() 
             )
@@ -179,7 +180,8 @@ class KeyboardViewController: KeyboardInputViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupPro(for: ...) { _ in
+        setup(for: ...) { _ in
+            // Check result to see that setup was successful
             try? self?.services.tryRegisterLocalizedLayoutService(
                 KeyboardLayout.ProLayoutService.English(
                     alphabeticInputSet: try? .qwertz

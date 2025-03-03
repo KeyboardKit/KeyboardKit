@@ -64,13 +64,6 @@ public extension KeyboardInputViewController {
     }
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    func setupPro(
-        for app: KeyboardApp,
-        errorDisplay: LicenseValidationErrorDisplay = .debug,
-        completion: @escaping (LicenseRegistrationResult) -> Void
-    ) {}
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
     var hostApplicationBundleId: String? { nil }
 }
 #endif

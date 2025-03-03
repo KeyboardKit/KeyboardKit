@@ -40,7 +40,8 @@ In KeyboardKit, a ``KeyboardStyleService/themeBased(keyboardContext:themeContext
 ```swift
 override func viewDidLoad() {
     super.viewDidLoad()
-    setupPro(for: .myApp) { license in
+    setup(for: .myApp) { result in
+        // Check result to see that setup was successful
         self.services.styleService = .themeBased(
             keyboardContext: state.keyboardContext,
             themeContext: state.themeContext

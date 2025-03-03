@@ -43,7 +43,7 @@ extension KeyboardApp {
         static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit",
-            licenseKey: "your-key-here",                // Sets up KeyboardKit Pro!
+            licenseKey: "your-key-here",                // Needed for KeyboardKit Pro!
             appGroupId: "group.com.keyboardkit.demo",   // Sets up App Group data sync
             locales: .keyboardKitSupported,             // Sets up the enabled locales
             autocomplete: .init(                        // Sets up custom autocomplete  
@@ -61,9 +61,9 @@ Next, let your `KeyboardController` inherit ``KeyboardInputViewController`` inst
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This unlocks additional functions and capabilities, and injects `services` and observable `state` to the controller. 
+This unlocks additional functions and capabilities, and adds `services` and observable `state` to the controller. 
 
-Next, override `viewDidLoad()` and call `setup(for:)`, or `setupPro(for:)` if you use KeyboardKit Pro:
+Next, override `viewDidLoad()` and call `setup(for:)` to set up the keyboard extension for your app:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -71,19 +71,17 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // KeyboardKit
-        setup(for: .keyboardKitDemo)
-        
-        // 👑 KeyboardKit Pro
         setup(for: .keyboardKitDemo) { result in
-            // If result is successful, KeyboardKit Pro is now active
-            // You can now customize your keyboard and tweak features 
+            // If the result is `.success`, the setup succeeded.
+            // This is where you can setup custom services, etc.
         }
     }
 }
 ```
 
-To replace or customize the standard `KeyboardView` view, just override `viewWillSetupKeyboardView()` and call `setupKeyboardView(with:)` with the view that you want to use:
+This will make keyboard settings sync data between the main app and its keyboard if the `KeyboardApp` defines an ``appGroupId``, set up KeyboardKit Pro if it defines a ``licenseKey``, set up dictation and deep links, etc.
+
+To replace or customize the default ``KeyboardView`` that will otherwise be used as the standard keyboard view, just override `viewWillSetupKeyboardView()` and call `setupKeyboardView(_:)` with the view that you want to use:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {

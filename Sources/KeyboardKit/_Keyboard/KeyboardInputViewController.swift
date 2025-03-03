@@ -119,23 +119,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     // MARK: - Setup
 
-    /// Set up KeyboardKit for the provided app.
-    ///
-    /// Call this in ``viewDidLoad()`` to make sure that the
-    /// keyboard is properly configured as early as possible.
-    ///
-    /// The completion block will either provide a validated
-    /// license or an error. This is where you can customize
-    /// your keyboard, if the license was properly validated.
-    ///
-    /// See <doc:Getting-Started-Article> for information on
-    /// how to properly set up an app and keyboard extension.
-    open func setup(
-        for app: KeyboardApp
-    ) {
-        setupController(for: app)
-    }
-
     // Used to let KeyboardKit Pro show license error alerts.
     var setupKeyboardViewIsEnabled = true
 
@@ -346,6 +329,14 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     
     
     // MARK: - Deprecated
+    
+    @_disfavoredOverload
+    @available(*, deprecated, renamed: "setup(for:completion:)")
+    open func setup(
+        for app: KeyboardApp
+    ) {
+        setupController(for: app)
+    }
     
     @available(*, deprecated, message: "Use view builder variant instead.")
     open func setupKeyboardView<Content: View>(

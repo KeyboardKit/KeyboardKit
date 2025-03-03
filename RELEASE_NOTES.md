@@ -15,7 +15,9 @@ These release notes cover the current major version. See older versions for olde
 
 This version adds support for Vietnamese TELEX, VIQR, and VNI (Beta).
 
-This version also moves back Pro theme types to KeyboardKit Pro to avoid confusion.
+This version makes KeyboardKit and KeyboardKit Pro both use a `setup(for:completion:)` function to avoid mistakes when upgrading to KeyboardKit Pro. 
+
+This version also moves back all theme-related types to KeyboardKit Pro to avoid confusion, since these types can only be used with KeyboardKit Pro.
 
 ### ✨ Features
 
@@ -53,6 +55,8 @@ This version also moves back Pro theme types to KeyboardKit Pro to avoid confusi
 
 ### 🗑️ Deprecations
 
+* `KeyboardInputViewController` `setup` is no longer open to inheritance.
+* `KeyboardInputViewController` `setup` now uses a completion block for both Pro and non-Pro.
 * `KeyboardInputViewController` `setupKeyboardView` without view builder has been deprecated.
 
 ### 🚨 Breaking Changes

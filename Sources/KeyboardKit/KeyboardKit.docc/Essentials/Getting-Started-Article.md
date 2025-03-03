@@ -25,7 +25,7 @@ https://github.com/KeyboardKit/KeyboardKit.git      // or...
 https://github.com/KeyboardKit/KeyboardKitPro.git
 ```
 
-KeyboardKit must be linked to the main app target *and* its keyboard extension, while KeyboardKit Pro must only be added to the app. 
+KeyboardKit must be linked to the main app target *and* its keyboard extension, while KeyboardKit Pro must *only* be added to the app. 
 
 
 [KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
@@ -45,7 +45,7 @@ extension KeyboardApp {
     static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit",
-            licenseKey: "your-key-here",                // Sets up KeyboardKit Pro!
+            licenseKey: "your-key-here",                // Required by KeyboardKit Pro!
             appGroupId: "group.com.keyboardkit.demo",   // Sets up App Group data sync
             locales: .keyboardKitSupported,             // Sets up the enabled locales
             autocomplete: .init(                        // Sets up custom autocomplete  
@@ -57,7 +57,7 @@ extension KeyboardApp {
 }
 ```
 
-Define this in a file that you add to both the app and its keyboard extension, to easily refer to it from both. See <doc:App-Article> for more info.
+Define this in a file that you add to both the app and its keyboard extension, to be able to use it in both targets. See <doc:App-Article> for more info.
 
 
 
@@ -71,42 +71,27 @@ import KeyboardKit (or KeyboardKitPro)
 class KeyboardController: KeyboardInputViewController {}
 ```
 
-This gives you access to lifecycle functions like ``KeyboardInputViewController/viewWillSetupKeyboardView()``, observable ``KeyboardInputViewController/state``, keyboard ``KeyboardInputViewController/services``, etc.
+This unlocks additional functions and capabilities, like ``KeyboardInputViewController/viewWillSetupKeyboardView()``, and adds ``KeyboardInputViewController/services`` and observable ``KeyboardInputViewController/state`` to the controller.
 
-Override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:)`` (or ``KeyboardInputViewController/setupPro(for:errorDisplay:completion:)`` if you use [KeyboardKit Pro][Pro]) to set up the keyboard extension for your app:
+Next, override ``KeyboardInputViewController/viewDidLoad()`` and call ``KeyboardInputViewController/setup(for:completion:)`` to set up the keyboard extension for your app:
 
-@TabNavigator {
-    
-    @Tab("KeyboardKit") {
-    ```swift
-    class KeyboardViewController: KeyboardInputViewController {
+```swift
+class KeyboardViewController: KeyboardInputViewController {
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setup(for: .keyboardKitDemo)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        setup(for: .keyboardKitDemo) { result in
+            // If the result is `.success`, the setup succeeded.
+            // This is where you can setup custom services, etc.
         }
-    }
-    ```
-    }
-    
-    @Tab("KeyboardKit Pro 👑") {
-    ```swift
-    class KeyboardViewController: KeyboardInputViewController {
-    
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setupPro(for: .keyboardKitDemo) { result in
-                // This is called when the license registration completes
-            }
-        }
-    }
-    ```
     }
 }
+```
 
-This will make the ``KeyboardSettings`` ``KeyboardSettings/store`` automatically sync data between the app and its keyboard if the app defines an ``KeyboardApp/appGroupId``, set up your KeyboardKit Pro license if it defines a ``KeyboardApp/licenseKey``, set up dictation, deep links, etc.
+Setting up the controller makes ``KeyboardSettings`` automatically sync data between the app and its keyboard if the ``KeyboardApp`` defines an ``KeyboardApp/appGroupId``, set up KeyboardKit Pro if it defines a ``licenseKey``, sets up dictation, registers deep links, etc.
 
-This also makes the keyboard use a standard ``KeyboardView`` that is configured for your app. Override ``KeyboardInputViewController/viewWillSetupKeyboardView()`` and call ``KeyboardInputViewController/setupKeyboardView(_:)`` to replace or customize the ``KeyboardView``:
+To replace or customize the default ``KeyboardView`` that will otherwise be used as the standard keyboard view, just override ``KeyboardInputViewController/viewWillSetupKeyboardView()`` and call ``KeyboardInputViewController/setupKeyboardView(_:)`` with the view that you want to use:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -195,46 +180,27 @@ struct CustomView: View {
 
 Services are not injected into the view hierarchy, and must be passed around. KeyboardKit uses init injection for both state and services.
 
-You can replace any services with custom implementations. For instance, here we replace the standard ``KeyboardActionHandler``:
+You can replace any services with custom implementations. For instance, here we replace the standard ``KeyboardActionHandler`` with a custom action handler that prints a message when a `.space` action is triggered:
 
-@TabNavigator {
-    
-    @Tab("KeyboardKit") {
-    ```swift
-    class KeyboardViewController: KeyboardInputViewController {
+```swift
+class KeyboardViewController: KeyboardInputViewController {
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setup(for: .keyboardKitDemo)
-            services.actionHandler = CustomActionHandler(controller: self)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setup(for: .keyboardKitDemo) { [weak self] _ in
+            guard let self else { return }
+            self.services.actionHandler = CustomActionHandler(controller: self)    
         }
-    }
-    ```
-    }
-    
-    @Tab("KeyboardKit Pro 👑") {
-    ```swift
-    class KeyboardViewController: KeyboardInputViewController {
-    
-        override func viewDidLoad() {
-            super.viewDidLoad()
-            setupPro(for: .keyboardKitDemo) { _ in 
-                services.actionHandler = CustomActionHandler(controller: self)
-            }
-        }
-    }
-    ```
     }
 }
 
-```swift
 class CustomActionHandler: StandardActionHandler {
 
     open override func handle(_ action: KeyboardAction) {
         if action == .space {
             print("Pressed space!")
         }
-        super.handle(gesture, on: action) 
+        super.handle(action) 
     }
 }
 ```
