@@ -1,6 +1,12 @@
 import Foundation
 import SwiftUI
 
+public extension Keyboard {
+    
+    @available(*, deprecated, renamed: "Keyboard.SpaceMenuType")
+    typealias SpaceContextMenu = SpaceMenuType
+}
+
 public extension Keyboard.InputToolbarDisplayMode {
     
     @available(*, deprecated, renamed: "none")
@@ -48,5 +54,19 @@ public extension KeyboardContext {
     var spaceLongPressBehavior: Keyboard.SpaceLongPressBehavior {
         get { settings.spaceLongPressBehavior }
         set { settings.spaceLongPressBehavior = newValue }
+    }
+}
+
+public extension View {
+
+    @available(*, deprecated, message: "Use keyboardSpaceContextMenuLeading and keyboardSpaceContextMenuTrailing instead.")
+    func keyboardSpaceContextMenu(
+        _ type: Keyboard.SpaceMenuType?,
+        edge: HorizontalEdge = .trailing
+    ) -> some View {
+        switch edge {
+        case .leading: environment(\.keyboardSpaceContextMenuLeading, type)
+        case .trailing: environment(\.keyboardSpaceContextMenuTrailing, type)
+        }
     }
 }

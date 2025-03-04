@@ -10,16 +10,14 @@ import Foundation
 
 public extension Keyboard {
     
-    /// This enum defines various keyboard layout types.
+    /// This enum defines supported keyboard layout types.
     ///
-    /// Unlike the ``InputSet`` and ``KeyboardLayout`` types,
-    /// this enum defines standard layout types, without any
-    /// specific information about how a type is implemented.
+    /// This is used to allow ``AddedLocale`` to also define
+    /// an optional layout type.
     ///
-    /// This is used to allow an ``AddedLocale`` to define a
-    /// locale together with an optional layout. KeyboardKit
-    /// Pro defines ``Foundation/Locale/supportedLayoutTypes``
-    /// for each supported locale.
+    /// Unlike the ``InputSet`` and ``KeyboardLayout``, this
+    /// enum only describes a layout without any information
+    /// on how to implement the layout in question.
     ///
     /// This may be refactored in the future, since it mixes
     /// the concept of locales, layouts and input methods. A
@@ -37,6 +35,9 @@ public extension Keyboard {
         
         /// A Colemak keyboard layout type.
         case colemak
+        
+        /// A Dvorak keyboard layout type.
+        case dvorak
         
         /// A QWERTY keyboard layout type.
         case qwerty
@@ -65,19 +66,23 @@ public extension Keyboard.LayoutType {
         [
             .azerty,
             .colemak,
+            .dvorak,
             .qwerty,
             .qwerty_catalan,
             .qwertz,
             .vietnamese_telex(.azerty),
             .vietnamese_telex(.colemak),
+            .vietnamese_telex(.dvorak),
             .vietnamese_telex(.qwerty),
             .vietnamese_telex(.qwertz),
             .vietnamese_viqr(.azerty),
             .vietnamese_viqr(.colemak),
+            .vietnamese_viqr(.dvorak),
             .vietnamese_viqr(.qwerty),
             .vietnamese_viqr(.qwertz),
             .vietnamese_vni(.azerty),
             .vietnamese_vni(.colemak),
+            .vietnamese_vni(.dvorak),
             .vietnamese_vni(.qwerty),
             .vietnamese_vni(.qwertz)
         ]
@@ -88,6 +93,7 @@ public extension Keyboard.LayoutType {
         switch self {
         case .azerty: "AZERTY"
         case .colemak: "Colemak"
+        case .dvorak: "Dvorak"
         case .qwerty: "QWERTY"
         case .qwerty_catalan: "QWERTY - Catalan"
         case .qwertz: "QWERTZ"
@@ -102,6 +108,7 @@ public extension Keyboard.LayoutType {
         switch self {
         case .azerty: "azerty"
         case .colemak: "colemak"
+        case .dvorak: "dvorak"
         case .qwerty: "qwerty"
         case .qwerty_catalan: "qwerty_catalan"
         case .qwertz: "qwertz"
@@ -114,10 +121,12 @@ public extension Keyboard.LayoutType {
 
 public extension Keyboard.LayoutType {
     
-    /// This is used as a nested reference to a main type.
+    /// This enum defines references to main layout types to
+    /// allow layout types to refer other main types.
     enum NestedReference: String, CaseIterable, Identifiable, KeyboardModel {
         case azerty
         case colemak
+        case dvorak
         case qwerty
         case qwertz
     }

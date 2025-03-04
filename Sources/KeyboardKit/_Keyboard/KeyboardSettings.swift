@@ -86,17 +86,17 @@ public struct KeyboardSettings {
     @AppStorage("\(settingsPrefix)localeIdentifier", store: .keyboardSettings)
     public internal(set) var localeIdentifier = Locale.current.identifier
     
+    /// A leading ``Keyboard/SpaceMenuType`` to add to the space key, if any.
+    @AppStorage("\(settingsPrefix)spaceContextMenuLeading", store: .keyboardSettings)
+    public var spaceContextMenuLeading: Keyboard.SpaceMenuType?
+    
+    /// A trailing ``Keyboard/SpaceMenuType`` to add to the space key, if any.
+    @AppStorage("\(settingsPrefix)spaceContextMenuTrailing", store: .keyboardSettings)
+    public var spaceContextMenuTrailing: Keyboard.SpaceMenuType?
+    
     /// The ``Keyboard/SpaceLongPressBehavior`` to use for the space key.
     @AppStorage("\(settingsPrefix)spaceLongPressBehavior", store: .keyboardSettings)
     public var spaceLongPressBehavior = Keyboard.SpaceLongPressBehavior.moveInputCursor
-    
-    /// A leading ``Keyboard/SpaceContextMenu`` to add to the space key, if any.
-    @AppStorage("\(settingsPrefix)spaceContextMenuLeading", store: .keyboardSettings)
-    public var spaceContextMenuLeading: Keyboard.SpaceContextMenu?
-    
-    /// A trailing ``Keyboard/SpaceContextMenu`` to add to the space key, if any.
-    @AppStorage("\(settingsPrefix)spaceContextMenuTrailing", store: .keyboardSettings)
-    public var spaceContextMenuTrailing: Keyboard.SpaceContextMenu?
     
     
     // MARK: - Internal State

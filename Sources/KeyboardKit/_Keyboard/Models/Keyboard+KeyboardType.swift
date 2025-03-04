@@ -11,17 +11,13 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /// This enum defines various keyboard types, of which a
-    /// few are implemented by the library.
+    /// This enum defines various keyboard types for various
+    /// kinds of inputs.
     ///
-    /// ``KeyboardView`` automatically renders some of these
-    /// keyboard types. All other types require custom views.
-    /// You can also use a ``custom(named:)`` type to create
-    /// a completely custom keyboard type from scratch.
-    ///
-    /// Just set the ``KeyboardContext/keyboardType`` to any
-    /// type you want to use, then observe the value to make
-    /// any customizations needed for your app.
+    /// While ``KeyboardView`` automatically renders most of
+    /// these keyboard types by varying the standard layouts,
+    /// some types like ``images`` and ``custom(named:)`` do
+    /// require custom handling.
     enum KeyboardType: CaseIterable, Identifiable, KeyboardModel {
 
         /// A keyboard with alphabetic input keys.

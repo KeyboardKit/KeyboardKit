@@ -13,7 +13,7 @@ This article describes the KeyboardKit emoji engine.
 
 KeyboardKit has an ``Emoji`` struct that represents an plain emoji value, and defines ``EmojiCategory`` and ``EmojiVersion`` values that let you fetch all available emojis from all available categories and versions.
 
-👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that's used by ``KeyboardView`` when a valid license is registered. It also unlocks an ``Emoji``.``Emoji/ColonSearch`` engine that performs emoji autocomplete.  Information about Pro features can be found further down.
+👑 [KeyboardKit Pro][Pro] unlocks an ``EmojiKeyboard`` that's used by ``KeyboardView`` when a valid license is registered. It also unlocks an ``Emoji``.``Emoji/ColonSearch`` search engine.  Information about Pro features can be found further down.
 
 > Important: The ``EmojiKeyboard`` uses high-resolution emojis on iPad, which consumes a lot of memory when scrolling through categories. Apply an ``Emoji/KeyboardStyle/optimized(for:)`` style with ``SwiftUICore/View/emojiKeyboardStyle(_:)`` if your keyboard uses memory-intense tools. Check out the <doc:Developer-Memory-Management> article for more information about memory management in keyboard extensions.
 
@@ -145,19 +145,11 @@ KeyboardKit unlocks an ``Emoji``.``Emoji/ColonSearch`` search engine that makes 
                 The ``EmojiKeyboard`` mimics a native emoji keyboard. It has support for categories, skin tones, callouts, etc.
                 
                 The view can be styled with an emoji-specific ``Emoji/KeyboardStyle``, which can be applied with the ``SwiftUICore/View/emojiKeyboardStyle(_:)`` view modifier. Use the builder-based style modifier to generate styles at runtime, based on the keyboard context.
+                
+                > Note: This view requires a KeyboardKit Pro Gold license.
             }
         }
     }
 }
 
-
-If you don't apply a custom style builder, the style will default to a memory optimized style for iPhones and a standard one for iPads.
-
-This is how you can apply a memory optimized Emoji keyboard style for all device types, to help save memory when rendering emojis:
-
-```swift
-YourView(...)
-    .emojiKeyboardStyle { context in
-        .optimized(for: context)    // This will apply an optimized style regardless of the context.
-    }
-```
+> Important: Since SwiftUI's grid views don't deallocate cells, the emoji keyboard will allocate memory for each new emoji, but never deallocate any allocated memory. This leads to ever increasing memory consumption as your users swipe through categories. Due to this, the ``EmojiKeyboard`` uses an ``Emoji/KeyboardStyle/optimized(for:)`` style on iPhone, to save memory. If your keyboard uses too much base memory, you may however have to use the ``SwiftUICore/View/emojiKeyboardStyle(_:)`` modifier to enforce using an optimized style on all devices. Just apply it to the keyboard view.    

@@ -11,11 +11,11 @@ This article describes the KeyboardKit layout engine.
     )
 }
 
-A flexible keyboard layout is an important part of a software keyboard, and must consider many factors like the current locale, device, screen orientation, user preferences, etc.
+While most keyboards have 3 input rows surrounded by action keys, and a bottom row with space bar and action keys, this is not true for all locales. The layout can vary greatly, which means that the layout engine must be flexible.
 
-In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after which a ``KeyboardLayoutService`` can create a dynamic ``KeyboardLayout`` at runtime that defines the full set of keys. 
+In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after which a ``KeyboardLayoutService`` can create a dynamic ``KeyboardLayout`` at runtime that defines the full set of keys to render for the keyboard.
 
-👑 [KeyboardKit Pro][Pro] unlocks extensions that make it easier to modify layouts, adds more input sets like ``InputSet/qwertz``, ``InputSet/azerty`` & ``InputSet/colemak``, unlocks localized input sets & layout services for all locales in your license, iPad Pro layout, etc.
+👑 [KeyboardKit Pro][Pro] unlocks extensions that make it easier to modify layouts, adds more input sets like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` and ``InputSet/dvorak``, and unlocks iPad Pro support and localized input sets & layouts for all locales in your license.
 
 
 
@@ -27,13 +27,12 @@ KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other lay
 
 ## Input Sets & Layouts
 
-While most iOS keyboards have 3 input rows of input keys surrounded by action keys, and a bottom row with space bar and action keys, this is not true for all locales. The layout can vary greatly, so the layout engine must be flexible.
 
 In KeyboardKit an ``InputSet`` specifies the input keys of a keyboard, while a ``KeyboardLayout`` specifies the full set of keys. Layouts can vary greatly for different devices, screens, locales, etc.
 
-KeyboardKit comes with pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` & ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz`` and ``InputSet/azerty``, as well as locale-specific input sets for all ``Foundation/Locale/keyboardKitSupported`` locales.
+KeyboardKit comes with pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` & ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` & ``InputSet/dvorak``, as well as locale-specific input sets for all supported locales.
 
-KeyboardKit also defines a ``Keyboard/LayoutType`` enum that defines various keyboard layout types, like ``Keyboard/LayoutType/qwerty``, ``Keyboard/LayoutType/azerty`` and other types with the same as the input sets above. This enum is used by [KeyboardKit Pro][Pro], to make a ``KeyboardLayout/ProLayoutService`` adjust its alphabetic layout. 
+KeyboardKit Pro makes certain layouts support multiple ``Keyboard/LayoutType``s, which means that you can use various layouts for e.g. English.  
 
 
 
@@ -49,16 +48,16 @@ KeyboardKit injects ``KeyboardLayout/StandardLayoutService`` into ``KeyboardInpu
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, and  ``InputSet/colemak``, as well as alphabetic, numeric & symbolic sets for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license, like `.french`, `.swedishNumeric`, etc.
+[KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` and ``InputSet/dvorak``, plus alphabetic, numeric & symbolic sets and locale-specific layout services for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license.
 
-KeyboardKit Pro also unlocks a localized ``KeyboardLayout/ProLayoutService`` for every locale and injects them as localized services into the ``Keyboard/Services/layoutService``. You can access any localized service in your license like this:
+KeyboardKit Pro will automatically set up all input sets and layout services in your license, and use them when you change ``KeyboardContext/locale`` and ``KeyboardContext/keyboardLayoutType``, but you can also use them individually, as standalone features: 
 
 ```swift
 let swedishInputSet = try InputSet.swedish
 let swedishService = try KeyboardLayout.ProLayoutService.Swedish()
 ```
 
-These input sets and layout services will all throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Article> for more info.
+These input sets and services will throw a license error if you try to access them without first registering a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Article> for instructions.
 
 
 ### iPad Pro Support
@@ -68,43 +67,43 @@ KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProLayoutService`` that can gene
 ![iPad Pro Layout](keyboardview-ipadpro)
 
 
-### More Layout Capabilites
+### Keyboard Layout Extensions
 
-KeyboardKit Pro extends ``KeyboardLayout`` and its various related types and collections with more capabilities, that make it easier to add, remove, and replace items in a layout.
+KeyboardKit Pro extends ``KeyboardLayout`` and its related types and collections to make it easier to add, remove, and replace items. 
 
 See ``KeyboardLayout`` and the nested layout ``KeyboardLayout/Item`` type in the KeyboardKit Pro documentation for a full list of additional capabilities.
 
 
-### ✨ NEW - Multiple Supported Layouts Per Locale
+### Locales With Multiple Layouts
 
-KeyboardKit extends ``Foundation/Locale`` with a list of supported ``Keyboard/LayoutType``s, and makes the ``KeyboardApp/LocaleScreen`` add a layout type picker to all ``KeyboardSettings/addedLocales`` that support multiple layouts. For instance, English keyboards support ``InputSet/qwerty``, ``InputSet/azerty``, ``InputSet/qwertz``, and ``InputSet/colemak``.
+KeyboardKit Pro extends ``Foundation/Locale`` with a list of ``Foundation/Locale/supportedLayoutTypes`` and makes the ``KeyboardApp/LocaleScreen`` add a layout picker to all added locales that support multiple layouts. 
 
-* Catalan: QWERY - Catalan, QWERTY, AZERTY, QWERTZ, Colemak
-* Croatian: QWERTZ, QWERTY, AZERTY, Colemak
-* Dutch: QWERTY, AZERTY, QWERTZ, Colemak
-* Dutch_belgium: AZERTY, QWERTY, QWERTZ, Colemak
-* English: QWERTY, AZERTY, QWERTZ, Colemak
-* English_australia: QWERTY, AZERTY, QWERTZ, Colemak
-* English_canada: QWERTY, AZERTY, QWERTZ, Colemak
-* English_gb: QWERTY, AZERTY, QWERTZ, Colemak
-* English_us: QWERTY, AZERTY, QWERTZ, Colemak
-* Estonian: QWERTY, QWERTZ, AZERTY, .colemak
-* Hungarian: QWERTZ, QWERTY, AZERTY, Colemak
-* Indonesian: QWERTY, QWERTZ, AZERTY, Colemak
-* Irish: QWERTY, QWERTZ, AZERTY, Colemak
-* Italian: QWERTY, AZERTY, QWERTZ, Colemak
-* Latvian: QWERTY, QWERTZ, AZERTY, Colemak
-* Malay: QWERTY, QWERTZ, AZERTY, Colemak
-* Polish: QWERTY, QWERTZ, AZERTY, Colemak
-* Portuguese: QWERTY, AZERTY, QWERTZ, Colemak
-* Portuguese_brazil: QWERTY, AZERTY, QWERTZ, Colemak
-* Romanian: QWERTY, QWERTZ, AZERTY, Colemak
-* Serbian_latin: QWERTY, QWERTZ, AZERTY, Colemak
-* Slovenian: QWERTZ, QWERTY, AZERTY, Colemak
-* Swahili: QWERTY, AZERTY, QWERTZ, Colemak
-* Uzbek: QWERTY, AZERTY, QWERTZ, Colemak
-* Vietnamese TELEX/VIQR/VNI: QWERTY, AZERTY, QWERTZ
-* Welsh: QWERTY, AZERTY, QWERTZ, Colemak
+* **Catalan**: QWERY - Catalan, QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Croatian**: QWERTZ, QWERTY, AZERTY, Colemak, Dvorak
+* **Dutch**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Dutch_belgium**: AZERTY, QWERTY, QWERTZ, Colemak, Dvorak
+* **English**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **English_australia**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **English_canada**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **English_gb**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **English_us**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Estonian**: QWERTY, QWERTZ, AZERTY, .colemak
+* **Hungarian**: QWERTZ, QWERTY, AZERTY, Colemak, Dvorak
+* **Indonesian**: QWERTY, QWERTZ, AZERTY, Colemak, Dvorak
+* **Irish**: QWERTY, QWERTZ, AZERTY, Colemak, Dvorak
+* **Italian**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Latvian**: QWERTY, QWERTZ, AZERTY, Colemak, Dvorak
+* **Malay**: QWERTY, QWERTZ, AZERTY, Colemak, Dvorak
+* **Polish**: QWERTY, QWERTZ, AZERTY, Colemak, Dvorak
+* **Portuguese**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Portuguese_brazil**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Romanian**: QWERTY, QWERTZ, AZERTY, Colemak, Dvorak
+* **Serbian_latin**: QWERTY, QWERTZ, AZERTY, Colemak, Dvorak
+* **Slovenian**: QWERTZ, QWERTY, AZERTY, Colemak, Dvorak
+* **Swahili**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Uzbek**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
+* **Vietnamese** TELEX, VIQR, VNI (QWERTY, AZERTY, QWERTZ for all)
+* **Welsh**: QWERTY, AZERTY, QWERTZ, Colemak, Dvorak
 
 All ``KeyboardLayout/ProLayoutService`` implementations use the ``KeyboardContext/keyboardLayoutType`` to adjust their alphabetic input set for the current type.
 

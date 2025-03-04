@@ -364,14 +364,21 @@ public extension InputSet {
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    static var qwertz: InputSet {
+    static var colemak: InputSet {
         get throws {
             throw ProPlaceholderError.proPlaceholder
         }
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    static var colemak: InputSet {
+    static var dvorak: InputSet {
+        get throws {
+            throw ProPlaceholderError.proPlaceholder
+        }
+    }
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static var qwertz: InputSet {
         get throws {
             throw ProPlaceholderError.proPlaceholder
         }

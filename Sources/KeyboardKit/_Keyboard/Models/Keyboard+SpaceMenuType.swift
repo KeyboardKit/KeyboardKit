@@ -1,5 +1,5 @@
 //
-//  Keyboard+SpaceContextMenu.swift
+//  Keyboard+SpaceMenuType.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-02-21.
@@ -15,7 +15,7 @@ public extension Keyboard {
     ///
     /// You can apply a custom value using the view modifier
     /// ``SwiftUICore/View/keyboardSpaceContextMenu(_:edge:)``.
-    enum SpaceContextMenu: String, CaseIterable, Identifiable, KeyboardModel {
+    enum SpaceMenuType: String, CaseIterable, Identifiable, KeyboardModel {
         
         /// Add a locale menu, if multiple locales are added.
         case locale
@@ -51,32 +51,34 @@ public extension Keyboard {
     }
 }
 
-public extension Keyboard.SpaceContextMenu {
+public extension Keyboard.SpaceMenuType {
     
     /// The unique behavior ID.
     var id: String { rawValue }
 }
 
 public extension View {
-
-    /// Apply a ``Keyboard/SpaceContextMenu`` to the leading
-    /// or trailing edge of the spacebar.
-    func keyboardSpaceContextMenu(
-        _ type: Keyboard.SpaceContextMenu?,
-        edge: HorizontalEdge = .trailing
+    
+    /// Apply a leading ``Keyboard/SpaceMenuType`` to space.
+    func keyboardSpaceContextMenuLeading(
+        _ type: Keyboard.SpaceMenuType?
     ) -> some View {
-        switch edge {
-        case .leading: environment(\.keyboardSpaceContextMenuLeading, type)
-        case .trailing: environment(\.keyboardSpaceContextMenuTrailing, type)
-        }
+        environment(\.keyboardSpaceContextMenuLeading, type)
+    }
+    
+    /// Apply a trailing ``Keyboard/SpaceMenuType`` to space.
+    func keyboardSpaceContextMenuTrailing(
+        _ type: Keyboard.SpaceMenuType?
+    ) -> some View {
+        environment(\.keyboardSpaceContextMenuTrailing, type)
     }
 }
 
 public extension EnvironmentValues {
     
-    /// Apply a leading ``Keyboard/SpaceContextMenu``.
-    @Entry var keyboardSpaceContextMenuLeading: Keyboard.SpaceContextMenu?
+    /// Apply a leading ``Keyboard/SpaceMenuType``.
+    @Entry var keyboardSpaceContextMenuLeading: Keyboard.SpaceMenuType?
     
-    /// Apply a trailing ``Keyboard/SpaceContextMenu``.
-    @Entry var keyboardSpaceContextMenuTrailing: Keyboard.SpaceContextMenu?
+    /// Apply a trailing ``Keyboard/SpaceMenuType``.
+    @Entry var keyboardSpaceContextMenuTrailing: Keyboard.SpaceMenuType?
 }

@@ -118,11 +118,11 @@ private extension KeyboardViewItem {
         item.action == .space && keyboardContext.hasMultipleEnabledLocales
     }
     
-    var spaceContextMenuLeading: Keyboard.SpaceContextMenu? {
+    var spaceContextMenuLeading: Keyboard.SpaceMenuType? {
         spaceContextMenuLeadingEnv ?? keyboardContext.settings.spaceContextMenuLeading
     }
     
-    var spaceContextMenuTrailing: Keyboard.SpaceContextMenu? {
+    var spaceContextMenuTrailing: Keyboard.SpaceMenuType? {
         spaceContextMenuTrailingEnv ?? keyboardContext.settings.spaceContextMenuTrailing
     }
 }

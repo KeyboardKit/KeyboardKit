@@ -13,11 +13,20 @@ These release notes cover the current major version. See older versions for olde
 
 ## 9.3
 
-This version adds support for Vietnamese TELEX, VIQR, and VNI (Beta).
+This version adds support for Vietnamese TELEX, VIQR, and VNI (Beta), and adds Dvorak support to these locales:
 
-This version makes KeyboardKit and KeyboardKit Pro both use a `setup(for:completion:)` function to avoid mistakes when upgrading to KeyboardKit Pro. 
+Catalan, Croatian, Dutch, Dutch (Belgium), English (All), 
+Estonian, Filipino, Hungarian, Indonesian, Irish, Italian, 
+Latvian, Malay,  Polish, Portuguese, Portuguese (Brazil), 
+Romanian, Serbian (Latin), Slovenian, Swahili, Uzbek, Welsh
 
-This version also moves back all theme-related types to KeyboardKit Pro to avoid confusion, since these types can only be used with KeyboardKit Pro.
+This version also adds support for emoji colon search to settings and KeyboardKit Pro's local autocomplete service.
+
+This version improves the action callout by requiring less swiping and making items smaller when too many are shown.
+
+To avoid confusion, this version makes both KeyboardKit and KeyboardKit Pro use a `setup(for:completion:)` function. 
+
+This version also moves back all theme-related types to KeyboardKit Pro, since they can only be used in KeyboardKit Pro.
 
 ### ✨ Features
 
@@ -25,22 +34,23 @@ This version also moves back all theme-related types to KeyboardKit Pro to avoid
 * `Autocomplete.Settings` has a new `isEmojiColonSearchEnabled` property.
 * `AutocompleteContext` has a new, observable `emojiCompletions` property.
 * `Keyboard.Diacritic` has a new `insertionResult(whenAppendedTo:)` function.
-* `Keyboard.LayoutType` has new enum cases for Vietnamese Telex, VIQR and VNI.
-* `KeyboardTextInput` is a new namespace for alternate Pro text input methods.
+* `Keyboard.LayoutType` has new cases for Dvorak & Vietnamese (Telex, VIQR, VNI).
+* `KeyboardTextInput` is a new namespace for more input support in KeyboardKit Pro.
 
 ### 👑 Pro
 
 * `App.KeyboardSettingsScreen` has a new toggle to enable emoji colon search.
 * `Autocomplete.LocalAutocompleteService` uses emoji colon search if enabled.
-* `Emoji.ColonSearch` is a new class for searching emojis with a colon prefix.
+* `Emoji.ColonSearch` is a new type for searching emojis with a colon prefix.
+* `InputSet` adds a `.dvorak` input set that is used by Pro-specific layouts.
 * `Keyboard.Diacritic` has new Vietnamese diacritics like the `vietnameseSac`.
-* `KeyboardSettings` has new functions for its added locales and layout types.
-* `KeyboardTextInput+Vietnamese` is a new namespace for Vietnamese text input.
+* `KeyboardLayout` adds new Dvorak support to the Pro-specific layout services.
+* `KeyboardSettings` has new functions for handling added locales and layout types.
+* `KeyboardTextInput+Vietnamese` is a new namespace for Vietnamese text input types.
 
 ### 🇻🇳 Localization
 
-* This version adds support for typing in Vietnamese TELEX, VIQR, and VNI.
-* `Locale` has brand new support for and localized resources for Vietnamese.
+* This version adds support for Vietnamese TELEX, VIQR, and VNI.
 
 ### 💡 Adjustment
 
@@ -52,17 +62,18 @@ This version also moves back all theme-related types to KeyboardKit Pro to avoid
 ### 🐛 Bug Fixes
 
 * `KeyboardCalloutContext` now properly handles drag gestures on RTL devices.
+* `KeyboardInputViewController` fixes a setup race condition in KeyboardKit Pro.  
 
 ### 🗑️ Deprecations
 
-* `KeyboardInputViewController` `setup` is no longer open to inheritance.
-* `KeyboardInputViewController` `setup` now uses a completion block for both Pro and non-Pro.
-* `KeyboardInputViewController` `setupKeyboardView` without view builder has been deprecated.
+* `KeyboardInputViewController.setup(for:completion:)` is no longer open to inheritance.
+* `KeyboardInputViewController.setup(for:completion:)` is now used in both Pro and non-Pro.
+* `KeyboardInputViewController.setupKeyboardView(_:)` without view builder has been deprecated.
 
 ### 🚨 Breaking Changes
 
 * `KeyboardCalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
-* `KeyboardTheme` types have been moved back to KeyboardKit Pro to avoid open-source confusions.
+* `KeyboardTheme` types have been moved back to KeyboardKit Pro to avoid open-source confusion.
 
 
 

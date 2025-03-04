@@ -22,9 +22,9 @@ This article describes essential types, models, and views that KeyboardKit provi
 
 ## Namespaces
 
-KeyboardKit uses namespaces nest types into logical groups, like ``Keyboard``, ``KeyboardAction`` ``KeyboardLayout``, etc. This helps to make the SDK surface area smaller and easier to navigate.
+KeyboardKit uses namespaces nest types into logical groups, like ``Keyboard``, ``KeyboardAction`` ``KeyboardLayout``, etc. This helps making the library surface smaller and easier to navigate.
 
-Namespaces don't contain protocols, or important types that are meant to be exposed as top-level types. This includes some essential types, like ``KeyboardInputViewController``, ``KeyboardContext``, etc., and important views, like ``KeyboardView``.
+Namespaces don't contain protocols or important types that are meant to be exposed as top-level types. This includes important types like ``KeyboardInputViewController``, ``KeyboardContext``, etc., and important views, like ``KeyboardView``.
 
 The ``Keyboard`` namespace contains many essential, keyboard-related types and views. By typing ``Keyboard`` and `.`, Xcode will list all types in this namespace, like ``Keyboard/KeyboardType``, ``Keyboard/Button``, etc.
 
@@ -32,9 +32,8 @@ The ``Keyboard`` namespace contains many essential, keyboard-related types and v
 
 ## Models
 
-The ``Keyboard`` namespace contains many essential keyboard engine models that are used by many features, for instance these ones:
+The ``Keyboard`` namespace contains many essential keyboard models that are used by many other features, for instance these ones:
 
-* ``Keyboard/Accent``
 * ``Keyboard/AddedLocale``
 * ``Keyboard/AutocapitalizationType``
 * ``Keyboard/BackspaceRange``
@@ -48,6 +47,9 @@ The ``Keyboard`` namespace contains many essential keyboard engine models that a
 * ``Keyboard/ReturnKeyType``
 * ``Keyboard/SpaceDragSensitivity``
 * ``Keyboard/SpaceLongPressBehavior``
+* ``Keyboard/SpaceMenuType``
+
+Many of these models, like ``Keyboard/LayoutType``, could be considered to belong in other namespaces, but are placed in ``Keyboard`` since they are used by core features and describe essential parts of the keyboard.
 
 
 ## Controller
