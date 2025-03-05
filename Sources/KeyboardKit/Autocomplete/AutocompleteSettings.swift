@@ -51,9 +51,9 @@ public struct AutocompleteSettings {
     @AppStorage("\(settingsPrefix)isAutoIgnoreEnabled", store: .keyboardSettings)
     public var isAutoIgnoreEnabled = true
     
-    /// Whether emoji colon search is enabled, by default `false`.
-    @AppStorage("\(settingsPrefix)isEmojiColonSearchEnabled", store: .keyboardSettings)
-    public var isEmojiColonSearchEnabled = false
+    /// Whether emoji autocomplete is enabled, by default `true`.
+    @AppStorage("\(settingsPrefix)isEmojiAutocompleteEnabled", store: .keyboardSettings)
+    public var isEmojiAutocompleteEnabled = true
 
     /// Whether next character prediction is enabled, by default `true`.
     @AppStorage("\(settingsPrefix)isNextCharacterPredictionEnabled", store: .keyboardSettings)

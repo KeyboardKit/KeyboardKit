@@ -31,7 +31,7 @@ This version also moves back all theme-related types to KeyboardKit Pro, since t
 ### ✨ Features
 
 * `Autocomplete.ServiceResult` has a new `emojiCompletions` property.
-* `Autocomplete.Settings` has a new `isEmojiColonSearchEnabled` property.
+* `Autocomplete.Settings` has a new `isEmojiAutocompleteEnabled` property.
 * `AutocompleteContext` has a new, observable `emojiCompletions` property.
 * `Keyboard.Diacritic` has a new `insertionResult(whenAppendedTo:)` function.
 * `Keyboard.LayoutType` has new cases for Dvorak & Vietnamese (Telex, VIQR, VNI).

@@ -21,28 +21,46 @@ KeyboardKit has ``KeyboardSettings`` and other namespace-specific settings types
 @TabNavigator {
     
     @Tab("Keyboard") {
-        ``KeyboardSettings/addedLocales``,
-        ``KeyboardSettings/inputToolbarType-swift.property``,
-        ``KeyboardSettings/isAutocapitalizationEnabled``,
-        ``KeyboardSettings/isKeyboardAutoCollapseEnabled``,
-        ``KeyboardSettings/keyboardDockEdge``,
-        ``KeyboardSettings/keyboardLayoutTypeIdentifier``,
-        ``KeyboardSettings/localeIdentifier``,
-        ``KeyboardSettings/spaceContextMenuLeading``,
-        ``KeyboardSettings/spaceContextMenuTrailing``,
+        ``KeyboardSettings/addedLocales``
+        
+        ``KeyboardSettings/inputToolbarType-swift.property``
+        
+        ``KeyboardSettings/isAutocapitalizationEnabled``
+        
+        ``KeyboardSettings/isKeyboardAutoCollapseEnabled``
+        
+        ``KeyboardSettings/keyboardDockEdge``
+        
+        ``KeyboardSettings/keyboardLayoutTypeIdentifier``
+        
+        ``KeyboardSettings/localeIdentifier``
+        
+        ``KeyboardSettings/spaceContextMenuLeading``
+        
+        ``KeyboardSettings/spaceContextMenuTrailing``
+        
         ``KeyboardSettings/spaceLongPressBehavior``
     }
     
     @Tab("Autocomplete") {
-        ``AutocompleteSettings/isAutocompleteEnabled``,
-        ``AutocompleteSettings/isAutocorrectEnabled``,
-        ``AutocompleteSettings/isAutolearnEnabled``,
-        ``AutocompleteSettings/isAutoIgnoreEnabled``,
-        ``AutocompleteSettings/isEmojiColonSearchEnabled``,
-        ``AutocompleteSettings/isNextCharacterPredictionEnabled``,
-        ``AutocompleteSettings/isNextWordPredictionEnabled``,
-        ``AutocompleteSettings/nextWordPredictionRequestApiKey``,
-        ``AutocompleteSettings/nextWordPredictionRequestType``,
+        ``AutocompleteSettings/isAutocompleteEnabled``
+        
+        ``AutocompleteSettings/isAutocorrectEnabled``
+        
+        ``AutocompleteSettings/isAutolearnEnabled``
+        
+        ``AutocompleteSettings/isAutoIgnoreEnabled``
+        
+        ``AutocompleteSettings/isEmojiAutocompleteEnabled``
+        
+        ``AutocompleteSettings/isNextCharacterPredictionEnabled``
+        
+        ``AutocompleteSettings/isNextWordPredictionEnabled``
+        
+        ``AutocompleteSettings/nextWordPredictionRequestApiKey``
+        
+        ``AutocompleteSettings/nextWordPredictionRequestType``
+        
         ``AutocompleteSettings/suggestionsDisplayCount``
     }
     
@@ -51,7 +69,8 @@ KeyboardKit has ``KeyboardSettings`` and other namespace-specific settings types
     }
     
     @Tab("Feedback") {
-        ``KeyboardFeedbackSettings/isAudioFeedbackEnabled``,
+        ``KeyboardFeedbackSettings/isAudioFeedbackEnabled``
+        
         ``KeyboardFeedbackSettings/isHapticFeedbackEnabled``
     }
     

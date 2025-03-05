@@ -96,13 +96,9 @@ The ``Autocomplete/LocalAutocompleteService`` performs on-device autocomplete. I
     @Tab("macOS") {
         Arabic, Arabic, Najdi, Bulgarian, Czech, Danish, Dutch, English, English (Australia), English (Canada), English (India), English (Japan), English (New Zealand), English (Singapore), English (South Africa), English (United Kingdom), Finnish, French, German, Greek, Hebrew, Hindi, Hungarian, Icelandic, Indonesian, Irish, Italian, Korean, Lithuanian, Norwegian Bokmål, Norwegian Nynorsk, Polish, Portuguese (Brazil), Portuguese (Portugal), Punjabi, Romanian, Russian, Slovenian, Spanish, Swedish, Telugu, Turkish, Ukrainian, Vietnamese
     }
-    
-    @Tab("watchOS") {
-        Not available.
-    }
 }
 
-The service will use an ``Emoji``.``Emoji/ColonSearch`` to perform colon search if ``AutocompleteSettings/isEmojiColonSearchEnabled`` is enabled. You can also inject a ``Autocomplete/NextWordPredictionRequest`` to make the service perform next word predictions with an external AI service. 
+The service will use perform emoji autocomplete if ``AutocompleteSettings/isEmojiAutocompleteEnabled`` is enabled. You can also inject a ``Autocomplete/NextWordPredictionRequest`` to make the service perform next word predictions with an external AI service. 
 
 
 ### Remote Autocomplete
@@ -175,9 +171,7 @@ The ``KeyboardView`` automatically adds an autocomplete ``Autocomplete/Toolbar``
 
 ### ...enable emoji autocomplete 
 
-KeyboardKit Pro unlocks a ``Emoji/ColonSearch`` engine that makes it possible to search for emojis by starting the current word with a `:`. This engine is automatically used by the ``Autocomplete/LocalAutocompleteService`` service, when ``AutocompleteSettings/isEmojiColonSearchEnabled`` is turned on.
-
-The autocomplete ``Autocomplete/Toolbar`` will automatically display the emoji suggestions that are returned by the service's ``Autocomplete/ServiceResult``. You can implement these parts yourself, if you don't use KeyboardKit Pro.
+KeyboardKit Pro unlocks an emoji ``Emoji/ColonSearch`` engine that makes it possible to search for emojis by starting the current word with a colon. This is automatically used by ``Autocomplete/LocalAutocompleteService`` when ``AutocompleteSettings/isEmojiAutocompleteEnabled`` is true.
 
 
 
