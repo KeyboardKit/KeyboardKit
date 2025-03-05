@@ -81,8 +81,8 @@ private extension KeyboardViewController {
         /// 💡 Set up a demo-specific layout service with an
         /// optional additional bottom key.
         services.layoutService = DemoLayoutService(
-            // extraKey: .rocket
-            extraKey: .localeSwitcher
+            extraKey: .rocket
+            // extraKey: .localeSwitcher
         )
         
         /// 💡 Even though you can set the layout type using
