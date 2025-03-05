@@ -42,10 +42,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     // MARK: - View Controller Lifecycle
 
     open override func viewDidLoad() {
-        state.setup(for: self)
         super.viewDidLoad()
         setupInitialWidth()
-        setupLocaleObservation()
+        DispatchQueue.main.async(execute: performInitialSetup)
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -69,6 +68,20 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
         viewWillSyncWithContext()
         super.traitCollectionDidChange(previousTraitCollection)
     }
+    
+    
+    // MARK: - Initial Setup
+    
+    /// Call async to give App Group setup time to complete
+    func performInitialSetup() {
+        state.setup(for: self)
+        setupLocaleObservation()
+        hasPerformedInitialSetup = true
+    }
+    
+    /// Used to keep track if the controller has been setup
+    public var hasPerformedInitialSetup = false
+    
 
 
     // MARK: - Keyboard View Controller Lifecycle
@@ -153,7 +166,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// The text document proxy that is currently active.
     open override var textDocumentProxy: UITextDocumentProxy {
-        state.keyboardContext.textInputProxy ?? originalTextDocumentProxy
+        guard hasPerformedInitialSetup else { return originalTextDocumentProxy }
+        return state.keyboardContext.textInputProxy ?? originalTextDocumentProxy
     }
 
 
