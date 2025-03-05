@@ -126,6 +126,7 @@ public extension KeyboardCalloutContext {
         triggerSelectionChangeFeedback()
     }
     
+    #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
     /// Update the secondary action selection with a drag gesture value.
     func updateSecondaryActionsSelection(with value: DragGesture.Value) {
         guard buttonFrame != .zero else { return }
@@ -143,6 +144,7 @@ public extension KeyboardCalloutContext {
         if currentIndex != newIndex { triggerSelectionChangeFeedback() }
         self.secondaryActionsIndex = newIndex
     }
+    #endif
 }
 
 extension KeyboardCalloutContext {
