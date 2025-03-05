@@ -330,14 +330,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     
     // MARK: - Deprecated
     
-    @_disfavoredOverload
-    @available(*, deprecated, renamed: "setup(for:completion:)")
-    open func setup(
-        for app: KeyboardApp
-    ) {
-        setupController(for: app)
-    }
-    
     @available(*, deprecated, message: "Use view builder variant instead.")
     open func setupKeyboardView<Content: View>(
         with view: @autoclosure @escaping () -> Content
