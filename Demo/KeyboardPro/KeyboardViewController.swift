@@ -31,7 +31,7 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
 
         /// ‼️ Set up the keyboard for `.keyboardKitDemo`.
-        super.setupPro(for: .keyboardKitDemo) { result in
+        super.setup(for: .keyboardKitDemo) { result in
             
             /// 💡 If `result` is successful, the license is
             /// now registered and you can start customizing
