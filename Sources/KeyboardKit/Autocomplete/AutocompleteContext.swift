@@ -57,16 +57,21 @@ public class AutocompleteContext: ObservableObject {
     /// The characters that are more likely to be typed next.
     @Published public var nextCharacterPredictions: [Character: Double] = [:]
 
-    /// The suggestions that should be presented to the user.
-    @Published public var suggestions: [Autocomplete.Suggestion] = []
-
     /// The suggestions that were returned by the service.
-    @Published public var suggestionsFromService: [Autocomplete.Suggestion] = [] {
-        didSet {
-            let value = suggestionsFromService
-            let capped = value.prefix(settings.suggestionsDisplayCount)
-            suggestions = Array(capped)
-        }
+    @Published public var suggestionsFromService: [Autocomplete.Suggestion] = []
+}
+
+
+// MARK: - Suggestions
+
+public extension AutocompleteContext {
+    
+    /// The suggestions that should be presented to the user,
+    /// which is an aggregate of the ``suggestionsFromService``.
+    var suggestions: [Autocomplete.Suggestion] {
+        let suggestions = suggestionsFromService
+        let capped = Array(suggestions.prefix(settings.suggestionsDisplayCount))
+        return capped + emojiSuggestions
     }
 }
 

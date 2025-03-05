@@ -20,7 +20,9 @@ Estonian, Filipino, Hungarian, Indonesian, Irish, Italian,
 Latvian, Malay,  Polish, Portuguese, Portuguese (Brazil), 
 Romanian, Serbian (Latin), Slovenian, Swahili, Uzbek, Welsh
 
-This version also adds support for emoji colon search to settings and KeyboardKit Pro's local autocomplete service.
+This version adds support for emoji colon search, which can also be used by KeyboardKit Pro's local autocomplete.
+
+Users can toggle emoji autocomplete on and off with the autocomplete settings, to auto-enable emoji autocomplete.
 
 This version improves the action callout by requiring less swiping and making items smaller when too many are shown.
 
@@ -40,7 +42,7 @@ This version also moves back all theme-related types to KeyboardKit Pro, since t
 ### 👑 Pro
 
 * `App.KeyboardSettingsScreen` has a new toggle to enable emoji colon search.
-* `Autocomplete.LocalAutocompleteService` uses emoji colon search if enabled.
+* `Autocomplete.LocalAutocompleteService` uses emoji autocomplete if enabled.
 * `Emoji.ColonSearch` is a new type for searching emojis with a colon prefix.
 * `InputSet` adds a `.dvorak` input set that is used by Pro-specific layouts.
 * `Keyboard.Diacritic` has new Vietnamese diacritics like the `vietnameseSac`.
@@ -67,11 +69,11 @@ This version also moves back all theme-related types to KeyboardKit Pro, since t
 ### 🗑️ Deprecations
 
 * `KeyboardInputViewController.setup(for:completion:)` is no longer open to inheritance.
-* `KeyboardInputViewController.setup(for:completion:)` is now used in both Pro and non-Pro.
 * `KeyboardInputViewController.setupKeyboardView(_:)` without view builder has been deprecated.
 
 ### 🚨 Breaking Changes
 
+* `AutocompleteContext.suggestions` is now a computed aggregate and can no longer be set.
 * `KeyboardCalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
 * `KeyboardTheme` types have been moved back to KeyboardKit Pro to avoid open-source confusion.
 

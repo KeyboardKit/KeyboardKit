@@ -12,7 +12,7 @@ public extension AutocompleteContext {
 
     static var preview: AutocompleteContext = {
         let context = AutocompleteContext()
-        context.suggestions = .preview
+        context.suggestionsFromService = .preview
         return context
     }()
 }

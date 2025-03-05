@@ -393,7 +393,6 @@ private extension KeyboardView {
                 style: styleService.autocompleteToolbarStyle,
                 view: Autocomplete.Toolbar(
                     suggestions: autocompleteContext.suggestions,
-                    emojiSuggestions: autocompleteContext.emojiSuggestions,
                     itemView: { $0.view },
                     separatorView: { $0.view },
                     suggestionAction: actionHandler.handle(_:)
@@ -489,7 +488,7 @@ private extension KeyboardView {
             context.settings.keyboardDockEdge = .none
 //            context.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
             
-            controller.state.autocompleteContext.suggestions = [
+            controller.state.autocompleteContext.suggestionsFromService = [
                 .init(text: "Foo"),
                 .init(text: "Bar", type: .autocorrect),
                 .init(text: "Baz")

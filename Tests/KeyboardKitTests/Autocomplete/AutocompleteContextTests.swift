@@ -22,12 +22,13 @@ final class AutocompleteContextTests: XCTestCase {
             nextCharacterPredictions: ["a" : 0.5]
         )
         context.update(with: result)
-
+        
         await MainActor.run {
             XCTAssertEqual(context.isLoading, false)
             XCTAssertNil(context.lastError)
-            XCTAssertEqual(context.suggestionsFromService, .preview)
-            XCTAssertEqual(context.emojiSuggestions, [.init(text: "😊", type: .emoji)])
+            XCTAssertEqual(context.suggestionsFromService, result.suggestions)
+            XCTAssertEqual(context.emojiSuggestions, result.emojiSuggestions)
+            XCTAssertEqual(context.suggestions, result.suggestions + (result.emojiSuggestions ?? []))
             XCTAssertEqual(context.nextCharacterPredictions, ["a": 0.5])
         }
     }

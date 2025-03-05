@@ -13,28 +13,23 @@ public extension Autocomplete {
     /// This toolbar can be added above the keyboard to show
     /// autocomplete suggestions as the user types.
     ///
-    /// The view will drop the last provided suggestion when
-    /// emoji suggestions are provided. It will show at most
-    /// three emoji suggestions, and only one when there are
-    /// more than two visible suggestions.
+    /// The toolbar will separate all emoji suggestions from
+    /// the provided suggestions and drop the last non-emoji
+    /// suggestion if emojis exist. It shows max three emoji
+    /// suggestions, and only one if there are more than two
+    /// visible non-emoji suggestions.
     ///
     /// You can style this component with the style modifier
     /// ``autocompleteToolbarStyle(_:)``.
-    ///
-    /// TODO: A future update should move the emoji logic to
-    /// the autocomplete context and just let this view show
-    /// the data you provide it with.
     struct Toolbar<ItemView: View, SeparatorView: View>: View {
 
         /// Create a toolbar with standard views.
         ///
         /// - Parameters:
         ///   - suggestions: The suggestions to display.
-        ///   - emojiSuggestions: The emoji suggestions to display, if any.
         ///   - suggestionAction: The action to run when tapping a suggestion.
         public init(
             suggestions: [Autocomplete.Suggestion],
-            emojiSuggestions: [Autocomplete.Suggestion] = [],
             suggestionAction: @escaping SuggestionAction
         ) where ItemView == StandardItem, SeparatorView == StandardSeparator {
             self.init(
@@ -52,20 +47,20 @@ public extension Autocomplete {
         ///
         /// - Parameters:
         ///   - suggestions: The suggestions to display.
-        ///   - emojis: The emoji suggestions to display, if any.
         ///   - itemView: The suggestion view builder to use.
         ///   - separatorView: The separator view builder to use.
         ///   - suggestionAction: The action to run when tapping a suggestion.
         public init(
             suggestions: [Autocomplete.Suggestion],
-            emojiSuggestions emojis: [Autocomplete.Suggestion] = [],
             itemView: @escaping ItemViewBuilder,
             separatorView: @escaping SeparatorViewBuilder,
             suggestionAction: @escaping SuggestionAction
         ) {
+            let plainSuggestions = suggestions.filter { $0.type != .emoji }
+            let emojis = suggestions.filter { $0.type == .emoji }
             let suggestionDropCount = emojis.isEmpty ? 0 : 1
-            let showManyEmojis = (suggestions.count - suggestionDropCount) < 3
-            self.suggestions = suggestions.dropLast(suggestionDropCount)
+            let showManyEmojis = (plainSuggestions.count - suggestionDropCount) < 3
+            self.suggestions = plainSuggestions.dropLast(suggestionDropCount)
             self.emojiSuggestions = Array(emojis.prefix(showManyEmojis ? 3 : 1))
             self.itemView = itemView
             self.separatorView = separatorView
@@ -299,8 +294,7 @@ public extension EnvironmentValues {
                 suggestionAction: { _ in }
             )
             Autocomplete.Toolbar(
-                suggestions: suggestions + additional,
-                emojiSuggestions: emojis,
+                suggestions: suggestions + additional + emojis,
                 itemView: { $0.view },
                 separatorView: { $0.view },
                 suggestionAction: { _ in }
@@ -308,8 +302,7 @@ public extension EnvironmentValues {
             HStack {
                 Text("+").frame(width: 40)
                 Autocomplete.Toolbar(
-                    suggestions: suggestions,
-                    emojiSuggestions: emojis,
+                    suggestions: suggestions + emojis,
                     itemView: { $0.view },
                     separatorView: { $0.view },
                     suggestionAction: { _ in }

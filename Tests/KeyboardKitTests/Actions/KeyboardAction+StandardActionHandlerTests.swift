@@ -186,15 +186,15 @@ final class KeyboardAction_StandardActionHandlerTests: XCTestCase {
     func testShouldAutocompleteIgnoreCurrentWordReturnsTrueWhenPressingBackspaceWithExistingWordAndAutocorrection() {
         handler.autocompleteContext.settings.isAutolearnEnabled = true
         textDocumentProxy.documentContextBeforeInput = "abc"
-        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.autocompleteContext.suggestionsFromService = [.init(text: "", type: .autocorrect)]
         XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .release, on: .backspace)) // Invalid gesture
         XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .space)) // Invalid action
         textDocumentProxy.documentContextBeforeInput = ""
         XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .backspace)) // Missing word
         textDocumentProxy.documentContextBeforeInput = "abc"
-        handler.autocompleteContext.suggestions = [.init(text: "", type: .unknown)]
+        handler.autocompleteContext.suggestionsFromService = [.init(text: "", type: .unknown)]
         XCTAssertFalse(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .backspace)) // Missing autocorrection
-        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.autocompleteContext.suggestionsFromService = [.init(text: "", type: .autocorrect)]
         XCTAssertTrue(handler.shouldAutoIgnoreCurrentWord(before: .press, on: .backspace)) // Valid
     }
 
@@ -220,15 +220,15 @@ final class KeyboardAction_StandardActionHandlerTests: XCTestCase {
     func testTryApplyCorrectSuggestionTriggersWhenItShould() {
         let ref = textDocumentProxy.deleteBackwardRef
         textDocumentProxy.documentContextBeforeInput = "abc"
-        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.autocompleteContext.suggestionsFromService = [.init(text: "", type: .autocorrect)]
         handler.tryApplyAutocorrectSuggestion(before: .press, on: .space) // Must be release
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
         handler.tryApplyAutocorrectSuggestion(before: .release, on: .backspace) // Must be valid action
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-        handler.autocompleteContext.suggestions = []
+        handler.autocompleteContext.suggestionsFromService = []
         handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Must have actions
         XCTAssertFalse(textDocumentProxy.hasCalled(ref))
-        handler.autocompleteContext.suggestions = [.init(text: "", type: .autocorrect)]
+        handler.autocompleteContext.suggestionsFromService = [.init(text: "", type: .autocorrect)]
         handler.tryApplyAutocorrectSuggestion(before: .release, on: .space) // Valid
         XCTAssertTrue(textDocumentProxy.hasCalled(ref))
     }
