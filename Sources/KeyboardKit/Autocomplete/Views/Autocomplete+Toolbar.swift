@@ -13,8 +13,17 @@ public extension Autocomplete {
     /// This toolbar can be added above the keyboard to show
     /// autocomplete suggestions as the user types.
     ///
+    /// The view will drop the last provided suggestion when
+    /// emoji suggestions are provided. It will show at most
+    /// three emoji suggestions, and only one when there are
+    /// more than two visible suggestions.
+    ///
     /// You can style this component with the style modifier
     /// ``autocompleteToolbarStyle(_:)``.
+    ///
+    /// TODO: A future update should move the emoji logic to
+    /// the autocomplete context and just let this view show
+    /// the data you provide it with.
     struct Toolbar<ItemView: View, SeparatorView: View>: View {
 
         /// Create a toolbar with standard views.
@@ -54,10 +63,10 @@ public extension Autocomplete {
             separatorView: @escaping SeparatorViewBuilder,
             suggestionAction: @escaping SuggestionAction
         ) {
-            let drop = emojis.isEmpty ? 0 : 1
-            let useAllEmojis = suggestions.count - drop < 3
-            self.suggestions = suggestions.dropLast(drop)
-            self.emojiSuggestions = useAllEmojis ? emojis : Array(emojis.prefix(1))
+            let suggestionDropCount = emojis.isEmpty ? 0 : 1
+            let showManyEmojis = (suggestions.count - suggestionDropCount) < 3
+            self.suggestions = suggestions.dropLast(suggestionDropCount)
+            self.emojiSuggestions = Array(emojis.prefix(showManyEmojis ? 3 : 1))
             self.itemView = itemView
             self.separatorView = separatorView
             self.suggestionAction = suggestionAction
@@ -101,11 +110,7 @@ public extension Autocomplete {
                 ForEach(Array(suggestions.enumerated()), id: \.offset) { item in
                     toolbarItem(for: item.element, at: item.offset)
                 }
-                HStack {
-                    ForEach(Array(emojiSuggestions.enumerated()), id: \.offset) { item in
-                        toolbarItemButton(for: item.element)
-                    }
-                }
+                emojiStack
             }
             .padding(style.padding)
             .frame(height: style.height)
@@ -161,6 +166,27 @@ public extension Autocomplete {
 }
 
 private extension Autocomplete.Toolbar {
+    
+    @ViewBuilder
+    var emojiStack: some View {
+        if !emojiSuggestions.isEmpty {
+            HStack(spacing: 0) {
+                ForEach(Array(emojiSuggestions.enumerated()), id: \.offset) { item in
+                    Button {
+                        suggestionAction(item.element)
+                    } label: {
+                        Text(item.element.text)
+                    }
+                    .frame(minWidth: 35)
+                    .font(.body)
+                    .buttonStyle(.plain)
+                    if item.offset < emojiSuggestions.count - 1 {
+                        separatorView(for: item.element)
+                    }
+                }
+            }
+        }
+    }
     
     @ViewBuilder
     func toolbarItem(for suggestion: Suggestion, at index: Int) -> some View {
@@ -238,7 +264,12 @@ public extension EnvironmentValues {
     let additional = [
         Autocomplete.Suggestion(
             text: "",
-            title: "Foo",
+            title: "Foo2",
+            subtitle: "Extra"
+        ),
+        Autocomplete.Suggestion(
+            text: "",
+            title: "Bar2",
             subtitle: "Extra"
         )
     ]
@@ -274,13 +305,18 @@ public extension EnvironmentValues {
                 separatorView: { $0.view },
                 suggestionAction: { _ in }
             )
-            Autocomplete.Toolbar(
-                suggestions: suggestions,
-                emojiSuggestions: emojis,
-                itemView: { $0.view },
-                separatorView: { $0.view },
-                suggestionAction: { _ in }
-            )
+            HStack {
+                Text("+").frame(width: 40)
+                Autocomplete.Toolbar(
+                    suggestions: suggestions,
+                    emojiSuggestions: emojis,
+                    itemView: { $0.view },
+                    separatorView: { $0.view },
+                    suggestionAction: { _ in }
+                )
+                Text("🌐").frame(width: 40)
+                Text("🌐").frame(width: 40)
+            }
             Autocomplete.Toolbar(
                 suggestions: suggestions + additional,
                 itemView: { $0.view },
@@ -297,7 +333,7 @@ public extension EnvironmentValues {
             ))
         }
         .background(Color.keyboardBackground)
-        .clipShape(.rect(cornerRadius: 10))
+        .clipShape(.rect(cornerRadius: 5))
     }
     .padding(5)
 }

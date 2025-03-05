@@ -393,6 +393,7 @@ private extension KeyboardView {
                 style: styleService.autocompleteToolbarStyle,
                 view: Autocomplete.Toolbar(
                     suggestions: autocompleteContext.suggestions,
+                    emojiSuggestions: autocompleteContext.emojiSuggestions,
                     itemView: { $0.view },
                     separatorView: { $0.view },
                     suggestionAction: actionHandler.handle(_:)
