@@ -21,7 +21,18 @@ import UIKit
 /// ``KeyboardView`` whenever the context changes.
 ///
 /// You can use ``locale`` to get and set the current locale,
-/// which also affects the keyboard primary language.
+/// which also set the keyboard primary language, as well as
+/// ``keyboardLayoutType`` to get and set the current layout.
+/// Since the values typically go hand in hand, make sure to
+/// set both when e.g. enabling English with a Dvorak layout.
+/// A future major version should redesign this to make sure
+/// that you can't set these incorrectly.
+///
+/// Note that the ``locale`` and ``keyboardLayoutType`` sync
+/// from and to the ``settings-swift.property``, which is an
+/// approach that persists the values while also keeping the
+/// values observable. Since the context only syncs these at
+/// launch, make sure to only use the context properties.
 ///
 /// You can use ``locales`` to define which locales that you
 /// want to enable for the keyboard. This list is used until
@@ -44,7 +55,8 @@ public class KeyboardContext: ObservableObject {
         settings = .init()
         settings = .init(onAutocapitalizationEnabledChanged: syncAutocapitalizationWithSetting)
         syncAutocapitalizationWithSetting()
-        locale = .init(identifier: settings.localeIdentifier)
+        locale = settings.locale
+        keyboardLayoutType = settings.keyboardLayoutType
     }
 
 

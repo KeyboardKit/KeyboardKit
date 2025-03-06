@@ -139,6 +139,24 @@ public struct KeyboardSettings {
     }
 }
 
+public extension KeyboardSettings {
+    
+    /// Get and set the current locale.
+    var locale: Locale {
+        get { .init(identifier: localeIdentifier) }
+        set { localeIdentifier = newValue.identifier }
+    }
+    
+    /// Get and set the current keyboard layout type, if any.
+    var keyboardLayoutType: Keyboard.LayoutType? {
+        get {
+            guard let keyboardLayoutTypeIdentifier else { return nil }
+            return .init(id: keyboardLayoutTypeIdentifier)
+        }
+        set { keyboardLayoutTypeIdentifier = newValue?.id }
+    }
+}
+
 private extension KeyboardSettings {
     
     func migrateAddedLocaleDataForKeyboardKit9_2() {
