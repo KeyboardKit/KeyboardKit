@@ -30,6 +30,7 @@ public extension Autocomplete {
         ///   - title: The text that should be displayed, by default `text`.
         ///   - subtitle: An optional subtitle that can complete the title, by default `nil`.
         ///   - source: An optional source to describe where the suggestion is from, by default `nil`.
+        ///   - additionalDeleteCount: An optional, additional delete count, to account for trigger characters, by default `0`.
         ///   - additionalInfo: An optional info dictionary, by default `empty`.
         public init(
             text: String,
@@ -37,6 +38,7 @@ public extension Autocomplete {
             title: String? = nil,
             subtitle: String? = nil,
             source: String? = nil,
+            additionalDeleteCount: Int = 0,
             additionalInfo: [String: String] = [:]
         ) {
             self.text = text
@@ -44,6 +46,7 @@ public extension Autocomplete {
             self.title = title ?? text
             self.subtitle = subtitle
             self.source = source
+            self.additionalDeleteCount = additionalDeleteCount
             self.additionalInfo = additionalInfo
         }
 
@@ -61,6 +64,9 @@ public extension Autocomplete {
 
         /// An optional source to describe where the suggestion is from.
         public var source: String?
+        
+        /// An optional, additional delete count, to account for trigger characters.
+        public var additionalDeleteCount: Int
 
         /// An optional info dictionary.
         public var additionalInfo: [String: String]

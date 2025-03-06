@@ -19,6 +19,7 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
 
     override func setUp() {
         proxy = MockTextDocumentProxy()
+        setupProxy("", "")
         suggestion = .init(text: word)
     }
 
@@ -36,12 +37,24 @@ class UITextDocumentProxy_AutocompleteTests: XCTestCase {
 
 
     func testAutocompleteInsertsWordAndSpaceInEmptyProxy() {
-        proxy.documentContextBeforeInput = ""
         applyAutocompleteWithMockAdjustments()
         let delete = proxy.calls(to: \.deleteBackwardRef)
         let insert = proxy.calls(to: \.insertTextRef)
         XCTAssertTrue(proxy.hasAutocompleteInsertedSpace)
         XCTAssertEqual(delete.count, 0)
+        XCTAssertEqual(insert.count, 2)
+        XCTAssertEqual(insert[0].arguments, word)
+        XCTAssertEqual(insert[1].arguments, " ")
+    }
+    
+    func testAutocompleteDeletesAdditionalCountBeforeInsertingWordAndSpaceInEmptyProxy() {
+        setupProxy(":abc", "def")
+        suggestion = .init(text: word, additionalDeleteCount: 1)
+        applyAutocompleteWithMockAdjustments()
+        let delete = proxy.calls(to: \.deleteBackwardRef)
+        let insert = proxy.calls(to: \.insertTextRef)
+        XCTAssertTrue(proxy.hasAutocompleteInsertedSpace)
+        XCTAssertEqual(delete.count, 4)
         XCTAssertEqual(insert.count, 2)
         XCTAssertEqual(insert[0].arguments, word)
         XCTAssertEqual(insert[1].arguments, " ")

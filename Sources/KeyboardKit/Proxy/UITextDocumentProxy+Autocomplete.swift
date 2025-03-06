@@ -30,7 +30,10 @@ public extension UITextDocumentProxy {
         _ suggestion: Autocomplete.Suggestion,
         tryInsertSpace: Bool = true
     ) {
-        replaceCurrentWordPreCursorPart(with: suggestion.text)
+        replaceCurrentWordPreCursorPart(
+            with: suggestion.text,
+            additionalDeletionCount: suggestion.additionalDeleteCount
+        )
         guard tryInsertSpace else { return }
         tryInsertSpaceAfterAutocomplete()
     }
