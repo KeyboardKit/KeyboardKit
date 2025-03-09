@@ -27,15 +27,13 @@ Estonian, Filipino, Hungarian, Indonesian, Irish, Italian,
 Latvian, Malay,  Polish, Portuguese, Portuguese (Brazil), 
 Romanian, Serbian (Latin), Slovenian, Swahili, Uzbek, Welsh
 
-This version adds support for emoji colon search, which can also be used by KeyboardKit Pro's local autocomplete.
+This version also adds support for emoji colon search, which is used by the KeyboardKit Pro local autocomplete.
 
-Users can toggle emoji autocomplete on and off with the autocomplete settings, to auto-enable emoji autocomplete.
+There's a new autocomplete setting for emoji autocomplete, which can be used to disable the emoji colon search.
 
-This version improves the action callout by requiring less swiping and making items smaller when too many are shown.
+This version improves action callouts by requiring less swiping and making items smaller if too many are shown.
 
-To avoid confusion, this version makes both KeyboardKit and KeyboardKit Pro use a `setup(for:completion:)` function. 
-
-This version also moves back all theme-related types to KeyboardKit Pro, since they can only be used in KeyboardKit Pro.
+To avoid confusion, this version makes KeyboardKit and KeyboardKit Pro use a `setup(for:completion:)` function.
 
 ### ✨ Features
 
@@ -63,6 +61,7 @@ This version also moves back all theme-related types to KeyboardKit Pro, since t
 
 ### 💡 Adjustment
 
+* `Keyboard.Diacritic` is refactored to handle multi-character matching.
 * `KeyboardCallout.ActionCallout` now shrinks actions on iPhone if needed.
 * `KeyboardCalloutContext` makes it easier to swipe select callout actions.
 * `KeyboardPreviews.CalloutService` now inherits `KeyboardCallout.BaseCalloutService`.
@@ -75,6 +74,9 @@ This version also moves back all theme-related types to KeyboardKit Pro, since t
 
 ### 🗑️ Deprecations
 
+* `Keyboard.Accent` has been deprecated, since `Diacritic` it used in more places.
+* `Keyboard.DiacriticResult` has been renamed to `Keyboard.DiacriticInsertionResult`.
+* `KeyboardAction.accent` has been deprecated, since `Diacritic` it used in more places.
 * `KeyboardInputViewController.setup(for:completion:)` is no longer open to inheritance.
 * `KeyboardInputViewController.setupKeyboardView(_:)` without view builder has been deprecated.
 

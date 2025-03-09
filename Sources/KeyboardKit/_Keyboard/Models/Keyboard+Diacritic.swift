@@ -10,15 +10,8 @@ import Foundation
 
 public extension Keyboard {
 
-    /// This is a typealias for the ``Diacritic`` type.
-    ///
-    /// > Note: This typealias is only meant to make it easy
-    /// to find the ``Diacritic`` type for those who doesn't
-    /// know the proper terminology.
-    typealias Accent = Diacritic
-
-    /// This type can be used to define diacritic characters,
-    /// which can replace a character(s) with a combined one.
+    /// This type can be used to replace character(s) with a
+    /// diacritic variant.
     ///
     /// The ``KeyboardAction/StandardActionHandler`` will do
     /// this by replacing any last typed, matching character.
@@ -44,32 +37,59 @@ public extension Keyboard {
         public let replacements: [String: String]
     }
     
-    /// This type is used to determine how diacritics should
-    /// be applied to strings.
-    struct DiacriticResult {
+    /// This type describes how to apply a diacritic.
+    struct DiacriticInsertionResult {
         
-        /// Whether the last character should be removed.
-        public let removeLast: Bool
+        /// The number of backwards deletion to apply.
+        public let deleteBackwardsCount: Int
         
-        /// The character to insert after removing the last.
-        public let insert: String
+        /// The text to insert after deleting backwards.
+        public let textInsertion: String
+    }
+}
+
+public extension Keyboard.DiacriticInsertionResult {
+    
+    static func noMatch(for char: String) -> Keyboard.DiacriticInsertionResult {
+        .init(deleteBackwardsCount: 0, textInsertion: char)
     }
 }
 
 public extension Keyboard.Diacritic {
     
-    /// Determine how to apply the diacritic to a string.
-    func insertionResult(
-        whenAppendedTo string: String
-    ) -> Keyboard.DiacriticResult {
-        let last = string.last ?? Character("")
-        let isUpper = last.isUppercase
-        let key = String(last).lowercased()
-        if let match = replacements[key] {
-            let replacement = isUpper ? match.uppercased() : match
-            return .init(removeLast: true, insert: replacement)
-        } else {
-            return .init(removeLast: false, insert: char)
-        }
+    /// The sorted keys to check when performing insertions.
+    var sortedReplacementKeys: [String] {
+        replacements.keys.sorted { $0.count > $1.count }
     }
+    
+    /// Determine how the diacritic should be applied a text.
+    func insertionResult(
+        whenAppendedTo text: String
+    ) -> Keyboard.DiacriticInsertionResult {
+        for key in sortedReplacementKeys {
+            if let result = insertionResult(for: text, key: key) {
+                return result
+            }
+        }
+        return .noMatch(for: char)
+    }
+}
+
+private extension Keyboard.Diacritic {
+    
+    func insertionResult(for text: String, key: String) -> Keyboard.DiacriticInsertionResult? {
+        let count = key.count
+        let suffix = String(text.suffix(count))
+        guard let replacement = replacements[key] else { return nil }
+        guard suffix.localizedCaseInsensitiveContains(key) else { return nil }
+        if suffix.isCaptalized { return .init(deleteBackwardsCount: count, textInsertion: replacement.capitalized) }
+        if suffix.isUppercased { return .init(deleteBackwardsCount: count, textInsertion: replacement.uppercased()) }
+        return .init(deleteBackwardsCount: count, textInsertion: replacement)
+    }
+}
+
+private extension String {
+    
+    var isCaptalized: Bool { self == self.capitalized }
+    var isUppercased: Bool { self == self.uppercased() }
 }

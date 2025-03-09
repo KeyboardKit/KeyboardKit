@@ -124,13 +124,6 @@ public enum KeyboardAction: KeyboardModel {
 }
 
 public extension KeyboardAction {
-    
-    /// An ``KeyboardAction/diacritic(_:)`` alias.
-    static func accent(
-        _ accent: Keyboard.Accent
-    ) -> KeyboardAction {
-        .diacritic(accent)
-    }
 
     /// An `emoji(_:)` shorthand.
     static func emoji(

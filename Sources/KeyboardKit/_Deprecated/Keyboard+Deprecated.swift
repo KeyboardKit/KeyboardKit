@@ -3,8 +3,23 @@ import SwiftUI
 
 public extension Keyboard {
     
+    @available(*, deprecated, renamed: "Keyboard.Diacritic")
+    typealias Accent = Diacritic
+    
+    @available(*, deprecated, renamed: "Keyboard.DiacriticInsertionResult")
+    typealias DiacriticResult = DiacriticInsertionResult
+    
     @available(*, deprecated, renamed: "Keyboard.SpaceMenuType")
     typealias SpaceContextMenu = SpaceMenuType
+}
+
+public extension Keyboard.DiacriticInsertionResult {
+    
+    @available(*, deprecated, renamed: "deleteBackwardsCount")
+    var removeLast: Bool { deleteBackwardsCount == 1 }
+    
+    @available(*, deprecated, renamed: "textInsertion")
+    var insert: String { textInsertion }
 }
 
 public extension Keyboard.InputToolbarDisplayMode {

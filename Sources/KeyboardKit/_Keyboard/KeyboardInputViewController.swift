@@ -25,13 +25,12 @@ import UIKit
 /// > Warning: A very important thing that you MUST consider
 /// when you use ``setupKeyboardView(_:)``, is that the view
 /// builder provides you with an unowned keyboard controller
-/// reference. You should use this instance instead of `self`
-/// in the view builder, since referring to `self` can cause
-/// a memory leak if done wrong. However, if you have to use
-/// `self` to reference your specific controller class, it's
-/// VERY important to add a `[weak self]` or `[unowned self]`
-/// to the view builder. If you don't, your `self` reference
-/// will cause a memory leak.
+/// reference. You should use this instead of `self` in your
+/// view builder, since referring to `self` can cause memory
+/// leaks. However, if you must use `self` to reference your
+/// specific controller, you MUST add an `[unowned self]` or
+/// a `[weak self]` to the view builder, otherwise the `self`
+/// reference will cause a memory leak.
 ///
 /// See the <doc:Getting-Started-Article> article as well as
 /// <doc:Essentials-Article> for more information on how you

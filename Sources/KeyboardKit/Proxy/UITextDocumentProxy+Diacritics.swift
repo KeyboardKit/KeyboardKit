@@ -11,20 +11,14 @@ import UIKit
 
 public extension UITextDocumentProxy {
     
-    /// Apply a certain diacritic.
-    ///
-    /// This will replace the character just before the text
-    /// input cursor with a diacritic replacement, or insert
-    /// the diacritic diaplay character if no match is found.
+    /// Insert a diacritic and perform matching replacements.
     func insertDiacritic(
         _ diacritic: Keyboard.Diacritic
     ) {
         let before = documentContextBeforeInput ?? ""
         let result = diacritic.insertionResult(whenAppendedTo: before)
-        if result.removeLast {
-            deleteBackward()
-        }
-        insertText(result.insert)
+        deleteBackward(times: result.deleteBackwardsCount)
+        insertText(result.textInsertion)
     }
 }
 #endif
