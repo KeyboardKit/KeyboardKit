@@ -1,5 +1,5 @@
 <p align="center">
-    <img src ="Resources/Logo_Readme.png" alt="KeyboardKit Logo" title="KeyboardKit" />
+    <img src ="Resources/Icon_Readme.png" alt="KeyboardKit Icon" title="KeyboardKit" />
 </p>
 
 <p align="center">
