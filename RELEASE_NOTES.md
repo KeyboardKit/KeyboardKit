@@ -18,6 +18,15 @@ Beta version tags and releases are removed after the next minor or major version
 
 
 
+## 9.3.2
+
+### 👑 Pro
+
+* `KeyboardApp` now lets you inject a focus state for the input toolbar picker.
+* `KeyboardLayout` adjusts the input toolbar character casing to fit the layout.
+
+
+
 ## 9.3
 
 This version adds support for Vietnamese TELEX, VIQR, and VNI (Beta), and adds Dvorak support to these locales:
