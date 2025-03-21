@@ -63,7 +63,10 @@ echo ""
 
 # Run SwiftLint
 echo "Running SwiftLint"
-swiftlint
+if ! swiftlint --strict; then
+    echo "Error: SwiftLint failed"
+    exit 1
+fi
 
 # Run unit tests
 echo "Testing..."
