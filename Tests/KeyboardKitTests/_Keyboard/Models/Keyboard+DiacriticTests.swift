@@ -15,7 +15,7 @@ private extension Keyboard.Diacritic {
         .init(
             char: "!",
             replacements: [
-                "r" : "r`",
+                "r": "r`",
                 "uo": "ùò",
                 "uoi": "ùòì"
             ]

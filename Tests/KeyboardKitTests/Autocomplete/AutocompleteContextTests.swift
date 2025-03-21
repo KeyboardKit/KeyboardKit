@@ -19,7 +19,7 @@ final class AutocompleteContextTests: XCTestCase {
             inputText: "foo",
             suggestions: .preview,
             emojiSuggestions: [.init(text: "😊", type: .emoji)],
-            nextCharacterPredictions: ["a" : 0.5]
+            nextCharacterPredictions: ["a": 0.5]
         )
         context.update(with: result)
         
