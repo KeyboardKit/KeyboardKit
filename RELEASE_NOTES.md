@@ -18,6 +18,12 @@ Beta version tags and releases are removed after the next minor or major version
 
 
 
+## 9.3.5
+
+This version fixes a KeyboardKit Pro bug that caused some license files to fail parsing.
+
+
+
 ## 9.3.2
 
 ### 👑 Pro
