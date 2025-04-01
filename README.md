@@ -31,6 +31,8 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
+KeyboardKit must then be linked to all targets that mean to use it.  
+
 
 
 ## Getting Started
@@ -38,8 +40,10 @@ https://github.com/KeyboardKit/KeyboardKit.git
 The easiest way to set up KeyboardKit is to first create a `KeyboardApp` value for your app:
 
 ```swift
-extension KeyboardApp {
+import KeyboardKit
 
+extension KeyboardApp {
+
         static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit",
@@ -55,7 +59,7 @@ extension KeyboardApp {
 }
 ```  
 
-Next, let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+Next, let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 class KeyboardController: KeyboardInputViewController {}
@@ -72,7 +76,7 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
         
         setup(for: .keyboardKitDemo) { result in
-            // If the result is `.success`, the setup succeeded.
+            // If `result` is `.success`, the setup did succeed.
             // This is where you can setup custom services, etc.
         }
     }
@@ -81,7 +85,7 @@ class KeyboardViewController: KeyboardInputViewController {
 
 This will make keyboard settings sync data between the main app and its keyboard if the `KeyboardApp` defines an ``appGroupId``, set up KeyboardKit Pro if it defines a ``licenseKey``, set up dictation and deep links, etc.
 
-To replace or customize the default ``KeyboardView`` that will otherwise be used as the standard keyboard view, just override `viewWillSetupKeyboardView()` and call `setupKeyboardView(_:)` with the view that you want to use:
+To replace or customize the standard ``KeyboardView``, just override `viewWillSetupKeyboardView()` and let it call `setupKeyboardView(_:)` with the view that you want to use:
 
 ```swift
 class KeyboardViewController: KeyboardInputViewController {
@@ -143,8 +147,6 @@ KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unloc
 
 KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro] unlocks more powerful pro features.
 
-### Open-Source
-
 * 🌱 [Essentials][Essentials] - Essential models, services, utilities & views.
 * ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - A native-looking, customizable keyboard.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
@@ -162,25 +164,6 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * ⚙️ [Settings][Settings] - Provide keyboard settings & link to System Settings.
 * 🩺 [Status][Status] - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - Style your keyboard to great extent.
-
-### KeyboardKit Pro
-
-* 🌱 [Essentials][Essentials] - More essential tools, previews, toolbars, etc.
-* ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - Make the keyboard view do a lot more.
-* 🤖 [AI][AI] - Features that are needed for AI.
-* 📱 [App][App] - App-specific screens & views.
-* 💡 [Autocomplete][Autocomplete] - Local & remote autocomplete, next word prediction, etc.
-* 🗯 [Callouts][Callouts] - Localized callout actions for all supported locales.
-* 🎤 [Dictation][Dictation] - Dictate text from the keyboard.
-* 😀 [Emojis][Emojis] - A powerful emoji keyboard, search, etc.
-* ⌨️ [External][External] - Detect if an external keyboard is connected. 
-* 🏠 [Host][Host] - Identify and open specific host applications.
-* 🔣 [Layout][Layout] - More input sets and layouts for all supported locales.
-* 🌐 [Localization][Localization] - Localize your keyboard in **72 locales**.
-* 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
-* 📄 [Proxy][Proxy] - Allow `UITextDocumentProxy` to read the full document.
-* 📝 [Text][Text-Input] - Allow users to type within the keyboard.
-* 🍭 [Themes][Themes] - A theme engine with many pre-defined themes.
 
 
 
