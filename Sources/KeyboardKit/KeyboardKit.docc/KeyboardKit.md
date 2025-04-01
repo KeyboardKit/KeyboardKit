@@ -7,7 +7,7 @@ KeyboardKit helps you create fully customizable keyboard extensions, using Swift
 
 ![KeyboardKit logo](Logo.png)
 
-KeyboardKit lets you create amazing [custom keyboards][About] with a few lines of code, using Swift & SwiftUI.
+KeyboardKit lets you create amazing [custom keyboard extensions][About] with a few lines of code, using Swift & SwiftUI.
 
 KeyboardKit extends Apple's limited keyboard APIs with more capabilities. It can be extended with [KeyboardKit Pro][Pro], which unlocks Pro features like localized keyboards, autocomplete, an emoji keyboard, AI support, themes, and much more.
 
@@ -21,7 +21,7 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-After installing KeyboardKit, make sure to link it to all targets that need it.
+KeyboardKit must be linked to all targets that will use it, while KeyboardKit Pro must only be linked to the main app target. Other targets will still be able to use KeyboardKit Pro without linking directly to it.
 
 
 

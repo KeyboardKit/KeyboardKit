@@ -31,7 +31,7 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-KeyboardKit must then be linked to all targets that mean to use it.  
+KeyboardKit must then be linked to all targets that will use it.  
 
 
 
