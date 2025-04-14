@@ -128,6 +128,7 @@
 "😮" = "Face with Open Mouth";
 "😲" = "Astonished Face";
 "🥱" = "Yawning Face";
+"🫩" = "Undereye Bags Face";
 "😴" = "Sleeping Face";
 "🤤" = "Drooling Face";
 "😪" = "Sleepy Face";
@@ -221,6 +222,7 @@
 "👂" = "Ear";
 "🦻" = "Ear With Hearing Aid";
 "👃" = "Nose";
+"🫆" = "Fingerprint";
 "👣" = "Footprints";
 "👁" = "Eye";
 "👀" = "Eyes";
@@ -654,6 +656,7 @@
 "🌲" = "Evergreen Tree";
 "🌳" = "Deciduous Tree";
 "🌴" = "Palm Tree";
+"🪾" = "Bare Tree";
 "🪵" = "Wood";
 "🌱" = "Seedling";
 "🌿" = "Herb";
@@ -769,6 +772,7 @@
 "🧄" = "Garlic";
 "🧅" = "Onion";
 "🥔" = "Potato";
+"🫜" = "Root Vegerable";
 "🍠" = "Roasted Sweet Potato";
 "🫚" = "Ginger Root";
 "🥐" = "Croissant";
@@ -966,6 +970,7 @@
 "🎭" = "Performing Arts";
 "🩰" = "Ballet Shoes";
 "🎨" = "Artist Palette";
+"🫟" = "Splatter";
 "🎬" = "Clapper Board";
 "🎤" = "Microphone";
 "🎧" = "Headphone";
@@ -979,6 +984,7 @@
 "🪗" = "Accordion";
 "🎸" = "Guitar";
 "🪕" = "Banjo";
+"🪉" = "Harp";
 "🎻" = "Violin";
 "🪈" = "Flute";
 "🎲" = "Game Die";
@@ -1193,6 +1199,7 @@
 "⚒️" = "Hammer And Pick";
 "🛠" = "Hammer And Wrench";
 "⛏" = "Pick";
+"🪏" = "Shovel";
 "🪚" = "Carpentry Saw";
 "🔩" = "Nut And Bolt";
 "⚙️" = "Gear";
@@ -1858,6 +1865,7 @@
 "🇼🇸" = "Flag: Samoa";
 "🇸🇲" = "Flag: San Marino";
 "🇸🇹" = "Flag: São Tomé & Príncipe";
+"🇨🇶" = "Flag: Sark";
 "🇸🇦" = "Flag: Saudi Arabia";
 "🇨🇭" = "Flag: Switzerland";
 "🇸🇳" = "Flag: Senegal";

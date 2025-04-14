@@ -327,7 +327,7 @@ extension KeyboardAction {
         ) {
             guard shouldRegisterEmoji(after: gesture, on: action) else { return }
             switch action {
-            case .emoji(let emoji): EmojiCategory.addEmoji(emoji, to: .frequent, maxCount: 30)
+            case .emoji(let emoji): EmojiCategory.Persisted.recent.addEmoji(emoji)
             default: return
             }
         }

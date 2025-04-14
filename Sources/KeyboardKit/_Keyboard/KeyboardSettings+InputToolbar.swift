@@ -60,7 +60,7 @@ private extension KeyboardSettings {
     }
 
     var recentEmojisString: String {
-        let recentString = EmojiCategory.recent
+        let recentString = EmojiCategory.persisted(.recent)
             .emojis
             .prefix(10)
             .map { $0.char }.joined()

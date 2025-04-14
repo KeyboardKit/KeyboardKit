@@ -18,6 +18,17 @@ Beta version tags and releases are removed after the next minor or major version
 
 
 
+## 9.4
+
+This version adds new Emojis 16 emojis and localizes emojis in more languages.
+
+### 😀 Emojis
+
+* This version adds Emojis 16 emojis to iOS 18.4 and aligned versions: 🫩🫆🪾🫜🫟🪉🪏🇨🇶.
+* Emojis are now localized in 🇫🇷 French, 🇮🇹 Italian, 🇧🇷 Portuguese (Brazil) & 🇷🇺 Russian.
+
+
+
 ## 9.3.5
 
 This version fixes a KeyboardKit Pro bug that caused some license files to fail parsing.
