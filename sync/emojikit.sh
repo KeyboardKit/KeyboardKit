@@ -4,7 +4,7 @@
 
 # Variables
 NAME="EmojiKit"
-SOURCE="../../opensource/$NAME/Sources/$NAME/"
+SOURCE="../../sdks/$NAME/Sources/$NAME/"
 TARGET="Sources/KeyboardKit/_Dependencies/$NAME/"
 
 # Remove
