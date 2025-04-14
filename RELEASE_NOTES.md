@@ -27,6 +27,15 @@ This version adds new Emojis 16 emojis and localizes emojis in more languages.
 * This version adds Emojis 16 emojis to iOS 18.4 and aligned versions: 🫩🫆🪾🫜🫟🪉🪏🇨🇶.
 * Emojis are now localized in 🇫🇷 French, 🇮🇹 Italian, 🇧🇷 Portuguese (Brazil) & 🇷🇺 Russian.
 
+### 👑 Pro
+
+* `Autocomplete.TextReplacementDictionary.additionalAutocorrections` contains many more replacements now.
+
+### 💡 Adjustment
+
+* `Autocomplete.TextReplacementDictionary` has been moved to KeyboardKit Pro.
+
+
 
 
 ## 9.3.5

@@ -105,7 +105,14 @@ The service will use perform emoji autocomplete if ``AutocompleteSettings/isEmoj
 
 The ``Autocomplete/RemoteAutocompleteService`` can be used to perform autocomplete by integrating with any external API. It requires that the device is online, and requires Full Access to be able to make network requests.
 
-You create a remote autocomplete service by defining the API URL, any potential headers or query parameters, as well as a result type. 
+You create a remote autocomplete service by defining the API URL, any potential headers or query parameters, as well as a result type.
+
+
+### Autocomplete vs. autocorrect
+
+Autocomplete suggestions with a ``Autocomplete/SuggestionType/regular`` type are only applied if the user taps on them, while suggestions with the ``Autocomplete/SuggestionType/autocorrect`` type will be automatically applied when the user taps on a word delimiter, like space.
+
+The ``Autocomplete/LocalAutocompleteService`` will try its best to provide proper autocorrections, but sometimes it will fail to do so. If so, you can add custom values to the ``AutocompleteContext/autocorrectDictionary`` dictionary.
 
 
 ### Next Character Prediction

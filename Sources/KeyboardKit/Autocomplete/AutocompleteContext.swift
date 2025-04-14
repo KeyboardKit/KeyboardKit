@@ -38,15 +38,18 @@ public class AutocompleteContext: ObservableObject {
     /// The last received autocomplete error.
     public var lastError: Error?
     
+    
+    // MARK: - Properties
+
+    /// This dictionary can be used to define autocorrection
+    /// replacements for various locales.
+    ///
+    /// KeyboardKit Pro initializes the dictionary with many
+    /// replacements that the system is missing.
+    public var autocorrectDictionary = Autocomplete.TextReplacementDictionary.additionalAutocorrections
+    
 
     // MARK: - Published Properties
-
-    /// This localized dictionary can be used to define more,
-    /// custom autocorrections for the various locales.
-    ///
-    /// Note that it's already initialized with a well-known
-    /// set of autocorrections, so make sure to append to it.
-    @Published public var autocorrectDictionary = Autocomplete.TextReplacementDictionary.additionalAutocorrections
 
     /// Whether or not suggestions are being fetched.
     @Published public var isLoading = false

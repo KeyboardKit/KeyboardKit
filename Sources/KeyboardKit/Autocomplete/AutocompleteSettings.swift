@@ -34,7 +34,7 @@ public struct AutocompleteSettings {
     public static var settingsPrefix: String {
         KeyboardSettings.storeKeyPrefix(for: "autocomplete")
     }
-
+    
     /// Whether autocomplete is enabled, by default `true`.
     @AppStorage("\(settingsPrefix)isAutocompleteEnabled", store: .keyboardSettings)
     public var isAutocompleteEnabled = true

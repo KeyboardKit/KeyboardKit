@@ -95,6 +95,17 @@ public extension Autocomplete {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     class RemoteAutocompleteService: Autocomplete.DisabledAutocompleteService {}
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    struct TextReplacementDictionary {
+
+        public init() {}
+
+        private let dictionary: Locale.Dictionary<[String: String]> = .init()
+        
+        /// 👑 This is unlocked by KeyboardKit Pro.
+        static var additionalAutocorrections: Self { .init() }
+    }
 }
 
 public extension AutocompleteSettings {
