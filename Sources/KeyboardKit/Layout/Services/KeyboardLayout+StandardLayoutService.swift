@@ -79,7 +79,8 @@ extension KeyboardLayout {
         open func keyboardLayout(
             for context: KeyboardContext
         ) -> KeyboardLayout {
-            keyboardLayoutService(for: context)
+            NSLog("Update")
+            return keyboardLayoutService(for: context)
                 .keyboardLayout(for: context)
         }
         

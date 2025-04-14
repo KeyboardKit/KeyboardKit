@@ -37,14 +37,13 @@ class KeyboardViewController: KeyboardInputViewController {
         setupDemoServices()
         setupDemoState()
     }
-
+    
     /// This function is called when the controller needs to
     /// create or update the keyboard view.
     ///
     /// Call `setupKeyboardView(_:)` here to set up a custom
     /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
-
         /// 💡 Don't call `super.viewWillSetupKeyboardView()`.
         // super.viewWillSetupKeyboardView()
 
