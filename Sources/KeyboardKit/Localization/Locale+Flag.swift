@@ -84,6 +84,7 @@ public extension Locale {
         case .serbian: "🇷🇸"
         case .serbian_latin: "🇷🇸"
             
+        case .shughni_tajik: "🇹🇯"
         case .slovenian: "🇸🇮"
         case .slovak: "🇸🇰"
         case .spanish: "🇪🇸"

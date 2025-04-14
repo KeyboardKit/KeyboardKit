@@ -75,6 +75,7 @@ class Locale_FlagTests: XCTestCase {
             .russian: "🇷🇺",
             .serbian: "🇷🇸",
             .serbian_latin: "🇷🇸",
+            .shughni_tajik: "🇹🇯",
             .slovenian: "🇸🇮",
             .slovak: "🇸🇰",
             .spanish: "🇪🇸",

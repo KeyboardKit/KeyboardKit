@@ -37,7 +37,6 @@ This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
 
 
-
 ## 9.3.5
 
 This version fixes a KeyboardKit Pro bug that caused some license files to fail parsing.

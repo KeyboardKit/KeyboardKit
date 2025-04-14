@@ -35,16 +35,16 @@ The <doc:Getting-Started-Article> guide helps you get started with KeyboardKit, 
 
 ## Supported Locales
 
-KeyboardKit supports **72** ``Foundation/Locale``s:
+KeyboardKit supports **73** ``Foundation/Locale``s:
 
-🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🏳️ 🇭🇷  <br />
-🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴  <br />
-🇵🇭 🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭  <br />
-🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿  <br />
-🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️  <br />
-🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸  <br />
-🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 🇺🇿  <br />
-🇻🇳 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
+🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇧🇾 🇧🇬 🇦🇩 🏳️ 🏳️ 🇭🇷 <br />
+🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪 🇫🇴 <br />
+🇵🇭 🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹 🇨🇭 <br />
+🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹 🇰🇿 <br />
+🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳 🏳️ <br />
+🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸 🇷🇸 <br />
+🇹🇯 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷 🇺🇦 <br />
+🇺🇿 🇻🇳 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
 
 [KeyboardKit Pro][Pro] unlocks localized callouts, input sets, layouts & services for all supported locales, as shown in the <doc:Localization-Article> article.
 
@@ -88,7 +88,7 @@ KeyboardKit helps you build amazing keyboard extensions, and provides you with a
 * ⌨️ <doc:External-Keyboards-Article> - Detect if an external keyboard is connected.
 * 🏠 <doc:Host-Article> - Identify and open specific host applications.
 * 🔣 <doc:Layout-Article> - More input sets and layouts for all supported locales.
-* 🌐 <doc:Localization-Article> - Localize your keyboard in **72 locales**.
+* 🌐 <doc:Localization-Article> - Localize your keyboard in all supported locales.
 * 👁 <doc:Previews-Article> - Keyboard & theme previews for in-app use.
 * 📄 <doc:Proxy-Article> - Allow `UITextDocumentProxy` to read the full document.
 * 📝 <doc:Text-Input-Article> - Allow users to type within the keyboard.

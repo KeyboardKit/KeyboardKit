@@ -274,6 +274,11 @@ public extension EnvironmentValues {
         .init(text: "Bar", type: .autocorrect),
         .init(text: "", title: "Baz" /*, subtitle: "Recommended"*/)]
     
+    let longer: [Autocomplete.Suggestion] = [
+        .init(text: "VeryLongTextNumberOne"),
+        .init(text: "VeryLongTextNumberTwo", type: .autocorrect),
+        .init(text: "VeryLongTextNumberThree")]
+    
     let emojis: [Autocomplete.Suggestion] = [
         .init(text: "😊", type: .emoji),
         .init(text: "💡", type: .emoji),
@@ -287,6 +292,14 @@ public extension EnvironmentValues {
                 separatorView: { $0.view },
                 suggestionAction: { _ in }
             )
+            Autocomplete.Toolbar(
+                suggestions: longer,
+                itemView: { $0.view },
+                separatorView: { $0.view },
+                suggestionAction: { _ in }
+            )
+            .truncationMode(.middle)
+            
             Autocomplete.Toolbar(
                 suggestions: Array(suggestions.prefix(2)),
                 itemView: { $0.view },

@@ -29,9 +29,9 @@ public extension Locale {
             .macedonian, .malay, .maltese, .mongolian, .northern_sami,
             .norwegian, .norwegian_nynorsk, .persian, .polish, .portuguese,
             .portuguese_brazil, .romanian, .russian, .serbian, .serbian_latin,
-            .slovak, .slovenian, .spanish, .spanish_latinAmerica, .spanish_mexico,
-            .swedish, .swahili, .turkish, .ukrainian, .uzbek,
-            .vietnamese, .welsh
+            .shughni_tajik, .slovak, .slovenian, .spanish, .spanish_latinAmerica,
+            .spanish_mexico, .swedish, .swahili, .turkish, .ukrainian,
+            .uzbek, .vietnamese, .welsh
         ]
     }
 }
@@ -106,6 +106,7 @@ public extension Locale {
     static var russian: Locale { .withId("ru") }
     static var serbian: Locale { .withId("sr") }
     static var serbian_latin: Locale { .withId("sr-Latn") }
+    static var shughni_tajik: Locale { .withId("tg") }
     static var slovak: Locale { .withId("sk") }
     static var slovenian: Locale { .withId("sl") }
     static var spanish: Locale { .withId("es") }
@@ -191,6 +192,7 @@ public extension Locale {
         case .serbian: "serbian"
         case .serbian_latin: "serbian_latin"
             
+        case .shughni_tajik: "shugni_tajik"
         case .slovenian: "slovenian"
         case .slovak: "slovak"
         case .spanish: "spanish"
@@ -200,8 +202,8 @@ public extension Locale {
         case .swahili: "swahili"
         case .turkish: "turkish"
         case .ukrainian: "ukrainian"
-        case .uzbek: "uzbek"
             
+        case .uzbek: "uzbek"
         case .vietnamese: "vietnamese"
         case .welsh: "welsh"
             

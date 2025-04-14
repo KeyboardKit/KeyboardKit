@@ -27,10 +27,10 @@ public extension Locale {
         in locale: Locale
     ) -> String? {
         if identifier == "ckb_PC" {
-            let sorani = Locale.kurdish_sorani
-            let name = sorani.localizedName(in: locale) ?? "Kurdish Sorani"
+            let name = Locale.kurdish_sorani.localizedName(in: locale) ?? "Kurdish Sorani"
             return name + " (PC)"
         }
+        if identifier == "tg" { return "Shughni Tajik" }
         return locale.localizedString(forIdentifier: identifier)
     }
 
