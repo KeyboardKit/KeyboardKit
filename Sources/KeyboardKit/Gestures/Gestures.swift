@@ -10,9 +10,6 @@ import Foundation
 
 /// This namespace contains gesture-related types.
 ///
-/// Essential gesture types like ``Keyboard/Gesture`` can be
-/// found in the ``Keyboard`` namespace.
-///
 /// The namespace doesn't contain protocols, nor any context
 /// or settings types that should be top-level types.
 public struct Gestures {}

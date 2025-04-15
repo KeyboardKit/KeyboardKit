@@ -11,9 +11,14 @@ import CoreGraphics
 public extension DragGestureHandler where Self == Gestures.SpaceDragGestureHandler {
 
     /// Create a ``Gestures/SpaceDragGestureHandler``.
+    ///
+    /// - Parameters:
+    ///   - sensitivity: The drag sensitivity, by default `.medium`.
+    ///   - verticalThreshold: The vertical threshold in points, by default `50`.
+    ///   - action: The action to perform when the offset changes.
     static func spaceDrag(
-        sensitivity: Keyboard.SpaceDragSensitivity = .medium,
-        verticalThreshold: Double = 50,
+        sensitivity: Keyboard.SpaceDragSensitivity? = nil,
+        verticalThreshold: Double? = nil,
         action: @escaping (Int) -> Void
     ) -> Self {
         Gestures.SpaceDragGestureHandler(
@@ -43,12 +48,12 @@ public extension Gestures {
         ///   - verticalThreshold: The vertical threshold in points, by default `50`.
         ///   - action: The action to perform when the offset changes.
         public init(
-            sensitivity: Keyboard.SpaceDragSensitivity = .medium,
-            verticalThreshold: Double = 50,
+            sensitivity: Keyboard.SpaceDragSensitivity? = nil,
+            verticalThreshold: Double? = nil,
             action: @escaping (Int) -> Void
         ) {
-            self.sensitivity = sensitivity
-            self.verticalThreshold = verticalThreshold
+            self.sensitivity = sensitivity ?? .medium
+            self.verticalThreshold = verticalThreshold ?? 50
             self.action = action
         }
         
@@ -110,9 +115,11 @@ extension UITextDocumentProxy {
     /// This character is used when the gesture moves over a
     /// combined emoji.
     func spaceDragOffsetMultiplierCharacter(for offset: Int) -> String.Element? {
-        if offset == 1 { return documentContextAfterInput?.first }
-        if offset == -1 { return documentContextBeforeInput?.last }
-        return nil
+        switch offset {
+        case 1: documentContextAfterInput?.first
+        case -1: documentContextBeforeInput?.last
+        default: nil
+        }
     }
 }
 #endif
