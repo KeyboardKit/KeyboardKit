@@ -46,16 +46,6 @@ public extension KKL10n {
     var text: String {
         NSLocalizedString(key, bundle: .keyboardKit, comment: "")
     }
-    
-    /// Get the localized text for a certain context.
-    func text(for context: KeyboardContext) -> String {
-        text(for: context.locale)
-    }
-
-    /// Get the localized text for a certain context.
-    func text(forContext context: KeyboardContext) -> String {
-        text(for: context)
-    }
 
     /// Get the localized text for a certain `Locale`.
     func text(for locale: Locale) -> String {

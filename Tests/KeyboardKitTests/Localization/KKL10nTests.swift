@@ -24,15 +24,6 @@ class KKL10nTests: XCTestCase {
         }
     }
 
-    func testTextForContextReturnsCorrectText() {
-        let key = KKL10n.done
-        let context = KeyboardContext()
-        context.locale = .english
-        XCTAssertEqual(key.text(for: context), "done")
-        context.locale = .swedish
-        XCTAssertEqual(key.text(for: context), "klar")
-    }
-
     func testTextForLocaleReturnsCorrectText() {
         let key = KKL10n.done
         XCTAssertEqual(key.text(for: .english), "done")
