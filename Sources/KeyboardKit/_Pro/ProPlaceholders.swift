@@ -407,7 +407,7 @@ public extension KeyboardLayout {
     /// 👑 This is unlocked by KeyboardKit Pro.
     func adjusted(
         for displayMode: Keyboard.InputToolbarDisplayMode,
-        layoutConfiguration: KeyboardLayout.Configuration
+        layoutConfiguration: KeyboardLayout.DeviceConfiguration
     ) -> KeyboardLayout {
         return self
     }

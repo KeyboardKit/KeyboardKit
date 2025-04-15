@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+ConfigurationTests.swift
+//  KeyboardLayout+DeviceConfigurationTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-10-01.
@@ -10,45 +10,45 @@ import XCTest
 
 @testable import KeyboardKit
 
-class KeyboardLayout_ConfigurationTests: XCTestCase {
+class KeyboardLayout_DeviceConfigurationTests: XCTestCase {
 
-    func testStandardConfigurationIsCorrectForiPadInPortrait() {
-        let config = KeyboardLayout.Configuration.standardPad
+    func testStandardConfigIsCorrectForPadInPortrait() {
+        let config = KeyboardLayout.DeviceConfiguration.standardPad
         XCTAssertEqual(config.buttonCornerRadius, 5)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 5, vertical: 4))
         XCTAssertEqual(config.rowHeight, 64)
     }
     
-    func testStandardConfigurationIsCorrectForiPadInLandscape() {
-        let config = KeyboardLayout.Configuration.standardPadLandscape
+    func testStandardConfigIsCorrectForPadInLandscape() {
+        let config = KeyboardLayout.DeviceConfiguration.standardPadLandscape
         XCTAssertEqual(config.buttonCornerRadius, 7)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 7, vertical: 6))
         XCTAssertEqual(config.rowHeight, 86)
     }
 
-    func testStandardConfigurationIsCorrectForiPhoneInPortrait() {
-        let config = KeyboardLayout.Configuration.standardPhone
+    func testStandardConfigIsCorrectForPhoneInPortrait() {
+        let config = KeyboardLayout.DeviceConfiguration.standardPhone
         XCTAssertEqual(config.buttonCornerRadius, 5)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 6))
         XCTAssertEqual(config.rowHeight, 54)
     }
 
-    func testStandardConfigurationIsCorrectForiPhoneInLandscape() {
-        let config = KeyboardLayout.Configuration.standardPhoneLandscape
+    func testStandardConfigIsCorrectForPhoneInLandscape() {
+        let config = KeyboardLayout.DeviceConfiguration.standardPhoneLandscape
         XCTAssertEqual(config.buttonCornerRadius, 5)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 4))
         XCTAssertEqual(config.rowHeight, 40)
     }
 
-    func testStandardConfigurationIsCorrectForiPhoneProMaxInPortrait() {
-        let config = KeyboardLayout.Configuration.standardPhoneProMax
+    func testStandardConfigIsCorrectForProMaxPhoneInPortrait() {
+        let config = KeyboardLayout.DeviceConfiguration.standardPhoneProMax
         XCTAssertEqual(config.buttonCornerRadius, 5)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 5.5))
         XCTAssertEqual(config.rowHeight, 56)
     }
 
-    func testStandardConfigurationIsCorrectForiPhoneProMaxInLandscape() {
-        let config = KeyboardLayout.Configuration.standardPhoneProMaxLandscape
+    func testStandardConfigIsCorrectForProMaxPhoneInLandscape() {
+        let config = KeyboardLayout.DeviceConfiguration.standardPhoneProMaxLandscape
         XCTAssertEqual(config.buttonCornerRadius, 5)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 4))
         XCTAssertEqual(config.rowHeight, 40)
@@ -59,7 +59,7 @@ class KeyboardLayout_ConfigurationTests: XCTestCase {
         for device: DeviceType,
         size: CGSize,
         orientation: InterfaceOrientation
-    ) -> KeyboardLayout.Configuration {
+    ) -> KeyboardLayout.DeviceConfiguration {
         .standard(
             forDevice: device,
             screenSize: size,

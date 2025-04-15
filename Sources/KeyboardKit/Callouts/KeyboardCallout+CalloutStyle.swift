@@ -146,7 +146,7 @@ public extension KeyboardCallout.CalloutStyle {
         for context: KeyboardContext
     ) -> Double {
         if let radius = buttonOverlayCornerRadius { return radius }
-        let config = KeyboardLayout.Configuration.standard(for: context)
+        let config = KeyboardLayout.DeviceConfiguration.standard(for: context)
         return config.buttonCornerRadius
     }
 

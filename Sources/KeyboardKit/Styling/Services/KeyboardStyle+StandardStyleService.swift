@@ -83,7 +83,7 @@ extension KeyboardStyle {
         }
         
         /// The keyboard layout configuration to use.
-        open var keyboardLayoutConfiguration: KeyboardLayout.Configuration {
+        open var keyboardLayoutConfiguration: KeyboardLayout.DeviceConfiguration {
             .standard(for: keyboardContext)
         }
         

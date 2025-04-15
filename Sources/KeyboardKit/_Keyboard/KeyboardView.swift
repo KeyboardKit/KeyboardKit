@@ -107,7 +107,7 @@ public struct KeyboardView<
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
         var layout = layout
-        let layoutConfig = KeyboardLayout.Configuration.standard(for: keyboardContext)
+        let layoutConfig = KeyboardLayout.DeviceConfiguration.standard(for: keyboardContext)
         
         let hasProEmojiKeyboard = !Emoji.KeyboardWrapper.isEmptyPlaceholder
         let hasCustomEmojiKeyboard = EmojiKeyboard.self != Emoji.KeyboardWrapper.self
@@ -136,7 +136,7 @@ public struct KeyboardView<
     private let actionHandler: KeyboardActionHandler
     private let repeatTimer: GestureButtonTimer?
     private let rawLayout: KeyboardLayout
-    private let layoutConfig: KeyboardLayout.Configuration
+    private let layoutConfig: KeyboardLayout.DeviceConfiguration
     private let styleService: KeyboardStyleService
     private let renderBackground: Bool
 

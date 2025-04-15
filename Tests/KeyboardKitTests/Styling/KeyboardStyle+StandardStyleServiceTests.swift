@@ -17,7 +17,7 @@ class KeyboardStyle_StandardStyleServiceTests: XCTestCase {
     var context: KeyboardContext!
 
     var styles: [(action: KeyboardAction, style: Keyboard.ButtonStyle)]!
-    let config = KeyboardLayout.Configuration.standard(for: .preview)
+    let config = KeyboardLayout.DeviceConfiguration.standard(for: .preview)
 
     override func setUp() {
         context = .init()

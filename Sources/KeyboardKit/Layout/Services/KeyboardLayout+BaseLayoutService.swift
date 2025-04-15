@@ -169,7 +169,7 @@ extension KeyboardLayout {
         ) -> EdgeInsets {
             switch action {
             case .characterMargin, .none: .init(all: 0)
-            default: KeyboardLayout.Configuration
+            default: KeyboardLayout.DeviceConfiguration
                     .standard(for: context)
                     .buttonInsets
             }
@@ -194,7 +194,7 @@ extension KeyboardLayout {
             index: Int,
             context: KeyboardContext
         ) -> CGFloat {
-            KeyboardLayout.Configuration
+            KeyboardLayout.DeviceConfiguration
                 .standard(for: context)
                 .rowHeight
         }

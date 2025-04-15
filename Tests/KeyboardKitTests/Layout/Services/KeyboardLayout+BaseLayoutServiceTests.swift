@@ -13,7 +13,7 @@ class KeyboardLayout_BaseLayoutServiceTests: XCTestCase {
 
     var service: KeyboardLayout.BaseLayoutService!
     var context: KeyboardContext!
-    var layoutConfig: KeyboardLayout.Configuration!
+    var layoutConfig: KeyboardLayout.DeviceConfiguration!
 
     let alpha = [["a", "b", "c"]]
     var alphaSet: InputSet!
