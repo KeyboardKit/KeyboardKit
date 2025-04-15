@@ -355,17 +355,17 @@ extension KeyboardAction {
 
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
         if isUpperShift(for: context) && context.hasDarkColorScheme { return .white }
-        if isUpperShift(for: context) { return .keyboardButtonBackground(for: context) }
-        if isSystemAction { return .keyboardDarkButtonBackground(for: context) }
+        if isUpperShift(for: context) { return .keyboardButtonBackground(for: context.colorScheme) }
+        if isSystemAction { return .keyboardDarkButtonBackground(for: context.colorScheme) }
         if isPrimaryAction { return .blue }
-        return .keyboardButtonBackground(for: context)
+        return .keyboardButtonBackground(for: context.colorScheme)
     }
 
     func buttonBackgroundColorForPressedState(for context: KeyboardContext) -> Color {
-        if isUpperShift(for: context) { return .keyboardDarkButtonBackground(for: context) }
-        if isSystemAction { return context.hasDarkColorScheme ? .keyboardButtonBackground(for: context) : .white }
-        if isPrimaryAction { return context.hasDarkColorScheme ? .keyboardDarkButtonBackground(for: context) : .white }
-        return .keyboardDarkButtonBackground(for: context)
+        if isUpperShift(for: context) { return .keyboardDarkButtonBackground(for: context.colorScheme) }
+        if isSystemAction { return context.hasDarkColorScheme ? .keyboardButtonBackground(for: context.colorScheme) : .white }
+        if isPrimaryAction { return context.hasDarkColorScheme ? .keyboardDarkButtonBackground(for: context.colorScheme) : .white }
+        return .keyboardDarkButtonBackground(for: context.colorScheme)
     }
 
     var buttonForegroundColorForAllStates: Color? {
@@ -386,14 +386,14 @@ extension KeyboardAction {
 
     func buttonForegroundColorForIdleState(for context: KeyboardContext) -> Color {
         if isUpperShift(for: context) && context.hasDarkColorScheme { return .black }
-        let standard = Color.keyboardButtonForeground(for: context)
+        let standard = Color.keyboardButtonForeground(for: context.colorScheme)
         if isSystemAction { return standard }
         if isPrimaryAction { return .white }
         return standard
     }
 
     func buttonForegroundColorForPressedState(for context: KeyboardContext) -> Color {
-        let standard = Color.keyboardButtonForeground(for: context)
+        let standard = Color.keyboardButtonForeground(for: context.colorScheme)
         if isSystemAction { return standard }
         if isPrimaryAction { return context.hasDarkColorScheme ? .white : standard }
         return standard

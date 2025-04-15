@@ -1,5 +1,5 @@
 //
-//  Image+KeyboardKit.swift
+//  Image+Keyboard.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-03-11.
@@ -105,6 +105,14 @@ extension Image {
 }
 
 #Preview {
+    
+    func preview(for image: Image, _ title: String) -> some View {
+        Button {
+            print(title)
+        } label: {
+            image
+        }
+    }
 
     return ScrollView(.vertical) {
         VStack(spacing: 40) {
@@ -160,14 +168,6 @@ extension Image {
         .padding()
         .buttonStyle(.plain)
         .font(.title.weight(.regular))
-    }
-
-    func preview(for image: Image, _ title: String) -> some View {
-        Button {
-            print(title)
-        } label: {
-            image
-        }
     }
 }
 

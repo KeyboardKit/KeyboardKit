@@ -1,5 +1,5 @@
 //
-//  Color+KeyboardKit.swift
+//  Color+Keyboard.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-20.
@@ -65,41 +65,60 @@ public extension Color {
 public extension Color {
     
     /// The standard keyboard button background color.
-    static func keyboardBackground(for context: KeyboardContext) -> Self {
+    static func keyboardBackground(
+        for colorScheme: ColorScheme
+    ) -> Self {
         .keyboardBackground
     }
     
     /// The standard keyboard button background color.
-    static func keyboardButtonBackground(for context: KeyboardContext) -> Self {
-        context.hasDarkColorScheme ?
+    static func keyboardButtonBackground(
+        for colorScheme: ColorScheme
+    ) -> Self {
+        colorScheme.isDark ?
             .keyboardButtonBackgroundForColorSchemeBug :
             .keyboardButtonBackground
     }
 
     /// The standard keyboard button foreground color.
-    static func keyboardButtonForeground(for context: KeyboardContext) -> Self {
-        context.hasDarkColorScheme ?
+    static func keyboardButtonForeground(
+        for colorScheme: ColorScheme
+    ) -> Self {
+        colorScheme.isDark ?
             .keyboardButtonForegroundForDarkAppearance :
             .keyboardButtonForeground
     }
 
     /// The standard keyboard button shadow color.
-    static func keyboardButtonShadow(for context: KeyboardContext) -> Self {
+    static func keyboardButtonShadow(
+        for colorScheme: ColorScheme
+    ) -> Self {
         .keyboardButtonShadow
     }
 
     /// The standard dark keyboard button background color.
-    static func keyboardDarkButtonBackground(for context: KeyboardContext) -> Self {
-        context.hasDarkColorScheme ?
+    static func keyboardDarkButtonBackground(
+        for colorScheme: ColorScheme
+    ) -> Self {
+        colorScheme.isDark ?
             .keyboardDarkButtonBackgroundForColorSchemeBug :
             .keyboardDarkButtonBackground
     }
 
     /// The standard dark keyboard button foreground color.
-    static func keyboardDarkButtonForeground(for context: KeyboardContext) -> Self {
-        context.hasDarkColorScheme ?
+    static func keyboardDarkButtonForeground(
+        for colorScheme: ColorScheme
+    ) -> Self {
+        colorScheme.isDark ?
             .keyboardDarkButtonForegroundForDarkAppearance :
             .keyboardDarkButtonForeground
+    }
+}
+
+private extension ColorScheme {
+    
+    var isDark: Bool {
+        self == .dark
     }
 }
 

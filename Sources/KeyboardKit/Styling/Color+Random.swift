@@ -28,7 +28,6 @@ extension Color {
     }
 }
 
-
 #Preview {
 
     func preview(for color: Color) -> some View {

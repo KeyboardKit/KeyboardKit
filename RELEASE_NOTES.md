@@ -35,6 +35,10 @@ This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
 * `Autocomplete.TextReplacementDictionary` has been moved to KeyboardKit Pro.
 
+### 🗑️ Deprecations
+
+* `Color` extensions that took a `KeyboardContext` now takes a `ColorScheme` instead.
+
 
 
 ## 9.3.5
