@@ -10,13 +10,8 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /// This view renders the content of a keyboard button.
-    ///
-    /// The view adapts its content to fit the action, state
-    /// and services that are passed in.
-    ///
-    /// The view sets up gestures, line limits, offset, etc.
-    /// according to the `styleService`.
+    /// This view renders the content for a certain keyboard
+    /// button, based on a provided action and style service.
     struct ButtonContent: View {
         
         /// Create a keyboard button content view.

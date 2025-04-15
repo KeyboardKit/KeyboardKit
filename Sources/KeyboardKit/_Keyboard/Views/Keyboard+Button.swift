@@ -10,10 +10,12 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /// This view mimics a native keyboard button.
+    /// This view can be used to create keyboard buttons for
+    /// various ``KeyboardAction``s.
     ///
-    /// The view adapts its content to fit the action, state
-    /// and services that are passed in.
+    /// The view will apply the proper gestures to make sure
+    /// that the action handler is used correctly, and adapt
+    /// its content to the provided actions and services.
     ///
     /// > Tip: You can turn any view into a keyboard button
     /// with the `.keyboardButton(...)` view modifier.
