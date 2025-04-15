@@ -21,7 +21,7 @@ final class KeyboardSettings_InputToolbarTests: XCTestCase {
     override func tearDown() {
         settings.inputToolbarCharacters = ""
         settings.inputToolbarCharactersMaxCount = 10
-        EmojiCategory.resetEmojis(in: .recent)
+        EmojiCategory.resetEmojis(for: .recent)
     }
     
     func mode(
@@ -47,7 +47,7 @@ final class KeyboardSettings_InputToolbarTests: XCTestCase {
     func testCanResolveRecentEmojis() {
         let emojiChars = "🚀👍🙌🙏⌨️👋💡🌱😂⚠️👑"
         let emojis = emojiChars.map { Emoji($0) }
-        emojis.reversed().forEach { EmojiCategory.addEmoji($0, to: .recent) }
+        emojis.reversed().forEach { EmojiCategory.Persisted.recent.addEmoji($0) }
         XCTAssertEqual(mode(for: .recentEmojis), .characters("🚀👍🙌🙏⌨️👋💡🌱😂⚠️".chars))
         settings.inputToolbarCharactersMaxCount = 5
         XCTAssertEqual(mode(for: .recentEmojis), .characters("🚀👍🙌🙏⌨️".chars))

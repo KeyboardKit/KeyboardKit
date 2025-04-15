@@ -26,3 +26,9 @@ public extension KeyboardLayout {
         set { inputToolbarInputSet = newValue }
     }
 }
+
+public extension KeyboardLayout {
+    
+    @available(*, deprecated, renamed: "DeviceConfiguration")
+    typealias Configuration = DeviceConfiguration
+}

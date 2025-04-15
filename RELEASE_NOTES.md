@@ -38,6 +38,7 @@ This version adds new Emojis 16 emojis and localizes emojis in more languages.
 ### 🗑️ Deprecations
 
 * `Color` extensions that took a `KeyboardContext` now takes a `ColorScheme` instead.
+* `KeyboardLayout.Configuration` has been renamed to `KeyboardLayout.DeviceConfiguration`.
 
 
 

@@ -21,7 +21,7 @@ In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after whic
 
 ## Namespace
 
-KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other layout-related types like ``KeyboardLayout/Configuration``, ``KeyboardLayout/Item``, etc.
+KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other layout-related types like ``KeyboardLayout/DeviceConfiguration``.
 
 
 

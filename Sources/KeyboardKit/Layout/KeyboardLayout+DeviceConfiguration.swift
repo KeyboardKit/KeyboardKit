@@ -1,5 +1,5 @@
 //
-//  KeyboardLayout+Configuration.swift
+//  KeyboardLayout+DeviceConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-10-01.
@@ -13,7 +13,7 @@ public extension KeyboardLayout {
 
     /// This type defines layout configs for various devices
     /// and screen orientations.
-    struct Configuration: Equatable {
+    struct DeviceConfiguration: Equatable {
 
         /// Create a new layout configuration.
         ///
@@ -48,7 +48,7 @@ public extension KeyboardLayout {
     }
 }
 
-public extension KeyboardLayout.Configuration {
+public extension KeyboardLayout.DeviceConfiguration {
 
     // MARK: - Standard Configuration Functions
 
