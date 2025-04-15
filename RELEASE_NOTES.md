@@ -34,6 +34,7 @@ This version adds new Emojis 16 emojis and localizes emojis in more languages.
 ### 💡 Adjustment
 
 * `Autocomplete.TextReplacementDictionary` has been moved to KeyboardKit Pro.
+* `Dictation.DisabledDictationService` no longer needs a context to be initialized.
 
 ### 🗑️ Deprecations
 

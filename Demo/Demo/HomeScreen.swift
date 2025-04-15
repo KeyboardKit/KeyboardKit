@@ -30,7 +30,6 @@ struct HomeScreen: View {
 
     @EnvironmentObject var dictationContext: DictationContext
     @EnvironmentObject var keyboardContext: KeyboardContext
-    @EnvironmentObject var themeContext: KeyboardThemeContext
 
     var body: some View {
         NavigationView {

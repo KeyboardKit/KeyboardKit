@@ -12,3 +12,15 @@ public extension DictationContext {
         KeyboardSettings.store
     }
 }
+
+public extension DictationService where Self == Dictation.DisabledDictationService {
+    
+    @available(*, deprecated, message: "The disabled service no longer takes a context")
+    static func disabled(
+        context: DictationContext
+    ) -> Self {
+        Dictation.DisabledDictationService(
+            context: context
+        )
+    }
+}

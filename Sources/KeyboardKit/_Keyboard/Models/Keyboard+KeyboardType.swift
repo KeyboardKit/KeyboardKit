@@ -109,9 +109,9 @@ public extension Keyboard.KeyboardType {
     /// The keyboard type's standard button text.
     func standardButtonText(for context: KeyboardContext) -> String? {
         switch self {
-        case .alphabetic: KKL10n.switcherAlphabetic.text(for: context)
-        case .numeric: KKL10n.switcherNumeric.text(for: context)
-        case .symbolic: KKL10n.switcherSymbolic.text(for: context)
+        case .alphabetic: KKL10n.switcherAlphabetic.text(for: context.locale)
+        case .numeric: KKL10n.switcherNumeric.text(for: context.locale)
+        case .symbolic: KKL10n.switcherSymbolic.text(for: context.locale)
         default: nil
         }
     }

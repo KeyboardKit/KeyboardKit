@@ -12,16 +12,7 @@ public extension DictationService where Self == Dictation.DisabledDictationServi
 
     /// Create a ``Dictation/DisabledDictationService`` instance.
     static var disabled: Self {
-        Dictation.DisabledDictationService(context: .preview)
-    }
-
-    /// Create a ``Dictation/DisabledDictationService`` instance.
-    static func disabled(
-        context: DictationContext
-    ) -> Self {
-        Dictation.DisabledDictationService(
-            context: context
-        )
+        Dictation.DisabledDictationService()
     }
 }
 
@@ -35,46 +26,27 @@ public extension Dictation {
     /// ``DictationService/disabled``.
     class DisabledDictationService: DictationService {
 
-        public init(context: DictationContext) {
-            self.context = context
-        }
-
+        @available(*, deprecated, message: "This class no longer requires a context")
+        public init(context: DictationContext) {}
         
-        public let context: DictationContext
+        public init() {}
+        
+        public typealias AuthStatus = Dictation.AuthorizationStatus
 
-        open var authorizationStatus: Dictation.AuthorizationStatus {
-            .disabledService
-        }
+        public var context: DictationContext { .preview }
+        
+        private let authStatus = AuthStatus.disabledService
 
+        open var authorizationStatus: AuthStatus { authStatus }
         open var supportedLocales: [Locale] { [] }
 
-
-        open func startDictationFromKeyboard() async throws {
-            resetContext()
-        }
-
-        open func startDictationInApp() async throws {
-            resetContext()
-        }
-
-        open func abortDictationInApp() async throws {
-            resetContext()
-        }
-
-        open func finishDictationInApp() async throws {
-            resetContext()
-        }
-
+        open func startDictationFromKeyboard() async throws {}
+        open func startDictationInApp() async throws {}
+        open func abortDictationInApp() async throws {}
+        open func finishDictationInApp() async throws {}
         open func returnToKeyboardFromApp() throws {}
-
-        open func handleDictationResultInKeyboard() async throws {
-            resetContext()
-        }
-
-        open func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
-            authorizationStatus
-        }
-
+        open func handleDictationResultInKeyboard() async throws {}
+        open func requestDictationAuthorization() async throws -> AuthStatus { authStatus }
         open func undoLastDictation() {}
     }
 }
