@@ -10,9 +10,7 @@ import Foundation
 
 public extension KeyboardCalloutContext {
 
-    static var preview: KeyboardCalloutContext {
-        KeyboardCalloutContext()
-    }
+    static var preview: KeyboardCalloutContext { .init() }
 }
 
 public extension KeyboardCalloutService where Self == KeyboardCallout.BaseCalloutService {

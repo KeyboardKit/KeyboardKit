@@ -22,6 +22,8 @@ Beta version tags and releases are removed after the next minor or major version
 
 This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
+This version also improves performance by reducing the number of redraws per keypress.
+
 ### 😀 Emojis
 
 * This version adds Emojis 16 emojis to iOS 18.4 and aligned versions: 🫩🫆🪾🫜🫟🪉🪏🇨🇶.
@@ -35,6 +37,7 @@ This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
 * `Autocomplete.TextReplacementDictionary` has been moved to KeyboardKit Pro.
 * `Dictation.DisabledDictationService` no longer needs a context to be initialized.
+* `Keyboard.RootView` no longer observes any contexts that it doesn't need to observe.
 
 ### 🗑️ Deprecations
 

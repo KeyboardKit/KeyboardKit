@@ -21,10 +21,7 @@ extension Keyboard {
         var view: () -> ViewType
     
         @EnvironmentObject var autocompleteContext: AutocompleteContext
-        @EnvironmentObject var calloutContext: KeyboardCalloutContext
-        @EnvironmentObject var dictationContext: DictationContext
         @EnvironmentObject var externalContext: ExternalKeyboardContext
-        @EnvironmentObject var feedbackContext: KeyboardFeedbackContext
         @EnvironmentObject var keyboardContext: KeyboardContext
         @EnvironmentObject var themeContext: KeyboardThemeContext
 
