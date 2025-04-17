@@ -87,11 +87,11 @@ KeyboardKit helps you build amazing keyboard extensions, and provides you with a
 * 😀 <doc:Emojis-Article> - A powerful emoji keyboard, search, etc.
 * ⌨️ <doc:External-Keyboards-Article> - Detect if an external keyboard is connected.
 * 🏠 <doc:Host-Article> - Identify and open specific host applications.
+* 📝 <doc:Input-Article> - Keyboard input fields, Vietnamese support, etc.
 * 🔣 <doc:Layout-Article> - More input sets and layouts for all supported locales.
 * 🌐 <doc:Localization-Article> - Localize your keyboard in all supported locales.
 * 👁 <doc:Previews-Article> - Keyboard & theme previews for in-app use.
 * 📄 <doc:Proxy-Article> - Allow `UITextDocumentProxy` to read the full document.
-* 📝 <doc:Text-Input-Article> - Allow users to type within the keyboard.
 * 🍭 <doc:Themes-Article> - A theme engine with many pre-defined themes.
 
 
@@ -145,6 +145,7 @@ KeyboardKit is available under the MIT license.
 - <doc:Feedback-Article>
 - <doc:Gestures-Article>
 - <doc:Host-Article>
+- <doc:Input-Article>
 - <doc:Layout-Article>
 - <doc:Localization-Article>
 - <doc:Navigation-Article>
@@ -153,7 +154,6 @@ KeyboardKit is available under the MIT license.
 - <doc:Settings-Article>
 - <doc:Status-Article>
 - <doc:Styling-Article>
-- <doc:Text-Input-Article>
 - <doc:Themes-Article>
 
 ### Essentials Types
@@ -236,6 +236,12 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardHostApplication``
 - ``KeyboardHostApplicationProvider``
 
+### Input
+
+- ``KeyboardInput``
+- ``KeyboardTextField``
+- ``KeyboardTextView``
+
 ### Layout
 
 - ``InputSet``
@@ -277,12 +283,6 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardFont``
 - ``KeyboardStyle``
 - ``KeyboardStyleService``
-
-### Text Input
-
-- ``KeyboardTextInput``
-- ``KeyboardTextField``
-- ``KeyboardTextView``
 
 ### Themes
 

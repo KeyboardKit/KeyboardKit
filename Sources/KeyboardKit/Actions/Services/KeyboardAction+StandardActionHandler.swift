@@ -174,7 +174,7 @@ extension KeyboardAction {
         // MARK: - Input Engines
         
         /// This property can be resolved in KeyboardKit Pro.
-        public lazy var vietnameseInputEngine = try? KeyboardTextInput.Vietnamese.InputEngine()
+        public lazy var vietnameseInputEngine = try? VietnameseInputEngine()
         
         
         // MARK: - KeyboardActionHandler

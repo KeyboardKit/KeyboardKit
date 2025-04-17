@@ -247,6 +247,7 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback-article
 [Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures-article
 [Host]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/host-article
+[Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/input-article
 [Layout]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/layout-article
 [Localization]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/localization-article
 [Navigation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/navigation-article
@@ -255,5 +256,4 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Settings]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/settings-article
 [Status]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/status-article
 [Styling]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/styling-article
-[Text-Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/text-input-article
 [Themes]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/themes-article

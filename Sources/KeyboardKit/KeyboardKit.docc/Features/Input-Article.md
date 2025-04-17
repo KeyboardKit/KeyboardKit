@@ -1,6 +1,6 @@
-# Text Input
+# Input
 
-This article describes the KeyboardKit text input engine.
+This article describes the KeyboardKit input engine.
 
 @Metadata {
 
@@ -13,17 +13,17 @@ This article describes the KeyboardKit text input engine.
 
 Custom iOS keyboards use a ``UIKit/UITextDocumentProxy`` to modify text, move the input cursor, provide input-related information, etc. 
 
-This proxy will by default point to the currently selected text field in the currently active app, and will *not* detect if you select a text field inside the keyboard. Even if you focus on a text field within the keyboard, text will still be sent to the text field in the currently active app.
+This proxy points to the currently selected text field in the currently active app, and will *not* detect if you focus on a text field inside the keyboard extension. Text that you type will still be sent to the currently active app.
 
-KeyboardKit Pro unlocks text input views that let you type directly within a custom keyboard extension. This makes it easy to implement text-based features, like search, AI prompting, etc.
+KeyboardKit Pro unlocks text input views that will replace the original text document proxy and let you type directly within a keyboard extension. This lets you implement text input-based features like search, AI prompting, etc.
 
 
 
-## Text Input 
+## Text routing  
 
-KeyboardKit adds ways to make text routing easier. For instance, ``KeyboardContext`` has a custom ``KeyboardContext/textInputProxy`` that can be set to route text to any other text field or custom proxy.
+The ``KeyboardContext`` has a custom ``KeyboardContext/textInputProxy`` that can be set to route text to any other text field or custom proxy. You can always access the original text document proxy with the ``KeyboardContext/originalTextDocumentProxy`` property.
 
-You can set ``KeyboardContext/textInputProxy`` to any custom proxy to start routing text to that proxy instead of the currently active app, and set it to nil to resume using the active app. You can always access the original text document proxy with ``KeyboardInputViewController/originalTextDocumentProxy``.
+The ``KeyboardInputViewController`` has similar properties, but you should avoid referring to it and passing it within your code.
 
 
 
@@ -35,19 +35,17 @@ KeyboardKit Pro also unlocks additional ``KeyboardTextInput`` support, like ``Ke
 
 
 
-### 🇻🇳 Vietnamese (BETA)
+### 🇻🇳 Vietnamese Input (BETA)
 
-KeyboardKit Pro unlocks support for ``KeyboardTextInput/Vietnamese`` TELEX, VIQR, and VNI. This support is based on Vietnamese-specific ``Keyboard/Diacritic`` values and locale-specific types in the Vietnamese namespace. 
+KeyboardKit Pro unlocks a ``Vietnamese`` namespace, with Vietnamese-related types, as well as a  ``VietnameseInputEngine`` that supports typing with TELEX, VIQR, and VNI. 
 
-KeyboardKit Pro will automatically use Vietnamese input when applicable. You can use the Vietnamese-specific diacritics and types as standalone features to implement Vietnamese typing support elsewhere. 
-
-> Note: Vietnamese typing support requires at least a `Silver` license.
+KeyboardKit Pro will automatically use the ``VietnameseInputEngine`` when applicable. You can also use these types as standalone features to implement Vietnamese input support elsewhere.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
-### Views
+### Input Views
 
 @TabNavigator {
     

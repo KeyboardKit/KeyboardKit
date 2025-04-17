@@ -166,7 +166,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// The text document proxy that is currently active.
     open override var textDocumentProxy: UITextDocumentProxy {
         guard hasPerformedInitialSetup else { return originalTextDocumentProxy }
-        return state.keyboardContext.textInputProxy ?? originalTextDocumentProxy
+        return state.keyboardContext.textDocumentProxy
     }
 
 

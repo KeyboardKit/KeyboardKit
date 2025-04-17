@@ -81,7 +81,7 @@ extension MyView: View {
 
 The keyboard-specific text components will automatically manage text routing and only take proxy ownership while they are focused.
 
-See the <doc:Text-Input-Article> article for more information.
+See the <doc:Input-Article> article for more information.
 
 
 

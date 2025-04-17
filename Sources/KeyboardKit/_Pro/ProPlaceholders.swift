@@ -363,6 +363,41 @@ public protocol KeyboardHostApplicationProvider {
 }
 
 
+// MARK: - Input
+
+/// 👑 This is unlocked by KeyboardKit Pro.
+public struct KeyboardTextField {}
+
+/// 👑 This is unlocked by KeyboardKit Pro.
+public struct KeyboardTextView {}
+
+/// 👑 This is unlocked by KeyboardKit Pro.
+public struct Vietnamese {}
+
+/// 👑 This is unlocked by KeyboardKit Pro.
+public struct VietnameseInputEngine {
+    
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    init() throws {}
+}
+
+public extension View {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func focused<DoneButton: View>(
+        _ value: FocusState<Bool>.Binding,
+        @ViewBuilder doneButton: @escaping () -> DoneButton
+    ) -> some View { self }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    func keyboardStatusSectionStyle(
+        _ style: KeyboardStatus.SectionStyle
+    ) -> some View {
+        self
+    }
+}
+
+
 // MARK: - Layout
 
 public extension InputSet {
@@ -567,48 +602,6 @@ public extension KeyboardStyleService where Self == KeyboardStyle.ThemeBasedStyl
         themeContext: KeyboardThemeContext
     ) throws -> Self {
         throw ProPlaceholderError.proPlaceholder
-    }
-}
-
-
-// MARK: - Text Input
-
-public extension KeyboardTextInput {
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    struct Vietnamese {}
-}
-
-public extension KeyboardTextInput.Vietnamese {
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    struct InputEngine {
-        
-        public init() throws {
-            throw ProPlaceholderError.proPlaceholder
-        }
-    }
-}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
-public struct KeyboardTextField {}
-
-/// 👑 This is unlocked by KeyboardKit Pro.
-public struct KeyboardTextView {}
-
-public extension View {
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    func focused<DoneButton: View>(
-        _ value: FocusState<Bool>.Binding,
-        @ViewBuilder doneButton: @escaping () -> DoneButton
-    ) -> some View { self }
-
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    func keyboardStatusSectionStyle(
-        _ style: KeyboardStatus.SectionStyle
-    ) -> some View {
-        self
     }
 }
 

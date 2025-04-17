@@ -22,7 +22,7 @@ Beta version tags and releases are removed after the next minor or major version
 
 This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
-This version also improves performance by reducing the number of redraws per keypress.
+This version also improves local autocorrect by extending the replacement dictionary, and improves performance by reducing the number of redraws per keypress.
 
 ### 😀 Emojis
 
