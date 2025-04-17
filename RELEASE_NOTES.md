@@ -45,6 +45,10 @@ This version also improves local autocorrect by extending the replacement dictio
 * `KeyboardLayout.Configuration` has been renamed to `KeyboardLayout.DeviceConfiguration`.
 * `KKL10n` functions that take a `KeyboardContext` have been deprecated in favor of `Locale`.
 
+### 🐛 Bug Fixes
+
+* `KeyboardInputViewController` now only shows license warning for license errors.
+
 
 
 ## 9.3.5

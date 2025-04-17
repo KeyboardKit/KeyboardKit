@@ -27,7 +27,6 @@ let package = Package(
     targets: [
         .target(
             name: "KeyboardKit",
-            dependencies: [],
             resources: [.process("Resources")]
         ),
         .testTarget(
