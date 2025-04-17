@@ -25,6 +25,8 @@ KeyboardKit has a ``Gestures`` namespace with gesture-related types, like ``Gest
 
 ## View Modifiers
 
+You can use the ``SwiftUICore/View/keyboardButtonGestureConfiguration(_:)`` view modifier to customize the keyboard gestures, for instance the double-tap timeout, the long press delay, etc.
+
 You can use the ``SwiftUICore/View/keyboardButtonGestures(for:actionHandler:repeatTimer:calloutContext:isPressed:isGestureAutoCancellable:scrollState:releaseOutsideTolerance:)``
 modifier to apply keyboard gesture to any view:
 

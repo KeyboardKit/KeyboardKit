@@ -35,16 +35,17 @@ struct ScrollViewGestureButton<Label: View>: View {
         label: @escaping LabelBuilder
     ) {
         self.isPressedBinding = isPressed ?? .constant(false)
+        let standardConfig = GestureButtonConfiguration.standard
         self._config = State(wrappedValue: GestureConfiguration(
             state: GestureState(),
             pressAction: pressAction ?? {},
             releaseInsideAction: releaseInsideAction ?? {},
             releaseOutsideAction: releaseOutsideAction ?? {},
-            longPressDelay: longPressDelay ?? GestureButtonDefaults.longPressDelay,
+            longPressDelay: longPressDelay ?? standardConfig.longPressDelay,
             longPressAction: longPressAction ?? {},
-            doubleTapTimeout: doubleTapTimeout ?? GestureButtonDefaults.doubleTapTimeout,
+            doubleTapTimeout: doubleTapTimeout ?? standardConfig.doubleTapTimeout,
             doubleTapAction: doubleTapAction ?? {},
-            repeatDelay: repeatDelay ?? GestureButtonDefaults.repeatDelay,
+            repeatDelay: repeatDelay ?? standardConfig.repeatDelay,
             repeatTimer: repeatTimer ?? .init(),
             repeatAction: repeatAction,
             dragStartAction: dragStartAction,

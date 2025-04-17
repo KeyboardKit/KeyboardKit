@@ -24,6 +24,10 @@ This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
 This version also improves local autocorrect by extending the replacement dictionary, and improves performance by reducing the number of redraws per keypress.
 
+### ✨ Features
+
+* The new `.keyboardButtonGestureConfiguration` view modifier can be used to configure the keyboard button gestures.
+
 ### 😀 Emojis
 
 * This version adds Emojis 16 emojis to iOS 18.4 and aligned versions: 🫩🫆🪾🫜🫟🪉🪏🇨🇶.

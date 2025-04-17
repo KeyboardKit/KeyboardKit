@@ -221,27 +221,50 @@ extension Keyboard {
 
         @SwiftUI.State
         private var lastDragValue: DragGesture.Value?
+        
+        @Environment(\.gestureButtonConfiguration)
+        private var configuration
+        
+        private var cancelConfig: GestureButtonConfiguration? {
+            guard let cancelDelay else { return nil }
+            var config = configuration
+            config.cancelDelay = cancelDelay
+            return config
+        }
 
         var body: some View {
-            view.overlay(
-                GeometryReader { geo in
-                    GestureButton(
-                        isPressed: isPressed,
-                        scrollState: scrollState,
-                        pressAction: { handlePress(in: geo) },
-                        cancelDelay: cancelDelay,
-                        releaseInsideAction: { handleReleaseInside(in: geo) },
-                        releaseOutsideAction: { handleReleaseOutside(in: geo) },
-                        longPressAction: { handleLongPress(in: geo) },
-                        doubleTapAction: { handleDoubleTap(in: geo) },
-                        repeatTimer: repeatTimer,
-                        repeatAction: { handleRepeat(in: geo) },
-                        dragAction: { handleDrag(in: geo, value: $0) },
-                        endAction: { handleGestureEnded(in: geo) },
-                        label: { _ in Color.clearInteractable }
-                    )
-                }
-            )
+            view.overlay(geometryOverlay)
+        }
+        
+        @ViewBuilder
+        var geometryOverlay: some View {
+            if let cancelConfig {
+                geometryReader.keyboardButtonGestureConfiguration(cancelConfig)
+            } else {
+                geometryReader
+            }
+        }
+        
+        var geometryReader: some View {
+            GeometryReader { geo in
+                GestureButton(
+                    isPressed: isPressed,
+                    scrollState: scrollState,
+                    pressAction: { handlePress(in: geo) },
+                    releaseInsideAction: { handleReleaseInside(in: geo) },
+                    releaseOutsideAction: { handleReleaseOutside(in: geo) },
+                    longPressAction: { handleLongPress(in: geo) },
+                    doubleTapAction: { handleDoubleTap(in: geo) },
+                    repeatTimer: repeatTimer,
+                    repeatAction: { handleRepeat(in: geo) },
+                    dragAction: { handleDrag(in: geo, value: $0) },
+                    endAction: { handleGestureEnded(in: geo) },
+                    label: { _ in Color.clearInteractable }
+                )
+                .keyboardButtonGestureConfiguration(.init(
+                    
+                ))
+            }
         }
     }
 }
