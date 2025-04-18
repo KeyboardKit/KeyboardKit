@@ -15,7 +15,7 @@ Custom iOS keyboards use a ``UIKit/UITextDocumentProxy`` to modify text, move th
 
 This proxy points to the currently selected text field in the currently active app, and will *not* detect if you focus on a text field inside the keyboard extension. Text that you type will still be sent to the currently active app.
 
-KeyboardKit Pro unlocks text input views that will replace the original text document proxy and let you type directly within a keyboard extension. This lets you implement text input-based features like search, AI prompting, etc.
+KeyboardKit Pro unlocks text input views that let you type directly within a keyboard extension, as well as ``Vietnamese`` input support.
 
 
 
@@ -29,9 +29,9 @@ The ``KeyboardInputViewController`` has similar properties, but you should avoid
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a ``KeyboardTextField`` and ``KeyboardTextView`` that automatically register themselves as ``KeyboardContext/textInputProxy`` when they get focus. Use them to type directly within a keyboard extension without any additional code.
+[KeyboardKit Pro][Pro] unlocks a ``KeyboardTextField`` and ``KeyboardTextView`` that let you type directly within a keyboard extension by automatically registering themselves as ``KeyboardContext/textInputProxy`` when they get focus
 
-KeyboardKit Pro also unlocks additional ``KeyboardTextInput`` support, like ``KeyboardTextInput/Vietnamese``, to let you to type in locale-specific ways.
+KeyboardKit Pro also unlocks additional ``KeyboardTextInput`` support, like ``Vietnamese``, to let you to type in locale-specific ways.
 
 
 
@@ -40,6 +40,8 @@ KeyboardKit Pro also unlocks additional ``KeyboardTextInput`` support, like ``Ke
 KeyboardKit Pro unlocks a ``Vietnamese`` namespace, with Vietnamese-related types, as well as a  ``VietnameseInputEngine`` that supports typing with TELEX, VIQR, and VNI. 
 
 KeyboardKit Pro will automatically use the ``VietnameseInputEngine`` when applicable. You can also use these types as standalone features to implement Vietnamese input support elsewhere.
+
+> Important: Vietnamese typing requires a `Gold` license.
 
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
@@ -98,6 +100,6 @@ struct CustomKeyboardToolbar: View {
 }
 ```
 
-> Note: These views require at least a `Silver` license.
+> Note: The ``KeyboardTextField`` and ``KeyboardTextView`` require at least a `Silver` license.
 
 > Important: These views require Full Access, due to an iOS bug that causes a crash when using them while Full Access is disabled. They will automatically disable themselves when Full Access is disabled.

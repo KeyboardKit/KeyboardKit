@@ -227,6 +227,7 @@ KeyboardKit is available under the MIT license.
 
 - ``Gestures``
 - ``GestureButton``
+- ``GestureButtonConfiguration``
 - ``GestureButtonTimer``
 - ``GestureButtonScrollState``
 - ``DragGestureHandler``
@@ -241,6 +242,8 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardInput``
 - ``KeyboardTextField``
 - ``KeyboardTextView``
+- ``Vietnamese``
+- ``VietnameseInputEngine``
 
 ### Layout
 

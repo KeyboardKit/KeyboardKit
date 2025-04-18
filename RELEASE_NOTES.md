@@ -22,7 +22,9 @@ Beta version tags and releases are removed after the next minor or major version
 
 This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
-This version also improves local autocorrect by extending the replacement dictionary, and improves performance by reducing the number of redraws per keypress.
+This version also improves local autocorrect by extending the replacement dictionary. This should lead to fewer typing errors when typing in English.
+
+and improves performance by reducing the number of redraws per keypress.
 
 ### ✨ Features
 
@@ -36,7 +38,7 @@ This version also improves local autocorrect by extending the replacement dictio
 
 ### 👑 Pro
 
-* `Autocomplete.TextReplacementDictionary.additionalAutocorrections` contains many more replacements now.
+* `Autocomplete.TextReplacementDictionary.additionalAutocorrections` has more replacements.
 
 ### 💡 Adjustment
 
@@ -44,15 +46,16 @@ This version also improves local autocorrect by extending the replacement dictio
 * `Dictation.DisabledDictationService` no longer needs a context to be initialized.
 * `Keyboard.RootView` no longer observes any contexts that it doesn't need to observe.
 
-### 🗑️ Deprecations
-
-* `Color` extensions that took a `KeyboardContext` now takes a `ColorScheme` instead.
-* `KeyboardLayout.Configuration` has been renamed to `KeyboardLayout.DeviceConfiguration`.
-* `KKL10n` functions that take a `KeyboardContext` have been deprecated in favor of `Locale`.
-
 ### 🐛 Bug Fixes
 
 * `KeyboardInputViewController` now only shows license warning for license errors.
+
+### 🗑️ Deprecations
+
+* `Color` extensions that took a `KeyboardContext` now takes a `ColorScheme` instead.
+* `KeybpardInput` has deprecated Vietnamese input types, which are now moved to the root.  
+* `KeyboardLayout.Configuration` has been renamed to `KeyboardLayout.DeviceConfiguration`.
+* `KKL10n` functions that take a `KeyboardContext` have been deprecated in favor of `Locale`.
 
 
 
