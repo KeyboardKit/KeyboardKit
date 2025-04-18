@@ -21,29 +21,15 @@ KeyboardKit has app-specific utilities to help you build a great main app for yo
 
 You can create an app-specific ``KeyboardApp`` value to define and set up your app and keyboard. See the <doc:Getting-Started-Article> & <doc:Essentials-Article> articles for more information.
 
-The ``KeyboardApp`` is also a namespace for app-related types & views, like the ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen``, ``KeyboardApp/LocaleScreen``, and ``KeyboardApp/ThemeScreen`` screens that are unlocked by KeyboardKit Pro.
-
+The ``KeyboardApp`` is also a namespace for app-related types & views, like ``KeyboardApp/HomeScreen``, ``KeyboardApp/SettingsScreen`` and ``KeyboardApp/LocaleScreen``.
 
 
 
 ## Keyboard App View
 
-The ``KeyboardAppView`` view can be used as the root view of a main app target, to set up KeyboardKit for a certain ``KeyboardApp``:
+A ``KeyboardAppView`` can be used as the root view of the main app, as described in the <doc:Getting-Started-Article> article. It will set up keyboard features, make the settings ``KeyboardSettings/store`` sync data between the app and keyboard, register your KeyboardKit Pro license, if any, etc. 
 
-```swift
-@main
-struct MyApp: App {
-    var body: some Scene {
-        WindowGroup {
-            KeyboardAppView(for: .keyboardKitDemo) {
-                ContentView()
-            }
-        }
-    }
-}
-```
-
-This will set up keyboard features, make the ``KeyboardSettings`` ``KeyboardSettings/store`` sync data between the app and its keyboard, register your KeyboardKit Pro license, etc. It will also inject keyboard ``Keyboard/State`` into the environment, to let you access any context like this:
+The  ``KeyboardAppView`` will also inject observable keyboard ``Keyboard/State`` types into the view environment, to let you access them like this:
 
 ```swift
 struct ContentView: View {
@@ -56,7 +42,7 @@ struct ContentView: View {
 }
 ```
 
-The ``KeyboardAppView`` will also inject a ``KeyboardStatusContext`` into the environment, to provide you with keyboard status.
+Unlike the ``KeyboardInputViewController``, the ``KeyboardAppView`` will also inject a ``KeyboardStatusContext``, to provide you with observable keyboard status.
 
 
 ---

@@ -22,14 +22,18 @@ Beta version tags and releases are removed after the next minor or major version
 
 This version adds new Emojis 16 emojis and localizes emojis in more languages.
 
-This version also improves local autocorrect by extending the replacement dictionary. This should lead to fewer typing errors when typing in English.
+This version also improves local autocomplete by extending the additional autocorrect replacement dictionary. This should lead to fewer typing errors when typing in English, since more combines words will now be autocorrected.
 
-and improves performance by reducing the number of redraws per keypress.
+This version also aims to improve performance by reducing the number of redraws per keypress, which in turn leads to fewer layout calculations. Initial tests show that this improves the typing experience, since fewer redraws lead to a smoother experience.
 
 ### ✨ Features
 
 * The `KeyboardContext` `colorScheme` property is now mutable and available to all platforms.
 * The new `.keyboardButtonGestureConfiguration` view modifier can be used to configure the keyboard button gestures.
+
+🇹🇯 Localization
+
+* This version adds support for 🇹🇯 Pamiri Shughni (Shughni Tajik).
 
 ### 😀 Emojis
 
@@ -53,7 +57,7 @@ and improves performance by reducing the number of redraws per keypress.
 ### 🗑️ Deprecations
 
 * `Color` extensions that took a `KeyboardContext` now takes a `ColorScheme` instead.
-* `KeybpardInput` has deprecated Vietnamese input types, which are now moved to the root.  
+* `KeyboardInput` has deprecated Vietnamese input types, which are now moved to the root.  
 * `KeyboardLayout.Configuration` has been renamed to `KeyboardLayout.DeviceConfiguration`.
 * `KKL10n` functions that take a `KeyboardContext` have been deprecated in favor of `Locale`.
 

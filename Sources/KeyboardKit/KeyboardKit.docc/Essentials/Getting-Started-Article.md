@@ -35,7 +35,7 @@ KeyboardKit must be linked to the main app target *and* its keyboard extension, 
 
 ## Step 2. Define app-specific information
 
-The easiest way to set up KeyboardKit is with a ``KeyboardApp``, which can define ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey``, etc.
+The easiest way to set up KeyboardKit is with a ``KeyboardApp`` that can define a ``KeyboardApp/bundleId``, ``KeyboardApp/appGroupId``, a ``KeyboardApp/licenseKey``, etc.
 
 ```swift
 import KeyboardKit (or KeyboardKitPro)
@@ -81,6 +81,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up the keyboard with the app we created above
         setup(for: .keyboardKitDemo) { result in
             // If the result is `.success`, the setup succeeded.
             // This is where you can setup custom services, etc.
@@ -149,6 +150,8 @@ struct MyApp: App {
 
     var body: some Scene {
         WindowGroup {
+
+            // Here we use the keyboard app we created above
             KeyboardAppView(for: .keyboardKitDemo) {
                 ContentView()
             }
@@ -158,6 +161,7 @@ struct MyApp: App {
 ```
 
 You can use the KeyboardKit Pro ``KeyboardApp/HomeScreen`` to easily set up a start screen for the app, or link to the individual ``KeyboardApp/SettingsScreen``, ``KeyboardApp/LocaleScreen``, and ``KeyboardApp/ThemeScreen`` screens from any screen. You can also use a status ``KeyboardStatus/Section`` to show keyboard status.
+
 
 
 ## Step 5. Customize state & services (optional)

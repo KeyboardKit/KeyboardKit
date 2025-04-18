@@ -75,6 +75,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Set up the keyboard with the app we created above
         setup(for: .keyboardKitDemo) { result in
             // If `result` is `.success`, the setup did succeed.
             // This is where you can setup custom services, etc.
@@ -114,6 +115,8 @@ struct MyApp: App {
 
     var body: some Scene {
         WindowGroup {
+        
+            // Here we use the keyboard app we created above
             KeyboardAppView(for: .keyboardKitDemo) {
                 ContentView()
             }
@@ -220,17 +223,16 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [About]: https://keyboardkit.com/about
+[Gumroad]: https://kankoda.gumroad.com
+[KeyboardKit-App]: https://keyboardkit.com/app
 
 [KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
-[KeyboardKit-App]: https://keyboardkit.com/app
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
-[Gumroad]: https://kankoda.gumroad.com
+[Documentation]: https://keyboardkit.github.io/KeyboardKit/
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 
-[Documentation]: https://keyboardkit.github.io/KeyboardKit/
-
-[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started
-[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials
+[Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started-article
+[Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-article
 [Essentials-KeyboardView]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-keyboardview
 [Essentials-Memory-Management]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-memory-management
 

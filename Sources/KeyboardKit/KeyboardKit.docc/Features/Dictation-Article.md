@@ -13,7 +13,7 @@ This article describes the KeyboardKit dictation engine.
 
 Dictation can be used to let users enter text by speaking instead of typing on the keyboard. Since keyboard extensions have no access to the microphone, KeyboardKit lets you trigger dictation from a keyboard extension and perform it in the main app.
 
-In KeyboardKit, a ``DictationService`` can start dictation from the keyboard by opening the main app, perform dictation in the app, then return to the keyboard and apply the dictated text when dictation completes.
+In KeyboardKit, a ``DictationService`` can start dictation from the keyboard by opening the main app, perform dictation in that app, then return to the keyboard and apply the dictated text when dictation completes.
 
 Unlike most other service types, the open-source project doesn't include a dictation service. You have to upgrade to KeyboardKit Pro or implement a custom dictation service to be able to use dictation in your keyboard.
 
@@ -57,33 +57,32 @@ The standard dictation speech recognizer supports the following locales:
 
 Arabic (ar-SA), Cantonese (yue-CN), Catalan (ca-ES), Chinese (zh-CN), Chinese (zh-HK), Chinese (zh-TW), Croatian (hr-HR), Czech (cs-CZ), Danish (da-DK), Dutch (nl-BE), Dutch (nl-NL), English (en-AE), English (en-AU), English (en-CA), English (en-GB), English (en-ID), English (en-IE), English (en-IN), English (en-NZ), English (en-PH), English (en-SA), English (en-SG), English (en-US), English (en-ZA), Finnish (fi-FI), French (fr-BE), French (fr-CA), French (fr-CH), French (fr-FR), German (de-AT), German (de-CH), German (de-DE), Greek (el-GR), Hebrew (he-IL), Hindi (hi-IN), Hindi (hi-IN-translit), Hindi (hi-Latn), Hungarian (hu-HU), Indonesian (id-ID), Italian (it-CH), Italian (it-IT), Japanese (ja-JP), Korean (ko-KR), Malay (ms-MY), Norwegian Bokmål (nb-NO), Polish (pl-PL), Portuguese (pt-BR), Portuguese (pt-PT), Romanian (ro-RO), Russian (ru-RU), Shanghainese (wuu-CN), Slovak (sk-SK), Spanish (es-419), Spanish (es-CL), Spanish (es-CO), Spanish (es-ES), Spanish (es-MX), Spanish (es-US), Swedish (sv-SE), Thai (th-TH), Turkish (tr-TR), Ukrainian (uk-UA), Vietnamese (vi-VN)
 
-The reason why the standard speech recognizer isn't part of the SDK, is that it requires the **Speech** framework, which would require all apps that use KeyboardKit to add certain permission information to the Info.plist, even if they don't use dictation.
+> Note: The reason why the standard speech recognizer isn't part of the SDK, is that it requires the **Speech** framework, which requires that apps add certain permission information to the Info.plist, even if they don't use speech recognition.
 
-
-
-## Important Dictation Information
-
-When you start dictation from the keyboard, the keyboard will by default open the main app and perform dictation there, after which it will try to return to the keyboard. The reason for this is that the keyboard doesn't have access to the microphone.
-
-Due to Apple's major restrictions on how apps can interact with eachother, the main app will only be able to return to the keyboard if it knows how to open the app in which the keyboard was used. 
-
-KeyboardKit will use its ``KeyboardHostApplication`` capabilities to try to identify the app, and navigate back to it using a deep link that will open the app. If this is successful, the keyboard will then read the persisted result and send the text to the host app.
-
-If the source application can't be opened, users can still tap the top leading back arrow to navigate back to the app. You should point to this arrow if the ``DictationContext/hostApplicationBundleId`` is nil or the resulting ``KeyboardHostApplication`` can't be opened. 
-
-See the <doc:Host-Article> for more information on which apps that are currently supported, and how to add more apps to this database.
-
-
-
-
-
----
 
 ## 👑 KeyboardKit Pro
 
 [KeyboardKit Pro][Pro] unlocks services that let you setup and perform dictation in your app and from your keyboard, with very little code.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
+
+
+### Important Information!
+
+When you start dictation from the keyboard, the keyboard will by default open the main app and perform dictation there, after which it will try to return to the keyboard. The reason for this is that the keyboard doesn't have access to the microphone.
+
+Due to Apple's major restrictions on how apps can interact with eachother, the main app will only be able to return to the keyboard if it knows how to open the app in which the keyboard was used. 
+
+KeyboardKit Pro will use its ``KeyboardHostApplication`` capabilities to try to identify the app, and navigate back to it using a deep link. If successful, the keyboard will then read the persisted result and send the text to the host app.
+
+If the host application isn't known or can't be opened, the user can still tap the top leading back arrow to navigate back to the app. You can check the ``KeyboardContext``'s or ``DictationContext``'s optional `keyboardHostApplication`, which is unlocked by Pro.
+
+If the keyboardHostApplication property is nil, this either means that the App Group data sync between the keyboard and the main app doesn't work (see the <doc:Getting-Started-Article> article), or the keyboard application bundle ID is unknown to KeyboardKit Pro. If it's not nil, but its properties say that it can't be opened, then its deep link information may be broken. In that case, please reach out so that we can fix it.
+
+Regardless of the reason why the keyboard can't navigate back, you should adjust the UI to point to the manual navigate back arrow to guide your users if needed.
+
+See the <doc:Host-Article> for more information on which apps that are currently supported, and how to add more apps to this database.
+
 
 
 ### Services
