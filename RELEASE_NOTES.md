@@ -26,6 +26,7 @@ This version also improves local autocorrect by extending the replacement dictio
 
 ### ✨ Features
 
+* The `KeyboardContext` `colorScheme` property is now mutable and available to all platforms.
 * The new `.keyboardButtonGestureConfiguration` view modifier can be used to configure the keyboard button gestures.
 
 ### 😀 Emojis

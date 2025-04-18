@@ -80,6 +80,9 @@ public class KeyboardContext: ObservableObject {
     /// The app for which the context is set up, if any.
     @Published public var app: KeyboardApp?
 
+    /// The color scheme to use.
+    @Published public var colorScheme: ColorScheme = .light
+
     /// The current device type.
     @Published public var deviceType: DeviceType = .current
 
@@ -177,7 +180,16 @@ public class KeyboardContext: ObservableObject {
     @Published public var textInputMode: UITextInputMode?
 
     /// The current trait collection.
-    @Published public var traitCollection = UITraitCollection()
+    ///
+    /// Setting this will automatically update ``colorScheme``.
+    @Published public var traitCollection = UITraitCollection() {
+        didSet {
+            let isDark = traitCollection.userInterfaceStyle == .dark
+            let traitScheme: ColorScheme = isDark ? .dark : .light
+            guard colorScheme != traitScheme else { return }
+            colorScheme = traitScheme
+        }
+    }
     #endif
 }
 
@@ -207,24 +219,6 @@ public extension KeyboardContext {
 }
 
 
-// MARK: - Public iOS/tvOS Properties
-
-#if os(iOS) || os(tvOS) || os(visionOS)
-public extension KeyboardContext {
-
-    /// The current trait collection's color scheme.
-    var colorScheme: ColorScheme {
-        traitCollection.userInterfaceStyle == .dark ? .dark : .light
-    }
-
-    /// The current keyboard appearance.
-    var keyboardAppearance: UIKeyboardAppearance {
-        textDocumentProxy.keyboardAppearance ?? .default
-    }
-}
-#endif
-
-
 // MARK: - Public Computed Properties
 
 public extension KeyboardContext {
@@ -243,17 +237,20 @@ public extension KeyboardContext {
 
     /// Whether to use a dark color scheme.
     var hasDarkColorScheme: Bool {
-        #if os(iOS) || os(tvOS) || os(visionOS)
         colorScheme == .dark
-        #else
-        false
-        #endif
     }
 
     /// Whether the context has multiple locales.
     var hasMultipleLocales: Bool {
         locales.count > 1
     }
+
+    #if os(iOS) || os(tvOS) || os(visionOS)
+    /// The current keyboard appearance.
+    var keyboardAppearance: UIKeyboardAppearance {
+        textDocumentProxy.keyboardAppearance ?? .default
+    }
+    #endif
 
     /// Whether the context prefers autocomplete.
     var prefersAutocomplete: Bool {

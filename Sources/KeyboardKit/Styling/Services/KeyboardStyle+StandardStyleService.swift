@@ -352,6 +352,7 @@ extension KeyboardAction {
             buttonBackgroundColorForPressedState(for: context) :
             buttonBackgroundColorForIdleState(for: context)
     }
+    
 
     func buttonBackgroundColorForIdleState(for context: KeyboardContext) -> Color {
         if isUpperShift(for: context) && context.hasDarkColorScheme { return .white }
