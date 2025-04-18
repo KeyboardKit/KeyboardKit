@@ -59,7 +59,7 @@ extension KeyboardApp {
 }
 ```  
 
-Next, let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
+Next, let your `KeyboardController` inherit ``KeyboardInputViewController`` instead of `UIInputViewController`:
 
 ```swift
 class KeyboardController: KeyboardInputViewController {}
