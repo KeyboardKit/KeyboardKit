@@ -138,14 +138,14 @@ class KeyboardInputViewControllerTests: XCTestCase {
         let vc = TestClass()
         vc.services.actionHandler = .preview
         let actionContext = vc.state.calloutContext
-        XCTAssertTrue(actionContext.calloutService === vc.services.calloutService)
+        XCTAssertTrue(actionContext._calloutService === vc.services.calloutService)
     }
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForCalloutService() {
         let vc = TestClass()
         vc.services.calloutService = KeyboardCallout.StandardCalloutService(keyboardContext: .preview)
         let actionContext = vc.state.calloutContext
-        XCTAssertTrue(actionContext.calloutService === vc.services.calloutService)
+        XCTAssertTrue(actionContext._calloutService === vc.services.calloutService)
     }
 
 

@@ -18,6 +18,25 @@ Beta version tags and releases are removed after the next minor or major version
 
 
 
+## 9.5
+
+This version adds a first experiment to replace services with value builders, to let us avoid having to use custom services to customize things.
+
+The first test is a new way to customize callout actions. Instead of having services, you can use the new `.keyboardCalloutActions` view modifier.
+
+This is currently opt-in. Services will be used until you apply the view modifier. If this proves successful, the callout services will be deprecated.
+
+### ✨ Features
+
+* `KeyboardCallout.Actions` is a new type used to replace services with values.
+* `View` has a new `.keyboardCalloutActions(_:)` modifier for customizing actions.
+
+### 👑 Pro
+
+* `KeyboardCallout.Actions` has localized value builders for all supported locales.
+
+
+
 ## 9.4.1
 
 ### 💡 Adjustments

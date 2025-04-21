@@ -221,10 +221,16 @@ extension Keyboard {
 
         @SwiftUI.State
         private var lastDragValue: DragGesture.Value?
-        
+
         @Environment(\.gestureButtonConfiguration)
         private var configuration
-        
+
+        @Environment(\.keyboardCalloutActions)
+        private var keyboardCalloutActions
+
+        @EnvironmentObject
+        private var keyboardContext: KeyboardContext
+
         private var cancelConfig: GestureButtonConfiguration? {
             guard let cancelDelay else { return nil }
             var config = configuration
@@ -261,9 +267,6 @@ extension Keyboard {
                     endAction: { handleGestureEnded(in: geo) },
                     label: { _ in Color.clearInteractable }
                 )
-                .keyboardButtonGestureConfiguration(.init(
-                    
-                ))
             }
         }
     }
@@ -292,19 +295,19 @@ private extension Keyboard.ButtonGestures {
 
     func handleDrag(in geo: GeometryProxy, value: DragGesture.Value) {
         lastDragValue = value
-        calloutContext?.updateSecondaryActionsSelection(with: value)
+        updateCalloutActionSelection(for: value)
         dragAction?(value.startLocation, value.location)
     }
 
     func handleGestureEnded(in geo: GeometryProxy) {
         calloutContext?.resetInputActionWithDelay()
-        calloutContext?.resetSecondaryActions()
+        resetCalloutActions()
         resetGestureState()
         endAction?()
     }
 
     func handleLongPress(in geo: GeometryProxy) {
-        tryBeginActionCallout(in: geo)
+        activateActionCallout(in: geo)
         longPressAction?()
     }
 
@@ -314,25 +317,18 @@ private extension Keyboard.ButtonGestures {
     }
 
     func handleReleaseInside(in geo: GeometryProxy) {
-        if tryHandleCalloutAction() { return }
+        if handleCalloutAction() { return }
         releaseAction?()
     }
 
     func handleReleaseOutside(in geo: GeometryProxy) {
-        if tryHandleCalloutAction() { return }
+        if handleCalloutAction() { return }
         guard shouldApplyReleaseOutsize(for: geo) else { return }
         handleReleaseInside(in: geo)
     }
 
     func handleRepeat(in geo: GeometryProxy) {
         repeatAction?()
-    }
-
-    func tryBeginActionCallout(in geo: GeometryProxy) {
-        guard let context = calloutContext else { return }
-        context.updateSecondaryActions(for: action, in: geo)
-        guard !context.secondaryActions.isEmpty else { return }
-        calloutContext?.resetInputAction()
     }
 
     func resetGestureState() {
@@ -345,10 +341,44 @@ private extension Keyboard.ButtonGestures {
         let isInsideTolerance = rect.contains(dragValue.location)
         return isInsideTolerance
     }
+}
 
-    func tryHandleCalloutAction() -> Bool {
+
+// MARK: - Callouts
+
+private extension Keyboard.ButtonGestures {
+
+    func activateActionCallout(in geo: GeometryProxy) {
+        guard let context = calloutContext else { return }
+        updateCalloutActions(in: geo)
+        if context.secondaryActions.isEmpty { return }
+        context.resetInputAction()
+    }
+
+    func handleCalloutAction() -> Bool {
         guard let context = calloutContext else { return false }
         return context.handleSelectedSecondaryAction()
+    }
+
+    func resetCalloutActions() {
+        calloutContext?.resetSecondaryActions()
+    }
+
+    func updateCalloutActions(
+        in geo: GeometryProxy
+    ) {
+        guard let context = calloutContext else { return }
+        guard let action else { return resetCalloutActions() }
+        let params = KeyboardCallout.ActionsBuilderParams(action: action)
+        let actions = keyboardCalloutActions(params)
+        context.updateSecondaryActions(actions, for: action, in: geo)
+    }
+
+    func updateCalloutActionSelection(
+        for value: DragGesture.Value
+    ) {
+        guard let context = calloutContext else { return }
+        context.updateSecondaryActionsSelection(with: value)
     }
 }
 

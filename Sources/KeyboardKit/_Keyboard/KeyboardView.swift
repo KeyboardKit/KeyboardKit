@@ -146,15 +146,9 @@ public struct KeyboardView<
     private let emojiKeyboardBuilder: EmojiKeyboardBuilder
     private let toolbarBuilder: ToolbarBuilder
 
-    private var calloutStyle: KeyboardCallout.CalloutStyle {
-        var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
-        let insets = layoutConfig.buttonInsets
-        style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
-        return style
-    }
-    
-    @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
+    @Environment(\.autocompleteToolbarStyle) var autocompleteToolbarStyleFromEnvironment
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
+    @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
     @Environment(\.keyboardDockEdge) var dockEdgeFromEnvironment
     @Environment(\.keyboardInputToolbarDisplayMode) var inputToolbarDisplayModeFromEnvironment
     
@@ -210,9 +204,27 @@ public struct KeyboardView<
 // MARK: - Properties
 
 private extension KeyboardView {
-    
+
+    var autocompleteToolbarStyle: Autocomplete.ToolbarStyle {
+        let style = styleService.autocompleteToolbarStyle
+        if style != .standard { return style }
+        return autocompleteToolbarStyleFromEnvironment
+    }
+
+    var calloutStyle: KeyboardCallout.CalloutStyle {
+        var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
+        let insets = layoutConfig.buttonInsets
+        style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)
+        return style
+    }
+
     var dockEdge: Keyboard.DockEdge? {
         dockEdgeFromEnvironment ?? keyboardContext.settings.keyboardDockEdge
+    }
+
+    var emojiKeyboardStyle: Emoji.KeyboardStyle {
+        emojiKeyboardStyleFromEnvironment(keyboardContext)
+            .augmented(for: inputToolbarDisplayMode)
     }
 
     var isLargePad: Bool {
@@ -221,7 +233,8 @@ private extension KeyboardView {
     }
 
     var inputToolbarDisplayMode: Keyboard.InputToolbarDisplayMode {
-        let value = inputToolbarDisplayModeFromEnvironment ?? keyboardContext.settings.inputToolbarDisplayMode
+        let contextMode = keyboardContext.settings.inputToolbarDisplayMode
+        let value = inputToolbarDisplayModeFromEnvironment ?? contextMode
         switch value {
         case .automatic: return isLargePad ? .numbers : .none
         default: return value
@@ -366,11 +379,6 @@ private extension KeyboardView {
             Color.clear
         }
     }
-    
-    var emojiKeyboardStyle: Emoji.KeyboardStyle {
-        emojiKeyboardStyleFromEnvironment(keyboardContext)
-            .augmented(for: inputToolbarDisplayMode)
-    }
 
     @ViewBuilder
     var numberPad: some View {
@@ -385,7 +393,7 @@ private extension KeyboardView {
     }
 
     var toolbar: some View {
-        let style = styleService.autocompleteToolbarStyle
+        let style = autocompleteToolbarStyle
         return ZStack {
             toolbarEmojiHeight(for: style)
             toolbarBuilder((

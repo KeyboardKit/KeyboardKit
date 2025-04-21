@@ -164,29 +164,11 @@ public extension KeyboardCallout.CalloutStyle {
     static var standard: Self { .init() }
 }
 
-extension KeyboardCallout.CalloutStyle {
+public extension EnvironmentValues {
 
-    static var preview1: Self {
-        .init(
-            backgroundColor: .red,
-            borderColor: .white,
-            buttonOverlayCornerRadius: 10,
-            foregroundColor: .black,
-            shadowColor: .green,
-            shadowRadius: 3
-        )
-    }
-
-    static var preview2: Self {
-        .init(
-            backgroundColor: .green,
-            borderColor: .white,
-            buttonOverlayCornerRadius: 20,
-            foregroundColor: .red,
-            shadowColor: .black,
-            shadowRadius: 10
-        )
-    }
+    /// Apply a ``KeyboardCallout/CalloutStyle``.
+    @Entry var keyboardCalloutStyle = KeyboardCallout
+        .CalloutStyle.standard
 }
 
 public extension View {
@@ -197,11 +179,4 @@ public extension View {
     ) -> some View {
         self.environment(\.keyboardCalloutStyle, style)
     }
-}
-
-public extension EnvironmentValues {
-
-    /// Apply a ``KeyboardCallout/CalloutStyle``.
-    @Entry var keyboardCalloutStyle = KeyboardCallout
-        .CalloutStyle.standard
 }

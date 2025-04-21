@@ -33,11 +33,8 @@ public extension KeyboardCallout {
         @ObservedObject private var calloutContext: KeyboardCalloutContext
         @ObservedObject private var keyboardContext: KeyboardContext
 
-        @Environment(\.emojiKeyboardStyle)
-        private var emojiStyle
-
-        @Environment(\.keyboardCalloutStyle)
-        private var style
+        @Environment(\.emojiKeyboardStyle) private var emojiStyle
+        @Environment(\.keyboardCalloutStyle) private var style
 
         public var body: some View {
             Button(action: calloutContext.resetSecondaryActions) {
@@ -207,58 +204,101 @@ private extension KeyboardAction {
 
 #Preview {
 
-    let keyboardContext = KeyboardContext()
-    let calloutContext1 = KeyboardCalloutContext()
-    let calloutContext2 = KeyboardCalloutContext()
+    struct PreviewGroup: View {
 
-    func previewGroup<ButtonView: View>(
-        view: ButtonView,
-        context: KeyboardCalloutContext,
-        alignment: HorizontalAlignment
-    ) -> some View {
-        keyboardContext.deviceTypeForKeyboard = .phone
-        context.calloutService = .preview
-        return view.overlay(
+        let color: Color
+        let context: KeyboardCalloutContext
+        let action: KeyboardAction
+        let alignment: HorizontalAlignment
+
+        let startActions = KeyboardCallout.Actions.base
+
+        @Environment(\.keyboardCalloutActions) var envActions
+        @EnvironmentObject var keyboardContext: KeyboardContext
+
+        func showActions(
+            _ actions: KeyboardCallout.Actions?,
+            in geo: GeometryProxy
+        ) {
+            showActions(actions?.actions(for: action), in: geo)
+        }
+
+        func showActions(
+            _ actions: [KeyboardAction]?,
+            in geo: GeometryProxy
+        ) {
+            context.updateSecondaryActions(
+                actions,
+                for: action,
+                in: geo,
+                alignment: alignment
+            )
+        }
+
+        var body: some View {
+            color
+                .overlay(calloutTrigger)
+                .keyboardActionCalloutContainer(
+                    calloutContext: context,
+                    keyboardContext: keyboardContext
+                )
+                .frame(width: 35, height: 50)
+        }
+
+        var calloutTrigger: some View {
             GeometryReader { geo in
-                Color.clear.onAppear {
-                    context.updateSecondaryActions(
-                        for: .character("o"),
-                        in: geo,
-                        alignment: alignment
+                Color.white.opacity(0.1)
+                    .onAppear {
+                        showActions(startActions, in: geo)
+                    }
+                    .onTapGesture {
+                        showActions(envActions(.init(action: action)), in: geo)
+                    }
+            }
+        }
+    }
+
+    struct Preview: View {
+
+        let action = KeyboardAction.character("o")
+
+        @StateObject var calloutContext1 = KeyboardCalloutContext()
+        @StateObject var calloutContext2 = KeyboardCalloutContext()
+        @StateObject var keyboardContext = KeyboardContext()
+
+        var body: some View {
+            VStack(spacing: 100) {
+                HStack {
+                    PreviewGroup(
+                        color: .blue,
+                        context: calloutContext1,
+                        action: action,
+                        alignment: .leading
+                    )
+                    Spacer()
+                }
+                HStack {
+                    Spacer()
+                    PreviewGroup(
+                        color: .yellow,
+                        context: calloutContext2,
+                        action: action,
+                        alignment: .trailing
                     )
                 }
             }
-        )
-        .keyboardActionCalloutContainer(
-            calloutContext: context,
-            keyboardContext: keyboardContext
-        )
+            .padding(20)
+            .background(Color.red)
+            .environmentObject(keyboardContext)
+            .keyboardCalloutStyle(.init(
+                // callout: .preview2,
+                selectedBackgroundColor: .purple
+            ))
+        }
     }
 
-    return ZStack {
-        Color.red
-        VStack(spacing: 100) {
-            HStack {
-                previewGroup(
-                    view: Color.blue.frame(width: 35, height: 50),
-                    context: calloutContext1,
-                    alignment: .leading
-                )
-                Spacer()
-            }
-            HStack {
-                Spacer()
-                previewGroup(
-                    view: Color.blue.frame(width: 35, height: 50),
-                    context: calloutContext2,
-                    alignment: .trailing
-                )
-            }
+    return Preview()
+        .keyboardCalloutActions { params in
+            [params.action, .character("b")]
         }
-        .padding(20)
-    }
-    .keyboardCalloutStyle(.init(
-        // callout: .preview2,
-        selectedBackgroundColor: .purple
-    ))
 }

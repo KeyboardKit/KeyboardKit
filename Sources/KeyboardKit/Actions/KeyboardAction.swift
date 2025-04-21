@@ -160,11 +160,19 @@ public extension KeyboardAction {
         default: false
         }
     }
-    
+
     /// Whether or not the action is a character action.
     var isCharacterAction: Bool {
         switch self {
         case .character: true
+        default: false
+        }
+    }
+
+    /// Whether or not the action is a character action.
+    func isCharacterAction(for character: String) -> Bool {
+        switch self {
+        case .character(let char): char == character
         default: false
         }
     }

@@ -43,6 +43,39 @@ KeyboardKit injects a ``KeyboardCallout/StandardCalloutService`` into ``Keyboard
 
 
 
+## Customization (BETA)
+
+KeyboardKit experiments with replacing the various services in the library with value builders, to make it easier to customize a keyboard with view modifiers instead of having to implement and register custom services.
+
+For callout actions, you can use the new ``KeyboardCallout/Actions`` type and the ``SwiftUICore/View/keyboardCalloutActions(_:)`` view modifier to customize the callout actions that will be used for a specific view:
+
+
+```swift
+// See the demo app for a better, interactive example.
+struct MyKeyboardView: View {
+
+    let state: Keyboard.State
+    let services: Keyboard.Services
+    let context: KeyboardContext { state.keyboardContext }
+    
+    var body: some View {
+        ... // Insert the view to use here, for instance a KeyboardView
+            .keyboardCalloutActions { params in
+                switch params.action {
+                case .backspace: [...]  // Return custom actions here
+                default: params.standardCalloutActions(for: context) 
+                }
+            }
+    }
+}
+```
+
+The view modifier can customize the result in any way you like. You can return standard callout actions with the parameter's ``KeyboardCallout/ActionsParams/standardCalloutActions(for:)`` function, or the static ``KeyboardAction/standardCalloutActions(for:context:)`` extension.
+
+KeyboardKit will deprecate most services if this value and view modifier-based model proves better, since using values removes many complexities that are involved with services.
+
+
+
 ## Styling
 
 In KeyboardKit, a ``KeyboardCallout/CalloutStyle`` can be used to style both input & action callouts. You can apply a custom style with the ``SwiftUICore/View/keyboardCalloutStyle(_:)`` view modifier, or by returning a custom style with a custom ``KeyboardStyleService``.
@@ -89,7 +122,17 @@ These views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be 
 let service = try KeyboardCallout.ProCalloutService.Swedish()
 ```
 
-These services will throw an error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Article> for more info.
+KeyboardKit Pro also unlocks localized callout ``KeyboardCallout/Actions`` for all supported locales that are included in your license.
+
+```swift
+let actions = KeyboardCallout.Actions.swedish  // or...
+let actions = try KeyboardCallout.Actions.swedishBuilder()
+let standardActions = KeyboardCallout.Actions.standard(for: keyboardContext) 
+```
+
+The services and value builders will throw a license error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. 
+
+> Important: The localized callout action values are static values that will be lazily computed when you first access them. They will fail silently if you try to access them before registering a valid license, which will cause them to always have a `nil` value.
 
 ---
 
@@ -99,8 +142,7 @@ These services will throw an error if you try to access them without a valid Key
 
 ### ...show callouts
 
-The ``KeyboardView`` will automatically make both input and action callouts work. For a custom view, just apply a ``SwiftUICore/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view modifier to it to make it present callouts. 
-
+The ``KeyboardView`` will automatically make both input and action callouts work. For a custom view, just apply a ``SwiftUICore/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view modifier to it to make it present callouts.
 
 
 ### ...create a custom callout service
@@ -133,7 +175,6 @@ class KeyboardViewController: KeyboardInputViewController {
 ```
 
 This will make KeyboardKit use your custom implementation instead of the standard one.
-
 
 
 ### ...customize a localized Pro service

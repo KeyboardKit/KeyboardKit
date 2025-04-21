@@ -89,7 +89,11 @@ private extension KeyboardCallout.ActionCallout.ButtonArea {
             path.move(to: topTrailing)
             path.addLine(to: topLeading)
             path.addLine(to: btmLeading)
-            path.addCurve(to: btmTrailing, control1: .init(x: 0, y: 5), control2: .init(x: rect.maxX, y: rect.minY))
+            path.addCurve(
+                to: btmTrailing,
+                control1: .init(x: 0, y: 5),
+                control2: .init(x: rect.maxX, y: rect.minY)
+            )
             path.addLine(to: topTrailing)
             return path
         }
@@ -105,7 +109,11 @@ private extension KeyboardCallout.ActionCallout.ButtonArea {
             let btmLeading = CGPoint(x: rect.minX, y: rect.maxY)
             path.move(to: topLeading)
             path.addLine(to: topTrailing)
-            path.addCurve(to: btmLeading, control1: .zero, control2: .init(x: 0, y: rect.maxY))
+            path.addCurve(
+                to: btmLeading,
+                control1: .zero,
+                control2: .init(x: 0, y: rect.maxY)
+            )
             path.addLine(to: topLeading)
             return path
         }

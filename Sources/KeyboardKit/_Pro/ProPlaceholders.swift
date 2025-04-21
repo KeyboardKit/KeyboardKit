@@ -204,6 +204,36 @@ public extension KeyboardCallout {
     class ProCalloutService: KeyboardCallout.BaseCalloutService {}
 }
 
+public extension KeyboardCallout.Actions {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// > Note: This open-source function will always return
+    /// standard English actions. The one in KeyboardKit Pro
+    /// returns localized versions for all supported locales.
+    static func standard(
+        for action: KeyboardAction,
+        context: KeyboardContext
+    ) -> [KeyboardAction]? {
+        KeyboardCallout.Actions.english.actions(for: action)
+    }
+}
+
+public extension KeyboardCallout.ActionsBuilderParams {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// > Note: This open-source function will always return
+    /// standard English actions. The one in KeyboardKit Pro
+    /// returns localized versions for all supported locales.
+    func standardCalloutActions(
+        for action: KeyboardAction,
+        context: KeyboardContext
+    ) -> [KeyboardAction]? {
+        KeyboardCallout.Actions.standard(for: action, context: context)
+    }
+}
+
 public extension KeyboardCallout.ProCalloutService {
 
     /// 👑 This is unlocked by KeyboardKit Pro.

@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+ButtonArea.swift
+//  KeyboardCallout+InputCalloutButtonArea.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-10.

@@ -164,7 +164,7 @@ public extension Keyboard.Services {
 private extension Keyboard.Services {
 
     func setupCalloutContextForServices() {
-        state.calloutContext.calloutService = calloutService
+        state.calloutContext._calloutService = calloutService
         state.calloutContext.actionHandler = { [weak self] action in
             self?.actionHandler.handle(.release, on: action)
         }

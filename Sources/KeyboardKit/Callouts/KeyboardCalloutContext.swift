@@ -25,9 +25,13 @@ public class KeyboardCalloutContext: ObservableObject {
     public let coordinateSpace = "com.keyboardkit.coordinate.callout"
 
 
-    /// The callout service to use, if any.
-    public var calloutService: KeyboardCalloutService?
-    
+    @available(*, deprecated, message: "Inject actions with the .keyboardCalloutActions view modifier instead.")
+    public var calloutService: KeyboardCalloutService? {
+        get { _calloutService }
+        set { _calloutService = newValue }
+    }
+    var _calloutService: KeyboardCalloutService?
+
     /// The scale to apply if the items must be compressed.
     public var compressedWidthScale = 0.85
     
@@ -112,12 +116,13 @@ public extension KeyboardCalloutContext {
 
     /// Update the secondary actions for a certain action.
     func updateSecondaryActions(
-        for action: KeyboardAction?,
+        _ actions: [KeyboardAction]?,
+        for action: KeyboardAction,
         in geo: GeometryProxy,
         alignment: HorizontalAlignment? = nil
     ) {
-        guard let action = action else { return resetSecondaryActions() }
-        guard let actions = calloutService?.calloutActions(for: action) else { return }
+        let actions = actions ?? _calloutService?.calloutActions(for: action)
+        guard let actions else { return }
         buttonFrame = geo.frame(in: .named(coordinateSpace))
         secondaryActionsAlignment = alignment ?? resolveSecondaryActionAlignment(for: geo)
         secondaryActions = isLeading ? actions : actions.reversed()
@@ -125,10 +130,12 @@ public extension KeyboardCalloutContext {
         guard !secondaryActions.isEmpty else { return }
         triggerSelectionChangeFeedback()
     }
-    
+
     #if os(iOS) || os(macOS) || os(watchOS) || os(visionOS)
     /// Update the secondary action selection with a drag gesture value.
-    func updateSecondaryActionsSelection(with value: DragGesture.Value) {
+    func updateSecondaryActionsSelection(
+        with value: DragGesture.Value
+    ) {
         guard buttonFrame != .zero else { return }
         if shouldResetSecondaryActions(for: value.translation) { return resetSecondaryActions() }
         guard shouldUpdateSecondaryActionSelection(for: value.translation) else { return }
@@ -150,7 +157,7 @@ public extension KeyboardCalloutContext {
 extension KeyboardCalloutContext {
 
     func triggerSelectionChangeFeedback() {
-        calloutService?.triggerFeedbackForSelectionChange()
+        _calloutService?.triggerFeedbackForSelectionChange()
     }
 }
 
