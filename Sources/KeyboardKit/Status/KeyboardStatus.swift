@@ -11,9 +11,11 @@ import Foundation
 /// This namespace contains keyboard status-related types.
 ///
 /// These types can be used to display and handle the status
-/// of a keyboard, such as if the keyboard extension or Full
-/// Access is enabled.
+/// of a keyboard, such as if the keyboard or Full Access is
+/// enabled. You can use the keyboard status views to link a
+/// user to system settings, where both can be enabled.
 ///
-/// The namespace doesn't contain protocols, nor any context
-/// or settings types that should be top-level types.
+/// This namespace doesn't contain any protocols, context or
+/// settings, nor any other significant types that are meant
+/// to be top-level types.
 public struct KeyboardStatus {}

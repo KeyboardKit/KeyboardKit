@@ -1,11 +1,11 @@
 # Release notes
 
-KeyboardKit tries to honor semantic versioning:
+KeyboardKit honors semantic versioning, with the following strategy:
 
 * Deprecations can happen at any time.
-* Deprecations should only be removed in `major` updates.
-* Breaking should only occur in `major` updates, but *can* occur in `minor` and `patch` updates.
-* Breaking should only occur in `major` updates, but *can* occur in `minor` and `patch` updates.
+* Deprecations are removed in `major` updates.
+* Breaking changes should only occur in `major` updates.
+* Breaking changes *can* occur in `minor` and `patch` updates, if the alternative is worse.
 
 These release notes cover the current major version. See older versions for older release notes.
 
