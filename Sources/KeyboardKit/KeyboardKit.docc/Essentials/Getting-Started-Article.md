@@ -198,7 +198,7 @@ class KeyboardViewController: KeyboardInputViewController {
     }
 }
 
-class CustomActionHandler: StandardActionHandler {
+class CustomActionHandler: KeyboardAction.StandardActionHandler {
 
     open override func handle(_ action: KeyboardAction) {
         if action == .space {
