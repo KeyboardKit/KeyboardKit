@@ -41,13 +41,13 @@ In KeyboardKit, a ``KeyboardCalloutService`` can return secondary callout action
 
 KeyboardKit injects a ``KeyboardCallout/StandardCalloutService`` into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or add localized services to it with ``KeyboardCalloutService/tryRegisterLocalizedService(_:)`` or ``Keyboard/Services/tryRegisterLocalizedCalloutService(_:)``.
 
+> Info: KeyboardKit 9.5 introduced a new action builder-based  ``SwiftUICore/View/keyboardCalloutActions(_:)`` view modifier that will replace the entire service concept in the next major version, if it proves to be easier to use than services.
 
 
-## Customization (BETA)
 
-KeyboardKit experiments with replacing the various services in the library with value builders, to make it easier to customize a keyboard with view modifiers instead of having to implement and register custom services.
+## View-based Action Customization (BETA)
 
-For callout actions, you can use the new ``KeyboardCallout/Actions`` type and the ``SwiftUICore/View/keyboardCalloutActions(_:)`` view modifier to customize the callout actions that will be used for a specific view:
+You can use ``SwiftUICore/View/keyboardCalloutActions(_:)`` view modifier to customize callout actions for any action, instead of using a service:
 
 
 ```swift
@@ -63,22 +63,22 @@ struct MyKeyboardView: View {
             .keyboardCalloutActions { params in
                 switch params.action {
                 case .backspace: [...]  // Return custom actions here
-                default: params.standardCalloutActions(for: context) 
+                default: params.standardActions(for: context) 
                 }
             }
     }
 }
 ```
 
-The view modifier can customize the result in any way you like. You can return standard callout actions with the parameter's ``KeyboardCallout/ActionsParams/standardCalloutActions(for:)`` function, or the static ``KeyboardAction/standardCalloutActions(for:context:)`` extension.
+You can customize callouts for any actions, then use ``KeyboardCallout/ActionsBuilderParams/standardActions(for:)`` to return the standard actions for all other actions.
 
-KeyboardKit will deprecate most services if this value and view modifier-based model proves better, since using values removes many complexities that are involved with services.
+> Important: KeyboardKit will use the callout service if this modifier returns nil value and view modifier-based model proves better, since using values removes many complexities that are involved with services.
 
 
 
 ## Styling
 
-In KeyboardKit, a ``KeyboardCallout/CalloutStyle`` can be used to style both input & action callouts. You can apply a custom style with the ``SwiftUICore/View/keyboardCalloutStyle(_:)`` view modifier, or by returning a custom style with a custom ``KeyboardStyleService``.
+You can use the ``SwiftUICore/View/keyboardCalloutStyle(_:)`` view modifier to apply a custom callout style, or implement and register a custom ``KeyboardStyleService``. This style will be used by both the action callout and the input callout. 
 
 
 
@@ -108,8 +108,6 @@ The ``KeyboardCallout`` namespace has callout-specific views, that can be used t
         }
     }
 }
-
-These views can be styled with a ``KeyboardCallout/CalloutStyle``, which can be applied with the ``SwiftUICore/View/keyboardCalloutStyle(_:)`` view modifier or provided with a custom ``KeyboardStyleService``.
 
 
 ---

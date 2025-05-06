@@ -103,6 +103,7 @@ public extension Keyboard {
         /// The border color to apply to the button.
         public var borderColor: Color? {
             didSet {
+                // TODO: Remove this in KeyboardKit 10.0.
                 guard borderColor != nil, borderSize == nil else { return }
                 borderSize = 1
             }
@@ -110,6 +111,7 @@ public extension Keyboard {
         /// The border size to apply to the button.
         public var borderSize: CGFloat? {
             didSet {
+                // TODO: Remove this in KeyboardKit 10.0.
                 guard borderSize != nil, borderColor == nil else { return }
                 borderColor = .black
             }
@@ -304,19 +306,67 @@ private extension Keyboard.ButtonStyle {
     }
 }
 
+public extension Keyboard {
+
+    /// This type is used to customize callout actions using
+    /// ``SwiftUICore/View/keyboardButtonStyle(_:)``.
+    typealias ButtonStyleBuilder = (ButtonStyleBuilderParams) -> Keyboard.ButtonStyle
+
+    /// This type is used to customize callout actions using
+    /// ``SwiftUICore/View/keyboardButtonStyle(_:)``.
+    struct ButtonStyleBuilderParams: KeyboardModel {
+
+        /// Create a callout actions builder parameter value.
+        public init(
+            action: KeyboardAction,
+        ) {
+            self.action = action
+        }
+
+        /// The action to get callout actions for.
+        public let action: KeyboardAction
+    }
+}
+
+private extension Keyboard.ButtonStyle {
+
+    static var unset: Self { .init(background: .color(.red)) }
+}
+
+public extension EnvironmentValues {
+
+    /// This value can be used to apply a fixed button style.
+    @Entry var keyboardButtonStyle = Keyboard.ButtonStyle.unset
+
+    /// This value can be used to apply a fixed button style.
+    ///
+    /// > Note: The builder returns `nil` by default to make
+    /// it possible to check if there is an injected builder.
+    /// If not, the legacy service is used. The builder will
+    /// replace the service in the next major version, after
+    /// which this should return the standard value.
+    @Entry var keyboardButtonStyleBuilder: Keyboard.ButtonStyleBuilder = { _ in .unset }
+}
+
 public extension View {
 
-    /// Apply a ``Keyboard/ButtonStyle``.
+    /// Apply a fixed ``Keyboard/ButtonStyle``.
+    ///
+    /// This view modifier is used internally to apply style
+    /// values that can vary for each key.
     func keyboardButtonStyle(
         _ style: Keyboard.ButtonStyle
     ) -> some View {
         self.environment(\.keyboardButtonStyle, style)
     }
-}
 
-public extension EnvironmentValues {
-
-    /// Apply a ``Keyboard/ButtonStyle``.
-    @Entry var keyboardButtonStyle = Keyboard
-        .ButtonStyle(background: .color(.red))
+    /// Apply a dynamic ``Keyboard/ButtonStyle`` builder.
+    ///
+    /// This view modifier can be applied to inject a custom
+    /// style builder, to let you vary styles per action.
+    func keyboardButtonStyle(
+        builder: @escaping Keyboard.ButtonStyleBuilder
+    ) -> some View {
+        self.environment(\.keyboardButtonStyleBuilder, builder)
+    }
 }

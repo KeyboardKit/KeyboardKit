@@ -11,9 +11,7 @@ This article describes the KeyboardKit styling engine.
     )
 }
 
-While native iOS keyboards provide no way to customize the look & feel of the keyboard, KeyboardKit keyboards can be to great extent.
-
-Most KeyboardKit views have a corresponding ``SwiftUICore/View`` modifier that lets you apply a custom style. You can also use a ``KeyboardStyleService`` to style more complex views, like the ``KeyboardView``.
+KeyboardKit's various views can be customized to great extent. Most have a corresponding view modifier that lets you apply a custom style or style builder. You can also use a ``KeyboardStyleService`` for more complex styling.
 
 👑 [KeyboardKit Pro][Pro] unlocks a theme engine and many pre-defined themes. Information about Pro features can be found further down.
 
@@ -23,7 +21,7 @@ Most KeyboardKit views have a corresponding ``SwiftUICore/View`` modifier that l
 
 ## Namespace
 
-KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
+KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types. However, most styles are defined next to their related types, like the ``Keyboard`` namespace´s ``Keyboard/Button`` and ``Keyboard/ButtonStyle``.
 
 
 
@@ -32,6 +30,8 @@ KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types.
 In KeyboardKit, a ``KeyboardStyleService`` can provide dynamic styles for different parts of a keyboard. Unlike static styles, a style service can vary styles depending on ``KeyboardContext``, ``KeyboardAction``, etc.
 
 KeyboardKit injects a ``KeyboardStyle/StandardStyleService`` into ``KeyboardInputViewController/services`` when the keyboard is launched. You can replace it at any time, as described further down.
+
+> Info: KeyboardKit 9.5 introduced a new style builder-based  ``SwiftUICore/View/keyboardButtonStyle(builder:)`` view modifier that will replace the entire service concept in the next major version, if it proves to be easier to use than services.
 
 
 

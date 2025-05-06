@@ -37,6 +37,8 @@ The ``Keyboard`` namespace contains many essential keyboard models that are used
 * ``Keyboard/AddedLocale``
 * ``Keyboard/AutocapitalizationType``
 * ``Keyboard/BackspaceRange``
+* ``Keyboard/Button``
+* ``Keyboard/ButtonStyle``
 * ``Keyboard/Diacritic``
 * ``Keyboard/DockEdge``
 * ``Keyboard/Gesture``
@@ -192,9 +194,10 @@ The ``Keyboard`` namespace has a lot of other standard views, styles, and view-r
     }
 }
 
-Most KeyboardKit views have a corresponding style & style modifier that can be applied to an individual view or an entire view hierarchy. You can e.g. apply a ``SwiftUICore/View/autocompleteToolbarStyle(_:)`` to the ``KeyboardView`` to customize the callout style within the view.
 
-The ``KeyboardView`` however requires a ``KeyboardStyleService`` to style its buttons, since this requires dynamic styling on a per-button basis. You can however apply styles to the views you return in the ``KeyboardView``'s `buttonView` view builder.
+## Styling
+
+Most ``Keyboard`` views have a style view modifier. You can e.g. apply an ``SwiftUICore/View/autocompleteToolbarStyle(_:)`` to ``KeyboardView`` to customize the autocomplete toolbar style, and ``SwiftUICore/View/keyboardButtonStyle(builder:)`` to customize the button style.
     
 ---
 

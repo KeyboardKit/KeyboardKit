@@ -199,9 +199,11 @@ public extension EnvironmentValues {
 
     /// This value can be used to set custom callout actions.
     ///
-    /// This environment value has `nil` as default value to
-    /// make it possible to see if there is actually a value
-    /// being injected. If not, the legacy services are used.
+    /// > Note: The builder returns `nil` by default to make
+    /// it possible to check if there is an injected builder.
+    /// If not, the legacy service is used. The builder will
+    /// replace the service in the next major version, after
+    /// which this should return the standard value.
     @Entry var keyboardCalloutActions: KeyboardCallout.ActionsBuilder = { _ in nil }
 }
 
@@ -210,9 +212,9 @@ public extension View {
     /// This view modifier can be used to set custom callout
     /// actions to show when long pressing a key.
     ///
-    /// Use ``KeyboardCallout/ActionsParams/standardCalloutActions(for:context:)``
-    /// to return the standard callout actions for an action
-    /// that you don't want to customize.
+    /// You can customize callouts for any actions, then use
+    /// ``KeyboardCallout/ActionsParams/standardActions(for:)``
+    /// to return the standard actions for all other actions.
     func keyboardCalloutActions(
         _ builder: @escaping KeyboardCallout.ActionsBuilder
     ) -> some View {

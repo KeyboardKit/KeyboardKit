@@ -56,14 +56,14 @@ public protocol KeyboardStyleService: AnyObject {
     func buttonText(for action: KeyboardAction) -> String?
 
 
+    // MARK: - Autocomplete
+
+    /// The style to use for ``Autocomplete/Toolbar`` views.
+    var autocompleteToolbarStyle: Autocomplete.ToolbarStyle { get }
+
+
     // MARK: - Callouts
 
     /// The callout style to override the standard style with, if any.
     var calloutStyle: KeyboardCallout.CalloutStyle? { get }
-
-
-    // MARK: - Callouts
-
-    /// The style to use for ``Autocomplete/Toolbar`` views.
-    var autocompleteToolbarStyle: Autocomplete.ToolbarStyle { get }
 }

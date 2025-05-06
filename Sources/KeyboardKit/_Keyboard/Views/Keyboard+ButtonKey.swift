@@ -22,7 +22,6 @@ public extension Keyboard {
         /// Create a keyboard button key.
         public init() {}
 
-        
         @Environment(\.keyboardButtonStyle)
         private var style
 

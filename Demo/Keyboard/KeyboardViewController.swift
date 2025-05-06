@@ -88,7 +88,7 @@ class KeyboardViewController: KeyboardInputViewController {
                 let context = controller.state.keyboardContext
                 let custom = String("keyboardkit".reversed())
                 if action.shouldUseCustomCallouts { return .init(characters: custom) }
-                return params.standardCalloutActions(for: context)
+                return params.standardActions(for: context)
             }
             // .keyboardToolbarStyle(.init(backgroundColor: .red))
         }

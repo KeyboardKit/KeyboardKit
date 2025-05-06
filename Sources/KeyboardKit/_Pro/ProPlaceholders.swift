@@ -226,9 +226,8 @@ public extension KeyboardCallout.ActionsBuilderParams {
     /// > Note: This open-source function will always return
     /// standard English actions. The one in KeyboardKit Pro
     /// returns localized versions for all supported locales.
-    func standardCalloutActions(
-        for action: KeyboardAction,
-        context: KeyboardContext
+    func standardActions(
+        for context: KeyboardContext
     ) -> [KeyboardAction]? {
         KeyboardCallout.Actions.standard(for: action, context: context)
     }
