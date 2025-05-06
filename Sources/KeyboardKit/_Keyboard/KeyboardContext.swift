@@ -81,26 +81,33 @@ public class KeyboardContext: ObservableObject {
     @Published public var app: KeyboardApp?
 
     /// The color scheme to use.
-    @Published public var colorScheme: ColorScheme = .light
+    @Published public var colorScheme = ColorScheme.light
 
-    /// The current device type.
-    @Published public var deviceType: DeviceType = .current
+    /// The device type that is currently being used.
+    @Published public var deviceType = DeviceType.current
 
-    /// The current device type to use for keyboard visualization.
-    @Published public var deviceTypeForKeyboard: DeviceType = .current
+    /// The device type to use for keyboard rendering.
+    @Published public var deviceTypeForKeyboard = DeviceType.current
+
+    /// Whether the keyboard device type is iPad Pro.
+    ///
+    /// This temporary property is used to activate iPad Pro
+    /// rendering. It's not published since it's not used in
+    /// a way that should trigger a redraw.
+    public var deviceTypeForKeyboardIsIpadPro = false
 
     /// Whether the keyboard has a dictation key.
-    @Published public var hasDictationKey: Bool = false
+    @Published public var hasDictationKey = false
 
     /// Whether the extension has full access.
     #if os(iOS) || os(tvOS) || os(visionOS)
     @Published public var hasFullAccess = UIInputViewController().hasFullAccess
     #else
-    @Published public var hasFullAccess: Bool = false
+    @Published public var hasFullAccess = false
     #endif
 
     /// The current interface orientation.
-    @Published public var interfaceOrientation: InterfaceOrientation = .portrait
+    @Published public var interfaceOrientation = InterfaceOrientation.portrait
 
     /// Whether the keyboard is collapsed.
     @Published public var isKeyboardCollapsed = false

@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+ImagesTests.swift
+//  KeyboardAction+ButtonContentTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-05-11.
@@ -7,9 +7,10 @@
 //
 
 import KeyboardKit
+import SwiftUI
 import XCTest
 
-final class KeyboardAction_ImagesTests: XCTestCase {
+final class KeyboardAction_ButtonContentTests: XCTestCase {
 
     let actions = KeyboardAction.testActions
     var context = KeyboardContext()
@@ -25,8 +26,19 @@ final class KeyboardAction_ImagesTests: XCTestCase {
         unexpected = []
     }
 
-    func testStandardButtonImageIsDefinedForSomeActions() {
+    func testStandardButtonImageIsSpecialForCapsLock() {
+        func result(for action: KeyboardAction) -> Image? {
+            action.standardButtonImage(for: context)
+        }
+        context.keyboardCase = .uppercased
+        XCTAssertEqual(result(for: .capsLock), .keyboardShiftCapslockInactive)
+        XCTAssertEqual(result(for: .shift(.uppercased)), .keyboardShiftUppercased)
+        context.keyboardCase = .capsLocked
+        XCTAssertEqual(result(for: .capsLock), .keyboardShiftCapslocked)
+        XCTAssertEqual(result(for: .shift(.uppercased)), .keyboardShiftLowercased)
+    }
 
+    func testStandardButtonImageIsDefinedForSomeActions() {
         func result(for action: KeyboardAction) -> Any? {
             action.standardButtonImage(for: context)
         }
@@ -59,8 +71,15 @@ final class KeyboardAction_ImagesTests: XCTestCase {
         unexpected.forEach { XCTAssertNil(result(for: $0)) }
     }
 
-    func testStandardButtonTextIsDefinedForSomeActions() {
+    func testStandardButtonImageScaleIsDeviceSpecific() {
+        let action = KeyboardAction.space
+        context.deviceTypeForKeyboard = .phone
+        XCTAssert(action.standardButtonImageScale(for: context) == 1)
+        context.deviceTypeForKeyboard = .pad
+        XCTAssert(action.standardButtonImageScale(for: context) == 1.2)
+    }
 
+    func testStandardButtonTextIsDefinedForSomeActions() {
         func result(for action: KeyboardAction) -> Int? {
             action.standardButtonText(for: context)?.count
         }

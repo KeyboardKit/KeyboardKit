@@ -48,9 +48,9 @@ public extension Keyboard.ButtonKey {
     
     VStack {
         Keyboard.ButtonKey()
-            .keyboardButtonStyle(.preview1)
+            .keyboardButtonStyle(.init(background: .color(.red)))
         Keyboard.ButtonKey()
-            .keyboardButtonStyle(.preview2)
+            .keyboardButtonStyle(.init(background: .color(.yellow), foregroundColor: .blue))
         Keyboard.ButtonKey()
             .keyboardButtonStyle(.previewImage)
     }

@@ -13,21 +13,19 @@ public extension Keyboard {
     /// This style can be used to modify the visual style of
     /// the various ``Keyboard/Button`` components.
     ///
-    /// You can apply this view style with the view modifier
-    /// ``SwiftUICore/View/keyboardButtonStyle(_:)``.
+    /// You can use ``Keyboard/ButtonStyle/standard(for:context:)``
+    /// to get the standard style for any action and context.
     ///
-    /// Unlike most other styles, the style doesn't yet have
-    /// a standard style, due to the complexities of how the
-    /// button looks on different platforms.
+    /// You can apply this view style with the view modifier
+    /// ``SwiftUICore/View/keyboardButtonStyle(_:)`` or with
+    /// the builder-based variant.
     struct ButtonStyle: Codable, Equatable, Sendable {
         
         /// Create a custom keyboard button style.
         ///
         /// If you provide both a keyboard font and a native
-        /// one, the native one will be applied. 
-        ///
-        /// Note that any native fonts that are applied will
-        /// be excluded from the `Codable` data.
+        /// one, the native one will be applied. Note that a
+        /// native font will be excluded from `Codable` data.
         ///
         /// - Parameters:
         ///   - background: The background to apply, by default `nil`.
@@ -250,33 +248,9 @@ public extension Keyboard.ButtonShadowStyle {
 }
 
 extension Keyboard.ButtonStyle {
-
-    static var preview1: Self {
-        .init(
-            backgroundColor: .yellow,
-            foregroundColor: .white,
-            font: .body,
-            cornerRadius: 20,
-            border: .init(color: .red, size: 3),
-            shadow: .init(color: .blue, size: 4),
-            pressedOverlayColor: .red
-        )
-    }
-
-    static var preview2: Self {
-        .init(
-           backgroundColor: .purple,
-           foregroundColor: .yellow,
-           font: .headline,
-           cornerRadius: 10,
-           border: .init(color: .blue, size: 5),
-           shadow: .init(color: .green, size: 8),
-           pressedOverlayColor: .yellow
-       )
-    }
     
     static let previewImage: Keyboard.ButtonStyle = {
-        var style = Keyboard.ButtonStyle.preview1
+        var style = Keyboard.ButtonStyle()
         style.backgroundColor = .red
         #if canImport(UIKit)
         let image = UIImage(systemName: "face.smiling")

@@ -11,19 +11,9 @@ import SwiftUI
 extension KeyboardStyle.StandardStyleService {
     
     var useSmallTextForControlButtons: Bool {
-        return
-            keyboardContext.deviceTypeForKeyboard == .pad &&
-            keyboardContext.locale.identifier.hasPrefix("en") &&
-            iPadProRenderingModeActive
-    }
-    
-    func buttonColorPadProOverride(for action: KeyboardAction) -> Color? {
-        let isCapsLock = keyboardContext.keyboardCase == .capsLocked
-        switch action {
-        case .capsLock: return isCapsLock ? buttonBackgroundColor(for: .backspace, isPressed: true) : nil
-        case .shift: return isCapsLock ? buttonBackgroundColor(for: .backspace, isPressed: false) : nil
-        default: return nil
-        }
+        return isIpadPro &&
+        keyboardContext.deviceTypeForKeyboard == .pad &&
+        keyboardContext.locale.identifier.hasPrefix("en")
     }
     
     func buttonFontSizePadOverride(for action: KeyboardAction) -> CGFloat? {
@@ -37,16 +27,6 @@ extension KeyboardStyle.StandardStyleService {
         if action.isKeyboardTypeAction(.numeric) { return 22 }
         if action.isKeyboardTypeAction(.symbolic) { return 20 }
         return nil
-    }
-    
-    func buttonImagePadOverride(for action: KeyboardAction) -> Image? {
-        guard iPadProRenderingModeActive else { return nil }
-        let isCapsLock = keyboardContext.keyboardCase == .capsLocked
-        switch action {
-        case .capsLock: return isCapsLock ? .keyboardShiftCapslocked : .keyboardShiftCapslockInactive
-        case .shift: return isCapsLock ? .keyboardShiftLowercased : nil
-        default: return nil
-        }
     }
     
     func buttonTextPadOverride(for action: KeyboardAction) -> String? {

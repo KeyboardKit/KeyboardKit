@@ -205,6 +205,29 @@ private extension Keyboard.Background {
     }
 }
 
+public extension EnvironmentValues {
+
+    /// Apply a keyboard background style.
+    ///
+    /// ``KeyboardView`` will use this value, if any, or the
+    /// ``KeyboardStyleService/backgroundStyle``.
+    @Entry var keyboardBackground: Keyboard.Background?
+}
+
+public extension View {
+
+    /// Apply a keyboard background style.
+    ///
+    /// ``KeyboardView`` will use this value, if any, or the
+    /// ``KeyboardStyleService/backgroundStyle``.
+    func keyboardBackground(
+        _ background: Keyboard.Background
+    ) -> some View {
+        self.environment(\.keyboardBackground, background)
+    }
+}
+
+
 #Preview {
     
     VStack {

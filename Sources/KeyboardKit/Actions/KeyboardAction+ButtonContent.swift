@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+Button.swift
+//  KeyboardAction+ButtonContent.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-01.
@@ -10,18 +10,43 @@ import CoreGraphics
 import SwiftUI
 
 public extension KeyboardAction {
-    
-    /// The standard button image for the action.
+
+    /// Whether an action has a standard image.
+    func hasStandardButtonImage(
+        for context: KeyboardContext
+    ) -> Bool {
+        standardButtonImage(for: context) != nil
+    }
+
+    /// Whether an action has a standard text.
+    func hasStandardButtonText(
+        for context: KeyboardContext
+    ) -> Bool {
+        standardButtonText(for: context) != nil
+    }
+
+    /// The standard button image.
     func standardButtonImage(
         for context: KeyboardContext
     ) -> Image? {
+        if let caps = standardButtonImageCapsLocked(for: context) { return caps }
         switch standardButtonText(for: context) {
-        case "↵", "↳": .keyboardNewline(for: context.locale)    // Used by localization
-        default: standardButtonImageRaw(for: context)
+        case "↵", "↳": return .keyboardNewline(for: context.locale)
+        default: return standardButtonImageRaw(for: context)
         }
     }
-    
-    /// The standard button text for the action.
+
+    /// The standard button image scale.
+    func standardButtonImageScale(
+        for context: KeyboardContext
+    ) -> CGFloat {
+        switch context.deviceTypeForKeyboard {
+        case .pad: 1.2
+        default: 1
+        }
+    }
+
+    /// The standard button text.
     func standardButtonText(
         for context: KeyboardContext
     ) -> String? {
@@ -39,14 +64,29 @@ public extension KeyboardAction {
     }
 }
 
+extension KeyboardAction {
+
+    /// Internal bcs it's used by the standard style service.
+    func standardButtonImageCapsLocked(
+        for context: KeyboardContext
+    ) -> Image? {
+        guard context.keyboardCase == .capsLocked else { return nil }
+        switch self {
+        case .capsLock: return .keyboardShiftCapslocked
+        case .shift: return .keyboardShiftLowercased
+        default: return nil
+        }
+    }
+}
+
 private extension KeyboardAction {
-    
+
     func standardButtonImageRaw(
         for context: KeyboardContext
     ) -> Image? {
         switch self {
         case .backspace: .keyboardBackspace(for: context.locale)
-        case .capsLock: .keyboardShift(.capsLocked)
+        case .capsLock: .keyboardShiftCapslockInactive
         case .command: .keyboardCommand
         case .control: .keyboardControl
         case .dictation: .keyboardDictation
