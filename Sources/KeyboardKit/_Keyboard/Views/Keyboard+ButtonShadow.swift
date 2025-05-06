@@ -71,9 +71,15 @@ private extension Keyboard.ButtonShadow {
     
     VStack {
         Keyboard.ButtonShadow()
-            .keyboardButtonStyle(.preview1)
+            .keyboardButtonStyle(.init(
+                cornerRadius: 10,
+                shadow: .standard
+            ))
         Keyboard.ButtonShadow()
-            .keyboardButtonStyle(.preview2)
+            .keyboardButtonStyle(.init(
+                cornerRadius: 20,
+                shadow: .init(color: .red, size: 8)
+            ))
     }
     .padding()
 }

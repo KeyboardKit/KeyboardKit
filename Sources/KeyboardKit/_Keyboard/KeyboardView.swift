@@ -147,9 +147,11 @@ public struct KeyboardView<
     private let toolbarBuilder: ToolbarBuilder
 
     @Environment(\.autocompleteToolbarStyle) var autocompleteToolbarStyleFromEnvironment
+    @Environment(\.keyboardBackground) var backgroundFromEnvironment
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
-    @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
     @Environment(\.keyboardDockEdge) var dockEdgeFromEnvironment
+    @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
+    @Environment(\.keyboardForeground) var foregroundFromEnvironment
     @Environment(\.keyboardInputToolbarDisplayMode) var inputToolbarDisplayModeFromEnvironment
     
     @ObservedObject var autocompleteContext: AutocompleteContext
@@ -178,7 +180,8 @@ public struct KeyboardView<
     }
 
     var keyboardContent: some View {
-        KeyboardStyle.StandardStyleService.iPadProRenderingModeActive = layout.isIpadProLayout
+        let isIpadPro = layout.isIpadProLayout
+        keyboardContext.deviceTypeForKeyboardIsIpadPro = isIpadPro
 
         return VStack(spacing: 0) {
             toolbar
@@ -189,7 +192,7 @@ public struct KeyboardView<
         .overlay(emojiKeyboard, alignment: .bottom)
         .overlay(numberPad, alignment: .bottom)
         .foregroundColor(styleService.foregroundColor)
-        .background(renderBackground ? styleService.backgroundStyle : nil)
+        .background(renderBackground ? background : nil)
         .keyboardCalloutContainer(
             calloutContext: calloutContext,
             keyboardContext: keyboardContext
@@ -211,6 +214,10 @@ private extension KeyboardView {
         return autocompleteToolbarStyleFromEnvironment
     }
 
+    var background: Keyboard.Background {
+        backgroundFromEnvironment ?? styleService.backgroundStyle
+    }
+
     var calloutStyle: KeyboardCallout.CalloutStyle {
         var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
         let insets = layoutConfig.buttonInsets
@@ -225,6 +232,10 @@ private extension KeyboardView {
     var emojiKeyboardStyle: Emoji.KeyboardStyle {
         emojiKeyboardStyleFromEnvironment(keyboardContext)
             .augmented(for: inputToolbarDisplayMode)
+    }
+
+    var foreground: Color? {
+        foregroundFromEnvironment ?? styleService.foregroundColor
     }
 
     var isLargePad: Bool {

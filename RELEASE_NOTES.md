@@ -20,17 +20,28 @@ Beta version tags and releases are removed after the next minor or major version
 
 ## 9.5
 
-This version adds new ways to replace services with builder-based view modifiers, to avoid having to use custom services.
+This version adds ways to customize callout actions and keyboard button styles with view modifiers instead of services.
 
-The first test is to customize callout actions and keyboard button styles with action- and style builder-based view modifiers.
+The old callout and style services are still used by default, but will be ignored if you apply these new view modifiers.
 
-The old services will be used until you apply these view modifier. If this proves successful, these services will be deprecated.
+If the view modifier approach proves successful, the services will be deprecated then removed in the next major version.
 
 ### ✨ Features
 
+* `Keyboard.ButtonStyle` has new standard style builders.
+* `KeyboardAction` has many new value extensions with standard button values.
 * `KeyboardCallout.Actions` is a new type used to replace services with values.
-* `View` has a new `.keyboardButtonStyle(builder:)` modifier for customizing keyboard button styles.
-* `View` has a new `.keyboardCalloutActions(_:)` modifier for customizing the action callout actions.
+* `KeyboardContext` has a new, temporary `deviceTypeForKeyboardIsIpadPro` value.
+* `View.keyboardBackground(_:)` can be used to customize the keyboard background.
+* `View.keyboardButtonStyle(builder:)` can be used to customize any button style.
+* `View.keyboardCalloutActions(_:)` can be used to customize the callout actions.
+* `View.keyboardForeground(_:)` can be used to customize the keyboard foreground.
+
+### 💡 Adjustments
+
+* `KeyboardAction` adds more context checks to its standard text and image logic.
+* `KeyboardAction` improves iPad Pro button styles for more action & context states.
+* `KeyboardStyle.StandardStyleService` uses the new, extended keyboard action logic.
 
 ### 👑 Pro
 

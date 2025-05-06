@@ -13,32 +13,32 @@ public extension Keyboard {
     /// This style can be used to modify the visual style of
     /// the various ``Keyboard/Button`` components.
     ///
-    /// You can apply this view style with the view modifier
-    /// ``SwiftUICore/View/keyboardButtonStyle(_:)``.
+    /// The ``keyboardFont`` property can be used to apply a
+    /// codable font that is serialized with the rest of the
+    /// style, while the optional ``font`` can be used for a
+    /// non-codable, custom font that will not be serialized.
     ///
-    /// Unlike most other styles, the style doesn't yet have
-    /// a standard style, due to the complexities of how the
-    /// button looks on different platforms.
+    /// You can use ``Keyboard/ButtonStyle/standard(for:context:)``
+    /// or ``KeyboardAction/standardButtonStyle(for:isPressed:)``
+    /// to get the standard style for any action and context.
+    ///
+    /// You can apply this view style with the view modifier
+    /// ``SwiftUICore/View/keyboardButtonStyle(_:)`` or with
+    /// the builder-based variant.
     struct ButtonStyle: Codable, Equatable, Sendable {
         
         /// Create a custom keyboard button style.
         ///
-        /// If you provide both a keyboard font and a native
-        /// one, the native one will be applied. 
-        ///
-        /// Note that any native fonts that are applied will
-        /// be excluded from the `Codable` data.
-        ///
         /// - Parameters:
-        ///   - background: The background to apply, by default `nil`.
+        ///   - background: The background style to apply, by default `nil`.
         ///   - backgroundColor: The background color to apply, by default `nil`.
         ///   - foregroundColor: The border color to apply, by default `nil`.
-        ///   - font: The native font to apply, by default `nil`.
+        ///   - font: A custom, native font to apply, by default `nil`.
         ///   - keyboardFont: The keyboard font to apply, by default `nil`.
         ///   - cornerRadius: The corner radius to apply, by default `nil`.
         ///   - border: The border style to apply, by default `nil`.
         ///   - shadow: The shadow style to apply, by default `nil`.
-        ///   - pressedOverlayColor: The color to overlay the background with when the button is pressed, by default `nil`.
+        ///   - pressedOverlayColor: The overlay color to apply on press, by default `nil`.
         public init(
             background: Keyboard.Background? = nil,
             backgroundColor: Color? = nil,
@@ -77,7 +77,7 @@ public extension Keyboard {
 
         /// The font to apply to the button.
         public var font: Font? {
-            keyboardFont?.font ?? nativeFont
+            nativeFont ?? keyboardFont?.font
         }
 
         /// The native font to apply to the button.
@@ -250,33 +250,9 @@ public extension Keyboard.ButtonShadowStyle {
 }
 
 extension Keyboard.ButtonStyle {
-
-    static var preview1: Self {
-        .init(
-            backgroundColor: .yellow,
-            foregroundColor: .white,
-            font: .body,
-            cornerRadius: 20,
-            border: .init(color: .red, size: 3),
-            shadow: .init(color: .blue, size: 4),
-            pressedOverlayColor: .red
-        )
-    }
-
-    static var preview2: Self {
-        .init(
-           backgroundColor: .purple,
-           foregroundColor: .yellow,
-           font: .headline,
-           cornerRadius: 10,
-           border: .init(color: .blue, size: 5),
-           shadow: .init(color: .green, size: 8),
-           pressedOverlayColor: .yellow
-       )
-    }
     
     static let previewImage: Keyboard.ButtonStyle = {
-        var style = Keyboard.ButtonStyle.preview1
+        var style = Keyboard.ButtonStyle()
         style.backgroundColor = .red
         #if canImport(UIKit)
         let image = UIImage(systemName: "face.smiling")

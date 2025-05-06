@@ -13,23 +13,34 @@ public extension Keyboard.ButtonStyle {
     /// The standard keyboard button style to use.
     static func standard(
         for action: KeyboardAction,
-        context: KeyboardContext
+        context: KeyboardContext,
+        isPressed: Bool
     ) -> Keyboard.ButtonStyle {
-        fatalError()
+        Keyboard.ButtonStyle(
+            backgroundColor: action.standardButtonBackgroundColor(
+                for: context,
+                isPressed: isPressed
+            ),
+            foregroundColor: action.standardButtonForegroundColor(
+                for: context,
+                isPressed: isPressed
+            ),
+            // font: <#T##Font?#>,
+            // keyboardFont: <#T##KeyboardFont?#>,
+            cornerRadius: action.standardButtonCornerRadius(for: context),
+            border: action.standardButtonBorderStyle(for: context),
+            shadow: action.standardButtonShadowStyle(for: context)
+        )
     }
 }
 
 public extension Keyboard.ButtonStyleBuilderParams {
 
-    /// The standard callout actions to use for the provided
-    /// keyboard context.
+    /// The standard keyboard button style to use.
     func standardButtonStyle(
-        for context: KeyboardContext
+        for context: KeyboardContext,
+        isPressed: Bool
     ) -> Keyboard.ButtonStyle {
-        .standard(for: action, context: context)
+        .standard(for: action, context: context, isPressed: isPressed)
     }
-}
-
-public extension Keyboard.ButtonStyle {
-
 }

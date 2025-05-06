@@ -64,7 +64,7 @@ public extension Keyboard.SpaceLongPressBehavior {
 }
 
 public extension KeyboardContext {
-    
+
     @available(*, deprecated, message: "Use `settings.spaceLongPressBehavior` instead.")
     var spaceLongPressBehavior: Keyboard.SpaceLongPressBehavior {
         get { settings.spaceLongPressBehavior }

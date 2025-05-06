@@ -1,5 +1,5 @@
 //
-//  KeyboardAction+Button.swift
+//  KeyboardAction+ButtonImage.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-01.
@@ -10,43 +10,47 @@ import CoreGraphics
 import SwiftUI
 
 public extension KeyboardAction {
-    
-    /// The standard button image for the action.
+
+    /// Whether an action has a standard image.
+    func hasStandardButtonImage(
+        for context: KeyboardContext
+    ) -> Bool {
+        standardButtonImage(for: context) != nil
+    }
+
+    /// The standard button image.
     func standardButtonImage(
         for context: KeyboardContext
     ) -> Image? {
+        guard standardButtonTextIpadPro(for: context) == nil else { return nil }
+        if let caps = standardButtonImageCaps(for: context) { return caps }
         switch standardButtonText(for: context) {
-        case "↵", "↳": .keyboardNewline(for: context.locale)    // Used by localization
-        default: standardButtonImageRaw(for: context)
+        case "↵", "↳": return .keyboardNewline(for: context.locale)
+        default: return standardButtonImageBase(for: context)
         }
     }
-    
-    /// The standard button text for the action.
-    func standardButtonText(
+
+    /// The standard button image scale.
+    func standardButtonImageScale(
         for context: KeyboardContext
-    ) -> String? {
-        switch self {
-        case .character(let char): standardButtonText(for: char)
-        case .diacritic(let dia): dia.char
-        case .emoji(let emoji): emoji.char
-        case .keyboardType(let type): type.standardButtonText(for: context)
-        case .nextLocale: context.locale.languageCode?.uppercased()
-        case .primary(let type): type.standardButtonText(for: context.locale)
-        case .space: KKL10n.space.text(for: context.locale)
-        case .text(let char): standardButtonText(for: char)
-        default: nil
+    ) -> CGFloat {
+        switch context.deviceTypeForKeyboard {
+        case .pad: 1.2
+        default: 1
         }
     }
 }
 
-private extension KeyboardAction {
-    
-    func standardButtonImageRaw(
+/// MARK: - Image
+
+extension KeyboardAction {
+
+    func standardButtonImageBase(
         for context: KeyboardContext
     ) -> Image? {
         switch self {
         case .backspace: .keyboardBackspace(for: context.locale)
-        case .capsLock: .keyboardShift(.capsLocked)
+        case .capsLock: .keyboardShiftCapslockInactive
         case .command: .keyboardCommand
         case .control: .keyboardControl
         case .dictation: .keyboardDictation
@@ -67,14 +71,15 @@ private extension KeyboardAction {
         default: nil
         }
     }
-}
 
-private extension KeyboardAction {
-    
-    func standardButtonText(for char: String) -> String {
-        switch char {
-        case .zeroWidthSpace: "⁞"
-        default: char
+    func standardButtonImageCaps(
+        for context: KeyboardContext
+    ) -> Image? {
+        guard context.keyboardCase == .capsLocked else { return nil }
+        switch self {
+        case .capsLock: return .keyboardShiftCapslocked
+        case .shift: return .keyboardShiftLowercased
+        default: return nil
         }
     }
 }

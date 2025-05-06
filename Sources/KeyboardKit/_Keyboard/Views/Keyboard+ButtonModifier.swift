@@ -180,18 +180,18 @@ private extension View {
         var body: some View {
             VStack {
                 VStack(spacing: 20) {
-                    button(for: Text("a"), style: .preview1)
+                    button(for: Text("a"), style: .init(backgroundColor: .purple))
                     button(
                         for: Text("A"),
-                        style: .preview2,
+                        style: .init(backgroundColor: .teal, cornerRadius: 10),
                         insets: .init(top: 5, leading: 10, bottom: 15, trailing: 20)
                     )
                     button(
                         for: Text(context.locale.identifier),
                         action: .nextLocale,
-                        style: .preview1
+                        style: .init(backgroundColor: .orange)
                     )
-                    button(for: Image.keyboardGlobe, style: .preview1)
+                    button(for: Image.keyboardGlobe, style: .init(backgroundColor: .mint))
                 }
                 .padding()
                 .background(Color.gray.opacity(0.5))
