@@ -51,7 +51,7 @@ public extension KeyboardAction {
     var standardPressAction: GestureAction? {
         switch self {
         case .backspace: { $0?.deleteBackward() }
-        case .capsLock: { $0?.setKeyboardType(.alphabetic) }
+        case .capsLock: { $0?.setKeyboardCase(.capsLocked) }
         case .keyboardType(let type): { $0?.setKeyboardType(type) }
         default: nil
         }
