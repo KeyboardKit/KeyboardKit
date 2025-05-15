@@ -261,6 +261,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     open func insertText(_ text: String) {
+        if state.keyboardContext.isEmojiSearchFocused && !text.containsOnlyEmoji {
+            return
+        }
         textDocumentProxy.insertText(text)
     }
 
@@ -408,6 +411,12 @@ private extension KeyboardInputViewController {
         await MainActor.run {
             state.dictationContext.lastError = error
         }
+    }
+}
+
+extension String {
+    var containsOnlyEmoji: Bool {
+        return !isEmpty && unicodeScalars.allSatisfy { $0.properties.isEmoji }
     }
 }
 #endif

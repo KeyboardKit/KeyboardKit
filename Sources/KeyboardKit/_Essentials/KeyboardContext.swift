@@ -72,6 +72,9 @@ public class KeyboardContext: ObservableObject {
     @Published
     public var isUserSubscribed : Bool = false
 
+    @Published
+    public var searchEmoji: Bool = false
+
 
 
     // MARK: - Settings
@@ -215,6 +218,11 @@ public class KeyboardContext: ObservableObject {
     /// The space long press behavior to use.
     @Published
     public var spaceLongPressBehavior = Gestures.SpaceLongPressBehavior.moveInputCursor
+
+    @Published
+    public var isEmojiSearchFocused: Bool = false
+    @Published
+    public var emojiSearchTextUpdate: ((String) -> Void)?
 
 
     #if os(iOS) || os(tvOS) || os(visionOS)
