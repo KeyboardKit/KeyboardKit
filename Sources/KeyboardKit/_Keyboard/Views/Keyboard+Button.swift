@@ -11,16 +11,15 @@ import SwiftUI
 public extension Keyboard {
     
     /// This view can be used to create keyboard buttons for
-    /// various ``KeyboardAction``s.
+    /// various keyboard actions.
     ///
-    /// The view will apply the proper gestures to make sure
-    /// that the action handler is used correctly, and adapt
-    /// its content to the provided actions and services.
+    /// The view will apply the proper keyboard gestures and
+    /// adapt its content to the provided action and values.
     ///
-    /// > Tip: You can turn any view into a keyboard button
-    /// with the `.keyboardButton(...)` view modifier.
-    struct Button<Content: View>: View {
-        
+    /// You can style this component with the style modifier
+    /// ``keyboardButtonStyle(builder:)``.
+    struct Button<Content: View>: View, KeyboardButtonStyleResolver {
+
         /// Create a keyboard button.
         ///
         /// - Parameters:
@@ -89,16 +88,19 @@ public extension Keyboard {
             )
         }
         
-        private let action: KeyboardAction
+        let action: KeyboardAction
         private let actionHandler: KeyboardActionHandler
         private let repeatTimer: GestureButtonTimer?
-        private let styleService: KeyboardStyleService
+        let styleService: KeyboardStyleService
         private let keyboardContext: KeyboardContext
         private let calloutContext: KeyboardCalloutContext?
         private let edgeInsets: EdgeInsets
         private var isPressed: Binding<Bool>?
         private let content: ContentBuilder
-        
+
+        @Environment(\.keyboardButtonStyleBuilder)
+        var buttonStyleBuilder
+
         @SwiftUI.State
         private var isPressedInternal = false
         
@@ -121,7 +123,7 @@ public extension Keyboard {
 }
 
 private extension Keyboard.Button {
-    
+
     var buttonContent: some View {
         content(
             Keyboard.ButtonContent(
@@ -133,10 +135,23 @@ private extension Keyboard.Button {
     }
     
     var style: Keyboard.ButtonStyle {
-        styleService.buttonStyle(
+        let pressed = isPressed?.wrappedValue ?? isPressedInternal
+        return keyboardButtonStyle(isPressed: pressed)
+    }
+}
+
+private class PreviewStyleService: KeyboardStyle.StandardStyleService {
+
+    override func buttonForegroundColor(
+        for action: KeyboardAction,
+        isPressed: Bool
+    ) -> Color {
+        switch action {
+        case .backspace: .yellow
+        default: super.buttonForegroundColor(
             for: action,
-            isPressed: isPressed?.wrappedValue ?? isPressedInternal
-        )
+            isPressed: isPressed
+        )}
     }
 }
 
@@ -151,7 +166,7 @@ private extension Keyboard.Button {
             Keyboard.Button(
                 action: action,
                 actionHandler: .preview,
-                styleService: .preview,
+                styleService: PreviewStyleService(keyboardContext: .init()),
                 keyboardContext: .preview,
                 calloutContext: .preview
             ) {
@@ -168,7 +183,7 @@ private extension Keyboard.Button {
                 button(for: .character("a"))
                 button(for: .character("A"))
                 Keyboard.Button(
-                    action: .emoji(.init("😀")),
+                    action: .character("a"),
                     actionHandler: .preview,
                     styleService: .preview,
                     keyboardContext: .preview,
@@ -182,6 +197,19 @@ private extension Keyboard.Button {
             .background(Color.gray)
             .cornerRadius(8)
             .environment(\.sizeCategory, .extraExtraLarge)
+            .keyboardButtonStyle { params in
+                var style = params.standardStyle(for: .preview)
+                switch params.action {
+                case .character:
+                    style.backgroundColor = .red
+//                    style.contentInsets = .init(
+//                        horizontal: 100,
+//                        vertical: 200
+//                    )
+                default: break
+                }
+                return style
+            }
         }
     }
     

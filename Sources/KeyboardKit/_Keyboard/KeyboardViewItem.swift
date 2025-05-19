@@ -12,8 +12,11 @@ import SwiftUI
 ///
 /// Unlike ``Keyboard/Button`` this view applies more insets
 /// and configurations to make it work in a ``KeyboardView``.
-public struct KeyboardViewItem<Content: View>: View {
-    
+///
+/// You can style the component with the style view modifier
+/// ``keyboardButtonStyle(builder:)``.
+public struct KeyboardViewItem<Content: View>: View, KeyboardButtonStyleResolver {
+
     /// Create a keyboard view item.
     ///
     /// - Parameters:
@@ -53,18 +56,23 @@ public struct KeyboardViewItem<Content: View>: View {
         self.isGestureAutoCancellable = isGestureAutoCancellable
         self.content = content
     }
-    
+
+    var action: KeyboardAction { item.action }
+
     private let item: KeyboardLayout.Item
     private let actionHandler: KeyboardActionHandler
     private let repeatTimer: GestureButtonTimer?
-    private let styleService: KeyboardStyleService
+    let styleService: KeyboardStyleService
     private let calloutContext: KeyboardCalloutContext?
     private let keyboardWidth: CGFloat
     private let inputWidth: CGFloat
     private let isNextProbability: Double
     private let isGestureAutoCancellable: Bool?
     private let content: Content
-    
+
+    @Environment(\.keyboardButtonStyleBuilder)
+    var buttonStyleBuilder
+
     @Environment(\.keyboardSpaceContextMenuLeading)
     private var spaceContextMenuLeadingEnv
     
@@ -107,9 +115,9 @@ public struct KeyboardViewItem<Content: View>: View {
 private extension KeyboardViewItem {
     
     var buttonStyle: Keyboard.ButtonStyle {
-        item.action.isSpacer ? .spacer : styleService.buttonStyle(for: item.action, isPressed: isPressed)
+        item.action.isSpacer ? .spacer : keyboardButtonStyle(isPressed: isPressed)
     }
-    
+
     var contentOpacity: Double {
         keyboardContext.isSpaceDragGestureActive ? 0 : 1
     }
@@ -196,6 +204,9 @@ private extension KeyboardViewItem {
             )
             .padding()
             .background(Color.keyboardBackground)
+            .keyboardButtonStyle { params in
+                var style = params.standardButtonStyle(for: context)
+            }
         }
     }
     

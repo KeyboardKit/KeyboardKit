@@ -15,7 +15,9 @@ public extension KeyboardCallout {
     ///
     /// You can use standard, ``english`` callout actions or
     /// upgrade to KeyboardKit Pro to unlock callout actions
-    /// for all supported locales. You can customize actions
+    /// for all supported locales.
+    ///
+    /// You can customize the callout actions for any action
     /// with ``SwiftUICore/View/keyboardCalloutActions(_:)``.
     struct Actions: KeyboardModel {
 

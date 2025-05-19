@@ -92,29 +92,22 @@ extension KeyboardStyle {
         // MARK: - Buttons
 
         open var standardButtonContentInsets: EdgeInsets {
-            .init(all: isIpadPro ? 6 : 3)
+            KeyboardAction.backspace.standardButtonContentInsets(for: keyboardContext)
         }
 
         open func buttonContentInsets(
             for action: KeyboardAction
         ) -> EdgeInsets {
             switch action {
-            case .character(let char): buttonContentInsets(for: char)
-            case .characterMargin, .none: .init(all: 0)
-            default: standardButtonContentInsets
+            case let .character(char): buttonContentInsets(for: char)
+            default: action.standardButtonContentInsets(for: keyboardContext)
             }
         }
 
         open func buttonContentInsets(
             for char: String
         ) -> EdgeInsets {
-            var insets = standardButtonContentInsets
-            switch char {
-            case "[", "]", "(", ")", "{", "}": insets.bottom = 6
-            case "<", ">": insets.bottom = 4
-            default: break
-            }
-            return insets
+            KeyboardAction.character(char).standardButtonContentInsets(for: keyboardContext)
         }
 
         /// The button image to use for a certain action.
@@ -136,7 +129,17 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Keyboard.ButtonStyle {
-            action.standardButtonStyle(for: keyboardContext, isPressed: isPressed)
+            .init(
+                backgroundColor: buttonBackgroundColor(for: action, isPressed: isPressed),
+                foregroundColor: buttonForegroundColor(for: action, isPressed: isPressed),
+                font: buttonFont(for: action),
+                keyboardFont: buttonKeyboardFont(for: action),
+                cornerRadius: buttonCornerRadius(for: action),
+                border: buttonBorderStyle(for: action),
+                shadow: buttonShadowStyle(for: action),
+                contentInsets: buttonContentInsets(for: action)
+            )
+
         }
 
         /// The button text to use for a certain action, if any.

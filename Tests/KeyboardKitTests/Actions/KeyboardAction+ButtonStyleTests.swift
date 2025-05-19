@@ -132,6 +132,22 @@ final class Keyboard_ButtonStyleTests {
     }
 
     @Test
+    func actionHasStandardButtonContentInsets() async throws {
+        func result(for action: KeyboardAction) -> EdgeInsets {
+            action.standardButtonContentInsets(for: context)
+        }
+        #expect(result(for: .character("")) == .init(all: 3))
+        #expect(result(for: .characterMargin("")) == .init(all: 0))
+        #expect(result(for: .none) == .init(all: 0))
+        "[](){}".chars.forEach { #expect(result(for: .character($0)).bottom == 6) }
+        "<>".chars.forEach { #expect(result(for: .character($0)).bottom == 4) }
+        context.deviceTypeForKeyboardIsIpadPro = true
+        #expect(result(for: .character("")) == .init(all: 6))
+        #expect(result(for: .characterMargin("")) == .init(all: 0))
+        #expect(result(for: .none) == .init(all: 0))
+    }
+
+    @Test
     func actionHasStandardButtonCornerRadius() async throws {
         func result(for action: KeyboardAction) -> CGFloat {
             action.standardButtonCornerRadius(for: context)

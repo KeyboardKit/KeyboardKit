@@ -12,8 +12,11 @@ public extension Keyboard {
     
     /// This view renders the content for a certain keyboard
     /// button, based on a provided action and style service.
-    struct ButtonContent: View {
-        
+    ///
+    /// You can style this component with the style modifier
+    /// ``keyboardButtonStyle(builder:)``.
+    struct ButtonContent: View, KeyboardButtonStyleResolver {
+
         /// Create a keyboard button content view.
         ///
         /// - Parameters:
@@ -30,17 +33,31 @@ public extension Keyboard {
             self._keyboardContext = .init(wrappedValue: keyboardContext)
         }
         
-        private let action: KeyboardAction
-        private let styleService: KeyboardStyleService
-        
+        let action: KeyboardAction
+        let styleService: KeyboardStyleService
+
+        @Environment(\.keyboardButtonStyleBuilder)
+        var buttonStyleBuilder
+
         @ObservedObject
         private var keyboardContext: KeyboardContext
         
         public var body: some View {
             bodyContent
-                .padding(styleService.buttonContentInsets(for: action))
+                .padding(contentInsets)
                 .contentShape(Rectangle())
         }
+    }
+}
+
+private extension Keyboard.ButtonContent {
+
+    var contentInsets: EdgeInsets {
+        buttonStyle.contentInsets ?? action.standardButtonContentInsets(for: keyboardContext)
+    }
+
+    var buttonStyle: Keyboard.ButtonStyle {
+        keyboardButtonStyle(isPressed: false)
     }
 }
 
@@ -57,10 +74,6 @@ private extension Keyboard.ButtonContent {
         } else {
             Text("")
         }
-    }
-    
-    var spaceImage: Image? {
-        styleService.buttonImage(for: .space)
     }
     
     var spaceView: some View {
@@ -81,6 +94,23 @@ private extension Keyboard.ButtonContent {
     }
 }
 
+private class PreviewStyleService: KeyboardStyle.StandardStyleService {
+
+    override func buttonContentInsets(
+        for char: String
+    ) -> EdgeInsets {
+        if char == "a" {
+            return .init(
+                top: 10,
+                leading: 20,
+                bottom: 30,
+                trailing: 40
+            )
+        }
+        return super.buttonContentInsets(for: char)
+    }
+}
+
 #Preview {
     
     let multiLocaleContext: KeyboardContext = {
@@ -95,13 +125,14 @@ private extension Keyboard.ButtonContent {
     ) -> some View {
         Keyboard.ButtonContent(
             action: action,
-            styleService: .preview,
+            styleService: PreviewStyleService(keyboardContext: .preview),
             keyboardContext: multiLocale ? multiLocaleContext : .preview
         )
-        
     }
     
     return VStack {
+        preview(for: .character("a"))
+        preview(for: .character("A"))
         preview(for: .backspace)
         preview(for: .nextKeyboard)
         preview(for: .nextLocale)
@@ -113,4 +144,12 @@ private extension Keyboard.ButtonContent {
     }
     .padding()
     .background(Color.keyboardBackground)
+    .keyboardButtonStyle { params in
+        var style = params.standardButtonStyle(for: .preview)
+        switch params.action {
+        case .backspace: style.contentInsets = .init(all: 20)
+        default: break
+        }
+        return style
+    }
 }

@@ -51,6 +51,17 @@ public extension KeyboardAction {
         }
     }
 
+    /// The standard keyboard button content insets.
+    func standardButtonContentInsets(
+        for context: KeyboardContext
+    ) -> EdgeInsets {
+        switch self {
+        case .character(let char): standardButtonContentInsets(for: context, char)
+        case .characterMargin, .none: .init(all: 0)
+        default: .init(all: context.deviceTypeForKeyboardIsIpadPro ? 6 : 3)
+        }
+    }
+
     /// The standard keyboard button corner radius.
     func standardButtonCornerRadius(
         for context: KeyboardContext
@@ -125,6 +136,19 @@ extension KeyboardAction {
         if let color = backgroundColorStatic { return color }
         if isPressed { return backgroundColorPressed(for: context) }
         return backgroundColorIdle(for: context)
+    }
+
+    func standardButtonContentInsets(
+        for context: KeyboardContext,
+        _ character: String
+    ) -> EdgeInsets {
+        var standard = KeyboardAction.backspace.standardButtonContentInsets(for: context)
+        switch character {
+        case "[", "]", "(", ")", "{", "}": standard.bottom = 6
+        case "<", ">": standard.bottom = 4
+        default: break
+        }
+        return standard
     }
 
     func standardButtonFontSize(
