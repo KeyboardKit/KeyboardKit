@@ -84,6 +84,7 @@ public struct KeyboardViewItem<Content: View>: View, KeyboardButtonStyleResolver
     @State var isPressed = false
     
     public var body: some View {
+        let buttonStyle = buttonStyle
         ZStack(alignment: item.alignment) {
             Color.clearInteractable
             content
@@ -107,8 +108,8 @@ public struct KeyboardViewItem<Content: View>: View, KeyboardButtonStyleResolver
             isPressed: $isPressed,
             isGestureAutoCancellable: isGestureAutoCancellable
         )
-        .overlay(alignment: .bottomLeading) { spaceContextMenuLeadingOverlay }
-        .overlay(alignment: .bottomTrailing) { spaceContextMenuTrailingOverlay }
+        .overlay(alignment: .bottomLeading) { spaceMenuLeading(buttonStyle) }
+        .overlay(alignment: .bottomTrailing) { spaceMenuTrailing(buttonStyle) }
     }
 }
 
@@ -125,34 +126,41 @@ private extension KeyboardViewItem {
     var shouldAddSpaceContextMenu: Bool {
         item.action == .space && keyboardContext.hasMultipleEnabledLocales
     }
-    
-    var spaceContextMenuLeading: Keyboard.SpaceMenuType? {
-        spaceContextMenuLeadingEnv ?? keyboardContext.settings.spaceContextMenuLeading
-    }
-    
-    var spaceContextMenuTrailing: Keyboard.SpaceMenuType? {
-        spaceContextMenuTrailingEnv ?? keyboardContext.settings.spaceContextMenuTrailing
-    }
 }
 
 private extension KeyboardViewItem {
     
     @ViewBuilder
-    var spaceContextMenuLeadingOverlay: some View {
-        if shouldAddSpaceContextMenu && spaceContextMenuLeading == .locale {
-            spaceContextMenu(.bottomLeading)
+    func spaceMenuLeading(
+        _ style: Keyboard.ButtonStyle
+    ) -> some View {
+        if shouldAddSpaceContextMenu && spaceMenuLeadingType == .locale {
+            spaceContextMenu(.bottomLeading, style)
         }
     }
-    
+
+    var spaceMenuLeadingType: Keyboard.SpaceMenuType? {
+        spaceContextMenuLeadingEnv ?? keyboardContext.settings.spaceContextMenuLeading
+    }
+
     @ViewBuilder
-    var spaceContextMenuTrailingOverlay: some View {
-        if shouldAddSpaceContextMenu && spaceContextMenuTrailing == .locale {
-            spaceContextMenu(.bottomTrailing)
+    func spaceMenuTrailing(
+        _ style: Keyboard.ButtonStyle
+    ) -> some View {
+        if shouldAddSpaceContextMenu && spaceMenuTrailingType == .locale {
+            spaceContextMenu(.bottomTrailing, style)
         }
     }
-    
-    func spaceContextMenu(_ alignment: Alignment) -> some View {
-        spaceContextMenuTitle(alignment)
+
+    var spaceMenuTrailingType: Keyboard.SpaceMenuType? {
+        spaceContextMenuTrailingEnv ?? keyboardContext.settings.spaceContextMenuTrailing
+    }
+
+    func spaceContextMenu(
+        _ alignment: Alignment,
+        _ style: Keyboard.ButtonStyle
+    ) -> some View {
+        spaceContextMenuTitle(alignment, style)
             .padding(item.edgeInsets)
             .localeContextMenu(for: keyboardContext) {
                 actionHandler.handle(.release, on: .space)
@@ -160,10 +168,12 @@ private extension KeyboardViewItem {
             }
     }
     
-    func spaceContextMenuTitle(_ alignment: Alignment) -> some View {
+    func spaceContextMenuTitle(
+        _ alignment: Alignment,
+        _ style: Keyboard.ButtonStyle
+    ) -> some View {
         typealias Content = Keyboard.SpaceContextMenuTitle
         let title = keyboardContext.locale.shortDisplayName
-        let style = styleService.buttonStyle(for: .space, isPressed: false)
         return Content(title, alignment: alignment, style: style)
     }
 }
@@ -205,7 +215,10 @@ private extension KeyboardViewItem {
             .padding()
             .background(Color.keyboardBackground)
             .keyboardButtonStyle { params in
-                var style = params.standardButtonStyle(for: context)
+                var style = params.standardStyle(for: keyboardContext)
+                style.foregroundColor = .yellow
+                style.foregroundSecondaryOpacity = 0.8
+                return style
             }
         }
     }

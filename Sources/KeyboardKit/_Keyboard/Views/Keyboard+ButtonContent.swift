@@ -100,12 +100,7 @@ private class PreviewStyleService: KeyboardStyle.StandardStyleService {
         for char: String
     ) -> EdgeInsets {
         if char == "a" {
-            return .init(
-                top: 10,
-                leading: 20,
-                bottom: 30,
-                trailing: 40
-            )
+            return .init(top: 10, leading: 20, bottom: 30, trailing: 40)
         }
         return super.buttonContentInsets(for: char)
     }
@@ -145,7 +140,7 @@ private class PreviewStyleService: KeyboardStyle.StandardStyleService {
     .padding()
     .background(Color.keyboardBackground)
     .keyboardButtonStyle { params in
-        var style = params.standardButtonStyle(for: .preview)
+        var style = params.standardStyle(for: .preview)
         switch params.action {
         case .backspace: style.contentInsets = .init(all: 20)
         default: break

@@ -35,7 +35,8 @@ public extension Keyboard {
         /// - Parameters:
         ///   - background: The background style to apply, by default `nil`.
         ///   - backgroundColor: The background color to apply, by default `nil`.
-        ///   - foregroundColor: The border color to apply, by default `nil`.
+        ///   - foregroundColor: The foreground color to apply, by default `nil`.
+        ///   - foregroundSecondaryOpacity: The opacity to apply to secondary foreground items, by default `nil`.
         ///   - font: A custom, native font to apply, by default `nil`.
         ///   - keyboardFont: The keyboard font to apply, by default `nil`.
         ///   - cornerRadius: The corner radius to apply, by default `nil`.
@@ -47,6 +48,7 @@ public extension Keyboard {
             background: Keyboard.Background? = nil,
             backgroundColor: Color? = nil,
             foregroundColor: Color? = nil,
+            foregroundSecondaryOpacity: Double? = nil,
             font: Font? = nil,
             keyboardFont: KeyboardFont? = nil,
             cornerRadius: CGFloat? = nil,
@@ -58,6 +60,7 @@ public extension Keyboard {
             self.background = background
             self.backgroundColor = backgroundColor
             self.foregroundColor = foregroundColor
+            self.foregroundSecondaryOpacity = foregroundSecondaryOpacity
             self.keyboardFont = keyboardFont
             self.nativeFont = font
             self.cornerRadius = cornerRadius
@@ -78,8 +81,11 @@ public extension Keyboard {
         /// The background color to apply, if any.
         public var backgroundColor: Color?
         
-        /// The border color to apply, if any.
+        /// The foreground color to apply, if any.
         public var foregroundColor: Color?
+        
+        /// The opacity to apply to secondary foreground items, if any.
+        public var foregroundSecondaryOpacity: Double?
 
         /// The font to apply, if any.
         ///

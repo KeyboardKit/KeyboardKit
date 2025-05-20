@@ -26,9 +26,14 @@ The old callout and style services are still used by default, but will be ignore
 
 If the view modifier approach proves successful, the services will be deprecated then removed in the next major version.
 
+You still need a custom style service to customize a button's image and text, or use the KeyboardView's content builder.
+
+The next major version will only use the content builder approach, so it's recommended to switch to it whenever possible. 
+
 ### ✨ Features
 
 * `Keyboard.ButtonStyle` has new standard style builders.
+* `Keyboard.ButtonStyle` has a new `foregroundSecondaryOpacity` property.
 * `KeyboardAction` has many new value extensions with standard button values.
 * `KeyboardCallout.Actions` is a new type used to replace services with values.
 * `KeyboardContext` has a new, temporary `deviceTypeForKeyboardIsIpadPro` value.
