@@ -275,6 +275,7 @@ private extension KeyboardAction {
         for context: KeyboardContext
     ) -> Color {
         if isUpperCasedShift(for: context) && context.isDark { return .black }
+        if isSystemAction { return .keyboardButtonForeground(for: context.colorScheme) }
         if isPrimaryAction { return .white }
         return .keyboardButtonForeground(for: context.colorScheme)
     }

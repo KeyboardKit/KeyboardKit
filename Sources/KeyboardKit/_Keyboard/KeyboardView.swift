@@ -147,10 +147,10 @@ public struct KeyboardView<
     private let toolbarBuilder: ToolbarBuilder
 
     @Environment(\.autocompleteToolbarStyle) var autocompleteToolbarStyleFromEnvironment
+    @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
     @Environment(\.keyboardBackground) var backgroundFromEnvironment
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
     @Environment(\.keyboardDockEdge) var dockEdgeFromEnvironment
-    @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
     @Environment(\.keyboardForeground) var foregroundFromEnvironment
     @Environment(\.keyboardInputToolbarDisplayMode) var inputToolbarDisplayModeFromEnvironment
     
@@ -191,7 +191,7 @@ public struct KeyboardView<
         .opacity(shouldShowKeyboard ? 1 : 0)
         .overlay(emojiKeyboard, alignment: .bottom)
         .overlay(numberPad, alignment: .bottom)
-        .foregroundColor(styleService.foregroundColor)
+        .foregroundColor(foreground)
         .background(renderBackground ? background : nil)
         .keyboardCalloutContainer(
             calloutContext: calloutContext,

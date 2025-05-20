@@ -19,7 +19,7 @@ public extension EnvironmentValues {
 
 public extension View {
 
-    /// Apply a keyboard background style.
+    /// Apply a keyboard foreground style.
     ///
     /// ``KeyboardView`` will use this value, if any, or the
     /// ``KeyboardStyleService/foregroundColor``.

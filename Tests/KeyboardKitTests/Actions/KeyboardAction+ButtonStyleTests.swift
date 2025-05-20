@@ -285,16 +285,17 @@ final class Keyboard_ButtonStyleTests {
         func result(for action: KeyboardAction) -> Color {
             action.standardButtonForegroundColor(for: context, isPressed: true)
         }
-        var light: Color { .keyboardButtonForeground(for: context.colorScheme) }
+        var foregroundLightMode: Color { .keyboardButtonForeground(for: .light) }
+        var foregroundDarkMode: Color { .keyboardButtonForeground(for: .dark) }
         context.colorScheme = .light
-        #expect(result(for: .character("a")) == light)
-        #expect(result(for: .shift(.auto)) == light)
-        #expect(result(for: .primary(.continue)) == light)
+        #expect(result(for: .character("a")) == foregroundLightMode)
+        #expect(result(for: .shift(.auto)) == foregroundLightMode)
+        #expect(result(for: .primary(.continue)) == foregroundLightMode)
         #expect(result(for: .none) == .clear)
         #expect(result(for: .characterMargin("")) == .clearInteractable)
         context.colorScheme = .dark
-        #expect(result(for: .character("a")) == light)
-        #expect(result(for: .shift(.auto)) == light)
+        #expect(result(for: .character("a")) == foregroundDarkMode)
+        #expect(result(for: .shift(.auto)) == foregroundDarkMode)
         #expect(result(for: .primary(.continue)) == .white)
         #expect(result(for: .none) == .clear)
         #expect(result(for: .characterMargin("")) == .clearInteractable)
