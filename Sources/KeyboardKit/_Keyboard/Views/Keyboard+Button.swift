@@ -148,10 +148,8 @@ private class PreviewStyleService: KeyboardStyle.StandardStyleService {
     ) -> Color {
         switch action {
         case .backspace: .yellow
-        default: super.buttonForegroundColor(
-            for: action,
-            isPressed: isPressed
-        )}
+        default: super.buttonForegroundColor(for: action, isPressed: isPressed)
+        }
     }
 }
 

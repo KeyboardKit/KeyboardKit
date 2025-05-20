@@ -543,7 +543,7 @@ private extension KeyboardView {
             // .keyboardDockEdge(.leading)
             .keyboardViewStyle(.init(
                 background: .color(.yellow),
-                foregroundColor: .red,
+                foregroundColor: .red
                 // edgeInsets: .init(top: 10, leading: 20, bottom: 30, trailing: 40)
             ))
         }

@@ -64,13 +64,13 @@ public extension KeyboardCallout {
 private extension Dictionary {
 
     func mapKeys<T>(_ transform: (Key) -> T) -> [T: Value] {
-        Dictionary<T, Value>(map { (transform($0.key), $0.value) },
-                             uniquingKeysWith: { first, _ in first })
+        [T: Value](map { (transform($0.key), $0.value) },
+                   uniquingKeysWith: { first, _ in first })
     }
-
+    
     func mapValues<T>(_ transform: (Value) -> T) -> [Key: T] {
-        Dictionary<Key, T>(map { ($0.key, transform($0.value)) },
-                           uniquingKeysWith: { first, _ in first })
+        [Key: T](map { ($0.key, transform($0.value)) },
+                 uniquingKeysWith: { first, _ in first })
     }
 }
 
@@ -187,7 +187,7 @@ public extension KeyboardCallout {
 
         /// Create a callout actions builder parameter value.
         public init(
-            action: KeyboardAction,
+            action: KeyboardAction
         ) {
             self.action = action
         }

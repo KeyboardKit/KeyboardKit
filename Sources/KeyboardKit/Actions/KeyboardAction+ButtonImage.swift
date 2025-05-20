@@ -41,8 +41,6 @@ public extension KeyboardAction {
     }
 }
 
-/// MARK: - Image
-
 extension KeyboardAction {
 
     func standardButtonImageBase(

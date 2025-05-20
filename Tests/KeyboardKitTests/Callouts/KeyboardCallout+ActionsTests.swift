@@ -13,8 +13,8 @@ class KeyboardCallouts_ActionsTests {
 
     @Test func testCalloutActionsCanBeCreatedWithCharacters() {
         var actions = KeyboardCallout.Actions(characters: [
-            "a" : "bc",
-            "d" : "ef"
+            "a": "bc",
+            "d": "ef"
         ])
         actions.actionsDictionary[.backspace] = [.capsLock]
 
@@ -27,8 +27,8 @@ class KeyboardCallouts_ActionsTests {
 
     @Test func testCalloutActionsCanMatchWithCaseInsensitivity() {
         var actions = KeyboardCallout.Actions(characters: [
-            "a" : "bc",
-            "d" : "ef"
+            "a": "bc",
+            "d": "ef"
         ])
         actions.actionsDictionary[.backspace] = [.capsLock]
 

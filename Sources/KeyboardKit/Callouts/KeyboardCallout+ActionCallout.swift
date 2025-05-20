@@ -202,6 +202,7 @@ private extension KeyboardAction {
     }
 }
 
+#if !os(tvOS)
 #Preview {
 
     struct PreviewGroup: View {
@@ -302,3 +303,4 @@ private extension KeyboardAction {
             [params.action, .character("b")]
         }
 }
+#endif
