@@ -369,7 +369,7 @@ public extension Keyboard.ButtonStyleBuilderParams {
     func standardStyle(
         for context: KeyboardContext
     ) -> Keyboard.ButtonStyle {
-        action.standardButtonStyle(for: context)
+        action.standardButtonStyle(for: context, isPressed: isPressed)
     }
 }
 

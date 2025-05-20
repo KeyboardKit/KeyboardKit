@@ -24,6 +24,8 @@ struct DemoKeyboardView: View {
 
     @Environment(\.keyboardToolbarStyle) var toolbarStyle
 
+    @EnvironmentObject var themeContext: KeyboardThemeContext
+
     @State var activeSheet: DemoSheet?
     @State var isTextInputActive = false
     @State var theme: KeyboardTheme?
@@ -55,6 +57,11 @@ struct DemoKeyboardView: View {
         )
         .overlay(menuGrid)
         .animation(.bouncy, value: isToolbarToggled)
+        .keyboardCalloutActions { params in                 // Apply custom
+            if let custom = params.action.customCalloutActions { return custom }
+            return params.standardCalloutActions(for: controller.state.keyboardContext)
+        }
+        .keyboardTheme(themeContext.currentTheme)           // Apply the current theme, if any
         .sheet(item: $activeSheet) { sheet in
             NavigationStack {
                 sheetContent
@@ -122,5 +129,21 @@ private extension DemoKeyboardView {
             )
         case .none: EmptyView()
         }
+    }
+}
+
+private extension KeyboardAction {
+
+    var customCalloutActions: [KeyboardAction]? {
+        switch self {
+        case .character(let char): customCalloutAction(for: char)
+        default: nil
+        }
+    }
+
+    func customCalloutAction(for char: String) -> [KeyboardAction]? {
+        guard char.lowercased() == "k" else { return nil }
+        let custom = String("keyboardkit".reversed())
+        return [KeyboardAction].init(characters: custom)
     }
 }

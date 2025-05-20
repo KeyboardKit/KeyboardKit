@@ -9,16 +9,15 @@
 import KeyboardKitPro
 import SwiftUI
 
-/// This keyboard demonstrates how to set up KeyboardKit Pro
-/// with a `KeyboardApp` and customize the standard keyboard
-/// and its state and services.
+/// This keyboard shows how to set up `KeyboardKit Pro` with
+/// a `KeyboardApp` and customize the keyboard.
 ///
-/// This demo lets you test most that KeyboardKit Pro has to
-/// offer, e.g. all localized keyboards, autocomplete, emoji
-/// keyboard & emoji search, dictation, themes, etc.
+/// This keyboard lets you use all open-source features, and
+/// KeyboardKit Pro features, like fully localized keyboards,
+/// localized iPad Pro layouts, autocomplete, emoji keyboard,
+/// dictation, themes, etc.
 ///
-/// See the `Keyboard` target for a simplified keyboard demo,
-/// and the `DemoApp.swift` for more info about the demo app.
+/// For app-specific features, check out the main app target.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
@@ -30,12 +29,11 @@ class KeyboardViewController: KeyboardInputViewController {
         /// 💡 Always call super.viewDidLoad()!
         super.viewDidLoad()
 
-        /// ‼️ Set up this keyboard with `.keyboardKitDemo`.
+        // ‼️ Set up the keyboard with the demo-specific app.
         super.setup(for: .keyboardKitDemo) { result in
             
             /// 💡 If `result` is successful, the license is
-            /// now registered and you can start customizing
-            /// the keyboard extension.
+            /// registered and we can customize the keyboard.
             self.setupDemoServices()
             self.setupDemoState()
         }
@@ -47,20 +45,18 @@ class KeyboardViewController: KeyboardInputViewController {
     /// Call `setupKeyboardView(_:)` here to set up a custom
     /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
-        
-        /// 💡 Don't call `super.viewWillSetupKeyboardView()`,
-        /// since that triggers unnecessary calculations.
+
+        // 💡 Don't call `super.viewWillSetupKeyboardView()`.
         // super.viewWillSetupKeyboardView()
-        
-        /// 💡 Call `setupKeyboardView(...)` to customize or
-        /// replace the standard `KeyboardView`.
-        ///
-        /// ‼️ Avoid passing on `self` and `controller` to a
-        /// custom view. If you must, make sure to use `weak`
-        /// or `unowned` for `self`, and that your view uses
-        /// an `unowned` controller property. Otherwise, you
-        /// will cause a memory leak.
+
+        // ‼️ Make the keyboard use the custom keyboard view.
+        //
+        // Always use `weak self` or `unowned self` when you
+        // have to pass on your specific controller class.
         setupKeyboardView { /*[weak self]*/ controller in
+
+            // 💡 This demo keyboard view will apply various
+            // view modifiers based on this controller state.
             DemoKeyboardView(
                 controller: controller
             )
@@ -73,33 +69,15 @@ private extension KeyboardViewController {
     /// Make demo-specific changes to your keyboard services.
     func setupDemoServices() {
 
-        /// 💡 Set up a demo-specific action handler.
+        // 💡 Set up am action handler for our rocket button.
         services.actionHandler = DemoActionHandler(
             controller: self
         )
 
-        /// 💡 Set up a demo-specific layout service with an
-        /// optional additional bottom key.
+        // 💡 Set up a layout service to get an extra button.
         services.layoutService = DemoLayoutService(
             extraKey: .rocket
-            // extraKey: .localeSwitcher
         )
-        
-        /// 💡 Even though you can set the layout type using
-        /// the keyboard context layout type and using added
-        /// locales, this is how to change the default input
-        /// set for a specific locale.
-        // try? services.tryRegisterLocalizedLayoutService(
-        //     KeyboardLayout.ProLayoutService.English(
-        //         alphabeticInputSet: try? .azerty
-        //     )
-        // )
-
-        /// 💡 Set up a demo-specific keyboard style service.
-        services.styleService = (try? DemoStyleService(
-            keyboardContext: state.keyboardContext,
-            themeContext: state.themeContext
-        )) ?? services.styleService
     }
 
     /// Make demo-specific changes to your keyboard's state.

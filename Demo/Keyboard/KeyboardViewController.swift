@@ -10,15 +10,14 @@ import KeyboardKit
 import SwiftUI
 
 /// This keyboard shows you how to set up `KeyboardKit` with
-/// a `KeyboardApp` and customize the standard keyboard view.
+/// a `KeyboardApp` and customize the keyboard.
 ///
-/// This keyboard is very basic, to provide a starting point
-/// for trying out the open-source features. You can perform
-/// any customizations to the keyboard, state & services and
-/// inject any custom views into the keyboard.
+/// This keyboard is VERY basic, to provide a way for trying
+/// out the open-source features. You can customize the main
+/// keyboard view and the state and services, but for a more
+/// extensive demo, see the `KeyboardPro` keyboard.
 ///
-/// See the `KeyboardPro` keyboard for a more extensive demo,
-/// and the `DemoApp.swift` for more info about the demo app.
+/// For app-specific features, check out the main app target.
 class KeyboardViewController: KeyboardInputViewController {
 
     /// This function is called when the controller launches.
@@ -27,28 +26,24 @@ class KeyboardViewController: KeyboardInputViewController {
     /// with the shared `.keyboardKitDemo` application.
     override func viewDidLoad() {
 
-        /// 💡 Always call `super.viewDidLoad()`.
+        // 💡 Always call `super.viewDidLoad()`.
         super.viewDidLoad()
 
-        /// ‼️ Set up this keyboard with `.keyboardKitDemo`.
+        // ‼️ Set up the keyboard with the demo-specific app.
         super.setup(for: .keyboardKitDemo)
 
-        /// 💡 You can replace services with custom services.
+        // 💡 You can replace services with custom services.
         services.autocompleteService = services.autocompleteService
 
-        /// 💡 Dock the keyboard view to any horizontal edge.
-        // state.keyboardContext.settings.keyboardDockEdge = .leading
-
-        /// 💡 Configure the space key's long press behavior.
-        state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursor
-
-        /// 💡 Configure the space key's additional actions.
-        // state.keyboardContext.settings.spaceContextMenuLeading = .locale
-        state.keyboardContext.settings.spaceContextMenuTrailing = .locale
-
-        /// 💡 Customize keyboard feedback.
-        // state.feedbackContext.settings.isAudioFeedbackEnabled = false
-        // state.feedbackContext.settings.isHapticFeedbackEnabled = false
+        // 💡 You can set auto-persisted settings using code.
+        let keyboardSettings = state.keyboardContext.settings
+        // keyboardSettings.keyboardDockEdge = .leading
+        // state.keyboardContext.locales = [.english, .swedish]
+        keyboardSettings.spaceContextMenuTrailing = .locale
+        keyboardSettings.spaceLongPressBehavior = .moveInputCursor
+        // let feedbackSettings = state.feedbackContext.settings
+        // feedbackSettings.isAudioFeedbackEnabled = false
+        // feedbackSettings.isHapticFeedbackEnabled = false
     }
     
     /// This function is called when the controller needs to
@@ -56,13 +51,15 @@ class KeyboardViewController: KeyboardInputViewController {
     ///
     /// Call `setupKeyboardView(_:)` here to set up a custom
     /// keyboard view or customize the default `KeyboardView`.
-    ///
-    /// Don't call `super.viewWillSetupKeyboardView()` since
-    /// that will cause two layout calculations.
     override func viewWillSetupKeyboardView() {
 
-        /// Return `$0.view` to return the standard view, or
-        /// return a custom view for the provided parameters.
+        // 💡 Don't call `super.viewWillSetupKeyboardView()`.
+        // super.viewWillSetupKeyboardView()
+
+        // ‼️ Customize the standard keyboard view component.
+        //
+        // You should define the keyboard view in a new view
+        // to ensure that it properly observes your contexts.
         setupKeyboardView { controller in
             KeyboardView(
                 state: controller.state,
@@ -81,15 +78,32 @@ class KeyboardViewController: KeyboardInputViewController {
                     }
                 }
             )
+
+            // 💡 Disable autocorrection using plain SwiftUI.
             // .autocorrectionDisabled()
+
+            // 💡 Customize the style of any keyboard button.
+            .keyboardButtonStyle { params in
+                let context = controller.state.keyboardContext
+                var style = params.standardStyle(for: context)
+                guard params.action == .backspace else { return style }
+                style.backgroundColor = params.isPressed ? .yellow : .blue
+                return style
+            }
+
             // 💡 Setup custom callout actions for the k key.
             .keyboardCalloutActions { params in
-                let action = params.action
                 let context = controller.state.keyboardContext
-                let custom = String("keyboardkit".reversed())
-                if action.shouldUseCustomCallouts { return .init(characters: custom) }
+                if let actions = params.action.customCalloutActions { return actions }
                 return params.standardActions(for: context)
             }
+
+            // 💡 Customize the style of the entire keyboard.
+            // .keyboardViewStyle(
+            //     .init(background: .color(.green))
+            // )
+
+            // 💡 Customize other custom view styles as well.
             // .keyboardToolbarStyle(.init(backgroundColor: .red))
         }
     }
@@ -97,10 +111,16 @@ class KeyboardViewController: KeyboardInputViewController {
 
 private extension KeyboardAction {
 
-    var shouldUseCustomCallouts: Bool {
+    var customCalloutActions: [KeyboardAction]? {
         switch self {
-        case .character(let char): char.lowercased() == "k"
-        default: false
+        case .character(let char): customCalloutAction(for: char)
+        default: nil
         }
+    }
+
+    func customCalloutAction(for char: String) -> [KeyboardAction]? {
+        guard char.lowercased() == "k" else { return nil }
+        let custom = String("keyboardkit".reversed())
+        return [KeyboardAction].init(characters: custom)
     }
 }
