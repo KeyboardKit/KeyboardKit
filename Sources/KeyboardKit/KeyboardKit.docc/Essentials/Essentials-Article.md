@@ -32,16 +32,13 @@ The ``Keyboard`` namespace contains many essential, keyboard-related types and v
 
 ## Models
 
-The ``Keyboard`` namespace contains many essential keyboard models that are used by many other features, for instance these ones:
+The ``Keyboard`` namespace contains many essential, keyboard-related models that are used by many library features, for instance:
 
-* ``Keyboard/AddedLocale``
 * ``Keyboard/AutocapitalizationType``
 * ``Keyboard/BackspaceRange``
 * ``Keyboard/Button``
-* ``Keyboard/ButtonStyle``
 * ``Keyboard/Diacritic``
 * ``Keyboard/DockEdge``
-* ``Keyboard/Gesture``
 * ``Keyboard/InputToolbarDisplayMode``
 * ``Keyboard/KeyboardCase``
 * ``Keyboard/KeyboardType``
@@ -49,9 +46,8 @@ The ``Keyboard`` namespace contains many essential keyboard models that are used
 * ``Keyboard/ReturnKeyType``
 * ``Keyboard/SpaceDragSensitivity``
 * ``Keyboard/SpaceLongPressBehavior``
-* ``Keyboard/SpaceMenuType``
 
-Many of these models, like ``Keyboard/LayoutType``, could be considered to belong in other namespaces, but are placed in ``Keyboard`` since they are used by core features and describe essential parts of the keyboard.
+Many of these models, like ``Keyboard/LayoutType``, could be considered to belong in other namespaces, but are placed in ``Keyboard`` since they describe essential parts of the keyboard.
 
 
 ## Controller

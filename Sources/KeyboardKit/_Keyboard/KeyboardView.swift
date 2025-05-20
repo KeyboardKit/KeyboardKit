@@ -148,12 +148,11 @@ public struct KeyboardView<
 
     @Environment(\.autocompleteToolbarStyle) var autocompleteToolbarStyleFromEnvironment
     @Environment(\.emojiKeyboardStyle) var emojiKeyboardStyleFromEnvironment
-    @Environment(\.keyboardBackground) var backgroundFromEnvironment
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
     @Environment(\.keyboardDockEdge) var dockEdgeFromEnvironment
-    @Environment(\.keyboardForeground) var foregroundFromEnvironment
     @Environment(\.keyboardInputToolbarDisplayMode) var inputToolbarDisplayModeFromEnvironment
-    
+    @Environment(\.keyboardViewStyle) var keyboardViewStyleFromEnvironment
+
     @ObservedObject var autocompleteContext: AutocompleteContext
     @ObservedObject var calloutContext: KeyboardCalloutContext
     @ObservedObject var keyboardContext: KeyboardContext
@@ -191,8 +190,8 @@ public struct KeyboardView<
         .opacity(shouldShowKeyboard ? 1 : 0)
         .overlay(emojiKeyboard, alignment: .bottom)
         .overlay(numberPad, alignment: .bottom)
-        .foregroundColor(foreground)
-        .background(renderBackground ? background : nil)
+        .foregroundColor(keyboardViewStyle.foregroundColor)
+        .background(renderBackground ? keyboardViewStyle.background : nil)
         .keyboardCalloutContainer(
             calloutContext: calloutContext,
             keyboardContext: keyboardContext
@@ -214,10 +213,6 @@ private extension KeyboardView {
         return autocompleteToolbarStyleFromEnvironment
     }
 
-    var background: Keyboard.Background {
-        backgroundFromEnvironment ?? styleService.backgroundStyle
-    }
-
     var calloutStyle: KeyboardCallout.CalloutStyle {
         var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
         let insets = layoutConfig.buttonInsets
@@ -234,10 +229,6 @@ private extension KeyboardView {
             .augmented(for: inputToolbarDisplayMode)
     }
 
-    var foreground: Color? {
-        foregroundFromEnvironment ?? styleService.foregroundColor
-    }
-
     var isLargePad: Bool {
         let size = keyboardContext.screenSize
         return size.isScreenSize(.iPadProLargeScreenPortrait, withTolerance: 50)
@@ -251,9 +242,13 @@ private extension KeyboardView {
         default: return value
         }
     }
-    
+
     var keyboardAlignment: Alignment {
         dockEdge?.alignment ?? .center
+    }
+
+    var keyboardViewStyle: KeyboardViewStyle {
+        keyboardViewStyleFromEnvironment ?? styleService.keyboardViewStyle
     }
 
     var layout: KeyboardLayout {
@@ -353,7 +348,7 @@ private extension KeyboardView {
                         }
                     }
                 }
-                .padding(styleService.keyboardEdgeInsets)
+                .padding(keyboardViewStyle.edgeInsets ?? .standardKeyboardEdgeInsets(for: keyboardContext))
                 .environment(\.layoutDirection, .leftToRight)   // Enforce a layout direction
                 .frame(width: keyboardWidth)
             }
@@ -505,16 +500,14 @@ private extension KeyboardView {
             context.locale = .english
             context.settings.addedLocales = [.english, .swedish, .persian].map { .init($0) } 
             context.settings.keyboardDockEdge = .none
-//            context.settings.spaceLongPressBehavior = .moveInputCursorWithLocaleSwitcher
-            
+//            context.settings.spaceLongPressBehavior = .moveInputCursor
+            context.settings.spaceLongPressBehavior = .openLocaleContextMenu
+
             controller.state.autocompleteContext.suggestionsFromService = [
                 .init(text: "Foo"),
                 .init(text: "Bar", type: .autocorrect),
                 .init(text: "Baz")
             ]
-            // controller.services.layoutService = PreviewLayoutService()
-            // controller.services.styleService = .crazy
-            // controller.state.keyboardContext.keyboardType = .emojiSearch
             return controller
         }()
         
@@ -523,8 +516,6 @@ private extension KeyboardView {
         }
         
         @Environment(\.colorScheme) var colorScheme
-        
-        @State var dockEdge: Keyboard.DockEdge?
         
         var body: some View {
             VStack {
@@ -542,40 +533,19 @@ private extension KeyboardView {
                 .padding(.bottom, 15)
                 .background(Color.keyboardBackground)
             }
-            
-//            KeyboardView(
-//                state: controller.state,
-//                services: controller.services,
-//                buttonContent: { param in
-//                    switch param.item.action {
-//                    case .backspace:
-//                        Image(systemName: "trash").foregroundColor(Color.red)
-//                    default: param.view
-//                    }
-//                },
-//                buttonView: { param in
-//                    switch param.item.action {
-//                    case .space:
-//                        Text("This is a space bar replacement")
-//                            .frame(maxWidth: .infinity)
-//                            .multilineTextAlignment(.center)
-//                    default: param.view
-//                    }
-//                },
-//                collapsedView: { _ in
-//                    Color.red.frame(height: 100)
-//                },
-//                emojiKeyboard: { _ in
-//                    Button {
-//                        controller.state.keyboardContext.keyboardType = .alphabetic
-//                    } label: {
-//                        Color.orange
-//                            .overlay(Text("Not implemented"))
-//                    }
-//                },
-//                toolbar: { $0.view }
-//            )
-//            .keyboardDockEdge(dockEdge)
+            .keyboardButtonStyle { params in
+                var style = params.standardStyle(for: keyboardContext)
+                if params.action == .backspace {
+                    style.background = .color(.red)
+                }
+                return style
+            }
+            // .keyboardDockEdge(.leading)
+            .keyboardViewStyle(.init(
+                background: .color(.yellow),
+                foregroundColor: .red,
+                // edgeInsets: .init(top: 10, leading: 20, bottom: 30, trailing: 40)
+            ))
         }
     }
 

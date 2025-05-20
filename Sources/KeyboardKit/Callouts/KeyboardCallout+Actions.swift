@@ -203,9 +203,6 @@ public extension EnvironmentValues {
     ///
     /// > Note: The builder returns `nil` by default to make
     /// it possible to check if there is an injected builder.
-    /// If not, the legacy service is used. The builder will
-    /// replace the service in the next major version, after
-    /// which this should return the standard value.
     @Entry var keyboardCalloutActions: KeyboardCallout.ActionsBuilder = { _ in nil }
 }
 

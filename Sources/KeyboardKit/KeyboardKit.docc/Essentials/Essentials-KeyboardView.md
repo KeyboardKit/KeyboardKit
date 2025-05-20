@@ -93,7 +93,9 @@ See the <doc:Layout-Article> article for more information.
 
 ### ...customize the keyboard design
 
-The easiest way to adjust the ``KeyboardView`` design is to inherit ``KeyboardStyle/StandardStyleService`` and customize the various styles by overriding the various service functions. You can change background and foreground colors, fonts, etc. for any part of the keyboard. 
+The standard way to style the ``KeyboardView`` is to inherit ``KeyboardStyle/StandardStyleService`` and customize styles by overriding the various service functions. You can change background and foreground colors, fonts, etc. for any part of the keyboard.
+
+From KeyboardKit 9.5, there are new ``SwiftUICore/View/keyboardViewStyle(_:)`` and ``SwiftUICore/View/keyboardButtonStyle(builder:)`` view modifiers, that can be used to customize the styling as well. These will replace the style service in KeyboardKit 10, if they prove successful. 
 
 See the <doc:Styling-Article> and <doc:Themes-Article> articles for more information.
 

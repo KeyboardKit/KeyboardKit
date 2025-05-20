@@ -76,11 +76,7 @@ extension KeyboardStyle {
 
         /// The edge insets to apply to the entire keyboard.
         open var keyboardEdgeInsets: EdgeInsets {
-            switch keyboardContext.deviceTypeForKeyboard {
-            case .pad: .init(bottom: 4)
-            case .phone: isProMaxPhone ? .zero : .init(bottom: -2)
-            default: .zero
-            }
+            EdgeInsets.standardKeyboardEdgeInsets(for: keyboardContext)
         }
 
         /// The keyboard layout configuration to use.

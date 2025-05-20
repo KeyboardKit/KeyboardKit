@@ -67,3 +67,15 @@ public protocol KeyboardStyleService: AnyObject {
     /// The callout style to override the standard style with, if any.
     var calloutStyle: KeyboardCallout.CalloutStyle? { get }
 }
+
+public extension KeyboardStyleService {
+
+    /// The keyboard view style to apply.
+    var keyboardViewStyle: KeyboardViewStyle {
+        .init(
+            background: backgroundStyle,
+            foregroundColor: foregroundColor,
+            edgeInsets: keyboardEdgeInsets
+        )
+    }
+}

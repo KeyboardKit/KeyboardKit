@@ -21,7 +21,7 @@ KeyboardKit's various views can be customized to great extent. Most have a corre
 
 ## Namespace
 
-KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types. However, most styles are defined next to their related types, like the ``Keyboard`` namespace´s ``Keyboard/Button`` and ``Keyboard/ButtonStyle``.
+KeyboardKit has a ``KeyboardStyle`` namespace that contains style-related types. However, most styles are defined next to their type, like the ``KeyboardView``'s ``KeyboardViewStyle`` and the ``Keyboard`` namespace's ``Keyboard/Button`` and ``Keyboard/ButtonStyle``.
 
 
 
@@ -31,7 +31,7 @@ In KeyboardKit, a ``KeyboardStyleService`` can provide dynamic styles for differ
 
 KeyboardKit injects a ``KeyboardStyle/StandardStyleService`` into ``KeyboardInputViewController/services`` when the keyboard is launched. You can replace it at any time, as described further down.
 
-> Info: KeyboardKit 9.5 introduced a new style builder-based  ``SwiftUICore/View/keyboardButtonStyle(builder:)`` view modifier that will replace the entire service concept in the next major version, if it proves to be easier to use than services.
+> Info: KeyboardKit 9.5 introduced new style view modifiers that will replace this service if they prove to be easier to use than services.
 
 
 
@@ -74,9 +74,9 @@ These values can be overridden at any time, e.g. with the various view styles, b
 
 ## Style Modifiers
 
-KeyboardKit defines custom styles for its various view. For instance, the ``Keyboard`` ``Keyboard/Button`` view has a ``Keyboard/ButtonStyle`` that can be applied with the ``SwiftUICore/View/keyboardButtonStyle(_:)`` view modifier.
+KeyboardKit defines styles for its various view, which can be applied with style view modifiers. For instance, the ``KeyboardView`` has a ``KeyboardViewStyle`` that can be applied with the ``SwiftUICore/View/keyboardViewStyle(_:)`` modifier.
 
-Most views have static, standard styles that can be replaced by custom styles to change the global default style for that particular view. 
+Most views have static, standard styles that can be replaced by custom styles to change the global default style for that particular view. Some views have dynamic view modifiers, that provide you with a parameter object for contextual values.
 
 
 ---

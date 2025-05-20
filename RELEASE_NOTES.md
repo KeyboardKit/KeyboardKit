@@ -37,10 +37,10 @@ The next major version will only use the content builder approach, so it's recom
 * `KeyboardAction` has many new value extensions with standard button values.
 * `KeyboardCallout.Actions` is a new type used to replace services with values.
 * `KeyboardContext` has a new, temporary `deviceTypeForKeyboardIsIpadPro` value.
-* `View.keyboardBackground(_:)` can be used to customize the keyboard background.
-* `View.keyboardButtonStyle(builder:)` can be used to customize any button style.
+* `KeyboardViewStyle` is a new style type for the `KeyboardView` view component.
+* `View.keyboardButtonStyle(builder:)` can be used to style any keyboard button.
 * `View.keyboardCalloutActions(_:)` can be used to customize the callout actions.
-* `View.keyboardForeground(_:)` can be used to customize the keyboard foreground.
+* `View.keyboardViewStyle(_:)` can be used to style the main keyboard view component.
 
 ### 💡 Adjustments
 

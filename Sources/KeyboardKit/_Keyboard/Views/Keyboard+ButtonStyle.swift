@@ -10,24 +10,22 @@ import SwiftUI
 
 public extension Keyboard {
     
-    /// This style can be used to modify the visual style of
-    /// the various ``Keyboard/Button`` components.
+    /// This style can be used to style a ``Keyboard/Button``.
     ///
     /// The ``keyboardFont`` property can be used to apply a
     /// codable font that is serialized with the rest of the
     /// style, while the optional ``font`` can be used for a
     /// non-codable, custom font that will not be serialized.
     ///
-    /// You can use ``Keyboard/ButtonStyle/standard(for:context:)``
+    /// Use the ``Keyboard/ButtonStyle/standard(for:context:isPressed:)``
     /// or ``KeyboardAction/standardButtonStyle(for:isPressed:)``
-    /// to get the standard style for any action and context.
+    /// functions to get a standard style for any action and
+    /// keyboard context, given a specific pressed state.
     ///
-    /// You can customize the button style of any action with
-    /// with ``SwiftUICore/View/keyboardCalloutActions(_:)``.
-    ///
-    /// You can apply this view style with the view modifier
-    /// ``SwiftUICore/View/keyboardButtonStyle(_:)`` or with
-    /// ``SwiftUICore/View/keyboardButtonStyle(builder:)``.
+    /// Apply the ``SwiftUICore/View/keyboardButtonStyle(_:)``
+    /// view modifier to apply a static button style, or use
+    /// the ``SwiftUICore/View/keyboardButtonStyle(builder:)``
+    /// modifier to apply a dynamic, parameter-based builder.
     struct ButtonStyle: Codable, Equatable, Sendable {
         
         /// Create a custom keyboard button style.
@@ -252,7 +250,7 @@ public extension Keyboard.ButtonStyle {
 
 public extension Keyboard.ButtonStyle {
 
-    /// The standard keyboard button style to use.
+    /// Create a standard keyboard button style.
     static func standard(
         for action: KeyboardAction,
         context: KeyboardContext,
@@ -318,15 +316,15 @@ private extension Keyboard.ButtonStyle {
 
 public extension Keyboard {
 
-    /// This type is used to customize callout actions using
-    /// ``SwiftUICore/View/keyboardButtonStyle(_:)``.
+    /// This type can be used to customize the related style
+    /// with ``SwiftUICore/View/keyboardButtonStyle(builder:)``.
     typealias ButtonStyleBuilder = (ButtonStyleBuilderParams) -> Keyboard.ButtonStyle
 
-    /// This type is used to customize callout actions using
-    /// ``SwiftUICore/View/keyboardButtonStyle(_:)``.
+    /// This type can be used to customize the related style
+    /// with ``SwiftUICore/View/keyboardButtonStyle(builder:)``.
     struct ButtonStyleBuilderParams: KeyboardModel {
 
-        /// Create a callout actions builder parameter value.
+        /// Create a style builder parameter value.
         public init(
             action: KeyboardAction,
             isPressed: Bool
@@ -335,7 +333,7 @@ public extension Keyboard {
             self.isPressed = isPressed
         }
 
-        /// The action to get callout actions for.
+        /// The action to create a style for.
         public let action: KeyboardAction
 
         /// Whether the button is pressed.
@@ -343,6 +341,8 @@ public extension Keyboard {
     }
 }
 
+/// This is a temporary resolved protocol that'll be removed
+/// in KeyboardKit 10.
 protocol KeyboardButtonStyleResolver {
 
     var action: KeyboardAction { get }
@@ -385,26 +385,20 @@ public extension EnvironmentValues {
     ///
     /// > Note: The builder returns `nil` by default to make
     /// it possible to check if there is an injected builder.
-    /// If not, the legacy service is used. The builder will
-    /// replace the service in the next major version, after
-    /// which this should return the standard value.
     @Entry var keyboardButtonStyleBuilder: Keyboard.ButtonStyleBuilder?
 }
 
 public extension View {
 
-    /// Apply a fixed ``Keyboard/ButtonStyle``.
-    ///
-    /// This view modifier is used internally to apply style
-    /// values that can vary for each key.
+    /// Apply a custom ``Keyboard/ButtonStyle``.
     func keyboardButtonStyle(
         _ style: Keyboard.ButtonStyle
     ) -> some View {
         self.environment(\.keyboardButtonStyle, style)
     }
 
-    /// Apply a dynamic ``Keyboard/ButtonStyle`` builder, to
-    /// customize the button style of any action.
+    /// Apply a custom ``Keyboard/ButtonStyle`` builder that
+    /// can customize the button style of any action.
     ///
     /// You can customize the button style of any action and
     /// use ``Keyboard/ButtonStyleBuilderParams/standardStyle(for:)``
