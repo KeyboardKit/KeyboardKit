@@ -90,7 +90,7 @@ class KeyboardViewController: KeyboardInputViewController {
 }
 ```
 
-Setting up the controller makes ``KeyboardSettings`` automatically sync data between the app and its keyboard if the ``KeyboardApp`` defines an ``KeyboardApp/appGroupId``, set up KeyboardKit Pro if it defines a ``licenseKey``, sets up dictation, registers deep links, etc.
+Setting up the controller makes ``KeyboardSettings`` automatically sync data between the app and its keyboard if the ``KeyboardApp`` defines an ``KeyboardApp/appGroupId``, set up KeyboardKit Pro if it defines a ``KeyboardApp/licenseKey``, sets up dictation, registers deep links, etc.
 
 To replace or customize the default ``KeyboardView`` that will otherwise be used as the standard keyboard view, just override ``KeyboardInputViewController/viewWillSetupKeyboardView()`` and call ``KeyboardInputViewController/setupKeyboardView(_:)`` with the view that you want to use:
 

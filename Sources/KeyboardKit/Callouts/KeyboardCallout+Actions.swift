@@ -212,7 +212,7 @@ public extension View {
     /// actions to show when long pressing a key.
     ///
     /// You can customize callouts for any actions, then use
-    /// ``KeyboardCallout/ActionsParams/standardActions(for:)``
+    /// ``KeyboardCallout/ActionsBuilderParams/standardActions(for:)``
     /// to return the standard actions for all other actions.
     func keyboardCalloutActions(
         _ builder: @escaping KeyboardCallout.ActionsBuilder

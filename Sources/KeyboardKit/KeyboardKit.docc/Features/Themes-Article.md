@@ -52,6 +52,8 @@ override func viewDidLoad() {
 
 You can inherit ``KeyboardStyle/ThemeBasedStyleService`` to customize themes even further, which lets you mix the benefits of themes and styles.
 
+> Note: This service is being replaced with the new ``SwiftUICore/View/keyboardTheme(_:context:)`` view modifier, which will make it possible to apply a theme without having to register a custom service.
+
 
 
 ## Settings
@@ -198,6 +200,11 @@ KeyboardKit Pro unlocks views in the ``KeyboardTheme`` namespace, that make it e
 
 
 ## How to...
+
+
+### ...apply a theme
+
+The easiest way to apply a theme is with the ``SwiftUICore/View/keyboardTheme(_:context:)`` view modifier. Note that this requires that you have a KeyboardKit Pro license that includes the themes feature.
 
 
 ### ...create a custom theme

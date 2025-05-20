@@ -168,6 +168,7 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardView``
 - ``KeyboardViewComponent``
 - ``KeyboardViewItem``
+- ``KeyboardViewStyle``
 
 ### Actions
 

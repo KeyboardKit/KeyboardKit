@@ -20,15 +20,13 @@ Beta version tags and releases are removed after the next minor or major version
 
 ## 9.5
 
-This version adds ways to customize callout actions and keyboard button styles with view modifiers instead of services.
+This version adds ways to customize callout actions and keyboard styles with view modifiers instead of services.
 
-The old callout and style services are still used by default, but will be ignored if you apply these new view modifiers.
+The old callout and style services are used by default, but will be ignored if you apply the new view modifiers.
 
-If the view modifier approach proves successful, the services will be deprecated then removed in the next major version.
+If these view modifiers prove successful, the services will be deprecated and removed in the next major version.
 
-You still need a custom style service to customize a button's image and text, or use the KeyboardView's content builder.
-
-The next major version will only use the content builder approach, so it's recommended to switch to it whenever possible. 
+You still need a style service to customize a button's image and text, or use the KeyboardView's content builder. 
 
 ### ✨ Features
 
@@ -50,7 +48,10 @@ The next major version will only use the content builder approach, so it's recom
 
 ### 👑 Pro
 
+* `KeyboardAction` has a new `keyboardThemeButtonType` property.
 * `KeyboardCallout.Actions` has localized value builders for all supported locales.
+* `KeyboardTheme` has new `keyboardButtonStyle(for:context:isPressed:)` and `keyboardViewStyle` values.
+* `View.keyboardTheme(_:context:)` can be used to apply themes without using a theme-based style service.
 
 
 

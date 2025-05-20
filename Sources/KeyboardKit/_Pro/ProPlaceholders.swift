@@ -699,3 +699,15 @@ public extension KeyboardTheme {
     
 /// 👑 This is unlocked by KeyboardKit Pro.
 public protocol KeyboardThemeStyleVariation {}
+
+public extension View {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    @ViewBuilder
+    func keyboardTheme(
+        _ theme: KeyboardTheme?,
+        context: KeyboardContext
+    ) -> some View {
+        self
+    }
+}
