@@ -237,7 +237,9 @@ extension KeyboardStyle {
         open func buttonKeyboardFont(
             for action: KeyboardAction
         ) -> KeyboardFont {
-            action.standardButtonFont(for: keyboardContext)
+            let font = action.standardButtonFont(for: keyboardContext)
+            guard let weight = buttonFontWeight(for: action) else { return font }
+            return font.weight(weight)
         }
 
         /// The shadow style to use for a certain action.

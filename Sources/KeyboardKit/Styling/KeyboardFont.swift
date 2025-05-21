@@ -8,11 +8,10 @@
 
 import SwiftUI
 
-/// This codable struct represents a keyboard-supported font
-/// and is used to support fonts in `Codable` types.
+/// This type represents a keyboard-specific font, which can
+/// be used by `Codable` types.
 ///
-/// This is for instance needed for a keyboard theme persist
-/// a custom font.
+/// You can use the ``font`` property to get the native font.
 public struct KeyboardFont: KeyboardModel {
 
     public init(
