@@ -30,6 +30,8 @@ struct DemoKeyboardView: View {
     @State var isTextInputActive = false
     @State var theme: KeyboardTheme?
 
+    var keyboardContext: KeyboardContext { state.keyboardContext }
+
     var body: some View {
         KeyboardView(
             state: controller.state,
@@ -59,9 +61,12 @@ struct DemoKeyboardView: View {
         .animation(.bouncy, value: isToolbarToggled)
         .keyboardCalloutActions { params in                 // Apply custom
             if let custom = params.action.customCalloutActions { return custom }
-            return params.standardCalloutActions(for: controller.state.keyboardContext)
+            return params.standardCalloutActions(for: keyboardContext)
         }
-        .keyboardTheme(themeContext.currentTheme)           // Apply the current theme, if any
+        .keyboardTheme(                                     // Apply the current theme, if any
+            themeContext.currentTheme,
+            context: keyboardContext
+        )
         .sheet(item: $activeSheet) { sheet in
             NavigationStack {
                 sheetContent
@@ -80,13 +85,8 @@ struct DemoKeyboardView: View {
 
 private extension DemoKeyboardView {
 
-    var services: Keyboard.Services {
-        controller.services
-    }
-
-    var state: Keyboard.State {
-        controller.state
-    }
+    var services: Keyboard.Services { controller.services }
+    var state: Keyboard.State { controller.state }
 
     @ViewBuilder
     var menuGrid: some View {
