@@ -53,6 +53,10 @@ You still need a style service to customize a button's image and text, or use th
 * `KeyboardTheme` has new `keyboardButtonStyle(for:context:isPressed:)` and `keyboardViewStyle` values.
 * `View.keyboardTheme(_:context:)` can be used to apply themes without using a theme-based style service.
 
+### 📦 Packages
+
+* KeyboardKitTests has copied the MockingKit code base to avoid external dependencies.
+
 
 
 ## 9.4.1

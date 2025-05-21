@@ -7,7 +7,6 @@
 //
 
 #if os(iOS) || os(tvOS)
-import MockingKit
 import SwiftUI
 import XCTest
 

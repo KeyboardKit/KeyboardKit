@@ -18,12 +18,7 @@ let package = Package(
             targets: ["KeyboardKit"]
         )
     ],
-    dependencies: [
-        .package(
-            url: "https://github.com/danielsaidi/MockingKit.git",
-            .upToNextMajor(from: "1.5.0")
-        )
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "KeyboardKit",
@@ -31,7 +26,7 @@ let package = Package(
         ),
         .testTarget(
             name: "KeyboardKitTests",
-            dependencies: ["KeyboardKit", "MockingKit"]
+            dependencies: ["KeyboardKit"]
         )
     ]
 )

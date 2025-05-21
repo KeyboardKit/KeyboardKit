@@ -7,7 +7,6 @@
 //
 
 #if os(iOS) || os(tvOS) || os(visionOS)
-import MockingKit
 import UIKit
 
 /**

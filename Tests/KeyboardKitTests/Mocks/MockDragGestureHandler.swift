@@ -6,7 +6,6 @@
 //
 
 import CoreGraphics
-import MockingKit
 @testable import KeyboardKit
 
 class MockSpaceDragGestureHandler: Gestures.SpaceDragGestureHandler, Mockable {

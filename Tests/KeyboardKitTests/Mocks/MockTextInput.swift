@@ -8,7 +8,6 @@
 
 #if os(iOS) || os(tvOS)
 import UIKit
-import MockingKit
 
 class MockTextInput: UIResponder, Mockable, UITextInput {
     
