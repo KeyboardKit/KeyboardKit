@@ -225,7 +225,7 @@ private extension View {
                         style: .init(
                             backgroundColor: .teal,
                             fontWeight: .heavy,
-                            cornerRadius: 20,
+                            cornerRadius: 20
                         ),
                         insets: .init(top: 5, leading: 10, bottom: 15, trailing: 20)
                     )
