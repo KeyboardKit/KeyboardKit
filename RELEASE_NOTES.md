@@ -22,6 +22,15 @@ Beta version tags and releases are removed after the next minor or major version
 
 This version fixes a few bugs and adds some new features to make the view extension approach work.
 
+### ✨ Features
+
+* `Keyboard.ButtonStyle` has a new `fontWeight` that applies to the resolved font.
+
+### 👑 Pro
+
+* `KeyboardTheme` has a new `buttonPressedOverlayColor`.
+* `KeyboardTheme` can now define a `fontWeight` for each button type, without defining a font.
+
 ### 🐛 Bug Fixes
 
 * `KeyboardStyle.StandardStyleService` now applies the font weight, if defined.

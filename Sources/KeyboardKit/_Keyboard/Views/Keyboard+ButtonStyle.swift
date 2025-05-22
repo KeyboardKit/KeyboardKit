@@ -34,8 +34,9 @@ public extension Keyboard {
         ///   - background: The background style to apply, by default `nil`.
         ///   - backgroundColor: The background color to apply, by default `nil`.
         ///   - foregroundColor: The foreground color to apply, by default `nil`.
-        ///   - foregroundSecondaryOpacity: The opacity to apply to secondary foreground items, by default `nil`.
+        ///   - foregroundSecondaryOpacity: The opacity to apply to secondary titles, by default `nil`.
         ///   - font: A custom, native font to apply, by default `nil`.
+        ///   - fontWeight: A weight to apply, regardless of the resolved font, by default `nil`.
         ///   - keyboardFont: The keyboard font to apply, by default `nil`.
         ///   - cornerRadius: The corner radius to apply, by default `nil`.
         ///   - border: The border style to apply, by default `nil`.
@@ -48,6 +49,7 @@ public extension Keyboard {
             foregroundColor: Color? = nil,
             foregroundSecondaryOpacity: Double? = nil,
             font: Font? = nil,
+            fontWeight: KeyboardFont.FontWeight? = nil,
             keyboardFont: KeyboardFont? = nil,
             cornerRadius: CGFloat? = nil,
             border: BorderStyle? = nil,
@@ -61,6 +63,7 @@ public extension Keyboard {
             self.foregroundSecondaryOpacity = foregroundSecondaryOpacity
             self.keyboardFont = keyboardFont
             self.nativeFont = font
+            self.fontWeight = fontWeight
             self.cornerRadius = cornerRadius
             self.borderColor = border?.color
             self.borderSize = border?.size
@@ -82,16 +85,17 @@ public extension Keyboard {
         /// The foreground color to apply, if any.
         public var foregroundColor: Color?
         
-        /// The opacity to apply to secondary foreground items, if any.
+        /// The opacity to apply to secondary titles, if any.
         public var foregroundSecondaryOpacity: Double?
 
         /// The font to apply, if any.
         ///
         /// This will return ``nativeFont`` if set, else the
         /// ``keyboardFont``'s computed font value.
-        public var font: Font? {
-            nativeFont ?? keyboardFont?.font
-        }
+        public var font: Font? { nativeFont ?? keyboardFont?.font }
+
+        /// A weight to apply, regardless of the resolved font, if any.
+        public var fontWeight: KeyboardFont.FontWeight?
 
         /// The native font to apply, if any.
         public var nativeFont: Font?

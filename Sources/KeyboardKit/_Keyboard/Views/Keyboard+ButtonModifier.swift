@@ -13,12 +13,17 @@ public extension View {
     /// This view modifier can be used to convert views into
     /// keyboard button that triggers a certain action.
     ///
-    /// The view will apply the proper gestures to make sure
-    /// that the action handler is used correctly, and adapt
-    /// its content to the provided actions and services.
+    /// This view will apply correct styles for the provided
+    /// action and style, and will apply correct gestures to
+    /// make sure that the action handler is used correctly.
     ///
     /// The `edgeInsets` init parameter can be used to apply
     /// intrinsic insets within the interactable button area.
+    ///
+    /// The reason why this view modifier exists, is that it
+    /// is used by both the keyboard button and the keyboard
+    /// view item. We should consolidate these two views, to
+    /// make the architecture less confusing.
     ///
     /// - Parameters:
     ///   - action: The keyboard action to trigger.
@@ -47,11 +52,15 @@ public extension View {
         scrollState: GestureButtonScrollState? = nil,
         releaseOutsideTolerance: Double? = nil
     ) -> some View {
-        self
+        return self
             .background(Keyboard.ButtonKey())
             .keyboardButtonStyle(style)
             .foregroundColor(style.foregroundColor)
-            .font(style.font)
+            .font(font(
+                for: style,
+                action: action,
+                context: keyboardContext
+            ))
             .overlay(overlayColor(for: isPressed, style: style).cornerRadius(style.cornerRadius ?? 0))
             .padding(edgeInsets)
             .background(Color.clearInteractable)
@@ -76,6 +85,19 @@ public extension View {
                 actionHandler: actionHandler
             )
             .keyboardButtonAccessibility(for: action)
+    }
+
+    func font(
+        for style: Keyboard.ButtonStyle,
+        action: KeyboardAction,
+        context: KeyboardContext
+    ) -> Font {
+        let font = style.font ?? action.standardButtonFont(for: context).font
+        if let weight = style.fontWeight {
+            return font.weight(weight.fontWeight)
+        } else {
+            return font
+        }
     }
 
     /// Apply keyboard accessibility for the provided action.
@@ -129,6 +151,17 @@ private extension View {
             self
         }
     }
+
+    @ViewBuilder
+    func preferredFontWeight(
+        _ weight: KeyboardFont.FontWeight?
+    ) -> some View {
+        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 10.0, *) {
+            self.fontWeight(weight?.fontWeight)
+        } else {
+            self
+        }
+    }
 }
 
 private extension View {
@@ -143,10 +176,8 @@ private extension View {
         for isPressed: Binding<Bool>,
         style: Keyboard.ButtonStyle
     ) -> Color {
-        if isPressed.wrappedValue {
-            return style.pressedOverlayColor ?? .clear
-        }
-        return .clear
+        guard isPressed.wrappedValue else { return .clear }
+        return style.pressedOverlayColor ?? .clear
     }
 
     func shouldApplyLocaleContextMenu(
@@ -180,10 +211,22 @@ private extension View {
         var body: some View {
             VStack {
                 VStack(spacing: 20) {
-                    button(for: Text("a"), style: .init(backgroundColor: .purple))
+                    button(
+                        for: Text("a"),
+                        action: .character("A"),
+                        style: .init(
+                            backgroundColor: .purple,
+                            fontWeight: .regular
+                        )
+                    )
                     button(
                         for: Text("A"),
-                        style: .init(backgroundColor: .teal, cornerRadius: 10),
+                        action: .character("A"),
+                        style: .init(
+                            backgroundColor: .teal,
+                            fontWeight: .heavy,
+                            cornerRadius: 20,
+                        ),
                         insets: .init(top: 5, leading: 10, bottom: 15, trailing: 20)
                     )
                     button(
@@ -191,7 +234,11 @@ private extension View {
                         action: .nextLocale,
                         style: .init(backgroundColor: .orange)
                     )
-                    button(for: Image.keyboardGlobe, style: .init(backgroundColor: .mint))
+                    button(
+                        for: Image.keyboardGlobe,
+                        action: .nextLocale,
+                        style: .init(backgroundColor: .mint)
+                    )
                 }
                 .padding()
                 .background(Color.gray.opacity(0.5))
@@ -203,7 +250,7 @@ private extension View {
 
         func button<Content: View>(
             for content: Content,
-            action: KeyboardAction = .backspace,
+            action: KeyboardAction,
             style: Keyboard.ButtonStyle,
             insets: EdgeInsets = .init()
         ) -> some View {
