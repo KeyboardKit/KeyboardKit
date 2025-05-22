@@ -123,7 +123,6 @@ public extension Keyboard {
         /// The border color to apply, if any.
         public var borderColor: Color? {
             didSet {
-                // TODO: Remove this in KeyboardKit 10.0.
                 guard borderColor != nil, borderSize == nil else { return }
                 borderSize = 1
             }
@@ -132,7 +131,6 @@ public extension Keyboard {
         /// The border size to apply, if any.
         public var borderSize: CGFloat? {
             didSet {
-                // TODO: Remove this in KeyboardKit 10.0.
                 guard borderSize != nil, borderColor == nil else { return }
                 borderColor = .black
             }
@@ -222,15 +220,17 @@ public extension Keyboard {
 
 public extension Keyboard.ButtonStyle {
 
-    /// Extend the style with another style. This will apply
-    /// all non-optional properties from the provided style.
+    /// Extend this style with set values from another style.
     func extended(
         with style: Keyboard.ButtonStyle
     ) -> Self {
         var result = self
         result.backgroundColor = style.backgroundColor ?? backgroundColor
         result.foregroundColor = style.foregroundColor ?? foregroundColor
+        result.fontWeight = style.fontWeight ?? fontWeight
         result.keyboardFont = style.keyboardFont ?? keyboardFont
+        result.nativeFont = style.nativeFont ?? nativeFont
+        result.contentInsets = style.contentInsets ?? contentInsets
         result.cornerRadius = style.cornerRadius ?? cornerRadius
         result.border = style.border ?? border
         result.shadow = style.shadow ?? shadow

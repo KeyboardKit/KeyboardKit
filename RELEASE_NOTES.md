@@ -24,12 +24,16 @@ This version fixes a few bugs and adds some new features to make the view extens
 
 ### ✨ Features
 
-* `Keyboard.ButtonStyle` has a new `fontWeight` that applies to the resolved font.
+* `Keyboard.ButtonStyle` has a new font-agnostic `fontWeight` property.
+
+### 💡 Adjustments
+
+* `Keyboard.ButtonStyle` now extends more properties with `extended(with:)`.
 
 ### 👑 Pro
 
 * `KeyboardTheme` has a new `buttonPressedOverlayColor`.
-* `KeyboardTheme` can now define a `fontWeight` for each button type, without defining a font.
+* `KeyboardTheme.ButtonType` now implements `CaseIterable`.
 
 ### 🐛 Bug Fixes
 
