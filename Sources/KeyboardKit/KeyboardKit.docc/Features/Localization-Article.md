@@ -29,16 +29,20 @@ KeyboardKit extends ``Foundation/Locale`` and uses it as a namespace for locale-
 
 ## Supported locales
 
-KeyboardKit supports **74** keyboard ``Foundation/Locale``s, like ``Foundation/Locale/english``, ``Foundation/Locale/swedish``, and ``Foundation/Locale/persian``, as defined by ``Foundation/Locale/keyboardKitSupported``:
+KeyboardKit supports **75** keyboard ``Foundation/Locale``s, like ``Foundation/Locale/english``, ``Foundation/Locale/swedish``, and ``Foundation/Locale/persian``, as defined by ``Foundation/Locale/keyboardKitSupported``:
 
-🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇦🇿 🇧🇾 🇧🇬 🇦🇩 🏳️ 🏳️
-🇭🇷 🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 🇪🇪
-🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 🇦🇹
-🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 🇮🇹
-🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 🇲🇳
-🏳️ 🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 🇷🇸
-🇷🇸 🇹🇯 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 🇹🇷
-🇺🇦 🇺🇿 🇻🇳 🏴󠁧󠁢󠁷󠁬󠁳󠁿
+🇺🇸 🇦🇱 🇦🇪 🇦🇲 🇦🇿 🇧🇾 🇧🇩 🇧🇬 🇦🇩 🏳️ 
+🏳️ 🇭🇷 🇨🇿 🇩🇰 🇳🇱 🇧🇪 🇦🇺 🇨🇦 🇬🇧 🇺🇸 
+🇪🇪 🇫🇴 🇵🇭 🇫🇮 🇫🇷 🇨🇦 🇧🇪 🇨🇭 🇬🇪 🇩🇪 
+🇦🇹 🇨🇭 🇬🇷 🇺🇸 🇮🇱 🇭🇺 🇮🇸 🏳️ 🇮🇩 🇮🇪 
+🇮🇹 🇰🇿 🇹🇯 🇹🇯 🇹🇯 🇱🇻 🇱🇹 🇲🇰 🇲🇾 🇲🇹 
+🇲🇳 🏳️ 🇳🇴 🇳🇴 🇮🇷 🇵🇱 🇵🇹 🇧🇷 🇷🇴 🇷🇺 
+🇷🇸 🇷🇸 🇹🇯 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 
+🇹🇷 🇺🇦 🇺🇿 🇻🇳 🏴󠁧󠁢󠁷󠁬󠁳󠁿
+
+The full list of supported locale names is:
+
+English (en), Albanian (sq), Arabic (ar), Armenian (hy), Azerbaijani (az), Belarusian (be), Bengali (bn), Bulgarian (bg), Catalan (ca), Cherokee (chr), Chuvash (cv), Croatian (hr), Czech (cs), Danish (da), Dutch (nl), Dutch (Belgium) (nl_BE), English (Australia) (en_AU), English (Canada) (en_CA), English (United Kingdom) (en_GB), English (United States) (en_US), Estonian (et), Faroese (fo), Filipino (fil), Finnish (fi), French (fr), French (Canada) (fr_CA), French (Belgium) (fr_BE), French (Switzerland) (fr_CH), Georgian (ka), German (de), German (Austria) (de_AT), German (Switzerland) (de_CH), Greek (el), Hawaiian (haw), Hebrew (Israel) (he_IL), Hungarian (hu), Icelandic (is), Inari Sami (smn), Indonesian (id), Irish (Ireland) (ga_IE), Italian (it), Kazakh (kk), Kurdish, Sorani (ckb), Kurdish, Sorani (Iraq) (ckb_IQ), Kurdish, Sorani (PC) (ckb_PC), Latvian (lv), Lithuanian (lt), Macedonian (mk), Malay (ms), Maltese (mt), Mongolian (mn), North Sámi (se), Norwegian Bokmål (nb), Norwegian Nynorsk (nn), Persian (fa), Polish (pl), Portuguese (Portugal) (pt_PT), Portuguese (Brazil) (pt_BR), Romanian (ro), Russian (ru), Serbian (sr), Serbian (Latin) (sr-Latn), Shughni Tajik (tg), Slovak (sk), Slovenian (sl), Spanish (es), Spanish (Latin America) (es_419), Spanish (Mexico) (es_MX), Swedish (sv), Swahili (sw), Turkish (tr), Ukrainian (uk), Uzbek (uz), Vietnamese (vi), Welsh (cy)
 
 
 ## Locale capabilities

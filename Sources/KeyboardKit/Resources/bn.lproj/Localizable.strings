@@ -1,0 +1,43 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2025-06-13.
+ Copyright © 2022-2025 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "bn";
+
+"capsLock" = "caps";
+"continue" = "চালিয়ে যান";
+"done" = "সম্পন্ন";
+"emergencyCall" = "জরুরি কল";
+"go" = "যান";
+"join" = "যোগ দিন";
+"next" = "পরবর্তী";
+"ok" = "ঠিক আছে";
+"return" = "↳";
+"route" = "রুট";
+"search" = "খুঁজুন";
+"searchEmoji" = "ইমোজি খুঁজুন";
+"send" = "পাঠান";
+"space" = "স্পেস";
+
+"switcherAlphabetic" = "ABC";
+"switcherNumeric" = "১২৩";
+"switcherSymbolic" = "#+=";
+
+"EmojiCategory.smileysAndPeople" = "হাসি ও মানুষ";
+"EmojiCategory.animalsAndNature" = "প্রাণী ও প্রকৃতি";
+"EmojiCategory.foodAndDrink" = "খাবার ও পানীয়";
+"EmojiCategory.activity" = "কার্যকলাপ";
+"EmojiCategory.travelAndPlaces" = "ভ্রমণ ও স্থান";
+"EmojiCategory.objects" = "বস্তু";
+"EmojiCategory.symbols" = "প্রতীক";
+"EmojiCategory.flags" = "পতাকা";
+
+"EmojiCategory.favorites" = "পছন্দের";
+"EmojiCategory.frequent" = "ঘন ঘন ব্যবহৃত";
+"EmojiCategory.recent" = "সাম্প্রতিক";
+
+// For emoji localization, copy & translate the English list.

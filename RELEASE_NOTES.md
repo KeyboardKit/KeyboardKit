@@ -30,6 +30,7 @@ The reason for this change is that it's easier to find, than to have standard st
 🇹🇯 Localization
 
 * This version adds support for 🇦🇿 Azerbaijani.
+* This version adds support for 🇧🇩 Bengali.
 
 ### 🐛 Bug Fixes
 

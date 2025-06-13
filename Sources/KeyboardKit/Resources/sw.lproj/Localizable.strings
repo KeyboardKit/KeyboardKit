@@ -3,7 +3,7 @@
  KeyboardKit
  
  Created by Daniel Saidi on 2022-08-30.
- Copyright © 2022 Daniel Saidi. All rights reserved.
+ Copyright © 2022-2025 Daniel Saidi. All rights reserved.
  */
 
 "locale" = "sw";
@@ -22,6 +22,7 @@
 "searchEmoji" = "Tafuta Emoji";
 "send" = "send";
 "space" = "nafasi";
+
 "switcherAlphabetic" = "ABC";
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";

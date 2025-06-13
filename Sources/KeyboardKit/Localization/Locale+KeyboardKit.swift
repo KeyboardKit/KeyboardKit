@@ -17,21 +17,27 @@ public extension Locale {
     /// layouts and services for all supported locales.
     static var keyboardKitSupported: [Locale] {
         [
-            .english, .albanian, .arabic, .armenian, .azerbaijani, .belarusian,
-            .bulgarian, .catalan, .cherokee, .chuvash, .croatian,
-            .czech, .danish, .dutch, .dutch_belgium, .english_australia,
-            .english_canada, .english_gb, .english_us, .estonian, .faroese,
-            .filipino, .finnish, .french, .french_canada, .french_belgium,
-            .french_switzerland, .georgian, .german, .german_austria, .german_switzerland,
-            .greek, .hawaiian, .hebrew, .hungarian, .icelandic,
-            .inari_sami, .indonesian, .irish, .italian, .kazakh,
-            .kurdish_sorani, .kurdish_sorani_arabic, .kurdish_sorani_pc, .latvian, .lithuanian,
-            .macedonian, .malay, .maltese, .mongolian, .northern_sami,
-            .norwegian, .norwegian_nynorsk, .persian, .polish, .portuguese,
-            .portuguese_brazil, .romanian, .russian, .serbian, .serbian_latin,
-            .shughni_tajik, .slovak, .slovenian, .spanish, .spanish_latinAmerica,
-            .spanish_mexico, .swedish, .swahili, .turkish, .ukrainian,
-            .uzbek, .vietnamese, .welsh
+            .english, .albanian, .arabic, .armenian, .azerbaijani,
+            .belarusian, .bengali, .bulgarian,
+            .catalan, .cherokee, .chuvash, .croatian, .czech,
+            .danish, .dutch, .dutch_belgium,
+            .english_australia, .english_canada, .english_gb, .english_us, .estonian,
+            .faroese, .filipino, .finnish, .french, .french_canada, .french_belgium, .french_switzerland,
+            .georgian, .german, .german_austria, .german_switzerland, .greek,
+            .hawaiian, .hebrew, .hungarian,
+            .icelandic, .inari_sami, .indonesian, .irish, .italian,
+            .kazakh, .kurdish_sorani, .kurdish_sorani_arabic, .kurdish_sorani_pc,
+            .latvian, .lithuanian,
+            .macedonian, .malay, .maltese, .mongolian,
+            .northern_sami, .norwegian, .norwegian_nynorsk,
+            .persian, .polish, .portuguese, .portuguese_brazil,
+            .romanian, .russian,
+            .serbian, .serbian_latin, .shughni_tajik, .slovak, .slovenian, .spanish,
+            .spanish_latinAmerica, .spanish_mexico, .swedish, .swahili,
+            .turkish,
+            .ukrainian, .uzbek,
+            .vietnamese,
+            .welsh
         ]
     }
 }
@@ -52,6 +58,7 @@ public extension Locale {
     static var armenian: Locale { .withId("hy") }
     static var azerbaijani: Locale { .withId("az") }
     static var belarusian: Locale { .withId("be") }
+    static var bengali: Locale { .withId("bn") }
     static var bulgarian: Locale { .withId("bg") }
     static var catalan: Locale { .withId("ca") }
     static var cherokee: Locale { .withId("chr") }
@@ -132,12 +139,13 @@ public extension Locale {
         case .armenian: "armenian"
         case .azerbaijani: "azerbaijani"
         case .belarusian: "belarusian"
+        case .bengali: "bengali"
         case .bulgarian: "bulgarian"
         case .catalan: "catalan"
         case .cherokee: "cherokee"
         case .chuvash: "chuvash"
-        case .croatian: "croatian"
         
+        case .croatian: "croatian"
         case .czech: "czech"
         case .danish: "danish"
         case .dutch: "dutch"
@@ -147,8 +155,8 @@ public extension Locale {
         case .english_canada: "english_canada"
         case .english_gb: "english_gb"
         case .english_us: "english_us"
-        case .estonian: "estonian"
         
+        case .estonian: "estonian"
         case .faroese: "faroese"
         case .filipino: "filipino"
         case .finnish: "finnish"
@@ -158,8 +166,8 @@ public extension Locale {
         case .french_switzerland: "french_switzerland"
         case .georgian: "georgian"
         case .german: "german"
-        case .german_austria: "german_austria"
         
+        case .german_austria: "german_austria"
         case .german_switzerland: "german_switzerland"
         case .greek: "greek"
         case .hawaiian: "hawaiian"
@@ -169,8 +177,8 @@ public extension Locale {
         case .inari_sami: "inari_sami"
         case .indonesian: "indonesian"
         case .irish: "irish"
-        case .italian: "italian"
         
+        case .italian: "italian"
         case .kazakh: "kazakh"
         case .kurdish_sorani: "kurdish_sorani"
         case .kurdish_sorani_arabic: "kurdish_sorani_arabic"
@@ -180,8 +188,8 @@ public extension Locale {
         case .macedonian: "macedonian"
         case .malay: "malay"
         case .maltese: "maltese"
-        case .mongolian: "mongolian"
         
+        case .mongolian: "mongolian"
         case .northern_sami: "northern_sami"
         case .norwegian: "norwegian"
         case .norwegian_nynorsk: "norwegian_nynorsk"
@@ -191,8 +199,8 @@ public extension Locale {
         case .portuguese_brazil: "portuguese_brazil"
         case .romanian: "romanian"
         case .russian: "russian"
-        case .serbian: "serbian"
         
+        case .serbian: "serbian"
         case .serbian_latin: "serbian_latin"
         case .shughni_tajik: "shugni_tajik"
         case .slovenian: "slovenian"
@@ -202,8 +210,8 @@ public extension Locale {
         case .spanish_mexico: "spanish_mexico"
         case .swedish: "swedish"
         case .swahili: "swahili"
-        case .turkish: "turkish"
         
+        case .turkish: "turkish"
         case .ukrainian: "ukrainian"
         case .uzbek: "uzbek"
         case .vietnamese: "vietnamese"

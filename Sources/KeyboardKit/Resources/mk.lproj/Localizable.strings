@@ -3,7 +3,7 @@
  KeyboardKit
  
  Created by Daniel Saidi on 2022-01-19.
- Copyright © 2022 Daniel Saidi. All rights reserved.
+ Copyright © 2022-2025 Daniel Saidi. All rights reserved.
  */
 
 "locale" = "mk";
@@ -22,6 +22,7 @@
 "searchEmoji" = "Пребарај Емоџи";
 "send" = "send";
 "space" = "Празно место";
+
 "switcherAlphabetic" = "АБВ";
 "switcherNumeric" = "123";
 "switcherSymbolic" = "#+=";

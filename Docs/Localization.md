@@ -128,7 +128,6 @@ These locales from https://gist.github.com/jacobbubu/1836273 may not have native
 * am Amharic
 * as Assamese
 * vun Vunjo
-* az Azerbaijani
 * gl Galician
 * rm Romansh
 * gu Gujarati
@@ -155,7 +154,6 @@ Only implement locale variants upon request (most of these don't have native key
 * so_SO Somali (Somalia)
 * sr_Cyrl Serbian (Cyrillic)
 * om_KE Oromo (Kenya)
-* az_Cyrl Azerbaijani (Cyrillic)
 * so_ET Somali (Ethiopia)
 * ii_CN Sichuan Yi (China)
 * hi_IN Hindi (India)
@@ -198,7 +196,6 @@ Only implement locale variants upon request (most of these don't have native key
 * ml_IN Malayalam (India)
 * ro_MD Romanian (Moldova)
 * kab_DZ Kabyle (Algeria)
-* az_Latn Azerbaijani (Latin)
 * xog_UG Soga (Uganda)
 * sr_Cyrl_BA Serbian (Cyrillic, Bosnia and Herzegovina)
 * si_LK Sinhala (Sri Lanka)
@@ -206,7 +203,6 @@ Only implement locale variants upon request (most of these don't have native key
 * it_CH Italian (Switzerland)
 * uz_Cyrl_UZ Uzbek (Cyrillic, Uzbekistan)
 * rm_CH Romansh (Switzerland)
-* az_Cyrl_AZ Azerbaijani (Cyrillic, Azerbaijan)
 * cgg_UG Chiga (Uganda)i
 * mas_TZ Masai (Tanzania)
 * mk_MK Macedonian (Macedonia)
@@ -249,7 +245,6 @@ Only implement locale variants upon request (most of these don't have native key
 * vun_TZ Vunjo (Tanzania)
 * ar_SD Arabic (Sudan)
 * uz_Latn_UZ Uzbek (Latin, Uzbekistan)
-* az_Latn_AZ Azerbaijani (Latin, Azerbaijan)
 * ta_IN Tamil (India)
 * rof_TZ Rombo (Tanzania)
 * ar_LY Arabic (Libya)

@@ -20,6 +20,7 @@ class Locale_FlagTests: XCTestCase {
             .armenian: "🇦🇲",
             .azerbaijani: "🇦🇿",
             .belarusian: "🇧🇾",
+            .bengali: "🇧🇩",
             .bulgarian: "🇧🇬",
             .catalan: "🇦🇩",
             .cherokee: "🏳️",
