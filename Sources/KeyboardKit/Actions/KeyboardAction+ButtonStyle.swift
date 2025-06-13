@@ -27,21 +27,21 @@ public extension KeyboardAction {
         for context: KeyboardContext,
         isPressed: Bool = false
     ) -> Color {
-        Keyboard.ButtonStyle.standardBackgroundColor(for: context, action: self, isPressed: isPressed)
+        .standardKeyboardButtonBackground(for: context, action: self, isPressed: isPressed)
     }
 
     func standardButtonBackgroundColorOpacity(
         for context: KeyboardContext,
         isPressed: Bool = false
     ) -> Double {
-        Keyboard.ButtonStyle.backgroundColorOpacity(for: context, action: self, isPressed: isPressed)
+        Color.standardKeyboardButtonBackgroundOpacity(for: context, action: self, isPressed: isPressed)
     }
 
     func standardButtonBackgroundColorValue(
         for context: KeyboardContext,
         isPressed: Bool = false
     ) -> Color {
-        Keyboard.ButtonStyle.backgroundColorValue(for: context, action: self, isPressed: isPressed)
+        Color.standardKeyboardButtonBackgroundValue(for: context, action: self, isPressed: isPressed)
     }
 
     func standardButtonBorderStyle(
@@ -59,8 +59,7 @@ public extension KeyboardAction {
     func standardButtonCornerRadius(
         for context: KeyboardContext
     ) -> CGFloat {
-        let config = Keyboard.ButtonStyle.standardLayoutConfiguration
-        return config(context, self).buttonCornerRadius
+        standardButtonLayoutConfiguration(for: context).buttonCornerRadius
     }
 
     func standardButtonFont(
@@ -73,13 +72,13 @@ public extension KeyboardAction {
         for context: KeyboardContext,
         isPressed: Bool = false
     ) -> Color {
-        Keyboard.ButtonStyle.standardForegroundColor(for: context, action: self, isPressed: isPressed)
+        .standardKeyboardButtonBackground(for: context, action: self, isPressed: isPressed)
     }
 
     func standardButtonLayoutConfiguration(
         for context: KeyboardContext
     ) -> KeyboardLayout.DeviceConfiguration {
-        Keyboard.ButtonStyle.standardLayoutConfiguration(for: context, action: self)
+        KeyboardLayout.DeviceConfiguration.standard(for: context)
     }
 
     func standardButtonShadowStyle(

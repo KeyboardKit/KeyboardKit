@@ -22,8 +22,8 @@ public extension Keyboard.ButtonStyle {
     ) -> Keyboard.ButtonStyle {
         let font = standardFont(for: context, action: action)
         return Keyboard.ButtonStyle(
-            backgroundColor: standardBackgroundColor(for: context, action: action, isPressed: isPressed),
-            foregroundColor: standardForegroundColor(for: context, action: action, isPressed: isPressed),
+            backgroundColor: .standardKeyboardButtonBackground(for: context, action: action, isPressed: isPressed),
+            foregroundColor: .standardKeyboardButtonForeground(for: context, action: action, isPressed: isPressed),
             font: font.font,
             keyboardFont: font,
             cornerRadius: standardCornerRadius(for: context, action: action),
@@ -34,18 +34,6 @@ public extension Keyboard.ButtonStyle {
 }
 
 public extension Keyboard.ButtonStyle {
-
-    /// The standard keyboard button style background color.
-    static func standardBackgroundColor(
-        for context: KeyboardContext,
-        action: KeyboardAction,
-        isPressed: Bool = false
-    ) -> Color {
-        if let color = backgroundColorCaps(for: context, action: action) { return color }
-        let color = backgroundColorValue(for: context, action: action, isPressed: isPressed)
-        let opacity = backgroundColorOpacity(for: context, action: action, isPressed: isPressed)
-        return color.opacity(opacity)
-    }
 
     /// The standard keyboard button style content insets.
     static func standardContentInsets(
@@ -64,7 +52,7 @@ public extension Keyboard.ButtonStyle {
         for context: KeyboardContext,
         action: KeyboardAction
     ) -> CGFloat {
-        standardLayoutConfiguration(for: context, action: action).buttonCornerRadius
+        KeyboardLayout.DeviceConfiguration.standard(for: context).buttonCornerRadius
     }
 
     /// The standard keyboard button style font.
@@ -106,25 +94,6 @@ public extension Keyboard.ButtonStyle {
         default: action.hasStandardButtonImage(for: context) ? .light : nil
         }
     }
-
-    /// The standard keyboard button style foreground color.
-    static func standardForegroundColor(
-        for context: KeyboardContext,
-        action: KeyboardAction,
-        isPressed: Bool = false
-    ) -> Color {
-        if let color = foregroundColorStatic(for: action) { return color }
-        if isPressed { return foregroundColorPressed(for: context, action: action) }
-        return foregroundColorIdle(for: context, action: action)
-    }
-
-    /// The standard keyboard button style layout config.
-    static func standardLayoutConfiguration(
-        for context: KeyboardContext,
-        action: KeyboardAction
-    ) -> KeyboardLayout.DeviceConfiguration {
-        .standard(for: context)
-    }
 }
 
 public extension Keyboard.ButtonBorderStyle {
@@ -159,81 +128,6 @@ public extension Keyboard.ButtonShadowStyle {
 
 extension Keyboard.ButtonStyle {
 
-    static func backgroundColorOpacity(
-        for context: KeyboardContext,
-        action: KeyboardAction,
-        isPressed: Bool
-    ) -> Double {
-        if action.isPrimaryAction { return 1 }
-        if context.isSpaceDragGestureActive { return 0.5 }
-        if context.hasDarkColorScheme || isPressed { return 1 }
-        return 0.95
-    }
-
-    static func backgroundColorValue(
-        for context: KeyboardContext,
-        action: KeyboardAction,
-        isPressed: Bool
-    ) -> Color {
-        if let color = backgroundColorStatic(for: action) { return color }
-        if isPressed { return backgroundColorPressed(for: context, action: action) }
-        return backgroundColorIdle(for: context, action: action)
-    }
-
-    static func backgroundColorCaps(
-        for context: KeyboardContext,
-        action: KeyboardAction
-    ) -> Color? {
-        if action == .backspace { return nil }
-        guard context.keyboardCase == .capsLocked else { return nil }
-        switch action {
-        case .capsLock: return standardBackgroundColor(for: context, action: .backspace, isPressed: true)
-        case .shift: return standardBackgroundColor(for: context, action: .backspace, isPressed: false)
-        default: return nil
-        }
-    }
-
-    static func backgroundColorIdle(
-        for context: KeyboardContext,
-        action: KeyboardAction
-    ) -> Color {
-        if action.isUpperCasedShift(for: context) {
-            return context.isDark ? .white : .keyboardButtonBackground(for: context.colorScheme)
-        }
-        if action.isSystemAction {
-            return .keyboardDarkButtonBackground(for: context.colorScheme)
-        }
-        if action.isPrimaryAction { return .blue }
-        return .keyboardButtonBackground(for: context.colorScheme)
-    }
-
-    static func backgroundColorPressed(
-        for context: KeyboardContext,
-        action: KeyboardAction
-    ) -> Color {
-        if action.isUpperCasedShift(for: context) {
-            return .keyboardDarkButtonBackground(for: context.colorScheme)
-        }
-        if action.isSystemAction {
-            return context.isDark ? .keyboardButtonBackground(for: context.colorScheme) : .white
-        }
-        if action.isPrimaryAction {
-            return context.isDark ? .keyboardDarkButtonBackground(for: context.colorScheme) : .white
-        }
-        return .keyboardDarkButtonBackground(for: context.colorScheme)
-    }
-
-    static func backgroundColorStatic(
-        for action: KeyboardAction
-    ) -> Color? {
-        switch action {
-        case .none: .clear
-        case .characterMargin: .clearInteractable
-        case .emoji: .clearInteractable
-        default: nil
-        }
-    }
-
     static func contentInsets(
         for context: KeyboardContext,
         character: String
@@ -245,35 +139,6 @@ extension Keyboard.ButtonStyle {
         default: break
         }
         return standard
-    }
-
-    static func foregroundColorIdle(
-        for context: KeyboardContext,
-        action: KeyboardAction
-    ) -> Color {
-        if action.isUpperCasedShift(for: context) && context.isDark { return .black }
-        if action.isSystemAction { return .keyboardButtonForeground(for: context.colorScheme) }
-        if action.isPrimaryAction { return .white }
-        return .keyboardButtonForeground(for: context.colorScheme)
-    }
-
-    static func foregroundColorPressed(
-        for context: KeyboardContext,
-        action: KeyboardAction
-    ) -> Color {
-        let standard = Color.keyboardButtonForeground(for: context.colorScheme)
-        if action.isPrimaryAction { return context.isDark ? .white : standard }
-        return standard
-    }
-
-    static func foregroundColorStatic(
-        for action: KeyboardAction
-    ) -> Color? {
-        switch action {
-        case .none: .clear
-        case .characterMargin: .clearInteractable
-        default: nil
-        }
     }
 }
 

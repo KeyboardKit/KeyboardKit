@@ -1,5 +1,5 @@
 //
-//  Keyboard+ButtonStyleTests.swift
+//  Keyboard+ButtonStyleStandardTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2025-05-06.
@@ -20,104 +20,13 @@ final class Keyboard_ButtonStyleTests {
     func actionHasStandardButtonStyle() async throws {
         let action = KeyboardAction.backspace
         let style = Keyboard.ButtonStyle.standard(for: context, action: action, isPressed: false)
-        #expect(style.backgroundColor == Keyboard.ButtonStyle.standardBackgroundColor(for: context, action: action))
-        #expect(style.foregroundColor == Keyboard.ButtonStyle.standardForegroundColor(for: context, action: action))
+        #expect(style.backgroundColor == .standardKeyboardButtonBackground(for: context, action: action))
+        #expect(style.foregroundColor == .standardKeyboardButtonForeground(for: context, action: action))
         #expect(style.font == Keyboard.ButtonStyle.standardFont(for: context, action: action).font)
         #expect(style.keyboardFont == Keyboard.ButtonStyle.standardFont(for: context, action: action))
         #expect(style.cornerRadius == Keyboard.ButtonStyle.standardCornerRadius(for: context, action: action))
         #expect(style.border == .standard(for: context, action: action))
         #expect(style.shadow == .standard(for: context, action: action))
-    }
-
-    @Test
-    func actionHasStandardButtonBackgroundColor() async throws {
-        let action = KeyboardAction.character("")
-        let color = Keyboard.ButtonStyle.standardBackgroundColor(for: context, action: action)
-        let opacity = Keyboard.ButtonStyle.backgroundColorOpacity(for: context, action: action, isPressed: false)
-        let value = Keyboard.ButtonStyle.backgroundColorValue(for: context, action: action, isPressed: false)
-        #expect(color == value.opacity(opacity))
-    }
-
-    @Test
-    func actionHasStandardButtonBackgroundColorForCapsLock() async throws {
-        func result(for action: KeyboardAction, _ pressed: Bool) -> Color {
-            Keyboard.ButtonStyle.standardBackgroundColor(for: context, action: action, isPressed: pressed)
-        }
-        context.keyboardCase = .capsLocked
-        #expect(result(for: .capsLock, false) == result(for: .backspace, true))
-        #expect(result(for: .shift(.auto), false) == result(for: .backspace, false))
-    }
-
-    @Test
-    func actionHasStandardButtonBackgroundColorOpacity() async throws {
-        func result(for action: KeyboardAction, _ pressed: Bool) -> Double {
-            Keyboard.ButtonStyle.backgroundColorOpacity(for: context, action: action, isPressed: pressed)
-        }
-        context.isSpaceDragGestureActive = true
-        #expect(result(for: .primary(.continue), false) == 1.0)
-        #expect(result(for: .character("a"), true) == 0.5)
-        #expect(result(for: .character("a"), false) == 0.5)
-        context.isSpaceDragGestureActive = false
-        #expect(result(for: .primary(.continue), false) == 1.0)
-        #expect(result(for: .character("a"), true) == 1.0)
-        #expect(result(for: .character("a"), false) == 0.95)
-        context.colorScheme = .dark
-        #expect(result(for: .primary(.continue), false) == 1.0)
-        #expect(result(for: .character("a"), true) == 1.0)
-        #expect(result(for: .character("a"), false) == 1.0)
-    }
-
-    @Test
-    func actionHasStandardButtonBackgroundColorValue() async throws {
-        func result(for action: KeyboardAction) -> Color {
-            Keyboard.ButtonStyle.backgroundColorValue(for: context, action: action, isPressed: false)
-        }
-        var light: Color { .keyboardButtonBackground(for: context.colorScheme) }
-        var dark: Color { .keyboardDarkButtonBackground(for: context.colorScheme) }
-        context.colorScheme = .light
-        #expect(result(for: .character("a")) == light)
-        #expect(result(for: .shift(.auto)) == dark)
-        #expect(result(for: .primary(.continue)) == .blue)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
-        context.colorScheme = .dark
-        #expect(result(for: .character("a")) == light)
-        #expect(result(for: .shift(.auto)) == dark)
-        #expect(result(for: .primary(.continue)) == .blue)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
-        context.keyboardCase = .uppercased
-        context.colorScheme = .light
-        #expect(result(for: .shift(.auto)) == light)
-        context.colorScheme = .dark
-        #expect(result(for: .shift(.auto)) == .white)
-    }
-
-    @Test
-    func actionHasStandardButtonBackgroundColorValueForPressedState() async throws {
-        func result(for action: KeyboardAction) -> Color {
-            Keyboard.ButtonStyle.backgroundColorValue(for: context, action: action, isPressed: true)
-        }
-        var light: Color { .keyboardButtonBackground(for: context.colorScheme) }
-        var dark: Color { .keyboardDarkButtonBackground(for: context.colorScheme) }
-        context.keyboardCase = .lowercased
-        context.colorScheme = .light
-        #expect(result(for: .character("a")) == dark)
-        #expect(result(for: .shift(.auto)) == .white)
-        #expect(result(for: .primary(.continue)) == .white)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
-        context.colorScheme = .dark
-        #expect(result(for: .character("a")) == dark)
-        #expect(result(for: .shift(.auto)) == light)
-        #expect(result(for: .primary(.continue)) == dark)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
-        context.keyboardCase = .uppercased
-        context.colorScheme = .light
-        #expect(result(for: .shift(.auto)) == dark)
-        context.colorScheme = .dark
-        #expect(result(for: .shift(.auto)) == dark)
     }
 
     @Test
@@ -256,49 +165,6 @@ final class Keyboard_ButtonStyleTests {
         #expect(result(for: .character("A")) == nil)
         #expect(result(for: .character("!")) == nil)
         #expect(result(for: .primary(.newLine)) == .light)
-    }
-
-    @Test
-    func actionHasStandardButtonForegroundColor() async throws {
-        func result(for action: KeyboardAction) -> Color {
-            Keyboard.ButtonStyle.standardForegroundColor(for: context, action: action)
-        }
-        var light: Color { .keyboardButtonForeground(for: context.colorScheme) }
-        context.colorScheme = .light
-        #expect(result(for: .character("a")) == light)
-        #expect(result(for: .shift(.auto)) == light)
-        #expect(result(for: .primary(.continue)) == .white)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
-        context.colorScheme = .dark
-        #expect(result(for: .character("a")) == light)
-        #expect(result(for: .shift(.auto)) == light)
-        #expect(result(for: .primary(.continue)) == .white)
-        context.keyboardCase = .uppercased
-        #expect(result(for: .shift(.auto)) == .black)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
-    }
-
-    @Test
-    func actionHasStandardButtonForegroundColorForPressedState() async throws {
-        func result(for action: KeyboardAction) -> Color {
-            Keyboard.ButtonStyle.standardForegroundColor(for: context, action: action, isPressed: true)
-        }
-        var foregroundLightMode: Color { .keyboardButtonForeground(for: .light) }
-        var foregroundDarkMode: Color { .keyboardButtonForeground(for: .dark) }
-        context.colorScheme = .light
-        #expect(result(for: .character("a")) == foregroundLightMode)
-        #expect(result(for: .shift(.auto)) == foregroundLightMode)
-        #expect(result(for: .primary(.continue)) == foregroundLightMode)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
-        context.colorScheme = .dark
-        #expect(result(for: .character("a")) == foregroundDarkMode)
-        #expect(result(for: .shift(.auto)) == foregroundDarkMode)
-        #expect(result(for: .primary(.continue)) == .white)
-        #expect(result(for: .none) == .clear)
-        #expect(result(for: .characterMargin("")) == .clearInteractable)
     }
 
     @Test

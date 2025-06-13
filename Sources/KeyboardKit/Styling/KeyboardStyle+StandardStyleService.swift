@@ -162,8 +162,7 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Color {
-            let fun = Keyboard.ButtonStyle.standardBackgroundColor
-            return fun(keyboardContext, action, isPressed)
+            .standardKeyboardButtonBackground(for: keyboardContext, action: action, isPressed: isPressed)
         }
 
         /// The background opacity to use for a certain action.
@@ -171,7 +170,7 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Double {
-            Keyboard.ButtonStyle.backgroundColorOpacity(for: keyboardContext, action: action, isPressed: isPressed)
+            Color.standardKeyboardButtonBackgroundOpacity(for: keyboardContext, action: action, isPressed: isPressed)
         }
 
         /// The border style to use for a certain action.
@@ -228,7 +227,7 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Color {
-            Keyboard.ButtonStyle.standardForegroundColor(for: keyboardContext, action: action, isPressed: isPressed)
+            .standardKeyboardButtonForeground(for: keyboardContext, action: action, isPressed: isPressed)
         }
 
         /// The keyboard font to use for a certain action.

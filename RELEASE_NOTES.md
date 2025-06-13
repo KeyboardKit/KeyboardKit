@@ -21,9 +21,10 @@ The reason for this change is that it's easier to find, than to have standard st
 
 ### ✨ Features
 
-* `Keyboard.ButtonStyle` has a new `standard(for:action:isPressed:)` style builder.
-* `Keyboard.ButtonBorderStyle` has a new `standard(for:action:)` style builder.
-* `Keyboard.ButtonShadowStyle` has a new `standard(for:action:)` style builder.
+* `Color` has new `standard` background and foreground button builders.
+* `Keyboard.ButtonStyle` has a `standard(for:action:isPressed:)` builder.
+* `Keyboard.ButtonBorderStyle` has a new `standard(for:action:)` builder.
+* `Keyboard.ButtonShadowStyle` has a new `standard(for:action:)` builder.
 
 ### 🗑️ Deprecations
 
