@@ -39,10 +39,9 @@ extension KeyboardCallout {
         open func calloutActions(
             for char: String
         ) -> [KeyboardAction] {
-            let charValue = char.lowercased()
-            let result = calloutActionString(for: charValue)
+            let result = calloutActionString(for: char.lowercased())
             let string = char.isUppercasedWithLowercaseVariant ? result.uppercased() : result
-            return string.map { .character(String($0)) }
+            return string.filter { $0 != " " }.map { .character(String($0)) }
         }
         
         /// Get callout actions as a string for a character.
