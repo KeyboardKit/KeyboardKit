@@ -363,13 +363,13 @@ public extension Keyboard.ButtonStyleBuilderParams {
 
 public extension EnvironmentValues {
 
-    /// This value can be used to apply a fixed button style.
+    /// This value can be used to apply a fixed style.
     ///
     /// > Note: The value returns a red button by default to
     /// make it easy to see when a style hasn't been applied.
     @Entry var keyboardButtonStyle = Keyboard.ButtonStyle(background: .color(.red))
 
-    /// This value can be used to apply a fixed button style.
+    /// This value can be used to apply a dynamic style.
     ///
     /// > Note: The builder returns `nil` by default to make
     /// it possible to check if there is an injected builder.

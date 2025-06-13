@@ -65,7 +65,7 @@ public extension KeyboardAction {
     func standardButtonFont(
         for context: KeyboardContext
     ) -> KeyboardFont {
-        Keyboard.ButtonStyle.standardFont(for: context, action: self)
+        .standard(for: context, action: self)
     }
 
     func standardButtonForegroundColor(
@@ -88,30 +88,30 @@ public extension KeyboardAction {
     }
 }
 
-@available(*, deprecated, message: "Use Keyboard.ButtonStyle.standardButtonStyle instead")
+@available(*, deprecated, message: "Use KeyboardFont standard functions instead")
 extension KeyboardAction {
 
     func standardButtonFontSize(
         for context: KeyboardContext
     ) -> CGFloat {
-        Keyboard.ButtonStyle.standardFontSize(for: context, action: self)
+        KeyboardFont.standardSize(for: context, action: self)
     }
 
     func standardButtonFontSizeFixed(
         for context: KeyboardContext
     ) -> CGFloat? {
-        Keyboard.ButtonStyle.fontSizeFixed(for: context, action: self)
+        KeyboardFont.standardSize(for: self)
     }
 
     func standardButtonFontSizePad(
         for context: KeyboardContext
     ) -> CGFloat? {
-        Keyboard.ButtonStyle.fontSizePad(for: context, action: self)
+        KeyboardFont.standardSizePad(for: context, action: self)
     }
 
     func standardButtonFontWeight(
         for context: KeyboardContext
     ) -> KeyboardFont.FontWeight? {
-        Keyboard.ButtonStyle.standardFontWeight(for: context, action: self)
+        KeyboardFont.standardWeight(for: context, action: self)
     }
 }

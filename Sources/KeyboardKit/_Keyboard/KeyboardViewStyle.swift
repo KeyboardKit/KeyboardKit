@@ -61,7 +61,7 @@ public extension KeyboardViewStyle {
 
 public extension EnvironmentValues {
 
-    /// This value can be used to apply a fixed button style.
+    /// This value can be used to apply a fixed style.
     ///
     /// > Note: The builder returns `nil` by default to make
     /// it possible to check if there is an injected style.

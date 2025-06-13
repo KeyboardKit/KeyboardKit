@@ -198,28 +198,28 @@ extension KeyboardStyle {
         open func buttonFontSize(
             for action: KeyboardAction
         ) -> CGFloat {
-            Keyboard.ButtonStyle.standardFontSize(for: keyboardContext, action: action)
+            KeyboardFont.standardSize(for: keyboardContext, action: action)
         }
 
         /// The font size to override for a certain action.
         func buttonFontSizeActionOverride(
             for action: KeyboardAction
         ) -> CGFloat? {
-            Keyboard.ButtonStyle.fontSizeFixed(for: keyboardContext, action: action)
+            KeyboardFont.standardSize(for: action)
         }
 
         /// The font size to use for a certain keyboard type.
         open func buttonFontSize(
             for type: Keyboard.KeyboardType
         ) -> CGFloat {
-            type.standardButtonFontSize
+            KeyboardFont.standardSize(for: type)
         }
 
         /// The font weight to use for a certain action.
         open func buttonFontWeight(
             for action: KeyboardAction
         ) -> KeyboardFont.FontWeight? {
-            Keyboard.ButtonStyle.standardFontWeight(for: keyboardContext, action: action)
+            KeyboardFont.standardWeight(for: keyboardContext, action: action)
         }
 
         /// The foreground color to use for a certain action.
@@ -234,7 +234,7 @@ extension KeyboardStyle {
         open func buttonKeyboardFont(
             for action: KeyboardAction
         ) -> KeyboardFont {
-            let font = Keyboard.ButtonStyle.standardFont(for: keyboardContext, action: action)
+            let font = KeyboardFont.standard(for: keyboardContext, action: action)
             guard let weight = buttonFontWeight(for: action) else { return font }
             return font.weight(weight)
         }

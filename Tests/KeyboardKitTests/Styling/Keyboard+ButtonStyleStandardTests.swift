@@ -22,8 +22,8 @@ final class Keyboard_ButtonStyleTests {
         let style = Keyboard.ButtonStyle.standard(for: context, action: action, isPressed: false)
         #expect(style.backgroundColor == .standardKeyboardButtonBackground(for: context, action: action))
         #expect(style.foregroundColor == .standardKeyboardButtonForeground(for: context, action: action))
-        #expect(style.font == Keyboard.ButtonStyle.standardFont(for: context, action: action).font)
-        #expect(style.keyboardFont == Keyboard.ButtonStyle.standardFont(for: context, action: action))
+        #expect(style.font == KeyboardFont.standard(for: context, action: action).font)
+        #expect(style.keyboardFont == KeyboardFont.standard(for: context, action: action))
         #expect(style.cornerRadius == Keyboard.ButtonStyle.standardCornerRadius(for: context, action: action))
         #expect(style.border == .standard(for: context, action: action))
         #expect(style.shadow == .standard(for: context, action: action))
@@ -76,7 +76,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonFont() async throws {
         func result(for action: KeyboardAction) -> KeyboardFont {
-            Keyboard.ButtonStyle.standardFont(for: context, action: action)
+            KeyboardFont.standard(for: context, action: action)
         }
 
         #expect(result(for: .backspace) == .system(size: 20, weight: .light))
@@ -86,7 +86,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonFontSizeWithIpadOverrides() async throws {
         func result(for action: KeyboardAction) -> CGFloat? {
-            Keyboard.ButtonStyle.standardFontSize(for: context, action: action)
+            KeyboardFont.standardSize(for: context, action: action)
         }
 
         #expect(result(for: .keyboardType(.alphabetic)) == 15)
@@ -158,7 +158,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonFontWeight() async throws {
         func result(for action: KeyboardAction) -> KeyboardFont.FontWeight? {
-            Keyboard.ButtonStyle.standardFontWeight(for: context, action: action)
+            KeyboardFont.standardWeight(for: context, action: action)
         }
         #expect(result(for: .backspace) == .light)
         #expect(result(for: .character("a")) == .light)
