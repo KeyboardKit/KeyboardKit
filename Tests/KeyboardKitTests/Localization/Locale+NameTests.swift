@@ -18,6 +18,7 @@ class Locale_NameTests: XCTestCase {
             .albanian: "shqip",
             .arabic: "العربية",
             .armenian: "հայերեն",
+            .azerbaijani: "azərbaycan",
             .belarusian: "беларуская",
             .bulgarian: "български",
             .dutch_belgium: "Nederlands (België)",
@@ -92,7 +93,7 @@ class Locale_NameTests: XCTestCase {
 
         XCTAssertEqual(expected.keys.count, locales.count)
         expected.keys.forEach {
-            XCTAssertEqual(expected[$0], $0.localizedName)
+            XCTAssertEqual(expected[$0], $0.localizedName, $0.keyboardKitName)
         }
     }
 
@@ -114,6 +115,7 @@ class Locale_NameTests: XCTestCase {
             .albanian: "albanian",
             .arabic: "arabic",
             .armenian: "armenian",
+            .azerbaijani: "azerbaijani",
             .belarusian: "belarusian",
             .bulgarian: "bulgarian",
             .catalan: "catalan",

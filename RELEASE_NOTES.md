@@ -27,6 +27,10 @@ The reason for this change is that it's easier to find, than to have standard st
 * `Keyboard.ButtonShadowStyle` has a new `standard(for:action:)` builder.
 * `KeyboardFont` has new `standard` font, font size, and weight builders.
 
+🇹🇯 Localization
+
+* This version adds support for 🇦🇿 Azerbaijani.
+
 ### 🐛 Bug Fixes
 
 * `KeyboardFont+Standard` now returns a correct font size for `.continue`.

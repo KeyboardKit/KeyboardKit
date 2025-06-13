@@ -1,0 +1,42 @@
+/*
+ Localizable.strings
+ KeyboardKit
+ 
+ Created by Daniel Saidi on 2025-06-13.
+ Copyright © 2025 Daniel Saidi. All rights reserved.
+ */
+
+"locale" = "az";
+
+"capsLock" = "Caps";
+"continue" = "Davam";
+"done" = "Hazır";
+"emergencyCall" = "Təcili Zəng";
+"go" = "Get";
+"join" = "Qoşul";
+"next" = "Növbəti";
+"ok" = "OK";
+"return" = "↵";
+"route" = "Marşrut";
+"search" = "Axtar";
+"searchEmoji" = "Emoji Axtar";
+"send" = "Göndər";
+"space" = "Boşluq";
+"switcherAlphabetic" = "abc";
+"switcherNumeric" = "123";
+"switcherSymbolic" = "#+=";
+
+"EmojiCategory.smileysAndPeople" = "Gülümsəmələr və İnsanlar";
+"EmojiCategory.animalsAndNature" = "Heyvanlar və Təbiət";
+"EmojiCategory.foodAndDrink" = "Yemək və İçki";
+"EmojiCategory.activity" = "Fəaliyyət";
+"EmojiCategory.travelAndPlaces" = "Səyahət və Yerlər";
+"EmojiCategory.objects" = "Əşyalar";
+"EmojiCategory.symbols" = "Simvollar";
+"EmojiCategory.flags" = "Bayraqlar";
+
+"EmojiCategory.favorites" = "Sevimlilər";
+"EmojiCategory.frequent" = "Tez-tez İstifadə olunanlar";
+"EmojiCategory.recent" = "Ən Son";
+
+// For emoji localization, copy & translate the English list.
