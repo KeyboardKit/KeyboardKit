@@ -44,7 +44,7 @@ public extension Keyboard {
         
         public var body: some View {
             bodyContent
-                .padding(contentInsets)
+                .padding(insets)
                 .contentShape(Rectangle())
         }
     }
@@ -52,8 +52,9 @@ public extension Keyboard {
 
 private extension Keyboard.ButtonContent {
 
-    var contentInsets: EdgeInsets {
-        buttonStyle.contentInsets ?? action.standardButtonContentInsets(for: keyboardContext)
+    var insets: EdgeInsets {
+        let standard = Keyboard.ButtonStyle.standardContentInsets
+        return buttonStyle.contentInsets ?? standard(keyboardContext, action)
     }
 
     var buttonStyle: Keyboard.ButtonStyle {

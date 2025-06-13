@@ -92,7 +92,8 @@ public extension View {
         action: KeyboardAction,
         context: KeyboardContext
     ) -> Font {
-        let font = style.font ?? action.standardButtonFont(for: context).font
+        let standard = Keyboard.ButtonStyle.standardFont
+        let font = style.font ?? standard(context, action).font
         if let weight = style.fontWeight {
             return font.weight(weight.fontWeight)
         } else {

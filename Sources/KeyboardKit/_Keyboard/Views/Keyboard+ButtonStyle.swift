@@ -18,7 +18,6 @@ public extension Keyboard {
     /// non-codable, custom font that will not be serialized.
     ///
     /// Use the ``Keyboard/ButtonStyle/standard(for:context:isPressed:)``
-    /// or ``KeyboardAction/standardButtonStyle(for:isPressed:)``
     /// functions to get a standard style for any action and
     /// keyboard context, given a specific pressed state.
     ///
@@ -252,21 +251,6 @@ public extension Keyboard.ButtonStyle {
 
 // MARK: - Standard Styles
 
-public extension Keyboard.ButtonStyle {
-
-    /// Create a standard keyboard button style.
-    static func standard(
-        for action: KeyboardAction,
-        context: KeyboardContext,
-        isPressed: Bool
-    ) -> Keyboard.ButtonStyle {
-        action.standardButtonStyle(
-            for: context,
-            isPressed: isPressed
-        )
-    }
-}
-
 public extension Keyboard.ButtonBorderStyle {
     
     /// A button border style with no borders.
@@ -373,7 +357,7 @@ public extension Keyboard.ButtonStyleBuilderParams {
     func standardStyle(
         for context: KeyboardContext
     ) -> Keyboard.ButtonStyle {
-        action.standardButtonStyle(for: context, isPressed: isPressed)
+        .standard(for: context, action: action, isPressed: isPressed)
     }
 }
 

@@ -7,14 +7,27 @@ KeyboardKit honors semantic versioning, with the following strategy:
 * Breaking changes should only occur in `major` updates.
 * Breaking changes *can* occur in `minor` and `patch` updates, if the alternative is worse.
 
+Beta version tags and releases are removed after the next minor or major version. 
+
 These release notes cover the current major version. See older versions for older release notes.
 
 
-## Beta versions
 
-Most new minor versions are preceded by several beta versions, e.g. `9.3-b.1`.
+## 9.6
 
-Beta version tags and releases are removed after the next minor or major version. 
+This version adds new ways to get standard button styles directly from the style type.
+
+The reason for this change is that it's easier to find, than to have standard style functions on other types.
+
+### ✨ Features
+
+* `Keyboard.ButtonStyle` has a new `standard(for:action:isPressed:)` style builder.
+* `Keyboard.ButtonBorderStyle` has a new `standard(for:action:)` style builder.
+* `Keyboard.ButtonShadowStyle` has a new `standard(for:action:)` style builder.
+
+### 🗑️ Deprecations
+
+* `KeyboardAction`'s `standardButtonStyle(for:isPressed:)` has been deprecated.
 
 
 

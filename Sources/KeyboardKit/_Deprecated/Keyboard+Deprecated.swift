@@ -13,6 +13,18 @@ public extension Keyboard {
     typealias SpaceContextMenu = SpaceMenuType
 }
 
+public extension Keyboard.ButtonStyle {
+
+    @available(*, deprecated, renamed: "standard(for:action:isPressed:)")
+    static func standard(
+        for action: KeyboardAction,
+        context: KeyboardContext,
+        isPressed: Bool
+    ) -> Keyboard.ButtonStyle {
+        action.standardButtonStyle(for: context, isPressed: isPressed)
+    }
+}
+
 public extension Keyboard.DiacriticInsertionResult {
     
     @available(*, deprecated, renamed: "deleteBackwardsCount")
