@@ -15,6 +15,17 @@ This document is therefore used to remove clutter from the issue tracker. Feel f
 If you provide substantial help to implement support for a new locale, you will be given a forever free Basic subscription for your project, or a discount on the higher tiers.
 
 
+## Next (common)
+
+These locales will be added next:
+
+* Kyrgyz
+* Maori
+* Samoan
+* Skolt Sámi
+* Turkmen
+
+
 ## Requested (common)
 
 These locales have been requested, and should be prioritized:
@@ -24,12 +35,7 @@ These locales have been requested, and should be prioritized:
 * ja - Japanese
 * ko - South Korean
 * pa - Punjabi
-* zh - Simplified Chinese 
-
-
-## May be fesible
-
-* Bulgarian QWERTY
+* zh - Simplified Chinese
 
 
 ## Requested (unusual)
@@ -137,7 +143,6 @@ These locales from https://gist.github.com/jacobbubu/1836273 may not have native
 * guz Gusii
 * ml Malayalam
 * bm Bambara
-* bn Bengali
 
 
 ## Locale Variants
@@ -237,7 +242,6 @@ Only implement locale variants upon request (most of these don't have native key
 * ff_SN Fulah (Senegal)
 * zh_Hans Chinese (Simplified Han)
 * so_KE Somali (Kenya)
-* bn_IN Bengali (India)
 * id_ID Indonesian (Indonesia)
 * uz_Cyrl Uzbek (Cyrillic)
 * sr_Latn_BA Serbian (Latin, Bosnia and Herzegovina)
@@ -251,9 +255,7 @@ Only implement locale variants upon request (most of these don't have native key
 * ha_Latn Hausa (Latin)
 * bem_ZM Bemba (Zambia)
 * zh_Hans_CN Chinese (Simplified Han, China)
-* bn_BD Bengali (Bangladesh)
 * pt_GW Portuguese (Guinea-Bissau)
-* de_AT German (Austria)
 * kk_Cyrl Kazakh (Cyrillic)
 * sw_TZ Swahili (Tanzania)
 * ar_OM Arabic (Oman)
@@ -264,7 +266,6 @@ Only implement locale variants upon request (most of these don't have native key
 * bs_BA Bosnian (Bosnia and Herzegovina)
 * am_ET Amharic (Ethiopia)
 * ar_TN Arabic (Tunisia)
-* haw_US Hawaiian (United States)
 * ar_JO Arabic (Jordan)
 * fa_AF Persian (Afghanistan)
 * uz_Latn Uzbek (Latin)
@@ -275,7 +276,6 @@ Only implement locale variants upon request (most of these don't have native key
 * af_ZA Afrikaans (South Africa)
 * ti_ER Tigrinya (Eritrea)
 * ig_NG Igbo (Nigeria)
-* pt_PT Portuguese (Portugal)
 * nd_ZW North Ndebele (Zimbabwe)
 * sw_KE Swahili (Kenya)
 * mas_KE Masai (Kenya)
