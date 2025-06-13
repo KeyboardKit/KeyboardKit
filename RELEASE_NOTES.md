@@ -25,7 +25,11 @@ The reason for this change is that it's easier to find, than to have standard st
 * `Keyboard.ButtonStyle` has a `standard(for:action:isPressed:)` builder.
 * `Keyboard.ButtonBorderStyle` has a new `standard(for:action:)` builder.
 * `Keyboard.ButtonShadowStyle` has a new `standard(for:action:)` builder.
-* `KeyboardFont` has new `standard` font, font sizeit   and font weight builders.
+* `KeyboardFont` has new `standard` font, font size, and weight builders.
+
+### 🐛 Bug Fixes
+
+* `KeyboardFont+Standard` now returns a correct font size for `.continue`.
 
 ### 🗑️ Deprecations
 

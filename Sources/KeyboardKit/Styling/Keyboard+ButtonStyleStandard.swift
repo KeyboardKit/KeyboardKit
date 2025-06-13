@@ -115,3 +115,24 @@ private extension KeyboardContext {
 
     var isDark: Bool { hasDarkColorScheme }
 }
+
+#Preview {
+
+    func preview(
+        _ type: Keyboard.ReturnKeyType
+    ) -> some View {
+        KeyboardView(
+            state: {
+                let state = Keyboard.State.preview
+                state.keyboardContext.returnKeyTypeOverride = type
+                return state
+            }(),
+            services: .preview
+        )
+    }
+
+    return VStack {
+        preview(.return)
+        preview(.continue)
+    }
+}

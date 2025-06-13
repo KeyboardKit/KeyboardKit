@@ -36,7 +36,7 @@ public extension KeyboardFont {
         if action.hasStandardButtonImage(for: context) { return 20 }
         if let fixed = standardSize(for: action) { return fixed }
         let text = action.standardButtonText(for: context) ?? ""
-        if action.isPrimaryAction && action.isSystemAction { return 16 }
+        if action.isPrimaryAction { return 16 }
         if action.isInputAction && text.isLowercasedWithUppercaseVariant { return 26 }
         return 23
     }
