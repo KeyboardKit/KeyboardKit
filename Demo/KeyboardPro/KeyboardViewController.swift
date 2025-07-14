@@ -12,13 +12,18 @@ import SwiftUI
 /// This keyboard shows how to set up `KeyboardKit Pro` with
 /// a `KeyboardApp` and customize the keyboard.
 ///
-/// This keyboard lets you use all open-source features, and
-/// KeyboardKit Pro features, like fully localized keyboards,
-/// localized iPad Pro layouts, autocomplete, emoji keyboard,
-/// dictation, themes, etc.
+/// This keyboard lets you test open-source and Pro features,
+/// like fully localized keyboards, iPad Pro layouts, emojis,
+/// autocomplete, themes, etc.
 ///
 /// For app-specific features, check out the main app target.
 class KeyboardViewController: KeyboardInputViewController {
+
+    /// ‼️ If this doesn't log when the debugger is attached,
+    /// there is a memory leak.
+    deinit {
+        NSLog("__DEINIT__")
+    }
 
     /// This function is called when the controller launches.
     ///
@@ -30,26 +35,23 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
 
         // ‼️ Set up the keyboard with the demo-specific app.
-        super.setup(for: .keyboardKitDemo) { result in
-            
-            /// 💡 If `result` is successful, the license is
-            /// registered and we can customize the keyboard.
-            self.setupDemoServices()
-            self.setupDemoState()
+        super.setup(for: .keyboardKitDemo) { [weak self] result in
+
+            /// 💡 If result is successful, we can customize
+            /// the controller's services and state.
+            self?.setupDemoServices()
+            self?.setupDemoState()
         }
     }
 
     /// This function is called when the controller needs to
     /// create or update the keyboard view.
-    ///
-    /// Call `setupKeyboardView(_:)` here to set up a custom
-    /// keyboard view or customize the default `KeyboardView`.
     override func viewWillSetupKeyboardView() {
 
         // 💡 Don't call `super.viewWillSetupKeyboardView()`.
         // super.viewWillSetupKeyboardView()
 
-        // ‼️ Make the keyboard use the custom keyboard view.
+        // Set up a custom, demo-specific keyboard view.
         //
         // Always use `weak self` or `unowned self` when you
         // have to pass on your specific controller class.

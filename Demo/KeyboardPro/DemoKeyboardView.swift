@@ -10,10 +10,10 @@ import KeyboardKitPro
 import SwiftUI
 
 /// This demo-specific keyboard view sets up a `KeyboardView`
-/// as the keyboard view and customizes it with Pro features.
+/// and customizes it with Pro features.
 ///
-/// This view replaces the default toolbar with a Pro toggle
-/// toolbar that lets users toggle between two toolbars.
+/// This keyboard view replaces the default top toolbar with
+/// a toggle toolbar that has an alternate menu.
 struct DemoKeyboardView: View {
 
     /// This is (for now) required by the ``DemoToolbar``.
