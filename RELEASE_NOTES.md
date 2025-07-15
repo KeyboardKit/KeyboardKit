@@ -22,6 +22,7 @@ The idea with the initial refactoring was to attach the standard value builders 
 ### ✨ Features
 
 * `EmojiContext` and `EmojiSettings` are two new state types.
+* `EmojiKeyboard` will now show the last selected emoji skin tone.
 * `KeyboardAction.StandardActionHandler` registers the skin tone for selected emojis.
 
 ### 💡 Adjustments
