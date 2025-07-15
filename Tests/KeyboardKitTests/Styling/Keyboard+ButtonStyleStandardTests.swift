@@ -20,8 +20,8 @@ final class Keyboard_ButtonStyleTests {
     func actionHasStandardButtonStyle() async throws {
         let action = KeyboardAction.backspace
         let style = Keyboard.ButtonStyle.standard(for: context, action: action, isPressed: false)
-        #expect(style.backgroundColor == .standardKeyboardButtonBackground(for: context, action: action))
-        #expect(style.foregroundColor == .standardKeyboardButtonForeground(for: context, action: action))
+        #expect(style.backgroundColor == action.standardKeyboardButtonBackground(for: context))
+        #expect(style.foregroundColor == action.standardKeyboardButtonForeground(for: context))
         #expect(style.font == KeyboardFont.standard(for: context, action: action).font)
         #expect(style.keyboardFont == KeyboardFont.standard(for: context, action: action))
         #expect(style.cornerRadius == Keyboard.ButtonStyle.standardCornerRadius(for: context, action: action))

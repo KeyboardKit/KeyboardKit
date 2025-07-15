@@ -29,19 +29,23 @@ public extension Autocomplete {
         private typealias Style = Autocomplete.ToolbarItemStyle
 
         private let suggestion: Suggestion
-        
+
         @Environment(\.autocompleteToolbarItemStyle)
         private var style
 
+        @Environment(\.truncationMode)
+        private var truncationMode
+
         public var body: some View {
-            title
+            contentPlaceholder
                 .opacity(0)
-                .overlay(titleStack) // Limit multiline height
+                .overlay(contentStack) // Limit multiline height
                 .padding(.horizontal, style.horizontalPadding)
                 .padding(.vertical, style.verticalPadding)
                 .background(style.backgroundColor)
                 .background(Color.clearInteractable)
                 .cornerRadius(style.backgroundCornerRadius)
+
         }
     }
 
@@ -70,7 +74,7 @@ public extension Autocomplete {
             titleFont: KeyboardFont = .body,
             subtitleColor: Color = .primary,
             subtitleFont: KeyboardFont = .footnote,
-            horizontalPadding: Double = 6,
+            horizontalPadding: Double = 2,
             verticalPadding: Double = 10,
             backgroundColor: Color = .clear,
             backgroundCornerRadius: CGFloat = 4
@@ -112,13 +116,52 @@ public extension Autocomplete {
 }
 
 private extension Autocomplete.ToolbarItem {
-    
+
+    var contentPlaceholder: some View {
+        Text("X")
+            .font(style.titleFont.font)
+            .frame(maxWidth: .infinity)
+    }
+
+    var contentStack: some View {
+        VStack(alignment: .center, spacing: 0) {
+            titleText
+            subtitle
+        }
+    }
+
     var title: some View {
         Text(suggestion.title)
             .lineLimit(1)
             .font(style.titleFont.font)
             .foregroundColor(style.titleColor)
-            .frame(maxWidth: .infinity)
+    }
+
+    @ViewBuilder
+    var titleText: some View {
+        if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+            ViewThatFits {
+                title
+                ScrollView(.horizontal) {
+                    title.padding(.horizontal, 5)
+                }
+                .scrollIndicators(.hidden)
+                .mask(
+                    LinearGradient(
+                        gradient: Gradient(stops: [
+                            .init(color: .clear, location: 0),
+                            .init(color: .black, location: 0.05),
+                            .init(color: .black, location: 0.95),
+                            .init(color: .clear, location: 1.0)
+                        ]),
+                        startPoint: .leading,
+                        endPoint: .trailing
+                    )
+                )
+            }
+        } else {
+            title
+        }
     }
     
     @ViewBuilder
@@ -128,13 +171,6 @@ private extension Autocomplete.ToolbarItem {
                 .lineLimit(1)
                 .font(style.subtitleFont.font)
                 .foregroundColor(style.subtitleColor)
-        }
-    }
-
-    var titleStack: some View {
-        VStack(spacing: 0) {
-            title
-            subtitle
         }
     }
 }
@@ -175,9 +211,9 @@ public extension EnvironmentValues {
         let style: Autocomplete.ToolbarItemStyle
 
         let suggestions: [Autocomplete.Suggestion] = [
-            .init(text: "Foo", type: .unknown),
-            .init(text: "Bar", type: .autocorrect),
-            .init(text: "", title: "Baz", subtitle: "Recommended")]
+            .init(text: "Foo"),
+            .init(text: "VeryLongTextNumberTwo", type: .autocorrect),
+            .init(text: "VeryLongTextNumberThree", subtitle: "Subtitle")]
 
         var body: some View {
             HStack {
@@ -202,4 +238,5 @@ public extension EnvironmentValues {
     }
     .padding(5)
     .background(Color.keyboardBackground)
+    .truncationMode(.middle)
 }

@@ -129,13 +129,13 @@ class KeyboardStyle_StandardStyleServiceTests: XCTestCase {
     }
 
     func testButtonStyleForegroundColorIsStandardForAllActionsExceptPrimaryActions() {
-        let standard = Color.standardKeyboardButtonForeground
         styles.forEach {
+            let standard = $0.action.standardKeyboardButtonForeground
             let result = $0.style.foregroundColor
             let isPrimary = $0.action.isPrimaryAction
             let isSystem = $0.action.isSystemAction
             let expectedWhite = isPrimary && !isSystem
-            let expected: Color = expectedWhite ? .white : standard(context, $0.action, false)
+            let expected: Color = expectedWhite ? .white : standard(context, false)
             XCTAssertEqual(result, expected)
         }
     }

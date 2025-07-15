@@ -19,6 +19,10 @@ These release notes cover the current major version. See older versions for olde
 
 * `KeyboardAction` has new `standard` button color builders.
 
+### 💡 Adjustments
+
+* `Autocomplete.ToolbarItem` will automatically wrap itself in a scroll view if needed.
+
 ### 🐛 Bug Fixes
 
 * `KeyboardAction.shift` now renders correctly for caps lock.
