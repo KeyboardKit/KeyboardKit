@@ -16,6 +16,9 @@ struct DemoKeyboardView: View {
     let services: Keyboard.Services
     let state: Keyboard.State
 
+    // ‼️ Observe the context to make sure that it updates.
+    @EnvironmentObject var keyboardContext: KeyboardContext
+
     var body: some View {
         KeyboardView(
             state: state,
@@ -37,7 +40,7 @@ struct DemoKeyboardView: View {
 
         // 💡 Customize the style of any keyboard button.
         .keyboardButtonStyle { params in
-            let context = state.keyboardContext
+            let context = keyboardContext
             var style = params.standardStyle(for: context)
             guard params.action == .backspace else { return style }
             style.backgroundColor = params.isPressed ? .yellow : .blue
@@ -46,7 +49,7 @@ struct DemoKeyboardView: View {
 
         // 💡 Setup custom callout actions for the k key.
         .keyboardCalloutActions { params in
-            let context = state.keyboardContext
+            let context = keyboardContext
             let action = params.action
             if let actions = action.customCalloutActions { return actions }
             return params.standardActions(for: context)
