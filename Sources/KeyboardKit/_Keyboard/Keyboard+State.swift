@@ -58,6 +58,7 @@ public extension Keyboard.State {
 }
 
 #if os(iOS) || os(tvOS) || os(visionOS)
+@MainActor
 public extension Keyboard.State {
 
     // Setup the state instance for the provided controller.

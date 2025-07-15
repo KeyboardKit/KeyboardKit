@@ -24,9 +24,9 @@ KeyboardKit has an ``Emoji`` namespace with emoji-related types.
 
 
 
-## Context & Settings
+## Context
 
-KeyboardKit has an ``EmojiContext`` that provides observable emoji state, and auto-persisted ``EmojiContext/settings`` that can be used for emoji-related settings.
+KeyboardKit has an ``EmojiContext`` that provides observable emoji state, and auto-persisted, emoji-specific ``EmojiContext/settings``.
 
 KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
 
