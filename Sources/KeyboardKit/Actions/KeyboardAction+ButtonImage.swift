@@ -75,9 +75,15 @@ extension KeyboardAction {
     ) -> Image? {
         guard context.keyboardCase == .capsLocked else { return nil }
         switch self {
-        case .capsLock: return .keyboardShiftCapslocked
-        case .shift: return .keyboardShiftLowercased
+        case .capsLock: return .keyboardShiftCapslockActive
+        case .shift: return context.isIpadPro ? .keyboardShiftLowercased : .keyboardShiftCapslockActive
         default: return nil
         }
     }
+}
+
+
+private extension KeyboardContext {
+
+    var isIpadPro: Bool { self.deviceTypeForKeyboardIsIpadPro }
 }

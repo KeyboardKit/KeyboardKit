@@ -42,7 +42,7 @@ public extension Image {
     static let keyboardRedo = symbol("arrow.uturn.right")
     static let keyboardSearch = symbol("magnifyingglass")
     static let keyboardSettings = symbol("gearshape")
-    static let keyboardShiftCapslocked = symbol("capslock.fill")
+    static let keyboardShiftCapslockActive = symbol("capslock.fill")
     static let keyboardShiftCapslockInactive = symbol("capslock")
     static let keyboardShiftLowercased = symbol("shift")
     static let keyboardShiftUppercased = symbol("shift.fill")
@@ -55,7 +55,7 @@ public extension Image {
     static let keyboardUndo = symbol("arrow.uturn.left")
     static let keyboardUrl = symbol("safari")
     static let keyboardZeroWidthSpace = symbol("circle.dotted")
-    
+
     static let keyboardDockEdgeNone = symbol("keyboard")
     static let keyboardDockEdgeLeading = symbol("keyboard.onehanded.left")
     static let keyboardDockEdgeTrailing = symbol("keyboard.onehanded.right")
@@ -90,7 +90,7 @@ public extension Image {
     static func keyboardShift(_ casing: Keyboard.KeyboardCase) -> Image {
         switch casing {
         case .auto: .keyboardShiftLowercased
-        case .capsLocked: .keyboardShiftCapslocked
+        case .capsLocked: .keyboardShiftCapslockActive
         case .lowercased: .keyboardShiftLowercased
         case .uppercased: .keyboardShiftUppercased
         }
@@ -147,7 +147,7 @@ extension Image {
                 preview(for: .keyboardRedo, "keyboardRedo")
                 preview(for: .keyboardSearch, "keyboardSearch")
                 preview(for: .keyboardSettings, "keyboardSettings")
-                preview(for: .keyboardShiftCapslocked, "keyboardShiftCapslocked")
+                preview(for: .keyboardShiftCapslockActive, "keyboardShiftCapslocked")
                 preview(for: .keyboardShiftCapslockInactive, "keyboardShiftCapslockInactive")
                 preview(for: .keyboardShiftLowercased, "keyboardShiftLowercased")
                 preview(for: .keyboardShiftUppercased, "keyboardShiftUppercased")

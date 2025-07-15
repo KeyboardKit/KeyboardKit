@@ -13,6 +13,22 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 9.6.1
+
+### ✨ Features
+
+* `KeyboardAction` has new `standard` button color builders.
+
+### 🐛 Bug Fixes
+
+* `KeyboardAction.shift` now renders correctly for caps lock.
+
+### 🗑️ Deprecations
+
+* `Color+Standard` is deprecated and refers to the new action extensions.
+
+
+
 ## 9.6
 
 This version adds new ways to get standard button styles directly from the style type.

@@ -33,9 +33,21 @@ final class KeyboardAction_ButtonImageTests {
         #expect(result(for: .capsLock) == .keyboardShiftCapslockInactive)
         #expect(result(for: .shift(.uppercased)) == .keyboardShiftUppercased)
 
-        // Test caps locked case
+        // Test caps locked case (standard)
         context.keyboardCase = .capsLocked
-        #expect(result(for: .capsLock) == .keyboardShiftCapslocked)
+        #expect(result(for: .capsLock) == .keyboardShiftCapslockActive)
+        #expect(result(for: .shift(.uppercased)) == .keyboardShiftCapslockActive)
+
+        // Test caps locked case (iPad Pro - English)
+        context.deviceTypeForKeyboardIsIpadPro = true
+        context.locale = .english
+        #expect(result(for: .capsLock) == nil)
+        #expect(result(for: .shift(.uppercased)) == nil)
+
+        // Test caps locked case (iPad Pro - Swedish)
+        context.deviceTypeForKeyboardIsIpadPro = true
+        context.locale = .swedish
+        #expect(result(for: .capsLock) == .keyboardShiftCapslockActive)
         #expect(result(for: .shift(.uppercased)) == .keyboardShiftLowercased)
     }
 
