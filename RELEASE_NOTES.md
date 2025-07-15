@@ -13,6 +13,14 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 9.7.1
+
+### 💡 Adjustments
+
+* `KeyboardAppView` now injects an `EmojiContext` into the environment.
+
+
+
 ## 9.7.0
 
 After developer feedback, this version reverts some previos deprecations and moves standard values back to the `KeyboardAction` type.
