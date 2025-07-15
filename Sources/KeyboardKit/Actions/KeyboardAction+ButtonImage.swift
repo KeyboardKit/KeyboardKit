@@ -23,10 +23,10 @@ public extension KeyboardAction {
         for context: KeyboardContext
     ) -> Image? {
         guard standardButtonTextIpadPro(for: context) == nil else { return nil }
-        if let caps = standardButtonImageCaps(for: context) { return caps }
+        if let caps = buttonImageCaps(for: context) { return caps }
         switch standardButtonText(for: context) {
         case "↵", "↳": return .keyboardNewline(for: context.locale)
-        default: return standardButtonImageBase(for: context)
+        default: return buttonImageBase(for: context)
         }
     }
 
@@ -43,7 +43,7 @@ public extension KeyboardAction {
 
 extension KeyboardAction {
 
-    func standardButtonImageBase(
+    func buttonImageBase(
         for context: KeyboardContext
     ) -> Image? {
         switch self {
@@ -70,7 +70,7 @@ extension KeyboardAction {
         }
     }
 
-    func standardButtonImageCaps(
+    func buttonImageCaps(
         for context: KeyboardContext
     ) -> Image? {
         guard context.keyboardCase == .capsLocked else { return nil }
@@ -82,8 +82,7 @@ extension KeyboardAction {
     }
 }
 
-
 private extension KeyboardContext {
 
-    var isIpadPro: Bool { self.deviceTypeForKeyboardIsIpadPro }
+    var isIpadPro: Bool { deviceTypeForKeyboardIsIpadPro }
 }

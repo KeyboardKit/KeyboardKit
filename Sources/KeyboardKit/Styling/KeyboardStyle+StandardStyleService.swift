@@ -132,7 +132,6 @@ extension KeyboardStyle {
                 shadow: buttonShadowStyle(for: action),
                 contentInsets: buttonContentInsets(for: action)
             )
-
         }
 
         /// The button text to use for a certain action, if any.
@@ -162,7 +161,7 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Color {
-            .standardKeyboardButtonBackground(for: keyboardContext, action: action, isPressed: isPressed)
+            action.standardKeyboardButtonBackground(for: keyboardContext, isPressed: isPressed)
         }
 
         /// The background opacity to use for a certain action.
@@ -170,7 +169,7 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Double {
-            Color.standardKeyboardButtonBackgroundOpacity(for: keyboardContext, action: action, isPressed: isPressed)
+            action.standardKeyboardButtonBackgroundOpacity(for: keyboardContext, isPressed: isPressed)
         }
 
         /// The border style to use for a certain action.
@@ -227,7 +226,7 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Color {
-            .standardKeyboardButtonForeground(for: keyboardContext, action: action, isPressed: isPressed)
+            action.standardKeyboardButtonForeground(for: keyboardContext, isPressed: isPressed)
         }
 
         /// The keyboard font to use for a certain action.

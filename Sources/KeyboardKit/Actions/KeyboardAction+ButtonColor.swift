@@ -67,7 +67,7 @@ extension KeyboardAction {
         let standard = backspace.standardKeyboardButtonBackground
         switch self {
         case .capsLock: return standard(context, true)
-        case .shift: return standard(context, false)
+        case .shift: return standard(context, !context.isIpadPro)
         default: return nil
         }
     }
@@ -147,4 +147,5 @@ private extension KeyboardAction {
 private extension KeyboardContext {
 
     var isDark: Bool { hasDarkColorScheme }
+    var isIpadPro: Bool { deviceTypeForKeyboardIsIpadPro }
 }

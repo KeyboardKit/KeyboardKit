@@ -22,8 +22,8 @@ public extension Keyboard.ButtonStyle {
     ) -> Keyboard.ButtonStyle {
         let font = KeyboardFont.standard(for: context, action: action)
         return Keyboard.ButtonStyle(
-            backgroundColor: .standardKeyboardButtonBackground(for: context, action: action, isPressed: isPressed),
-            foregroundColor: .standardKeyboardButtonForeground(for: context, action: action, isPressed: isPressed),
+            backgroundColor: action.standardKeyboardButtonBackground(for: context, isPressed: isPressed),
+            foregroundColor: action.standardKeyboardButtonForeground(for: context, isPressed: isPressed),
             font: font.font,
             keyboardFont: font,
             cornerRadius: standardCornerRadius(for: context, action: action),
