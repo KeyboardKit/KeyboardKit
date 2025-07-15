@@ -12,19 +12,19 @@ import SwiftUI
 public extension KeyboardAction {
 
     /// The standard keyboard button background color.
-    func standardKeyboardButtonBackground(
+    func standardButtonBackgroundColor(
         for context: KeyboardContext,
         isPressed: Bool = false
     ) -> Color {
         if let color = backgroundColorCaps(for: context) { return color }
-        let color = standardKeyboardButtonBackgroundValue(for: context, isPressed: isPressed)
-        let opacityFunc = standardKeyboardButtonBackgroundOpacity
+        let color = standardButtonBackgroundColorValue(for: context, isPressed: isPressed)
+        let opacityFunc = standardButtonBackgroundColorOpacity
         let opacity = opacityFunc(context, isPressed)
         return color.opacity(opacity)
     }
 
     /// The standard keyboard button background opacity.
-    func standardKeyboardButtonBackgroundOpacity(
+    func standardButtonBackgroundColorOpacity(
         for context: KeyboardContext,
         isPressed: Bool = false
     ) -> Double {
@@ -36,7 +36,7 @@ public extension KeyboardAction {
 
     /// The standard keyboard button background color in its
     /// raw form, without any opacity applied.
-    func standardKeyboardButtonBackgroundValue(
+    func standardButtonBackgroundColorValue(
         for context: KeyboardContext,
         isPressed: Bool
     ) -> Color {
@@ -46,7 +46,7 @@ public extension KeyboardAction {
     }
 
     /// The standard keyboard button style foreground color.
-    func standardKeyboardButtonForeground(
+    func standardButtonForegroundColor(
         for context: KeyboardContext,
         isPressed: Bool = false
     ) -> Color {
@@ -64,7 +64,7 @@ extension KeyboardAction {
         if self == .backspace { return nil }
         guard context.keyboardCase == .capsLocked else { return nil }
         let backspace = KeyboardAction.backspace
-        let standard = backspace.standardKeyboardButtonBackground
+        let standard = backspace.standardButtonBackgroundColor
         switch self {
         case .capsLock: return standard(context, true)
         case .shift: return standard(context, !context.isIpadPro)

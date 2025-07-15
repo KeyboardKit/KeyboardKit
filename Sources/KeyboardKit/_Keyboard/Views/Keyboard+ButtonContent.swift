@@ -53,8 +53,8 @@ public extension Keyboard {
 private extension Keyboard.ButtonContent {
 
     var insets: EdgeInsets {
-        let standard = Keyboard.ButtonStyle.standardContentInsets
-        return buttonStyle.contentInsets ?? standard(keyboardContext, action)
+        let standard = action.standardButtonContentInsets
+        return buttonStyle.contentInsets ?? standard(keyboardContext)
     }
 
     var buttonStyle: Keyboard.ButtonStyle {

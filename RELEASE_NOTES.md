@@ -13,11 +13,11 @@ These release notes cover the current major version. See older versions for olde
 
 
 
-## 9.6.1
+## 9.7.0
 
-### ✨ Features
+After developer feedback, this version reverts some previos deprecations and moves standard values back to the `KeyboardAction` type.
 
-* `KeyboardAction` has new `standard` button color builders.
+The idea with the initial refactoring was to attach the standard value builders to each value type, to make them easier to find. But since each builder is related to a `KeyboardAction`, it makes more sense to convert them back to action extensions, since this groups them all together.
 
 ### 💡 Adjustments
 
@@ -29,7 +29,10 @@ These release notes cover the current major version. See older versions for olde
 
 ### 🗑️ Deprecations
 
-* `Color+Standard` is deprecated and refers to the new action extensions.
+* `Color+Standard` has been deprecated and now use `KeyboardAction` extensions.
+* `Font+Standard` has been deprecated and now use `KeyboardAction` extensions.
+* `Keyboard.ButtonStyle+Standard` has been deprecated and now use `KeyboardAction` extensions.
+* `KeyboardAction` has reverted its `standard` button color deprecations.
 
 
 

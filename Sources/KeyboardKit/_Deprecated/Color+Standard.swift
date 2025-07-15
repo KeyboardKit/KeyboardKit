@@ -17,7 +17,7 @@ public extension Color {
         action: KeyboardAction,
         isPressed: Bool = false
     ) -> Color {
-        action.standardKeyboardButtonBackground(
+        action.standardButtonBackgroundColor(
             for: context,
             isPressed: isPressed
         )
@@ -29,7 +29,7 @@ public extension Color {
         action: KeyboardAction,
         isPressed: Bool = false
     ) -> Double {
-        action.standardKeyboardButtonBackgroundOpacity(
+        action.standardButtonBackgroundColorOpacity(
             for: context,
             isPressed: isPressed
         )
@@ -42,7 +42,7 @@ public extension Color {
         action: KeyboardAction,
         isPressed: Bool
     ) -> Color {
-        action.standardKeyboardButtonBackgroundValue(
+        action.standardButtonBackgroundColorValue(
             for: context,
             isPressed: isPressed
         )
@@ -54,7 +54,7 @@ public extension Color {
         action: KeyboardAction,
         isPressed: Bool = false
     ) -> Color {
-        action.standardKeyboardButtonForeground(
+        action.standardButtonForegroundColor(
             for: context,
             isPressed: isPressed
         )

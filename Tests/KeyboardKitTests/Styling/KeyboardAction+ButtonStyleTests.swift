@@ -1,5 +1,5 @@
 //
-//  Keyboard+ButtonStyleStandardTests.swift
+//  KeyboardAction+ButtonStyleTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2025-05-06.
@@ -19,20 +19,20 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonStyle() async throws {
         let action = KeyboardAction.backspace
-        let style = Keyboard.ButtonStyle.standard(for: context, action: action, isPressed: false)
-        #expect(style.backgroundColor == action.standardKeyboardButtonBackground(for: context))
-        #expect(style.foregroundColor == action.standardKeyboardButtonForeground(for: context))
-        #expect(style.font == KeyboardFont.standard(for: context, action: action).font)
-        #expect(style.keyboardFont == KeyboardFont.standard(for: context, action: action))
-        #expect(style.cornerRadius == Keyboard.ButtonStyle.standardCornerRadius(for: context, action: action))
-        #expect(style.border == .standard(for: context, action: action))
-        #expect(style.shadow == .standard(for: context, action: action))
+        let style = action.standardButtonStyle(for: context, isPressed: false)
+        #expect(style.backgroundColor == action.standardButtonBackgroundColor(for: context))
+        #expect(style.foregroundColor == action.standardButtonForegroundColor(for: context))
+        #expect(style.font == action.standardButtonFont(for: context).font)
+        #expect(style.keyboardFont == action.standardButtonFont(for: context))
+        #expect(style.cornerRadius == action.standardButtonCornerRadius(for: context))
+        #expect(style.border == action.standardButtonBorderStyle(for: context))
+        #expect(style.shadow == action.standardButtonShadowStyle(for: context))
     }
 
     @Test
     func actionHasStandardButtonBorderStyle() async throws {
         func result(for action: KeyboardAction) -> Keyboard.ButtonBorderStyle {
-            .standard(for: context, action: action)
+            action.standardButtonBorderStyle(for: context)
         }
         #expect(result(for: .character("")) == .standard)
         #expect(result(for: .backspace) == .standard)
@@ -43,7 +43,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonContentInsets() async throws {
         func result(for action: KeyboardAction) -> EdgeInsets {
-            Keyboard.ButtonStyle.standardContentInsets(for: context, action: action)
+            action.standardButtonContentInsets(for: context)
         }
         #expect(result(for: .character("")) == .init(all: 3))
         #expect(result(for: .characterMargin("")) == .init(all: 0))
@@ -59,7 +59,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonCornerRadius() async throws {
         func result(for action: KeyboardAction) -> CGFloat {
-            Keyboard.ButtonStyle.standardCornerRadius(for: context, action: action)
+            action.standardButtonCornerRadius(for: context)
         }
         context.deviceTypeForKeyboard = .phone
         context.interfaceOrientation = .portrait
@@ -76,7 +76,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonFont() async throws {
         func result(for action: KeyboardAction) -> KeyboardFont {
-            KeyboardFont.standard(for: context, action: action)
+            action.standardButtonFont(for: context)
         }
 
         #expect(result(for: .backspace) == .system(size: 20, weight: .light))
@@ -86,7 +86,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonFontSizeWithIpadOverrides() async throws {
         func result(for action: KeyboardAction) -> CGFloat? {
-            KeyboardFont.standardSize(for: context, action: action)
+            action.standardButtonFontSize(for: context)
         }
 
         #expect(result(for: .keyboardType(.alphabetic)) == 15)
@@ -158,7 +158,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonFontWeight() async throws {
         func result(for action: KeyboardAction) -> KeyboardFont.FontWeight? {
-            KeyboardFont.standardWeight(for: context, action: action)
+            action.standardButtonFontWeight(for: context)
         }
         #expect(result(for: .backspace) == .light)
         #expect(result(for: .character("a")) == .light)
@@ -170,7 +170,7 @@ final class Keyboard_ButtonStyleTests {
     @Test
     func actionHasStandardButtonShadowStyle() async throws {
         func result(for action: KeyboardAction) -> Keyboard.ButtonShadowStyle {
-            .standard(for: context, action: action)
+            action.standardButtonShadowStyle(for: context)
         }
         #expect(result(for: .character("")) == .standard)
         #expect(result(for: .backspace) == .standard)

@@ -19,16 +19,16 @@ final class KeyboardAction_ButtonColorTests {
     @Test
     func hasStandardButtonBackgroundColor() async throws {
         let action = KeyboardAction.character("")
-        let color = action.standardKeyboardButtonBackground(for: context)
-        let opacity = action.standardKeyboardButtonBackgroundOpacity(for: context, isPressed: false)
-        let value = action.standardKeyboardButtonBackgroundValue(for: context, isPressed: false)
+        let color = action.standardButtonBackgroundColor(for: context)
+        let opacity = action.standardButtonBackgroundColorOpacity(for: context, isPressed: false)
+        let value = action.standardButtonBackgroundColorValue(for: context, isPressed: false)
         #expect(color == value.opacity(opacity))
     }
 
     @Test
     func hasStandardButtonBackgroundColorForCapsLock() async throws {
         func result(for action: KeyboardAction, _ pressed: Bool) -> Color {
-            action.standardKeyboardButtonBackground(for: context, isPressed: pressed)
+            action.standardButtonBackgroundColor(for: context, isPressed: pressed)
         }
         context.keyboardCase = .capsLocked
         #expect(result(for: .capsLock, false) == result(for: .backspace, true))
@@ -45,7 +45,7 @@ final class KeyboardAction_ButtonColorTests {
     @Test
     func hasStandardButtonBackgroundColorOpacity() async throws {
         func result(for action: KeyboardAction, _ pressed: Bool) -> Double {
-            action.standardKeyboardButtonBackgroundOpacity(for: context, isPressed: pressed)
+            action.standardButtonBackgroundColorOpacity(for: context, isPressed: pressed)
         }
         context.isSpaceDragGestureActive = true
         #expect(result(for: .primary(.continue), false) == 1.0)
@@ -64,7 +64,7 @@ final class KeyboardAction_ButtonColorTests {
     @Test
     func hasStandardButtonBackgroundColorValue() async throws {
         func result(for action: KeyboardAction) -> Color {
-            action.standardKeyboardButtonBackgroundValue(for: context, isPressed: false)
+            action.standardButtonBackgroundColorValue(for: context, isPressed: false)
         }
         var light: Color { .keyboardButtonBackground(for: context.colorScheme) }
         var dark: Color { .keyboardDarkButtonBackground(for: context.colorScheme) }
@@ -90,7 +90,7 @@ final class KeyboardAction_ButtonColorTests {
     @Test
     func hasStandardButtonBackgroundColorValueForPressedState() async throws {
         func result(for action: KeyboardAction) -> Color {
-            action.standardKeyboardButtonBackgroundValue(for: context, isPressed: true)
+            action.standardButtonBackgroundColorValue(for: context, isPressed: true)
         }
         var light: Color { .keyboardButtonBackground(for: context.colorScheme) }
         var dark: Color { .keyboardDarkButtonBackground(for: context.colorScheme) }
@@ -117,7 +117,7 @@ final class KeyboardAction_ButtonColorTests {
     @Test
     func hasStandardButtonForegroundColor() async throws {
         func result(for action: KeyboardAction) -> Color {
-            action.standardKeyboardButtonForeground(for: context)
+            action.standardButtonForegroundColor(for: context)
         }
         var light: Color { .keyboardButtonForeground(for: context.colorScheme) }
         context.colorScheme = .light
@@ -139,7 +139,7 @@ final class KeyboardAction_ButtonColorTests {
     @Test
     func hasStandardButtonForegroundColorForPressedState() async throws {
         func result(for action: KeyboardAction) -> Color {
-            action.standardKeyboardButtonForeground(for: context, isPressed: true)
+            action.standardButtonForegroundColor(for: context, isPressed: true)
         }
         var foregroundLightMode: Color { .keyboardButtonForeground(for: .light) }
         var foregroundDarkMode: Color { .keyboardButtonForeground(for: .dark) }

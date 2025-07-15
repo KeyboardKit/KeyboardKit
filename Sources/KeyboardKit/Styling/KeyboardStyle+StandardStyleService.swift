@@ -88,19 +88,22 @@ extension KeyboardStyle {
         // MARK: - Buttons
 
         open var standardButtonContentInsets: EdgeInsets {
-            Keyboard.ButtonStyle.standardContentInsets(for: keyboardContext, action: .backspace)
+            buttonContentInsets(for: .backspace)
         }
 
         open func buttonContentInsets(
             for action: KeyboardAction
         ) -> EdgeInsets {
-            Keyboard.ButtonStyle.standardContentInsets(for: keyboardContext, action: action)
+            action.standardButtonContentInsets(for: keyboardContext)
         }
 
         open func buttonContentInsets(
             for char: String
         ) -> EdgeInsets {
-            Keyboard.ButtonStyle.standardContentInsets(for: keyboardContext, action: .character(char))
+            KeyboardAction.standardButtonContentInsets(
+                for: keyboardContext,
+                character: char
+            )
         }
 
         /// The button image to use for a certain action.
@@ -161,7 +164,10 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Color {
-            action.standardKeyboardButtonBackground(for: keyboardContext, isPressed: isPressed)
+            action.standardButtonBackgroundColor(
+                for: keyboardContext,
+                isPressed: isPressed
+            )
         }
 
         /// The background opacity to use for a certain action.
@@ -169,21 +175,24 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Double {
-            action.standardKeyboardButtonBackgroundOpacity(for: keyboardContext, isPressed: isPressed)
+            action.standardButtonBackgroundColorOpacity(
+                for: keyboardContext,
+                isPressed: isPressed
+            )
         }
 
         /// The border style to use for a certain action.
         open func buttonBorderStyle(
             for action: KeyboardAction
         ) -> Keyboard.ButtonBorderStyle {
-            Keyboard.ButtonBorderStyle.standard(for: keyboardContext, action: action)
+            action.standardButtonBorderStyle(for: keyboardContext)
         }
 
         /// The corner radius to use for a certain action.
         open func buttonCornerRadius(
             for action: KeyboardAction
         ) -> Double {
-            Keyboard.ButtonStyle.standardCornerRadius(for: keyboardContext, action: action)
+            action.standardButtonCornerRadius(for: keyboardContext)
         }
 
         /// The font to use for a certain action.
@@ -197,28 +206,28 @@ extension KeyboardStyle {
         open func buttonFontSize(
             for action: KeyboardAction
         ) -> CGFloat {
-            KeyboardFont.standardSize(for: keyboardContext, action: action)
+            action.standardButtonFontSize(for: keyboardContext)
         }
 
         /// The font size to override for a certain action.
         func buttonFontSizeActionOverride(
             for action: KeyboardAction
         ) -> CGFloat? {
-            KeyboardFont.standardSize(for: action)
+            nil
         }
 
         /// The font size to use for a certain keyboard type.
         open func buttonFontSize(
             for type: Keyboard.KeyboardType
         ) -> CGFloat {
-            KeyboardFont.standardSize(for: type)
+            type.standardButtonFontSize
         }
 
         /// The font weight to use for a certain action.
         open func buttonFontWeight(
             for action: KeyboardAction
         ) -> KeyboardFont.FontWeight? {
-            KeyboardFont.standardWeight(for: keyboardContext, action: action)
+            action.standardButtonFontWeight(for: keyboardContext)
         }
 
         /// The foreground color to use for a certain action.
@@ -226,14 +235,17 @@ extension KeyboardStyle {
             for action: KeyboardAction,
             isPressed: Bool
         ) -> Color {
-            action.standardKeyboardButtonForeground(for: keyboardContext, isPressed: isPressed)
+            action.standardButtonForegroundColor(
+                for: keyboardContext,
+                isPressed: isPressed
+            )
         }
 
         /// The keyboard font to use for a certain action.
         open func buttonKeyboardFont(
             for action: KeyboardAction
         ) -> KeyboardFont {
-            let font = KeyboardFont.standard(for: keyboardContext, action: action)
+            let font = action.standardButtonFont(for: keyboardContext)
             guard let weight = buttonFontWeight(for: action) else { return font }
             return font.weight(weight)
         }
@@ -242,7 +254,7 @@ extension KeyboardStyle {
         open func buttonShadowStyle(
             for action: KeyboardAction
         ) -> Keyboard.ButtonShadowStyle {
-            .standard(for: keyboardContext, action: action)
+            action.standardButtonShadowStyle(for: keyboardContext)
         }
     }
 }
