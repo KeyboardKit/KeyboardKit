@@ -233,7 +233,14 @@ extension KeyboardAction {
             keyboardContext.insertAutocompleteSuggestion(suggestion)
             handle(.release, on: .character(""))
         }
-        
+
+        /// Handle a certain keyboard action from a callout.
+        open func handleCalloutAction(
+            _ action: KeyboardAction
+        ) {
+            handle(action)
+        }
+
         /// Handle a certain keyboard action drag gesture.
         open func handleDrag(
             on action: KeyboardAction,

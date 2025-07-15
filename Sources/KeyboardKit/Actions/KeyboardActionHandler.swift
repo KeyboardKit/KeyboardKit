@@ -44,7 +44,12 @@ public protocol KeyboardActionHandler: AnyObject, KeyboardFeedbackService {
     func handle(
         _ suggestion: Autocomplete.Suggestion
     )
-    
+
+    /// Handle a certain keyboard action from a callout.
+    func handleCalloutAction(
+        _ action: KeyboardAction
+    )
+
     /// Handle a certain keyboard action drag gesture.
     func handleDrag(
         on action: KeyboardAction,

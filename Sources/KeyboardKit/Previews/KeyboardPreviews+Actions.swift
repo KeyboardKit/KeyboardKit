@@ -16,18 +16,22 @@ public extension KeyboardActionHandler where Self == KeyboardPreviews.ActionHand
 }
 
 public extension KeyboardPreviews {
- 
+
     class ActionHandler: KeyboardActionHandler {
-        
+
         public init() {}
-        
-        public func canHandle(_ gesture: Keyboard.Gesture, on action: KeyboardAction) -> Bool { false }
-        public func handle(_ action: KeyboardAction) {}
-        public func handle(_ suggestion: Autocomplete.Suggestion) {}
-        public func handle(_ gesture: Keyboard.Gesture, on action: KeyboardAction) {}
-        public func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}
-        public func triggerFeedback(for gesture: Keyboard.Gesture, on action: KeyboardAction) {}
-        public func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio) {}
-        public func triggerHapticFeedback(_ feedback: KeyboardFeedback.Haptic) {}
     }
+}
+
+public extension KeyboardPreviews.ActionHandler {
+
+    func canHandle(_ gesture: Keyboard.Gesture, on action: KeyboardAction) -> Bool { false }
+    func handle(_ action: KeyboardAction) {}
+    func handle(_ suggestion: Autocomplete.Suggestion) {}
+    func handle(_ gesture: Keyboard.Gesture, on action: KeyboardAction) {}
+    func handleCalloutAction(_ action: KeyboardAction) {}
+    func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}
+    func triggerFeedback(for gesture: Keyboard.Gesture, on action: KeyboardAction) {}
+    func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio) {}
+    func triggerHapticFeedback(_ feedback: KeyboardFeedback.Haptic) {}
 }

@@ -19,12 +19,18 @@ After developer feedback, this version reverts some previos deprecations and mov
 
 The idea with the initial refactoring was to attach the standard value builders to each value type, to make them easier to find. But since each builder is related to a `KeyboardAction`, it makes more sense to convert them back to action extensions, since this groups them all together.
 
+### ✨ Features
+
+* `KeyboardActionHandler` has new `handleCalloutAction(_:)` function.
+
+
 ### 💡 Adjustments
 
 * `Autocomplete.ToolbarItem` will automatically wrap itself in a scroll view if needed.
 
 ### 🐛 Bug Fixes
 
+* KeyboardKit Pro adds missing localizations for Bengali.
 * `KeyboardAction.shift` now renders correctly for caps lock.
 
 ### 🗑️ Deprecations
