@@ -25,7 +25,7 @@ import SwiftUI
 /// let your users pay for their own data. KeyboardKit Pro's
 /// ``KeyboardApp/SettingsScreen`` has visibility toggles to
 /// show and hide a next word prediction section.
-public struct AutocompleteSettings {
+public struct AutocompleteSettings: Sendable {
 
     /// Create a custom settings instance.
     public init() {}

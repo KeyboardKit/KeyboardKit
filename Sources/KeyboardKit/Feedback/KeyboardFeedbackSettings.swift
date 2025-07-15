@@ -13,7 +13,7 @@ import SwiftUI
 ///
 /// All properties for this type are automatically stored in
 /// ``KeyboardSettings/store`` with a `feedback` prefix.
-public struct KeyboardFeedbackSettings {
+public struct KeyboardFeedbackSettings: Sendable {
 
     /// Create a custom settings instance.
     public init() {}

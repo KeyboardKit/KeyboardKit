@@ -339,7 +339,7 @@ extension KeyboardAction {
             switch action {
             case .emoji(let emoji):
                 EmojiCategory.Persisted.recent.addEmoji(emoji)
-                emojiContext.registerEmojiSkinTone(for: emoji)
+                emojiContext.settings.registerPreferredSkinTone(for: emoji)
             default: return
             }
         }

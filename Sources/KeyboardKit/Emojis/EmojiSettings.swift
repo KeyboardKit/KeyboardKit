@@ -13,7 +13,7 @@ import SwiftUI
 ///
 /// All properties for this type are automatically stored in
 /// ``KeyboardSettings/store`` with an `emojis` prefix.
-public struct EmojiSettings {
+public struct EmojiSettings: Sendable {
 
     /// Create a custom settings instance.
     public init() {}
@@ -24,6 +24,46 @@ public struct EmojiSettings {
     }
     
     /// This value is used to keep track of used skin tones.
-    @AppStorage("\(settingsPrefix)skinToneHistory", store: .keyboardSettings)
-    var skintoneHistory = [Emoji: Emoji]()
+    @AppStorage("\(settingsPrefix)preferredSkinTones", store: .keyboardSettings)
+    public var preferredSkinTones = [Emoji: Emoji]()
+}
+
+public extension EmojiSettings {
+
+    /// Get the preferred skin tone for a certain emoji.
+    ///
+    /// Note that ``registerPreferredSkinTone(for:)`` stores
+    /// values, with ``Emoji/neutralSkinToneVariant`` as the
+    /// dictionary key.
+    func preferredSkinTone(for emoji: Emoji) -> Emoji {
+        guard emoji.hasSkinToneVariants else { return emoji }
+        return preferredSkinTones[emoji] ?? emoji
+    }
+
+    /// Register the preferred skin tone for an emoji.
+    func registerPreferredSkinTone(for emoji: Emoji) {
+        preferredSkinTones[emoji.dictionaryKey] = emoji
+    }
+
+    /// Register a preferred skin tone for all emojis.
+    func registerPreferredSkinToneForAllEmojis(using emoji: Emoji) {
+        guard emoji.hasSkinToneVariants else { return }
+        let tones = emoji.skinToneVariants.map { $0.char }
+        let index = tones.firstIndex(where: { $0 == emoji.char }) ?? 0
+        let emojis = Emoji.all.filter { $0.hasSkinToneVariants }
+        emojis.forEach { emoji in
+            registerPreferredSkinTone(for: emoji.skinToneVariants[index])
+        }
+        preferredSkinTones[emoji.dictionaryKey] = nil
+    }
+
+    /// Rest the preferred skin tone for an emoji.
+    func resetPreferredSkinTone(for emoji: Emoji) {
+        preferredSkinTones[emoji.dictionaryKey] = nil
+    }
+}
+
+private extension Emoji {
+
+    var dictionaryKey: Emoji { neutralSkinToneVariant }
 }

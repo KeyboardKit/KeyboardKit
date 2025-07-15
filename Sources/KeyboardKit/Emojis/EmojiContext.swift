@@ -29,21 +29,3 @@ public class EmojiContext: ObservableObject {
     /// Auto-persisted emoji settings.
     @Published public var settings: EmojiSettings
 }
-
-public extension EmojiContext {
-
-    /// Call this to register an explicitly tapped skin tone.
-    func registerEmojiSkinTone(for emoji: Emoji) {
-        let neutral = emoji.neutralSkinToneVariant
-        settings.skintoneHistory[neutral] = emoji
-    }
-
-    /// Get the preferred skin tone for a certain emoji.
-    ///
-    /// This will return the last selected skin tone, if any,
-    /// else the emoji itself.
-    func preferredSkinTone(for emoji: Emoji) -> Emoji {
-        let neutral = emoji.neutralSkinToneVariant
-        return settings.skintoneHistory[neutral] ?? emoji
-    }
-}

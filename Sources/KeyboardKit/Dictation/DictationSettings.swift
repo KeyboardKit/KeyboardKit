@@ -13,7 +13,7 @@ import SwiftUI
 ///
 /// All properties for this type are automatically stored in
 /// ``KeyboardSettings/store`` with a `dictation` prefix.
-public struct DictationSettings {
+public struct DictationSettings: Sendable {
 
     /// Create a custom settings instance.
     public init() {}

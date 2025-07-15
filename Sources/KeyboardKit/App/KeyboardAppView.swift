@@ -11,8 +11,7 @@ import SwiftUI
 /// This view can be used as the root view of a keyboard app,
 /// to set up KeyboardKit for a certain ``KeyboardApp``.
 ///
-/// To use this view, just create a ``KeyboardApp`` for your
-/// app and use it to setup this view as the app's root view:
+/// To use the view, just add it around your app's root view:
 ///
 /// ```swift
 /// @main
@@ -28,27 +27,8 @@ import SwiftUI
 /// }
 /// ```
 ///
-/// This sets up the ``KeyboardSettings/store`` to sync data
-/// between the app and its keyboard, provided that your app
-/// defines an ``KeyboardApp/appGroupId``. It also creates a
-/// dedicated ``Keyboard/State`` for the app and injects the
-/// state into the main view hierarchy, after which your app
-/// can access any state like this:
-///
-/// ```swift
-/// struct MyView: View {
-///
-///     @EnvironmentObject
-///     var keyboardContext: KeyboardContext
-///
-///     var body: View {
-///         ...
-///     }
-/// }
-/// ```
-///
-/// You can then change any state from any view to customize
-/// the app to fit your needs.
+/// This will set up your app, register your Pro license (if
+/// needed), inject keyboard state into the environment, etc.
 public struct KeyboardAppView<Content: View>: View {
 
     /// Create a KeyboardKit app wrapper, that injects state
@@ -69,6 +49,7 @@ public struct KeyboardAppView<Content: View>: View {
         self._autocompleteContext = .init(wrappedValue: state.autocompleteContext)
         self._calloutContext = .init(wrappedValue: state.calloutContext)
         self._dictationContext = .init(wrappedValue: state.dictationContext)
+        self._emojiContext = .init(wrappedValue: state.emojiContext)
         self._externalContext = .init(wrappedValue: state.externalKeyboardContext)
         self._feedbackContext = .init(wrappedValue: state.feedbackContext)
         self._keyboardContext = .init(wrappedValue: state.keyboardContext)
@@ -84,6 +65,7 @@ public struct KeyboardAppView<Content: View>: View {
     @StateObject var autocompleteContext: AutocompleteContext
     @StateObject var calloutContext: KeyboardCalloutContext
     @StateObject var dictationContext: DictationContext
+    @StateObject var emojiContext: EmojiContext
     @StateObject var externalContext: ExternalKeyboardContext
     @StateObject var feedbackContext: KeyboardFeedbackContext
     @StateObject var keyboardContext: KeyboardContext
@@ -98,6 +80,7 @@ public struct KeyboardAppView<Content: View>: View {
         .environmentObject(autocompleteContext)
         .environmentObject(calloutContext)
         .environmentObject(dictationContext)
+        .environmentObject(emojiContext)
         .environmentObject(externalContext)
         .environmentObject(feedbackContext)
         .environmentObject(keyboardContext)
