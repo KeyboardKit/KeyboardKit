@@ -18,6 +18,19 @@ KeyboardKit has an ``Emoji`` struct that represents an plain emoji value, and de
 > Important: The ``EmojiKeyboard`` uses high-resolution emojis on iPad, which consumes a lot of memory when scrolling through categories. Apply an ``Emoji/KeyboardStyle/optimized(for:)`` style with ``SwiftUICore/View/emojiKeyboardStyle(_:)`` if your keyboard uses memory-intense tools. Check out the <doc:Developer-Memory-Management> article for more information about memory management in keyboard extensions.
 
 
+## Namespace
+
+KeyboardKit has an ``Emoji`` namespace with emoji-related types.
+
+
+
+## Context & Settings
+
+KeyboardKit has an ``EmojiContext`` that provides observable emoji state, and auto-persisted ``EmojiContext/settings`` that can be used for emoji-related settings.
+
+KeyboardKit automatically creates an instance of this class, injects it into ``KeyboardInputViewController/state`` and updates it whenever autocomplete is performed.
+
+
 
 ## Emojis
 

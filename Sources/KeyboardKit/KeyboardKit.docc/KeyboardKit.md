@@ -210,7 +210,9 @@ KeyboardKit is available under the MIT license.
 
 - ``Emoji``
 - ``EmojiCategory``
+- ``EmojiContext``
 - ``EmojiKeyboard``
+- ``EmojiSettings``
 - ``EmojiVersion``
 
 ### External

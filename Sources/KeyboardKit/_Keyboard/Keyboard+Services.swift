@@ -43,6 +43,7 @@ public extension Keyboard {
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: state.autocompleteContext,
             autocompleteService: autocompleteService,
+            emojiContext: state.emojiContext,
             feedbackContext: state.feedbackContext,
             feedbackService: feedbackService,
             spaceDragGestureHandler: spaceDragGestureHandler

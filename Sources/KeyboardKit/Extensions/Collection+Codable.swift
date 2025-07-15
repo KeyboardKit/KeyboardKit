@@ -1,5 +1,5 @@
 //
-//  Collections+Storage.swift
+//  Collection+Codable.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2025-02-06.
@@ -8,6 +8,13 @@
 
 import SwiftUI
 
+/// This extension makes `Dictionary` able to store `Codable`
+/// types, by serializing the collection to JSON.
+///
+/// > Important: JSON encoding may cause important type data
+/// to disappear. For instance, JSON encoding a `Color` will
+/// not include any information about alternate color values
+/// for light and dark mode, high constrasts, etc.
 extension Dictionary: @retroactive RawRepresentable where Key: Codable, Value: Codable {
     
     public init?(rawValue: String) {
@@ -27,6 +34,13 @@ extension Dictionary: @retroactive RawRepresentable where Key: Codable, Value: C
     }
 }
 
+/// This extension makes `Array` able to store Codable types,
+/// by serializing the collection to JSON.
+///
+/// > Important: JSON encoding may cause important type data
+/// to disappear. For instance, JSON encoding a `Color` will
+/// not include any information about alternate color values
+/// for light and dark mode, high constrasts, etc.
 extension Array: @retroactive RawRepresentable where Element: Codable {
     
     public init?(rawValue: String) {

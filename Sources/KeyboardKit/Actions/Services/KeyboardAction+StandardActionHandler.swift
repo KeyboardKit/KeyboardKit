@@ -29,19 +29,21 @@ public extension KeyboardActionHandler where Self == KeyboardAction.StandardActi
     ///
     /// - Parameters:
     ///   - controller: The keyboard controller to use, if any.
-    ///   - keyboardContext: A custom keyboard context.
-    ///   - keyboardBehavior: A custom keyboard behavior.
-    ///   - autocompleteContext: A custom autocomplete context.
-    ///   - autocompleteService: A custom autocomplete service.
-    ///   - feedbackContext: A custom feedback context.
-    ///   - feedbackService: A custom feedback service.
-    ///   - spaceDragGestureHandler: A custom space gesture handler.
+    ///   - keyboardContext: The keyboard context to use.
+    ///   - keyboardBehavior: The keyboard behavior to use.
+    ///   - autocompleteContext: The autocomplete context to use.
+    ///   - autocompleteService: The autocomplete service to use.
+    ///   - emojiContext: The emoji context to use.
+    ///   - feedbackContext: The feedback context to use.
+    ///   - feedbackService: The feedback service to use.
+    ///   - spaceDragGestureHandler: The space gesture handler to use.
     static func standard(
         for controller: KeyboardController?,
         keyboardContext: KeyboardContext,
         keyboardBehavior: KeyboardBehavior,
         autocompleteContext: AutocompleteContext,
         autocompleteService: AutocompleteService,
+        emojiContext: EmojiContext,
         feedbackContext: KeyboardFeedbackContext,
         feedbackService: KeyboardFeedbackService,
         spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
@@ -52,6 +54,7 @@ public extension KeyboardActionHandler where Self == KeyboardAction.StandardActi
             keyboardBehavior: keyboardBehavior,
             autocompleteContext: autocompleteContext,
             autocompleteService: autocompleteService,
+            emojiContext: emojiContext,
             feedbackContext: feedbackContext,
             feedbackService: feedbackService,
             spaceDragGestureHandler: spaceDragGestureHandler
@@ -97,6 +100,7 @@ extension KeyboardAction {
                 keyboardBehavior: controller.services.keyboardBehavior,
                 autocompleteContext: controller.state.autocompleteContext,
                 autocompleteService: controller.services.autocompleteService,
+                emojiContext: controller.state.emojiContext,
                 feedbackContext: controller.state.feedbackContext,
                 feedbackService: controller.services.feedbackService,
                 spaceDragGestureHandler: controller.services.spaceDragGestureHandler
@@ -111,19 +115,21 @@ extension KeyboardAction {
         ///
         /// - Parameters:
         ///   - controller: The keyboard controller to use, if any.
-        ///   - keyboardContext: A custom keyboard context.
-        ///   - keyboardBehavior: A custom keyboard behavior.
-        ///   - autocompleteContext: A custom autocomplete context.
-        ///   - autocompleteService: A custom autocomplete service.
-        ///   - feedbackContext: A custom feedback context.
-        ///   - feedbackService: A custom feedback service.
-        ///   - spaceDragGestureHandler: A custom space gesture handler.
+        ///   - keyboardContext: The keyboard context to use.
+        ///   - keyboardBehavior: The keyboard behavior to use.
+        ///   - autocompleteContext: The autocomplete context to use.
+        ///   - autocompleteService: The autocomplete service to use.
+        ///   - emojiContext: The emoji context to use.
+        ///   - feedbackContext: The feedback context to use.
+        ///   - feedbackService: The feedback service to use.
+        ///   - spaceDragGestureHandler: The space gesture handler to use.
         public init(
             controller: KeyboardController?,
             keyboardContext: KeyboardContext,
             keyboardBehavior: KeyboardBehavior,
             autocompleteContext: AutocompleteContext,
             autocompleteService: AutocompleteService,
+            emojiContext: EmojiContext,
             feedbackContext: KeyboardFeedbackContext,
             feedbackService: KeyboardFeedbackService,
             spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
@@ -134,6 +140,7 @@ extension KeyboardAction {
             self.behavior = keyboardBehavior
             self.autocompleteContext = autocompleteContext
             self.autocompleteService = autocompleteService
+            self.emojiContext = emojiContext
             self.feedbackContext = feedbackContext
             self.feedbackService = feedbackService
             self.spaceDragGestureHandler = spaceDragGestureHandler
@@ -155,14 +162,17 @@ extension KeyboardAction {
         /// The keyboard behavior to use.
         public var behavior: KeyboardBehavior
         
-        /// The keyboard context to use.
-        public var keyboardContext: KeyboardContext
-        
+        /// The emoji context to use.
+        public var emojiContext: EmojiContext
+
         /// The feedback context to use.
         public var feedbackContext: KeyboardFeedbackContext
 
         /// The feedback service to use.
         public var feedbackService: KeyboardFeedbackService
+
+        /// The keyboard context to use.
+        public var keyboardContext: KeyboardContext
 
         /// The space drag gesture handler to use.
         public var spaceDragGestureHandler: Gestures.SpaceDragGestureHandler
@@ -232,13 +242,6 @@ extension KeyboardAction {
             tryAutolearnSuggestion(suggestion)
             keyboardContext.insertAutocompleteSuggestion(suggestion)
             handle(.release, on: .character(""))
-        }
-
-        /// Handle a certain keyboard action from a callout.
-        open func handleCalloutAction(
-            _ action: KeyboardAction
-        ) {
-            handle(action)
         }
 
         /// Handle a certain keyboard action drag gesture.
@@ -334,7 +337,9 @@ extension KeyboardAction {
         ) {
             guard shouldRegisterEmoji(after: gesture, on: action) else { return }
             switch action {
-            case .emoji(let emoji): EmojiCategory.Persisted.recent.addEmoji(emoji)
+            case .emoji(let emoji):
+                EmojiCategory.Persisted.recent.addEmoji(emoji)
+                emojiContext.registerEmojiSkinTone(for: emoji)
             default: return
             }
         }

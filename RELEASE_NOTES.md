@@ -21,8 +21,8 @@ The idea with the initial refactoring was to attach the standard value builders 
 
 ### ✨ Features
 
-* `KeyboardActionHandler` has new `handleCalloutAction(_:)` function.
-
+* `EmojiContext` and `EmojiSettings` are two new state types.
+* `KeyboardAction.StandardActionHandler` registers the skin tone for selected emojis.
 
 ### 💡 Adjustments
 

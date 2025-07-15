@@ -29,7 +29,6 @@ public extension KeyboardPreviews.ActionHandler {
     func handle(_ action: KeyboardAction) {}
     func handle(_ suggestion: Autocomplete.Suggestion) {}
     func handle(_ gesture: Keyboard.Gesture, on action: KeyboardAction) {}
-    func handleCalloutAction(_ action: KeyboardAction) {}
     func handleDrag(on action: KeyboardAction, from startLocation: CGPoint, to currentLocation: CGPoint) {}
     func triggerFeedback(for gesture: Keyboard.Gesture, on action: KeyboardAction) {}
     func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio) {}
