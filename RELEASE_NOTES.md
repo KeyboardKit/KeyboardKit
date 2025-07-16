@@ -1,6 +1,6 @@
 # Release notes
 
-KeyboardKit honors semantic versioning, with the following strategy:
+[KeyboardKit](https://github.com/KeyboardKit/KeyboardKit) honors semantic versioning, with the following strategy:
 
 * Deprecations can happen at any time.
 * Deprecations are removed in `major` updates.
@@ -17,7 +17,7 @@ These release notes cover the current major version. See older versions for olde
 
 ### ✨ Features
 
-* `EmojiSettings` exposes more skin tone functions and improves performance.
+* `EmojiContext` exposes more skin tone functions and improves performance.
 
 ### 💡 Adjustments
 
