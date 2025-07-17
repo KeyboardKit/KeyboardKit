@@ -10,15 +10,10 @@ import SwiftUI
 
 extension KeyboardCallout {
 
-    /// This is a base class for keyboard callout services.
+    /// > Warning: The callout service concept is deprecated
+    /// and will be removed in KeyboardKit 10.
     ///
-    /// This class only provides alphabetic, English callout
-    /// actions. For localized, as well as symbolic, numeric
-    /// and emoji-based callout actions, you must either use
-    /// KeyboardKit Pro or create your own services.
-    ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
+    /// This is a base class for any kind of callout service.
     open class BaseCalloutService: KeyboardCalloutService {
 
         /// Create a base callout service.

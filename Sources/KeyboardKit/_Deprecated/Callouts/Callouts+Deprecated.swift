@@ -2,7 +2,7 @@ import SwiftUI
 
 public extension KeyboardCalloutContext {
 
-    @available(*, deprecated, message: "Use the function with an actions parameter instead.")
+    @available(*, deprecated, renamed: "updateSecondaryActions(_:for:in:alignment:)")
     func updateSecondaryActions(
         for action: KeyboardAction,
         in geo: GeometryProxy,

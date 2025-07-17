@@ -13,6 +13,21 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 9.8
+
+With the new view modifier-based callout and style customizations working well, the service models have been soft deprecated in this version.
+
+Soft deprecations mean that the services WILL be removed in the next major version, but they will not be annotated with a deprecation attribute since they are still used.
+
+Instead, soft deprecations are made with code comments, so that the documentation mentions the deprecation and how handle it, without causing a massive amount of warnings. 
+
+### 🗑️ Deprecations
+
+* `Color+Standard` has been deprecated and now use `KeyboardAction` extensions.
+* `KeyboardCalloutService` and all service implementations have been deprecated.
+
+
+
 ## 9.7.2
 
 ### ✨ Features
@@ -26,7 +41,7 @@ These release notes cover the current major version. See older versions for olde
 
 
 
-## 9.7.0
+## 9.7
 
 After developer feedback, this version reverts some previos deprecations and moves standard values back to the `KeyboardAction` type.
 

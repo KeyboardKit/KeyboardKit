@@ -8,16 +8,11 @@
 
 import Foundation
 
+/// > Warning: The callout service concept is deprecated and
+/// will be removed in KeyboardKit 10.
+///
 /// This protocol can be implemented by any type that can be
 /// used to perform keyboard-related callout actions.
-///
-/// KeyboardKit will automatically setup a standard protocol
-/// implementation in ``KeyboardInputViewController/services``
-/// when the keyboard is launched. You can change or replace
-/// it at any time to customize the callout behavior.
-///
-/// KeyboardKit Pro can be used to unlock localized services
-/// for all ``Foundation/Locale/keyboardKitSupported``.
 public protocol KeyboardCalloutService: AnyObject {
 
     /// Get callout actions for the provided keyboard action.

@@ -34,21 +34,11 @@ public extension KeyboardCalloutService where Self == KeyboardCallout.StandardCa
 
 extension KeyboardCallout {
 
+    /// > Warning: The callout service concept is deprecated
+    /// and will be removed in KeyboardKit 10.
+    ///
     /// This service class provides a standard way to handle
     /// keyboard callouts.
-    ///
-    /// You can register ``localizedServices`` that are then
-    /// used instead of ``baseService`` for their locales.
-    ///
-    /// KeyboardKit automatically creates an instance of the
-    /// class when the keyboard is launched, then injects it
-    /// into ``KeyboardInputViewController/services``.
-    ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
-    ///
-    /// This service can also be resolved with the shorthand
-    /// ``KeyboardCalloutService/standard(keyboardContext:baseService:localizedServices:feedbackService:)``.
     open class StandardCalloutService: KeyboardCalloutService {
 
         /// Create a standard callout service.
