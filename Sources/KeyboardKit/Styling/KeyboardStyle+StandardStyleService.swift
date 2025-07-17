@@ -148,7 +148,7 @@ extension KeyboardStyle {
         // MARK: - Callouts
 
         /// The style to override the standard callout style with, if any.
-        open var calloutStyle: KeyboardCallout.CalloutStyle? { nil }
+        open var calloutStyle: Callouts.CalloutStyle? { nil }
 
 
         // MARK: - Autocomplete

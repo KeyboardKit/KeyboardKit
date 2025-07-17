@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+StandardCalloutService.swift
+//  Callouts+StandardCalloutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension KeyboardCalloutService where Self == KeyboardCallout.StandardCalloutService {
+public extension KeyboardCalloutService where Self == Callouts.StandardCalloutService {
 
     /// Create a ``KeyboardCallout/StandardCalloutService`` instance.
     ///
@@ -19,11 +19,11 @@ public extension KeyboardCalloutService where Self == KeyboardCallout.StandardCa
     ///   - feedbackService: The feedback service to use.
     static func standard(
         keyboardContext: KeyboardContext,
-        baseService: KeyboardCalloutService = KeyboardCallout.BaseCalloutService(),
+        baseService: KeyboardCalloutService = Callouts.BaseCalloutService(),
         localizedServices: [Self.LocalizedCalloutService] = [],
         feedbackService: KeyboardFeedbackService? = nil
     ) -> Self {
-        KeyboardCallout.StandardCalloutService(
+        Callouts.StandardCalloutService(
             keyboardContext: keyboardContext,
             baseService: baseService,
             localizedServices: localizedServices,
@@ -50,7 +50,7 @@ extension KeyboardCallout {
         ///   - feedbackService: The feedback service to use.
         public init(
             keyboardContext: KeyboardContext,
-            baseService: KeyboardCalloutService = KeyboardCallout.BaseCalloutService(),
+            baseService: KeyboardCalloutService = Callouts.BaseCalloutService(),
             localizedServices: [LocalizedCalloutService] = [],
             feedbackService: KeyboardFeedbackService? = nil
         ) {

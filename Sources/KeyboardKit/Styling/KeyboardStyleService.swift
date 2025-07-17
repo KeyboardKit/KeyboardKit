@@ -65,7 +65,7 @@ public protocol KeyboardStyleService: AnyObject {
     // MARK: - Callouts
 
     /// The callout style to override the standard style with, if any.
-    var calloutStyle: KeyboardCallout.CalloutStyle? { get }
+    var calloutStyle: Callouts.CalloutStyle? { get }
 }
 
 public extension KeyboardStyleService {

@@ -16,3 +16,6 @@ public extension KeyboardCalloutContext {
         )
     }
 }
+
+@available(*, deprecated, renamed: "Callouts")
+public typealias KeyboardCallout = Callouts

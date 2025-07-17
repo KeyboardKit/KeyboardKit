@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+CalloutStyles.swift
+//  Callouts+CalloutStyles.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-07.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardCallout {
+public extension Callouts {
 
     /// This style can be used to modify the visual style of
     /// the various ``KeyboardCallout`` components.
@@ -139,7 +139,7 @@ public extension KeyboardCallout {
     }
 }
 
-public extension KeyboardCallout.CalloutStyle {
+public extension Callouts.CalloutStyle {
 
     /// The corner radius to use for the provided context.
     func buttonCornerRadius(
@@ -158,7 +158,7 @@ public extension KeyboardCallout.CalloutStyle {
     }
 }
 
-public extension KeyboardCallout.CalloutStyle {
+public extension Callouts.CalloutStyle {
 
     /// A standard callout style.
     static var standard: Self { .init() }
@@ -167,15 +167,14 @@ public extension KeyboardCallout.CalloutStyle {
 public extension EnvironmentValues {
 
     /// Apply a ``KeyboardCallout/CalloutStyle``.
-    @Entry var keyboardCalloutStyle = KeyboardCallout
-        .CalloutStyle.standard
+    @Entry var keyboardCalloutStyle = Callouts.CalloutStyle.standard
 }
 
 public extension View {
 
     /// Apply a ``KeyboardCallout/CalloutStyle``.
     func keyboardCalloutStyle(
-        _ style: KeyboardCallout.CalloutStyle
+        _ style: Callouts.CalloutStyle
     ) -> some View {
         self.environment(\.keyboardCalloutStyle, style)
     }

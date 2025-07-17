@@ -10,7 +10,6 @@ import Foundation
 
 /// This namespace contains gesture-related types.
 ///
-/// This namespace doesn't contain any protocols, context or
-/// settings, nor any other significant types that are meant
-/// to be top-level types.
+/// The namespace doesn't contain any protocols or any other
+/// types that are meant to be top-level types.
 public struct Gestures {}

@@ -1,5 +1,5 @@
 //
-//  Dictation.swift
+//  Callouts.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-09-20.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-/// This namespace contains dictation-related types.
+/// This namespace contains callout-related types.
 ///
 /// The namespace doesn't contain any protocols or any other
 /// types that are meant to be top-level types.
-public struct Dictation {}
+public struct Callouts {}

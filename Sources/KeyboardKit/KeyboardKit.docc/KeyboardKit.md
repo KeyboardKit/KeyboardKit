@@ -189,9 +189,8 @@ KeyboardKit is available under the MIT license.
 
 ### Callouts
 
-- ``KeyboardCallout``
+- ``Callouts``
 - ``KeyboardCalloutContext``
-- ``KeyboardCalloutService``
 
 ### Device
 

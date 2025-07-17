@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+ActionCallout.swift
+//  Callouts+ActionCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardCallout {
+public extension Callouts {
 
     /// This callout can show secondary callout actions when
     /// long pressing input keys with secondary actions.
@@ -53,7 +53,7 @@ public extension KeyboardCallout {
     }
 }
 
-private extension KeyboardCallout.ActionCallout {
+private extension Callouts.ActionCallout {
 
     var calloutBubble: some View {
         HStack(spacing: 0) {
@@ -108,7 +108,7 @@ private extension KeyboardCallout.ActionCallout {
     }
 }
 
-private extension KeyboardCallout.ActionCallout {
+private extension Callouts.ActionCallout {
 
     var actions: [KeyboardAction] {
         calloutContext.secondaryActions
@@ -135,7 +135,7 @@ private extension KeyboardCallout.ActionCallout {
     }
 }
 
-private extension KeyboardCallout.ActionCallout {
+private extension Callouts.ActionCallout {
 
     var alignment: HorizontalAlignment {
         calloutContext.secondaryActionsAlignment
@@ -212,13 +212,13 @@ private extension KeyboardAction {
         let action: KeyboardAction
         let alignment: HorizontalAlignment
 
-        let startActions = KeyboardCallout.Actions.base
+        let startActions = Callouts.Actions.base
 
         @Environment(\.keyboardCalloutActions) var envActions
         @EnvironmentObject var keyboardContext: KeyboardContext
 
         func showActions(
-            _ actions: KeyboardCallout.Actions?,
+            _ actions: Callouts.Actions?,
             in geo: GeometryProxy
         ) {
             showActions(actions?.actions(for: action), in: geo)

@@ -15,7 +15,6 @@ import Foundation
 /// enabled. You can use the keyboard status views to link a
 /// user to system settings, where both can be enabled.
 ///
-/// This namespace doesn't contain any protocols, context or
-/// settings, nor any other significant types that are meant
-/// to be top-level types.
+/// The namespace doesn't contain any protocols or any other
+/// types that are meant to be top-level types.
 public struct KeyboardStatus {}

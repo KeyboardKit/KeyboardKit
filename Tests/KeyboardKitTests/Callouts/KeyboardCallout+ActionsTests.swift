@@ -12,7 +12,7 @@ import Testing
 class KeyboardCallouts_ActionsTests {
 
     @Test func testCalloutActionsCanBeCreatedWithCharacters() {
-        var actions = KeyboardCallout.Actions(characters: [
+        var actions = Callouts.Actions(characters: [
             "a": "bc",
             "d": "ef"
         ])
@@ -26,7 +26,7 @@ class KeyboardCallouts_ActionsTests {
     }
 
     @Test func testCalloutActionsCanMatchWithCaseInsensitivity() {
-        var actions = KeyboardCallout.Actions(characters: [
+        var actions = Callouts.Actions(characters: [
             "a": "bc",
             "d": "ef"
         ])

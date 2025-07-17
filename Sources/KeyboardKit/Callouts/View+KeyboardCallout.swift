@@ -1,5 +1,5 @@
 //
-//  View+KeyboardCallout.swift
+//  View+Callouts.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -33,7 +33,7 @@ public extension View {
 extension View {
 
     func keyboardCalloutShadow(
-        style: KeyboardCallout.CalloutStyle = .standard
+        style: Callouts.CalloutStyle = .standard
     ) -> some View {
         self.shadow(color: style.borderColor, radius: 0.4)
             .shadow(color: style.shadowColor, radius: style.shadowRadius)
@@ -44,7 +44,7 @@ extension View {
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(
-            KeyboardCallout.ActionCallout(
+            Callouts.ActionCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
             )
@@ -58,7 +58,7 @@ extension View {
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(
-            KeyboardCallout.InputCallout(
+            Callouts.InputCallout(
                 calloutContext: calloutContext,
                 keyboardContext: keyboardContext
             )

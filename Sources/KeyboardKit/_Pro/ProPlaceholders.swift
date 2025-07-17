@@ -198,13 +198,13 @@ public extension KeyboardApp {
 
 // MARK: - Callouts
 
-public extension KeyboardCallout {
+public extension Callouts {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class ProCalloutService: KeyboardCallout.BaseCalloutService {}
+    class ProCalloutService: Callouts.BaseCalloutService {}
 }
 
-public extension KeyboardCallout.Actions {
+public extension Callouts.Actions {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     ///
@@ -215,11 +215,11 @@ public extension KeyboardCallout.Actions {
         for action: KeyboardAction,
         context: KeyboardContext
     ) -> [KeyboardAction]? {
-        KeyboardCallout.Actions.english.actions(for: action)
+        Callouts.Actions.english.actions(for: action)
     }
 }
 
-public extension KeyboardCallout.ActionsBuilderParams {
+public extension Callouts.ActionsBuilderParams {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     ///
@@ -229,21 +229,21 @@ public extension KeyboardCallout.ActionsBuilderParams {
     func standardActions(
         for context: KeyboardContext
     ) -> [KeyboardAction]? {
-        KeyboardCallout.Actions.standard(for: action, context: context)
+        Callouts.Actions.standard(for: action, context: context)
     }
 }
 
-public extension KeyboardCallout.ProCalloutService {
+public extension Callouts.ProCalloutService {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    class Swedish: KeyboardCallout.ProCalloutService {}
+    class Swedish: Callouts.ProCalloutService {}
 }
 
-public extension KeyboardCalloutService where Self == KeyboardCallout.ProCalloutService {
+public extension KeyboardCalloutService where Self == Callouts.ProCalloutService {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func localized(
-        _ service: @autoclosure () throws -> KeyboardCallout.ProCalloutService
+        _ service: @autoclosure () throws -> Callouts.ProCalloutService
     ) throws -> Self {
         throw ProPlaceholderError.proPlaceholder
     }

@@ -369,7 +369,7 @@ private extension Keyboard.ButtonGestures {
     ) {
         guard let context = calloutContext else { return }
         guard let action else { return resetCalloutActions() }
-        let params = KeyboardCallout.ActionsBuilderParams(action: action)
+        let params = Callouts.ActionsBuilderParams(action: action)
         let actions = keyboardCalloutActions(params)
         context.updateSecondaryActions(actions, for: action, in: geo)
     }

@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+ActionCalloutButtonArea.swift
+//  Callouts+ActionCalloutButtonArea.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-10.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardCallout.ActionCallout {
+public extension Callouts.ActionCallout {
 
     /// This view is used to cover the part of a button that
     /// was tapped or pressed to trigger the callout.
@@ -46,7 +46,7 @@ public extension KeyboardCallout.ActionCallout {
     }
 }
 
-private extension KeyboardCallout.ActionCallout.ButtonArea {
+private extension Callouts.ActionCallout.ButtonArea {
 
     var backgroundColor: Color {
         style.backgroundColor
@@ -75,7 +75,7 @@ private extension KeyboardCallout.ActionCallout.ButtonArea {
     }
 }
 
-private extension KeyboardCallout.ActionCallout.ButtonArea {
+private extension Callouts.ActionCallout.ButtonArea {
 
     struct LeadingCurve: Shape {
         
@@ -127,12 +127,12 @@ private extension KeyboardCallout.ActionCallout.ButtonArea {
             .fill(.white)
             .frame(height: 80)
         HStack {
-            KeyboardCallout.ActionCallout.ButtonArea(
+            Callouts.ActionCallout.ButtonArea(
                 frame: CGRect(x: 0, y: 0, width: 50, height: 50),
                 buttonCornerRadius: 10
             )
             Spacer()
-            KeyboardCallout.ActionCallout.ButtonArea(
+            Callouts.ActionCallout.ButtonArea(
                 frame: CGRect(x: 0, y: 0, width: 100, height: 50),
                 buttonCornerRadius: 20
             ).rotation3DEffect(.degrees(180), axis: (x: 0, y: 1, z: 0))

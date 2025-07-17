@@ -10,9 +10,8 @@ import Foundation
 
 /// This namespace contains essential keyboard-related types.
 ///
-/// This namespace doesn't contain any protocols, context or
-/// settings, nor any other significant types that are meant
-/// to be top-level types.
+/// The namespace doesn't contain any protocols or any other
+/// types that are meant to be top-level types.
 ///
 /// See the <doc:Essentials-Article> article for information
 /// on this essential part of the KeyboardKit SDK.

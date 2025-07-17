@@ -24,7 +24,7 @@ public protocol KeyboardCalloutService: AnyObject {
     func triggerFeedbackForSelectionChange()
 }
 
-public extension KeyboardCallout {
+public extension Callouts {
 
     /// This error can be thrown by ``KeyboardCalloutService/tryRegisterLocalizedService(_:)``.
     enum TryRegisterLocalizedLayoutServiceError: Error {
@@ -50,7 +50,7 @@ public extension KeyboardCalloutService {
         typealias ErrorType = KeyboardLayout.TryRegisterLocalizedLayoutServiceError
         let selfError = ErrorType.serviceDoesNotSupportLocalizedServiceRegistration
         let serviceError = ErrorType.providedServiceDoesNotImplementLocalizedServiceProtocol
-        guard let _self = self as? KeyboardCallout.StandardCalloutService else { throw selfError }
+        guard let _self = self as? Callouts.StandardCalloutService else { throw selfError }
         guard let service = service as? KeyboardCalloutService & LocalizedService else { throw serviceError }
         _self.registerLocalizedService(service)
     }

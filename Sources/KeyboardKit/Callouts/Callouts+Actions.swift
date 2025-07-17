@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+Actions.swift
+//  Callouts+Actions.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardCallout {
+public extension Callouts {
 
     /// This type can be used to define callout actions that
     /// can be shown in an ``KeyboardCallout/ActionCallout``.
@@ -74,7 +74,7 @@ private extension Dictionary {
     }
 }
 
-public extension KeyboardCallout.Actions {
+public extension Callouts.Actions {
 
     /// Base callout actions, without any alphabetic actions.
     static let base = Self.init(
@@ -145,7 +145,7 @@ public extension KeyboardCallout.Actions {
     }()
 }
 
-public extension KeyboardCallout.Actions {
+public extension Callouts.Actions {
 
     /// Get keyboard callout actions for the provided action.
     func actions(
@@ -157,7 +157,7 @@ public extension KeyboardCallout.Actions {
     }
 }
 
-private extension KeyboardCallout.Actions {
+private extension Callouts.Actions {
 
     /// Perform a diacritic insensitive dictionary key match
     /// by iterating over all the keys in the dictionary. It
@@ -175,7 +175,7 @@ private extension KeyboardCallout.Actions {
     }
 }
 
-public extension KeyboardCallout {
+public extension Callouts {
 
     /// This type is used to customize callout actions using
     /// ``SwiftUICore/View/keyboardCalloutActions(_:)``.
@@ -203,7 +203,7 @@ public extension EnvironmentValues {
     ///
     /// > Note: The builder returns `nil` by default to make
     /// it possible to check if there is an injected builder.
-    @Entry var keyboardCalloutActions: KeyboardCallout.ActionsBuilder = { _ in nil }
+    @Entry var keyboardCalloutActions: Callouts.ActionsBuilder = { _ in nil }
 }
 
 public extension View {
@@ -215,7 +215,7 @@ public extension View {
     /// ``KeyboardCallout/ActionsBuilderParams/standardActions(for:)``
     /// to return the standard actions for all other actions.
     func keyboardCalloutActions(
-        _ builder: @escaping KeyboardCallout.ActionsBuilder
+        _ builder: @escaping Callouts.ActionsBuilder
     ) -> some View {
         self.environment(\.keyboardCalloutActions, builder)
     }

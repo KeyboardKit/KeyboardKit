@@ -126,7 +126,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
     func servicesHaveStandardInstancesByDefault() {
         XCTAssertNotNil(vc.services.actionHandler as? KeyboardAction.StandardActionHandler)
         XCTAssertNotNil(vc.services.autocompleteService as? Autocomplete.DisabledAutocompleteService)
-        XCTAssertNotNil(vc.services.calloutService as? KeyboardCallout.StandardCalloutService)
+        XCTAssertNotNil(vc.services.calloutService as? Callouts.StandardCalloutService)
         XCTAssertNotNil(vc.services.dictationService as? Dictation.DisabledDictationService)
         XCTAssertNotNil(vc.services.keyboardBehavior as? Keyboard.StandardKeyboardBehavior)
         XCTAssertNotNil(vc.services.layoutService as? KeyboardLayout.StandardLayoutService)
@@ -142,7 +142,7 @@ class KeyboardInputViewControllerTests: XCTestCase {
 
     func testRefreshingPropertiesWhenChangingServicePropertiesIsDoneForCalloutService() {
         let vc = TestClass()
-        vc.services.calloutService = KeyboardCallout.StandardCalloutService(keyboardContext: .preview)
+        vc.services.calloutService = Callouts.StandardCalloutService(keyboardContext: .preview)
         let actionContext = vc.state.calloutContext
         XCTAssertTrue(actionContext._calloutService === vc.services.calloutService)
     }

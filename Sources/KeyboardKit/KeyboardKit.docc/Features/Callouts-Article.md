@@ -113,15 +113,15 @@ The ``KeyboardCallout`` namespace has callout-specific views, that can be used t
 [KeyboardKit Pro][Pro] unlocks a localized ``KeyboardCallout/ProCalloutService`` for every locale in your license, and injects them as localized services into the main ``Keyboard/Services/calloutService``. You can access any localized service in your license like this:
 
 ```swift
-let service = try KeyboardCallout.ProCalloutService.Swedish()
+let service = try Callouts.ProCalloutService.Swedish()
 ```
 
 KeyboardKit Pro also unlocks localized callout ``KeyboardCallout/Actions`` for all supported locales that are included in your license.
 
 ```swift
-let actions = KeyboardCallout.Actions.swedish  // or...
-let actions = try KeyboardCallout.Actions.swedishBuilder()
-let standardActions = KeyboardCallout.Actions.standard(for: keyboardContext) 
+let actions = Callouts.Actions.swedish  // or...
+let actions = try Callouts.Actions.swedishBuilder()
+let standardActions = Callouts.Actions.standard(for: keyboardContext) 
 ```
 
 The services and value builders will throw a license error if you try to access them without a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. 

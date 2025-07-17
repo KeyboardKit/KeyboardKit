@@ -213,7 +213,7 @@ private extension KeyboardView {
         return autocompleteToolbarStyleFromEnvironment
     }
 
-    var calloutStyle: KeyboardCallout.CalloutStyle {
+    var calloutStyle: Callouts.CalloutStyle {
         var style = styleService.calloutStyle ?? calloutStyleFromEnvironment
         let insets = layoutConfig.buttonInsets
         style.buttonOverlayInset = .init(width: insets.leading, height: insets.top)

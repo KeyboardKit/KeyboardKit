@@ -139,7 +139,7 @@ public extension KeyboardCalloutContext {
         guard buttonFrame != .zero else { return }
         if shouldResetSecondaryActions(for: value.translation) { return resetSecondaryActions() }
         guard shouldUpdateSecondaryActionSelection(for: value.translation) else { return }
-        let standardStyle = KeyboardCallout.CalloutStyle.standard
+        let standardStyle = Callouts.CalloutStyle.standard
         let maxButtonSize = standardStyle.actionItemMaxSize
         let buttonSize = buttonFrame.size.limited(to: maxButtonSize)
         guard buttonSize.width > 1 else { return }

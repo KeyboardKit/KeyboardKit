@@ -23,6 +23,8 @@ Instead, soft deprecations are made with code comments, so that the documentatio
 
 ### 🗑️ Deprecations
 
+* The `KeyboardCallout` namespace has been renamed to `Callouts`.
+
 * `Color+Standard` has been deprecated and now use `KeyboardAction` extensions.
 * `KeyboardCalloutService` and all service implementations have been deprecated.
 
@@ -138,7 +140,7 @@ You still need a style service to customize a button's image and text, or use th
 * `Keyboard.ButtonStyle` has new standard style builders.
 * `Keyboard.ButtonStyle` has a new `foregroundSecondaryOpacity` property.
 * `KeyboardAction` has many new value extensions with standard button values.
-* `KeyboardCallout.Actions` is a new type used to replace services with values.
+* `Callouts.Actions` is a new type used to replace services with values.
 * `KeyboardContext` has a new, temporary `deviceTypeForKeyboardIsIpadPro` value.
 * `KeyboardViewStyle` is a new style type for the `KeyboardView` view component.
 * `View.keyboardButtonStyle(builder:)` can be used to style any keyboard button.
@@ -154,7 +156,7 @@ You still need a style service to customize a button's image and text, or use th
 ### 👑 Pro
 
 * `KeyboardAction` has a new `keyboardThemeButtonType` property.
-* `KeyboardCallout.Actions` has localized value builders for all supported locales.
+* `Callouts.Actions` has localized value builders for all supported locales.
 * `KeyboardTheme` has new `keyboardButtonStyle(for:context:isPressed:)` and `keyboardViewStyle` values.
 * `View.keyboardTheme(_:context:)` can be used to apply themes without using a theme-based style service.
 
@@ -276,9 +278,9 @@ To avoid confusion, this version makes KeyboardKit and KeyboardKit Pro use a `se
 ### 💡 Adjustment
 
 * `Keyboard.Diacritic` is refactored to handle multi-character matching.
-* `KeyboardCallout.ActionCallout` now shrinks actions on iPhone if needed.
+* `Callouts.ActionCallout` now shrinks actions on iPhone if needed.
 * `KeyboardCalloutContext` makes it easier to swipe select callout actions.
-* `KeyboardPreviews.CalloutService` now inherits `KeyboardCallout.BaseCalloutService`.
+* `KeyboardPreviews.CalloutService` now inherits `Callouts.BaseCalloutService`.
 * `UITextDocumentProxy.insertDiacritic` now uses the new diacritic insertion result model.
 
 ### 🐛 Bug Fixes

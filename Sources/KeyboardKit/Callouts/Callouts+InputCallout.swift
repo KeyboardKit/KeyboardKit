@@ -1,5 +1,5 @@
 //
-//  KeyboardCallout+InputCallout.swift
+//  Callouts+InputCallout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension KeyboardCallout {
+public extension Callouts {
 
     /// This callout can show the currenly pressed key, when
     /// typing on an iPhone.
@@ -53,7 +53,7 @@ public extension KeyboardCallout {
     }
 }
 
-private extension KeyboardCallout.InputCallout {
+private extension Callouts.InputCallout {
 
     var calloutBubble: some View {
         Text(calloutContext.inputAction?.inputCalloutText ?? "")
@@ -72,7 +72,7 @@ private extension KeyboardCallout.InputCallout {
     }
 }
 
-private extension KeyboardCallout.InputCallout {
+private extension Callouts.InputCallout {
 
     var isActive: Bool {
         isEnabled && calloutContext.inputAction != nil
@@ -87,7 +87,7 @@ private extension KeyboardCallout.InputCallout {
     }
 }
 
-private extension KeyboardCallout.InputCallout {
+private extension Callouts.InputCallout {
 
     var buttonFrame: CGRect {
         let inset = style.buttonOverlayInset
