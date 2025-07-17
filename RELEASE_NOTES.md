@@ -15,15 +15,16 @@ These release notes cover the current major version. See older versions for olde
 
 ## 9.8
 
-With the new view modifier-based callout and style customizations working well, the service models have been soft deprecated in this version.
+With the new view modifier-based callout and style customizations working, those service models have been soft deprecated in this version.
 
-Soft deprecations mean that the services WILL be removed in the next major version, but they will not be annotated with a deprecation attribute since they are still used.
+Soft deprecations mean that they WILL be removed in the next major version, but will not be annotated with a deprecation since they are still in use.
 
-Instead, soft deprecations are made with code comments, so that the documentation mentions the deprecation and how handle it, without causing a massive amount of warnings. 
+Soft deprecations are made with code comments, so that the documentation will mention the deprecation, but without causing a large amount of warnings. 
 
 ### 🗑️ Deprecations
 
 * The `KeyboardCallout` namespace has been renamed to `Callouts`.
+* The `KeyboardCalloutContext` has been renamed to `CalloutContext`.
 
 * `Color+Standard` has been deprecated and now use `KeyboardAction` extensions.
 * `KeyboardCalloutService` and all service implementations have been deprecated.
@@ -279,13 +280,13 @@ To avoid confusion, this version makes KeyboardKit and KeyboardKit Pro use a `se
 
 * `Keyboard.Diacritic` is refactored to handle multi-character matching.
 * `Callouts.ActionCallout` now shrinks actions on iPhone if needed.
-* `KeyboardCalloutContext` makes it easier to swipe select callout actions.
+* `CalloutContext` makes it easier to swipe select callout actions.
 * `KeyboardPreviews.CalloutService` now inherits `Callouts.BaseCalloutService`.
 * `UITextDocumentProxy.insertDiacritic` now uses the new diacritic insertion result model.
 
 ### 🐛 Bug Fixes
 
-* `KeyboardCalloutContext` now properly handles drag gestures on RTL devices.
+* `CalloutContext` now properly handles drag gestures on RTL devices.
 * `KeyboardInputViewController` fixes a setup race condition in KeyboardKit Pro.  
 
 ### 🗑️ Deprecations
@@ -299,7 +300,7 @@ To avoid confusion, this version makes KeyboardKit and KeyboardKit Pro use a `se
 ### 🚨 Breaking Changes
 
 * `AutocompleteContext.suggestions` is now a computed aggregate and can no longer be set.
-* `KeyboardCalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
+* `CalloutContext.updateSecondaryActionsSelection` now requires a drag gesture value.
 * `KeyboardTheme` types have been moved back to KeyboardKit Pro to avoid open-source confusion.
 
 

@@ -190,7 +190,7 @@ KeyboardKit is available under the MIT license.
 ### Callouts
 
 - ``Callouts``
-- ``KeyboardCalloutContext``
+- ``CalloutContext``
 
 ### Device
 

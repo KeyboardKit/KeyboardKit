@@ -32,7 +32,7 @@ public extension View {
         for action: KeyboardAction,
         actionHandler: KeyboardActionHandler,
         repeatTimer: GestureButtonTimer? = nil,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         isPressed: Binding<Bool> = .constant(false),
         isGestureAutoCancellable: Bool? = nil,
         scrollState: GestureButtonScrollState? = nil,
@@ -81,7 +81,7 @@ public extension View {
     func keyboardButtonGestures(
         action: KeyboardAction? = nil,
         repeatTimer: GestureButtonTimer? = nil,
-        calloutContext: KeyboardCalloutContext? = nil,
+        calloutContext: CalloutContext? = nil,
         isPressed: Binding<Bool> = .constant(false),
         isGestureAutoCancellable: Bool? = nil,
         scrollState: GestureButtonScrollState? = nil,
@@ -173,7 +173,7 @@ extension Keyboard {
             view: Content,
             action: KeyboardAction?,
             repeatTimer: GestureButtonTimer?,
-            calloutContext: KeyboardCalloutContext?,
+            calloutContext: CalloutContext?,
             isPressed: Binding<Bool>,
             isGestureAutoCancellable: Bool? = nil,
             scrollState: GestureButtonScrollState?,
@@ -206,7 +206,7 @@ extension Keyboard {
         private let view: Content
         private let action: KeyboardAction?
         private let repeatTimer: GestureButtonTimer?
-        private let calloutContext: KeyboardCalloutContext?
+        private let calloutContext: CalloutContext?
         private let isPressed: Binding<Bool>
         private let scrollState: GestureButtonScrollState?
         private let releaseOutsideTolerance: Double

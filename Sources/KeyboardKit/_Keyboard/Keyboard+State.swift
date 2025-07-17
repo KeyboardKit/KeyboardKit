@@ -27,7 +27,7 @@ public extension Keyboard {
         public lazy var autocompleteContext = AutocompleteContext()
         
         /// The callout context to use.
-        public lazy var calloutContext = KeyboardCalloutContext()
+        public lazy var calloutContext = CalloutContext()
         
         /// The dictation context to use.
         public lazy var dictationContext = DictationContext()

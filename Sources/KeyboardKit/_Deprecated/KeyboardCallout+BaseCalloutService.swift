@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-extension KeyboardCallout {
+extension Callouts {
 
     /// > Warning: The callout service concept is deprecated
     /// and will be removed in KeyboardKit 10.

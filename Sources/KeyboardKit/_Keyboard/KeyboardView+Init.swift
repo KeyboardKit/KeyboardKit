@@ -60,7 +60,7 @@ public extension KeyboardView where ButtonContent == KeyboardView.StandardButton
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
-        calloutContext: KeyboardCalloutContext,
+        calloutContext: CalloutContext,
         renderBackground: Bool? = nil
     ) {
         self.init(
@@ -139,7 +139,7 @@ public extension KeyboardView where ButtonContent == KeyboardView.StandardButton
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
-        calloutContext: KeyboardCalloutContext,
+        calloutContext: CalloutContext,
         renderBackground: Bool? = nil,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder

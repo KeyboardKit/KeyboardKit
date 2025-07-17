@@ -8,22 +8,7 @@
 
 import Foundation
 
-public extension KeyboardCalloutContext {
+public extension CalloutContext {
 
-    static var preview: KeyboardCalloutContext { .init() }
-}
-
-public extension KeyboardCalloutService where Self == Callouts.BaseCalloutService {
-
-    static var preview: KeyboardCalloutService {
-        Callouts.BaseCalloutService()
-    }
-}
-
-public extension KeyboardPreviews {
-    
-    class CalloutService: Callouts.BaseCalloutService {
-
-        public override func triggerFeedbackForSelectionChange() {}
-    }
+    static var preview: CalloutContext { .init() }
 }

@@ -64,7 +64,7 @@ KeyboardKit also has a ``KeyboardController`` that aims to make it easier to use
 
 KeyboardKit has a ``KeyboardContext`` that provides observable keyboard state. It has a ``KeyboardContext/textDocumentProxy`` reference, lets you get and set ``KeyboardContext/locale``, ``KeyboardContext/keyboardType``, etc. and also has auto-persisted ``KeyboardContext/settings-swift.property``.
 
-Other namespaces define separate contexts, like ``AutocompleteContext``, ``KeyboardCalloutContext``, ``DictationContext``, etc. They all update the keyboard view when they're modified, and provide namespace-specific properties and settings.
+Other namespaces define separate contexts, like ``AutocompleteContext``, ``CalloutContext``, ``DictationContext``, etc. They all update the keyboard view when they're modified, and provide namespace-specific properties and settings.
 
 KeyboardKit automatically creates instances of these classes and injects them into ``KeyboardInputViewController/state``, and syncs with the controller when needed.
 

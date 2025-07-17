@@ -32,7 +32,7 @@ public extension KeyboardCalloutService where Self == Callouts.StandardCalloutSe
     }
 }
 
-extension KeyboardCallout {
+extension Callouts {
 
     /// > Warning: The callout service concept is deprecated
     /// and will be removed in KeyboardKit 10.

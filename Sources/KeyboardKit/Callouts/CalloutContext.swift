@@ -1,5 +1,5 @@
 //
-//  KeyboardCalloutContext.swift
+//  CalloutContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2023-01-24.
@@ -15,7 +15,7 @@ import SwiftUI
 /// KeyboardKit will create an instance of this context, and
 /// inject into the environment, when you set up KeyboardKit
 /// as shown in <doc:Getting-Started-Article>.
-public class KeyboardCalloutContext: ObservableObject {
+public class CalloutContext: ObservableObject {
 
     /// Create a keyboard callout context.
     public init() {}
@@ -64,7 +64,7 @@ public class KeyboardCalloutContext: ObservableObject {
     @Published public private(set) var secondaryActionsIndex: Int = -1
 }
 
-public extension KeyboardCalloutContext {
+public extension CalloutContext {
 
     var selectedSecondaryAction: KeyboardAction? {
         let index = secondaryActionsIndex
@@ -154,14 +154,14 @@ public extension KeyboardCalloutContext {
     #endif
 }
 
-extension KeyboardCalloutContext {
+extension CalloutContext {
 
     func triggerSelectionChangeFeedback() {
         _calloutService?.triggerFeedbackForSelectionChange()
     }
 }
 
-private extension KeyboardCalloutContext {
+private extension CalloutContext {
 
     var isLeading: Bool {
         secondaryActionsAlignment == .leading

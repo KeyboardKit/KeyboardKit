@@ -15,8 +15,7 @@ import Foundation
 ///
 /// - ``AutocompleteContext``.``AutocompleteContext/preview``
 /// - ``AutocompleteService``.``AutocompleteService/preview``
-/// - ``KeyboardCalloutContext``.``KeyboardCalloutContext/preview``
-/// - ``KeyboardCalloutService``.``KeyboardCalloutService/preview``
+/// - ``CalloutContext``.``CalloutContext/preview``
 /// - ``KeyboardActionHandler``.``KeyboardActionHandler/preview``
 /// - ``KeyboardContext``.``KeyboardContext/preview``
 /// - ``KeyboardInputViewController``.``KeyboardInputViewController/preview``

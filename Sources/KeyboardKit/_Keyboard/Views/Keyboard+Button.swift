@@ -38,7 +38,7 @@ public extension Keyboard {
             repeatTimer: GestureButtonTimer? = nil,
             styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext,
-            calloutContext: KeyboardCalloutContext?,
+            calloutContext: CalloutContext?,
             edgeInsets: EdgeInsets = .init(),
             isPressed: Binding<Bool>? = nil,
             @ViewBuilder content: @escaping ContentBuilder
@@ -71,7 +71,7 @@ public extension Keyboard {
             repeatTimer: GestureButtonTimer? = nil,
             styleService: KeyboardStyleService,
             keyboardContext: KeyboardContext,
-            calloutContext: KeyboardCalloutContext?,
+            calloutContext: CalloutContext?,
             edgeInsets: EdgeInsets = .init(),
             isPressed: Binding<Bool>? = nil
         ) where Content == Keyboard.ButtonContent {
@@ -93,7 +93,7 @@ public extension Keyboard {
         private let repeatTimer: GestureButtonTimer?
         let styleService: KeyboardStyleService
         private let keyboardContext: KeyboardContext
-        private let calloutContext: KeyboardCalloutContext?
+        private let calloutContext: CalloutContext?
         private let edgeInsets: EdgeInsets
         private var isPressed: Binding<Bool>?
         private let content: ContentBuilder

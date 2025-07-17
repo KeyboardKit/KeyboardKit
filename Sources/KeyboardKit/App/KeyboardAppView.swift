@@ -63,7 +63,7 @@ public struct KeyboardAppView<Content: View>: View {
     private let content: () -> Content
     
     @StateObject var autocompleteContext: AutocompleteContext
-    @StateObject var calloutContext: KeyboardCalloutContext
+    @StateObject var calloutContext: CalloutContext
     @StateObject var dictationContext: DictationContext
     @StateObject var emojiContext: EmojiContext
     @StateObject var externalContext: ExternalKeyboardContext

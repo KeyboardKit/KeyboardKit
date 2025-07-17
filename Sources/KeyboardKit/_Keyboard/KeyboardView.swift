@@ -98,7 +98,7 @@ public struct KeyboardView<
         styleService: KeyboardStyleService,
         keyboardContext: KeyboardContext,
         autocompleteContext: AutocompleteContext,
-        calloutContext: KeyboardCalloutContext,
+        calloutContext: CalloutContext,
         renderBackground: Bool? = nil,
         @ViewBuilder buttonContent: @escaping ButtonContentBuilder,
         @ViewBuilder buttonView: @escaping ButtonViewBuilder,
@@ -154,7 +154,7 @@ public struct KeyboardView<
     @Environment(\.keyboardViewStyle) var keyboardViewStyleFromEnvironment
 
     @ObservedObject var autocompleteContext: AutocompleteContext
-    @ObservedObject var calloutContext: KeyboardCalloutContext
+    @ObservedObject var calloutContext: CalloutContext
     @ObservedObject var keyboardContext: KeyboardContext
 
     public var body: some View {

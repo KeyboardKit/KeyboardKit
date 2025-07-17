@@ -27,7 +27,7 @@ KeyboardKit has a ``KeyboardCallout`` namespace that contains callout-related ty
 
 ## Context
 
-KeyboardKit has an observable ``KeyboardCalloutContext`` class that has observable callout state, such as the currently pressed ``KeyboardCalloutContext/inputAction`` or the ``KeyboardCalloutContext/secondaryActions`` that should be presented.
+KeyboardKit has an observable ``CalloutContext`` class that has observable callout state, such as the currently pressed ``CalloutContext/inputAction`` or the ``CalloutContext/secondaryActions`` that should be presented.
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``, then updates this context when keys are pressed.
 
@@ -138,7 +138,7 @@ The services and value builders will throw a license error if you try to access 
 
 The ``KeyboardView`` will automatically make both input and action callouts work. For a custom view, just apply a ``SwiftUICore/View/keyboardCalloutContainer(calloutContext:keyboardContext:)`` view modifier to it to make it present callouts.
 
-You can then use the ``KeyboardCalloutContext``'s ``KeyboardCalloutContext/inputAction`` and ``KeyboardCalloutContext/secondaryActions`` to show input and action callouts.
+You can then use the ``CalloutContext``'s ``CalloutContext/inputAction`` and ``CalloutContext/secondaryActions`` to show input and action callouts.
 
 
 

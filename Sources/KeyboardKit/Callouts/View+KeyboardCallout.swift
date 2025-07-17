@@ -16,7 +16,7 @@ public extension View {
     ///   - calloutContext: The callout context to use.
     ///   - keyboardContext: The keyboard context to use.
     func keyboardCalloutContainer(
-        calloutContext: KeyboardCalloutContext,
+        calloutContext: CalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.keyboardActionCalloutContainer(
@@ -40,7 +40,7 @@ extension View {
     }
 
     func keyboardActionCalloutContainer(
-        calloutContext: KeyboardCalloutContext,
+        calloutContext: CalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(
@@ -54,7 +54,7 @@ extension View {
     }
 
     func keyboardInputCalloutContainer(
-        calloutContext: KeyboardCalloutContext,
+        calloutContext: CalloutContext,
         keyboardContext: KeyboardContext
     ) -> some View {
         self.overlay(

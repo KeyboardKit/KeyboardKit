@@ -1,6 +1,6 @@
 import SwiftUI
 
-public extension KeyboardCalloutContext {
+public extension CalloutContext {
 
     @available(*, deprecated, renamed: "updateSecondaryActions(_:for:in:alignment:)")
     func updateSecondaryActions(
@@ -19,3 +19,20 @@ public extension KeyboardCalloutContext {
 
 @available(*, deprecated, renamed: "Callouts")
 public typealias KeyboardCallout = Callouts
+
+@available(*, deprecated, renamed: "CalloutContext")
+public typealias KeyboardCalloutContext = CalloutContext
+
+public extension KeyboardCalloutService where Self == Callouts.BaseCalloutService {
+
+    static var preview: KeyboardCalloutService {
+        Callouts.BaseCalloutService()
+    }
+}
+
+public extension KeyboardPreviews {
+
+    class CalloutService: Callouts.BaseCalloutService {
+        public override func triggerFeedbackForSelectionChange() {}
+    }
+}

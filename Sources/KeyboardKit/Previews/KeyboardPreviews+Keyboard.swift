@@ -51,6 +51,6 @@ public extension View {
         keyboardContext: KeyboardContext = .preview
     ) -> some View {
         self.environmentObject(keyboardContext)
-            .environmentObject(KeyboardCalloutContext.preview)
+            .environmentObject(CalloutContext.preview)
     }
 }

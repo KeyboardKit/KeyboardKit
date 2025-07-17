@@ -44,7 +44,7 @@ public extension View {
         actionHandler: KeyboardActionHandler,
         repeatTimer: GestureButtonTimer? = nil,
         keyboardContext: KeyboardContext,
-        calloutContext: KeyboardCalloutContext?,
+        calloutContext: CalloutContext?,
         additionalTapArea: Double? = nil,
         edgeInsets: EdgeInsets = .init(),
         isPressed: Binding<Bool> = .constant(false),

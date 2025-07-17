@@ -23,14 +23,14 @@ public extension Callouts {
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
         public init(
-            calloutContext: KeyboardCalloutContext,
+            calloutContext: CalloutContext,
             keyboardContext: KeyboardContext
         ) {
             self._calloutContext = .init(wrappedValue: calloutContext)
             self._keyboardContext = .init(wrappedValue: keyboardContext)
         }
 
-        @ObservedObject private var calloutContext: KeyboardCalloutContext
+        @ObservedObject private var calloutContext: CalloutContext
         @ObservedObject private var keyboardContext: KeyboardContext
 
         @Environment(\.emojiKeyboardStyle) private var emojiStyle
@@ -208,7 +208,7 @@ private extension KeyboardAction {
     struct PreviewGroup: View {
 
         let color: Color
-        let context: KeyboardCalloutContext
+        let context: CalloutContext
         let action: KeyboardAction
         let alignment: HorizontalAlignment
 
@@ -263,8 +263,8 @@ private extension KeyboardAction {
 
         let action = KeyboardAction.character("o")
 
-        @StateObject var calloutContext1 = KeyboardCalloutContext()
-        @StateObject var calloutContext2 = KeyboardCalloutContext()
+        @StateObject var calloutContext1 = CalloutContext()
+        @StateObject var calloutContext2 = CalloutContext()
         @StateObject var keyboardContext = KeyboardContext()
 
         var body: some View {

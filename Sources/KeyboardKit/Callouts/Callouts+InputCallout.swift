@@ -23,7 +23,7 @@ public extension Callouts {
         ///   - calloutContext: The callout context to use.
         ///   - keyboardContext: The keyboard context to use.
         public init(
-            calloutContext: KeyboardCalloutContext,
+            calloutContext: CalloutContext,
             keyboardContext: KeyboardContext
         ) {
             self._calloutContext = .init(wrappedValue: calloutContext)
@@ -31,7 +31,7 @@ public extension Callouts {
         }
         
         @ObservedObject
-        private var calloutContext: KeyboardCalloutContext
+        private var calloutContext: CalloutContext
 
         @ObservedObject
         private var keyboardContext: KeyboardContext
@@ -144,9 +144,9 @@ private extension Callouts.InputCallout {
     struct Preview: View {
 
         @StateObject
-        var context = KeyboardCalloutContext()
+        var context = CalloutContext()
 
-        func button(for context: KeyboardCalloutContext) -> some View {
+        func button(for context: CalloutContext) -> some View {
             GeometryReader { geo in
                 GestureButton(
                     pressAction: { showCallout(for: geo) },
