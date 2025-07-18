@@ -63,15 +63,6 @@ public struct KeyboardLayout {
     var widthCache = WidthCache()
 }
 
-public extension KeyboardLayout {
-    
-    @available(*, deprecated, renamed: "isIpadProLayout")
-    var ipadProLayout: Bool {
-        get { isIpadProLayout }
-        set { isIpadProLayout = newValue }
-    }
-}
-
 extension KeyboardLayout {
 
     class WidthCache {

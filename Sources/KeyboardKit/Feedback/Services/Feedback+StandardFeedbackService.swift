@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback+StandardFeedbackService.swift
+//  Feedback+StandardFeedbackService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-11.
@@ -8,15 +8,15 @@
 
 import Foundation
 
-public extension KeyboardFeedbackService where Self == KeyboardFeedback.StandardFeedbackService {
+public extension FeedbackService where Self == Feedback.StandardFeedbackService {
 
     /// Create a standard feedback service instance.
     static var standard: Self {
-        KeyboardFeedback.StandardFeedbackService()
+        Feedback.StandardFeedbackService()
     }
 }
 
-extension KeyboardFeedback {
+extension Feedback {
 
     /// This standard service can be used to trigger various
     /// audio and haptic feedback, using system capabilities.
@@ -29,23 +29,23 @@ extension KeyboardFeedback {
     /// then override any open parts that you want to change.
     ///
     /// This service can also be resolved with the shorthand
-    /// ``KeyboardFeedbackService/standard``.
-    open class StandardFeedbackService: KeyboardFeedbackService {
+    /// ``FeedbackService/standard``.
+    open class StandardFeedbackService: FeedbackService {
 
         /// Create a standard feedback service.
         public init() {}
 
         /// The audio feedback engine to use.
-        public lazy var audioEngine = KeyboardFeedback.AudioEngine()
+        public lazy var audioEngine = Feedback.AudioEngine()
 
         /// The haptic feedback engine to use.
-        public lazy var hapticEngine = KeyboardFeedback.HapticEngine()
+        public lazy var hapticEngine = Feedback.HapticEngine()
 
-        open func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio) {
+        open func triggerAudioFeedback(_ feedback: Feedback.Audio) {
             audioEngine.trigger(feedback)
         }
 
-        open func triggerHapticFeedback(_ feedback: KeyboardFeedback.Haptic) {
+        open func triggerHapticFeedback(_ feedback: Feedback.Haptic) {
             hapticEngine.trigger(feedback)
         }
     }

@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback+Haptic.swift
+//  Feedback+Haptic.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-04-26.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension KeyboardFeedback {
+public extension Feedback {
 
     /// This enum defines standard haptic feedback types.
     enum Haptic: String, CaseIterable, Identifiable, KeyboardModel {
@@ -42,13 +42,7 @@ public extension KeyboardFeedback {
     }
 }
 
-public extension KeyboardFeedback.Haptic {
-
-    /// A ``KeyboardFeedback/Haptic/selectionChanged`` shorthand.
-    static let selection = selectionChanged
-}
-
-public extension KeyboardFeedback.Haptic {
+public extension Feedback.Haptic {
 
     /// The unique feedback identifier.
     var id: String { rawValue }

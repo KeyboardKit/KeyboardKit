@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback+HapticEngine.swift
+//  Feedback+HapticEngine.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -10,7 +10,7 @@
 import UIKit
 #endif
 
-public extension KeyboardFeedback {
+public extension Feedback {
 
     /// This engine can be used to trigger haptic feedback.
     ///
@@ -61,7 +61,7 @@ public extension KeyboardFeedback {
 }
 
 #if os(iOS)
-private extension KeyboardFeedback.HapticEngine {
+private extension Feedback.HapticEngine {
     
     func triggerNotification(_ notification: UINotificationFeedbackGenerator.FeedbackType) {
         notificationGenerator.notificationOccurred(notification)

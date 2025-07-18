@@ -32,3 +32,12 @@ public extension KeyboardLayout {
     @available(*, deprecated, renamed: "DeviceConfiguration")
     typealias Configuration = DeviceConfiguration
 }
+
+public extension KeyboardLayout {
+
+    @available(*, deprecated, renamed: "isIpadProLayout")
+    var ipadProLayout: Bool {
+        get { isIpadProLayout }
+        set { isIpadProLayout = newValue }
+    }
+}

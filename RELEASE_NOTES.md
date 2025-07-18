@@ -19,7 +19,9 @@ With the new view modifier-based callout and style customizations working, those
 
 Soft deprecations mean that they WILL be removed in the next major version, but will not be annotated with a deprecation since they are still in use.
 
-Soft deprecations are made with code comments, so that the documentation will mention the deprecation, but without causing a large amount of warnings. 
+Soft deprecations are made with code comments, so that the documentation will mention the deprecation, but without causing a large amount of warnings.
+
+This version renames some namespaces, like `KeyboardCallout` and `KeyboardFeedback` to shorter names. Namespaces that need the "keyboard" prefix keep it. 
 
 ### 🗑️ Deprecations
 
@@ -27,7 +29,7 @@ Soft deprecations are made with code comments, so that the documentation will me
 * The `KeyboardCalloutContext` has been renamed to `CalloutContext`.
 
 * `Color+Standard` has been deprecated and now use `KeyboardAction` extensions.
-* `KeyboardCalloutService` and all service implementations have been deprecated.
+* `CalloutService` and all service implementations have been deprecated.
 
 
 

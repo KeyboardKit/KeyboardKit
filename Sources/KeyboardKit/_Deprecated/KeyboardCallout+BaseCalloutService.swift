@@ -14,7 +14,7 @@ extension Callouts {
     /// and will be removed in KeyboardKit 10.
     ///
     /// This is a base class for any kind of callout service.
-    open class BaseCalloutService: KeyboardCalloutService {
+    open class BaseCalloutService: CalloutService {
 
         /// Create a base callout service.
         public init() {}

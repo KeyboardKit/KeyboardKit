@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback.swift
+//  Feedback.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-04-08.
@@ -12,4 +12,4 @@ import Foundation
 ///
 /// The namespace doesn't contain any protocols or any other
 /// types that are meant to be top-level types.
-public struct KeyboardFeedback {}
+public struct Feedback {}

@@ -239,7 +239,7 @@ public extension Callouts.ProCalloutService {
     class Swedish: Callouts.ProCalloutService {}
 }
 
-public extension KeyboardCalloutService where Self == Callouts.ProCalloutService {
+public extension CalloutService where Self == Callouts.ProCalloutService {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
     static func localized(

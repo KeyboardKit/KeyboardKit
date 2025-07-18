@@ -20,7 +20,7 @@ import CoreGraphics
 /// implementation in ``KeyboardInputViewController/services``
 /// when the keyboard is launched. You can change or replace
 /// it at any time to customize the keyboard action handling.
-public protocol KeyboardActionHandler: AnyObject, KeyboardFeedbackService {
+public protocol KeyboardActionHandler: AnyObject, FeedbackService {
 
 
     /// Whether the handler can handle an action gesture.

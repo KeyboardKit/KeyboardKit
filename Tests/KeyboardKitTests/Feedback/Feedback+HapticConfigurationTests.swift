@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback+HapticConfigurationTests.swift
+//  Feedback+HapticConfigurationTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -9,9 +9,9 @@
 import KeyboardKit
 import XCTest
 
-class KeyboardFeedback_HapticConfigurationTests: XCTestCase {
+class Feedback_HapticConfigurationTests: XCTestCase {
 
-    typealias Config = KeyboardFeedback.HapticConfiguration
+    typealias Config = Feedback.HapticConfiguration
     
     func testDefaultInitilizerUsesStandardFeedback() {
         let config = Config()

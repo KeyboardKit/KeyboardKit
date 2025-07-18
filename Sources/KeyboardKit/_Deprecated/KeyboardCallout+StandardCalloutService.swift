@@ -8,20 +8,20 @@
 
 import Foundation
 
-public extension KeyboardCalloutService where Self == Callouts.StandardCalloutService {
+public extension CalloutService where Self == Callouts.StandardCalloutService {
 
-    /// Create a ``KeyboardCallout/StandardCalloutService`` instance.
+    /// Create a ``Callouts/StandardCalloutService`` instance.
     ///
     /// - Parameters:
     ///   - keyboardContext: The keyboard context to use.
-    ///   - baseService: The base service to use, by default a ``KeyboardCallout/BaseCalloutService``.
+    ///   - baseService: The base service to use, by default a ``Callouts/BaseCalloutService``.
     ///   - localizedServices: A list of localized services, by default `empty`.
     ///   - feedbackService: The feedback service to use.
     static func standard(
         keyboardContext: KeyboardContext,
-        baseService: KeyboardCalloutService = Callouts.BaseCalloutService(),
+        baseService: CalloutService = Callouts.BaseCalloutService(),
         localizedServices: [Self.LocalizedCalloutService] = [],
-        feedbackService: KeyboardFeedbackService? = nil
+        feedbackService: FeedbackService? = nil
     ) -> Self {
         Callouts.StandardCalloutService(
             keyboardContext: keyboardContext,
@@ -39,20 +39,20 @@ extension Callouts {
     ///
     /// This service class provides a standard way to handle
     /// keyboard callouts.
-    open class StandardCalloutService: KeyboardCalloutService {
+    open class StandardCalloutService: CalloutService {
 
         /// Create a standard callout service.
         ///
         /// - Parameters:
         ///   - keyboardContext: The keyboard context to use.
-        ///   - baseService: The base service to use, by default a ``KeyboardCallout/BaseCalloutService``.
+        ///   - baseService: The base service to use, by default a ``Callouts/BaseCalloutService``.
         ///   - localizedServices: A list of localized services, by default `empty`.
         ///   - feedbackService: The feedback service to use.
         public init(
             keyboardContext: KeyboardContext,
-            baseService: KeyboardCalloutService = Callouts.BaseCalloutService(),
+            baseService: CalloutService = Callouts.BaseCalloutService(),
             localizedServices: [LocalizedCalloutService] = [],
-            feedbackService: KeyboardFeedbackService? = nil
+            feedbackService: FeedbackService? = nil
         ) {
             self.keyboardContext = keyboardContext
             self.baseService = baseService
@@ -63,24 +63,24 @@ extension Callouts {
 
 
         /// This typealias represents a localized service.
-        public typealias LocalizedCalloutService = KeyboardCalloutService & LocalizedService
+        public typealias LocalizedCalloutService = CalloutService & LocalizedService
 
         
         /// The keyboard context to use.
         public let keyboardContext: KeyboardContext
 
         /// The feedback service to use.
-        public var feedbackService: KeyboardFeedbackService?
+        public var feedbackService: FeedbackService?
 
 
         /// The base service to use.
-        public private(set) var baseService: KeyboardCalloutService
+        public private(set) var baseService: CalloutService
 
         /// This dictionary contains localized services.
-        public var localizedServices: Locale.Dictionary<KeyboardCalloutService>
+        public var localizedServices: Locale.Dictionary<CalloutService>
 
         /// This resolver is used to lazily resolve services.
-        public static var localizedServiceResolver: ((Locale) -> KeyboardCalloutService?)?
+        public static var localizedServiceResolver: ((Locale) -> CalloutService?)?
 
         
         // MARK: - CalloutService
@@ -111,14 +111,14 @@ extension Callouts {
         /// Get the service to use for the provided context.
         open func service(
             for context: KeyboardContext
-        ) -> KeyboardCalloutService {
+        ) -> CalloutService {
             service(for: context.locale)
         }
 
         /// Get the service to use for the provided locale.
         open func service(
             for locale: Locale
-        ) -> KeyboardCalloutService {
+        ) -> CalloutService {
             if let service = localizedServices.value(for: locale) { return service }
             if let service = Self.localizedServiceResolver?(locale) {
                 localizedServices.dictionary[locale.identifier] = service

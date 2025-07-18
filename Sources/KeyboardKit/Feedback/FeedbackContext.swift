@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedbackContext.swift
+//  FeedbackContext.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -25,7 +25,7 @@ import SwiftUI
 /// KeyboardKit will create an instance of this context, and
 /// inject into the environment, when you set up KeyboardKit
 /// as shown in <doc:Getting-Started-Article>.
-public class KeyboardFeedbackContext: ObservableObject {
+public class FeedbackContext: ObservableObject {
 
     public init() {
         settings = .init()
@@ -35,13 +35,13 @@ public class KeyboardFeedbackContext: ObservableObject {
     // MARK: - Settings
 
     /// Feedback-specific, auto-persisted settings.
-    @Published public var settings: KeyboardFeedbackSettings
+    @Published public var settings: FeedbackSettings
 
 
     // MARK: - Typealiases
 
-    public typealias AudioConfiguration = KeyboardFeedback.AudioConfiguration
-    public typealias HapticConfiguration = KeyboardFeedback.HapticConfiguration
+    public typealias AudioConfiguration = Feedback.AudioConfiguration
+    public typealias HapticConfiguration = Feedback.HapticConfiguration
 
 
     // MARK: - Properties
@@ -53,7 +53,7 @@ public class KeyboardFeedbackContext: ObservableObject {
     public var hapticConfiguration: HapticConfiguration = .standard
 }
 
-public extension KeyboardFeedbackContext {
+public extension FeedbackContext {
 
     /// Register custom audio feedback.
     func registerCustomFeedback(

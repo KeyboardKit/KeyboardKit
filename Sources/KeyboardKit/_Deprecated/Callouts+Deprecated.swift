@@ -23,9 +23,12 @@ public typealias KeyboardCallout = Callouts
 @available(*, deprecated, renamed: "CalloutContext")
 public typealias KeyboardCalloutContext = CalloutContext
 
-public extension KeyboardCalloutService where Self == Callouts.BaseCalloutService {
+@available(*, deprecated, renamed: "CalloutService")
+public typealias KeyboardCalloutService = CalloutService
 
-    static var preview: KeyboardCalloutService {
+public extension CalloutService where Self == Callouts.BaseCalloutService {
+
+    static var preview: CalloutService {
         Callouts.BaseCalloutService()
     }
 }

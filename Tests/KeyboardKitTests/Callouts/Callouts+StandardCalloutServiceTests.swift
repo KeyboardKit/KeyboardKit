@@ -89,7 +89,7 @@ class KeyboardCallout_StandardCalloutServiceTests: XCTestCase {
     }
 }
 
-private class TestService: KeyboardCalloutService, LocalizedService {
+private class TestService: CalloutService, LocalizedService {
 
     init(localeKey: String) {
         self.localeKey = localeKey

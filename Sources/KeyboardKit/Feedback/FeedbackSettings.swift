@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedbackSettings.swift
+//  FeedbackSettings.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-10-27.
@@ -13,7 +13,7 @@ import SwiftUI
 ///
 /// All properties for this type are automatically stored in
 /// ``KeyboardSettings/store`` with a `feedback` prefix.
-public struct KeyboardFeedbackSettings: Sendable {
+public struct FeedbackSettings: Sendable {
 
     /// Create a custom settings instance.
     public init() {}
@@ -32,7 +32,7 @@ public struct KeyboardFeedbackSettings: Sendable {
     public var isHapticFeedbackEnabled = true
 }
 
-public extension KeyboardFeedbackSettings {
+public extension FeedbackSettings {
 
     /// Toggle audio feedback enabled state.
     func toggleIsAudioFeedbackEnabled() {

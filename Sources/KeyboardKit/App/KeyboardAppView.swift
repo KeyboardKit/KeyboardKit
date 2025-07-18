@@ -67,7 +67,7 @@ public struct KeyboardAppView<Content: View>: View {
     @StateObject var dictationContext: DictationContext
     @StateObject var emojiContext: EmojiContext
     @StateObject var externalContext: ExternalKeyboardContext
-    @StateObject var feedbackContext: KeyboardFeedbackContext
+    @StateObject var feedbackContext: FeedbackContext
     @StateObject var keyboardContext: KeyboardContext
     @StateObject var keyboardStatusContext: KeyboardStatusContext
     @StateObject var themeContext: KeyboardThemeContext

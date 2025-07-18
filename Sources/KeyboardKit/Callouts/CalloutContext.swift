@@ -26,11 +26,11 @@ public class CalloutContext: ObservableObject {
 
 
     @available(*, deprecated, message: "Inject actions with the .keyboardCalloutActions view modifier instead.")
-    public var calloutService: KeyboardCalloutService? {
+    public var calloutService: CalloutService? {
         get { _calloutService }
         set { _calloutService = newValue }
     }
-    var _calloutService: KeyboardCalloutService?
+    var _calloutService: CalloutService?
 
     /// The scale to apply if the items must be compressed.
     public var compressedWidthScale = 0.85

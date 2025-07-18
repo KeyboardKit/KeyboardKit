@@ -61,7 +61,7 @@ public extension Keyboard {
         }
 
         /// The callout service to use.
-        public lazy var calloutService: KeyboardCalloutService = .standard(
+        public lazy var calloutService: CalloutService = .standard(
             keyboardContext: state.keyboardContext,
             feedbackService: feedbackService
         ) {
@@ -72,7 +72,7 @@ public extension Keyboard {
         public lazy var dictationService: DictationService = .disabled
 
         /// The feedback service to use.
-        public lazy var feedbackService: KeyboardFeedbackService = .standard
+        public lazy var feedbackService: FeedbackService = .standard
 
         /// The keyboard behavior to use.
         public lazy var keyboardBehavior: KeyboardBehavior = .standard(
@@ -114,7 +114,7 @@ public extension Keyboard.Services {
     /// - Parameters:
     ///   - service: The service to register.
     func tryRegisterLocalizedCalloutService(
-        _ service: KeyboardCalloutService
+        _ service: CalloutService
     ) throws {
         try calloutService.tryRegisterLocalizedService(service)
     }

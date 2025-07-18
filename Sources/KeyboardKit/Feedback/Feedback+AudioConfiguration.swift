@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback+AudioConfiguration.swift
+//  Feedback+AudioConfiguration.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension KeyboardFeedback {
+public extension Feedback {
 
     /// This struct can be used to configure audio feedback.
     ///
@@ -49,7 +49,7 @@ public extension KeyboardFeedback {
     }
 }
 
-public extension KeyboardFeedback.AudioConfiguration {
+public extension Feedback.AudioConfiguration {
 
     /// This struct is used for custom audio feedback.
     struct CustomFeedback: KeyboardModel {
@@ -57,7 +57,7 @@ public extension KeyboardFeedback.AudioConfiguration {
         public init(
             action: KeyboardAction,
             gesture: Keyboard.Gesture,
-            feedback: KeyboardFeedback.Audio
+            feedback: Feedback.Audio
         ) {
             self.action = action
             self.gesture = gesture
@@ -66,11 +66,11 @@ public extension KeyboardFeedback.AudioConfiguration {
         
         public let action: KeyboardAction
         public let gesture: Keyboard.Gesture
-        public let feedback: KeyboardFeedback.Audio
+        public let feedback: Feedback.Audio
     }
 }
 
-public extension KeyboardFeedback.AudioConfiguration {
+public extension Feedback.AudioConfiguration {
 
     /// A standard, enabled audio configuration.
     static let standard = Self()
@@ -83,11 +83,11 @@ public extension KeyboardFeedback.AudioConfiguration {
     )
 }
 
-public extension KeyboardFeedback.AudioConfiguration.CustomFeedback {
+public extension Feedback.AudioConfiguration.CustomFeedback {
 
     /// Create a custom audio feedback configuration.
     static func audio(
-        _ feedback: KeyboardFeedback.Audio,
+        _ feedback: Feedback.Audio,
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
     ) -> Self {
@@ -95,13 +95,13 @@ public extension KeyboardFeedback.AudioConfiguration.CustomFeedback {
     }
 }
 
-public extension KeyboardFeedback.AudioConfiguration {
+public extension Feedback.AudioConfiguration {
 
     /// Get a custom registered feedback, if any.
     func customFeedback(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> KeyboardFeedback.Audio? {
+    ) -> Feedback.Audio? {
         custom.first {
             $0.action == action && $0.gesture == gesture
         }?.feedback
@@ -119,7 +119,7 @@ public extension KeyboardFeedback.AudioConfiguration {
     func feedback(
         for gesture: Keyboard.Gesture,
         on action: KeyboardAction
-    ) -> KeyboardFeedback.Audio? {
+    ) -> Feedback.Audio? {
         customFeedback(for: gesture, on: action)
     }
     

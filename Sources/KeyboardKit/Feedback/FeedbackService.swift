@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedbackService.swift
+//  FeedbackService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2024-08-11.
@@ -13,13 +13,12 @@ import Foundation
 ///
 /// KeyboardKit will automatically setup a standard protocol
 /// implementation in ``KeyboardInputViewController/services``
-/// when the keyboard is launched. You can change or replace
-/// it at any time to customize the feedback behavior.
-public protocol KeyboardFeedbackService: AnyObject {
+/// when the keyboard is launched.
+public protocol FeedbackService: AnyObject {
 
     /// Trigger the provided audio feedback.
-    func triggerAudioFeedback(_ feedback: KeyboardFeedback.Audio)
+    func triggerAudioFeedback(_ feedback: Feedback.Audio)
 
     /// Trigger the provided haptic feedback.
-    func triggerHapticFeedback(_ feedback: KeyboardFeedback.Haptic)
+    func triggerHapticFeedback(_ feedback: Feedback.Haptic)
 }

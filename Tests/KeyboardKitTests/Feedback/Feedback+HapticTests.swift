@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback+HapticTests.swift
+//  Feedback+HapticTests.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-04-01.
@@ -9,4 +9,4 @@
 import XCTest
 @testable import KeyboardKit
 
-class KeyboardFeedback_HapticTests: XCTestCase {}
+class Feedback_HapticTests: XCTestCase {}

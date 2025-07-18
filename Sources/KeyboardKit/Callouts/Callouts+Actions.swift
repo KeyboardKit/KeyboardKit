@@ -11,7 +11,7 @@ import SwiftUI
 public extension Callouts {
 
     /// This type can be used to define callout actions that
-    /// can be shown in an ``KeyboardCallout/ActionCallout``.
+    /// can be shown in an ``Callouts/ActionCallout``.
     ///
     /// You can use standard, ``english`` callout actions or
     /// upgrade to KeyboardKit Pro to unlock callout actions
@@ -212,7 +212,7 @@ public extension View {
     /// actions to show when long pressing a key.
     ///
     /// You can customize callouts for any actions, then use
-    /// ``KeyboardCallout/ActionsBuilderParams/standardActions(for:)``
+    /// ``Callouts/ActionsBuilderParams/standardActions(for:)``
     /// to return the standard actions for all other actions.
     func keyboardCalloutActions(
         _ builder: @escaping Callouts.ActionsBuilder

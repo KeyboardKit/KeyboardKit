@@ -1,5 +1,5 @@
 //
-//  KeyboardCalloutService.swift
+//  CalloutService.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-01-06.
@@ -13,7 +13,7 @@ import Foundation
 ///
 /// This protocol can be implemented by any type that can be
 /// used to perform keyboard-related callout actions.
-public protocol KeyboardCalloutService: AnyObject {
+public protocol CalloutService: AnyObject {
 
     /// Get callout actions for the provided keyboard action.
     func calloutActions(
@@ -26,7 +26,7 @@ public protocol KeyboardCalloutService: AnyObject {
 
 public extension Callouts {
 
-    /// This error can be thrown by ``KeyboardCalloutService/tryRegisterLocalizedService(_:)``.
+    /// This error can be thrown by ``CalloutService/tryRegisterLocalizedService(_:)``.
     enum TryRegisterLocalizedLayoutServiceError: Error {
 
         /// The service doesn't support localized layout service registrations.
@@ -37,7 +37,7 @@ public extension Callouts {
     }
 }
 
-public extension KeyboardCalloutService {
+public extension CalloutService {
 
     /// Try to register a localized service, which will then
     /// be used for the locale it specifies.
@@ -45,13 +45,13 @@ public extension KeyboardCalloutService {
     /// - Parameters:
     ///   - service: The service to register.
     func tryRegisterLocalizedService(
-        _ service: KeyboardCalloutService
+        _ service: CalloutService
     ) throws {
         typealias ErrorType = KeyboardLayout.TryRegisterLocalizedLayoutServiceError
         let selfError = ErrorType.serviceDoesNotSupportLocalizedServiceRegistration
         let serviceError = ErrorType.providedServiceDoesNotImplementLocalizedServiceProtocol
         guard let _self = self as? Callouts.StandardCalloutService else { throw selfError }
-        guard let service = service as? KeyboardCalloutService & LocalizedService else { throw serviceError }
+        guard let service = service as? CalloutService & LocalizedService else { throw serviceError }
         _self.registerLocalizedService(service)
     }
 }

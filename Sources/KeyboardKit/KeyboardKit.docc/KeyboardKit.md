@@ -220,10 +220,10 @@ KeyboardKit is available under the MIT license.
 
 ### Feedback
 
-- ``KeyboardFeedback``
-- ``KeyboardFeedbackContext``
-- ``KeyboardFeedbackService``
-- ``KeyboardFeedbackSettings``
+- ``Feedback``
+- ``FeedbackContext``
+- ``FeedbackService``
+- ``FeedbackSettings``
 
 ### Gestures
 

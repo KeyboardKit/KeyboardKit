@@ -25,6 +25,10 @@ KeyboardKit has ``KeyboardSettings`` and other namespace-specific settings types
         
         ``KeyboardSettings/inputToolbarType-swift.property``
         
+        ``KeyboardSettings/inputToolbarCharacters``
+        
+        ``KeyboardSettings/inputToolbarCharactersMaxCount``
+        
         ``KeyboardSettings/isAutocapitalizationEnabled``
         
         ``KeyboardSettings/isKeyboardAutoCollapseEnabled``
@@ -68,10 +72,24 @@ KeyboardKit has ``KeyboardSettings`` and other namespace-specific settings types
         ``DictationSettings/silenceLimit``
     }
     
-    @Tab("Feedback") {
-        ``KeyboardFeedbackSettings/isAudioFeedbackEnabled``
+    @Tab("Emoji") {
+        ``EmojiSettings/preferredSkinTones``
         
-        ``KeyboardFeedbackSettings/isHapticFeedbackEnabled``
+        ``EmojiSettings/preferredSkinTone(for:)``
+        
+        ``EmojiSettings/registerPreferredSkinTone(for:)``
+        
+        ``EmojiSettings/registerPreferredSkinToneForAllEmojis(using:)``
+        
+        ``EmojiSettings/resetPreferredSkinTone(for:)``
+        
+        ``EmojiSettings/resetPreferredSkinToneForAllEmojis()``
+    }
+    
+    @Tab("Feedback") {
+        ``FeedbackSettings/isAudioFeedbackEnabled``
+        
+        ``FeedbackSettings/isHapticFeedbackEnabled``
     }
     
     @Tab("Themes") {

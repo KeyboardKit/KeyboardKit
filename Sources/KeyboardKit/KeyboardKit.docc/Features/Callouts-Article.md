@@ -11,7 +11,7 @@ This article describes the KeyboardKit callout engine.
     )
 }
 
-Callouts are an important part of the typing experience, where an ``KeyboardCallout/InputCallout`` can show the currently pressed key and an ``KeyboardCallout/ActionCallout`` can show secondary actions when certain keys are long pressed.
+Callouts are an important part of the typing experience, where an ``Callouts/InputCallout`` can show the currently pressed key and an ``Callouts/ActionCallout`` can show secondary actions when certain keys are long pressed.
 
 👑 [KeyboardKit Pro][Pro] unlocks localized callouts for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. Information about Pro features can be found further down.
 
@@ -21,13 +21,13 @@ Callouts are an important part of the typing experience, where an ``KeyboardCall
 
 ## Namespace
 
-KeyboardKit has a ``KeyboardCallout`` namespace that contains callout-related types and views, like the callout ``KeyboardCallout/Actions`` model, the ``KeyboardCallout/InputCallout`` and ``KeyboardCallout/ActionCallout`` views, styles, etc.
+KeyboardKit has a ``Callouts`` namespace that contains callout-related types and views, like the callout ``Callouts/Actions`` model, the ``Callouts/InputCallout`` and ``Callouts/ActionCallout`` views, styles, etc.
 
 
 
 ## Context
 
-KeyboardKit has an observable ``CalloutContext`` class that has observable callout state, such as the currently pressed ``CalloutContext/inputAction`` or the ``CalloutContext/secondaryActions`` that should be presented.
+KeyboardKit has an observable ``CalloutContext`` class that has observable callout state, such as the current ``CalloutContext/inputAction`` or the ``CalloutContext/secondaryActions`` that should be presented.
 
 KeyboardKit automatically creates an instance of this class and injects it into ``KeyboardInputViewController/state``, then updates this context when keys are pressed.
 
@@ -35,15 +35,15 @@ KeyboardKit automatically creates an instance of this class and injects it into 
 
 ## Services (DEPRECATED)
 
-In KeyboardKit, a ``KeyboardCalloutService`` can return secondary callout actions when a key is long pressed and trigger feedback when the selected secondary action changes. 
+In KeyboardKit, a ``CalloutService`` can return secondary callout actions when a key is long pressed and let the user swipe to change which action to apply. 
 
-KeyboardKit injects a ``KeyboardCallout/StandardCalloutService`` into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or add localized services to it by signing up for [KeyboardKit Pro][Pro].
+KeyboardKit injects a ``Callouts/StandardCalloutService`` into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or add localized services to it by signing up for [KeyboardKit Pro][Pro].
 
 > Important: This service model is soft deprecated and will be removed in KeyboardKit 10. Please migrate to the new view-based customization approach described in the next section as soon as possible.
 
 
 
-## Callout Action Customization
+## Secondary Callout Action Customization
 
 You can use the ``SwiftUICore/View/keyboardCalloutActions(_:)`` view modifier to customize the callout actions for any action:
 
@@ -68,7 +68,7 @@ struct MyKeyboardView: View {
 }
 ```
 
-You can customize callouts for any actions, then use ``KeyboardCallout/ActionsBuilderParams/standardActions(for:)`` to return the standard actions for all other actions.
+You can customize callouts for any actions, then use ``Callouts/ActionsBuilderParams/standardActions(for:)`` to return the standard actions for all other actions.
 
 
 
@@ -89,7 +89,7 @@ The ``KeyboardCallout`` namespace has callout-specific views, that can be used t
         @Row {
             @Column { ![ActionCallout](callouts-actioncallout) }
             @Column { 
-                The ``KeyboardCallout/ActionCallout`` view can present secondary actions when a keyboard key with secondary actions is long-pressed.        
+                The ``Callouts/ActionCallout`` view can present secondary actions when a keyboard key with secondary actions is long-pressed.        
             }
         }
     }
@@ -99,7 +99,7 @@ The ``KeyboardCallout`` namespace has callout-specific views, that can be used t
         @Row {
             @Column { ![InputCallout](callouts-inputcallout) }
             @Column { 
-                The ``KeyboardCallout/InputCallout`` view can be used to zoom in the currently pressed input key as the user types.
+                The ``Callouts/InputCallout`` view can be used to zoom in the currently pressed input key as the user types.
             }
         }
     }
@@ -110,13 +110,13 @@ The ``KeyboardCallout`` namespace has callout-specific views, that can be used t
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks a localized ``KeyboardCallout/ProCalloutService`` for every locale in your license, and injects them as localized services into the main ``Keyboard/Services/calloutService``. You can access any localized service in your license like this:
+[KeyboardKit Pro][Pro] unlocks a localized ``Callouts/ProCalloutService`` for every locale in your license, and injects them as localized services into the main ``Keyboard/Services/calloutService``. You can access any localized service in your license like this:
 
 ```swift
 let service = try Callouts.ProCalloutService.Swedish()
 ```
 
-KeyboardKit Pro also unlocks localized callout ``KeyboardCallout/Actions`` for all supported locales that are included in your license.
+KeyboardKit Pro also unlocks localized callout ``Callouts/Actions`` for all supported locales that are included in your license.
 
 ```swift
 let actions = Callouts.Actions.swedish  // or...

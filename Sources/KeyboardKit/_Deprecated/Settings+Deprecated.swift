@@ -39,16 +39,16 @@ public extension DictationContext {
 }
 
 
-public extension KeyboardFeedback {
+public extension Feedback {
     
-    @available(*, deprecated, renamed: "KeyboardFeedbackSettings")
-    typealias Settings = KeyboardFeedbackSettings
+    @available(*, deprecated, renamed: "FeedbackSettings")
+    typealias Settings = FeedbackSettings
 }
 
-public extension KeyboardFeedbackContext {
+public extension FeedbackContext {
     
-    @available(*, deprecated, message: "Just use KeyboardFeedbackSettings.")
-    typealias Settings = KeyboardFeedbackSettings
+    @available(*, deprecated, message: "Just use FeedbackSettings.")
+    typealias Settings = FeedbackSettings
 }
 
 

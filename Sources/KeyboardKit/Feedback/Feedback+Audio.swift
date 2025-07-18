@@ -1,5 +1,5 @@
 //
-//  KeyboardFeedback+Audio.swift
+//  Feedback+Audio.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2019-10-15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension KeyboardFeedback {
+public extension Feedback {
 
     /// This enum defines standard audio feedback types.
     ///
@@ -38,7 +38,7 @@ public extension KeyboardFeedback {
     }
 }
 
-public extension KeyboardFeedback.Audio {
+public extension Feedback.Audio {
 
     /// The unique system sound identifier.
     var id: UInt32? {

@@ -40,7 +40,7 @@ public extension EmojiSettings {
         return preferredSkinTones[emoji] ?? emoji
     }
 
-    /// Register the preferred skin tone for an emoji.
+    /// Register the preferred skin tone for a certain emoji.
     func registerPreferredSkinTone(for emoji: Emoji) {
         preferredSkinTones[emoji.dictionaryKey] = emoji
     }
@@ -57,9 +57,16 @@ public extension EmojiSettings {
         preferredSkinTones[emoji.dictionaryKey] = nil
     }
 
-    /// Rest the preferred skin tone for an emoji.
+    /// Rest the preferred skin tone for a certain emoji.
     func resetPreferredSkinTone(for emoji: Emoji) {
         preferredSkinTones[emoji.dictionaryKey] = nil
+    }
+
+    /// Rest the preferred skin tone for all emojis.
+    func resetPreferredSkinToneForAllEmojis() {
+        Emoji.all.forEach {
+            resetPreferredSkinTone(for: $0)
+        }
     }
 }
 

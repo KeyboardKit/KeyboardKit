@@ -166,13 +166,13 @@ public extension Callouts.CalloutStyle {
 
 public extension EnvironmentValues {
 
-    /// Apply a ``KeyboardCallout/CalloutStyle``.
+    /// Apply a ``Callouts/CalloutStyle``.
     @Entry var keyboardCalloutStyle = Callouts.CalloutStyle.standard
 }
 
 public extension View {
 
-    /// Apply a ``KeyboardCallout/CalloutStyle``.
+    /// Apply a ``Callouts/CalloutStyle``.
     func keyboardCalloutStyle(
         _ style: Callouts.CalloutStyle
     ) -> some View {
