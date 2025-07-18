@@ -76,6 +76,7 @@ public extension KeyboardAction {
         case .tab: { $0?.insertText(.tab) }
         case .text(let text): { $0?.insertText(text) }
         case .url(let url, _): { $0?.openUrl(url) }
+        case .urlDomain: { $0?.insertText(".") }
         default: nil
         }
     }

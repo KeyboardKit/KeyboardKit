@@ -64,14 +64,16 @@ public extension InputSet {
     }
 
     /// A standard numeric input set.
-    static var numeric: InputSet { numeric() }
+    static var numeric: InputSet {
+        numeric(currency: "$")
+    }
 
     /// A standard numeric input set.
     ///
     /// - Parameters:
     ///   - currency: The currency input to add, by default `$`.
     static func numeric(
-        currency: String = "$"
+        currency: String
     ) -> InputSet {
         .init(rows: [
             .init(chars: "1234567890"),
@@ -84,16 +86,8 @@ public extension InputSet {
     }
 
     /// A standard symbolic input set.
-    static var symbolic: InputSet { symbolic() }
-
-    /// A standard symbolic input set.
-    ///
-    /// - Parameters:
-    ///   - currencies: The currency inputs to add, by default `"€£¥"`.
-    static func symbolic(
-        currencies: String = "€£¥"
-    ) -> InputSet {
-        return symbolic(currencies: currencies.chars)
+    static var symbolic: InputSet {
+        symbolic(currencies: "€£¥".chars)
     }
 
     /// A standard symbolic input set.

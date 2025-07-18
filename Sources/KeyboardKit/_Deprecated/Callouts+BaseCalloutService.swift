@@ -25,6 +25,7 @@ extension Callouts {
         ) -> [KeyboardAction] {
             switch action {
             case .character(let char): return calloutActions(for: char)
+            case .urlDomain: return .urlDomainActions
             default: return []
             }
         }

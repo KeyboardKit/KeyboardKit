@@ -86,6 +86,7 @@ private extension Callouts.ActionCallout {
         switch action {
         case .character(let char): calloutItem(for: char)
         case .emoji(let emoji): calloutItem(for: emoji)
+        case .text(let text): calloutItem(for: text)
         default: EmptyView()
         }
     }
@@ -93,6 +94,7 @@ private extension Callouts.ActionCallout {
     func calloutItem(for char: String) -> some View {
         Text(char)
             .font(style.actionItemFont.font)
+            .fixedSize(horizontal: true, vertical: false)
     }
 
     func calloutItem(for emoji: Emoji) -> some View {
@@ -133,6 +135,14 @@ private extension Callouts.ActionCallout {
     func isSelected(_ offset: Int) -> Bool {
         calloutContext.secondaryActionsIndex == offset
     }
+
+    var isTextCallout: Bool {
+        guard let action = actions.first else { return false }
+        switch action {
+        case .text: return true
+        default: return false
+        }
+    }
 }
 
 private extension Callouts.ActionCallout {
@@ -146,7 +156,8 @@ private extension Callouts.ActionCallout {
     }
 
     var buttonFrame: CGRect {
-        isEmojiCallout ? calloutContext.buttonFrame : buttonFrameForCharacters
+        if isEmojiCallout { return calloutContext.buttonFrame }
+        return buttonFrameForCharacters
     }
 
     var buttonFrameForCharacters: CGRect {
@@ -157,8 +168,11 @@ private extension Callouts.ActionCallout {
 
     var itemSize: CGSize {
         let frameSize = buttonSize
-        let buttonSize = CGSize(width: frameSize.width * itemSizeWidthScale, height: frameSize.height)
-        return buttonSize.limited(to: style.actionItemMaxSize)
+        let width = frameSize.width
+        let height = frameSize.height
+        let buttonSize = CGSize(width: width * itemSizeWidthScale, height: height)
+        let limitedSize = buttonSize.limited(to: style.actionItemMaxSize)
+        return limitedSize
     }
     
     var itemSizeWidthScale: Double {
@@ -197,6 +211,7 @@ private extension KeyboardAction {
     var input: String? {
         switch self {
         case .character(let char): char
+        case .text(let text): text
         default: nil
         }
     }
@@ -300,7 +315,8 @@ private extension KeyboardAction {
 
     return Preview()
         .keyboardCalloutActions { params in
-            [params.action, .character("b")]
+            // [params.action, .character("b")]
+                .urlDomainActions
         }
 }
 #endif

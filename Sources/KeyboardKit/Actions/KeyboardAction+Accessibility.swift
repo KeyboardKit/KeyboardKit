@@ -43,6 +43,7 @@ public extension KeyboardAction {
         case .tab: "Tab"
         case .text(let text): text
         case .url(let url, _): "Open \(url?.absoluteString ?? "invalid url")"
+        case .urlDomain: "URL Domain"
         }
     }
 }
