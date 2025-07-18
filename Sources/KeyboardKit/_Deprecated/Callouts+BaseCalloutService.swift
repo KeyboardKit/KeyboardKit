@@ -10,8 +10,7 @@ import SwiftUI
 
 extension Callouts {
 
-    /// > Warning: The callout service concept is deprecated
-    /// and will be removed in KeyboardKit 10.
+    /// > Deprecated: The callout service concept will be removed in KeyboardKit 10.
     ///
     /// This is a base class for any kind of callout service.
     open class BaseCalloutService: CalloutService {

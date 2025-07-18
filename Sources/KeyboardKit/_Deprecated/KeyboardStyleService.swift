@@ -9,23 +9,10 @@
 import CoreGraphics
 import SwiftUI
 
+/// > Deprecated: The style service concept will be removed in KeyboardKit 10.
+///
 /// This protocol can be implemented by any classes that can
 /// provide dynamic keyboard styles.
-///
-/// While most views in the library have view modifiers that
-/// apply their specific styles, some views are more complex
-/// and require more dynamic styling.
-///
-/// For instance, the ``KeyboardView`` embeds many different
-/// components like the ``EmojiKeyboard`` which define their
-/// own styles. For now, this service generates these styles,
-/// which means that a view rendered within a ``KeyboardView``
-/// can't be styled with their dedicated view modifiers.
-///
-/// KeyboardKit will automatically setup a standard protocol
-/// implementation in ``KeyboardInputViewController/services``
-/// when the keyboard is launched. You can change or replace
-/// it at any time to customize the keyboard action behavior.
 public protocol KeyboardStyleService: AnyObject {
 
     /// The background style to apply to the entire keyboard.

@@ -8,8 +8,7 @@
 
 import Foundation
 
-/// > Warning: The callout service concept is deprecated and
-/// will be removed in KeyboardKit 10.
+/// > Deprecated: The callout service concept will be removed in KeyboardKit 10.
 ///
 /// This protocol can be implemented by any type that can be
 /// used to perform keyboard-related callout actions.
