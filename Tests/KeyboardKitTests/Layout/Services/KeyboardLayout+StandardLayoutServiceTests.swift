@@ -72,8 +72,8 @@ private class TestService: KeyboardLayout.BaseLayoutService, LocalizedService {
         self.localeKey = localeKey
         super.init(
             alphabeticInputSet: .init(rows: [.init(chars: "abcdefghij")]),
-            numericInputSet: .numeric(currency: "$"),
-            symbolicInputSet: .symbolic(currencies: "€£¥".chars)
+            numericInputSet: .numeric,
+            symbolicInputSet: .symbolic
         )
     }
     

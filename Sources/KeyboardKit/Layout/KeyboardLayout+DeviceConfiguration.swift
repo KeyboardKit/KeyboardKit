@@ -13,7 +13,7 @@ public extension KeyboardLayout {
 
     /// This type defines layout configs for various devices
     /// and screen orientations.
-    struct DeviceConfiguration: Equatable {
+    struct DeviceConfiguration: Equatable, Sendable {
 
         /// Create a new layout configuration.
         ///

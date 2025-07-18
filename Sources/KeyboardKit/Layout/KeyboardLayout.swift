@@ -23,23 +23,31 @@ public struct KeyboardLayout {
     ///
     /// - Parameters:
     ///   - rows: The items to add to the keyboard.
-    ///   - iPadProLayout: Whether the layout is iPad Pro specific.
-    ///   - height: An optional, ideal item height, otherwise picked from the first item.
-    ///   - insets: An optional, ideal item inset value, otherwise picked from the first item.
+    ///   - deviceConfiguration: The device configuration for the layout, by default `nil`.
+    ///   - iPadProLayout: Whether the layout is iPad Pro specific, by default `false`.
+    ///   - height: The ideal item height, by default picked from the first item
+    ///   - insets: The ideal item inset value, by default picked from the first item.
     ///   - inputToolbarInputSet: The input set to use for a topmost input toolbar, if any.
     public init(
         itemRows rows: ItemRows,
+        deviceConfiguration: DeviceConfiguration? = nil,
         iPadProLayout: Bool = false,
         idealItemHeight height: Double? = nil,
         idealItemInsets insets: EdgeInsets? = nil,
         inputToolbarInputSet: InputSet? = nil
     ) {
         self.itemRows = rows
+        self.deviceConfiguration = deviceConfiguration
         self.isIpadProLayout = iPadProLayout
         self.idealItemHeight = height ?? Self.resolveIdealItemHeight(for: rows)
         self.idealItemInsets = insets ?? Self.resolveIdealItemInsets(for: rows)
         self.inputToolbarInputSet = inputToolbarInputSet
     }
+
+    /// The device configuration for the layout.
+    ///
+    /// TODO: This will be non-optional in KeyboardKit 10.
+    public var deviceConfiguration: DeviceConfiguration?
 
     /// The layout item rows to show in the keyboard.
     public var itemRows: ItemRows

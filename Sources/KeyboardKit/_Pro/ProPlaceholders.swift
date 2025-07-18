@@ -487,6 +487,7 @@ public extension KeyboardLayout {
     func copy() -> KeyboardLayout {
         .init(
             itemRows: itemRows,
+            deviceConfiguration: deviceConfiguration,
             iPadProLayout: isIpadProLayout,
             idealItemHeight: idealItemHeight,
             idealItemInsets: idealItemInsets

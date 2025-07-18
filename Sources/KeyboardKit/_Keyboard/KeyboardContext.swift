@@ -134,7 +134,7 @@ public class KeyboardContext: ObservableObject {
 
     /// An optional dictation replacement action.
     @Published public var keyboardDictationReplacement: KeyboardAction?
-    
+
     /// The current keyboard layout type, if any.
     @Published public var keyboardLayoutType: Keyboard.LayoutType? {
         didSet { settings.keyboardLayoutTypeIdentifier = keyboardLayoutType?.id }
@@ -204,7 +204,7 @@ public class KeyboardContext: ObservableObject {
 // MARK: - Settings-Backed Properties
 
 public extension KeyboardContext {
-    
+
     /// The bundle ID of the keyboard host application.
     ///
     /// The property is persisted, and can be used to see in
@@ -218,7 +218,7 @@ public extension KeyboardContext {
         get { settings.hostApplicationBundleId }
         set { settings.hostApplicationBundleId = newValue }
     }
-    
+
     /// A date when ``hostApplicationBundleId`` was last set.
     var hostApplicationBundleIdSyncDate: Date? {
         settings.hostApplicationBundleIdSyncDate
@@ -274,11 +274,15 @@ public extension KeyboardContext {
     ///
     /// This value comes from the ``textDocumentProxy``, but
     /// ``returnKeyTypeOverride`` can override it.
+    ///
+    /// TODO: Make this non-optional in KeyboardKit 10.
     var returnKeyType: Keyboard.ReturnKeyType? {
+        if keyboardType == .emojiSearch { return .done }
+        if let returnKeyTypeOverride { return returnKeyTypeOverride }
         #if os(iOS) || os(tvOS) || os(visionOS)
-        returnKeyTypeOverride ?? textDocumentProxy.returnKeyType?.keyboardType
+        return textDocumentProxy.returnKeyType?.keyboardType
         #else
-        returnKeyTypeOverride ?? nil
+        return nil
         #endif
     }
 }

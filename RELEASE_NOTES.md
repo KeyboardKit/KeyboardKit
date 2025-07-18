@@ -23,6 +23,17 @@ Soft deprecations are made with code comments, so that the documentation will me
 
 This version renames some namespaces, like `KeyboardCallout` and `KeyboardFeedback` to shorter names. Namespaces that need the "keyboard" prefix keep it. 
 
+### ✨ Features
+
+* `InputSet` has new value builder default parameters.
+* `KeyboardAction` has new standard layout value builders.
+* `KeyboardLayout` can now be given a device configuration.
+
+### 👑 Pro
+
+* `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
+* `KeyboardLayout` has a new `.iPhoneLayout(...)` layout builder.
+
 ### 🗑️ Deprecations
 
 * The `KeyboardCallout` namespace has been renamed to `Callouts`.

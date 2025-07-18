@@ -24,12 +24,12 @@ extension KeyboardLayout {
         ///
         /// - Parameters:
         ///   - alphabeticInputSet: The alphabetic input set to use, by default ``InputSet/qwerty``.
-        ///   - numericInputSet: The numeric input set to use, by default ``InputSet/numeric(currency:)``.
-        ///   - symbolicInputSet: The symbolic input set to use, by default ``InputSet/symbolic(currencies:)``.
+        ///   - numericInputSet: The numeric input set to use, by default ``InputSet/numeric``.
+        ///   - symbolicInputSet: The symbolic input set to use, by default ``InputSet/symbolic``.
         public override init(
             alphabeticInputSet: InputSet = .qwerty,
-            numericInputSet: InputSet = .numeric(currency: "$"),
-            symbolicInputSet: InputSet = .symbolic(currencies: ["€", "£", "¥"])
+            numericInputSet: InputSet = .numeric,
+            symbolicInputSet: InputSet = .symbolic
         ) {
             super.init(
                 alphabeticInputSet: alphabeticInputSet,

@@ -49,6 +49,7 @@ extension KeyboardLayout {
         ) -> KeyboardLayout {
             KeyboardLayout(
                 itemRows: itemRows(for: context),
+                deviceConfiguration: .standard(for: context),
                 inputToolbarInputSet: inputSetForInputToolbar(with: context)
             )
         }
@@ -246,4 +247,28 @@ extension KeyboardLayout {
             }
         }
     }
+}
+
+#Preview {
+
+    func preview(for type: Keyboard.KeyboardType) -> some View {
+        let state = Keyboard.State.preview
+        state.keyboardContext.keyboardType = type
+        state.keyboardContext.settings.inputToolbarType = .numbers
+        return KeyboardView(
+            layout: KeyboardLayout.BaseLayoutService(
+                alphabeticInputSet: .qwerty,
+                numericInputSet: .numeric,
+                symbolicInputSet: .symbolic
+            ).keyboardLayout(for: state.keyboardContext),
+            state: state,
+            services: .preview
+        )
+    }
+
+    return VStack {
+        preview(for: .alphabetic)
+        preview(for: .numeric)
+        preview(for: .symbolic)
+    }.background(Color.keyboardBackground)
 }

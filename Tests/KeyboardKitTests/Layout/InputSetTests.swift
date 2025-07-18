@@ -18,7 +18,7 @@ class InputSetTests: XCTestCase {
     }
 
     func testNumericDefinesValidCharactersForPhone() {
-        let set = InputSet.numeric(currency: "$")
+        let set = InputSet.numeric
         let chars = set.characterStrings(for: .lowercased, device: .phone)
         XCTAssertEqual(chars, ["1234567890", "-/:;()$&@”", ".,?!’"])
     }

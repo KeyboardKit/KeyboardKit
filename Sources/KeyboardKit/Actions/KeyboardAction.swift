@@ -153,6 +153,14 @@ public extension KeyboardAction {
 
 public extension KeyboardAction {
 
+    /// A character margin action can add an extra tap area.
+    var characterMarginAction: KeyboardAction {
+        switch self {
+        case .character(let char): .characterMargin(char)
+        default: .none
+        }
+    }
+
     /// Whether or not the action is an alphabetic type.
     var isAlphabeticKeyboardTypeAction: Bool {
         switch self {
