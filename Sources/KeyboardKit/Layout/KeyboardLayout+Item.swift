@@ -13,8 +13,8 @@ public extension KeyboardLayout {
     
     /// A keyboard layout items defines an action, size, and
     /// optional insets for a key on a layout-based keyboard.
-    struct Item: Equatable {
-        
+    struct Item: Equatable, Sendable {
+
         /// Create a new layout item.
         ///
         /// - Parameters:
@@ -98,8 +98,8 @@ public extension KeyboardLayout.Item {
 public extension KeyboardLayout {
     
     /// A size with point-based height and declarative width.
-    struct ItemSize: Equatable {
-        
+    struct ItemSize: KeyboardModel {
+
         /// Create a new layout item size.
         public init(
             width: ItemWidth,
@@ -117,8 +117,8 @@ public extension KeyboardLayout {
     }
     
     /// This enum specifies various layout item width types.
-    enum ItemWidth: Equatable {
-        
+    enum ItemWidth: KeyboardModel {
+
         /// A width that will share the available row space.
         case available
         

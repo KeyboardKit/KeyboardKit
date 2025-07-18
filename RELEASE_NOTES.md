@@ -23,6 +23,16 @@ Soft deprecations are made with code comments, so that the documentation will me
 
 This version renames some namespaces, like `KeyboardCallout` and `KeyboardFeedback` to shorter names. Namespaces that need the "keyboard" prefix keep it. 
 
+### ✨ Features
+
+* `KeyboardAction` has new standard layout value builders.
+* `KeyboardLayout` can now define a device configuration to simplify customizations.
+* `KeyboardLayout` can now define a device configuration to simplify customizations.
+
+### 👑 Pro
+
+* `KeyboardLayout` has new layout builders that can replace the layout services.
+
 ### 🗑️ Deprecations
 
 * The `KeyboardCallout` namespace has been renamed to `Callouts`.
