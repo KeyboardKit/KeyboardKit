@@ -30,6 +30,7 @@ This version renames some namespaces, like `KeyboardCallout` and `KeyboardFeedba
 
 * `Color+Standard` has been deprecated and now use `KeyboardAction` extensions.
 * `CalloutService` and all service implementations have been deprecated.
+* `KeyboardStyleService` and all service implementations have been deprecated.
 
 
 

@@ -11,6 +11,8 @@ import CoreGraphics
 
 public extension KeyboardStyleService where Self == KeyboardStyle.StandardStyleService {
 
+    /// > Deprecated: The style service concept will be removed in KeyboardKit 10.
+    ///
     /// Create a standard keyboard service.
     ///
     /// - Parameters:
@@ -26,14 +28,10 @@ public extension KeyboardStyleService where Self == KeyboardStyle.StandardStyleS
 
 extension KeyboardStyle {
 
+    /// > Deprecated: The style service concept will be removed in KeyboardKit 10.
+    /// 
     /// This class provides a standard way to create dynamic
     /// keyboard styles.
-    ///
-    /// The service will by default mimic the standard style
-    /// of an iOS keyboard on iPhone and iPad.
-    ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
     open class StandardStyleService: KeyboardStyleService {
 
         /// Create a standard keyboard style service.

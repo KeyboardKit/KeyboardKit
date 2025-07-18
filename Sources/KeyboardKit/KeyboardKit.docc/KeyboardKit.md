@@ -287,7 +287,6 @@ KeyboardKit is available under the MIT license.
 
 - ``KeyboardFont``
 - ``KeyboardStyle``
-- ``KeyboardStyleService``
 
 ### Themes
 
@@ -295,3 +294,9 @@ KeyboardKit is available under the MIT license.
 - ``KeyboardThemeContext``
 - ``KeyboardThemeSettings``
 - ``KeyboardThemeStyleVariation``
+
+
+### Deprecated
+
+- ``CalloutService``
+- ``KeyboardStyleService``
