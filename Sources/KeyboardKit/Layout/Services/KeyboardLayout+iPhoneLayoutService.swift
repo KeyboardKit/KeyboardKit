@@ -240,3 +240,28 @@ private extension KeyboardContext {
         self.locale == locale && keyboardType == .alphabetic
     }
 }
+
+
+#Preview {
+
+    func preview(for type: Keyboard.KeyboardType) -> some View {
+        let state = Keyboard.State.preview
+        state.keyboardContext.keyboardType = type
+        state.keyboardContext.settings.inputToolbarType = .numbers
+        return KeyboardView(
+            layout: KeyboardLayout.iPhoneLayoutService(
+                alphabeticInputSet: .qwerty,
+                numericInputSet: .numeric,
+                symbolicInputSet: .symbolic
+            ).keyboardLayout(for: state.keyboardContext),
+            state: state,
+            services: .preview
+        )
+    }
+
+    return VStack {
+        preview(for: .alphabetic)
+        preview(for: .numeric)
+        preview(for: .symbolic)
+    }.background(Color.keyboardBackground)
+}

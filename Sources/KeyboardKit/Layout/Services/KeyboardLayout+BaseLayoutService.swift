@@ -258,8 +258,8 @@ extension KeyboardLayout {
         return KeyboardView(
             layout: KeyboardLayout.BaseLayoutService(
                 alphabeticInputSet: .qwerty,
-                numericInputSet: .numeric(currency: "$"),
-                symbolicInputSet: .symbolic(currencies: "€£$".chars)
+                numericInputSet: .numeric,
+                symbolicInputSet: .symbolic
             ).keyboardLayout(for: state.keyboardContext),
             state: state,
             services: .preview

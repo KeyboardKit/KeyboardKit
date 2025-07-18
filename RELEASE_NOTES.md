@@ -25,13 +25,13 @@ This version renames some namespaces, like `KeyboardCallout` and `KeyboardFeedba
 
 ### ✨ Features
 
+* `InputSet` has new value builder default parameters.
 * `KeyboardAction` has new standard layout value builders.
-* `KeyboardLayout` can now define a device configuration to simplify customizations.
-* `KeyboardLayout` can now define a device configuration to simplify customizations.
+* `KeyboardLayout` can now be given a device configuration.
 
 ### 👑 Pro
 
-* `KeyboardLayout` has new layout builders that can replace the layout services.
+* `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
 
 ### 🗑️ Deprecations
 

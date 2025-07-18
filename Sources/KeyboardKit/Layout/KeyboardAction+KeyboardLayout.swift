@@ -1,5 +1,5 @@
 //
-//  KeyboardAction.swift
+//  KeyboardAction+KeyboardLayout.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2025-07-18.
@@ -12,11 +12,12 @@ public extension KeyboardAction {
 
     /// Tge standard layout item insets.
     func standardLayoutItem(
-        for config: KeyboardLayout.DeviceConfiguration
+        for config: KeyboardLayout.DeviceConfiguration,
+        width: KeyboardLayout.ItemWidth? = nil
     ) -> KeyboardLayout.Item {
         .init(
             action: self,
-            size: standardLayoutItemSize(for: config),
+            size: standardLayoutItemSize(for: config, width: width),
             alignment: .center,
             edgeInsets: standardLayoutItemInsets(for: config)
         )
@@ -34,10 +35,11 @@ public extension KeyboardAction {
 
     /// The standard layout item size.
     func standardLayoutItemSize(
-        for config: KeyboardLayout.DeviceConfiguration
+        for config: KeyboardLayout.DeviceConfiguration,
+        width: KeyboardLayout.ItemWidth? = nil
     ) -> KeyboardLayout.ItemSize {
         .init(
-            width: standardLayoutItemSizeWidth(for: config),
+            width: width ?? standardLayoutItemSizeWidth(for: config),
             height: standardLayoutItemSizeHeight(for: config)
         )
     }

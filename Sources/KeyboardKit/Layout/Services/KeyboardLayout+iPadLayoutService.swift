@@ -173,7 +173,7 @@ extension KeyboardLayout.iPadLayoutService {
     func layout() -> KeyboardLayout {
         KeyboardLayout.iPadLayoutService(
             alphabeticInputSet: .qwerty,
-            numericInputSet: .numeric(currency: "$"),
+            numericInputSet: .numeric,
             symbolicInputSet: .symbolic(currencies: [""])
         )
         .keyboardLayout(for: .preview)
