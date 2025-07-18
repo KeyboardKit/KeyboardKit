@@ -54,6 +54,29 @@ public extension KeyboardLayout {
     typealias ItemRows = [ItemRow]
 }
 
+public extension KeyboardLayout.ItemRow {
+
+    /// Get a leading character margin action for the row, if any
+    var leadingCharacterMarginAction: KeyboardAction {
+        characterMarginAction(for: first)
+    }
+
+    /// Get a trailing character margin action for the row, if any
+    var trailingCharacterMarginAction: KeyboardAction {
+        characterMarginAction(for: last)
+    }
+
+    /// Get a matching character margin action for an action.
+    func characterMarginAction(
+        for item: KeyboardLayout.Item?
+    ) -> KeyboardAction {
+        switch item?.action {
+        case .character(let char): .characterMargin(char)
+        default: .none
+        }
+    }
+}
+
 public extension KeyboardLayout.Item {
     
     /// Create a copy by replacing the item keyboard action.

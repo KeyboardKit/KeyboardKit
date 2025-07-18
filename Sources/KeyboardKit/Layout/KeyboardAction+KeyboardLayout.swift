@@ -10,7 +10,7 @@ import SwiftUI
 
 public extension KeyboardAction {
 
-    /// Tge standard layout item insets.
+    /// The standard layout item insets.
     func standardLayoutItem(
         for config: KeyboardLayout.DeviceConfiguration,
         width: KeyboardLayout.ItemWidth? = nil
@@ -23,7 +23,7 @@ public extension KeyboardAction {
         )
     }
 
-    /// Tge standard layout item insets.
+    /// The standard layout item insets.
     func standardLayoutItemInsets(
         for config: KeyboardLayout.DeviceConfiguration
     ) -> EdgeInsets {

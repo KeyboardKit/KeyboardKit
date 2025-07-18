@@ -32,6 +32,7 @@ This version renames some namespaces, like `KeyboardCallout` and `KeyboardFeedba
 ### 👑 Pro
 
 * `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
+* `KeyboardLayout` has a new `.iPhoneLayout(...)` layout builder.
 
 ### 🗑️ Deprecations
 
