@@ -21,11 +21,9 @@ public extension Callouts {
     /// with ``SwiftUICore/View/keyboardCalloutActions(_:)``.
     struct Actions: KeyboardModel {
 
-        /// Create custom actions from an action dictionary.
+        /// Create callout actions from an action dictionary.
         ///
-        /// While the character-based initializer maps every
-        /// value to both lower and uppercase variants, this
-        /// initializer just applies the provided actions as
+        /// This initializer applies the provided actions as
         /// they are, without any modifications.
         public init(
             actions: [KeyboardAction: [KeyboardAction]]
@@ -33,23 +31,24 @@ public extension Callouts {
             self.actionsDictionary = actions
         }
 
-        /// Create custom actions from a string dictionary.
+        /// Create callout actions from a string dictionary.
         ///
-        /// This initializer expects an action/actions array
-        /// that will be mapped to ``KeyboardAction`` values
-        /// with both the lower and uppercase variants.
+        /// This initializer applies the provided actions as
+        /// they are, without any modifications, and appends
+        /// the additional action/actions strings dictionary,
+        /// where the actions for each action are defined in
+        /// a single string without any separator.
         public init(
+            actions: [KeyboardAction: [KeyboardAction]] = [:],
             characters: [String: String]
         ) {
-            let lowerChars = characters.mapKeys { $0.lowercased() }
-                .mapValues { $0.map { String($0).lowercased() } }
-            let upperChars = characters.mapKeys { $0.uppercased() }
-                .mapValues { $0.map { String($0).uppercased() } }
-            let lowerActions = lowerChars.mapKeys { KeyboardAction.character($0) }
-                .mapValues { $0.map { KeyboardAction.character($0) } }
-            let upperActions = upperChars.mapKeys { KeyboardAction.character($0) }
-                .mapValues { $0.map { KeyboardAction.character($0) } }
-            let actions = lowerActions.merging(upperActions) { _, new in new }
+            var actions = actions
+            for (key, value) in characters {
+                let lowerKey = key.lowercased()
+                let upperKey = key.lowercased()
+                actions[.character(lowerKey)] = value.lowercased().map { .character(char: $0) }
+                actions[.character(upperKey)] = value.uppercased().map { .character(char: $0) }
+            }
             self.init(actions: actions)
         }
 
@@ -61,23 +60,11 @@ public extension Callouts {
     }
 }
 
-private extension Dictionary {
-
-    func mapKeys<T>(_ transform: (Key) -> T) -> [T: Value] {
-        [T: Value](map { (transform($0.key), $0.value) },
-                   uniquingKeysWith: { first, _ in first })
-    }
-    
-    func mapValues<T>(_ transform: (Value) -> T) -> [Key: T] {
-        [Key: T](map { ($0.key, transform($0.value)) },
-                 uniquingKeysWith: { first, _ in first })
-    }
-}
-
 public extension Callouts.Actions {
 
     /// Base callout actions, without any alphabetic actions.
     static let base = Self.init(
+        actions: [.urlDomain: .urlDomainActions],
         characters: Self.baseNumericAndSymbolicChars
     )
 
@@ -114,10 +101,10 @@ public extension Callouts.Actions {
 
     /// English callout actions.
     static let english: Self = {
-        let alpha = Self.englishAlphabeticCharacters
-        let numerics = Self.baseNumericAndSymbolicChars
-        let merged = alpha.merging(numerics) { (_, new) in new }
-        return Self.init(characters: merged)
+        var actions = Self.base
+        let alpha = Self.init(characters: Self.englishAlphabeticCharacters)
+        actions.actionsDictionary.merge(alpha.actionsDictionary) { (_, new) in new }
+        return actions
     }()
 
     /// English, alphabetic callout actions characters.

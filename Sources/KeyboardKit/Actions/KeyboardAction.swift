@@ -55,10 +55,10 @@ public enum KeyboardAction: KeyboardModel {
     
     /// Dismisses the keyboard when released.
     case dismissKeyboard
-    
+
     /// Inserts an emoji when released.
     case emoji(Emoji)
-    
+
     /// Represents an escape (esc) key.
     case escape
     
@@ -121,9 +121,20 @@ public enum KeyboardAction: KeyboardModel {
 
     /// Open an url when released, using a custom id for identification.
     case url(_ url: URL?, id: String?)
+
+    /// Inserts a period or a URL domain.
+    case urlDomain
 }
 
 public extension KeyboardAction {
+
+    /// An `character(_:)` shorthand.
+    static func character(
+        char: Character
+    ) -> KeyboardAction {
+        .character(String(char))
+    }
+
 
     /// An `emoji(_:)` shorthand.
     static func emoji(
@@ -145,6 +156,21 @@ public extension KeyboardAction {
     ) -> KeyboardAction {
         guard let url else { return .url(.init(string: ""), id: nil) }
         return .url(.init(string: url), id: nil)
+    }
+
+    /// A list of URL domain-related actions.
+    static var urlDomainActions: [KeyboardAction] {
+        .urlDomainActions
+    }
+}
+
+public extension Collection where Element == KeyboardAction {
+
+    /// A list of URL domain-related actions.
+    static var urlDomainActions: [KeyboardAction] {
+        let string = ".com,.org,.edu,.net"
+        let domains = string.split(separator: ",").map(String.init)
+        return domains.map { .text($0) }
     }
 }
 
@@ -207,6 +233,7 @@ public extension KeyboardAction {
         case .space: true
         case .systemImage: true
         case .text: true
+        case .urlDomain: true
         default: false
         }
     }

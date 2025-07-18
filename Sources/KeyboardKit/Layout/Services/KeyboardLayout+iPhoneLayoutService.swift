@@ -153,14 +153,14 @@ extension KeyboardLayout {
             case .emailAddress:
                 result.append(.space)
                 result.append(.character("@"))
-                result.append(.character("."))
+                result.append(.urlDomain)
             case .URL:
-                result.append(.character("."))
+                result.append(.urlDomain)
                 result.append(.character("/"))
                 result.append(.text(".com"))
             case .webSearch:
                 result.append(.space)
-                result.append(.character("."))
+                result.append(.urlDomain)
             default:
                 result.append(.space)
             }

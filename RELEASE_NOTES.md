@@ -15,19 +15,27 @@ These release notes cover the current major version. See older versions for olde
 
 ## 9.8
 
-With the new view modifier-based callout and style customizations working, those service models have been soft deprecated in this version.
+With the new view modifier-based callout and style customizations working, the services have been soft deprecated in this version.
 
-Soft deprecations mean that they WILL be removed in the next major version, but will not be annotated with a deprecation since they are still in use.
+Soft deprecation means they WILL be removed in the next major version, but are not properly annotated since they are still in use.
 
-Soft deprecations are made with code comments, so that the documentation will mention the deprecation, but without causing a large amount of warnings.
+Soft deprecations are made with code comments, so the documentation mentions them, but without causing a large amount of warnings.
 
-This version renames some namespaces, like `KeyboardCallout` and `KeyboardFeedback` to shorter names. Namespaces that need the "keyboard" prefix keep it. 
+This version renames the `KeyboardCallout` and `KeyboardFeedback` to shorter names. Namespaces that need a keyboard prefix keep it.
+
+This version adds many new utils to the layout model. There are new layout builders that can be used instead of the layout services.
+
+These new layout builders are currenly only available in KeyboardKit Pro, but will be available to everyone, later in KeyboardKit 10. 
 
 ### ✨ Features
 
-* `InputSet` has new value builder default parameters.
-* `KeyboardAction` has new standard layout value builders.
-* `KeyboardLayout` can now be given a device configuration.
+* `Callouts.Actions` can now init with actions and chars.
+* `Callouts.Actions.base` now has domain callout actions.
+* `Callouts.ActionCallout` now shows domain callout actions.
+* `InputSet` has brand new default value builder parameters.
+* `KeyboardAction` has brand new standard layout value builders.
+* `KeyboardAction` has new `.urlDomain` action for domain input.
+* `KeyboardLayout` can now be provided with a layout configuration.
 
 ### 👑 Pro
 

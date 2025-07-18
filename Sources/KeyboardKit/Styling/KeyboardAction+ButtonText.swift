@@ -41,6 +41,7 @@ extension KeyboardAction {
         case .primary(let type): type.standardButtonText(for: context.locale)
         case .space: KKL10n.space.text(for: context.locale)
         case .text(let char): standardButtonText(for: char)
+        case .urlDomain: "."
         default: nil
         }
     }
