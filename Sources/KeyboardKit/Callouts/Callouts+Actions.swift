@@ -45,7 +45,7 @@ public extension Callouts {
             var actions = actions
             for (key, value) in characters {
                 let lowerKey = key.lowercased()
-                let upperKey = key.lowercased()
+                let upperKey = key.uppercased()
                 actions[.character(lowerKey)] = value.lowercased().map { .character(char: $0) }
                 actions[.character(upperKey)] = value.uppercased().map { .character(char: $0) }
             }

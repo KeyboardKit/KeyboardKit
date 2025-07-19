@@ -261,8 +261,16 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     open func setKeyboardType(_ type: Keyboard.KeyboardType) {
-        guard type != state.keyboardContext.keyboardType else { return }
-        state.keyboardContext.keyboardType = type
+        let context = state.keyboardContext
+        guard type != context.keyboardType else { return }
+        #if os(iOS) || os(tvOS) || os(visionOS)
+        let proxy = context.textDocumentProxy
+        let nativeType = proxy.keyboardType?.keyboardType
+        if type == .alphabetic, let nativeType {
+            return context.keyboardType = nativeType
+        }
+        #endif
+        context.keyboardType = type
     }
 
     /// Try to open a URL from the keyboard extension.
@@ -296,12 +304,18 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// Try handle a document change.
     open func tryHandleDocumentChange() {
-        let proxy = originalTextDocumentProxy
-        if proxy.documentIdentifier != currentDocumentIdentifier {
-            currentDocumentIdentifier = proxy.documentIdentifier
+        let documentId = safelyGetDocumentIdentifier()
+        if documentId != currentDocumentIdentifier {
+            currentDocumentIdentifier = documentId
             state.keyboardContext.syncAfterAsync(with: self, isForNewDocument: true)
             viewWillSetupKeyboardView()
         }
+    }
+
+    private func safelyGetDocumentIdentifier() -> UUID? {
+        let proxy = super.textDocumentProxy
+        guard proxy.documentContextBeforeInput != nil else { return nil }
+        return proxy.documentIdentifier
     }
 
 
