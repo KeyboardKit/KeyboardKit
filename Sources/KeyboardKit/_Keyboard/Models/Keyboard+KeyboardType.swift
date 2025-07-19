@@ -46,7 +46,10 @@ public extension Keyboard {
 
         /// A URL keyboard.
         case url
-        
+
+        /// A web search keyboard.
+        case webSearch
+
         /// A custom keyboard type, if you need to use one.
         case custom(named: String)
     }
@@ -65,7 +68,8 @@ public extension Keyboard.KeyboardType {
             .numberPad,
             .numeric,
             .symbolic,
-            .url
+            .url,
+            .webSearch
         ]
     }
 }
@@ -84,6 +88,7 @@ public extension Keyboard.KeyboardType {
         case .numeric: "numeric"
         case .symbolic: "symbolic"
         case .url: "url"
+        case .webSearch: "webSearch"
         case .custom(let name): name
         }
     }
@@ -135,7 +140,7 @@ public extension UIKeyboardType {
         case .phonePad: nil
         case .twitter: .alphabetic
         case .URL: .url
-        case .webSearch: .alphabetic
+        case .webSearch: .webSearch
         @unknown default: .alphabetic
         }
     }

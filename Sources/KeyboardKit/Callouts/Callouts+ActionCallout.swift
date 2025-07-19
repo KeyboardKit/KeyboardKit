@@ -78,7 +78,10 @@ private extension Callouts.ActionCallout {
             buttonCornerRadius: style.buttonCornerRadius(for: keyboardContext)
         )
         .opacity(isPad ? 0 : 1)
-        .rotation3DEffect(isLeading ? .zero : .degrees(180), axis: (x: 0.0, y: 1.0, z: 0.0))
+        .rotation3DEffect(
+            isLeading ? .zero : .degrees(180),
+            axis: (x: 0.0, y: 1.0, z: 0.0)
+        )
     }
 
     @ViewBuilder
@@ -170,9 +173,12 @@ private extension Callouts.ActionCallout {
         let frameSize = buttonSize
         let width = frameSize.width
         let height = frameSize.height
-        let buttonSize = CGSize(width: width * itemSizeWidthScale, height: height)
-        let limitedSize = buttonSize.limited(to: style.actionItemMaxSize)
-        return limitedSize
+        var size = CGSize(width: width * itemSizeWidthScale, height: height)
+        if isTextCallout {
+            size.width = max(size.width, 60)    // TEMP
+            return size
+        }
+        return size.limited(to: style.actionItemMaxSize)
     }
     
     var itemSizeWidthScale: Double {
