@@ -47,7 +47,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // keyboardSettings.spaceContextMenuTrailing = .locale
         // keyboardSettings.spaceLongPressBehavior = .moveInputCursor
     }
-    
+
     /// This function is called when the controller needs to
     /// create or update the keyboard view.
     override func viewWillSetupKeyboardView() {
