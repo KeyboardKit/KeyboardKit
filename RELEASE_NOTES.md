@@ -25,7 +25,17 @@ This version renames the `KeyboardCallout` and `KeyboardFeedback` to shorter nam
 
 This version adds many new utils to the layout model. There are new layout builders that can be used instead of the layout services.
 
-These new layout builders are currenly only available in KeyboardKit Pro, but will be available to everyone, later in KeyboardKit 10. 
+These new layout builders are currenly only available in KeyboardKit Pro, but will be available to everyone, later in KeyboardKit 10.
+
+### NEW! - 📃 Document Change Tracking
+
+This version makes the controller detect when the document changes and reload the keyboard to reflect any changes.
+
+This solves many problems when using many text fields, by redrawing the keyboard view to match new keyboard types.
+
+This works by observing the proxy's `.documentIdentifier`. But since it can crash, this feature is off by default.
+
+To enable the feature, set the controller `isDocumentChangeTrackingEnabled` to true. Make sure to report any crashes.  
 
 ### ✨ Features
 
