@@ -182,6 +182,9 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// Keyboard-specific state.
     public var state = Keyboard.State()
 
+    /// Whether to use the new document change tracking.
+    public var isDocumentChangeTrackingEnabled = false
+
     private var currentDocumentIdentifier: UUID?
 
 
@@ -304,6 +307,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// Try handle a document change.
     open func tryHandleDocumentChange() {
+        guard isDocumentChangeTrackingEnabled else { return }
         let documentId = safelyGetDocumentIdentifier()
         if documentId != currentDocumentIdentifier {
             currentDocumentIdentifier = documentId
@@ -313,9 +317,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     }
 
     private func safelyGetDocumentIdentifier() -> UUID? {
-        let proxy = super.textDocumentProxy
-        guard proxy.documentContextBeforeInput != nil else { return nil }
-        return proxy.documentIdentifier
+        let testBundleId = "com.apple.dt.xctest.tool"
+        let isTesting = Bundle.main.bundleIdentifier == testBundleId
+        if isTesting { return nil }
+        return super.textDocumentProxy.documentIdentifier
     }
 
 
