@@ -25,7 +25,7 @@ struct DemoToolbar<Toolbar: View>: View {
     @Binding var isToolbarToggled: Bool
 
     @EnvironmentObject var autocompleteContext: AutocompleteContext
-    @EnvironmentObject var feedbackContext: FeedbackContext
+    @EnvironmentObject var feedbackContext: KeyboardFeedbackContext
     @EnvironmentObject var keyboardContext: KeyboardContext
 
     @FocusState var isTextFieldFocused

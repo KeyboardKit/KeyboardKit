@@ -44,7 +44,7 @@ public extension Keyboard {
         /// A keyboard with symbolic input keys.
         case symbolic
 
-        /// A URL keyboard
+        /// A URL keyboard.
         case url
         
         /// A custom keyboard type, if you need to use one.
