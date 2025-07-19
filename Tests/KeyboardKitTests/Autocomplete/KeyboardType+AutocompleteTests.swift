@@ -27,7 +27,8 @@ class KeyboardType_AutocompleteTests: XCTestCase {
             .numberPad: true,
             .numeric: true,
             .symbolic: true,
-            .url: false
+            .url: false,
+            .webSearch: false
         ])
     }
 

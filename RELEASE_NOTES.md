@@ -46,6 +46,7 @@ These new layout builders are currenly only available in KeyboardKit Pro, but wi
 ### 🐛 Bug Fixes
 
 * `KeyboardInputViewController` now reloads when the document changes.
+* `KeyboardAction.keyboardType` will now set the native type for `.alphabetic`.
 
 ### 🗑️ Deprecations
 

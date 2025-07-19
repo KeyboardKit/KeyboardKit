@@ -149,13 +149,12 @@ extension KeyboardLayout {
             let dictationReplacement = context.keyboardDictationReplacement
             if isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
             
-            #if os(iOS) || os(tvOS) || os(visionOS)
-            switch context.textDocumentProxy.keyboardType {
-            case .emailAddress:
+            switch context.keyboardType {
+            case .email:
                 result.append(.space)
                 result.append(.character("@"))
                 result.append(.urlDomain)
-            case .URL:
+            case .url:
                 result.append(.urlDomain)
                 result.append(.character("/"))
                 result.append(.text(".com"))
@@ -165,7 +164,6 @@ extension KeyboardLayout {
             default:
                 result.append(.space)
             }
-            #endif
             
             result.append(keyboardReturnAction(for: context))
             if !isPortrait(context), needsDictation, let action = dictationReplacement { result.append(action) }
