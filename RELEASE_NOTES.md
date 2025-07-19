@@ -33,6 +33,7 @@ These new layout builders are currenly only available in KeyboardKit Pro, but wi
 * `Callouts.Actions.base` now has domain callout actions.
 * `Callouts.ActionCallout` now shows domain callout actions.
 * `InputSet` has brand new default value builder parameters.
+* `Keyboard.KeyboardType` has a new `.webSearch` keyboard type.
 * `KeyboardAction` has brand new standard layout value builders.
 * `KeyboardAction` has new `.urlDomain` action for domain input.
 * `KeyboardLayout` can now be provided with a layout configuration.

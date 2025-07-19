@@ -46,6 +46,7 @@ extension KeyboardLayout {
             case .nextKeyboard: bottomSystemButtonWidth(for: context)
             case .primary: .percentage(isPortrait(context) ? 0.25 : 0.195)
             case .shift: lowerSystemButtonWidth(for: context)
+            case .urlDomain: context.keyboardType == .url ? .available : .input
             default: .available
             }
         }

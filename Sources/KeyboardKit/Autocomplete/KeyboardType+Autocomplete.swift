@@ -28,6 +28,7 @@ public extension Keyboard.KeyboardType {
         case .numeric: true
         case .symbolic: true
         case .url: false
+        case .webSearch: false
         case .custom: true
         }
     }
