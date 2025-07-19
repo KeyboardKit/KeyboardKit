@@ -11,8 +11,8 @@ import Combine
 import SwiftUI
 import UIKit
 
-/// This is the main input controller in a KeyboardKit-based
-/// keyboard extension.
+/// This is the input controller to use in KeyboardKit-based
+/// keyboard extensions.
 ///
 /// When using KeyboardKit, let `KeyboardController` inherit
 /// this class instead of `UIInputViewController`, to extend
@@ -182,6 +182,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// Keyboard-specific state.
     public var state = Keyboard.State()
 
+    private var currentDocumentIdentifier: UUID?
+
 
     // MARK: - Text And Selection Change
 
@@ -202,16 +204,24 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     open override func textDidChange(_ textInput: UITextInput?) {
         super.textDidChange(textInput)
+
+        // We can do certain operations after a short delay.
         DispatchQueue.main.async { [weak self] in
             self?.textDidChangeAsync(textInput)
+        }
+
+        // For some reason, this function needs a long delay.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.tryHandleDocumentChange()
         }
     }
 
     /// This function will be called with an async delay, to
-    /// give the text document proxy time to update itself.
+    /// give the text document proxy time to update.
     open func textDidChangeAsync(_ textInput: UITextInput?) {
         performAutocomplete()
         setKeyboardCase(state.keyboardContext.preferredKeyboardCase)
+
     }
 
 
@@ -282,6 +292,16 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func performKeyboardContextSync() {
         guard isContextSyncEnabled else { return }
         state.keyboardContext.sync(with: self)
+    }
+
+    /// Try handle a document change.
+    open func tryHandleDocumentChange() {
+        let proxy = originalTextDocumentProxy
+        if proxy.documentIdentifier != currentDocumentIdentifier {
+            currentDocumentIdentifier = proxy.documentIdentifier
+            state.keyboardContext.syncAfterAsync(with: self, isForNewDocument: true)
+            viewWillSetupKeyboardView()
+        }
     }
 
 

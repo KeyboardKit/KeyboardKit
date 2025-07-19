@@ -42,6 +42,10 @@ These new layout builders are currenly only available in KeyboardKit Pro, but wi
 * `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.iPhoneLayout(...)` layout builder.
 
+### 🐛 Bug Fixes
+
+* `KeyboardInputViewController` now reloads when the document changes.
+
 ### 🗑️ Deprecations
 
 * The `KeyboardCallout` namespace has been renamed to `Callouts`.
