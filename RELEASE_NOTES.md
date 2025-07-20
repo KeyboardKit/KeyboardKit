@@ -21,17 +21,19 @@ This means they WILL be removed in the next major version, but they're not annot
 
 Soft deprecations are made with code comments so the docs mentions themthem, without causing a large amount of warnings.
 
-This version adds new utils to the layout engine, like new layout builders that can be used instead of the layout services.
-
-The new layout builders are currenly only available in KeyboardKit Pro, but will be available to everyone in KeyboardKit 10.
-
 ### NEW! - 📃 Document Change Tracking
 
 This version makes the controller redraw its keyboard view when the text field changes, e.g. when the keyboard type changes.
 
 This works by observing the proxy `.documentIdentifier` property. However, since this can crash, this is disabled by default.
 
-To enable the feature, set the controller's `isDocumentTrackingEnabled` property to true, and make sure to report any crashes.  
+To enable the feature, set the controller's `isDocumentTrackingEnabled` property to true, and make sure to report any crashes. 
+
+### BETA! - 🔣 View modifier-based layout adjustments
+
+This version adds a `.keyboardLayout` view modifier that can be used to customize the keyboard layout.
+
+The layout builders that are needed to use this are currenly only available in KeyboardKit Pro, but will be available to everyone in KeyboardKit 10.
 
 ### ✨ Features
 
@@ -44,6 +46,7 @@ To enable the feature, set the controller's `isDocumentTrackingEnabled` property
 * `KeyboardAction` has a new `.urlDomain` action for domain input.
 * `KeyboardInputViewController` has a new `.isDocumentTrackingEnabled` property.
 * `KeyboardLayout` can now be provided with a layout configuration when created.
+* `View` has a new `.keyboardLayout(_:)` view modifier that can inject a custom layout.
 
 ### 👑 Pro
 

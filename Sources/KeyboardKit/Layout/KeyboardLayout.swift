@@ -95,3 +95,34 @@ private extension KeyboardLayout {
         return item?.edgeInsets ?? EdgeInsets()
     }
 }
+
+public extension KeyboardLayout {
+
+    /// This type can customize the keyboard layout with the
+    /// ``SwiftUICore/View/keyboardLayout(_:)`` modifier.
+    typealias LayoutBuilder = () -> KeyboardLayout?
+}
+
+public extension EnvironmentValues {
+
+    /// This value can be used to customize keyboard layouts.
+    ///
+    /// > Note: The builder returns `nil` by default to make
+    /// it possible to check if there is an injected builder.
+    @Entry var keyboardLayout: KeyboardLayout.LayoutBuilder = { nil }
+}
+
+public extension View {
+
+    /// This view modifier can be used to customize keyboard
+    /// layouts for the view hierarchy.
+    ///
+    /// You can use ``KeyboardLayout/standard(for:)`` to get
+    /// the standard layout for the current keyboard context,
+    /// then customize it as needed.
+    func keyboardLayout(
+        _ builder: @escaping KeyboardLayout.LayoutBuilder
+    ) -> some View {
+        self.environment(\.keyboardLayout, builder)
+    }
+}

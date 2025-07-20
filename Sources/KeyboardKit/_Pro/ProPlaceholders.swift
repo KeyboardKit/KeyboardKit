@@ -509,6 +509,20 @@ public extension KeyboardLayout {
     }
 }
 
+public extension KeyboardLayout {
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    ///
+    /// > Note: This open-source function always returns nil.
+    /// KeyboardKit Pro returns the localized layout for all
+    /// supported locales by default.
+    static func standard(
+        for context: KeyboardContext
+    ) -> [KeyboardAction]? {
+        nil
+    }
+}
+
 public extension KeyboardLayout.ProLayoutService {
 
     /// 👑 This is unlocked by KeyboardKit Pro
