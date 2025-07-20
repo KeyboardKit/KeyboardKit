@@ -181,6 +181,13 @@ public extension Callouts {
 
         /// The action to get callout actions for.
         public let action: KeyboardAction
+
+        /// Get the standard callout actions for the context.
+        func standardActions(
+            for context: KeyboardContext
+        ) -> [KeyboardAction]? {
+            .standardCalloutActions(for: action, context: context)
+        }
     }
 }
 
@@ -198,9 +205,10 @@ public extension View {
     /// This view modifier can be used to set custom callout
     /// actions to show when long pressing a key.
     ///
-    /// You can customize callouts for any actions, then use
-    /// ``Callouts/ActionsBuilderParams/standardActions(for:)``
-    /// to return the standard actions for all other actions.
+    /// You can customize the actions for any action and use
+    /// ``KeyboardAction/standardCalloutActions(for:context:)``
+    /// with the injected ``ActionsBuilderParams/action`` to
+    /// return the standard actions for all other actions.
     func keyboardCalloutActions(
         _ builder: @escaping Callouts.ActionsBuilder
     ) -> some View {

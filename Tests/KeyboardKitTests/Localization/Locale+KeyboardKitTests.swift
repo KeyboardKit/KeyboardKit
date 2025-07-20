@@ -17,6 +17,18 @@ class Locale_KeyboardKitTests: XCTestCase {
         XCTAssertEqual(locales.count, 75)
     }
 
+    func testPrintFlagBulletList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            print("- [ ] " + locale.keyboardKitName)
+        }
+        print("")
+    }
+
     func testLocaleIdentifierIsValidForAllSupportedLocales() {
         let expected: [Locale: String] = [
             .albanian: "sq",

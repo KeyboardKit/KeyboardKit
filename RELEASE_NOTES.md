@@ -50,9 +50,11 @@ The layout builders that are needed to use this are currenly only available in K
 
 ### 👑 Pro
 
+* `KeyboardLayout` has new `.setWidth(...)` item mutations.
 * `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.iPadLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.iPhoneLayout(...)` layout builder.
+* `KeyboardLayout` has a new `.standard(for:)` layout builder.
 
 ### 🐛 Bug Fixes
 

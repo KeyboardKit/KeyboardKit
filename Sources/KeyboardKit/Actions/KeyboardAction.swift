@@ -211,6 +211,22 @@ public extension KeyboardAction {
         }
     }
 
+    /// Whether or not the action is a character margin.
+    var isCharacterMarginAction: Bool {
+        switch self {
+        case .characterMargin: true
+        default: false
+        }
+    }
+
+    /// Whether or not the action is a character margin.
+    func isCharacterMarginAction(for character: String) -> Bool {
+        switch self {
+        case .characterMargin(let char): char == character
+        default: false
+        }
+    }
+
     /// Whether or not the action is an emoji action.
     var isEmojiAction: Bool {
         switch self {

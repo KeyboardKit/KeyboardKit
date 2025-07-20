@@ -61,7 +61,7 @@ struct MyKeyboardView: View {
             .keyboardCalloutActions { params in
                 switch params.action {
                 case .backspace: [...]  // Return custom actions here
-                default: params.standardActions(for: context) 
+                default: .standardCalloutActions(for: params.action, context: context) 
                 }
             }
     }

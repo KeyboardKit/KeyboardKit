@@ -10,7 +10,7 @@ import Foundation
 
 public extension CalloutService where Self == Callouts.StandardCalloutService {
 
-    /// > Deprecated: The callout service concept will be removed in KeyboardKit 10.
+    /// > Deprecated: These services will be removed in 10.0.
     ///
     /// Create a ``Callouts/StandardCalloutService`` instance.
     ///
@@ -36,7 +36,7 @@ public extension CalloutService where Self == Callouts.StandardCalloutService {
 
 extension Callouts {
 
-    /// > Deprecated: The callout service concept will be removed in KeyboardKit 10.
+    /// > Deprecated: These services will be removed in 10.0.
     ///
     /// This service class provides a standard way to handle
     /// keyboard callouts.
