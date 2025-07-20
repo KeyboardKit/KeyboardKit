@@ -183,7 +183,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public var state = Keyboard.State()
 
     /// Whether to use the new document change tracking.
-    public var isDocumentChangeTrackingEnabled = false
+    public var isDocumentTrackingEnabled = false
 
     private var currentDocumentIdentifier: UUID?
 
@@ -307,7 +307,7 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
 
     /// Try handle a document change.
     open func tryHandleDocumentChange() {
-        guard isDocumentChangeTrackingEnabled else { return }
+        guard isDocumentTrackingEnabled else { return }
         let documentId = safelyGetDocumentIdentifier()
         if documentId != currentDocumentIdentifier {
             currentDocumentIdentifier = documentId

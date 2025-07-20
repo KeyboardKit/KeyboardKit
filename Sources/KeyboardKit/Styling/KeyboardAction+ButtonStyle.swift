@@ -56,6 +56,7 @@ public extension KeyboardAction {
         switch self {
         case .character(let char): Self.standardButtonContentInsets(for: context, character: char)
         case .characterMargin, .none: .init(all: 0)
+        case .text(let text): Self.standardButtonContentInsets(for: context, character: text)
         default: .init(all: context.deviceTypeForKeyboardIsIpadPro ? 6 : 3)
         }
     }

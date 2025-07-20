@@ -127,16 +127,20 @@ private class PreviewStyleService: KeyboardStyle.StandardStyleService {
     }
     
     return VStack {
-        preview(for: .character("a"))
-        preview(for: .character("A"))
-        preview(for: .backspace)
-        preview(for: .nextKeyboard)
-        preview(for: .nextLocale)
-        preview(for: .keyboardType(.emojis))
-        preview(for: .space, multiLocale: false)
-        preview(for: .space, multiLocale: true)
-        preview(for: .character("PascalCased"))
-        preview(for: .character("lowercased"))
+        Group {
+            preview(for: .character("a"))
+            preview(for: .character("A"))
+            preview(for: .text("Testing"))
+            preview(for: .backspace)
+            preview(for: .nextKeyboard)
+            preview(for: .nextLocale)
+            preview(for: .keyboardType(.emojis))
+            preview(for: .space, multiLocale: false)
+            preview(for: .space, multiLocale: true)
+            preview(for: .character("PascalCased"))
+            preview(for: .character("lowercased"))
+        }
+        .background(Color.red)
     }
     .padding()
     .background(Color.keyboardBackground)

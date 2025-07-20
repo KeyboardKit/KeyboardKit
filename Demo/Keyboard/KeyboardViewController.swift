@@ -35,7 +35,7 @@ class KeyboardViewController: KeyboardInputViewController {
         super.viewDidLoad()
 
         // 💡 Enable the brand new document changed tracking!
-        isDocumentChangeTrackingEnabled = true
+        isDocumentTrackingEnabled = true
 
         // ‼️ Set up the keyboard with the demo-specific app.
         super.setup(for: .keyboardKitDemo) { result in

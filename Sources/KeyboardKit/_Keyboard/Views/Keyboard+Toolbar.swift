@@ -104,13 +104,13 @@ public extension EnvironmentValues {
 #Preview {
     
     VStack(spacing: 0) {
-        Color.blue
+        Color.red
         Keyboard.Toolbar {
             VStack {
                 Text(".")
             }
         }
-        Color.blue
+        Color.red
     }
     .background(Color.keyboardBackground)
     .keyboardToolbarStyle(.init(

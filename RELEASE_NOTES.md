@@ -15,27 +15,23 @@ These release notes cover the current major version. See older versions for olde
 
 ## 9.8
 
-With the new view modifier-based callout and style customizations working, the services have been soft deprecated in this version.
+With the view modifier-based callout and style customizations working well, these services are now soft deprecated.
 
-Soft deprecation means they WILL be removed in the next major version, but are not properly annotated since they are still in use.
+This means they WILL be removed in the next major version, but they're not annotated since they are still being used.
 
-Soft deprecations are made with code comments, so the documentation mentions them, but without causing a large amount of warnings.
+Soft deprecations are made with code comments so the docs mentions themthem, without causing a large amount of warnings.
 
-This version renames the `KeyboardCallout` and `KeyboardFeedback` to shorter names. Namespaces that need a keyboard prefix keep it.
+This version adds new utils to the layout engine, like new layout builders that can be used instead of the layout services.
 
-This version adds many new utils to the layout model. There are new layout builders that can be used instead of the layout services.
-
-These new layout builders are currenly only available in KeyboardKit Pro, but will be available to everyone, later in KeyboardKit 10.
+The new layout builders are currenly only available in KeyboardKit Pro, but will be available to everyone in KeyboardKit 10.
 
 ### NEW! - 📃 Document Change Tracking
 
-This version makes the controller detect when the document changes and reload the keyboard to reflect any changes.
+This version makes the controller redraw its keyboard view when the text field changes, e.g. when the keyboard type changes.
 
-This solves many problems when using many text fields, by redrawing the keyboard view to match new keyboard types.
+This works by observing the proxy `.documentIdentifier` property. However, since this can crash, this is disabled by default.
 
-This works by observing the proxy's `.documentIdentifier`. But since it can crash, this feature is off by default.
-
-To enable the feature, set the controller `isDocumentChangeTrackingEnabled` to true. Make sure to report any crashes.  
+To enable the feature, set the controller's `isDocumentTrackingEnabled` property to true, and make sure to report any crashes.  
 
 ### ✨ Features
 
@@ -45,12 +41,14 @@ To enable the feature, set the controller `isDocumentChangeTrackingEnabled` to t
 * `InputSet` has brand new default value builder parameters.
 * `Keyboard.KeyboardType` has a new `.webSearch` keyboard type.
 * `KeyboardAction` has brand new standard layout value builders.
-* `KeyboardAction` has new `.urlDomain` action for domain input.
-* `KeyboardLayout` can now be provided with a layout configuration.
+* `KeyboardAction` has a new `.urlDomain` action for domain input.
+* `KeyboardInputViewController` has a new `.isDocumentTrackingEnabled` property.
+* `KeyboardLayout` can now be provided with a layout configuration when created.
 
 ### 👑 Pro
 
 * `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
+* `KeyboardLayout` has a new `.iPadLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.iPhoneLayout(...)` layout builder.
 
 ### 🐛 Bug Fixes
