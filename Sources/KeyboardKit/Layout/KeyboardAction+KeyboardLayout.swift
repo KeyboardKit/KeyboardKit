@@ -13,12 +13,13 @@ public extension KeyboardAction {
     /// The standard layout item insets.
     func standardLayoutItem(
         for config: KeyboardLayout.DeviceConfiguration,
-        width: KeyboardLayout.ItemWidth? = nil
+        width: KeyboardLayout.ItemWidth? = nil,
+        alignment: Alignment = .center
     ) -> KeyboardLayout.Item {
         .init(
             action: self,
             size: standardLayoutItemSize(for: config, width: width),
-            alignment: .center,
+            alignment: alignment,
             edgeInsets: standardLayoutItemInsets(for: config)
         )
     }
