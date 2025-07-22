@@ -31,9 +31,7 @@ To enable the feature, set the controller's `isDocumentTrackingEnabled` property
 
 ### BETA! - 🔣 View modifier-based layout customizations
 
-This version adds a `.keyboardLayout` view modifier to KeyboardKit Pro, that can be used to customize the keyboard layout.
-
-
+This version adds a `.keyboardLayout` view modifier to KeyboardKit Pro, which can be used to customize the keyboard layout.
 
 This is currently only available in KeyboardKit Pro, but will be available to everyone in KeyboardKit 10.
 
@@ -72,6 +70,7 @@ This is currently only available in KeyboardKit Pro, but will be available to ev
 * `Color+Standard` has been deprecated. Use `KeyboardAction` extensions.
 * `CalloutService` and all service implementations have been deprecated.
 * `KeyboardKitPro.ProLayoutService` and all sub classes have been deprecated.
+* `KeyboardLayoutService` and all service implementations have been deprecated.
 * `KeyboardStyleService` and all service implementations have been deprecated.
 
 

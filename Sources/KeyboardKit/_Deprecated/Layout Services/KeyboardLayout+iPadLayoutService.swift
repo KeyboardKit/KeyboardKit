@@ -9,15 +9,11 @@
 import SwiftUI
 
 extension KeyboardLayout {
-    
+
+    /// > Deprecated: These services will be removed in 10.0.
+    ///
     /// This base class provides a foundation for generating
     /// iPad-specific layouts.
-    ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
-    ///
-    /// KeyboardKit Pro unlocks an additional service for an
-    /// iPad Pro-specific layout.
     open class iPadLayoutService: KeyboardLayout.BaseLayoutService {
 
         // MARK: - Overrides

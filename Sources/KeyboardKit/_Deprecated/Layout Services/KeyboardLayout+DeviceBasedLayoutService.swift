@@ -9,15 +9,11 @@
 import Foundation
 
 extension KeyboardLayout {
-    
+
+    /// > Deprecated: These services will be removed in 10.0.
+    ///
     /// This base class provides a foundation for generating
     /// layouts that are based on an ``InputSet`` and device.
-    ///
-    /// The class will either use ``iPhoneLayoutService`` or
-    /// ``iPadLayoutService``, based on the device.
-    ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
     open class DeviceBasedLayoutService: KeyboardLayout.BaseLayoutService, LocalizedService {
 
         /// Create an device-based keyboard layout service.

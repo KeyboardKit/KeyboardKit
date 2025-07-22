@@ -9,12 +9,11 @@
 import SwiftUI
 
 extension KeyboardLayout {
-    
+
+    /// > Deprecated: These services will be removed in 10.0.
+    ///
     /// This base class provides a foundation for generating
     /// iPhone-specific layouts.
-    ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
     open class iPhoneLayoutService: KeyboardLayout.BaseLayoutService {
 
         // MARK: - Overrides

@@ -27,23 +27,11 @@ public extension KeyboardLayoutService where Self == KeyboardLayout.StandardLayo
 }
 
 extension KeyboardLayout {
-    
+
+    /// > Deprecated: These services will be removed in 10.0.
+    ///
     /// This class provides a standard way to create dynamic
     /// keyboard layouts.
-    ///
-    /// This class can register ``localizedServices``, which
-    /// will then be used instead of ``baseService`` for the
-    /// locales it specifies.
-    ///
-    /// KeyboardKit automatically creates an instance of the
-    /// class when the keyboard is launched, then injects it
-    /// into ``KeyboardInputViewController/services``.
-    ///
-    /// You can inherit this class to get base functionality,
-    /// then override any open parts that you want to change.
-    ///
-    /// This service can also be resolved with the shorthand
-    /// ``KeyboardLayoutService/standard(baseService:localizedServices:)``.
     open class StandardLayoutService: KeyboardLayoutService {
 
         /// Create a standard keyboard layout service.
