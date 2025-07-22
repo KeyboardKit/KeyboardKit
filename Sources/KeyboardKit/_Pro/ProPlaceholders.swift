@@ -508,6 +508,13 @@ public extension KeyboardLayout {
             edgeInsets: idealItemInsets
         )
     }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static func standard(
+        for context: KeyboardContext
+    ) -> KeyboardLayout {
+        StandardLayoutService().keyboardLayout(for: context)
+    }
 }
 
 public extension KeyboardLayout {

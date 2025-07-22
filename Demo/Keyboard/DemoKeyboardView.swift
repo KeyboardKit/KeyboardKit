@@ -47,12 +47,22 @@ struct DemoKeyboardView: View {
             return style
         }
 
-        // 💡 Setup custom callout actions for the k key.
+        // 💡 Setup custom callout actions
         .keyboardCalloutActions { params in
             let context = keyboardContext
             let action = params.action
             if let actions = action.customCalloutActions { return actions }
             return params.standardActions(for: context)
+        }
+
+        // 💡 Setup custom callout actions
+        .keyboardLayout { params in
+            var layout = params.standardLayout(for: keyboardContext)
+            guard keyboardContext.keyboardType == .alphabetic else { return layout }
+            var item = layout.createIdealItem(for: .character("!"))
+            item.size.width = .input
+            layout.itemRows.insert(item, after: .space)
+            return layout
         }
 
         // 💡 Customize the style of the entire keyboard.

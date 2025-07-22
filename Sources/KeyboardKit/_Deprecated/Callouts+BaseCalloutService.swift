@@ -17,8 +17,7 @@ extension Callouts {
 
         /// Create a base callout service.
         public init() {}
-        
-        
+
         /// Get callout actions for the provided action.
         open func calloutActions(
             for action: KeyboardAction

@@ -219,17 +219,12 @@ extension Keyboard {
         private let dragAction: KeyboardDragGestureAction?
         private let endAction: KeyboardGestureAction?
 
-        @SwiftUI.State
-        private var lastDragValue: DragGesture.Value?
+        @SwiftUI.State private var lastDragValue: DragGesture.Value?
 
-        @Environment(\.gestureButtonConfiguration)
-        private var configuration
+        @Environment(\.gestureButtonConfiguration) private var configuration
+        @Environment(\.keyboardCalloutActionsBuilder) private var calloutActionsBuilder
 
-        @Environment(\.keyboardCalloutActions)
-        private var keyboardCalloutActions
-
-        @EnvironmentObject
-        private var keyboardContext: KeyboardContext
+        @EnvironmentObject private var keyboardContext: KeyboardContext
 
         private var cancelConfig: GestureButtonConfiguration? {
             guard let cancelDelay else { return nil }
@@ -370,7 +365,7 @@ private extension Keyboard.ButtonGestures {
         guard let context = calloutContext else { return }
         guard let action else { return resetCalloutActions() }
         let params = Callouts.ActionsBuilderParams(action: action)
-        let actions = keyboardCalloutActions(params)
+        let actions = calloutActionsBuilder(params)
         context.updateSecondaryActions(actions, for: action, in: geo)
     }
 

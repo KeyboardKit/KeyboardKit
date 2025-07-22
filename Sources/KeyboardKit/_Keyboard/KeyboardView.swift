@@ -151,6 +151,7 @@ public struct KeyboardView<
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
     @Environment(\.keyboardDockEdge) var dockEdgeFromEnvironment
     @Environment(\.keyboardInputToolbarDisplayMode) var inputToolbarDisplayModeFromEnvironment
+    @Environment(\.keyboardLayoutBuilder) var layoutBuilder
     @Environment(\.keyboardViewStyle) var keyboardViewStyleFromEnvironment
 
     @ObservedObject var autocompleteContext: AutocompleteContext
@@ -252,7 +253,8 @@ private extension KeyboardView {
     }
 
     var layout: KeyboardLayout {
-        rawLayout.adjusted(
+        let layout = layoutBuilder(.init()) ?? rawLayout
+        return layout.adjusted(
             for: inputToolbarDisplayMode,
             layoutConfiguration: layoutConfig
         )

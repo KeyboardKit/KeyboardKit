@@ -235,7 +235,6 @@ private extension KeyboardAction {
 
         let startActions = Callouts.Actions.base
 
-        @Environment(\.keyboardCalloutActions) var envActions
         @EnvironmentObject var keyboardContext: KeyboardContext
 
         func showActions(
@@ -272,9 +271,6 @@ private extension KeyboardAction {
                 Color.white.opacity(0.1)
                     .onAppear {
                         showActions(startActions, in: geo)
-                    }
-                    .onTapGesture {
-                        showActions(envActions(.init(action: action)), in: geo)
                     }
             }
         }
@@ -320,7 +316,7 @@ private extension KeyboardAction {
     }
 
     return Preview()
-        .keyboardCalloutActions { params in
+        .keyboardCalloutActions { _ in
             // [params.action, .character("b")]
                 .urlDomainActions
         }

@@ -11,36 +11,63 @@ This article describes the KeyboardKit layout engine.
     )
 }
 
-While most keyboards have 3 input rows surrounded by action keys, and a bottom row with space bar and action keys, this is not true for all locales. The layout can vary greatly, which means that the layout engine must be flexible.
+The keyboard layout of a software keyboard can vary between locales and devices, which means that a layout engine must be flexible.
 
-In KeyboardKit, an ``InputSet`` defines the input keys of a keyboard, after which a ``KeyboardLayoutService`` can create a dynamic ``KeyboardLayout`` at runtime that defines the full set of keys to render for the keyboard.
+In KeyboardKit, an ``InputSet`` can define the input keys, after which a ``KeyboardLayout`` can be created to define the full set of keys. KeyboardKit defines some input sets like ``InputSet/qwerty`` as well as a standard, English keyboard layout.
 
-👑 [KeyboardKit Pro][Pro] unlocks extensions that make it easier to modify layouts, adds more input sets like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` and ``InputSet/dvorak``, and unlocks iPad Pro support and localized input sets & layouts for all locales in your license.
+👑 [KeyboardKit Pro][Pro] unlocks more input sets, as well as localized input sets and layouts for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. Information about Pro features can be found further down.
+
+[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
 
 
 ## Namespace
 
-KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other layout-related types like ``KeyboardLayout/DeviceConfiguration``.
+KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other layout-related types like ``KeyboardLayout/DeviceConfiguration-swift.struct``, which has a ``KeyboardLayout/DeviceConfiguration-swift.struct/standard(for:)`` function that returns the standard configuration for the current context.
 
 
 
 ## Input Sets & Layouts
 
+In KeyboardKit an ``InputSet`` specifies the input keys of a keyboard. KeyboardKit comes with a couple of pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)``, and ``InputSet/symbolic(currencies:)``.
 
-In KeyboardKit an ``InputSet`` specifies the input keys of a keyboard, while a ``KeyboardLayout`` specifies the full set of keys. Layouts can vary greatly for different devices, screens, locales, etc.
-
-KeyboardKit comes with pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)`` & ``InputSet/symbolic(currencies:)``. KeyboardKit Pro unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` & ``InputSet/dvorak``, as well as locale-specific input sets for all supported locales.
-
-KeyboardKit Pro makes certain layouts support multiple ``Keyboard/LayoutType``s, which means that you can use various layouts for e.g. English.  
+You can generate a ``KeyboardLayout`` from an alphabetic, numeric, and symbolic input set. Some locales support multiple ``Keyboard/LayoutType``s, which means that you can support ``Keyboard/LayoutType/colemak``, ``Keyboard/LayoutType/dvorak``, etc. with a single layout.
 
 
 
-## Services
+## Services (DEPRECATED)
 
 In KeyboardKit, a ``KeyboardLayoutService`` can generate dynamic layouts at runtime, It provides us with the flexibility we need, to accomodate to the varying needs for different locales, devices, etc.
 
-KeyboardKit injects ``KeyboardLayout/StandardLayoutService`` into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or add custom services to it with ``KeyboardLayoutService/tryRegisterLocalizedService(_:)``.
+KeyboardKit injects a ``KeyboardLayout/StandardLayoutService`` into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or add custom services to it with ``KeyboardLayoutService/tryRegisterLocalizedService(_:)``.
+
+> Important: This service model is soft deprecated and will be removed in KeyboardKit 10. Please migrate to the new view-based customization approach described in the next section, if you are a KeyboardKit Pro user. Non pro-users have to wait until KeyboardKit 10.
+
+
+## Keyboard Layout Customization
+
+You can use the ``SwiftUICore/View/keyboardLayout(_:)`` view modifier to customize the standard keyboard layout, which can depend on the current locale, device, orientation, etc:
+
+```swift
+// See the demo app for a better, interactive example.
+struct MyKeyboardView: View {
+
+    let state: Keyboard.State
+    let services: Keyboard.Services
+    let context: KeyboardContext { state.keyboardContext }
+    
+    var body: some View {
+        ... // Insert the view to use here, for instance a KeyboardView
+            .keyboardLayout { params in
+                var layout = params.standardLayout(for: context)
+                // Customize the layout here
+                return layout
+            }
+    }
+}
+```
+
+You can create a completely custom layout from scratch, or customize the ``KeyboardLayout/LayoutBuilderParams/standardLayout(for:)`` to add and/or remove items.
 
 
 ---
@@ -48,16 +75,20 @@ KeyboardKit injects ``KeyboardLayout/StandardLayoutService`` into ``KeyboardInpu
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` and ``InputSet/dvorak``, plus alphabetic, numeric & symbolic sets and locale-specific layout services for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license.
+[KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` and ``InputSet/dvorak``, as well as localized input sets and layouts for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license.
 
-KeyboardKit Pro will automatically set up all input sets and layout services in your license, and use them when you change ``KeyboardContext/locale`` and ``KeyboardContext/keyboardLayoutType``, but you can also use them individually, as standalone features: 
+KeyboardKit Pro will automatically set up all input sets and layout services in your license, and use them when you change ``KeyboardContext/locale`` and ``KeyboardContext/keyboardLayoutType``. You can also use them individually, as standalone features: 
 
 ```swift
-let swedishInputSet = try InputSet.swedish
-let swedishService = try KeyboardLayout.ProLayoutService.Swedish()
+let alphabetic = try InputSet.swedish
+let numeric = try InputSet.swedishNumeric
+let symbolic = try InputSet.swedishSymbolic
+let layout = try KeyboardLayout.swedish(for: keyboardContext)
 ```
 
-These input sets and services will throw a license error if you try to access them without first registering a valid KeyboardKit Pro license. If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Article> for instructions.
+These input sets and services will throw a license error if you try to access them without first registering a valid KeyboardKit Pro license. 
+
+If you are on the Basic or Silver plan, you must specify which locales to use in your ``KeyboardApp``. See <doc:Getting-Started-Article> for instructions.
 
 
 ### iPad Pro Support
@@ -66,10 +97,12 @@ KeyboardKit Pro unlocks an ``KeyboardLayout/iPadProLayoutService`` that can gene
 
 ![iPad Pro Layout](keyboardview-ipadpro)
 
+> Important: This layout will replace the ``KeyboardLayout/iPadLayoutService`` and become the standard iPad layout in KeyboardKit 10.
+
 
 ### Keyboard Layout Extensions
 
-KeyboardKit Pro extends ``KeyboardLayout`` and its related types and collections to make it easier to add, remove, and replace items. 
+KeyboardKit Pro extends ``KeyboardLayout`` and to make it easier to add, remove, and replace items. 
 
 See ``KeyboardLayout`` and the nested layout ``KeyboardLayout/Item`` type in the KeyboardKit Pro documentation for a full list of additional capabilities.
 

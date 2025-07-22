@@ -15,11 +15,11 @@ These release notes cover the current major version. See older versions for olde
 
 ## 9.8
 
-With the view modifier-based callout and style customizations working well, these services are now soft deprecated.
+With the new view modifier-based callout & style customizations working well, the corresponding services have been soft deprecated.
 
-This means they WILL be removed in the next major version, but they're not annotated since they are still being used.
+This mean that they WILL be removed in the next major version, but they are only deprecated with comments and not using attributes.
 
-Soft deprecations are made with code comments so the docs mentions themthem, without causing a large amount of warnings.
+The reason for this is that they are still internally used. Adding deprecation attributes would trigger a large amount of warnings.
 
 ### NEW! - 📃 Document Change Tracking
 
@@ -29,11 +29,13 @@ This works by observing the proxy `.documentIdentifier` property. However, since
 
 To enable the feature, set the controller's `isDocumentTrackingEnabled` property to true, and make sure to report any crashes. 
 
-### BETA! - 🔣 View modifier-based layout adjustments
+### BETA! - 🔣 View modifier-based layout customizations
 
-This version adds a `.keyboardLayout` view modifier that can be used to customize the keyboard layout.
+This version adds a `.keyboardLayout` view modifier to KeyboardKit Pro, that can be used to customize the keyboard layout.
 
-The layout builders that are needed to use this are currenly only available in KeyboardKit Pro, but will be available to everyone in KeyboardKit 10.
+
+
+This is currently only available in KeyboardKit Pro, but will be available to everyone in KeyboardKit 10.
 
 ### ✨ Features
 
@@ -45,10 +47,11 @@ The layout builders that are needed to use this are currenly only available in K
 * `KeyboardAction` has brand new standard layout value builders.
 * `KeyboardAction` has a new `.urlDomain` action for domain input.
 * `KeyboardInputViewController` has a new `.isDocumentTrackingEnabled` property.
-* `KeyboardLayout` can now be provided with a layout configuration when created.
 * `View` has a new `.keyboardLayout(_:)` view modifier that can inject a custom layout.
 
 ### 👑 Pro
+
+* `KeyboardLayout` has new localized value builders for all supported locales.
 
 * `KeyboardLayout` has new `.setWidth(...)` item mutations.
 * `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
@@ -66,8 +69,9 @@ The layout builders that are needed to use this are currenly only available in K
 * The `KeyboardCallout` namespace has been renamed to `Callouts`.
 * The `KeyboardCalloutContext` has been renamed to `CalloutContext`.
 
-* `Color+Standard` has been deprecated and now use `KeyboardAction` extensions.
+* `Color+Standard` has been deprecated. Use `KeyboardAction` extensions.
 * `CalloutService` and all service implementations have been deprecated.
+* `KeyboardKitPro.ProLayoutService` and all sub classes have been deprecated.
 * `KeyboardStyleService` and all service implementations have been deprecated.
 
 

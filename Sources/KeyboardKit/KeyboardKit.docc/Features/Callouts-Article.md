@@ -43,7 +43,7 @@ KeyboardKit injects a ``Callouts/StandardCalloutService`` into ``KeyboardInputVi
 
 
 
-## Secondary Callout Action Customization
+## Callout Action Customization
 
 You can use the ``SwiftUICore/View/keyboardCalloutActions(_:)`` view modifier to customize the callout actions for any action:
 

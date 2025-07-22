@@ -100,7 +100,23 @@ public extension KeyboardLayout {
 
     /// This type can customize the keyboard layout with the
     /// ``SwiftUICore/View/keyboardLayout(_:)`` modifier.
-    typealias LayoutBuilder = () -> KeyboardLayout?
+    typealias LayoutBuilder = (LayoutBuilderParams) -> KeyboardLayout?
+
+
+    /// This type is used to customize callout actions using
+    /// ``SwiftUICore/View/keyboardLayout(_:)``.
+    struct LayoutBuilderParams: KeyboardModel {
+
+        /// Create a layout builder parameter value.
+        public init() {}
+
+        /// Get the standard layout for the context.
+        public func standardLayout(
+            for context: KeyboardContext
+        ) -> KeyboardLayout {
+            .standard(for: context)
+        }
+    }
 }
 
 public extension EnvironmentValues {
@@ -109,7 +125,9 @@ public extension EnvironmentValues {
     ///
     /// > Note: The builder returns `nil` by default to make
     /// it possible to check if there is an injected builder.
-    @Entry var keyboardLayout: KeyboardLayout.LayoutBuilder = { nil }
+    /// This will become non-optional in KeyboardKit 10 when
+    /// the layout services are removed.
+    @Entry var keyboardLayoutBuilder: KeyboardLayout.LayoutBuilder = { _ in nil }
 }
 
 public extension View {
@@ -123,6 +141,6 @@ public extension View {
     func keyboardLayout(
         _ builder: @escaping KeyboardLayout.LayoutBuilder
     ) -> some View {
-        self.environment(\.keyboardLayout, builder)
+        self.environment(\.keyboardLayoutBuilder, builder)
     }
 }

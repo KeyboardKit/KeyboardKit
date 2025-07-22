@@ -183,7 +183,7 @@ public extension Callouts {
         public let action: KeyboardAction
 
         /// Get the standard callout actions for the context.
-        func standardActions(
+        public func standardActions(
             for context: KeyboardContext
         ) -> [KeyboardAction]? {
             .standardCalloutActions(for: action, context: context)
@@ -193,11 +193,13 @@ public extension Callouts {
 
 public extension EnvironmentValues {
 
-    /// This value can be used to set custom callout actions.
+    /// This value can be used to customize callout actions.
     ///
     /// > Note: The builder returns `nil` by default to make
     /// it possible to check if there is an injected builder.
-    @Entry var keyboardCalloutActions: Callouts.ActionsBuilder = { _ in nil }
+    /// This will become non-optional in KeyboardKit 10 when
+    /// the callout services are removed.
+    @Entry var keyboardCalloutActionsBuilder: Callouts.ActionsBuilder = { _ in nil }
 }
 
 public extension View {
@@ -206,12 +208,11 @@ public extension View {
     /// actions to show when long pressing a key.
     ///
     /// You can customize the actions for any action and use
-    /// ``KeyboardAction/standardCalloutActions(for:context:)``
-    /// with the injected ``ActionsBuilderParams/action`` to
-    /// return the standard actions for all other actions.
+    /// ``Callouts/ActionsBuilderParams/standardActions(for:)``
+    /// to return the standard actions for all other actions.
     func keyboardCalloutActions(
         _ builder: @escaping Callouts.ActionsBuilder
     ) -> some View {
-        self.environment(\.keyboardCalloutActions, builder)
+        self.environment(\.keyboardCalloutActionsBuilder, builder)
     }
 }
