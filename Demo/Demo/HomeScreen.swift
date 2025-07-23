@@ -23,6 +23,7 @@ struct HomeScreen: View {
 
     @State var text = ""
     @State var textEmail = ""
+    @State var textNumberPad = ""
     @State var textURL = ""
     @State var textWebSearch = ""
 
@@ -43,6 +44,8 @@ struct HomeScreen: View {
                             .keyboardType(.default)
                         TextField("TextField.Email", text: $textEmail)
                             .keyboardType(.emailAddress)
+                        TextField("TextField.NumberPad", text: $textNumberPad)
+                            .keyboardType(.numberPad)
                         TextField("TextField.URL", text: $textURL)
                             .keyboardType(.URL)
                         TextField("TextField.WebSearch", text: $textWebSearch)
@@ -56,7 +59,8 @@ struct HomeScreen: View {
             keyboardSectionFooter: "OBS! This demo isn't code signed and therefore can't sync settings to its keyboard extensions!"
         ))
         .keyboardAppHomeScreenStyle(.init(
-            appIconSize: 120
+            appIconSize: 120,
+            appIconCornerRadius: 27
         ))
         .keyboardAppHomeScreenVisibility(.init(
             keyboardSection: true,

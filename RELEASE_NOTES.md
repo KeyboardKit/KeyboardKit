@@ -21,19 +21,7 @@ This mean that they WILL be removed in the next major version, but they are only
 
 The reason for this is that they are still used internally. Adding deprecation attributes would trigger a large amount of warnings.
 
-
-### NEW! - 📃 Document Change Tracking
-
-This version makes the controller redraw its keyboard when the active text field changes, to properly handle keyboard type changes.
-
-This works by observing the proxy's `.documentIdentifier` property, which will change when the current selected "document" changes. 
-
-The `.documentIdentifier` property is however brittle and will crash the keyboard extension if it's accessed at the incorrect time. 
-
-This feature is therefore disabled by default. You can enable it by calling the controller `enableDocumentChangeTracking` function.
-
-
-### BETA! - 🔣 View modifier-based layout customizations
+### 🔣 BETA - View Modifier Layout Customizations
 
 This version adds a `.keyboardLayout` view modifier to KeyboardKit Pro, which can be used to customize the current keyboard layout.
 
@@ -47,6 +35,15 @@ KeyboardKit Pro also adds new localized keyboard layout values for all supported
 
 This modifier based-approach will make it a lot easier to customize the keyboard layout. As such, the services are soft deprecated.
 
+### 📃 BETA - Document Change Tracking
+
+This version makes the controller redraw its keyboard when the active text field changes, to properly handle keyboard type changes.
+
+This works by observing the proxy's `.documentIdentifier` property, which will change when the current selected "document" changes. 
+
+The `.documentIdentifier` property is however brittle and will crash the keyboard extension if it's accessed at the incorrect time. 
+
+This feature is therefore disabled by default. You can enable it by calling the controller `enableDocumentChangeTracking` function.
 
 ### ✨ Features
 

@@ -241,6 +241,16 @@
         }
       }
     },
+    "TextField.NumberPad" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Number Pad"
+          }
+        }
+      }
+    },
     "TextField.Plain" : {
       "localizations" : {
         "en" : {

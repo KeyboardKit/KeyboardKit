@@ -34,8 +34,11 @@ class KeyboardViewController: KeyboardInputViewController {
         /// 💡 Always call super.viewDidLoad()!
         super.viewDidLoad()
 
+        // 💡 Enable the brand new document changed tracking!
+        enableDocumentChangeTracking()
+
         // ‼️ Set up the keyboard with the demo-specific app.
-        super.setup(for: .keyboardKitDemo) { [weak self] result in
+        setup(for: .keyboardKitDemo) { [weak self] result in
 
             /// 💡 If result is successful, we can customize
             /// the controller's services and state.
@@ -100,7 +103,7 @@ private extension KeyboardViewController {
 
         /// 💡 Setup demo-specific haptic & audio feedback.
         let feedback = state.feedbackContext
-        feedback.registerCustomFeedback(.haptic(.selection, for: .repeat, on: .rocket))
+        feedback.registerCustomFeedback(.haptic(.selectionChanged, for: .repeat, on: .rocket))
         feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
         feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
     }

@@ -48,11 +48,11 @@ struct DemoKeyboardView: View {
         }
 
         // 💡 Setup custom callout actions
-        .keyboardCalloutActions { params in
-            let context = keyboardContext
-            let action = params.action
-            if let actions = action.customCalloutActions { return actions }
-            return params.standardActions(for: context)
+        .keyboardCalloutActions { params in                 // Apply custom actions to "K" key
+            if case .character(let char) = params.action, char == "K" {
+                return .init(characters: String("keyboardkit".reversed()))
+            }
+            return params.standardActions(for: keyboardContext)
         }
 
         // 💡 Setup custom callout actions

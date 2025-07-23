@@ -59,14 +59,32 @@ struct DemoKeyboardView: View {
         )
         .overlay(menuGrid)
         .animation(.bouncy, value: isToolbarToggled)
-        .keyboardCalloutActions { params in                 // Apply custom
-            if let custom = params.action.customCalloutActions { return custom }
-            return params.standardCalloutActions(for: keyboardContext)
+
+        // 💡 Customize callout actions in any way you want.
+        .keyboardCalloutActions { params in                 // Apply custom actions to "K" key
+            if case .character(let char) = params.action, char == "K" {
+                return .init(characters: String("keyboardkit".reversed()))
+            }
+            return params.standardActions(for: keyboardContext)
         }
-        .keyboardTheme(                                     // Apply the current theme, if any
+
+        // 💡 Customize keyboard layout in any way you want.
+        .keyboardLayout { params in
+            let layout = params.standardLayout(for: keyboardContext)
+            // guard keyboardContext.keyboardType == .alphabetic else { return layout }
+            // var item = layout.createIdealItem(for: .character("!"))
+            // item.size.width = .input
+            // layout.itemRows.insert(item, after: .space)
+            return layout
+        }
+
+        // 💡 Apply the currently selected theme, if any.
+        .keyboardTheme(
             themeContext.currentTheme,
             context: keyboardContext
         )
+
+        // 💡 This sheet can be used to show the main menu.
         .sheet(item: $activeSheet) { sheet in
             NavigationStack {
                 sheetContent
@@ -129,21 +147,5 @@ private extension DemoKeyboardView {
             )
         case .none: EmptyView()
         }
-    }
-}
-
-private extension KeyboardAction {
-
-    var customCalloutActions: [KeyboardAction]? {
-        switch self {
-        case .character(let char): customCalloutAction(for: char)
-        default: nil
-        }
-    }
-
-    func customCalloutAction(for char: String) -> [KeyboardAction]? {
-        guard char.lowercased() == "k" else { return nil }
-        let custom = String("keyboardkit".reversed())
-        return [KeyboardAction].init(characters: custom)
     }
 }
