@@ -13,15 +13,16 @@ extension KeyboardLayout {
     /// > Deprecated: These services will be removed in 10.0.
     ///
     /// This base class provides a foundation for generating
-    /// layouts that are based on an ``InputSet`` and device.
+    /// layouts based on an ``KeyboardLayout/InputSet``, and
+    /// a secific device type.
     open class DeviceBasedLayoutService: KeyboardLayout.BaseLayoutService, LocalizedService {
 
         /// Create an device-based keyboard layout service.
         ///
         /// - Parameters:
-        ///   - alphabeticInputSet: The alphabetic input set to use, by default ``InputSet/qwerty``.
-        ///   - numericInputSet: The numeric input set to use, by default ``InputSet/numeric``.
-        ///   - symbolicInputSet: The symbolic input set to use, by default ``InputSet/symbolic``.
+        ///   - alphabeticInputSet: The alphabetic input set to use, by default ``KeyboardLayout/InputSet/qwerty``.
+        ///   - numericInputSet: The numeric input set to use, by default ``KeyboardLayout/InputSet/numeric``.
+        ///   - symbolicInputSet: The symbolic input set to use, by default ``KeyboardLayout/InputSet/symbolic``.
         public override init(
             alphabeticInputSet: InputSet = .qwerty,
             numericInputSet: InputSet = .numeric,

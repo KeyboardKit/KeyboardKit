@@ -1,5 +1,5 @@
 //
-//  InputSet.swift
+//  KeyboardLayout+InputSet.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2020-07-03.
@@ -8,31 +8,34 @@
 
 import Foundation
 
-/// An input set defines the input keys on a keyboard.
-///
-/// Input sets are used to create ``KeyboardLayout``s, which
-/// define the full set of keys of a keyboard, including the
-/// keys surrounding the input rows and a bottom row.
-///
-/// KeyboardKit has pre-defined input sets, such as ``qwerty``,
-/// ``numeric(currency:)`` and ``symbolic(currencies:)``, to
-/// help you get started. KeyboardKit Pro unlocks additional
-/// input sets, like `qwertz` & `azerty` and locale-specific
-/// input sets for each supported locale.
-public struct InputSet: KeyboardModel {
-    
-    /// Create an input set with rows.
-    public init(
-        rows: ItemRows
-    ) {
-        self.rows = rows
-    }
+public extension KeyboardLayout {
 
-    /// The rows in the input set.
-    public var rows: ItemRows
+    /// A keyboard layout input set defines which input keys
+    /// to add to a keyboard layout.
+    ///
+    /// While a keyboard layout can be identical for several
+    /// locales and keyboard types, the input set can change.
+    ///
+    /// KeyboardKit defines basic input sets like ``qwerty``,
+    /// ``numeric(currency:)`` and ``symbolic(currencies:)``,
+    /// while KeyboardKit Pro unlocks extra input sets, like
+    /// `qwertz`, `azerty`, `colemak`, and `dvorak`, as well
+    /// as locale-specific ones for all supported locales.
+    struct InputSet: KeyboardModel {
+
+        /// Create an input set with rows.
+        public init(
+            rows: ItemRows
+        ) {
+            self.rows = rows
+        }
+
+        /// The rows in the input set.
+        public var rows: ItemRows
+    }
 }
 
-public extension InputSet {
+public extension KeyboardLayout.InputSet {
 
     func characters(
         for case: Keyboard.KeyboardCase,
@@ -52,10 +55,10 @@ public extension InputSet {
     }
 }
 
-public extension InputSet {
+public extension KeyboardLayout.InputSet {
 
     /// A standard QWERTY input set.
-    static var qwerty: InputSet {
+    static var qwerty: Self {
         .init(rows: [
             .init(chars: "qwertyuiop"),
             .init(chars: "asdfghjkl"),
@@ -64,7 +67,7 @@ public extension InputSet {
     }
 
     /// A standard numeric input set.
-    static var numeric: InputSet {
+    static var numeric: Self {
         numeric(currency: "$")
     }
 
@@ -74,7 +77,7 @@ public extension InputSet {
     ///   - currency: The currency input to add, by default `$`.
     static func numeric(
         currency: String
-    ) -> InputSet {
+    ) -> Self {
         .init(rows: [
             .init(chars: "1234567890"),
             .init(
@@ -86,7 +89,7 @@ public extension InputSet {
     }
 
     /// A standard symbolic input set.
-    static var symbolic: InputSet {
+    static var symbolic: Self {
         symbolic(currencies: "€£¥".chars)
     }
 
@@ -96,7 +99,7 @@ public extension InputSet {
     ///   - currencies: The currency inputs to add.
     static func symbolic(
         currencies: [String]
-    ) -> InputSet {
+    ) -> Self {
         .init(rows: [
             .init(chars: "[]{}#%^*+=", deviceVariations: [.pad: "1234567890"]),
             .init(
@@ -105,5 +108,15 @@ public extension InputSet {
             ),
             .init(chars: ".,?!’", deviceVariations: [.pad: "§|~…\\<>!?"])
         ])
+    }
+
+    /// A standard symbolic input set.
+    ///
+    /// - Parameters:
+    ///   - currencies: The currency inputs to add.
+    static func symbolic(
+        currencies: String
+    ) -> Self {
+        .symbolic(currencies: currencies.chars)
     }
 }

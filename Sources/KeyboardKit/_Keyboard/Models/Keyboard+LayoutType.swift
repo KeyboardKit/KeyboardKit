@@ -13,11 +13,9 @@ public extension Keyboard {
     /// This enum defines supported keyboard layout types.
     ///
     /// This is used to allow ``AddedLocale`` to also define
-    /// an optional layout type.
-    ///
-    /// Unlike the ``InputSet`` and ``KeyboardLayout``, this
-    /// enum only describes a layout without any information
-    /// on how to implement the layout in question.
+    /// an optional layout type. This means that you can add
+    /// English with QWERTY, or English with AZERTY, without
+    /// having to apply to layout, which happens later.
     ///
     /// This may be refactored in the future, since it mixes
     /// the concept of locales, layouts and input methods. A

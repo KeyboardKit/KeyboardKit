@@ -249,10 +249,7 @@ KeyboardKit is available under the MIT license.
 
 ### Layout
 
-- ``InputSet``
 - ``KeyboardLayout``
-- ``KeyboardLayoutService``
-- ``KeyboardLayoutServiceProxy``
 
 ### Localization
 
@@ -299,4 +296,6 @@ KeyboardKit is available under the MIT license.
 ### Deprecated
 
 - ``CalloutService``
+- ``KeyboardLayoutService``
+- ``KeyboardLayoutServiceProxy``
 - ``KeyboardStyleService``

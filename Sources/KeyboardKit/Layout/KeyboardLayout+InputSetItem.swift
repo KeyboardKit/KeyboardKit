@@ -1,5 +1,5 @@
 //
-//  InputSet+RowItem.swift
+//  KeyboardLayout+InputSetItem.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-public extension InputSet {
-    
+public extension KeyboardLayout.InputSet {
+
     /// This struct represents an input set item, that has a
     /// neutral, uppercased and lowercased input variant.
     ///
@@ -55,7 +55,7 @@ public extension InputSet {
     }
 }
 
-public extension InputSet.Item {
+public extension KeyboardLayout.InputSet.Item {
 
     /// Resolve the character to use for a certain case.
     func character(

@@ -430,31 +430,31 @@ public extension View {
 
 // MARK: - Layout
 
-public extension InputSet {
+public extension KeyboardLayout.InputSet {
 
     /// 👑 This is unlocked by KeyboardKit Pro.
-    static var azerty: InputSet {
+    static var azerty: Self {
+        get throws {
+            throw ProPlaceholderError.proPlaceholder
+        }
+    }
+
+    /// 👑 This is unlocked by KeyboardKit Pro.
+    static var colemak: Self {
         get throws {
             throw ProPlaceholderError.proPlaceholder
         }
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    static var colemak: InputSet {
+    static var dvorak: Self {
         get throws {
             throw ProPlaceholderError.proPlaceholder
         }
     }
     
     /// 👑 This is unlocked by KeyboardKit Pro.
-    static var dvorak: InputSet {
-        get throws {
-            throw ProPlaceholderError.proPlaceholder
-        }
-    }
-    
-    /// 👑 This is unlocked by KeyboardKit Pro.
-    static var qwertz: InputSet {
+    static var qwertz: Self {
         get throws {
             throw ProPlaceholderError.proPlaceholder
         }

@@ -11,6 +11,8 @@ import XCTest
 
 class InputSetTests: XCTestCase {
 
+    typealias InputSet = KeyboardLayout.InputSet
+
     func testQwertyDefinesValidCharactersForPhone() {
         let set = InputSet.qwerty
         let chars = set.characterStrings(for: .lowercased, device: .phone)

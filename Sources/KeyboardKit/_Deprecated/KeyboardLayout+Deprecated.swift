@@ -1,6 +1,9 @@
 import Foundation
 import SwiftUI
 
+@available(*, deprecated, renamed: "KeyboardLayout.InputSet")
+public typealias InputSet = KeyboardLayout.InputSet
+
 public extension KeyboardLayout {
     
     @available(*, deprecated, renamed: "init(itemRows:ipadProLayout:idealItemHeight:idealItemInsets:inputToolbarInputSet:)")

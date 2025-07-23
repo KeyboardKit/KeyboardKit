@@ -11,6 +11,8 @@ import XCTest
 
 class InputSet_RowTests: XCTestCase {
 
+    typealias InputSet = KeyboardLayout.InputSet
+
     func testCanCreateRowWithItemsAndDeviceVariations() {
         let row = InputSet.ItemRow(
             items: "abc".chars.map { InputSet.Item($0) },

@@ -19,21 +19,34 @@ With the new view modifier-based callout & style customizations working well, th
 
 This mean that they WILL be removed in the next major version, but they are only deprecated with comments and not using attributes.
 
-The reason for this is that they are still internally used. Adding deprecation attributes would trigger a large amount of warnings.
+The reason for this is that they are still used internally. Adding deprecation attributes would trigger a large amount of warnings.
+
 
 ### NEW! - 📃 Document Change Tracking
 
-This version makes the controller redraw its keyboard view when the text field changes, e.g. when the keyboard type changes.
+This version makes the controller redraw its keyboard when the active text field changes, to properly handle keyboard type changes.
 
-This works by observing the proxy `.documentIdentifier` property. However, since this can crash, this is disabled by default.
+This works by observing the proxy's `.documentIdentifier` property, which will change when the current selected "document" changes. 
 
-To enable the feature, set the controller's `isDocumentTrackingEnabled` property to true, and make sure to report any crashes. 
+The `.documentIdentifier` property is however brittle and will crash the keyboard extension if it's accessed at the incorrect time. 
+
+This feature is therefore disabled by default. You can enable it by calling the controller `enableDocumentChangeTracking` function.
+
 
 ### BETA! - 🔣 View modifier-based layout customizations
 
-This version adds a `.keyboardLayout` view modifier to KeyboardKit Pro, which can be used to customize the keyboard layout.
+This version adds a `.keyboardLayout` view modifier to KeyboardKit Pro, which can be used to customize the current keyboard layout.
 
-This is currently only available in KeyboardKit Pro, but will be available to everyone in KeyboardKit 10.
+This works just like the `.keyboardCalloutActions` and `.keyboardButtonStyle` modifiers that let you inject a custom value builder. 
+
+This view modifier and all new layout values is currently only available in KeyboardKit Pro, but fully available in KeyboardKit 10.
+
+You can use the `KeyboardLayout.standard(for:)` builder to create a standard layout for any keyboard context and its active locale.
+
+KeyboardKit Pro also adds new localized keyboard layout values for all supported locales. They will replace the localized services.
+
+This modifier based-approach will make it a lot easier to customize the keyboard layout. As such, the services are soft deprecated.
+
 
 ### ✨ Features
 
@@ -50,12 +63,20 @@ This is currently only available in KeyboardKit Pro, but will be available to ev
 ### 👑 Pro
 
 * `KeyboardLayout` has new localized value builders for all supported locales.
-
 * `KeyboardLayout` has new `.setWidth(...)` item mutations.
 * `KeyboardLayout` has a new `.baseLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.iPadLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.iPhoneLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.standard(for:)` layout builder.
+
+### 🔧 Performance Adjustments
+
+* KeyboardKit Pro improves the performance of creating localized input sets. 
+
+### 📦 Renamings
+
+* The `KeyboardCallout` namespace has been renamed to `Callouts`.
+* The `KeyboardCalloutContext` has been renamed to `CalloutContext`.
 
 ### 🐛 Bug Fixes
 
@@ -64,11 +85,9 @@ This is currently only available in KeyboardKit Pro, but will be available to ev
 
 ### 🗑️ Deprecations
 
-* The `KeyboardCallout` namespace has been renamed to `Callouts`.
-* The `KeyboardCalloutContext` has been renamed to `CalloutContext`.
-
 * `Color+Standard` has been deprecated. Use `KeyboardAction` extensions.
 * `CalloutService` and all service implementations have been deprecated.
+* `InputSet` has been nested and is renamed to `KeyboardLayout.InputSet`.
 * `KeyboardKitPro.ProLayoutService` and all sub classes have been deprecated.
 * `KeyboardLayoutService` and all service implementations have been deprecated.
 * `KeyboardStyleService` and all service implementations have been deprecated.

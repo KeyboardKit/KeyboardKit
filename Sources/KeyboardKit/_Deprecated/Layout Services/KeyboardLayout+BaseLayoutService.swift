@@ -14,7 +14,7 @@ extension KeyboardLayout {
     /// > Deprecated: These services will be removed in 10.0.
     ///
     /// This base class provides a foundation for generating
-    /// layouts that are based on an ``InputSet``.
+    /// layouts, based on ``KeyboardLayout/InputSet`` values.
     open class BaseLayoutService: KeyboardLayoutService {
 
         /// Create a base layout service with input sets.
@@ -56,7 +56,8 @@ extension KeyboardLayout {
 
         // MARK: - Input Sets
 
-        /// The ``InputSet`` to use for the provided context.
+        /// The ``KeyboardLayout/InputSet`` to apply for the
+        /// provided context.
         open func inputSet(
             for context: KeyboardContext
         ) -> InputSet {
@@ -74,8 +75,8 @@ extension KeyboardLayout {
             inputSetForInputToolbar(with: context)
         }
         
-        /// The ``InputSet`` to use to setup an optional top
-        /// input toolbar, if any.
+        /// The ``KeyboardLayout/InputSet`` to use to set up
+        /// an optional top input toolbar, if any.
         open func inputSetForInputToolbar(
             with context: KeyboardContext
         ) -> InputSet {

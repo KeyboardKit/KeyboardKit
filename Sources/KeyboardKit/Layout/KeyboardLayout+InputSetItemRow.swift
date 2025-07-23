@@ -1,5 +1,5 @@
 //
-//  InputSet+ItemRow.swift
+//  KeyboardLayout+InputSetItemRow.swift
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-03.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension InputSet {
+public extension KeyboardLayout.InputSet {
 
     /// This type represents an input set item row.
     ///
@@ -43,12 +43,15 @@ public extension InputSet {
     typealias ItemRows = [ItemRow]
 }
 
-public extension InputSet.ItemRow {
+public extension KeyboardLayout.InputSet.ItemRow {
+
+    /// An internal typealias for cleaner code.
+    typealias Item = KeyboardLayout.InputSet.Item
 
     /// Get all input items for a certain device.
     func items(
         for device: DeviceType
-    ) -> [InputSet.Item] {
+    ) -> [Item] {
         deviceVariations[device] ?? items
     }
 
@@ -61,7 +64,7 @@ public extension InputSet.ItemRow {
     }
 }
 
-public extension InputSet.ItemRows {
+public extension KeyboardLayout.InputSet.ItemRows {
 
     /// Get all input characters for a certain keyboard case.
     func characters(
@@ -77,7 +80,7 @@ public extension InputSet.ItemRows {
 
 // MARK: - Convenience Initializers
 
-public extension InputSet.ItemRow {
+public extension KeyboardLayout.InputSet.ItemRow {
 
     /// Create an input row from a character string.
     ///
@@ -120,9 +123,9 @@ public extension InputSet.ItemRow {
         deviceVariations: [DeviceType: [String]] = [:]
     ) {
         self.init(
-            items: chars.map { InputSet.Item($0) },
+            items: chars.map { Item($0) },
             deviceVariations: deviceVariations.mapValues({ chars in
-                chars.map { InputSet.Item($0) }
+                chars.map { Item($0) }
             })
         )
     }
@@ -163,7 +166,7 @@ public extension InputSet.ItemRow {
         assert(equal, "lowercased and uppercased must contain the same number of characters")
         self.init(
             items: lowercased.indices.map {
-                InputSet.Item(
+                Item(
                     neutral: lowercased[$0],
                     uppercased: uppercased[$0],
                     lowercased: lowercased[$0]
@@ -171,7 +174,7 @@ public extension InputSet.ItemRow {
             },
             deviceVariations: deviceVariations.mapValues({ lowercased, uppercased in
                 lowercased.indices.map {
-                    InputSet.Item(
+                    Item(
                         neutral: lowercased[$0],
                         uppercased: uppercased[$0],
                         lowercased: lowercased[$0]

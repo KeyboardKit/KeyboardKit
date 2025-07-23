@@ -13,9 +13,11 @@ This article describes the KeyboardKit layout engine.
 
 The keyboard layout of a software keyboard can vary between locales and devices, which means that a layout engine must be flexible.
 
-In KeyboardKit, an ``InputSet`` can define the input keys, after which a ``KeyboardLayout`` can be created to define the full set of keys. KeyboardKit defines some input sets like ``InputSet/qwerty`` as well as a standard, English keyboard layout.
+In KeyboardKit, a ``KeyboardLayout`` is used to define the full set of keys to add to a keyboard. A keyboard layout can be created from an ``KeyboardLayout/InputSet``, which just defines the input keys. This allows us to reuse identical layouts for many compatible input sets.
 
-👑 [KeyboardKit Pro][Pro] unlocks more input sets, as well as localized input sets and layouts for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. Information about Pro features can be found further down.
+KeyboardKit defines some input sets like ``KeyboardLayout/InputSet/qwerty``, ``KeyboardLayout/InputSet/numeric(currency:)``, and ``KeyboardLayout/InputSet/symbolic(currencies:)``, as well as a standard keyboard layout that is compatible with QWERTY, QWERTZ, AZERTY and similar input sets.
+
+👑 [KeyboardKit Pro][Pro] unlocks more input sets, like QWERTZ, and AZERTY, as well as localized input sets and layouts for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. More information about Pro features can be found further down.
 
 [Pro]: https://github.com/KeyboardKit/KeyboardKitPro
 
@@ -29,9 +31,9 @@ KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other lay
 
 ## Input Sets & Layouts
 
-In KeyboardKit an ``InputSet`` specifies the input keys of a keyboard. KeyboardKit comes with a couple of pre-defined input sets, like ``InputSet/qwerty``, ``InputSet/numeric(currency:)``, and ``InputSet/symbolic(currencies:)``.
+In KeyboardKit an ``KeyboardLayout/InputSet`` specifies the input keys of a keyboard. KeyboardKit comes with a couple of pre-defined input sets, like ``KeyboardLayout/InputSet/qwerty``, ``KeyboardLayout/InputSet/numeric(currency:)``, and ``KeyboardLayout/InputSet/symbolic(currencies:)``.
 
-You can generate a ``KeyboardLayout`` from an alphabetic, numeric, and symbolic input set. Some locales support multiple ``Keyboard/LayoutType``s, which means that you can support ``Keyboard/LayoutType/colemak``, ``Keyboard/LayoutType/dvorak``, etc. with a single layout.
+You can generate a ``KeyboardLayout`` from an alphabetic, numeric, and symbolic input set. Some locales support multiple ``Keyboard/LayoutType``s and can be added multiple times with different layouts, like ``Keyboard/LayoutType/qwerty``, ``Keyboard/LayoutType/colemak``, ``Keyboard/LayoutType/dvorak``, etc.
 
 
 
@@ -75,7 +77,7 @@ You can create a completely custom layout from scratch, or customize the ``Keybo
 
 ## 👑 KeyboardKit Pro
 
-[KeyboardKit Pro][Pro] unlocks more input sets, like ``InputSet/qwertz``, ``InputSet/azerty``, ``InputSet/colemak`` and ``InputSet/dvorak``, as well as localized input sets and layouts for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license.
+[KeyboardKit Pro][Pro] unlocks more input sets, like ``KeyboardLayout/InputSet/qwertz``, ``KeyboardLayout/InputSet/azerty``, ``KeyboardLayout/InputSet/colemak`` and ``KeyboardLayout/InputSet/dvorak``, as well as localized input sets and layouts for all ``Foundation/Locale/keyboardKitSupported`` locales that are included in your license.
 
 KeyboardKit Pro will automatically set up all input sets and layout services in your license, and use them when you change ``KeyboardContext/locale`` and ``KeyboardContext/keyboardLayoutType``. You can also use them individually, as standalone features: 
 

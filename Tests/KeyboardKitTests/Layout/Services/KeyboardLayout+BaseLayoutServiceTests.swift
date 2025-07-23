@@ -11,6 +11,8 @@ import XCTest
 
 class KeyboardLayout_BaseLayoutServiceTests: XCTestCase {
 
+    typealias InputSet = KeyboardLayout.InputSet
+
     var service: KeyboardLayout.BaseLayoutService!
     var context: KeyboardContext!
     var layoutConfig: KeyboardLayout.DeviceConfiguration!

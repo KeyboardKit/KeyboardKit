@@ -182,10 +182,18 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     /// Keyboard-specific state.
     public var state = Keyboard.State()
 
+
+    // MARK: - Document Change Tracking
+
     /// Whether to use the new document change tracking.
     public var isDocumentTrackingEnabled = false
 
     private var currentDocumentIdentifier: UUID?
+
+    /// Enable document change tracking.
+    public func enableDocumentChangeTracking() {
+        isDocumentTrackingEnabled = true
+    }
 
 
     // MARK: - Text And Selection Change
