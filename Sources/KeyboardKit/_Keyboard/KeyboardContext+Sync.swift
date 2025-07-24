@@ -72,8 +72,7 @@ extension KeyboardContext {
 
     /// Perform a sync after an async delay.
     func syncAfterAsync(
-        with controller: KeyboardInputViewController,
-        isForNewDocument: Bool = false
+        with controller: KeyboardInputViewController
     ) {
         syncTextDocumentProxy(with: controller)
         update(\.hasDictationKey, ifHasChanged: controller.hasDictationKey)
@@ -85,9 +84,6 @@ extension KeyboardContext {
         update(\.screenSize, ifHasChanged: controller.screenSize)
         update(\.textInputMode, ifHasChanged: controller.textInputMode)
         update(\.traitCollection, ifHasChanged: controller.traitCollection)
-        if isForNewDocument {
-            syncKeyboardType(with: controller.originalTextDocumentProxy)
-        }
     }
 
     func syncAfterLayout(with controller: KeyboardInputViewController) {
@@ -106,6 +102,13 @@ extension KeyboardContext {
         let usePhone = isFloating && usePhoneDeviceForFloatingKeyboard
         isKeyboardFloating = isFloating
         deviceTypeForKeyboard = usePhone ? .phone : deviceType
+    }
+
+    /// Perform a sync to update the keyboard type.
+    func syncKeyboardType(
+        with controller: KeyboardInputViewController
+    ) {
+        syncKeyboardType(with: controller.originalTextDocumentProxy)
     }
 }
 

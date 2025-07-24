@@ -21,6 +21,7 @@ This mean that they WILL be removed in the next major version, but they are only
 
 The reason for this is that they are still used internally. Adding deprecation attributes would trigger a large amount of warnings.
 
+
 ### 🔣 BETA - View Modifier Layout Customizations
 
 This version adds a `.keyboardLayout` view modifier to KeyboardKit Pro, which can be used to customize the current keyboard layout.
@@ -35,15 +36,16 @@ KeyboardKit Pro also adds new localized keyboard layout values for all supported
 
 This modifier based-approach will make it a lot easier to customize the keyboard layout. As such, the services are soft deprecated.
 
-### 📃 BETA - Document Change Tracking
+
+### 📃 BETA - Keyboard Type Change Handling
 
 This version makes the controller redraw its keyboard when the active text field changes, to properly handle keyboard type changes.
 
-This works by observing the proxy's `.documentIdentifier` property, which will change when the current selected "document" changes. 
+This works by having the controller check the text document proxy's keyboard type in each `textDidChange` and redraw if it changes.
 
-The `.documentIdentifier` property is however brittle and will crash the keyboard extension if it's accessed at the incorrect time. 
+This feature is disabled by default in the betas, since it can cause strange behaviors, performance issues, and maybe even crashes. 
 
-This feature is therefore disabled by default. You can enable it by calling the controller `enableDocumentChangeTracking` function.
+You can enable it with the `enableExperimentalKeyboardTypeChangeTracking(...)` function. Make sure to report any problems you find.
 
 ### ✨ Features
 
@@ -54,7 +56,6 @@ This feature is therefore disabled by default. You can enable it by calling the 
 * `Keyboard.KeyboardType` has a new `.webSearch` keyboard type.
 * `KeyboardAction` has brand new standard layout value builders.
 * `KeyboardAction` has a new `.urlDomain` action for domain input.
-* `KeyboardInputViewController` has a new `.isDocumentTrackingEnabled` property.
 * `View` has a new `.keyboardLayout(_:)` view modifier that can inject a custom layout.
 
 ### 👑 Pro
@@ -66,14 +67,21 @@ This feature is therefore disabled by default. You can enable it by calling the 
 * `KeyboardLayout` has a new `.iPhoneLayout(...)` layout builder.
 * `KeyboardLayout` has a new `.standard(for:)` layout builder.
 
-### 🔧 Performance Adjustments
+### 🔧 Performance Improvements
 
-* KeyboardKit Pro improves the performance of creating localized input sets. 
+* KeyboardKit Pro's new layout builders improve the layout rendering performance.
+* To enable the improvements, apply the new `.keyboardLayout(...)` view modifier. 
+* Return `$0.standardLayout(for:)` for a standard layout with better performance.
+* You can customzie the standard layout and still get the underlying improvements. 
 
 ### 📦 Renamings
 
 * The `KeyboardCallout` namespace has been renamed to `Callouts`.
 * The `KeyboardCalloutContext` has been renamed to `CalloutContext`.
+
+### ⚠️ Experimental Features
+
+* `KeyboardInputViewController` has a new `enableExperimentalDocumentChangeTracking()` function.
 
 ### 🐛 Bug Fixes
 

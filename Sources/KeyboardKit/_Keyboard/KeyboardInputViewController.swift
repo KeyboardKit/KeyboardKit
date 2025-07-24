@@ -183,16 +183,24 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     public var state = Keyboard.State()
 
 
-    // MARK: - Document Change Tracking
+    // MARK: - Keyboard Type Change
 
-    /// Whether to use the new document change tracking.
-    public var isDocumentTrackingEnabled = false
+    /// Whether to use the new keyboard type change tracking.
+    private var isExperimentalKeyboardTypeChangeTrackingEnabled = false
 
-    private var currentDocumentIdentifier: UUID?
+    /// Enable keyboard type change tracking.
+    public func enableExperimentalKeyboardTypeChangeTracking() {
+        isExperimentalKeyboardTypeChangeTrackingEnabled = true
+    }
 
-    /// Enable document change tracking.
-    public func enableDocumentChangeTracking() {
-        isDocumentTrackingEnabled = true
+    /// Try handle a keyboard type change.
+    open func tryHandleKeyboardTypeChange() {
+        guard isExperimentalKeyboardTypeChangeTrackingEnabled else { return }
+        let context = state.keyboardContext
+        let typeBeforeSync = context.keyboardType
+        state.keyboardContext.syncKeyboardType(with: self)
+        guard typeBeforeSync != context.keyboardType else { return }
+        viewWillSetupKeyboardView()
     }
 
 
@@ -221,10 +229,8 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
             self?.textDidChangeAsync(textInput)
         }
 
-        // For some reason, this function needs a long delay.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            self?.tryHandleDocumentChange()
-        }
+        // Try to handle changes caused by a document change.
+        tryHandleKeyboardTypeChange()
     }
 
     /// This function will be called with an async delay, to
@@ -232,7 +238,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func textDidChangeAsync(_ textInput: UITextInput?) {
         performAutocomplete()
         setKeyboardCase(state.keyboardContext.preferredKeyboardCase)
-
     }
 
 
@@ -311,24 +316,6 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func performKeyboardContextSync() {
         guard isContextSyncEnabled else { return }
         state.keyboardContext.sync(with: self)
-    }
-
-    /// Try handle a document change.
-    open func tryHandleDocumentChange() {
-        guard isDocumentTrackingEnabled else { return }
-        let documentId = safelyGetDocumentIdentifier()
-        if documentId != currentDocumentIdentifier {
-            currentDocumentIdentifier = documentId
-            state.keyboardContext.syncAfterAsync(with: self, isForNewDocument: true)
-            viewWillSetupKeyboardView()
-        }
-    }
-
-    private func safelyGetDocumentIdentifier() -> UUID? {
-        let testBundleId = "com.apple.dt.xctest.tool"
-        let isTesting = Bundle.main.bundleIdentifier == testBundleId
-        if isTesting { return nil }
-        return super.textDocumentProxy.documentIdentifier
     }
 
 
