@@ -34,7 +34,7 @@ class KeyboardViewController: KeyboardInputViewController {
         // 💡 Always call `super.viewDidLoad()`.
         super.viewDidLoad()
 
-        // ‼️ Enable the new experimental document tracking!
+        // ‼️ Enable the new keyboard type change tracking!
         enableExperimentalKeyboardTypeChangeTracking()
 
         // ‼️ Set up the keyboard with the demo-specific app.
