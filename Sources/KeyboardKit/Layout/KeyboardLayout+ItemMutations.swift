@@ -12,7 +12,7 @@ import Foundation
 
 public extension RangeReplaceableCollection where Element == KeyboardLayout.Item, Index == Int {
 
-    /// Get the index of a certain action.
+    /// Get the index of a certain `action`.
     func index(
         of action: KeyboardAction
     ) -> Index? {
@@ -37,11 +37,20 @@ public extension RangeReplaceableCollection where Element == KeyboardLayout.Item
         insert(item, at: index.advanced(by: 1))
     }
 
-    /// Remove a certain `item`.
+    /// Remove a certain `action`.
     mutating func remove(
         _ action: KeyboardAction
     ) {
         while let index = index(of: action) {
+            remove(at: index)
+        }
+    }
+
+    /// Remove all items that meet a certain `condition`.
+    mutating func remove(
+        where condition: (Element) -> Bool
+    ) {
+        while let index = firstIndex(where: condition) {
             remove(at: index)
         }
     }
@@ -133,7 +142,26 @@ public extension Array where Element: RangeReplaceableCollection,
         self[rowIndex] = row
     }
 
-    /// Replace an item with another item in all rows.
+    /// Remove all items that meet a `condition` in all rows.
+    mutating func remove(
+        where condition: (Element.Element) -> Bool
+    ) {
+        enumerated().forEach {
+            remove(where: condition, fromRow: $0.offset)
+        }
+    }
+
+    /// Remove all items that meet a `condition` from a row.
+    mutating func remove(
+        where condition: (Element.Element) -> Bool,
+        fromRow rowIndex: Int
+    ) {
+        guard var row = self.row(at: rowIndex) else { return }
+        row.remove(where: condition)
+        self[rowIndex] = row
+    }
+
+    /// Replace an `action` with another `item` in all rows.
     mutating func replace(
         _ action: KeyboardAction,
         with replacement: Element.Element
@@ -143,7 +171,7 @@ public extension Array where Element: RangeReplaceableCollection,
         }
     }
 
-    /// Replace an item with another item in a certain row.
+    /// Replace an action with another item in a certain row.
     mutating func replace(
         _ action: KeyboardAction,
         with replacement: Element.Element,
