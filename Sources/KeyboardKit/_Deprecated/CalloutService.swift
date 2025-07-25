@@ -8,7 +8,8 @@
 
 import Foundation
 
-/// > Deprecated: These services will be removed in 10.0.
+/// > Deprecated: This protocol will be removed in 10.0. Use
+/// the new `.keyboardCalloutActions` modifier instead.
 ///
 /// This protocol can be implemented by any type that can be
 /// used to perform keyboard-related callout actions.

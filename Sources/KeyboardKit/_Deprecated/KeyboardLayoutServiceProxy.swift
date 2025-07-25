@@ -8,11 +8,11 @@
 
 import Foundation
 
+/// > Deprecated: This protocol will be removed in 10.0. Use
+/// the new `.keyboardLayout` view modifier instead.
+///
 /// This protocol is used to let device-based services share
 /// behavior, when basing a layout on different device types.
-///
-/// The protocol is currently only used by localized service
-/// implementations in KeyboardKit Pro.
 public protocol KeyboardLayoutServiceProxy: KeyboardLayoutService {
 
     /// The layout service to use for iPad devices.

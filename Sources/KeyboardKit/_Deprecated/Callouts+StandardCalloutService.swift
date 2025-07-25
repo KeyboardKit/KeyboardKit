@@ -11,6 +11,7 @@ import Foundation
 public extension CalloutService where Self == Callouts.StandardCalloutService {
 
     /// > Deprecated: These services will be removed in 10.0.
+    /// Use the new .keyboardCalloutActions modifier instead.
     ///
     /// Create a ``Callouts/StandardCalloutService`` instance.
     ///

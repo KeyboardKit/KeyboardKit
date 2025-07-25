@@ -195,4 +195,48 @@ class Locale_NameTests: XCTestCase {
             XCTAssertEqual(expected[$0], $0.keyboardKitName)
         }
     }
+
+    func testCanPrintNamesInCommaList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        let string = locales
+            .compactMap { ($0.printName) + " (\($0.identifier))"}
+            .joined(separator: ", ")
+        print(string)
+        print("")
+    }
+
+    func testCanPrintNamesInHtmlList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            print("\(locale.printName) <br />")
+        }
+        print("")
+    }
+
+    func testCanPrintNamesInHtmlBulletList() throws {
+        print("")
+        print("************************")
+        print("*** Locale Name List ***")
+        print("************************")
+        print("")
+        locales.forEach { locale in
+            print("<li>\(locale.printName)</li>")
+        }
+        print("")
+    }
+}
+
+private extension Locale {
+
+    var printName: String {
+        localizedName(in: .english) ?? ""
+    }
 }

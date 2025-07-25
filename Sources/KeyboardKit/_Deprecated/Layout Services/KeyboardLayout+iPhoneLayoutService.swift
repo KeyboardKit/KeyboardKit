@@ -11,6 +11,7 @@ import SwiftUI
 extension KeyboardLayout {
 
     /// > Deprecated: These services will be removed in 10.0.
+    /// Use the new `.keyboardLayout` view modifier instead.
     ///
     /// This base class provides a foundation for generating
     /// iPhone-specific layouts.

@@ -11,12 +11,10 @@ import CoreGraphics
 
 public extension KeyboardStyleService where Self == KeyboardStyle.StandardStyleService {
 
-    /// > Deprecated: The style service concept will be removed in KeyboardKit 10.
+    /// > Deprecated: These services will be removed in 10.0.
+    /// Use the new `.keyboardButtonStyle` modifier instead.
     ///
     /// Create a standard keyboard service.
-    ///
-    /// - Parameters:
-    ///   - keyboardContext: The keyboard context to use.
     static func standard(
         keyboardContext: KeyboardContext
     ) -> Self {
@@ -28,8 +26,9 @@ public extension KeyboardStyleService where Self == KeyboardStyle.StandardStyleS
 
 extension KeyboardStyle {
 
-    /// > Deprecated: The style service concept will be removed in KeyboardKit 10.
-    /// 
+    /// > Deprecated: These services will be removed in 10.0.
+    /// Use the new `.keyboardButtonStyle` modifier instead.
+    ///
     /// This class provides a standard way to create dynamic
     /// keyboard styles.
     open class StandardStyleService: KeyboardStyleService {

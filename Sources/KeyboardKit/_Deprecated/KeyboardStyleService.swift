@@ -9,7 +9,8 @@
 import CoreGraphics
 import SwiftUI
 
-/// > Deprecated: The style service concept will be removed in KeyboardKit 10.
+/// > Deprecated: This protocol will be removed in 10.0. Use
+/// the new `.keyboardButtonStyle` builder modifier instead.
 ///
 /// This protocol can be implemented by any classes that can
 /// provide dynamic keyboard styles.

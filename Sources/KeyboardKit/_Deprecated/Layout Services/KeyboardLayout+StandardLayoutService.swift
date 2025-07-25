@@ -10,11 +10,10 @@ import Foundation
 
 public extension KeyboardLayoutService where Self == KeyboardLayout.StandardLayoutService {
 
-    /// Create a standard layout service.
+    /// > Deprecated: These services will be removed in 10.0.
+    /// Use the new `.keyboardLayout` view modifier instead.
     ///
-    /// - Parameters:
-    ///   - baseService: The base service to use, by default a device-based service.
-    ///   - localizedServices: A list of localized services, by default `empty`.
+    /// Create a standard layout service.
     static func standard(
         baseService: KeyboardLayoutService = KeyboardLayout.DeviceBasedLayoutService(),
         localizedServices: [Self.LocalizedLayoutService] = []
@@ -29,6 +28,7 @@ public extension KeyboardLayoutService where Self == KeyboardLayout.StandardLayo
 extension KeyboardLayout {
 
     /// > Deprecated: These services will be removed in 10.0.
+    /// Use the new `.keyboardLayout` view modifier instead.
     ///
     /// This class provides a standard way to create dynamic
     /// keyboard layouts.
