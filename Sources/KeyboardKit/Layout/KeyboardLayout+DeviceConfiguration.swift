@@ -210,7 +210,7 @@ public extension KeyboardLayout.DeviceConfiguration {
     /// TODO: This will become a constant in KeyboardKit 10.
     static var standardPhoneLarge = Self(
         buttonCornerRadius: 5,
-        buttonInsets: .init(horizontal: 3, vertical: 5.5),
+        buttonInsets: .init(horizontal: 3, vertical: 5),
         rowHeight: 56.0,
         inputToolbarHeight: 56.0
     )

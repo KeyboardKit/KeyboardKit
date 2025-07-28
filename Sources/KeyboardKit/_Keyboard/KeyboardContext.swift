@@ -115,6 +115,22 @@ public class KeyboardContext: ObservableObject {
     /// Whether the keyboard is in floating mode.
     @Published public var isKeyboardFloating = false
 
+    /// Whether liquid glass is enabled.
+    ///
+    /// > Important: This must be manually handled in 9.9 to
+    /// not require Xcode 26. Make an availability check and
+    /// enable Liquid Glass if iOS 26 is available.
+    @Published public var isLiquidGlassEnabled = false
+
+    /// Enables or disables Liquid Glass.
+    ///
+    /// > Important: This must be manually handled in 9.9 to
+    /// not require Xcode 26. Make an availability check and
+    /// enable Liquid Glass if iOS 26 is available.
+    public func setIsLiquidGlassEnabled(_ enabled: Bool) {
+        isLiquidGlassEnabled = enabled
+    }
+
     /// Whether a space drag gesture is active.
     @Published public var isSpaceDragGestureActive = false
 

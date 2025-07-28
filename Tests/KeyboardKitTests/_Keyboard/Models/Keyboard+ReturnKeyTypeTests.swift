@@ -15,8 +15,12 @@ final class Keyboard_ReturnKeyTypeTests: XCTestCase {
         XCTAssertEqual(type.id, expected)
     }
 
-    func assertStandardButtonImage(for type: Keyboard.ReturnKeyType, _ expected: Bool) {
-        XCTAssertEqual(type.standardButtonImage(for: .current) != nil, expected)
+    func assertStandardButtonImage(
+        for type: Keyboard.ReturnKeyType,
+        _ context: KeyboardContext,
+        _ expected: Bool
+    ) {
+        XCTAssertEqual(type.standardButtonImage(for: context) != nil, expected)
     }
 
     func assertStandardButtonText(for type: Keyboard.ReturnKeyType, _ expected: Bool) {
@@ -37,19 +41,39 @@ final class Keyboard_ReturnKeyTypeTests: XCTestCase {
 
     func testAllCasesReturnsAllTypesExceptCustom() {
         let cases = Keyboard.ReturnKeyType.allCases
-        XCTAssertEqual(cases, [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send])
+        XCTAssertEqual(cases, [
+            .return, .continue, .done, .emergencyCall,
+            .go, .join, .newLine, .next, .ok, .route,
+            .search, .send]
+        )
     }
 
-    func testStandardButtonImageIsValid() {
-        assertStandardButtonImage(for: .return, false)
-        assertStandardButtonImage(for: .done, false)
-        assertStandardButtonImage(for: .go, false)
-        assertStandardButtonImage(for: .join, false)
-        assertStandardButtonImage(for: .newLine, true)
-        assertStandardButtonImage(for: .ok, false)
-        assertStandardButtonImage(for: .search, false)
-        assertStandardButtonImage(for: .send, false)
-        assertStandardButtonImage(for: .custom(title: "foobar"), false)
+    func testStandardButtonImageIsValidForLegacyDesign() {
+        let context = KeyboardContext.preview
+        context.isLiquidGlassEnabled = false
+        assertStandardButtonImage(for: .return, context, false)
+        assertStandardButtonImage(for: .done, context, false)
+        assertStandardButtonImage(for: .go, context, false)
+        assertStandardButtonImage(for: .join, context, false)
+        assertStandardButtonImage(for: .newLine, context, true)
+        assertStandardButtonImage(for: .ok, context, false)
+        assertStandardButtonImage(for: .search, context, false)
+        assertStandardButtonImage(for: .send, context, false)
+        assertStandardButtonImage(for: .custom(title: "foobar"), context, false)
+    }
+
+    func testStandardButtonImageIsValidForLiquidGlass() {
+        let context = KeyboardContext.preview
+        context.isLiquidGlassEnabled = true
+        assertStandardButtonImage(for: .return, context, true)
+        assertStandardButtonImage(for: .done, context, true)
+        assertStandardButtonImage(for: .go, context, true)
+        assertStandardButtonImage(for: .join, context, true)
+        assertStandardButtonImage(for: .newLine, context, true)
+        assertStandardButtonImage(for: .ok, context, false)
+        assertStandardButtonImage(for: .search, context, true)
+        assertStandardButtonImage(for: .send, context, false)
+        assertStandardButtonImage(for: .custom(title: "foobar"), context, false)
     }
 
     func testStandardButtonTextIsValid() {

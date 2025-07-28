@@ -70,13 +70,24 @@ public extension Color {
     ) -> Self {
         .keyboardBackground
     }
-    
+
     /// The standard keyboard button background color.
     static func keyboardButtonBackground(
         for colorScheme: ColorScheme
     ) -> Self {
         colorScheme.isDark ?
             .keyboardButtonBackgroundForColorSchemeBug :
+            .keyboardButtonBackground
+    }
+
+    /// The standard keyboard button background color.
+    ///
+    /// This color is adjusted for display with Liquid Glass.
+    static func keyboardButtonBackgroundLiquid(
+        for colorScheme: ColorScheme
+    ) -> Self {
+        return colorScheme.isDark ?
+            .keyboardButtonBackgroundForColorSchemeBug.opacity(0.55) :
             .keyboardButtonBackground
     }
 

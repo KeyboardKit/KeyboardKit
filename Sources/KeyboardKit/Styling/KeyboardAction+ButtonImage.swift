@@ -59,7 +59,7 @@ extension KeyboardAction {
         case .moveCursorForward: .keyboardArrowRight
         case .nextKeyboard: .keyboardGlobe
         case .option: .keyboardOption
-        case .primary(let type): type.standardButtonImage(for: context.locale)
+        case .primary(let type): type.standardButtonImage(for: context)
         case .settings: .keyboardSettings
         case .shift: .keyboardShift(context.keyboardCase)
         case .systemImage(_, let imageName, _): Image(systemName: imageName)

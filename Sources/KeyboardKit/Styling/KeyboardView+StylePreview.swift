@@ -14,12 +14,15 @@ import SwiftUI
         _ type: Keyboard.ReturnKeyType
     ) -> some View {
         let state = Keyboard.State.preview
+        let services = Keyboard.Services.preview
         let context = state.keyboardContext
-        context.isLiquidGlassEnabled = true
+        context.colorScheme = .dark
         context.deviceType = .phone
+        context.isLiquidGlassEnabled = true
         context.returnKeyTypeOverride = type
-        context.screenSize = .iPhoneLargeScreen
+        // context.screenSize = .iPhoneLargeScreen
         // context.interfaceOrientation = .landscapeLeft
+        services.styleService = .standard(keyboardContext: context)
         let device = context.deviceType
         let preview = device.isPad ? "iPad" : "iPhone"
 
@@ -30,12 +33,15 @@ import SwiftUI
             .overlay(alignment: .bottom) {
                 KeyboardView(
                     state: state,
-                    services: .preview
+                    services: services
                 )
-                .padding(.bottom, 90)
-                //.padding(.horizontal, 93)
-                // .padding(.bottom, -2)
-                // .padding(.leading, 6)
+                .keyboardButtonStyle {
+                    $0.standardStyle(for: context)
+                }
+                .padding(.bottom, 5)
+                .background { Color.keyboardBackgroundForDarkAppearance }
+                .colorScheme(.dark)
+                // .opacity(0.1)
             }
     }
 
