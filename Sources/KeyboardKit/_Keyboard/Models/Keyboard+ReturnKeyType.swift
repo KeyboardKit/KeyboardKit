@@ -15,8 +15,8 @@ public extension Keyboard {
     /// Return keys are used as ``KeyboardAction/primary(_:)``
     /// actions and insert a new line or perform the primary
     /// action when they are tapped.
-    enum ReturnKeyType: CaseIterable, KeyboardModel {
-        
+    enum ReturnKeyType: CaseIterable, Identifiable, KeyboardModel {
+
         /// A return key that uses a return text and not a ⏎.
         case `return`
         
@@ -58,7 +58,9 @@ public extension Keyboard {
         
         /// All primary return button types with a known use.
         public static var allCases: [Self] {
-            [.return, .done, .go, .join, .newLine, .next, .ok, .search, .send]
+            [.return, .continue, .done, .emergencyCall,
+             .go, .join, .newLine, .next, .ok, .route,
+             .search, .send]
         }
     }
 }
@@ -90,33 +92,6 @@ public extension Keyboard.ReturnKeyType {
         case .newLine: true
         case .return: true
         default: false
-        }
-    }
-
-    /// The standard button image for a certain locale.
-    func standardButtonImage(for locale: Locale) -> Image? {
-        switch self {
-        case .newLine: .keyboardNewline(for: locale)
-        default: nil
-        }
-    }
-    
-    /// The standard button to text for a certain locale.
-    func standardButtonText(for locale: Locale) -> String? {
-        switch self {
-        case .custom(let title): title
-        case .continue: KKL10n.continue.text(for: locale)
-        case .done: KKL10n.done.text(for: locale)
-        case .emergencyCall: KKL10n.emergencyCall.text(for: locale)
-        case .go: KKL10n.go.text(for: locale)
-        case .join: KKL10n.join.text(for: locale)
-        case .newLine: nil
-        case .next: KKL10n.next.text(for: locale)
-        case .return: KKL10n.return.text(for: locale)
-        case .route: KKL10n.route.text(for: locale)
-        case .ok: KKL10n.ok.text(for: locale)
-        case .search: KKL10n.search.text(for: locale)
-        case .send: KKL10n.send.text(for: locale)
         }
     }
 }

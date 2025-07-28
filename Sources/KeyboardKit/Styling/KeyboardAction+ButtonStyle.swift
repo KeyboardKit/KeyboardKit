@@ -80,11 +80,12 @@ public extension KeyboardAction {
     func standardButtonShadowStyle(
         for context: KeyboardContext
     ) -> Keyboard.ButtonShadowStyle {
+        if context.isLiquidGlassEnabled { return .noShadow }
         switch self {
-        case .characterMargin: .noShadow
-        case .emoji: .noShadow
-        case .none: .noShadow
-        default: context.isSpaceDragGestureActive ? .noShadow : .standard
+        case .characterMargin: return .noShadow
+        case .emoji: return .noShadow
+        case .none: return .noShadow
+        default: return context.isSpaceDragGestureActive ? .noShadow : .standard
         }
     }
 }
