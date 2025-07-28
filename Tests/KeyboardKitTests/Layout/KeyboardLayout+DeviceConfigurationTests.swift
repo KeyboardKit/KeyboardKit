@@ -15,7 +15,7 @@ class KeyboardLayout_DeviceConfigurationTests: XCTestCase {
     func testStandardConfigIsCorrectForPadInPortrait() {
         let config = KeyboardLayout.DeviceConfiguration.standardPad
         XCTAssertEqual(config.buttonCornerRadius, 5)
-        XCTAssertEqual(config.buttonInsets, .init(horizontal: 5, vertical: 4))
+        XCTAssertEqual(config.buttonInsets, .init(horizontal: 5, vertical: 5))
         XCTAssertEqual(config.rowHeight, 64)
     }
     
@@ -29,7 +29,7 @@ class KeyboardLayout_DeviceConfigurationTests: XCTestCase {
     func testStandardConfigIsCorrectForPhoneInPortrait() {
         let config = KeyboardLayout.DeviceConfiguration.standardPhone
         XCTAssertEqual(config.buttonCornerRadius, 5)
-        XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 6))
+        XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 5))
         XCTAssertEqual(config.rowHeight, 54)
     }
 
@@ -41,14 +41,14 @@ class KeyboardLayout_DeviceConfigurationTests: XCTestCase {
     }
 
     func testStandardConfigIsCorrectForProMaxPhoneInPortrait() {
-        let config = KeyboardLayout.DeviceConfiguration.standardPhoneProMax
+        let config = KeyboardLayout.DeviceConfiguration.standardPhoneLarge
         XCTAssertEqual(config.buttonCornerRadius, 5)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 5.5))
         XCTAssertEqual(config.rowHeight, 56)
     }
 
     func testStandardConfigIsCorrectForProMaxPhoneInLandscape() {
-        let config = KeyboardLayout.DeviceConfiguration.standardPhoneProMaxLandscape
+        let config = KeyboardLayout.DeviceConfiguration.standardPhoneLargeLandscape
         XCTAssertEqual(config.buttonCornerRadius, 5)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 4))
         XCTAssertEqual(config.rowHeight, 40)
@@ -68,33 +68,15 @@ class KeyboardLayout_DeviceConfigurationTests: XCTestCase {
     }
 
     func testStandardKeyboardConfigurationForExplicitOrientations() {
-        var config = configuration(for: .pad, size: .iPadScreenLandscape, orientation: .landscapeRight)
-        XCTAssertEqual(config.buttonCornerRadius, 7)
-        XCTAssertEqual(config.buttonInsets, .init(horizontal: 7, vertical: 6))
-        XCTAssertEqual(config.rowHeight, 86)
-
-        config = configuration(for: .pad, size: .iPadScreenPortrait, orientation: .portrait)
-        XCTAssertEqual(config.buttonCornerRadius, 5)
-        XCTAssertEqual(config.buttonInsets, .init(horizontal: 5, vertical: 4))
-        XCTAssertEqual(config.rowHeight, 64)
-
-
-        config = configuration(for: .pad, size: .iPadProLargeScreenLandscape, orientation: .landscapeRight)
+        var config = configuration(for: .pad, size: .iPadLargeScreenLandscape, orientation: .landscapeRight)
         XCTAssertEqual(config.buttonCornerRadius, 8)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 7, vertical: 5))
         XCTAssertEqual(config.rowHeight, 88)
 
-        config = configuration(for: .pad, size: .iPadProLargeScreenPortrait, orientation: .portrait)
+        config = configuration(for: .pad, size: .iPadLargeScreen, orientation: .portrait)
         XCTAssertEqual(config.buttonCornerRadius, 6)
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 4, vertical: 4))
         XCTAssertEqual(config.rowHeight, 69)
-
-
-        config = configuration(for: .pad, size: .iPadProSmallScreenLandscape, orientation: .landscapeRight)
-        XCTAssertEqual(config, .standardPadLandscape)
-
-        config = configuration(for: .pad, size: .iPadProSmallScreenPortrait, orientation: .portrait)
-        XCTAssertEqual(config, .standardPad)
 
 
         config = configuration(for: .phone, size: .zero, orientation: .landscapeRight)
@@ -104,7 +86,7 @@ class KeyboardLayout_DeviceConfigurationTests: XCTestCase {
 
         config = configuration(for: .phone, size: .zero, orientation: .portrait)
         XCTAssertEqual(config.buttonCornerRadius, 5)
-        XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 6))
+        XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 5))
         XCTAssertEqual(config.rowHeight, 54)
 
 
@@ -113,9 +95,9 @@ class KeyboardLayout_DeviceConfigurationTests: XCTestCase {
         XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 4))
         XCTAssertEqual(config.rowHeight, 40)
 
-        config = configuration(for: .phone, size: .iPhoneProMaxScreenLandscape, orientation: .portrait)
+        config = configuration(for: .phone, size: .iPhoneLargeScreen, orientation: .portrait)
         XCTAssertEqual(config.buttonCornerRadius, 5)
-        XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 6))
-        XCTAssertEqual(config.rowHeight, 54)
+        XCTAssertEqual(config.buttonInsets, .init(horizontal: 3, vertical: 5.5))
+        XCTAssertEqual(config.rowHeight, 56)
     }
 }

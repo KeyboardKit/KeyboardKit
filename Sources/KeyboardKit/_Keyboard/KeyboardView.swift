@@ -232,7 +232,7 @@ private extension KeyboardView {
 
     var isLargePad: Bool {
         let size = keyboardContext.screenSize
-        return size.isScreenSize(.iPadProLargeScreenPortrait, withTolerance: 50)
+        return size.isScreenSize(.iPadLargeScreen, withTolerance: 50)
     }
 
     var inputToolbarDisplayMode: Keyboard.InputToolbarDisplayMode {
