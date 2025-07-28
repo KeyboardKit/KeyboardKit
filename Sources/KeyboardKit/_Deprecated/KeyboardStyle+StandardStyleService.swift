@@ -263,7 +263,7 @@ extension KeyboardStyle.StandardStyleService {
 
     var isProMaxPhone: Bool {
         keyboardContext.screenSize.isEqual(
-            to: .iPhoneProMaxScreenPortrait, withTolerance: 10
+            to: .iPhoneLargeScreen, withTolerance: 10
         )
     }
 }

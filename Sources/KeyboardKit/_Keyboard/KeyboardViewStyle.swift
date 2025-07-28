@@ -95,6 +95,6 @@ public extension EdgeInsets {
 private extension KeyboardContext {
 
     var isProMaxPhone: Bool {
-        screenSize.isEqual(to: .iPhoneProMaxScreenPortrait, withTolerance: 10)
+        screenSize.isEqual(to: .iPhoneLargeScreen, withTolerance: 10)
     }
 }

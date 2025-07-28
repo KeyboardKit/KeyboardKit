@@ -13,6 +13,16 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 9.9
+
+This version performs final changes for 9.x and adds support for Liquid Glass.
+
+### ✨ Features
+
+* `KeyboardController` has a new `setIsLiquidGlassEnabled(...)` function to enable the new Liquid Glass design.
+
+
+
 ## 9.8
 
 With the new view modifier-based callout & style customizations working well, the corresponding services have been soft deprecated.

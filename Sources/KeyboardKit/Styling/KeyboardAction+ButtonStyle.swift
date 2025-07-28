@@ -111,7 +111,7 @@ extension KeyboardAction {
     func preview(
         _ type: Keyboard.ReturnKeyType
     ) -> some View {
-        KeyboardView(
+        return KeyboardView(
             state: {
                 let state = Keyboard.State.preview
                 state.keyboardContext.returnKeyTypeOverride = type
@@ -123,7 +123,8 @@ extension KeyboardAction {
 
     return VStack {
         preview(.return)
-        preview(.continue)
     }
-    .background(Color.keyboardBackground)
+    .background {
+        Color.keyboardBackground
+    }
 }

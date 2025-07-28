@@ -59,7 +59,8 @@ public extension KeyboardLayout.DeviceConfiguration {
         standard(
             forDevice: context.deviceTypeForKeyboard,
             screenSize: context.screenSize,
-            orientation: context.interfaceOrientation
+            orientation: context.interfaceOrientation,
+            liquidGlass: context.isLiquidGlassEnabled
         )
     }
 
@@ -67,22 +68,46 @@ public extension KeyboardLayout.DeviceConfiguration {
     static func standard(
         forDevice device: DeviceType,
         screenSize size: CGSize,
-        orientation: InterfaceOrientation
+        orientation: InterfaceOrientation,
+        liquidGlass: Bool = false
     ) -> Self {
         switch device {
-        case .pad: standardPad(forScreenSize: size, orientation: orientation)
-        default: standardPhone(forScreenSize: size, orientation: orientation)
+        case .pad: standardPad(
+            forScreenSize: size,
+            orientation: orientation,
+            liquidGlass: liquidGlass)
+        default: standardPhone(
+            forScreenSize: size,
+            orientation: orientation,
+            liquidGlass: liquidGlass)
         }
     }
 
     /// The standard pad config for the provided `screen`.
     static func standardPad(
         forScreenSize size: CGSize,
-        orientation: InterfaceOrientation
+        orientation: InterfaceOrientation,
+        liquidGlass: Bool = false
+    ) -> Self {
+        var config = standardPadRaw(
+            forScreenSize: size,
+            orientation: orientation,
+            liquidGlass: liquidGlass
+        )
+        guard liquidGlass else { return config }
+        config.buttonCornerRadius = 9
+        return config
+    }
+
+    private static func standardPadRaw(
+        forScreenSize size: CGSize,
+        orientation: InterfaceOrientation,
+        liquidGlass: Bool = false
     ) -> Self {
         let isPortrait = orientation.isPortrait
-        if size.isScreenSize(.iPadProLargeScreenPortrait, withTolerance: 50) {
-            return isPortrait ? .standardPadProLarge : .standardPadProLargeLandscape
+        let isLarge = size.isAtLeastScreenSize(.iPadLargeScreen)
+        if isLarge {
+            return isPortrait ? .standardPadLarge : .standardPadLargeLandscape
         }
         return isPortrait ? .standardPad : .standardPadLandscape
     }
@@ -90,116 +115,113 @@ public extension KeyboardLayout.DeviceConfiguration {
     /// The standard phone config for the provided `screen`.
     static func standardPhone(
         forScreenSize size: CGSize,
-        orientation: InterfaceOrientation
+        orientation: InterfaceOrientation,
+        liquidGlass: Bool = false
+    ) -> Self {
+        var config = standardPhoneRaw(
+            forScreenSize: size,
+            orientation: orientation,
+            liquidGlass: liquidGlass
+        )
+        guard liquidGlass else { return config }
+        config.buttonCornerRadius = 9
+        return config
+    }
+
+    private static func standardPhoneRaw(
+        forScreenSize size: CGSize,
+        orientation: InterfaceOrientation,
+        liquidGlass: Bool = false
     ) -> Self {
         let isPortrait = orientation.isPortrait
-        if size.isEqual(to: .iPhoneProMaxScreenPortrait, withTolerance: 10) {
-            return isPortrait ? .standardPhoneProMax : .standardPhoneProMaxLandscape
+        let isLarge = size.isAtLeastScreenSize(.iPhoneLargeScreen)
+        if isLarge {
+            return isPortrait ? .standardPhoneLarge : .standardPhoneLargeLandscape
         }
-        return isPortrait ? .standardPhone : .standardPhoneLandscape
+        var config: Self = isPortrait ? .standardPhone : .standardPhoneLandscape
+        guard liquidGlass, isPortrait else { return config }
+        config.rowHeight += 2
+        config.buttonInsets.top -= 0.5
+        config.buttonInsets.bottom -= 0.5
+        return config
     }
 
 
-    // MARK: - Standard Configuration Heights
+    // MARK: - Standard Configurations
 
-    /// The standard iPad portait row height.
-    static var standardPadRowHeight: Double { 64.0 }
-
-    /// The standard iPad landscape row height.
-    static var standardPadLandscapeRowHeight: Double { 86.0 }
-
-    /// The standard large iPad Pro portait row height.
-    static var standardPadProLargeRowHeight: Double { 69.0 }
-
-    /// The standard large iPad Pro landscape row height.
-    static var standardPadProLargeLandscapeRowHeight: Double { 88.0 }
-
-    /// The standard iPhone portrait row height.
-    static var standardPhoneRowHeight: Double { 54.0 }
-
-    /// The standard iPhone portrait row height.
-    static var standardPhoneLandscapeRowHeight: Double { 40.0 }
-
-    /// The standard iPhone Pro Max portrait row height.
-    static var standardPhoneProMaxRowHeight: Double { 56.0 }
-
-    /// The standard iPhone Pro Max portrait row height.
-    static var standardPhoneProMaxLandscapeRowHeight: Double { 40.0 }
-
-
-    // MARK: - Standard Configuration Properties
-
-    /// The standard config for an iPad in portait.
+    /// A standard iPad portrait configuration.
     ///
-    /// You can set this config to affect the global default.
+    /// TODO: This will become a constant in KeyboardKit 10.
     static var standardPad = Self(
         buttonCornerRadius: 5,
-        buttonInsets: .init(horizontal: 5, vertical: 4),
-        rowHeight: standardPadRowHeight
+        buttonInsets: .init(horizontal: 5, vertical: 5),
+        rowHeight: 64.0
     )
 
-    /// The standard config for an iPad in landscape.
+    /// A standard iPad landscape configuration.
     ///
-    /// You can set this config to affect the global default.
+    /// TODO: This will become a constant in KeyboardKit 10.
     static var standardPadLandscape = Self(
         buttonCornerRadius: 7,
         buttonInsets: .init(horizontal: 7, vertical: 6),
-        rowHeight: standardPadLandscapeRowHeight
+        rowHeight: 86.0
     )
 
-    /// The standard config for large iPad Pros in portrait.
+    /// A standard large iPad portrait configuration.
     ///
-    /// You can set this config to affect the global default.
-    static var standardPadProLarge = Self(
+    /// TODO: This will become a constant in KeyboardKit 10.
+    static var standardPadLarge = Self(
         buttonCornerRadius: 6,
         buttonInsets: .init(horizontal: 4, vertical: 4),
-        rowHeight: standardPadProLargeRowHeight
+        rowHeight: 69.0
     )
 
-    /// The standard config for large iPad Pros in landscape.
+    /// A standard large iPad landscape configuration.
     ///
-    /// You can set this config to affect the global default.
-    static var standardPadProLargeLandscape = Self(
+    /// TODO: This will become a constant in KeyboardKit 10.
+    static var standardPadLargeLandscape = Self(
         buttonCornerRadius: 8,
         buttonInsets: .init(horizontal: 7, vertical: 5),
-        rowHeight: standardPadProLargeLandscapeRowHeight
+        rowHeight: 88.0
     )
 
-    /// The standard config for an iPhone in portrait.
+    /// A standard iPhone portrait configuration.
     ///
-    /// You can set this config to affect the global default.
+    /// TODO: This will become a constant in KeyboardKit 10.
     static var standardPhone = Self(
         buttonCornerRadius: 5,
-        buttonInsets: .init(horizontal: 3, vertical: 6),
-        rowHeight: standardPhoneRowHeight,
-        inputToolbarHeight: standardPhoneRowHeight
+        buttonInsets: .init(horizontal: 3, vertical: 5),
+        rowHeight: 54,
+        inputToolbarHeight: 54
     )
 
-    /// The standard config for an iPhone in landscape.
+    /// A standard iPhone landscape configuration.
     ///
-    /// You can set this config to affect the global default.
+    /// TODO: This will become a constant in KeyboardKit 10.
     static var standardPhoneLandscape = Self(
         buttonCornerRadius: 5,
         buttonInsets: .init(horizontal: 3, vertical: 4),
-        rowHeight: standardPhoneLandscapeRowHeight,
-        inputToolbarHeight: standardPhoneLandscapeRowHeight
+        rowHeight: 40.0,
+        inputToolbarHeight: 40.0
     )
 
-    /// The standard config for iPhone Pro Max in portrait.
-    static var standardPhoneProMax = Self(
+    /// A standard large iPhone portrait configuration.
+    ///
+    /// TODO: This will become a constant in KeyboardKit 10.
+    static var standardPhoneLarge = Self(
         buttonCornerRadius: 5,
         buttonInsets: .init(horizontal: 3, vertical: 5.5),
-        rowHeight: standardPhoneProMaxRowHeight,
-        inputToolbarHeight: standardPhoneProMaxRowHeight
+        rowHeight: 56.0,
+        inputToolbarHeight: 56.0
     )
 
-    /// The standard config for iPhone Pro Max in landscape.
+    /// A standard large iPhone Pro landscape configuration.
     ///
-    /// You can set this config to affect the global default.
-    static var standardPhoneProMaxLandscape = Self(
+    /// TODO: This will become a constant in KeyboardKit 10.
+    static var standardPhoneLargeLandscape = Self(
         buttonCornerRadius: 5,
         buttonInsets: .init(horizontal: 3, vertical: 4),
-        rowHeight: standardPhoneProMaxLandscapeRowHeight,
-        inputToolbarHeight: standardPhoneProMaxLandscapeRowHeight
+        rowHeight: 40.0,
+        inputToolbarHeight: 40.0
     )
 }

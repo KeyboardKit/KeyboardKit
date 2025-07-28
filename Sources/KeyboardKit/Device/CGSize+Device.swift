@@ -10,33 +10,28 @@ import CoreGraphics
 
 public extension CGSize {
     
-    /// The (classic) large iPad Pro portrait screen size.
-    static let iPadProLargeScreenPortrait = CGSize(width: 1024, height: 1366)
+    /// The large iPad portrait threshold size.
+    static let iPadLargeScreen = CGSize(width: 1024, height: 1366)
 
-    /// The (classic) large iPad Pro landscape screen size.
-    static let iPadProLargeScreenLandscape = iPadProLargeScreenPortrait.flipped()
+    /// The large iPad landscape threshold size.
+    static let iPadLargeScreenLandscape = iPadLargeScreen.flipped()
 
-    /// The (classic) small iPad Pro portrait screen size.
-    static let iPadProSmallScreenPortrait = CGSize(width: 834, height: 1194)
+    /// The large iPhone portrait threshold size.
+    static let iPhoneLargeScreen = CGSize(width: 428, height: 926)
 
-    /// The (classic) small iPad Pro landscape screen size.
-    static let iPadProSmallScreenLandscape = iPadProSmallScreenPortrait.flipped()
+    /// The large iPhone landscape threshold size.
+    static let iPhoneLargeScreenLandscape = iPhoneLargeScreen.flipped()
 
-    /// The regular iPad portrait screen size.
-    static let iPadScreenPortrait = CGSize(width: 768, height: 1024)
-
-    /// The regular iPad landscape screen size.
-    static let iPadScreenLandscape = iPadScreenPortrait.flipped()
-    
-    /// The iPhone Pro Max portrait screen size.
-    static let iPhoneProMaxScreenPortrait = CGSize(width: 428, height: 926)
-
-    /// The iPhone Pro Max landscape screen size.
-    static let iPhoneProMaxScreenLandscape = iPhoneProMaxScreenPortrait.flipped()
-    
     /// Flip the size's height and width.
     func flipped() -> CGSize {
         CGSize(width: height, height: width)
+    }
+
+    /// Whether a size is at least a size in any orientation.
+    func isAtLeastScreenSize(
+        _ size: CGSize
+    ) -> Bool {
+        isAtLeast(size) || isAtLeast(size.flipped())
     }
 
     /// Whether the size matches a size in any orientation.
@@ -53,6 +48,12 @@ public extension CGSize {
 }
 
 extension CGSize {
+
+    func isAtLeast(
+        _ size: CGSize
+    ) -> Bool {
+        width >= size.width || height >= size.height
+    }
 
     func isEqual(
         to size: CGSize,

@@ -29,7 +29,7 @@ final class KeyboardViewStyleTests {
         var insets: EdgeInsets { .standardKeyboardEdgeInsets(for: context) }
         context.deviceTypeForKeyboard = .phone
         #expect(insets == .init(top: 0, leading: 0, bottom: -2, trailing: 0))
-        context.screenSize = .iPhoneProMaxScreenPortrait
+        context.screenSize = .iPhoneLargeScreen
         #expect(insets == .zero)
         context.deviceTypeForKeyboard = .pad
         #expect(insets == .init(top: 0, leading: 0, bottom: 4, trailing: 0))
