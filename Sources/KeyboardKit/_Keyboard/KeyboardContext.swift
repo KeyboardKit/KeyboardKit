@@ -15,33 +15,6 @@ import UIKit
 /// This class has observable states and persistent settings
 /// for the core keyboard functionality.
 ///
-/// This class syncs with ``KeyboardInputViewController`` to
-/// keep up to date. It's extensively used in the library to
-/// make state-based decisions, and automatically update the
-/// ``KeyboardView`` whenever the context changes.
-///
-/// You can use ``locale`` to get and set the current locale,
-/// which also set the keyboard primary language, as well as
-/// ``keyboardLayoutType`` to get and set the current layout.
-/// Since the values typically go hand in hand, make sure to
-/// set both when e.g. enabling English with a Dvorak layout.
-/// A future major version should redesign this to make sure
-/// that you can't set these incorrectly.
-///
-/// Note that the ``locale`` and ``keyboardLayoutType`` sync
-/// from and to the ``settings-swift.property``, which is an
-/// approach that persists the values while also keeping the
-/// values observable. Since the context only syncs these at
-/// launch, make sure to only use the context properties.
-///
-/// You can use ``locales`` to define which locales that you
-/// want to enable for the keyboard. This list is used until
-/// you add any locales to ``KeyboardSettings/addedLocales``,
-/// which then takes precedene over ``locales``. You can use
-/// ``enabledLocales`` to resolve the valid, underlying list.
-/// If ``enabledLocales`` has multiple locales, you can loop
-/// through the collection with ``selectNextLocale()``.
-///
 /// This class also has observable auto-persisted ``settings``
 /// that can be used to configure the behavior and presented
 /// to users in e.g. a settings screen.
@@ -49,6 +22,29 @@ import UIKit
 /// KeyboardKit set up an instance of this class and injects
 /// it as an environment value when you set up your main app
 /// and keyboard, as shown in <doc:Getting-Started-Article>.
+///
+/// This context can sync with ``KeyboardInputViewController``,
+/// to reflect the current state of a keyboard extension. It
+/// is used to manage the current keyboard configuration and
+/// will automatically update a keyboard whenever it changes.
+///
+/// You can use ``locale`` to get and set the current locale.
+/// This affects the primary language and will also localize
+/// the ``KeyboardView`` if the locale is unlocked.
+///
+/// You can use ``locales`` to set the locales to enable and
+/// ``KeyboardSettings/addedLocales`` to select which of the
+/// locales to use. The ``enabledLocales`` property will use
+/// the added locales, if any, else the full list of locales.
+/// Use ``selectNextLocale()`` to loop through locales.
+///
+/// You can use ``keyboardType`` to set the current keyboard
+/// type, and ``keyboardCase`` to set the current input case.
+///
+/// You can use ``keyboardLayoutType`` to apply a layout for
+/// special needs, like ``Keyboard/LayoutType/dvorak``. This
+/// should be handled with ``Keyboard/AddedLocale`` to avoid
+/// applying layout types that can't be used with the locale.
 public class KeyboardContext: ObservableObject {
 
     public init() {
@@ -57,6 +53,7 @@ public class KeyboardContext: ObservableObject {
         syncAutocapitalizationWithSetting()
         locale = settings.locale
         keyboardLayoutType = settings.keyboardLayoutType
+        isLiquidGlassEnabled = isLiquidGlassAvailable
     }
 
 
@@ -115,18 +112,21 @@ public class KeyboardContext: ObservableObject {
     /// Whether the keyboard is in floating mode.
     @Published public var isKeyboardFloating = false
 
-    /// Whether liquid glass is enabled.
+
+    /// Whether liquid glass is available.
     ///
-    /// > Important: This must be manually handled in 9.9 to
-    /// not require Xcode 26. Make an availability check and
-    /// enable Liquid Glass if iOS 26 is available.
+    /// You can still enable Liquid Glass on older platforms
+    /// by calling ``setIsLiquidGlassEnabled(_:)``.
+    public var isLiquidGlassAvailable: Bool {
+        let processInfo = ProcessInfo.processInfo
+        let version = processInfo.operatingSystemVersion
+        return version.majorVersion > 18
+    }
+
+    /// Whether liquid glass is enabled.
     @Published public var isLiquidGlassEnabled = false
 
     /// Enables or disables Liquid Glass.
-    ///
-    /// > Important: This must be manually handled in 9.9 to
-    /// not require Xcode 26. Make an availability check and
-    /// enable Liquid Glass if iOS 26 is available.
     public func setIsLiquidGlassEnabled(_ enabled: Bool) {
         isLiquidGlassEnabled = enabled
     }
