@@ -38,9 +38,8 @@ import SwiftUI
                 .keyboardButtonStyle {
                     $0.standardStyle(for: context)
                 }
-                .padding(.bottom, 5)
-                .background { Color.keyboardBackgroundForDarkAppearance }
-                .colorScheme(.dark)
+                .padding(.bottom, 70)
+                .background { Color.keyboardBackground }
                 // .opacity(0.1)
             }
     }

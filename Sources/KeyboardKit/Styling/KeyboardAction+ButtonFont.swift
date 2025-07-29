@@ -42,7 +42,9 @@ public extension KeyboardAction {
         for context: KeyboardContext
     ) -> KeyboardFont.FontWeight? {
         switch self {
-        case .backspace: .light
+        case .backspace: .regular
+        case .shift: .regular
+        case .primary: .regular
         case .character(let char): char.isLowercasedWithUppercaseVariant ? .light : nil
         default: hasStandardButtonImage(for: context) ? .light : nil
         }

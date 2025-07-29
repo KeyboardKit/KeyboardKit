@@ -19,15 +19,11 @@ public extension KeyboardAction {
         isPressed: Bool = false
     ) -> Keyboard.ButtonStyle {
         let font = standardButtonFont(for: context)
+        let background = standardButtonBackgroundColor(for: context, isPressed: isPressed)
+        let foreground = standardButtonForegroundColor(for: context, isPressed: isPressed)
         return Keyboard.ButtonStyle(
-            backgroundColor: standardButtonBackgroundColor(
-                for: context,
-                isPressed: isPressed
-            ),
-            foregroundColor: standardButtonForegroundColor(
-                for: context,
-                isPressed: isPressed
-            ),
+            backgroundColor: background,
+            foregroundColor: foreground,
             font: font.font,
             keyboardFont: font,
             cornerRadius: standardButtonCornerRadius(for: context),
@@ -92,6 +88,8 @@ public extension KeyboardAction {
 
 extension KeyboardAction {
 
+    /// TODO: This is static since the style service uses it.
+    /// Make this non-standard when the service is removed.
     static func standardButtonContentInsets(
         for context: KeyboardContext,
         character: String

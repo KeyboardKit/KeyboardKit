@@ -75,39 +75,32 @@ extension KeyboardAction {
     func backgroundColorIdle(
         for context: KeyboardContext
     ) -> Color {
-        if isPrimaryAction { return .blue }
         if let liquid = backgroundColorIdleLiquid(for: context) { return liquid }
-        if isUpperCasedShift(for: context) {
-            return context.isDark ? .white : .keyboardButtonBackground(for: context.colorScheme)
-        }
-        if isSystemAction {
-            return .keyboardDarkButtonBackground(for: context.colorScheme)
-        }
-        return .keyboardButtonBackground(for: context.colorScheme)
+        let dark = Color.keyboardDarkButtonBackground(for: context.colorScheme)
+        let light = Color.keyboardButtonBackground(for: context.colorScheme)
+        if isUpperCasedShift(for: context) { return context.isDark ? .white : light }
+        if isSystemAction { return dark }
+        if isPrimaryAction { return .blue }
+        return light
     }
 
     func backgroundColorIdleLiquid(
         for context: KeyboardContext
     ) -> Color? {
         guard context.isLiquidGlassEnabled else { return nil }
+        if isPrimaryAction && !isSystemAction { return .blue }
         return .keyboardButtonBackgroundLiquid(for: context.colorScheme)
     }
 
     func backgroundColorPressed(
         for context: KeyboardContext
     ) -> Color {
-        if let liquid = backgroundColorPressedLiquid(for: context) {
-            return liquid
-        }
-        if isUpperCasedShift(for: context) {
-            return .keyboardDarkButtonBackground(for: context.colorScheme)
-        }
-        if isSystemAction {
-            return context.isDark ? .keyboardButtonBackground(for: context.colorScheme) : .white
-        }
-        if isPrimaryAction {
-            return context.isDark ? .keyboardDarkButtonBackground(for: context.colorScheme) : .white
-        }
+        if let liquid = backgroundColorPressedLiquid(for: context) { return liquid }
+        let dark = Color.keyboardDarkButtonBackground(for: context.colorScheme)
+        let light = Color.keyboardButtonBackground(for: context.colorScheme)
+        if isUpperCasedShift(for: context) { return dark }
+        if isSystemAction { return context.isDark ? light : .white }
+        if isPrimaryAction { return context.isDark ? dark : .white }
         return .keyboardDarkButtonBackground(for: context.colorScheme)
     }
 
@@ -115,9 +108,8 @@ extension KeyboardAction {
         for context: KeyboardContext
     ) -> Color? {
         guard context.isLiquidGlassEnabled else { return nil }
-        if isPrimaryAction {
-            return context.isDark ? .keyboardDarkButtonBackground(for: context.colorScheme) : .white
-        }
+        let dark = Color.keyboardDarkButtonBackground(for: context.colorScheme)
+        if isPrimaryAction { return context.isDark ?  dark : .white }
         return backgroundColorIdle(for: context).opacity(0.6)
     }
 
