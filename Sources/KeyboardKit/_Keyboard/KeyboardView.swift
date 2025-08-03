@@ -109,13 +109,6 @@ public struct KeyboardView<
         var layout = layout
         let layoutConfig = KeyboardLayout.DeviceConfiguration.standard(for: keyboardContext)
         
-        let hasProEmojiKeyboard = !Emoji.KeyboardWrapper.isEmptyPlaceholder
-        let hasCustomEmojiKeyboard = EmojiKeyboard.self != Emoji.KeyboardWrapper.self
-        let hasEmojiKeyboard = hasProEmojiKeyboard || hasCustomEmojiKeyboard
-        if !hasEmojiKeyboard {
-            layout.itemRows.remove(.keyboardType(.emojis))
-        }
-        
         self.rawLayout = layout
         self.layoutConfig = layoutConfig
         self.actionHandler = actionHandler
@@ -229,6 +222,12 @@ private extension KeyboardView {
         emojiKeyboardStyleFromEnvironment(keyboardContext)
             .augmented(for: inputToolbarDisplayMode)
     }
+    
+    var hasEmojiKeyboard: Bool {
+        let hasProKeyboard = !Emoji.KeyboardWrapper.isEmptyPlaceholder
+        let hasCustomKeyboard = EmojiKeyboard.self != Emoji.KeyboardWrapper.self
+        return hasProKeyboard || hasCustomKeyboard
+    }
 
     var isLargePad: Bool {
         let size = keyboardContext.screenSize
@@ -253,7 +252,8 @@ private extension KeyboardView {
     }
 
     var layout: KeyboardLayout {
-        let layout = layoutBuilder(.init()) ?? rawLayout
+        var layout = layoutBuilder(.init()) ?? rawLayout
+        if !hasEmojiKeyboard { layout.itemRows.remove(.keyboardType(.emojis)) }
         return layout.adjusted(
             for: inputToolbarDisplayMode,
             layoutConfiguration: layoutConfig
