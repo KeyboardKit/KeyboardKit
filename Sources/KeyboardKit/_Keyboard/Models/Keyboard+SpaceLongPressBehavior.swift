@@ -28,6 +28,22 @@ public extension Keyboard.SpaceLongPressBehavior {
     
     /// The unique behavior ID.
     var id: String { rawValue }
+
+    /// Whether space should move the input cursor.
+    var shouldMoveInputCursor: Bool {
+        switch self {
+        case .moveInputCursor: true
+        case .openLocaleContextMenu: false
+        }
+    }
+
+    /// Whether space should open a locale context menu.
+    var shouldOpenLocaleContextMenu: Bool {
+        switch self {
+        case .moveInputCursor: false
+        case .openLocaleContextMenu: true
+        }
+    }
 }
 
 public extension View {
