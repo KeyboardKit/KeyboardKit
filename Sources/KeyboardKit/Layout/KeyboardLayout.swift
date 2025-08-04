@@ -129,18 +129,3 @@ public extension EnvironmentValues {
     /// the layout services are removed.
     @Entry var keyboardLayoutBuilder: KeyboardLayout.LayoutBuilder = { _ in nil }
 }
-
-public extension View {
-
-    /// This view modifier can be used to customize keyboard
-    /// layouts for the view hierarchy.
-    ///
-    /// You can use ``KeyboardLayout/standard(for:)`` to get
-    /// the standard layout for the current keyboard context,
-    /// then customize it as needed.
-    func keyboardLayout(
-        _ builder: @escaping KeyboardLayout.LayoutBuilder
-    ) -> some View {
-        self.environment(\.keyboardLayoutBuilder, builder)
-    }
-}
