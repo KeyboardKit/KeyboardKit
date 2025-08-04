@@ -26,7 +26,7 @@ import SwiftUI
         let device = context.deviceType
         let preview = device.isPad ? "iPad" : "iPhone"
 
-        return Image(preview, bundle: .module)
+        return Image(preview, bundle: .keyboardKit)
             .resizable()
             .aspectRatio(contentMode: .fill)
             .ignoresSafeArea(.all)
