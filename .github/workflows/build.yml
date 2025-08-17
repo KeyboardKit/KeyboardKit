@@ -11,12 +11,12 @@ on:
 
 jobs:
   build:
-    runs-on: macos-15
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - uses: maxim-lobanov/setup-xcode@v1
         with:
-          xcode-version: '16.0'
+          xcode-version: latest-stable
       - name: Build all platforms
         run: bash scripts/build.sh ${{ github.event.repository.name }}
       - name: Test iOS
