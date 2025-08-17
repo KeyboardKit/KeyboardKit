@@ -13,9 +13,7 @@ This article describes the KeyboardKit layout engine.
 
 The keyboard layout of a software keyboard can vary between locales and devices, which means that a layout engine must be flexible.
 
-In KeyboardKit, a ``KeyboardLayout`` is used to define the full set of keys to add to a keyboard. A keyboard layout can be created from an ``KeyboardLayout/InputSet``, which just defines the input keys. This allows us to reuse identical layouts for many compatible input sets.
-
-KeyboardKit defines some input sets like ``KeyboardLayout/InputSet/qwerty``, ``KeyboardLayout/InputSet/numeric(currency:)``, and ``KeyboardLayout/InputSet/symbolic(currencies:)``, as well as a standard keyboard layout that is compatible with QWERTY, QWERTZ, AZERTY and similar input sets.
+In KeyboardKit, a ``KeyboardLayout`` is used to define the full set of keys to add to a keyboard. A keyboard layout can be created from an ``KeyboardLayout/InputSet``, which just defines the input keys and allows us to reuse identical layouts for many compatible input sets.
 
 👑 [KeyboardKit Pro][Pro] unlocks more input sets, like QWERTZ, and AZERTY, as well as localized input sets and layouts for all ``Foundation/Locale/keyboardKitSupported`` locales in your license. More information about Pro features can be found further down.
 
@@ -31,7 +29,7 @@ KeyboardKit has a ``KeyboardLayout`` type that is also a namespace for other lay
 
 ## Input Sets & Layouts
 
-In KeyboardKit an ``KeyboardLayout/InputSet`` specifies the input keys of a keyboard. KeyboardKit comes with a couple of pre-defined input sets, like ``KeyboardLayout/InputSet/qwerty``, ``KeyboardLayout/InputSet/numeric(currency:)``, and ``KeyboardLayout/InputSet/symbolic(currencies:)``.
+In KeyboardKit an ``KeyboardLayout/InputSet`` specifies the input keys of a keyboard. KeyboardKit comes with a couple of pre-defined input sets, like ``KeyboardLayout/InputSet/qwerty``, ``KeyboardLayout/InputSet/numeric(currency:)``, etc.
 
 You can generate a ``KeyboardLayout`` from an alphabetic, numeric, and symbolic input set. Some locales support multiple ``Keyboard/LayoutType``s and can be added multiple times with different layouts, like ``Keyboard/LayoutType/qwerty``, ``Keyboard/LayoutType/colemak``, ``Keyboard/LayoutType/dvorak``, etc.
 
@@ -43,12 +41,14 @@ In KeyboardKit, a ``KeyboardLayoutService`` can generate dynamic layouts at runt
 
 KeyboardKit injects a ``KeyboardLayout/StandardLayoutService`` into ``KeyboardInputViewController/services``. You can replace it at any time, as described further down, or add custom services to it with ``KeyboardLayoutService/tryRegisterLocalizedService(_:)``.
 
-> Important: This service model is soft deprecated and will be removed in KeyboardKit 10. Please migrate to the new view-based customization approach described in the next section, if you are a KeyboardKit Pro user. Non pro-users have to wait until KeyboardKit 10.
+> Important: This service model is soft deprecated and will be removed in KeyboardKit 10. Please use the new keyboard layout value builders to create custom layouts that you can then inject into ``KeyboardView``.
 
 
 ## Keyboard Layout Customization
 
-You can use the ``SwiftUICore/View/keyboardLayout(_:)`` view modifier to customize the standard keyboard layout, which can depend on the current locale, device, orientation, etc:
+You can inject a custom keyboard layout into the ``KeyboardView`` if you don't want to use the standard layout, which will vary based on device, orientation, locale, etc. 
+
+You can base a custom layout on the ``KeyboardLayout/standard(for:)`` layout, then customize it in any way you want before injecting it into the view:
 
 ```swift
 // See the demo app for a better, interactive example.
@@ -59,17 +59,21 @@ struct MyKeyboardView: View {
     let context: KeyboardContext { state.keyboardContext }
     
     var body: some View {
-        ... // Insert the view to use here, for instance a KeyboardView
-            .keyboardLayout { params in
-                var layout = params.standardLayout(for: context)
-                // Customize the layout here
-                return layout
-            }
+        KeyboardView(
+            layout: layout,
+            ...
+        )
+    }
+
+    var layout: KeyboardLayout {
+        var layout = KeyboardLayout.standard(for: context)
+        // Customize the layout here
+        return layout
     }
 }
 ```
 
-You can create a completely custom layout from scratch, or customize the ``KeyboardLayout/LayoutBuilderParams/standardLayout(for:)`` to add and/or remove items.
+You can use the convenient layout functions that KeyboardKit provides to insert, remove, replace, and modify items within the layout.
 
 
 ---
