@@ -23,6 +23,7 @@ struct HomeScreen: View {
 
     @State var text = ""
     @State var textEmail = ""
+    @State var textMultiline = ""
     @State var textNumberPad = ""
     @State var textURL = ""
     @State var textWebSearch = ""
@@ -50,13 +51,18 @@ struct HomeScreen: View {
                             .keyboardType(.URL)
                         TextField("TextField.WebSearch", text: $textWebSearch)
                             .keyboardType(.webSearch)
+                        TextField("TextField.Multiline", text: $textMultiline, axis: .vertical)
+                            .lineLimit(4, reservesSpace: true)
+                            .keyboardType(.default)
                     }
                 }
             )
             .navigationTitle(app.name)
         }
         .keyboardAppHomeScreenLocalization(.init(
-            keyboardSectionFooter: "OBS! This demo isn't code signed and therefore can't sync settings to its keyboard extensions!"
+            keyboardSectionFooter: """
+OBS! This demo isn't code signed and therefore can't sync settings to its keyboard extensions!
+"""
         ))
         .keyboardAppHomeScreenStyle(.init(
             appIconSize: 120,
