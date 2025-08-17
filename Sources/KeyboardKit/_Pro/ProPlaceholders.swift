@@ -519,7 +519,7 @@ public extension KeyboardLayout {
 
 public extension View {
 
-    /// 👑 This is unlocked by KeyboardKit Pro.
+    @available(*, deprecated, message: "Just use init injection instead.")
     func keyboardLayout(
         _ builder: @escaping KeyboardLayout.LayoutBuilder
     ) -> some View {

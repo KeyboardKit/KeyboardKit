@@ -17,6 +17,16 @@ These release notes cover the current major version. See older versions for olde
 
 This version performs final changes for 9.x and adds support for Liquid Glass.
 
+### 🗑️ Keyboard Layout View Modifier
+
+The `.keyboardLayout(...)` view modifier that was added in KeyboardKit 9.8 is no longer needed.
+
+Since `KeyboardView` already has a `layout` parameter, we can use it to inject a custom layout.
+
+This approach also removes any risk of triggering multiple recalculations of the keyboard layout.
+
+If you use the view modifier, please switch to injecting the layout into the initializer instead.   
+
 ### ✨ Features
 
 * `KeyboardController` has a new `setIsLiquidGlassEnabled(...)` function to enable the new Liquid Glass design.

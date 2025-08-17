@@ -142,7 +142,6 @@ public struct KeyboardView<
     @Environment(\.keyboardCalloutStyle) var calloutStyleFromEnvironment
     @Environment(\.keyboardDockEdge) var dockEdgeFromEnvironment
     @Environment(\.keyboardInputToolbarDisplayMode) var inputToolbarDisplayModeFromEnvironment
-    @Environment(\.keyboardLayoutBuilder) var layoutBuilder
     @Environment(\.keyboardViewStyle) var keyboardViewStyleFromEnvironment
 
     @ObservedObject var autocompleteContext: AutocompleteContext
@@ -250,7 +249,7 @@ private extension KeyboardView {
     }
 
     var layout: KeyboardLayout {
-        var layout = layoutBuilder(.init()) ?? rawLayout
+        var layout = rawLayout
         if !hasEmojiKeyboard { layout.itemRows.remove(.keyboardType(.emojis)) }
         return layout.adjusted(
             for: inputToolbarDisplayMode,
