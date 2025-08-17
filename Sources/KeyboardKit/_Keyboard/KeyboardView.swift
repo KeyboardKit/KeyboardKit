@@ -56,10 +56,9 @@ public struct KeyboardView<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
-        let serviceLayout = services.layoutService
-            .keyboardLayout(for: state.keyboardContext)
         self.init(
-            layout: layout ?? serviceLayout,
+            layout: layout ?? services.layoutService
+                .keyboardLayout(for: state.keyboardContext),
             actionHandler: services.actionHandler,
             repeatTimer: services.repeatGestureTimer,
             styleService: services.styleService,
