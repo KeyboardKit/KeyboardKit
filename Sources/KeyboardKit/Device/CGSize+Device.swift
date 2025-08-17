@@ -52,7 +52,7 @@ extension CGSize {
     func isAtLeast(
         _ size: CGSize
     ) -> Bool {
-        width >= size.width || height >= size.height
+        width >= size.width && height >= size.height
     }
 
     func isEqual(
