@@ -14,7 +14,11 @@ import Testing
 @MainActor
 final class KeyboardAction_ButtonColorTests {
 
-    let context = KeyboardContext()
+    var context: KeyboardContext = {
+        let context = KeyboardContext()
+        context.setIsLiquidGlassEnabled(false)
+        return context
+    }()
 
     @Test
     func hasStandardButtonBackgroundColor() async throws {

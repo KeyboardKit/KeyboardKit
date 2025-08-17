@@ -14,7 +14,11 @@ import Testing
 @MainActor
 final class Keyboard_ButtonStyleTests {
 
-    let context = KeyboardContext()
+    var context: KeyboardContext = {
+        let context = KeyboardContext()
+        context.setIsLiquidGlassEnabled(false)
+        return context
+    }()
 
     @Test
     func actionHasStandardButtonStyle() async throws {
@@ -79,7 +83,7 @@ final class Keyboard_ButtonStyleTests {
             action.standardButtonFont(for: context)
         }
 
-        #expect(result(for: .backspace) == .system(size: 20, weight: .light))
+        #expect(result(for: .backspace) == .system(size: 20, weight: .regular))
         #expect(result(for: .keyboardType(.alphabetic)) == .system(size: 15))
     }
 
@@ -160,11 +164,11 @@ final class Keyboard_ButtonStyleTests {
         func result(for action: KeyboardAction) -> KeyboardFont.FontWeight? {
             action.standardButtonFontWeight(for: context)
         }
-        #expect(result(for: .backspace) == .light)
+        #expect(result(for: .backspace) == .regular)
         #expect(result(for: .character("a")) == .light)
         #expect(result(for: .character("A")) == nil)
         #expect(result(for: .character("!")) == nil)
-        #expect(result(for: .primary(.newLine)) == .light)
+        #expect(result(for: .primary(.newLine)) == .regular)
     }
 
     @Test

@@ -14,13 +14,17 @@ import XCTest
 class KeyboardStyle_StandardStyleServiceTests: XCTestCase {
 
     var service: KeyboardStyle.StandardStyleService!
-    var context: KeyboardContext!
+    
+    var context: KeyboardContext = {
+        let context = KeyboardContext()
+        context.setIsLiquidGlassEnabled(false)
+        return context
+    }()
 
     var styles: [(action: KeyboardAction, style: Keyboard.ButtonStyle)]!
     let config = KeyboardLayout.DeviceConfiguration.standard(for: .preview)
 
     override func setUp() {
-        context = .init()
         service = .init(keyboardContext: context)
         styles = KeyboardAction.testActions.map {
             (action: $0, style: service.buttonStyle(for: $0, isPressed: false))
@@ -125,7 +129,7 @@ class KeyboardStyle_StandardStyleServiceTests: XCTestCase {
     func testButtonFontWeightIsLightForActionsWithImageAndLowerCasedChar() {
         XCTAssertNil(buttonFontWeight(for: .character("A")))
         XCTAssertEqual(buttonFontWeight(for: .character("a")), .light)
-        XCTAssertEqual(buttonFontWeight(for: .backspace), .light)
+        XCTAssertEqual(buttonFontWeight(for: .backspace), .regular)
     }
 
     func testButtonStyleForegroundColorIsStandardForAllActionsExceptPrimaryActions() {

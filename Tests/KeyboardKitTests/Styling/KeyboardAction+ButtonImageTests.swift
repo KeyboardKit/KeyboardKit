@@ -14,7 +14,12 @@ import Testing
 final class KeyboardAction_ButtonImageTests {
 
     let actions = KeyboardAction.testActions
-    var context = KeyboardContext()
+
+    var context: KeyboardContext = {
+        let context = KeyboardContext()
+        context.setIsLiquidGlassEnabled(false)
+        return context
+    }()
 
     var expected: [KeyboardAction] = [] {
         didSet { unexpected = actions.filter { !expected.contains($0) } }
