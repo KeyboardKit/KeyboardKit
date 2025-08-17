@@ -106,7 +106,6 @@ public struct KeyboardView<
         @ViewBuilder emojiKeyboard: @escaping EmojiKeyboardBuilder,
         @ViewBuilder toolbar: @escaping ToolbarBuilder
     ) {
-        var layout = layout
         let layoutConfig = KeyboardLayout.DeviceConfiguration.standard(for: keyboardContext)
         
         self.rawLayout = layout
