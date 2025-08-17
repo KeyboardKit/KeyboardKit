@@ -14,17 +14,14 @@ import XCTest
 class KeyboardStyle_StandardStyleServiceTests: XCTestCase {
 
     var service: KeyboardStyle.StandardStyleService!
-    
-    var context: KeyboardContext = {
-        let context = KeyboardContext()
-        context.setIsLiquidGlassEnabled(false)
-        return context
-    }()
-
+    var context: KeyboardContext!
+    var config: KeyboardLayout.DeviceConfiguration!
     var styles: [(action: KeyboardAction, style: Keyboard.ButtonStyle)]!
-    let config = KeyboardLayout.DeviceConfiguration.standard(for: .preview)
 
     override func setUp() {
+        context = KeyboardContext()
+        context.setIsLiquidGlassEnabled(false)
+        config = .standard(for: context)
         service = .init(keyboardContext: context)
         styles = KeyboardAction.testActions.map {
             (action: $0, style: service.buttonStyle(for: $0, isPressed: false))
