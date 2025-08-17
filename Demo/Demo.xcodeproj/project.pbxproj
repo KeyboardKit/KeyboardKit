@@ -848,7 +848,7 @@
 			repositoryURL = "https://github.com/keyboardkit/keyboardkitpro";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = "9.8.0-beta.2";
+				minimumVersion = "9.9.0-beta.1";
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

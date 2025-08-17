@@ -21,6 +21,7 @@ struct DemoKeyboardView: View {
 
     var body: some View {
         KeyboardView(
+            layout: layout,
             state: state,
             services: services,
             buttonContent: { $0.view },
@@ -55,16 +56,6 @@ struct DemoKeyboardView: View {
             return params.standardActions(for: keyboardContext)
         }
 
-        // 💡 Setup custom callout actions
-        .keyboardLayout { params in
-            var layout = params.standardLayout(for: keyboardContext)
-            guard keyboardContext.keyboardType == .alphabetic else { return layout }
-            var item = layout.createIdealItem(for: .character("!"))
-            item.size.width = .input
-            layout.itemRows.insert(item, after: .space)
-            return layout
-        }
-
         // 💡 Customize the style of the entire keyboard.
         .keyboardViewStyle(
             .init(background: .color(.green))
@@ -74,6 +65,20 @@ struct DemoKeyboardView: View {
         .keyboardToolbarStyle(
             .init(backgroundColor: .red)
         )
+    }
+}
+
+private extension DemoKeyboardView {
+
+    // 💡 Setup a custom keyboard layout
+    var layout: KeyboardLayout {
+        NSLog("Creating a custom layout")
+        var layout = KeyboardLayout.standard(for: keyboardContext)
+        guard keyboardContext.keyboardType == .alphabetic else { return layout }
+        var item = layout.createIdealItem(for: .character("!"))
+        item.size.width = .input
+        layout.itemRows.insert(item, after: .space)
+        return layout
     }
 }
 

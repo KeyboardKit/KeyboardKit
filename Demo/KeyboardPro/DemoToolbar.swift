@@ -16,9 +16,7 @@ import SwiftUI
 /// to toggle state, trigger actions, etc.
 struct DemoToolbar<Toolbar: View>: View {
 
-    /// This is (for now) required by the `KeyboardTextField`.
-    unowned var controller: KeyboardInputViewController
-
+    var services: Keyboard.Services
     var toolbar: Toolbar
 
     @Binding var isTextInputActive: Bool
@@ -75,7 +73,7 @@ private extension DemoToolbar {
         Image.keyboardGlobe
             .background(Color.clearInteractable)
             .localeContextMenu(for: keyboardContext) {
-                controller.services.actionHandler.handle(.nextLocale)
+                services.actionHandler.handle(.nextLocale)
             }
     }
 }

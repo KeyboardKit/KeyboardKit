@@ -16,13 +16,11 @@ import SwiftUI
 /// a toggle toolbar that has an alternate menu.
 struct DemoKeyboardView: View {
 
-    /// This is (for now) required by the ``DemoToolbar``.
-    unowned var controller: KeyboardInputViewController
-    
+    var services: Keyboard.Services
+    var state: Keyboard.State
+
     @AppStorage("com.keyboardkit.demo.isToolbarToggled")
     var isToolbarToggled = false
-
-    @Environment(\.keyboardToolbarStyle) var toolbarStyle
 
     @EnvironmentObject var themeContext: KeyboardThemeContext
 
@@ -34,8 +32,9 @@ struct DemoKeyboardView: View {
 
     var body: some View {
         KeyboardView(
-            state: controller.state,
-            services: controller.services,
+            layout: layout,
+            state: state,
+            services: services,
             buttonContent: { $0.view },                     // $0.view uses the default view.
             buttonView: {
                 $0.view.opacity(isToolbarToggled ? 0 : 1)   // Hide keys when the toolbar is toggled
@@ -49,7 +48,7 @@ struct DemoKeyboardView: View {
                     )
                 } else {
                     DemoToolbar(
-                        controller: controller,
+                        services: services,
                         toolbar: params.view,               // Use the original toolbar
                         isTextInputActive: $isTextInputActive,
                         isToolbarToggled: $isToolbarToggled
@@ -66,16 +65,6 @@ struct DemoKeyboardView: View {
                 return .init(characters: String("keyboardkit".reversed()))
             }
             return params.standardActions(for: keyboardContext)
-        }
-
-        // 💡 Customize keyboard layout in any way you want.
-        .keyboardLayout { params in
-            let layout = params.standardLayout(for: keyboardContext)
-            // guard keyboardContext.keyboardType == .alphabetic else { return layout }
-            // var item = layout.createIdealItem(for: .character("!"))
-            // item.size.width = .input
-            // layout.itemRows.insert(item, after: .space)
-            return layout
         }
 
         // 💡 Apply the currently selected theme, if any.
@@ -103,11 +92,19 @@ struct DemoKeyboardView: View {
 
 private extension DemoKeyboardView {
 
-    var services: Keyboard.Services { controller.services }
-    var state: Keyboard.State { controller.state }
+    // 💡 Setup a custom keyboard layout
+    var layout: KeyboardLayout {
+        NSLog("Creating a custom layout")
+        var layout = KeyboardLayout.standard(for: keyboardContext)
+        guard keyboardContext.keyboardType == .alphabetic else { return layout }
+        var item = layout.createIdealItem(for: .character("!"))
+        item.size.width = .input
+        layout.itemRows.insert(item, after: .space)
+        return layout
+    }
 
-    @ViewBuilder
-    var menuGrid: some View {
+    // 💡 This menu view is shown when the menu is activated.
+    @ViewBuilder var menuGrid: some View {
         if isToolbarToggled {
             DemoKeyboardMenu(
                 actionHandler: services.actionHandler,
@@ -121,8 +118,8 @@ private extension DemoKeyboardView {
         }
     }
 
-    @ViewBuilder
-    var sheetContent: some View {
+    // 💡 This view builder creates misc sheet content views.
+    @ViewBuilder var sheetContent: some View {
         switch activeSheet {
         case .fullDocumentReader:
             FullDocumentContextSheet()

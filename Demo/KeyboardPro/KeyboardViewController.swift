@@ -63,7 +63,8 @@ class KeyboardViewController: KeyboardInputViewController {
             // 💡 This demo keyboard view will apply various
             // view modifiers based on this controller state.
             DemoKeyboardView(
-                controller: controller
+                services: controller.services,
+                state: controller.state
             )
         }
     }
