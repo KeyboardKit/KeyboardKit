@@ -40,7 +40,9 @@ public extension Emoji {
         ///   - itemSize: The emoji item view size, by default `40`.
         ///   - itemFont: The emoji item view font, by default `.system(size: 33)`.
         ///   - itemScaleFactor: The emoji item view scale factor, by default `1`.
+        ///   - horizontalPadding: The horizontal keyboard padding, by default `10`.
         ///   - horizontalItemSpacing: The horizontal emoji item spacing, by default `10`.
+        ///   - sectionSpacing: The spacing between sections, by default `10`.
         ///   - verticalPadding: The vertical keyboard padding, by default `5`.
         ///   - verticalItemSpacing: The vertical emoji item spacing, by default `6`.
         ///   - verticalCategoryStackSpacing: The vertical category stack spacing, by default `0`.
@@ -57,7 +59,9 @@ public extension Emoji {
             itemSize: Double? = nil,
             itemFont: Font? = nil,
             itemScaleFactor: Double? = nil,
+            horizontalPadding: Double? = nil,
             horizontalItemSpacing: Double? = nil,
+            sectionSpacing: Double? = nil,
             verticalPadding: Double? = nil,
             verticalItemSpacing: Double? = nil,
             verticalCategoryStackSpacing: Double? = nil,
@@ -74,7 +78,9 @@ public extension Emoji {
             self.itemSize = itemSize ?? 40
             self.itemFont = itemFont ?? .system(size: 33)
             self.itemScaleFactor = itemScaleFactor ?? 1.0
+            self.horizontalPadding = horizontalPadding ?? 10
             self.horizontalItemSpacing = horizontalItemSpacing ?? 10
+            self.sectionSpacing = sectionSpacing ?? 10
             self.verticalPadding = verticalPadding ?? 5
             self.verticalItemSpacing = verticalItemSpacing ?? 6
             self.verticalCategoryStackSpacing = verticalCategoryStackSpacing ?? 0
@@ -94,7 +100,10 @@ public extension Emoji {
         /// The padding to apply to the category title label.
         public var categoryTitlePadding: EdgeInsets
 
-        /// The horizontal spacing to use.
+        /// The horizontal keyboard padding.
+        public var horizontalPadding: CGFloat
+
+        /// The horizontal item spacing.
         public var horizontalItemSpacing: Double
 
         /// The emoji item view font.
@@ -127,10 +136,15 @@ public extension Emoji {
         /// The color to apply to the selected category.
         public var menuSelectionColor: Color
 
+        /// The section spacing.
+        public var sectionSpacing: Double
+
         /// The total keyboard height.
         public var totalHeight: Double { Double(rows) * itemSize }
 
-        /// The vertical padding of the keyboard.
+        /// The vertical keyboard padding.
+        ///
+        /// `TODO` This will be removed in KeyboardKit 10.
         public var verticalPadding: CGFloat
 
         /// The vertical category spacing to use.
@@ -148,7 +162,7 @@ public extension Emoji.KeyboardStyle {
 }
 
 public extension Emoji.KeyboardStyle {
-    
+
     /// Add an extra row if an input toolbar is presented.
     ///
     /// This is used by ``KeyboardView``, so do not use this
