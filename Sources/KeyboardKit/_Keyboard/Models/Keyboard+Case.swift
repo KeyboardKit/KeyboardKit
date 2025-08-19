@@ -13,6 +13,7 @@ public extension Keyboard {
     /// This enum defines various keyboard shift states.
     enum KeyboardCase: String, CaseIterable, Identifiable, KeyboardModel {
 
+        /// TODO: This will be removed in KeyboardKit 10.
         case auto
         case capsLocked
         case lowercased
@@ -43,6 +44,7 @@ extension Keyboard.KeyboardCase {
 
     var standardReleaseCase: Self {
         switch self {
+        case .auto: .uppercased
         case .lowercased: .uppercased
         default: .lowercased
         }

@@ -111,9 +111,8 @@ extension Keyboard {
             let current = keyboardContext.keyboardCase
             switch action {
             case .shift:
-                let release = gesture == .release
-                let doubleTap = release && isDoubleShiftTap // We can't use double-tap gesture since the key is redrawn
-                return doubleTap ? .capsLocked : current
+                guard gesture == .release else { return current }
+                return isDoubleShiftTap ? .capsLocked : current
             default: return keyboardContext.preferredKeyboardCase
             }
         }

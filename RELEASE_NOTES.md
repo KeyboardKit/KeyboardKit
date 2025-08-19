@@ -17,6 +17,8 @@ These release notes cover the current major version. See older versions for olde
 
 This version performs final changes for 9.x and adds support for Liquid Glass.
 
+This version also fixes two auto-capitalization and casing bugs, to behave more like the native keyboard.
+
 ### 🗑️ Keyboard Layout View Modifier
 
 The `.keyboardLayout(...)` view modifier that was added in KeyboardKit 9.8 is no longer needed.
@@ -33,7 +35,8 @@ If you use the view modifier, please switch to injecting the layout into the ini
 
 ### 🐛 Bug Fixes
 
-* The `KeyboardContext` `preferredAutocapitalizedCase` property now also considers new lines.
+* `KeyboardAction.shift` now behaves correctly if tapped as a first action with auto-capitalization disabled.
+* `KeyboardContext`'s `preferredAutocapitalizedCase` now behaves correctly when it's triggered for new lines.
 
 
 
