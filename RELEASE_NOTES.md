@@ -35,6 +35,7 @@ If you use the view modifier, please switch to injecting the layout into the ini
 
 ### 👑 KeyboardKit Pro
 
+* `EmojiKeyboard` now applies a style-based spacing between its sections.
 * `UITextDocumentProxy` has a new `moveTextInputCursor(steps:)` function.
 * `UITextDocumentProxy` has a new `moveTextInputCursorToBeginning()` function.
 * `UITextDocumentProxy` has a new `moveTextInputCursorToEnd()` function.
@@ -43,6 +44,7 @@ If you use the view modifier, please switch to injecting the layout into the ini
 
 * `KeyboardAction.shift` now behaves correctly if tapped as a first action with auto-capitalization disabled.
 * `KeyboardContext`'s `preferredAutocapitalizedCase` now behaves correctly when it's triggered for new lines.
+* `KeyboardController` now ignores keyboard type change for certain keyboard types, like `.emojis` and `.custom`.
 
 
 

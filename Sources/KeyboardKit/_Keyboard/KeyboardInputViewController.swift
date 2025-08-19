@@ -197,6 +197,10 @@ open class KeyboardInputViewController: UIInputViewController, KeyboardControlle
     open func tryHandleKeyboardTypeChange() {
         guard isExperimentalKeyboardTypeChangeTrackingEnabled else { return }
         let context = state.keyboardContext
+        switch context.keyboardType {
+        case .custom, .emojis, .emojiSearch, .images: return
+        default: break
+        }
         let typeBeforeSync = context.keyboardType
         state.keyboardContext.syncKeyboardType(with: self)
         guard typeBeforeSync != context.keyboardType else { return }
