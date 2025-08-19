@@ -29,8 +29,6 @@ class DemoLayoutService: KeyboardLayout.StandardLayoutService {
     
     /// Insert a locale switcher action or a rocket button.
     override func keyboardLayout(for context: KeyboardContext) -> KeyboardLayout {
-        NSLog("Creating a custom service layout")
-
         var layout = super.keyboardLayout(for: context)
         if context.isKeyboardFloating { return layout }     // We remove special keys due to the limited space
 

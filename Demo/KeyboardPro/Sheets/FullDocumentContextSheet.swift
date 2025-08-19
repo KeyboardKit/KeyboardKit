@@ -24,7 +24,7 @@ struct FullDocumentContextSheet: View {
                 if isReading {
                     Text("Sheet.FullDocumentContext.Reading")
                 } else {
-                    Text(fullDocumentContext)
+                    Text(displayResult)
                 }
             }
         }
@@ -34,6 +34,16 @@ struct FullDocumentContextSheet: View {
 }
 
 private extension FullDocumentContextSheet {
+
+    /// We must limit the length of the displayed text since
+    /// SwiftUI may otherwise allocate too much memory, then
+    /// crash the keyboard extension.
+    var displayResult: String {
+        let max = 1_000
+        let result = fullDocumentContext
+        if result.count < max { return result }
+        return String(result.prefix(max)) + "..."
+    }
 
     func readFullDocumentContext() {
         isReading = true
