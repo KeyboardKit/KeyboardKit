@@ -17,7 +17,7 @@ These release notes cover the current major version. See older versions for olde
 
 This version performs final changes for 9.x and adds support for Liquid Glass.
 
-This version also fixes two auto-capitalization and casing bugs, to behave more like the native keyboard.
+This version also adds new proxy extensions and fixes two auto-capitalization and keyboard casing bugs.
 
 ### 🗑️ Keyboard Layout View Modifier
 
@@ -32,6 +32,12 @@ If you use the view modifier, please switch to injecting the layout into the ini
 ### ✨ Features
 
 * `KeyboardController` has a new `setIsLiquidGlassEnabled(...)` function to enable the new Liquid Glass design.   
+
+### 👑 KeyboardKit Pro
+
+* `UITextDocumentProxy` has a new `moveTextInputCursor(steps:)` function.
+* `UITextDocumentProxy` has a new `moveTextInputCursorToBeginning()` function.
+* `UITextDocumentProxy` has a new `moveTextInputCursorToEnd()` function.
 
 ### 🐛 Bug Fixes
 
