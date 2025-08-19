@@ -29,7 +29,11 @@ If you use the view modifier, please switch to injecting the layout into the ini
 
 ### ✨ Features
 
-* `KeyboardController` has a new `setIsLiquidGlassEnabled(...)` function to enable the new Liquid Glass design.
+* `KeyboardController` has a new `setIsLiquidGlassEnabled(...)` function to enable the new Liquid Glass design.   
+
+### 🐛 Bug Fixes
+
+* The `KeyboardContext` `preferredAutocapitalizedCase` property now also considers new lines.
 
 
 

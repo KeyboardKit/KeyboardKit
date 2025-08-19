@@ -11,6 +11,11 @@ import UIKit
 
 public extension UITextDocumentProxy {
 
+    /// Whether the proxy's input cursor is at a new line.
+    var isCursorAtNewLine: Bool {
+        documentContextBeforeInput?.last == "\n"
+    }
+
     /// Whether the proxy's input cursor is at the beginning
     /// of a sentence, with or without trailing whitespaces.
     var isCursorAtNewSentence: Bool {
