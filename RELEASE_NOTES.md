@@ -19,23 +19,12 @@ This version performs final changes for 9.x and adds support for Liquid Glass.
 
 This version also adds new proxy extensions and fixes two auto-capitalization and keyboard casing bugs.
 
-### 🗑️ Keyboard Layout View Modifier
-
-The `.keyboardLayout(...)` view modifier that was added in KeyboardKit 9.8 is no longer needed.
-
-Since `KeyboardView` already has a `layout` parameter, we can use it to inject a custom layout.
-
-This approach also removes any risk of triggering multiple recalculations of the keyboard layout.
-
-If you use the view modifier, please switch to injecting the layout into the initializer instead.   
-
 ### ✨ Features
 
 * `KeyboardController` has a new `setIsLiquidGlassEnabled(...)` function to enable the new Liquid Glass design.   
 
 ### 👑 KeyboardKit Pro
 
-* `EmojiKeyboard` now applies a style-based spacing between its sections.
 * `UITextDocumentProxy` has a new `moveTextInputCursor(steps:)` function.
 * `UITextDocumentProxy` has a new `moveTextInputCursorToBeginning()` function.
 * `UITextDocumentProxy` has a new `moveTextInputCursorToEnd()` function.
@@ -44,7 +33,14 @@ If you use the view modifier, please switch to injecting the layout into the ini
 
 * `KeyboardAction.shift` now behaves correctly if tapped as a first action with auto-capitalization disabled.
 * `KeyboardContext`'s `preferredAutocapitalizedCase` now behaves correctly when it's triggered for new lines.
-* `KeyboardController` now ignores keyboard type change for certain keyboard types, like `.emojis` and `.custom`.
+
+### 💥 Keyboard Layout View Modifier
+
+The `.keyboardLayout(...)` view modifier is no longer needed, since `KeyboardView` already has a `layout` parameter.
+
+We can use it to inject a custom layout, which also removes any risk of triggering multiple keyboard layout recalculations.
+
+Since the modifier was in beta, it has been removed. If you use it, please switch to injecting the layout into the initializer instead.
 
 
 
