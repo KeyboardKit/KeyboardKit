@@ -6,7 +6,7 @@
 //  Copyright © 2021-2025 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKitPro
+import KeyboardKit
 import UIKit
 
 /// This action handler inherits the standard action handler

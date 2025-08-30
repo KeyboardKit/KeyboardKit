@@ -1,99 +1,135 @@
 //
 //  DemoKeyboardView.swift
-//  Keyboard
+//  KeyboardPro
 //
-//  Created by Daniel Saidi on 2025-07-14.
-//  Copyright © 2025 Daniel Saidi. All rights reserved.
+//  Created by Daniel Saidi on 2022-02-04.
+//  Copyright © 2022-2025 Daniel Saidi. All rights reserved.
 //
 
 import KeyboardKit
 import SwiftUI
 
 /// This demo-specific keyboard view sets up a `KeyboardView`
-/// and customizes it with basic features.
+/// and customizes it with Pro features.
+///
+/// This keyboard view replaces the default top toolbar with
+/// a toggle toolbar that has an alternate menu.
 struct DemoKeyboardView: View {
 
-    let services: Keyboard.Services
-    let state: Keyboard.State
+    var services: Keyboard.Services
+    var state: Keyboard.State
 
-    // ‼️ Observe the context to make sure that it updates.
-    @EnvironmentObject var keyboardContext: KeyboardContext
+    @AppStorage("com.keyboardkit.demo.isToolbarToggled")
+    var isToolbarToggled = false
+
+    @EnvironmentObject var themeContext: KeyboardThemeContext
+
+    @State var activeSheet: DemoSheet?
+    @State var isTextInputActive = false
+    @State var theme: KeyboardTheme?
+
+    var keyboardContext: KeyboardContext { state.keyboardContext }
 
     var body: some View {
         KeyboardView(
-            layout: layout,
-            state: state,
+            layout: demoLayout,
             services: services,
-            buttonContent: { $0.view },
-            buttonView: { $0.view },
+            buttonContent: { $0.view },                     // $0.view uses the default view.
+            buttonView: {
+                $0.view.opacity(isToolbarToggled ? 0 : 1)   // Hide keys when the toolbar is toggled
+            },
             collapsedView: { $0.view },
             emojiKeyboard: { $0.view },
-            toolbar: { _ in
-                Keyboard.Toolbar {
-                    HStack {
-                        Spacer()
-                        Text("Autocomplete can be tested in the Pro demo.")
-                        Spacer()
-                    }
+            toolbar: { params in                            // All view builders have parameters
+                if isTextInputActive {
+                    DemoTextInputToolbar(
+                        isTextInputActive: $isTextInputActive
+                    )
+                } else {
+                    DemoToolbar(
+                        services: services,
+                        toolbar: params.view,               // Use the original toolbar
+                        isTextInputActive: $isTextInputActive,
+                        isToolbarToggled: $isToolbarToggled
+                    )
                 }
             }
         )
+        .overlay(menuGrid)
+        .animation(.bouncy, value: isToolbarToggled)
 
-        // 💡 Customize the style of any keyboard button.
-        .keyboardButtonStyle { params in
-            let context = keyboardContext
-            var style = params.standardStyle(for: context)
-            guard params.action == .backspace else { return style }
-            style.backgroundColor = params.isPressed ? .yellow : .blue
-            return style
-        }
-
-        // 💡 Setup custom callout actions
+        // 💡 Customize callout actions in any way you want.
         .keyboardCalloutActions { params in                 // Apply custom actions to "K" key
             if case .character(let char) = params.action, char == "K" {
                 return .init(characters: String("keyboardkit".reversed()))
             }
-            return params.standardActions(for: keyboardContext)
+            return params.standardActions()
         }
 
-        // 💡 Customize the style of the entire keyboard.
-        .keyboardViewStyle(
-            .init(background: .color(.green))
+        // 💡 Apply the currently selected theme, if any.
+        .keyboardTheme(
+            themeContext.currentTheme
         )
 
-        // 💡 Customize other custom view styles as well.
-        .keyboardToolbarStyle(
-            .init(backgroundColor: .red)
-        )
+        // 💡 This sheet can be used to show the main menu.
+        .sheet(item: $activeSheet) { sheet in
+            NavigationStack {
+                sheetContent
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Button.Done") {
+                                activeSheet = nil
+                            }
+                        }
+                    }
+            }
+        }
     }
 }
 
 private extension DemoKeyboardView {
 
     // 💡 Setup a custom keyboard layout
-    var layout: KeyboardLayout {
+    var demoLayout: KeyboardLayout {
         NSLog("Creating a custom layout")
         var layout = KeyboardLayout.standard(for: keyboardContext)
         guard keyboardContext.keyboardType == .alphabetic else { return layout }
-        var item = layout.createIdealItem(for: .character("!"))
+        var item = layout.createIdealItem(for: .rocket)
         item.size.width = .input
         layout.itemRows.insert(item, after: .space)
         return layout
     }
-}
 
-private extension KeyboardAction {
-
-    var customCalloutActions: [KeyboardAction]? {
-        switch self {
-        case .character(let char): customCalloutAction(for: char)
-        default: nil
+    // 💡 This menu view is shown when the menu is activated.
+    @ViewBuilder var menuGrid: some View {
+        if isToolbarToggled {
+            DemoKeyboardMenu(
+                actionHandler: services.actionHandler,
+                isTextInputActive: $isTextInputActive,
+                isToolbarToggled: $isToolbarToggled,
+                sheet: $activeSheet
+            )
+            .padding(.top, 55)  // Give room for the toolbar
+            .padding(.horizontal, 10)
+            .transition(.move(edge: .bottom))
         }
     }
 
-    func customCalloutAction(for char: String) -> [KeyboardAction]? {
-        guard char.lowercased() == "k" else { return nil }
-        let custom = String("keyboardkit".reversed())
-        return [KeyboardAction].init(characters: custom)
+    // 💡 This view builder creates misc sheet content views.
+    @ViewBuilder var sheetContent: some View {
+        switch activeSheet {
+        case .fullDocumentReader:
+            FullDocumentContextSheet()
+        case .hostApplicationInfo:
+            HostAppInfoSheet(actionHandler: services.actionHandler)
+        case .keyboardSettings:
+            KeyboardApp.SettingsScreen()
+        case .localeSettings:
+            KeyboardApp.LocaleScreen()
+        case .themeSettings:
+            KeyboardApp.ThemeScreen()
+        case .none: EmptyView()
+        }
     }
 }

@@ -6,7 +6,7 @@
 //  Copyright © 2021-2025 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKitPro
+import KeyboardKit
 import SwiftUI
 
 /// This is the main demo app screen.
@@ -87,7 +87,6 @@ extension HomeScreen {
     
     func dictationScreen() -> some View {
         Dictation.Screen(
-            dictationContext: dictationContext,
             titleView: { EmptyView() },
             visualizer: { Dictation.BarVisualizer(isAnimating: $0) },
             doneButton: { action in

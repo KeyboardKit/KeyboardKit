@@ -6,7 +6,7 @@
 //  Copyright © 2024-2025 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKitPro
+import KeyboardKit
 import SwiftUI
 
 /// This sheet is used to trigger full document context read

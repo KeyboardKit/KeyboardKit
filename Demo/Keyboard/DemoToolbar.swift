@@ -6,7 +6,7 @@
 //  Copyright © 2023-2025 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKitPro
+import KeyboardKit
 import SwiftUI
 
 /// This demo-specific toolbar is used as the `ToggleToolbar`
@@ -72,7 +72,7 @@ private extension DemoToolbar {
     var localeSwitcher: some View {
         Image.keyboardGlobe
             .background(Color.clearInteractable)
-            .localeContextMenu(for: keyboardContext) {
+            .localeContextMenu {
                 services.actionHandler.handle(.nextLocale)
             }
     }
