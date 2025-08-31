@@ -21,7 +21,15 @@ KeyboardKit lets you create amazing [custom keyboard extensions][About] with a f
 
 KeyboardKit extends Apple's limited keyboard APIs with more capabilities. It can be extended with [KeyboardKit Pro][Pro], which unlocks localized keyboards, autocomplete, an emoji keyboard, AI support, themes, and much more.
 
+---
 
+# 🚀 KeyboardKit 10
+
+The KeyboardKit 10 is being finalized and can be tested from the `v10` branch. This branch contains the new package structure, an updated demo app, etc.
+
+See the KeyboardKit 10 preview and beta release notes for info on how to use it with your existing Pro license.
+
+---
 
 ## Installation
 
@@ -43,8 +51,8 @@ The easiest way to set up KeyboardKit is to first create a `KeyboardApp` value f
 import KeyboardKit
 
 extension KeyboardApp {
-
-        static var keyboardKitDemo: KeyboardApp {
+
+    static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit",
             licenseKey: "your-key-here",                // Needed for KeyboardKit Pro!
