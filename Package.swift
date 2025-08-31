@@ -18,15 +18,11 @@ let package = Package(
             targets: ["KeyboardKit"]
         )
     ],
-    dependencies: [],
     targets: [
-        .target(
+        .binaryTarget(
             name: "KeyboardKit",
-            resources: [.process("Resources")]
-        ),
-        .testTarget(
-            name: "KeyboardKitTests",
-            dependencies: ["KeyboardKit"]
+            url: "https://github.com/KeyboardKit/KeyboardKit/releases/download/10.0.0-dp.1-binary/KeyboardKit.zip",
+            checksum: "de7f78c7dc4c43216caacbcccca87b50725602d85048be1591c45c651238a8e6"
         )
     ]
 )
