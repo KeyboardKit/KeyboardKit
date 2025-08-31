@@ -21,15 +21,6 @@ KeyboardKit lets you create amazing [custom keyboard extensions][About] with a f
 
 KeyboardKit extends Apple's limited keyboard APIs with more capabilities. It can be extended with [KeyboardKit Pro][Pro], which unlocks localized keyboards, autocomplete, an emoji keyboard, AI support, themes, and much more.
 
----
-
-# 🚀 KeyboardKit 10
-
-The KeyboardKit 10 is being finalized and can be tested from the `v10` branch. This branch contains the new package structure, an updated demo app, etc.
-
-See the KeyboardKit 10 preview and beta release notes for info on how to use it with your existing Pro license.
-
----
 
 ## Installation
 
@@ -39,8 +30,18 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-KeyboardKit must then be linked to all targets that will use it.  
+KeyboardKit must then be linked to all targets that will use it.
 
+
+---
+
+## 🚀 KeyboardKit 10
+
+The KeyboardKit 10 is being finalized in the `v10` branch, which contains the new package structure, an updated demo app, etc.
+
+Use the `10.0.0-dp.1` pre-release tag to test KeyboardKit 10 Developer Preview in your app. See the [release](https://github.com/KeyboardKit/KeyboardKit/releases/tag/10.0.0-dp.1) for important information, downloadable documentation, etc.
+
+---
 
 
 ## Getting Started
