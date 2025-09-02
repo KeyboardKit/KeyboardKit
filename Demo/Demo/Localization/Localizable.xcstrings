@@ -12,7 +12,6 @@
       }
     },
     "Menu.CloseMenu" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -23,7 +22,6 @@
       }
     },
     "Menu.Dictation" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -34,7 +32,6 @@
       }
     },
     "Menu.HostApp" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -45,7 +42,6 @@
       }
     },
     "Menu.Languages" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -56,7 +52,6 @@
       }
     },
     "Menu.OpenApp" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -67,7 +62,6 @@
       }
     },
     "Menu.OpenWebsite" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -78,7 +72,6 @@
       }
     },
     "Menu.ReadFullDocument" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -89,7 +82,6 @@
       }
     },
     "Menu.Settings" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -100,7 +92,6 @@
       }
     },
     "Menu.TextInput" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -111,7 +102,6 @@
       }
     },
     "Menu.Themes" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -132,7 +122,6 @@
       }
     },
     "Sheet.FullDocumentContext" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -143,7 +132,6 @@
       }
     },
     "Sheet.FullDocumentContext.Reading" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -154,7 +142,6 @@
       }
     },
     "Sheet.FullDocumentContext.ResultPrefix" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -165,7 +152,6 @@
       }
     },
     "Sheet.Host" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -176,7 +162,6 @@
       }
     },
     "Sheet.Host.Section.App" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -187,7 +172,6 @@
       }
     },
     "Sheet.Host.Section.App.BundleId" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -198,7 +182,6 @@
       }
     },
     "Sheet.Host.Section.App.CanOpen" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -209,7 +192,6 @@
       }
     },
     "Sheet.Host.Section.App.Name" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -220,7 +202,6 @@
       }
     },
     "Sheet.Host.Section.App.Unknown" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -231,7 +212,6 @@
       }
     },
     "Sheet.Host.Section.BundleID" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {
@@ -242,7 +222,6 @@
       }
     },
     "Sheet.Host.Section.KnownApps" : {
-      "extractionState" : "stale",
       "localizations" : {
         "en" : {
           "stringUnit" : {

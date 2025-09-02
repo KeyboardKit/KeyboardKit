@@ -29,6 +29,7 @@
 		A99A1F132E640E130014973F /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1F062E640E130014973F /* KeyboardViewController.swift */; };
 		A99A1F142E640E2B0014973F /* KeyboardApp+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A96F413A2C73F2FE007344D2 /* KeyboardApp+Demo.swift */; };
 		A99A1F152E640EB20014973F /* KeyboardKit.license in Resources */ = {isa = PBXBuildFile; fileRef = A9855EEB2CCBDD8000FD9F0A /* KeyboardKit.license */; };
+		A99A1F472E66C2CC0014973F /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A9DBBFDB2CF3C53A007B48F4 /* Localizable.xcstrings */; };
 		A9A58B812CF4C0EF004DC7BE /* StandardSpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9A58B7F2CF4C0EF004DC7BE /* StandardSpeechRecognizer.swift */; };
 		A9DBBFDC2CF3C53A007B48F4 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = A9DBBFDB2CF3C53A007B48F4 /* Localizable.xcstrings */; };
 /* End PBXBuildFile section */
@@ -332,6 +333,7 @@
 			files = (
 				A99A1F082E640E130014973F /* fuse.wav in Resources */,
 				A99A1F152E640EB20014973F /* KeyboardKit.license in Resources */,
+				A99A1F472E66C2CC0014973F /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
