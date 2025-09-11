@@ -40,7 +40,7 @@ class KeyboardViewController: KeyboardInputViewController {
             /// ⚠️ If the setup worked, we can customize the
             /// keyboard. If not, we should handle the error.
             switch result {
-            case .success(let success):
+            case .success:
                 self?.setupDemoServices()
                 self?.setupDemoState()
             case .failure(let error):

@@ -60,7 +60,7 @@ struct HomeScreen: View {
             .navigationTitle(app.name)
         }
         .keyboardAppHomeScreenLocalization(.init(
-            keyboardSectionFooter: """
+            keyboardSettingsFooter: """
 OBS! This demo isn't code signed and therefore can't sync settings to its keyboard extensions!
 """
         ))
@@ -69,8 +69,8 @@ OBS! This demo isn't code signed and therefore can't sync settings to its keyboa
             appIconCornerRadius: 27
         ))
         .keyboardAppHomeScreenVisibility(.init(
-            keyboardSection: true,
-            keyboardSectionThemeSettings: true
+            keyboardSettings: true,
+            keyboardSettingsTheme: true
         ))
         .keyboardDictation(
             dictationContext: dictationContext,

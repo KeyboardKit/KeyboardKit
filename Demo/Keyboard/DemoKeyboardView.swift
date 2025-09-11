@@ -124,11 +124,11 @@ private extension DemoKeyboardView {
         case .hostApplicationInfo:
             HostAppInfoSheet(actionHandler: services.actionHandler)
         case .keyboardSettings:
-            KeyboardApp.SettingsScreen()
+            Keyboard.SettingsScreen()
         case .localeSettings:
-            KeyboardApp.LocaleScreen()
+            Keyboard.LocaleSettingsScreen()
         case .themeSettings:
-            KeyboardApp.ThemeScreen()
+            KeyboardTheme.SettingsScreen()
         case .none: EmptyView()
         }
     }
