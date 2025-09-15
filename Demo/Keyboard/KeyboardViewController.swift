@@ -90,9 +90,9 @@ private extension KeyboardViewController {
         state.keyboardContext.localePresentationLocale = .current
 
         /// 💡 Configure the space key's behavior and action.
-        state.keyboardContext.settings.spaceLongPressBehavior = .moveInputCursor
-        // state.keyboardContext.settings.spaceContextMenuLeading = .locale
-        state.keyboardContext.settings.spaceContextMenuTrailing = .locale
+        state.keyboardContext.settings.spacebarLongPressBehavior = .moveInputCursor
+        // state.keyboardContext.settings.spacebarContextMenuLeading = .locale
+        state.keyboardContext.settings.spacebarMenuTrailing = .locale
 
         /// 💡 Disable autocorrection.
         // state.autocompleteContext.isAutocorrectEnabled = false
