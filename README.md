@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Resources/Logo.png" alt="KeyboardKit Logotype" width="250" />
+    <img src="Resources/Icon.png" alt="KeyboardKit Icon" width="250" />
 </p>
 
 <p align="center">
@@ -9,6 +9,8 @@
     <a href="https://keyboardkit.github.io/KeyboardKit"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
     <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
 </p>
+
+# KeyboardKit
 
 KeyboardKit lets you create amazing [custom keyboard extensions][About] with a few lines of code, using Swift & SwiftUI.
 
