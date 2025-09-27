@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import KeyboardKitPro
+import KeyboardKit
 
 extension KeyboardAction {
     

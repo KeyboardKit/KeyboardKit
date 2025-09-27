@@ -13,9 +13,9 @@
 // even when not using dictation.
 
 import Speech
-import KeyboardKitPro
+import KeyboardKit
 
-import KeyboardKitPro
+import KeyboardKit
 import Speech
 
 public extension DictationSpeechRecognizer where Self == StandardSpeechRecognizer {

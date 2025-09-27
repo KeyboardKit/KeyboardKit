@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import KeyboardKitPro
+import KeyboardKit
 
 /// This is the KeyboardKit demo app.
 ///

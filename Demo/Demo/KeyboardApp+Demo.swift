@@ -9,7 +9,7 @@
 #if IS_KEYBOARDKIT
 import KeyboardKit
 #else
-import KeyboardKitPro
+import KeyboardKit
 #endif
 
 extension KeyboardApp {

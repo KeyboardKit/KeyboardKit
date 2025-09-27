@@ -1,14 +1,15 @@
 {
+  "originHash" : "09c55648019f452d539995ea51705c35db5579ecd4ab2c48a33320cb65a5f1e0",
   "pins" : [
     {
-      "identity" : "keyboardkitpro",
+      "identity" : "keyboardkit",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/keyboardkit/keyboardkitpro",
+      "location" : "https://github.com/keyboardkit/keyboardkit.git",
       "state" : {
-        "revision" : "7de42afbedfe453435a61966c1c6e7f83bf5fca9",
-        "version" : "9.9.0-beta.2"
+        "branch" : "10.0-b.3",
+        "revision" : "31bfdff71337f3c52e782cf6dd9bb31b0be616e8"
       }
     }
   ],
-  "version" : 2
+  "version" : 3
 }

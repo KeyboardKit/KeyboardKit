@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-import KeyboardKitPro
+import KeyboardKit
 
 /// This menu is used when the main toolbar toggle is tapped
 /// to present an alternate toolbar.

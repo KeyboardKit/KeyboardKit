@@ -6,10 +6,10 @@ let package = Package(
     name: "KeyboardKit",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v15),
-        .macOS(.v12),
-        .tvOS(.v15),
-        .watchOS(.v8),
+        .iOS(.v16),
+        .macOS(.v13),
+        .tvOS(.v16),
+        .watchOS(.v10),
         .visionOS(.v1)
     ],
     products: [
@@ -18,15 +18,11 @@ let package = Package(
             targets: ["KeyboardKit"]
         )
     ],
-    dependencies: [],
     targets: [
-        .target(
+        .binaryTarget(
             name: "KeyboardKit",
-            resources: [.process("Resources")]
-        ),
-        .testTarget(
-            name: "KeyboardKitTests",
-            dependencies: ["KeyboardKit"]
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/10.0.0-rc.1/KeyboardKit.zip",
+            checksum: "e85c9babd4fc1e1895a4658ca5ff7696c11ccc8fea3938f95534946cb43e0138"
         )
     ]
 )

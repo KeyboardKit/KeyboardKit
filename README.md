@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="Resources/Logo.png" alt="KeyboardKit Logo" />
+    <img src="Resources/Logo.png" alt="KeyboardKit Logotype" width="250" />
 </p>
 
 <p align="center">
@@ -13,7 +13,7 @@
 KeyboardKit lets you create amazing [custom keyboard extensions][About] with a few lines of code, using Swift & SwiftUI.
 
 <p align="center">
-    <img src="Resources/Demo.gif" alt="KeyboardKit demo gif" width=450 />
+    <img src="Resources/Demo.gif" alt="KeyboardKit Demo" width=450 />
 </p>
 
 KeyboardKit extends Apple's limited keyboard APIs with more capabilities. It can be extended with [KeyboardKit Pro][Pro], which unlocks localized keyboards, autocomplete, an emoji keyboard, AI support, themes, and much more.

@@ -6,7 +6,7 @@
 //  Copyright © 2023-2025 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKitPro
+import KeyboardKit
 import SwiftUI
 
 /// This demo-specific toolbar is used to demo how users can
