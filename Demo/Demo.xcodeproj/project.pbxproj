@@ -643,8 +643,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/keyboardkit/keyboardkit.git";
 			requirement = {
-				branch = "10.0.0-rc.1";
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

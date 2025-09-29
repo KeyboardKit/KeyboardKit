@@ -69,6 +69,7 @@ OBS! This demo isn't code signed and therefore can't sync settings to its keyboa
             appIconCornerRadius: 27
         ))
         .keyboardAppHomeScreenVisibility(.init(
+            settingsSectionFonts: true,
             settingsSectionThemes: true
         ))
         .keyboardDictation(
