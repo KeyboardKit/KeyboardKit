@@ -32,16 +32,6 @@ https://github.com/KeyboardKit/KeyboardKit.git
 KeyboardKit must then be linked to all targets that will use it.
 
 
----
-
-## 🚀 KeyboardKit 10
-
-The KeyboardKit 10 is being finalized in the `v10` branch, which contains the new package structure, an updated demo app, etc.
-
-Use the `10.0.0-dp.1` pre-release tag to test KeyboardKit 10 Developer Preview in your app. See the [release](https://github.com/KeyboardKit/KeyboardKit/releases/tag/10.0.0-dp.1) for important information, downloadable documentation, etc.
-
----
-
 
 ## Getting Started
 
