@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/swift-5.9-orange.svg" alt="Swift 5.9" />
     <img src="https://img.shields.io/badge/platform-SwiftUI-blue.svg" alt="Swift UI" title="Swift UI" />
     <a href="https://keyboardkit.github.io/KeyboardKit"><img src="https://img.shields.io/badge/documentation-web-blue.svg" alt="Documentation" /></a>
-    <img src="https://img.shields.io/github/license/KeyboardKit/KeyboardKit" alt="MIT License" />
+    <img src="https://img.shields.io/badge/license-closedsource-red.svg" alt="Closed Source" />
 </p>
 
 # KeyboardKit
@@ -29,7 +29,7 @@ KeyboardKit can be installed with the Swift Package Manager:
 https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
-KeyboardKit must then be linked to all targets that will use it.
+Since KeyboardKit is a binary framework, it must only linked to the main app target. All other targets will be able to use it without linking.
 
 
 
