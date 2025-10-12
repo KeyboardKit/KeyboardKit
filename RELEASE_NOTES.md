@@ -25,6 +25,14 @@ This patch also improves and fixes accessibility, and enables the accessibility 
 
 * `Keyboard.ButtonStyle` now defines a background opacity.
 
+### ♿ Accessibility
+
+* `Keyboard+ButtonGestures` now applies `isKeyboardKey` instead of `isButton`.
+* `Keyboard+ButtonGestures` now enables the rotor and setting the typing mode.
+* `Keyboard+ToggleToolbar` applies `.accessibilityHidden` to the hidden toolbar.
+* `Keyboard+ToggleToolbar` applies new accessibility guides to the toolbar toggle.
+* `KeyboardView` uses these new updates to activate the rotor in the main keyboard.
+
 ### 😀 Emojis
 
 * `EmojiKeyboard` lets you swipe between skin tones without first having to swipe up.
@@ -35,14 +43,6 @@ This patch also improves and fixes accessibility, and enables the accessibility 
 ### 🏠 Host Application
 
 * `KeyboardHostApplication.allCases` defines some new apps.
-
-### ♿ Accessibility
-
-* `Keyboard+ButtonGestures` now applies `isKeyboardKey` instead of `isButton`.
-* `Keyboard+ButtonGestures` now enables the rotor and setting the typing mode.
-* `Keyboard+ToggleToolbar` applies `.accessibilityHidden` to the hidden toolbar.
-* `Keyboard+ToggleToolbar` applies new accessibility guides to the toolbar toggle.
-* `KeyboardView` uses these new updates to activate the rotor in the main keyboard.
 
 ### 🐛 Bug fixes
 
