@@ -1,28 +1,29 @@
 Closed Source License
 
-Copyright (c) 2016-2025 Daniel Saidi
+Copyright (c) 2016-2025 Kankoda Sweden AB
 
-This software and any associated documentation and resources
-(hereby referred to as "the Software") must only be used with
-a valid license key and a prior mutual and written agreement
-between the licenser and the licensee.
+KeyboardKit (hereby referred to as "the Software") is closed-source.
 
-The Software must only be used in the application(s) that are
-included in the license agreement and must not be distributed
-to or used by any other individuals, teams or companies. Any
-attempts to work around these limitations or to circumvent the
-security mechanisms of the Software or license or any other
-attempts to reverse engineer the software or use any raw source
-files, will be considered as an attempt to violate the license
-agreement and may render the unauthorized user of the software
-liable to compensate the licensee for any damages, loss of IP
-or any other economic losses caused by the infringement.
+The Software is free to start using and has commercial pro features
+that require a valid license to be used.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+The Software's pro features must only be used in the application(s) 
+that are included in the license agreement. The source code must not
+be distributed to or used by other individuals, teams or companies.
+If you see the source code being publicly exposed elsewhere, please
+reach out to info@kankoda.com. You will be compensated for your help.
+
+Any attempts to work around these limitations or to circumvent the
+security mechanisms of the Software, or any attempts to reverse
+engineer the software, will be considered as an attempt to violate
+the license agreement and may render the unauthorized user of the
+software liable to compensate the licensee for any damages, loss of
+IP or any other economic losses caused by the infringement.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT ANY WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED, TO THE WARRANTIES
 OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-OTHER DEALINGS IN THE SOFTWARE.
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN
+ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
