@@ -13,6 +13,44 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 10.0.1
+
+This patch adds more host applications and fixes a bug where keys were not highlighted if a theme wasn't applied.
+
+The emoji keyboard handles skin tones swipes better and tweaks the popover offset to avoid cutting off top emojis.
+
+This patch also improves and fixes accessibility, and enables the accessibility rotor which can change the typing mode. 
+
+### 🌱 Essentials
+
+* `Keyboard.ButtonStyle` now defines a background opacity.
+
+### 😀 Emojis
+
+* `EmojiKeyboard` lets you swipe between skin tones without first having to swipe up.
+* `EmojiKeyboard` uses the `.popoverSwipeDownCancelThreshold` to dismiss the popover.
+* `EmojiKeyboard.Sizes` adjusts the `popoverVerticalOffset` to avoid popover cut-offs.
+* `EmojiKeyboard.Sizes` has a new customizable `popoverSwipeDownCancelThreshold` property.
+
+### 🏠 Host Application
+
+* `KeyboardHostApplication.allCases` defines some new apps.
+
+### ♿ Accessibility
+
+* `Keyboard+ButtonGestures` now applies `isKeyboardKey` instead of `isButton`.
+* `Keyboard+ButtonGestures` now enables the rotor and setting the typing mode.
+* `Keyboard+ToggleToolbar` applies `.accessibilityHidden` to the hidden toolbar.
+* `Keyboard+ToggleToolbar` applies new accessibility guides to the toolbar toggle.
+* `KeyboardView` uses these new updates to activate the rotor in the main keyboard.
+
+### 🐛 Bug fixes
+
+* `Clipboard.SettingsScreen` doesn't show empty clip sections.
+* `Keyboard.ButtonStyle` now applies highlighting without a theme.
+
+
+
 ## 10.0
 
 > [!IMPORTANT]
