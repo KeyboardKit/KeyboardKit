@@ -11,6 +11,16 @@ Beta version tags and releases are removed after the next minor or major version
 
 These release notes cover the current major version. See older versions for older release notes.
 
+Binaries for each release are uploaded to the separete https://github.com/KeyboardKit/KeyboardKit-Binaries repository.
+
+
+
+## 10.0.2
+
+This patch includes dSYMs, which should make it possible to retrieve detailed crash reports from production.
+
+Binaries for each release are uploaded to the separete https://github.com/KeyboardKit/KeyboardKit-Binaries repository.
+
 
 
 ## 10.0.1
