@@ -148,37 +148,45 @@ KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unloc
 
 KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro] unlocks more powerful pro features.
 
-* 🌱 [Essentials][Essentials] - Essential models, services, utilities & views.
-* ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - A native-looking, customizable keyboard.
+* 🌱 [Essentials][Essentials] - Essential utilities, models, services & views.
+* ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - Render a native-looking, fully customizable keyboard.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
-* 📱 [App][App] - Set up your app, keyboard, sync settings, etc.
+* 🤖 [AI][AI] - Features that are needed by AI-based keyboards.
+* 📱 [App][App] - App-specific utilities, settings, screens, etc.
+* 💡 [Autocomplete][Autocomplete] - Autocomplete and autocorrect as the user types.
 * 🗯 [Callouts][Callouts] - Show input & secondary action callouts.
-* 🖥️ [Device][Device] - Identify device type, capabilities, etc.
-* 😀 [Emojis][Emojis] - Emojis, categories, versions, skin tones, etc.
-* 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback.
+* 📋 [Clipboard][Clipboard] - Create custom clips and integrate with the system clipboard.
+* 🖥️ [Device][Device] - Identify device type, device capabilities, etc.
+* 🎤 [Dictation][Dictation] - Trigger dictation from the keyboard.
+* 😀 [Emojis][Emojis] - Emoji models, an emoji keyboard, etc.
+* ⌨️ [External][External]Article> - Detect if an external keyboard is connected.
+* 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback with ease.
+* 𝒜 [Fonts][Fonts]Type with other fonts than the standard system font.
 * 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
-* 🔣 [Layout][Layout] - Define and customize dynamic keyboard layouts.
-* 🌐 [Localization][Localization] - Additional locale-related utilities.
+* 🏠 [Host][Host] - Identify and open the host application.
+* 📝 [Input][Input] - Keyboard input fields, Vietnamese support, etc.
+* 🔣 [Layout][Layout] - A dynamic, customizable keyboard layout engine.
+* 🌐 [Localization][Localization] - Locale-specific utilities for all supported locales.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
-* 👁 [Previews][Previews] - Extensive SwiftUI preview support.
+* ⌚️ [Platforms][Platforms] - KeyboardKit supports all major Apple platforms.
+* 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
 * 📄 [Proxy][Proxy] - Extend the text document proxy with more capabilities.
 * ⚙️ [Settings][Settings] - Provide keyboard settings & link to System Settings.
 * 🩺 [Status][Status] - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - Style your keyboard to great extent.
+* 🍭 [Themes][Themes] - A theme engine with many pre-defined themes.
 
 
 
 ## Documentation
 
-The [online documentation][Documentation] has a thorough getting-started guide, a detailed article for each feature, code samples, etc. You can also build it from the source code to get better formatting.
+The [online documentation][Documentation] has a thorough getting-started guide, feature articles, code samples, developer guides, etc.
 
 
 
 ## Demo App
 
-The `Demo` folder has a demo app that shows how to set up the main keyboard app, show keyboard status, provide in-app settings, link to system settings, apply custom styles, etc. 
-
-The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPro` that uses KeyboardKit Pro.
+The `Demo` folder has a demo app that shows how to set up the main app and its keyboard extension, show keyboard status, provide in-app settings, link to system settings, apply custom styles, etc.
 
 > [!IMPORTANT]
 > The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has keyboard settings in the keyboard as well.
@@ -187,13 +195,13 @@ The app has two keyboards - a `Keyboard` that uses KeyboardKit and a `KeyboardPr
 
 ## KeyboardKit App
 
-Download the [KeyboardKit app][KeyboardKit-App] from the App Store to try KeyboardKit without having to write any code or build the demo app from Xcode.
+The [KeyboardKit app][KeyboardKit-App] on the App Store lets you try KeyboardKit without having to write any code or build an app from Xcode.
 
 
 
 ## Support This Project
 
-KeyboardKit is open-source and completely free, but you can support the project by becoming a [GitHub Sponsor][Sponsors], upgrading to [KeyboardKit Pro][Pro] or [get in touch][Email] for freelance work, paid support etc.
+KeyboardKit is free to use, but you can support the project by becoming a [GitHub Sponsor][Sponsors], upgrading to [KeyboardKit Pro][Pro] or [get in touch][Email] for freelance work, paid support etc.
 
 
 
@@ -221,18 +229,15 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Sponsors]: https://github.com/sponsors/danielsaidi
 
 [About]: https://keyboardkit.com/about
-[Gumroad]: https://kankoda.gumroad.com
 [KeyboardKit-App]: https://keyboardkit.com/app
 
-[KeyboardKit]: https://github.com/KeyboardKit/KeyboardKit
-[Pro]: https://github.com/KeyboardKit/KeyboardKitPro
-[Documentation]: https://keyboardkit.github.io/KeyboardKit/
+[Pro]: https://keyboardkit.com/pro
+[Documentation]: https://docs.keyboardkit.com
 [License]: https://github.com/KeyboardKit/KeyboardKit/blob/master/LICENSE
 
 [Getting-Started]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/getting-started-article
 [Essentials]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-article
 [Essentials-KeyboardView]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-keyboardview
-[Essentials-Memory-Management]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/essentials-memory-management
 
 [Actions]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/actions-article
 [AI]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/ai-article
@@ -240,11 +245,13 @@ KeyboardKit is available under the MIT license. See the [LICENSE][License] file 
 [Autocomplete]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/autocomplete-article
 [Buttons]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/buttons-article
 [Callouts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/callouts-article
+[Clipboard]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/clipboard-article
 [Device]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/device-article
 [Dictation]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/dictation-article
 [Emojis]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/emojis-article
 [External]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/external-keyboards-article
 [Feedback]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/feedback-article
+[Fonts]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/fonts-article
 [Gestures]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/gestures-article
 [Host]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/host-article
 [Input]: https://keyboardkit.github.io/KeyboardKit/documentation/keyboardkit/input-article
