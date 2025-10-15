@@ -185,7 +185,7 @@ The [online documentation][Documentation] has a getting-started guide, feature a
 
 ## Demo App
 
-The `Demo` folder has a demo app that shows how to set up the main app and its keyboard extension, show keyboard status, provide in-app settings, link to system settings, apply custom styles, etc.
+The `Demo` folder has a demo app that shows how to set up a main app and its keyboard extension, show keyboard status, provide in-app settings, link to system settings, apply custom styles, etc.
 
 > [!IMPORTANT]
 > The demo isn't code signed and can therefore not use an App Group to sync settings between the app and its keyboards. As such, the `KeyboardPro` keyboard has keyboard settings in the keyboard as well.
@@ -194,13 +194,13 @@ The `Demo` folder has a demo app that shows how to set up the main app and its k
 
 ## KeyboardKit App
 
-The [KeyboardKit app][KeyboardKit-App] on the App Store lets you try KeyboardKit without having to write any code or build from Xcode.
+The [KeyboardKit app][KeyboardKit-App] on the App Store lets you download and try KeyboardKit without having to write any code.
 
 
 
 ## Support This Project
 
-KeyboardKit is free to use, but you can support the project by becoming a [GitHub Sponsor][Sponsors], upgrading to [KeyboardKit Pro][Pro] or [get in touch][Email] for freelance work, paid support etc.
+KeyboardKit is free to use, but you can support us by becoming a [GitHub Sponsor][Sponsors], upgrading to [KeyboardKit Pro][Pro] or [get in touch][Email] for freelance work, paid support etc.
 
 
 
@@ -217,7 +217,7 @@ Feel free to reach out if you have questions or if you want to contribute in any
 
 ## License
 
-KeyboardKit is available under the MIT license. See the [LICENSE][License] file for more info.
+KeyboardKit is closed-source. See the [LICENSE][License] file for more info.
 
 
 
