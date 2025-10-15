@@ -140,7 +140,7 @@ KeyboardKit supports [75 locales][Localization]:
 🇷🇸 🇷🇸 🇹🇯 🇸🇰 🇸🇮 🇪🇸 🇦🇷 🇲🇽 🇸🇪 🇰🇪 <br />
 🇹🇷 🇺🇦 🇺🇿 🇻🇳 🏴󠁧󠁢󠁷󠁬󠁳󠁿 <br />
 
-KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unlocks localized keyboards, layouts, callouts and behaviors for all supported locales.
+[KeyboardKit Pro][Pro] unlocks localized keyboards, layouts, callouts and behaviors for all supported locales.
 
 
 
@@ -149,7 +149,7 @@ KeyboardKit only includes localized strings, while [KeyboardKit Pro][Pro] unloc
 KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro] unlocks more powerful pro features.
 
 * 🌱 [Essentials][Essentials] - Essential utilities, models, services & views.
-* ⌨️ [Essentials-KeyboardView][Essentials-KeyboardView] - Render a native-looking, fully customizable keyboard.
+* ⌨️ [Essentials - KeyboardView][Essentials-KeyboardView] - Render a native-looking, fully customizable keyboard.
 * 💥 [Actions][Actions] - Trigger & handle keyboard-related actions.
 * 🤖 [AI][AI] - Features that are needed by AI-based keyboards.
 * 📱 [App][App] - App-specific utilities, settings, screens, etc.
@@ -159,16 +159,15 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * 🖥️ [Device][Device] - Identify device type, device capabilities, etc.
 * 🎤 [Dictation][Dictation] - Trigger dictation from the keyboard.
 * 😀 [Emojis][Emojis] - Emoji models, an emoji keyboard, etc.
-* ⌨️ [External][External]Article> - Detect if an external keyboard is connected.
+* ⌨️ [External][External] - Detect if an external keyboard is connected.
 * 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback with ease.
-* 𝒜 [Fonts][Fonts]Type with other fonts than the standard system font.
+* 𝒜 [Fonts][Fonts] - Type with other fonts than the standard system font.
 * 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
 * 🏠 [Host][Host] - Identify and open the host application.
 * 📝 [Input][Input] - Keyboard input fields, Vietnamese support, etc.
 * 🔣 [Layout][Layout] - A dynamic, customizable keyboard layout engine.
 * 🌐 [Localization][Localization] - Locale-specific utilities for all supported locales.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
-* ⌚️ [Platforms][Platforms] - KeyboardKit supports all major Apple platforms.
 * 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
 * 📄 [Proxy][Proxy] - Extend the text document proxy with more capabilities.
 * ⚙️ [Settings][Settings] - Provide keyboard settings & link to System Settings.
@@ -180,7 +179,7 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 
 ## Documentation
 
-The [online documentation][Documentation] has a thorough getting-started guide, feature articles, code samples, developer guides, etc.
+The [online documentation][Documentation] has a getting-started guide, feature articles, code samples, developer guides, etc.
 
 
 
@@ -195,7 +194,7 @@ The `Demo` folder has a demo app that shows how to set up the main app and its k
 
 ## KeyboardKit App
 
-The [KeyboardKit app][KeyboardKit-App] on the App Store lets you try KeyboardKit without having to write any code or build an app from Xcode.
+The [KeyboardKit app][KeyboardKit-App] on the App Store lets you try KeyboardKit without having to write any code or build from Xcode.
 
 
 
