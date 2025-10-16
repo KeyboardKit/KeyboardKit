@@ -11,7 +11,7 @@ Beta version tags and releases are removed after the next minor or major version
 
 These release notes cover the current major version. See older versions for older release notes.
 
-Binaries for each release are uploaded to the separete https://github.com/KeyboardKit/KeyboardKit-Binaries repository.
+Binaries for each release are uploaded to the corresponding https://github.com/KeyboardKit/KeyboardKit-Binaries tag.
 
 
 
