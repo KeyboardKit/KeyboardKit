@@ -11,15 +11,33 @@ Beta version tags and releases are removed after the next minor or major version
 
 These release notes cover the current major version. See older versions for older release notes.
 
-Binaries for each release are uploaded to the corresponding https://github.com/KeyboardKit/KeyboardKit-Binaries tag.
+
+
+## 10.0.4
+
+This patch fixes some liquid glass bugs.
+
+### 🐛 Bug fixes
+
+* `KeyboardAction.standardButtonText(for:)` returns nil for some iPad keys on Liquid Glass.
+* `KeyboardAction.standardButtonBackgroundColor(for:)` fixes a primary key press color bug.
+* `KeyboardAction.standardButtonForegroundColor(for:)` fixes an upper-case shift color bug.
+
+
+
+## 10.0.3
+
+This patch fixes a dictation race condition, where the dictated text weren't always sent to the host application.
+
+### 🐛 Bug fixes
+
+* `Dictation.StandardDictationService` has a race condition fix.
 
 
 
 ## 10.0.2
 
 This patch includes dSYMs, which should make it possible to retrieve detailed crash reports from production.
-
-Binaries for each release are uploaded to the separete https://github.com/KeyboardKit/KeyboardKit-Binaries repository.
 
 
 
