@@ -13,6 +13,25 @@ These release notes cover the current major version. See older versions for olde
 
 
 
+## 10.0.5
+
+This patch adds some layout extensions and fixes layout bugs.
+
+This patch also adds missing deprecation attributes that should have been in 10.0. 
+
+### 🔣 Layout
+
+* `KeyboardLayout` has a new `hasKey(for:)` extension.
+* `KeyboardLayout` has new iPhone and iPad bottom row logic.
+
+### 🗑️ Deprecations
+
+* `KeyboardContext` sets two unused properties to deprecated.
+* `KeyboardContext.hasDictationKey` should have been deprecated in 10.0. 
+* `KeyboardContext.keyboardDictationReplacement` should have been deprecated in 10.0. 
+
+
+
 ## 10.0.4
 
 This patch fixes some liquid glass bugs.
@@ -94,7 +113,7 @@ The local autocomplete service can now perform remote prediction, using requests
 
 The Pro settings screens have been improved, and separated into feature-specific screens. These screens expose more settings than before, and there are also more keyboard settings to let you and your users configure the typing behavior.   
 
-Finally, the callout, layout and style services have been replaced by values and  view modifiers and have been removed from the library. All views use environment injections for observable state instead of init injection. SOme of these changes are breaking.
+Finally, the callout, layout and style services have been replaced by values and view modifiers and have been removed from the library. All views use environment injections for observable state instead of init injection. Some of these changes are breaking.
 
 ### 🛣️ Upgrading from KeyboardKit 9
 
