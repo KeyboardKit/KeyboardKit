@@ -32,11 +32,31 @@ import KeyboardKit
 /// `KeyboardApp+Demo.swift`.
 @main
 struct DemoApp: App {
-    
+
+    init() {
+        // subscribeToKeyboardNotifications()
+    }
+
     var body: some Scene {
         WindowGroup {
             KeyboardAppView(for: .keyboardKitDemo) {
                 HomeScreen()
+            }
+        }
+    }
+}
+
+private extension DemoApp {
+
+    func subscribeToKeyboardNotifications() {
+        NotificationCenter.default.addObserver(
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil,
+            queue: .main
+        ) { notification in
+            let key = UIResponder.keyboardFrameEndUserInfoKey
+            if let keyboardFrame = notification.userInfo?[key] as? CGRect {
+                print("Keyboard height: \(keyboardFrame.height)")
             }
         }
     }
