@@ -7,9 +7,81 @@
 * Breaking changes should only occur in `major` updates.
 * Breaking changes *can* occur in `minor` and `patch` updates, if the alternative is worse.
 
-Beta version tags and releases are removed after the next minor or major version. 
+Beta version release tags are removed after the next minor or major version. 
 
-These release notes cover the current major version. See older versions for older release notes.
+This document covers the current major version. See older versions for older release notes.
+
+
+
+## 10.1
+
+This version adds support for secondary swipe down actions on iPad, and improves performance through view cleanups and layout caching.
+
+Swipe down actions are automatically applied to all localized input sets with 3 input rows, and can also be customized for any layout.
+
+This version also makes `KeyboardApp.HomeScreen` and `KeyboardStatus.Section` non-pro features. This means that everyone can use them.
+
+This version also lets you create and pass in your own custom host application values, which lets you extend this logic with more apps.
+
+### 💥 Actions
+
+* `KeyboardAction` has a new `.keyboardInputType` action.
+
+### 📱 App
+
+* `KeyboardApp.HomeScreen` is now available for everyone to use.
+* `KeyboardApp.HomeScreen` will only link to available features.
+
+### 📺 Device
+
+* `DeviceType` has a new `prefersSecondarySwipeDownActions` property.
+
+### ⌨️ External Keyboards
+
+* `ExternalKeyboardContext` has a new `isEnabledOnSimulator` property.
+
+### 🧪 Experiments
+
+* `Experiments` is a new type that can be used to enable and disable experimental features.
+
+### 🏠 Host
+
+* `KeyboardHostApplication` can now use an additional app collection.
+* `KeyboardHostApplicationProvider` has a `hostApplication(...)` that takes an additional app collection.
+
+### 🔣 Layout
+
+* `KeyboardLayout` and related types now support secondary actions.
+* `KeyboardLayout` now applies secondary swipe down actions on iPad.
+* `KeyboardLayout.InputSet` can apply secondary actions from other sets.
+
+### 🌐 Localization
+
+* `Locale` has a new `prefersSecondarySwipeDownActions` property.
+
+### 📈 Performance
+
+* `Keyboard+ButtonGestures` doesn't render additional geometry proxies.
+* `KeyboardLayout` uses a new layout cache to improve typing performance.
+* `KeyboardLayout` caching must be enabled with the new `Experiments` type.
+
+### 🎛️ Settings
+
+* `KeyboardSettings` has a new `isSwipeDownActionsEnabled` setting.
+
+### 🐛 Bug fixes
+
+* `Autocomplete.ToolbarItem` fixes a title alignment bug.
+* `ExternalKeyboardContext` will by default not be enabled on Simulator.
+* `Keyboard.ButtonStyle` fixes a font weight bug for some image actions.
+* `Keyboard.StandardBehavior`'s double tap on space logic is more robust.
+* `KeyboardLayout` now hides the emoji key for unsupported keyboard types.
+* `KeyboardInputViewController` handles keybord type and input type changes better.
+
+### 🚨 Breaking Changes
+
+* All migration deprecations have been removed.
+* `GestureButton` now provides a geometry proxy in its actions.
 
 
 
@@ -197,7 +269,7 @@ Finally, the callout, layout and style services have been replaced by values and
 * `KeyboardSettings` has a new `isDoubleTapOnShiftToCapsLockEnabled`.
 * `KeyboardSettings` has a new `isDoubleTapOnSpacebarToCloseSentenceEnabled`.
 
-### 🎨 Themes
+### 🍭 Themes
 
 * `KeyboardTheme.blueprint` is a brand new theme.
 * `KeyboardTheme.aesthetic(.boho)` has been removed.
