@@ -13,6 +13,23 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.1.1
+
+This patch adds a text document proxy function for deselecting the selected text.
+
+This is used to fix a full document reader bug where any selected text was not included in the result. 
+
+### ✨ Features
+
+* `Proxy.SelectionEdge` is a new enum.
+* `UITextDocumentProxy` has a new `deselectSelectedText(...)` function.
+
+### 🐛 Bug fixes
+
+* `UITextDocumentProxy.fullDocumentProxy()` deselects all text before reading.
+
+
+
 ## 10.1
 
 This version adds support for secondary swipe down actions on iPad, and improves performance through view cleanups and layout caching.
