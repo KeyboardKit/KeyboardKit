@@ -31,13 +31,16 @@ class KeyboardViewController: KeyboardInputViewController {
     /// with the shared `.keyboardKitDemo` application.
     override func viewDidLoad() {
 
+        /// 🧪 Enable experimental features
+        Experiment.layoutCaching.setIsEnabled(true)
+
         /// ⚠️ Always call super.viewDidLoad()!
         super.viewDidLoad()
 
         // Set up the keyboard with the demo-specific app.
         setup(for: .keyboardKitDemo) { [weak self] result in
 
-            /// ⚠️ If the setup worked, we can customize the
+            /// 💡 If the setup worked, we can customize the
             /// keyboard. If not, we should handle the error.
             switch result {
             case .success:
