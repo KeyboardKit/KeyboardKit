@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "licensekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/LicenseKit/LicenseKit.git",
+      "state" : {
+        "revision" : "6214a71d7e4c2d0283c69bc8512b5ce2a3f756b4",
+        "version" : "2.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}
