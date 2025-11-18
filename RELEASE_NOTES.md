@@ -13,6 +13,12 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.1.2
+
+This patch adjusts some license information.
+
+
+
 ## 10.1.1
 
 This patch adds a text document proxy function for deselecting the selected text.
