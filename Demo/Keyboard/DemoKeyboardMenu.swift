@@ -156,7 +156,15 @@ extension DemoKeyboardMenu {
         .buttonStyle(.bordered)
         .tint(tint.gradient)
         .background(Color.primary.colorInvert())
-        .clipShape(.rect(cornerRadius: 20))
+        .modify { content in
+            if #available(iOS 26, *) {
+                content
+                    .clipShape(.capsule)
+            } else {
+                content
+                    .clipShape(.rect(cornerRadius: 20))
+            }
+        }
         .shadow(color: .black.opacity(0.3), radius: 0, x: 0, y: 1)
     }
 
@@ -174,6 +182,12 @@ private extension DemoKeyboardMenu {
     func tryOpenUrl(_ url: String?) {
         guard let url, let url = URL(string: url) else { return }
         actionHandler.handle(.url(url))
+    }
+}
+
+public extension View {
+    func modify(@ViewBuilder transform: (Self) -> some View) -> some View {
+        transform(self)
     }
 }
 
