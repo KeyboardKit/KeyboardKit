@@ -13,6 +13,25 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.1.3
+
+This patch fixes a bug in Persian typing and adjusts experiments and the layout cache.
+
+### 🧪 Experiments
+
+* `Experiments` is a new type that makes it easier to manage experiments.
+* `ExperimentsContext` is a new type that makes it easier to manage experiments in views.
+
+### 🔣 Layout
+
+* The internal `KeyboardLayoutCache` now varies the cache by input type.
+
+### 🐛 Bug fixes
+
+* The Persian keyboard layout no longer applies ZWNJs (zero-width non-joiners).
+
+
+
 ## 10.1.2
 
 This patch adjusts some license information.
