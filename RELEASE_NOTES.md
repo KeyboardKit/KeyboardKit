@@ -13,6 +13,12 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.1.4
+
+This patch adjusts some license information.
+
+
+
 ## 10.1.3
 
 This patch fixes a bug in Persian typing and adjusts experiments and the layout cache.
