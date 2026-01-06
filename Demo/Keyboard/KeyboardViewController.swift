@@ -32,6 +32,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewDidLoad() {
 
         /// 🧪 Enable experimental features
+        Experiment.keyboardDictation.setIsEnabled(true)
         Experiment.layoutCaching.setIsEnabled(true)
 
         /// ⚠️ Always call super.viewDidLoad()!

@@ -38,7 +38,15 @@ struct HomeScreen: View {
             KeyboardApp.HomeScreen(
                 app: app,
                 appIcon: Image(.icon),
-                header: {},
+                header: {
+                    Text(
+"""
+OBS! This demo isn't code signed and therefore can't sync data with its keyboard. This means that dictation will not work.
+"""
+                    )
+                    .listRowBackground(Color.yellow)
+                    .multilineTextAlignment(.center)
+                },
                 footer: {
                     Section("Section.TextFields") {
                         TextField("TextField.Plain", text: $text)
@@ -59,25 +67,17 @@ struct HomeScreen: View {
             )
             .navigationTitle(app.name)
         }
-        .keyboardAppHomeScreenLocalization(.init(
-            settingsSectionFooter: """
-OBS! This demo isn't code signed and therefore can't sync settings to its keyboard extensions!
-"""
-        ))
         .keyboardAppHomeScreenStyle(.init(
             appIconSize: 120,
             appIconCornerRadius: 27
         ))
         .keyboardAppHomeScreenVisibility(.init(
             settingsSectionFonts: true,
-            settingsSectionThemes: true
+            settingsSectionThemes: true,
+            settingsSectionExperiments: true,
         ))
         .keyboardDictation(
-            dictationContext: dictationContext,
-            keyboardContext: keyboardContext,
-            openUrl: openURL,
-            speechRecognizer: .standard,
-            overlay: dictationScreen
+            speechRecognizer: .standard
         )
         .navigationViewStyle(.stack)
     }
