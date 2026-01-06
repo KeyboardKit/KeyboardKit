@@ -15,14 +15,25 @@ let package = Package(
     products: [
         .library(
             name: "KeyboardKit",
-            targets: ["KeyboardKit"]
+            targets: ["KeyboardKit", "KeyboardKitDependencies"]
+        )
+    ],
+    dependencies: [
+        .package(
+            url: "https://github.com/LicenseKit/LicenseKit.git",
+            branch: "2.1.2-multiplatform"
         )
     ],
     targets: [
         .binaryTarget(
             name: "KeyboardKit",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/10.1.4/KeyboardKit.zip",
-            checksum: "47bf6be75f92b82032694483c9800c73a927448e9574d3cae38befdb02c38636"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/10.2-rc.1/KeyboardKit.zip",
+            checksum: "014f283a48b50b8630622d7cbe9ebf012b8659e2e3088ef09c157fd0501091d5"
+        ),
+        .target(
+            name: "KeyboardKitDependencies",
+            dependencies: ["LicenseKit"],
+            path: "Dependencies",
         )
     ]
 )

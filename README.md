@@ -31,6 +31,10 @@ https://github.com/KeyboardKit/KeyboardKit.git
 
 Since KeyboardKit is a binary framework, it must only linked to the main app target. All other targets will be able to use it without linking.
 
+<!-- 
+> [!NOTE]
+> Starting with KeyboardKit 10.3, each release will include a multiplatform build. The tag name for a multiplatform release is the version number followed by `-multiplatform`, e.g. `10.3.0-multiplatform`.
+-->
 
 
 ## Getting Started
@@ -93,7 +97,6 @@ class KeyboardViewController: KeyboardInputViewController {
         setupKeyboardView { [weak self] controller in // <-- Use weak or unknowned self!
             KeyboardView(
                 state: controller.state,
-                services: controller.services,
                 buttonContent: { $0.view },
                 buttonView: { $0.view },
                 collapsedView: { $0.view },
@@ -156,7 +159,6 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * 💡 [Autocomplete][Autocomplete] - Autocomplete and autocorrect as the user types.
 * 🗯 [Callouts][Callouts] - Show input & secondary action callouts.
 * 📋 [Clipboard][Clipboard] - Create custom clips and integrate with the system clipboard.
-* 🖥️ [Device][Device] - Identify device type, device capabilities, etc.
 * 🎤 [Dictation][Dictation] - Trigger dictation from the keyboard.
 * 😀 [Emojis][Emojis] - Emoji models, an emoji keyboard, etc.
 * ⌨️ [External][External] - Detect if an external keyboard is connected.
@@ -179,7 +181,7 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 
 ## Documentation
 
-The [online documentation][Documentation] has a getting-started guide, feature articles, code samples, developer guides, etc.
+The [online documentation][Documentation] has a [getting started guide][Getting-Started], [feature articles][Feature-Articles], code samples, [developer guides][Developer-Guides], etc.
 
 
 
@@ -237,6 +239,8 @@ KeyboardKit is closed-source. See the [LICENSE][License] file for more info.
 [Getting-Started]: https://docs.keyboardkit.com/documentation/keyboardkit/getting-started-article
 [Essentials]: https://docs.keyboardkit.com/documentation/keyboardkit/essentials-article
 [Essentials-KeyboardView]: https://docs.keyboardkit.com/documentation/keyboardkit/essentials-keyboardview
+[Developer-Guides]: https://docs.keyboardkit.com/documentation/keyboardkit/developer-articles
+[Feature-Articles]: https://docs.keyboardkit.com/documentation/keyboardkit/features-articles
 
 [Actions]: https://docs.keyboardkit.com/documentation/keyboardkit/actions-article
 [AI]: https://docs.keyboardkit.com/documentation/keyboardkit/ai-article
@@ -245,7 +249,6 @@ KeyboardKit is closed-source. See the [LICENSE][License] file for more info.
 [Buttons]: https://docs.keyboardkit.com/documentation/keyboardkit/buttons-article
 [Callouts]: https://docs.keyboardkit.com/documentation/keyboardkit/callouts-article
 [Clipboard]: https://docs.keyboardkit.com/documentation/keyboardkit/clipboard-article
-[Device]: https://docs.keyboardkit.com/documentation/keyboardkit/device-article
 [Dictation]: https://docs.keyboardkit.com/documentation/keyboardkit/dictation-article
 [Emojis]: https://docs.keyboardkit.com/documentation/keyboardkit/emojis-article
 [External]: https://docs.keyboardkit.com/documentation/keyboardkit/external-keyboards-article

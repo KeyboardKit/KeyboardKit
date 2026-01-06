@@ -13,15 +13,89 @@ This document covers the current major version. See older versions for older rel
 
 
 
-## 10.1.4
+## 10.2
 
-This patch adjusts some license information.
+This version makes it possible to perform dictation directly within the keyboard, with an automatic roundtrip to the app only when needed.
+
+To enable keyboard dictation, follow the new developer guide instructions, then set the dictation context `dictationMethod` to `.keyboard`.
+
+You can enable keyboard dictation with either `DictationSettings.dictationMethod`, or using the `Experiment.keyboardDictation` experiment.
+
+The `dictationMethod` is `.app` by default, to avoid breaking changes, but `.keyboard` dictation is the recommended method moving forward.
+
+This version adds more settings. For instance, it's now possible to disable auto-ignore, predictive typing, and the iPhone input callouts.
+
+> [!NOTE]
+> Since `.keyboard` dictation is now the recommended method, the `DictationScreen` and overlay-based dictation view modifiers have been deprecated. You can use the new `dictationState` to present such any overlays in your app, if needed. The `KeyboardApp.HomeScreen` and `Dictation.ProgressView` will automatically show a dictation control when dictation is active, to give the user a chance to stop the dictation operation.  
+
+### 📦 Package
+
+* The former embedded `LicenseKit` dependency is now a proper package dependency.   
+
+### ⌨️ Keyboard
+
+* `View.keyboardReplacementOverlay(...)` is a new keyboard overlay view modifier.
+
+### 🎤 Dictation
+
+* `Dictation.AudioRecorder` is a new audio recorder protocol.
+* `Dictation.DictationMethod` is a new enum that defines supported methods.
+* `Dictation.DictationState` is a new enum that defines dictation states.
+* `Dictation.Indicator` is a new view that can be used to indicate an ongoing dictation.
+* `Dictation.ProgressView` is a new view that can be used to handle an ongoing dictation.
+* `Dictation.StandardAudioRecorder` is a new audio recorder implementation.
+* `Dictation.VolumeVisualizer` is a new view that can visualize volume data.
+* `DictationContext` has a new `dictationState` property.
+* `DictationContext` has a new `hasActiveKeyboardDictationSession` property.
+* `DictationContext` has a new `reset(newState:)` function.
+* `DictationContext` has a new `syncFromPersistentStorage()` function.
+* `DictationSettings` has a new `dictationMethod` property.
+* `KeyboardContext` has a new `applyDictationResult(from:resetContextTo:)` function.
+* `KeyboardApp.HomeScreen` now displays an indicator when dictation is active.
+* `KeyboardApp.HomeScreen` can be set to link to the new `Experiments.SettingsScreen`.
+* `KeyboardView` adds a `Dictation.ProgressView` overlay when dictation is active.
+* `View.keyboardDictation(...)` now only requires you to pass in a speech recognizer.
+
+### 🧪 Experiments
+
+* `Experiment` has a new `.keyboardDictation` experiment that affects the `.keyboardMethod` dictation setting.
+* `Experiments` has a new `SettingsScreen` that can be used to enable experiments.
+
+### 🔉 Feedback
+
+* `FeedbackContext` has a new `isHapticFeedbackAvailable` property.
+
+### 🎛️ Settings
+
+* `Autocomplete.SettingsScreen` has a new `auto-ignore` toggle.
+* `Keyboard.SettingsScreen` has a new feedback section.
+* `KeyboardSettings` has a new `isCharacterPreviewEnabled` setting.
+* `KeyboardSettings` has a new `isPredictiveTextEnabled` setting.
+
+### 🗑️ Deprecations
+
+* `AutocompleteSettings.isAutolearnEnabled` is deprecated and will be removed in KeyboardKit 11.
+* `Dictation.Screen` and `Dictation.ScreenStyle` are soft deprecated.
+* `DeviceType` has been renamed to `Keyboard.DeviceType`.
+* `InterfaceOrientation` has been renamed to `Keyboard.InterfaceOrientation`.
+* `View.keyboardDictation(...)` no longer requires context or openURL params.
+* `View.keyboardDictation(..., overlay:)` is deprecated.
+* `View.keyboardDictationOverlay(...)` is deprecated.
+
+### 🚨 Breaking Changes
+
+* `DictationService` now requires a `stopDictation` function.
+
+### 🐛 Bug fixes
+
+* The `CalloutContext` has been adjusted to not trigger invalid haptic feedback.
+* The style-based `.keyboardButtonStyle(_:)` can now be used on `KeyboardView`'s `buttonView` builder.
 
 
 
 ## 10.1.3
 
-This patch fixes a bug in Persian typing and adjusts experiments and the layout cache.
+This patch fixes a bug in Persian typing and adjusts the layout cache.
 
 ### 🧪 Experiments
 
@@ -35,12 +109,6 @@ This patch fixes a bug in Persian typing and adjusts experiments and the layout 
 ### 🐛 Bug fixes
 
 * The Persian keyboard layout no longer applies ZWNJs (zero-width non-joiners).
-
-
-
-## 10.1.2
-
-This patch adjusts some license information.
 
 
 
