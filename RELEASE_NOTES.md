@@ -13,6 +13,26 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.2.2
+
+This version improves the controller's host bundle ID logic with hopes of reducing random crashes.
+
+This version also reduces the number of input set calculations for every layout that is generated.
+
+### 🏠 Host
+
+* The `KeyboardInputViewController` `hostApplicationBundleId` has been rewritten to avoid crashes.
+
+### 🔣 Layout
+
+* The `KeyboardLayout.baseLayout(...)` now only calculates the relevant input set, saving calculations.
+
+### 🐛 Bug fixes
+
+* The incorrect upper-cased shift color in dark mode is fixed on pre iOS 26 iPhones.
+
+
+
 ## 10.2.1
 
 This version improves the license bundle validation.

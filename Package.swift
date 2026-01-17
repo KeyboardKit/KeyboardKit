@@ -27,8 +27,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "KeyboardKit",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/10.2.1/KeyboardKit.zip",
-            checksum: "eac03f3cbc62d1fdb59706bb193f97cf952c53e31821efc1a2b4c590714f4a62"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/10.2.2/KeyboardKit.zip",
+            checksum: "9b434546cbcbc9bd4f560a98a4f8b87c8c6ba7f5a522caa21a1356d4d64176a8"
         ),
         .target(
             name: "KeyboardKitDependencies",
