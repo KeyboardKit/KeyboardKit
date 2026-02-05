@@ -119,16 +119,16 @@ private extension DemoKeyboardView {
     // 💡 This view builder creates misc sheet content views.
     @ViewBuilder var sheetContent: some View {
         switch activeSheet {
-        case .fullDocumentReader:
-            FullDocumentContextSheet()
-        case .hostApplicationInfo:
-            HostAppInfoSheet(actionHandler: services.actionHandler)
-        case .keyboardSettings:
-            Keyboard.SettingsScreen()
-        case .localeSettings:
-            Keyboard.LocaleSettingsScreen()
-        case .themeSettings:
-            KeyboardTheme.SettingsScreen()
+        case .autocompleteSettings: Autocomplete.SettingsScreen()
+        case .clipboardSettings: Clipboard.SettingsScreen()
+        case .experimentSettings: Experiments.SettingsScreen()
+        case .feedbackSettings: Feedback.SettingsScreen()
+        case .fontSettings: Fonts.SettingsScreen()
+        case .fullDocumentReader: FullDocumentContextSheet()
+        case .hostApplicationInfo: HostAppInfoSheet(actionHandler: services.actionHandler)
+        case .keyboardSettings: Keyboard.SettingsScreen()
+        case .localeSettings: Keyboard.LocaleSettingsScreen()
+        case .themeSettings: KeyboardTheme.SettingsScreen()
         case .none: EmptyView()
         }
     }

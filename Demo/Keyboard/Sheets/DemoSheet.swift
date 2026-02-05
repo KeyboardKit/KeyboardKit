@@ -12,6 +12,11 @@ import SwiftUI
 ///
 /// The file is added to the app as well, to enable previews.
 enum DemoSheet: String, Identifiable {
+    case autocompleteSettings
+    case clipboardSettings
+    case experimentSettings
+    case feedbackSettings
+    case fontSettings
     case fullDocumentReader
     case hostApplicationInfo
     case keyboardSettings

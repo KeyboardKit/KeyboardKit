@@ -52,7 +52,7 @@ extension DemoKeyboardMenu {
         menuItem(
             title: "Menu.Settings",
             icon: .keyboardSettings,
-            tint: .primary,
+            tint: .gray,
             action: { sheet = .keyboardSettings }
         )
 
@@ -64,18 +64,38 @@ extension DemoKeyboardMenu {
         )
 
         menuItem(
-            title: "Menu.Themes",
-            icon: .keyboardTheme,
-            tint: .pink,
-            iconShadow: true,
-            action: { sheet = .themeSettings }
+            title: "Menu.Autocomplete",
+            icon: .keyboardAutocomplete,
+            tint: .orange,
+            action: { sheet = .autocompleteSettings }
         )
 
         menuItem(
-            title: "Menu.Dictation",
-            icon: .keyboardDictation,
-            tint: .orange,
-            action: { actionHandler.handle(.dictation) }
+            title: "Menu.Feedback",
+            icon: .keyboardFeedback,
+            tint: .green,
+            action: { sheet = .feedbackSettings }
+        )
+
+        menuItem(
+            title: "Menu.Clipboard",
+            icon: .keyboardClipboard,
+            tint: .brown,
+            action: { sheet = .clipboardSettings }
+        )
+
+        menuItem(
+            title: "Menu.Fonts",
+            icon: .keyboardFont,
+            tint: .gray,
+            action: { sheet = .fontSettings }
+        )
+
+        menuItem(
+            title: "Menu.Themes",
+            icon: .keyboardTheme,
+            tint: .pink,
+            action: { sheet = .themeSettings }
         )
 
         menuItem(
@@ -95,8 +115,7 @@ extension DemoKeyboardMenu {
         menuItem(
             title: "Menu.HostApp",
             icon: .init(systemName: "lightbulb"),
-            tint: .primary.opacity(0.5),
-            iconTint: .yellow,
+            tint: .yellow,
             action: { sheet = .hostApplicationInfo }
         )
 
@@ -105,6 +124,13 @@ extension DemoKeyboardMenu {
             icon: .init(systemName: "apps.iphone"),
             tint: .purple,
             action: { tryOpenUrl(app.deepLinks?.app) }
+        )
+        
+        menuItem(
+            title: "Menu.Experiments",
+            icon: .init(systemName: "flask"),
+            tint: .green,
+            action: { sheet = .experimentSettings }
         )
         
         menuItem(
@@ -117,8 +143,7 @@ extension DemoKeyboardMenu {
         menuItem(
             title: "Menu.CloseMenu",
             icon: .init(systemName: "xmark"),
-            tint: .primary,
-            iconTint: .primary,
+            tint: .red,
             action: {}
         )
     }
@@ -126,9 +151,7 @@ extension DemoKeyboardMenu {
     func menuItem(
         title: LocalizedStringKey,
         icon: Image,
-        tint: Color = .teal,
-        iconTint: Color? = nil,
-        iconShadow: Bool = false,
+        tint: Color,
         action: @escaping () -> Void
     ) -> some View {
         Button {
@@ -142,8 +165,6 @@ extension DemoKeyboardMenu {
                     .opacity(0)
                     .overlay(menuItemIcon(icon))
                     .font(.title)
-                    .foregroundStyle(iconTint ?? tint)
-                    .shadow(color: (iconShadow ? .black.opacity(0.3) : .clear), radius: 0, x: 0, y: 1)
                 Text(title)
                     .frame(maxWidth: .infinity, alignment: .center)
                     .lineLimit(1)
@@ -152,20 +173,19 @@ extension DemoKeyboardMenu {
             .font(.footnote)
         }
         .symbolVariant(.fill)
-        .symbolRenderingMode(.multicolor)
-        .buttonStyle(.bordered)
-        .tint(tint.gradient)
-        .background(Color.primary.colorInvert())
         .modify { content in
             if #available(iOS 26, *) {
                 content
-                    .clipShape(.capsule)
+                    .buttonStyle(.glassProminent)
             } else {
                 content
+                    .buttonStyle(.bordered)
+                    .background(Color.primary.colorInvert())
                     .clipShape(.rect(cornerRadius: 20))
+                    .shadow(color: .black.opacity(0.3), radius: 0, x: 0, y: 1)
             }
         }
-        .shadow(color: .black.opacity(0.3), radius: 0, x: 0, y: 1)
+        .tint(tint)
     }
 
     func menuItemIcon(
