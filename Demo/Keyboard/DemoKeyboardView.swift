@@ -34,7 +34,7 @@ struct DemoKeyboardView: View {
         KeyboardView(
             layout: demoLayout,
             services: services,
-            buttonContent: { $0.view },                     // $0.view uses the default view.
+            buttonContent: { $0.view },                     // $0.view lets you use the default view
             buttonView: {
                 $0.view.opacity(isToolbarToggled ? 0 : 1)   // Hide keys when the toolbar is toggled
             },
@@ -48,7 +48,7 @@ struct DemoKeyboardView: View {
                 } else {
                     DemoToolbar(
                         services: services,
-                        toolbar: params.view,               // Use the original toolbar
+                        toolbar: params.view,               // Use the default toolbar as base view
                         isTextInputActive: $isTextInputActive,
                         isToolbarToggled: $isToolbarToggled
                     )
@@ -61,7 +61,8 @@ struct DemoKeyboardView: View {
         // 💡 Customize callout actions in any way you want.
         .keyboardCalloutActions { params in                 // Apply custom actions to "K" key
             if case .character(let char) = params.action, char == "K" {
-                return .init(characters: String("keyboardkit".reversed()))
+                let keyboardkit = String("keyboardkit".reversed())
+                return .init(characters: keyboardkit)
             }
             return params.standardActions()
         }
@@ -93,8 +94,9 @@ private extension DemoKeyboardView {
     // 💡 Setup a custom keyboard layout
     var demoLayout: KeyboardLayout {
         NSLog("Creating a custom layout")
-        var layout = KeyboardLayout.standard(for: keyboardContext)
-        guard keyboardContext.keyboardType == .alphabetic else { return layout }
+        let context = state.keyboardContext
+        var layout = KeyboardLayout.standard(for: context)
+        guard context.keyboardType.isAlphabetic else { return layout }
         var item = layout.createIdealItem(for: .rocket)
         item.size.width = .input
         layout.itemRows.insert(item, after: .space)

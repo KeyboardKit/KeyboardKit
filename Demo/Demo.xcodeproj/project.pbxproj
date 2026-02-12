@@ -649,7 +649,7 @@
 			repositoryURL = "https://github.com/keyboardkit/keyboardkit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.2.0;
+				minimumVersion = 10.3.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

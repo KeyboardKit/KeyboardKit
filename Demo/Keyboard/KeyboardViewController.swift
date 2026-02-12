@@ -25,21 +25,16 @@ class KeyboardViewController: KeyboardInputViewController {
         NSLog("__DEINIT__")
     }
 
-    /// This function is called when the controller launches.
-    ///
-    /// Here, we call `setup(for:)` to set up the controller
-    /// with the shared `.keyboardKitDemo` application.
-    override func viewDidLoad() {
+
+    /// This function is called when the controller launches,
+    /// and is where you can set up KeyboardKit for your app.
+    override func viewWillSetupKeyboardKit() {
 
         /// 🧪 Enable experimental features
         Experiment.keyboardDictation.setIsEnabled(true)
-        Experiment.layoutCaching.setIsEnabled(true)
-
-        /// ⚠️ Always call super.viewDidLoad()!
-        super.viewDidLoad()
 
         // Set up the keyboard with the demo-specific app.
-        setup(for: .keyboardKitDemo) { [weak self] result in
+        setupKeyboardKit(for: .keyboardKitDemo) { [weak self] result in
 
             /// 💡 If the setup worked, we can customize the
             /// keyboard. If not, we should handle the error.
@@ -54,7 +49,8 @@ class KeyboardViewController: KeyboardInputViewController {
     }
 
     /// This function is called when the controller needs to
-    /// create or update the keyboard view.
+    /// redraw the keyboard view, and is where you can setup
+    /// a custom view or customize the standard KeyboardView.
     override func viewWillSetupKeyboardView() {
 
         // ⚠️ Don't call `super.viewWillSetupKeyboardView()`.
