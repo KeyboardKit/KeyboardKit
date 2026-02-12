@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1640"
+   LastUpgradeVersion = "2620"
    wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
@@ -15,7 +15,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A921153825D58AC7003510D9"
+               BlueprintIdentifier = "A99A1ED42E640D5A0014973F"
                BuildableName = "Keyboard.appex"
                BlueprintName = "Keyboard"
                ReferencedContainer = "container:Demo.xcodeproj">
