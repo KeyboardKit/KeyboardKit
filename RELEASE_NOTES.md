@@ -13,6 +13,68 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.3
+
+This version adds support for on-device next word prediction, using Apple's Foundation Models. This is available on supported platforms (from iPhone 15 Pro & iOS 26.1).
+
+Note that this is a very(!) new technology that is noticably slower and less accurate than other autocomplete features. You can help improving it by providing feedback.
+
+This verison also tweaks the license validation to be much faster, which also results in less flickering when setting up the keyboard extension. We hope you'll like it.
+
+This version also improves layout rendering by enabling layout caching by default. The old experiment has been converted to a proper dynamic `KeyboardSettings` setting. 
+
+This version adds a new `KeyboardSettings` setting to visualize the dynamic text tap areas, to make it possible for developers to visually verify this dynamic behavior. 
+
+### 🌱 Essentials
+
+* `KeyboardInputViewController` has a new `viewWillSetupKeyboardKit()` function.
+
+### ⚡️ Autocomplete
+
+* `Autocomplete.NextWordPredictionMethod` has a new `.local` method.
+* `Autocomplete.SettingsScreen` has a new next word prediction toggle.
+* `Autocomplete.SettingsScreenSections` has a redesigned next word prediction section.
+* `Autocomplete.StandardAutocompleteService` can now perform local next word prediction.
+* `AutocompleteSettings.nextWordPredictionMethod` now uses the `.local` method by default.
+
+### 🧪 Experiments
+
+* `Experiment` has been refactored to make it easier to enable experiments.
+
+### 🔉 Feedback
+
+* `FeedbackContext` has a new `registerCustomAudioFeedback(...)` function.
+* `FeedbackContext` has a new `registerCustomHapticFeedback(...)` function.
+
+### 🔣 Layout
+
+* `KeyboardLayout.DeviceConfiguration.standardPhone` now uses a 51 point row height in iOS 26.
+
+### 🤝 Licenses
+
+* `KeyboardInputViewController` validates licenses much faster than before.
+* `Keyboard.ToggleToolbar` now shows the `toolbar` if no license is registered.
+
+### 🎛️ Settings
+
+* `KeyboardSettings` has a new `isLayoutCaching` setting.
+* `KeyboardSettings` has a new `isPredictiveTextVisualizationActive` setting. 
+
+### 🐛 Bug fixes
+
+* `Keyboard.LocaleSettingsScreen` now handles changes to added locales better.
+* `KeyboardInputViewController` will now make an initial autocomplete on launch.
+
+### 🗑️ Deprecations
+
+* `Autocomplete.NextWordPredictionRequestType` has been renamed to `NextWordPredictionMethod`.
+* `AutocompleteSettings.nextWordPredictionRequestType` has been renamed to match this change.
+* `Experiments` has been simplified, and is no longer used to enable and disable experiments.
+* `Experiment.layoutCaching` has been deactivated, and no longer has any effect on the engine.
+* `Experiments.active` and `Experiment.isActive` is replaced with `Experiment.activeExperiments`.
+
+
+
 ## 10.2.2
 
 This version improves the controller's host bundle ID logic with hopes of reducing random crashes.
