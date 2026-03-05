@@ -13,6 +13,12 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.3.1
+
+This version updates some license information.
+
+
+
 ## 10.3
 
 This version adds support for on-device next word prediction, using Apple's Foundation Models. This is available on supported platforms (from iPhone 15 Pro & iOS 26.1).
