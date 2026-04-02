@@ -5,17 +5,54 @@
 * Deprecations can happen at any time.
 * Deprecations are removed in `major` updates.
 * Breaking changes should only occur in `major` updates.
-* Breaking changes *can* occur in `minor` and `patch` updates, if the alternative is worse.
-
-Beta version release tags are removed after the next minor or major version. 
+* Breaking changes can occur in `minor` updates, if the alternative is worse.
+* Beta version release tags are removed after the next minor or major version.
 
 This document covers the current major version. See older versions for older release notes.
 
 
 
-## 10.3.1
+## 10.4
 
-This version updates some license information.
+This version fixes the randomly slow keyboard launch times that could occur, by making `KeyboardInputViewController` postpone potentially costly operations until the keyboard has appeared.
+
+This patch adjusts the `hostApplicationBundleId` logic to handle that it fails to resolve in iOS 26.4. You can read more about this change [here](https://keyboardkit.com/blog/2026/03/02/ios-26-4-host-application-bundle-id-bug).
+
+You must now set the `hostApplicationBundleId` with code or let your users pick a host application from the keyboard. If this affects your keyboard in a negative way, we strongly recommend reaching out to Apple.
+
+### 🌱 Essentials
+
+* `KeyboardController` has a new `openMainAppUrl(_:withReason:)` function.
+* `KeyboardInputViewController` postpones autocomplete to speed up launch.
+* `Keyboard.State` has a new `keyboardAppContext` and injects it into the environment.
+
+### ⚡️ Actions
+
+* `KeyboardAction` has a new `.openMainApp` action.
+* `KeyboardAction` has a new KeyboardApp-based `.openMainApp` builder.
+* `KeyboardAction` has a new standard release action for `.openMainApp`.
+
+### 📱 App
+
+* `KeyboardAppContext` is a new app-specific context.
+* `KeyboardAppSettings` has new, internal app-specific settings.
+* `KeyboardAppView` resets the context reason when sent to the background.
+
+### 💡 Autocomplete
+
+* `Autocomplete.ToolbarScrollMode` is a new enum that defines toolbar scroll modes.
+* `.autocompleteToolbarScrollMode(...)` is a new view modifier that can be used to enable scrolling. 
+
+### 🏠 Host
+
+* The `hostApplicationBundleId` has been documented to not work in iOS 26.4.
+* The new `KeyboardHostApplication.Picker` can be used to pick a `KeyboardHostApplication`.
+
+
+
+## 10.3.1, 10.3.2
+
+This version contains some internal license handling changes.
 
 
 
@@ -35,7 +72,7 @@ This version adds a new `KeyboardSettings` setting to visualize the dynamic text
 
 * `KeyboardInputViewController` has a new `viewWillSetupKeyboardKit()` function.
 
-### ⚡️ Autocomplete
+### 💡 Autocomplete
 
 * `Autocomplete.NextWordPredictionMethod` has a new `.local` method.
 * `Autocomplete.SettingsScreen` has a new next word prediction toggle.
@@ -237,7 +274,7 @@ This version also makes `KeyboardApp.HomeScreen` and `KeyboardStatus.Section` no
 
 This version also lets you create and pass in your own custom host application values, which lets you extend this logic with more apps.
 
-### 💥 Actions
+### ⚡️ Actions
 
 * `KeyboardAction` has a new `.keyboardInputType` action.
 
@@ -443,7 +480,7 @@ Finally, the callout, layout and style services have been replaced by values and
 * `KeyboardApp` screens have been moved to their separate namespaces.
 * `Keyboard.SettingsScreen` has been split up into individual screens.
 
-### ⚡️ Autocomplete
+### 💡 Autocomplete
 
 * `Autocomplete` has a new `SettingsScreen`.
 * `LocalAutocompleteService` is renamed to `StandardAutocompleteService`.

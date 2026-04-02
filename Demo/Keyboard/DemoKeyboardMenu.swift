@@ -57,6 +57,13 @@ extension DemoKeyboardMenu {
         )
 
         menuItem(
+            title: "Dictation",
+            icon: .keyboardDictation,
+            tint: .orange,
+            action: { actionHandler.handle(.dictation) }
+            )
+
+        menuItem(
             title: "Menu.Languages",
             icon: .keyboardGlobe,
             tint: .blue,

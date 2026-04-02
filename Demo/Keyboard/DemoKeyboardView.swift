@@ -31,30 +31,33 @@ struct DemoKeyboardView: View {
     var keyboardContext: KeyboardContext { state.keyboardContext }
 
     var body: some View {
-        KeyboardView(
-            layout: demoLayout,
-            services: services,
-            buttonContent: { $0.view },                     // $0.view lets you use the default view
-            buttonView: {
-                $0.view.opacity(isToolbarToggled ? 0 : 1)   // Hide keys when the toolbar is toggled
-            },
-            collapsedView: { $0.view },
-            emojiKeyboard: { $0.view },
-            toolbar: { params in                            // All view builders have parameters
-                if isTextInputActive {
-                    DemoTextInputToolbar(
-                        isTextInputActive: $isTextInputActive
-                    )
-                } else {
-                    DemoToolbar(
-                        services: services,
-                        toolbar: params.view,               // Use the default toolbar as base view
-                        isTextInputActive: $isTextInputActive,
-                        isToolbarToggled: $isToolbarToggled
-                    )
+        VStack {
+            Color.red.frame(height: 150)
+            KeyboardView(
+                layout: demoLayout,
+                services: services,
+                buttonContent: { $0.view },                     // $0.view lets you use the default view
+                buttonView: {
+                    $0.view.opacity(isToolbarToggled ? 0 : 1)   // Hide keys when the toolbar is toggled
+                },
+                collapsedView: { $0.view },
+                emojiKeyboard: { $0.view },
+                toolbar: { params in                            // All view builders have parameters
+                    if isTextInputActive {
+                        DemoTextInputToolbar(
+                            isTextInputActive: $isTextInputActive
+                        )
+                    } else {
+                        DemoToolbar(
+                            services: services,
+                            toolbar: params.view,               // Use the default toolbar as base view
+                            isTextInputActive: $isTextInputActive,
+                            isToolbarToggled: $isToolbarToggled
+                        )
+                    }
                 }
-            }
-        )
+            )
+        }
         .overlay(menuGrid)
         .animation(.bouncy, value: isToolbarToggled)
 
