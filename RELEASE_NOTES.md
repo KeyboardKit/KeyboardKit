@@ -14,11 +14,11 @@ This document covers the current major version. See older versions for older rel
 
 ## 10.4
 
-This version fixes the randomly slow keyboard launch times that could occur, by making `KeyboardInputViewController` postpone potentially costly operations until the keyboard has appeared.
+This version fixes random slow keyboard launches by postponing costly operations until the keyboard has appeared.
 
-This patch adjusts the `hostApplicationBundleId` logic to handle that it fails to resolve in iOS 26.4. You can read more about this change [here](https://keyboardkit.com/blog/2026/03/02/ios-26-4-host-application-bundle-id-bug).
+This version also adjusts the `hostApplicationBundleId` logic to handle that this property becomes `nil` in iOS 26.4 and later. You can now set it with code or let users pick or specify a host application from the keyboard.
 
-You must now set the `hostApplicationBundleId` with code or let your users pick a host application from the keyboard. If this affects your keyboard in a negative way, we strongly recommend reaching out to Apple.
+You can read more about this change [here](https://keyboardkit.com/blog/2026/03/02/ios-26-4-host-application-bundle-id-bug). If not being able to automatically resolve the host application affects your app in a negative way, we strongly recommend reaching out to Apple with the [Feedback Assistant](https://feedbackassistant.apple.com).
 
 ### 🌱 Essentials
 
