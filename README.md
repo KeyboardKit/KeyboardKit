@@ -164,7 +164,6 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * ⌨️ [External][External] - Detect if an external keyboard is connected.
 * 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback with ease.
 * 𝒜 [Fonts][Fonts] - Type with other fonts than the standard system font.
-* 👆 [Gestures][Gestures] - Handle a rich set of gestures on any key.
 * 🏠 [Host][Host] - Identify and open the host application.
 * 📝 [Input][Input] - Keyboard input fields, Vietnamese support, etc.
 * 🔣 [Layout][Layout] - A dynamic, customizable keyboard layout engine.
@@ -172,7 +171,7 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
 * 👁 [Previews][Previews] - Keyboard & theme previews for in-app use.
 * 📄 [Proxy][Proxy] - Extend the text document proxy with more capabilities.
-* ⚙️ [Settings][Settings] - Provide keyboard settings & link to System Settings.
+* ⚙️ [Settings][Settings] - Sync keyboard settings across targets, and link to System Settings.
 * 🩺 [Status][Status] - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - Style your keyboard to great extent.
 * 🍭 [Themes][Themes] - A theme engine with many pre-defined themes.
@@ -254,7 +253,6 @@ KeyboardKit is closed-source. See the [LICENSE][License] file for more info.
 [External]: https://docs.keyboardkit.com/documentation/keyboardkit/external-keyboards-article
 [Feedback]: https://docs.keyboardkit.com/documentation/keyboardkit/feedback-article
 [Fonts]: https://docs.keyboardkit.com/documentation/keyboardkit/fonts-article
-[Gestures]: https://docs.keyboardkit.com/documentation/keyboardkit/gestures-article
 [Host]: https://docs.keyboardkit.com/documentation/keyboardkit/host-article
 [Input]: https://docs.keyboardkit.com/documentation/keyboardkit/input-article
 [Layout]: https://docs.keyboardkit.com/documentation/keyboardkit/layout-article
