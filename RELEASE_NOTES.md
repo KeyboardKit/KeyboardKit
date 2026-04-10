@@ -12,6 +12,38 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.4.1
+
+This version fixes some bugs and adds a preview of a new way to handle setting values and pickers.
+
+The new `KeyboardSettings.Picker` view can be used to harmonize the various setting pickers, and adds a new localization method which will make the various screen pickers and localization tools obsolete, or at least smaller.
+
+### 🌱 Essentials 
+
+* `Keyboard.InputToolbarType` implements `PickerValue`.
+* `Keyboard.InputToolbarTypePicker` is a new typealias. 
+
+### 🎛️ Settings (BETA)
+
+* `KeyboardSettings` has a new, generic `Picker` view.
+* `KeyboardSettings` has a new `PickerValue` protocol.
+* `.keyboardSettingsPickerValueTitle(...)` is a new view modifier can be used to localize these pickers.
+
+### 🐛 Bug fixes
+
+* `Keyboard.SettingsScreen` now displays a `none` option for the input toolbar type.
+* `KeyboardLayout` fixes a bug that cased the input toolbar to become too tall on iPad.
+* `KeyboardSettings` now uses the `.frequent` category for the input toolbar emoji keys.
+* `StandardAutocompleteService` fixes a Safari casing bug for English next word predictions.
+
+### 🗑️ Deprecations
+
+* `DragGestureHandler` has been moved into `Keyboard`.
+* `Gestures` has been merged with the `Keyboard` namespace.
+* `KeyboardSettings.InputToolbarType` has been moved to `Keyboard`.
+
+
+
 ## 10.4
 
 This version fixes random slow keyboard launches by postponing costly operations until the keyboard has appeared.
