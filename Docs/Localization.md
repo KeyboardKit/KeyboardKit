@@ -1,6 +1,6 @@
 # Localization
 
-Since adding support for more locales will be an ongoing effort, the information will be managed in this document instead of in an "forever open" GitHub issue.
+Since support for more locales is an ongoing effort, information regarding localization will be managed in this document instead of in a forever open GitHub issue.
 
 
 ## TLDR;
@@ -17,7 +17,7 @@ If you provide substantial help to implement support for a new locale, you will 
 
 ## Next (common)
 
-These locales will be added next:
+These locales will be added next, based on feasibility:
 
 * Kyrgyz
 * Maori
@@ -31,6 +31,7 @@ These locales will be added next:
 These locales have been requested, and should be prioritized:
 
 * eu_ES - Basque
+* km-KH - Khmer
 * hi - Hindi
 * ja - Japanese
 * ko - South Korean
