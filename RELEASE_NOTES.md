@@ -12,6 +12,76 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.5
+
+This version adds new accessibility features, and adds support for Arabic PC 🇦🇪.
+
+This also version improves autocomplete and autocorrections, tweaks some layout and design, and fixes some bugs.
+
+### 🌱 Essentials 
+
+* `KeyboardController` has a new `resetKeyboardInputType` function.
+
+### ♿️ Accessibility
+
+* `KeyboardAccessibility` is a new namespace.
+* `KeyboardAccessibilityContext` is a new observable context.
+* `KeyboardAccessibilitySettings` is a new type with persistent settings.
+* `KeyboardTheme` has a new `adjusted(for:)` that applies accessibility settings.
+
+### 💡 Autocomplete
+
+* `Autocomplete.TextReplacementDictionary.additionalAutocompletions` is a new list.
+* `Autocomplete.TextReplacementDictionary.additionalAutocorrections` has more values.
+* `Autocomplete.SettingsScreen` has a new toggle that can hide the autocomplete toolbar.
+* `Autocomplete.StandardAutocompleteService` will now filter out duplicate suggestions.
+* `AutocompleteContext.autocompleteDictionary` is a new dictionary with custom completions.
+* `AutocompleteSettings` has a new `isToolbarEnabled` setting that can be used to hide the toolbar.
+* `KeyboardView` will automatically hide the autocomplete toolbar if `isToolbarEnabled` is `false`.
+
+### 🔣 Layout
+
+* `KeyboardLayout` now adds additional edge insets on Liquid Glass iPad devices.
+* `KeyboardLayout` now places the keyboard switcher firstmost on Liquid Glass iPad devices.
+* `KeyboardLayout.DeviceConfiguration` now has an additional `edgeInsets` padding property.
+
+### 🌐 Localization
+
+* `KeyboardLocale` is a new namespace for locale-specific types.
+* `Locale` has a new `.arabic_pc` locale, with layouts and callouts.
+* `Locale.Dictionary` now implements `Sendable`.
+
+### 😀 Emojis
+
+* `EmojiKeyboard` now supports skin tones in emoji search. 
+* `KeyboardInputViewController` now cancels emoji search when the cursor moves. 
+
+### 📄 Proxy
+
+* `UITextDocumentProxy` has a new `moveTextInputCursorToRefreshContext(sleepInterval:)` function.
+
+### 🎛️ Settings
+
+* `Keyboard.SettingsScreen` has been moved to `KeyboardSettings`.
+* `Keyboard.LocaleSettingsScreen` has been moved to `KeyboardLocale`.
+
+### 🎨 Styling
+
+* `KeyboardAction` slightly increases the standard image font weight.
+* `KeyboardAction` slightly increases the standard lowercase font weight.
+* `KeyboardView` redesigns swipe down actions to look a bit more like native.
+
+### 🗑️ Deprecations
+
+* `View.localeSettingsScreenLocalization` has been renamed to `keyboardLocaleSettingsScreenLocalization`.
+* `View.localeSettingsScreenVisibility` has been renamed to `keyboardLocaleSettingsScreenVisibility`.
+
+### 🐛 Bug fixes
+
+* `KeyboardLayoutCache` adjusts layout cache to avoid missing input switcher on iPhone SE.
+
+
+
 ## 10.4.1
 
 This version fixes some bugs and adds a preview of a new way to handle setting values and pickers.
