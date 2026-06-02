@@ -19,3 +19,5 @@ git tag "$VERSION"
 git push origin "$VERSION"
 
 echo "Release $VERSION created and pushed."
+
+open "https://github.com/KeyboardKit/KeyboardKit/releases/tag/$VERSION"
