@@ -1,0 +1,21 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: create-release <version>"
+    echo "Example: create-release 10.5.1"
+    exit 1
+fi
+
+VERSION="$1"
+COMMIT_MESSAGE="Update package to $VERSION"
+
+echo "Creating release $VERSION..."
+
+git add -A
+git commit -m "$COMMIT_MESSAGE"
+git push
+
+git tag "$VERSION"
+git push origin "$VERSION"
+
+echo "Release $VERSION created and pushed."
