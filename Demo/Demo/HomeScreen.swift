@@ -71,11 +71,11 @@ OBS! This demo isn't code signed and therefore can't sync data with its keyboard
             appIconSize: 120,
             appIconCornerRadius: 27
         ))
-        .keyboardAppHomeScreenVisibility(.init(
-            settingsSectionFonts: true,
-            settingsSectionThemes: true,
-            settingsSectionExperiments: true,
-        ))
+//        .keyboardAppHomeScreenVisibility(.init(
+//            settingsSectionFonts: true,
+//            settingsSectionThemes: true,
+//            settingsSectionExperiments: true,
+//        ))
         .keyboardDictation(
             speechRecognizer: .standard
         )

@@ -32,7 +32,7 @@ struct DemoKeyboardView: View {
 
     var body: some View {
         VStack {
-            Color.red.frame(height: 150)
+            // Color.red.frame(height: 150)
             KeyboardView(
                 layout: demoLayout,
                 services: services,
@@ -131,8 +131,8 @@ private extension DemoKeyboardView {
         case .fontSettings: Fonts.SettingsScreen()
         case .fullDocumentReader: FullDocumentContextSheet()
         case .hostApplicationInfo: HostAppInfoSheet(actionHandler: services.actionHandler)
-        case .keyboardSettings: Keyboard.SettingsScreen()
-        case .localeSettings: Keyboard.LocaleSettingsScreen()
+        case .keyboardSettings: KeyboardSettings.SettingsScreen()
+        case .localeSettings: KeyboardLocale.SettingsScreen()
         case .themeSettings: KeyboardTheme.SettingsScreen()
         case .none: EmptyView()
         }
