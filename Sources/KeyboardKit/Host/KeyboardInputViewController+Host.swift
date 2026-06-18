@@ -51,13 +51,13 @@ private extension KeyboardInputViewController {
            let con = info.perform(NSSelectorFromString("connection")).takeUnretainedValue() as? NSObjectProtocol
         else { return nil }
         let xpcCon = con.perform(NSSelectorFromString("_xpcConnection")).takeUnretainedValue()
-        let handle = dlopen("/usr/lib/libc.dylib", RTLD_NOW)
-        let sym = dlsym(handle, "xpc_connection_copy_bundle_id")
-        typealias xpcFunc = @convention(c) (AnyObject) -> UnsafePointer<CChar>
+        guard let handle = dlopen("/usr/lib/libc.dylib", RTLD_NOW),
+              let sym = dlsym(handle, "xpc_connection_copy_bundle_id")
+        else { return nil }
+        typealias xpcFunc = @convention(c) (AnyObject) -> UnsafePointer<CChar>?
         let cFunc = unsafeBitCast(sym, to: xpcFunc.self)
-        let response = cFunc(xpcCon)
-        let hostBundleId = NSString(utf8String: response)
-        return hostBundleId as String?
+        guard let response = cFunc(xpcCon) else { return nil }
+        return String(cString: response)
     }
 }
 #endif
