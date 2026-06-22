@@ -12,6 +12,98 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.6
+
+This version minimizes the number of on-launch redraws to minimize launch flickering, and makes it possible to swipe up and down on the spacebar to move the cursor in greater steps.   
+
+This also version starts reducing namespace nesting, as described in [issue 1045](https://github.com/KeyboardKit/KeyboardKit/issues/1045). Expect less nesting and more surface-level types, with renaming guides to help you migrate.
+
+Finally, since the host application bundle ID keeps returning `nil` in iOS 27, we have deprecated the `KeyboardInputViewController` `hostApplicationBundleId` property, and updated the documentation with alternate ways to handle this.
+
+### 🌱 Essentials
+
+* `Keyboard.SpacebarDragGestureHandler` can now handle vertical movement.
+* `Keyboard.SpacebarDragGestureOffset` is a new enum for spacebar dragging.
+* `Keyboard.SpacebarDragSensitivity` now defines a horizontal and a vertical step value.
+* `KeyboardInputViewController` minimizes the number of on-launch redraws to minimize flickering.
+
+### 🏠 Host
+
+* `KeyboardHostApplicationPicker` now specialized `KeyboardSettingsPicker`.
+
+### 🔣 Layout
+
+* `KeyboardLayout` convert `baseLayout` builder to an initializer.
+* `KeyboardLayout` convert `iPhoneLayout` and `iPadLayout` buikders to instance members.
+* `KeyboardLayout` updates the keyboard switcher placement on iPads running iOS 18 and earlier.
+* `KeyboardLayout.DeviceConfiguration` applies updated edge insets on iPads running iOS 18 and earlier.
+
+### 📦 Namespace Changes
+
+* `KeyboardLayout.DeviceConfiguration` has been renamed to `KeyboardLayoutConfiguration`.
+* `KeyboardLayout.Item` has been renamed to `KeyboardLayoutItem`.
+* `KeyboardLocale.ContextMenu` has been renamed to `KeyboardLocaleContextMenuModifier`.
+* `KeyboardLocale.ListItem` has been renamed to `KeyboardLocaleListItem`.
+* `KeyboardLocale.SettingsScreen` has been renamed to `KeyboardLocaleSettingsSettingsScreen`. 
+* `KeyboardLocale.SettingsScreenLocalization` has been renamed to `KeyboardLocaleSettingsScreenLocalization`. 
+* `KeyboardLocale.SettingsScreenPickers` has been renamed to `KeyboardLocaleSettingsScreenPickers`. 
+* `KeyboardLocale.SettingsScreenVisibility` has been renamed to `KeyboardLocaleSettingsScreenVisibility`.
+* `KeyboardSettings.SettingsScreen` has been renamed to `KeyboardSettingsScreen`. 
+* `KeyboardSettings.SettingsScreenLocalization` has been renamed to `KeyboardSettingsScreenLocalization`. 
+* `KeyboardSettings.SettingsScreenPickers` has been renamed to `KeyboardSettingsScreenPickers`. 
+* `KeyboardSettings.SettingsScreenSections` has been renamed to `KeyboardSettingsScreenSections`. 
+* `KeyboardSettings.SettingsScreenVisibility` has been renamed to `KeyboardSettingsScreenVisibility`.
+* `KeyboardSettings.Picker` has been renamed to `KeyboardSettingsPicker`. 
+* `KeyboardSettings.PickerValue` has been renamed to `KeyboardSettingsPickerValue`. 
+* `KeyboardStatus.Label` has been renamed to `KeyboardStatusLabel`. 
+* `KeyboardStatus.LabelStyle` has been renamed to `KeyboardStatusLabelStyle`. 
+* `KeyboardStatus.Section` has been renamed to `KeyboardStatusSection`. 
+* `KeyboardStatus.SectionLocalization` has been renamed to `KeyboardStatusSectionLocalization`. 
+* `KeyboardStatus.SectionStyle` has been renamed to `KeyboardStatusSectionStyle`. 
+* `KeyboardTheme.Collection` has been renamed to `KeyboardThemeCollection`. 
+* `KeyboardTheme.SettingsScreen` has been renamed to `KeyboardThemeSettingsScreen`. 
+* `KeyboardTheme.SettingsScreenLocalization` has been renamed to `KeyboardThemeSettingsScreenLocalization`. 
+* `KeyboardTheme.SettingsScreenStyle` has been renamed to `KeyboardThemeSettingsScreenStyle`. 
+* `KeyboardTheme.SettingsScreenThemes` has been renamed to `KeyboardThemeSettingsScreenThemes`.
+* `Proxy.FullDocumentReaderConfiguration` has been renamed to `DocumentReaderConfiguration`.
+* `Proxy.FullDocumentReaderError` has been renamed to `DocumentReaderError`.
+* `Proxy.FullDocumentReaderResult` has been renamed to `DocumentReaderResult`.
+* `Proxy.SelectionEdge` has been renamed to `Keyboard.TextSelectionEdge`.
+
+### 👁️ Previews
+
+* `KeyboardPreviews.ActionHandler` is renamed to `PreviewKeyboardActionHandler`.
+* `KeyboardPreviews.AutocompleteService` is renamed to `PreviewAutocompleteService`.
+* `KeyboardPreviews.InputViewController` is renamed to `PreviewKeyboardInputViewController`.
+* `KeyboardPreviews.TextDocumentProxy` is renamed to `PreviewTextDocumentProxy`.
+
+### 📄 Proxy
+
+* `DocumentReader` is a new protocol, informally implemented by `UITextDocumentProxy`.
+* `UITextDocumentProxy` has new sentence `offset` variables.
+
+### ⚙️ Settings
+
+* `KeyboardSettingsPicker` now supports an optional selection binding.
+* `.keyboardSettingsPickerTitle(for:_:)` is a new `KeyboardSettingsPicker` view modifier.
+* `.keyboardSettingsPickerValueTitle(for:_:)` is a new `KeyboardSettingsPicker` view modifier.
+
+### 🩺 Status
+
+* `KeyboardStatusInspector` is a new tool for inspecting the keyboard system status.
+ 
+### 🗑️ Deprecations
+
+* The `KeyboardInputViewController` `hostApplicationBundleId` has been deprecated.
+* The `KeyboardInput` namespace is deprecated and will be removed in KeyboardKit 11.
+* The `KeyboardLocale` namespace is deprecated and will be removed in KeyboardKit 11.
+* The `KeyboardPreviews` namespace is deprecated and will be removed in KeyboardKit 11.
+* The `KeyboardStatus` namespace is deprecated and will be removed in KeyboardKit 11.
+* The `KeyboardStyle` namespace is deprecated and will be removed in KeyboardKit 11.
+* The `Proxy` namespace is deprecated and will be removed in KeyboardKit 11.
+
+
+
 ## 10.5
 
 This version adds new accessibility features, and adds support for Arabic PC 🇦🇪.
@@ -60,7 +152,7 @@ This also version improves autocomplete and autocorrections, tweaks some layout 
 
 * `UITextDocumentProxy` has a new `moveTextInputCursorToRefreshContext(sleepInterval:)` function.
 
-### 🎛️ Settings
+### ⚙️ Settings
 
 * `Keyboard.SettingsScreen` has been moved to `KeyboardSettings`.
 * `Keyboard.LocaleSettingsScreen` has been moved to `KeyboardLocale`.
@@ -93,7 +185,7 @@ The new `KeyboardSettings.Picker` view can be used to harmonize the various sett
 * `Keyboard.InputToolbarType` implements `PickerValue`.
 * `Keyboard.InputToolbarTypePicker` is a new typealias. 
 
-### 🎛️ Settings (BETA)
+### ⚙️ Settings (BETA)
 
 * `KeyboardSettings` has a new, generic `Picker` view.
 * `KeyboardSettings` has a new `PickerValue` protocol.
@@ -200,7 +292,7 @@ This version adds a new `KeyboardSettings` setting to visualize the dynamic text
 * `KeyboardInputViewController` validates licenses much faster than before.
 * `Keyboard.ToggleToolbar` now shows the `toolbar` if no license is registered.
 
-### 🎛️ Settings
+### ⚙️ Settings
 
 * `KeyboardSettings` has a new `isLayoutCaching` setting.
 * `KeyboardSettings` has a new `isPredictiveTextVisualizationActive` setting. 
@@ -302,7 +394,7 @@ This version adds more settings. For instance, it's now possible to disable auto
 
 * `FeedbackContext` has a new `isHapticFeedbackAvailable` property.
 
-### 🎛️ Settings
+### ⚙️ Settings
 
 * `Autocomplete.SettingsScreen` has a new `auto-ignore` toggle.
 * `Keyboard.SettingsScreen` has a new feedback section.
@@ -418,7 +510,7 @@ This version also lets you create and pass in your own custom host application v
 * `KeyboardLayout` uses a new layout cache to improve typing performance.
 * `KeyboardLayout` caching must be enabled with the new `Experiments` type.
 
-### 🎛️ Settings
+### ⚙️ Settings
 
 * `KeyboardSettings` has a new `isSwipeDownActionsEnabled` setting.
 
@@ -617,7 +709,7 @@ Finally, the callout, layout and style services have been replaced by values and
 * `Fonts` has a `SettingsScreen` that can pick a custom font.
 * `Fonts.UnicodeFont` is a model with Unicode-based font logic.
 
-### 🎛️ Settings
+### ⚙️ Settings
 
 * `KeyboardSettings` has a new `isDoubleTapOnShiftToCapsLockEnabled`.
 * `KeyboardSettings` has a new `isDoubleTapOnSpacebarToCloseSentenceEnabled`.
