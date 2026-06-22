@@ -131,9 +131,9 @@ private extension DemoKeyboardView {
         case .fontSettings: Fonts.SettingsScreen()
         case .fullDocumentReader: FullDocumentContextSheet()
         case .hostApplicationInfo: HostAppInfoSheet(actionHandler: services.actionHandler)
-        case .keyboardSettings: KeyboardSettings.SettingsScreen()
-        case .localeSettings: KeyboardLocale.SettingsScreen()
-        case .themeSettings: KeyboardTheme.SettingsScreen()
+        case .keyboardSettings: KeyboardSettingsScreen()
+        case .localeSettings: KeyboardLocaleSettingsScreen()
+        case .themeSettings: KeyboardThemeSettingsScreen()
         case .none: EmptyView()
         }
     }
