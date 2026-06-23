@@ -22,7 +22,6 @@
 		A99A1F0A2E640E130014973F /* DemoActionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1EFA2E640E130014973F /* DemoActionHandler.swift */; };
 		A99A1F0B2E640E130014973F /* DemoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1EFC2E640E130014973F /* DemoSheet.swift */; };
 		A99A1F0C2E640E130014973F /* FullDocumentContextSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1EFD2E640E130014973F /* FullDocumentContextSheet.swift */; };
-		A99A1F0D2E640E130014973F /* HostAppInfoSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1EFE2E640E130014973F /* HostAppInfoSheet.swift */; };
 		A99A1F0E2E640E130014973F /* DemoKeyboardMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1F002E640E130014973F /* DemoKeyboardMenu.swift */; };
 		A99A1F0F2E640E130014973F /* DemoKeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1F012E640E130014973F /* DemoKeyboardView.swift */; };
 		A99A1F102E640E130014973F /* DemoTextInputToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A99A1F022E640E130014973F /* DemoTextInputToolbar.swift */; };
@@ -76,7 +75,6 @@
 		A99A1EFA2E640E130014973F /* DemoActionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoActionHandler.swift; sourceTree = "<group>"; };
 		A99A1EFC2E640E130014973F /* DemoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoSheet.swift; sourceTree = "<group>"; };
 		A99A1EFD2E640E130014973F /* FullDocumentContextSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullDocumentContextSheet.swift; sourceTree = "<group>"; };
-		A99A1EFE2E640E130014973F /* HostAppInfoSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HostAppInfoSheet.swift; sourceTree = "<group>"; };
 		A99A1F002E640E130014973F /* DemoKeyboardMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardMenu.swift; sourceTree = "<group>"; };
 		A99A1F012E640E130014973F /* DemoKeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoKeyboardView.swift; sourceTree = "<group>"; };
 		A99A1F022E640E130014973F /* DemoTextInputToolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoTextInputToolbar.swift; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 			children = (
 				A99A1EFC2E640E130014973F /* DemoSheet.swift */,
 				A99A1EFD2E640E130014973F /* FullDocumentContextSheet.swift */,
-				A99A1EFE2E640E130014973F /* HostAppInfoSheet.swift */,
 			);
 			path = Sheets;
 			sourceTree = "<group>";
@@ -371,7 +368,6 @@
 				A99A1F0B2E640E130014973F /* DemoSheet.swift in Sources */,
 				A99A1F0C2E640E130014973F /* FullDocumentContextSheet.swift in Sources */,
 				A99A1F142E640E2B0014973F /* KeyboardApp+Demo.swift in Sources */,
-				A99A1F0D2E640E130014973F /* HostAppInfoSheet.swift in Sources */,
 				A99A1F0E2E640E130014973F /* DemoKeyboardMenu.swift in Sources */,
 				A99A1F0F2E640E130014973F /* DemoKeyboardView.swift in Sources */,
 				A99A1F102E640E130014973F /* DemoTextInputToolbar.swift in Sources */,

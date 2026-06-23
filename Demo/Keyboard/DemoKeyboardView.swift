@@ -130,7 +130,6 @@ private extension DemoKeyboardView {
         case .feedbackSettings: Feedback.SettingsScreen()
         case .fontSettings: Fonts.SettingsScreen()
         case .fullDocumentReader: FullDocumentContextSheet()
-        case .hostApplicationInfo: HostAppInfoSheet(actionHandler: services.actionHandler)
         case .keyboardSettings: KeyboardSettingsScreen()
         case .localeSettings: KeyboardLocaleSettingsScreen()
         case .themeSettings: KeyboardThemeSettingsScreen()
