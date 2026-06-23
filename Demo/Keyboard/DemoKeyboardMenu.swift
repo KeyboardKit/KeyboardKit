@@ -120,13 +120,6 @@ extension DemoKeyboardMenu {
         )
 
         menuItem(
-            title: "Menu.HostApp",
-            icon: .init(systemName: "lightbulb"),
-            tint: .yellow,
-            action: { sheet = .hostApplicationInfo }
-        )
-
-        menuItem(
             title: "Menu.OpenApp",
             icon: .init(systemName: "apps.iphone"),
             tint: .purple,
@@ -164,7 +157,11 @@ extension DemoKeyboardMenu {
         Button {
             withAnimation {
                 isToolbarToggled.toggle()
-                action()
+            }
+            DispatchQueue.main.async {
+                withAnimation {
+                    action()
+                }
             }
         } label: {
             VStack(alignment: .center, spacing: 10) {
