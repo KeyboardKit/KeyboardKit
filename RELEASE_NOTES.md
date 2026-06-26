@@ -12,9 +12,187 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.7
+
+This version adds undo functionality to the keyboard engine, which makes it possible to undo text insertions, deletions, and autocompletions in chunks. This is currently opt-in. Enable the `undoManager` experiment to try it out. 
+
+This version also adds many more pickers and settings for various keyboard models, including a brand new `KeyboardActionPicker`. This will let us harmonize the settings tools, and avoid having to write separate code for each model.
+
+This version also flattens the remaining namespaces, to complete the extensive namespace transition earlier than initially planned, to give us all time to migrate before KeyboardKit 11.
+
+### 🌱 Essentials
+
+* `Keyboard.DockEdge` has a new `.none` case.
+* `Keyboard.DockEdge` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.InputToolbarType` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.InputType` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.KeyboardCase` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.KeyboardType` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.LayoutType` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.ReturnKeyType` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.SpacebarLongPressBehavior` now implements `KeyboardSettingsPickerValue`.
+* `Keyboard.SpacebarMenuType` has a new `.none` case.
+* `Keyboard.SpacebarMenuType` now implements `KeyboardSettingsPickerValue`.
+* `KeyboardController` has a new `undoLastRecordedDocumentChange` function.
+* `KeyboardController` has a new `openMainApp` and `openMainAppDeepLink` functions.
+
+### ⚡️ Actions
+
+* `KeyboardAction` `.openMainApp` and `.undo` are new actions.
+* `KeyboardAction.PickerValue` is a new `KeyboardSettingsPickerValue`.
+* `StandardKeyboardActionHandler` has a new `undoLastRecordedDocumentChange` function.
+
+### 🧪 Experiments
+
+* `Experiment.undoManager` is a new experiment that lets you enable the new undo feature.
+
+### 📜 Licenses
+
+* `LicenseErrorAlert` has been redesigned to be more informative.
+
+### 📄 Proxy
+
+* `TextDocumentUndoChange` is a new type to describe a text document change.
+* `TextDocumentUndoManager` is a new class for undoing text document changes.
+
+### ⚙️ Settings
+
+* `Keyboard.DockEdgePicker` is a new picker component.
+* `Keyboard.InputToolbarTypePicker` is a new picker component.
+* `Keyboard.InputTypePicker` is a new picker component.
+* `Keyboard.KeyboardCasePicker` is a new picker component.
+* `Keyboard.KeyboardTypePicker` is a new picker component.
+* `Keyboard.LayoutTypePicker` is a new picker component.
+* `Keyboard.ReturnKeyTypePicker` is a new picker component.
+* `Keyboard.SpacebarLongPressBehaviorPicker` is a new picker component.
+* `Keyboard.SpacebarMenuTypePicker` is a new picker component.
+* `KeyboardActionPicker` is a new picker component.
+
+### 🎨 Styling
+
+* `Image.keyboardArrowBackward` is a new image.
+* `Image.keyboardArrowForward` is a new image.
+* `Image.keyboardCase` is a new image builder.
+* `Image.keyboardEscape` is a new image.
+* `Image.keyboardFunction` is a new image.
+* `Image.keyboardInputType` is a new image builder.
+* `Image.keyboardSpace` is a new image.
+* `Image.keyboardSystemSettings` is a new image.
+* `Image.keyboardType` is a new image builder.
+* `Image.keyboardUrlDomain` is a new image.
+
+### 🐛 Bug fixes
+
+* `KeyboardLocaleSettingsScreen` now applies the correct layout type.
+
+### 📦 Namespace Changes
+
+* `Autocomplete.AutocorrectionDisabledToContextModifer` has been renamed to `KeyboardKit.AutocorrectionDisabledModifer`.
+* `Autocomplete.DisabledAutocompleteService` has been renamed to `KeyboardKit.DisabledAutocompleteService`.
+* `Autocomplete.NextWordPredictionMethod` has been renamed to `AutocompleteMethod`.
+* `Autocomplete.NextWordPredictionRequestType` has been renamed to `AutocompleteMethod`.
+* `Autocomplete.NextWordPredictionTypePicker` has been renamed to `AutocompleteMethodPicker`.
+* `Autocomplete.Result` has been renamed to `AutocompleteResult`.
+* `Autocomplete.RemotePredictionRequest` has been renamed to `RemoteAutocompleteRequest`.
+* `Autocomplete.SettingsScreen` has been renamed to `AutocompleteSettingsScreen`.
+* `Autocomplete.SettingsScreenLocalization` has been renamed to `AutocompleteSettingsScreenLocalization`.
+* `Autocomplete.SettingsScreenSections` has been renamed to `AutocompleteSettingsScreenSections`.
+* `Autocomplete.SettingsScreenVisibility` has been renamed to `AutocompleteSettingsScreenVisibility`.
+* `Autocomplete.StandardAutocompleteService` has been renamed to `KeyboardKit.StandardAutocompleteService`.
+* `Autocomplete.Suggestion` has been renamed to `AutocompleteSuggestion`.
+* `Autocomplete.SuggestionType` has been renamed to `AutocompleteSuggestionType`.
+* `Autocomplete.TextReplacementDictionary` has been renamed to `AutocompleteReplacementDictionary`.
+* `Autocomplete.Toolbar` has been renamed to `AutocompleteToolbar`.
+* `Autocomplete.ToolbarScrollMode` has been renamed to `AutocompleteToolbarScrollMode`.
+* `Autocomplete.ToolbarStyle` has been renamed to `AutocompleteToolbarStyle`.
+* `Autocomplete.ToolbarItem` has been renamed to `AutocompleteToolbarItem`.
+* `Autocomplete.ToolbarItemStyle` has been renamed to `AutocompleteToolbarItemStyle`.
+* `Autocomplete.ToolbarSeparator` has been renamed to `AutocompleteToolbarSeparator`.
+* `Autocomplete.ToolbarSeparatorStyle` has been renamed to `AutocompleteToolbarSeparatorStyle`.
+* `Callouts.Actions` has been renamed to `KeyboardCalloutActions`
+* `Callouts.ActionsBuilder` has been renamed to `KeyboardCalloutActions.Builder`
+* `Callouts.ActionsBuilderParams` has been renamed to `KeyboardCalloutActions.BuilderParams`
+* `Callouts.ActionCallout` has been renamed to `KeyboardActionCallout`
+* `Callouts.CalloutStyle` has been renamed to `KeyboardCalloutStyle`
+* `Callouts.InputCallout` has been renamed to `KeyboardInputCallout`
+* `Dictation.AuthorizationStatus` has been renamed to `DictationAuthorizationStatus`
+* `Dictation.BarVisualizer` has been renamed to `DictationBarVisualizer`
+* `Dictation.BarVisualizerStyle` has been renamed to `DictationBarVisualizerStyle`
+* `Dictation.DictationMethod` has been renamed to `DictationMethod`
+* `Dictation.DictationState` has been renamed to `DictationState`
+* `Dictation.DisabledDictationEngine` has been renamed to `DisabledDictationEngine`
+* `Dictation.DisabledDictationService` has been renamed to `DisabledDictationService`
+* `Dictation.DisabledSpeechRecognizer` has been renamed to `DisabledDictationSpeechRecognizer`
+* `Dictation.Indicator` has been renamed to `DictationIndicatorBadge`
+* `Dictation.IndicatorStyle` has been renamed to `DictationIndicatorBadgeStyle`
+* `Dictation.ProgressView` has been renamed to `DictationKeyboardOverlay`
+* `Dictation.ProgressViewLocalization` has been renamed to `DictationKeyboardOverlayLocalization`
+* `Dictation.ProgressViewStyle` has been renamed to `DictationKeyboardOverlayStyle`
+* `Dictation.ServiceError` has been renamed to `DictationServiceError`
+* `Dictation.SettingsScreen` has been renamed to `DictationSettingsScreen`
+* `Dictation.SettingsScreenLocalization` has been renamed to `DictationSettingsScreenLocalization`
+* `Dictation.SettingsScreenSections` has been renamed to `DictationSettingsScreenSections`
+* `Dictation.SpeechRecognizerResult` has been renamed to `DictationSpeechResult`
+* `Dictation.StandardDictationEngine` has been renamed to `StandardDictationEngine`
+* `Dictation.StandardDictationService` has been renamed to `StandardDictationService`
+* `Dictation.StandardVolumeRecorder` has been renamed to `StandardDictationVolumeRecorder`
+* `Dictation.VolumeRecorder` has been renamed to `DictationVolumeRecorder`
+* `Dictation.VolumeResult` has been renamed to `DictationVolumeResult`
+* `Dictation.VolumeVisualizer` has been renamed to `DictationVolumeVisualizer`
+* `Dictation.VolumeVisualizerStyle` has been renamed to `DictationVolumeVisualizerStyle`
+* `Emoji.ColonSearch` has been renamed to `EmojiColonSearch`.
+* `Emoji.KeyboardSearchField` has been renamed to `EmojiSearchField`
+* `EmojiKeyboard.Configuration` has been renamed to `EmojiKeyboardConfiguration`
+* `EmojiKeyboard.Sizes` has been renamed to `EmojiKeyboardSizes`
+* `EmojiKeyboard.State` has been renamed to `EmojiKeyboardState`
+* `EmojiKeyboard.Style` has been renamed to `EmojiKeyboardStyle`
+* `Experiment` has been renamed to `KeyboardExperiment`.
+* `Experiment.SettingsScreen` has been renamed to `KeyboardExperimentSettingsScreen`.
+* `Experiment.SettingsScreenLocalization` has been renamed to `KeyboardExperimentSettingsScreenLocalization`.
+* `Experiments` has been renamed to `KeyboardExperimentSettings`.
+* `ExperimentContext` has been renamed to `KeyboardExperimentContext`.
+* `Feedback.Audio` has been renamed to `KeyboardAudioFeedback`.
+* `Feedback.AudioConfiguration` has been renamed to `KeyboardAudioFeedbackConfiguration`.
+* `Feedback.AudioEngine` has been renamed to `KeyboardAudioFeedbackEngine`.
+* `Feedback.DisabledFeedbackService` has been renamed to `DisabledKeyboardFeedbackService`.
+* `Feedback.Haptic` has been renamed to `KeyboardHapticFeedback`.
+* `Feedback.HapticConfiguration` has been renamed to `KeyboardHapticFeedbackConfiguration`.
+* `Feedback.HapticEngine` has been renamed to `KeyboardHapticFeedbackEngine`.
+* `Feedback.StandardFeedbackService` has been renamed to `StandardKeyboardFeedbackService`.
+* `Feedback.Toggle` has been renamed to `KeyboardFeedbackToggle`.
+* `FeedbackContext` has been renamed to `KeyboardFeedbackContext`.
+* `FeedbackService` has been renamed to `KeyboardFeedbackService`.
+* `FeedbackSettings` has been renamed to `KeyboardFeedbackSettings`.
+* `FontContext` has been renamed to `KeyboardFontContext`.
+* `FontSettings` has been renamed to `KeyboardFontSettings`.
+* `Fonts.UnicodeFont` has been renamed to `KeyboardUnicodeFont`.
+* `Fonts.UnicodeFontOption` has been renamed to `KeyboardUnicodeFontOption`.
+* `KeyboardAccessibility.SettingsScreen` has been renamed to `KeyboardAccessibilitySettingsScreen`.
+* `KeyboardAccessibility.SettingsScreenLocalization` has been renamed to `KeyboardAccessibilitySettingsScreenLocalization`.
+* `KeyboardAction.StandardActionHandler` has been renamed to `StandardKeyboardActionHandler`.
+* `KeyboardFont.SettingsScreen` has been renamed to `KeyboardFontSettingsScreen`.
+* `KeyboardFont.SettingsScreenLocalization` has been renamed to `KeyboardFontSettingsScreenLocalization`.
+
+### 🗑️ Deprecations
+
+* The `Autocomplete` namespace is deprecated and will be removed in 11.0.
+* The `Callouts` namespace is deprecated and will be removed in 11.0.
+* The `Dictation` namespace is deprecated and will be removed in 11.0.
+* The `DocumentReader` has been renamed to `TextDocumentReader`.
+* The `DocumentReaderConfiguration` has been renamed to `TextDocumentReaderConfiguration`.
+* The `DocumentReaderError` has been renamed to `TextDocumentReaderError`.
+* The `DocumentReaderResult` has been renamed to `TextDocumentReaderResult`.
+* The `Feedback` namespace is deprecated and will be removed in 11.0.
+* The `Fonts` namespace is deprecated and will be removed in 11.0.
+* The `KeyboardAccessibility` namespace is deprecated and will be removed in 11.0.
+* The `KeyboardSettingsScreenPickers` are replaced by the new pickers.
+* The `KeyboardLocaleSettingsScreenPickers` are replaced by the new pickers.
+   
+
+
 ## 10.6
 
-This version minimizes the number of on-launch redraws to minimize launch flickering, and makes it possible to swipe up and down on the spacebar to move the cursor in greater steps.   
+This version minimizes the number of on-launch redraws to minimize launch flickering, and makes it possible to swipe up and down on the spacebar to move the cursor in greater chunks.   
 
 This also version starts reducing namespace nesting, as described in [issue 1045](https://github.com/KeyboardKit/KeyboardKit/issues/1045). Expect less nesting and more surface-level types, with renaming guides to help you migrate.
 
@@ -34,7 +212,7 @@ Finally, since the host application bundle ID keeps returning `nil` in iOS 27, w
 ### 🔣 Layout
 
 * `KeyboardLayout` convert `baseLayout` builder to an initializer.
-* `KeyboardLayout` convert `iPhoneLayout` and `iPadLayout` buikders to instance members.
+* `KeyboardLayout` convert `iPhoneLayout` and `iPadLayout` builders to instance members.
 * `KeyboardLayout` updates the keyboard switcher placement on iPads running iOS 18 and earlier.
 * `KeyboardLayout.DeviceConfiguration` applies updated edge insets on iPads running iOS 18 and earlier.
 
@@ -95,12 +273,12 @@ Finally, since the host application bundle ID keeps returning `nil` in iOS 27, w
 ### 🗑️ Deprecations
 
 * The `KeyboardInputViewController` `hostApplicationBundleId` has been deprecated.
-* The `KeyboardInput` namespace is deprecated and will be removed in KeyboardKit 11.
-* The `KeyboardLocale` namespace is deprecated and will be removed in KeyboardKit 11.
-* The `KeyboardPreviews` namespace is deprecated and will be removed in KeyboardKit 11.
-* The `KeyboardStatus` namespace is deprecated and will be removed in KeyboardKit 11.
-* The `KeyboardStyle` namespace is deprecated and will be removed in KeyboardKit 11.
-* The `Proxy` namespace is deprecated and will be removed in KeyboardKit 11.
+* The `KeyboardInput` namespace is deprecated and will be removed in 11.0.
+* The `KeyboardLocale` namespace is deprecated and will be removed in 11.0.
+* The `KeyboardPreviews` namespace is deprecated and will be removed in 11.0.
+* The `KeyboardStatus` namespace is deprecated and will be removed in 11.0.
+* The `KeyboardStyle` namespace is deprecated and will be removed in 11.0.
+* The `Proxy` namespace is deprecated and will be removed in 11.0.
 
 
 
@@ -287,7 +465,7 @@ This version adds a new `KeyboardSettings` setting to visualize the dynamic text
 
 * `KeyboardLayout.DeviceConfiguration.standardPhone` now uses a 51 point row height in iOS 26.
 
-### 🤝 Licenses
+### 📜 Licenses
 
 * `KeyboardInputViewController` validates licenses much faster than before.
 * `Keyboard.ToggleToolbar` now shows the `toolbar` if no license is registered.
