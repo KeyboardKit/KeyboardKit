@@ -190,6 +190,19 @@ This version also flattens the remaining namespaces, to complete the extensive n
    
 
 
+## 10.6.1
+
+This version reverts the hard disabling of the `hostApplicationBundleId` property, and restores it with a soft deprecated version that explains that the function will be removed in KeyboardKit 11.
+
+Note that the ID will still be `nil` on all iOS versions before 26.4, so please see the Host feature article in the online docs for a discussion on how to best handle integrating with the host app. 
+
+ ### 💡 Changes
+
+* `UIInputViewController.hostApplicationBundleId` now resolves the bundle ID on iOS versions before 26.4.
+
+
+
+
 ## 10.6
 
 This version minimizes the number of on-launch redraws to minimize launch flickering, and makes it possible to swipe up and down on the spacebar to move the cursor in greater chunks.   
