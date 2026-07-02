@@ -85,16 +85,6 @@
         }
       }
     },
-    "Menu.HostApp" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Host App Info"
-          }
-        }
-      }
-    },
     "Menu.Languages" : {
       "localizations" : {
         "en" : {
@@ -205,86 +195,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Result: "
-          }
-        }
-      }
-    },
-    "Sheet.Host" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Host Application"
-          }
-        }
-      }
-    },
-    "Sheet.Host.Section.App" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Host Application"
-          }
-        }
-      }
-    },
-    "Sheet.Host.Section.App.BundleId" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bundle ID"
-          }
-        }
-      }
-    },
-    "Sheet.Host.Section.App.CanOpen" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Can Be Opened?"
-          }
-        }
-      }
-    },
-    "Sheet.Host.Section.App.Name" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Name"
-          }
-        }
-      }
-    },
-    "Sheet.Host.Section.App.Unknown" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "The current host application is not known by KeyboardKit Pro. Reach out to get it added."
-          }
-        }
-      }
-    },
-    "Sheet.Host.Section.BundleID" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Host Application Bundle ID"
-          }
-        }
-      }
-    },
-    "Sheet.Host.Section.KnownApps" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Known Apps"
           }
         }
       }
