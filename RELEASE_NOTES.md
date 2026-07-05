@@ -12,6 +12,19 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.7.1
+
+This version adds some missing parts to the various pickers.
+
+### ⚙️ Settings
+
+* `Keyboard.InputToolbarTypePicker` has a new `values` property.
+* `KeyboardActionPicker` has a new `isTextFieldFocused` binding.
+* `KeyboardActionPicker` has a new `values` property.
+* `KeyboardSettingsDisclosurePicker` is a new picker view.
+
+
+
 ## 10.7
 
 This version adds undo functionality to the keyboard engine, which makes it possible to undo text insertions, deletions, and autocompletions in chunks. This is currently opt-in. Enable the `undoManager` experiment to try it out. 
