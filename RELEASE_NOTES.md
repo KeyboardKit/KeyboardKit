@@ -12,6 +12,21 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.7.3
+
+This version tweaks the standard emoji action button style.
+
+
+
+## 10.7.2
+
+### ⚙️ Settings
+
+* `KeyboardAction.PickerValue` has a new `openMainApp` case.
+* `KeyboardAction.PickerValue` has a new `undo` case.
+
+
+
 ## 10.7.1
 
 This version adds some missing parts to the various pickers.
@@ -22,7 +37,7 @@ This version adds some missing parts to the various pickers.
 * `KeyboardActionPicker` has a new `isTextFieldFocused` binding.
 * `KeyboardActionPicker` has a new `values` property.
 * `KeyboardSettingsDisclosurePicker` is a new picker view.
-
+ 
 
 
 ## 10.7
@@ -201,19 +216,6 @@ This version also flattens the remaining namespaces, to complete the extensive n
 * The `KeyboardSettingsScreenPickers` are replaced by the new pickers.
 * The `KeyboardLocaleSettingsScreenPickers` are replaced by the new pickers.
    
-
-
-## 10.6.1
-
-This version reverts the hard disabling of the `hostApplicationBundleId` property, and restores it with a soft deprecated version that explains that the function will be removed in KeyboardKit 11.
-
-Note that the ID will still be `nil` on all iOS versions before 26.4, so please see the Host feature article in the online docs for a discussion on how to best handle integrating with the host app. 
-
- ### 💡 Changes
-
-* `UIInputViewController.hostApplicationBundleId` now resolves the bundle ID on iOS versions before 26.4.
-
-
 
 
 ## 10.6
