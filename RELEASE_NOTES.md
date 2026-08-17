@@ -12,6 +12,82 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.8
+
+This version converts the various settings types to observable object classes, that are added to `KeyboardState` and injected into the various context and into the SwiftUI view environment.
+
+This means that you can now get a settings instance from the environment instead of having to go through the context. This makes view binding more correct, and decouples the two types more.
+
+This version extends `AutocompleteSettings` to handle user-based autocompletions, autocorrections, and ignored words, and adds new autocomplete settings screens for managing these settings.
+
+This version also updates the dictation keyboard overlay to allow more customizations and styling options.
+
+
+### 🌱 Essentials
+
+* `Keyboard` has a new `LocaleSections` struct.
+* `Keyboard` has a new `LearnedWordsDictionary` struct.
+* `Keyboard` has new styling types for uniform styling.
+* `KeyboardState` has new properties for settings types.
+* `Keyboard.LocaleDictionary` adds more conditional conformances.
+* `Keyboard.LocaleWordDictionary` is a new localized word dictionary.
+* `Keyboard.TextReplacementDictionary` has new and renamed functions.
+* `Keyboard.TextReplacementDictionary` now conforms to `KeyboardModel`.
+* `String.autocompleteWordDelimiters` now contains additional characters.
+
+### 📱 App
+
+* `KeyboardAppView` no longer observes the keyboard state.
+
+### 💡 Autocomplete
+
+* `AutocompleteSettings` has a new `autocorrectDictionary`.
+* `AutocompleteSettings` has a new `autocompleteDictionary`.
+* `AutocompleteSettings` has a new `ignoredWordsDictionary`.
+* `AutocompleteSettingsScreen` links to new settings screens.
+* `AutocompleteIgnoredWordsScreen` is a brand new setting screen.
+* `AutocompleteTextReplacementsScreen` is a brand new setting screen.
+* `StandardAutocompleteService` resolves its `emojiColonSearch` lazily.
+* `StandardAutocompleteService` now regards text replacements and ignored words.
+
+### 🎤 Dictation
+
+* `DictationContext` no longer auto-resets itself.
+* `DictationContext.reset` no longer uses async resets.
+* `DictationContext.setIsDictating` no longer animates.
+* `DictationIndicatorBadge` is now rendered as a circle.
+* `DictationIndicatorBadgeStyle` has new styling options.
+* `DictationKeyboardOverlayStyle` has new styling options.
+
+### 😀 Emojis
+
+* `Emoji` and `EmojiVersion` have been optimized for performance.  
+
+### 👁️ Previews
+
+* There are new context and settings preview builders.
+
+### ⚙️ Settings
+
+* All settings types are converted to `ObservableObject` classes.
+* `KeyboardSettingsScreen` now links to the new text replacements.
+
+### 🍭 Themes
+
+* `KeyboardThemeSettings` has new functions for handling the theme.
+
+### 🐛 Bug Fixes
+
+* `String.autocompleteWordDelimiters` updates fixes URL autocomplete bugs.
+
+### 🗑️ Deprecations
+
+* The various context initializers now require a settings instance.
+* `KeyboardThemeContext` theme logic has been moved to the settings.
+* `Locale.Dictionary` has been renamed to `Keyboard.LocaleDictionary`.
+
+
+
 ## 10.7.3
 
 This version tweaks the standard emoji action button style.
