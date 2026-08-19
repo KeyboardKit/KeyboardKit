@@ -16,14 +16,14 @@ import SwiftUI
 /// to toggle state, trigger actions, etc.
 struct DemoToolbar<Toolbar: View>: View {
 
-    var services: Keyboard.Services
+    var services: KeyboardServices
     var toolbar: Toolbar
 
     @Binding var isTextInputActive: Bool
     @Binding var isToolbarToggled: Bool
 
     @EnvironmentObject var autocompleteContext: AutocompleteContext
-    @EnvironmentObject var feedbackContext: FeedbackContext
+    @EnvironmentObject var feedbackContext: KeyboardFeedbackContext
     @EnvironmentObject var keyboardContext: KeyboardContext
 
     @FocusState var isTextFieldFocused

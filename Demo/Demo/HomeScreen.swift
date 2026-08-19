@@ -35,7 +35,7 @@ struct HomeScreen: View {
 
     var body: some View {
         NavigationView {
-            KeyboardApp.HomeScreen(
+            KeyboardAppHomeScreen(
                 app: app,
                 appIcon: Image(.icon),
                 header: {
@@ -86,9 +86,9 @@ OBS! This demo isn't code signed and therefore can't sync data with its keyboard
 extension HomeScreen {
     
     func dictationScreen() -> some View {
-        Dictation.Screen(
+        DictationScreen(
             titleView: { EmptyView() },
-            visualizer: { Dictation.BarVisualizer(isAnimating: $0) },
+            visualizer: { DictationBarVisualizer(isAnimating: $0) },
             doneButton: { action in
                 Button("Button.Done", action: action)
                     .buttonStyle(.borderedProminent)

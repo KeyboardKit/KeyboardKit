@@ -31,20 +31,20 @@ public class StandardSpeechRecognizer: DictationSpeechRecognizer {
     private var request: SFSpeechAudioBufferRecognitionRequest?
     private var speechRecognizerTask: SFSpeechRecognitionTask?
 
-    private typealias Err = Dictation.ServiceError
+    private typealias Err = DictationServiceError
 
-    public var authorizationStatus: Dictation.AuthorizationStatus {
-        SFSpeechRecognizer.authorizationStatus().keyboardDictationStatus
+    public var authorizationStatus: DictationAuthorizationStatus {
+        SFSpeechRecognizer.authorizationStatus().dictationStatus
     }
 
     public var supportedLocales: [Locale] {
         Array(SFSpeechRecognizer.supportedLocales())
     }
 
-    public func requestDictationAuthorization() async throws -> Dictation.AuthorizationStatus {
+    public func requestDictationAuthorization() async throws -> DictationAuthorizationStatus {
         await withCheckedContinuation { continuation in
             SFSpeechRecognizer.requestAuthorization { status in
-                continuation.resume(returning: status.keyboardDictationStatus)
+                continuation.resume(returning: status.dictationStatus)
             }
         }
     }
@@ -62,7 +62,7 @@ public class StandardSpeechRecognizer: DictationSpeechRecognizer {
 
     public func startDictation(
         with locale: Locale,
-        resultHandler: ((Dictation.SpeechRecognizerResult) -> Void)?
+        resultHandler: ((DictationSpeechResult) -> Void)?
     ) async throws {
         recognizer = SFSpeechRecognizer(locale: locale)
         guard let recognizer else { throw Err.missingSpeechRecognizer }
@@ -70,7 +70,7 @@ public class StandardSpeechRecognizer: DictationSpeechRecognizer {
         request?.shouldReportPartialResults = true
         guard let request else { throw Err.missingSpeechRecognitionRequest }
         speechRecognizerTask = recognizer.recognitionTask(with: request) {
-            let result = Dictation.SpeechRecognizerResult(
+            let result = DictationSpeechResult(
                 dictatedText: $0?.bestTranscription.formattedString,
                 error: $1,
                 isFinal: $0?.isFinal ?? true)

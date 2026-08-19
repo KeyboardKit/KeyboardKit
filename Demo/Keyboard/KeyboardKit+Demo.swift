@@ -14,7 +14,7 @@ extension KeyboardAction {
     static let rocket = character("🚀")
 }
 
-extension Feedback.Audio {
+extension KeyboardAudioFeedback {
  
     static let rocketFuse = customUrl(
         Bundle.main.url(forResource: "fuse", withExtension: "wav")

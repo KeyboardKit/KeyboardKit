@@ -31,7 +31,7 @@ class KeyboardViewController: KeyboardInputViewController {
     override func viewWillSetupKeyboardKit() {
 
         /// 🧪 Enable experimental features
-        Experiment.keyboardDictation.setIsEnabled(true)
+        KeyboardExperiment.keyboardDictation.setIsEnabled(true)
 
         // Set up the keyboard with the demo-specific app.
         setupKeyboardKit(for: .keyboardKitDemo) { [weak self] result in
@@ -66,6 +66,7 @@ class KeyboardViewController: KeyboardInputViewController {
                 state: controller.state
             )
         }
+        
     }
 }
 

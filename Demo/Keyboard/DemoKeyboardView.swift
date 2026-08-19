@@ -16,8 +16,8 @@ import SwiftUI
 /// a toggle toolbar that has an alternate menu.
 struct DemoKeyboardView: View {
 
-    var services: Keyboard.Services
-    var state: Keyboard.State
+    var services: KeyboardServices
+    var state: KeyboardState
 
     @AppStorage("com.keyboardkit.demo.isToolbarToggled")
     var isToolbarToggled = false
@@ -72,7 +72,7 @@ struct DemoKeyboardView: View {
 
         // 💡 Apply the currently selected theme, if any.
         .keyboardTheme(
-            themeContext.currentTheme
+            themeContext.settings.theme
         )
 
         // 💡 This sheet can be used to show the main menu.
@@ -124,11 +124,11 @@ private extension DemoKeyboardView {
     // 💡 This view builder creates misc sheet content views.
     @ViewBuilder var sheetContent: some View {
         switch activeSheet {
-        case .autocompleteSettings: Autocomplete.SettingsScreen()
-        case .clipboardSettings: Clipboard.SettingsScreen()
-        case .experimentSettings: Experiments.SettingsScreen()
-        case .feedbackSettings: Feedback.SettingsScreen()
-        case .fontSettings: Fonts.SettingsScreen()
+        case .autocompleteSettings: AutocompleteSettingsScreen()
+        case .clipboardSettings: ClipboardSettingsScreen()
+        case .experimentSettings: KeyboardExperimentSettingsScreen()
+        case .feedbackSettings: KeyboardFeedbackSettingsScreen()
+        case .fontSettings: KeyboardFontSettingsScreen()
         case .fullDocumentReader: FullDocumentContextSheet()
         case .keyboardSettings: KeyboardSettingsScreen()
         case .localeSettings: KeyboardLocaleSettingsScreen()
