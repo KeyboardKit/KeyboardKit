@@ -12,6 +12,21 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.8.1
+
+This version fixes some locale and casing bugs.
+
+The input controller will now make set up App Group syncing before accessing any settings. This fixes a bug where locales set in the main app didn't sync properly to the keyboard.
+
+The input controller will also clean up its keyboard case logic, which caused some initial flickering and sometimes some flaky behavior. This also makes the keyboard honor the preferred autocapitalization of a text field, which wasn't always the case before.
+
+### 🐛 Bug Fixes
+
+* `KeyboardInputViewController` moves SDK initialization earlier to avoid stale locale settings.
+* `KeyboardInputViewController` cleans up its initial case logic to make it correct and avoid flickering.
+
+
+
 ## 10.8
 
 This version converts the various settings types to observable object classes, that are added to `KeyboardState` and injected into the various context and into the SwiftUI view environment.

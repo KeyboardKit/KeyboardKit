@@ -57,6 +57,7 @@ OBS! This demo isn't code signed and therefore can't sync data with its keyboard
                             .keyboardType(.numberPad)
                         TextField("TextField.URL", text: $textURL)
                             .keyboardType(.URL)
+                            .autocapitalization(.none)
                         TextField("TextField.WebSearch", text: $textWebSearch)
                             .keyboardType(.webSearch)
                         TextField("TextField.Multiline", text: $textMultiline, axis: .vertical)
