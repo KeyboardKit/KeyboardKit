@@ -12,6 +12,50 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.9 - Developer Preview
+
+This version soft-deprecates old dictation methods that will be removed in KeyboardKit 11.
+
+This version also adds bug fixes & adjustments to the button view, to make typing more efficient. 
+
+This version also adds new toolbar views, and applies the primary language on launch to fix external hardware keyboard-related bugs.
+
+### 🌱 Essentials
+
+* `Keyboard.ButtonGestures` has been rebuilt for improved performance.
+* `Keyboard.ToolbarItem` is a new toolbar view that can trigger an action.
+* `Keyboard.ToolbarToggle` is a new toolbar view that can toggle a binding.
+* `KeyboardInputViewController` has a new `setPrimaryLanguage(from:)` function.
+* `KeyboardInputViewController` now sets the primary language in `viewWillAppear`.
+
+### 💡 Autocomplete
+
+* `AutocompleteToolbarScrollMode.scrollable` has a more convenient name.
+* `AutocompleteToolbarScrollMode.scrollable` now supports setting a max width.
+
+### 🏠 Host Application
+
+* `KeyboardInputViewController` has a new `resolveHostApplication(_:_:)` function.
+* `KeyboardInputViewController` has a new `resolveHostApplication(withAdditionalApps:_:_:)` function.
+* `KeyboardInputViewController` has a new `resolveHostApplicationBundleId(_:_:)` function.
+
+### 🐛 Bug Fixes
+
+* `GestureButton` now properly cancels any ongoing repeat actions when it disappears.
+* `KeyboardInputViewController` sets primary language on launch to fix external keyboard issues.
+
+### 🗑️ Deprecations
+
+* `DictationMethod` has been soft-deprecated.
+* `View.keyboardDictationIfStartedOnAppear` has been deprecated.
+* `View.keyboardDictationOnDeepLink` has been deprecated.
+
+### 🚨 Breaking Changes
+
+* The gesture button action signatures have been changed.
+
+
+
 ## 10.8.1
 
 This version fixes some locale and casing bugs.
@@ -19,6 +63,11 @@ This version fixes some locale and casing bugs.
 The input controller will now make set up App Group syncing before accessing any settings. This fixes a bug where locales set in the main app didn't sync properly to the keyboard.
 
 The input controller will also clean up its keyboard case logic, which caused some initial flickering and sometimes some flaky behavior. This also makes the keyboard honor the preferred autocapitalization of a text field, which wasn't always the case before.
+
+### 🌱 Essentials
+
+* `Keyboard` has a new `LocaleSections` struct.
+
 
 ### 🐛 Bug Fixes
 
