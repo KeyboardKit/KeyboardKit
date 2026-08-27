@@ -12,13 +12,11 @@ This document covers the current major version. See older versions for older rel
 
 
 
-## 10.9 - Developer Preview
+## 10.9
 
 This version soft-deprecates old dictation methods that will be removed in KeyboardKit 11.
 
-This version also adds bug fixes & adjustments to the button view, to make typing more efficient. 
-
-This version also adds new toolbar views, and applies the primary language on launch to fix external hardware keyboard-related bugs.
+This version also adds bug fixes & adjustments to the button view, to make typing more efficient, adds new toolbar views, and applies the primary language on launch to fix external hardware keyboard-related bugs.
 
 ### 🌱 Essentials
 
@@ -52,7 +50,8 @@ This version also adds new toolbar views, and applies the primary language on la
 
 ### 🚨 Breaking Changes
 
-* The gesture button action signatures have been changed.
+* The `GestureButton` and `Keyboard.ButtonGestures` action signatures have been changed.
+
 
 
 
