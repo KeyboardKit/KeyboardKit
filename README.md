@@ -10,6 +10,7 @@
     <img src="https://img.shields.io/badge/license-closedsource-red.svg" alt="Closed Source" />
 </p>
 
+
 # KeyboardKit
 
 KeyboardKit lets you create amazing [custom keyboard extensions][About] with a few lines of code, using Swift & SwiftUI.
@@ -30,11 +31,6 @@ https://github.com/KeyboardKit/KeyboardKit.git
 ```
 
 Since KeyboardKit is a binary framework, it must only linked to the main app target. All other targets will be able to use it without linking.
-
-<!-- 
-> [!NOTE]
-> Starting with KeyboardKit 10.3, each release will include a multiplatform build. The tag name for a multiplatform release is the version number followed by `-multiplatform`, e.g. `10.3.0-multiplatform`.
--->
 
 
 ## Getting Started
