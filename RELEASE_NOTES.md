@@ -12,6 +12,33 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.9.2
+
+This version adds a missing keyboard button for the number pad action.
+
+### 🌱 Essentials
+
+* `KeyboardInputViewController` has a new `viewWillHandleLicenseError(_:)` function.
+
+### ⚡️ Actions
+
+* `KeyboardAction.settings` now open the main app by default.
+
+### 📦 Packages
+
+* `LicenseKit` has been bumped to 2.2.1.   
+
+### 🐛 Bug Fixes
+
+* `Keyboard.KeyboardType.numberPad` adds a missing button image.
+
+### 🗑️ Deprecations
+
+* Deprecated namespace are now soft-deprecated to avoid overruling type renamings.
+* DocC adds all deprecated types to a list in the root document, to clean up the main menu. 
+
+
+
 ## 10.9.1
 
 This version adds new locale views and tweaks some appearance.
@@ -71,7 +98,6 @@ This version also adds new toolbar views, and applies the primary language on la
 ### 🚨 Breaking Changes
 
 * The gesture button action signatures have been changed.
-
 
 
 
