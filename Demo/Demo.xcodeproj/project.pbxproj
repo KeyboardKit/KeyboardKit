@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -643,7 +643,7 @@
 			repositoryURL = "https://github.com/keyboardkit/keyboardkit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 10.8.0;
+				minimumVersion = 10.9.4;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
