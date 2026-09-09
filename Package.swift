@@ -1,4 +1,4 @@
-// swift-tools-version: 6.2
+// swift-tools-version: 5.9
 
 import PackageDescription
 
@@ -27,8 +27,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "KeyboardKit",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-dp.2/KeyboardKit.zip",
-            checksum: "a7b7c11bc95015592d06b9d9e357d00c88ac67175a27e30461826901b2837cb5"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/10.9.4/KeyboardKit.zip",
+            checksum: "1438fe94a40503519b0a070261d37234d657e65331a7dc327d32c4086b140c60"
         ),
         .target(
             name: "KeyboardKitDependencies",

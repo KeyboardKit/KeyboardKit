@@ -12,6 +12,18 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 10.9.4
+
+`IMPORTANT!` This patch aims to fix a gesture regression detected in iOS 27 beta, where button gestures can suffer a random delay that results in typing lags. You can read more about it [here](https://keyboardkit.com/blog/2026/09/09/gesture-problems-in-ios-27-public-beta).
+
+The patch tries to fix this by rebuilding the gesture handling from scratch. The result feels great and a lot snappier, with the same public API as before, which means nothing changes on your end.
+
+Since iOS 27 will be announced later today, and we realized just now how much this affects the typing, we have to take a leap of faith and release the new gesture engine before getting your feedback.  
+
+However, we DO need your feedback! We'd love to hear what you think, whether you think it's as good as we do, if you utterly dislike it, or if you run into any problems. Please [send us an email](mailto:info@keyboardkit.com) and tell us. 
+
+
+
 ## 10.9.2
 
 This version adds a missing keyboard button for the number pad action.
