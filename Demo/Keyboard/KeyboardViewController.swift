@@ -25,6 +25,9 @@ class KeyboardViewController: KeyboardInputViewController {
         NSLog("__DEINIT__")
     }
 
+    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
+        [.bottom, .left, .right]
+    }
 
     /// This function is called when the controller launches,
     /// and is where you can set up KeyboardKit for your app.
@@ -76,7 +79,7 @@ private extension KeyboardViewController {
     func setupDemoServices() {
 
         // 💡 Set up am action handler for our rocket button.
-        services.actionHandler = DemoActionHandler(
+        services.actionHandler = DemoKeyboardActionHandler(
             controller: self
         )
     }

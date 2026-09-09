@@ -28,21 +28,19 @@ struct DemoKeyboardView: View {
     @State var isTextInputActive = false
     @State var theme: KeyboardTheme?
 
-    var keyboardContext: KeyboardContext { state.keyboardContext }
+    var opacity: Double { isToolbarToggled ? 0 : 1 }
 
     var body: some View {
         VStack {
             // Color.red.frame(height: 150)
             KeyboardView(
-                layout: demoLayout,
+                layout: .demoLayout(for: state.keyboardContext),
                 services: services,
-                buttonContent: { $0.view },                     // $0.view lets you use the default view
-                buttonView: {
-                    $0.view.opacity(isToolbarToggled ? 0 : 1)   // Hide keys when the toolbar is toggled
-                },
+                buttonContent: { $0.view },                 // $0.view lets you use the default view
+                buttonView: { $0.view.opacity(opacity) },   // Hide keys when the toolbar is toggled
                 collapsedView: { $0.view },
                 emojiKeyboard: { $0.view },
-                toolbar: { params in                            // All view builders have parameters
+                toolbar: { params in                        // All view builders have parameters
                     if isTextInputActive {
                         DemoTextInputToolbar(
                             isTextInputActive: $isTextInputActive
@@ -50,7 +48,7 @@ struct DemoKeyboardView: View {
                     } else {
                         DemoToolbar(
                             services: services,
-                            toolbar: params.view,               // Use the default toolbar as base view
+                            toolbar: params.view,           // Use the default toolbar as base view
                             isTextInputActive: $isTextInputActive,
                             isToolbarToggled: $isToolbarToggled
                         )
@@ -93,18 +91,6 @@ struct DemoKeyboardView: View {
 }
 
 private extension DemoKeyboardView {
-
-    // 💡 Setup a custom keyboard layout
-    var demoLayout: KeyboardLayout {
-        NSLog("Creating a custom layout")
-        let context = state.keyboardContext
-        var layout = KeyboardLayout.standard(for: context)
-        guard context.keyboardType.isAlphabetic else { return layout }
-        var item = layout.createIdealItem(for: .rocket)
-        item.size.width = .input
-        layout.itemRows.insert(item, after: .space)
-        return layout
-    }
 
     // 💡 This menu view is shown when the menu is activated.
     @ViewBuilder var menuGrid: some View {
