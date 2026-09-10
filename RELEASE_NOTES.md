@@ -12,6 +12,14 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.0 - Developer Preview
+
+See the preview releases under https://github.com/KeyboardKit/KeyboardKit-Binaries/releases for information about each release.
+
+These release notes will be updated after 11.0 is released.
+
+
+
 ## 10.9.4
 
 `IMPORTANT!` This patch aims to fix a gesture regression detected in iOS 27 beta, where button gestures can suffer a random delay that results in typing lags. You can read more about it [here](https://keyboardkit.com/blog/2026/09/09/gesture-problems-in-ios-27-public-beta).
