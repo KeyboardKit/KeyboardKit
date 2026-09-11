@@ -12,9 +12,9 @@ This document covers the current major version. See older versions for older rel
 
 
 
-## 11.0 - Developer Preview
+## 11.0 Beta
 
-See the preview releases under https://github.com/KeyboardKit/KeyboardKit-Binaries/releases for information about each release.
+See beta releases under https://github.com/KeyboardKit/KeyboardKit-Binaries/releases for information about each release.
 
 These release notes will be updated after 11.0 is released.
 
