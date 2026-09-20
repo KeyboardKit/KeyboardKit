@@ -20,6 +20,12 @@ These release notes will be updated after 11.0 is released.
 
 
 
+## 10.9.5
+
+This version fixes a scroll view blur bug in iOS 27.
+
+
+
 ## 10.9.4
 
 `IMPORTANT!` This patch aims to fix a gesture regression detected in iOS 27 beta, where button gestures can suffer a random delay that results in typing lags. You can read more about it [here](https://keyboardkit.com/blog/2026/09/09/gesture-problems-in-ios-27-public-beta).
