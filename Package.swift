@@ -1,4 +1,4 @@
-// swift-tools-version: 5.9
+// swift-tools-version: 6.2
 
 import PackageDescription
 
@@ -17,14 +17,21 @@ let package = Package(
             name: "KeyboardKit",
             targets: ["KeyboardKit", "KeyboardKitDependencies"]
         ),
-//        .library(
-//            name: "KeyboardKitDictationPlugin",
-//            targets: ["KeyboardKitDictationPlugin"]
-//        ),
-//        .library(
-//            name: "KeyboardKitHostPlugin",
-//            targets: ["KeyboardKitHostPlugin"]
-//        )
+        
+        // MARK: - Plugins
+        
+        .library(
+            name: "KeyboardKitAutocompletePlugin",
+            targets: ["KeyboardKitAutocompletePlugin"]
+        ),
+        .library(
+            name: "KeyboardKitDictationPlugin",
+            targets: ["KeyboardKitDictationPlugin"]
+        ),
+        .library(
+            name: "KeyboardKitHostPlugin",
+            targets: ["KeyboardKitHostPlugin"]
+        )
     ],
     dependencies: [
         .package(
@@ -35,23 +42,31 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "KeyboardKit",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/10.9.5/KeyboardKit.xcframework.zip",
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKit.zip",
             checksum: "6b75d935adb10b16f5c5a6ae7e449f0f14126ee1892b911a30ebec5908e48e7f"
         ),
-//        .binaryTarget(
-//            name: "KeyboardKitDictationPlugin",
-//            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.1/KeyboardKitDictationPlugin.zip",
-//            checksum: "6aae05ee4ab78c4d04b2ed9548a2c1b73ff201ad661bfd99fd3829086ef0f886"
-//        ),
-//        .binaryTarget(
-//            name: "KeyboardKitHostPlugin",
-//            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.1/KeyboardKitHostPlugin.zip",
-//            checksum: "7d93ddc13141a470ff3c699e420712ffab4b0f19a3782c00f080f046e2e0edd8"
-//        ),
         .target(
             name: "KeyboardKitDependencies",
             dependencies: ["LicenseKit"],
             path: "Dependencies",
+        ),
+        
+        // MARK: - Plugins
+        
+        .binaryTarget(
+            name: "KeyboardKitAutocompletePlugin",
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKitAutocompletePlugin.zip",
+            checksum: "9f5504e70dcf580b5a4eb4bd7749757f33e22a1fa5d1d3ab5ec91f9542c44246"
+        ),
+        .binaryTarget(
+            name: "KeyboardKitDictationPlugin",
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKitDictationPlugin.zip",
+            checksum: "7a935154d375d3831b4b46fc506b0e8209019d343bb803508d839aa66856c25f"
+        ),
+        .binaryTarget(
+            name: "KeyboardKitHostPlugin",
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKitHostPlugin.zip",
+            checksum: "f5356f22e89fa240b787bdbb41296847fdd1d0dc83f86055851a965168bd63fe"
         )
     ]
 )
