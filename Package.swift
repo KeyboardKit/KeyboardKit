@@ -43,7 +43,7 @@ let package = Package(
         .binaryTarget(
             name: "KeyboardKit",
             url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKit.zip",
-            checksum: "998a61a57fbc31a4f81ae3ef4931b1d15f87c7604b9abf75e7a6c448c652aa12"
+            checksum: "8cc7bc57b568443387b3db613598ad5de945f78b4e81f8bd44bbe25fee127230"
         ),
         .target(
             name: "KeyboardKitDependencies",
@@ -56,17 +56,17 @@ let package = Package(
         .binaryTarget(
             name: "KeyboardKitAutocompletePlugin",
             url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKitAutocompletePlugin.zip",
-            checksum: "d9dd76b5a4b643cfad679d3f04c94789c09ea9698a27b03f0e5fc0d8bc638c0a"
+            checksum: "55f774d7d4e8734a48fab2d6fa4067d82cab17817f652a474ce6f145d6a3c2eb"
         ),
         .binaryTarget(
             name: "KeyboardKitDictationPlugin",
             url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKitDictationPlugin.zip",
-            checksum: "41c7dcf5b61e49895b88b929c28a4c24b60b8feb59e28cde543cf6327997464b"
+            checksum: "d5ae44d3f1530e167eb9f18ac1d9f7a5d5cc4271bc09207991b29e7de7484be0"
         ),
         .binaryTarget(
             name: "KeyboardKitHostPlugin",
             url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKitHostPlugin.zip",
-            checksum: "d152d72b561d5332d79b9b4e5ac2cf49206f7b0d06572ca7c838db4eb535de01"
+            checksum: "050e335a69d1416d2d5e94de5824972954abebaa399894f982270dbbd7cd8ac8"
         )
     ]
 )
