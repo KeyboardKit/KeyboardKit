@@ -42,8 +42,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "KeyboardKit",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKit.zip",
-            checksum: "6b75d935adb10b16f5c5a6ae7e449f0f14126ee1892b911a30ebec5908e48e7f"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKit.zip",
+            checksum: "998a61a57fbc31a4f81ae3ef4931b1d15f87c7604b9abf75e7a6c448c652aa12"
         ),
         .target(
             name: "KeyboardKitDependencies",
@@ -55,18 +55,18 @@ let package = Package(
         
         .binaryTarget(
             name: "KeyboardKitAutocompletePlugin",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKitAutocompletePlugin.zip",
-            checksum: "9f5504e70dcf580b5a4eb4bd7749757f33e22a1fa5d1d3ab5ec91f9542c44246"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKitAutocompletePlugin.zip",
+            checksum: "d9dd76b5a4b643cfad679d3f04c94789c09ea9698a27b03f0e5fc0d8bc638c0a"
         ),
         .binaryTarget(
             name: "KeyboardKitDictationPlugin",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKitDictationPlugin.zip",
-            checksum: "7a935154d375d3831b4b46fc506b0e8209019d343bb803508d839aa66856c25f"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKitDictationPlugin.zip",
+            checksum: "41c7dcf5b61e49895b88b929c28a4c24b60b8feb59e28cde543cf6327997464b"
         ),
         .binaryTarget(
             name: "KeyboardKitHostPlugin",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.2/KeyboardKitHostPlugin.zip",
-            checksum: "f5356f22e89fa240b787bdbb41296847fdd1d0dc83f86055851a965168bd63fe"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0-b.3/KeyboardKitHostPlugin.zip",
+            checksum: "d152d72b561d5332d79b9b4e5ac2cf49206f7b0d06572ca7c838db4eb535de01"
         )
     ]
 )
