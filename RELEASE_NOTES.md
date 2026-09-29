@@ -20,6 +20,21 @@ These release notes will be updated after 11.0 is released.
 
 
 
+## 10.9.6
+
+This version fixes a thread hang when enabling a custom input toolbar in iOS 27.
+
+### 🏠 Host
+
+* `KeyboardHostApplicationPicker` now specialized `KeyboardSettingsPicker`.
+
+### 🐛 Bug Fixes
+
+* `KeyboardLayout` no longer uses a `.preview` context default parameter, since that now causes a loop.
+
+
+
+
 ## 10.9.5
 
 This version fixes a scroll view blur bug in iOS 27.
