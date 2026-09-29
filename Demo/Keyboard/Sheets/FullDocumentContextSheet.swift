@@ -49,7 +49,8 @@ private extension FullDocumentContextSheet {
         isReading = true
         fullDocumentContext = ""
         Task {
-            let result = try await keyboardContext.textDocumentProxy.fullDocumentContext()
+            let result = try? await keyboardContext.textDocumentProxy.fullDocumentContext()
+            guard let result else { return }
             await MainActor.run {
                 self.isReading = false
                 self.fullDocumentContext = result.fullDocumentContext

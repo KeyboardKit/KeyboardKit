@@ -72,7 +72,7 @@ private extension DemoToolbar {
     var localeSwitcher: some View {
         Image.keyboardGlobe
             .background(Color.clearInteractable)
-            .localeContextMenu {
+            .keyboardLocaleContextMenu {
                 services.actionHandler.handle(.nextLocale)
             }
     }
