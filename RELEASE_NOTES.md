@@ -20,6 +20,12 @@ These release notes will be updated after 11.0 is released.
 
 
 
+## 10.9.7
+
+This version rebuilds 10.9.6 with Xcode 26.
+
+
+
 ## 10.9.6
 
 This version fixes a thread hang when enabling a custom input toolbar in iOS 27.
