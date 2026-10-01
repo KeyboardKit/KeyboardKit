@@ -12,1194 +12,220 @@ This document covers the current major version. See older versions for older rel
 
 
 
-## 11.0 Beta
+## 11.0
 
-See beta releases under https://github.com/KeyboardKit/KeyboardKit/releases for information about each beta.
+KeyboardKit 11 uses Swift 6.2 and strict concurrency. This made it possible to remove a lot of dispatch and `MainActor.run` code, which makes the library more stable. This work also involved making more types `MainActor`, while aiming to keep most of the library unchanged. The `KeyboardContext` proxy logic is thus moved to a new main actor-bound `KeyboardControllerContext`, to keep the core context versatile.
 
-These release notes will be updated after 11.0 is released.
+KeyboardKit 11 almost doubles the number of supported locales, bringing the total to `111`. This is made possible by the improved diacritics engines, which now supports combination marks. As part of this, we have also improved the layout engine and harmonized many layouts, to keep them consistent across configuration changes, and fixed a bunch of incorrect swipe down actions on iPad.
 
+KeyboardKit 11 also adds a new plugin architecture, which lets us move sensitive code, like permissions and system API usage, out of the core library. This plugin model is an exciting new part of KeyboardKit, and will let us build more capabilities and integrations outside of the core SDK, and let you decide which plugins you want to use.
 
+Finally, this version removes deprecated code, ends all experiments, and uses `LocalizedStringResource` for UI components localization.
 
-## 10.9.7
 
-This version rebuilds 10.9.6 with Xcode 26.
+### 💡 Biggest Changes
 
+The biggest structural changes in KeyboardKit 11 that will most likely affect you, is how controller-related state has been moved from the keyboard context to the new controller context, and how dictation and host application detection now requires plugins to be enabled.
 
-
-## 10.9.6
-
-This version fixes a thread hang when enabling a custom input toolbar in iOS 27.
-
-### 🏠 Host
-
-* `KeyboardHostApplicationPicker` now specialized `KeyboardSettingsPicker`.
-
-### 🐛 Bug Fixes
-
-* `KeyboardLayout` no longer uses a `.preview` context default parameter, since that now causes a loop.
-
-
-
-
-## 10.9.5
-
-This version fixes a scroll view blur bug in iOS 27.
-
-
-
-## 10.9.4
-
-`IMPORTANT!` This patch aims to fix a gesture regression detected in iOS 27 beta, where button gestures can suffer a random delay that results in typing lags. You can read more about it [here](https://keyboardkit.com/blog/2026/09/09/gesture-problems-in-ios-27-public-beta).
-
-The patch tries to fix this by rebuilding the gesture handling from scratch. The result feels great and a lot snappier, with the same public API as before, which means nothing changes on your end.
-
-Since iOS 27 will be announced later today, and we realized just now how much this affects the typing, we have to take a leap of faith and release the new gesture engine before getting your feedback.  
-
-However, we DO need your feedback! We'd love to hear what you think, whether you think it's as good as we do, if you utterly dislike it, or if you run into any problems. Please [send us an email](mailto:info@keyboardkit.com) and tell us. 
-
-
-
-## 10.9.2
-
-This version adds a missing keyboard button for the number pad action.
-
-### 🌱 Essentials
-
-* `KeyboardInputViewController` has a new `viewWillHandleLicenseError(_:)` function.
-
-### ⚡️ Actions
-
-* `KeyboardAction.settings` now open the main app by default.
-
-### 📦 Packages
-
-* `LicenseKit` has been bumped to 2.2.1.   
-
-### 🐛 Bug Fixes
-
-* `Keyboard.KeyboardType.numberPad` adds a missing button image.
-
-### 🗑️ Deprecations
-
-* Deprecated namespace are now soft-deprecated to avoid overruling type renamings.
-* DocC adds all deprecated types to a list in the root document, to clean up the main menu. 
-
-
-
-## 10.9.1
-
-This version adds new locale views and tweaks some appearance.
-
-### 🌱 Essentials
-
-* `Keyboard.ToolbarItem` uses `KeyboardLocaleBadge` for `.nextLocale`.
-
-### 🌐 Localization
-
-* `KeyboardAction.nextLocale` uses a smaller font size.
-* `KeyboardAction.char("kr")` uses a smaller font size.
-* `KeyboardLocaleBadge` is a new view.
-* `KeyboardLocaleGlobe` is a new view.
-* `View.localeContextMenu(...)` is renamed to `keyboardLocaleContextMenu(...)`.
-
-
-
-## 10.9
-
-This version soft-deprecates old dictation methods that will be removed in KeyboardKit 11.
-
-This version also adds bug fixes & adjustments to the button view, to make typing more efficient. 
-
-This version also adds new toolbar views, and applies the primary language on launch to fix external hardware keyboard-related bugs.
-
-### 🌱 Essentials
-
-* `Keyboard.ButtonGestures` has been rebuilt for improved performance.
-* `Keyboard.ToolbarItem` is a new toolbar view that can trigger an action.
-* `Keyboard.ToolbarToggle` is a new toolbar view that can toggle a binding.
-* `KeyboardInputViewController` has a new `setPrimaryLanguage(from:)` function.
-* `KeyboardInputViewController` now sets the primary language in `viewWillAppear`.
-
-### 💡 Autocomplete
-
-* `AutocompleteToolbarScrollMode.scrollable` has a more convenient name.
-* `AutocompleteToolbarScrollMode.scrollable` now supports setting a max width.
-
-### 🏠 Host Application
-
-* `KeyboardInputViewController` has a new `resolveHostApplication(_:_:)` function.
-* `KeyboardInputViewController` has a new `resolveHostApplication(withAdditionalApps:_:_:)` function.
-* `KeyboardInputViewController` has a new `resolveHostApplicationBundleId(_:_:)` function.
-
-### 🐛 Bug Fixes
-
-* `GestureButton` now properly cancels any ongoing repeat actions when it disappears.
-* `KeyboardInputViewController` sets primary language on launch to fix external keyboard issues.
-
-### 🗑️ Deprecations
-
-* `DictationMethod` has been soft-deprecated.
-* `View.keyboardDictationIfStartedOnAppear` has been deprecated.
-* `View.keyboardDictationOnDeepLink` has been deprecated.
-
-### 🚨 Breaking Changes
-
-* The gesture button action signatures have been changed.
-
-
-
-## 10.8.1
-
-This version fixes some locale and casing bugs.
-
-The input controller will now make set up App Group syncing before accessing any settings. This fixes a bug where locales set in the main app didn't sync properly to the keyboard.
-
-The input controller will also clean up its keyboard case logic, which caused some initial flickering and sometimes some flaky behavior. This also makes the keyboard honor the preferred autocapitalization of a text field, which wasn't always the case before.
-
-### 🌱 Essentials
-
-* `Keyboard` has a new `LocaleSections` struct.
-
-
-### 🐛 Bug Fixes
-
-* `KeyboardInputViewController` moves SDK initialization earlier to avoid stale locale settings.
-* `KeyboardInputViewController` cleans up its initial case logic to make it correct and avoid flickering.
-
-
-
-## 10.8
-
-This version converts the various settings types to observable object classes, that are added to `KeyboardState` and injected into the various context and into the SwiftUI view environment.
-
-This means that you can now get a settings instance from the environment instead of having to go through the context. This makes view binding more correct, and decouples the two types more.
-
-This version extends `AutocompleteSettings` to handle user-based autocompletions, autocorrections, and ignored words, and adds new autocomplete settings screens for managing these settings.
-
-This version also updates the dictation keyboard overlay to allow more customizations and styling options.
-
-
-### 🌱 Essentials
-
-* `Keyboard` has a new `LocaleSections` struct.
-* `Keyboard` has a new `LearnedWordsDictionary` struct.
-* `Keyboard` has new styling types for uniform styling.
-* `KeyboardState` has new properties for settings types.
-* `Keyboard.LocaleDictionary` adds more conditional conformances.
-* `Keyboard.LocaleWordDictionary` is a new localized word dictionary.
-* `Keyboard.TextReplacementDictionary` has new and renamed functions.
-* `Keyboard.TextReplacementDictionary` now conforms to `KeyboardModel`.
-* `String.autocompleteWordDelimiters` now contains additional characters.
-
-### 📱 App
-
-* `KeyboardAppView` no longer observes the keyboard state.
-
-### 💡 Autocomplete
-
-* `AutocompleteSettings` has a new `autocorrectDictionary`.
-* `AutocompleteSettings` has a new `autocompleteDictionary`.
-* `AutocompleteSettings` has a new `ignoredWordsDictionary`.
-* `AutocompleteSettingsScreen` links to new settings screens.
-* `AutocompleteIgnoredWordsScreen` is a brand new setting screen.
-* `AutocompleteTextReplacementsScreen` is a brand new setting screen.
-* `StandardAutocompleteService` resolves its `emojiColonSearch` lazily.
-* `StandardAutocompleteService` now regards text replacements and ignored words.
-
-### 🎤 Dictation
-
-* `DictationContext` no longer auto-resets itself.
-* `DictationContext.reset` no longer uses async resets.
-* `DictationContext.setIsDictating` no longer animates.
-* `DictationIndicatorBadge` is now rendered as a circle.
-* `DictationIndicatorBadgeStyle` has new styling options.
-* `DictationKeyboardOverlayStyle` has new styling options.
-
-### 😀 Emojis
-
-* `Emoji` and `EmojiVersion` have been optimized for performance.  
-
-### 👁️ Previews
-
-* There are new context and settings preview builders.
-
-### ⚙️ Settings
-
-* All settings types are converted to `ObservableObject` classes.
-* `KeyboardSettingsScreen` now links to the new text replacements.
-
-### 🍭 Themes
-
-* `KeyboardThemeSettings` has new functions for handling the theme.
-
-### 🐛 Bug Fixes
-
-* `String.autocompleteWordDelimiters` updates fixes URL autocomplete bugs.
-
-### 🗑️ Deprecations
-
-* The various context initializers now require a settings instance.
-* `KeyboardThemeContext` theme logic has been moved to the settings.
-* `Locale.Dictionary` has been renamed to `Keyboard.LocaleDictionary`.
-
-
-
-## 10.7.3
-
-This version tweaks the standard emoji action button style.
-
-
-
-## 10.7.2
-
-### ⚙️ Settings
-
-* `KeyboardAction.PickerValue` has a new `openMainApp` case.
-* `KeyboardAction.PickerValue` has a new `undo` case.
-
-
-
-## 10.7.1
-
-This version adds some missing parts to the various pickers.
-
-### ⚙️ Settings
-
-* `Keyboard.InputToolbarTypePicker` has a new `values` property.
-* `KeyboardActionPicker` has a new `isTextFieldFocused` binding.
-* `KeyboardActionPicker` has a new `values` property.
-* `KeyboardSettingsDisclosurePicker` is a new picker view.
- 
-
-
-## 10.7
-
-This version adds undo functionality to the keyboard engine, which makes it possible to undo text insertions, deletions, and autocompletions in chunks. This is currently opt-in. Enable the `undoManager` experiment to try it out. 
-
-This version also adds many more pickers and settings for various keyboard models, including a brand new `KeyboardActionPicker`. This will let us harmonize the settings tools, and avoid having to write separate code for each model.
-
-This version also flattens the remaining namespaces, to complete the extensive namespace transition earlier than initially planned, to give us all time to migrate before KeyboardKit 11.
-
-### 🌱 Essentials
-
-* `Keyboard.DockEdge` has a new `.none` case.
-* `Keyboard.DockEdge` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.InputToolbarType` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.InputType` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.KeyboardCase` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.KeyboardType` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.LayoutType` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.ReturnKeyType` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.SpacebarLongPressBehavior` now implements `KeyboardSettingsPickerValue`.
-* `Keyboard.SpacebarMenuType` has a new `.none` case.
-* `Keyboard.SpacebarMenuType` now implements `KeyboardSettingsPickerValue`.
-* `KeyboardController` has a new `undoLastRecordedDocumentChange` function.
-* `KeyboardController` has a new `openMainApp` and `openMainAppDeepLink` functions.
-
-### ⚡️ Actions
-
-* `KeyboardAction` `.openMainApp` and `.undo` are new actions.
-* `KeyboardAction.PickerValue` is a new `KeyboardSettingsPickerValue`.
-* `StandardKeyboardActionHandler` has a new `undoLastRecordedDocumentChange` function.
-
-### 🧪 Experiments
-
-* `Experiment.undoManager` is a new experiment that lets you enable the new undo feature.
-
-### 📜 Licenses
-
-* `LicenseErrorAlert` has been redesigned to be more informative.
-
-### 📄 Proxy
-
-* `TextDocumentUndoChange` is a new type to describe a text document change.
-* `TextDocumentUndoManager` is a new class for undoing text document changes.
-
-### ⚙️ Settings
-
-* `Keyboard.DockEdgePicker` is a new picker component.
-* `Keyboard.InputToolbarTypePicker` is a new picker component.
-* `Keyboard.InputTypePicker` is a new picker component.
-* `Keyboard.KeyboardCasePicker` is a new picker component.
-* `Keyboard.KeyboardTypePicker` is a new picker component.
-* `Keyboard.LayoutTypePicker` is a new picker component.
-* `Keyboard.ReturnKeyTypePicker` is a new picker component.
-* `Keyboard.SpacebarLongPressBehaviorPicker` is a new picker component.
-* `Keyboard.SpacebarMenuTypePicker` is a new picker component.
-* `KeyboardActionPicker` is a new picker component.
-
-### 🎨 Styling
-
-* `Image.keyboardArrowBackward` is a new image.
-* `Image.keyboardArrowForward` is a new image.
-* `Image.keyboardCase` is a new image builder.
-* `Image.keyboardEscape` is a new image.
-* `Image.keyboardFunction` is a new image.
-* `Image.keyboardInputType` is a new image builder.
-* `Image.keyboardSpace` is a new image.
-* `Image.keyboardSystemSettings` is a new image.
-* `Image.keyboardType` is a new image builder.
-* `Image.keyboardUrlDomain` is a new image.
-
-### 🐛 Bug fixes
-
-* `KeyboardLocaleSettingsScreen` now applies the correct layout type.
-
-### 📦 Namespace Changes
-
-* `Autocomplete.AutocorrectionDisabledToContextModifer` has been renamed to `KeyboardKit.AutocorrectionDisabledModifer`.
-* `Autocomplete.DisabledAutocompleteService` has been renamed to `KeyboardKit.DisabledAutocompleteService`.
-* `Autocomplete.NextWordPredictionMethod` has been renamed to `AutocompleteMethod`.
-* `Autocomplete.NextWordPredictionRequestType` has been renamed to `AutocompleteMethod`.
-* `Autocomplete.NextWordPredictionTypePicker` has been renamed to `AutocompleteMethodPicker`.
-* `Autocomplete.Result` has been renamed to `AutocompleteResult`.
-* `Autocomplete.RemotePredictionRequest` has been renamed to `RemoteAutocompleteRequest`.
-* `Autocomplete.SettingsScreen` has been renamed to `AutocompleteSettingsScreen`.
-* `Autocomplete.SettingsScreenLocalization` has been renamed to `AutocompleteSettingsScreenLocalization`.
-* `Autocomplete.SettingsScreenSections` has been renamed to `AutocompleteSettingsScreenSections`.
-* `Autocomplete.SettingsScreenVisibility` has been renamed to `AutocompleteSettingsScreenVisibility`.
-* `Autocomplete.StandardAutocompleteService` has been renamed to `KeyboardKit.StandardAutocompleteService`.
-* `Autocomplete.Suggestion` has been renamed to `AutocompleteSuggestion`.
-* `Autocomplete.SuggestionType` has been renamed to `AutocompleteSuggestionType`.
-* `Autocomplete.TextReplacementDictionary` has been renamed to `AutocompleteReplacementDictionary`.
-* `Autocomplete.Toolbar` has been renamed to `AutocompleteToolbar`.
-* `Autocomplete.ToolbarScrollMode` has been renamed to `AutocompleteToolbarScrollMode`.
-* `Autocomplete.ToolbarStyle` has been renamed to `AutocompleteToolbarStyle`.
-* `Autocomplete.ToolbarItem` has been renamed to `AutocompleteToolbarItem`.
-* `Autocomplete.ToolbarItemStyle` has been renamed to `AutocompleteToolbarItemStyle`.
-* `Autocomplete.ToolbarSeparator` has been renamed to `AutocompleteToolbarSeparator`.
-* `Autocomplete.ToolbarSeparatorStyle` has been renamed to `AutocompleteToolbarSeparatorStyle`.
-* `Callouts.Actions` has been renamed to `KeyboardCalloutActions`
-* `Callouts.ActionsBuilder` has been renamed to `KeyboardCalloutActions.Builder`
-* `Callouts.ActionsBuilderParams` has been renamed to `KeyboardCalloutActions.BuilderParams`
-* `Callouts.ActionCallout` has been renamed to `KeyboardActionCallout`
-* `Callouts.CalloutStyle` has been renamed to `KeyboardCalloutStyle`
-* `Callouts.InputCallout` has been renamed to `KeyboardInputCallout`
-* `Dictation.AuthorizationStatus` has been renamed to `DictationAuthorizationStatus`
-* `Dictation.BarVisualizer` has been renamed to `DictationBarVisualizer`
-* `Dictation.BarVisualizerStyle` has been renamed to `DictationBarVisualizerStyle`
-* `Dictation.DictationMethod` has been renamed to `DictationMethod`
-* `Dictation.DictationState` has been renamed to `DictationState`
-* `Dictation.DisabledDictationEngine` has been renamed to `DisabledDictationEngine`
-* `Dictation.DisabledDictationService` has been renamed to `DisabledDictationService`
-* `Dictation.DisabledSpeechRecognizer` has been renamed to `DisabledDictationSpeechRecognizer`
-* `Dictation.Indicator` has been renamed to `DictationIndicatorBadge`
-* `Dictation.IndicatorStyle` has been renamed to `DictationIndicatorBadgeStyle`
-* `Dictation.ProgressView` has been renamed to `DictationKeyboardOverlay`
-* `Dictation.ProgressViewLocalization` has been renamed to `DictationKeyboardOverlayLocalization`
-* `Dictation.ProgressViewStyle` has been renamed to `DictationKeyboardOverlayStyle`
-* `Dictation.ServiceError` has been renamed to `DictationServiceError`
-* `Dictation.SettingsScreen` has been renamed to `DictationSettingsScreen`
-* `Dictation.SettingsScreenLocalization` has been renamed to `DictationSettingsScreenLocalization`
-* `Dictation.SettingsScreenSections` has been renamed to `DictationSettingsScreenSections`
-* `Dictation.SpeechRecognizerResult` has been renamed to `DictationSpeechResult`
-* `Dictation.StandardDictationEngine` has been renamed to `StandardDictationEngine`
-* `Dictation.StandardDictationService` has been renamed to `StandardDictationService`
-* `Dictation.StandardVolumeRecorder` has been renamed to `StandardDictationVolumeRecorder`
-* `Dictation.VolumeRecorder` has been renamed to `DictationVolumeRecorder`
-* `Dictation.VolumeResult` has been renamed to `DictationVolumeResult`
-* `Dictation.VolumeVisualizer` has been renamed to `DictationVolumeVisualizer`
-* `Dictation.VolumeVisualizerStyle` has been renamed to `DictationVolumeVisualizerStyle`
-* `Emoji.ColonSearch` has been renamed to `EmojiColonSearch`.
-* `Emoji.KeyboardSearchField` has been renamed to `EmojiSearchField`
-* `EmojiKeyboard.Configuration` has been renamed to `EmojiKeyboardConfiguration`
-* `EmojiKeyboard.Sizes` has been renamed to `EmojiKeyboardSizes`
-* `EmojiKeyboard.State` has been renamed to `EmojiKeyboardState`
-* `EmojiKeyboard.Style` has been renamed to `EmojiKeyboardStyle`
-* `Experiment` has been renamed to `KeyboardExperiment`.
-* `Experiment.SettingsScreen` has been renamed to `KeyboardExperimentSettingsScreen`.
-* `Experiment.SettingsScreenLocalization` has been renamed to `KeyboardExperimentSettingsScreenLocalization`.
-* `Experiments` has been renamed to `KeyboardExperimentSettings`.
-* `ExperimentContext` has been renamed to `KeyboardExperimentContext`.
-* `Feedback.Audio` has been renamed to `KeyboardAudioFeedback`.
-* `Feedback.AudioConfiguration` has been renamed to `KeyboardAudioFeedbackConfiguration`.
-* `Feedback.AudioEngine` has been renamed to `KeyboardAudioFeedbackEngine`.
-* `Feedback.DisabledFeedbackService` has been renamed to `DisabledKeyboardFeedbackService`.
-* `Feedback.Haptic` has been renamed to `KeyboardHapticFeedback`.
-* `Feedback.HapticConfiguration` has been renamed to `KeyboardHapticFeedbackConfiguration`.
-* `Feedback.HapticEngine` has been renamed to `KeyboardHapticFeedbackEngine`.
-* `Feedback.StandardFeedbackService` has been renamed to `StandardKeyboardFeedbackService`.
-* `Feedback.Toggle` has been renamed to `KeyboardFeedbackToggle`.
-* `FeedbackContext` has been renamed to `KeyboardFeedbackContext`.
-* `FeedbackService` has been renamed to `KeyboardFeedbackService`.
-* `FeedbackSettings` has been renamed to `KeyboardFeedbackSettings`.
-* `FontContext` has been renamed to `KeyboardFontContext`.
-* `FontSettings` has been renamed to `KeyboardFontSettings`.
-* `Fonts.UnicodeFont` has been renamed to `KeyboardUnicodeFont`.
-* `Fonts.UnicodeFontOption` has been renamed to `KeyboardUnicodeFontOption`.
-* `KeyboardAccessibility.SettingsScreen` has been renamed to `KeyboardAccessibilitySettingsScreen`.
-* `KeyboardAccessibility.SettingsScreenLocalization` has been renamed to `KeyboardAccessibilitySettingsScreenLocalization`.
-* `KeyboardAction.StandardActionHandler` has been renamed to `StandardKeyboardActionHandler`.
-* `KeyboardFont.SettingsScreen` has been renamed to `KeyboardFontSettingsScreen`.
-* `KeyboardFont.SettingsScreenLocalization` has been renamed to `KeyboardFontSettingsScreenLocalization`.
-
-### 🗑️ Deprecations
-
-* The `Autocomplete` namespace is deprecated and will be removed in 11.0.
-* The `Callouts` namespace is deprecated and will be removed in 11.0.
-* The `Dictation` namespace is deprecated and will be removed in 11.0.
-* The `DocumentReader` has been renamed to `TextDocumentReader`.
-* The `DocumentReaderConfiguration` has been renamed to `TextDocumentReaderConfiguration`.
-* The `DocumentReaderError` has been renamed to `TextDocumentReaderError`.
-* The `DocumentReaderResult` has been renamed to `TextDocumentReaderResult`.
-* The `Feedback` namespace is deprecated and will be removed in 11.0.
-* The `Fonts` namespace is deprecated and will be removed in 11.0.
-* The `KeyboardAccessibility` namespace is deprecated and will be removed in 11.0.
-* The `KeyboardSettingsScreenPickers` are replaced by the new pickers.
-* The `KeyboardLocaleSettingsScreenPickers` are replaced by the new pickers.
-   
-
-
-## 10.6
-
-This version minimizes the number of on-launch redraws to minimize launch flickering, and makes it possible to swipe up and down on the spacebar to move the cursor in greater chunks.   
-
-This also version starts reducing namespace nesting, as described in [issue 1045](https://github.com/KeyboardKit/KeyboardKit/issues/1045). Expect less nesting and more surface-level types, with renaming guides to help you migrate.
-
-Finally, since the host application bundle ID keeps returning `nil` in iOS 27, we have deprecated the `KeyboardInputViewController` `hostApplicationBundleId` property, and updated the documentation with alternate ways to handle this.
-
-### 🌱 Essentials
-
-* `Keyboard.SpacebarDragGestureHandler` can now handle vertical movement.
-* `Keyboard.SpacebarDragGestureOffset` is a new enum for spacebar dragging.
-* `Keyboard.SpacebarDragSensitivity` now defines a horizontal and a vertical step value.
-* `KeyboardInputViewController` minimizes the number of on-launch redraws to minimize flickering.
-
-### 🏠 Host
-
-* `KeyboardHostApplicationPicker` now specialized `KeyboardSettingsPicker`.
-
-### 🔣 Layout
-
-* `KeyboardLayout` convert `baseLayout` builder to an initializer.
-* `KeyboardLayout` convert `iPhoneLayout` and `iPadLayout` builders to instance members.
-* `KeyboardLayout` updates the keyboard switcher placement on iPads running iOS 18 and earlier.
-* `KeyboardLayout.DeviceConfiguration` applies updated edge insets on iPads running iOS 18 and earlier.
-
-### 📦 Namespace Changes
-
-* `KeyboardLayout.DeviceConfiguration` has been renamed to `KeyboardLayoutConfiguration`.
-* `KeyboardLayout.Item` has been renamed to `KeyboardLayoutItem`.
-* `KeyboardLocale.ContextMenu` has been renamed to `KeyboardLocaleContextMenuModifier`.
-* `KeyboardLocale.ListItem` has been renamed to `KeyboardLocaleListItem`.
-* `KeyboardLocale.SettingsScreen` has been renamed to `KeyboardLocaleSettingsSettingsScreen`. 
-* `KeyboardLocale.SettingsScreenLocalization` has been renamed to `KeyboardLocaleSettingsScreenLocalization`. 
-* `KeyboardLocale.SettingsScreenPickers` has been renamed to `KeyboardLocaleSettingsScreenPickers`. 
-* `KeyboardLocale.SettingsScreenVisibility` has been renamed to `KeyboardLocaleSettingsScreenVisibility`.
-* `KeyboardSettings.SettingsScreen` has been renamed to `KeyboardSettingsScreen`. 
-* `KeyboardSettings.SettingsScreenLocalization` has been renamed to `KeyboardSettingsScreenLocalization`. 
-* `KeyboardSettings.SettingsScreenPickers` has been renamed to `KeyboardSettingsScreenPickers`. 
-* `KeyboardSettings.SettingsScreenSections` has been renamed to `KeyboardSettingsScreenSections`. 
-* `KeyboardSettings.SettingsScreenVisibility` has been renamed to `KeyboardSettingsScreenVisibility`.
-* `KeyboardSettings.Picker` has been renamed to `KeyboardSettingsPicker`. 
-* `KeyboardSettings.PickerValue` has been renamed to `KeyboardSettingsPickerValue`. 
-* `KeyboardStatus.Label` has been renamed to `KeyboardStatusLabel`. 
-* `KeyboardStatus.LabelStyle` has been renamed to `KeyboardStatusLabelStyle`. 
-* `KeyboardStatus.Section` has been renamed to `KeyboardStatusSection`. 
-* `KeyboardStatus.SectionLocalization` has been renamed to `KeyboardStatusSectionLocalization`. 
-* `KeyboardStatus.SectionStyle` has been renamed to `KeyboardStatusSectionStyle`. 
-* `KeyboardTheme.Collection` has been renamed to `KeyboardThemeCollection`. 
-* `KeyboardTheme.SettingsScreen` has been renamed to `KeyboardThemeSettingsScreen`. 
-* `KeyboardTheme.SettingsScreenLocalization` has been renamed to `KeyboardThemeSettingsScreenLocalization`. 
-* `KeyboardTheme.SettingsScreenStyle` has been renamed to `KeyboardThemeSettingsScreenStyle`. 
-* `KeyboardTheme.SettingsScreenThemes` has been renamed to `KeyboardThemeSettingsScreenThemes`.
-* `Proxy.FullDocumentReaderConfiguration` has been renamed to `DocumentReaderConfiguration`.
-* `Proxy.FullDocumentReaderError` has been renamed to `DocumentReaderError`.
-* `Proxy.FullDocumentReaderResult` has been renamed to `DocumentReaderResult`.
-* `Proxy.SelectionEdge` has been renamed to `Keyboard.TextSelectionEdge`.
-
-### 👁️ Previews
-
-* `KeyboardPreviews.ActionHandler` is renamed to `PreviewKeyboardActionHandler`.
-* `KeyboardPreviews.AutocompleteService` is renamed to `PreviewAutocompleteService`.
-* `KeyboardPreviews.InputViewController` is renamed to `PreviewKeyboardInputViewController`.
-* `KeyboardPreviews.TextDocumentProxy` is renamed to `PreviewTextDocumentProxy`.
-
-### 📄 Proxy
-
-* `DocumentReader` is a new protocol, informally implemented by `UITextDocumentProxy`.
-* `UITextDocumentProxy` has new sentence `offset` variables.
-
-### ⚙️ Settings
-
-* `KeyboardSettingsPicker` now supports an optional selection binding.
-* `.keyboardSettingsPickerTitle(for:_:)` is a new `KeyboardSettingsPicker` view modifier.
-* `.keyboardSettingsPickerValueTitle(for:_:)` is a new `KeyboardSettingsPicker` view modifier.
-
-### 🩺 Status
-
-* `KeyboardStatusInspector` is a new tool for inspecting the keyboard system status.
- 
-### 🗑️ Deprecations
-
-* The `KeyboardInputViewController` `hostApplicationBundleId` has been deprecated.
-* The `KeyboardInput` namespace is deprecated and will be removed in 11.0.
-* The `KeyboardLocale` namespace is deprecated and will be removed in 11.0.
-* The `KeyboardPreviews` namespace is deprecated and will be removed in 11.0.
-* The `KeyboardStatus` namespace is deprecated and will be removed in 11.0.
-* The `KeyboardStyle` namespace is deprecated and will be removed in 11.0.
-* The `Proxy` namespace is deprecated and will be removed in 11.0.
-
-
-
-## 10.5
-
-This version adds new accessibility features, and adds support for Arabic PC 🇦🇪.
-
-This also version improves autocomplete and autocorrections, tweaks some layout and design, and fixes some bugs.
-
-### 🌱 Essentials 
-
-* `KeyboardController` has a new `resetKeyboardInputType` function.
-
-### ♿️ Accessibility
-
-* `KeyboardAccessibility` is a new namespace.
-* `KeyboardAccessibilityContext` is a new observable context.
-* `KeyboardAccessibilitySettings` is a new type with persistent settings.
-* `KeyboardTheme` has a new `adjusted(for:)` that applies accessibility settings.
-
-### 💡 Autocomplete
-
-* `Autocomplete.TextReplacementDictionary.additionalAutocompletions` is a new list.
-* `Autocomplete.TextReplacementDictionary.additionalAutocorrections` has more values.
-* `Autocomplete.SettingsScreen` has a new toggle that can hide the autocomplete toolbar.
-* `Autocomplete.StandardAutocompleteService` will now filter out duplicate suggestions.
-* `AutocompleteContext.autocompleteDictionary` is a new dictionary with custom completions.
-* `AutocompleteSettings` has a new `isToolbarEnabled` setting that can be used to hide the toolbar.
-* `KeyboardView` will automatically hide the autocomplete toolbar if `isToolbarEnabled` is `false`.
-
-### 🔣 Layout
-
-* `KeyboardLayout` now adds additional edge insets on Liquid Glass iPad devices.
-* `KeyboardLayout` now places the keyboard switcher firstmost on Liquid Glass iPad devices.
-* `KeyboardLayout.DeviceConfiguration` now has an additional `edgeInsets` padding property.
-
-### 🌐 Localization
-
-* `KeyboardLocale` is a new namespace for locale-specific types.
-* `Locale` has a new `.arabic_pc` locale, with layouts and callouts.
-* `Locale.Dictionary` now implements `Sendable`.
-
-### 😀 Emojis
-
-* `EmojiKeyboard` now supports skin tones in emoji search. 
-* `KeyboardInputViewController` now cancels emoji search when the cursor moves. 
-
-### 📄 Proxy
-
-* `UITextDocumentProxy` has a new `moveTextInputCursorToRefreshContext(sleepInterval:)` function.
-
-### ⚙️ Settings
-
-* `Keyboard.SettingsScreen` has been moved to `KeyboardSettings`.
-* `Keyboard.LocaleSettingsScreen` has been moved to `KeyboardLocale`.
-
-### 🎨 Styling
-
-* `KeyboardAction` slightly increases the standard image font weight.
-* `KeyboardAction` slightly increases the standard lowercase font weight.
-* `KeyboardView` redesigns swipe down actions to look a bit more like native.
-
-### 🗑️ Deprecations
-
-* `View.localeSettingsScreenLocalization` has been renamed to `keyboardLocaleSettingsScreenLocalization`.
-* `View.localeSettingsScreenVisibility` has been renamed to `keyboardLocaleSettingsScreenVisibility`.
-
-### 🐛 Bug fixes
-
-* `KeyboardLayoutCache` adjusts layout cache to avoid missing input switcher on iPhone SE.
-
-
-
-## 10.4.1
-
-This version fixes some bugs and adds a preview of a new way to handle setting values and pickers.
-
-The new `KeyboardSettings.Picker` view can be used to harmonize the various setting pickers, and adds a new localization method which will make the various screen pickers and localization tools obsolete, or at least smaller.
-
-### 🌱 Essentials 
-
-* `Keyboard.InputToolbarType` implements `PickerValue`.
-* `Keyboard.InputToolbarTypePicker` is a new typealias. 
-
-### ⚙️ Settings (BETA)
-
-* `KeyboardSettings` has a new, generic `Picker` view.
-* `KeyboardSettings` has a new `PickerValue` protocol.
-* `.keyboardSettingsPickerValueTitle(...)` is a new view modifier can be used to localize these pickers.
-
-### 🐛 Bug fixes
-
-* `Keyboard.SettingsScreen` now displays a `none` option for the input toolbar type.
-* `KeyboardLayout` fixes a bug that cased the input toolbar to become too tall on iPad.
-* `KeyboardSettings` now uses the `.frequent` category for the input toolbar emoji keys.
-* `StandardAutocompleteService` fixes a Safari casing bug for English next word predictions.
-
-### 🗑️ Deprecations
-
-* `DragGestureHandler` has been moved into `Keyboard`.
-* `Gestures` has been merged with the `Keyboard` namespace.
-* `KeyboardSettings.InputToolbarType` has been moved to `Keyboard`.
-
-
-
-## 10.4
-
-This version fixes random slow keyboard launches by postponing costly operations until the keyboard has appeared.
-
-This version also adjusts the `hostApplicationBundleId` logic to handle that this property becomes `nil` in iOS 26.4 and later. You can now set it with code or let users pick or specify a host application from the keyboard.
-
-You can read more about this change [here](https://keyboardkit.com/blog/2026/03/02/ios-26-4-host-application-bundle-id-bug). If not being able to automatically resolve the host application affects your app in a negative way, we strongly recommend reaching out to Apple with the [Feedback Assistant](https://feedbackassistant.apple.com).
-
-### 🌱 Essentials
-
-* `KeyboardController` has a new `openMainAppUrl(_:withReason:)` function.
-* `KeyboardInputViewController` postpones autocomplete to speed up launch.
-* `Keyboard.State` has a new `keyboardAppContext` and injects it into the environment.
-
-### ⚡️ Actions
-
-* `KeyboardAction` has a new `.openMainApp` action.
-* `KeyboardAction` has a new KeyboardApp-based `.openMainApp` builder.
-* `KeyboardAction` has a new standard release action for `.openMainApp`.
-
-### 📱 App
-
-* `KeyboardAppContext` is a new app-specific context.
-* `KeyboardAppSettings` has new, internal app-specific settings.
-* `KeyboardAppView` resets the context reason when sent to the background.
-
-### 💡 Autocomplete
-
-* `Autocomplete.ToolbarScrollMode` is a new enum that defines toolbar scroll modes.
-* `.autocompleteToolbarScrollMode(...)` is a new view modifier that can be used to enable scrolling. 
-
-### 🏠 Host
-
-* The `hostApplicationBundleId` has been documented to not work in iOS 26.4.
-* The new `KeyboardHostApplication.Picker` can be used to pick a `KeyboardHostApplication`.
-
-
-
-## 10.3.1, 10.3.2
-
-This version contains some internal license handling changes.
-
-
-
-## 10.3
-
-This version adds support for on-device next word prediction, using Apple's Foundation Models. This is available on supported platforms (from iPhone 15 Pro & iOS 26.1).
-
-Note that this is a very(!) new technology that is noticably slower and less accurate than other autocomplete features. You can help improving it by providing feedback.
-
-This verison also tweaks the license validation to be much faster, which also results in less flickering when setting up the keyboard extension. We hope you'll like it.
-
-This version also improves layout rendering by enabling layout caching by default. The old experiment has been converted to a proper dynamic `KeyboardSettings` setting. 
-
-This version adds a new `KeyboardSettings` setting to visualize the dynamic text tap areas, to make it possible for developers to visually verify this dynamic behavior. 
-
-### 🌱 Essentials
-
-* `KeyboardInputViewController` has a new `viewWillSetupKeyboardKit()` function.
-
-### 💡 Autocomplete
-
-* `Autocomplete.NextWordPredictionMethod` has a new `.local` method.
-* `Autocomplete.SettingsScreen` has a new next word prediction toggle.
-* `Autocomplete.SettingsScreenSections` has a redesigned next word prediction section.
-* `Autocomplete.StandardAutocompleteService` can now perform local next word prediction.
-* `AutocompleteSettings.nextWordPredictionMethod` now uses the `.local` method by default.
-
-### 🧪 Experiments
-
-* `Experiment` has been refactored to make it easier to enable experiments.
-
-### 🔉 Feedback
-
-* `FeedbackContext` has a new `registerCustomAudioFeedback(...)` function.
-* `FeedbackContext` has a new `registerCustomHapticFeedback(...)` function.
-
-### 🔣 Layout
-
-* `KeyboardLayout.DeviceConfiguration.standardPhone` now uses a 51 point row height in iOS 26.
-
-### 📜 Licenses
-
-* `KeyboardInputViewController` validates licenses much faster than before.
-* `Keyboard.ToggleToolbar` now shows the `toolbar` if no license is registered.
-
-### ⚙️ Settings
-
-* `KeyboardSettings` has a new `isLayoutCaching` setting.
-* `KeyboardSettings` has a new `isPredictiveTextVisualizationActive` setting. 
-
-### 🐛 Bug fixes
-
-* `Keyboard.LocaleSettingsScreen` now handles changes to added locales better.
-* `KeyboardInputViewController` will now make an initial autocomplete on launch.
-
-### 🗑️ Deprecations
-
-* `Autocomplete.NextWordPredictionRequestType` has been renamed to `NextWordPredictionMethod`.
-* `AutocompleteSettings.nextWordPredictionRequestType` has been renamed to match this change.
-* `Experiments` has been simplified, and is no longer used to enable and disable experiments.
-* `Experiment.layoutCaching` has been deactivated, and no longer has any effect on the engine.
-* `Experiments.active` and `Experiment.isActive` is replaced with `Experiment.activeExperiments`.
-
-
-
-## 10.2.2
-
-This version improves the controller's host bundle ID logic with hopes of reducing random crashes.
-
-This version also reduces the number of input set calculations for every layout that is generated.
-
-### 🏠 Host
-
-* The `KeyboardInputViewController` `hostApplicationBundleId` has been rewritten to avoid crashes.
-
-### 🔣 Layout
-
-* The `KeyboardLayout.baseLayout(...)` now only calculates the relevant input set, saving calculations.
-
-### 🐛 Bug fixes
-
-* The incorrect upper-cased shift color in dark mode is fixed on pre iOS 26 iPhones.
-
-
-
-## 10.2.1
-
-This version improves the license bundle validation.
-
-### 🤝 Licenses
-
-* `License` now validates the current bundle more reliably.
-
-
-
-## 10.2
-
-This version makes it possible to perform dictation directly within the keyboard, with an automatic roundtrip to the app only when needed.
-
-To enable keyboard dictation, follow the new developer guide instructions, then set the dictation context `dictationMethod` to `.keyboard`.
-
-You can enable keyboard dictation with either `DictationSettings.dictationMethod`, or using the `Experiment.keyboardDictation` experiment.
-
-The `dictationMethod` is `.app` by default, to avoid breaking changes, but `.keyboard` dictation is the recommended method moving forward.
-
-This version adds more settings. For instance, it's now possible to disable auto-ignore, predictive typing, and the iPhone input callouts.
-
-> [!NOTE]
-> Since `.keyboard` dictation is now the recommended method, the `DictationScreen` and overlay-based dictation view modifiers have been deprecated. You can use the new `dictationState` to present such any overlays in your app, if needed. The `KeyboardApp.HomeScreen` and `Dictation.ProgressView` will automatically show a dictation control when dictation is active, to give the user a chance to stop the dictation operation.  
 
 ### 📦 Package
 
-* The former embedded `LicenseKit` dependency is now a proper package dependency.   
-
-### ⌨️ Keyboard
-
-* `View.keyboardReplacementOverlay(...)` is a new keyboard overlay view modifier.
-
-### 🎤 Dictation
-
-* `Dictation.AudioRecorder` is a new audio recorder protocol.
-* `Dictation.DictationMethod` is a new enum that defines supported methods.
-* `Dictation.DictationState` is a new enum that defines dictation states.
-* `Dictation.Indicator` is a new view that can be used to indicate an ongoing dictation.
-* `Dictation.ProgressView` is a new view that can be used to handle an ongoing dictation.
-* `Dictation.StandardAudioRecorder` is a new audio recorder implementation.
-* `Dictation.VolumeVisualizer` is a new view that can visualize volume data.
-* `DictationContext` has a new `dictationState` property.
-* `DictationContext` has a new `hasActiveKeyboardDictationSession` property.
-* `DictationContext` has a new `reset(newState:)` function.
-* `DictationContext` has a new `syncFromPersistentStorage()` function.
-* `DictationSettings` has a new `dictationMethod` property.
-* `KeyboardContext` has a new `applyDictationResult(from:resetContextTo:)` function.
-* `KeyboardApp.HomeScreen` now displays an indicator when dictation is active.
-* `KeyboardApp.HomeScreen` can be set to link to the new `Experiments.SettingsScreen`.
-* `KeyboardView` adds a `Dictation.ProgressView` overlay when dictation is active.
-* `View.keyboardDictation(...)` now only requires you to pass in a speech recognizer.
-
-### 🧪 Experiments
-
-* `Experiment` has a new `.keyboardDictation` experiment that affects the `.keyboardMethod` dictation setting.
-* `Experiments` has a new `SettingsScreen` that can be used to enable experiments.
-
-### 🔉 Feedback
-
-* `FeedbackContext` has a new `isHapticFeedbackAvailable` property.
-
-### ⚙️ Settings
-
-* `Autocomplete.SettingsScreen` has a new `auto-ignore` toggle.
-* `Keyboard.SettingsScreen` has a new feedback section.
-* `KeyboardSettings` has a new `isCharacterPreviewEnabled` setting.
-* `KeyboardSettings` has a new `isPredictiveTextEnabled` setting.
-
-### 🗑️ Deprecations
-
-* `AutocompleteSettings.isAutolearnEnabled` is deprecated and will be removed in KeyboardKit 11.
-* `Dictation.Screen` and `Dictation.ScreenStyle` are soft deprecated.
-* `DeviceType` has been renamed to `Keyboard.DeviceType`.
-* `InterfaceOrientation` has been renamed to `Keyboard.InterfaceOrientation`.
-* `View.keyboardDictation(...)` no longer requires context or openURL params.
-* `View.keyboardDictation(..., overlay:)` is deprecated.
-* `View.keyboardDictationOverlay(...)` is deprecated.
-
-### 🚨 Breaking Changes
-
-* `DictationService` now requires a `stopDictation` function.
-
-### 🐛 Bug fixes
-
-* The `CalloutContext` has been adjusted to not trigger invalid haptic feedback.
-* The style-based `.keyboardButtonStyle(_:)` can now be used on `KeyboardView`'s `buttonView` builder.
-
-
-
-## 10.1.3
-
-This patch fixes a bug in Persian typing and adjusts the layout cache.
-
-### 🧪 Experiments
-
-* `Experiments` is a new type that makes it easier to manage experiments.
-* `ExperimentsContext` is a new type that makes it easier to manage experiments in views.
-
-### 🔣 Layout
-
-* The internal `KeyboardLayoutCache` now varies the cache by input type.
-
-### 🐛 Bug fixes
-
-* The Persian keyboard layout no longer applies ZWNJs (zero-width non-joiners).
-
-
-
-## 10.1.1
-
-This patch adds a text document proxy function for deselecting the selected text.
-
-This is used to fix a full document reader bug where any selected text was not included in the result. 
-
-### ✨ Features
-
-* `Proxy.SelectionEdge` is a new enum.
-* `UITextDocumentProxy` has a new `deselectSelectedText(...)` function.
-
-### 🐛 Bug fixes
-
-* `UITextDocumentProxy.fullDocumentProxy()` deselects all text before reading.
-
-
-
-## 10.1
-
-This version adds support for secondary swipe down actions on iPad, and improves performance through view cleanups and layout caching.
-
-Swipe down actions are automatically applied to all localized input sets with 3 input rows, and can also be customized for any layout.
-
-This version also makes `KeyboardApp.HomeScreen` and `KeyboardStatus.Section` non-pro features. This means that everyone can use them.
-
-This version also lets you create and pass in your own custom host application values, which lets you extend this logic with more apps.
-
-### ⚡️ Actions
-
-* `KeyboardAction` has a new `.keyboardInputType` action.
-
-### 📱 App
-
-* `KeyboardApp.HomeScreen` is now available for everyone to use.
-* `KeyboardApp.HomeScreen` will only link to available features.
-
-### 📺 Device
-
-* `DeviceType` has a new `prefersSecondarySwipeDownActions` property.
-
-### ⌨️ External Keyboards
-
-* `ExternalKeyboardContext` has a new `isEnabledOnSimulator` property.
-
-### 🧪 Experiments
-
-* `Experiments` is a new type that can be used to enable and disable experimental features.
-
-### 🏠 Host
-
-* `KeyboardHostApplication` can now use an additional app collection.
-* `KeyboardHostApplicationProvider` has a `hostApplication(...)` that takes an additional app collection.
-
-### 🔣 Layout
-
-* `KeyboardLayout` and related types now support secondary actions.
-* `KeyboardLayout` now applies secondary swipe down actions on iPad.
-* `KeyboardLayout.InputSet` can apply secondary actions from other sets.
-
-### 🌐 Localization
-
-* `Locale` has a new `prefersSecondarySwipeDownActions` property.
-
-### 📈 Performance
-
-* `Keyboard+ButtonGestures` doesn't render additional geometry proxies.
-* `KeyboardLayout` uses a new layout cache to improve typing performance.
-* `KeyboardLayout` caching must be enabled with the new `Experiments` type.
-
-### ⚙️ Settings
-
-* `KeyboardSettings` has a new `isSwipeDownActionsEnabled` setting.
-
-### 🐛 Bug fixes
-
-* `Autocomplete.ToolbarItem` fixes a title alignment bug.
-* `ExternalKeyboardContext` will by default not be enabled on Simulator.
-* `Keyboard.ButtonStyle` fixes a font weight bug for some image actions.
-* `Keyboard.StandardBehavior`'s double tap on space logic is more robust.
-* `KeyboardLayout` now hides the emoji key for unsupported keyboard types.
-* `KeyboardInputViewController` handles keybord type and input type changes better.
-
-### 🚨 Breaking Changes
-
-* All migration deprecations have been removed.
-* `GestureButton` now provides a geometry proxy in its actions.
-
-
-
-## 10.0.5
-
-This patch adds some layout extensions and fixes layout bugs.
-
-This patch also adds missing deprecation attributes that should have been in 10.0. 
-
-### 🔣 Layout
-
-* `KeyboardLayout` has a new `hasKey(for:)` extension.
-* `KeyboardLayout` has new iPhone and iPad bottom row logic.
-
-### 🗑️ Deprecations
-
-* `KeyboardContext` sets two unused properties to deprecated.
-* `KeyboardContext.hasDictationKey` should have been deprecated in 10.0. 
-* `KeyboardContext.keyboardDictationReplacement` should have been deprecated in 10.0. 
-
-
-
-## 10.0.4
-
-This patch fixes some liquid glass bugs.
-
-### 🐛 Bug fixes
-
-* `KeyboardAction.standardButtonText(for:)` returns nil for some iPad keys on Liquid Glass.
-* `KeyboardAction.standardButtonBackgroundColor(for:)` fixes a primary key press color bug.
-* `KeyboardAction.standardButtonForegroundColor(for:)` fixes an upper-case shift color bug.
-
-
-
-## 10.0.3
-
-This patch fixes a dictation race condition, where the dictated text weren't always sent to the host application.
-
-### 🐛 Bug fixes
-
-* `Dictation.StandardDictationService` has a race condition fix.
-
-
-
-## 10.0.2
-
-This patch includes dSYMs, which should make it possible to retrieve detailed crash reports from production.
-
-
-
-## 10.0.1
-
-This patch adds more host applications and fixes a bug where keys were not highlighted if a theme wasn't applied.
-
-The emoji keyboard handles skin tones swipes better and tweaks the popover offset to avoid cutting off top emojis.
-
-This patch also improves and fixes accessibility, and enables the accessibility rotor which can change the typing mode. 
+KeyboardKit 11 uses Swift 6.2 and strict concurrency, and defines brand new plugin products.
+
+* The package now uses Swift 6.2 and strict concurrency.
+* The package defines new `KeyboardKit...Plugin` products.
+* Many types are now `Sendable`, and types that need it are now `@MainActor`.
+* dSYMs are now included in the package, so there's no need for a separate download.
 
 ### 🌱 Essentials
 
-* `Keyboard.ButtonStyle` now defines a background opacity.
+KeyboardKit 11 cleans up large parts of the library and adds new, powerful diacritic support.
 
-### ♿ Accessibility
+* `Keyboard.BackgroundStyle` is a new, separate background style type.
+* `Keyboard.Diacritic` has new Apache, Choctaw, Hawaiian, Hebrew, Navajo, and Samoan variants.
+* `Keyboard.Diacritic` has new `combiningMark` replacement support.
+* `Keyboard.DiacriticInsertionResult` has been renamed to `DiacriticReplacement`.
+* `Keyboard.Diacritic.CombiningMark` is a new type with common combining marks.
+* `Keyboard.SpacebarMenuTitle` can now render an image.
+* `Keyboard.SpacebarMenuType` has a new `layout` menu that switches between the current locale's layout types.
+* `Keyboard.SpacebarMenuType` has a new `dockEdge` menu that switches the one-handed keyboard dock edge.
+* `KeyboardContext` has a new `localePresentationCase` that defaults to capitalized.
+* `KeyboardControllerContext` is a new context type for controller-specific state.
+* `KeyboardInputViewController` has a new `setPreferredKeyboardCase()` function.
+* `KeyboardInputViewController`'s setup function can now inject autocomplete engines.
+* `KeyboardInputViewController`'s setup function can now inject a host application resolver.
+* `KeyboardSettings.isUndoManagerEnabled` is now `true` by default.
+* `KeyboardState` has a new `controllerContext` property of type `KeyboardControllerContext`.
+* `KeyboardViewDragGestureOverlay` is a new view that maps drag gestures to layout items.
+* `KeyboardViewDragGestureOverlayStyle` is a new style that can be applied with `.keyboardViewDragGestureOverlayStyle(_:)`.
 
-* `Keyboard+ButtonGestures` now applies `isKeyboardKey` instead of `isButton`.
-* `Keyboard+ButtonGestures` now enables the rotor and setting the typing mode.
-* `Keyboard+ToggleToolbar` applies `.accessibilityHidden` to the hidden toolbar.
-* `Keyboard+ToggleToolbar` applies new accessibility guides to the toolbar toggle.
-* `KeyboardView` uses these new updates to activate the rotor in the main keyboard.
+### 💥 Actions
 
-### 😀 Emojis
+KeyboardKit 11 doesn't change the action model in any significant way.
 
-* `EmojiKeyboard` lets you swipe between skin tones without first having to swipe up.
-* `EmojiKeyboard` uses the `.popoverSwipeDownCancelThreshold` to dismiss the popover.
-* `EmojiKeyboard.Sizes` adjusts the `popoverVerticalOffset` to avoid popover cut-offs.
-* `EmojiKeyboard.Sizes` has a new customizable `popoverSwipeDownCancelThreshold` property.
-
-### 🏠 Host Application
-
-* `KeyboardHostApplication.allCases` defines some new apps.
-
-### 🐛 Bug fixes
-
-* `Clipboard.SettingsScreen` doesn't show empty clip sections.
-* `Keyboard.ButtonStyle` now applies highlighting without a theme.
-
-
-
-## 10.0
-
-> [!IMPORTANT]
-> KeyboardKit 10 no longer has binary licenses encoded into the binary. You need a license file or a subscription license key. The license files use a new format, which means old license files no longer work. License file customer will receive an updated license file when KeyboardKit 10 is released. Until then, email us at  info@keyboardkit.com to get an updated license.
-
-KeyboardKit 10 merges KeyboardKit and KeyboardKit Pro into a single, unified SDK that targets iOS 16, macOS 13, tvOS 16, watchOS 10, and visionOS 1.
-
-There's a new 📋 clipboard feature that can paste text from the system clipboard, of from a collection of user-created text clips. The new clipboard keyboard type will automatically switch to a clipboard screen that can paste from the keyboard.
-
-There's a new 𝓐 fonts feature that makes it possible to type with a unicode font.
-
-The local autocomplete service can now perform remote prediction, using requests. As a result, the remote service is not needed and has been removed and the local service has been renamed to `StandardAutocompleteService`.
-
-The Pro settings screens have been improved, and separated into feature-specific screens. These screens expose more settings than before, and there are also more keyboard settings to let you and your users configure the typing behavior.   
-
-Finally, the callout, layout and style services have been replaced by values and view modifiers and have been removed from the library. All views use environment injections for observable state instead of init injection. Some of these changes are breaking.
-
-### 🛣️ Upgrading from KeyboardKit 9
-
-* To upgrade from even older versions, see each major version upgrade guide.
-* To upgrade from KeyboardKit 9.x to 10.x, first upgrade to KeyboardKit 9.9.
-* Make sure to address all deprecation warnings (if any) before you proceed.
-* You can now upgrade to KeyboardKit 10.0, using the new, unified framework.
-* If you face breaking changes, see the breaking changes section at the end.
-* If you get migration deprecation warnings during build, you must fix them.
-* You are done upgrading when you have no more breaking changes or warnings.
-
-### ⚠️ Migration Deprecation Warnings
-
-* Most outdated parts of the library have been removed in this major version.
-* Some outdated parts still remain, to help you migrate from KeyboardKit 9.9.
-* These outdated parts will trigger migration deprecation warnings when used.
-* Code that triggers a migration migration warning will not work as expected.
-* The legacy migration deprecations will then be removed in KeyboardKit 10.1.
-
-### 📦 Package
-
-* KeyboardKit now targets iOS 16 and aligned versions.
-* The binary framework file is now almost 20% smaller.
-
-### 🤝 License
-
-* KeyboardKit 10 requires a new license file format.
-* KeyboardKit 10 now requires a license file or key.
-* There are no binary licenses bundled with the SDK.
-* License locales are no longer parsed from Gumroad.
-* Basic and Silver licenses must specify locales in the keyboard app value.
-
-### 🌐 Localization
-
-* `Keyboard.LayoutType` has `.turkishQ` an `.turkishF` values.
-* `Turkish` now supports `Turkish Q`, `Turkish F` and `QWERTY`.
+* `KeyboardAction` has a new `isDiacriticAction` property.
 
 ### 📱 App
 
-* `KeyboardApp` only contains the `HomeScreen`.
-* `KeyboardApp` screens have been moved to their separate namespaces.
-* `Keyboard.SettingsScreen` has been split up into individual screens.
+KeyboardKit 11 adds new ways to instruct users how to return to the keyboard.
+
+* `KeyboardAppOpenReasonMessage` is a new message struct.
+* `KeyboardAppOpenReasonMessageView` is a new message view.
 
 ### 💡 Autocomplete
 
-* `Autocomplete` has a new `SettingsScreen`.
-* `LocalAutocompleteService` is renamed to `StandardAutocompleteService`.
-* `NextWordPredictionRequest` has been renamed to `RemotePredictionRequest`.
-* `NextWordPredictionRequestType` has a new `standardRequest(for:)` builder.
-* `RemotePredictionRequest` can now create fully custom prediction requests.
-* `RemotePredictionRequest.claude` uses `claude-sonnet-4-20250514` by default.
-* `RemotePredictionRequest.claude` can now be used to perform custom requests.
-* `RemotePredictionRequest.openAI` can now be used to perform custom requests.
-* `RemotePredictionRequest.SystemPrompt` has Claude & OpenAI-specific prompts.
-* `StandardAutocompleteService` has renamed and removed some public functions.
-* `StandardAutocompleteService` has a new `remoteAutocompleteRequest` property.
-* `StandardAutocompleteService` `shouldPerformNextWordPredictions` is now true for empty text.
+The new `KeyboardKitAutocompletePlugin` will be used to define additional autocomplete engines in future KeyboardKit versions.
 
-### 📋 Clipboard
+* `KeyboardKitAutocompletePlugin` is a new plugin package.
+* `AutocompleteContext` no longer uses dispatch queues to update itself.
+* `AutocompleteContext.isLoading` property has been removed.
+* `AutocompleteContext` has a new `controllerThrottleInterval` property.
+* `AutocompleteEngine` is now public and adjusted to align with the plugin.
+* `AutocompleteEngineWithDownloadSupport` is a new protocol.
+* `AutocompleteService` moves some logic to the engine protocol.
+* `AutocompleteService` has a new `supportedLocales` property.
+* `AutocompleteService` has a new `warmUp()` function.
+* `AutocompleteService.autocomplete(_:updating:)` is now `async throws`.
+* `AutocompleteSettings.isAutoLearnEnabled` has been removed.
+* `AutocompleteSettingsScreen` has been cleaned up and polished.
+* `AutocompleteSuggestion` has a new `deleteBackwardsCount` property.
+* `AutocompleteSuggestion.isUnknown` has been renamed to `isCurrent`.
+* `AutocompleteSuggestionSource` is a new enum with known sources.
+* `StandardAutocompleteService` warms up its engine to avoid launch hangs.
+* `StandardAutocompleteService` now honors the new delete backwards count.
+* `KeyboardInputViewController` now uses the new throttle interval to throttle autocomplete operations.
 
-* `Clipboard` is a new namespace with clipboard-related features.
-* `Clipboard` has a `ClipsScreen` for managing custom user clips.
-* `Clipboard` has a `SettingsScreen` for clipboard clip settings.
-* `ClipboardContext` can be used to manage a user's custom clips.
-* `ClipboardSettings` has an auto-persisted `clips` list property.
+### 🎤 Dictation
 
-### 😀 Emojis
+The new `KeyboardKitDictationPlugin` makes it a lot easier to set up dictation, and isolates permissions to the plugin.
 
-* `EmojiKeyboard` has been rewritten from the ground up.
-* `EmojiKeyboard` has rewritten styling and configurations.
-* `EmojiKeyboard` is now more performant and memory efficient.
+* `KeyboardKitDictationPlugin` is a new plugin package.
+* `KeyboardKit` has new ways to inject a dictation engine.
+* `DictationEngine` defines a standard implementation in the plugin.
+* `DictationKeyboardOverlay` now enforces the `DictationSettings.silenceLimit`.
+* `DictationMethod` has been removed, since dictation now uses a single method.
+* `DictationVolumeRecorder` and `DictationSpeechRecognizer` have moved to the plugin.
+* `StandardDictationService` has a new `shouldTryToReturnToKeyboardAfterStartingDictation` property.
+* `StandardDictationService` has a new `tryToReturnToKeyboardAfterStartingDictation(with:)` function.
 
-### 𝓐 Fonts
+### 🏠 Host Application
 
-* `Fonts` is a new namespace with font-related features.
-* `Fonts` has a `SettingsScreen` that can pick a custom font.
-* `Fonts.UnicodeFont` is a model with Unicode-based font logic.
+The new `KeyboardKitHostPlugin` contains all host application bundle ID logic, and isolates system API usage to the plugin.
+
+* `KeyboardKitHostPlugin` is a new plugin package.
+* `KeyboardKit` has new ways to inject a host application resolver.
+
+### 🔣 Layout
+
+This version harmonizes many layouts to keep them consistent across configuration changes.
+
+* Numeric iPad layouts adjust the bottom right keys to enable swipe down.
+* All layouts with 3 and 4 input rows now have the same total height.
+* `KeyboardLayout` has new `itemFrames`, `item(at:)` and `action(at:)` functions.
+
+### 🌐 Localization
+
+This version adds support for new locales, bringing the total number of supported locales to `111`.
+
+* New supported locales:
+    * `Afrikaans`
+    * `Basque (France)`
+    * `Basque (Spain)`
+    * `Bosnian`
+    * `English (South Africa)`
+    * `Esperanto`
+    * `Galician (Spain)`
+    * `Kalaallisut`
+    * `Kyrgyz`
+    * `Māori`
+    * `Romansh`
+    * `Samoan`
+    * `Turkmen`
+    * `Yiddish`
+    * `Zulu`
+* New supported Indigenous North American locales:
+    * `Apache`
+    * `Blackfoot`
+    * `Chickasaw`
+    * `Chochenyo`
+    * `Choctaw`
+    * `Comanche`
+    * `Kiowa`
+    * `Lushootseed`
+    * `Mvskoke`
+    * `Nez Perce`
+    * `Osage`
+    * `Salish`
+    * `Wixarika`
+* New supported Sámi locales:
+    * `Kildin Sámi`
+    * `Lule Sámi`
+    * `Pite Sámi`
+    * `Skolt Sámi`
+    * `South Sámi`
+    * `Ume Sámi`
+    
+This version also updates locale information and localized input logic.
+
+* `KeyboardSettings` screens now uses `LocalizedStringResource`.
+* `Locale` no longer defines a `flag` and its list items just show text.
+
+### 📄 Proxy
+
+This version removes some task wrappers around async operations.
+ 
+* `UITextDocumentProxy` has new `deleteFullDocumentContext` functions.
+* `UITextDocumentProxy.moveTextInputCursor` functions are now async throws.
 
 ### ⚙️ Settings
 
-* `KeyboardSettings` has a new `isDoubleTapOnShiftToCapsLockEnabled`.
-* `KeyboardSettings` has a new `isDoubleTapOnSpacebarToCloseSentenceEnabled`.
+KeyboardKit 11 rewrites the settings store to work better with Swift concurrency.
 
-### 🍭 Themes
+* `KeyboardSettings` uses a new thread-safe store resolver.
+* `KeyboardSettings` now requires a `deviceType` when created.
+* `KeyboardSettings` has new `resetStore(for:)` and `resetStore(forAppGroup:)` functions.
+* `KeyboardSettingsScreen` has a new top keyboards section that links to the language settings screen.
 
-* `KeyboardTheme.blueprint` is a brand new theme.
-* `KeyboardTheme.aesthetic(.boho)` has been removed.
+### 🇻🇳 Vietnamese
 
-### ✨ Misc. Features
+KeyboardKit 11 drastically improves the Vietnamese input support.
 
-* `DeviceType` has a `preferredKeyboardDeviceType`.
-* `Feedback.Toggle` no longer requires a Pro license.
-* `Keyboard.BottomRow` no longer requires a Pro license.
-* `Keyboard.InputType` is a new enum to handle input types.
-* `KeyboardLayout` makes many features available to everyone.
-* `KeyboardType` has a new `.clipboard` specific keyboard type.
-* `KeyboardViewStyle` has new rounded corner radius properties.
-* `KeyboardViewStyle` now applies rounded corners on Liquid Glass.
-* `View` has a `.keyboardViewBackground` modifier to set the background.
+* `Vietnamese.Diacritic` has new `combiningMark` and `combiningMarkChars` properties.
+* `Vietnamese.Diacritic.CombiningMark` mirrors the base `Keyboard.Diacritic.CombiningMark`.
+* `Vietnamese.Diacritic.mũ`, `móc` and `trăng` can now be applied to vowels with tones, e.g. `á` + `a` => `ấ`.
+* `Vietnamese.Diacritic.mũ` and `móc` can now replace each other, e.g. `ô` + `w` => `ơ`, just like `mũ` and `trăng`.
+* `VietnameseInputEngine` can now apply tones to full words, e.g. `Tuân` + `s` becomes `Tuấn` and `moi` + `j` becomes `mọi`.
 
-### 💡 Misc. Changes
+### 💥 Breaking changes
 
-* Views now use environment injection for all observable contexts.
-* The library has changed many space occurences to use "spacebar".
-* This makes it easier to see when it means the physical spacebar.
-* `Autocomplete.StandardAutocompleteService` fixes unknown quotes.
-* `Keyboard.ButtonContent` no longer shows locale name for spaces.
-* `Keyboard.KeyboardType` has converted some types to input types.
-* `KeyboardApp.HomeScreen` now hides links to unavailable features.
-* `KeyboardLayout` now uses an iPad Pro layout on all iPad devices.
-* `KeyboardSettings.isKeyboardAutocollapseEnabled` default to true.
-* `KeyboardView` is easier to create with a lot fewer initializers.
-* `KeyboardView` now renders as on iPad on macOS, tvOS and visionOS.
-* `KeyboardView` now takes `services` instead of individual services.
+* `Vietnamese.allDiacriticVariantsFor*` and `Vietnamese.allDiacriticVowelVariants` have been removed.
 
 ### 🐛 Bug Fixes
 
-* `Autocomplete.ToolbarItem` applies quotes to unknown suggestions.
-* `AutocompleteSettings.isAutocompleteEnabled` behaves more correct.
+* `KeyboardAction` adjusts the font for currencies like "kr".
+* `KeyboardInputViewController` now performs autocomplete on locale change.
+* `KeyboardLayout` has been fixed for Hawaiian, by applying a proper macron.
 
 ### 🚨 Breaking Changes
 
-* All previously deprecated code has been removed.
-* The emoji keyboard has been refactored in breaking ways.
-* The callout, layout and style services have been removed.
-* The services have been replaced by values and view modifiers.
-* The pro settings screens have been refactored in breaking ways.
-* `Keyboard.BottomRow` now requires using the `services` initializer.
-* `Keyboard.KeyboardCase.auto` is no longer used and has been removed.
-* `KeyboardApp` screens have all been moved to each related namespace.
-* `KeyboardContext` `deviceTypeForKeyboardIsIpadPro` has been removed.
-* `KeyboardLayout` `deviceConfiguration` is converted to non-optional.
-* `Locale.ContextMenu` no longer supports using custom menu item views.
-* `RemoteAutocompleteService` has been replaced by using remote request.
+* `DictationMethod` has been removed.
+* `DictationSpeechRecognizer` has moved to the dictation plugin.
+* `DictationVolumeRecorder` has moved to the dictation plugin.
+* `GestureButtonScrollState` has been removed.
+* `KeyboardApp.keyboardSettingsKeyPrefix` has been removed.
+* `KeyboardAppHomeScreen` separates keyboard settings from feature settings.
+* `KeyboardAppHomeScreen` `settingsSection*` localization and visibility is renamed to `featureSettingsSection*`.
+* `KeyboardAppHomeScreen` keyboard link has moved to a new `keyboardSettingsSection*` section.
+* `KeyboardContext` moves proxy logic to `KeyboardControllerContext`.
+* `KeyboardContext` moves Liquid Glass logic to `ProcessInfo`.
+* `KeyboardContext.autocapitalizationTypeOverride` has been removed.
+* `KeyboardExperiment` has no active experiments.
+* `KeyboardExperimentContext` has been removed.
+* `KeyboardExperimentSettings` has been removed.
+* `KeyboardHostApplicationProvider` has been removed.
+* `KeyboardInputViewController` lifecycle functions have been reduced.
+* `KeyboardInputViewController` now syncs to its contexts, not the other way around.
+* `KeyboardInputViewController.originalTextDocumentProxy` is now fully internal.
+* `KeyboardSettings.store` and `.storeKeyPrefix` are no longer mutable.
+* `Locale.flag` has been removed.
+* `Locale.keyboardKitName` has been removed.
