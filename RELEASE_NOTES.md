@@ -12,6 +12,24 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.0.1
+
+This patch makes it easier to set up dictation, fixes some dictation race conditions, and fixes some App Store submit warnings.
+
+### 🎤 Dictation
+
+* `KeyboardAppView` can now inject a dictation engine, instead of having to use `.keyboardDictation(withEngine:)`.
+* `PluginDictationEngine` fixes some thread-related audio session warnings, by using modern, async AVFoundation APIs.
+* `StandardDictationService` fixes some engine activation race conditions, and will apply new locales while being idle.
+
+### 🌐 Localization
+
+This version fixes a warning when submitting your app to the App Store, by removing localized content for locales that the App Store doesn't support.
+
+* `Locale` no longer has empy placeholder files for `cst`, `fla`, `hch`, `kio`, and `nez`.
+
+
+
 ## 11.0
 
 KeyboardKit 11 uses Swift 6.2 and strict concurrency. This made it possible to remove a lot of dispatch and `MainActor.run` code, which makes the library more stable. This work also involved making more types `MainActor`, while aiming to keep most of the library unchanged. The `KeyboardContext` proxy logic is thus moved to a new main actor-bound `KeyboardControllerContext`, to keep the core context versatile.
@@ -22,11 +40,9 @@ KeyboardKit 11 also adds a new plugin architecture, which lets us move sensitive
 
 Finally, this version removes deprecated code, ends all experiments, and uses `LocalizedStringResource` for UI components localization.
 
-
 ### 💡 Biggest Changes
 
 The biggest structural changes in KeyboardKit 11 that will most likely affect you, is how controller-related state has been moved from the keyboard context to the new controller context, and how dictation and host application detection now requires plugins to be enabled.
-
 
 ### 📦 Package
 
