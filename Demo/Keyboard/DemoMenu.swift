@@ -50,98 +50,98 @@ extension DemoMenu {
     @ViewBuilder
     func menuContent() -> some View {
         menuItem(
-            title: "Menu.Settings",
+            title: .menuSettings,
             icon: .keyboardSettings,
             tint: .gray,
             action: { sheet = .keyboardSettings }
         )
 
         menuItem(
-            title: "Dictation",
+            title: .menuDictation,
             icon: .keyboardDictation,
             tint: .orange,
             action: { actionHandler.handle(.dictation) }
             )
 
         menuItem(
-            title: "Menu.Languages",
+            title: .menuLanguages,
             icon: .keyboardGlobe,
             tint: .blue,
             action: { sheet = .localeSettings }
         )
 
         menuItem(
-            title: "Menu.Autocomplete",
+            title: .menuAutocomplete,
             icon: .keyboardAutocomplete,
             tint: .orange,
             action: { sheet = .autocompleteSettings }
         )
 
         menuItem(
-            title: "Menu.Feedback",
+            title: .menuFeedback,
             icon: .keyboardFeedback,
             tint: .green,
             action: { sheet = .feedbackSettings }
         )
 
         menuItem(
-            title: "Menu.Clipboard",
+            title: .menuClipboard,
             icon: .keyboardClipboard,
             tint: .brown,
             action: { sheet = .clipboardSettings }
         )
 
         menuItem(
-            title: "Menu.Fonts",
+            title: .menuFonts,
             icon: .keyboardFont,
             tint: .gray,
             action: { sheet = .fontSettings }
         )
 
         menuItem(
-            title: "Menu.Themes",
+            title: .menuThemes,
             icon: .keyboardTheme,
             tint: .pink,
             action: { sheet = .themeSettings }
         )
 
         menuItem(
-            title: "Menu.TextInput",
+            title: .menuTextInput,
             icon: .init(systemName: "square.and.pencil"),
             tint: .teal,
             action: { isTextInputActive.toggle() }
         )
 
         menuItem(
-            title: "Menu.ReadFullDocument",
+            title: .menuReadFullDocument,
             icon: .init(systemName: "doc.text.magnifyingglass"),
             tint: .indigo,
             action: { sheet = .fullDocumentReader }
         )
 
         menuItem(
-            title: "Menu.OpenApp",
+            title: .menuOpenApp,
             icon: .init(systemName: "apps.iphone"),
             tint: .purple,
             action: { tryOpenUrl(app.deepLinks?.app) }
         )
         
         menuItem(
-            title: "Menu.Experiments",
+            title: .menuExperiments,
             icon: .init(systemName: "flask"),
             tint: .green,
             action: { sheet = .experimentSettings }
         )
         
         menuItem(
-            title: "Menu.OpenWebsite",
+            title: .menuOpenWebsite,
             icon: .init(systemName: "safari"),
             tint: .blue,
             action: { tryOpenUrl(webUrl) }
         )
         
         menuItem(
-            title: "Menu.CloseMenu",
+            title: .menuCloseMenu,
             icon: .init(systemName: "xmark"),
             tint: .red,
             action: {}
@@ -149,7 +149,7 @@ extension DemoMenu {
     }
 
     func menuItem(
-        title: LocalizedStringKey,
+        title: LocalizedStringResource,
         icon: Image,
         tint: Color,
         action: @escaping () -> Void

@@ -20,16 +20,16 @@ struct FullDocumentContextSheet: View {
 
     var body: some View {
         List {
-            Section("Sheet.FullDocumentContext.ResultPrefix") {
+            Section(.sheetFullDocumentContextResultPrefix) {
                 if isReading {
-                    Text("Sheet.FullDocumentContext.Reading")
+                    Text(.sheetFullDocumentContextReading)
                 } else {
                     Text(displayResult)
                 }
             }
         }
         .onAppear(perform: readFullDocumentContext)
-        .navigationTitle("Sheet.FullDocumentContext")
+        .navigationTitle(.sheetFullDocumentContext)
     }
 }
 

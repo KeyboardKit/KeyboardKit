@@ -39,28 +39,24 @@ struct HomeScreen: View {
                 app: app,
                 appIcon: Image(.icon),
                 header: {
-                    Text(
-"""
-OBS! This demo isn't code signed and therefore can't sync data with its keyboard. This means that dictation will not work.
-"""
-                    )
-                    .listRowBackground(Color.yellow)
-                    .multilineTextAlignment(.center)
+                    Text(.homeScreenAppGroupWarning)
+                        .listRowBackground(Color.yellow)
+                        .multilineTextAlignment(.center)
                 },
                 footer: {
-                    Section("Section.TextFields") {
-                        TextField("TextField.Plain", text: $text)
+                    Section(.sectionTextFields) {
+                        TextField(.textFieldPlain, text: $text)
                             .keyboardType(.default)
-                        TextField("TextField.Email", text: $textEmail)
+                        TextField(.textFieldEmail, text: $textEmail)
                             .keyboardType(.emailAddress)
-                        TextField("TextField.NumberPad", text: $textNumberPad)
+                        TextField(.textFieldNumberPad, text: $textNumberPad)
                             .keyboardType(.numberPad)
-                        TextField("TextField.URL", text: $textURL)
+                        TextField(.textFieldUrl, text: $textURL)
                             .keyboardType(.URL)
                             .autocapitalization(.none)
-                        TextField("TextField.WebSearch", text: $textWebSearch)
+                        TextField(.textFieldWebSearch, text: $textWebSearch)
                             .keyboardType(.webSearch)
-                        TextField("TextField.Multiline", text: $textMultiline, axis: .vertical)
+                        TextField(.textFieldMultiline, text: $textMultiline, axis: .vertical)
                             .lineLimit(4, reservesSpace: true)
                             .keyboardType(.default)
                     }
