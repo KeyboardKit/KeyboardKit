@@ -3,7 +3,7 @@
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2022-02-04.
-//  Copyright © 2022-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2026 Kankoda. All rights reserved.
 //
 
 import KeyboardKit
@@ -95,7 +95,7 @@ private extension DemoKeyboardView {
     // 💡 This menu view is shown when the menu is activated.
     @ViewBuilder var menuGrid: some View {
         if isToolbarToggled {
-            DemoKeyboardMenu(
+            DemoMenu(
                 actionHandler: services.actionHandler,
                 isTextInputActive: $isTextInputActive,
                 isToolbarToggled: $isToolbarToggled,

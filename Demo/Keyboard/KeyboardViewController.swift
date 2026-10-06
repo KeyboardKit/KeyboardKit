@@ -3,18 +3,19 @@
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2023-02-13.
-//  Copyright © 2023-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2026 Kankoda. All rights reserved.
 //
 
 import KeyboardKit
+import KeyboardKitHostPlugin                                // <-- 💡 Host Application
 import SwiftUI
 
-/// This keyboard shows how to set up `KeyboardKit Pro` with
-/// a `KeyboardApp` and customize the keyboard.
+/// This keyboard shows how to set up `KeyboardKit Pro`, and
+/// how to customize the keyboard in various ways.
 ///
-/// This keyboard lets you test open-source and Pro features,
-/// like fully localized keyboards, iPad Pro layouts, emojis,
-/// autocomplete, themes, etc.
+/// This keyboard lets you test most features, like the many
+/// languages, iPad-specific features, the autocomplete tool,
+/// an emoji keyboard, themes, etc.
 ///
 /// For app-specific features, check out the main app target.
 class KeyboardViewController: KeyboardInputViewController {
@@ -25,28 +26,21 @@ class KeyboardViewController: KeyboardInputViewController {
         NSLog("__DEINIT__")
     }
 
-    override var preferredScreenEdgesDeferringSystemGestures: UIRectEdge {
-        [.bottom, .left, .right]
-    }
-
     /// This function is called when the controller launches,
     /// and is where you can set up KeyboardKit for your app.
     override func viewWillSetupKeyboardKit() {
 
-        /// 🧪 Enable experimental features
-        KeyboardExperiment.keyboardDictation.setIsEnabled(true)
-
         // Set up the keyboard with the demo-specific app.
-        setupKeyboardKit(for: .keyboardKitDemo) { [weak self] result in
-
-            /// 💡 If the setup worked, we can customize the
-            /// keyboard. If not, we should handle the error.
-            switch result {
+        setupKeyboardKit(
+            for: .keyboardKitDemo,
+            hostApplicationResolver: pluginHostApplicationResolver  // <-- 💡 Host Application
+        ) { [weak self] result in
+            switch result {                                 // <-- 💡 Handle the license result
             case .success:
-                self?.setupDemoServices()
-                self?.setupDemoState()
+                self?.setupDemoServices()                   // <-- 💡 Set up demo-specific services.
+                self?.setupDemoState()                      // <-- 💡 Set up demo-specific state.
             case .failure(let error):
-                print(error)
+                print(error)                                // <-- 🚨 If this is called, the license failed.
             }
         }
     }
@@ -55,21 +49,13 @@ class KeyboardViewController: KeyboardInputViewController {
     /// redraw the keyboard view, and is where you can setup
     /// a custom view or customize the standard KeyboardView.
     override func viewWillSetupKeyboardView() {
-
-        // ⚠️ Don't call `super.viewWillSetupKeyboardView()`.
-        // super.viewWillSetupKeyboardView()
-
-        // Set up a custom, demo-specific keyboard view.
-        setupKeyboardView { /*[weak self]*/ controller in
-
-            // 💡 This demo keyboard view will apply various
-            // view modifiers based on this controller state.
-            DemoKeyboardView(
+        // super.viewWillSetupKeyboardView()                // <-- 💡 Don't call super.
+        setupKeyboardView { /*[weak self]*/ controller in   // <-- 💡 Use weak or unowned self.
+            DemoKeyboardView(                               // <-- 💡 Sets up a demo-specific keyboard view.
                 services: controller.services,
                 state: controller.state
             )
         }
-        
     }
 }
 
@@ -77,29 +63,21 @@ private extension KeyboardViewController {
 
     /// Make demo-specific changes to your keyboard services.
     func setupDemoServices() {
-
-        // 💡 Set up am action handler for our rocket button.
-        services.actionHandler = DemoKeyboardActionHandler(
+        services.actionHandler = DemoKeyboardActionHandler( // <-- 💡 Set up a demo-specific action handler.
             controller: self
         )
     }
 
     /// Make demo-specific changes to your keyboard's state.
-    ///
-    /// 💡 Many configurations and settings can be made from
-    /// the demo keyboard's custom toolbar.
     func setupDemoState() {
 
         /// 💡 Set up which locale to use to present locales.
         state.keyboardContext.localePresentationLocale = .current
 
-        /// 💡 Configure the space key's behavior and action.
-        state.keyboardContext.settings.spacebarLongPressBehavior = .moveInputCursor
-        // state.keyboardContext.settings.spacebarContextMenuLeading = .locale
-        state.keyboardContext.settings.spacebarMenuTrailing = .locale
-
-        /// 💡 Disable autocorrection.
-        // state.autocompleteContext.isAutocorrectEnabled = false
+        /// 💡 Configure various settings
+        // state.autocompleteSettings.isAutocorrectEnabled = false
+        state.keyboardSettings.spacebarLongPressBehavior = .moveInputCursor
+        state.keyboardSettings.spacebarMenuTrailing = .locale
 
         /// 💡 Setup demo-specific haptic & audio feedback.
         let feedback = state.feedbackContext

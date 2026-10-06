@@ -3,7 +3,7 @@
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2022-02-07.
-//  Copyright © 2022-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2022-2026 Kankoda. All rights reserved.
 //
 
 import Foundation

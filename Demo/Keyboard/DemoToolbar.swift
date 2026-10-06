@@ -3,7 +3,7 @@
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2023-11-27.
-//  Copyright © 2023-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2023-2026 Kankoda. All rights reserved.
 //
 
 import KeyboardKit
@@ -34,7 +34,7 @@ struct DemoToolbar<Toolbar: View>: View {
     @State var text = ""
 
     var body: some View {
-        try? Keyboard.ToggleToolbar(
+        Keyboard.ToggleToolbar(
             isToggled: $isToolbarToggled,
             toolbar: autocompleteToolbar,                   // Add a locale switcher to the toolbar
             toggledToolbar: toggledToolbar

@@ -3,7 +3,7 @@
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2024-11-25.
-//  Copyright © 2024-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2024-2026 Kankoda. All rights reserved.
 //
 
 import KeyboardKit
@@ -13,7 +13,7 @@ import SwiftUI
 /// operations in the demo app.
 struct FullDocumentContextSheet: View {
 
-    @EnvironmentObject var keyboardContext: KeyboardContext
+    @EnvironmentObject var context: KeyboardControllerContext
 
     @State var isReading = false
     @State var fullDocumentContext = ""
@@ -49,7 +49,7 @@ private extension FullDocumentContextSheet {
         isReading = true
         fullDocumentContext = ""
         Task {
-            let result = try? await keyboardContext.textDocumentProxy.fullDocumentContext()
+            let result = try? await context.textDocumentProxy.fullDocumentContext()
             guard let result else { return }
             await MainActor.run {
                 self.isReading = false

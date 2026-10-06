@@ -3,7 +3,7 @@
 //  KeyboardKit
 //
 //  Created by Daniel Saidi on 2021-02-11.
-//  Copyright © 2021-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2021-2026 Kankoda. All rights reserved.
 //
 
 import KeyboardKit
@@ -11,12 +11,12 @@ import SwiftUI
 
 /// This is the main demo app screen.
 ///
-/// This view uses a KeyboardKit Pro `HomeScreen` to present
+/// This view uses a the KeyboardKit `HomeScreen` to present
 /// keyboard status and settings links with some adjustments.
 ///
-/// See ``DemoApp`` for important, demo-specific information
-/// on why the in-app keyboard settings aren't synced to the
-/// keyboards by default, and how you can enable this.
+/// See the ``DemoApp`` for demo-specific information on why
+/// the keyboard settings aren't synced with the keyboard by
+/// default, and how you can enable this.
 struct HomeScreen: View {
 
     let app = KeyboardApp.keyboardKitDemo
@@ -77,24 +77,7 @@ OBS! This demo isn't code signed and therefore can't sync data with its keyboard
 //            settingsSectionThemes: true,
 //            settingsSectionExperiments: true,
 //        ))
-        .keyboardDictation(
-            speechRecognizer: .standard
-        )
         .navigationViewStyle(.stack)
-    }
-}
-
-extension HomeScreen {
-    
-    func dictationScreen() -> some View {
-        DictationScreen(
-            titleView: { EmptyView() },
-            visualizer: { DictationBarVisualizer(isAnimating: $0) },
-            doneButton: { action in
-                Button("Button.Done", action: action)
-                    .buttonStyle(.borderedProminent)
-            }
-        )
     }
 }
 

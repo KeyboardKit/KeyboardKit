@@ -1,9 +1,9 @@
 //
-//  DemoKeyboardMenu.swift
+//  DemoMenu.swift
 //  Demo
 //
 //  Created by Daniel Saidi on 2024-11-24.
-//  Copyright © 2024-2025 Daniel Saidi. All rights reserved.
+//  Copyright © 2024-2026 Kankoda. All rights reserved.
 //
 
 import SwiftUI
@@ -13,7 +13,7 @@ import KeyboardKit
 /// to present an alternate toolbar.
 ///
 /// The file is added to the app as well, to enable previews.
-struct DemoKeyboardMenu: View {
+struct DemoMenu: View {
     
     let actionHandler: KeyboardActionHandler
 
@@ -34,9 +34,9 @@ struct DemoKeyboardMenu: View {
 
     var body: some View {
         ScrollView(.vertical) {
-            LazyVGrid(columns: [
-                .init(.adaptive(minimum: 115, maximum: 600))
-            ]) {
+            LazyVGrid(
+                columns: [.init(.adaptive(minimum: 115, maximum: 600))]
+            ) {
                 menuContent()
             }
             .padding(.bottom, 10)
@@ -45,7 +45,7 @@ struct DemoKeyboardMenu: View {
     }
 }
 
-extension DemoKeyboardMenu {
+extension DemoMenu {
 
     @ViewBuilder
     func menuContent() -> some View {
@@ -201,7 +201,7 @@ extension DemoKeyboardMenu {
     }
 }
 
-private extension DemoKeyboardMenu {
+private extension DemoMenu {
 
     func tryOpenUrl(_ url: String?) {
         guard let url, let url = URL(string: url) else { return }
@@ -216,7 +216,7 @@ public extension View {
 }
 
 #Preview {
-    DemoKeyboardMenu(
+    DemoMenu(
         actionHandler: .preview,
         isTextInputActive: .constant(false),
         isToolbarToggled: .constant(true),
