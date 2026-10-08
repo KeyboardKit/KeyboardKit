@@ -12,7 +12,7 @@ This document covers the current major version. See older versions for older rel
 
 
 
-## 11.0.2
+## 11.0.2, 11.0.3
 
 This version makes the `KeyboardAppHomeScreen` support the iPhone Duo.
 
