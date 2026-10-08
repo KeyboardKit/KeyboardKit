@@ -12,6 +12,30 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.0.2
+
+This version makes the `KeyboardAppHomeScreen` support the iPhone Duo.
+
+### 📱 App
+
+* `KeyboardAppHomeScreen` can now inject a custom `content` view builder.
+* `KeyboardAppHomeScreen` can now inject a `selection` and `splitViewColumnVisibility`.
+* `KeyboardAppHomeScreenItem` is a new enum that describes all home screen list menu items.
+* `KeyboardAppHomeScreenDetail` is a new content view that renders default `KeyboardAppHomeScreenItem` content.
+* `KeyboardAppHomeScreenSplitViewMode` is a new enum that can be used to set how the screen adapts to split view.
+* `KeyboardAppHomeScreenStyle` has a new `sidebarBackgroundColor` that can be used to customize the sidebar background.
+
+### ⚙️ Settings
+
+* `KeyboardSettingsScreen` now shows a keyboard status section if needed.
+
+### 🩺 Status
+
+* `KeyboardStatusSectionStyle` is renamed to `KeyboardStatusSectionVisibility`.
+* `KeyboardStatusSectionVisibility` no longer applies the system settings values.
+
+
+
 ## 11.0.1
 
 This patch makes it easier to set up dictation, fixes some dictation race conditions, and fixes some App Store submit warnings.
@@ -21,6 +45,11 @@ This patch makes it easier to set up dictation, fixes some dictation race condit
 * `KeyboardAppView` can now inject a dictation engine, instead of having to use `.keyboardDictation(withEngine:)`.
 * `PluginDictationEngine` fixes some thread-related audio session warnings, by using modern, async AVFoundation APIs.
 * `StandardDictationService` fixes some engine activation race conditions, and will apply new locales while being idle.
+
+### 📱 App
+
+* `KeyboardAppHomeScreen` can now be used as the sidebar of a `NavigationSplitView`, by providing a selection binding.
+* `KeyboardAppHomeScreenItem` and `KeyboardAppHomeScreenDetail` are new types that can be used to show the detail of a selected home screen item.
 
 ### 🌐 Localization
 
