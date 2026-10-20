@@ -14,7 +14,7 @@ This document covers the current major version. See older versions for older rel
 
 ## 11.1
 
-This version adds support for Khmer, Korean, Luxembourgish, Thai, Xhosa, and Yoruba.
+This version adds support for `Khmer`, `Korean`, `Luxembourgish`, `Thai`, `Xhosa`, and `Yoruba`.
 
 This version detects iPhone Duo devices, and adjusts the keyboard layout and design to match a native Duo experience.
 
