@@ -36,14 +36,14 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/LicenseKit/LicenseKit.git",
-            exact: "2.2.6"
+            exact: "2.3.0"
         )
     ],
     targets: [
         .binaryTarget(
             name: "KeyboardKit",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0.3/KeyboardKit.zip",
-            checksum: "8651b0a9f9a4df0b3c581b896e84b7d9b985dd27d5336122a46cdda3983a42d5"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.1.0/KeyboardKit.zip",
+            checksum: "edd3147f3ccc9e4239e17e50aa2ff352b8e035b780606d8e58ae5920492b5504"
         ),
         .target(
             name: "KeyboardKitDependencies",
@@ -55,8 +55,8 @@ let package = Package(
         
         .binaryTarget(
             name: "KeyboardKitAutocompletePlugin",
-            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.0.0/KeyboardKitAutocompletePlugin.zip",
-            checksum: "656d4f1b1409413679aa733a941f9913772dba2bab22726bcc00d00f6b1f4bc2"
+            url: "https://github.com/KeyboardKit/KeyboardKit-Binaries/releases/download/11.1.0/KeyboardKitAutocompletePlugin.zip",
+            checksum: "213282148e63b8df397233ca690fcd34380970cd8a9f511e5c66de3d8a18d426"
         ),
         .binaryTarget(
             name: "KeyboardKitDictationPlugin",

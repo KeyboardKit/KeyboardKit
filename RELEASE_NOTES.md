@@ -12,6 +12,122 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.1
+
+This version adds support for Khmer, Korean, Luxembourgish, Thai, Xhosa, and Yoruba.
+
+This version detects iPhone Duo devices, and adjusts the keyboard layout and design to match a native Duo experience.
+
+This version replaces mutually exclusive docked, floating, and split placement states with a single placement engine. 
+
+This version adds split keyboard support. Small phone screens will however only support this in landscape orientation.
+
+This version adds a new, experimental autocomplete engine to the plugin, which can handle English, Italian, and Swedish.
+
+### 🌱 Essentials
+
+This version adds a keyboard placement enum and improves how locales are displayed.
+
+* `Keyboard.AddedLocale` will only show its layout type when needed, to avoid clutter.
+* `Keyboard.DuoDetector` is a new type that can detect if the device is an iPhone Duo.
+* `Keyboard.LayoutType` has two new Thai-specific types - `.thai4Row` and `.thai5Row`.
+* `Keyboard.Placement` is a new enum that defines mutually exclusive keyboard placements.
+* `Keyboard.PlacementContextMenu` and `Keyboard.PlacementPicker` are two new poicker views.
+* `Keyboard.SpacebarLongPressBehavior` has a new `.keyboardPlacementMenu` menu alternative.
+* `Keyboard.SpacebarMenuType` has a new `keyboardPlacement` that replaces `keyboardDockEdge`.
+* `KeyboardContext` has new `availableKeyboardPlacements` and `keyboardPlacement` properties.
+* `KeyboardContext` has a new `isDuoDevice` property, which uses the `DuoDetector`'s detection.
+* `KeyboardContext` has a new `setPersistedKeyboardPlacement(_:)` function, which persists a placement.
+* `KeyboardView` supports split mode and applies a keyboard placement menu to the dismiss keyboard key.
+* `KeyboardView` removes the emoji keyboard switcher if `EmojiSettings.isEmojiSwitcherEnabled` is false.
+
+### 💡 Autocomplete
+
+This version adds a new `Langlot` engine that supports English, Italian, and Swedish.
+
+* `AutocompleteEngine` has new download capabilities.
+* `AutocompleteEngineDownloadMenu` is a new menu view.
+* `AutocompleteSettings` has a new `isLexiconEnabled` setting.
+* `AutocompleteSettingsScreen` has a new lexicon suggestions toggle.
+* `AutocompleteToolbarStyle` corner radius defaults to 25.
+* `KeyboardAppView` can now inject an autocomplete engine.
+* `KeyboardInputViewController` can now inject an autocomplete engine.
+* `KeyboardKitAutocompletePlugin` has a new `pluginAutocompleteEngine`. 
+* `KeyboardKitAutocompletePlugin` has a new `.langlot(...)` engine builder. 
+* `StandardAutocompleteService` ignores the system lexicon when `isLexiconEnabled` is disabled.
+
+### 💬 Callouts
+
+This version lets callout actions define rows, which is used by Thai to present all signs in two rows.
+
+* `KeyboardActionCallout` now renders callout action rows as multiple rows that grow upwards.
+* `KeyboardCalloutActions` has a new `actionRowsDictionary` and a new `actionRows(for:)` function.
+* `KeyboardCalloutActions` has a new `RowsBuilder` and `keyboardCalloutActionRows(_:)` view modifier.
+* `KeyboardCalloutContext` has a new `updateSecondaryActionRows(_:for:in:alignment:)` update function.
+* `KeyboardCalloutContext` has new `secondaryActionsRowItemCounts` and `secondaryActionsRowCount` values.
+* `KeyboardCalloutContext` drag selection can move up between rows, if callout actions have multiple rows.
+
+### 😀 Emojis
+
+This version adds more emoji settings and a new settings screen.
+
+* `EmojiSettings` has a new `isEmojiSwitcherEnabled` setting.
+* `EmojiSettingsScreen` is a new settings screen with toggles and pickers.
+
+### 🔣 Layout
+
+This version adds iPhone Duo-specific keyboard layouts that match the native ones.
+
+* `CGSize` has new `.iPhoneDuoClosedScreen` and `.iPhoneDuoOpenScreen` sizes.
+* `KeyboardLayoutConfiguration` has new open and closed iPhone Duo configurations.
+* `KeyboardLayoutConfiguration.standard` functions have a new `isDuoDevice` parameter.
+* `KeyboardAction.standardButtonFontSize` uses larger input fonts on an open iPhone Duo.
+* `KeyboardLayout.iPhoneLayout` adds bottom row spacers on iPhone Duo, to match the native keyboard.
+* `KeyboardInputViewController` and `EmojiKeyboard` ignore the iPhone Duo safe area, to match the keyboard.
+
+### 🌐 Localization
+
+This version adds support for `Khmer`, `Korean`, `Luxembourgish`, `Thai`, `Xhosa`, and `Yoruba`.
+
+* `Keyboard.LayoutType` has new `.thai4Row` and `.thai5Row` Thai layout types.
+* `Locale.khmer`, `.korean`, `.luxembourgish`, `.thai`, `.xhosa`, and `.yoruba` are new supported locales.
+* `Locale` has a new `prefersAutocapitalization` property, `false` for Khmer and Thai.
+* `Keyboard.Diacritic` has new `khmerSign` and `khmerSigns` Khmer diacritics.
+* `KeyboardLayout` has new `.khmer`, `.korean`, `.luxembourgish`, `.thai`, `.xhosa`, and `.yoruba` builders.
+* `StandardKeyboardActionHandler`can now handle Korean input with a separate engine.
+
+### ⚙️ Settings
+
+This version cleans up `KeyboardLocaleSettingsScreen` and moves adding locales to a sheet.
+
+* `KeyboardLocaleSettingsScreen` has a new button that opens an "add more languages" sheet.
+* `KeyboardLocaleSettingsScreen` will show suggested languages based on the current locale.
+* `KeyboardSettings` has a new `keyboardPlacement` setting, which replaces `keyboardDockEdge`.
+* `KeyboardSettings` has a new `isSplitKeyboardSettingAvailable` property which checks the device.
+* `KeyboardSettingsScreen` has a new keyboard placement picker, which replaces the one-handed keyboard picker.
+
+### 🐛 Bug Fixes
+
+* `KeyboardCalloutActions` now resolves callout actions for Navajo.
+* `KeyboardInputViewController` resolves the input case earlier, to avoid initial flicker.
+* `KeyboardView` no longer applies layout edge insets to overlays, like the emoji keyboard.
+* `KeyboardLayout` caching now regards the screen size, to handle folding on an iPhone Duo.
+* `StandardAutocompleteService` no longer autocorrects valid words to match capitalized contact names.
+* `StandardAutocompleteService` now adjusts text replacement casing to match the replaced word.
+* `UITextDocumentProxy` fixes an autocomplete bug in how space after the cursor was handled.
+* `Vietnamese` fixes a problem where TELEX/VNI/VIQR stopped working after diacritic changes.
+
+### 🚨 Breaking Changes
+
+This version had to change the autocomplete engine due to findings when integrating Langlot.
+
+* `AutocompleteEngineWithDownloadSupport` has been merged into `AutocompleteEngine`.
+* `Keyboard.SpacebarLongPressBehavior` and `Keyboard.SpacebarMenuType` has renamed cases.
+* `KeyboardLocaleSettingsScreenLocalization` has breaking changes due to its new structure.
+* `KeyboardSettingsScreenLocalization.topSectionOneHandedKeyboard` has been renamed to placement.
+
+
+
 ## 11.0.2, 11.0.3
 
 This version makes the `KeyboardAppHomeScreen` support the iPhone Duo.
@@ -126,7 +242,6 @@ The new `KeyboardKitAutocompletePlugin` will be used to define additional autoco
 * `AutocompleteContext.isLoading` property has been removed.
 * `AutocompleteContext` has a new `controllerThrottleInterval` property.
 * `AutocompleteEngine` is now public and adjusted to align with the plugin.
-* `AutocompleteEngineWithDownloadSupport` is a new protocol.
 * `AutocompleteService` moves some logic to the engine protocol.
 * `AutocompleteService` has a new `supportedLocales` property.
 * `AutocompleteService` has a new `warmUp()` function.
@@ -241,10 +356,6 @@ KeyboardKit 11 drastically improves the Vietnamese input support.
 * `Vietnamese.Diacritic.mũ` and `móc` can now replace each other, e.g. `ô` + `w` => `ơ`, just like `mũ` and `trăng`.
 * `VietnameseInputEngine` can now apply tones to full words, e.g. `Tuân` + `s` becomes `Tuấn` and `moi` + `j` becomes `mọi`.
 
-### 💥 Breaking changes
-
-* `Vietnamese.allDiacriticVariantsFor*` and `Vietnamese.allDiacriticVowelVariants` have been removed.
-
 ### 🐛 Bug Fixes
 
 * `KeyboardAction` adjusts the font for currencies like "kr".
@@ -274,3 +385,4 @@ KeyboardKit 11 drastically improves the Vietnamese input support.
 * `KeyboardSettings.store` and `.storeKeyPrefix` are no longer mutable.
 * `Locale.flag` has been removed.
 * `Locale.keyboardKitName` has been removed.
+* `Vietnamese.allDiacriticVariantsFor*` and `Vietnamese.allDiacriticVowelVariants` have been removed.
