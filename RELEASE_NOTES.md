@@ -12,6 +12,20 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.1.1
+
+This patch version makes some small adjustments to the 11.1 release.
+
+### 🌱 Essentials
+
+This patch adds a next keyboard placement action that can be added to the keyboard and picked from a menu.
+
+### 💡 Autocomplete
+
+This patch makes `AutocompleteDownloadMenuLocalization` public.
+
+
+
 ## 11.1
 
 This version adds support for `Khmer`, `Korean`, `Luxembourgish`, `Thai`, `Xhosa`, and `Yoruba`.
@@ -45,8 +59,8 @@ This version adds a keyboard placement enum and improves how locales are display
 
 This version adds a new `Langlot` engine that supports English, Italian, and Swedish.
 
+* `AutocompleteDownloadMenu` is a new menu view.
 * `AutocompleteEngine` has new download capabilities.
-* `AutocompleteEngineDownloadMenu` is a new menu view.
 * `AutocompleteSettings` has a new `isLexiconEnabled` setting.
 * `AutocompleteSettingsScreen` has a new lexicon suggestions toggle.
 * `AutocompleteToolbarStyle` corner radius defaults to 25.
