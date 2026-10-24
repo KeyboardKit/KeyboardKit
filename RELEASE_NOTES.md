@@ -12,9 +12,15 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.1.2
+
+This patch fixes a missing keyboard placement menu icon.
+
+
+
 ## 11.1.1
 
-This patch version makes some small adjustments to the 11.1 release.
+This patch makes some small adjustments to the 11.1 release.
 
 ### 🌱 Essentials
 
