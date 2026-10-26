@@ -12,6 +12,37 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.1.3
+
+This patch adjusts the keyboard layout for the real iPhone Duo device, and adds new keyboard actions. 
+
+### 🌱 Essentials
+
+* `KeyboardContext` automatically enables the input mode switcher on iPhone Duo.
+
+### 💥 Actions
+
+* `KeyboardAction` adds button images for some actions.
+* `KeyboardAction.nextKeyboardPlacement` has been renamed to `.keyboardPlacement`.
+* `KeyboardAction` has new `.toggleAudioFeedback`, `.toggleHapticFeedback` and `.toggleSplitKeyboard` actions.
+
+### 🔣 Layout
+
+* `KeyboardLayout.iPhoneLayout` no longer adds bottom edge spacers on iPhone Duo, to match the real device.
+
+### ⚙️ Settings
+
+* `AutocompleteSettingsScreen` skips the locale pickers if there is only a single locale.
+* `AutocompleteIgnoredWordsScreenPicker` now only lists some locales.
+* `AutocompleteTextReplacementsScreenPicker` now only lists some locales.
+* `KeyboardSettings` has a new `toggleIsSplitKeyboardEnabled()` function.
+
+### 🐛 Bug Fixes
+
+* `License.register(withApp:)` no longer throws a missing file error when online validation fails.
+
+
+
 ## 11.1.2
 
 This patch fixes a missing keyboard placement menu icon.
