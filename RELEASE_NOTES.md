@@ -12,6 +12,17 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.1.5
+
+This patch adjusts the visual style of the URL domain action. 
+
+### 🐛 Bug Fixes
+
+* `KeyboardAction.toggleSplitKeyboard` no longer used the flipped, incorrect button icon.
+* `KeyboardAction.urlDomain` no longer uses an icon in the keyboard, only in an action picker.
+
+
+
 ## 11.1.4
 
 This patch adds new settings. 
