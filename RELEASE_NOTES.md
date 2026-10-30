@@ -12,9 +12,20 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.1.4
+
+This patch adds new settings. 
+
+### ⚙️ Settings
+
+* `KeyboardSettings` has a new `isNumericSwitcherEnabled`.
+* `KeyboardSettingsScreen` has a new `isNumericSwitcherEnabled` toggle.
+
+
+
 ## 11.1.3
 
-This patch adjusts the keyboard layout for the real iPhone Duo device, and adds new keyboard actions. 
+This patch adjusts the keyboard layout for the real iPhone Duo, and adds new keyboard actions. 
 
 ### 🌱 Essentials
 
