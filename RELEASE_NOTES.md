@@ -12,6 +12,16 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.1.6
+
+This patch fixes an emoji related bug after applying an autocomplete suggestion, to avoid smileys being applied like "I'm happy: )".  
+
+### 🐛 Bug Fixes
+
+* `:` and `;` will no longer be subject the autocomplete space insertion behavior.
+
+
+
 ## 11.1.5
 
 This patch adjusts the visual style of the URL domain action. 
