@@ -161,7 +161,6 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * 🔉 [Feedback][Feedback] - Trigger audio & haptic feedback with ease.
 * 𝒜 [Fonts][Fonts] - Type with other fonts than the standard system font.
 * 🏠 [Host][Host] - Identify and open the host application.
-* 📝 [Input][Input] - Keyboard input fields, Vietnamese support, etc.
 * 🔣 [Layout][Layout] - A dynamic, customizable keyboard layout engine.
 * 🌐 [Localization][Localization] - Locale-specific utilities for all supported locales.
 * 🗺️ [Navigation][Navigation] - Open urls and other apps from the keyboard.
@@ -170,6 +169,7 @@ KeyboardKit provides a free, open-source keyboard engine. [KeyboardKit Pro][Pro]
 * ⚙️ [Settings][Settings] - Sync keyboard settings across targets, and link to System Settings.
 * 🩺 [Status][Status] - Detect if a keyboard is enabled, has full access, etc.
 * 🎨 [Styling][Styling] - Style your keyboard to great extent.
+* 📝 [Text Input][Text-Input] - Keyboard text input fields, Vietnamese & Korean support, etc.
 * 🍭 [Themes][Themes] - A theme engine with many pre-defined themes.
 
 
@@ -250,7 +250,6 @@ KeyboardKit is closed-source. See the [LICENSE][License] file for more info.
 [Feedback]: https://docs.keyboardkit.com/documentation/keyboardkit/feedback-article
 [Fonts]: https://docs.keyboardkit.com/documentation/keyboardkit/fonts-article
 [Host]: https://docs.keyboardkit.com/documentation/keyboardkit/host-article
-[Input]: https://docs.keyboardkit.com/documentation/keyboardkit/input-article
 [Layout]: https://docs.keyboardkit.com/documentation/keyboardkit/layout-article
 [Localization]: https://docs.keyboardkit.com/documentation/keyboardkit/localization-article
 [Navigation]: https://docs.keyboardkit.com/documentation/keyboardkit/navigation-article
@@ -259,4 +258,5 @@ KeyboardKit is closed-source. See the [LICENSE][License] file for more info.
 [Settings]: https://docs.keyboardkit.com/documentation/keyboardkit/settings-article
 [Status]: https://docs.keyboardkit.com/documentation/keyboardkit/status-article
 [Styling]: https://docs.keyboardkit.com/documentation/keyboardkit/styling-article
+[Text-Input]: https://docs.keyboardkit.com/documentation/keyboardkit/textinput-article
 [Themes]: https://docs.keyboardkit.com/documentation/keyboardkit/themes-article
