@@ -1,5 +1,5 @@
 //
-//  DemoKeyboardActionHandler.swift
+//  DemoActionHandler.swift
 //  KeyboardPro
 //
 //  Created by Daniel Saidi on 2021-02-11.
@@ -11,7 +11,7 @@ import UIKit
 
 /// This action handler inherits the standard action handler
 /// and makes demo-specific adjustments to it.
-class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
+class DemoActionHandler: StandardKeyboardActionHandler {
 
     /// Trigger custom actions for `.image` keyboard actions.
     override func action(
@@ -47,7 +47,7 @@ class DemoKeyboardActionHandler: StandardKeyboardActionHandler {
     }
 }
 
-private extension DemoKeyboardActionHandler {
+private extension DemoActionHandler {
 
     func alert(_ message: String) {
         print("Implement alert functionality if you want.")
@@ -59,6 +59,7 @@ private extension DemoKeyboardActionHandler {
         guard image.copyToPasteboard() else { return alert("The image could not be copied.") }
         alert("Copied to pasteboard!")
     }
+    
     func handleImageDidSave(withError error: Error?) {
         if error == nil { alert("Saved!") }
         else { alert("Failed!") }

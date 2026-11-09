@@ -63,7 +63,7 @@ private extension KeyboardViewController {
 
     /// Make demo-specific changes to your keyboard services.
     func setupDemoServices() {
-        services.actionHandler = DemoKeyboardActionHandler( // <-- 💡 Set up a demo-specific action handler.
+        services.actionHandler = DemoActionHandler( // <-- 💡 Set up a demo-specific action handler.
             controller: self
         )
     }

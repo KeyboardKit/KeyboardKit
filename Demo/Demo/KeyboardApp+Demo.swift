@@ -6,11 +6,15 @@
 //  Copyright © 2024-2026 Kankoda. All rights reserved.
 //
 
-#if IS_KEYBOARDKIT
 import KeyboardKit
-#else
-import KeyboardKit
-#endif
+
+// 💡 Autocomplete
+import KeyboardKitAutocompletePlugin
+extension PluginAutocompleteEngine: @retroactive AutocompleteEngine {}
+
+// 💡 Dictation
+import KeyboardKitDictationPlugin
+extension PluginDictationEngine: @retroactive DictationEngine {}
 
 extension KeyboardApp {
 
@@ -19,16 +23,15 @@ extension KeyboardApp {
     /// Note that this file is added to both the app and the
     /// `Keyboard` keyboard extension.
     ///
-    /// The demo uses a `KeyboardKit.license` file to unlock
-    /// KeyboardKit Pro, which is why the `licenseKey` below
-    /// is disabled. The `appGroupId` value is only added to
-    /// show how to enable App Group data syncing, but since
-    /// this demo app isn't code signed, it does not work in
-    /// this demo. See ``DemoApp`` for more information.
+    /// `IMPORTANT` This app isn't code signed and therefore
+    /// can't use an App Group. This means that the settings
+    /// won't sync between the app and the keyboard. The app
+    /// just adds the `appGroupId` value to show how you can
+    /// enable App Group data syncing.
     static var keyboardKitDemo: KeyboardApp {
         .init(
             name: "KeyboardKit Demo",
-            // licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",  // Set up KeyboardKit Pro!
+            licenseKey: "299B33C6-061C-4285-8189-90525BCAF098",     // KeyboardKit Pro License!
             appGroupId: "group.com.keyboardkit.demo",               // Set up App Group data sync
             locales: .keyboardKitSupported,                         // Set up the enabled locales
             autocomplete: .init(                                    // Set up custom autocomplete
@@ -40,4 +43,19 @@ extension KeyboardApp {
             )
         )
     }
+}
+
+@MainActor
+var dictationEngine: DictationEngine {
+    pluginDictationEngine
+}
+
+@MainActor
+var autocompleteEngine: AutocompleteEngine {
+    pluginAutocompleteEngine(
+        .langlot(
+            licenseKey: "87170FBB-24F4-4C00-A7FC-C9A77D49DF38",
+            appGroup: KeyboardApp.keyboardKitDemo.appGroupId!
+        )
+    )
 }
