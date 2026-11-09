@@ -6,7 +6,7 @@
 //  Copyright © 2025 Daniel Saidi. All rights reserved.
 //
 
-import KeyboardKit
+import KeyboardKitPro
 import SwiftUI
 
 /// This demo-specific keyboard view sets up a `KeyboardView`
