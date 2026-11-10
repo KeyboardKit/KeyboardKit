@@ -36,7 +36,7 @@ let package = Package(
     dependencies: [
         .package(
             url: "https://github.com/LicenseKit/LicenseKit.git",
-            exact: "2.4.1"
+            .upToNextMajor(from: "2.4.1")
         )
     ],
     targets: [
