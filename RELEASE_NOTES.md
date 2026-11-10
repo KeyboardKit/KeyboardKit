@@ -12,6 +12,103 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.2
+
+This version adds a new GIF feature, with a GIF keyboard, as well as models, views, and built-in GIPHY and Klipy integrations.
+
+This version also adjusts layout and styling for iPhone and iPhone Duo, improves typing, and adds new actions, e.g. for copying images and GIFs to the pasteboard. It also makes typing even smoother, by adjusting the view hierarchy to avoid cancelled and frozen touches.
+
+### 💡 Autocomplete
+
+* `AutocompleteToolbar` uses a shorter height by default.
+* `AutocompleteToolbarStyle` padding is now applied outside of the fixed height.
+
+### 💬 Callouts
+
+* `KeyboardCalloutStyle` uses a smaller input callout height by default.
+
+### 📋 Clipboard
+
+* `KeyboardAction` has a new `.copyImageToPasteboard` case, with `UIImage` and `NSImage` builders.
+
+### 🌱 Essentials
+
+* `Keyboard.BottomRow` has a new, throwing initializer.
+* `Keyboard.DeviceType` adds split mode support to visionOS.
+* `Keyboard.DockEdge` now has two separate cases for docked.
+* `Keyboard.DuoDetector` has been renamed to `DeviceDetector`.
+* `Keyboard.InputType` has been renamed to `TextInputType`.
+* `Keyboard.MinimalBottomRow` is a new view for media keyboards.
+* `Keyboard.NumberPadInputMode` can be used to randomize digits.
+* `Keyboard.PlacementToolbarMenu` is a new toolbar placement menu.
+* `Keyboard.Toast` is a new view that can present toast messages.
+* `Keyboard.ToastPresentation` defines how the toast is presented.
+* `KeyboardContext` has a new `toggleKeyboardType(_:)` function.
+* `KeyboardSettings` has a new `isRandomizedNumberPadEnabled` setting.
+* `KeyboardSettingsScreen` has a new "Randomized Number Pad" toggle.
+* `String` adds more characters to the various word delimiter values.
+* `View` has new `.keyboardToast` and `.keyboardToastPresentation` modifiers.
+
+### 💥 Actions
+
+* `KeyboardAction` has a new `copyGifToPasteboard` action.
+* `KeyboardAction` has new `copyImageToPasteboard` actions.
+* `KeyboardAction` has a new `toggleKeyboardType` action.
+
+### 🎞️ GIF
+
+* `Gif` is a new model.
+* `GifImage` is a new view that can render a GIF.
+* `GifKeyboard` is a new, full-blown GIF keyboard.
+* `GifKeyboardPlacement` is a new GIF placement enum.
+* `GifKeyboardPlacementPicker` is a new GIF placement picker.
+* `GifKeyboardSearchField` is a new GIF search field wrapper.
+* `GifProvider` is a new provider type that can search for GIFs.
+* `GifProvider` has pre-defined `.giphy` and `.klipy` providers.
+* `GifSettings` is a new type with persisted `keyboardPlacement`.
+* `GifSettingsScreen` is a new settings screen with GIF settings.
+* `GifToolbar` is a new toolbar that shows GIFs above the keyboard.
+* `GifToolbar` searches for the last two typed words, with a last word fallback.
+* `Keyboard.KeyboardType` has a new `.gif` type to enable GIF search.
+* `KeyboardAction` has new copy action cases for GIFs and image data.
+* `KeyboardApp` can now let you pass in a custom `gifProvider` value.
+* `KeyboardAppHomeScreen` can now link to the new `GifSettingsScreen`.
+* `KeyboardServices` has a new, optional `gifProvider` instance value.  
+* `KeyboardView` can show a `GifKeyboard` or `GifToolbar` if a provider is set.
+
+### 🔣 Layout
+
+* `KeyboardLayout` has a bunch of new item actions.
+* `KeyboardLayoutConfiguration` has been adjusted for iPhone Duo in open landscape.
+* `KeyboardLayoutConfiguration` has a smaller button height on Liquid Glass phones.
+
+### ⚙️ Settings
+
+* `KeyboardSettings` init has been simplified.
+* `KeyboardSettings` has a new `isOpenDuoToolbarPlacementMenuEnabled` setting.
+
+### 📝 Text Input
+
+* `KeyboardSearchField` is a new in-keyboard search field.  
+
+### 🐛 Bug Fixes
+
+* `KeyboardView` now applies the proper spacebar menus in split mode.
+* `KeyboardView` no longer drops key presses when predictions change.
+* `KeyboardLayoutCache` now uses the return key type as key component.
+* `StandardAutocompleteService` has some next character prediction fixes.
+* `AutocompleteService` no longer resets before autocompleting, to avoid flickering.
+
+### 🗑️ Deprecations
+
+* `Keyboard.DockEdge` now uses left/right naming instead of leading/trailing.
+* `Keyboard.Gesture.repeat` and `Keyboard.LocaleSections` are both deprecated.
+* `Keyboard.Placement` now uses left/right naming instead of leading/trailing.
+* `KeyboardLocaleBadge` has been renamed to a shared `Keyboard.ToolbarTextBadge`.
+* `KeyboardLocaleBadgeStyle` has been renamed to `Keyboard.ToolbarTextBadgeStyle`.
+
+
+
 ## 11.1.6
 
 This patch fixes an emoji related bug after applying an autocomplete suggestion, to avoid smileys being applied like "I'm happy: )".  
