@@ -12,6 +12,17 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.2.1 - 11.2.2
+
+These patches fixes some dependencies and adjusts the autocomplete plugin.
+
+### 💡 Autocomplete
+
+* `AutocompleteEngine` now requires capitalization info.
+* `KeyboardKitAutocompletePlugin` fixes several Langlot bugs.
+
+
+
 ## 11.2
 
 This version adds a new GIF feature, with a GIF keyboard, as well as models, views, and built-in GIPHY and Klipy integrations.
