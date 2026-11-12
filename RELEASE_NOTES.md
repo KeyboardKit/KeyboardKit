@@ -12,6 +12,28 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.2.3
+
+### 🙂 Emojis
+
+* `EmojiKeyboardSizes` is now `Equatable`.
+* `EmojiKeyboardSizes` has new `.iPhoneDuoOpen` and `.iPhoneDuoOpenLandscape` sizes.
+* `EmojiKeyboardSizes` uses larger iPad menu icons, to match the native iPad emoji keyboard.
+* `KeyboardSearchField` uses a translucent background, to match the native emoji search field.
+* `EmojiKeyboardSizes` has a new `menuCategoriesMaxWidth` that limits the width of the centered menu.
+
+### 🎞️ GIF
+
+* `GifKeyboard` now uses the same search bar height as the emoji keyboard.
+
+### 🐛 Bug Fixes
+
+* `KeyboardView` now makes the emoji keyboard grow like the native one, with a fixed search bar height.
+* `KeyboardView` now applies the same search bar height to the GIF keyboard search bar.
+* `KeyboardView` now uses larger emojis on iPad and open iPhone Duo, unless custom emoji sizes are applied.
+
+
+
 ## 11.2.1 - 11.2.2
 
 These patches fixes some dependencies and adjusts the autocomplete plugin.
