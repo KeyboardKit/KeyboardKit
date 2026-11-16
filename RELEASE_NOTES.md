@@ -12,6 +12,18 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.2.4
+
+This patch makes it possible to style and interact with toasts.
+
+### 🌱 Essentials
+
+* `Keyboard.Toast` is now interactive, which makes Markdown links tappable.
+* `Keyboard.ToastStyle` is a new style that can style the toast components.
+* `View` has a new `.keyboardToastStyle` modifier.
+
+
+
 ## 11.2.3
 
 ### 🙂 Emojis
