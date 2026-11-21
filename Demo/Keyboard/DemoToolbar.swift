@@ -36,7 +36,7 @@ struct DemoToolbar<Toolbar: View>: View {
     var body: some View {
         Keyboard.ToggleToolbar(
             isToggled: $isToolbarToggled,
-            toolbar: autocompleteToolbar,                   // Add a locale switcher to the toolbar
+            toolbar: autocompleteToolbar,                   // Adds a locale switcher to the toolbar
             toggledToolbar: toggledToolbar
         )
         .tint(.primary)

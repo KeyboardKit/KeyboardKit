@@ -7,6 +7,8 @@
 //
 
 import KeyboardKit
+import KeyboardKitAutocompletePlugin                        // <-- 💡 Autocomplete
+import KeyboardKitDictationPlugin                           // <-- 💡 Dictation
 import KeyboardKitHostPlugin                                // <-- 💡 Host Application
 import SwiftUI
 
@@ -33,7 +35,9 @@ class KeyboardViewController: KeyboardInputViewController {
         // Set up the keyboard with the demo-specific app.
         setupKeyboardKit(
             for: .keyboardKitDemo,
-            hostApplicationResolver: pluginHostApplicationResolver  // <-- 💡 Host Application
+            // autocompleteEngine: autocompleteEngine,      // <-- 💡 Autocomplete
+            // dictationEngine: dictationEngine,            // <-- 💡 Dictation
+            hostApplicationResolver: pluginHostApplicationResolver          // <-- 💡 Host Application
         ) { [weak self] result in
             switch result {                                 // <-- 💡 Handle the license result
             case .success:
@@ -81,7 +85,7 @@ private extension KeyboardViewController {
 
         /// 💡 Setup demo-specific haptic & audio feedback.
         let feedback = state.feedbackContext
-        feedback.registerCustomFeedback(.haptic(.selectionChanged, for: .repeat, on: .rocket))
+        feedback.registerCustomFeedback(.haptic(.selectionChanged, for: .repeatPress, on: .rocket))
         feedback.registerCustomFeedback(.audio(.rocketFuse, for: .press, on: .rocket))
         feedback.registerCustomFeedback(.audio(.rocketLaunch, for: .release, on: .rocket))
     }

@@ -29,8 +29,8 @@ struct DemoApp: App {
         WindowGroup {
             KeyboardAppView(
                 for: .keyboardKitDemo,
-                autocompleteEngine: autocompleteEngine,     // <-- 💡 Autocomplete
-                dictationEngine: dictationEngine            // <-- 💡 Dictation
+                // autocompleteEngine: autocompleteEngine,  // <-- 💡 Autocomplete
+                // dictationEngine: dictationEngine         // <-- 💡 Dictation
             ) {
                 HomeScreen()
             }

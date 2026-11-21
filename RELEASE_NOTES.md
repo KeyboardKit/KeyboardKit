@@ -133,7 +133,6 @@ This version uses the new preview to redesign the theme settings screen to show 
 
 
 
-
 ## 11.2.4
 
 This patch makes it possible to style and interact with toasts.

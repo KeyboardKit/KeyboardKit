@@ -44,18 +44,3 @@ extension KeyboardApp {
         )
     }
 }
-
-@MainActor
-var dictationEngine: DictationEngine {
-    pluginDictationEngine
-}
-
-@MainActor
-var autocompleteEngine: AutocompleteEngine {
-    pluginAutocompleteEngine(
-        .langlot(
-            licenseKey: "87170FBB-24F4-4C00-A7FC-C9A77D49DF38",
-            appGroup: KeyboardApp.keyboardKitDemo.appGroupId!
-        )
-    )
-}
