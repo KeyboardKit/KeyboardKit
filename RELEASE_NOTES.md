@@ -12,6 +12,123 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.3
+
+This version adds a lightweight `KeyboardPreview` that renders and caches previews on disk, which allows you to show multiple keyboard views without performance issues.
+
+This version uses the new preview to redesign the theme settings screento show full keyboard previews instead of the button previews. The previews load on demand, as needed. 
+
+This version also improves autocomplete by ignoring tapped current word suggestions for the rest of the session, provided that the auto-ignore autocomplete setting is enabled.
+
+This version also improves user experience when using keyboard text input views like the emoji and GIF search fields, by showing a toast when they're tapped without Full Access.
+
+This version also makes it a lot easier to localize the KeyboardKit screens and views, by adding a new `KeyboardLocalization` that gathers all localized texts in one single place.
+
+This version also adds a new `.inKeyboard` engine type to the `PluginDictationEngine` in the dictation plugin, which can dictate directly in the keyboard extension, without opening the main app.
+
+Finally, this version adds support for triggering system shortcuts from the Shortcuts app, and adds a new `.systemShortcut(...)` action that can trigger shortcuts from the keyboard.
+
+### 🌱 Essentials
+
+* `Keyboard.ToastMessage` has a new `fullAccessNeeded` message.
+* `Keyboard.ToastMessage` `.gifCopied` and `.fullAccessNeeded` are now localized.
+* `Keyboard.ToastMessage` has new `.gifCopied(_:)` and `.fullAccessNeeded(_:)` builders.
+
+### 💥 Actions
+
+* `KeyboardAction` has a new `.systemShortcut(_:)` action.
+* `KeyboardAction.SystemShortcut` is a new system shortcut trigger type.
+
+### 💡 Autocomplete
+
+* `StandardKeyboardActionHandler` now auto-ignores a tapped current word suggestion.
+
+### 🎤 Dictation
+
+* `DictationContext` now only keeps the most recent volume data points
+* `DictationContext` `isDictating` is now `true` while dictation is starting.
+* `DictationKeyboardOverlay` has been polished and is more responsive than before.
+* `DictationKeyboardOverlay` animates in the volume bars if dictation is starting when it appears.
+* `DictationIndicatorBadge` now pulses to indicate that dictation is active.
+* `DictationService` `.standardForKeyboard` has a new `dictationEngine` parameter.
+* `DictationState` has a new `starting` case to handle the new engine's slow launch.
+* `DictationVolumeVisualizer` has been redesigned to show volume bars from the right.
+* `KeyboardApp.DeepLinks` has a new `dictationAuthorization` deep link.
+* `KeyboardInputViewController.setupKeyboardKit` has a new `dictationEngine` parameter.
+* `KeyboardKitDictationPlugin` now records twice as often, for a more responsive visualizer.
+* `StandardDictationService` can now use an in-keyboard engine to dictate directly in the keyboard.
+* `StandardDictationService` opens the main app to request authorization, if an in-keyboard engine isn't authorized.
+* `KeyboardKitDictationPlugin` has a new `PluginDictationEngine` with `.standard` and `.inKeyboard` types.
+* `KeyboardKitDictationPlugin` has a new `pluginDictationEngine(_:)` builder that takes these new engine types.
+* `View.keyboardDictation` now requests authorization when the app is opened with the `dictationAuthorization` deep link.
+
+### 🎞️ GIF
+
+* `GifProvider` now lowercases the search query.
+
+### 🌐 Localization
+
+* `KeyboardLocalization` is a new type that can be used to localize all views.
+* `View` has a new `.keyboardLocalization` modifier for applying custom localizations.
+
+### 👁️ Previews
+
+* `KeyboardPreview` is a new, lightweight keyboard preview.
+* `KeyboardPreviewCache` is a new cache that caches previews.
+* `KeyboardPreviewRenderer` is a new renderer that renders previews.
+* `View` has a new `.keyboardPreviewRenderingPausedWhileScrolling` modifier.
+
+### ⚙️ Settings
+
+* `KeyboardFontSettingsScreen` has a new `fonts` init parameter.
+* `KeyboardSettingsPickerValue` now uses `LocalizedStringResource` titles.
+* `KeyboardSettingsPickerValue` is now localized with the new `KeyboardLocalization`.
+* `KeyboardSettingsScreen` no longer has a keyboards section.
+* `KeyboardActionPicker` can now pick and configure system shortcut actions.
+* `KeyboardActionPicker` can now pick a system shortcut symbol with a `SystemSymbolPicker`.
+
+### 🧭 Navigation
+
+* `URL` has a new `.systemShortcut(named:input:)` builder that runs a system shortcut.
+
+### 📝 Text Input
+
+* `KeyboardSearchField` has a new `fullAccessNeededAction` init parameter.
+* `KeyboardTextField`s have a new `fullAccessNeededAction` init parameter.
+* `KeyboardTextView` has a new `fullAccessNeededAction` init parameter.
+
+### 🖌️ Styling
+
+* `SystemSymbol` is a new type that represents an SF Symbol.
+* `SystemSymbol.all` lists all public SF Symbols.
+* `SystemSymbolPicker` is a new view that can be used to search for and pick a symbol.
+
+### 🎨 Themes
+
+* `KeyboardThemeSettingsScreen` now uses a `KeyboardPreview`.
+* `KeyboardThemeSettingsScreen` has a new `themes` init parameter.
+* `KeyboardThemeSettingsScreenStyle` has new style values.
+* `KeyboardThemeShelfViewStyle` has been drastically simplified.
+
+### 🗑️ Deprecations
+
+* `AutocompleteMethodPicker` has deprecated its string-based initializer.
+* `Keyboard.ButtonPreview` has been deprecated, use the now `KeyboardPreview`.
+* `KeyboardLocalization` has nested types for all deprecated localization types.
+* `KeyboardSettingsScreenLocalization` and all similar types have been deprecated.
+* `KeyboardThemeShelf` and `KeyboardThemeShelfItem` has been renamed to new names.
+* `KeyboardViewPreview` has been deprecated, due to the brand new `KeyboardPreview`.
+* `View.keyboardSettingsPickerTitle` and the related value title no longer do anything.
+* `View.keyboardSettingsScreenLocalization` and similar modifiers no longer do anything.
+
+### 🚨 Breaking Changes
+
+* `KeyboardSettingsPickerValue` has breaking changes as part of the `KeyboardLocalization` change.
+* `KeyboardSettingsScreen` has removed its `keyboardsSection` init parameter and generic.
+
+
+
+
 ## 11.2.4
 
 This patch makes it possible to style and interact with toasts.
