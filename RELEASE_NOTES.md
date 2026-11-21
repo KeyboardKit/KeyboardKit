@@ -14,21 +14,11 @@ This document covers the current major version. See older versions for older rel
 
 ## 11.3
 
-This version adds a lightweight `KeyboardPreview` that renders and caches previews on disk, which allows you to show multiple keyboard views without performance issues.
-
-This version uses the new preview to redesign the theme settings screento show full keyboard previews instead of the button previews. The previews load on demand, as needed. 
-
-This version also improves autocomplete by ignoring tapped current word suggestions for the rest of the session, provided that the auto-ignore autocomplete setting is enabled.
-
-This version also improves user experience when using keyboard text input views like the emoji and GIF search fields, by showing a toast when they're tapped without Full Access.
-
-This version also makes it a lot easier to localize the KeyboardKit screens and views, by adding a new `KeyboardLocalization` that gathers all localized texts in one single place.
-
-This version also adds a new `.inKeyboard` engine type to the `PluginDictationEngine` in the dictation plugin, which can dictate directly in the keyboard extension, without opening the main app.
-
-Finally, this version adds support for triggering system shortcuts from the Shortcuts app, and adds a new `.systemShortcut(...)` action that can trigger shortcuts from the keyboard.
+This version improves dictation, autocomplete, and previews, and makes it possible to trigger system shortcuts from the keyboard. It also makes it possible to easier to localize the SDK views and screens.
 
 ### 🌱 Essentials
+
+This version adds new toast messages for Full Access, and localizes toast messages with the new localization engine.
 
 * `Keyboard.ToastMessage` has a new `fullAccessNeeded` message.
 * `Keyboard.ToastMessage` `.gifCopied` and `.fullAccessNeeded` are now localized.
@@ -36,14 +26,21 @@ Finally, this version adds support for triggering system shortcuts from the Shor
 
 ### 💥 Actions
 
+This version makes it possible to trigger system shortcuts from the Shortcuts app, and adds a new `.systemShortcut(...)` action that can trigger shortcuts from the keyboard.
+
 * `KeyboardAction` has a new `.systemShortcut(_:)` action.
 * `KeyboardAction.SystemShortcut` is a new system shortcut trigger type.
+* `URL` has a new `.systemShortcut(named:input:)` builder that runs a system shortcut.
 
 ### 💡 Autocomplete
+
+This version improves autocomplete by ignoring tapped current word suggestions for the rest of the session, provided that the auto-ignore autocomplete setting is enabled.
 
 * `StandardKeyboardActionHandler` now auto-ignores a tapped current word suggestion.
 
 ### 🎤 Dictation
+
+This version adds a new `.inKeyboard` engine type to the `PluginDictationEngine` in the dictation plugin, which can dictate directly in the keyboard extension, without opening the main app.
 
 * `DictationContext` now only keeps the most recent volume data points
 * `DictationContext` `isDictating` is now `true` while dictation is starting.
@@ -68,10 +65,14 @@ Finally, this version adds support for triggering system shortcuts from the Shor
 
 ### 🌐 Localization
 
+This version makes it a lot easier to localize the KeyboardKit screens and views, by adding a new `KeyboardLocalization` that gathers all localized texts in one single place.
+
 * `KeyboardLocalization` is a new type that can be used to localize all views.
 * `View` has a new `.keyboardLocalization` modifier for applying custom localizations.
 
 ### 👁️ Previews
+
+This version adds a lightweight `KeyboardPreview` that renders and caches previews on disk, which allows you to show multiple keyboard views without performance issues.
 
 * `KeyboardPreview` is a new, lightweight keyboard preview.
 * `KeyboardPreviewCache` is a new cache that caches previews.
@@ -80,6 +81,8 @@ Finally, this version adds support for triggering system shortcuts from the Shor
 
 ### ⚙️ Settings
 
+This version makes it a lot easier to localize the settings screens and views, using the new `KeyboardLocalization` approach.
+
 * `KeyboardFontSettingsScreen` has a new `fonts` init parameter.
 * `KeyboardSettingsPickerValue` now uses `LocalizedStringResource` titles.
 * `KeyboardSettingsPickerValue` is now localized with the new `KeyboardLocalization`.
@@ -87,11 +90,9 @@ Finally, this version adds support for triggering system shortcuts from the Shor
 * `KeyboardActionPicker` can now pick and configure system shortcut actions.
 * `KeyboardActionPicker` can now pick a system shortcut symbol with a `SystemSymbolPicker`.
 
-### 🧭 Navigation
-
-* `URL` has a new `.systemShortcut(named:input:)` builder that runs a system shortcut.
-
 ### 📝 Text Input
+
+This version improves the user experience when using keyboard text input views like the emoji and GIF search fields, by showing a toast when they're tapped while being disabled due to lack of Full Access.
 
 * `KeyboardSearchField` has a new `fullAccessNeededAction` init parameter.
 * `KeyboardTextField`s have a new `fullAccessNeededAction` init parameter.
@@ -99,11 +100,15 @@ Finally, this version adds support for triggering system shortcuts from the Shor
 
 ### 🖌️ Styling
 
+This version introduces a system symbol picker, which is used by the action picker when picking system shortcut actions.
+
 * `SystemSymbol` is a new type that represents an SF Symbol.
 * `SystemSymbol.all` lists all public SF Symbols.
 * `SystemSymbolPicker` is a new view that can be used to search for and pick a symbol.
 
 ### 🎨 Themes
+
+This version uses the new preview to redesign the theme settings screen to show full keyboard previews instead of the button previews. The previews load on demand, as needed. 
 
 * `KeyboardThemeSettingsScreen` now uses a `KeyboardPreview`.
 * `KeyboardThemeSettingsScreen` has a new `themes` init parameter.
