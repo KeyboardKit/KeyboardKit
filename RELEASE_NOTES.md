@@ -12,6 +12,21 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.3.1
+
+This patch fixes a missing picker label, and converts the environment localization to a reference type.
+
+### 🌐 Localization
+
+* `KeyboardLocalization` now uses an underlying store to avoid copying large values.
+
+### 🐛 Bug Fixes
+
+* `KeyboardActionPicker` now shows a correct label for `.toggleKeyboardType(_:)`.
+
+
+
+
 ## 11.3
 
 This version improves dictation, autocomplete, and previews, and makes it possible to trigger system shortcuts from the keyboard. It also makes it possible to easier to localize the SDK views and screens.
@@ -30,6 +45,7 @@ This version makes it possible to trigger system shortcuts from the Shortcuts ap
 
 * `KeyboardAction` has a new `.systemShortcut(_:)` action.
 * `KeyboardAction.SystemShortcut` is a new system shortcut trigger type.
+* `KeyboardActionPicker` now supports `.toggleKeyboardType(_:)` actions.
 * `URL` has a new `.systemShortcut(named:input:)` builder that runs a system shortcut.
 
 ### 💡 Autocomplete
