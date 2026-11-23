@@ -12,6 +12,24 @@ This document covers the current major version. See older versions for older rel
 
 
 
+## 11.3.2
+
+This patch adds a missing bottom edge padding when a theme is enabled on certain devices.
+
+### 🔣 Layout 
+
+* `KeyboardLayoutConfiguration` has been adjusted to match the native iPhone Duo open portrait.
+
+### 🎨 Styling
+
+* `KeyboardAction` uses a larger font on iPhone Duo in open landscape.
+
+### 🐛 Bug Fixes
+
+* `KeyboardView` applies a bottom padding when a theme with a background is enabled.
+
+
+
 ## 11.3.1
 
 This patch fixes a missing picker label, and converts the environment localization to a reference type.
